@@ -1,0 +1,39 @@
+
+#
+# Makefile.hipfort: Include Makefile to set values LINKOPTS, CXX, and FC 
+#                   to support compilation with HIPFORT.
+#
+# This file is meant to be included by other Makefiles.  The includer must 
+# set HIPFORT_HOME to the build or install location of HIPFORT.  For example:
+#
+#    HIPFORT_HOME ?= /opt/rocm/hipfort
+#    include $(HIPFORT_HOME)/bin/Makefile.hipfort
+#  
+# If the caller does not set HIPFORT_ARCHGPU, this Makefile will call 
+# a self-identification utility called myarchgpu.  Please create an issue
+# in the hipfort repo if myarchgpu returns unknown.
+#
+
+ROCM            ?= /opt/rocm
+HIPFORT_ARCHGPU ?= $(shell $(HIPFORT_HOME)/bin/myarchgpu)
+CUDA            ?= /usr/local/cuda
+
+MOD_DIR  = $(HIPFORT_HOME)/include/$(HIPFORT_ARCHGPU)
+LIB_DIR  = $(HIPFORT_HOME)/lib
+
+GPU = $(strip $(subst ., ,$(suffix $(subst -,.,$(HIPFORT_ARCHGPU)))))
+ifeq (nvptx,$(findstring nvptx,$(HIPFORT_ARCHGPU)))
+  UNAMEP     = $(shell uname -p)
+  LINKOPTS   = -L$(CUDA)/targets/$(UNAMEP)-linux/lib -lcudart
+  HIPCC_ENV  = HIP_PLATFORM=nvcc
+  HIPCC_OPTS = "--gpu-architecture=$(GPU)"
+else
+  LINKOPTS   = -L$(ROCM)/lib -lhip_hcc 
+  HIPCC_ENV  = 
+  HIPCC_OPTS = "-fno-gpu-rdc -fPIC --amdgpu-target=$(GPU)"
+endif
+
+LINKOPTS += -lstdc++ -L$(LIB_DIR) -lhipfort-$(HIPFORT_ARCHGPU)
+CXX      = $(HIPCC_ENV) $(ROCM)/bin/hipcc $(HIPCC_OPTS)
+FC       = gfortran -cpp -I$(MOD_DIR)
+
