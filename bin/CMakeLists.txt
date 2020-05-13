@@ -14,17 +14,26 @@ add_custom_command( OUTPUT gputable.txt
 add_custom_command( OUTPUT myarchgpu
    COMMAND /bin/cp -p ${CMAKE_CURRENT_SOURCE_DIR}/myarchgpu ${CMAKE_CURRENT_BINARY_DIR}/../bin/myarchgpu
    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/myarchgpu)
-add_custom_command( OUTPUT Makefile.hipfort
+
+add_custom_command( OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/../bin/Makefile.hipfort
    COMMAND /bin/cp -p ${CMAKE_CURRENT_SOURCE_DIR}/Makefile.hipfort ${CMAKE_CURRENT_BINARY_DIR}/../bin/Makefile.hipfort
    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/Makefile.hipfort)
-add_custom_target(util_scripts ALL DEPENDS bindir gputable.txt myarchgpu Makefile.hipfort)
+string(REGEX REPLACE "[/]" "\\\\/" escaped_path ${HIPFORT_COMPILER})
+set(sed_str s/gfortran/${escaped_path}/g)
+add_custom_command( OUTPUT makefile.phantom
+   COMMAND /bin/sed -i -e '${sed_str}' ${CMAKE_CURRENT_BINARY_DIR}/../bin/Makefile.hipfort > makefile.phantom
+   DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/../bin/Makefile.hipfort)
+
+add_custom_target(util_scripts ALL DEPENDS bindir gputable.txt myarchgpu Makefile.hipfort makefile.phantom)
 
 install(PROGRAMS
-   ${CMAKE_CURRENT_SOURCE_DIR}/gputable.txt
    ${CMAKE_CURRENT_SOURCE_DIR}/mymcpu
    ${CMAKE_CURRENT_SOURCE_DIR}/mygpu
    ${CMAKE_CURRENT_SOURCE_DIR}/myarchgpu
-   ${CMAKE_CURRENT_SOURCE_DIR}/Makefile.hipfort 
    DESTINATION bin
 )
 
+install(FILES
+   ${CMAKE_CURRENT_SOURCE_DIR}/gputable.txt
+   ${CMAKE_CURRENT_BINARY_DIR}/../bin/Makefile.hipfort
+   DESTINATION bin)

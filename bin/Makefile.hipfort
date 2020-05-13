@@ -17,6 +17,7 @@
 ROCM            ?= /opt/rocm
 HIPFORT_ARCHGPU ?= $(shell $(HIPFORT_HOME)/bin/myarchgpu)
 CUDA            ?= /usr/local/cuda
+HIPFORT_COMPILER ?= gfortran
 
 MOD_DIR  = $(HIPFORT_HOME)/include/$(HIPFORT_ARCHGPU)
 LIB_DIR  = $(HIPFORT_HOME)/lib
@@ -35,5 +36,5 @@ endif
 
 LINKOPTS += -lstdc++ -L$(LIB_DIR) -lhipfort-$(HIPFORT_ARCHGPU)
 CXX      = $(HIPCC_ENV) $(ROCM)/bin/hipcc $(HIPCC_OPTS)
-FC       = gfortran -cpp -I$(MOD_DIR)
+FC       = $(HIPFORT_COMPILER) -cpp -I$(MOD_DIR)
 
