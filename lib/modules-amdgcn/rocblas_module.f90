@@ -3144,4 +3144,14 @@ module rocblas
         end function rocblas_drotmg_strided_batched
     end interface
 
+    contains
+     subroutine rocblasCheck(rocblasError_t)
+       implicit none
+       integer(kind(rocblas_status_success)) :: rocblasError_t
+       if (rocblasError_t /= rocblas_status_success) then
+          write(*,*) "ROCBLAS ERROR: Error code = ", rocblasError_t
+          call exit(rocblasError_t)
+       end if
+     end subroutine rocblasCheck
+
 end module rocblas
