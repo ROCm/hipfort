@@ -10,6 +10,7 @@ file(GLOB HIPFORT_VECADD_FILES "${CMAKE_CURRENT_SOURCE_DIR}/vecadd/*")
 file(GLOB HIPFORT_HIPBLAS_FILES "${CMAKE_CURRENT_SOURCE_DIR}/hipblas/*")
 file(GLOB HIPFORT_FFT_FILES "${CMAKE_CURRENT_SOURCE_DIR}/fft/*")
 file(GLOB HIPFORT_ROCSPARSE_FILES "${CMAKE_CURRENT_SOURCE_DIR}/rocsparse/*")
+file(GLOB HIPFORT_ROCBLAS_FILES "${CMAKE_CURRENT_SOURCE_DIR}/rocblas/*")
 
 add_custom_command(
    OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/vecadd
@@ -46,6 +47,12 @@ add_custom_command(
    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
    DEPENDS ${HIPFORT_ROCSPARSE_FILES}
 )
+add_custom_command(
+   OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/saxpy
+   COMMAND ${make_env}  make -C ${CMAKE_CURRENT_SOURCE_DIR}/rocblas
+   WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+   DEPENDS ${HIPFORT_ROCBLAS_FILES}
+)
 
 add_custom_command(
    OUTPUT  hipblas-phantom-build-file
@@ -55,6 +62,7 @@ add_custom_command(
       ${CMAKE_CURRENT_BINARY_DIR}/dscal
       ${CMAKE_CURRENT_BINARY_DIR}/dger
       ${CMAKE_CURRENT_BINARY_DIR}/dgemm
+      ${CMAKE_CURRENT_BINARY_DIR}/saxpy
       ${CMAKE_CURRENT_BINARY_DIR}/rocfft
       ${CMAKE_CURRENT_BINARY_DIR}/ddoti
 )
@@ -68,6 +76,8 @@ add_custom_command(
    COMMAND ./dgemm
    COMMAND echo --- Running dger
    COMMAND ./dger
+   COMMAND echo --- Running saxpy
+   COMMAND ./saxpy
    COMMAND echo --- Running rocfft
    COMMAND ./rocfft
    COMMAND echo --- Running ddoti
@@ -77,6 +87,7 @@ add_custom_command(
       ${CMAKE_CURRENT_BINARY_DIR}/dscal
       ${CMAKE_CURRENT_BINARY_DIR}/dger
       ${CMAKE_CURRENT_BINARY_DIR}/dgemm
+      ${CMAKE_CURRENT_BINARY_DIR}/saxpy
       ${CMAKE_CURRENT_BINARY_DIR}/rocfft
       ${CMAKE_CURRENT_BINARY_DIR}/ddoti
 )

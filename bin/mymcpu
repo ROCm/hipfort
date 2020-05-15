@@ -150,6 +150,8 @@ function code2gpu(){
       ;;
       "k4000") gpuname="sm_30"
       ;;
+      "k40c") gpuname="sm_35"
+      ;;
       "k4200") gpuname="sm_30"
       ;;
       "gtx960m") gpuname="sm_50"
@@ -191,7 +193,8 @@ fi
 GPUTABLE_FILE=${GPUTABLE_FILE:-$thisdir/gputable.txt}
 local _found=0
 if [ -f $GPUTABLE_FILE ] ; then
-   for sysfsname in `find -L /sys/bus/pci/devices -maxdepth 2 -name uevent | xargs grep -l -E 'DRIVER=amdgpu|DRIVER=nvidia'` ; do
+   # Look for amd cards first
+   for sysfsname in `find -L /sys/bus/pci/devices -maxdepth 2 -name uevent | xargs grep -l -E 'DRIVER=amdgpu'` ; do
       gpuid=`cat $sysfsname | grep 'PCI_ID=' | cut -d"=" -f2 | tr '[:upper:]' '[:lower:]'`
       if [ $_found == 0  ] ; then
          #fixme what happens if multiple gpus,  will gpuid be multiple lines?
@@ -202,6 +205,19 @@ if [ -f $GPUTABLE_FILE ] ; then
          fi
       fi
    done
+   if [ $_found == 0  ] ; then
+      for sysfsname in `find -L /sys/bus/pci/devices -maxdepth 2 -name uevent | xargs grep -l -E 'DRIVER=nvidia'` ; do
+         gpuid=`cat $sysfsname | grep 'PCI_ID=' | cut -d"=" -f2 | tr '[:upper:]' '[:lower:]'`
+         if [ $_found == 0  ] ; then
+            #fixme what happens if multiple gpus,  will gpuid be multiple lines?
+            entry=`grep -m1 "^$gpuid" $GPUTABLE_FILE`
+            if [ $? == 0 ] ; then
+               codename=`echo $entry | awk '{print $4}'`
+               _found=1
+            fi
+         fi
+      done
+   fi
 fi
 if [ $_found == 1  ] ; then
    echo $codename
