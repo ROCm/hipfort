@@ -18,6 +18,8 @@ ROCM            ?= /opt/rocm
 HIPFORT_ARCHGPU ?= $(shell $(HIPFORT_HOME)/bin/myarchgpu)
 CUDA            ?= /usr/local/cuda
 HIPFORT_COMPILER ?= gfortran
+DEVICE_LIB_PATH  ?= $(ROCM)/lib
+HIP_CLANG_PATH   ?= $(ROCM)/bin
 
 MOD_DIR  = $(HIPFORT_HOME)/include/$(HIPFORT_ARCHGPU)
 LIB_DIR  = $(HIPFORT_HOME)/lib
@@ -29,9 +31,9 @@ ifeq (nvptx,$(findstring nvptx,$(HIPFORT_ARCHGPU)))
   HIPCC_ENV  = HIP_PLATFORM=nvcc
   HIPCC_OPTS = "--gpu-architecture=$(GPU)"
 else
-  LINKOPTS   = -L$(ROCM)/lib -lhip_hcc 
-  HIPCC_ENV  = 
-  HIPCC_OPTS = "-fno-gpu-rdc -fPIC --amdgpu-target=$(GPU)"
+  LINKOPTS   = -L$(ROCM)/lib -lamdhip64 -Wl,-rpath=$(ROCM)/lib
+  HIPCC_ENV  = HIP_PLATFORM=clang DEVICE_LIB_PATH=$(DEVICE_LIB_PATH) HIP_CLANG_PATH=$(HIP_CLANG_PATH)
+  HIPCC_OPTS = -fno-gpu-rdc -fPIC --offload-arch=$(GPU)
 endif
 
 LINKOPTS += -lstdc++ -L$(LIB_DIR) -lhipfort-$(HIPFORT_ARCHGPU)
