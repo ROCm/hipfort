@@ -8,7 +8,7 @@ set(HIPFORT_COMPILER_FLAGS "-std=f2003 -ffree-form -cpp" CACHE STRING "Compiler 
 set(HIPFORT_BUILD_TYPE "RELEASE"  CACHE STRING "Set to RELEASE TESTING or DEBUG")
 set(HIPFORT_INSTALL_DIR  "/tmp/hipfort"  CACHE STRING "Install directory for hipfort")
 set(HIPFORT_AMDGPUS "gfx701;gfx803;gfx900;gfx902;gfx906;gfx908" CACHE STRING "List of AMDGCPUs to build")
-set(HIPFORT_NVGPUS "sm_30;sm_62;sm_70" CACHE STRING "List of Nvidia to build")
+set(HIPFORT_NVGPUS "sm_30;sm_35;sm_62;sm_70" CACHE STRING "List of Nvidia to build")
 message("-- HIPFORT -------------  cmake START -------------------")
 message("-- HIPFORT_COMPILER:       ${HIPFORT_COMPILER}")
 message("-- HIPFORT_AR:             ${HIPFORT_AR}")
