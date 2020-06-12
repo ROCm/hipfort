@@ -13,15 +13,20 @@
 # a self-identification utility called myarchgpu.  Please create an issue
 # in the hipfort repo if myarchgpu returns unknown.
 #
+# To avoid self identification set HIPFORT_ARCHGPU.  Examples:
+#    HIPFORT_ARCHGPU = amdgcn-gfx906
+#    HIPFORT_ARCHGPU = nvptx-sm_70
+#
 
 ROCM            ?= /opt/rocm
 HIPFORT_ARCHGPU ?= $(shell $(HIPFORT_HOME)/bin/myarchgpu)
+ARCH = $(firstword $(subst -, ,$(HIPFORT_ARCHGPU)))
 CUDA            ?= /usr/local/cuda
 HIPFORT_COMPILER ?= gfortran
 DEVICE_LIB_PATH  ?= $(ROCM)/lib
 HIP_CLANG_PATH   ?= $(ROCM)/llvm/bin
 
-MOD_DIR  = $(HIPFORT_HOME)/include/$(HIPFORT_ARCHGPU)
+MOD_DIR  = $(HIPFORT_HOME)/include/$(ARCH)
 LIB_DIR  = $(HIPFORT_HOME)/lib
 
 GPU = $(strip $(subst ., ,$(suffix $(subst -,.,$(HIPFORT_ARCHGPU)))))
@@ -31,12 +36,12 @@ ifeq (nvptx,$(findstring nvptx,$(HIPFORT_ARCHGPU)))
   HIPCC_ENV  = HIP_PLATFORM=nvcc
   HIPCC_OPTS = "--gpu-architecture=$(GPU)"
 else
-  LINKOPTS   = -L$(ROCM)/lib -lhip_hcc 
-  HIPCC_ENV  = DEVICE_LIB_PATH=$(DEVICE_LIB_PATH) HIP_CLANG_PATH=$(HIP_CLANG_PATH)
+  LINKOPTS   = -L$(ROCM)/lib -lamdhip64 -Wl,-rpath=$(ROCM)/lib
+  HIPCC_ENV  = HIP_PLATFORM=hcc DEVICE_LIB_PATH=$(DEVICE_LIB_PATH) HIP_CLANG_PATH=$(HIP_CLANG_PATH)
   HIPCC_OPTS = -fno-gpu-rdc -fPIC --offload-arch=$(GPU)
 endif
 
-LINKOPTS += -lstdc++ -L$(LIB_DIR) -lhipfort-$(HIPFORT_ARCHGPU)
+LINKOPTS += -lstdc++ -L$(LIB_DIR) -lhipfort-$(ARCH)
 CXX      = $(HIPCC_ENV) $(ROCM)/bin/hipcc $(HIPCC_OPTS)
 FC       = $(HIPFORT_COMPILER) -cpp -I$(MOD_DIR)
 

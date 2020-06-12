@@ -4,7 +4,7 @@ module hip
   ! they can just 'use hip'
   use hip_enums
 
-  character (len=*),parameter::hipfort_archgpu = _HIPFORT_ARCHGPU 
+  character (len=*),parameter::hipfort_arch = _HIPFORT_ARCH
 
   interface
 
