@@ -29,7 +29,7 @@ program fortran_hip
   integer :: i
 
   write(*,*) "Starting HIP vector addition test"
-  write(*,*) "HIPFORT_ARCHGPU = ", hipfort_archgpu
+  write(*,*) "HIPFORT_ARCH = ", hipfort_arch
 
   ! Allocate host memory
   allocate(a(N))
