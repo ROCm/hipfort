@@ -19,8 +19,6 @@ message("-- HIPFORT ----------------------------------------------")
 set(CMAKE_Fortran_COMPILER_INIT ${HIPFORT_COMPILER})
 PROJECT(hipfort Fortran C)
 
-
-
 SET(CMAKE_BUILD_TYPE ${HIPFORT_BUILD_TYPE})
 SET(VERSION 0.1-0)
 SET(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/Modules/")
