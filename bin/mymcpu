@@ -4,7 +4,6 @@
 # mygpu:     Print a gpu value 
 # myarchgpu: Print arch-gpu value 
 #
-# Written by Greg Rodgers Gregory.Rodgers@amd.com
 
 PROGVERSION=0.1-0
 

@@ -4,8 +4,6 @@ hipfort: Fortran Interface For GPU Kernel Libraries
 This repository contains the source and testing for hipfort.  
 This is a FORTRAN interface library for accessing GPU Kernels.
 
-QUESTIONS: gregory.rodgers@amd.com 
-
 ## Build and test hipfort from source
 ```
 git clone https://github.com/ROCmSoftwarePlatform/hipfort
