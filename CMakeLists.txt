@@ -19,6 +19,8 @@ message("-- HIPFORT ----------------------------------------------")
 set(CMAKE_Fortran_COMPILER_INIT ${HIPFORT_COMPILER})
 PROJECT(hipfort Fortran C)
 
+
+
 SET(CMAKE_BUILD_TYPE ${HIPFORT_BUILD_TYPE})
 SET(VERSION 0.1-0)
 SET(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/Modules/")
@@ -53,5 +55,23 @@ ENDIF(FCNAME STREQUAL "pgf90")
 ADD_SUBDIRECTORY(${CMAKE_SOURCE_DIR}/lib)
 ADD_SUBDIRECTORY(${CMAKE_SOURCE_DIR}/test)
 ADD_SUBDIRECTORY(${CMAKE_SOURCE_DIR}/bin)
+
+# Packaging
+INCLUDE(${CMAKE_MODULE_PATH}/rocm-cmake.cmake)
+rocm_setup_version(VERSION ${VERSION})
+set(CPACK_DEBIAN_PACKAGE_DEPENDS "hip-rocclr (>= 3.5.0)")
+set(CPACK_RPM_PACKAGE_REQUIRES "hip-rocclr >= 3.5.0")
+set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
+if(NOT CPACK_PACKAGING_INSTALL_PREFIX)
+  set(CPACK_PACKAGING_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
+endif()
+
+set(CPACK_RPM_EXCLUDE_FROM_AUTO_FILELIST_ADDITION "\${CPACK_PACKAGING_INSTALL_PREFIX}" "\${CPACK_PACKAGING_INSTALL_PREFIX}/include" )
+
+rocm_create_package(
+  NAME hipfort
+  DESCRIPTION "Radeon Open Compute Parallel Primitives Library"
+  MAINTAINER "hipfort Maintainer <hipfort-maintainer@amd.com>"
+)
 
 message("-- HIPFORT -------------  cmake DONE --------------------")
