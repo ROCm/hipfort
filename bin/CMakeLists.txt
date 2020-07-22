@@ -35,6 +35,7 @@ add_custom_command( OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/../bin/hipfc.needs_edit
 
 add_custom_command( OUTPUT hipfc
    COMMAND /bin/sed -e '${sed_str2}' ${CMAKE_CURRENT_BINARY_DIR}/../bin/hipfc.needs_edit > hipfc
+   COMMAND chmod 755 hipfc
    DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/../bin/hipfc.needs_edit)
 
 add_custom_target(util_scripts ALL DEPENDS bindir gputable.txt myarchgpu Makefile.hipfort hipfc)
@@ -43,11 +44,11 @@ install(PROGRAMS
    ${CMAKE_CURRENT_SOURCE_DIR}/mymcpu
    ${CMAKE_CURRENT_SOURCE_DIR}/mygpu
    ${CMAKE_CURRENT_SOURCE_DIR}/myarchgpu
+   ${CMAKE_CURRENT_BINARY_DIR}/../bin/hipfc
    DESTINATION bin
 )
 
 install(FILES
    ${CMAKE_CURRENT_SOURCE_DIR}/gputable.txt
    ${CMAKE_CURRENT_BINARY_DIR}/../bin/Makefile.hipfort
-   ${CMAKE_CURRENT_BINARY_DIR}/../bin/hipfc
    DESTINATION bin)
