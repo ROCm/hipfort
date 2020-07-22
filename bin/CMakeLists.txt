@@ -17,16 +17,27 @@ add_custom_command( OUTPUT myarchgpu
 
 string(REGEX REPLACE "[/]" "\\\\/" escaped_path ${HIPFORT_COMPILER})
 set(sed_str s/gfortran/${escaped_path}/g)
+string(REGEX REPLACE "[/]" "\\\\/" installed_path ${HIPFORT_INSTALL_DIR})
+set(sed_str2 s/_HIPFORT_INSTALL_DIR_/${installed_path}/g)
 
 add_custom_command( OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/../bin/Makefile.hipfort.needs_edit
    COMMAND /bin/cp -p ${CMAKE_CURRENT_SOURCE_DIR}/Makefile.hipfort ${CMAKE_CURRENT_BINARY_DIR}/../bin/Makefile.hipfort.needs_edit
    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/Makefile.hipfort)
 
 add_custom_command( OUTPUT Makefile.hipfort
-	COMMAND /bin/sed -e '${sed_str}' ${CMAKE_CURRENT_BINARY_DIR}/../bin/Makefile.hipfort.needs_edit > Makefile.hipfort
+   COMMAND /bin/sed -e '${sed_str}' ${CMAKE_CURRENT_BINARY_DIR}/../bin/Makefile.hipfort.needs_edit > Makefile.hipfort
    DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/../bin/Makefile.hipfort.needs_edit)
 
-add_custom_target(util_scripts ALL DEPENDS bindir gputable.txt myarchgpu Makefile.hipfort)
+add_custom_command( OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/../bin/hipfc.needs_edit
+   COMMAND /bin/cp -p ${CMAKE_CURRENT_SOURCE_DIR}/hipfc ${CMAKE_CURRENT_BINARY_DIR}/../bin/hipfc.needs_edit
+   COMMAND /bin/sed -i -e '${sed_str}' ${CMAKE_CURRENT_BINARY_DIR}/../bin/hipfc.needs_edit
+   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/hipfc)
+
+add_custom_command( OUTPUT hipfc
+   COMMAND /bin/sed -e '${sed_str2}' ${CMAKE_CURRENT_BINARY_DIR}/../bin/hipfc.needs_edit > hipfc
+   DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/../bin/hipfc.needs_edit)
+
+add_custom_target(util_scripts ALL DEPENDS bindir gputable.txt myarchgpu Makefile.hipfort hipfc)
 
 install(PROGRAMS
    ${CMAKE_CURRENT_SOURCE_DIR}/mymcpu
@@ -38,4 +49,5 @@ install(PROGRAMS
 install(FILES
    ${CMAKE_CURRENT_SOURCE_DIR}/gputable.txt
    ${CMAKE_CURRENT_BINARY_DIR}/../bin/Makefile.hipfort
+   ${CMAKE_CURRENT_BINARY_DIR}/../bin/hipfc
    DESTINATION bin)
