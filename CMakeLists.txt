@@ -6,7 +6,7 @@ set(HIPFORT_AR "/usr/bin/gcc-ar" CACHE STRING "Static archive command")
 set(HIPFORT_RANLIB "/usr/bin/gcc-ranlib" CACHE STRING "ranlib used to create Static archive")
 set(HIPFORT_COMPILER_FLAGS "-std=f2003 -ffree-form -cpp" CACHE STRING "Compiler flags to build HIPFORT")
 set(HIPFORT_BUILD_TYPE "RELEASE"  CACHE STRING "Set to RELEASE TESTING or DEBUG")
-set(HIPFORT_INSTALL_DIR  "/tmp/hipfort"  CACHE STRING "Install directory for hipfort")
+set(HIPFORT_INSTALL_DIR  "/opt/rocm/hipfort"  CACHE STRING "Install directory for hipfort")
 message("-- HIPFORT -------------  cmake START -------------------")
 message("-- HIPFORT_COMPILER:       ${HIPFORT_COMPILER}")
 message("-- HIPFORT_AR:             ${HIPFORT_AR}")
@@ -53,5 +53,23 @@ ENDIF(FCNAME STREQUAL "pgf90")
 ADD_SUBDIRECTORY(${CMAKE_SOURCE_DIR}/lib)
 ADD_SUBDIRECTORY(${CMAKE_SOURCE_DIR}/test)
 ADD_SUBDIRECTORY(${CMAKE_SOURCE_DIR}/bin)
+
+# Packaging
+INCLUDE(${CMAKE_MODULE_PATH}/rocm-cmake.cmake)
+rocm_setup_version(VERSION ${VERSION})
+set(CPACK_DEBIAN_PACKAGE_DEPENDS "hip-rocclr (>= 3.5.0)")
+set(CPACK_RPM_PACKAGE_REQUIRES "hip-rocclr >= 3.5.0")
+set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
+if(NOT CPACK_PACKAGING_INSTALL_PREFIX)
+  set(CPACK_PACKAGING_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
+endif()
+
+set(CPACK_RPM_EXCLUDE_FROM_AUTO_FILELIST_ADDITION "\${CPACK_PACKAGING_INSTALL_PREFIX}" "\${CPACK_PACKAGING_INSTALL_PREFIX}/include" )
+
+rocm_create_package(
+  NAME hipfort
+  DESCRIPTION "Radeon Open Compute Parallel Primitives Library"
+  MAINTAINER "hipfort Maintainer <hipfort-maintainer@amd.com>"
+)
 
 message("-- HIPFORT -------------  cmake DONE --------------------")
