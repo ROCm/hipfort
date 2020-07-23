@@ -28,7 +28,8 @@ PROGVERSION=X.Y-Z
 function usage(){
 /bin/cat 2>&1 <<"EOF" 
 
-   hipfc: Wrapper to call fortran compiler with the hipfort interface
+   hipfc: Wrapper to call fortran compiler with hipfort
+          This script also call hipcc for non fortran files.
 
    Usage:  hipfc [ options ] input-files
 
@@ -59,8 +60,9 @@ function usage(){
     --offload-arch <gputype>  Default=<value returned by mygpu utility>
 
    Examples:
-    hipfc myapp.f -o myapp           /* Compile FORTRAN to create myapp */
-    hipfc myapp.f -o myapp -lrocblas /* Compile FORTRAN to use rocblas */
+    hipfc myapp.f -o myapp             /* Compile FORTRAN to create myapp  */
+    hipfc myapp.f -o myapp -lrocblas   /* Compile FORTRAN with rocblas     */
+    hipfc myapp.f kernels.cpp -o myapp /* Compile FORTRAN and c++ and link */
 
    Instead of these command line options:
         -hipfort, -cuda-path, -hipfort-compiler -rocm-dir
@@ -103,7 +105,7 @@ function runcmd(){
    if [ $DRYRUN ] ; then
       echo "$THISCMD"
    else 
-      [ $VERBOSE ] && echo "$THISCMD"
+      [ $VERBOSE ] && echo && echo "$THISCMD"
       $THISCMD
       rc=$?
       if [ $rc != 0 ] ; then 
@@ -238,14 +240,24 @@ if [ ! $HIPFORT_GPU ] ; then
    fi
 fi
 
+if [ -d $ROCM_DIR/amdgcn/bitcode ] ; then
+    DEVICE_LIB_PATH=$ROCM_DIR/amdgcn/bitcode
+else
+    DEVICE_LIB_PATH=$ROCM_DIR/lib
+fi
+
 if [ "${HIPFORT_GPU:0:3}" == "sm_" ] ; then 
    TARGET_ARCH="nvptx"
    TARGET_TRIPLE=${TARGET_TRIPLE:-nvptx64-nvidia-cuda}
    TARGET_LIBS="-L$CUDA_PATH/targets/x86_64-linux/lib -lcudart"
+   HIPCC_ENV="HIP_PLATFORM=nvcc"
+   HIPCC_OPTS="--gpu-architecture=$HIPFORT_GPU"
 else 
    TARGET_TRIPLE=${TARGET_TRIPLE:-amdgcn-amd-amdhsa}
    TARGET_ARCH="amdgcn"
    TARGET_LIBS="-L$ROCM_DIR/lib -lamdhip64 -Wl,-rpath=$ROCM_DIR/lib "
+   HIPCC_ENV="HIP_PLATFORM=hcc DEVICE_LIB_PATH=$DEVICE_LIB_PATH HIP_CLANG_PATH=$ROCM_DIR/llvm/bin"
+   HIPCC_OPTS="-fno-gpu-rdc -fPIC --offload-arch=$HIPFORT_GPU"
 fi
 
 FORTOPT=${FORTOPT:-2}
@@ -316,6 +328,7 @@ fi
 FCARGS="-cpp -I$HIPFORT/include/$TARGET_ARCH"
 if [ $GEN_OBJECT_ONLY ]  ; then 
    FCARGS=" -c $FCARGS"
+   HIPCC_OPTS=" -c $HIPCC_OPTS"
    LINKOPTS=""
 else
    LINKOPTS="$TARGET_LIBS -lstdc++ -L$HIPFORT/lib -lhipfort-$TARGET_ARCH"
@@ -354,18 +367,33 @@ else
    fi
 fi
 
-if [ "$INPUT_FTYPE" != "f" ] && [ "$INPUT_FTYPE" != "f03" ] &&
-   [ "$INPUT_FTYPE" != "o" ]  ; then 
-   echo "ERROR:  PRIMARY FILE TYPE $INPUT_FTYPE NOT SUPPORTED"
-   echo "        Maybe you need hipcc"
-   exit $DEADRC
-fi
+# Separate hipcc inputs from fortran inputs
+__INPUTS=""
+__HIPCC_INPUTS=""
+for __input_file in `echo $INPUTFILES` ; do
+  _ftype=${__input_file##*\.}
+  if [ "$_ftype" == "hip" ] ; then
+     __HIPCC_INPUTS+="$__input_file"
+  elif [ "$_ftype" == "cpp" ] ; then
+     __HIPCC_INPUTS+=" $__input_file"
+  elif [ "$_ftype" == "hpp" ] ; then
+     __HIPCC_INPUTS+=" $__input_file"
+  elif [ "$_ftype" == "c" ] ; then
+     __HIPCC_INPUTS+=" $__input_file"
+  elif [ "$_ftype" == "h" ] ; then
+     __HIPCC_INPUTS+=" $__input_file"
+  else
+     __INPUTS+=" $__input_file"
+  fi
+done
 
 if [ $GEN_DEBUG ]  ; then
    FCARGS=" -g $FCARGS"
+   HIPCC_OPTS=" -g $HIPCC_OPTS"
 fi
 if [ $VV ]  ; then 
    FCARGS=" -v $FCARGS"
+   HIPCC_OPTS=" -v $HIPCC_OPTS"
 fi
 
 #  Print Header block
@@ -386,7 +414,29 @@ if [ $VV ] ; then
 fi 
 
 rc=0
-runcmd "$HIPFORT_COMPILER $FCARGS $PASSTHRUARGS $INPUTFILES $LINKOPTS -o $OUTDIR/$OUTFILE"
+if [ "$__HIPCC_INPUTS" != "" ] ; then
+   if [ "$__INPUTS" == "" ] ; then
+      __HIPCC_OUTFILE="$OUTDIR/$OUTFILE"
+      __HIPCC_LINKOPTS=$LINKOPTS
+   else
+      HIPCC_OPTS+=" -c"
+      __HIPCC_LINKOPTS=""
+      __HIPCC_OUTFILE="$TMPDIR/hipcc.o"
+      __INPUTS+=" $__HIPCC_OUTFILE"
+   fi
+   if [ ! -f $ROCM_DIR/bin/hipcc ] ; then
+      echo "ERROR:  hipcc compiler not found at $ROCM_DIR/bin/hipcc"
+      echo "        Please install hip"
+      exit $DEADRC
+   fi
+   [ $VERBOSE ] && echo "export $HIPCC_ENV"
+   export $HIPCC_ENV
+   runcmd "$ROCM_DIR/bin/hipcc $HIPCC_OPTS $__HIPCC_INPUTS $__HIPCC_LINKOPTS -o $__HIPCC_OUTFILE"
+fi
+
+if [ "$__INPUTS" != "" ] ; then
+   runcmd "$HIPFORT_COMPILER $FCARGS $PASSTHRUARGS $__INPUTS $LINKOPTS -o $OUTDIR/$OUTFILE"
+fi
 
 # cleanup
 do_err 0
