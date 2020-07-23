@@ -6,18 +6,21 @@ This is a FORTRAN interface library for accessing GPU Kernels.
 
 ## Build and test hipfort from source
 
-Assuming you have git, cmake, ROCm, and hipblas installed, you can build, install, and test hipfort from source with these commands.
+Install gfortran, git, cmake, and hip, if not yet installed.
+Then build, install, and test hipfort from source with these commands.
 ```
 git clone https://github.com/ROCmSoftwarePlatform/hipfort
 mkdir build ; cd build
 cmake -DHIPFORT_INSTALL_DIR=/tmp/hipfort ../hipfort
 make install
 export PATH=/tmp/hipfort/bin:$PATH
-cp ../hipfort/test/hipblas/dgemm.f03 /tmp/dgemm.f03
-cd /tmp
-hipfc -lhipblas dgemm.f03
+cd ../hipfort/test/vecadd
+hipfc -v hip_implementation.cpp main.f03
 ./a.out
 ```
+The above demonstrates the use of the hipfc utility.  hipfc calls hipcc for non-fortran files and then
+compiles the fortran files and links to the object file created by hipcc.
+
 ## Examples
 Examples are found in the test directory.  The examples have a simple Makefile 
 that includes the hipfort Makefile.hipfort from the bin directory as follows.
