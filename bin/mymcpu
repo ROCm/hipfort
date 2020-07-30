@@ -5,7 +5,7 @@
 # myarchgpu: Print arch-gpu value 
 #
 
-PROGVERSION=0.1-0
+PROGVERSION=X.Y-Z
 
 # Copyright (c) 2020 Advanced Micro Devices, Inc. All rights reserved.
 # [MITx11 License]

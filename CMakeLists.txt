@@ -6,7 +6,11 @@ set(HIPFORT_AR "/usr/bin/gcc-ar" CACHE STRING "Static archive command")
 set(HIPFORT_RANLIB "/usr/bin/gcc-ranlib" CACHE STRING "ranlib used to create Static archive")
 set(HIPFORT_COMPILER_FLAGS "-std=f2003 -ffree-form -cpp" CACHE STRING "Compiler flags to build HIPFORT")
 set(HIPFORT_BUILD_TYPE "RELEASE"  CACHE STRING "Set to RELEASE TESTING or DEBUG")
-set(HIPFORT_INSTALL_DIR  "/opt/rocm/hipfort"  CACHE STRING "Install directory for hipfort")
+#  These next two values are for  the iniital release of hipfort for ROCm
+#  Other integrators and future ROCm releases should build hipfort as follows:
+#     cmake -DHIPFORT_INSTALL_DIR=/opt/rocm-<release>/hipfort -DHIPFORT_VERSION=<release> <githubrepo>
+set(HIPFORT_INSTALL_DIR  "/opt/rocm-3.8.0/hipfort"  CACHE STRING "Install directory for hipfort")
+set(HIPFORT_VERSION  "3.8-0"  CACHE STRING "Version of HIPFORT to build")
 message("-- HIPFORT -------------  cmake START -------------------")
 message("-- HIPFORT_COMPILER:       ${HIPFORT_COMPILER}")
 message("-- HIPFORT_AR:             ${HIPFORT_AR}")
@@ -14,13 +18,14 @@ message("-- HIPFORT_RANLIB:         ${HIPFORT_RANLIB}")
 message("-- HIPFORT_COMPILER_FLAGS: ${HIPFORT_COMPILER_FLAGS}")
 message("-- HIPFORT_BUILD_TYPE:     ${HIPFORT_BUILD_TYPE}")
 message("-- HIPFORT_INSTALL_DIR:    ${HIPFORT_INSTALL_DIR}")
+message("-- HIPFORT_VERSION:        ${HIPFORT_VERSION}")
 message("-- HIPFORT ----------------------------------------------")
 
 set(CMAKE_Fortran_COMPILER_INIT ${HIPFORT_COMPILER})
 PROJECT(hipfort Fortran C)
 
 SET(CMAKE_BUILD_TYPE ${HIPFORT_BUILD_TYPE})
-SET(VERSION 0.1-0)
+SET(VERSION ${HIPFORT_VERSION})
 SET(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/Modules/")
 SET(CMAKE_AR ${HIPFORT_AR})
 SET(CMAKE_RANLIB ${HIPFORT_RANLIB})
