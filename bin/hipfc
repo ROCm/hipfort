@@ -105,7 +105,7 @@ function runcmd(){
    if [ $DRYRUN ] ; then
       echo "$THISCMD"
    else 
-      [ $VERBOSE ] && echo && echo "$THISCMD"
+      [ $VERBOSE ] && echo "$THISCMD"
       $THISCMD
       rc=$?
       if [ $rc != 0 ] ; then 
@@ -159,10 +159,10 @@ while [ $# -gt 0 ] ; do
       -O0) 		FORTOPT=0 ;; 
       -o) 		OUTFILE=$2; shift ;; 
       -t)		TMPDIR=$2; shift ;; 
-      -lrocsparse)      ROCSPARSE=true ;;
-      -lrocblas)        ROCBLAS=true ;;
-      -lrocfft)         ROCFFT=true ;;
-      -lhipblas)        HIPBLAS=true ;;
+      -lrocsparse)      ROCSPARSE=true ; PASSTHRUARGS+=" $1" ;;
+      -lrocblas)        ROCBLAS=true ; PASSTHRUARGS+=" $1" ;;
+      -lrocfft)         ROCFFT=true ; PASSTHRUARGS+=" $1" ;;
+      -lhipblas)        HIPBLAS=true ; PASSTHRUARGS+=" $1" ;;
       --offload-arch)   HIPFORT_GPU=$2; shift ;;
       -triple)          TARGET_TRIPLE=$2; shift ;;
       -cuda-path)       CUDA_PATH=$2; shift ;;
@@ -225,6 +225,9 @@ if [ ! -d $HIPFORT ] ; then
 fi
 
 HIPFORT_COMPILER=${HIPFORT_COMPILER:-gfortran}
+if [ ! -f $HIPFORT_COMPILER ] ; then
+   HIPFORT_COMPILER=`which $HIPFORT_COMPILER`
+fi
 if [ ! -f $HIPFORT_COMPILER ] ; then
    echo "ERROR: HIPFORT_COMPILER not found at $HIPFORT_COMPILER"
    echo "       Please install $HIPFORT_COMPILER"
@@ -408,6 +411,7 @@ if [ $VV ] ; then
    echo "#Info:  Target GPU:		$HIPFORT_GPU"
    echo "#Info:  Input files:		$INPUTFILES"
    echo "#Info:  Output file:		$OUTDIR/$OUTFILE"
+   echo "#Info:  Passthru args:		$PASSTHRUARGS"
    echo "#Info:  Run date:		$RUNDATE"
    [ $KEEPTDIR ] &&  echo "#Info:  Temp dir:	$TMPDIR" 
    echo "#   "
