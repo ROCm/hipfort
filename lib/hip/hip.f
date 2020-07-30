@@ -73,6 +73,29 @@ module hip
       integer(KIND(hipSuccess)) :: hipStreamSynchronize
     end function hipStreamSynchronize
 
+    integer(c_int) function hipSetDevice(iDev) &
+#ifdef USE_CUDA_NAMES
+         BIND(C,NAME='cudaSetDevice')
+#else
+         BIND(C,NAME='hipSetDevice')
+#endif
+         use iso_c_binding
+         implicit none
+         integer(c_int) :: iDev
+    end function hipSetDevice
+
+    integer(c_int) function hipMemGetInfo(free,total) &
+#ifdef USE_CUDA_NAMES
+         BIND(C,NAME='cudaMemGetInfo')
+#else
+         BIND(C,NAME='hipMemGetInfo')
+#endif
+         use iso_c_binding
+         implicit none
+         integer(c_size_t) :: free, total
+    end function hipMemGetInfo
+
+
   end interface
 
   contains 
