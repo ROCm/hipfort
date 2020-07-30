@@ -435,7 +435,7 @@ if [ "$__HIPCC_INPUTS" != "" ] ; then
 fi
 
 if [ "$__INPUTS" != "" ] ; then
-   runcmd "$HIPFORT_COMPILER $FCARGS $PASSTHRUARGS $__INPUTS $LINKOPTS -o $OUTDIR/$OUTFILE"
+   runcmd "$HIPFORT_COMPILER $FCARGS $__INPUTS $PASSTHRUARGS $LINKOPTS -o $OUTDIR/$OUTFILE"
 fi
 
 # cleanup
