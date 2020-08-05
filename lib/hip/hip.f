@@ -42,7 +42,7 @@ module hip
   function hipDeviceSynchronize() bind(c, name="cudaDeviceSynchronize")
 #else
   function hipDeviceSynchronize() bind(c, name="hipDeviceSynchronize")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -64,7 +64,7 @@ module hip
   function hipDeviceReset() bind(c, name="cudaDeviceReset")
 #else
   function hipDeviceReset() bind(c, name="hipDeviceReset")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -106,7 +106,7 @@ module hip
   function hipSetDevice(deviceId) bind(c, name="cudaSetDevice")
 #else
   function hipSetDevice(deviceId) bind(c, name="hipSetDevice")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -131,7 +131,7 @@ module hip
   function hipGetDevice(deviceId) bind(c, name="cudaGetDevice")
 #else
   function hipGetDevice(deviceId) bind(c, name="hipGetDevice")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -155,7 +155,7 @@ module hip
   function hipGetDeviceCount(count) bind(c, name="cudaGetDeviceCount")
 #else
   function hipGetDeviceCount(count) bind(c, name="hipGetDeviceCount")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -176,7 +176,7 @@ module hip
   function hipDeviceGetAttribute(pi,attr,deviceId) bind(c, name="cudaDeviceGetAttribute")
 #else
   function hipDeviceGetAttribute(pi,attr,deviceId) bind(c, name="hipDeviceGetAttribute")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -203,7 +203,7 @@ module hip
   function hipGetDeviceProperties(prop,deviceId) bind(c, name="cudaGetDeviceProperties")
 #else
   function hipGetDeviceProperties(prop,deviceId) bind(c, name="hipGetDeviceProperties")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -226,7 +226,7 @@ module hip
   function hipDeviceSetCacheConfig(cacheConfig) bind(c, name="cudaDeviceSetCacheConfig")
 #else
   function hipDeviceSetCacheConfig(cacheConfig) bind(c, name="hipDeviceSetCacheConfig")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -248,7 +248,7 @@ module hip
   function hipDeviceGetCacheConfig(cacheConfig) bind(c, name="cudaDeviceGetCacheConfig")
 #else
   function hipDeviceGetCacheConfig(cacheConfig) bind(c, name="hipDeviceGetCacheConfig")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -270,7 +270,7 @@ module hip
   function hipDeviceGetLimit(pValue,limit) bind(c, name="cudaDeviceGetLimit")
 #else
   function hipDeviceGetLimit(pValue,limit) bind(c, name="hipDeviceGetLimit")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -293,7 +293,7 @@ module hip
   function hipFuncSetCacheConfig(func,config) bind(c, name="cudaFuncSetCacheConfig")
 #else
   function hipFuncSetCacheConfig(func,config) bind(c, name="hipFuncSetCacheConfig")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -317,7 +317,7 @@ module hip
   function hipDeviceGetSharedMemConfig(pConfig) bind(c, name="cudaDeviceGetSharedMemConfig")
 #else
   function hipDeviceGetSharedMemConfig(pConfig) bind(c, name="hipDeviceGetSharedMemConfig")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -340,7 +340,7 @@ module hip
   function hipDeviceSetSharedMemConfig(config) bind(c, name="cudaDeviceSetSharedMemConfig")
 #else
   function hipDeviceSetSharedMemConfig(config) bind(c, name="hipDeviceSetSharedMemConfig")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -376,7 +376,7 @@ module hip
   function hipSetDeviceFlags(flags) bind(c, name="cudaSetDeviceFlags")
 #else
   function hipSetDeviceFlags(flags) bind(c, name="hipSetDeviceFlags")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -396,7 +396,7 @@ module hip
   function hipChooseDevice(device,prop) bind(c, name="cudaChooseDevice")
 #else
   function hipChooseDevice(device,prop) bind(c, name="hipChooseDevice")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -421,7 +421,7 @@ module hip
   function hipExtGetLinkTypeAndHopCount(device1,device2,linktype,hopcount) bind(c, name="cudaExtGetLinkTypeAndHopCount")
 #else
   function hipExtGetLinkTypeAndHopCount(device1,device2,linktype,hopcount) bind(c, name="hipExtGetLinkTypeAndHopCount")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -447,7 +447,7 @@ module hip
   function hipGetLastError() bind(c, name="cudaGetLastError")
 #else
   function hipGetLastError() bind(c, name="hipGetLastError")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -468,7 +468,7 @@ module hip
   function hipPeekAtLastError() bind(c, name="cudaPeekAtLastError")
 #else
   function hipPeekAtLastError() bind(c, name="hipPeekAtLastError")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -495,7 +495,7 @@ module hip
   function hipStreamCreate(stream) bind(c, name="cudaStreamCreate")
 #else
   function hipStreamCreate(stream) bind(c, name="hipStreamCreate")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -523,7 +523,7 @@ module hip
   function hipStreamCreateWithFlags(stream,flags) bind(c, name="cudaStreamCreateWithFlags")
 #else
   function hipStreamCreateWithFlags(stream,flags) bind(c, name="hipStreamCreateWithFlags")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -553,7 +553,7 @@ module hip
   function hipStreamCreateWithPriority(stream,flags,priority) bind(c, name="cudaStreamCreateWithPriority")
 #else
   function hipStreamCreateWithPriority(stream,flags,priority) bind(c, name="hipStreamCreateWithPriority")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -580,7 +580,7 @@ module hip
   function hipDeviceGetStreamPriorityRange(leastPriority,greatestPriority) bind(c, name="cudaDeviceGetStreamPriorityRange")
 #else
   function hipDeviceGetStreamPriorityRange(leastPriority,greatestPriority) bind(c, name="hipDeviceGetStreamPriorityRange")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -611,7 +611,7 @@ module hip
   function hipStreamDestroy(stream) bind(c, name="cudaStreamDestroy")
 #else
   function hipStreamDestroy(stream) bind(c, name="hipStreamDestroy")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -638,7 +638,7 @@ module hip
   function hipStreamQuery(stream) bind(c, name="cudaStreamQuery")
 #else
   function hipStreamQuery(stream) bind(c, name="hipStreamQuery")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -669,7 +669,7 @@ module hip
   function hipStreamSynchronize(stream) bind(c, name="cudaStreamSynchronize")
 #else
   function hipStreamSynchronize(stream) bind(c, name="hipStreamSynchronize")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -700,7 +700,7 @@ module hip
   function hipStreamWaitEvent(stream,event,flags) bind(c, name="cudaStreamWaitEvent")
 #else
   function hipStreamWaitEvent(stream,event,flags) bind(c, name="hipStreamWaitEvent")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -727,7 +727,7 @@ module hip
   function hipStreamGetFlags(stream,flags) bind(c, name="cudaStreamGetFlags")
 #else
   function hipStreamGetFlags(stream,flags) bind(c, name="hipStreamGetFlags")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -753,7 +753,7 @@ module hip
   function hipStreamGetPriority(stream,priority) bind(c, name="cudaStreamGetPriority")
 #else
   function hipStreamGetPriority(stream,priority) bind(c, name="hipStreamGetPriority")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -781,7 +781,7 @@ module hip
   function hipStreamAddCallback(stream,callback,userData,flags) bind(c, name="cudaStreamAddCallback")
 #else
   function hipStreamAddCallback(stream,callback,userData,flags) bind(c, name="hipStreamAddCallback")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -820,7 +820,7 @@ module hip
   function hipEventCreateWithFlags(event,flags) bind(c, name="cudaEventCreateWithFlags")
 #else
   function hipEventCreateWithFlags(event,flags) bind(c, name="hipEventCreateWithFlags")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -844,7 +844,7 @@ module hip
   function hipEventCreate(event) bind(c, name="cudaEventCreate")
 #else
   function hipEventCreate(event) bind(c, name="hipEventCreate")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -883,7 +883,7 @@ module hip
   function hipEventRecord(event,stream) bind(c, name="cudaEventRecord")
 #else
   function hipEventRecord(event,stream) bind(c, name="hipEventRecord")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -912,7 +912,7 @@ module hip
   function hipEventDestroy(event) bind(c, name="cudaEventDestroy")
 #else
   function hipEventDestroy(event) bind(c, name="hipEventDestroy")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -941,7 +941,7 @@ module hip
   function hipEventSynchronize(event) bind(c, name="cudaEventSynchronize")
 #else
   function hipEventSynchronize(event) bind(c, name="hipEventSynchronize")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -981,7 +981,7 @@ module hip
   function hipEventElapsedTime(ms,start,stop) bind(c, name="cudaEventElapsedTime")
 #else
   function hipEventElapsedTime(ms,start,stop) bind(c, name="hipEventElapsedTime")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -1010,7 +1010,7 @@ module hip
   function hipEventQuery(event) bind(c, name="cudaEventQuery")
 #else
   function hipEventQuery(event) bind(c, name="hipEventQuery")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -1032,7 +1032,7 @@ module hip
   function hipPointerGetAttributes(attributes,ptr) bind(c, name="cudaPointerGetAttributes")
 #else
   function hipPointerGetAttributes(attributes,ptr) bind(c, name="hipPointerGetAttributes")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -1058,7 +1058,7 @@ module hip
   function hipMalloc(ptr,size) bind(c, name="cudaMalloc")
 #else
   function hipMalloc(ptr,size) bind(c, name="hipMalloc")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -1085,7 +1085,7 @@ module hip
   function hipExtMallocWithFlags(ptr,sizeBytes,flags) bind(c, name="cudaExtMallocWithFlags")
 #else
   function hipExtMallocWithFlags(ptr,sizeBytes,flags) bind(c, name="hipExtMallocWithFlags")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -1100,7 +1100,7 @@ module hip
   function hipMallocHost(ptr,size) bind(c, name="cudaMallocHost")
 #else
   function hipMallocHost(ptr,size) bind(c, name="hipMallocHost")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -1114,7 +1114,7 @@ module hip
   function hipMemAllocHost(ptr,size) bind(c, name="cudaMemAllocHost")
 #else
   function hipMemAllocHost(ptr,size) bind(c, name="hipMemAllocHost")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -1140,7 +1140,7 @@ module hip
   function hipHostMalloc(ptr,size,flags) bind(c, name="cudaHostMalloc")
 #else
   function hipHostMalloc(ptr,size,flags) bind(c, name="hipHostMalloc")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -1155,7 +1155,7 @@ module hip
   function hipHostAlloc(ptr,size,flags) bind(c, name="cudaHostAlloc")
 #else
   function hipHostAlloc(ptr,size,flags) bind(c, name="hipHostAlloc")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -1180,7 +1180,7 @@ module hip
   function hipHostGetDevicePointer(devPtr,hstPtr,flags) bind(c, name="cudaHostGetDevicePointer")
 #else
   function hipHostGetDevicePointer(devPtr,hstPtr,flags) bind(c, name="hipHostGetDevicePointer")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -1203,7 +1203,7 @@ module hip
   function hipHostGetFlags(flagsPtr,hostPtr) bind(c, name="cudaHostGetFlags")
 #else
   function hipHostGetFlags(flagsPtr,hostPtr) bind(c, name="hipHostGetFlags")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -1252,7 +1252,7 @@ module hip
   function hipHostRegister(hostPtr,sizeBytes,flags) bind(c, name="cudaHostRegister")
 #else
   function hipHostRegister(hostPtr,sizeBytes,flags) bind(c, name="hipHostRegister")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -1274,7 +1274,7 @@ module hip
   function hipHostUnregister(hostPtr) bind(c, name="cudaHostUnregister")
 #else
   function hipHostUnregister(hostPtr) bind(c, name="hipHostUnregister")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -1304,7 +1304,7 @@ module hip
   function hipMallocPitch(ptr,pitch,width,height) bind(c, name="cudaMallocPitch")
 #else
   function hipMallocPitch(ptr,pitch,width,height) bind(c, name="hipMallocPitch")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -1340,7 +1340,7 @@ module hip
   function hipMemAllocPitch(dptr,pitch,widthInBytes,height,elementSizeBytes) bind(c, name="cudaMemAllocPitch")
 #else
   function hipMemAllocPitch(dptr,pitch,widthInBytes,height,elementSizeBytes) bind(c, name="hipMemAllocPitch")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -1369,7 +1369,7 @@ module hip
   function hipFree(ptr) bind(c, name="cudaFree")
 #else
   function hipFree(ptr) bind(c, name="hipFree")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -1382,7 +1382,7 @@ module hip
   function hipFreeHost(ptr) bind(c, name="cudaFreeHost")
 #else
   function hipFreeHost(ptr) bind(c, name="hipFreeHost")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -1407,7 +1407,7 @@ module hip
   function hipHostFree(ptr) bind(c, name="cudaHostFree")
 #else
   function hipHostFree(ptr) bind(c, name="hipHostFree")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -1446,7 +1446,7 @@ module hip
   function hipMemcpy(dst,src,sizeBytes,myKind) bind(c, name="cudaMemcpy")
 #else
   function hipMemcpy(dst,src,sizeBytes,myKind) bind(c, name="hipMemcpy")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -1462,7 +1462,7 @@ module hip
   function hipMemcpyWithStream(dst,src,sizeBytes,myKind,stream) bind(c, name="cudaMemcpyWithStream")
 #else
   function hipMemcpyWithStream(dst,src,sizeBytes,myKind,stream) bind(c, name="hipMemcpyWithStream")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -1495,7 +1495,7 @@ module hip
   function hipMemcpyHtoD(dst,src,sizeBytes) bind(c, name="cudaMemcpyHtoD")
 #else
   function hipMemcpyHtoD(dst,src,sizeBytes) bind(c, name="hipMemcpyHtoD")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -1526,7 +1526,7 @@ module hip
   function hipMemcpyDtoH(dst,src,sizeBytes) bind(c, name="cudaMemcpyDtoH")
 #else
   function hipMemcpyDtoH(dst,src,sizeBytes) bind(c, name="hipMemcpyDtoH")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -1557,7 +1557,7 @@ module hip
   function hipMemcpyDtoD(dst,src,sizeBytes) bind(c, name="cudaMemcpyDtoD")
 #else
   function hipMemcpyDtoD(dst,src,sizeBytes) bind(c, name="hipMemcpyDtoD")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -1588,7 +1588,7 @@ module hip
   function hipMemcpyHtoDAsync(dst,src,sizeBytes,stream) bind(c, name="cudaMemcpyHtoDAsync")
 #else
   function hipMemcpyHtoDAsync(dst,src,sizeBytes,stream) bind(c, name="hipMemcpyHtoDAsync")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -1620,7 +1620,7 @@ module hip
   function hipMemcpyDtoHAsync(dst,src,sizeBytes,stream) bind(c, name="cudaMemcpyDtoHAsync")
 #else
   function hipMemcpyDtoHAsync(dst,src,sizeBytes,stream) bind(c, name="hipMemcpyDtoHAsync")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -1652,7 +1652,7 @@ module hip
   function hipMemcpyDtoDAsync(dst,src,sizeBytes,stream) bind(c, name="cudaMemcpyDtoDAsync")
 #else
   function hipMemcpyDtoDAsync(dst,src,sizeBytes,stream) bind(c, name="hipMemcpyDtoDAsync")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -1668,7 +1668,7 @@ module hip
   function hipModuleGetGlobal(dptr,bytes,hmod,name) bind(c, name="cudaModuleGetGlobal")
 #else
   function hipModuleGetGlobal(dptr,bytes,hmod,name) bind(c, name="hipModuleGetGlobal")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -1684,7 +1684,7 @@ module hip
   function hipGetSymbolAddress(devPtr,symbol) bind(c, name="cudaGetSymbolAddress")
 #else
   function hipGetSymbolAddress(devPtr,symbol) bind(c, name="hipGetSymbolAddress")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -1698,7 +1698,7 @@ module hip
   function hipGetSymbolSize(size,symbol) bind(c, name="cudaGetSymbolSize")
 #else
   function hipGetSymbolSize(size,symbol) bind(c, name="hipGetSymbolSize")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -1720,7 +1720,7 @@ module hip
   function hipMemset(dst,myValue,sizeBytes) bind(c, name="cudaMemset")
 #else
   function hipMemset(dst,myValue,sizeBytes) bind(c, name="hipMemset")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -1743,7 +1743,7 @@ module hip
   function hipMemsetD8(dest,myValue,count) bind(c, name="cudaMemsetD8")
 #else
   function hipMemsetD8(dest,myValue,count) bind(c, name="hipMemsetD8")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -1766,7 +1766,7 @@ module hip
   function hipMemsetD16(dest,myValue,count) bind(c, name="cudaMemsetD16")
 #else
   function hipMemsetD16(dest,myValue,count) bind(c, name="hipMemsetD16")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -1789,7 +1789,7 @@ module hip
   function hipMemsetD32(dest,myValue,count) bind(c, name="cudaMemsetD32")
 #else
   function hipMemsetD32(dest,myValue,count) bind(c, name="hipMemsetD32")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -1813,7 +1813,7 @@ module hip
   function hipMemset2D(dst,pitch,myValue,width,height) bind(c, name="cudaMemset2D")
 #else
   function hipMemset2D(dst,pitch,myValue,width,height) bind(c, name="hipMemset2D")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -1837,7 +1837,7 @@ module hip
   function hipMemset3D(pitchedDevPtr,myValue,extent) bind(c, name="cudaMemset3D")
 #else
   function hipMemset3D(pitchedDevPtr,myValue,extent) bind(c, name="hipMemset3D")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -1860,7 +1860,7 @@ module hip
   function hipMemGetInfo(free,total) bind(c, name="cudaMemGetInfo")
 #else
   function hipMemGetInfo(free,total) bind(c, name="hipMemGetInfo")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -1874,7 +1874,7 @@ module hip
   function hipMemPtrGetInfo(ptr,size) bind(c, name="cudaMemPtrGetInfo")
 #else
   function hipMemPtrGetInfo(ptr,size) bind(c, name="hipMemPtrGetInfo")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -1888,7 +1888,7 @@ module hip
   function hipArrayCreate(pHandle,pAllocateArray) bind(c, name="cudaArrayCreate")
 #else
   function hipArrayCreate(pHandle,pAllocateArray) bind(c, name="hipArrayCreate")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -1902,7 +1902,7 @@ module hip
   function hipArray3DCreate(array,pAllocateArray) bind(c, name="cudaArray3DCreate")
 #else
   function hipArray3DCreate(array,pAllocateArray) bind(c, name="hipArray3DCreate")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -1916,7 +1916,7 @@ module hip
   function hipMalloc3D(pitchedDevPtr,extent) bind(c, name="cudaMalloc3D")
 #else
   function hipMalloc3D(pitchedDevPtr,extent) bind(c, name="hipMalloc3D")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -1937,7 +1937,7 @@ module hip
   function hipFreeArray(array) bind(c, name="cudaFreeArray")
 #else
   function hipFreeArray(array) bind(c, name="hipFreeArray")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -1956,7 +1956,7 @@ module hip
   function hipFreeMipmappedArray(mipmappedArray) bind(c, name="cudaFreeMipmappedArray")
 #else
   function hipFreeMipmappedArray(mipmappedArray) bind(c, name="hipFreeMipmappedArray")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -1979,7 +1979,7 @@ module hip
   function hipMalloc3DArray(array,desc,extent,flags) bind(c, name="cudaMalloc3DArray")
 #else
   function hipMalloc3DArray(array,desc,extent,flags) bind(c, name="hipMalloc3DArray")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2003,7 +2003,7 @@ module hip
   function hipGetMipmappedArrayLevel(levelArray,mipmappedArray,level) bind(c, name="cudaGetMipmappedArrayLevel")
 #else
   function hipGetMipmappedArrayLevel(levelArray,mipmappedArray,level) bind(c, name="hipGetMipmappedArrayLevel")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2033,7 +2033,7 @@ module hip
   function hipMemcpy2D(dst,dpitch,src,spitch,width,height,myKind) bind(c, name="cudaMemcpy2D")
 #else
   function hipMemcpy2D(dst,dpitch,src,spitch,width,height,myKind) bind(c, name="hipMemcpy2D")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2060,7 +2060,7 @@ module hip
   function hipMemcpyParam2D(pCopy) bind(c, name="cudaMemcpyParam2D")
 #else
   function hipMemcpyParam2D(pCopy) bind(c, name="hipMemcpyParam2D")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2088,7 +2088,7 @@ module hip
   function hipMemcpy2DToArray(dst,wOffset,hOffset,src,spitch,width,height,myKind) bind(c, name="cudaMemcpy2DToArray")
 #else
   function hipMemcpy2DToArray(dst,wOffset,hOffset,src,spitch,width,height,myKind) bind(c, name="hipMemcpy2DToArray")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2123,7 +2123,7 @@ module hip
   function hipMemcpyToArray(dst,wOffset,hOffset,src,count,myKind) bind(c, name="cudaMemcpyToArray")
 #else
   function hipMemcpyToArray(dst,wOffset,hOffset,src,count,myKind) bind(c, name="hipMemcpyToArray")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2155,7 +2155,7 @@ module hip
   function hipMemcpyFromArray(dst,srcArray,wOffset,hOffset,count,myKind) bind(c, name="cudaMemcpyFromArray")
 #else
   function hipMemcpyFromArray(dst,srcArray,wOffset,hOffset,count,myKind) bind(c, name="hipMemcpyFromArray")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2189,7 +2189,7 @@ module hip
   function hipMemcpy2DFromArray(dst,dpitch,src,wOffset,hOffset,width,height,myKind) bind(c, name="cudaMemcpy2DFromArray")
 #else
   function hipMemcpy2DFromArray(dst,dpitch,src,wOffset,hOffset,width,height,myKind) bind(c, name="hipMemcpy2DFromArray")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2221,7 +2221,7 @@ module hip
   function hipMemcpyAtoH(dst,srcArray,srcOffset,count) bind(c, name="cudaMemcpyAtoH")
 #else
   function hipMemcpyAtoH(dst,srcArray,srcOffset,count) bind(c, name="hipMemcpyAtoH")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2249,7 +2249,7 @@ module hip
   function hipMemcpyHtoA(dstArray,dstOffset,srcHost,count) bind(c, name="cudaMemcpyHtoA")
 #else
   function hipMemcpyHtoA(dstArray,dstOffset,srcHost,count) bind(c, name="hipMemcpyHtoA")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2274,7 +2274,7 @@ module hip
   function hipMemcpy3D(p) bind(c, name="cudaMemcpy3D")
 #else
   function hipMemcpy3D(p) bind(c, name="hipMemcpy3D")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2296,7 +2296,7 @@ module hip
   function hipDrvMemcpy3D(pCopy) bind(c, name="cudaDrvMemcpy3D")
 #else
   function hipDrvMemcpy3D(pCopy) bind(c, name="hipDrvMemcpy3D")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2319,7 +2319,7 @@ module hip
   function hipDrvMemcpy3DAsync(pCopy,stream) bind(c, name="cudaDrvMemcpy3DAsync")
 #else
   function hipDrvMemcpy3DAsync(pCopy,stream) bind(c, name="hipDrvMemcpy3DAsync")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2348,7 +2348,7 @@ module hip
   function hipDeviceCanAccessPeer(canAccessPeer,deviceId,peerDeviceId) bind(c, name="cudaDeviceCanAccessPeer")
 #else
   function hipDeviceCanAccessPeer(canAccessPeer,deviceId,peerDeviceId) bind(c, name="hipDeviceCanAccessPeer")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2378,7 +2378,7 @@ module hip
   function hipDeviceEnablePeerAccess(peerDeviceId,flags) bind(c, name="cudaDeviceEnablePeerAccess")
 #else
   function hipDeviceEnablePeerAccess(peerDeviceId,flags) bind(c, name="hipDeviceEnablePeerAccess")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2402,7 +2402,7 @@ module hip
   function hipDeviceDisablePeerAccess(peerDeviceId) bind(c, name="cudaDeviceDisablePeerAccess")
 #else
   function hipDeviceDisablePeerAccess(peerDeviceId) bind(c, name="hipDeviceDisablePeerAccess")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2426,7 +2426,7 @@ module hip
   function hipMemGetAddressRange(pbase,psize,dptr) bind(c, name="cudaMemGetAddressRange")
 #else
   function hipMemGetAddressRange(pbase,psize,dptr) bind(c, name="hipMemGetAddressRange")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2451,7 +2451,7 @@ module hip
   function hipMemcpyPeer(dst,dstDeviceId,src,srcDeviceId,sizeBytes) bind(c, name="cudaMemcpyPeer")
 #else
   function hipMemcpyPeer(dst,dstDeviceId,src,srcDeviceId,sizeBytes) bind(c, name="hipMemcpyPeer")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2468,7 +2468,7 @@ module hip
   function hipInit(flags) bind(c, name="cudaInit")
 #else
   function hipInit(flags) bind(c, name="hipInit")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2481,7 +2481,7 @@ module hip
   function hipCtxCreate(ctx,flags,device) bind(c, name="cudaCtxCreate")
 #else
   function hipCtxCreate(ctx,flags,device) bind(c, name="hipCtxCreate")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2496,7 +2496,7 @@ module hip
   function hipCtxDestroy(ctx) bind(c, name="cudaCtxDestroy")
 #else
   function hipCtxDestroy(ctx) bind(c, name="hipCtxDestroy")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2509,7 +2509,7 @@ module hip
   function hipCtxPopCurrent(ctx) bind(c, name="cudaCtxPopCurrent")
 #else
   function hipCtxPopCurrent(ctx) bind(c, name="hipCtxPopCurrent")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2522,7 +2522,7 @@ module hip
   function hipCtxPushCurrent(ctx) bind(c, name="cudaCtxPushCurrent")
 #else
   function hipCtxPushCurrent(ctx) bind(c, name="hipCtxPushCurrent")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2535,7 +2535,7 @@ module hip
   function hipCtxSetCurrent(ctx) bind(c, name="cudaCtxSetCurrent")
 #else
   function hipCtxSetCurrent(ctx) bind(c, name="hipCtxSetCurrent")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2548,7 +2548,7 @@ module hip
   function hipCtxGetCurrent(ctx) bind(c, name="cudaCtxGetCurrent")
 #else
   function hipCtxGetCurrent(ctx) bind(c, name="hipCtxGetCurrent")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2561,7 +2561,7 @@ module hip
   function hipCtxGetDevice(device) bind(c, name="cudaCtxGetDevice")
 #else
   function hipCtxGetDevice(device) bind(c, name="hipCtxGetDevice")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2574,7 +2574,7 @@ module hip
   function hipCtxGetApiVersion(ctx,apiVersion) bind(c, name="cudaCtxGetApiVersion")
 #else
   function hipCtxGetApiVersion(ctx,apiVersion) bind(c, name="hipCtxGetApiVersion")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2588,7 +2588,7 @@ module hip
   function hipCtxGetCacheConfig(cacheConfig) bind(c, name="cudaCtxGetCacheConfig")
 #else
   function hipCtxGetCacheConfig(cacheConfig) bind(c, name="hipCtxGetCacheConfig")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2601,7 +2601,7 @@ module hip
   function hipCtxSetCacheConfig(cacheConfig) bind(c, name="cudaCtxSetCacheConfig")
 #else
   function hipCtxSetCacheConfig(cacheConfig) bind(c, name="hipCtxSetCacheConfig")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2614,7 +2614,7 @@ module hip
   function hipCtxSetSharedMemConfig(config) bind(c, name="cudaCtxSetSharedMemConfig")
 #else
   function hipCtxSetSharedMemConfig(config) bind(c, name="hipCtxSetSharedMemConfig")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2627,7 +2627,7 @@ module hip
   function hipCtxGetSharedMemConfig(pConfig) bind(c, name="cudaCtxGetSharedMemConfig")
 #else
   function hipCtxGetSharedMemConfig(pConfig) bind(c, name="hipCtxGetSharedMemConfig")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2640,7 +2640,7 @@ module hip
   function hipCtxSynchronize() bind(c, name="cudaCtxSynchronize")
 #else
   function hipCtxSynchronize() bind(c, name="hipCtxSynchronize")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2652,7 +2652,7 @@ module hip
   function hipCtxGetFlags(flags) bind(c, name="cudaCtxGetFlags")
 #else
   function hipCtxGetFlags(flags) bind(c, name="hipCtxGetFlags")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2665,7 +2665,7 @@ module hip
   function hipCtxEnablePeerAccess(peerCtx,flags) bind(c, name="cudaCtxEnablePeerAccess")
 #else
   function hipCtxEnablePeerAccess(peerCtx,flags) bind(c, name="hipCtxEnablePeerAccess")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2679,7 +2679,7 @@ module hip
   function hipCtxDisablePeerAccess(peerCtx) bind(c, name="cudaCtxDisablePeerAccess")
 #else
   function hipCtxDisablePeerAccess(peerCtx) bind(c, name="hipCtxDisablePeerAccess")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2703,7 +2703,7 @@ module hip
   function hipDevicePrimaryCtxGetState(dev,flags,active) bind(c, name="cudaDevicePrimaryCtxGetState")
 #else
   function hipDevicePrimaryCtxGetState(dev,flags,active) bind(c, name="hipDevicePrimaryCtxGetState")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2729,7 +2729,7 @@ module hip
   function hipDevicePrimaryCtxRelease(dev) bind(c, name="cudaDevicePrimaryCtxRelease")
 #else
   function hipDevicePrimaryCtxRelease(dev) bind(c, name="hipDevicePrimaryCtxRelease")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2752,7 +2752,7 @@ module hip
   function hipDevicePrimaryCtxRetain(pctx,dev) bind(c, name="cudaDevicePrimaryCtxRetain")
 #else
   function hipDevicePrimaryCtxRetain(pctx,dev) bind(c, name="hipDevicePrimaryCtxRetain")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2775,7 +2775,7 @@ module hip
   function hipDevicePrimaryCtxReset(dev) bind(c, name="cudaDevicePrimaryCtxReset")
 #else
   function hipDevicePrimaryCtxReset(dev) bind(c, name="hipDevicePrimaryCtxReset")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2798,7 +2798,7 @@ module hip
   function hipDevicePrimaryCtxSetFlags(dev,flags) bind(c, name="cudaDevicePrimaryCtxSetFlags")
 #else
   function hipDevicePrimaryCtxSetFlags(dev,flags) bind(c, name="hipDevicePrimaryCtxSetFlags")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2818,7 +2818,7 @@ module hip
   function hipDeviceGet(device,ordinal) bind(c, name="cudaDeviceGet")
 #else
   function hipDeviceGet(device,ordinal) bind(c, name="hipDeviceGet")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2839,7 +2839,7 @@ module hip
   function hipDeviceComputeCapability(major,minor,device) bind(c, name="cudaDeviceComputeCapability")
 #else
   function hipDeviceComputeCapability(major,minor,device) bind(c, name="hipDeviceComputeCapability")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2861,7 +2861,7 @@ module hip
   function hipDeviceGetName(name,len,device) bind(c, name="cudaDeviceGetName")
 #else
   function hipDeviceGetName(name,len,device) bind(c, name="hipDeviceGetName")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2883,7 +2883,7 @@ module hip
   function hipDeviceGetPCIBusId(pciBusId,len,device) bind(c, name="cudaDeviceGetPCIBusId")
 #else
   function hipDeviceGetPCIBusId(pciBusId,len,device) bind(c, name="hipDeviceGetPCIBusId")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2904,7 +2904,7 @@ module hip
   function hipDeviceGetByPCIBusId(device,pciBusId) bind(c, name="cudaDeviceGetByPCIBusId")
 #else
   function hipDeviceGetByPCIBusId(device,pciBusId) bind(c, name="hipDeviceGetByPCIBusId")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2924,7 +2924,7 @@ module hip
   function hipDeviceTotalMem(bytes,device) bind(c, name="cudaDeviceTotalMem")
 #else
   function hipDeviceTotalMem(bytes,device) bind(c, name="hipDeviceTotalMem")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2952,7 +2952,7 @@ module hip
   function hipDriverGetVersion(driverVersion) bind(c, name="cudaDriverGetVersion")
 #else
   function hipDriverGetVersion(driverVersion) bind(c, name="hipDriverGetVersion")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2976,7 +2976,7 @@ module hip
   function hipRuntimeGetVersion(runtimeVersion) bind(c, name="cudaRuntimeGetVersion")
 #else
   function hipRuntimeGetVersion(runtimeVersion) bind(c, name="hipRuntimeGetVersion")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -2999,7 +2999,7 @@ module hip
   function hipModuleLoad(module,fname) bind(c, name="cudaModuleLoad")
 #else
   function hipModuleLoad(module,fname) bind(c, name="hipModuleLoad")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3021,7 +3021,7 @@ module hip
   function hipModuleUnload(module) bind(c, name="cudaModuleUnload")
 #else
   function hipModuleUnload(module) bind(c, name="hipModuleUnload")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3043,7 +3043,7 @@ module hip
   function hipModuleGetFunction(function,module,kname) bind(c, name="cudaModuleGetFunction")
 #else
   function hipModuleGetFunction(function,module,kname) bind(c, name="hipModuleGetFunction")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3065,7 +3065,7 @@ module hip
   function hipFuncGetAttributes(attr,func) bind(c, name="cudaFuncGetAttributes")
 #else
   function hipFuncGetAttributes(attr,func) bind(c, name="hipFuncGetAttributes")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3087,7 +3087,7 @@ module hip
   function hipFuncGetAttribute(myValue,attrib,hfunc) bind(c, name="cudaFuncGetAttribute")
 #else
   function hipFuncGetAttribute(myValue,attrib,hfunc) bind(c, name="hipFuncGetAttribute")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3102,7 +3102,7 @@ module hip
   function hipModuleGetTexRef(texRef,hmod,name) bind(c, name="cudaModuleGetTexRef")
 #else
   function hipModuleGetTexRef(texRef,hmod,name) bind(c, name="hipModuleGetTexRef")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3125,7 +3125,7 @@ module hip
   function hipModuleLoadData(module,image) bind(c, name="cudaModuleLoadData")
 #else
   function hipModuleLoadData(module,image) bind(c, name="hipModuleLoadData")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3150,7 +3150,7 @@ module hip
   function hipModuleLoadDataEx(module,image,numOptions,options,optionValues) bind(c, name="cudaModuleLoadDataEx")
 #else
   function hipModuleLoadDataEx(module,image,numOptions,options,optionValues) bind(c, name="hipModuleLoadDataEx")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3190,7 +3190,7 @@ module hip
   function hipModuleLaunchKernel(f,gridDimX,gridDimY,gridDimZ,blockDimX,blockDimY,blockDimZ,sharedMemBytes,stream,kernelParams,extra) bind(c, name="cudaModuleLaunchKernel")
 #else
   function hipModuleLaunchKernel(f,gridDimX,gridDimY,gridDimZ,blockDimX,blockDimY,blockDimZ,sharedMemBytes,stream,kernelParams,extra) bind(c, name="hipModuleLaunchKernel")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3227,7 +3227,7 @@ module hip
   function hipLaunchCooperativeKernel(f,gridDim,blockDimX,kernelParams,sharedMemBytes,stream) bind(c, name="cudaLaunchCooperativeKernel")
 #else
   function hipLaunchCooperativeKernel(f,gridDim,blockDimX,kernelParams,sharedMemBytes,stream) bind(c, name="hipLaunchCooperativeKernel")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3254,7 +3254,7 @@ module hip
   function hipLaunchCooperativeKernelMultiDevice(launchParamsList,numDevices,flags) bind(c, name="cudaLaunchCooperativeKernelMultiDevice")
 #else
   function hipLaunchCooperativeKernelMultiDevice(launchParamsList,numDevices,flags) bind(c, name="hipLaunchCooperativeKernelMultiDevice")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3269,7 +3269,7 @@ module hip
   function hipModuleOccupancyMaxPotentialBlockSize(gridSize,blockSize,f,dynSharedMemPerBlk,blockSizeLimit) bind(c, name="cudaModuleOccupancyMaxPotentialBlockSize")
 #else
   function hipModuleOccupancyMaxPotentialBlockSize(gridSize,blockSize,f,dynSharedMemPerBlk,blockSizeLimit) bind(c, name="hipModuleOccupancyMaxPotentialBlockSize")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3286,7 +3286,7 @@ module hip
   function hipModuleOccupancyMaxPotentialBlockSizeWithFlags(gridSize,blockSize,f,dynSharedMemPerBlk,blockSizeLimit,flags) bind(c, name="cudaModuleOccupancyMaxPotentialBlockSizeWithFlags")
 #else
   function hipModuleOccupancyMaxPotentialBlockSizeWithFlags(gridSize,blockSize,f,dynSharedMemPerBlk,blockSizeLimit,flags) bind(c, name="hipModuleOccupancyMaxPotentialBlockSizeWithFlags")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3311,7 +3311,7 @@ module hip
   function hipModuleOccupancyMaxActiveBlocksPerMultiprocessor(numBlocks,f,blockSize,dynSharedMemPerBlk) bind(c, name="cudaModuleOccupancyMaxActiveBlocksPerMultiprocessor")
 #else
   function hipModuleOccupancyMaxActiveBlocksPerMultiprocessor(numBlocks,f,blockSize,dynSharedMemPerBlk) bind(c, name="hipModuleOccupancyMaxActiveBlocksPerMultiprocessor")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3335,7 +3335,7 @@ module hip
   function hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags(numBlocks,f,blockSize,dynSharedMemPerBlk,flags) bind(c, name="cudaModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags")
 #else
   function hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags(numBlocks,f,blockSize,dynSharedMemPerBlk,flags) bind(c, name="hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3359,7 +3359,7 @@ module hip
   function hipOccupancyMaxActiveBlocksPerMultiprocessor(numBlocks,f,blockSize,dynSharedMemPerBlk) bind(c, name="cudaOccupancyMaxActiveBlocksPerMultiprocessor")
 #else
   function hipOccupancyMaxActiveBlocksPerMultiprocessor(numBlocks,f,blockSize,dynSharedMemPerBlk) bind(c, name="hipOccupancyMaxActiveBlocksPerMultiprocessor")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3385,7 +3385,7 @@ module hip
   function hipOccupancyMaxPotentialBlockSize(gridSize,blockSize,f,dynSharedMemPerBlk,blockSizeLimit) bind(c, name="cudaOccupancyMaxPotentialBlockSize")
 #else
   function hipOccupancyMaxPotentialBlockSize(gridSize,blockSize,f,dynSharedMemPerBlk,blockSizeLimit) bind(c, name="hipOccupancyMaxPotentialBlockSize")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3412,7 +3412,7 @@ module hip
   function hipExtLaunchMultiKernelMultiDevice(launchParamsList,numDevices,flags) bind(c, name="cudaExtLaunchMultiKernelMultiDevice")
 #else
   function hipExtLaunchMultiKernelMultiDevice(launchParamsList,numDevices,flags) bind(c, name="hipExtLaunchMultiKernelMultiDevice")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3427,7 +3427,7 @@ module hip
   function hipProfilerStart() bind(c, name="cudaProfilerStart")
 #else
   function hipProfilerStart() bind(c, name="hipProfilerStart")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3439,7 +3439,7 @@ module hip
   function hipProfilerStop() bind(c, name="cudaProfilerStop")
 #else
   function hipProfilerStop() bind(c, name="hipProfilerStop")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3475,7 +3475,7 @@ module hip
   function hipIpcGetMemHandle(handle,devPtr) bind(c, name="cudaIpcGetMemHandle")
 #else
   function hipIpcGetMemHandle(handle,devPtr) bind(c, name="hipIpcGetMemHandle")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3524,7 +3524,7 @@ module hip
   function hipIpcOpenMemHandle(devPtr,handle,flags) bind(c, name="cudaIpcOpenMemHandle")
 #else
   function hipIpcOpenMemHandle(devPtr,handle,flags) bind(c, name="hipIpcOpenMemHandle")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3556,7 +3556,7 @@ module hip
   function hipIpcCloseMemHandle(devPtr) bind(c, name="cudaIpcCloseMemHandle")
 #else
   function hipIpcCloseMemHandle(devPtr) bind(c, name="hipIpcCloseMemHandle")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3569,7 +3569,7 @@ module hip
   function hipIpcGetEventHandle(handle,event) bind(c, name="cudaIpcGetEventHandle")
 #else
   function hipIpcGetEventHandle(handle,event) bind(c, name="hipIpcGetEventHandle")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3583,7 +3583,7 @@ module hip
   function hipIpcOpenEventHandle(event,handle) bind(c, name="cudaIpcOpenEventHandle")
 #else
   function hipIpcOpenEventHandle(event,handle) bind(c, name="hipIpcOpenEventHandle")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3606,7 +3606,7 @@ module hip
   function hipSetupArgument(arg,size,offset) bind(c, name="cudaSetupArgument")
 #else
   function hipSetupArgument(arg,size,offset) bind(c, name="hipSetupArgument")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3628,7 +3628,7 @@ module hip
   function hipLaunchByPtr(func) bind(c, name="cudaLaunchByPtr")
 #else
   function hipLaunchByPtr(func) bind(c, name="hipLaunchByPtr")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3641,7 +3641,7 @@ module hip
   function hipBindTexture2D(offset,tex,devPtr,desc,width,height,pitch) bind(c, name="cudaBindTexture2D")
 #else
   function hipBindTexture2D(offset,tex,devPtr,desc,width,height,pitch) bind(c, name="hipBindTexture2D")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3660,7 +3660,7 @@ module hip
   function hipBindTextureToArray(tex,array,desc) bind(c, name="cudaBindTextureToArray")
 #else
   function hipBindTextureToArray(tex,array,desc) bind(c, name="hipBindTextureToArray")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3675,7 +3675,7 @@ module hip
   function hipBindTextureToMipmappedArray(tex,mipmappedArray,desc) bind(c, name="cudaBindTextureToMipmappedArray")
 #else
   function hipBindTextureToMipmappedArray(tex,mipmappedArray,desc) bind(c, name="hipBindTextureToMipmappedArray")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3690,7 +3690,7 @@ module hip
   function hipGetTextureAlignmentOffset(offset,texref) bind(c, name="cudaGetTextureAlignmentOffset")
 #else
   function hipGetTextureAlignmentOffset(offset,texref) bind(c, name="hipGetTextureAlignmentOffset")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3704,7 +3704,7 @@ module hip
   function hipGetTextureReference(texref,symbol) bind(c, name="cudaGetTextureReference")
 #else
   function hipGetTextureReference(texref,symbol) bind(c, name="hipGetTextureReference")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3718,7 +3718,7 @@ module hip
   function hipUnbindTexture(tex) bind(c, name="cudaUnbindTexture")
 #else
   function hipUnbindTexture(tex) bind(c, name="hipUnbindTexture")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3731,7 +3731,7 @@ module hip
   function hipCreateTextureObject(pTexObject,pResDesc,pTexDesc,pResViewDesc) bind(c, name="cudaCreateTextureObject")
 #else
   function hipCreateTextureObject(pTexObject,pResDesc,pTexDesc,pResViewDesc) bind(c, name="hipCreateTextureObject")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3747,7 +3747,7 @@ module hip
   function hipDestroyTextureObject(textureObject) bind(c, name="cudaDestroyTextureObject")
 #else
   function hipDestroyTextureObject(textureObject) bind(c, name="hipDestroyTextureObject")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3760,7 +3760,7 @@ module hip
   function hipGetChannelDesc(desc,array) bind(c, name="cudaGetChannelDesc")
 #else
   function hipGetChannelDesc(desc,array) bind(c, name="hipGetChannelDesc")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3774,7 +3774,7 @@ module hip
   function hipGetTextureObjectResourceDesc(pResDesc,textureObject) bind(c, name="cudaGetTextureObjectResourceDesc")
 #else
   function hipGetTextureObjectResourceDesc(pResDesc,textureObject) bind(c, name="hipGetTextureObjectResourceDesc")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3788,7 +3788,7 @@ module hip
   function hipGetTextureObjectResourceViewDesc(pResViewDesc,textureObject) bind(c, name="cudaGetTextureObjectResourceViewDesc")
 #else
   function hipGetTextureObjectResourceViewDesc(pResViewDesc,textureObject) bind(c, name="hipGetTextureObjectResourceViewDesc")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3802,7 +3802,7 @@ module hip
   function hipGetTextureObjectTextureDesc(pTexDesc,textureObject) bind(c, name="cudaGetTextureObjectTextureDesc")
 #else
   function hipGetTextureObjectTextureDesc(pTexDesc,textureObject) bind(c, name="hipGetTextureObjectTextureDesc")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3816,7 +3816,7 @@ module hip
   function hipTexRefGetAddress(dev_ptr,texRef) bind(c, name="cudaTexRefGetAddress")
 #else
   function hipTexRefGetAddress(dev_ptr,texRef) bind(c, name="hipTexRefGetAddress")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3830,7 +3830,7 @@ module hip
   function hipTexRefGetAddressMode(pam,texRef,dim) bind(c, name="cudaTexRefGetAddressMode")
 #else
   function hipTexRefGetAddressMode(pam,texRef,dim) bind(c, name="hipTexRefGetAddressMode")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3845,7 +3845,7 @@ module hip
   function hipTexRefGetFilterMode(pfm,texRef) bind(c, name="cudaTexRefGetFilterMode")
 #else
   function hipTexRefGetFilterMode(pfm,texRef) bind(c, name="hipTexRefGetFilterMode")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3859,7 +3859,7 @@ module hip
   function hipTexRefGetFlags(pFlags,texRef) bind(c, name="cudaTexRefGetFlags")
 #else
   function hipTexRefGetFlags(pFlags,texRef) bind(c, name="hipTexRefGetFlags")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3873,7 +3873,7 @@ module hip
   function hipTexRefGetFormat(pFormat,pNumChannels,texRef) bind(c, name="cudaTexRefGetFormat")
 #else
   function hipTexRefGetFormat(pFormat,pNumChannels,texRef) bind(c, name="hipTexRefGetFormat")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3888,7 +3888,7 @@ module hip
   function hipTexRefGetMaxAnisotropy(pmaxAnsio,texRef) bind(c, name="cudaTexRefGetMaxAnisotropy")
 #else
   function hipTexRefGetMaxAnisotropy(pmaxAnsio,texRef) bind(c, name="hipTexRefGetMaxAnisotropy")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3902,7 +3902,7 @@ module hip
   function hipTexRefGetMipmapFilterMode(pfm,texRef) bind(c, name="cudaTexRefGetMipmapFilterMode")
 #else
   function hipTexRefGetMipmapFilterMode(pfm,texRef) bind(c, name="hipTexRefGetMipmapFilterMode")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3916,7 +3916,7 @@ module hip
   function hipTexRefGetMipmapLevelBias(pbias,texRef) bind(c, name="cudaTexRefGetMipmapLevelBias")
 #else
   function hipTexRefGetMipmapLevelBias(pbias,texRef) bind(c, name="hipTexRefGetMipmapLevelBias")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3930,7 +3930,7 @@ module hip
   function hipTexRefGetMipmapLevelClamp(pminMipmapLevelClamp,pmaxMipmapLevelClamp,texRef) bind(c, name="cudaTexRefGetMipmapLevelClamp")
 #else
   function hipTexRefGetMipmapLevelClamp(pminMipmapLevelClamp,pmaxMipmapLevelClamp,texRef) bind(c, name="hipTexRefGetMipmapLevelClamp")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3945,7 +3945,7 @@ module hip
   function hipTexRefGetMipMappedArray(pArray,texRef) bind(c, name="cudaTexRefGetMipMappedArray")
 #else
   function hipTexRefGetMipMappedArray(pArray,texRef) bind(c, name="hipTexRefGetMipMappedArray")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3959,7 +3959,7 @@ module hip
   function hipTexRefSetAddress(ByteOffset,texRef,dptr,bytes) bind(c, name="cudaTexRefSetAddress")
 #else
   function hipTexRefSetAddress(ByteOffset,texRef,dptr,bytes) bind(c, name="hipTexRefSetAddress")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3975,7 +3975,7 @@ module hip
   function hipTexRefSetAddress2D(texRef,desc,dptr,Pitch) bind(c, name="cudaTexRefSetAddress2D")
 #else
   function hipTexRefSetAddress2D(texRef,desc,dptr,Pitch) bind(c, name="hipTexRefSetAddress2D")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -3991,7 +3991,7 @@ module hip
   function hipTexRefSetAddressMode(texRef,dim,am) bind(c, name="cudaTexRefSetAddressMode")
 #else
   function hipTexRefSetAddressMode(texRef,dim,am) bind(c, name="hipTexRefSetAddressMode")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -4006,7 +4006,7 @@ module hip
   function hipTexRefSetArray(tex,array,flags) bind(c, name="cudaTexRefSetArray")
 #else
   function hipTexRefSetArray(tex,array,flags) bind(c, name="hipTexRefSetArray")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -4021,7 +4021,7 @@ module hip
   function hipTexRefSetBorderColor(texRef,pBorderColor) bind(c, name="cudaTexRefSetBorderColor")
 #else
   function hipTexRefSetBorderColor(texRef,pBorderColor) bind(c, name="hipTexRefSetBorderColor")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -4035,7 +4035,7 @@ module hip
   function hipTexRefSetFilterMode(texRef,fm) bind(c, name="cudaTexRefSetFilterMode")
 #else
   function hipTexRefSetFilterMode(texRef,fm) bind(c, name="hipTexRefSetFilterMode")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -4049,7 +4049,7 @@ module hip
   function hipTexRefSetFlags(texRef,Flags) bind(c, name="cudaTexRefSetFlags")
 #else
   function hipTexRefSetFlags(texRef,Flags) bind(c, name="hipTexRefSetFlags")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -4063,7 +4063,7 @@ module hip
   function hipTexRefSetFormat(texRef,fmt,NumPackedComponents) bind(c, name="cudaTexRefSetFormat")
 #else
   function hipTexRefSetFormat(texRef,fmt,NumPackedComponents) bind(c, name="hipTexRefSetFormat")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -4078,7 +4078,7 @@ module hip
   function hipTexRefSetMaxAnisotropy(texRef,maxAniso) bind(c, name="cudaTexRefSetMaxAnisotropy")
 #else
   function hipTexRefSetMaxAnisotropy(texRef,maxAniso) bind(c, name="hipTexRefSetMaxAnisotropy")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -4092,7 +4092,7 @@ module hip
   function hipTexRefSetMipmapFilterMode(texRef,fm) bind(c, name="cudaTexRefSetMipmapFilterMode")
 #else
   function hipTexRefSetMipmapFilterMode(texRef,fm) bind(c, name="hipTexRefSetMipmapFilterMode")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -4106,7 +4106,7 @@ module hip
   function hipTexRefSetMipmapLevelBias(texRef,bias) bind(c, name="cudaTexRefSetMipmapLevelBias")
 #else
   function hipTexRefSetMipmapLevelBias(texRef,bias) bind(c, name="hipTexRefSetMipmapLevelBias")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -4120,7 +4120,7 @@ module hip
   function hipTexRefSetMipmapLevelClamp(texRef,minMipMapLevelClamp,maxMipMapLevelClamp) bind(c, name="cudaTexRefSetMipmapLevelClamp")
 #else
   function hipTexRefSetMipmapLevelClamp(texRef,minMipMapLevelClamp,maxMipMapLevelClamp) bind(c, name="hipTexRefSetMipmapLevelClamp")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -4135,7 +4135,7 @@ module hip
   function hipTexRefSetMipmappedArray(texRef,mipmappedArray,Flags) bind(c, name="cudaTexRefSetMipmappedArray")
 #else
   function hipTexRefSetMipmappedArray(texRef,mipmappedArray,Flags) bind(c, name="hipTexRefSetMipmappedArray")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -4150,7 +4150,7 @@ module hip
   function hipMipmappedArrayCreate(pHandle,pMipmappedArrayDesc,numMipmapLevels) bind(c, name="cudaMipmappedArrayCreate")
 #else
   function hipMipmappedArrayCreate(pHandle,pMipmappedArrayDesc,numMipmapLevels) bind(c, name="hipMipmappedArrayCreate")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -4165,7 +4165,7 @@ module hip
   function hipMipmappedArrayDestroy(hMipmappedArray) bind(c, name="cudaMipmappedArrayDestroy")
 #else
   function hipMipmappedArrayDestroy(hMipmappedArray) bind(c, name="hipMipmappedArrayDestroy")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -4178,7 +4178,7 @@ module hip
   function hipMipmappedArrayGetLevel(pLevelArray,hMipMappedArray,level) bind(c, name="cudaMipmappedArrayGetLevel")
 #else
   function hipMipmappedArrayGetLevel(pLevelArray,hMipMappedArray,level) bind(c, name="hipMipmappedArrayGetLevel")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -4193,7 +4193,7 @@ module hip
   function hipTexObjectCreate(pTexObject,pResDesc,pTexDesc,pResViewDesc) bind(c, name="cudaTexObjectCreate")
 #else
   function hipTexObjectCreate(pTexObject,pResDesc,pTexDesc,pResViewDesc) bind(c, name="hipTexObjectCreate")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -4209,7 +4209,7 @@ module hip
   function hipTexObjectDestroy(texObject) bind(c, name="cudaTexObjectDestroy")
 #else
   function hipTexObjectDestroy(texObject) bind(c, name="hipTexObjectDestroy")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -4222,7 +4222,7 @@ module hip
   function hipTexObjectGetResourceDesc(pResDesc,texObject) bind(c, name="cudaTexObjectGetResourceDesc")
 #else
   function hipTexObjectGetResourceDesc(pResDesc,texObject) bind(c, name="hipTexObjectGetResourceDesc")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -4236,7 +4236,7 @@ module hip
   function hipTexObjectGetResourceViewDesc(pResViewDesc,texObject) bind(c, name="cudaTexObjectGetResourceViewDesc")
 #else
   function hipTexObjectGetResourceViewDesc(pResViewDesc,texObject) bind(c, name="hipTexObjectGetResourceViewDesc")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -4250,7 +4250,7 @@ module hip
   function hipTexObjectGetTextureDesc(pTexDesc,texObject) bind(c, name="cudaTexObjectGetTextureDesc")
 #else
   function hipTexObjectGetTextureDesc(pTexDesc,texObject) bind(c, name="hipTexObjectGetTextureDesc")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -4266,7 +4266,7 @@ module hip
   function hipRegisterApiCallback(id,fun,arg) bind(c, name="cudaRegisterApiCallback")
 #else
   function hipRegisterApiCallback(id,fun,arg) bind(c, name="hipRegisterApiCallback")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -4281,7 +4281,7 @@ module hip
   function hipRemoveApiCallback(id) bind(c, name="cudaRemoveApiCallback")
 #else
   function hipRemoveApiCallback(id) bind(c, name="hipRemoveApiCallback")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -4294,7 +4294,7 @@ module hip
   function hipRegisterActivityCallback(id,fun,arg) bind(c, name="cudaRegisterActivityCallback")
 #else
   function hipRegisterActivityCallback(id,fun,arg) bind(c, name="hipRegisterActivityCallback")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
@@ -4309,7 +4309,7 @@ module hip
   function hipRemoveActivityCallback(id) bind(c, name="cudaRemoveActivityCallback")
 #else
   function hipRemoveActivityCallback(id) bind(c, name="hipRemoveActivityCallback")
-#else
+#endif
       use iso_c_binding
       use hip_enums
       implicit none
