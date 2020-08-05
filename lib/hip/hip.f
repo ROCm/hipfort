@@ -1865,8 +1865,7 @@ module hip
       use hip_enums
       implicit none
       integer(kind(hipSuccess)) :: hipMemGetInfo
-      type(c_ptr),value :: free
-      type(c_ptr),value :: total
+      integer(c_size_t) :: free, total
     end function
 
   
@@ -3231,6 +3230,9 @@ module hip
       use iso_c_binding
       use hip_enums
       implicit none
+      type, BIND(C) :: dim3
+         integer(C_INT) :: x,y,z
+      end type
       integer(kind(hipSuccess)) :: hipLaunchCooperativeKernel
       type(c_ptr),value :: f
       type(dim3),value :: gridDim
