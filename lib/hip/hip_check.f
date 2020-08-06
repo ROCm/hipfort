@@ -170,7 +170,7 @@ contains
       implicit none
       integer(kind(cudaSuccess)) :: hipErrorToCudaError
       integer(kind(hipSuccess))  :: hipError_t
-      select case (hError)
+      select case (hipError_t)
       case (hipSuccess)
          hipErrorToCudaError = cudaSuccess
       case (hipErrorOutOfMemory)
@@ -321,9 +321,9 @@ contains
          hipErrorToCudaError = cudaErrorCooperativeLaunchTooLarge
       case (hipErrorNotSupported)
          hipErrorToCudaError = cudaErrorNotSupported
-         //HSA:does not exist in CUDA
+         ! HSA:does not exist in CUDA
       case (hipErrorRuntimeMemory)
-         //HSA:does not exist in CUDA
+         ! HSA:does not exist in CUDA
       case (hipErrorRuntimeOther)
       case (hipErrorUnknown)
       case (hipErrorTbd)
