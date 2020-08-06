@@ -43,9 +43,9 @@ module hip
   !   @see hipSetDevice, hipDeviceReset
   !  
 #ifdef USE_CUDA_NAMES
-  function hipDeviceSynchronize() bind(c, name="cudaDeviceSynchronize")
+    function hipDeviceSynchronize() bind(c, name="cudaDeviceSynchronize")
 #else
-  function hipDeviceSynchronize() bind(c, name="hipDeviceSynchronize")
+    function hipDeviceSynchronize() bind(c, name="hipDeviceSynchronize")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -73,9 +73,9 @@ module hip
   !   @see hipDeviceSynchronize
   !  
 #ifdef USE_CUDA_NAMES
-  function hipDeviceReset() bind(c, name="cudaDeviceReset")
+    function hipDeviceReset() bind(c, name="cudaDeviceReset")
 #else
-  function hipDeviceReset() bind(c, name="hipDeviceReset")
+    function hipDeviceReset() bind(c, name="hipDeviceReset")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -123,9 +123,9 @@ module hip
   !   @see hipGetDevice, hipGetDeviceCount
   !  
 #ifdef USE_CUDA_NAMES
-  function hipSetDevice(deviceId) bind(c, name="cudaSetDevice")
+    function hipSetDevice(deviceId) bind(c, name="cudaSetDevice")
 #else
-  function hipSetDevice(deviceId) bind(c, name="hipSetDevice")
+    function hipSetDevice(deviceId) bind(c, name="hipSetDevice")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -156,9 +156,9 @@ module hip
   !   @see hipSetDevice, hipGetDevicesizeBytes
   !  
 #ifdef USE_CUDA_NAMES
-  function hipGetDevice(deviceId) bind(c, name="cudaGetDevice")
+    function hipGetDevice(deviceId) bind(c, name="cudaGetDevice")
 #else
-  function hipGetDevice(deviceId) bind(c, name="hipGetDevice")
+    function hipGetDevice(deviceId) bind(c, name="hipGetDevice")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -188,9 +188,9 @@ module hip
   !   devices can be found, then hipGetDeviceCount returns #hipSuccess.
   !  
 #ifdef USE_CUDA_NAMES
-  function hipGetDeviceCount(count) bind(c, name="cudaGetDeviceCount")
+    function hipGetDeviceCount(count) bind(c, name="cudaGetDeviceCount")
 #else
-  function hipGetDeviceCount(count) bind(c, name="hipGetDeviceCount")
+    function hipGetDeviceCount(count) bind(c, name="hipGetDeviceCount")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -217,9 +217,9 @@ module hip
   !   @returns #hipSuccess, #hipErrorInvalidDevice, #hipErrorInvalidValue
   !  
 #ifdef USE_CUDA_NAMES
-  function hipDeviceGetAttribute(pi,attr,deviceId) bind(c, name="cudaDeviceGetAttribute")
+    function hipDeviceGetAttribute(pi,attr,deviceId) bind(c, name="cudaDeviceGetAttribute")
 #else
-  function hipDeviceGetAttribute(pi,attr,deviceId) bind(c, name="hipDeviceGetAttribute")
+    function hipDeviceGetAttribute(pi,attr,deviceId) bind(c, name="hipDeviceGetAttribute")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -252,9 +252,9 @@ module hip
   !   Populates hipGetDeviceProperties with information for the specified device.
   !  
 #ifdef USE_CUDA_NAMES
-  function hipGetDeviceProperties(prop,deviceId) bind(c, name="cudaGetDeviceProperties")
+    function hipGetDeviceProperties(prop,deviceId) bind(c, name="cudaGetDeviceProperties")
 #else
-  function hipGetDeviceProperties(prop,deviceId) bind(c, name="hipGetDeviceProperties")
+    function hipGetDeviceProperties(prop,deviceId) bind(c, name="hipGetDeviceProperties")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -283,9 +283,9 @@ module hip
   !  
   !  
 #ifdef USE_CUDA_NAMES
-  function hipDeviceSetCacheConfig(cacheConfig) bind(c, name="cudaDeviceSetCacheConfig")
+    function hipDeviceSetCacheConfig(cacheConfig) bind(c, name="cudaDeviceSetCacheConfig")
 #else
-  function hipDeviceSetCacheConfig(cacheConfig) bind(c, name="hipDeviceSetCacheConfig")
+    function hipDeviceSetCacheConfig(cacheConfig) bind(c, name="hipDeviceSetCacheConfig")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -313,9 +313,9 @@ module hip
   !  
   !  
 #ifdef USE_CUDA_NAMES
-  function hipDeviceGetCacheConfig(cacheConfig) bind(c, name="cudaDeviceGetCacheConfig")
+    function hipDeviceGetCacheConfig(cacheConfig) bind(c, name="cudaDeviceGetCacheConfig")
 #else
-  function hipDeviceGetCacheConfig(cacheConfig) bind(c, name="hipDeviceGetCacheConfig")
+    function hipDeviceGetCacheConfig(cacheConfig) bind(c, name="hipDeviceGetCacheConfig")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -343,9 +343,9 @@ module hip
   !  
   !  
 #ifdef USE_CUDA_NAMES
-  function hipDeviceGetLimit(pValue,limit) bind(c, name="cudaDeviceGetLimit")
+    function hipDeviceGetLimit(pValue,limit) bind(c, name="cudaDeviceGetLimit")
 #else
-  function hipDeviceGetLimit(pValue,limit) bind(c, name="hipDeviceGetLimit")
+    function hipDeviceGetLimit(pValue,limit) bind(c, name="hipDeviceGetLimit")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -374,9 +374,9 @@ module hip
   !  
   !  
 #ifdef USE_CUDA_NAMES
-  function hipFuncSetCacheConfig(func,config) bind(c, name="cudaFuncSetCacheConfig")
+    function hipFuncSetCacheConfig(func,config) bind(c, name="cudaFuncSetCacheConfig")
 #else
-  function hipFuncSetCacheConfig(func,config) bind(c, name="hipFuncSetCacheConfig")
+    function hipFuncSetCacheConfig(func,config) bind(c, name="hipFuncSetCacheConfig")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -406,9 +406,9 @@ module hip
   !  
   !  
 #ifdef USE_CUDA_NAMES
-  function hipDeviceGetSharedMemConfig(pConfig) bind(c, name="cudaDeviceGetSharedMemConfig")
+    function hipDeviceGetSharedMemConfig(pConfig) bind(c, name="cudaDeviceGetSharedMemConfig")
 #else
-  function hipDeviceGetSharedMemConfig(pConfig) bind(c, name="hipDeviceGetSharedMemConfig")
+    function hipDeviceGetSharedMemConfig(pConfig) bind(c, name="hipDeviceGetSharedMemConfig")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -437,9 +437,9 @@ module hip
   !  
   !  
 #ifdef USE_CUDA_NAMES
-  function hipDeviceSetSharedMemConfig(config) bind(c, name="cudaDeviceSetSharedMemConfig")
+    function hipDeviceSetSharedMemConfig(config) bind(c, name="cudaDeviceSetSharedMemConfig")
 #else
-  function hipDeviceSetSharedMemConfig(config) bind(c, name="hipDeviceSetSharedMemConfig")
+    function hipDeviceSetSharedMemConfig(config) bind(c, name="hipDeviceSetSharedMemConfig")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -481,9 +481,9 @@ module hip
   !  
   !  
 #ifdef USE_CUDA_NAMES
-  function hipSetDeviceFlags(flags) bind(c, name="cudaSetDeviceFlags")
+    function hipSetDeviceFlags(flags) bind(c, name="cudaSetDeviceFlags")
 #else
-  function hipSetDeviceFlags(flags) bind(c, name="hipSetDeviceFlags")
+    function hipSetDeviceFlags(flags) bind(c, name="hipSetDeviceFlags")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -509,9 +509,9 @@ module hip
   !   @returns #hipSuccess, #hipErrorInvalidValue
   !  
 #ifdef USE_CUDA_NAMES
-  function hipChooseDevice(device,prop) bind(c, name="cudaChooseDevice")
+    function hipChooseDevice(device,prop) bind(c, name="cudaChooseDevice")
 #else
-  function hipChooseDevice(device,prop) bind(c, name="hipChooseDevice")
+    function hipChooseDevice(device,prop) bind(c, name="hipChooseDevice")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -542,9 +542,9 @@ module hip
   !   @returns #hipSuccess, #hipInvalidDevice, #hipErrorRuntimeOther
   !  
 #ifdef USE_CUDA_NAMES
-  function hipExtGetLinkTypeAndHopCount(device1,device2,linktype,hopcount) bind(c, name="cudaExtGetLinkTypeAndHopCount")
+    function hipExtGetLinkTypeAndHopCount(device1,device2,linktype,hopcount) bind(c, name="cudaExtGetLinkTypeAndHopCount")
 #else
-  function hipExtGetLinkTypeAndHopCount(device1,device2,linktype,hopcount) bind(c, name="hipExtGetLinkTypeAndHopCount")
+    function hipExtGetLinkTypeAndHopCount(device1,device2,linktype,hopcount) bind(c, name="hipExtGetLinkTypeAndHopCount")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -576,9 +576,9 @@ module hip
   !   @see hipGetErrorString, hipGetLastError, hipPeakAtLastError, hipError_t
   !  
 #ifdef USE_CUDA_NAMES
-  function hipGetLastError() bind(c, name="cudaGetLastError")
+    function hipGetLastError() bind(c, name="cudaGetLastError")
 #else
-  function hipGetLastError() bind(c, name="hipGetLastError")
+    function hipGetLastError() bind(c, name="hipGetLastError")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -605,9 +605,9 @@ module hip
   !   @see hipGetErrorString, hipGetLastError, hipPeakAtLastError, hipError_t
   !  
 #ifdef USE_CUDA_NAMES
-  function hipPeekAtLastError() bind(c, name="cudaPeekAtLastError")
+    function hipPeekAtLastError() bind(c, name="cudaPeekAtLastError")
 #else
-  function hipPeekAtLastError() bind(c, name="hipPeekAtLastError")
+    function hipPeekAtLastError() bind(c, name="hipPeekAtLastError")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -640,9 +640,9 @@ module hip
   !   @see hipStreamCreateWithFlags, hipStreamCreateWithPriority, hipStreamSynchronize, hipStreamWaitEvent, hipStreamDestroy
   !  
 #ifdef USE_CUDA_NAMES
-  function hipStreamCreate(stream) bind(c, name="cudaStreamCreate")
+    function hipStreamCreate(stream) bind(c, name="cudaStreamCreate")
 #else
-  function hipStreamCreate(stream) bind(c, name="hipStreamCreate")
+    function hipStreamCreate(stream) bind(c, name="hipStreamCreate")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -676,9 +676,9 @@ module hip
   !   @see hipStreamCreate, hipStreamCreateWithPriority, hipStreamSynchronize, hipStreamWaitEvent, hipStreamDestroy
   !  
 #ifdef USE_CUDA_NAMES
-  function hipStreamCreateWithFlags(stream,flags) bind(c, name="cudaStreamCreateWithFlags")
+    function hipStreamCreateWithFlags(stream,flags) bind(c, name="cudaStreamCreateWithFlags")
 #else
-  function hipStreamCreateWithFlags(stream,flags) bind(c, name="hipStreamCreateWithFlags")
+    function hipStreamCreateWithFlags(stream,flags) bind(c, name="hipStreamCreateWithFlags")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -714,9 +714,9 @@ module hip
   !   @see hipStreamCreate, hipStreamSynchronize, hipStreamWaitEvent, hipStreamDestroy
   !  
 #ifdef USE_CUDA_NAMES
-  function hipStreamCreateWithPriority(stream,flags,priority) bind(c, name="cudaStreamCreateWithPriority")
+    function hipStreamCreateWithPriority(stream,flags,priority) bind(c, name="cudaStreamCreateWithPriority")
 #else
-  function hipStreamCreateWithPriority(stream,flags,priority) bind(c, name="hipStreamCreateWithPriority")
+    function hipStreamCreateWithPriority(stream,flags,priority) bind(c, name="hipStreamCreateWithPriority")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -749,9 +749,9 @@ module hip
   !   clamped to within the valid range.
   !  
 #ifdef USE_CUDA_NAMES
-  function hipDeviceGetStreamPriorityRange(leastPriority,greatestPriority) bind(c, name="cudaDeviceGetStreamPriorityRange")
+    function hipDeviceGetStreamPriorityRange(leastPriority,greatestPriority) bind(c, name="cudaDeviceGetStreamPriorityRange")
 #else
-  function hipDeviceGetStreamPriorityRange(leastPriority,greatestPriority) bind(c, name="hipDeviceGetStreamPriorityRange")
+    function hipDeviceGetStreamPriorityRange(leastPriority,greatestPriority) bind(c, name="hipDeviceGetStreamPriorityRange")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -788,9 +788,9 @@ module hip
   !   hipStreamSynchronize
   !  
 #ifdef USE_CUDA_NAMES
-  function hipStreamDestroy(stream) bind(c, name="cudaStreamDestroy")
+    function hipStreamDestroy(stream) bind(c, name="cudaStreamDestroy")
 #else
-  function hipStreamDestroy(stream) bind(c, name="hipStreamDestroy")
+    function hipStreamDestroy(stream) bind(c, name="hipStreamDestroy")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -823,9 +823,9 @@ module hip
   !   hipStreamDestroy
   !  
 #ifdef USE_CUDA_NAMES
-  function hipStreamQuery(stream) bind(c, name="cudaStreamQuery")
+    function hipStreamQuery(stream) bind(c, name="cudaStreamQuery")
 #else
-  function hipStreamQuery(stream) bind(c, name="hipStreamQuery")
+    function hipStreamQuery(stream) bind(c, name="hipStreamQuery")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -862,9 +862,9 @@ module hip
   !  
   !  
 #ifdef USE_CUDA_NAMES
-  function hipStreamSynchronize(stream) bind(c, name="cudaStreamSynchronize")
+    function hipStreamSynchronize(stream) bind(c, name="cudaStreamSynchronize")
 #else
-  function hipStreamSynchronize(stream) bind(c, name="hipStreamSynchronize")
+    function hipStreamSynchronize(stream) bind(c, name="hipStreamSynchronize")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -901,9 +901,9 @@ module hip
   !   @see hipStreamCreate, hipStreamCreateWithFlags, hipStreamCreateWithPriority, hipStreamSynchronize, hipStreamDestroy
   !  
 #ifdef USE_CUDA_NAMES
-  function hipStreamWaitEvent(stream,event,flags) bind(c, name="cudaStreamWaitEvent")
+    function hipStreamWaitEvent(stream,event,flags) bind(c, name="cudaStreamWaitEvent")
 #else
-  function hipStreamWaitEvent(stream,event,flags) bind(c, name="hipStreamWaitEvent")
+    function hipStreamWaitEvent(stream,event,flags) bind(c, name="hipStreamWaitEvent")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -936,9 +936,9 @@ module hip
   !   @see hipStreamCreateWithFlags
   !  
 #ifdef USE_CUDA_NAMES
-  function hipStreamGetFlags(stream,flags) bind(c, name="cudaStreamGetFlags")
+    function hipStreamGetFlags(stream,flags) bind(c, name="cudaStreamGetFlags")
 #else
-  function hipStreamGetFlags(stream,flags) bind(c, name="hipStreamGetFlags")
+    function hipStreamGetFlags(stream,flags) bind(c, name="hipStreamGetFlags")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -970,9 +970,9 @@ module hip
   !   @see hipStreamCreateWithFlags
   !  
 #ifdef USE_CUDA_NAMES
-  function hipStreamGetPriority(stream,priority) bind(c, name="cudaStreamGetPriority")
+    function hipStreamGetPriority(stream,priority) bind(c, name="cudaStreamGetPriority")
 #else
-  function hipStreamGetPriority(stream,priority) bind(c, name="hipStreamGetPriority")
+    function hipStreamGetPriority(stream,priority) bind(c, name="hipStreamGetPriority")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1006,9 +1006,9 @@ module hip
   !  
   !  
 #ifdef USE_CUDA_NAMES
-  function hipStreamAddCallback(stream,callback,userData,flags) bind(c, name="cudaStreamAddCallback")
+    function hipStreamAddCallback(stream,callback,userData,flags) bind(c, name="cudaStreamAddCallback")
 #else
-  function hipStreamAddCallback(stream,callback,userData,flags) bind(c, name="hipStreamAddCallback")
+    function hipStreamAddCallback(stream,callback,userData,flags) bind(c, name="hipStreamAddCallback")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1053,9 +1053,9 @@ module hip
   !   @see hipEventCreate, hipEventSynchronize, hipEventDestroy, hipEventElapsedTime
   !  
 #ifdef USE_CUDA_NAMES
-  function hipEventCreateWithFlags(event,flags) bind(c, name="cudaEventCreateWithFlags")
+    function hipEventCreateWithFlags(event,flags) bind(c, name="cudaEventCreateWithFlags")
 #else
-  function hipEventCreateWithFlags(event,flags) bind(c, name="hipEventCreateWithFlags")
+    function hipEventCreateWithFlags(event,flags) bind(c, name="hipEventCreateWithFlags")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1085,9 +1085,9 @@ module hip
   !   hipEventDestroy, hipEventElapsedTime
   !  
 #ifdef USE_CUDA_NAMES
-  function hipEventCreate(event) bind(c, name="cudaEventCreate")
+    function hipEventCreate(event) bind(c, name="cudaEventCreate")
 #else
-  function hipEventCreate(event) bind(c, name="hipEventCreate")
+    function hipEventCreate(event) bind(c, name="hipEventCreate")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1132,9 +1132,9 @@ module hip
   !  
   !  
 #ifdef USE_CUDA_NAMES
-  function hipEventRecord(event,stream) bind(c, name="cudaEventRecord")
+    function hipEventRecord(event,stream) bind(c, name="cudaEventRecord")
 #else
-  function hipEventRecord(event,stream) bind(c, name="hipEventRecord")
+    function hipEventRecord(event,stream) bind(c, name="hipEventRecord")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1169,9 +1169,9 @@ module hip
   !   @returns #hipSuccess
   !  
 #ifdef USE_CUDA_NAMES
-  function hipEventDestroy(event) bind(c, name="cudaEventDestroy")
+    function hipEventDestroy(event) bind(c, name="cudaEventDestroy")
 #else
-  function hipEventDestroy(event) bind(c, name="hipEventDestroy")
+    function hipEventDestroy(event) bind(c, name="hipEventDestroy")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1206,9 +1206,9 @@ module hip
   !   hipEventElapsedTime
   !  
 #ifdef USE_CUDA_NAMES
-  function hipEventSynchronize(event) bind(c, name="cudaEventSynchronize")
+    function hipEventSynchronize(event) bind(c, name="cudaEventSynchronize")
 #else
-  function hipEventSynchronize(event) bind(c, name="hipEventSynchronize")
+    function hipEventSynchronize(event) bind(c, name="hipEventSynchronize")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1254,9 +1254,9 @@ module hip
   !   hipEventSynchronize
   !  
 #ifdef USE_CUDA_NAMES
-  function hipEventElapsedTime(ms,start,stop) bind(c, name="cudaEventElapsedTime")
+    function hipEventElapsedTime(ms,start,myStop) bind(c, name="cudaEventElapsedTime")
 #else
-  function hipEventElapsedTime(ms,start,stop) bind(c, name="hipEventElapsedTime")
+    function hipEventElapsedTime(ms,start,myStop) bind(c, name="hipEventElapsedTime")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1272,7 +1272,7 @@ module hip
 #endif
       type(c_ptr),value :: ms
       type(c_ptr),intent(INOUT) :: start
-      type(c_ptr),intent(INOUT) :: stop
+      type(c_ptr),intent(INOUT) :: myStop
     end function
 
   ! 
@@ -1291,9 +1291,9 @@ module hip
   !   hipEventSynchronize, hipEventElapsedTime
   !  
 #ifdef USE_CUDA_NAMES
-  function hipEventQuery(event) bind(c, name="cudaEventQuery")
+    function hipEventQuery(event) bind(c, name="cudaEventQuery")
 #else
-  function hipEventQuery(event) bind(c, name="hipEventQuery")
+    function hipEventQuery(event) bind(c, name="hipEventQuery")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1321,9 +1321,9 @@ module hip
   !    @see hipGetDeviceCount, hipGetDevice, hipSetDevice, hipChooseDevice
   !  
 #ifdef USE_CUDA_NAMES
-  function hipPointerGetAttributes(attributes,ptr) bind(c, name="cudaPointerGetAttributes")
+    function hipPointerGetAttributes(attributes,ptr) bind(c, name="cudaPointerGetAttributes")
 #else
-  function hipPointerGetAttributes(attributes,ptr) bind(c, name="hipPointerGetAttributes")
+    function hipPointerGetAttributes(attributes,ptr) bind(c, name="hipPointerGetAttributes")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1355,9 +1355,9 @@ module hip
   !   hipHostFree, hipHostMalloc
   !  
 #ifdef USE_CUDA_NAMES
-  function hipMalloc(ptr,mySize) bind(c, name="cudaMalloc")
+    function hipMalloc(ptr,mySize) bind(c, name="cudaMalloc")
 #else
-  function hipMalloc(ptr,mySize) bind(c, name="hipMalloc")
+    function hipMalloc(ptr,mySize) bind(c, name="hipMalloc")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1390,9 +1390,9 @@ module hip
   !   hipHostFree, hipHostMalloc
   !  
 #ifdef USE_CUDA_NAMES
-  function hipExtMallocWithFlags(ptr,sizeBytes,flags) bind(c, name="cudaExtMallocWithFlags")
+    function hipExtMallocWithFlags(ptr,sizeBytes,flags) bind(c, name="cudaExtMallocWithFlags")
 #else
-  function hipExtMallocWithFlags(ptr,sizeBytes,flags) bind(c, name="hipExtMallocWithFlags")
+    function hipExtMallocWithFlags(ptr,sizeBytes,flags) bind(c, name="hipExtMallocWithFlags")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1413,9 +1413,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipMallocHost(ptr,mySize) bind(c, name="cudaMallocHost")
+    function hipMallocHost(ptr,mySize) bind(c, name="cudaMallocHost")
 #else
-  function hipMallocHost(ptr,mySize) bind(c, name="hipMallocHost")
+    function hipMallocHost(ptr,mySize) bind(c, name="hipMallocHost")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1435,9 +1435,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipMemAllocHost(ptr,mySize) bind(c, name="cudaMemAllocHost")
+    function hipMemAllocHost(ptr,mySize) bind(c, name="cudaMemAllocHost")
 #else
-  function hipMemAllocHost(ptr,mySize) bind(c, name="hipMemAllocHost")
+    function hipMemAllocHost(ptr,mySize) bind(c, name="hipMemAllocHost")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1469,9 +1469,9 @@ module hip
   !    @see hipSetDeviceFlags, hipHostFree
   !  
 #ifdef USE_CUDA_NAMES
-  function hipHostMalloc(ptr,mySize,flags) bind(c, name="cudaHostMalloc")
+    function hipHostMalloc(ptr,mySize,flags) bind(c, name="cudaHostMalloc")
 #else
-  function hipHostMalloc(ptr,mySize,flags) bind(c, name="hipHostMalloc")
+    function hipHostMalloc(ptr,mySize,flags) bind(c, name="hipHostMalloc")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1492,9 +1492,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipHostAlloc(ptr,mySize,flags) bind(c, name="cudaHostAlloc")
+    function hipHostAlloc(ptr,mySize,flags) bind(c, name="cudaHostAlloc")
 #else
-  function hipHostAlloc(ptr,mySize,flags) bind(c, name="hipHostAlloc")
+    function hipHostAlloc(ptr,mySize,flags) bind(c, name="hipHostAlloc")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1525,9 +1525,9 @@ module hip
   !    @see hipSetDeviceFlags, hipHostMalloc
   !  
 #ifdef USE_CUDA_NAMES
-  function hipHostGetDevicePointer(devPtr,hstPtr,flags) bind(c, name="cudaHostGetDevicePointer")
+    function hipHostGetDevicePointer(devPtr,hstPtr,flags) bind(c, name="cudaHostGetDevicePointer")
 #else
-  function hipHostGetDevicePointer(devPtr,hstPtr,flags) bind(c, name="hipHostGetDevicePointer")
+    function hipHostGetDevicePointer(devPtr,hstPtr,flags) bind(c, name="hipHostGetDevicePointer")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1556,9 +1556,9 @@ module hip
   !    @see hipHostMalloc
   !  
 #ifdef USE_CUDA_NAMES
-  function hipHostGetFlags(flagsPtr,hostPtr) bind(c, name="cudaHostGetFlags")
+    function hipHostGetFlags(flagsPtr,hostPtr) bind(c, name="cudaHostGetFlags")
 #else
-  function hipHostGetFlags(flagsPtr,hostPtr) bind(c, name="hipHostGetFlags")
+    function hipHostGetFlags(flagsPtr,hostPtr) bind(c, name="hipHostGetFlags")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1613,9 +1613,9 @@ module hip
   !    @see hipHostUnregister, hipHostGetFlags, hipHostGetDevicePointer
   !  
 #ifdef USE_CUDA_NAMES
-  function hipHostRegister(hostPtr,sizeBytes,flags) bind(c, name="cudaHostRegister")
+    function hipHostRegister(hostPtr,sizeBytes,flags) bind(c, name="cudaHostRegister")
 #else
-  function hipHostRegister(hostPtr,sizeBytes,flags) bind(c, name="hipHostRegister")
+    function hipHostRegister(hostPtr,sizeBytes,flags) bind(c, name="hipHostRegister")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1643,9 +1643,9 @@ module hip
   !    @see hipHostRegister
   !  
 #ifdef USE_CUDA_NAMES
-  function hipHostUnregister(hostPtr) bind(c, name="cudaHostUnregister")
+    function hipHostUnregister(hostPtr) bind(c, name="cudaHostUnregister")
 #else
-  function hipHostUnregister(hostPtr) bind(c, name="hipHostUnregister")
+    function hipHostUnregister(hostPtr) bind(c, name="hipHostUnregister")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1681,9 +1681,9 @@ module hip
   !   hipMalloc3DArray, hipHostMalloc
   !  
 #ifdef USE_CUDA_NAMES
-  function hipMallocPitch(ptr,pitch,width,height) bind(c, name="cudaMallocPitch")
+    function hipMallocPitch(ptr,pitch,width,height) bind(c, name="cudaMallocPitch")
 #else
-  function hipMallocPitch(ptr,pitch,width,height) bind(c, name="hipMallocPitch")
+    function hipMallocPitch(ptr,pitch,width,height) bind(c, name="hipMallocPitch")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1725,9 +1725,9 @@ module hip
   !   hipMalloc3DArray, hipHostMalloc
   !  
 #ifdef USE_CUDA_NAMES
-  function hipMemAllocPitch(dptr,pitch,widthInBytes,height,elementSizeBytes) bind(c, name="cudaMemAllocPitch")
+    function hipMemAllocPitch(dptr,pitch,widthInBytes,height,elementSizeBytes) bind(c, name="cudaMemAllocPitch")
 #else
-  function hipMemAllocPitch(dptr,pitch,widthInBytes,height,elementSizeBytes) bind(c, name="hipMemAllocPitch")
+    function hipMemAllocPitch(dptr,pitch,widthInBytes,height,elementSizeBytes) bind(c, name="hipMemAllocPitch")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1762,9 +1762,9 @@ module hip
   !   hipMalloc3DArray, hipHostMalloc
   !  
 #ifdef USE_CUDA_NAMES
-  function hipFree(ptr) bind(c, name="cudaFree")
+    function hipFree(ptr) bind(c, name="cudaFree")
 #else
-  function hipFree(ptr) bind(c, name="hipFree")
+    function hipFree(ptr) bind(c, name="hipFree")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1783,9 +1783,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipFreeHost(ptr) bind(c, name="cudaFreeHost")
+    function hipFreeHost(ptr) bind(c, name="cudaFreeHost")
 #else
-  function hipFreeHost(ptr) bind(c, name="hipFreeHost")
+    function hipFreeHost(ptr) bind(c, name="hipFreeHost")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1816,9 +1816,9 @@ module hip
   !   hipMalloc3DArray, hipHostMalloc
   !  
 #ifdef USE_CUDA_NAMES
-  function hipHostFree(ptr) bind(c, name="cudaHostFree")
+    function hipHostFree(ptr) bind(c, name="cudaHostFree")
 #else
-  function hipHostFree(ptr) bind(c, name="hipHostFree")
+    function hipHostFree(ptr) bind(c, name="hipHostFree")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1863,9 +1863,9 @@ module hip
   !   hipMemHostAlloc, hipMemHostGetDevicePointer
   !  
 #ifdef USE_CUDA_NAMES
-  function hipMemcpy(dst,src,sizeBytes,myKind) bind(c, name="cudaMemcpy")
+    function hipMemcpy(dst,src,sizeBytes,myKind) bind(c, name="cudaMemcpy")
 #else
-  function hipMemcpy(dst,src,sizeBytes,myKind) bind(c, name="hipMemcpy")
+    function hipMemcpy(dst,src,sizeBytes,myKind) bind(c, name="hipMemcpy")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1887,9 +1887,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipMemcpyWithStream(dst,src,sizeBytes,myKind,stream) bind(c, name="cudaMemcpyWithStream")
+    function hipMemcpyWithStream(dst,src,sizeBytes,myKind,stream) bind(c, name="cudaMemcpyWithStream")
 #else
-  function hipMemcpyWithStream(dst,src,sizeBytes,myKind,stream) bind(c, name="hipMemcpyWithStream")
+    function hipMemcpyWithStream(dst,src,sizeBytes,myKind,stream) bind(c, name="hipMemcpyWithStream")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1928,9 +1928,9 @@ module hip
   !   hipMemHostAlloc, hipMemHostGetDevicePointer
   !  
 #ifdef USE_CUDA_NAMES
-  function hipMemcpyHtoD(dst,src,sizeBytes) bind(c, name="cudaMemcpyHtoD")
+    function hipMemcpyHtoD(dst,src,sizeBytes) bind(c, name="cudaMemcpyHtoD")
 #else
-  function hipMemcpyHtoD(dst,src,sizeBytes) bind(c, name="hipMemcpyHtoD")
+    function hipMemcpyHtoD(dst,src,sizeBytes) bind(c, name="hipMemcpyHtoD")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1967,9 +1967,9 @@ module hip
   !   hipMemHostAlloc, hipMemHostGetDevicePointer
   !  
 #ifdef USE_CUDA_NAMES
-  function hipMemcpyDtoH(dst,src,sizeBytes) bind(c, name="cudaMemcpyDtoH")
+    function hipMemcpyDtoH(dst,src,sizeBytes) bind(c, name="cudaMemcpyDtoH")
 #else
-  function hipMemcpyDtoH(dst,src,sizeBytes) bind(c, name="hipMemcpyDtoH")
+    function hipMemcpyDtoH(dst,src,sizeBytes) bind(c, name="hipMemcpyDtoH")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2006,9 +2006,9 @@ module hip
   !   hipMemHostAlloc, hipMemHostGetDevicePointer
   !  
 #ifdef USE_CUDA_NAMES
-  function hipMemcpyDtoD(dst,src,sizeBytes) bind(c, name="cudaMemcpyDtoD")
+    function hipMemcpyDtoD(dst,src,sizeBytes) bind(c, name="cudaMemcpyDtoD")
 #else
-  function hipMemcpyDtoD(dst,src,sizeBytes) bind(c, name="hipMemcpyDtoD")
+    function hipMemcpyDtoD(dst,src,sizeBytes) bind(c, name="hipMemcpyDtoD")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2045,9 +2045,9 @@ module hip
   !   hipMemHostAlloc, hipMemHostGetDevicePointer
   !  
 #ifdef USE_CUDA_NAMES
-  function hipMemcpyHtoDAsync(dst,src,sizeBytes,stream) bind(c, name="cudaMemcpyHtoDAsync")
+    function hipMemcpyHtoDAsync(dst,src,sizeBytes,stream) bind(c, name="cudaMemcpyHtoDAsync")
 #else
-  function hipMemcpyHtoDAsync(dst,src,sizeBytes,stream) bind(c, name="hipMemcpyHtoDAsync")
+    function hipMemcpyHtoDAsync(dst,src,sizeBytes,stream) bind(c, name="hipMemcpyHtoDAsync")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2085,9 +2085,9 @@ module hip
   !   hipMemHostAlloc, hipMemHostGetDevicePointer
   !  
 #ifdef USE_CUDA_NAMES
-  function hipMemcpyDtoHAsync(dst,src,sizeBytes,stream) bind(c, name="cudaMemcpyDtoHAsync")
+    function hipMemcpyDtoHAsync(dst,src,sizeBytes,stream) bind(c, name="cudaMemcpyDtoHAsync")
 #else
-  function hipMemcpyDtoHAsync(dst,src,sizeBytes,stream) bind(c, name="hipMemcpyDtoHAsync")
+    function hipMemcpyDtoHAsync(dst,src,sizeBytes,stream) bind(c, name="hipMemcpyDtoHAsync")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2125,9 +2125,9 @@ module hip
   !   hipMemHostAlloc, hipMemHostGetDevicePointer
   !  
 #ifdef USE_CUDA_NAMES
-  function hipMemcpyDtoDAsync(dst,src,sizeBytes,stream) bind(c, name="cudaMemcpyDtoDAsync")
+    function hipMemcpyDtoDAsync(dst,src,sizeBytes,stream) bind(c, name="cudaMemcpyDtoDAsync")
 #else
-  function hipMemcpyDtoDAsync(dst,src,sizeBytes,stream) bind(c, name="hipMemcpyDtoDAsync")
+    function hipMemcpyDtoDAsync(dst,src,sizeBytes,stream) bind(c, name="hipMemcpyDtoDAsync")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2149,9 +2149,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipModuleGetGlobal(dptr,bytes,hmod,name) bind(c, name="cudaModuleGetGlobal")
+    function hipModuleGetGlobal(dptr,bytes,hmod,name) bind(c, name="cudaModuleGetGlobal")
 #else
-  function hipModuleGetGlobal(dptr,bytes,hmod,name) bind(c, name="hipModuleGetGlobal")
+    function hipModuleGetGlobal(dptr,bytes,hmod,name) bind(c, name="hipModuleGetGlobal")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2173,9 +2173,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipGetSymbolAddress(devPtr,symbol) bind(c, name="cudaGetSymbolAddress")
+    function hipGetSymbolAddress(devPtr,symbol) bind(c, name="cudaGetSymbolAddress")
 #else
-  function hipGetSymbolAddress(devPtr,symbol) bind(c, name="hipGetSymbolAddress")
+    function hipGetSymbolAddress(devPtr,symbol) bind(c, name="hipGetSymbolAddress")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2195,9 +2195,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipGetSymbolSize(mySize,symbol) bind(c, name="cudaGetSymbolSize")
+    function hipGetSymbolSize(mySize,symbol) bind(c, name="cudaGetSymbolSize")
 #else
-  function hipGetSymbolSize(mySize,symbol) bind(c, name="hipGetSymbolSize")
+    function hipGetSymbolSize(mySize,symbol) bind(c, name="hipGetSymbolSize")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2225,9 +2225,9 @@ module hip
   !    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized
   !  
 #ifdef USE_CUDA_NAMES
-  function hipMemset(dst,myValue,sizeBytes) bind(c, name="cudaMemset")
+    function hipMemset(dst,myValue,sizeBytes) bind(c, name="cudaMemset")
 #else
-  function hipMemset(dst,myValue,sizeBytes) bind(c, name="hipMemset")
+    function hipMemset(dst,myValue,sizeBytes) bind(c, name="hipMemset")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2256,9 +2256,9 @@ module hip
   !    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized
   !  
 #ifdef USE_CUDA_NAMES
-  function hipMemsetD8(dest,myValue,count) bind(c, name="cudaMemsetD8")
+    function hipMemsetD8(dest,myValue,count) bind(c, name="cudaMemsetD8")
 #else
-  function hipMemsetD8(dest,myValue,count) bind(c, name="hipMemsetD8")
+    function hipMemsetD8(dest,myValue,count) bind(c, name="hipMemsetD8")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2287,9 +2287,9 @@ module hip
   !    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized
   !  
 #ifdef USE_CUDA_NAMES
-  function hipMemsetD16(dest,myValue,count) bind(c, name="cudaMemsetD16")
+    function hipMemsetD16(dest,myValue,count) bind(c, name="cudaMemsetD16")
 #else
-  function hipMemsetD16(dest,myValue,count) bind(c, name="hipMemsetD16")
+    function hipMemsetD16(dest,myValue,count) bind(c, name="hipMemsetD16")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2318,9 +2318,9 @@ module hip
   !    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized
   !  
 #ifdef USE_CUDA_NAMES
-  function hipMemsetD32(dest,myValue,count) bind(c, name="cudaMemsetD32")
+    function hipMemsetD32(dest,myValue,count) bind(c, name="cudaMemsetD32")
 #else
-  function hipMemsetD32(dest,myValue,count) bind(c, name="hipMemsetD32")
+    function hipMemsetD32(dest,myValue,count) bind(c, name="hipMemsetD32")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2350,9 +2350,9 @@ module hip
   !    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryFree
   !  
 #ifdef USE_CUDA_NAMES
-  function hipMemset2D(dst,pitch,myValue,width,height) bind(c, name="cudaMemset2D")
+    function hipMemset2D(dst,pitch,myValue,width,height) bind(c, name="cudaMemset2D")
 #else
-  function hipMemset2D(dst,pitch,myValue,width,height) bind(c, name="hipMemset2D")
+    function hipMemset2D(dst,pitch,myValue,width,height) bind(c, name="hipMemset2D")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2382,9 +2382,9 @@ module hip
   !    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryFree
   !  
 #ifdef USE_CUDA_NAMES
-  function hipMemset3D(pitchedDevPtr,myValue,extent) bind(c, name="cudaMemset3D")
+    function hipMemset3D(pitchedDevPtr,myValue,extent) bind(c, name="cudaMemset3D")
 #else
-  function hipMemset3D(pitchedDevPtr,myValue,extent) bind(c, name="hipMemset3D")
+    function hipMemset3D(pitchedDevPtr,myValue,extent) bind(c, name="hipMemset3D")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2413,9 +2413,9 @@ module hip
   !  optimistic.
   !  
 #ifdef USE_CUDA_NAMES
-  function hipMemGetInfo(free,total) bind(c, name="cudaMemGetInfo")
+    function hipMemGetInfo(free,total) bind(c, name="cudaMemGetInfo")
 #else
-  function hipMemGetInfo(free,total) bind(c, name="hipMemGetInfo")
+    function hipMemGetInfo(free,total) bind(c, name="hipMemGetInfo")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2435,9 +2435,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipMemPtrGetInfo(ptr,mySize) bind(c, name="cudaMemPtrGetInfo")
+    function hipMemPtrGetInfo(ptr,mySize) bind(c, name="cudaMemPtrGetInfo")
 #else
-  function hipMemPtrGetInfo(ptr,mySize) bind(c, name="hipMemPtrGetInfo")
+    function hipMemPtrGetInfo(ptr,mySize) bind(c, name="hipMemPtrGetInfo")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2457,9 +2457,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipArrayCreate(pHandle,pAllocateArray) bind(c, name="cudaArrayCreate")
+    function hipArrayCreate(pHandle,pAllocateArray) bind(c, name="cudaArrayCreate")
 #else
-  function hipArrayCreate(pHandle,pAllocateArray) bind(c, name="hipArrayCreate")
+    function hipArrayCreate(pHandle,pAllocateArray) bind(c, name="hipArrayCreate")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2479,9 +2479,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipArray3DCreate(array,pAllocateArray) bind(c, name="cudaArray3DCreate")
+    function hipArray3DCreate(array,pAllocateArray) bind(c, name="cudaArray3DCreate")
 #else
-  function hipArray3DCreate(array,pAllocateArray) bind(c, name="hipArray3DCreate")
+    function hipArray3DCreate(array,pAllocateArray) bind(c, name="hipArray3DCreate")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2501,9 +2501,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipMalloc3D(pitchedDevPtr,extent) bind(c, name="cudaMalloc3D")
+    function hipMalloc3D(pitchedDevPtr,extent) bind(c, name="cudaMalloc3D")
 #else
-  function hipMalloc3D(pitchedDevPtr,extent) bind(c, name="hipMalloc3D")
+    function hipMalloc3D(pitchedDevPtr,extent) bind(c, name="hipMalloc3D")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2530,9 +2530,9 @@ module hip
   !    @see hipMalloc, hipMallocPitch, hipFree, hipMallocArray, hipHostMalloc, hipHostFree
   !  
 #ifdef USE_CUDA_NAMES
-  function hipFreeArray(array) bind(c, name="cudaFreeArray")
+    function hipFreeArray(array) bind(c, name="cudaFreeArray")
 #else
-  function hipFreeArray(array) bind(c, name="hipFreeArray")
+    function hipFreeArray(array) bind(c, name="hipFreeArray")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2557,9 +2557,9 @@ module hip
   !   @return #hipSuccess, #hipErrorInvalidValue
   !  
 #ifdef USE_CUDA_NAMES
-  function hipFreeMipmappedArray(mipmappedArray) bind(c, name="cudaFreeMipmappedArray")
+    function hipFreeMipmappedArray(mipmappedArray) bind(c, name="cudaFreeMipmappedArray")
 #else
-  function hipFreeMipmappedArray(mipmappedArray) bind(c, name="hipFreeMipmappedArray")
+    function hipFreeMipmappedArray(mipmappedArray) bind(c, name="hipFreeMipmappedArray")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2588,9 +2588,9 @@ module hip
   !    @see hipMalloc, hipMallocPitch, hipFree, hipFreeArray, hipHostMalloc, hipHostFree
   !  
 #ifdef USE_CUDA_NAMES
-  function hipMalloc3DArray(array,desc,extent,flags) bind(c, name="cudaMalloc3DArray")
+    function hipMalloc3DArray(array,desc,extent,flags) bind(c, name="cudaMalloc3DArray")
 #else
-  function hipMalloc3DArray(array,desc,extent,flags) bind(c, name="hipMalloc3DArray")
+    function hipMalloc3DArray(array,desc,extent,flags) bind(c, name="hipMalloc3DArray")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2620,9 +2620,9 @@ module hip
   !   @return #hipSuccess, #hipErrorInvalidValue
   !  
 #ifdef USE_CUDA_NAMES
-  function hipGetMipmappedArrayLevel(levelArray,mipmappedArray,level) bind(c, name="cudaGetMipmappedArrayLevel")
+    function hipGetMipmappedArrayLevel(levelArray,mipmappedArray,level) bind(c, name="cudaGetMipmappedArrayLevel")
 #else
-  function hipGetMipmappedArrayLevel(levelArray,mipmappedArray,level) bind(c, name="hipGetMipmappedArrayLevel")
+    function hipGetMipmappedArrayLevel(levelArray,mipmappedArray,level) bind(c, name="hipGetMipmappedArrayLevel")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2658,9 +2658,9 @@ module hip
   !   hipMemcpyAsync
   !  
 #ifdef USE_CUDA_NAMES
-  function hipMemcpy2D(dst,dpitch,src,spitch,width,height,myKind) bind(c, name="cudaMemcpy2D")
+    function hipMemcpy2D(dst,dpitch,src,spitch,width,height,myKind) bind(c, name="cudaMemcpy2D")
 #else
-  function hipMemcpy2D(dst,dpitch,src,spitch,width,height,myKind) bind(c, name="hipMemcpy2D")
+    function hipMemcpy2D(dst,dpitch,src,spitch,width,height,myKind) bind(c, name="hipMemcpy2D")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2693,9 +2693,9 @@ module hip
   !   hipMemcpyToSymbol, hipMemcpyAsync
   ! 
 #ifdef USE_CUDA_NAMES
-  function hipMemcpyParam2D(pCopy) bind(c, name="cudaMemcpyParam2D")
+    function hipMemcpyParam2D(pCopy) bind(c, name="cudaMemcpyParam2D")
 #else
-  function hipMemcpyParam2D(pCopy) bind(c, name="hipMemcpyParam2D")
+    function hipMemcpyParam2D(pCopy) bind(c, name="hipMemcpyParam2D")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2729,9 +2729,9 @@ module hip
   !   hipMemcpyAsync
   !  
 #ifdef USE_CUDA_NAMES
-  function hipMemcpy2DToArray(dst,wOffset,hOffset,src,spitch,width,height,myKind) bind(c, name="cudaMemcpy2DToArray")
+    function hipMemcpy2DToArray(dst,wOffset,hOffset,src,spitch,width,height,myKind) bind(c, name="cudaMemcpy2DToArray")
 #else
-  function hipMemcpy2DToArray(dst,wOffset,hOffset,src,spitch,width,height,myKind) bind(c, name="hipMemcpy2DToArray")
+    function hipMemcpy2DToArray(dst,wOffset,hOffset,src,spitch,width,height,myKind) bind(c, name="hipMemcpy2DToArray")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2772,9 +2772,9 @@ module hip
   !   hipMemcpyAsync
   !  
 #ifdef USE_CUDA_NAMES
-  function hipMemcpyToArray(dst,wOffset,hOffset,src,count,myKind) bind(c, name="cudaMemcpyToArray")
+    function hipMemcpyToArray(dst,wOffset,hOffset,src,count,myKind) bind(c, name="cudaMemcpyToArray")
 #else
-  function hipMemcpyToArray(dst,wOffset,hOffset,src,count,myKind) bind(c, name="hipMemcpyToArray")
+    function hipMemcpyToArray(dst,wOffset,hOffset,src,count,myKind) bind(c, name="hipMemcpyToArray")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2812,9 +2812,9 @@ module hip
   !   hipMemcpyAsync
   !  
 #ifdef USE_CUDA_NAMES
-  function hipMemcpyFromArray(dst,srcArray,wOffset,hOffset,count,myKind) bind(c, name="cudaMemcpyFromArray")
+    function hipMemcpyFromArray(dst,srcArray,wOffset,hOffset,count,myKind) bind(c, name="cudaMemcpyFromArray")
 #else
-  function hipMemcpyFromArray(dst,srcArray,wOffset,hOffset,count,myKind) bind(c, name="hipMemcpyFromArray")
+    function hipMemcpyFromArray(dst,srcArray,wOffset,hOffset,count,myKind) bind(c, name="hipMemcpyFromArray")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2854,9 +2854,9 @@ module hip
   !   hipMemcpyAsync
   !  
 #ifdef USE_CUDA_NAMES
-  function hipMemcpy2DFromArray(dst,dpitch,src,wOffset,hOffset,width,height,myKind) bind(c, name="cudaMemcpy2DFromArray")
+    function hipMemcpy2DFromArray(dst,dpitch,src,wOffset,hOffset,width,height,myKind) bind(c, name="cudaMemcpy2DFromArray")
 #else
-  function hipMemcpy2DFromArray(dst,dpitch,src,wOffset,hOffset,width,height,myKind) bind(c, name="hipMemcpy2DFromArray")
+    function hipMemcpy2DFromArray(dst,dpitch,src,wOffset,hOffset,width,height,myKind) bind(c, name="hipMemcpy2DFromArray")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2894,9 +2894,9 @@ module hip
   !   hipMemcpyAsync
   !  
 #ifdef USE_CUDA_NAMES
-  function hipMemcpyAtoH(dst,srcArray,srcOffset,count) bind(c, name="cudaMemcpyAtoH")
+    function hipMemcpyAtoH(dst,srcArray,srcOffset,count) bind(c, name="cudaMemcpyAtoH")
 #else
-  function hipMemcpyAtoH(dst,srcArray,srcOffset,count) bind(c, name="hipMemcpyAtoH")
+    function hipMemcpyAtoH(dst,srcArray,srcOffset,count) bind(c, name="hipMemcpyAtoH")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2930,9 +2930,9 @@ module hip
   !   hipMemcpyAsync
   !  
 #ifdef USE_CUDA_NAMES
-  function hipMemcpyHtoA(dstArray,dstOffset,srcHost,count) bind(c, name="cudaMemcpyHtoA")
+    function hipMemcpyHtoA(dstArray,dstOffset,srcHost,count) bind(c, name="cudaMemcpyHtoA")
 #else
-  function hipMemcpyHtoA(dstArray,dstOffset,srcHost,count) bind(c, name="hipMemcpyHtoA")
+    function hipMemcpyHtoA(dstArray,dstOffset,srcHost,count) bind(c, name="hipMemcpyHtoA")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2963,9 +2963,9 @@ module hip
   !   hipMemcpyAsync
   !  
 #ifdef USE_CUDA_NAMES
-  function hipMemcpy3D(p) bind(c, name="cudaMemcpy3D")
+    function hipMemcpy3D(p) bind(c, name="cudaMemcpy3D")
 #else
-  function hipMemcpy3D(p) bind(c, name="hipMemcpy3D")
+    function hipMemcpy3D(p) bind(c, name="hipMemcpy3D")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2993,9 +2993,9 @@ module hip
   !   hipMemcpyAsync
   !  
 #ifdef USE_CUDA_NAMES
-  function hipDrvMemcpy3D(pCopy) bind(c, name="cudaDrvMemcpy3D")
+    function hipDrvMemcpy3D(pCopy) bind(c, name="cudaDrvMemcpy3D")
 #else
-  function hipDrvMemcpy3D(pCopy) bind(c, name="hipDrvMemcpy3D")
+    function hipDrvMemcpy3D(pCopy) bind(c, name="hipDrvMemcpy3D")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3024,9 +3024,9 @@ module hip
   !   hipMemcpyAsync
   !  
 #ifdef USE_CUDA_NAMES
-  function hipDrvMemcpy3DAsync(pCopy,stream) bind(c, name="cudaDrvMemcpy3DAsync")
+    function hipDrvMemcpy3DAsync(pCopy,stream) bind(c, name="cudaDrvMemcpy3DAsync")
 #else
-  function hipDrvMemcpy3DAsync(pCopy,stream) bind(c, name="hipDrvMemcpy3DAsync")
+    function hipDrvMemcpy3DAsync(pCopy,stream) bind(c, name="hipDrvMemcpy3DAsync")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3061,9 +3061,9 @@ module hip
   !   @returns #hipErrorInvalidDevice if deviceId or peerDeviceId are not valid devices
   !  
 #ifdef USE_CUDA_NAMES
-  function hipDeviceCanAccessPeer(canAccessPeer,deviceId,peerDeviceId) bind(c, name="cudaDeviceCanAccessPeer")
+    function hipDeviceCanAccessPeer(canAccessPeer,deviceId,peerDeviceId) bind(c, name="cudaDeviceCanAccessPeer")
 #else
-  function hipDeviceCanAccessPeer(canAccessPeer,deviceId,peerDeviceId) bind(c, name="hipDeviceCanAccessPeer")
+    function hipDeviceCanAccessPeer(canAccessPeer,deviceId,peerDeviceId) bind(c, name="hipDeviceCanAccessPeer")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3099,9 +3099,9 @@ module hip
   !   @returns #hipErrorPeerAccessAlreadyEnabled if peer access is already enabled for this device.
   !  
 #ifdef USE_CUDA_NAMES
-  function hipDeviceEnablePeerAccess(peerDeviceId,flags) bind(c, name="cudaDeviceEnablePeerAccess")
+    function hipDeviceEnablePeerAccess(peerDeviceId,flags) bind(c, name="cudaDeviceEnablePeerAccess")
 #else
-  function hipDeviceEnablePeerAccess(peerDeviceId,flags) bind(c, name="hipDeviceEnablePeerAccess")
+    function hipDeviceEnablePeerAccess(peerDeviceId,flags) bind(c, name="hipDeviceEnablePeerAccess")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3131,9 +3131,9 @@ module hip
   !   @returns #hipSuccess, #hipErrorPeerAccessNotEnabled
   !  
 #ifdef USE_CUDA_NAMES
-  function hipDeviceDisablePeerAccess(peerDeviceId) bind(c, name="cudaDeviceDisablePeerAccess")
+    function hipDeviceDisablePeerAccess(peerDeviceId) bind(c, name="cudaDeviceDisablePeerAccess")
 #else
-  function hipDeviceDisablePeerAccess(peerDeviceId) bind(c, name="hipDeviceDisablePeerAccess")
+    function hipDeviceDisablePeerAccess(peerDeviceId) bind(c, name="hipDeviceDisablePeerAccess")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3163,9 +3163,9 @@ module hip
   !   hipCtxSetCurrent, hipCtxPushCurrent, hipCtxSetCacheConfig, hipCtxSynchronize, hipCtxGetDevice
   !  
 #ifdef USE_CUDA_NAMES
-  function hipMemGetAddressRange(pbase,psize,dptr) bind(c, name="cudaMemGetAddressRange")
+    function hipMemGetAddressRange(pbase,psize,dptr) bind(c, name="cudaMemGetAddressRange")
 #else
-  function hipMemGetAddressRange(pbase,psize,dptr) bind(c, name="hipMemGetAddressRange")
+    function hipMemGetAddressRange(pbase,psize,dptr) bind(c, name="hipMemGetAddressRange")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3196,9 +3196,9 @@ module hip
   !   @returns #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidDevice
   !  
 #ifdef USE_CUDA_NAMES
-  function hipMemcpyPeer(dst,dstDeviceId,src,srcDeviceId,sizeBytes) bind(c, name="cudaMemcpyPeer")
+    function hipMemcpyPeer(dst,dstDeviceId,src,srcDeviceId,sizeBytes) bind(c, name="cudaMemcpyPeer")
 #else
-  function hipMemcpyPeer(dst,dstDeviceId,src,srcDeviceId,sizeBytes) bind(c, name="hipMemcpyPeer")
+    function hipMemcpyPeer(dst,dstDeviceId,src,srcDeviceId,sizeBytes) bind(c, name="hipMemcpyPeer")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3221,9 +3221,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipInit(flags) bind(c, name="cudaInit")
+    function hipInit(flags) bind(c, name="cudaInit")
 #else
-  function hipInit(flags) bind(c, name="hipInit")
+    function hipInit(flags) bind(c, name="hipInit")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3242,9 +3242,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipCtxCreate(ctx,flags,device) bind(c, name="cudaCtxCreate")
+    function hipCtxCreate(ctx,flags,device) bind(c, name="cudaCtxCreate")
 #else
-  function hipCtxCreate(ctx,flags,device) bind(c, name="hipCtxCreate")
+    function hipCtxCreate(ctx,flags,device) bind(c, name="hipCtxCreate")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3265,9 +3265,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipCtxDestroy(ctx) bind(c, name="cudaCtxDestroy")
+    function hipCtxDestroy(ctx) bind(c, name="cudaCtxDestroy")
 #else
-  function hipCtxDestroy(ctx) bind(c, name="hipCtxDestroy")
+    function hipCtxDestroy(ctx) bind(c, name="hipCtxDestroy")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3286,9 +3286,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipCtxPopCurrent(ctx) bind(c, name="cudaCtxPopCurrent")
+    function hipCtxPopCurrent(ctx) bind(c, name="cudaCtxPopCurrent")
 #else
-  function hipCtxPopCurrent(ctx) bind(c, name="hipCtxPopCurrent")
+    function hipCtxPopCurrent(ctx) bind(c, name="hipCtxPopCurrent")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3307,9 +3307,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipCtxPushCurrent(ctx) bind(c, name="cudaCtxPushCurrent")
+    function hipCtxPushCurrent(ctx) bind(c, name="cudaCtxPushCurrent")
 #else
-  function hipCtxPushCurrent(ctx) bind(c, name="hipCtxPushCurrent")
+    function hipCtxPushCurrent(ctx) bind(c, name="hipCtxPushCurrent")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3328,9 +3328,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipCtxSetCurrent(ctx) bind(c, name="cudaCtxSetCurrent")
+    function hipCtxSetCurrent(ctx) bind(c, name="cudaCtxSetCurrent")
 #else
-  function hipCtxSetCurrent(ctx) bind(c, name="hipCtxSetCurrent")
+    function hipCtxSetCurrent(ctx) bind(c, name="hipCtxSetCurrent")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3349,9 +3349,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipCtxGetCurrent(ctx) bind(c, name="cudaCtxGetCurrent")
+    function hipCtxGetCurrent(ctx) bind(c, name="cudaCtxGetCurrent")
 #else
-  function hipCtxGetCurrent(ctx) bind(c, name="hipCtxGetCurrent")
+    function hipCtxGetCurrent(ctx) bind(c, name="hipCtxGetCurrent")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3370,9 +3370,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipCtxGetDevice(device) bind(c, name="cudaCtxGetDevice")
+    function hipCtxGetDevice(device) bind(c, name="cudaCtxGetDevice")
 #else
-  function hipCtxGetDevice(device) bind(c, name="hipCtxGetDevice")
+    function hipCtxGetDevice(device) bind(c, name="hipCtxGetDevice")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3391,9 +3391,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipCtxGetApiVersion(ctx,apiVersion) bind(c, name="cudaCtxGetApiVersion")
+    function hipCtxGetApiVersion(ctx,apiVersion) bind(c, name="cudaCtxGetApiVersion")
 #else
-  function hipCtxGetApiVersion(ctx,apiVersion) bind(c, name="hipCtxGetApiVersion")
+    function hipCtxGetApiVersion(ctx,apiVersion) bind(c, name="hipCtxGetApiVersion")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3413,9 +3413,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipCtxGetCacheConfig(cacheConfig) bind(c, name="cudaCtxGetCacheConfig")
+    function hipCtxGetCacheConfig(cacheConfig) bind(c, name="cudaCtxGetCacheConfig")
 #else
-  function hipCtxGetCacheConfig(cacheConfig) bind(c, name="hipCtxGetCacheConfig")
+    function hipCtxGetCacheConfig(cacheConfig) bind(c, name="hipCtxGetCacheConfig")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3434,9 +3434,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipCtxSetCacheConfig(cacheConfig) bind(c, name="cudaCtxSetCacheConfig")
+    function hipCtxSetCacheConfig(cacheConfig) bind(c, name="cudaCtxSetCacheConfig")
 #else
-  function hipCtxSetCacheConfig(cacheConfig) bind(c, name="hipCtxSetCacheConfig")
+    function hipCtxSetCacheConfig(cacheConfig) bind(c, name="hipCtxSetCacheConfig")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3455,9 +3455,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipCtxSetSharedMemConfig(config) bind(c, name="cudaCtxSetSharedMemConfig")
+    function hipCtxSetSharedMemConfig(config) bind(c, name="cudaCtxSetSharedMemConfig")
 #else
-  function hipCtxSetSharedMemConfig(config) bind(c, name="hipCtxSetSharedMemConfig")
+    function hipCtxSetSharedMemConfig(config) bind(c, name="hipCtxSetSharedMemConfig")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3476,9 +3476,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipCtxGetSharedMemConfig(pConfig) bind(c, name="cudaCtxGetSharedMemConfig")
+    function hipCtxGetSharedMemConfig(pConfig) bind(c, name="cudaCtxGetSharedMemConfig")
 #else
-  function hipCtxGetSharedMemConfig(pConfig) bind(c, name="hipCtxGetSharedMemConfig")
+    function hipCtxGetSharedMemConfig(pConfig) bind(c, name="hipCtxGetSharedMemConfig")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3497,9 +3497,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipCtxSynchronize() bind(c, name="cudaCtxSynchronize")
+    function hipCtxSynchronize() bind(c, name="cudaCtxSynchronize")
 #else
-  function hipCtxSynchronize() bind(c, name="hipCtxSynchronize")
+    function hipCtxSynchronize() bind(c, name="hipCtxSynchronize")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3517,9 +3517,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipCtxGetFlags(flags) bind(c, name="cudaCtxGetFlags")
+    function hipCtxGetFlags(flags) bind(c, name="cudaCtxGetFlags")
 #else
-  function hipCtxGetFlags(flags) bind(c, name="hipCtxGetFlags")
+    function hipCtxGetFlags(flags) bind(c, name="hipCtxGetFlags")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3538,9 +3538,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipCtxEnablePeerAccess(peerCtx,flags) bind(c, name="cudaCtxEnablePeerAccess")
+    function hipCtxEnablePeerAccess(peerCtx,flags) bind(c, name="cudaCtxEnablePeerAccess")
 #else
-  function hipCtxEnablePeerAccess(peerCtx,flags) bind(c, name="hipCtxEnablePeerAccess")
+    function hipCtxEnablePeerAccess(peerCtx,flags) bind(c, name="hipCtxEnablePeerAccess")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3560,9 +3560,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipCtxDisablePeerAccess(peerCtx) bind(c, name="cudaCtxDisablePeerAccess")
+    function hipCtxDisablePeerAccess(peerCtx) bind(c, name="cudaCtxDisablePeerAccess")
 #else
-  function hipCtxDisablePeerAccess(peerCtx) bind(c, name="hipCtxDisablePeerAccess")
+    function hipCtxDisablePeerAccess(peerCtx) bind(c, name="hipCtxDisablePeerAccess")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3592,9 +3592,9 @@ module hip
   !   hipCtxSetCurrent, hipCtxPushCurrent, hipCtxSetCacheConfig, hipCtxSynchronize, hipCtxGetDevice
   !  
 #ifdef USE_CUDA_NAMES
-  function hipDevicePrimaryCtxGetState(dev,flags,active) bind(c, name="cudaDevicePrimaryCtxGetState")
+    function hipDevicePrimaryCtxGetState(dev,flags,active) bind(c, name="cudaDevicePrimaryCtxGetState")
 #else
-  function hipDevicePrimaryCtxGetState(dev,flags,active) bind(c, name="hipDevicePrimaryCtxGetState")
+    function hipDevicePrimaryCtxGetState(dev,flags,active) bind(c, name="hipDevicePrimaryCtxGetState")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3626,9 +3626,9 @@ module hip
   !   HIPHCC path.
   !  
 #ifdef USE_CUDA_NAMES
-  function hipDevicePrimaryCtxRelease(dev) bind(c, name="cudaDevicePrimaryCtxRelease")
+    function hipDevicePrimaryCtxRelease(dev) bind(c, name="cudaDevicePrimaryCtxRelease")
 #else
-  function hipDevicePrimaryCtxRelease(dev) bind(c, name="hipDevicePrimaryCtxRelease")
+    function hipDevicePrimaryCtxRelease(dev) bind(c, name="hipDevicePrimaryCtxRelease")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3657,9 +3657,9 @@ module hip
   !   hipCtxSetCurrent, hipCtxPushCurrent, hipCtxSetCacheConfig, hipCtxSynchronize, hipCtxGetDevice
   !  
 #ifdef USE_CUDA_NAMES
-  function hipDevicePrimaryCtxRetain(pctx,dev) bind(c, name="cudaDevicePrimaryCtxRetain")
+    function hipDevicePrimaryCtxRetain(pctx,dev) bind(c, name="cudaDevicePrimaryCtxRetain")
 #else
-  function hipDevicePrimaryCtxRetain(pctx,dev) bind(c, name="hipDevicePrimaryCtxRetain")
+    function hipDevicePrimaryCtxRetain(pctx,dev) bind(c, name="hipDevicePrimaryCtxRetain")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3688,9 +3688,9 @@ module hip
   !   hipCtxSetCurrent, hipCtxPushCurrent, hipCtxSetCacheConfig, hipCtxSynchronize, hipCtxGetDevice
   !  
 #ifdef USE_CUDA_NAMES
-  function hipDevicePrimaryCtxReset(dev) bind(c, name="cudaDevicePrimaryCtxReset")
+    function hipDevicePrimaryCtxReset(dev) bind(c, name="cudaDevicePrimaryCtxReset")
 #else
-  function hipDevicePrimaryCtxReset(dev) bind(c, name="hipDevicePrimaryCtxReset")
+    function hipDevicePrimaryCtxReset(dev) bind(c, name="hipDevicePrimaryCtxReset")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3719,9 +3719,9 @@ module hip
   !   hipCtxSetCurrent, hipCtxPushCurrent, hipCtxSetCacheConfig, hipCtxSynchronize, hipCtxGetDevice
   !  
 #ifdef USE_CUDA_NAMES
-  function hipDevicePrimaryCtxSetFlags(dev,flags) bind(c, name="cudaDevicePrimaryCtxSetFlags")
+    function hipDevicePrimaryCtxSetFlags(dev,flags) bind(c, name="cudaDevicePrimaryCtxSetFlags")
 #else
-  function hipDevicePrimaryCtxSetFlags(dev,flags) bind(c, name="hipDevicePrimaryCtxSetFlags")
+    function hipDevicePrimaryCtxSetFlags(dev,flags) bind(c, name="hipDevicePrimaryCtxSetFlags")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3747,9 +3747,9 @@ module hip
   !   @returns #hipSuccess, #hipErrorInavlidDevice
   !  
 #ifdef USE_CUDA_NAMES
-  function hipDeviceGet(device,ordinal) bind(c, name="cudaDeviceGet")
+    function hipDeviceGet(device,ordinal) bind(c, name="cudaDeviceGet")
 #else
-  function hipDeviceGet(device,ordinal) bind(c, name="hipDeviceGet")
+    function hipDeviceGet(device,ordinal) bind(c, name="hipDeviceGet")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3776,9 +3776,9 @@ module hip
   !   @returns #hipSuccess, #hipErrorInavlidDevice
   !  
 #ifdef USE_CUDA_NAMES
-  function hipDeviceComputeCapability(major,minor,device) bind(c, name="cudaDeviceComputeCapability")
+    function hipDeviceComputeCapability(major,minor,device) bind(c, name="cudaDeviceComputeCapability")
 #else
-  function hipDeviceComputeCapability(major,minor,device) bind(c, name="hipDeviceComputeCapability")
+    function hipDeviceComputeCapability(major,minor,device) bind(c, name="hipDeviceComputeCapability")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3806,9 +3806,9 @@ module hip
   !   @returns #hipSuccess, #hipErrorInavlidDevice
   !  
 #ifdef USE_CUDA_NAMES
-  function hipDeviceGetName(name,len,device) bind(c, name="cudaDeviceGetName")
+    function hipDeviceGetName(name,len,device) bind(c, name="cudaDeviceGetName")
 #else
-  function hipDeviceGetName(name,len,device) bind(c, name="hipDeviceGetName")
+    function hipDeviceGetName(name,len,device) bind(c, name="hipDeviceGetName")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3836,9 +3836,9 @@ module hip
   !   @returns #hipSuccess, #hipErrorInavlidDevice
   !  
 #ifdef USE_CUDA_NAMES
-  function hipDeviceGetPCIBusId(pciBusId,len,device) bind(c, name="cudaDeviceGetPCIBusId")
+    function hipDeviceGetPCIBusId(pciBusId,len,device) bind(c, name="cudaDeviceGetPCIBusId")
 #else
-  function hipDeviceGetPCIBusId(pciBusId,len,device) bind(c, name="hipDeviceGetPCIBusId")
+    function hipDeviceGetPCIBusId(pciBusId,len,device) bind(c, name="hipDeviceGetPCIBusId")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3865,9 +3865,9 @@ module hip
   !   @returns #hipSuccess, #hipErrorInavlidDevice, #hipErrorInvalidValue
   !  
 #ifdef USE_CUDA_NAMES
-  function hipDeviceGetByPCIBusId(device,pciBusId) bind(c, name="cudaDeviceGetByPCIBusId")
+    function hipDeviceGetByPCIBusId(device,pciBusId) bind(c, name="cudaDeviceGetByPCIBusId")
 #else
-  function hipDeviceGetByPCIBusId(device,pciBusId) bind(c, name="hipDeviceGetByPCIBusId")
+    function hipDeviceGetByPCIBusId(device,pciBusId) bind(c, name="hipDeviceGetByPCIBusId")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3893,9 +3893,9 @@ module hip
   !   @returns #hipSuccess, #hipErrorInavlidDevice
   !  
 #ifdef USE_CUDA_NAMES
-  function hipDeviceTotalMem(bytes,device) bind(c, name="cudaDeviceTotalMem")
+    function hipDeviceTotalMem(bytes,device) bind(c, name="cudaDeviceTotalMem")
 #else
-  function hipDeviceTotalMem(bytes,device) bind(c, name="hipDeviceTotalMem")
+    function hipDeviceTotalMem(bytes,device) bind(c, name="hipDeviceTotalMem")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3929,9 +3929,9 @@ module hip
   !   @see hipRuntimeGetVersion
   !  
 #ifdef USE_CUDA_NAMES
-  function hipDriverGetVersion(driverVersion) bind(c, name="cudaDriverGetVersion")
+    function hipDriverGetVersion(driverVersion) bind(c, name="cudaDriverGetVersion")
 #else
-  function hipDriverGetVersion(driverVersion) bind(c, name="hipDriverGetVersion")
+    function hipDriverGetVersion(driverVersion) bind(c, name="hipDriverGetVersion")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3961,9 +3961,9 @@ module hip
   !   @see hipDriverGetVersion
   !  
 #ifdef USE_CUDA_NAMES
-  function hipRuntimeGetVersion(runtimeVersion) bind(c, name="cudaRuntimeGetVersion")
+    function hipRuntimeGetVersion(runtimeVersion) bind(c, name="cudaRuntimeGetVersion")
 #else
-  function hipRuntimeGetVersion(runtimeVersion) bind(c, name="hipRuntimeGetVersion")
+    function hipRuntimeGetVersion(runtimeVersion) bind(c, name="hipRuntimeGetVersion")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3992,9 +3992,9 @@ module hip
   !  
   !  
 #ifdef USE_CUDA_NAMES
-  function hipModuleLoad(module,fname) bind(c, name="cudaModuleLoad")
+    function hipModuleLoad(myModule,fname) bind(c, name="cudaModuleLoad")
 #else
-  function hipModuleLoad(module,fname) bind(c, name="hipModuleLoad")
+    function hipModuleLoad(myModule,fname) bind(c, name="hipModuleLoad")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4008,7 +4008,7 @@ module hip
 #else
       integer(kind(hipSuccess)) :: hipModuleLoad
 #endif
-      type(c_ptr),intent(INOUT) :: module
+      type(c_ptr),intent(INOUT) :: myModule
       type(c_ptr),value :: fname
     end function
 
@@ -4022,9 +4022,9 @@ module hip
   !  
   !  
 #ifdef USE_CUDA_NAMES
-  function hipModuleUnload(module) bind(c, name="cudaModuleUnload")
+    function hipModuleUnload(myModule) bind(c, name="cudaModuleUnload")
 #else
-  function hipModuleUnload(module) bind(c, name="hipModuleUnload")
+    function hipModuleUnload(myModule) bind(c, name="hipModuleUnload")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4038,7 +4038,7 @@ module hip
 #else
       integer(kind(hipSuccess)) :: hipModuleUnload
 #endif
-      type(c_ptr),intent(INOUT) :: module
+      type(c_ptr),intent(INOUT) :: myModule
     end function
 
   ! 
@@ -4052,9 +4052,9 @@ module hip
   !   hipErrorNotFound,
   !  
 #ifdef USE_CUDA_NAMES
-  function hipModuleGetFunction(function,module,kname) bind(c, name="cudaModuleGetFunction")
+    function hipModuleGetFunction(myFunction,myModule,kname) bind(c, name="cudaModuleGetFunction")
 #else
-  function hipModuleGetFunction(function,module,kname) bind(c, name="hipModuleGetFunction")
+    function hipModuleGetFunction(myFunction,myModule,kname) bind(c, name="hipModuleGetFunction")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4068,8 +4068,8 @@ module hip
 #else
       integer(kind(hipSuccess)) :: hipModuleGetFunction
 #endif
-      type(c_ptr),intent(INOUT) :: function
-      type(c_ptr),intent(INOUT) :: module
+      type(c_ptr),intent(INOUT) :: myFunction
+      type(c_ptr),intent(INOUT) :: myModule
       type(c_ptr),value :: kname
     end function
 
@@ -4082,9 +4082,9 @@ module hip
   !   @returns hipSuccess, hipErrorInvalidValue, hipErrorInvalidDeviceFunction
   !  
 #ifdef USE_CUDA_NAMES
-  function hipFuncGetAttributes(attr,func) bind(c, name="cudaFuncGetAttributes")
+    function hipFuncGetAttributes(attr,func) bind(c, name="cudaFuncGetAttributes")
 #else
-  function hipFuncGetAttributes(attr,func) bind(c, name="hipFuncGetAttributes")
+    function hipFuncGetAttributes(attr,func) bind(c, name="hipFuncGetAttributes")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4112,9 +4112,9 @@ module hip
   !   @returns hipSuccess, hipErrorInvalidValue, hipErrorInvalidDeviceFunction
   !  
 #ifdef USE_CUDA_NAMES
-  function hipFuncGetAttribute(myValue,attrib,hfunc) bind(c, name="cudaFuncGetAttribute")
+    function hipFuncGetAttribute(myValue,attrib,hfunc) bind(c, name="cudaFuncGetAttribute")
 #else
-  function hipFuncGetAttribute(myValue,attrib,hfunc) bind(c, name="hipFuncGetAttribute")
+    function hipFuncGetAttribute(myValue,attrib,hfunc) bind(c, name="hipFuncGetAttribute")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4135,9 +4135,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipModuleGetTexRef(texRef,hmod,name) bind(c, name="cudaModuleGetTexRef")
+    function hipModuleGetTexRef(texRef,hmod,name) bind(c, name="cudaModuleGetTexRef")
 #else
-  function hipModuleGetTexRef(texRef,hmod,name) bind(c, name="hipModuleGetTexRef")
+    function hipModuleGetTexRef(texRef,hmod,name) bind(c, name="hipModuleGetTexRef")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4166,9 +4166,9 @@ module hip
   !   @returns hipSuccess, hipErrorNotInitialized, hipErrorOutOfMemory, hipErrorNotInitialized
   !  
 #ifdef USE_CUDA_NAMES
-  function hipModuleLoadData(module,image) bind(c, name="cudaModuleLoadData")
+    function hipModuleLoadData(myModule,image) bind(c, name="cudaModuleLoadData")
 #else
-  function hipModuleLoadData(module,image) bind(c, name="hipModuleLoadData")
+    function hipModuleLoadData(myModule,image) bind(c, name="hipModuleLoadData")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4182,7 +4182,7 @@ module hip
 #else
       integer(kind(hipSuccess)) :: hipModuleLoadData
 #endif
-      type(c_ptr),intent(INOUT) :: module
+      type(c_ptr),intent(INOUT) :: myModule
       type(c_ptr),value :: image
     end function
 
@@ -4199,9 +4199,9 @@ module hip
   !   @returns hipSuccess, hipErrorNotInitialized, hipErrorOutOfMemory, hipErrorNotInitialized
   !  
 #ifdef USE_CUDA_NAMES
-  function hipModuleLoadDataEx(module,image,numOptions,options,optionValues) bind(c, name="cudaModuleLoadDataEx")
+    function hipModuleLoadDataEx(myModule,image,numOptions,options,optionValues) bind(c, name="cudaModuleLoadDataEx")
 #else
-  function hipModuleLoadDataEx(module,image,numOptions,options,optionValues) bind(c, name="hipModuleLoadDataEx")
+    function hipModuleLoadDataEx(myModule,image,numOptions,options,optionValues) bind(c, name="hipModuleLoadDataEx")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4215,7 +4215,7 @@ module hip
 #else
       integer(kind(hipSuccess)) :: hipModuleLoadDataEx
 #endif
-      type(c_ptr),intent(INOUT) :: module
+      type(c_ptr),intent(INOUT) :: myModule
       type(c_ptr),value :: image
       integer(kind=4),value :: numOptions
       type(c_ptr),value :: options
@@ -4247,9 +4247,9 @@ module hip
   !   refer to hip_porting_driver_api.md for sample usage.
   !  
 #ifdef USE_CUDA_NAMES
-  function hipModuleLaunchKernel(f,gridDimX,gridDimY,gridDimZ,blockDimX,blockDimY,blockDimZ,sharedMemBytes,stream,kernelParams,extra) bind(c, name="cudaModuleLaunchKernel")
+    function hipModuleLaunchKernel(f,gridDimX,gridDimY,gridDimZ,blockDimX,blockDimY,blockDimZ,sharedMemBytes,stream,kernelParams,extra) bind(c, name="cudaModuleLaunchKernel")
 #else
-  function hipModuleLaunchKernel(f,gridDimX,gridDimY,gridDimZ,blockDimX,blockDimY,blockDimZ,sharedMemBytes,stream,kernelParams,extra) bind(c, name="hipModuleLaunchKernel")
+    function hipModuleLaunchKernel(f,gridDimX,gridDimY,gridDimZ,blockDimX,blockDimY,blockDimZ,sharedMemBytes,stream,kernelParams,extra) bind(c, name="hipModuleLaunchKernel")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4292,9 +4292,9 @@ module hip
   !   @returns hipSuccess, hipInvalidDevice, hipErrorNotInitialized, hipErrorInvalidValue, hipErrorCooperativeLaunchTooLarge
   !  
 #ifdef USE_CUDA_NAMES
-  function hipLaunchCooperativeKernel(f,gridDim,blockDimX,kernelParams,sharedMemBytes,stream) bind(c, name="cudaLaunchCooperativeKernel")
+    function hipLaunchCooperativeKernel(f,gridDim,blockDimX,kernelParams,sharedMemBytes,stream) bind(c, name="cudaLaunchCooperativeKernel")
 #else
-  function hipLaunchCooperativeKernel(f,gridDim,blockDimX,kernelParams,sharedMemBytes,stream) bind(c, name="hipLaunchCooperativeKernel")
+    function hipLaunchCooperativeKernel(f,gridDim,blockDimX,kernelParams,sharedMemBytes,stream) bind(c, name="hipLaunchCooperativeKernel")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4327,9 +4327,9 @@ module hip
   !   @returns hipSuccess, hipInvalidDevice, hipErrorNotInitialized, hipErrorInvalidValue, hipErrorCooperativeLaunchTooLarge
   !  
 #ifdef USE_CUDA_NAMES
-  function hipLaunchCooperativeKernelMultiDevice(launchParamsList,numDevices,flags) bind(c, name="cudaLaunchCooperativeKernelMultiDevice")
+    function hipLaunchCooperativeKernelMultiDevice(launchParamsList,numDevices,flags) bind(c, name="cudaLaunchCooperativeKernelMultiDevice")
 #else
-  function hipLaunchCooperativeKernelMultiDevice(launchParamsList,numDevices,flags) bind(c, name="hipLaunchCooperativeKernelMultiDevice")
+    function hipLaunchCooperativeKernelMultiDevice(launchParamsList,numDevices,flags) bind(c, name="hipLaunchCooperativeKernelMultiDevice")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4350,9 +4350,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipModuleOccupancyMaxPotentialBlockSize(gridSize,blockSize,f,dynSharedMemPerBlk,blockSizeLimit) bind(c, name="cudaModuleOccupancyMaxPotentialBlockSize")
+    function hipModuleOccupancyMaxPotentialBlockSize(gridSize,blockSize,f,dynSharedMemPerBlk,blockSizeLimit) bind(c, name="cudaModuleOccupancyMaxPotentialBlockSize")
 #else
-  function hipModuleOccupancyMaxPotentialBlockSize(gridSize,blockSize,f,dynSharedMemPerBlk,blockSizeLimit) bind(c, name="hipModuleOccupancyMaxPotentialBlockSize")
+    function hipModuleOccupancyMaxPotentialBlockSize(gridSize,blockSize,f,dynSharedMemPerBlk,blockSizeLimit) bind(c, name="hipModuleOccupancyMaxPotentialBlockSize")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4375,9 +4375,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipModuleOccupancyMaxPotentialBlockSizeWithFlags(gridSize,blockSize,f,dynSharedMemPerBlk,blockSizeLimit,flags) bind(c, name="cudaModuleOccupancyMaxPotentialBlockSizeWithFlags")
+    function hipModuleOccupancyMaxPotentialBlockSizeWithFlags(gridSize,blockSize,f,dynSharedMemPerBlk,blockSizeLimit,flags) bind(c, name="cudaModuleOccupancyMaxPotentialBlockSizeWithFlags")
 #else
-  function hipModuleOccupancyMaxPotentialBlockSizeWithFlags(gridSize,blockSize,f,dynSharedMemPerBlk,blockSizeLimit,flags) bind(c, name="hipModuleOccupancyMaxPotentialBlockSizeWithFlags")
+    function hipModuleOccupancyMaxPotentialBlockSizeWithFlags(gridSize,blockSize,f,dynSharedMemPerBlk,blockSizeLimit,flags) bind(c, name="hipModuleOccupancyMaxPotentialBlockSizeWithFlags")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4408,9 +4408,9 @@ module hip
   !   @param [in]  dynSharedMemPerBlk dynamic shared memory usage (in bytes) intended for each block
   !  
 #ifdef USE_CUDA_NAMES
-  function hipModuleOccupancyMaxActiveBlocksPerMultiprocessor(numBlocks,f,blockSize,dynSharedMemPerBlk) bind(c, name="cudaModuleOccupancyMaxActiveBlocksPerMultiprocessor")
+    function hipModuleOccupancyMaxActiveBlocksPerMultiprocessor(numBlocks,f,blockSize,dynSharedMemPerBlk) bind(c, name="cudaModuleOccupancyMaxActiveBlocksPerMultiprocessor")
 #else
-  function hipModuleOccupancyMaxActiveBlocksPerMultiprocessor(numBlocks,f,blockSize,dynSharedMemPerBlk) bind(c, name="hipModuleOccupancyMaxActiveBlocksPerMultiprocessor")
+    function hipModuleOccupancyMaxActiveBlocksPerMultiprocessor(numBlocks,f,blockSize,dynSharedMemPerBlk) bind(c, name="hipModuleOccupancyMaxActiveBlocksPerMultiprocessor")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4440,9 +4440,9 @@ module hip
   !   @param [in]  flags            Extra flags for occupancy calculation (only default supported)
   !  
 #ifdef USE_CUDA_NAMES
-  function hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags(numBlocks,f,blockSize,dynSharedMemPerBlk,flags) bind(c, name="cudaModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags")
+    function hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags(numBlocks,f,blockSize,dynSharedMemPerBlk,flags) bind(c, name="cudaModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags")
 #else
-  function hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags(numBlocks,f,blockSize,dynSharedMemPerBlk,flags) bind(c, name="hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags")
+    function hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags(numBlocks,f,blockSize,dynSharedMemPerBlk,flags) bind(c, name="hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4472,9 +4472,9 @@ module hip
   !   @param [in]  dynSharedMemPerBlk dynamic shared memory usage (in bytes) intended for each block
   !  
 #ifdef USE_CUDA_NAMES
-  function hipOccupancyMaxActiveBlocksPerMultiprocessor(numBlocks,f,blockSize,dynSharedMemPerBlk) bind(c, name="cudaOccupancyMaxActiveBlocksPerMultiprocessor")
+    function hipOccupancyMaxActiveBlocksPerMultiprocessor(numBlocks,f,blockSize,dynSharedMemPerBlk) bind(c, name="cudaOccupancyMaxActiveBlocksPerMultiprocessor")
 #else
-  function hipOccupancyMaxActiveBlocksPerMultiprocessor(numBlocks,f,blockSize,dynSharedMemPerBlk) bind(c, name="hipOccupancyMaxActiveBlocksPerMultiprocessor")
+    function hipOccupancyMaxActiveBlocksPerMultiprocessor(numBlocks,f,blockSize,dynSharedMemPerBlk) bind(c, name="hipOccupancyMaxActiveBlocksPerMultiprocessor")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4506,9 +4506,9 @@ module hip
   !   @returns hipSuccess, hipInvalidDevice, hipErrorInvalidValue
   !  
 #ifdef USE_CUDA_NAMES
-  function hipOccupancyMaxPotentialBlockSize(gridSize,blockSize,f,dynSharedMemPerBlk,blockSizeLimit) bind(c, name="cudaOccupancyMaxPotentialBlockSize")
+    function hipOccupancyMaxPotentialBlockSize(gridSize,blockSize,f,dynSharedMemPerBlk,blockSizeLimit) bind(c, name="cudaOccupancyMaxPotentialBlockSize")
 #else
-  function hipOccupancyMaxPotentialBlockSize(gridSize,blockSize,f,dynSharedMemPerBlk,blockSizeLimit) bind(c, name="hipOccupancyMaxPotentialBlockSize")
+    function hipOccupancyMaxPotentialBlockSize(gridSize,blockSize,f,dynSharedMemPerBlk,blockSizeLimit) bind(c, name="hipOccupancyMaxPotentialBlockSize")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4541,9 +4541,9 @@ module hip
   !   @returns hipSuccess, hipInvalidDevice, hipErrorNotInitialized, hipErrorInvalidValue
   !  
 #ifdef USE_CUDA_NAMES
-  function hipExtLaunchMultiKernelMultiDevice(launchParamsList,numDevices,flags) bind(c, name="cudaExtLaunchMultiKernelMultiDevice")
+    function hipExtLaunchMultiKernelMultiDevice(launchParamsList,numDevices,flags) bind(c, name="cudaExtLaunchMultiKernelMultiDevice")
 #else
-  function hipExtLaunchMultiKernelMultiDevice(launchParamsList,numDevices,flags) bind(c, name="hipExtLaunchMultiKernelMultiDevice")
+    function hipExtLaunchMultiKernelMultiDevice(launchParamsList,numDevices,flags) bind(c, name="hipExtLaunchMultiKernelMultiDevice")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4564,9 +4564,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipProfilerStart() bind(c, name="cudaProfilerStart")
+    function hipProfilerStart() bind(c, name="cudaProfilerStart")
 #else
-  function hipProfilerStart() bind(c, name="hipProfilerStart")
+    function hipProfilerStart() bind(c, name="hipProfilerStart")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4584,9 +4584,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipProfilerStop() bind(c, name="cudaProfilerStop")
+    function hipProfilerStop() bind(c, name="cudaProfilerStop")
 #else
-  function hipProfilerStop() bind(c, name="hipProfilerStop")
+    function hipProfilerStop() bind(c, name="hipProfilerStop")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4628,9 +4628,9 @@ module hip
   !  
   !  
 #ifdef USE_CUDA_NAMES
-  function hipIpcGetMemHandle(handle,devPtr) bind(c, name="cudaIpcGetMemHandle")
+    function hipIpcGetMemHandle(handle,devPtr) bind(c, name="cudaIpcGetMemHandle")
 #else
-  function hipIpcGetMemHandle(handle,devPtr) bind(c, name="hipIpcGetMemHandle")
+    function hipIpcGetMemHandle(handle,devPtr) bind(c, name="hipIpcGetMemHandle")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4685,9 +4685,9 @@ module hip
   !  
   !  
 #ifdef USE_CUDA_NAMES
-  function hipIpcOpenMemHandle(devPtr,handle,flags) bind(c, name="cudaIpcOpenMemHandle")
+    function hipIpcOpenMemHandle(devPtr,handle,flags) bind(c, name="cudaIpcOpenMemHandle")
 #else
-  function hipIpcOpenMemHandle(devPtr,handle,flags) bind(c, name="hipIpcOpenMemHandle")
+    function hipIpcOpenMemHandle(devPtr,handle,flags) bind(c, name="hipIpcOpenMemHandle")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4725,9 +4725,9 @@ module hip
   !  
   !  
 #ifdef USE_CUDA_NAMES
-  function hipIpcCloseMemHandle(devPtr) bind(c, name="cudaIpcCloseMemHandle")
+    function hipIpcCloseMemHandle(devPtr) bind(c, name="cudaIpcCloseMemHandle")
 #else
-  function hipIpcCloseMemHandle(devPtr) bind(c, name="hipIpcCloseMemHandle")
+    function hipIpcCloseMemHandle(devPtr) bind(c, name="hipIpcCloseMemHandle")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4746,9 +4746,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipIpcGetEventHandle(handle,event) bind(c, name="cudaIpcGetEventHandle")
+    function hipIpcGetEventHandle(handle,event) bind(c, name="cudaIpcGetEventHandle")
 #else
-  function hipIpcGetEventHandle(handle,event) bind(c, name="hipIpcGetEventHandle")
+    function hipIpcGetEventHandle(handle,event) bind(c, name="hipIpcGetEventHandle")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4768,9 +4768,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipIpcOpenEventHandle(event,handle) bind(c, name="cudaIpcOpenEventHandle")
+    function hipIpcOpenEventHandle(event,handle) bind(c, name="cudaIpcOpenEventHandle")
 #else
-  function hipIpcOpenEventHandle(event,handle) bind(c, name="hipIpcOpenEventHandle")
+    function hipIpcOpenEventHandle(event,handle) bind(c, name="hipIpcOpenEventHandle")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4799,9 +4799,9 @@ module hip
   !  
   !  
 #ifdef USE_CUDA_NAMES
-  function hipSetupArgument(arg,mySize,offset) bind(c, name="cudaSetupArgument")
+    function hipSetupArgument(arg,mySize,offset) bind(c, name="cudaSetupArgument")
 #else
-  function hipSetupArgument(arg,mySize,offset) bind(c, name="hipSetupArgument")
+    function hipSetupArgument(arg,mySize,offset) bind(c, name="hipSetupArgument")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4829,9 +4829,9 @@ module hip
   !  
   !  
 #ifdef USE_CUDA_NAMES
-  function hipLaunchByPtr(func) bind(c, name="cudaLaunchByPtr")
+    function hipLaunchByPtr(func) bind(c, name="cudaLaunchByPtr")
 #else
-  function hipLaunchByPtr(func) bind(c, name="hipLaunchByPtr")
+    function hipLaunchByPtr(func) bind(c, name="hipLaunchByPtr")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4850,9 +4850,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipBindTexture2D(offset,tex,devPtr,desc,width,height,pitch) bind(c, name="cudaBindTexture2D")
+    function hipBindTexture2D(offset,tex,devPtr,desc,width,height,pitch) bind(c, name="cudaBindTexture2D")
 #else
-  function hipBindTexture2D(offset,tex,devPtr,desc,width,height,pitch) bind(c, name="hipBindTexture2D")
+    function hipBindTexture2D(offset,tex,devPtr,desc,width,height,pitch) bind(c, name="hipBindTexture2D")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4877,9 +4877,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipBindTextureToArray(tex,array,desc) bind(c, name="cudaBindTextureToArray")
+    function hipBindTextureToArray(tex,array,desc) bind(c, name="cudaBindTextureToArray")
 #else
-  function hipBindTextureToArray(tex,array,desc) bind(c, name="hipBindTextureToArray")
+    function hipBindTextureToArray(tex,array,desc) bind(c, name="hipBindTextureToArray")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4900,9 +4900,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipBindTextureToMipmappedArray(tex,mipmappedArray,desc) bind(c, name="cudaBindTextureToMipmappedArray")
+    function hipBindTextureToMipmappedArray(tex,mipmappedArray,desc) bind(c, name="cudaBindTextureToMipmappedArray")
 #else
-  function hipBindTextureToMipmappedArray(tex,mipmappedArray,desc) bind(c, name="hipBindTextureToMipmappedArray")
+    function hipBindTextureToMipmappedArray(tex,mipmappedArray,desc) bind(c, name="hipBindTextureToMipmappedArray")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4923,9 +4923,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipGetTextureAlignmentOffset(offset,texref) bind(c, name="cudaGetTextureAlignmentOffset")
+    function hipGetTextureAlignmentOffset(offset,texref) bind(c, name="cudaGetTextureAlignmentOffset")
 #else
-  function hipGetTextureAlignmentOffset(offset,texref) bind(c, name="hipGetTextureAlignmentOffset")
+    function hipGetTextureAlignmentOffset(offset,texref) bind(c, name="hipGetTextureAlignmentOffset")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4945,9 +4945,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipGetTextureReference(texref,symbol) bind(c, name="cudaGetTextureReference")
+    function hipGetTextureReference(texref,symbol) bind(c, name="cudaGetTextureReference")
 #else
-  function hipGetTextureReference(texref,symbol) bind(c, name="hipGetTextureReference")
+    function hipGetTextureReference(texref,symbol) bind(c, name="hipGetTextureReference")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4967,9 +4967,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipUnbindTexture(tex) bind(c, name="cudaUnbindTexture")
+    function hipUnbindTexture(tex) bind(c, name="cudaUnbindTexture")
 #else
-  function hipUnbindTexture(tex) bind(c, name="hipUnbindTexture")
+    function hipUnbindTexture(tex) bind(c, name="hipUnbindTexture")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4988,9 +4988,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipCreateTextureObject(pTexObject,pResDesc,pTexDesc,pResViewDesc) bind(c, name="cudaCreateTextureObject")
+    function hipCreateTextureObject(pTexObject,pResDesc,pTexDesc,pResViewDesc) bind(c, name="cudaCreateTextureObject")
 #else
-  function hipCreateTextureObject(pTexObject,pResDesc,pTexDesc,pResViewDesc) bind(c, name="hipCreateTextureObject")
+    function hipCreateTextureObject(pTexObject,pResDesc,pTexDesc,pResViewDesc) bind(c, name="hipCreateTextureObject")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5012,9 +5012,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipDestroyTextureObject(textureObject) bind(c, name="cudaDestroyTextureObject")
+    function hipDestroyTextureObject(textureObject) bind(c, name="cudaDestroyTextureObject")
 #else
-  function hipDestroyTextureObject(textureObject) bind(c, name="hipDestroyTextureObject")
+    function hipDestroyTextureObject(textureObject) bind(c, name="hipDestroyTextureObject")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5033,9 +5033,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipGetChannelDesc(desc,array) bind(c, name="cudaGetChannelDesc")
+    function hipGetChannelDesc(desc,array) bind(c, name="cudaGetChannelDesc")
 #else
-  function hipGetChannelDesc(desc,array) bind(c, name="hipGetChannelDesc")
+    function hipGetChannelDesc(desc,array) bind(c, name="hipGetChannelDesc")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5055,9 +5055,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipGetTextureObjectResourceDesc(pResDesc,textureObject) bind(c, name="cudaGetTextureObjectResourceDesc")
+    function hipGetTextureObjectResourceDesc(pResDesc,textureObject) bind(c, name="cudaGetTextureObjectResourceDesc")
 #else
-  function hipGetTextureObjectResourceDesc(pResDesc,textureObject) bind(c, name="hipGetTextureObjectResourceDesc")
+    function hipGetTextureObjectResourceDesc(pResDesc,textureObject) bind(c, name="hipGetTextureObjectResourceDesc")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5077,9 +5077,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipGetTextureObjectResourceViewDesc(pResViewDesc,textureObject) bind(c, name="cudaGetTextureObjectResourceViewDesc")
+    function hipGetTextureObjectResourceViewDesc(pResViewDesc,textureObject) bind(c, name="cudaGetTextureObjectResourceViewDesc")
 #else
-  function hipGetTextureObjectResourceViewDesc(pResViewDesc,textureObject) bind(c, name="hipGetTextureObjectResourceViewDesc")
+    function hipGetTextureObjectResourceViewDesc(pResViewDesc,textureObject) bind(c, name="hipGetTextureObjectResourceViewDesc")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5099,9 +5099,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipGetTextureObjectTextureDesc(pTexDesc,textureObject) bind(c, name="cudaGetTextureObjectTextureDesc")
+    function hipGetTextureObjectTextureDesc(pTexDesc,textureObject) bind(c, name="cudaGetTextureObjectTextureDesc")
 #else
-  function hipGetTextureObjectTextureDesc(pTexDesc,textureObject) bind(c, name="hipGetTextureObjectTextureDesc")
+    function hipGetTextureObjectTextureDesc(pTexDesc,textureObject) bind(c, name="hipGetTextureObjectTextureDesc")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5121,9 +5121,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipTexRefGetAddress(dev_ptr,texRef) bind(c, name="cudaTexRefGetAddress")
+    function hipTexRefGetAddress(dev_ptr,texRef) bind(c, name="cudaTexRefGetAddress")
 #else
-  function hipTexRefGetAddress(dev_ptr,texRef) bind(c, name="hipTexRefGetAddress")
+    function hipTexRefGetAddress(dev_ptr,texRef) bind(c, name="hipTexRefGetAddress")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5143,9 +5143,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipTexRefGetAddressMode(pam,texRef,dim) bind(c, name="cudaTexRefGetAddressMode")
+    function hipTexRefGetAddressMode(pam,texRef,dim) bind(c, name="cudaTexRefGetAddressMode")
 #else
-  function hipTexRefGetAddressMode(pam,texRef,dim) bind(c, name="hipTexRefGetAddressMode")
+    function hipTexRefGetAddressMode(pam,texRef,dim) bind(c, name="hipTexRefGetAddressMode")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5166,9 +5166,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipTexRefGetFilterMode(pfm,texRef) bind(c, name="cudaTexRefGetFilterMode")
+    function hipTexRefGetFilterMode(pfm,texRef) bind(c, name="cudaTexRefGetFilterMode")
 #else
-  function hipTexRefGetFilterMode(pfm,texRef) bind(c, name="hipTexRefGetFilterMode")
+    function hipTexRefGetFilterMode(pfm,texRef) bind(c, name="hipTexRefGetFilterMode")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5188,9 +5188,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipTexRefGetFlags(pFlags,texRef) bind(c, name="cudaTexRefGetFlags")
+    function hipTexRefGetFlags(pFlags,texRef) bind(c, name="cudaTexRefGetFlags")
 #else
-  function hipTexRefGetFlags(pFlags,texRef) bind(c, name="hipTexRefGetFlags")
+    function hipTexRefGetFlags(pFlags,texRef) bind(c, name="hipTexRefGetFlags")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5210,9 +5210,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipTexRefGetFormat(pFormat,pNumChannels,texRef) bind(c, name="cudaTexRefGetFormat")
+    function hipTexRefGetFormat(pFormat,pNumChannels,texRef) bind(c, name="cudaTexRefGetFormat")
 #else
-  function hipTexRefGetFormat(pFormat,pNumChannels,texRef) bind(c, name="hipTexRefGetFormat")
+    function hipTexRefGetFormat(pFormat,pNumChannels,texRef) bind(c, name="hipTexRefGetFormat")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5233,9 +5233,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipTexRefGetMaxAnisotropy(pmaxAnsio,texRef) bind(c, name="cudaTexRefGetMaxAnisotropy")
+    function hipTexRefGetMaxAnisotropy(pmaxAnsio,texRef) bind(c, name="cudaTexRefGetMaxAnisotropy")
 #else
-  function hipTexRefGetMaxAnisotropy(pmaxAnsio,texRef) bind(c, name="hipTexRefGetMaxAnisotropy")
+    function hipTexRefGetMaxAnisotropy(pmaxAnsio,texRef) bind(c, name="hipTexRefGetMaxAnisotropy")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5255,9 +5255,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipTexRefGetMipmapFilterMode(pfm,texRef) bind(c, name="cudaTexRefGetMipmapFilterMode")
+    function hipTexRefGetMipmapFilterMode(pfm,texRef) bind(c, name="cudaTexRefGetMipmapFilterMode")
 #else
-  function hipTexRefGetMipmapFilterMode(pfm,texRef) bind(c, name="hipTexRefGetMipmapFilterMode")
+    function hipTexRefGetMipmapFilterMode(pfm,texRef) bind(c, name="hipTexRefGetMipmapFilterMode")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5277,9 +5277,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipTexRefGetMipmapLevelBias(pbias,texRef) bind(c, name="cudaTexRefGetMipmapLevelBias")
+    function hipTexRefGetMipmapLevelBias(pbias,texRef) bind(c, name="cudaTexRefGetMipmapLevelBias")
 #else
-  function hipTexRefGetMipmapLevelBias(pbias,texRef) bind(c, name="hipTexRefGetMipmapLevelBias")
+    function hipTexRefGetMipmapLevelBias(pbias,texRef) bind(c, name="hipTexRefGetMipmapLevelBias")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5299,9 +5299,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipTexRefGetMipmapLevelClamp(pminMipmapLevelClamp,pmaxMipmapLevelClamp,texRef) bind(c, name="cudaTexRefGetMipmapLevelClamp")
+    function hipTexRefGetMipmapLevelClamp(pminMipmapLevelClamp,pmaxMipmapLevelClamp,texRef) bind(c, name="cudaTexRefGetMipmapLevelClamp")
 #else
-  function hipTexRefGetMipmapLevelClamp(pminMipmapLevelClamp,pmaxMipmapLevelClamp,texRef) bind(c, name="hipTexRefGetMipmapLevelClamp")
+    function hipTexRefGetMipmapLevelClamp(pminMipmapLevelClamp,pmaxMipmapLevelClamp,texRef) bind(c, name="hipTexRefGetMipmapLevelClamp")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5322,9 +5322,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipTexRefGetMipMappedArray(pArray,texRef) bind(c, name="cudaTexRefGetMipMappedArray")
+    function hipTexRefGetMipMappedArray(pArray,texRef) bind(c, name="cudaTexRefGetMipMappedArray")
 #else
-  function hipTexRefGetMipMappedArray(pArray,texRef) bind(c, name="hipTexRefGetMipMappedArray")
+    function hipTexRefGetMipMappedArray(pArray,texRef) bind(c, name="hipTexRefGetMipMappedArray")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5344,9 +5344,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipTexRefSetAddress(ByteOffset,texRef,dptr,bytes) bind(c, name="cudaTexRefSetAddress")
+    function hipTexRefSetAddress(ByteOffset,texRef,dptr,bytes) bind(c, name="cudaTexRefSetAddress")
 #else
-  function hipTexRefSetAddress(ByteOffset,texRef,dptr,bytes) bind(c, name="hipTexRefSetAddress")
+    function hipTexRefSetAddress(ByteOffset,texRef,dptr,bytes) bind(c, name="hipTexRefSetAddress")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5368,9 +5368,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipTexRefSetAddress2D(texRef,desc,dptr,Pitch) bind(c, name="cudaTexRefSetAddress2D")
+    function hipTexRefSetAddress2D(texRef,desc,dptr,Pitch) bind(c, name="cudaTexRefSetAddress2D")
 #else
-  function hipTexRefSetAddress2D(texRef,desc,dptr,Pitch) bind(c, name="hipTexRefSetAddress2D")
+    function hipTexRefSetAddress2D(texRef,desc,dptr,Pitch) bind(c, name="hipTexRefSetAddress2D")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5392,9 +5392,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipTexRefSetAddressMode(texRef,dim,am) bind(c, name="cudaTexRefSetAddressMode")
+    function hipTexRefSetAddressMode(texRef,dim,am) bind(c, name="cudaTexRefSetAddressMode")
 #else
-  function hipTexRefSetAddressMode(texRef,dim,am) bind(c, name="hipTexRefSetAddressMode")
+    function hipTexRefSetAddressMode(texRef,dim,am) bind(c, name="hipTexRefSetAddressMode")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5415,9 +5415,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipTexRefSetArray(tex,array,flags) bind(c, name="cudaTexRefSetArray")
+    function hipTexRefSetArray(tex,array,flags) bind(c, name="cudaTexRefSetArray")
 #else
-  function hipTexRefSetArray(tex,array,flags) bind(c, name="hipTexRefSetArray")
+    function hipTexRefSetArray(tex,array,flags) bind(c, name="hipTexRefSetArray")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5438,9 +5438,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipTexRefSetBorderColor(texRef,pBorderColor) bind(c, name="cudaTexRefSetBorderColor")
+    function hipTexRefSetBorderColor(texRef,pBorderColor) bind(c, name="cudaTexRefSetBorderColor")
 #else
-  function hipTexRefSetBorderColor(texRef,pBorderColor) bind(c, name="hipTexRefSetBorderColor")
+    function hipTexRefSetBorderColor(texRef,pBorderColor) bind(c, name="hipTexRefSetBorderColor")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5460,9 +5460,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipTexRefSetFilterMode(texRef,fm) bind(c, name="cudaTexRefSetFilterMode")
+    function hipTexRefSetFilterMode(texRef,fm) bind(c, name="cudaTexRefSetFilterMode")
 #else
-  function hipTexRefSetFilterMode(texRef,fm) bind(c, name="hipTexRefSetFilterMode")
+    function hipTexRefSetFilterMode(texRef,fm) bind(c, name="hipTexRefSetFilterMode")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5482,9 +5482,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipTexRefSetFlags(texRef,Flags) bind(c, name="cudaTexRefSetFlags")
+    function hipTexRefSetFlags(texRef,Flags) bind(c, name="cudaTexRefSetFlags")
 #else
-  function hipTexRefSetFlags(texRef,Flags) bind(c, name="hipTexRefSetFlags")
+    function hipTexRefSetFlags(texRef,Flags) bind(c, name="hipTexRefSetFlags")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5504,9 +5504,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipTexRefSetFormat(texRef,fmt,NumPackedComponents) bind(c, name="cudaTexRefSetFormat")
+    function hipTexRefSetFormat(texRef,fmt,NumPackedComponents) bind(c, name="cudaTexRefSetFormat")
 #else
-  function hipTexRefSetFormat(texRef,fmt,NumPackedComponents) bind(c, name="hipTexRefSetFormat")
+    function hipTexRefSetFormat(texRef,fmt,NumPackedComponents) bind(c, name="hipTexRefSetFormat")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5527,9 +5527,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipTexRefSetMaxAnisotropy(texRef,maxAniso) bind(c, name="cudaTexRefSetMaxAnisotropy")
+    function hipTexRefSetMaxAnisotropy(texRef,maxAniso) bind(c, name="cudaTexRefSetMaxAnisotropy")
 #else
-  function hipTexRefSetMaxAnisotropy(texRef,maxAniso) bind(c, name="hipTexRefSetMaxAnisotropy")
+    function hipTexRefSetMaxAnisotropy(texRef,maxAniso) bind(c, name="hipTexRefSetMaxAnisotropy")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5549,9 +5549,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipTexRefSetMipmapFilterMode(texRef,fm) bind(c, name="cudaTexRefSetMipmapFilterMode")
+    function hipTexRefSetMipmapFilterMode(texRef,fm) bind(c, name="cudaTexRefSetMipmapFilterMode")
 #else
-  function hipTexRefSetMipmapFilterMode(texRef,fm) bind(c, name="hipTexRefSetMipmapFilterMode")
+    function hipTexRefSetMipmapFilterMode(texRef,fm) bind(c, name="hipTexRefSetMipmapFilterMode")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5571,9 +5571,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipTexRefSetMipmapLevelBias(texRef,bias) bind(c, name="cudaTexRefSetMipmapLevelBias")
+    function hipTexRefSetMipmapLevelBias(texRef,bias) bind(c, name="cudaTexRefSetMipmapLevelBias")
 #else
-  function hipTexRefSetMipmapLevelBias(texRef,bias) bind(c, name="hipTexRefSetMipmapLevelBias")
+    function hipTexRefSetMipmapLevelBias(texRef,bias) bind(c, name="hipTexRefSetMipmapLevelBias")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5593,9 +5593,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipTexRefSetMipmapLevelClamp(texRef,minMipMapLevelClamp,maxMipMapLevelClamp) bind(c, name="cudaTexRefSetMipmapLevelClamp")
+    function hipTexRefSetMipmapLevelClamp(texRef,minMipMapLevelClamp,maxMipMapLevelClamp) bind(c, name="cudaTexRefSetMipmapLevelClamp")
 #else
-  function hipTexRefSetMipmapLevelClamp(texRef,minMipMapLevelClamp,maxMipMapLevelClamp) bind(c, name="hipTexRefSetMipmapLevelClamp")
+    function hipTexRefSetMipmapLevelClamp(texRef,minMipMapLevelClamp,maxMipMapLevelClamp) bind(c, name="hipTexRefSetMipmapLevelClamp")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5616,9 +5616,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipTexRefSetMipmappedArray(texRef,mipmappedArray,Flags) bind(c, name="cudaTexRefSetMipmappedArray")
+    function hipTexRefSetMipmappedArray(texRef,mipmappedArray,Flags) bind(c, name="cudaTexRefSetMipmappedArray")
 #else
-  function hipTexRefSetMipmappedArray(texRef,mipmappedArray,Flags) bind(c, name="hipTexRefSetMipmappedArray")
+    function hipTexRefSetMipmappedArray(texRef,mipmappedArray,Flags) bind(c, name="hipTexRefSetMipmappedArray")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5639,9 +5639,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipMipmappedArrayCreate(pHandle,pMipmappedArrayDesc,numMipmapLevels) bind(c, name="cudaMipmappedArrayCreate")
+    function hipMipmappedArrayCreate(pHandle,pMipmappedArrayDesc,numMipmapLevels) bind(c, name="cudaMipmappedArrayCreate")
 #else
-  function hipMipmappedArrayCreate(pHandle,pMipmappedArrayDesc,numMipmapLevels) bind(c, name="hipMipmappedArrayCreate")
+    function hipMipmappedArrayCreate(pHandle,pMipmappedArrayDesc,numMipmapLevels) bind(c, name="hipMipmappedArrayCreate")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5662,9 +5662,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipMipmappedArrayDestroy(hMipmappedArray) bind(c, name="cudaMipmappedArrayDestroy")
+    function hipMipmappedArrayDestroy(hMipmappedArray) bind(c, name="cudaMipmappedArrayDestroy")
 #else
-  function hipMipmappedArrayDestroy(hMipmappedArray) bind(c, name="hipMipmappedArrayDestroy")
+    function hipMipmappedArrayDestroy(hMipmappedArray) bind(c, name="hipMipmappedArrayDestroy")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5683,9 +5683,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipMipmappedArrayGetLevel(pLevelArray,hMipMappedArray,level) bind(c, name="cudaMipmappedArrayGetLevel")
+    function hipMipmappedArrayGetLevel(pLevelArray,hMipMappedArray,level) bind(c, name="cudaMipmappedArrayGetLevel")
 #else
-  function hipMipmappedArrayGetLevel(pLevelArray,hMipMappedArray,level) bind(c, name="hipMipmappedArrayGetLevel")
+    function hipMipmappedArrayGetLevel(pLevelArray,hMipMappedArray,level) bind(c, name="hipMipmappedArrayGetLevel")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5706,9 +5706,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipTexObjectCreate(pTexObject,pResDesc,pTexDesc,pResViewDesc) bind(c, name="cudaTexObjectCreate")
+    function hipTexObjectCreate(pTexObject,pResDesc,pTexDesc,pResViewDesc) bind(c, name="cudaTexObjectCreate")
 #else
-  function hipTexObjectCreate(pTexObject,pResDesc,pTexDesc,pResViewDesc) bind(c, name="hipTexObjectCreate")
+    function hipTexObjectCreate(pTexObject,pResDesc,pTexDesc,pResViewDesc) bind(c, name="hipTexObjectCreate")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5730,9 +5730,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipTexObjectDestroy(texObject) bind(c, name="cudaTexObjectDestroy")
+    function hipTexObjectDestroy(texObject) bind(c, name="cudaTexObjectDestroy")
 #else
-  function hipTexObjectDestroy(texObject) bind(c, name="hipTexObjectDestroy")
+    function hipTexObjectDestroy(texObject) bind(c, name="hipTexObjectDestroy")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5751,9 +5751,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipTexObjectGetResourceDesc(pResDesc,texObject) bind(c, name="cudaTexObjectGetResourceDesc")
+    function hipTexObjectGetResourceDesc(pResDesc,texObject) bind(c, name="cudaTexObjectGetResourceDesc")
 #else
-  function hipTexObjectGetResourceDesc(pResDesc,texObject) bind(c, name="hipTexObjectGetResourceDesc")
+    function hipTexObjectGetResourceDesc(pResDesc,texObject) bind(c, name="hipTexObjectGetResourceDesc")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5773,9 +5773,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipTexObjectGetResourceViewDesc(pResViewDesc,texObject) bind(c, name="cudaTexObjectGetResourceViewDesc")
+    function hipTexObjectGetResourceViewDesc(pResViewDesc,texObject) bind(c, name="cudaTexObjectGetResourceViewDesc")
 #else
-  function hipTexObjectGetResourceViewDesc(pResViewDesc,texObject) bind(c, name="hipTexObjectGetResourceViewDesc")
+    function hipTexObjectGetResourceViewDesc(pResViewDesc,texObject) bind(c, name="hipTexObjectGetResourceViewDesc")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5795,9 +5795,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipTexObjectGetTextureDesc(pTexDesc,texObject) bind(c, name="cudaTexObjectGetTextureDesc")
+    function hipTexObjectGetTextureDesc(pTexDesc,texObject) bind(c, name="cudaTexObjectGetTextureDesc")
 #else
-  function hipTexObjectGetTextureDesc(pTexDesc,texObject) bind(c, name="hipTexObjectGetTextureDesc")
+    function hipTexObjectGetTextureDesc(pTexDesc,texObject) bind(c, name="hipTexObjectGetTextureDesc")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5819,9 +5819,9 @@ module hip
   !   CallbackActivity API
   !  
 #ifdef USE_CUDA_NAMES
-  function hipRegisterApiCallback(id,fun,arg) bind(c, name="cudaRegisterApiCallback")
+    function hipRegisterApiCallback(id,fun,arg) bind(c, name="cudaRegisterApiCallback")
 #else
-  function hipRegisterApiCallback(id,fun,arg) bind(c, name="hipRegisterApiCallback")
+    function hipRegisterApiCallback(id,fun,arg) bind(c, name="hipRegisterApiCallback")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5842,9 +5842,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipRemoveApiCallback(id) bind(c, name="cudaRemoveApiCallback")
+    function hipRemoveApiCallback(id) bind(c, name="cudaRemoveApiCallback")
 #else
-  function hipRemoveApiCallback(id) bind(c, name="hipRemoveApiCallback")
+    function hipRemoveApiCallback(id) bind(c, name="hipRemoveApiCallback")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5863,9 +5863,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipRegisterActivityCallback(id,fun,arg) bind(c, name="cudaRegisterActivityCallback")
+    function hipRegisterActivityCallback(id,fun,arg) bind(c, name="cudaRegisterActivityCallback")
 #else
-  function hipRegisterActivityCallback(id,fun,arg) bind(c, name="hipRegisterActivityCallback")
+    function hipRegisterActivityCallback(id,fun,arg) bind(c, name="hipRegisterActivityCallback")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5886,9 +5886,9 @@ module hip
 
   
 #ifdef USE_CUDA_NAMES
-  function hipRemoveActivityCallback(id) bind(c, name="cudaRemoveActivityCallback")
+    function hipRemoveActivityCallback(id) bind(c, name="cudaRemoveActivityCallback")
 #else
-  function hipRemoveActivityCallback(id) bind(c, name="hipRemoveActivityCallback")
+    function hipRemoveActivityCallback(id) bind(c, name="hipRemoveActivityCallback")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
