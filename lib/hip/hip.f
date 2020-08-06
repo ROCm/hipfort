@@ -2212,7 +2212,7 @@ module hip
 #else
       integer(kind(hipSuccess)) :: hipGetSymbolSize
 #endif
-      type(c_ptr),value :: mySize
+      integer(c_size_t),intent(IN) :: mySize
       type(c_ptr),value :: symbol
     end function
 
@@ -2453,7 +2453,7 @@ module hip
       integer(kind(hipSuccess)) :: hipMemPtrGetInfo
 #endif
       type(c_ptr),value :: ptr
-      type(c_ptr),value :: mySize
+      integer(c_size_t),intent(IN) :: mySize
     end function
 
   
