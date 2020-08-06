@@ -28,7 +28,6 @@ module hip
 #endif
   use hip_enums
   use hip_types
-  use hip_check
   implicit none
 
  
