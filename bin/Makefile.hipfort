@@ -43,5 +43,5 @@ endif
 
 LINKOPTS += -lstdc++ -L$(LIB_DIR) -lhipfort-$(ARCH)
 CXX      = $(HIPCC_ENV) $(ROCM)/bin/hipcc $(HIPCC_OPTS)
-FC       = $(HIPFORT_COMPILER) -cpp -I$(MOD_DIR)
-
+FC_OPTS  = "-DHIPFORT_ARCH=\"$(ARCH)\""
+FC       = $(HIPFORT_COMPILER) -cpp -I$(MOD_DIR) $(FC_OPTS)

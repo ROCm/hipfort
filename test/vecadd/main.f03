@@ -1,6 +1,7 @@
 program fortran_hip
   use iso_c_binding
-  use hip
+  use hipfort
+  use hipfort_check
 
   implicit none
 
@@ -29,7 +30,9 @@ program fortran_hip
   integer :: i
 
   write(*,*) "Starting HIP vector addition test"
-  write(*,*) "HIPFORT_ARCH = ", hipfort_arch
+#ifdef HIPFORT_ARCH
+  write(*,*) "HIPFORT_ARCH = ", HIPFORT_ARCH
+#endif
 
   ! Allocate host memory
   allocate(a(N))
