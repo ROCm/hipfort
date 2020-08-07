@@ -26,6 +26,9 @@
           
            
 module hipfort
+#ifdef USE_CUDA_NAMES
+  use hipfort_cuda_errors
+#endif
   use hipfort_enums
   use hipfort_types
   implicit none
@@ -48,6 +51,9 @@ module hipfort
     function hipDeviceSynchronize() bind(c, name="hipDeviceSynchronize")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -75,6 +81,9 @@ module hipfort
     function hipDeviceReset() bind(c, name="hipDeviceReset")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -122,6 +131,9 @@ module hipfort
     function hipSetDevice(deviceId) bind(c, name="hipSetDevice")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -152,6 +164,9 @@ module hipfort
     function hipGetDevice(deviceId) bind(c, name="hipGetDevice")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -181,6 +196,9 @@ module hipfort
     function hipGetDeviceCount(count) bind(c, name="hipGetDeviceCount")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -207,6 +225,9 @@ module hipfort
     function hipDeviceGetAttribute(pi,attr,deviceId) bind(c, name="hipDeviceGetAttribute")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -239,6 +260,9 @@ module hipfort
     function hipGetDeviceProperties(prop,deviceId) bind(c, name="hipGetDeviceProperties")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -267,6 +291,9 @@ module hipfort
     function hipDeviceSetCacheConfig(cacheConfig) bind(c, name="hipDeviceSetCacheConfig")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -294,6 +321,9 @@ module hipfort
     function hipDeviceGetCacheConfig(cacheConfig) bind(c, name="hipDeviceGetCacheConfig")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -321,6 +351,9 @@ module hipfort
     function hipDeviceGetLimit(pValue,limit) bind(c, name="hipDeviceGetLimit")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -349,6 +382,9 @@ module hipfort
     function hipFuncSetCacheConfig(func,config) bind(c, name="hipFuncSetCacheConfig")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -378,6 +414,9 @@ module hipfort
     function hipDeviceGetSharedMemConfig(pConfig) bind(c, name="hipDeviceGetSharedMemConfig")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -406,6 +445,9 @@ module hipfort
     function hipDeviceSetSharedMemConfig(config) bind(c, name="hipDeviceSetSharedMemConfig")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -447,6 +489,9 @@ module hipfort
     function hipSetDeviceFlags(flags) bind(c, name="hipSetDeviceFlags")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -472,6 +517,9 @@ module hipfort
     function hipChooseDevice(device,prop) bind(c, name="hipChooseDevice")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -502,6 +550,9 @@ module hipfort
     function hipExtGetLinkTypeAndHopCount(device1,device2,linktype,hopcount) bind(c, name="hipExtGetLinkTypeAndHopCount")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -533,6 +584,9 @@ module hipfort
     function hipGetLastError() bind(c, name="hipGetLastError")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -559,6 +613,9 @@ module hipfort
     function hipPeekAtLastError() bind(c, name="hipPeekAtLastError")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -591,6 +648,9 @@ module hipfort
     function hipStreamCreate(stream) bind(c, name="hipStreamCreate")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -624,6 +684,9 @@ module hipfort
     function hipStreamCreateWithFlags(stream,flags) bind(c, name="hipStreamCreateWithFlags")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -659,6 +722,9 @@ module hipfort
     function hipStreamCreateWithPriority(stream,flags,priority) bind(c, name="hipStreamCreateWithPriority")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -691,6 +757,9 @@ module hipfort
     function hipDeviceGetStreamPriorityRange(leastPriority,greatestPriority) bind(c, name="hipDeviceGetStreamPriorityRange")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -727,6 +796,9 @@ module hipfort
     function hipStreamDestroy(stream) bind(c, name="hipStreamDestroy")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -759,6 +831,9 @@ module hipfort
     function hipStreamQuery(stream) bind(c, name="hipStreamQuery")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -795,6 +870,9 @@ module hipfort
     function hipStreamSynchronize(stream) bind(c, name="hipStreamSynchronize")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -831,6 +909,9 @@ module hipfort
     function hipStreamWaitEvent(stream,event,flags) bind(c, name="hipStreamWaitEvent")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -863,6 +944,9 @@ module hipfort
     function hipStreamGetFlags(stream,flags) bind(c, name="hipStreamGetFlags")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -894,6 +978,9 @@ module hipfort
     function hipStreamGetPriority(stream,priority) bind(c, name="hipStreamGetPriority")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -927,6 +1014,9 @@ module hipfort
     function hipStreamAddCallback(stream,callback,userData,flags) bind(c, name="hipStreamAddCallback")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -971,6 +1061,9 @@ module hipfort
     function hipEventCreateWithFlags(event,flags) bind(c, name="hipEventCreateWithFlags")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -1000,6 +1093,9 @@ module hipfort
     function hipEventCreate(event) bind(c, name="hipEventCreate")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -1044,6 +1140,9 @@ module hipfort
     function hipEventRecord(event,stream) bind(c, name="hipEventRecord")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -1078,6 +1177,9 @@ module hipfort
     function hipEventDestroy(event) bind(c, name="hipEventDestroy")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -1112,6 +1214,9 @@ module hipfort
     function hipEventSynchronize(event) bind(c, name="hipEventSynchronize")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -1157,6 +1262,9 @@ module hipfort
     function hipEventElapsedTime(ms,start,myStop) bind(c, name="hipEventElapsedTime")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -1191,6 +1299,9 @@ module hipfort
     function hipEventQuery(event) bind(c, name="hipEventQuery")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -1218,6 +1329,9 @@ module hipfort
     function hipPointerGetAttributes(attributes,ptr) bind(c, name="hipPointerGetAttributes")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -1249,6 +1363,9 @@ module hipfort
     function hipMalloc(ptr,mySize) bind(c, name="hipMalloc")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -1281,6 +1398,9 @@ module hipfort
     function hipExtMallocWithFlags(ptr,sizeBytes,flags) bind(c, name="hipExtMallocWithFlags")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -1301,6 +1421,9 @@ module hipfort
     function hipMallocHost(ptr,mySize) bind(c, name="hipMallocHost")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -1320,6 +1443,9 @@ module hipfort
     function hipMemAllocHost(ptr,mySize) bind(c, name="hipMemAllocHost")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -1351,6 +1477,9 @@ module hipfort
     function hipHostMalloc(ptr,mySize,flags) bind(c, name="hipHostMalloc")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -1371,6 +1500,9 @@ module hipfort
     function hipHostAlloc(ptr,mySize,flags) bind(c, name="hipHostAlloc")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -1401,6 +1533,9 @@ module hipfort
     function hipHostGetDevicePointer(devPtr,hstPtr,flags) bind(c, name="hipHostGetDevicePointer")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -1429,6 +1564,9 @@ module hipfort
     function hipHostGetFlags(flagsPtr,hostPtr) bind(c, name="hipHostGetFlags")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -1483,6 +1621,9 @@ module hipfort
     function hipHostRegister(hostPtr,sizeBytes,flags) bind(c, name="hipHostRegister")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -1510,6 +1651,9 @@ module hipfort
     function hipHostUnregister(hostPtr) bind(c, name="hipHostUnregister")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -1545,6 +1689,9 @@ module hipfort
     function hipMallocPitch(ptr,pitch,width,height) bind(c, name="hipMallocPitch")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -1586,6 +1733,9 @@ module hipfort
     function hipMemAllocPitch(dptr,pitch,widthInBytes,height,elementSizeBytes) bind(c, name="hipMemAllocPitch")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -1620,6 +1770,9 @@ module hipfort
     function hipFree(ptr) bind(c, name="hipFree")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -1638,6 +1791,9 @@ module hipfort
     function hipFreeHost(ptr) bind(c, name="hipFreeHost")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -1668,6 +1824,9 @@ module hipfort
     function hipHostFree(ptr) bind(c, name="hipHostFree")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -1712,6 +1871,9 @@ module hipfort
     function hipMemcpy(dst,src,sizeBytes,myKind) bind(c, name="hipMemcpy")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -1733,6 +1895,9 @@ module hipfort
     function hipMemcpyWithStream(dst,src,sizeBytes,myKind,stream) bind(c, name="hipMemcpyWithStream")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -1771,6 +1936,9 @@ module hipfort
     function hipMemcpyHtoD(dst,src,sizeBytes) bind(c, name="hipMemcpyHtoD")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -1807,6 +1975,9 @@ module hipfort
     function hipMemcpyDtoH(dst,src,sizeBytes) bind(c, name="hipMemcpyDtoH")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -1843,6 +2014,9 @@ module hipfort
     function hipMemcpyDtoD(dst,src,sizeBytes) bind(c, name="hipMemcpyDtoD")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -1879,6 +2053,9 @@ module hipfort
     function hipMemcpyHtoDAsync(dst,src,sizeBytes,stream) bind(c, name="hipMemcpyHtoDAsync")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -1916,6 +2093,9 @@ module hipfort
     function hipMemcpyDtoHAsync(dst,src,sizeBytes,stream) bind(c, name="hipMemcpyDtoHAsync")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -1953,6 +2133,9 @@ module hipfort
     function hipMemcpyDtoDAsync(dst,src,sizeBytes,stream) bind(c, name="hipMemcpyDtoDAsync")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -1974,6 +2157,9 @@ module hipfort
     function hipModuleGetGlobal(dptr,bytes,hmod,name) bind(c, name="hipModuleGetGlobal")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -1995,6 +2181,9 @@ module hipfort
     function hipGetSymbolAddress(devPtr,symbol) bind(c, name="hipGetSymbolAddress")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -2014,6 +2203,9 @@ module hipfort
     function hipGetSymbolSize(mySize,symbol) bind(c, name="hipGetSymbolSize")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -2041,6 +2233,9 @@ module hipfort
     function hipMemset(dst,myValue,sizeBytes) bind(c, name="hipMemset")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -2069,6 +2264,9 @@ module hipfort
     function hipMemsetD8(dest,myValue,count) bind(c, name="hipMemsetD8")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -2097,6 +2295,9 @@ module hipfort
     function hipMemsetD16(dest,myValue,count) bind(c, name="hipMemsetD16")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -2125,6 +2326,9 @@ module hipfort
     function hipMemsetD32(dest,myValue,count) bind(c, name="hipMemsetD32")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -2154,6 +2358,9 @@ module hipfort
     function hipMemset2D(dst,pitch,myValue,width,height) bind(c, name="hipMemset2D")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -2183,6 +2390,9 @@ module hipfort
     function hipMemset3D(pitchedDevPtr,myValue,extent) bind(c, name="hipMemset3D")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -2211,6 +2421,9 @@ module hipfort
     function hipMemGetInfo(free,total) bind(c, name="hipMemGetInfo")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -2230,6 +2443,9 @@ module hipfort
     function hipMemPtrGetInfo(ptr,mySize) bind(c, name="hipMemPtrGetInfo")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -2249,6 +2465,9 @@ module hipfort
     function hipArrayCreate(pHandle,pAllocateArray) bind(c, name="hipArrayCreate")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -2268,6 +2487,9 @@ module hipfort
     function hipArray3DCreate(array,pAllocateArray) bind(c, name="hipArray3DCreate")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -2287,6 +2509,9 @@ module hipfort
     function hipMalloc3D(pitchedDevPtr,extent) bind(c, name="hipMalloc3D")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -2313,6 +2538,9 @@ module hipfort
     function hipFreeArray(array) bind(c, name="hipFreeArray")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -2337,6 +2565,9 @@ module hipfort
     function hipFreeMipmappedArray(mipmappedArray) bind(c, name="hipFreeMipmappedArray")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -2365,6 +2596,9 @@ module hipfort
     function hipMalloc3DArray(array,desc,extent,flags) bind(c, name="hipMalloc3DArray")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -2394,6 +2628,9 @@ module hipfort
     function hipGetMipmappedArrayLevel(levelArray,mipmappedArray,level) bind(c, name="hipGetMipmappedArrayLevel")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -2429,6 +2666,9 @@ module hipfort
     function hipMemcpy2D(dst,dpitch,src,spitch,width,height,myKind) bind(c, name="hipMemcpy2D")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -2461,6 +2701,9 @@ module hipfort
     function hipMemcpyParam2D(pCopy) bind(c, name="hipMemcpyParam2D")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -2494,6 +2737,9 @@ module hipfort
     function hipMemcpy2DToArray(dst,wOffset,hOffset,src,spitch,width,height,myKind) bind(c, name="hipMemcpy2DToArray")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -2534,6 +2780,9 @@ module hipfort
     function hipMemcpyToArray(dst,wOffset,hOffset,src,count,myKind) bind(c, name="hipMemcpyToArray")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -2571,6 +2820,9 @@ module hipfort
     function hipMemcpyFromArray(dst,srcArray,wOffset,hOffset,count,myKind) bind(c, name="hipMemcpyFromArray")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -2610,6 +2862,9 @@ module hipfort
     function hipMemcpy2DFromArray(dst,dpitch,src,wOffset,hOffset,width,height,myKind) bind(c, name="hipMemcpy2DFromArray")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -2647,6 +2902,9 @@ module hipfort
     function hipMemcpyAtoH(dst,srcArray,srcOffset,count) bind(c, name="hipMemcpyAtoH")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -2680,6 +2938,9 @@ module hipfort
     function hipMemcpyHtoA(dstArray,dstOffset,srcHost,count) bind(c, name="hipMemcpyHtoA")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -2710,6 +2971,9 @@ module hipfort
     function hipMemcpy3D(p) bind(c, name="hipMemcpy3D")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -2737,6 +3001,9 @@ module hipfort
     function hipDrvMemcpy3D(pCopy) bind(c, name="hipDrvMemcpy3D")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -2765,6 +3032,9 @@ module hipfort
     function hipDrvMemcpy3DAsync(pCopy,stream) bind(c, name="hipDrvMemcpy3DAsync")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -2799,6 +3069,9 @@ module hipfort
     function hipDeviceCanAccessPeer(canAccessPeer,deviceId,peerDeviceId) bind(c, name="hipDeviceCanAccessPeer")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -2834,6 +3107,9 @@ module hipfort
     function hipDeviceEnablePeerAccess(peerDeviceId,flags) bind(c, name="hipDeviceEnablePeerAccess")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -2863,6 +3139,9 @@ module hipfort
     function hipDeviceDisablePeerAccess(peerDeviceId) bind(c, name="hipDeviceDisablePeerAccess")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -2892,6 +3171,9 @@ module hipfort
     function hipMemGetAddressRange(pbase,psize,dptr) bind(c, name="hipMemGetAddressRange")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -2922,6 +3204,9 @@ module hipfort
     function hipMemcpyPeer(dst,dstDeviceId,src,srcDeviceId,sizeBytes) bind(c, name="hipMemcpyPeer")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -2944,6 +3229,9 @@ module hipfort
     function hipInit(flags) bind(c, name="hipInit")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -2962,6 +3250,9 @@ module hipfort
     function hipCtxCreate(ctx,flags,device) bind(c, name="hipCtxCreate")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -2982,6 +3273,9 @@ module hipfort
     function hipCtxDestroy(ctx) bind(c, name="hipCtxDestroy")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -3000,6 +3294,9 @@ module hipfort
     function hipCtxPopCurrent(ctx) bind(c, name="hipCtxPopCurrent")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -3018,6 +3315,9 @@ module hipfort
     function hipCtxPushCurrent(ctx) bind(c, name="hipCtxPushCurrent")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -3036,6 +3336,9 @@ module hipfort
     function hipCtxSetCurrent(ctx) bind(c, name="hipCtxSetCurrent")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -3054,6 +3357,9 @@ module hipfort
     function hipCtxGetCurrent(ctx) bind(c, name="hipCtxGetCurrent")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -3072,6 +3378,9 @@ module hipfort
     function hipCtxGetDevice(device) bind(c, name="hipCtxGetDevice")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -3090,6 +3399,9 @@ module hipfort
     function hipCtxGetApiVersion(ctx,apiVersion) bind(c, name="hipCtxGetApiVersion")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -3109,6 +3421,9 @@ module hipfort
     function hipCtxGetCacheConfig(cacheConfig) bind(c, name="hipCtxGetCacheConfig")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -3127,6 +3442,9 @@ module hipfort
     function hipCtxSetCacheConfig(cacheConfig) bind(c, name="hipCtxSetCacheConfig")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -3145,6 +3463,9 @@ module hipfort
     function hipCtxSetSharedMemConfig(config) bind(c, name="hipCtxSetSharedMemConfig")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -3163,6 +3484,9 @@ module hipfort
     function hipCtxGetSharedMemConfig(pConfig) bind(c, name="hipCtxGetSharedMemConfig")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -3181,6 +3505,9 @@ module hipfort
     function hipCtxSynchronize() bind(c, name="hipCtxSynchronize")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -3198,6 +3525,9 @@ module hipfort
     function hipCtxGetFlags(flags) bind(c, name="hipCtxGetFlags")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -3216,6 +3546,9 @@ module hipfort
     function hipCtxEnablePeerAccess(peerCtx,flags) bind(c, name="hipCtxEnablePeerAccess")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -3235,6 +3568,9 @@ module hipfort
     function hipCtxDisablePeerAccess(peerCtx) bind(c, name="hipCtxDisablePeerAccess")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -3264,6 +3600,9 @@ module hipfort
     function hipDevicePrimaryCtxGetState(dev,flags,active) bind(c, name="hipDevicePrimaryCtxGetState")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -3295,6 +3634,9 @@ module hipfort
     function hipDevicePrimaryCtxRelease(dev) bind(c, name="hipDevicePrimaryCtxRelease")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -3323,6 +3665,9 @@ module hipfort
     function hipDevicePrimaryCtxRetain(pctx,dev) bind(c, name="hipDevicePrimaryCtxRetain")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -3351,6 +3696,9 @@ module hipfort
     function hipDevicePrimaryCtxReset(dev) bind(c, name="hipDevicePrimaryCtxReset")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -3379,6 +3727,9 @@ module hipfort
     function hipDevicePrimaryCtxSetFlags(dev,flags) bind(c, name="hipDevicePrimaryCtxSetFlags")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -3404,6 +3755,9 @@ module hipfort
     function hipDeviceGet(device,ordinal) bind(c, name="hipDeviceGet")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -3430,6 +3784,9 @@ module hipfort
     function hipDeviceComputeCapability(major,minor,device) bind(c, name="hipDeviceComputeCapability")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -3457,6 +3814,9 @@ module hipfort
     function hipDeviceGetName(name,len,device) bind(c, name="hipDeviceGetName")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -3484,6 +3844,9 @@ module hipfort
     function hipDeviceGetPCIBusId(pciBusId,len,device) bind(c, name="hipDeviceGetPCIBusId")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -3510,6 +3873,9 @@ module hipfort
     function hipDeviceGetByPCIBusId(device,pciBusId) bind(c, name="hipDeviceGetByPCIBusId")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -3535,6 +3901,9 @@ module hipfort
     function hipDeviceTotalMem(bytes,device) bind(c, name="hipDeviceTotalMem")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -3568,6 +3937,9 @@ module hipfort
     function hipDriverGetVersion(driverVersion) bind(c, name="hipDriverGetVersion")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -3597,6 +3969,9 @@ module hipfort
     function hipRuntimeGetVersion(runtimeVersion) bind(c, name="hipRuntimeGetVersion")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -3625,6 +4000,9 @@ module hipfort
     function hipModuleLoad(myModule,fname) bind(c, name="hipModuleLoad")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -3652,6 +4030,9 @@ module hipfort
     function hipModuleUnload(myModule) bind(c, name="hipModuleUnload")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -3679,6 +4060,9 @@ module hipfort
     function hipModuleGetFunction(myFunction,myModule,kname) bind(c, name="hipModuleGetFunction")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -3706,6 +4090,9 @@ module hipfort
     function hipFuncGetAttributes(attr,func) bind(c, name="hipFuncGetAttributes")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -3733,6 +4120,9 @@ module hipfort
     function hipFuncGetAttribute(myValue,attrib,hfunc) bind(c, name="hipFuncGetAttribute")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -3753,6 +4143,9 @@ module hipfort
     function hipModuleGetTexRef(texRef,hmod,name) bind(c, name="hipModuleGetTexRef")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -3781,6 +4174,9 @@ module hipfort
     function hipModuleLoadData(myModule,image) bind(c, name="hipModuleLoadData")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -3811,6 +4207,9 @@ module hipfort
     function hipModuleLoadDataEx(myModule,image,numOptions,options,optionValues) bind(c, name="hipModuleLoadDataEx")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -3856,6 +4255,9 @@ module hipfort
     function hipModuleLaunchKernel(f,gridDimX,gridDimY,gridDimZ,blockDimX,blockDimY,blockDimZ,sharedMemBytes,stream,kernelParams,extra) bind(c, name="hipModuleLaunchKernel")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -3898,6 +4300,9 @@ module hipfort
     function hipLaunchCooperativeKernel(f,gridDim,blockDimX,kernelParams,sharedMemBytes,stream) bind(c, name="hipLaunchCooperativeKernel")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -3930,6 +4335,9 @@ module hipfort
     function hipLaunchCooperativeKernelMultiDevice(launchParamsList,numDevices,flags) bind(c, name="hipLaunchCooperativeKernelMultiDevice")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -3950,6 +4358,9 @@ module hipfort
     function hipModuleOccupancyMaxPotentialBlockSize(gridSize,blockSize,f,dynSharedMemPerBlk,blockSizeLimit) bind(c, name="hipModuleOccupancyMaxPotentialBlockSize")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -3972,6 +4383,9 @@ module hipfort
     function hipModuleOccupancyMaxPotentialBlockSizeWithFlags(gridSize,blockSize,f,dynSharedMemPerBlk,blockSizeLimit,flags) bind(c, name="hipModuleOccupancyMaxPotentialBlockSizeWithFlags")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4002,6 +4416,9 @@ module hipfort
     function hipModuleOccupancyMaxActiveBlocksPerMultiprocessor(numBlocks,f,blockSize,dynSharedMemPerBlk) bind(c, name="hipModuleOccupancyMaxActiveBlocksPerMultiprocessor")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4031,6 +4448,9 @@ module hipfort
     function hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags(numBlocks,f,blockSize,dynSharedMemPerBlk,flags) bind(c, name="hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4060,6 +4480,9 @@ module hipfort
     function hipOccupancyMaxActiveBlocksPerMultiprocessor(numBlocks,f,blockSize,dynSharedMemPerBlk) bind(c, name="hipOccupancyMaxActiveBlocksPerMultiprocessor")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4091,6 +4514,9 @@ module hipfort
     function hipOccupancyMaxPotentialBlockSize(gridSize,blockSize,f,dynSharedMemPerBlk,blockSizeLimit) bind(c, name="hipOccupancyMaxPotentialBlockSize")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4123,6 +4549,9 @@ module hipfort
     function hipExtLaunchMultiKernelMultiDevice(launchParamsList,numDevices,flags) bind(c, name="hipExtLaunchMultiKernelMultiDevice")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4143,6 +4572,9 @@ module hipfort
     function hipProfilerStart() bind(c, name="hipProfilerStart")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4160,6 +4592,9 @@ module hipfort
     function hipProfilerStop() bind(c, name="hipProfilerStop")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4201,6 +4636,9 @@ module hipfort
     function hipIpcGetMemHandle(handle,devPtr) bind(c, name="hipIpcGetMemHandle")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4255,6 +4693,9 @@ module hipfort
     function hipIpcOpenMemHandle(devPtr,handle,flags) bind(c, name="hipIpcOpenMemHandle")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4292,6 +4733,9 @@ module hipfort
     function hipIpcCloseMemHandle(devPtr) bind(c, name="hipIpcCloseMemHandle")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4310,6 +4754,9 @@ module hipfort
     function hipIpcGetEventHandle(handle,event) bind(c, name="hipIpcGetEventHandle")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4329,6 +4776,9 @@ module hipfort
     function hipIpcOpenEventHandle(event,handle) bind(c, name="hipIpcOpenEventHandle")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4357,6 +4807,9 @@ module hipfort
     function hipSetupArgument(arg,mySize,offset) bind(c, name="hipSetupArgument")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4384,6 +4837,9 @@ module hipfort
     function hipLaunchByPtr(func) bind(c, name="hipLaunchByPtr")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4402,6 +4858,9 @@ module hipfort
     function hipBindTexture2D(offset,tex,devPtr,desc,width,height,pitch) bind(c, name="hipBindTexture2D")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4426,6 +4885,9 @@ module hipfort
     function hipBindTextureToArray(tex,array,desc) bind(c, name="hipBindTextureToArray")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4446,6 +4908,9 @@ module hipfort
     function hipBindTextureToMipmappedArray(tex,mipmappedArray,desc) bind(c, name="hipBindTextureToMipmappedArray")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4466,6 +4931,9 @@ module hipfort
     function hipGetTextureAlignmentOffset(offset,texref) bind(c, name="hipGetTextureAlignmentOffset")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4485,6 +4953,9 @@ module hipfort
     function hipGetTextureReference(texref,symbol) bind(c, name="hipGetTextureReference")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4504,6 +4975,9 @@ module hipfort
     function hipUnbindTexture(tex) bind(c, name="hipUnbindTexture")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4522,6 +4996,9 @@ module hipfort
     function hipCreateTextureObject(pTexObject,pResDesc,pTexDesc,pResViewDesc) bind(c, name="hipCreateTextureObject")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4543,6 +5020,9 @@ module hipfort
     function hipDestroyTextureObject(textureObject) bind(c, name="hipDestroyTextureObject")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4561,6 +5041,9 @@ module hipfort
     function hipGetChannelDesc(desc,array) bind(c, name="hipGetChannelDesc")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4580,6 +5063,9 @@ module hipfort
     function hipGetTextureObjectResourceDesc(pResDesc,textureObject) bind(c, name="hipGetTextureObjectResourceDesc")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4599,6 +5085,9 @@ module hipfort
     function hipGetTextureObjectResourceViewDesc(pResViewDesc,textureObject) bind(c, name="hipGetTextureObjectResourceViewDesc")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4618,6 +5107,9 @@ module hipfort
     function hipGetTextureObjectTextureDesc(pTexDesc,textureObject) bind(c, name="hipGetTextureObjectTextureDesc")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4637,6 +5129,9 @@ module hipfort
     function hipTexRefGetAddress(dev_ptr,texRef) bind(c, name="hipTexRefGetAddress")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4656,6 +5151,9 @@ module hipfort
     function hipTexRefGetAddressMode(pam,texRef,dim) bind(c, name="hipTexRefGetAddressMode")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4676,6 +5174,9 @@ module hipfort
     function hipTexRefGetFilterMode(pfm,texRef) bind(c, name="hipTexRefGetFilterMode")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4695,6 +5196,9 @@ module hipfort
     function hipTexRefGetFlags(pFlags,texRef) bind(c, name="hipTexRefGetFlags")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4714,6 +5218,9 @@ module hipfort
     function hipTexRefGetFormat(pFormat,pNumChannels,texRef) bind(c, name="hipTexRefGetFormat")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4734,6 +5241,9 @@ module hipfort
     function hipTexRefGetMaxAnisotropy(pmaxAnsio,texRef) bind(c, name="hipTexRefGetMaxAnisotropy")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4753,6 +5263,9 @@ module hipfort
     function hipTexRefGetMipmapFilterMode(pfm,texRef) bind(c, name="hipTexRefGetMipmapFilterMode")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4772,6 +5285,9 @@ module hipfort
     function hipTexRefGetMipmapLevelBias(pbias,texRef) bind(c, name="hipTexRefGetMipmapLevelBias")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4791,6 +5307,9 @@ module hipfort
     function hipTexRefGetMipmapLevelClamp(pminMipmapLevelClamp,pmaxMipmapLevelClamp,texRef) bind(c, name="hipTexRefGetMipmapLevelClamp")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4811,6 +5330,9 @@ module hipfort
     function hipTexRefGetMipMappedArray(pArray,texRef) bind(c, name="hipTexRefGetMipMappedArray")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4830,6 +5352,9 @@ module hipfort
     function hipTexRefSetAddress(ByteOffset,texRef,dptr,bytes) bind(c, name="hipTexRefSetAddress")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4851,6 +5376,9 @@ module hipfort
     function hipTexRefSetAddress2D(texRef,desc,dptr,Pitch) bind(c, name="hipTexRefSetAddress2D")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4872,6 +5400,9 @@ module hipfort
     function hipTexRefSetAddressMode(texRef,dim,am) bind(c, name="hipTexRefSetAddressMode")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4892,6 +5423,9 @@ module hipfort
     function hipTexRefSetArray(tex,array,flags) bind(c, name="hipTexRefSetArray")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4912,6 +5446,9 @@ module hipfort
     function hipTexRefSetBorderColor(texRef,pBorderColor) bind(c, name="hipTexRefSetBorderColor")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4931,6 +5468,9 @@ module hipfort
     function hipTexRefSetFilterMode(texRef,fm) bind(c, name="hipTexRefSetFilterMode")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4950,6 +5490,9 @@ module hipfort
     function hipTexRefSetFlags(texRef,Flags) bind(c, name="hipTexRefSetFlags")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4969,6 +5512,9 @@ module hipfort
     function hipTexRefSetFormat(texRef,fmt,NumPackedComponents) bind(c, name="hipTexRefSetFormat")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -4989,6 +5535,9 @@ module hipfort
     function hipTexRefSetMaxAnisotropy(texRef,maxAniso) bind(c, name="hipTexRefSetMaxAnisotropy")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -5008,6 +5557,9 @@ module hipfort
     function hipTexRefSetMipmapFilterMode(texRef,fm) bind(c, name="hipTexRefSetMipmapFilterMode")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -5027,6 +5579,9 @@ module hipfort
     function hipTexRefSetMipmapLevelBias(texRef,bias) bind(c, name="hipTexRefSetMipmapLevelBias")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -5046,6 +5601,9 @@ module hipfort
     function hipTexRefSetMipmapLevelClamp(texRef,minMipMapLevelClamp,maxMipMapLevelClamp) bind(c, name="hipTexRefSetMipmapLevelClamp")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -5066,6 +5624,9 @@ module hipfort
     function hipTexRefSetMipmappedArray(texRef,mipmappedArray,Flags) bind(c, name="hipTexRefSetMipmappedArray")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -5086,6 +5647,9 @@ module hipfort
     function hipMipmappedArrayCreate(pHandle,pMipmappedArrayDesc,numMipmapLevels) bind(c, name="hipMipmappedArrayCreate")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -5106,6 +5670,9 @@ module hipfort
     function hipMipmappedArrayDestroy(hMipmappedArray) bind(c, name="hipMipmappedArrayDestroy")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -5124,6 +5691,9 @@ module hipfort
     function hipMipmappedArrayGetLevel(pLevelArray,hMipMappedArray,level) bind(c, name="hipMipmappedArrayGetLevel")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -5144,6 +5714,9 @@ module hipfort
     function hipTexObjectCreate(pTexObject,pResDesc,pTexDesc,pResViewDesc) bind(c, name="hipTexObjectCreate")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -5165,6 +5738,9 @@ module hipfort
     function hipTexObjectDestroy(texObject) bind(c, name="hipTexObjectDestroy")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -5183,6 +5759,9 @@ module hipfort
     function hipTexObjectGetResourceDesc(pResDesc,texObject) bind(c, name="hipTexObjectGetResourceDesc")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -5202,6 +5781,9 @@ module hipfort
     function hipTexObjectGetResourceViewDesc(pResViewDesc,texObject) bind(c, name="hipTexObjectGetResourceViewDesc")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -5221,6 +5803,9 @@ module hipfort
     function hipTexObjectGetTextureDesc(pTexDesc,texObject) bind(c, name="hipTexObjectGetTextureDesc")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -5242,6 +5827,9 @@ module hipfort
     function hipRegisterApiCallback(id,fun,arg) bind(c, name="hipRegisterApiCallback")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -5262,6 +5850,9 @@ module hipfort
     function hipRemoveApiCallback(id) bind(c, name="hipRemoveApiCallback")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -5280,6 +5871,9 @@ module hipfort
     function hipRegisterActivityCallback(id,fun,arg) bind(c, name="hipRegisterActivityCallback")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
@@ -5300,6 +5894,9 @@ module hipfort
     function hipRemoveActivityCallback(id) bind(c, name="hipRemoveActivityCallback")
 #endif
       use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
       use hipfort_enums
       use hipfort_types
       implicit none
