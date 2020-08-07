@@ -24,8 +24,9 @@
 program rocsparse_ddoti_test
 
     use iso_c_binding
-    use hip
-    use rocsparse
+    use hipfort
+    use hipfort_check
+    use hipfort_rocsparse
 
     implicit none
 

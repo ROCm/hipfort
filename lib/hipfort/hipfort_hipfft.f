@@ -42,7 +42,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftPlan1d
-      type(c_ptr),intent(INOUT) :: plan
+      type(c_ptr) :: plan
       integer(c_int),value :: nx
       integer(kind(HIPFFT_R2C)),value :: myType
       integer(c_int),value :: batch
@@ -58,7 +58,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftPlan2d
-      type(c_ptr),intent(INOUT) :: plan
+      type(c_ptr) :: plan
       integer(c_int),value :: nx
       integer(c_int),value :: ny
       integer(kind(HIPFFT_R2C)),value :: myType
@@ -74,7 +74,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftPlan3d
-      type(c_ptr),intent(INOUT) :: plan
+      type(c_ptr) :: plan
       integer(c_int),value :: nx
       integer(c_int),value :: ny
       integer(c_int),value :: nz
@@ -91,7 +91,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftPlanMany
-      type(c_ptr),intent(INOUT) :: plan
+      type(c_ptr) :: plan
       integer(c_int),value :: rank
       type(c_ptr),value :: n
       type(c_ptr),value :: inembed
@@ -310,7 +310,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftCreate
-      type(c_ptr),intent(INOUT) :: plan
+      type(c_ptr) :: plan
     end function
 
   

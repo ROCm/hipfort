@@ -271,7 +271,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipGetDeviceProperties
 #endif
-      type(c_ptr),intent(INOUT) :: prop
+      type(c_ptr) :: prop
       integer(c_int),value :: deviceId
     end function
 
@@ -529,7 +529,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipChooseDevice
 #endif
       type(c_ptr),value :: device
-      type(c_ptr),intent(INOUT) :: prop
+      type(c_ptr) :: prop
     end function
 
   ! 
@@ -659,7 +659,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipStreamCreate
 #endif
-      type(c_ptr),intent(INOUT) :: stream
+      type(c_ptr) :: stream
     end function
 
   ! 
@@ -695,7 +695,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipStreamCreateWithFlags
 #endif
-      type(c_ptr),intent(INOUT) :: stream
+      type(c_ptr) :: stream
       integer(kind=4),value :: flags
     end function
 
@@ -733,7 +733,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipStreamCreateWithPriority
 #endif
-      type(c_ptr),intent(INOUT) :: stream
+      type(c_ptr) :: stream
       integer(kind=4),value :: flags
       integer(c_int),value :: priority
     end function
@@ -921,7 +921,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipStreamWaitEvent
 #endif
       type(c_ptr),value :: stream
-      type(c_ptr),intent(INOUT) :: event
+      type(c_ptr) :: event
       integer(kind=4),value :: flags
     end function
 
@@ -1072,7 +1072,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipEventCreateWithFlags
 #endif
-      type(c_ptr),intent(INOUT) :: event
+      type(c_ptr) :: event
       integer(kind=4),value :: flags
     end function
 
@@ -1104,7 +1104,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipEventCreate
 #endif
-      type(c_ptr),intent(INOUT) :: event
+      type(c_ptr) :: event
     end function
 
   ! 
@@ -1151,7 +1151,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipEventRecord
 #endif
-      type(c_ptr),intent(INOUT) :: event
+      type(c_ptr) :: event
       type(c_ptr),value :: stream
     end function
 
@@ -1188,7 +1188,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipEventDestroy
 #endif
-      type(c_ptr),intent(INOUT) :: event
+      type(c_ptr) :: event
     end function
 
   ! 
@@ -1225,7 +1225,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipEventSynchronize
 #endif
-      type(c_ptr),intent(INOUT) :: event
+      type(c_ptr) :: event
     end function
 
   ! 
@@ -1274,8 +1274,8 @@ module hipfort
       integer(kind(hipSuccess)) :: hipEventElapsedTime
 #endif
       type(c_ptr),value :: ms
-      type(c_ptr),intent(INOUT) :: start
-      type(c_ptr),intent(INOUT) :: myStop
+      type(c_ptr) :: start
+      type(c_ptr) :: myStop
     end function
 
   ! 
@@ -1310,7 +1310,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipEventQuery
 #endif
-      type(c_ptr),intent(INOUT) :: event
+      type(c_ptr) :: event
     end function
 
   ! 
@@ -1340,7 +1340,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipPointerGetAttributes
 #endif
-      type(c_ptr),intent(INOUT) :: attributes
+      type(c_ptr) :: attributes
       type(c_ptr),value :: ptr
     end function
 
@@ -1744,7 +1744,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipMemAllocPitch
 #endif
-      type(c_ptr),intent(INOUT) :: dptr
+      type(c_ptr) :: dptr
       integer(c_size_t),intent(IN) :: pitch
       integer(c_size_t),value :: widthInBytes
       integer(c_size_t),value :: height
@@ -2168,9 +2168,9 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipModuleGetGlobal
 #endif
-      type(c_ptr),intent(INOUT) :: dptr
+      type(c_ptr) :: dptr
       integer(c_size_t),intent(IN) :: bytes
-      type(c_ptr),intent(INOUT) :: hmod
+      type(c_ptr) :: hmod
       type(c_ptr),value :: name
     end function
 
@@ -2476,8 +2476,8 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipArrayCreate
 #endif
-      type(c_ptr),intent(INOUT) :: pHandle
-      type(c_ptr),intent(INOUT) :: pAllocateArray
+      type(c_ptr) :: pHandle
+      type(c_ptr) :: pAllocateArray
     end function
 
   
@@ -2498,8 +2498,8 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipArray3DCreate
 #endif
-      type(c_ptr),intent(INOUT) :: array
-      type(c_ptr),intent(INOUT) :: pAllocateArray
+      type(c_ptr) :: array
+      type(c_ptr) :: pAllocateArray
     end function
 
   
@@ -2520,7 +2520,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipMalloc3D
 #endif
-      type(c_ptr),intent(INOUT) :: pitchedDevPtr
+      type(c_ptr) :: pitchedDevPtr
       type(c_ptr),value :: extent
     end function
 
@@ -2549,7 +2549,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipFreeArray
 #endif
-      type(c_ptr),intent(INOUT) :: array
+      type(c_ptr) :: array
     end function
 
   ! 
@@ -2576,7 +2576,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipFreeMipmappedArray
 #endif
-      type(c_ptr),intent(INOUT) :: mipmappedArray
+      type(c_ptr) :: mipmappedArray
     end function
 
   ! 
@@ -2607,8 +2607,8 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipMalloc3DArray
 #endif
-      type(c_ptr),intent(INOUT) :: array
-      type(c_ptr),intent(INOUT) :: desc
+      type(c_ptr) :: array
+      type(c_ptr) :: desc
       type(c_ptr),value :: extent
       integer(kind=4),value :: flags
     end function
@@ -2639,8 +2639,8 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipGetMipmappedArrayLevel
 #endif
-      type(c_ptr),intent(INOUT) :: levelArray
-      type(c_ptr),intent(INOUT) :: mipmappedArray
+      type(c_ptr) :: levelArray
+      type(c_ptr) :: mipmappedArray
       integer(kind=4),value :: level
     end function
 
@@ -2712,7 +2712,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipMemcpyParam2D
 #endif
-      type(c_ptr),intent(INOUT) :: pCopy
+      type(c_ptr) :: pCopy
     end function
 
   ! 
@@ -2748,7 +2748,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipMemcpy2DToArray
 #endif
-      type(c_ptr),intent(INOUT) :: dst
+      type(c_ptr) :: dst
       integer(c_size_t),value :: wOffset
       integer(c_size_t),value :: hOffset
       type(c_ptr),value :: src
@@ -2791,7 +2791,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipMemcpyToArray
 #endif
-      type(c_ptr),intent(INOUT) :: dst
+      type(c_ptr) :: dst
       integer(c_size_t),value :: wOffset
       integer(c_size_t),value :: hOffset
       type(c_ptr),value :: src
@@ -2832,7 +2832,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipMemcpyFromArray
 #endif
       type(c_ptr),value :: dst
-      type(c_ptr),intent(INOUT) :: srcArray
+      type(c_ptr) :: srcArray
       integer(c_size_t),value :: wOffset
       integer(c_size_t),value :: hOffset
       integer(c_size_t),value :: count
@@ -2875,7 +2875,7 @@ module hipfort
 #endif
       type(c_ptr),value :: dst
       integer(c_size_t),value :: dpitch
-      type(c_ptr),intent(INOUT) :: src
+      type(c_ptr) :: src
       integer(c_size_t),value :: wOffset
       integer(c_size_t),value :: hOffset
       integer(c_size_t),value :: width
@@ -2914,7 +2914,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipMemcpyAtoH
 #endif
       type(c_ptr),value :: dst
-      type(c_ptr),intent(INOUT) :: srcArray
+      type(c_ptr) :: srcArray
       integer(c_size_t),value :: srcOffset
       integer(c_size_t),value :: count
     end function
@@ -2949,7 +2949,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipMemcpyHtoA
 #endif
-      type(c_ptr),intent(INOUT) :: dstArray
+      type(c_ptr) :: dstArray
       integer(c_size_t),value :: dstOffset
       type(c_ptr),value :: srcHost
       integer(c_size_t),value :: count
@@ -2982,7 +2982,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipMemcpy3D
 #endif
-      type(c_ptr),intent(INOUT) :: p
+      type(c_ptr) :: p
     end function
 
   ! 
@@ -3012,7 +3012,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipDrvMemcpy3D
 #endif
-      type(c_ptr),intent(INOUT) :: pCopy
+      type(c_ptr) :: pCopy
     end function
 
   ! 
@@ -3043,7 +3043,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipDrvMemcpy3DAsync
 #endif
-      type(c_ptr),intent(INOUT) :: pCopy
+      type(c_ptr) :: pCopy
       type(c_ptr),value :: stream
     end function
 
@@ -3182,7 +3182,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipMemGetAddressRange
 #endif
-      type(c_ptr),intent(INOUT) :: pbase
+      type(c_ptr) :: pbase
       integer(c_size_t),intent(IN) :: psize
       type(c_ptr),value :: dptr
     end function
@@ -3261,7 +3261,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipCtxCreate
 #endif
-      type(c_ptr),intent(INOUT) :: ctx
+      type(c_ptr) :: ctx
       integer(kind=4),value :: flags
       integer(c_int),value :: device
     end function
@@ -3284,7 +3284,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipCtxDestroy
 #endif
-      type(c_ptr),intent(INOUT) :: ctx
+      type(c_ptr) :: ctx
     end function
 
   
@@ -3305,7 +3305,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipCtxPopCurrent
 #endif
-      type(c_ptr),intent(INOUT) :: ctx
+      type(c_ptr) :: ctx
     end function
 
   
@@ -3326,7 +3326,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipCtxPushCurrent
 #endif
-      type(c_ptr),intent(INOUT) :: ctx
+      type(c_ptr) :: ctx
     end function
 
   
@@ -3347,7 +3347,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipCtxSetCurrent
 #endif
-      type(c_ptr),intent(INOUT) :: ctx
+      type(c_ptr) :: ctx
     end function
 
   
@@ -3368,7 +3368,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipCtxGetCurrent
 #endif
-      type(c_ptr),intent(INOUT) :: ctx
+      type(c_ptr) :: ctx
     end function
 
   
@@ -3410,7 +3410,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipCtxGetApiVersion
 #endif
-      type(c_ptr),intent(INOUT) :: ctx
+      type(c_ptr) :: ctx
       type(c_ptr),value :: apiVersion
     end function
 
@@ -3557,7 +3557,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipCtxEnablePeerAccess
 #endif
-      type(c_ptr),intent(INOUT) :: peerCtx
+      type(c_ptr) :: peerCtx
       integer(kind=4),value :: flags
     end function
 
@@ -3579,7 +3579,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipCtxDisablePeerAccess
 #endif
-      type(c_ptr),intent(INOUT) :: peerCtx
+      type(c_ptr) :: peerCtx
     end function
 
   ! 
@@ -3676,7 +3676,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipDevicePrimaryCtxRetain
 #endif
-      type(c_ptr),intent(INOUT) :: pctx
+      type(c_ptr) :: pctx
       integer(c_int),value :: dev
     end function
 
@@ -4011,7 +4011,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipModuleLoad
 #endif
-      type(c_ptr),intent(INOUT) :: myModule
+      type(c_ptr) :: myModule
       type(c_ptr),value :: fname
     end function
 
@@ -4041,7 +4041,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipModuleUnload
 #endif
-      type(c_ptr),intent(INOUT) :: myModule
+      type(c_ptr) :: myModule
     end function
 
   ! 
@@ -4071,8 +4071,8 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipModuleGetFunction
 #endif
-      type(c_ptr),intent(INOUT) :: myFunction
-      type(c_ptr),intent(INOUT) :: myModule
+      type(c_ptr) :: myFunction
+      type(c_ptr) :: myModule
       type(c_ptr),value :: kname
     end function
 
@@ -4101,7 +4101,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipFuncGetAttributes
 #endif
-      type(c_ptr),intent(INOUT) :: attr
+      type(c_ptr) :: attr
       type(c_ptr),value :: func
     end function
 
@@ -4133,7 +4133,7 @@ module hipfort
 #endif
       type(c_ptr),value :: myValue
       integer(kind(HIP_FUNC_ATTRIBUTE_MAX_THREADS_PER_BLOCK)),value :: attrib
-      type(c_ptr),intent(INOUT) :: hfunc
+      type(c_ptr) :: hfunc
     end function
 
   
@@ -4154,8 +4154,8 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipModuleGetTexRef
 #endif
-      type(c_ptr),intent(INOUT) :: texRef
-      type(c_ptr),intent(INOUT) :: hmod
+      type(c_ptr) :: texRef
+      type(c_ptr) :: hmod
       type(c_ptr),value :: name
     end function
 
@@ -4185,7 +4185,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipModuleLoadData
 #endif
-      type(c_ptr),intent(INOUT) :: myModule
+      type(c_ptr) :: myModule
       type(c_ptr),value :: image
     end function
 
@@ -4218,7 +4218,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipModuleLoadDataEx
 #endif
-      type(c_ptr),intent(INOUT) :: myModule
+      type(c_ptr) :: myModule
       type(c_ptr),value :: image
       integer(kind=4),value :: numOptions
       type(c_ptr),value :: options
@@ -4266,7 +4266,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipModuleLaunchKernel
 #endif
-      type(c_ptr),intent(INOUT) :: f
+      type(c_ptr) :: f
       integer(kind=4),value :: gridDimX
       integer(kind=4),value :: gridDimY
       integer(kind=4),value :: gridDimZ
@@ -4371,7 +4371,7 @@ module hipfort
 #endif
       type(c_ptr),value :: gridSize
       type(c_ptr),value :: blockSize
-      type(c_ptr),intent(INOUT) :: f
+      type(c_ptr) :: f
       integer(c_size_t),value :: dynSharedMemPerBlk
       integer(c_int),value :: blockSizeLimit
     end function
@@ -4396,7 +4396,7 @@ module hipfort
 #endif
       type(c_ptr),value :: gridSize
       type(c_ptr),value :: blockSize
-      type(c_ptr),intent(INOUT) :: f
+      type(c_ptr) :: f
       integer(c_size_t),value :: dynSharedMemPerBlk
       integer(c_int),value :: blockSizeLimit
       integer(kind=4),value :: flags
@@ -4428,7 +4428,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipModuleOccupancyMaxActiveBlocksPerMultiprocessor
 #endif
       type(c_ptr),value :: numBlocks
-      type(c_ptr),intent(INOUT) :: f
+      type(c_ptr) :: f
       integer(c_int),value :: blockSize
       integer(c_size_t),value :: dynSharedMemPerBlk
     end function
@@ -4460,7 +4460,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags
 #endif
       type(c_ptr),value :: numBlocks
-      type(c_ptr),intent(INOUT) :: f
+      type(c_ptr) :: f
       integer(c_int),value :: blockSize
       integer(c_size_t),value :: dynSharedMemPerBlk
       integer(kind=4),value :: flags
@@ -4647,7 +4647,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipIpcGetMemHandle
 #endif
-      type(c_ptr),intent(INOUT) :: handle
+      type(c_ptr) :: handle
       type(c_ptr),value :: devPtr
     end function
 
@@ -4765,8 +4765,8 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipIpcGetEventHandle
 #endif
-      type(c_ptr),intent(INOUT) :: handle
-      type(c_ptr),intent(INOUT) :: event
+      type(c_ptr) :: handle
+      type(c_ptr) :: event
     end function
 
   
@@ -4787,7 +4787,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipIpcOpenEventHandle
 #endif
-      type(c_ptr),intent(INOUT) :: event
+      type(c_ptr) :: event
       type(c_ptr),value :: handle
     end function
 
@@ -4870,9 +4870,9 @@ module hipfort
       integer(kind(hipSuccess)) :: hipBindTexture2D
 #endif
       integer(c_size_t),intent(IN) :: offset
-      type(c_ptr),intent(INOUT) :: tex
+      type(c_ptr) :: tex
       type(c_ptr),value :: devPtr
-      type(c_ptr),intent(INOUT) :: desc
+      type(c_ptr) :: desc
       integer(c_size_t),value :: width
       integer(c_size_t),value :: height
       integer(c_size_t),value :: pitch
@@ -4896,9 +4896,9 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipBindTextureToArray
 #endif
-      type(c_ptr),intent(INOUT) :: tex
-      type(c_ptr),intent(INOUT) :: array
-      type(c_ptr),intent(INOUT) :: desc
+      type(c_ptr) :: tex
+      type(c_ptr) :: array
+      type(c_ptr) :: desc
     end function
 
   
@@ -4919,9 +4919,9 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipBindTextureToMipmappedArray
 #endif
-      type(c_ptr),intent(INOUT) :: tex
-      type(c_ptr),intent(INOUT) :: mipmappedArray
-      type(c_ptr),intent(INOUT) :: desc
+      type(c_ptr) :: tex
+      type(c_ptr) :: mipmappedArray
+      type(c_ptr) :: desc
     end function
 
   
@@ -4943,7 +4943,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipGetTextureAlignmentOffset
 #endif
       integer(c_size_t),intent(IN) :: offset
-      type(c_ptr),intent(INOUT) :: texref
+      type(c_ptr) :: texref
     end function
 
   
@@ -4964,7 +4964,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipGetTextureReference
 #endif
-      type(c_ptr),intent(INOUT) :: texref
+      type(c_ptr) :: texref
       type(c_ptr),value :: symbol
     end function
 
@@ -4986,7 +4986,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipUnbindTexture
 #endif
-      type(c_ptr),intent(INOUT) :: tex
+      type(c_ptr) :: tex
     end function
 
   
@@ -5007,9 +5007,9 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipCreateTextureObject
 #endif
-      type(c_ptr),intent(INOUT) :: pTexObject
-      type(c_ptr),intent(INOUT) :: pResDesc
-      type(c_ptr),intent(INOUT) :: pTexDesc
+      type(c_ptr) :: pTexObject
+      type(c_ptr) :: pResDesc
+      type(c_ptr) :: pTexDesc
       type(c_ptr),value :: pResViewDesc
     end function
 
@@ -5031,7 +5031,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipDestroyTextureObject
 #endif
-      type(c_ptr),intent(INOUT) :: textureObject
+      type(c_ptr) :: textureObject
     end function
 
   
@@ -5052,8 +5052,8 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipGetChannelDesc
 #endif
-      type(c_ptr),intent(INOUT) :: desc
-      type(c_ptr),intent(INOUT) :: array
+      type(c_ptr) :: desc
+      type(c_ptr) :: array
     end function
 
   
@@ -5074,8 +5074,8 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipGetTextureObjectResourceDesc
 #endif
-      type(c_ptr),intent(INOUT) :: pResDesc
-      type(c_ptr),intent(INOUT) :: textureObject
+      type(c_ptr) :: pResDesc
+      type(c_ptr) :: textureObject
     end function
 
   
@@ -5097,7 +5097,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipGetTextureObjectResourceViewDesc
 #endif
       type(c_ptr),value :: pResViewDesc
-      type(c_ptr),intent(INOUT) :: textureObject
+      type(c_ptr) :: textureObject
     end function
 
   
@@ -5118,8 +5118,8 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipGetTextureObjectTextureDesc
 #endif
-      type(c_ptr),intent(INOUT) :: pTexDesc
-      type(c_ptr),intent(INOUT) :: textureObject
+      type(c_ptr) :: pTexDesc
+      type(c_ptr) :: textureObject
     end function
 
   
@@ -5140,8 +5140,8 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipTexRefGetAddress
 #endif
-      type(c_ptr),intent(INOUT) :: dev_ptr
-      type(c_ptr),intent(INOUT) :: texRef
+      type(c_ptr) :: dev_ptr
+      type(c_ptr) :: texRef
     end function
 
   
@@ -5163,7 +5163,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipTexRefGetAddressMode
 #endif
       type(c_ptr),value :: pam
-      type(c_ptr),intent(INOUT) :: texRef
+      type(c_ptr) :: texRef
       integer(c_int),value :: dim
     end function
 
@@ -5186,7 +5186,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipTexRefGetFilterMode
 #endif
       type(c_ptr),value :: pfm
-      type(c_ptr),intent(INOUT) :: texRef
+      type(c_ptr) :: texRef
     end function
 
   
@@ -5208,7 +5208,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipTexRefGetFlags
 #endif
       type(c_ptr),value :: pFlags
-      type(c_ptr),intent(INOUT) :: texRef
+      type(c_ptr) :: texRef
     end function
 
   
@@ -5231,7 +5231,7 @@ module hipfort
 #endif
       type(c_ptr),value :: pFormat
       type(c_ptr),value :: pNumChannels
-      type(c_ptr),intent(INOUT) :: texRef
+      type(c_ptr) :: texRef
     end function
 
   
@@ -5253,7 +5253,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipTexRefGetMaxAnisotropy
 #endif
       type(c_ptr),value :: pmaxAnsio
-      type(c_ptr),intent(INOUT) :: texRef
+      type(c_ptr) :: texRef
     end function
 
   
@@ -5275,7 +5275,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipTexRefGetMipmapFilterMode
 #endif
       type(c_ptr),value :: pfm
-      type(c_ptr),intent(INOUT) :: texRef
+      type(c_ptr) :: texRef
     end function
 
   
@@ -5297,7 +5297,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipTexRefGetMipmapLevelBias
 #endif
       type(c_ptr),value :: pbias
-      type(c_ptr),intent(INOUT) :: texRef
+      type(c_ptr) :: texRef
     end function
 
   
@@ -5320,7 +5320,7 @@ module hipfort
 #endif
       type(c_ptr),value :: pminMipmapLevelClamp
       type(c_ptr),value :: pmaxMipmapLevelClamp
-      type(c_ptr),intent(INOUT) :: texRef
+      type(c_ptr) :: texRef
     end function
 
   
@@ -5341,8 +5341,8 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipTexRefGetMipMappedArray
 #endif
-      type(c_ptr),intent(INOUT) :: pArray
-      type(c_ptr),intent(INOUT) :: texRef
+      type(c_ptr) :: pArray
+      type(c_ptr) :: texRef
     end function
 
   
@@ -5364,7 +5364,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipTexRefSetAddress
 #endif
       integer(c_size_t),intent(IN) :: ByteOffset
-      type(c_ptr),intent(INOUT) :: texRef
+      type(c_ptr) :: texRef
       type(c_ptr),value :: dptr
       integer(c_size_t),value :: bytes
     end function
@@ -5387,8 +5387,8 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipTexRefSetAddress2D
 #endif
-      type(c_ptr),intent(INOUT) :: texRef
-      type(c_ptr),intent(INOUT) :: desc
+      type(c_ptr) :: texRef
+      type(c_ptr) :: desc
       type(c_ptr),value :: dptr
       integer(c_size_t),value :: Pitch
     end function
@@ -5411,7 +5411,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipTexRefSetAddressMode
 #endif
-      type(c_ptr),intent(INOUT) :: texRef
+      type(c_ptr) :: texRef
       integer(c_int),value :: dim
       integer(kind(hipAddressModeWrap)),value :: am
     end function
@@ -5434,8 +5434,8 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipTexRefSetArray
 #endif
-      type(c_ptr),intent(INOUT) :: tex
-      type(c_ptr),intent(INOUT) :: array
+      type(c_ptr) :: tex
+      type(c_ptr) :: array
       integer(kind=4),value :: flags
     end function
 
@@ -5457,7 +5457,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipTexRefSetBorderColor
 #endif
-      type(c_ptr),intent(INOUT) :: texRef
+      type(c_ptr) :: texRef
       type(c_ptr),value :: pBorderColor
     end function
 
@@ -5479,7 +5479,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipTexRefSetFilterMode
 #endif
-      type(c_ptr),intent(INOUT) :: texRef
+      type(c_ptr) :: texRef
       integer(kind(hipFilterModePoint)),value :: fm
     end function
 
@@ -5501,7 +5501,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipTexRefSetFlags
 #endif
-      type(c_ptr),intent(INOUT) :: texRef
+      type(c_ptr) :: texRef
       integer(kind=4),value :: Flags
     end function
 
@@ -5523,7 +5523,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipTexRefSetFormat
 #endif
-      type(c_ptr),intent(INOUT) :: texRef
+      type(c_ptr) :: texRef
       integer(kind(HIP_AD_FORMAT_UNSIGNED_INT8)),value :: fmt
       integer(c_int),value :: NumPackedComponents
     end function
@@ -5546,7 +5546,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipTexRefSetMaxAnisotropy
 #endif
-      type(c_ptr),intent(INOUT) :: texRef
+      type(c_ptr) :: texRef
       integer(kind=4),value :: maxAniso
     end function
 
@@ -5568,7 +5568,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipTexRefSetMipmapFilterMode
 #endif
-      type(c_ptr),intent(INOUT) :: texRef
+      type(c_ptr) :: texRef
       integer(kind(hipFilterModePoint)),value :: fm
     end function
 
@@ -5590,7 +5590,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipTexRefSetMipmapLevelBias
 #endif
-      type(c_ptr),intent(INOUT) :: texRef
+      type(c_ptr) :: texRef
       real(c_float),value :: bias
     end function
 
@@ -5612,7 +5612,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipTexRefSetMipmapLevelClamp
 #endif
-      type(c_ptr),intent(INOUT) :: texRef
+      type(c_ptr) :: texRef
       real(c_float),value :: minMipMapLevelClamp
       real(c_float),value :: maxMipMapLevelClamp
     end function
@@ -5635,7 +5635,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipTexRefSetMipmappedArray
 #endif
-      type(c_ptr),intent(INOUT) :: texRef
+      type(c_ptr) :: texRef
       type(c_ptr),value :: mipmappedArray
       integer(kind=4),value :: Flags
     end function
@@ -5658,8 +5658,8 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipMipmappedArrayCreate
 #endif
-      type(c_ptr),intent(INOUT) :: pHandle
-      type(c_ptr),intent(INOUT) :: pMipmappedArrayDesc
+      type(c_ptr) :: pHandle
+      type(c_ptr) :: pMipmappedArrayDesc
       integer(kind=4),value :: numMipmapLevels
     end function
 
@@ -5681,7 +5681,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipMipmappedArrayDestroy
 #endif
-      type(c_ptr),intent(INOUT) :: hMipmappedArray
+      type(c_ptr) :: hMipmappedArray
     end function
 
   
@@ -5702,8 +5702,8 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipMipmappedArrayGetLevel
 #endif
-      type(c_ptr),intent(INOUT) :: pLevelArray
-      type(c_ptr),intent(INOUT) :: hMipMappedArray
+      type(c_ptr) :: pLevelArray
+      type(c_ptr) :: hMipMappedArray
       integer(kind=4),value :: level
     end function
 
@@ -5725,7 +5725,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipTexObjectCreate
 #endif
-      type(c_ptr),intent(INOUT) :: pTexObject
+      type(c_ptr) :: pTexObject
       type(c_ptr),value :: pResDesc
       type(c_ptr),value :: pTexDesc
       type(c_ptr),value :: pResViewDesc
@@ -5749,7 +5749,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipTexObjectDestroy
 #endif
-      type(c_ptr),intent(INOUT) :: texObject
+      type(c_ptr) :: texObject
     end function
 
   
@@ -5771,7 +5771,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipTexObjectGetResourceDesc
 #endif
       type(c_ptr),value :: pResDesc
-      type(c_ptr),intent(INOUT) :: texObject
+      type(c_ptr) :: texObject
     end function
 
   
@@ -5793,7 +5793,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipTexObjectGetResourceViewDesc
 #endif
       type(c_ptr),value :: pResViewDesc
-      type(c_ptr),intent(INOUT) :: texObject
+      type(c_ptr) :: texObject
     end function
 
   
@@ -5815,7 +5815,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipTexObjectGetTextureDesc
 #endif
       type(c_ptr),value :: pTexDesc
-      type(c_ptr),intent(INOUT) :: texObject
+      type(c_ptr) :: texObject
     end function
 
   ! 

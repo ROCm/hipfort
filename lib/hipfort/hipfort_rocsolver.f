@@ -37,7 +37,7 @@ module hipfort_rocsolver
       use hipfort_rocsolver_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocsolver_create_handle
-      type(c_ptr),intent(INOUT) :: handle
+      type(c_ptr) :: handle
     end function
 
   
@@ -76,7 +76,7 @@ module hipfort_rocsolver
       implicit none
       integer(kind(rocblas_status_success)) :: rocsolver_get_stream
       type(c_ptr),value :: handle
-      type(c_ptr),intent(INOUT) :: stream
+      type(c_ptr) :: stream
     end function
 
   
@@ -1598,7 +1598,7 @@ module hipfort_rocsolver
   !               If info = i > 0, U is singular. U(i,i) is the first zero pivot.
   !             
   !     
-    function rocsolver_sgetf2(handle,m,n,A,lda,ipiv,info) bind(c, name="rocsolver_sgetf2")
+    function rocsolver_sgetf2(handle,m,n,A,lda,ipiv,myInfo) bind(c, name="rocsolver_sgetf2")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
@@ -1609,11 +1609,11 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
     end function
 
   
-    function rocsolver_dgetf2(handle,m,n,A,lda,ipiv,info) bind(c, name="rocsolver_dgetf2")
+    function rocsolver_dgetf2(handle,m,n,A,lda,ipiv,myInfo) bind(c, name="rocsolver_dgetf2")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
@@ -1624,11 +1624,11 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
     end function
 
   
-    function rocsolver_cgetf2(handle,m,n,A,lda,ipiv,info) bind(c, name="rocsolver_cgetf2")
+    function rocsolver_cgetf2(handle,m,n,A,lda,ipiv,myInfo) bind(c, name="rocsolver_cgetf2")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
@@ -1639,11 +1639,11 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
     end function
 
   
-    function rocsolver_zgetf2(handle,m,n,A,lda,ipiv,info) bind(c, name="rocsolver_zgetf2")
+    function rocsolver_zgetf2(handle,m,n,A,lda,ipiv,myInfo) bind(c, name="rocsolver_zgetf2")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
@@ -1654,7 +1654,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
     end function
 
   ! ! \brief GETF2_BATCHED computes the LU factorization of a batch of general m-by-n matrices
@@ -1708,7 +1708,7 @@ module hipfort_rocsolver
   !                 Number of matrices in the batch. 
   !             
   !     
-    function rocsolver_sgetf2_batched(handle,m,n,A,lda,ipiv,strideP,info,batch_count) bind(c, name="rocsolver_sgetf2_batched")
+    function rocsolver_sgetf2_batched(handle,m,n,A,lda,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_sgetf2_batched")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
@@ -1720,12 +1720,12 @@ module hipfort_rocsolver
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
   
-    function rocsolver_dgetf2_batched(handle,m,n,A,lda,ipiv,strideP,info,batch_count) bind(c, name="rocsolver_dgetf2_batched")
+    function rocsolver_dgetf2_batched(handle,m,n,A,lda,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_dgetf2_batched")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
@@ -1737,12 +1737,12 @@ module hipfort_rocsolver
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
   
-    function rocsolver_cgetf2_batched(handle,m,n,A,lda,ipiv,strideP,info,batch_count) bind(c, name="rocsolver_cgetf2_batched")
+    function rocsolver_cgetf2_batched(handle,m,n,A,lda,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_cgetf2_batched")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
@@ -1754,12 +1754,12 @@ module hipfort_rocsolver
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
   
-    function rocsolver_zgetf2_batched(handle,m,n,A,lda,ipiv,strideP,info,batch_count) bind(c, name="rocsolver_zgetf2_batched")
+    function rocsolver_zgetf2_batched(handle,m,n,A,lda,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_zgetf2_batched")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
@@ -1771,7 +1771,7 @@ module hipfort_rocsolver
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
@@ -1830,7 +1830,7 @@ module hipfort_rocsolver
   !                 Number of matrices in the batch. 
   !             
   !     
-    function rocsolver_sgetf2_strided_batched(handle,m,n,A,lda,strideA,ipiv,strideP,info,batch_count) bind(c, name="rocsolver_sgetf2_strided_batched")
+    function rocsolver_sgetf2_strided_batched(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_sgetf2_strided_batched")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
@@ -1843,12 +1843,12 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: strideA
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
   
-    function rocsolver_dgetf2_strided_batched(handle,m,n,A,lda,strideA,ipiv,strideP,info,batch_count) bind(c, name="rocsolver_dgetf2_strided_batched")
+    function rocsolver_dgetf2_strided_batched(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_dgetf2_strided_batched")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
@@ -1861,12 +1861,12 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: strideA
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
   
-    function rocsolver_cgetf2_strided_batched(handle,m,n,A,lda,strideA,ipiv,strideP,info,batch_count) bind(c, name="rocsolver_cgetf2_strided_batched")
+    function rocsolver_cgetf2_strided_batched(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_cgetf2_strided_batched")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
@@ -1879,12 +1879,12 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: strideA
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
   
-    function rocsolver_zgetf2_strided_batched(handle,m,n,A,lda,strideA,ipiv,strideP,info,batch_count) bind(c, name="rocsolver_zgetf2_strided_batched")
+    function rocsolver_zgetf2_strided_batched(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_zgetf2_strided_batched")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
@@ -1897,7 +1897,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: strideA
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
@@ -1943,7 +1943,7 @@ module hipfort_rocsolver
   !               If info = i > 0, U is singular. U(i,i) is the first zero pivot.
   !             
   !     
-    function rocsolver_sgetrf(handle,m,n,A,lda,ipiv,info) bind(c, name="rocsolver_sgetrf")
+    function rocsolver_sgetrf(handle,m,n,A,lda,ipiv,myInfo) bind(c, name="rocsolver_sgetrf")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
@@ -1954,11 +1954,11 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
     end function
 
   
-    function rocsolver_dgetrf(handle,m,n,A,lda,ipiv,info) bind(c, name="rocsolver_dgetrf")
+    function rocsolver_dgetrf(handle,m,n,A,lda,ipiv,myInfo) bind(c, name="rocsolver_dgetrf")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
@@ -1969,11 +1969,11 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
     end function
 
   
-    function rocsolver_cgetrf(handle,m,n,A,lda,ipiv,info) bind(c, name="rocsolver_cgetrf")
+    function rocsolver_cgetrf(handle,m,n,A,lda,ipiv,myInfo) bind(c, name="rocsolver_cgetrf")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
@@ -1984,11 +1984,11 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
     end function
 
   
-    function rocsolver_zgetrf(handle,m,n,A,lda,ipiv,info) bind(c, name="rocsolver_zgetrf")
+    function rocsolver_zgetrf(handle,m,n,A,lda,ipiv,myInfo) bind(c, name="rocsolver_zgetrf")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
@@ -1999,7 +1999,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
     end function
 
   ! ! \brief GETRF_BATCHED computes the LU factorization of a batch of general m-by-n matrices
@@ -2053,7 +2053,7 @@ module hipfort_rocsolver
   !                 Number of matrices in the batch. 
   !             
   !     
-    function rocsolver_sgetrf_batched(handle,m,n,A,lda,ipiv,strideP,info,batch_count) bind(c, name="rocsolver_sgetrf_batched")
+    function rocsolver_sgetrf_batched(handle,m,n,A,lda,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_sgetrf_batched")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
@@ -2065,12 +2065,12 @@ module hipfort_rocsolver
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
   
-    function rocsolver_dgetrf_batched(handle,m,n,A,lda,ipiv,strideP,info,batch_count) bind(c, name="rocsolver_dgetrf_batched")
+    function rocsolver_dgetrf_batched(handle,m,n,A,lda,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_dgetrf_batched")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
@@ -2082,12 +2082,12 @@ module hipfort_rocsolver
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
   
-    function rocsolver_cgetrf_batched(handle,m,n,A,lda,ipiv,strideP,info,batch_count) bind(c, name="rocsolver_cgetrf_batched")
+    function rocsolver_cgetrf_batched(handle,m,n,A,lda,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_cgetrf_batched")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
@@ -2099,12 +2099,12 @@ module hipfort_rocsolver
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
   
-    function rocsolver_zgetrf_batched(handle,m,n,A,lda,ipiv,strideP,info,batch_count) bind(c, name="rocsolver_zgetrf_batched")
+    function rocsolver_zgetrf_batched(handle,m,n,A,lda,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_zgetrf_batched")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
@@ -2116,7 +2116,7 @@ module hipfort_rocsolver
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
@@ -2175,7 +2175,7 @@ module hipfort_rocsolver
   !                 Number of matrices in the batch. 
   !             
   !     
-    function rocsolver_sgetrf_strided_batched(handle,m,n,A,lda,strideA,ipiv,strideP,info,batch_count) bind(c, name="rocsolver_sgetrf_strided_batched")
+    function rocsolver_sgetrf_strided_batched(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_sgetrf_strided_batched")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
@@ -2188,12 +2188,12 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: strideA
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
   
-    function rocsolver_dgetrf_strided_batched(handle,m,n,A,lda,strideA,ipiv,strideP,info,batch_count) bind(c, name="rocsolver_dgetrf_strided_batched")
+    function rocsolver_dgetrf_strided_batched(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_dgetrf_strided_batched")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
@@ -2206,12 +2206,12 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: strideA
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
   
-    function rocsolver_cgetrf_strided_batched(handle,m,n,A,lda,strideA,ipiv,strideP,info,batch_count) bind(c, name="rocsolver_cgetrf_strided_batched")
+    function rocsolver_cgetrf_strided_batched(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_cgetrf_strided_batched")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
@@ -2224,12 +2224,12 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: strideA
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
   
-    function rocsolver_zgetrf_strided_batched(handle,m,n,A,lda,strideA,ipiv,strideP,info,batch_count) bind(c, name="rocsolver_zgetrf_strided_batched")
+    function rocsolver_zgetrf_strided_batched(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_zgetrf_strided_batched")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
@@ -2242,7 +2242,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: strideA
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
@@ -3919,7 +3919,7 @@ module hipfort_rocsolver
   !               The factorization stopped at this point.
   ! 
   !     
-    function rocsolver_spotf2(handle,uplo,n,A,lda,info) bind(c, name="rocsolver_spotf2")
+    function rocsolver_spotf2(handle,uplo,n,A,lda,myInfo) bind(c, name="rocsolver_spotf2")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
@@ -3929,11 +3929,11 @@ module hipfort_rocsolver
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
     end function
 
   
-    function rocsolver_dpotf2(handle,uplo,n,A,lda,info) bind(c, name="rocsolver_dpotf2")
+    function rocsolver_dpotf2(handle,uplo,n,A,lda,myInfo) bind(c, name="rocsolver_dpotf2")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
@@ -3943,7 +3943,7 @@ module hipfort_rocsolver
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
     end function
 
   ! ! \brief POTF2_BATCHED computes the Cholesky factorization of a 
@@ -3984,7 +3984,7 @@ module hipfort_rocsolver
   !                 Number of matrices in the batch. 
   ! 
   !     
-    function rocsolver_spotf2_batched(handle,uplo,n,A,lda,info,batch_count) bind(c, name="rocsolver_spotf2_batched")
+    function rocsolver_spotf2_batched(handle,uplo,n,A,lda,myInfo,batch_count) bind(c, name="rocsolver_spotf2_batched")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
@@ -3994,12 +3994,12 @@ module hipfort_rocsolver
       integer(c_int),value :: n
       type(c_ptr) :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
   
-    function rocsolver_dpotf2_batched(handle,uplo,n,A,lda,info,batch_count) bind(c, name="rocsolver_dpotf2_batched")
+    function rocsolver_dpotf2_batched(handle,uplo,n,A,lda,myInfo,batch_count) bind(c, name="rocsolver_dpotf2_batched")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
@@ -4009,7 +4009,7 @@ module hipfort_rocsolver
       integer(c_int),value :: n
       type(c_ptr) :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
@@ -4055,7 +4055,7 @@ module hipfort_rocsolver
   !                 Number of matrices in the batch. 
   ! 
   !     
-    function rocsolver_spotf2_strided_batched(handle,uplo,n,A,lda,strideA,info,batch_count) bind(c, name="rocsolver_spotf2_strided_batched")
+    function rocsolver_spotf2_strided_batched(handle,uplo,n,A,lda,strideA,myInfo,batch_count) bind(c, name="rocsolver_spotf2_strided_batched")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
@@ -4066,12 +4066,12 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
   
-    function rocsolver_dpotf2_strided_batched(handle,uplo,n,A,lda,strideA,info,batch_count) bind(c, name="rocsolver_dpotf2_strided_batched")
+    function rocsolver_dpotf2_strided_batched(handle,uplo,n,A,lda,strideA,myInfo,batch_count) bind(c, name="rocsolver_dpotf2_strided_batched")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
@@ -4082,7 +4082,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
@@ -4121,7 +4121,7 @@ module hipfort_rocsolver
   !               The factorization stopped at this point.
   ! 
   !     
-    function rocsolver_spotrf(handle,uplo,n,A,lda,info) bind(c, name="rocsolver_spotrf")
+    function rocsolver_spotrf(handle,uplo,n,A,lda,myInfo) bind(c, name="rocsolver_spotrf")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
@@ -4131,11 +4131,11 @@ module hipfort_rocsolver
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
     end function
 
   
-    function rocsolver_dpotrf(handle,uplo,n,A,lda,info) bind(c, name="rocsolver_dpotrf")
+    function rocsolver_dpotrf(handle,uplo,n,A,lda,myInfo) bind(c, name="rocsolver_dpotrf")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
@@ -4145,7 +4145,7 @@ module hipfort_rocsolver
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
     end function
 
   ! ! \brief POTRF_BATCHED computes the Cholesky factorization of a 
@@ -4186,7 +4186,7 @@ module hipfort_rocsolver
   !                 Number of matrices in the batch. 
   ! 
   !     
-    function rocsolver_spotrf_batched(handle,uplo,n,A,lda,info,batch_count) bind(c, name="rocsolver_spotrf_batched")
+    function rocsolver_spotrf_batched(handle,uplo,n,A,lda,myInfo,batch_count) bind(c, name="rocsolver_spotrf_batched")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
@@ -4196,12 +4196,12 @@ module hipfort_rocsolver
       integer(c_int),value :: n
       type(c_ptr) :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
   
-    function rocsolver_dpotrf_batched(handle,uplo,n,A,lda,info,batch_count) bind(c, name="rocsolver_dpotrf_batched")
+    function rocsolver_dpotrf_batched(handle,uplo,n,A,lda,myInfo,batch_count) bind(c, name="rocsolver_dpotrf_batched")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
@@ -4211,7 +4211,7 @@ module hipfort_rocsolver
       integer(c_int),value :: n
       type(c_ptr) :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
@@ -4257,7 +4257,7 @@ module hipfort_rocsolver
   !                 Number of matrices in the batch. 
   ! 
   !     
-    function rocsolver_spotrf_strided_batched(handle,uplo,n,A,lda,strideA,info,batch_count) bind(c, name="rocsolver_spotrf_strided_batched")
+    function rocsolver_spotrf_strided_batched(handle,uplo,n,A,lda,strideA,myInfo,batch_count) bind(c, name="rocsolver_spotrf_strided_batched")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
@@ -4268,12 +4268,12 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
   
-    function rocsolver_dpotrf_strided_batched(handle,uplo,n,A,lda,strideA,info,batch_count) bind(c, name="rocsolver_dpotrf_strided_batched")
+    function rocsolver_dpotrf_strided_batched(handle,uplo,n,A,lda,strideA,myInfo,batch_count) bind(c, name="rocsolver_dpotrf_strided_batched")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
@@ -4284,7 +4284,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 

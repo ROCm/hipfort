@@ -704,11 +704,11 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_hdot
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr),intent(INOUT) :: x
+      type(c_ptr) :: x
       integer(c_int),value :: incx
-      type(c_ptr),intent(INOUT) :: y
+      type(c_ptr) :: y
       integer(c_int),value :: incy
-      type(c_ptr),intent(INOUT) :: myResult
+      type(c_ptr) :: myResult
     end function
 
   
@@ -864,12 +864,12 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_hdot_batched
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr),intent(INOUT) :: x
+      type(c_ptr) :: x
       integer(c_int),value :: incx
-      type(c_ptr),intent(INOUT) :: y
+      type(c_ptr) :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
-      type(c_ptr),intent(INOUT) :: myResult
+      type(c_ptr) :: myResult
     end function
 
   
@@ -1040,14 +1040,14 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_hdot_strided_batched
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr),intent(INOUT) :: x
+      type(c_ptr) :: x
       integer(c_int),value :: incx
       integer(c_int64_t),value :: stridex
-      type(c_ptr),intent(INOUT) :: y
+      type(c_ptr) :: y
       integer(c_int),value :: incy
       integer(c_int64_t),value :: stridey
       integer(c_int),value :: batch_count
-      type(c_ptr),intent(INOUT) :: myResult
+      type(c_ptr) :: myResult
     end function
 
   
@@ -1471,9 +1471,9 @@ module hipfort_rocblas
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       type(c_ptr),intent(IN) :: alpha
-      type(c_ptr),intent(INOUT) :: x
+      type(c_ptr) :: x
       integer(c_int),value :: incx
-      type(c_ptr),intent(INOUT) :: y
+      type(c_ptr) :: y
       integer(c_int),value :: incy
     end function
 
@@ -1543,9 +1543,9 @@ module hipfort_rocblas
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       type(c_ptr),intent(IN) :: alpha
-      type(c_ptr),intent(INOUT) :: x
+      type(c_ptr) :: x
       integer(c_int),value :: incx
-      type(c_ptr),intent(INOUT) :: y
+      type(c_ptr) :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
     end function
@@ -1656,10 +1656,10 @@ module hipfort_rocblas
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       type(c_ptr),intent(IN) :: alpha
-      type(c_ptr),intent(INOUT) :: x
+      type(c_ptr) :: x
       integer(c_int),value :: incx
       integer(c_int64_t),value :: stridex
-      type(c_ptr),intent(INOUT) :: y
+      type(c_ptr) :: y
       integer(c_int),value :: incy
       integer(c_int64_t),value :: stridey
       integer(c_int),value :: batch_count
@@ -16662,12 +16662,12 @@ module hipfort_rocblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       type(c_ptr),intent(IN) :: alpha
-      type(c_ptr),intent(INOUT) :: A
+      type(c_ptr) :: A
       integer(c_int),value :: lda
-      type(c_ptr),intent(INOUT) :: B
+      type(c_ptr) :: B
       integer(c_int),value :: ldb
       type(c_ptr),intent(IN) :: beta
-      type(c_ptr),intent(INOUT) :: C
+      type(c_ptr) :: C
       integer(c_int),value :: ldc
     end function
 
@@ -16838,12 +16838,12 @@ module hipfort_rocblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       type(c_ptr),intent(IN) :: alpha
-      type(c_ptr),intent(INOUT) :: A
+      type(c_ptr) :: A
       integer(c_int),value :: lda
-      type(c_ptr),intent(INOUT) :: B
+      type(c_ptr) :: B
       integer(c_int),value :: ldb
       type(c_ptr),intent(IN) :: beta
-      type(c_ptr),intent(INOUT) :: C
+      type(c_ptr) :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batch_count
     end function
@@ -17028,14 +17028,14 @@ module hipfort_rocblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       type(c_ptr),intent(IN) :: alpha
-      type(c_ptr),intent(INOUT) :: A
+      type(c_ptr) :: A
       integer(c_int),value :: lda
       integer(c_int64_t),value :: stride_a
-      type(c_ptr),intent(INOUT) :: B
+      type(c_ptr) :: B
       integer(c_int),value :: ldb
       integer(c_int64_t),value :: stride_b
       type(c_ptr),intent(IN) :: beta
-      type(c_ptr),intent(INOUT) :: C
+      type(c_ptr) :: C
       integer(c_int),value :: ldc
       integer(c_int64_t),value :: stride_c
       integer(c_int),value :: batch_count
@@ -17054,14 +17054,14 @@ module hipfort_rocblas
       integer(c_int),value :: n
       integer(c_int),value :: k
       type(c_ptr),intent(IN) :: alpha
-      type(c_ptr),intent(INOUT) :: A
+      type(c_ptr) :: A
       integer(c_int),value :: lda
       integer(c_int64_t),value :: stride_a
-      type(c_ptr),intent(INOUT) :: B
+      type(c_ptr) :: B
       integer(c_int),value :: ldb
       integer(c_int64_t),value :: stride_b
       type(c_ptr),intent(IN) :: beta
-      type(c_ptr),intent(INOUT) :: C
+      type(c_ptr) :: C
       integer(c_int),value :: ldc
       integer(c_int64_t),value :: stride_c
       integer(c_int),value :: batch_count
@@ -18123,6 +18123,306 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_set_device_memory_size
       type(c_ptr),value :: handle
       integer(c_size_t),value :: mySize
+    end function
+
+  ! ! \brief create handle
+  !  
+    function rocblas_create_handle(handle) bind(c, name="rocblas_create_handle")
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_create_handle
+      type(c_ptr) :: handle
+    end function
+
+  ! ! \brief destroy handle
+  !  
+    function rocblas_destroy_handle(handle) bind(c, name="rocblas_destroy_handle")
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_destroy_handle
+      type(c_ptr),value :: handle
+    end function
+
+  ! ! \brief add stream to handle
+  !  
+    function rocblas_add_stream(handle,stream) bind(c, name="rocblas_add_stream")
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_add_stream
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: stream
+    end function
+
+  ! ! \brief remove any streams from handle, and add one
+  !  
+    function rocblas_set_stream(handle,stream) bind(c, name="rocblas_set_stream")
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_set_stream
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: stream
+    end function
+
+  ! ! \brief get stream [0] from handle
+  !  
+    function rocblas_get_stream(handle,stream) bind(c, name="rocblas_get_stream")
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_get_stream
+      type(c_ptr),value :: handle
+      type(c_ptr) :: stream
+    end function
+
+  ! ! \brief set rocblas_pointer_mode
+  !  
+    function rocblas_set_pointer_mode(handle,pointer_mode) bind(c, name="rocblas_set_pointer_mode")
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_set_pointer_mode
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_pointer_mode_host)),value :: pointer_mode
+    end function
+
+  ! ! \brief get rocblas_pointer_mode
+  !  
+    function rocblas_get_pointer_mode(handle,pointer_mode) bind(c, name="rocblas_get_pointer_mode")
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_get_pointer_mode
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: pointer_mode
+    end function
+
+  ! ! \brief copy vector from host to device
+  !  
+    function rocblas_set_vector(n,elem_size,x,incx,y,incy) bind(c, name="rocblas_set_vector")
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_set_vector
+      integer(c_int),value :: n
+      integer(c_int),value :: elem_size
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int),value :: incy
+    end function
+
+  ! ! \brief copy vector from device to host
+  !  
+    function rocblas_get_vector(n,elem_size,x,incx,y,incy) bind(c, name="rocblas_get_vector")
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_get_vector
+      integer(c_int),value :: n
+      integer(c_int),value :: elem_size
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int),value :: incy
+    end function
+
+  ! ! \brief copy matrix from host to device
+  !  
+    function rocblas_set_matrix(rows,cols,elem_size,a,lda,b,ldb) bind(c, name="rocblas_set_matrix")
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_set_matrix
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      integer(c_int),value :: elem_size
+      type(c_ptr),value :: a
+      integer(c_int),value :: lda
+      type(c_ptr),value :: b
+      integer(c_int),value :: ldb
+    end function
+
+  ! ! \brief copy matrix from device to host
+  !  
+    function rocblas_get_matrix(rows,cols,elem_size,a,lda,b,ldb) bind(c, name="rocblas_get_matrix")
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_get_matrix
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      integer(c_int),value :: elem_size
+      type(c_ptr),value :: a
+      integer(c_int),value :: lda
+      type(c_ptr),value :: b
+      integer(c_int),value :: ldb
+    end function
+
+  ! ! \brief asynchronously copy vector from host to device
+  !      \details
+  !     rocblas_set_vector_async copies a vector from pinned host memory to device memory asynchronously.
+  !     Memory on the host must be allocated with hipHostMalloc or the transfer will be synchronous.
+  !     @param[in]
+  !     n           [rocblas_int]
+  !                 number of elements in the vector
+  !     @param[in]
+  !     x           pointer to vector on the host
+  !     @param[in]
+  !     incx        [rocblas_int]
+  !                 specifies the increment for the elements of the vector
+  !     @param[out]
+  !     y           pointer to vector on the device
+  !     @param[in]
+  !     incy        [rocblas_int]
+  !                 specifies the increment for the elements of the vector
+  !     @param[in]
+  !     stream      specifies the stream into which this transfer request is queued
+  !      
+    function rocblas_set_vector_async(n,elem_size,x,incx,y,incy,stream) bind(c, name="rocblas_set_vector_async")
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_set_vector_async
+      integer(c_int),value :: n
+      integer(c_int),value :: elem_size
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+    end function
+
+  ! ! \brief asynchronously copy vector from device to host
+  !      \details
+  !     rocblas_get_vector_async copies a vector from pinned host memory to device memory asynchronously.
+  !     Memory on the host must be allocated with hipHostMalloc or the transfer will be synchronous.
+  !     @param[in]
+  !     n           [rocblas_int]
+  !                 number of elements in the vector
+  !     @param[in]
+  !     x           pointer to vector on the device
+  !     @param[in]
+  !     incx        [rocblas_int]
+  !                 specifies the increment for the elements of the vector
+  !     @param[out]
+  !     y           pointer to vector on the host
+  !     @param[in]
+  !     incy        [rocblas_int]
+  !                 specifies the increment for the elements of the vector
+  !     @param[in]
+  !     stream      specifies the stream into which this transfer request is queued
+  !      
+    function rocblas_get_vector_async(n,elem_size,x,incx,y,incy,stream) bind(c, name="rocblas_get_vector_async")
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_get_vector_async
+      integer(c_int),value :: n
+      integer(c_int),value :: elem_size
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+    end function
+
+  ! ! \brief asynchronously copy matrix from host to device
+  !      \details
+  !     rocblas_set_matrix_async copies a matrix from pinned host memory to device memory asynchronously.
+  !     Memory on the host must be allocated with hipHostMalloc or the transfer will be synchronous.
+  !     @param[in]
+  !     rows        [rocblas_int]
+  !                 number of rows in matrices
+  !     @param[in]
+  !     cols        [rocblas_int]
+  !                 number of columns in matrices
+  !     @param[in]
+  !     elem_size   [rocblas_int]
+  !                 number of bytes per element in the matrix
+  !     @param[in]
+  !     a           pointer to matrix on the host
+  !     @param[in]
+  !     lda         [rocblas_int]
+  !                 specifies the leading dimension of A
+  !     @param[out]
+  !     b           pointer to matrix on the GPU
+  !     @param[in]
+  !     ldb         [rocblas_int]
+  !                 specifies the leading dimension of B
+  !     @param[in]
+  !     stream      specifies the stream into which this transfer request is queued
+  !      
+    function rocblas_set_matrix_async(rows,cols,elem_size,a,lda,b,ldb,stream) bind(c, name="rocblas_set_matrix_async")
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_set_matrix_async
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      integer(c_int),value :: elem_size
+      type(c_ptr),value :: a
+      integer(c_int),value :: lda
+      type(c_ptr),value :: b
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+    end function
+
+  ! ! \brief asynchronously copy matrix from device to host
+  !      \details
+  !     rocblas_get_matrix_async copies a matrix from device memory to pinned host memory asynchronously.
+  !     Memory on the host must be allocated with hipHostMalloc or the transfer will be synchronous.
+  !     @param[in]
+  !     rows        [rocblas_int]
+  !                 number of rows in matrices
+  !     @param[in]
+  !     cols        [rocblas_int]
+  !                 number of columns in matrices
+  !     @param[in]
+  !     elem_size   [rocblas_int]
+  !                 number of bytes per element in the matrix
+  !     @param[in]
+  !     a           pointer to matrix on the GPU
+  !     @param[in]
+  !     lda         [rocblas_int]
+  !                 specifies the leading dimension of A
+  !     @param[out]
+  !     b           pointer to matrix on the host
+  !     @param[in]
+  !     ldb         [rocblas_int]
+  !                 specifies the leading dimension of B
+  !     @param[in]
+  !     stream      specifies the stream into which this transfer request is queued
+  !      
+    function rocblas_get_matrix_async(rows,cols,elem_size,a,lda,b,ldb,stream) bind(c, name="rocblas_get_matrix_async")
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_get_matrix_async
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      integer(c_int),value :: elem_size
+      type(c_ptr),value :: a
+      integer(c_int),value :: lda
+      type(c_ptr),value :: b
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+    end function
+
+  ! 
+  !   Function to set startstop event handlers (for internal use only)
+  !  
+    function rocblas_set_start_stop_events(handle,startEvent,stopEvent) bind(c, name="rocblas_set_start_stop_events")
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_set_start_stop_events
+      type(c_ptr),value :: handle
+      type(c_ptr) :: startEvent
+      type(c_ptr) :: stopEvent
     end function
 
   end interface

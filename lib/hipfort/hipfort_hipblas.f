@@ -41,7 +41,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCreate
-      type(c_ptr),intent(INOUT) :: handle
+      type(c_ptr) :: handle
     end function
 
   
@@ -82,7 +82,7 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGetStream
       type(c_ptr),value :: handle
-      type(c_ptr),intent(INOUT) :: streamId
+      type(c_ptr) :: streamId
     end function
 
   
@@ -1392,11 +1392,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasBfdot
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr),intent(INOUT) :: x
+      type(c_ptr) :: x
       integer(c_int),value :: incx
-      type(c_ptr),intent(INOUT) :: y
+      type(c_ptr) :: y
       integer(c_int),value :: incy
-      type(c_ptr),intent(INOUT) :: myResult
+      type(c_ptr) :: myResult
     end function
 
   
@@ -1545,12 +1545,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasBfdotBatched
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr),intent(INOUT) :: x
+      type(c_ptr) :: x
       integer(c_int),value :: incx
-      type(c_ptr),intent(INOUT) :: y
+      type(c_ptr) :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
-      type(c_ptr),intent(INOUT) :: myResult
+      type(c_ptr) :: myResult
     end function
 
   
@@ -1707,14 +1707,14 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasBfdotStridedBatched
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      type(c_ptr),intent(INOUT) :: x
+      type(c_ptr) :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
-      type(c_ptr),intent(INOUT) :: y
+      type(c_ptr) :: y
       integer(c_int),value :: incy
       integer(c_int),value :: stridey
       integer(c_int),value :: batch_count
-      type(c_ptr),intent(INOUT) :: myResult
+      type(c_ptr) :: myResult
     end function
 
   
@@ -10365,9 +10365,9 @@ module hipfort_hipblas
 
   
 #ifdef USE_CUDA_NAMES
-    function hipblasSgetrf(handle,n,A,lda,ipiv,info) bind(c, name="cublasSgetrf")
+    function hipblasSgetrf(handle,n,A,lda,ipiv,myInfo) bind(c, name="cublasSgetrf")
 #else
-    function hipblasSgetrf(handle,n,A,lda,ipiv,info) bind(c, name="hipblasSgetrf")
+    function hipblasSgetrf(handle,n,A,lda,ipiv,myInfo) bind(c, name="hipblasSgetrf")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -10378,14 +10378,14 @@ module hipfort_hipblas
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
     end function
 
   
 #ifdef USE_CUDA_NAMES
-    function hipblasDgetrf(handle,n,A,lda,ipiv,info) bind(c, name="cublasDgetrf")
+    function hipblasDgetrf(handle,n,A,lda,ipiv,myInfo) bind(c, name="cublasDgetrf")
 #else
-    function hipblasDgetrf(handle,n,A,lda,ipiv,info) bind(c, name="hipblasDgetrf")
+    function hipblasDgetrf(handle,n,A,lda,ipiv,myInfo) bind(c, name="hipblasDgetrf")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -10396,14 +10396,14 @@ module hipfort_hipblas
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
     end function
 
   
 #ifdef USE_CUDA_NAMES
-    function hipblasCgetrf(handle,n,A,lda,ipiv,info) bind(c, name="cublasCgetrf")
+    function hipblasCgetrf(handle,n,A,lda,ipiv,myInfo) bind(c, name="cublasCgetrf")
 #else
-    function hipblasCgetrf(handle,n,A,lda,ipiv,info) bind(c, name="hipblasCgetrf")
+    function hipblasCgetrf(handle,n,A,lda,ipiv,myInfo) bind(c, name="hipblasCgetrf")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -10414,14 +10414,14 @@ module hipfort_hipblas
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
     end function
 
   
 #ifdef USE_CUDA_NAMES
-    function hipblasZgetrf(handle,n,A,lda,ipiv,info) bind(c, name="cublasZgetrf")
+    function hipblasZgetrf(handle,n,A,lda,ipiv,myInfo) bind(c, name="cublasZgetrf")
 #else
-    function hipblasZgetrf(handle,n,A,lda,ipiv,info) bind(c, name="hipblasZgetrf")
+    function hipblasZgetrf(handle,n,A,lda,ipiv,myInfo) bind(c, name="hipblasZgetrf")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -10432,14 +10432,14 @@ module hipfort_hipblas
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
     end function
 
   
 #ifdef USE_CUDA_NAMES
-    function hipblasSgetrfBatched(handle,n,A,lda,ipiv,info,batch_count) bind(c, name="cublasSgetrfBatched")
+    function hipblasSgetrfBatched(handle,n,A,lda,ipiv,myInfo,batch_count) bind(c, name="cublasSgetrfBatched")
 #else
-    function hipblasSgetrfBatched(handle,n,A,lda,ipiv,info,batch_count) bind(c, name="hipblasSgetrfBatched")
+    function hipblasSgetrfBatched(handle,n,A,lda,ipiv,myInfo,batch_count) bind(c, name="hipblasSgetrfBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -10450,15 +10450,15 @@ module hipfort_hipblas
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
   
 #ifdef USE_CUDA_NAMES
-    function hipblasDgetrfBatched(handle,n,A,lda,ipiv,info,batch_count) bind(c, name="cublasDgetrfBatched")
+    function hipblasDgetrfBatched(handle,n,A,lda,ipiv,myInfo,batch_count) bind(c, name="cublasDgetrfBatched")
 #else
-    function hipblasDgetrfBatched(handle,n,A,lda,ipiv,info,batch_count) bind(c, name="hipblasDgetrfBatched")
+    function hipblasDgetrfBatched(handle,n,A,lda,ipiv,myInfo,batch_count) bind(c, name="hipblasDgetrfBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -10469,15 +10469,15 @@ module hipfort_hipblas
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
   
 #ifdef USE_CUDA_NAMES
-    function hipblasCgetrfBatched(handle,n,A,lda,ipiv,info,batch_count) bind(c, name="cublasCgetrfBatched")
+    function hipblasCgetrfBatched(handle,n,A,lda,ipiv,myInfo,batch_count) bind(c, name="cublasCgetrfBatched")
 #else
-    function hipblasCgetrfBatched(handle,n,A,lda,ipiv,info,batch_count) bind(c, name="hipblasCgetrfBatched")
+    function hipblasCgetrfBatched(handle,n,A,lda,ipiv,myInfo,batch_count) bind(c, name="hipblasCgetrfBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -10488,15 +10488,15 @@ module hipfort_hipblas
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
   
 #ifdef USE_CUDA_NAMES
-    function hipblasZgetrfBatched(handle,n,A,lda,ipiv,info,batch_count) bind(c, name="cublasZgetrfBatched")
+    function hipblasZgetrfBatched(handle,n,A,lda,ipiv,myInfo,batch_count) bind(c, name="cublasZgetrfBatched")
 #else
-    function hipblasZgetrfBatched(handle,n,A,lda,ipiv,info,batch_count) bind(c, name="hipblasZgetrfBatched")
+    function hipblasZgetrfBatched(handle,n,A,lda,ipiv,myInfo,batch_count) bind(c, name="hipblasZgetrfBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -10507,15 +10507,15 @@ module hipfort_hipblas
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
   
 #ifdef USE_CUDA_NAMES
-    function hipblasSgetrfStridedBatched(handle,n,A,lda,strideA,ipiv,strideP,info,batch_count) bind(c, name="cublasSgetrfStridedBatched")
+    function hipblasSgetrfStridedBatched(handle,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="cublasSgetrfStridedBatched")
 #else
-    function hipblasSgetrfStridedBatched(handle,n,A,lda,strideA,ipiv,strideP,info,batch_count) bind(c, name="hipblasSgetrfStridedBatched")
+    function hipblasSgetrfStridedBatched(handle,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="hipblasSgetrfStridedBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -10528,15 +10528,15 @@ module hipfort_hipblas
       integer(c_int),value :: strideA
       type(c_ptr),value :: ipiv
       integer(c_int),value :: strideP
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
   
 #ifdef USE_CUDA_NAMES
-    function hipblasDgetrfStridedBatched(handle,n,A,lda,strideA,ipiv,strideP,info,batch_count) bind(c, name="cublasDgetrfStridedBatched")
+    function hipblasDgetrfStridedBatched(handle,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="cublasDgetrfStridedBatched")
 #else
-    function hipblasDgetrfStridedBatched(handle,n,A,lda,strideA,ipiv,strideP,info,batch_count) bind(c, name="hipblasDgetrfStridedBatched")
+    function hipblasDgetrfStridedBatched(handle,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="hipblasDgetrfStridedBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -10549,15 +10549,15 @@ module hipfort_hipblas
       integer(c_int),value :: strideA
       type(c_ptr),value :: ipiv
       integer(c_int),value :: strideP
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
   
 #ifdef USE_CUDA_NAMES
-    function hipblasCgetrfStridedBatched(handle,n,A,lda,strideA,ipiv,strideP,info,batch_count) bind(c, name="cublasCgetrfStridedBatched")
+    function hipblasCgetrfStridedBatched(handle,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="cublasCgetrfStridedBatched")
 #else
-    function hipblasCgetrfStridedBatched(handle,n,A,lda,strideA,ipiv,strideP,info,batch_count) bind(c, name="hipblasCgetrfStridedBatched")
+    function hipblasCgetrfStridedBatched(handle,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="hipblasCgetrfStridedBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -10570,15 +10570,15 @@ module hipfort_hipblas
       integer(c_int),value :: strideA
       type(c_ptr),value :: ipiv
       integer(c_int),value :: strideP
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
   
 #ifdef USE_CUDA_NAMES
-    function hipblasZgetrfStridedBatched(handle,n,A,lda,strideA,ipiv,strideP,info,batch_count) bind(c, name="cublasZgetrfStridedBatched")
+    function hipblasZgetrfStridedBatched(handle,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="cublasZgetrfStridedBatched")
 #else
-    function hipblasZgetrfStridedBatched(handle,n,A,lda,strideA,ipiv,strideP,info,batch_count) bind(c, name="hipblasZgetrfStridedBatched")
+    function hipblasZgetrfStridedBatched(handle,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="hipblasZgetrfStridedBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -10591,15 +10591,15 @@ module hipfort_hipblas
       integer(c_int),value :: strideA
       type(c_ptr),value :: ipiv
       integer(c_int),value :: strideP
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
   
 #ifdef USE_CUDA_NAMES
-    function hipblasSgetrs(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,info) bind(c, name="cublasSgetrs")
+    function hipblasSgetrs(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo) bind(c, name="cublasSgetrs")
 #else
-    function hipblasSgetrs(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,info) bind(c, name="hipblasSgetrs")
+    function hipblasSgetrs(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo) bind(c, name="hipblasSgetrs")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -10614,14 +10614,14 @@ module hipfort_hipblas
       type(c_ptr),value :: ipiv
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
     end function
 
   
 #ifdef USE_CUDA_NAMES
-    function hipblasDgetrs(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,info) bind(c, name="cublasDgetrs")
+    function hipblasDgetrs(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo) bind(c, name="cublasDgetrs")
 #else
-    function hipblasDgetrs(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,info) bind(c, name="hipblasDgetrs")
+    function hipblasDgetrs(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo) bind(c, name="hipblasDgetrs")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -10636,14 +10636,14 @@ module hipfort_hipblas
       type(c_ptr),value :: ipiv
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
     end function
 
   
 #ifdef USE_CUDA_NAMES
-    function hipblasCgetrs(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,info) bind(c, name="cublasCgetrs")
+    function hipblasCgetrs(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo) bind(c, name="cublasCgetrs")
 #else
-    function hipblasCgetrs(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,info) bind(c, name="hipblasCgetrs")
+    function hipblasCgetrs(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo) bind(c, name="hipblasCgetrs")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -10658,14 +10658,14 @@ module hipfort_hipblas
       type(c_ptr),value :: ipiv
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
     end function
 
   
 #ifdef USE_CUDA_NAMES
-    function hipblasZgetrs(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,info) bind(c, name="cublasZgetrs")
+    function hipblasZgetrs(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo) bind(c, name="cublasZgetrs")
 #else
-    function hipblasZgetrs(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,info) bind(c, name="hipblasZgetrs")
+    function hipblasZgetrs(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo) bind(c, name="hipblasZgetrs")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -10680,14 +10680,14 @@ module hipfort_hipblas
       type(c_ptr),value :: ipiv
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
     end function
 
   
 #ifdef USE_CUDA_NAMES
-    function hipblasSgetrsBatched(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,info,batch_count) bind(c, name="cublasSgetrsBatched")
+    function hipblasSgetrsBatched(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo,batch_count) bind(c, name="cublasSgetrsBatched")
 #else
-    function hipblasSgetrsBatched(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,info,batch_count) bind(c, name="hipblasSgetrsBatched")
+    function hipblasSgetrsBatched(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo,batch_count) bind(c, name="hipblasSgetrsBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -10702,15 +10702,15 @@ module hipfort_hipblas
       type(c_ptr),value :: ipiv
       type(c_ptr) :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
   
 #ifdef USE_CUDA_NAMES
-    function hipblasDgetrsBatched(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,info,batch_count) bind(c, name="cublasDgetrsBatched")
+    function hipblasDgetrsBatched(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo,batch_count) bind(c, name="cublasDgetrsBatched")
 #else
-    function hipblasDgetrsBatched(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,info,batch_count) bind(c, name="hipblasDgetrsBatched")
+    function hipblasDgetrsBatched(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo,batch_count) bind(c, name="hipblasDgetrsBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -10725,15 +10725,15 @@ module hipfort_hipblas
       type(c_ptr),value :: ipiv
       type(c_ptr) :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
   
 #ifdef USE_CUDA_NAMES
-    function hipblasCgetrsBatched(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,info,batch_count) bind(c, name="cublasCgetrsBatched")
+    function hipblasCgetrsBatched(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo,batch_count) bind(c, name="cublasCgetrsBatched")
 #else
-    function hipblasCgetrsBatched(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,info,batch_count) bind(c, name="hipblasCgetrsBatched")
+    function hipblasCgetrsBatched(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo,batch_count) bind(c, name="hipblasCgetrsBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -10748,15 +10748,15 @@ module hipfort_hipblas
       type(c_ptr),value :: ipiv
       type(c_ptr) :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
   
 #ifdef USE_CUDA_NAMES
-    function hipblasZgetrsBatched(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,info,batch_count) bind(c, name="cublasZgetrsBatched")
+    function hipblasZgetrsBatched(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo,batch_count) bind(c, name="cublasZgetrsBatched")
 #else
-    function hipblasZgetrsBatched(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,info,batch_count) bind(c, name="hipblasZgetrsBatched")
+    function hipblasZgetrsBatched(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo,batch_count) bind(c, name="hipblasZgetrsBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -10771,15 +10771,15 @@ module hipfort_hipblas
       type(c_ptr),value :: ipiv
       type(c_ptr) :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
   
 #ifdef USE_CUDA_NAMES
-    function hipblasSgetrsStridedBatched(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,info,batch_count) bind(c, name="cublasSgetrsStridedBatched")
+    function hipblasSgetrsStridedBatched(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,myInfo,batch_count) bind(c, name="cublasSgetrsStridedBatched")
 #else
-    function hipblasSgetrsStridedBatched(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,info,batch_count) bind(c, name="hipblasSgetrsStridedBatched")
+    function hipblasSgetrsStridedBatched(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,myInfo,batch_count) bind(c, name="hipblasSgetrsStridedBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -10797,15 +10797,15 @@ module hipfort_hipblas
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: strideB
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
   
 #ifdef USE_CUDA_NAMES
-    function hipblasDgetrsStridedBatched(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,info,batch_count) bind(c, name="cublasDgetrsStridedBatched")
+    function hipblasDgetrsStridedBatched(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,myInfo,batch_count) bind(c, name="cublasDgetrsStridedBatched")
 #else
-    function hipblasDgetrsStridedBatched(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,info,batch_count) bind(c, name="hipblasDgetrsStridedBatched")
+    function hipblasDgetrsStridedBatched(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,myInfo,batch_count) bind(c, name="hipblasDgetrsStridedBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -10823,15 +10823,15 @@ module hipfort_hipblas
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: strideB
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
   
 #ifdef USE_CUDA_NAMES
-    function hipblasCgetrsStridedBatched(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,info,batch_count) bind(c, name="cublasCgetrsStridedBatched")
+    function hipblasCgetrsStridedBatched(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,myInfo,batch_count) bind(c, name="cublasCgetrsStridedBatched")
 #else
-    function hipblasCgetrsStridedBatched(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,info,batch_count) bind(c, name="hipblasCgetrsStridedBatched")
+    function hipblasCgetrsStridedBatched(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,myInfo,batch_count) bind(c, name="hipblasCgetrsStridedBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -10849,15 +10849,15 @@ module hipfort_hipblas
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: strideB
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
   
 #ifdef USE_CUDA_NAMES
-    function hipblasZgetrsStridedBatched(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,info,batch_count) bind(c, name="cublasZgetrsStridedBatched")
+    function hipblasZgetrsStridedBatched(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,myInfo,batch_count) bind(c, name="cublasZgetrsStridedBatched")
 #else
-    function hipblasZgetrsStridedBatched(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,info,batch_count) bind(c, name="hipblasZgetrsStridedBatched")
+    function hipblasZgetrsStridedBatched(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,myInfo,batch_count) bind(c, name="hipblasZgetrsStridedBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -10875,15 +10875,15 @@ module hipfort_hipblas
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: strideB
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
   
 #ifdef USE_CUDA_NAMES
-    function hipblasSgeqrf(handle,m,n,A,lda,ipiv,info) bind(c, name="cublasSgeqrf")
+    function hipblasSgeqrf(handle,m,n,A,lda,ipiv,myInfo) bind(c, name="cublasSgeqrf")
 #else
-    function hipblasSgeqrf(handle,m,n,A,lda,ipiv,info) bind(c, name="hipblasSgeqrf")
+    function hipblasSgeqrf(handle,m,n,A,lda,ipiv,myInfo) bind(c, name="hipblasSgeqrf")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -10895,14 +10895,14 @@ module hipfort_hipblas
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
     end function
 
   
 #ifdef USE_CUDA_NAMES
-    function hipblasDgeqrf(handle,m,n,A,lda,ipiv,info) bind(c, name="cublasDgeqrf")
+    function hipblasDgeqrf(handle,m,n,A,lda,ipiv,myInfo) bind(c, name="cublasDgeqrf")
 #else
-    function hipblasDgeqrf(handle,m,n,A,lda,ipiv,info) bind(c, name="hipblasDgeqrf")
+    function hipblasDgeqrf(handle,m,n,A,lda,ipiv,myInfo) bind(c, name="hipblasDgeqrf")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -10914,14 +10914,14 @@ module hipfort_hipblas
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
     end function
 
   
 #ifdef USE_CUDA_NAMES
-    function hipblasCgeqrf(handle,m,n,A,lda,ipiv,info) bind(c, name="cublasCgeqrf")
+    function hipblasCgeqrf(handle,m,n,A,lda,ipiv,myInfo) bind(c, name="cublasCgeqrf")
 #else
-    function hipblasCgeqrf(handle,m,n,A,lda,ipiv,info) bind(c, name="hipblasCgeqrf")
+    function hipblasCgeqrf(handle,m,n,A,lda,ipiv,myInfo) bind(c, name="hipblasCgeqrf")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -10933,14 +10933,14 @@ module hipfort_hipblas
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
     end function
 
   
 #ifdef USE_CUDA_NAMES
-    function hipblasZgeqrf(handle,m,n,A,lda,ipiv,info) bind(c, name="cublasZgeqrf")
+    function hipblasZgeqrf(handle,m,n,A,lda,ipiv,myInfo) bind(c, name="cublasZgeqrf")
 #else
-    function hipblasZgeqrf(handle,m,n,A,lda,ipiv,info) bind(c, name="hipblasZgeqrf")
+    function hipblasZgeqrf(handle,m,n,A,lda,ipiv,myInfo) bind(c, name="hipblasZgeqrf")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -10952,14 +10952,14 @@ module hipfort_hipblas
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
     end function
 
   
 #ifdef USE_CUDA_NAMES
-    function hipblasSgeqrfBatched(handle,m,n,A,lda,ipiv,info,batch_count) bind(c, name="cublasSgeqrfBatched")
+    function hipblasSgeqrfBatched(handle,m,n,A,lda,ipiv,myInfo,batch_count) bind(c, name="cublasSgeqrfBatched")
 #else
-    function hipblasSgeqrfBatched(handle,m,n,A,lda,ipiv,info,batch_count) bind(c, name="hipblasSgeqrfBatched")
+    function hipblasSgeqrfBatched(handle,m,n,A,lda,ipiv,myInfo,batch_count) bind(c, name="hipblasSgeqrfBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -10971,15 +10971,15 @@ module hipfort_hipblas
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: ipiv
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
   
 #ifdef USE_CUDA_NAMES
-    function hipblasDgeqrfBatched(handle,m,n,A,lda,ipiv,info,batch_count) bind(c, name="cublasDgeqrfBatched")
+    function hipblasDgeqrfBatched(handle,m,n,A,lda,ipiv,myInfo,batch_count) bind(c, name="cublasDgeqrfBatched")
 #else
-    function hipblasDgeqrfBatched(handle,m,n,A,lda,ipiv,info,batch_count) bind(c, name="hipblasDgeqrfBatched")
+    function hipblasDgeqrfBatched(handle,m,n,A,lda,ipiv,myInfo,batch_count) bind(c, name="hipblasDgeqrfBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -10991,15 +10991,15 @@ module hipfort_hipblas
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: ipiv
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
   
 #ifdef USE_CUDA_NAMES
-    function hipblasCgeqrfBatched(handle,m,n,A,lda,ipiv,info,batch_count) bind(c, name="cublasCgeqrfBatched")
+    function hipblasCgeqrfBatched(handle,m,n,A,lda,ipiv,myInfo,batch_count) bind(c, name="cublasCgeqrfBatched")
 #else
-    function hipblasCgeqrfBatched(handle,m,n,A,lda,ipiv,info,batch_count) bind(c, name="hipblasCgeqrfBatched")
+    function hipblasCgeqrfBatched(handle,m,n,A,lda,ipiv,myInfo,batch_count) bind(c, name="hipblasCgeqrfBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -11011,15 +11011,15 @@ module hipfort_hipblas
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: ipiv
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
   
 #ifdef USE_CUDA_NAMES
-    function hipblasZgeqrfBatched(handle,m,n,A,lda,ipiv,info,batch_count) bind(c, name="cublasZgeqrfBatched")
+    function hipblasZgeqrfBatched(handle,m,n,A,lda,ipiv,myInfo,batch_count) bind(c, name="cublasZgeqrfBatched")
 #else
-    function hipblasZgeqrfBatched(handle,m,n,A,lda,ipiv,info,batch_count) bind(c, name="hipblasZgeqrfBatched")
+    function hipblasZgeqrfBatched(handle,m,n,A,lda,ipiv,myInfo,batch_count) bind(c, name="hipblasZgeqrfBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -11031,15 +11031,15 @@ module hipfort_hipblas
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: ipiv
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
   
 #ifdef USE_CUDA_NAMES
-    function hipblasSgeqrfStridedBatched(handle,m,n,A,lda,strideA,ipiv,strideP,info,batch_count) bind(c, name="cublasSgeqrfStridedBatched")
+    function hipblasSgeqrfStridedBatched(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="cublasSgeqrfStridedBatched")
 #else
-    function hipblasSgeqrfStridedBatched(handle,m,n,A,lda,strideA,ipiv,strideP,info,batch_count) bind(c, name="hipblasSgeqrfStridedBatched")
+    function hipblasSgeqrfStridedBatched(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="hipblasSgeqrfStridedBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -11053,15 +11053,15 @@ module hipfort_hipblas
       integer(c_int),value :: strideA
       type(c_ptr),value :: ipiv
       integer(c_int),value :: strideP
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
   
 #ifdef USE_CUDA_NAMES
-    function hipblasDgeqrfStridedBatched(handle,m,n,A,lda,strideA,ipiv,strideP,info,batch_count) bind(c, name="cublasDgeqrfStridedBatched")
+    function hipblasDgeqrfStridedBatched(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="cublasDgeqrfStridedBatched")
 #else
-    function hipblasDgeqrfStridedBatched(handle,m,n,A,lda,strideA,ipiv,strideP,info,batch_count) bind(c, name="hipblasDgeqrfStridedBatched")
+    function hipblasDgeqrfStridedBatched(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="hipblasDgeqrfStridedBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -11075,15 +11075,15 @@ module hipfort_hipblas
       integer(c_int),value :: strideA
       type(c_ptr),value :: ipiv
       integer(c_int),value :: strideP
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
   
 #ifdef USE_CUDA_NAMES
-    function hipblasCgeqrfStridedBatched(handle,m,n,A,lda,strideA,ipiv,strideP,info,batch_count) bind(c, name="cublasCgeqrfStridedBatched")
+    function hipblasCgeqrfStridedBatched(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="cublasCgeqrfStridedBatched")
 #else
-    function hipblasCgeqrfStridedBatched(handle,m,n,A,lda,strideA,ipiv,strideP,info,batch_count) bind(c, name="hipblasCgeqrfStridedBatched")
+    function hipblasCgeqrfStridedBatched(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="hipblasCgeqrfStridedBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -11097,15 +11097,15 @@ module hipfort_hipblas
       integer(c_int),value :: strideA
       type(c_ptr),value :: ipiv
       integer(c_int),value :: strideP
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
   
 #ifdef USE_CUDA_NAMES
-    function hipblasZgeqrfStridedBatched(handle,m,n,A,lda,strideA,ipiv,strideP,info,batch_count) bind(c, name="cublasZgeqrfStridedBatched")
+    function hipblasZgeqrfStridedBatched(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="cublasZgeqrfStridedBatched")
 #else
-    function hipblasZgeqrfStridedBatched(handle,m,n,A,lda,strideA,ipiv,strideP,info,batch_count) bind(c, name="hipblasZgeqrfStridedBatched")
+    function hipblasZgeqrfStridedBatched(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="hipblasZgeqrfStridedBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -11119,7 +11119,7 @@ module hipfort_hipblas
       integer(c_int),value :: strideA
       type(c_ptr),value :: ipiv
       integer(c_int),value :: strideP
-      type(c_ptr),value :: info
+      type(c_ptr),value :: myInfo
       integer(c_int),value :: batch_count
     end function
 
