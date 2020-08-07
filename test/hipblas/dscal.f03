@@ -1,8 +1,9 @@
 program hip_dscal
 
   use iso_c_binding
-  use hip
-  use hip_blas
+  use hipfort
+  use hipfort_check
+  use hipfort_hipblas
 
   implicit none
 
