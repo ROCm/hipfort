@@ -332,5 +332,108 @@ contains
       end select
    end function hipErrorToCudaError
 #endif
+  
+  ! HIP math libs
+  ! TODO: Currently, only AMDGPU is supported
+  
+  subroutine hipblasCheck(hipblasError_t)
+    use hipfort_hipblas_enums
+
+    implicit none
+
+    integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasError_t
+
+    if(hipblasError_t /= HIPBLAS_STATUS_SUCCESS)then
+       write(*,*) "HIPBLAS ERROR: Error code = ", hipblasError_t
+       call exit(hipblasError_t)
+    end if
+
+  end subroutine hipblasCheck
+
+  subroutine hipfftCheck(hipfft_status)
+    use hipfort_hipfft_enums
+
+    implicit none
+
+    integer(kind(hipfft_success)) :: hipfft_status
+
+    if(hipfft_status /= hipfft_success)then
+       write(*,*) "HIPFFT ERROR: Error code = ", hipfft_status
+       call exit(hipfft_status)
+    end if
+
+  end subroutine hipfftCheck
+  
+  subroutine hipsparseCheck(hipsparseError_t)
+    use hipfort_hipsparse_enums
+
+    implicit none
+
+    integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseError_t
+
+    if(hipsparseError_t /= HIPSPARSE_STATUS_SUCCESS)then
+       write(*,*) "HIPSPARSE ERROR: Error code = ", hipsparseError_t
+       call exit(hipsparseError_t)
+    end if
+
+  end subroutine hipsparseCheck
+  
+  subroutine rocblasCheck(rocblasError_t)
+    use hipfort_rocblas_enums
+
+    implicit none
+
+    integer(kind(ROCBLAS_STATUS_SUCCESS)) :: rocblasError_t
+
+    if(rocblasError_t /= ROCBLAS_STATUS_SUCCESS)then
+       write(*,*) "ROCBLAS ERROR: Error code = ", rocblasError_t
+       call exit(rocblasError_t)
+    end if
+
+  end subroutine rocblasCheck
+
+  ! ROCm math libs
+
+  subroutine rocfftCheck(rocfft_status)
+    use hipfort_rocfft_enums
+
+    implicit none
+
+    integer(kind(rocfft_status_success)) :: rocfft_status
+
+    if(rocfft_status /= rocfft_status_success)then
+       write(*,*) "ROCFFT ERROR: Error code = ", rocfft_status
+       call exit(rocfft_status)
+    end if
+
+  end subroutine rocfftCheck
+  
+  subroutine rocsparseCheck(rocsparseError_t)
+    use hipfort_rocsparse_enums
+
+    implicit none
+
+    integer(kind(ROCSPARSE_STATUS_SUCCESS)) :: rocsparseError_t
+
+    if(rocsparseError_t /= ROCSPARSE_STATUS_SUCCESS)then
+       write(*,*) "ROCSPARSE ERROR: Error code = ", rocsparseError_t
+       call exit(rocsparseError_t)
+    end if
+
+  end subroutine rocsparseCheck
+  
+  subroutine rocsolverCheck(rocsolverError_t)
+    use hipfort_rocsolver_enums
+
+    implicit none
+
+    integer(kind(ROCBLAS_STATUS_SUCCESS)) :: rocsolverError_t
+
+    if(rocsolverError_t /= ROCBLAS_STATUS_SUCCESS)then
+       write(*,*) "ROCSOLVER ERROR: Error code = ", rocsolverError_t
+       call exit(rocsolverError_t)
+    end if
+
+  end subroutine rocsolverCheck
 
 end module hipfort_check

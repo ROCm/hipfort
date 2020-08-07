@@ -27,6 +27,7 @@
            
 module hipfort_hipfft
   use hipfort_hipfft_enums
+  use hipfort_hipfft_params
   implicit none
 
  
