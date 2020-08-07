@@ -4,7 +4,7 @@ include $(HIPFORT_HOME)/bin/Makefile.hipfort
 OUTPUT_DIR ?= $(PWD)
 LINKOPTS   += -L$(ROCM)/rocblas/lib -l rocblas
 
-SAXPY_APP = $(OUTPUT_DIR)/saxpy
+SAXPY_APP = $(OUTPUT_DIR)/rocblas
 
 SAXPY_SRC = saxpy.f03
 

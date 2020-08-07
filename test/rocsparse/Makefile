@@ -4,7 +4,7 @@ include $(HIPFORT_HOME)/bin/Makefile.hipfort
 OUTPUT_DIR  ?= $(PWD)
 LINKOPTS    +=  -L$(ROCM)/rocsparse/lib -l rocsparse
 
-APP          = $(OUTPUT_DIR)/ddoti
+APP          = $(OUTPUT_DIR)/rocsparse
 
 FSOURCES=$(wildcard *.f03)
 
