@@ -435,11 +435,11 @@ if [ "$__HIPCC_INPUTS" != "" ] ; then
    fi
    [ $VERBOSE ] && echo "export $HIPCC_ENV"
    export $HIPCC_ENV
-   runcmd "$ROCM_DIR/bin/hipcc $HIPCC_OPTS $__HIPCC_INPUTS $__HIPCC_LINKOPTS -o $__HIPCC_OUTFILE"
+   runcmd "$ROCM_DIR/bin/hipcc $HIPCC_OPTS $PASSTHRUARGS $__HIPCC_INPUTS $__HIPCC_LINKOPTS -o $__HIPCC_OUTFILE"
 fi
 
 if [ "$__INPUTS" != "" ] ; then
-   runcmd "$HIPFORT_COMPILER $FCARGS $PASSTHRUARGS $__INPUTS $LINKOPTS -o $OUTDIR/$OUTFILE"
+   runcmd "$HIPFORT_COMPILER $FCARGS $__INPUTS $PASSTHRUARGS $LINKOPTS -o $OUTDIR/$OUTFILE"
 fi
 
 # cleanup
