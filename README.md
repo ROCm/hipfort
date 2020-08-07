@@ -11,10 +11,10 @@ Then build, install, and test hipfort from source with these commands.
 ```
 git clone https://github.com/ROCmSoftwarePlatform/hipfort
 mkdir build ; cd build
-cmake -DHIPFORT_INSTALL_DIR=/tmp/hipfort ../hipfort
+cmake -DHIPFORT_INSTALL_DIR=/tmp/hipfort ..
 make install
 export PATH=/tmp/hipfort/bin:$PATH
-cd ../hipfort/test/vecadd
+cd ../test/vecadd
 hipfc -v hip_implementation.cpp main.f03
 ./a.out
 ```
