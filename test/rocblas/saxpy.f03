@@ -24,8 +24,9 @@
 program rocblas_saxpy_test
 
     use iso_c_binding
-    use hip
-    use rocblas
+    use hipfort
+    use hipfort_check
+    use hipfort_rocblas
 
     implicit none
 
@@ -46,14 +47,14 @@ program rocblas_saxpy_test
     real :: result
     real, parameter :: error_max = 10 * epsilon(error_max)
 
-    type(c_ptr), target :: rocblas_handle
+    type(c_ptr) :: rocblas_handle
 
     integer :: i
 
     write(*,*) "Starting saxpy test"
 
     ! Create rocblas handle
-    call rocblasCheck(rocblas_create_handle(c_loc(rocblas_handle)))
+    call rocblasCheck(rocblas_create_handle(rocblas_handle))
 
     ! Allocate host-side memory
     allocate(hx(N))
@@ -77,7 +78,7 @@ program rocblas_saxpy_test
 
     ! Call rocblas function
     call rocblasCheck(rocblas_set_pointer_mode(rocblas_handle, 0))
-    call rocblasCheck(rocblas_saxpy(rocblas_handle, N, c_loc(alpha), dx, 1, dy, 1))
+    call rocblasCheck(rocblas_saxpy(rocblas_handle, N, alpha, dx, 1, dy, 1))
     call hipCheck(hipDeviceSynchronize())
 
     ! Transfer data back to host memory
