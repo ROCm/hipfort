@@ -1,7 +1,8 @@
 program rocfft_example
   use iso_c_binding
-  use hip
-  use rocfft
+  use hipfort
+  use hipfort_check
+  use hipfort_rocfft
 
   implicit none
 
