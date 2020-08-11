@@ -243,19 +243,35 @@ if [ ! $HIPFORT_GPU ] ; then
    fi
 fi
 
+# Future versions of ROCm will install the device library in ROCM_DIR/amdgcn/bitcode
 if [ -d $ROCM_DIR/amdgcn/bitcode ] ; then
     DEVICE_LIB_PATH=$ROCM_DIR/amdgcn/bitcode
 else
     DEVICE_LIB_PATH=$ROCM_DIR/lib
 fi
 
+#  Handle all differences between amdgcn and nvidia here
 if [ "${HIPFORT_GPU:0:3}" == "sm_" ] ; then 
    TARGET_ARCH="nvptx"
    TARGET_TRIPLE=${TARGET_TRIPLE:-nvptx64-nvidia-cuda}
    TARGET_LIBS="-L$CUDA_PATH/targets/x86_64-linux/lib -lcudart"
    HIPCC_ENV="HIP_PLATFORM=nvcc"
    HIPCC_OPTS="--gpu-architecture=$HIPFORT_GPU"
+   # fixme: add test for minimum cuda version here
 else 
+   if [ ! -f $ROCM_DIR/bin/hipconfig ] ; then
+      echo "ERROR: hipconfig not found at $ROCM_DIR/bin/hipconfig"
+      echo "       Please install ROCm hip"
+      exit 1
+   fi
+   hipversion=`$ROCM_DIR/bin/hipconfig -v`
+   hipver=`echo $hipversion | cut -d"." -f1`
+   hiprel=`echo $hipversion | cut -d"." -f2`
+   if [ $hipver -lt 3 ] || ( [ $hipver == 3 ] && [ $hiprel -lt 5 ] ) ; then
+      echo "ERROR: Minimum required version of hip is in ROCm 3.5"
+      echo "       Please update your hip installation"
+      exit 1
+   fi
    TARGET_TRIPLE=${TARGET_TRIPLE:-amdgcn-amd-amdhsa}
    TARGET_ARCH="amdgcn"
    TARGET_LIBS="-L$ROCM_DIR/lib -lamdhip64 -Wl,-rpath=$ROCM_DIR/lib "
