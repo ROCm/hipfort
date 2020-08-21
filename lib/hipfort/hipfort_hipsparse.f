@@ -265,6 +265,32 @@ module hipfort_hipsparse
 
   !  Info structures 
 #ifdef USE_CUDA_NAMES
+    function hipsparseCreateBsrsv2Info(myInfo) bind(c, name="cusparseCreateBsrsv2Info")
+#else
+    function hipsparseCreateBsrsv2Info(myInfo) bind(c, name="hipsparseCreateBsrsv2Info")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateBsrsv2Info
+      type(c_ptr) :: myInfo
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipsparseDestroyBsrsv2Info(myInfo) bind(c, name="cusparseDestroyBsrsv2Info")
+#else
+    function hipsparseDestroyBsrsv2Info(myInfo) bind(c, name="hipsparseDestroyBsrsv2Info")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDestroyBsrsv2Info
+      type(c_ptr),value :: myInfo
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
     function hipsparseCreateCsrsv2Info(myInfo) bind(c, name="cusparseCreateCsrsv2Info")
 #else
     function hipsparseCreateCsrsv2Info(myInfo) bind(c, name="hipsparseCreateCsrsv2Info")
@@ -406,7 +432,7 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSaxpyi
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: xVal
       type(c_ptr),value :: xInd
       type(c_ptr),value :: y
@@ -425,7 +451,7 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDaxpyi
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: xVal
       type(c_ptr),value :: xInd
       type(c_ptr),value :: y
@@ -444,7 +470,7 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCaxpyi
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: xVal
       type(c_ptr),value :: xInd
       type(c_ptr),value :: y
@@ -463,7 +489,7 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZaxpyi
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: xVal
       type(c_ptr),value :: xInd
       type(c_ptr),value :: y
@@ -863,13 +889,13 @@ module hipfort_hipsparse
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: nnz
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: csrSortedValA
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: x
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr),value :: y
     end function
 
@@ -888,13 +914,13 @@ module hipfort_hipsparse
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: nnz
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: csrSortedValA
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: x
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr),value :: y
     end function
 
@@ -913,13 +939,13 @@ module hipfort_hipsparse
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: nnz
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: csrSortedValA
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: x
-      complex(c_float_complex),intent(IN) :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr),value :: y
     end function
 
@@ -938,13 +964,13 @@ module hipfort_hipsparse
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: nnz
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: csrSortedValA
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: x
-      complex(c_double_complex),intent(IN) :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr),value :: y
     end function
 
@@ -1246,7 +1272,7 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
       integer(c_int),value :: m
       integer(c_int),value :: nnz
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: csrSortedValA
       type(c_ptr),value :: csrSortedRowPtrA
@@ -1272,7 +1298,7 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
       integer(c_int),value :: m
       integer(c_int),value :: nnz
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: csrSortedValA
       type(c_ptr),value :: csrSortedRowPtrA
@@ -1298,7 +1324,7 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
       integer(c_int),value :: m
       integer(c_int),value :: nnz
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: csrSortedValA
       type(c_ptr),value :: csrSortedRowPtrA
@@ -1324,7 +1350,7 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
       integer(c_int),value :: m
       integer(c_int),value :: nnz
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: csrSortedValA
       type(c_ptr),value :: csrSortedRowPtrA
@@ -1349,11 +1375,11 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseShybmv
       type(c_ptr),value :: handle
       integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: hybA
       type(c_ptr),value :: x
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr),value :: y
     end function
 
@@ -1369,11 +1395,11 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDhybmv
       type(c_ptr),value :: handle
       integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: hybA
       type(c_ptr),value :: x
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr),value :: y
     end function
 
@@ -1389,11 +1415,11 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseChybmv
       type(c_ptr),value :: handle
       integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: hybA
       type(c_ptr),value :: x
-      complex(c_float_complex),intent(IN) :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr),value :: y
     end function
 
@@ -1409,11 +1435,11 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZhybmv
       type(c_ptr),value :: handle
       integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: hybA
       type(c_ptr),value :: x
-      complex(c_double_complex),intent(IN) :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr),value :: y
     end function
 
@@ -1434,14 +1460,14 @@ module hipfort_hipsparse
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: bsrSortedValA
       type(c_ptr),value :: bsrSortedRowPtrA
       type(c_ptr),value :: bsrSortedColIndA
       integer(c_int),value :: blockDim
       type(c_ptr),value :: x
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr),value :: y
     end function
 
@@ -1461,14 +1487,14 @@ module hipfort_hipsparse
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: bsrSortedValA
       type(c_ptr),value :: bsrSortedRowPtrA
       type(c_ptr),value :: bsrSortedColIndA
       integer(c_int),value :: blockDim
       type(c_ptr),value :: x
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr),value :: y
     end function
 
@@ -1488,14 +1514,14 @@ module hipfort_hipsparse
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: bsrSortedValA
       type(c_ptr),value :: bsrSortedRowPtrA
       type(c_ptr),value :: bsrSortedColIndA
       integer(c_int),value :: blockDim
       type(c_ptr),value :: x
-      complex(c_float_complex),intent(IN) :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr),value :: y
     end function
 
@@ -1515,15 +1541,560 @@ module hipfort_hipsparse
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: bsrSortedValA
       type(c_ptr),value :: bsrSortedRowPtrA
       type(c_ptr),value :: bsrSortedColIndA
       integer(c_int),value :: blockDim
       type(c_ptr),value :: x
-      complex(c_double_complex),intent(IN) :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr),value :: y
+    end function
+
+  !  Description: Solution of triangular linear system op(A)  x = alpha  f,
+  !    where A is a sparse matrix in BSR storage format, x and f are dense vectors. 
+#ifdef USE_CUDA_NAMES
+    function hipsparseXbsrsv2_zeroPivot(handle,myInfo,position) bind(c, name="cusparseXbsrsv2_zeroPivot")
+#else
+    function hipsparseXbsrsv2_zeroPivot(handle,myInfo,position) bind(c, name="hipsparseXbsrsv2_zeroPivot")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXbsrsv2_zeroPivot
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: myInfo
+      type(c_ptr),value :: position
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipsparseSbsrsv2_bufferSize(handle,dirA,transA,mb,nnzb,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes) bind(c, name="cusparseSbsrsv2_bufferSize")
+#else
+    function hipsparseSbsrsv2_bufferSize(handle,dirA,transA,mb,nnzb,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes) bind(c, name="hipsparseSbsrsv2_bufferSize")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrsv2_bufferSize
+      type(c_ptr),value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: mb
+      integer(c_int),value :: nnzb
+      type(c_ptr),value :: descrA
+      type(c_ptr),value :: bsrSortedValA
+      type(c_ptr),value :: bsrSortedRowPtrA
+      type(c_ptr),value :: bsrSortedColIndA
+      integer(c_int),value :: blockDim
+      type(c_ptr),value :: myInfo
+      type(c_ptr),value :: pBufferSizeInBytes
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipsparseDbsrsv2_bufferSize(handle,dirA,transA,mb,nnzb,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes) bind(c, name="cusparseDbsrsv2_bufferSize")
+#else
+    function hipsparseDbsrsv2_bufferSize(handle,dirA,transA,mb,nnzb,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes) bind(c, name="hipsparseDbsrsv2_bufferSize")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrsv2_bufferSize
+      type(c_ptr),value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: mb
+      integer(c_int),value :: nnzb
+      type(c_ptr),value :: descrA
+      type(c_ptr),value :: bsrSortedValA
+      type(c_ptr),value :: bsrSortedRowPtrA
+      type(c_ptr),value :: bsrSortedColIndA
+      integer(c_int),value :: blockDim
+      type(c_ptr),value :: myInfo
+      type(c_ptr),value :: pBufferSizeInBytes
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipsparseCbsrsv2_bufferSize(handle,dirA,transA,mb,nnzb,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes) bind(c, name="cusparseCbsrsv2_bufferSize")
+#else
+    function hipsparseCbsrsv2_bufferSize(handle,dirA,transA,mb,nnzb,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes) bind(c, name="hipsparseCbsrsv2_bufferSize")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrsv2_bufferSize
+      type(c_ptr),value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: mb
+      integer(c_int),value :: nnzb
+      type(c_ptr),value :: descrA
+      type(c_ptr),value :: bsrSortedValA
+      type(c_ptr),value :: bsrSortedRowPtrA
+      type(c_ptr),value :: bsrSortedColIndA
+      integer(c_int),value :: blockDim
+      type(c_ptr),value :: myInfo
+      type(c_ptr),value :: pBufferSizeInBytes
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipsparseZbsrsv2_bufferSize(handle,dirA,transA,mb,nnzb,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes) bind(c, name="cusparseZbsrsv2_bufferSize")
+#else
+    function hipsparseZbsrsv2_bufferSize(handle,dirA,transA,mb,nnzb,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes) bind(c, name="hipsparseZbsrsv2_bufferSize")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrsv2_bufferSize
+      type(c_ptr),value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: mb
+      integer(c_int),value :: nnzb
+      type(c_ptr),value :: descrA
+      type(c_ptr),value :: bsrSortedValA
+      type(c_ptr),value :: bsrSortedRowPtrA
+      type(c_ptr),value :: bsrSortedColIndA
+      integer(c_int),value :: blockDim
+      type(c_ptr),value :: myInfo
+      type(c_ptr),value :: pBufferSizeInBytes
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipsparseSbsrsv2_bufferSizeExt(handle,dirA,transA,mb,nnzb,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSize) bind(c, name="cusparseSbsrsv2_bufferSizeExt")
+#else
+    function hipsparseSbsrsv2_bufferSizeExt(handle,dirA,transA,mb,nnzb,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSize) bind(c, name="hipsparseSbsrsv2_bufferSizeExt")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrsv2_bufferSizeExt
+      type(c_ptr),value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: mb
+      integer(c_int),value :: nnzb
+      type(c_ptr),value :: descrA
+      type(c_ptr),value :: bsrSortedValA
+      type(c_ptr),value :: bsrSortedRowPtrA
+      type(c_ptr),value :: bsrSortedColIndA
+      integer(c_int),value :: blockDim
+      type(c_ptr),value :: myInfo
+      type(c_ptr),value :: pBufferSize
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipsparseDbsrsv2_bufferSizeExt(handle,dirA,transA,mb,nnzb,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSize) bind(c, name="cusparseDbsrsv2_bufferSizeExt")
+#else
+    function hipsparseDbsrsv2_bufferSizeExt(handle,dirA,transA,mb,nnzb,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSize) bind(c, name="hipsparseDbsrsv2_bufferSizeExt")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrsv2_bufferSizeExt
+      type(c_ptr),value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: mb
+      integer(c_int),value :: nnzb
+      type(c_ptr),value :: descrA
+      type(c_ptr),value :: bsrSortedValA
+      type(c_ptr),value :: bsrSortedRowPtrA
+      type(c_ptr),value :: bsrSortedColIndA
+      integer(c_int),value :: blockDim
+      type(c_ptr),value :: myInfo
+      type(c_ptr),value :: pBufferSize
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipsparseCbsrsv2_bufferSizeExt(handle,dirA,transA,mb,nnzb,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSize) bind(c, name="cusparseCbsrsv2_bufferSizeExt")
+#else
+    function hipsparseCbsrsv2_bufferSizeExt(handle,dirA,transA,mb,nnzb,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSize) bind(c, name="hipsparseCbsrsv2_bufferSizeExt")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrsv2_bufferSizeExt
+      type(c_ptr),value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: mb
+      integer(c_int),value :: nnzb
+      type(c_ptr),value :: descrA
+      type(c_ptr),value :: bsrSortedValA
+      type(c_ptr),value :: bsrSortedRowPtrA
+      type(c_ptr),value :: bsrSortedColIndA
+      integer(c_int),value :: blockDim
+      type(c_ptr),value :: myInfo
+      type(c_ptr),value :: pBufferSize
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipsparseZbsrsv2_bufferSizeExt(handle,dirA,transA,mb,nnzb,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSize) bind(c, name="cusparseZbsrsv2_bufferSizeExt")
+#else
+    function hipsparseZbsrsv2_bufferSizeExt(handle,dirA,transA,mb,nnzb,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSize) bind(c, name="hipsparseZbsrsv2_bufferSizeExt")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrsv2_bufferSizeExt
+      type(c_ptr),value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: mb
+      integer(c_int),value :: nnzb
+      type(c_ptr),value :: descrA
+      type(c_ptr),value :: bsrSortedValA
+      type(c_ptr),value :: bsrSortedRowPtrA
+      type(c_ptr),value :: bsrSortedColIndA
+      integer(c_int),value :: blockDim
+      type(c_ptr),value :: myInfo
+      type(c_ptr),value :: pBufferSize
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipsparseSbsrsv2_analysis(handle,dirA,transA,mb,nnzb,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer) bind(c, name="cusparseSbsrsv2_analysis")
+#else
+    function hipsparseSbsrsv2_analysis(handle,dirA,transA,mb,nnzb,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer) bind(c, name="hipsparseSbsrsv2_analysis")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrsv2_analysis
+      type(c_ptr),value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: mb
+      integer(c_int),value :: nnzb
+      type(c_ptr),value :: descrA
+      type(c_ptr),value :: bsrSortedValA
+      type(c_ptr),value :: bsrSortedRowPtrA
+      type(c_ptr),value :: bsrSortedColIndA
+      integer(c_int),value :: blockDim
+      type(c_ptr),value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      type(c_ptr),value :: pBuffer
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipsparseDbsrsv2_analysis(handle,dirA,transA,mb,nnzb,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer) bind(c, name="cusparseDbsrsv2_analysis")
+#else
+    function hipsparseDbsrsv2_analysis(handle,dirA,transA,mb,nnzb,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer) bind(c, name="hipsparseDbsrsv2_analysis")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrsv2_analysis
+      type(c_ptr),value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: mb
+      integer(c_int),value :: nnzb
+      type(c_ptr),value :: descrA
+      type(c_ptr),value :: bsrSortedValA
+      type(c_ptr),value :: bsrSortedRowPtrA
+      type(c_ptr),value :: bsrSortedColIndA
+      integer(c_int),value :: blockDim
+      type(c_ptr),value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      type(c_ptr),value :: pBuffer
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipsparseCbsrsv2_analysis(handle,dirA,transA,mb,nnzb,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer) bind(c, name="cusparseCbsrsv2_analysis")
+#else
+    function hipsparseCbsrsv2_analysis(handle,dirA,transA,mb,nnzb,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer) bind(c, name="hipsparseCbsrsv2_analysis")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrsv2_analysis
+      type(c_ptr),value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: mb
+      integer(c_int),value :: nnzb
+      type(c_ptr),value :: descrA
+      type(c_ptr),value :: bsrSortedValA
+      type(c_ptr),value :: bsrSortedRowPtrA
+      type(c_ptr),value :: bsrSortedColIndA
+      integer(c_int),value :: blockDim
+      type(c_ptr),value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      type(c_ptr),value :: pBuffer
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipsparseZbsrsv2_analysis(handle,dirA,transA,mb,nnzb,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer) bind(c, name="cusparseZbsrsv2_analysis")
+#else
+    function hipsparseZbsrsv2_analysis(handle,dirA,transA,mb,nnzb,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer) bind(c, name="hipsparseZbsrsv2_analysis")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrsv2_analysis
+      type(c_ptr),value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: mb
+      integer(c_int),value :: nnzb
+      type(c_ptr),value :: descrA
+      type(c_ptr),value :: bsrSortedValA
+      type(c_ptr),value :: bsrSortedRowPtrA
+      type(c_ptr),value :: bsrSortedColIndA
+      integer(c_int),value :: blockDim
+      type(c_ptr),value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      type(c_ptr),value :: pBuffer
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipsparseSbsrsv2_solve(handle,dirA,transA,mb,nnzb,alpha,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,f,x,policy,pBuffer) bind(c, name="cusparseSbsrsv2_solve")
+#else
+    function hipsparseSbsrsv2_solve(handle,dirA,transA,mb,nnzb,alpha,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,f,x,policy,pBuffer) bind(c, name="hipsparseSbsrsv2_solve")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrsv2_solve
+      type(c_ptr),value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: mb
+      integer(c_int),value :: nnzb
+      real(c_float) :: alpha
+      type(c_ptr),value :: descrA
+      type(c_ptr),value :: bsrSortedValA
+      type(c_ptr),value :: bsrSortedRowPtrA
+      type(c_ptr),value :: bsrSortedColIndA
+      integer(c_int),value :: blockDim
+      type(c_ptr),value :: myInfo
+      type(c_ptr),value :: f
+      type(c_ptr),value :: x
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      type(c_ptr),value :: pBuffer
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipsparseDbsrsv2_solve(handle,dirA,transA,mb,nnzb,alpha,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,f,x,policy,pBuffer) bind(c, name="cusparseDbsrsv2_solve")
+#else
+    function hipsparseDbsrsv2_solve(handle,dirA,transA,mb,nnzb,alpha,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,f,x,policy,pBuffer) bind(c, name="hipsparseDbsrsv2_solve")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrsv2_solve
+      type(c_ptr),value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: mb
+      integer(c_int),value :: nnzb
+      real(c_double) :: alpha
+      type(c_ptr),value :: descrA
+      type(c_ptr),value :: bsrSortedValA
+      type(c_ptr),value :: bsrSortedRowPtrA
+      type(c_ptr),value :: bsrSortedColIndA
+      integer(c_int),value :: blockDim
+      type(c_ptr),value :: myInfo
+      type(c_ptr),value :: f
+      type(c_ptr),value :: x
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      type(c_ptr),value :: pBuffer
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipsparseCbsrsv2_solve(handle,dirA,transA,mb,nnzb,alpha,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,f,x,policy,pBuffer) bind(c, name="cusparseCbsrsv2_solve")
+#else
+    function hipsparseCbsrsv2_solve(handle,dirA,transA,mb,nnzb,alpha,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,f,x,policy,pBuffer) bind(c, name="hipsparseCbsrsv2_solve")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrsv2_solve
+      type(c_ptr),value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: mb
+      integer(c_int),value :: nnzb
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: descrA
+      type(c_ptr),value :: bsrSortedValA
+      type(c_ptr),value :: bsrSortedRowPtrA
+      type(c_ptr),value :: bsrSortedColIndA
+      integer(c_int),value :: blockDim
+      type(c_ptr),value :: myInfo
+      type(c_ptr),value :: f
+      type(c_ptr),value :: x
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      type(c_ptr),value :: pBuffer
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipsparseZbsrsv2_solve(handle,dirA,transA,mb,nnzb,alpha,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,f,x,policy,pBuffer) bind(c, name="cusparseZbsrsv2_solve")
+#else
+    function hipsparseZbsrsv2_solve(handle,dirA,transA,mb,nnzb,alpha,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,f,x,policy,pBuffer) bind(c, name="hipsparseZbsrsv2_solve")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrsv2_solve
+      type(c_ptr),value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: mb
+      integer(c_int),value :: nnzb
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: descrA
+      type(c_ptr),value :: bsrSortedValA
+      type(c_ptr),value :: bsrSortedRowPtrA
+      type(c_ptr),value :: bsrSortedColIndA
+      integer(c_int),value :: blockDim
+      type(c_ptr),value :: myInfo
+      type(c_ptr),value :: f
+      type(c_ptr),value :: x
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      type(c_ptr),value :: pBuffer
+    end function
+
+  !  Description: Matrix-matrix multiplication C = alpha  op(A)  B + beta  C,
+  !    where A is a sparse matrix in BSR storage format, B and C are dense matrices. 
+#ifdef USE_CUDA_NAMES
+    function hipsparseSbsrmm(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA,bsrValA,bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc) bind(c, name="cusparseSbsrmm")
+#else
+    function hipsparseSbsrmm(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA,bsrValA,bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc) bind(c, name="hipsparseSbsrmm")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrmm
+      type(c_ptr),value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
+      integer(c_int),value :: mb
+      integer(c_int),value :: n
+      integer(c_int),value :: kb
+      integer(c_int),value :: nnzb
+      real(c_float) :: alpha
+      type(c_ptr),value :: descrA
+      type(c_ptr),value :: bsrValA
+      type(c_ptr),value :: bsrRowPtrA
+      type(c_ptr),value :: bsrColIndA
+      integer(c_int),value :: blockDim
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      real(c_float) :: beta
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipsparseDbsrmm(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA,bsrValA,bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc) bind(c, name="cusparseDbsrmm")
+#else
+    function hipsparseDbsrmm(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA,bsrValA,bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc) bind(c, name="hipsparseDbsrmm")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrmm
+      type(c_ptr),value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
+      integer(c_int),value :: mb
+      integer(c_int),value :: n
+      integer(c_int),value :: kb
+      integer(c_int),value :: nnzb
+      real(c_double) :: alpha
+      type(c_ptr),value :: descrA
+      type(c_ptr),value :: bsrValA
+      type(c_ptr),value :: bsrRowPtrA
+      type(c_ptr),value :: bsrColIndA
+      integer(c_int),value :: blockDim
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      real(c_double) :: beta
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipsparseCbsrmm(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA,bsrValA,bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc) bind(c, name="cusparseCbsrmm")
+#else
+    function hipsparseCbsrmm(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA,bsrValA,bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc) bind(c, name="hipsparseCbsrmm")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrmm
+      type(c_ptr),value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
+      integer(c_int),value :: mb
+      integer(c_int),value :: n
+      integer(c_int),value :: kb
+      integer(c_int),value :: nnzb
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: descrA
+      type(c_ptr),value :: bsrValA
+      type(c_ptr),value :: bsrRowPtrA
+      type(c_ptr),value :: bsrColIndA
+      integer(c_int),value :: blockDim
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      complex(c_float_complex) :: beta
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipsparseZbsrmm(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA,bsrValA,bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc) bind(c, name="cusparseZbsrmm")
+#else
+    function hipsparseZbsrmm(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA,bsrValA,bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc) bind(c, name="hipsparseZbsrmm")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrmm
+      type(c_ptr),value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
+      integer(c_int),value :: mb
+      integer(c_int),value :: n
+      integer(c_int),value :: kb
+      integer(c_int),value :: nnzb
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: descrA
+      type(c_ptr),value :: bsrValA
+      type(c_ptr),value :: bsrRowPtrA
+      type(c_ptr),value :: bsrColIndA
+      integer(c_int),value :: blockDim
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      complex(c_double_complex) :: beta
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
     end function
 
   !  Description: Matrix-matrix multiplication C = alpha  op(A)  B + beta  C,
@@ -1543,14 +2114,14 @@ module hipfort_hipsparse
       integer(c_int),value :: n
       integer(c_int),value :: k
       integer(c_int),value :: nnz
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: csrSortedValA
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
     end function
@@ -1571,14 +2142,14 @@ module hipfort_hipsparse
       integer(c_int),value :: n
       integer(c_int),value :: k
       integer(c_int),value :: nnz
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: csrSortedValA
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
     end function
@@ -1599,14 +2170,14 @@ module hipfort_hipsparse
       integer(c_int),value :: n
       integer(c_int),value :: k
       integer(c_int),value :: nnz
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: csrSortedValA
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      complex(c_float_complex),intent(IN) :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
     end function
@@ -1627,14 +2198,14 @@ module hipfort_hipsparse
       integer(c_int),value :: n
       integer(c_int),value :: k
       integer(c_int),value :: nnz
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: csrSortedValA
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      complex(c_double_complex),intent(IN) :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
     end function
@@ -1657,14 +2228,14 @@ module hipfort_hipsparse
       integer(c_int),value :: n
       integer(c_int),value :: k
       integer(c_int),value :: nnz
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: csrSortedValA
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
     end function
@@ -1686,14 +2257,14 @@ module hipfort_hipsparse
       integer(c_int),value :: n
       integer(c_int),value :: k
       integer(c_int),value :: nnz
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: csrSortedValA
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
     end function
@@ -1715,14 +2286,14 @@ module hipfort_hipsparse
       integer(c_int),value :: n
       integer(c_int),value :: k
       integer(c_int),value :: nnz
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: csrSortedValA
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      complex(c_float_complex),intent(IN) :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
     end function
@@ -1744,14 +2315,14 @@ module hipfort_hipsparse
       integer(c_int),value :: n
       integer(c_int),value :: k
       integer(c_int),value :: nnz
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: csrSortedValA
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      complex(c_double_complex),intent(IN) :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
     end function
@@ -1789,7 +2360,7 @@ module hipfort_hipsparse
       integer(c_int),value :: m
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnz
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: csrSortedValA
       type(c_ptr),value :: csrSortedRowPtrA
@@ -1818,7 +2389,7 @@ module hipfort_hipsparse
       integer(c_int),value :: m
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnz
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: csrSortedValA
       type(c_ptr),value :: csrSortedRowPtrA
@@ -1847,7 +2418,7 @@ module hipfort_hipsparse
       integer(c_int),value :: m
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnz
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: csrSortedValA
       type(c_ptr),value :: csrSortedRowPtrA
@@ -1876,7 +2447,7 @@ module hipfort_hipsparse
       integer(c_int),value :: m
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnz
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: csrSortedValA
       type(c_ptr),value :: csrSortedRowPtrA
@@ -1905,7 +2476,7 @@ module hipfort_hipsparse
       integer(c_int),value :: m
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnz
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: csrSortedValA
       type(c_ptr),value :: csrSortedRowPtrA
@@ -1934,7 +2505,7 @@ module hipfort_hipsparse
       integer(c_int),value :: m
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnz
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: csrSortedValA
       type(c_ptr),value :: csrSortedRowPtrA
@@ -1963,7 +2534,7 @@ module hipfort_hipsparse
       integer(c_int),value :: m
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnz
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: csrSortedValA
       type(c_ptr),value :: csrSortedRowPtrA
@@ -1992,7 +2563,7 @@ module hipfort_hipsparse
       integer(c_int),value :: m
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnz
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: csrSortedValA
       type(c_ptr),value :: csrSortedRowPtrA
@@ -2021,7 +2592,7 @@ module hipfort_hipsparse
       integer(c_int),value :: m
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnz
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: csrSortedValA
       type(c_ptr),value :: csrSortedRowPtrA
@@ -2050,7 +2621,7 @@ module hipfort_hipsparse
       integer(c_int),value :: m
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnz
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: csrSortedValA
       type(c_ptr),value :: csrSortedRowPtrA
@@ -2079,7 +2650,7 @@ module hipfort_hipsparse
       integer(c_int),value :: m
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnz
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: csrSortedValA
       type(c_ptr),value :: csrSortedRowPtrA
@@ -2108,7 +2679,7 @@ module hipfort_hipsparse
       integer(c_int),value :: m
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnz
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: csrSortedValA
       type(c_ptr),value :: csrSortedRowPtrA
@@ -2118,6 +2689,111 @@ module hipfort_hipsparse
       type(c_ptr),value :: myInfo
       integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
       type(c_ptr),value :: pBuffer
+    end function
+
+  !  Description: Matrix-matrix multiplication C = alpha  A  B + beta  C,
+  !    where B is a sparse matrix in CSC storage format, A and C are dense matrices. 
+#ifdef USE_CUDA_NAMES
+    function hipsparseSgemmi(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB,cscRowIndB,beta,C,ldc) bind(c, name="cusparseSgemmi")
+#else
+    function hipsparseSgemmi(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB,cscRowIndB,beta,C,ldc) bind(c, name="hipsparseSgemmi")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgemmi
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      integer(c_int),value :: nnz
+      real(c_float) :: alpha
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: cscValB
+      type(c_ptr),value :: cscColPtrB
+      type(c_ptr),value :: cscRowIndB
+      real(c_float) :: beta
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipsparseDgemmi(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB,cscRowIndB,beta,C,ldc) bind(c, name="cusparseDgemmi")
+#else
+    function hipsparseDgemmi(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB,cscRowIndB,beta,C,ldc) bind(c, name="hipsparseDgemmi")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgemmi
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      integer(c_int),value :: nnz
+      real(c_double) :: alpha
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: cscValB
+      type(c_ptr),value :: cscColPtrB
+      type(c_ptr),value :: cscRowIndB
+      real(c_double) :: beta
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipsparseCgemmi(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB,cscRowIndB,beta,C,ldc) bind(c, name="cusparseCgemmi")
+#else
+    function hipsparseCgemmi(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB,cscRowIndB,beta,C,ldc) bind(c, name="hipsparseCgemmi")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgemmi
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      integer(c_int),value :: nnz
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: cscValB
+      type(c_ptr),value :: cscColPtrB
+      type(c_ptr),value :: cscRowIndB
+      complex(c_float_complex) :: beta
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipsparseZgemmi(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB,cscRowIndB,beta,C,ldc) bind(c, name="cusparseZgemmi")
+#else
+    function hipsparseZgemmi(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB,cscRowIndB,beta,C,ldc) bind(c, name="hipsparseZgemmi")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgemmi
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      integer(c_int),value :: nnz
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: cscValB
+      type(c_ptr),value :: cscColPtrB
+      type(c_ptr),value :: cscRowIndB
+      complex(c_double_complex) :: beta
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
     end function
 
   !  Description: Sparse matrix sparse matrix addition C = alpha  A + beta  B, where A, B
@@ -2160,13 +2836,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: descrA
       integer(c_int),value :: nnzA
       type(c_ptr),value :: csrValA
       type(c_ptr),value :: csrRowPtrA
       type(c_ptr),value :: csrColIndA
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr),value :: descrB
       integer(c_int),value :: nnzB
       type(c_ptr),value :: csrValB
@@ -2191,13 +2867,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: descrA
       integer(c_int),value :: nnzA
       type(c_ptr),value :: csrValA
       type(c_ptr),value :: csrRowPtrA
       type(c_ptr),value :: csrColIndA
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr),value :: descrB
       integer(c_int),value :: nnzB
       type(c_ptr),value :: csrValB
@@ -2222,13 +2898,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: descrA
       integer(c_int),value :: nnzA
       type(c_ptr),value :: csrValA
       type(c_ptr),value :: csrRowPtrA
       type(c_ptr),value :: csrColIndA
-      complex(c_float_complex),intent(IN) :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr),value :: descrB
       integer(c_int),value :: nnzB
       type(c_ptr),value :: csrValB
@@ -2253,13 +2929,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: descrA
       integer(c_int),value :: nnzA
       type(c_ptr),value :: csrValA
       type(c_ptr),value :: csrRowPtrA
       type(c_ptr),value :: csrColIndA
-      complex(c_double_complex),intent(IN) :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr),value :: descrB
       integer(c_int),value :: nnzB
       type(c_ptr),value :: csrValB
@@ -2284,13 +2960,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: descrA
       integer(c_int),value :: nnzA
       type(c_ptr),value :: csrSortedValA
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr),value :: descrB
       integer(c_int),value :: nnzB
       type(c_ptr),value :: csrSortedValB
@@ -2316,13 +2992,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: descrA
       integer(c_int),value :: nnzA
       type(c_ptr),value :: csrSortedValA
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr),value :: descrB
       integer(c_int),value :: nnzB
       type(c_ptr),value :: csrSortedValB
@@ -2348,13 +3024,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: descrA
       integer(c_int),value :: nnzA
       type(c_ptr),value :: csrSortedValA
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
-      complex(c_float_complex),intent(IN) :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr),value :: descrB
       integer(c_int),value :: nnzB
       type(c_ptr),value :: csrSortedValB
@@ -2380,13 +3056,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: descrA
       integer(c_int),value :: nnzA
       type(c_ptr),value :: csrSortedValA
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
-      complex(c_double_complex),intent(IN) :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr),value :: descrB
       integer(c_int),value :: nnzB
       type(c_ptr),value :: csrSortedValB
@@ -2439,13 +3115,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: descrA
       integer(c_int),value :: nnzA
       type(c_ptr),value :: csrSortedValA
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr),value :: descrB
       integer(c_int),value :: nnzB
       type(c_ptr),value :: csrSortedValB
@@ -2471,13 +3147,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: descrA
       integer(c_int),value :: nnzA
       type(c_ptr),value :: csrSortedValA
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr),value :: descrB
       integer(c_int),value :: nnzB
       type(c_ptr),value :: csrSortedValB
@@ -2503,13 +3179,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: descrA
       integer(c_int),value :: nnzA
       type(c_ptr),value :: csrSortedValA
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
-      complex(c_float_complex),intent(IN) :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr),value :: descrB
       integer(c_int),value :: nnzB
       type(c_ptr),value :: csrSortedValB
@@ -2535,13 +3211,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: descrA
       integer(c_int),value :: nnzA
       type(c_ptr),value :: csrSortedValA
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
-      complex(c_double_complex),intent(IN) :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr),value :: descrB
       integer(c_int),value :: nnzB
       type(c_ptr),value :: csrSortedValB
@@ -2727,7 +3403,7 @@ module hipfort_hipsparse
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: descrA
       integer(c_int),value :: nnzA
       type(c_ptr),value :: csrRowPtrA
@@ -2736,7 +3412,7 @@ module hipfort_hipsparse
       integer(c_int),value :: nnzB
       type(c_ptr),value :: csrRowPtrB
       type(c_ptr),value :: csrColIndB
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr),value :: descrD
       integer(c_int),value :: nnzD
       type(c_ptr),value :: csrRowPtrD
@@ -2759,7 +3435,7 @@ module hipfort_hipsparse
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: descrA
       integer(c_int),value :: nnzA
       type(c_ptr),value :: csrRowPtrA
@@ -2768,7 +3444,7 @@ module hipfort_hipsparse
       integer(c_int),value :: nnzB
       type(c_ptr),value :: csrRowPtrB
       type(c_ptr),value :: csrColIndB
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr),value :: descrD
       integer(c_int),value :: nnzD
       type(c_ptr),value :: csrRowPtrD
@@ -2791,7 +3467,7 @@ module hipfort_hipsparse
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: descrA
       integer(c_int),value :: nnzA
       type(c_ptr),value :: csrRowPtrA
@@ -2800,7 +3476,7 @@ module hipfort_hipsparse
       integer(c_int),value :: nnzB
       type(c_ptr),value :: csrRowPtrB
       type(c_ptr),value :: csrColIndB
-      complex(c_float_complex),intent(IN) :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr),value :: descrD
       integer(c_int),value :: nnzD
       type(c_ptr),value :: csrRowPtrD
@@ -2823,7 +3499,7 @@ module hipfort_hipsparse
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: descrA
       integer(c_int),value :: nnzA
       type(c_ptr),value :: csrRowPtrA
@@ -2832,7 +3508,7 @@ module hipfort_hipsparse
       integer(c_int),value :: nnzB
       type(c_ptr),value :: csrRowPtrB
       type(c_ptr),value :: csrColIndB
-      complex(c_double_complex),intent(IN) :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr),value :: descrD
       integer(c_int),value :: nnzD
       type(c_ptr),value :: csrRowPtrD
@@ -2888,7 +3564,7 @@ module hipfort_hipsparse
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: descrA
       integer(c_int),value :: nnzA
       type(c_ptr),value :: csrValA
@@ -2899,7 +3575,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrValB
       type(c_ptr),value :: csrRowPtrB
       type(c_ptr),value :: csrColIndB
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr),value :: descrD
       integer(c_int),value :: nnzD
       type(c_ptr),value :: csrValD
@@ -2927,7 +3603,7 @@ module hipfort_hipsparse
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: descrA
       integer(c_int),value :: nnzA
       type(c_ptr),value :: csrValA
@@ -2938,7 +3614,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrValB
       type(c_ptr),value :: csrRowPtrB
       type(c_ptr),value :: csrColIndB
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr),value :: descrD
       integer(c_int),value :: nnzD
       type(c_ptr),value :: csrValD
@@ -2966,7 +3642,7 @@ module hipfort_hipsparse
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: descrA
       integer(c_int),value :: nnzA
       type(c_ptr),value :: csrValA
@@ -2977,7 +3653,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrValB
       type(c_ptr),value :: csrRowPtrB
       type(c_ptr),value :: csrColIndB
-      complex(c_float_complex),intent(IN) :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr),value :: descrD
       integer(c_int),value :: nnzD
       type(c_ptr),value :: csrValD
@@ -3005,7 +3681,7 @@ module hipfort_hipsparse
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: descrA
       integer(c_int),value :: nnzA
       type(c_ptr),value :: csrValA
@@ -3016,7 +3692,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrValB
       type(c_ptr),value :: csrRowPtrB
       type(c_ptr),value :: csrColIndB
-      complex(c_double_complex),intent(IN) :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr),value :: descrD
       integer(c_int),value :: nnzD
       type(c_ptr),value :: csrValD

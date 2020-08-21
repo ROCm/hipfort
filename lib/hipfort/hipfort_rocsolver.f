@@ -50,16 +50,6 @@ module hipfort_rocsolver
     end function
 
   
-    function rocsolver_add_stream(handle,stream) bind(c, name="rocsolver_add_stream")
-      use iso_c_binding
-      use hipfort_rocsolver_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_add_stream
-      type(c_ptr),value :: handle
-      type(c_ptr),value :: stream
-    end function
-
-  
     function rocsolver_set_stream(handle,stream) bind(c, name="rocsolver_set_stream")
       use iso_c_binding
       use hipfort_rocsolver_enums
@@ -136,6 +126,49 @@ module hipfort_rocsolver
       integer(kind(rocblas_status_success)) :: rocsolver_get_version_string
       type(c_ptr),value :: buf
       integer(c_size_t),value :: len
+    end function
+
+  ! ! \brief LACGV conjugates the complex vector x.
+  ! 
+  !     \details
+  !     It conjugates the n entries of a complex vector x with increment incx.
+  ! 
+  !     @param[in]
+  !     handle          rocblas_handle
+  !     @param[in]
+  !     n               rocblas_int. n >= 0.\n
+  !                     The number of entries of the vector x.
+  !     @param[inout]      
+  !     x               pointer to type. Array on the GPU of size at least n.\n
+  !                     On input it is the vector x, 
+  !                     on output it is overwritten with vector conjg(x).
+  !     @param[in]
+  !     incx            rocblas_int. incx != 0.\n
+  !                     The increment between consecutive elements of x. 
+  !                     If incx is negative, the elements of x are indexed in
+  !                     reverse order.
+  !     
+    function rocsolver_clacgv(handle,n,x,incx) bind(c, name="rocsolver_clacgv")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_clacgv
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+    end function
+
+  
+    function rocsolver_zlacgv(handle,n,x,incx) bind(c, name="rocsolver_zlacgv")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zlacgv
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
     end function
 
   ! ! \brief LASWP performs a series of row interchanges on the matrix A.
@@ -281,10 +314,10 @@ module hipfort_rocsolver
       integer(kind(rocblas_status_success)) :: rocsolver_slarfg
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
-      real(c_float),intent(IN) :: tau
+      real(c_float) :: tau
     end function
 
   
@@ -295,10 +328,10 @@ module hipfort_rocsolver
       integer(kind(rocblas_status_success)) :: rocsolver_dlarfg
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
-      real(c_double),intent(IN) :: tau
+      real(c_double) :: tau
     end function
 
   
@@ -309,10 +342,10 @@ module hipfort_rocsolver
       integer(kind(rocblas_status_success)) :: rocsolver_clarfg
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
-      complex(c_float_complex),intent(IN) :: tau
+      complex(c_float_complex) :: tau
     end function
 
   
@@ -323,10 +356,10 @@ module hipfort_rocsolver
       integer(kind(rocblas_status_success)) :: rocsolver_zlarfg
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
-      complex(c_double_complex),intent(IN) :: tau
+      complex(c_double_complex) :: tau
     end function
 
   ! ! \brief LARFT Generates the triangular factor T of a block reflector H of order n.
@@ -394,7 +427,7 @@ module hipfort_rocsolver
       integer(c_int),value :: k
       type(c_ptr),value :: V
       integer(c_int),value :: ldv
-      real(c_float),intent(IN) :: tau
+      real(c_float) :: tau
       type(c_ptr),value :: T
       integer(c_int),value :: ldt
     end function
@@ -412,7 +445,7 @@ module hipfort_rocsolver
       integer(c_int),value :: k
       type(c_ptr),value :: V
       integer(c_int),value :: ldv
-      real(c_double),intent(IN) :: tau
+      real(c_double) :: tau
       type(c_ptr),value :: T
       integer(c_int),value :: ldt
     end function
@@ -430,7 +463,7 @@ module hipfort_rocsolver
       integer(c_int),value :: k
       type(c_ptr),value :: V
       integer(c_int),value :: ldv
-      complex(c_float_complex),intent(IN) :: tau
+      complex(c_float_complex) :: tau
       type(c_ptr),value :: T
       integer(c_int),value :: ldt
     end function
@@ -448,7 +481,7 @@ module hipfort_rocsolver
       integer(c_int),value :: k
       type(c_ptr),value :: V
       integer(c_int),value :: ldv
-      complex(c_double_complex),intent(IN) :: tau
+      complex(c_double_complex) :: tau
       type(c_ptr),value :: T
       integer(c_int),value :: ldt
     end function
@@ -507,7 +540,7 @@ module hipfort_rocsolver
       integer(c_int),value :: n
       type(c_ptr),value :: x
       integer(c_int),value :: incx
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
     end function
@@ -524,7 +557,7 @@ module hipfort_rocsolver
       integer(c_int),value :: n
       type(c_ptr),value :: x
       integer(c_int),value :: incx
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
     end function
@@ -541,7 +574,7 @@ module hipfort_rocsolver
       integer(c_int),value :: n
       type(c_ptr),value :: x
       integer(c_int),value :: incx
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
     end function
@@ -558,7 +591,7 @@ module hipfort_rocsolver
       integer(c_int),value :: n
       type(c_ptr),value :: x
       integer(c_int),value :: incx
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
     end function
@@ -723,6 +756,174 @@ module hipfort_rocsolver
       integer(c_int),value :: lda
     end function
 
+  ! ! \brief LABRD computes the bidiagonal form of the first k rows and columns of a general
+  !     m-by-n matrix A, as well as the matrices X and Y needed to reduce the remaining part of A.
+  ! 
+  !     \details
+  !     The bidiagonal form is given by:
+  ! 
+  !         B = Q'  A  P
+  ! 
+  !     where B is upper bidiagonal if m >= n and lower bidiagonal if m < n, and Q and 
+  !     P are orthogonalunitary matrices represented as the product of Householder matrices
+  ! 
+  !         Q = H(1)  H(2)  ...   H(k)  and P = G(1)  G(2)  ...  G(k-1), if m >= n, or
+  !         Q = H(1)  H(2)  ...  H(k-1) and P = G(1)  G(2)  ...   G(k),  if m < n
+  ! 
+  !     Each Householder matrix H(i) and G(i) is given by
+  ! 
+  !         H(i) = I - tauq[i-1]  v(i)  v(i)', and
+  !         G(i) = I - taup[i-1]  u(i)  u(i)'
+  !     
+  !     If m >= n, the first i-1 elements of the Householder vector v(i) are zero, and v(i)[i] = 1;
+  !     while the first i elements of the Householder vector u(i) are zero, and u(i)[i+1] = 1.
+  !     If m < n, the first i elements of the Householder vector v(i) are zero, and v(i)[i+1] = 1;
+  !     while the first i-1 elements of the Householder vector u(i) are zero, and u(i)[i] = 1.
+  ! 
+  !     The unreduced part of the matrix A can be updated using a block update:
+  ! 
+  !         A = A - V  Y' - X  U'
+  ! 
+  !     where V is an m-by-k matrix and U is an n-by-k formed using the vectors v and u.
+  ! 
+  !     @param[in]
+  !     handle    rocblas_handle.
+  !     @param[in]
+  !     m         rocblas_int. m >= 0.\n
+  !               The number of rows of the matrix A.
+  !     @param[in]
+  !     n         rocblas_int. n >= 0.\n
+  !               The number of columns of the matrix A.
+  !     @param[in]
+  !     k         rocblas_int. min(m,n) >= k >= 0.\n
+  !               The number of leading rows and columns of the matrix A to be reduced.
+  !     @param[inout]
+  !     A         pointer to type. Array on the GPU of dimension ldan.\n
+  !               On entry, the m-by-n matrix to be factored.
+  !               On exit, the elements on the diagonal and superdiagonal (if m >= n), or
+  !               subdiagonal (if m < n) contain the bidiagonal form B.
+  !               If m >= n, the elements below the diagonal are the m - i elements
+  !               of vector v(i) for i = 1,2,...,n, and the elements above the
+  !               superdiagonal are the n - i - 1 elements of vector u(i) for i = 1,2,...,n-1.
+  !               If m < n, the elements below the subdiagonal are the m - i - 1
+  !               elements of vector v(i) for i = 1,2,...,m-1, and the elements above the
+  !               diagonal are the n - i elements of vector u(i) for i = 1,2,...,m.
+  !     @param[in]
+  !     lda       rocblas_int. lda >= m.\n
+  !               specifies the leading dimension of A.
+  !     @param[out]
+  !     D         pointer to real type. Array on the GPU of dimension k.\n
+  !               The diagonal elements of B.
+  !     @param[out]
+  !     E         pointer to real type. Array on the GPU of dimension k.\n
+  !               The off-diagonal elements of B.
+  !     @param[out]
+  !     tauq      pointer to type. Array on the GPU of dimension k.\n
+  !               The scalar factors of the Householder matrices H(i).
+  !     @param[out]
+  !     taup      pointer to type. Array on the GPU of dimension k.\n
+  !               The scalar factors of the Householder matrices G(i).
+  !     @param[out]
+  !     X         pointer to type. Array on the GPU of dimension ldxk.\n
+  !               The m-by-k matrix needed to reduce the unreduced part of A.
+  !     @param[in]
+  !     ldx       rocblas_int. ldx >= m.\n
+  !               specifies the leading dimension of X.
+  !     @param[out]
+  !     Y         pointer to type. Array on the GPU of dimension ldyk.\n
+  !               The n-by-k matrix needed to reduce the unreduced part of A.
+  !     @param[in]
+  !     ldy       rocblas_int. ldy >= n.\n
+  !               specifies the leading dimension of Y.
+  ! 
+  !     
+    function rocsolver_slabrd(handle,m,n,k,A,lda,D,E,tauq,taup,X,ldx,Y,ldy) bind(c, name="rocsolver_slabrd")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_slabrd
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: D
+      type(c_ptr),value :: E
+      type(c_ptr),value :: tauq
+      type(c_ptr),value :: taup
+      type(c_ptr),value :: X
+      integer(c_int),value :: ldx
+      type(c_ptr),value :: Y
+      integer(c_int),value :: ldy
+    end function
+
+  
+    function rocsolver_dlabrd(handle,m,n,k,A,lda,D,E,tauq,taup,X,ldx,Y,ldy) bind(c, name="rocsolver_dlabrd")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dlabrd
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: D
+      type(c_ptr),value :: E
+      type(c_ptr),value :: tauq
+      type(c_ptr),value :: taup
+      type(c_ptr),value :: X
+      integer(c_int),value :: ldx
+      type(c_ptr),value :: Y
+      integer(c_int),value :: ldy
+    end function
+
+  
+    function rocsolver_clabrd(handle,m,n,k,A,lda,D,E,tauq,taup,X,ldx,Y,ldy) bind(c, name="rocsolver_clabrd")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_clabrd
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: D
+      type(c_ptr),value :: E
+      type(c_ptr),value :: tauq
+      type(c_ptr),value :: taup
+      type(c_ptr),value :: X
+      integer(c_int),value :: ldx
+      type(c_ptr),value :: Y
+      integer(c_int),value :: ldy
+    end function
+
+  
+    function rocsolver_zlabrd(handle,m,n,k,A,lda,D,E,tauq,taup,X,ldx,Y,ldy) bind(c, name="rocsolver_zlabrd")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zlabrd
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: D
+      type(c_ptr),value :: E
+      type(c_ptr),value :: tauq
+      type(c_ptr),value :: taup
+      type(c_ptr),value :: X
+      integer(c_int),value :: ldx
+      type(c_ptr),value :: Y
+      integer(c_int),value :: ldy
+    end function
+
   ! ! \brief ORG2R generates a m-by-n Matrix Q with orthonormal columns.
   ! 
   !     \details
@@ -780,6 +981,72 @@ module hipfort_rocsolver
       use hipfort_rocsolver_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocsolver_dorg2r
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+    end function
+
+  ! ! \brief UNG2R generates a m-by-n complex Matrix Q with orthonormal columns.
+  ! 
+  !     \details
+  !     (This is the unblocked version of the algorithm).
+  ! 
+  !     The matrix Q is defined as the first n columns of the product of k Householder
+  !     reflectors of order m
+  !     
+  !         Q = H(1)  H(2)  ...  H(k)
+  ! 
+  !     Householder matrices H(i) are never stored, they are computed from its corresponding 
+  !     Householder vector v(i) and scalar ipiv_i as returned by GEQRF.
+  ! 
+  !     @param[in]
+  !     handle      rocblas_handle.
+  !     @param[in]
+  !     m           rocblas_int. m >= 0.\n
+  !                 The number of rows of the matrix Q. 
+  !     @param[in]
+  !     n           rocblas_int. 0 <= n <= m.\n
+  !                 The number of colums of the matrix Q.
+  !     @param[in]
+  !     k           rocblas_int. 0 <= k <= n.\n
+  !                 The number of Householder reflectors.
+  !     @param[inout]
+  !     A           pointer to type. Array on the GPU of dimension ldan.\n
+  !                 On entry, the i-th column has Householder vector v(i), for i = 1,2,...,k
+  !                 as returned in the first k columns of matrix A of GEQRF.
+  !                 On exit, the computed matrix Q.
+  !     @param[in]
+  !     lda         rocblas_int. lda >= m.\n
+  !                 Specifies the leading dimension of A. 
+  !     @param[in]
+  !     ipiv        pointer to type. Array on the GPU of dimension at least k.\n
+  !                 The scalar factors of the Householder matrices H(i) as returned by GEQRF.
+  ! 
+  !     
+    function rocsolver_cung2r(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_cung2r")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cung2r
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+    end function
+
+  
+    function rocsolver_zung2r(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_zung2r")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zung2r
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -855,6 +1122,72 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+  ! ! \brief UNGQR generates a m-by-n complex Matrix Q with orthonormal columns.
+  ! 
+  !     \details
+  !     (This is the blocked version of the algorithm).
+  ! 
+  !     The matrix Q is defined as the first n columns of the product of k Householder
+  !     reflectors of order m
+  !     
+  !         Q = H(1)  H(2)  ...  H(k)
+  ! 
+  !     Householder matrices H(i) are never stored, they are computed from its corresponding 
+  !     Householder vector v(i) and scalar ipiv_i as returned by GEQRF.
+  ! 
+  !     @param[in]
+  !     handle      rocblas_handle.
+  !     @param[in]
+  !     m           rocblas_int. m >= 0.\n
+  !                 The number of rows of the matrix Q. 
+  !     @param[in]
+  !     n           rocblas_int. 0 <= n <= m.\n
+  !                 The number of colums of the matrix Q.
+  !     @param[in]
+  !     k           rocblas_int. 0 <= k <= n.\n
+  !                 The number of Householder reflectors.
+  !     @param[inout]
+  !     A           pointer to type. Array on the GPU of dimension ldan.\n
+  !                 On entry, the i-th column has Householder vector v(i), for i = 1,2,...,k
+  !                 as returned in the first k columns of matrix A of GEQRF.
+  !                 On exit, the computed matrix Q.
+  !     @param[in]
+  !     lda         rocblas_int. lda >= m.\n
+  !                 Specifies the leading dimension of A. 
+  !     @param[in]
+  !     ipiv        pointer to type. Array on the GPU of dimension at least k.\n
+  !                 The scalar factors of the Householder matrices H(i) as returned by GEQRF.
+  ! 
+  !     
+    function rocsolver_cungqr(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_cungqr")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cungqr
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+    end function
+
+  
+    function rocsolver_zungqr(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_zungqr")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zungqr
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+    end function
+
   ! ! \brief ORGL2 generates a m-by-n Matrix Q with orthonormal rows.
   ! 
   !     \details
@@ -921,6 +1254,72 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+  ! ! \brief UNGL2 generates a m-by-n complex Matrix Q with orthonormal rows.
+  ! 
+  !     \details
+  !     (This is the unblocked version of the algorithm).
+  ! 
+  !     The matrix Q is defined as the first m rows of the product of k Householder
+  !     reflectors of order n
+  !     
+  !         Q = H(k)H  H(k-1)H  ...  H(1)H
+  ! 
+  !     Householder matrices H(i) are never stored, they are computed from its corresponding 
+  !     Householder vector v(i) and scalar ipiv_i as returned by GELQF.
+  ! 
+  !     @param[in]
+  !     handle      rocblas_handle.
+  !     @param[in]
+  !     m           rocblas_int. 0 <= m <= n.\n
+  !                 The number of rows of the matrix Q. 
+  !     @param[in]
+  !     n           rocblas_int. n >= 0.\n
+  !                 The number of colums of the matrix Q.
+  !     @param[in]
+  !     k           rocblas_int. 0 <= k <= m.\n
+  !                 The number of Householder reflectors.
+  !     @param[inout]
+  !     A           pointer to type. Array on the GPU of dimension ldan.\n
+  !                 On entry, the i-th row has Householder vector v(i), for i = 1,2,...,k
+  !                 as returned in the first k rows of matrix A of GELQF.
+  !                 On exit, the computed matrix Q.
+  !     @param[in]
+  !     lda         rocblas_int. lda >= m.\n
+  !                 Specifies the leading dimension of A. 
+  !     @param[in]
+  !     ipiv        pointer to type. Array on the GPU of dimension at least k.\n
+  !                 The scalar factors of the Householder matrices H(i) as returned by GELQF.
+  ! 
+  !     
+    function rocsolver_cungl2(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_cungl2")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cungl2
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+    end function
+
+  
+    function rocsolver_zungl2(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_zungl2")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zungl2
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+    end function
+
   ! ! \brief ORGLQ generates a m-by-n Matrix Q with orthonormal rows.
   ! 
   !     \details
@@ -978,6 +1377,72 @@ module hipfort_rocsolver
       use hipfort_rocsolver_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocsolver_dorglq
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+    end function
+
+  ! ! \brief UNGLQ generates a m-by-n complex Matrix Q with orthonormal rows.
+  ! 
+  !     \details
+  !     (This is the blocked version of the algorithm).
+  ! 
+  !     The matrix Q is defined as the first m rows of the product of k Householder
+  !     reflectors of order n
+  !     
+  !         Q = H(k)H  H(k-1)H  ...  H(1)H
+  ! 
+  !     Householder matrices H(i) are never stored, they are computed from its corresponding 
+  !     Householder vector v(i) and scalar ipiv_i as returned by GELQF.
+  ! 
+  !     @param[in]
+  !     handle      rocblas_handle.
+  !     @param[in]
+  !     m           rocblas_int. 0 <= m <= n.\n
+  !                 The number of rows of the matrix Q. 
+  !     @param[in]
+  !     n           rocblas_int. n >= 0.\n
+  !                 The number of colums of the matrix Q.
+  !     @param[in]
+  !     k           rocblas_int. 0 <= k <= m.\n
+  !                 The number of Householder reflectors.
+  !     @param[inout]
+  !     A           pointer to type. Array on the GPU of dimension ldan.\n
+  !                 On entry, the i-th row has Householder vector v(i), for i = 1,2,...,k
+  !                 as returned in the first k rows of matrix A of GELQF.
+  !                 On exit, the computed matrix Q.
+  !     @param[in]
+  !     lda         rocblas_int. lda >= m.\n
+  !                 Specifies the leading dimension of A. 
+  !     @param[in]
+  !     ipiv        pointer to type. Array on the GPU of dimension at least k.\n
+  !                 The scalar factors of the Householder matrices H(i) as returned by GELQF.
+  ! 
+  !     
+    function rocsolver_cunglq(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_cunglq")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cunglq
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+    end function
+
+  
+    function rocsolver_zunglq(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_zunglq")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zunglq
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -1072,6 +1537,91 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+  ! ! \brief UNGBR generates a m-by-n complex Matrix Q with orthonormal rows or columns.
+  ! 
+  !     \details
+  !     If storev is column-wise, then the matrix Q has orthonormal columns. If m >= k, Q is defined as the first 
+  !     n columns of the product of k Householder reflectors of order m
+  !     
+  !         Q = H(1)  H(2)  ...  H(k)
+  ! 
+  !     If m < k, Q is defined as the product of Householder reflectors of order m
+  ! 
+  !         Q = H(1)  H(2)  ...  H(m-1)
+  ! 
+  !     On the other hand, if storev is row-wise, then the matrix Q has orthonormal rows. If n > k, Q is defined as the
+  !     first m rows of the product of k Householder reflectors of order n
+  ! 
+  !         Q = H(k)  H(k-1)  ...  H(1)
+  !     
+  !     If n <= k, Q is defined as the product of Householder reflectors of order n
+  ! 
+  !         Q = H(n-1)  H(n-2)  ...  H(1)
+  ! 
+  !     The Householder matrices H(i) are never stored, they are computed from its corresponding 
+  !     Householder vectors v(i) and scalars ipiv_i as returned by GEBRD in its arguments A and tauq or taup.
+  ! 
+  !     @param[in]
+  !     handle      rocblas_handle.
+  !     @param[in]
+  !     storev      rocblas_storev.\n
+  !                 Specifies whether to work column-wise or row-wise.
+  !     @param[in]
+  !     m           rocblas_int. m >= 0.\n
+  !                 The number of rows of the matrix Q. 
+  !                 If row-wise, then min(n,k) <= m <= n.
+  !     @param[in]
+  !     n           rocblas_int. n >= 0.\n
+  !                 The number of colums of the matrix Q. 
+  !                 If column-wise, then min(m,k) <= n <= m. 
+  !     @param[in]
+  !     k           rocblas_int. k >= 0.\n
+  !                 The number of columns (if storev is colum-wise) or rows (if row-wise) of the
+  !                 original matrix reduced by GEBRD.
+  !     @param[inout]
+  !     A           pointer to type. Array on the GPU of dimension ldan.\n
+  !                 On entry, the i-th column (or row) has the Householder vector v(i)
+  !                 as returned by GEBRD.
+  !                 On exit, the computed matrix Q.
+  !     @param[in]
+  !     lda         rocblas_int. lda >= m.\n
+  !                 Specifies the leading dimension of A. 
+  !     @param[in]
+  !     ipiv        pointer to type. Array on the GPU of dimension min(m,k) if column-wise, or min(n,k) if row-wise.\n
+  !                 The scalar factors of the Householder matrices H(i) as returned by GEBRD.
+  ! 
+  !     
+    function rocsolver_cungbr(handle,storev,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_cungbr")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cungbr
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_column_wise)),value :: storev
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+    end function
+
+  
+    function rocsolver_zungbr(handle,storev,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_zungbr")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zungbr
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_column_wise)),value :: storev
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+    end function
+
   ! ! \brief ORM2R applies a matrix Q with orthonormal columns to a general m-by-n matrix C.
   ! 
   !     \details
@@ -1152,6 +1702,99 @@ module hipfort_rocsolver
       use hipfort_rocsolver_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocsolver_dorm2r
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_side_left)),value :: side
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+    end function
+
+  ! ! \brief UNM2R applies a complex matrix Q with orthonormal columns to a general m-by-n matrix C.
+  ! 
+  !     \details
+  !     (This is the unblocked version of the algorithm).
+  !     
+  !     The matrix Q is applied in one of the following forms, depending on 
+  !     the values of side and trans:
+  ! 
+  !         Q   C  (No transpose from the left)
+  !         Q'  C  (Conjugate transpose from the left)
+  !         C  Q   (No transpose from the right), and
+  !         C  Q'  (Conjugate transpose from the right)
+  ! 
+  !     Q is a unitary matrix defined as the product of k Householder reflectors as
+  ! 
+  !         Q = H(1)  H(2)  ...  H(k)
+  ! 
+  !     or order m if applying from the left, or n if applying from the right. Q is never stored, it is 
+  !     calculated from the Householder vectors and scalars returned by the QR factorization GEQRF.
+  ! 
+  !     @param[in]
+  !     handle              rocblas_handle.
+  !     @param[in]
+  !     side                rocblas_side.\n
+  !                         Specifies from which side to apply Q.
+  !     @param[in]
+  !     trans               rocblas_operation.\n
+  !                         Specifies whether the matrix Q or its conjugate transpose is to be applied.
+  !     @param[in]
+  !     m                   rocblas_int. m >= 0.\n
+  !                         Number of rows of matrix C.
+  !     @param[in]
+  !     n                   rocblas_int. n >= 0.\n
+  !                         Number of columns of matrix C.
+  !     @param[in]          
+  !     k                   rocsovler_int. k >= 0; k <= m if side is left, k <= n if side is right.\n
+  !                         The number of Householder reflectors that form Q.
+  !     @param[in]          
+  !     A                   pointer to type. Array on the GPU of size ldak.\n
+  !                         The i-th column has the Householder vector v(i) associated with H(i) as returned by GEQRF
+  !                         in the first k columns of its argument A.
+  !     @param[in]
+  !     lda                 rocblas_int. lda >= m if side is left, or lda >= n if side is right. \n
+  !                         Leading dimension of A.
+  !     @param[in]
+  !     ipiv                pointer to type. Array on the GPU of dimension at least k.\n
+  !                         The scalar factors of the Householder matrices H(i) as returned by GEQRF.
+  !     @param[inout]
+  !     C                   pointer to type. Array on the GPU of size ldcn.\n
+  !                         On input, the matrix C. On output it is overwritten with
+  !                         QC, CQ, Q'C, or CQ'.  
+  !     @param[in]
+  !     lda                 rocblas_int. ldc >= m.\n
+  !                         Leading dimension of C. 
+  !      
+  !     
+    function rocsolver_cunm2r(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_cunm2r")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cunm2r
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_side_left)),value :: side
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+    end function
+
+  
+    function rocsolver_zunm2r(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_zunm2r")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zunm2r
       type(c_ptr),value :: handle
       integer(kind(rocblas_side_left)),value :: side
       integer(kind(rocblas_operation_none)),value :: trans
@@ -1258,6 +1901,99 @@ module hipfort_rocsolver
       integer(c_int),value :: ldc
     end function
 
+  ! ! \brief UNMQR applies a complex matrix Q with orthonormal columns to a general m-by-n matrix C.
+  ! 
+  !     \details
+  !     (This is the blocked version of the algorithm).
+  !     
+  !     The matrix Q is applied in one of the following forms, depending on 
+  !     the values of side and trans:
+  ! 
+  !         Q   C  (No transpose from the left)
+  !         Q'  C  (Conjugate transpose from the left)
+  !         C  Q   (No transpose from the right), and
+  !         C  Q'  (Conjugate transpose from the right)
+  ! 
+  !     Q is a unitary matrix defined as the product of k Householder reflectors as
+  ! 
+  !         Q = H(1)  H(2)  ...  H(k)
+  ! 
+  !     or order m if applying from the left, or n if applying from the right. Q is never stored, it is 
+  !     calculated from the Householder vectors and scalars returned by the QR factorization GEQRF.
+  ! 
+  !     @param[in]
+  !     handle              rocblas_handle.
+  !     @param[in]
+  !     side                rocblas_side.\n
+  !                         Specifies from which side to apply Q.
+  !     @param[in]
+  !     trans               rocblas_operation.\n
+  !                         Specifies whether the matrix Q or its conjugate transpose is to be applied.
+  !     @param[in]
+  !     m                   rocblas_int. m >= 0.\n
+  !                         Number of rows of matrix C.
+  !     @param[in]
+  !     n                   rocblas_int. n >= 0.\n
+  !                         Number of columns of matrix C.
+  !     @param[in]          
+  !     k                   rocsovler_int. k >= 0; k <= m if side is left, k <= n if side is right.\n
+  !                         The number of Householder reflectors that form Q.
+  !     @param[in]          
+  !     A                   pointer to type. Array on the GPU of size ldak.\n
+  !                         The i-th column has the Householder vector v(i) associated with H(i) as returned by GEQRF
+  !                         in the first k columns of its argument A.
+  !     @param[in]
+  !     lda                 rocblas_int. lda >= m if side is left, or lda >= n if side is right. \n
+  !                         Leading dimension of A.
+  !     @param[in]
+  !     ipiv                pointer to type. Array on the GPU of dimension at least k.\n
+  !                         The scalar factors of the Householder matrices H(i) as returned by GEQRF.
+  !     @param[inout]
+  !     C                   pointer to type. Array on the GPU of size ldcn.\n
+  !                         On input, the matrix C. On output it is overwritten with
+  !                         QC, CQ, Q'C, or CQ'.  
+  !     @param[in]
+  !     lda                 rocblas_int. ldc >= m.\n
+  !                         Leading dimension of C. 
+  !      
+  !     
+    function rocsolver_cunmqr(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_cunmqr")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cunmqr
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_side_left)),value :: side
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+    end function
+
+  
+    function rocsolver_zunmqr(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_zunmqr")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zunmqr
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_side_left)),value :: side
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+    end function
+
   ! ! \brief ORML2 applies a matrix Q with orthonormal rows to a general m-by-n matrix C.
   ! 
   !     \details
@@ -1351,6 +2087,99 @@ module hipfort_rocsolver
       integer(c_int),value :: ldc
     end function
 
+  ! ! \brief UNML2 applies a complex matrix Q with orthonormal rows to a general m-by-n matrix C.
+  ! 
+  !     \details
+  !     (This is the unblocked version of the algorithm).
+  !     
+  !     The matrix Q is applied in one of the following forms, depending on 
+  !     the values of side and trans:
+  ! 
+  !         Q   C  (No transpose from the left)
+  !         Q'  C  (Conjugate transpose from the left)
+  !         C  Q   (No transpose from the right), and
+  !         C  Q'  (Conjugate transpose from the right)
+  ! 
+  !     Q is a unitary matrix defined as the product of k Householder reflectors as
+  ! 
+  !         Q = H(k)H  H(k-1)H  ...  H(1)H
+  ! 
+  !     or order m if applying from the left, or n if applying from the right. Q is never stored, it is 
+  !     calculated from the Householder vectors and scalars returned by the LQ factorization GELQF.
+  ! 
+  !     @param[in]
+  !     handle              rocblas_handle.
+  !     @param[in]
+  !     side                rocblas_side.\n
+  !                         Specifies from which side to apply Q.
+  !     @param[in]
+  !     trans               rocblas_operation.\n
+  !                         Specifies whether the matrix Q or its conjugate transpose is to be applied.
+  !     @param[in]
+  !     m                   rocblas_int. m >= 0.\n
+  !                         Number of rows of matrix C.
+  !     @param[in]
+  !     n                   rocblas_int. n >= 0.\n
+  !                         Number of columns of matrix C.
+  !     @param[in]          
+  !     k                   rocsovler_int. k >= 0; k <= m if side is left, k <= n if side is right.\n
+  !                         The number of Householder reflectors that form Q.
+  !     @param[in]          
+  !     A                   pointer to type. Array on the GPU of size ldam if side is left, or ldan if side is right.\n
+  !                         The i-th row has the Householder vector v(i) associated with H(i) as returned by GELQF
+  !                         in the first k rows of its argument A.
+  !     @param[in]
+  !     lda                 rocblas_int. lda >= k. \n
+  !                         Leading dimension of A.
+  !     @param[in]
+  !     ipiv                pointer to type. Array on the GPU of dimension at least k.\n
+  !                         The scalar factors of the Householder matrices H(i) as returned by GELQF.
+  !     @param[inout]
+  !     C                   pointer to type. Array on the GPU of size ldcn.\n
+  !                         On input, the matrix C. On output it is overwritten with
+  !                         QC, CQ, Q'C, or CQ'.  
+  !     @param[in]
+  !     lda                 rocblas_int. ldc >= m.\n
+  !                         Leading dimension of C. 
+  !      
+  !     
+    function rocsolver_cunml2(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_cunml2")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cunml2
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_side_left)),value :: side
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+    end function
+
+  
+    function rocsolver_zunml2(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_zunml2")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zunml2
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_side_left)),value :: side
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+    end function
+
   ! ! \brief ORMLQ applies a matrix Q with orthonormal rows to a general m-by-n matrix C.
   ! 
   !     \details
@@ -1431,6 +2260,99 @@ module hipfort_rocsolver
       use hipfort_rocsolver_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocsolver_dormlq
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_side_left)),value :: side
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+    end function
+
+  ! ! \brief UNMLQ applies a complex matrix Q with orthonormal rows to a general m-by-n matrix C.
+  ! 
+  !     \details
+  !     (This is the blocked version of the algorithm).
+  !     
+  !     The matrix Q is applied in one of the following forms, depending on 
+  !     the values of side and trans:
+  ! 
+  !         Q   C  (No transpose from the left)
+  !         Q'  C  (Conjugate transpose from the left)
+  !         C  Q   (No transpose from the right), and
+  !         C  Q'  (Conjugate transpose from the right)
+  ! 
+  !     Q is a unitary matrix defined as the product of k Householder reflectors as
+  ! 
+  !         Q = H(k)H  H(k-1)H  ...  H(1)H
+  ! 
+  !     or order m if applying from the left, or n if applying from the right. Q is never stored, it is 
+  !     calculated from the Householder vectors and scalars returned by the LQ factorization GELQF.
+  ! 
+  !     @param[in]
+  !     handle              rocblas_handle.
+  !     @param[in]
+  !     side                rocblas_side.\n
+  !                         Specifies from which side to apply Q.
+  !     @param[in]
+  !     trans               rocblas_operation.\n
+  !                         Specifies whether the matrix Q or its conjugate transpose is to be applied.
+  !     @param[in]
+  !     m                   rocblas_int. m >= 0.\n
+  !                         Number of rows of matrix C.
+  !     @param[in]
+  !     n                   rocblas_int. n >= 0.\n
+  !                         Number of columns of matrix C.
+  !     @param[in]          
+  !     k                   rocsovler_int. k >= 0; k <= m if side is left, k <= n if side is right.\n
+  !                         The number of Householder reflectors that form Q.
+  !     @param[in]          
+  !     A                   pointer to type. Array on the GPU of size ldam if side is left, or ldan if side is right.\n
+  !                         The i-th row has the Householder vector v(i) associated with H(i) as returned by GELQF
+  !                         in the first k rows of its argument A.
+  !     @param[in]
+  !     lda                 rocblas_int. lda >= k. \n
+  !                         Leading dimension of A.
+  !     @param[in]
+  !     ipiv                pointer to type. Array on the GPU of dimension at least k.\n
+  !                         The scalar factors of the Householder matrices H(i) as returned by GELQF.
+  !     @param[inout]
+  !     C                   pointer to type. Array on the GPU of size ldcn.\n
+  !                         On input, the matrix C. On output it is overwritten with
+  !                         QC, CQ, Q'C, or CQ'.  
+  !     @param[in]
+  !     lda                 rocblas_int. ldc >= m.\n
+  !                         Leading dimension of C. 
+  !      
+  !     
+    function rocsolver_cunmlq(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_cunmlq")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cunmlq
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_side_left)),value :: side
+      integer(kind(rocblas_operation_none)),value :: trans
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+    end function
+
+  
+    function rocsolver_zunmlq(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_zunmlq")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zunmlq
       type(c_ptr),value :: handle
       integer(kind(rocblas_side_left)),value :: side
       integer(kind(rocblas_operation_none)),value :: trans
@@ -1556,356 +2478,286 @@ module hipfort_rocsolver
       integer(c_int),value :: ldc
     end function
 
-  ! ! \brief GETF2 computes the LU factorization of a general m-by-n matrix A
-  !     using partial pivoting with row interchanges.
+  ! ! \brief UNMBR applies a complex matrix Q with orthonormal rows or columns to a general m-by-n matrix C.
   ! 
   !     \details
-  !     (This is the right-looking Level 2 BLAS version of the algorithm).
+  !     If storev is column-wise, then the matrix Q has orthonormal columns. 
+  !     If storev is row-wise, then the matrix Q has orthonormal rows.  
+  !     The matrix Q is applied in one of the following forms, depending on
+  !     the values of side and trans:
   ! 
-  !     The factorization has the form
+  !         Q   C  (No transpose from the left)
+  !         Q'  C  (Conjugate transpose from the left)
+  !         C  Q   (No transpose from the right), and
+  !         C  Q'  (Conjugate transpose from the right)
   ! 
-  !         A = P  L  U
+  !     The order nq of unitary matrix Q is nq = m if applying from the left, or nq = n if applying from the right.
   ! 
-  !     where P is a permutation matrix, L is lower triangular with unit
-  !     diagonal elements (lower trapezoidal if m > n), and U is upper
-  !     triangular (upper trapezoidal if m < n).
-  ! 
-  !     @param[in]
-  !     handle    rocblas_handle.
-  !     @param[in]
-  !     m         rocblas_int. m >= 0.\n
-  !               The number of rows of the matrix A. 
-  !     @param[in]
-  !     n         rocblas_int. n >= 0.\n
-  !               The number of colums of the matrix A. 
-  !     @param[inout]
-  !     A         pointer to type. Array on the GPU of dimension ldan.\n
-  !               On entry, the m-by-n matrix A to be factored.
-  !               On exit, the factors L and U from the factorization.
-  !               The unit diagonal elements of L are not stored.
-  !     @param[in]
-  !     lda       rocblas_int. lda >= m.\n
-  !               Specifies the leading dimension of A. 
-  !     @param[out]
-  !     ipiv      pointer to rocblas_int. Array on the GPU of dimension min(m,n).\n
-  !               The vector of pivot indices. Elements of ipiv are 1-based indices.
-  !               For 1 <= i <= min(m,n), the row i of the
-  !               matrix was interchanged with row ipiv[i].
-  !               Matrix P of the factorization can be derived from ipiv.
-  !     @param[out]
-  !     info      pointer to a rocblas_int on the GPU.\n
-  !               If info = 0, succesful exit. 
-  !               If info = i > 0, U is singular. U(i,i) is the first zero pivot.
-  !             
+  !     When storev is column-wise, if nq >= k, then Q is defined as the product of k Householder reflectors of order nq
   !     
-    function rocsolver_sgetf2(handle,m,n,A,lda,ipiv,myInfo) bind(c, name="rocsolver_sgetf2")
+  !         Q = H(1)  H(2)  ...  H(k),
+  ! 
+  !     and if nq < k, then Q is defined as the product 
+  ! 
+  !         Q = H(1)  H(2)  ...  H(nq-1).
+  ! 
+  !     When storev is row-wise, if nq > k, then Q is defined as the product of k Householder reflectors of order nq
+  ! 
+  !         Q = H(1)  H(2)  ...  H(k),
+  !     
+  !     and if n <= k, Q is defined as the product 
+  ! 
+  !         Q = H(1)  H(2)  ...  H(nq-1)
+  ! 
+  !     The Householder matrices H(i) are never stored, they are computed from its corresponding 
+  !     Householder vectors v(i) and scalars ipiv_i as returned by GEBRD in its arguments A and tauq or taup.
+  ! 
+  !     @param[in]
+  !     handle              rocblas_handle.
+  !     @param[in]
+  !     storev              rocblas_storev.\n
+  !                         Specifies whether to work column-wise or row-wise.
+  !     @param[in]
+  !     side                rocblas_side.\n
+  !                         Specifies from which side to apply Q.
+  !     @param[in]
+  !     trans               rocblas_operation.\n
+  !                         Specifies whether the matrix Q or its conjugate transpose is to be applied.
+  !     @param[in]
+  !     m                   rocblas_int. m >= 0.\n
+  !                         Number of rows of matrix C.
+  !     @param[in]
+  !     n                   rocblas_int. n >= 0.\n
+  !                         Number of columns of matrix C.
+  !     @param[in]          
+  !     k                   rocsovler_int. k >= 0.\n
+  !                         The number of columns (if storev is colum-wise) or rows (if row-wise) of the
+  !                         original matrix reduced by GEBRD.
+  !     @param[in]          
+  !     A                   pointer to type. Array on the GPU of size ldamin(nq,k) if column-wise, or ldanq if row-wise.\n
+  !                         The i-th column (or row) has the Householder vector v(i) associated with H(i) as returned by GEBRD.
+  !     @param[in]
+  !     lda                 rocblas_int. lda >= nq if column-wise, or lda >= min(nq,k) if row-wise. \n
+  !                         Leading dimension of A.
+  !     @param[in]
+  !     ipiv                pointer to type. Array on the GPU of dimension at least min(nq,k).\n
+  !                         The scalar factors of the Householder matrices H(i) as returned by GEBRD.
+  !     @param[inout]
+  !     C                   pointer to type. Array on the GPU of size ldcn.\n
+  !                         On input, the matrix C. On output it is overwritten with
+  !                         QC, CQ, Q'C, or CQ'.  
+  !     @param[in]
+  !     lda                 rocblas_int. ldc >= m.\n
+  !                         Leading dimension of C. 
+  ! 
+  !     
+    function rocsolver_cunmbr(handle,storev,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_cunmbr")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_sgetf2
+      integer(kind(rocblas_status_success)) :: rocsolver_cunmbr
       type(c_ptr),value :: handle
+      integer(kind(rocblas_column_wise)),value :: storev
+      integer(kind(rocblas_side_left)),value :: side
+      integer(kind(rocblas_operation_none)),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
+      integer(c_int),value :: k
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
-      type(c_ptr),value :: myInfo
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
     end function
 
   
-    function rocsolver_dgetf2(handle,m,n,A,lda,ipiv,myInfo) bind(c, name="rocsolver_dgetf2")
+    function rocsolver_zunmbr(handle,storev,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_zunmbr")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_dgetf2
+      integer(kind(rocblas_status_success)) :: rocsolver_zunmbr
       type(c_ptr),value :: handle
+      integer(kind(rocblas_column_wise)),value :: storev
+      integer(kind(rocblas_side_left)),value :: side
+      integer(kind(rocblas_operation_none)),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
+      integer(c_int),value :: k
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
-      type(c_ptr),value :: myInfo
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
     end function
 
-  
-    function rocsolver_cgetf2(handle,m,n,A,lda,ipiv,myInfo) bind(c, name="rocsolver_cgetf2")
-      use iso_c_binding
-      use hipfort_rocsolver_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_cgetf2
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: A
-      integer(c_int),value :: lda
-      type(c_ptr),value :: ipiv
-      type(c_ptr),value :: myInfo
-    end function
-
-  
-    function rocsolver_zgetf2(handle,m,n,A,lda,ipiv,myInfo) bind(c, name="rocsolver_zgetf2")
-      use iso_c_binding
-      use hipfort_rocsolver_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_zgetf2
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: A
-      integer(c_int),value :: lda
-      type(c_ptr),value :: ipiv
-      type(c_ptr),value :: myInfo
-    end function
-
-  ! ! \brief GETF2_BATCHED computes the LU factorization of a batch of general m-by-n matrices
-  !     using partial pivoting with row interchanges.
+  ! ! \brief BDSQR computes the singular value decomposition (SVD) of a
+  !     n-by-n bidiagonal matrix B.
   ! 
   !     \details
-  !     (This is the right-looking Level 2 BLAS version of the algorithm).
+  !     The SVD of B has the form:
+  !     
+  !         B = Ub  S  Vb'
   ! 
-  !     The factorization of matrix A_i in the batch has the form
+  !     where S is the n-by-n diagonal matrix of singular values of B, the columns of Ub are the left
+  !     singular vectors of B, and the columns of Vb are its right singular vectors. 
+  !     
+  !     The computation of the singular vectors is optional; this function accepts input matrices
+  !     U (of size nu-by-n) and V (of size n-by-nv) that are overwritten with UUb and Vb'V. If nu = 0 
+  !     no left vectors are computed; if nv = 0 no right vectors are computed. 
   ! 
-  !         A_i = P_i  L_i  U_i
-  ! 
-  !     where P_i is a permutation matrix, L_i is lower triangular with unit
-  !     diagonal elements (lower trapezoidal if m > n), and U_i is upper
-  !     triangular (upper trapezoidal if m < n).
+  !     Optionally, this function can also compute Ub'C for a given n-by-nc input matrix C.
   ! 
   !     @param[in]
-  !     handle    rocblas_handle.
+  !     handle      rocblas_handle.
   !     @param[in]
-  !     m         rocblas_int. m >= 0.\n
-  !               The number of rows of all matrices A_i in the batch.
+  !     uplo        rocblas_fill.\n
+  !                 Specifies whether B is upper or lower bidiagonal.
   !     @param[in]
-  !     n         rocblas_int. n >= 0.\n
-  !               The number of colums of all matrices A_i in the batch.
+  !     n           rocblas_int. n >= 0.\n
+  !                 The number of rows and columns of matrix B.
+  !     @param[in]
+  !     nv          rocblas_int. nv >= 0.\n
+  !                 The number of columns of matrix V.
+  !     @param[in]
+  !     nu          rocblas_int. nu >= 0.\n
+  !                 The number of rows of matrix U.
+  !     @param[in]
+  !     nc          rocblas_int. nu >= 0.\n
+  !                 The number of columns of matrix C.
   !     @param[inout]
-  !     A         array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
-  !               On entry, the m-by-n matrices A_i to be factored.
-  !               On exit, the factors L_i and U_i from the factorizations.
-  !               The unit diagonal elements of L_i are not stored.
-  !     @param[in]
-  !     lda       rocblas_int. lda >= m.\n
-  !               Specifies the leading dimension of matrices A_i.
-  !     @param[out]
-  !     ipiv      pointer to rocblas_int. Array on the GPU (the size depends on the value of strideP).\n 
-  !               Contains the vectors of pivot indices ipiv_i (corresponding to A_i). 
-  !               Dimension of ipiv_i is min(m,n).
-  !               Elements of ipiv_i are 1-based indices.
-  !               For each instance A_i in the batch and for 1 <= j <= min(m,n), the row j of the
-  !               matrix A_i was interchanged with row ipiv_i[j].
-  !               Matrix P_i of the factorization can be derived from ipiv_i.
-  !     @param[in]
-  !     strideP   rocblas_stride.\n
-  !               Stride from the start of one vector ipiv_i to the next one ipiv_(i+1).
-  !               There is no restriction for the value of strideP. Normal use case is strideP >= min(m,n).
-  !     @param[out]
-  !     info      pointer to rocblas_int. Array of batch_count integers on the GPU.\n
-  !               If info_i = 0, succesful exit for factorization of A_i. 
-  !               If info_i = j > 0, U_i is singular. U_i(j,j) is the first zero pivot.
-  !     @param[in]
-  !     batch_count rocblas_int. batch_count >= 0.\n
-  !                 Number of matrices in the batch. 
-  !             
-  !     
-    function rocsolver_sgetf2_batched(handle,m,n,A,lda,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_sgetf2_batched")
-      use iso_c_binding
-      use hipfort_rocsolver_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_sgetf2_batched
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr) :: A
-      integer(c_int),value :: lda
-      type(c_ptr),value :: ipiv
-      integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: myInfo
-      integer(c_int),value :: batch_count
-    end function
-
-  
-    function rocsolver_dgetf2_batched(handle,m,n,A,lda,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_dgetf2_batched")
-      use iso_c_binding
-      use hipfort_rocsolver_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_dgetf2_batched
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr) :: A
-      integer(c_int),value :: lda
-      type(c_ptr),value :: ipiv
-      integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: myInfo
-      integer(c_int),value :: batch_count
-    end function
-
-  
-    function rocsolver_cgetf2_batched(handle,m,n,A,lda,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_cgetf2_batched")
-      use iso_c_binding
-      use hipfort_rocsolver_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_cgetf2_batched
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr) :: A
-      integer(c_int),value :: lda
-      type(c_ptr),value :: ipiv
-      integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: myInfo
-      integer(c_int),value :: batch_count
-    end function
-
-  
-    function rocsolver_zgetf2_batched(handle,m,n,A,lda,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_zgetf2_batched")
-      use iso_c_binding
-      use hipfort_rocsolver_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_zgetf2_batched
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr) :: A
-      integer(c_int),value :: lda
-      type(c_ptr),value :: ipiv
-      integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: myInfo
-      integer(c_int),value :: batch_count
-    end function
-
-  ! ! \brief GETF2_STRIDED_BATCHED computes the LU factorization of a batch of general m-by-n matrices
-  !     using partial pivoting with row interchanges.
-  ! 
-  !     \details
-  !     (This is the right-looking Level 2 BLAS version of the algorithm).
-  !     
-  !     The factorization of matrix A_i in the batch has the form
-  ! 
-  !         A_i = P_i  L_i  U_i
-  ! 
-  !     where P_i is a permutation matrix, L_i is lower triangular with unit
-  !     diagonal elements (lower trapezoidal if m > n), and U_i is upper
-  !     triangular (upper trapezoidal if m < n).
-  ! 
-  !     @param[in]
-  !     handle    rocblas_handle.
-  !     @param[in]
-  !     m         rocblas_int. m >= 0.\n
-  !               The number of rows of all matrices A_i in the batch.
-  !     @param[in]
-  !     n         rocblas_int. n >= 0.\n
-  !               The number of colums of all matrices A_i in the batch.
+  !     D           pointer to real type. Array on the GPU of dimension n.\n
+  !                 On entry, the diagonal elements of B. On exit, if info = 0,
+  !                 the singular values of B in decreasing order; if info > 0,
+  !                 the diagonal elements of a bidiagonal matrix 
+  !                 orthogonally equivalent to B.
   !     @param[inout]
-  !     A         pointer to type. Array on the GPU (the size depends on the value of strideA).\n
-  !               On entry, in contains the m-by-n matrices A_i to be factored.
-  !               On exit, the factors L_i and U_i from the factorization.
-  !               The unit diagonal elements of L_i are not stored.
+  !     E           pointer to real type. Array on the GPU of dimension n-1.\n
+  !                 On entry, the off-diagonal elements of B. On exit, if info > 0,
+  !                 the off-diagonal elements of a bidiagonal matrix
+  !                 orthogonally equivalent to B (if info = 0 this matrix converges to zero).
+  !     @param[inout]
+  !     V           pointer to type. Array on the GPU of dimension ldvnv.\n
+  !                 On entry, the matrix V. On exit, it is overwritten with Vb'V.
+  !                 (Not referenced if nv = 0).
   !     @param[in]
-  !     lda       rocblas_int. lda >= m.\n
-  !               Specifies the leading dimension of matrices A_i.
+  !     ldv         rocblas_int. ldv >= n if nv > 0, or ldv >=1 if nv = 0.\n
+  !                 Specifies the leading dimension of V.
+  !     @param[inout]
+  !     U           pointer to type. Array on the GPU of dimension ldun.\n
+  !                 On entry, the matrix U. On exit, it is overwritten with UUb.
+  !                 (Not referenced if nu = 0).
   !     @param[in]
-  !     strideA   rocblas_stride.\n
-  !               Stride from the start of one matrix A_i and the next one A_(i+1).
-  !               There is no restriction for the value of strideA. Normal use case is strideA >= ldan
+  !     ldu         rocblas_int. ldu >= nu.\n
+  !                 Specifies the leading dimension of U.
+  !     @param[inout]
+  !     C           pointer to type. Array on the GPU of dimension ldcnc.\n
+  !                 On entry, the matrix C. On exit, it is overwritten with Ub'C.
+  !                 (Not referenced if nc = 0).
+  !     @param[in]
+  !     ldc         rocblas_int. ldc >= n if nc > 0, or ldc >=1 if nc = 0.\n
+  !                 Specifies the leading dimension of C.
   !     @param[out]
-  !     ipiv      pointer to rocblas_int. Array on the GPU (the size depends on the value of strideP).\n 
-  !               Contains the vectors of pivots indices ipiv_i (corresponding to A_i). 
-  !               Dimension of ipiv_i is min(m,n).
-  !               Elements of ipiv_i are 1-based indices.
-  !               For each instance A_i in the batch and for 1 <= j <= min(m,n), the row j of the
-  !               matrix A_i was interchanged with row ipiv_i[j].
-  !               Matrix P_i of the factorization can be derived from ipiv_i.
-  !     @param[in]
-  !     strideP   rocblas_stride.\n
-  !               Stride from the start of one vector ipiv_i to the next one ipiv_(i+1).
-  !               There is no restriction for the value of strideP. Normal use case is strideP >= min(m,n).
-  !     @param[out]
-  !     info      pointer to rocblas_int. Array of batch_count integers on the GPU.\n
-  !               If info_i = 0, succesful exit for factorization of A_i. 
-  !               If info_i = j > 0, U_i is singular. U_i(j,j) is the first zero pivot.
-  !     @param[in]
-  !     batch_count rocblas_int. batch_count >= 0.\n
-  !                 Number of matrices in the batch. 
-  !             
+  !     info        pointer to a rocblas_int on the GPU.\n
+  !                 If info = 0, successful exit.
+  !                 If info = i > 0, i elements of E have not converged to zero. 
   !     
-    function rocsolver_sgetf2_strided_batched(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_sgetf2_strided_batched")
+  !     
+    function rocsolver_sbdsqr(handle,uplo,n,nv,nu,nc,D,E,V,ldv,U,ldu,C,ldc,myInfo) bind(c, name="rocsolver_sbdsqr")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_sgetf2_strided_batched
+      integer(kind(rocblas_status_success)) :: rocsolver_sbdsqr
       type(c_ptr),value :: handle
-      integer(c_int),value :: m
+      integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr),value :: A
-      integer(c_int),value :: lda
-      integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: ipiv
-      integer(c_int64_t),value :: strideP
+      integer(c_int),value :: nv
+      integer(c_int),value :: nu
+      integer(c_int),value :: nc
+      type(c_ptr),value :: D
+      type(c_ptr),value :: E
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
       type(c_ptr),value :: myInfo
-      integer(c_int),value :: batch_count
     end function
 
   
-    function rocsolver_dgetf2_strided_batched(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_dgetf2_strided_batched")
+    function rocsolver_dbdsqr(handle,uplo,n,nv,nu,nc,D,E,V,ldv,U,ldu,C,ldc,myInfo) bind(c, name="rocsolver_dbdsqr")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_dgetf2_strided_batched
+      integer(kind(rocblas_status_success)) :: rocsolver_dbdsqr
       type(c_ptr),value :: handle
-      integer(c_int),value :: m
+      integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr),value :: A
-      integer(c_int),value :: lda
-      integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: ipiv
-      integer(c_int64_t),value :: strideP
+      integer(c_int),value :: nv
+      integer(c_int),value :: nu
+      integer(c_int),value :: nc
+      type(c_ptr),value :: D
+      type(c_ptr),value :: E
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
       type(c_ptr),value :: myInfo
-      integer(c_int),value :: batch_count
     end function
 
   
-    function rocsolver_cgetf2_strided_batched(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_cgetf2_strided_batched")
+    function rocsolver_cbdsqr(handle,uplo,n,nv,nu,nc,D,E,V,ldv,U,ldu,C,ldc,myInfo) bind(c, name="rocsolver_cbdsqr")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_cgetf2_strided_batched
+      integer(kind(rocblas_status_success)) :: rocsolver_cbdsqr
       type(c_ptr),value :: handle
-      integer(c_int),value :: m
+      integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr),value :: A
-      integer(c_int),value :: lda
-      integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: ipiv
-      integer(c_int64_t),value :: strideP
+      integer(c_int),value :: nv
+      integer(c_int),value :: nu
+      integer(c_int),value :: nc
+      type(c_ptr),value :: D
+      type(c_ptr),value :: E
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
       type(c_ptr),value :: myInfo
-      integer(c_int),value :: batch_count
     end function
 
   
-    function rocsolver_zgetf2_strided_batched(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_zgetf2_strided_batched")
+    function rocsolver_zbdsqr(handle,uplo,n,nv,nu,nc,D,E,V,ldv,U,ldu,C,ldc,myInfo) bind(c, name="rocsolver_zbdsqr")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_zgetf2_strided_batched
+      integer(kind(rocblas_status_success)) :: rocsolver_zbdsqr
       type(c_ptr),value :: handle
-      integer(c_int),value :: m
+      integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n
-      type(c_ptr),value :: A
-      integer(c_int),value :: lda
-      integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: ipiv
-      integer(c_int64_t),value :: strideP
+      integer(c_int),value :: nv
+      integer(c_int),value :: nu
+      integer(c_int),value :: nc
+      type(c_ptr),value :: D
+      type(c_ptr),value :: E
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
       type(c_ptr),value :: myInfo
-      integer(c_int),value :: batch_count
     end function
 
   ! ! \brief GETRF computes the LU factorization of a general m-by-n matrix A
   !     using partial pivoting with row interchanges.
   ! 
   !     \details
-  !     (This is the right-looking Level 3 BLAS version of the algorithm).
+  !     (This is the blocked Level 3 BLAS version of the algorithm).
   ! 
   !     The factorization has the form
   ! 
@@ -2006,7 +2858,7 @@ module hipfort_rocsolver
   !     using partial pivoting with row interchanges.
   ! 
   !     \details
-  !     (This is the right-looking Level 3 BLAS version of the algorithm).
+  !     (This is the blocked Level 3 BLAS version of the algorithm).
   ! 
   !     The factorization of matrix A_i in the batch has the form
   ! 
@@ -2124,7 +2976,7 @@ module hipfort_rocsolver
   !     using partial pivoting with row interchanges.
   ! 
   !     \details
-  !     (This is the right-looking Level 3 BLAS version of the algorithm).
+  !     (This is the blocked Level 3 BLAS version of the algorithm).
   !     
   !     The factorization of matrix A_i in the batch has the form
   ! 
@@ -3282,7 +4134,7 @@ module hipfort_rocsolver
   !     @param[inout]
   !     A         pointer to type. Array on the GPU of dimension ldan.\n
   !               On entry, the m-by-n matrix to be factored.
-  !               On exit, the elements on and delow the diagonal contain the 
+  !               On exit, the elements on and below the diagonal contain the 
   !               factor L; the elements above the diagonal are the n - i elements
   !               of vector v(i) for i = 1,2,...,min(m,n).
   !     @param[in]
@@ -3584,6 +4436,962 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+  ! ! \brief GEBD2 computes the bidiagonal form of a general m-by-n matrix A.
+  ! 
+  !     \details
+  !     (This is the unblocked version of the algorithm). 
+  ! 
+  !     The bidiagonal form is given by:
+  ! 
+  !         B = Q'  A  P
+  ! 
+  !     where B is upper bidiagonal if m >= n and lower bidiagonal if m < n, and Q and 
+  !     P are orthogonalunitary matrices represented as the product of Householder matrices
+  ! 
+  !         Q = H(1)  H(2)  ...   H(n)  and P = G(1)  G(2)  ...  G(n-1), if m >= n, or
+  !         Q = H(1)  H(2)  ...  H(m-1) and P = G(1)  G(2)  ...   G(m),  if m < n
+  ! 
+  !     Each Householder matrix H(i) and G(i) is given by
+  ! 
+  !         H(i) = I - tauq[i-1]  v(i)  v(i)', and
+  !         G(i) = I - taup[i-1]  u(i)  u(i)'
+  !     
+  !     If m >= n, the first i-1 elements of the Householder vector v(i) are zero, and v(i)[i] = 1;
+  !     while the first i elements of the Householder vector u(i) are zero, and u(i)[i+1] = 1.
+  !     If m < n, the first i elements of the Householder vector v(i) are zero, and v(i)[i+1] = 1;
+  !     while the first i-1 elements of the Householder vector u(i) are zero, and u(i)[i] = 1.
+  ! 
+  !     @param[in]
+  !     handle    rocblas_handle.
+  !     @param[in]
+  !     m         rocblas_int. m >= 0.\n
+  !               The number of rows of the matrix A.
+  !     @param[in]
+  !     n         rocblas_int. n >= 0.\n
+  !               The number of columns of the matrix A.
+  !     @param[inout]
+  !     A         pointer to type. Array on the GPU of dimension ldan.\n
+  !               On entry, the m-by-n matrix to be factored.
+  !               On exit, the elements on the diagonal and superdiagonal (if m >= n), or
+  !               subdiagonal (if m < n) contain the bidiagonal form B.
+  !               If m >= n, the elements below the diagonal are the m - i elements
+  !               of vector v(i) for i = 1,2,...,n, and the elements above the
+  !               superdiagonal are the n - i - 1 elements of vector u(i) for i = 1,2,...,n-1.
+  !               If m < n, the elements below the subdiagonal are the m - i - 1
+  !               elements of vector v(i) for i = 1,2,...,m-1, and the elements above the
+  !               diagonal are the n - i elements of vector u(i) for i = 1,2,...,m.
+  !     @param[in]
+  !     lda       rocblas_int. lda >= m.\n
+  !               specifies the leading dimension of A.
+  !     @param[out]
+  !     D         pointer to real type. Array on the GPU of dimension min(m,n).\n
+  !               The diagonal elements of B.
+  !     @param[out]
+  !     E         pointer to real type. Array on the GPU of dimension min(m,n)-1.\n
+  !               The off-diagonal elements of B.
+  !     @param[out]
+  !     tauq      pointer to type. Array on the GPU of dimension min(m,n).\n
+  !               The scalar factors of the Householder matrices H(i).
+  !     @param[out]
+  !     taup      pointer to type. Array on the GPU of dimension min(m,n).\n
+  !               The scalar factors of the Householder matrices G(i).
+  ! 
+  !     
+    function rocsolver_sgebd2(handle,m,n,A,lda,D,E,tauq,taup) bind(c, name="rocsolver_sgebd2")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgebd2
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: D
+      type(c_ptr),value :: E
+      type(c_ptr),value :: tauq
+      type(c_ptr),value :: taup
+    end function
+
+  
+    function rocsolver_dgebd2(handle,m,n,A,lda,D,E,tauq,taup) bind(c, name="rocsolver_dgebd2")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgebd2
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: D
+      type(c_ptr),value :: E
+      type(c_ptr),value :: tauq
+      type(c_ptr),value :: taup
+    end function
+
+  
+    function rocsolver_cgebd2(handle,m,n,A,lda,D,E,tauq,taup) bind(c, name="rocsolver_cgebd2")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgebd2
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: D
+      type(c_ptr),value :: E
+      type(c_ptr),value :: tauq
+      type(c_ptr),value :: taup
+    end function
+
+  
+    function rocsolver_zgebd2(handle,m,n,A,lda,D,E,tauq,taup) bind(c, name="rocsolver_zgebd2")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgebd2
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: D
+      type(c_ptr),value :: E
+      type(c_ptr),value :: tauq
+      type(c_ptr),value :: taup
+    end function
+
+  ! ! \brief GEBD2_BATCHED computes the bidiagonal form of a batch of general m-by-n matrices.
+  ! 
+  !     \details
+  !     (This is the unblocked version of the algorithm). 
+  ! 
+  !     The bidiagonal form is given by:
+  ! 
+  !         B_j = Q_j'  A_j  P_j
+  ! 
+  !     where B_j is upper bidiagonal if m >= n and lower bidiagonal if m < n, and Q_j and 
+  !     P_j are orthogonalunitary matrices represented as the product of Householder matrices
+  ! 
+  !         Q_j = H_j(1)  H_j(2)  ...   H_j(n)  and P_j = G_j(1)  G_j(2)  ...  G_j(n-1), if m >= n, or
+  !         Q_j = H_j(1)  H_j(2)  ...  H_j(m-1) and P_j = G_j(1)  G_j(2)  ...   G_j(m),  if m < n
+  ! 
+  !     Each Householder matrix H_j(i) and G_j(i), for j = 1,2,...,batch_count, is given by
+  ! 
+  !         H_j(i) = I - tauq_j[i-1]  v_j(i)  v_j(i)', and
+  !         G_j(i) = I - taup_j[i-1]  u_j(i)  u_j(i)'
+  !     
+  !     If m >= n, the first i-1 elements of the Householder vector v_j(i) are zero, and v_j(i)[i] = 1;
+  !     while the first i elements of the Householder vector u_j(i) are zero, and u_j(i)[i+1] = 1.
+  !     If m < n, the first i elements of the Householder vector v_j(i) are zero, and v_j(i)[i+1] = 1;
+  !     while the first i-1 elements of the Householder vector u_j(i) are zero, and u_j(i)[i] = 1.
+  ! 
+  !     @param[in]
+  !     handle    rocblas_handle.
+  !     @param[in]
+  !     m         rocblas_int. m >= 0.\n
+  !               The number of rows of all the matrices A_j in the batch.
+  !     @param[in]
+  !     n         rocblas_int. n >= 0.\n
+  !               The number of columns of all the matrices A_j in the batch.
+  !     @param[inout]
+  !     A         Array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !               On entry, the m-by-n matrices A_j to be factored.
+  !               On exit, the elements on the diagonal and superdiagonal (if m >= n), or
+  !               subdiagonal (if m < n) contain the bidiagonal form B_j.
+  !               If m >= n, the elements below the diagonal are the m - i elements
+  !               of vector v_j(i) for i = 1,2,...,n, and the elements above the
+  !               superdiagonal are the n - i - 1 elements of vector u_j(i) for i = 1,2,...,n-1.
+  !               If m < n, the elements below the subdiagonal are the m - i - 1
+  !               elements of vector v_j(i) for i = 1,2,...,m-1, and the elements above the
+  !               diagonal are the n - i elements of vector u_j(i) for i = 1,2,...,m.
+  !     @param[in]
+  !     lda       rocblas_int. lda >= m.\n
+  !               Specifies the leading dimension of matrices A_j.
+  !     @param[out]
+  !     D         pointer to real type. Array on the GPU (the size depends on the value of strideD).\n
+  !               The diagonal elements of B_j.
+  !     @param[in]
+  !     strideD   rocblas_stride.\n   
+  !               Stride from the start of one vector D_j and the next one D_(j+1). 
+  !               There is no restriction for the value of strideD. Normal use case is strideD >= min(m,n).
+  !     @param[out]
+  !     E         pointer to real type. Array on the GPU (the size depends on the value of strideE).\n
+  !               The off-diagonal elements of B_j.
+  !     @param[in]
+  !     strideE   rocblas_stride.\n   
+  !               Stride from the start of one vector E_j and the next one E_(j+1). 
+  !               There is no restriction for the value of strideE. Normal use case is strideE >= min(m,n)-1.
+  !     @param[out]
+  !     tauq      pointer to type. Array on the GPU (the size depends on the value of strideQ).\n
+  !               Contains the vectors tauq_j of scalar factors of the 
+  !               Householder matrices H_j(i).
+  !     @param[in]
+  !     strideQ   rocblas_stride.\n
+  !               Stride from the start of one vector tauq_j to the next one tauq_(j+1). 
+  !               There is no restriction for the value
+  !               of strideQ. Normal use is strideQ >= min(m,n).
+  !     @param[out]
+  !     taup      pointer to type. Array on the GPU (the size depends on the value of strideP).\n
+  !               Contains the vectors taup_j of scalar factors of the 
+  !               Householder matrices G_j(i).
+  !     @param[in]
+  !     strideP   rocblas_stride.\n
+  !               Stride from the start of one vector taup_j to the next one taup_(j+1). 
+  !               There is no restriction for the value
+  !               of strideP. Normal use is strideP >= min(m,n).
+  !     @param[in]
+  !     batch_count  rocblas_int. batch_count >= 0.\n
+  !                  Number of matrices in the batch.
+  ! 
+  !     
+    function rocsolver_sgebd2_batched(handle,m,n,A,lda,D,strideD,E,strideE,tauq,strideQ,taup,strideP,batch_count) bind(c, name="rocsolver_sgebd2_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgebd2_batched
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: E
+      integer(c_int64_t),value :: strideE
+      type(c_ptr),value :: tauq
+      integer(c_int64_t),value :: strideQ
+      type(c_ptr),value :: taup
+      integer(c_int64_t),value :: strideP
+      integer(c_int),value :: batch_count
+    end function
+
+  
+    function rocsolver_dgebd2_batched(handle,m,n,A,lda,D,strideD,E,strideE,tauq,strideQ,taup,strideP,batch_count) bind(c, name="rocsolver_dgebd2_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgebd2_batched
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: E
+      integer(c_int64_t),value :: strideE
+      type(c_ptr),value :: tauq
+      integer(c_int64_t),value :: strideQ
+      type(c_ptr),value :: taup
+      integer(c_int64_t),value :: strideP
+      integer(c_int),value :: batch_count
+    end function
+
+  
+    function rocsolver_cgebd2_batched(handle,m,n,A,lda,D,strideD,E,strideE,tauq,strideQ,taup,strideP,batch_count) bind(c, name="rocsolver_cgebd2_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgebd2_batched
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: E
+      integer(c_int64_t),value :: strideE
+      type(c_ptr),value :: tauq
+      integer(c_int64_t),value :: strideQ
+      type(c_ptr),value :: taup
+      integer(c_int64_t),value :: strideP
+      integer(c_int),value :: batch_count
+    end function
+
+  
+    function rocsolver_zgebd2_batched(handle,m,n,A,lda,D,strideD,E,strideE,tauq,strideQ,taup,strideP,batch_count) bind(c, name="rocsolver_zgebd2_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgebd2_batched
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: E
+      integer(c_int64_t),value :: strideE
+      type(c_ptr),value :: tauq
+      integer(c_int64_t),value :: strideQ
+      type(c_ptr),value :: taup
+      integer(c_int64_t),value :: strideP
+      integer(c_int),value :: batch_count
+    end function
+
+  ! ! \brief GEBD2_STRIDED_BATCHED computes the bidiagonal form of a batch of general m-by-n matrices.
+  ! 
+  !     \details
+  !     (This is the unblocked version of the algorithm). 
+  ! 
+  !     The bidiagonal form is given by:
+  ! 
+  !         B_j = Q_j'  A_j  P_j
+  ! 
+  !     where B_j is upper bidiagonal if m >= n and lower bidiagonal if m < n, and Q_j and 
+  !     P_j are orthogonalunitary matrices represented as the product of Householder matrices
+  ! 
+  !         Q_j = H_j(1)  H_j(2)  ...   H_j(n)  and P_j = G_j(1)  G_j(2)  ...  G_j(n-1), if m >= n, or
+  !         Q_j = H_j(1)  H_j(2)  ...  H_j(m-1) and P_j = G_j(1)  G_j(2)  ...   G_j(m),  if m < n
+  ! 
+  !     Each Householder matrix H_j(i) and G_j(i), for j = 1,2,...,batch_count, is given by
+  ! 
+  !         H_j(i) = I - tauq_j[i-1]  v_j(i)  v_j(i)', and
+  !         G_j(i) = I - taup_j[i-1]  u_j(i)  u_j(i)'
+  !     
+  !     If m >= n, the first i-1 elements of the Householder vector v_j(i) are zero, and v_j(i)[i] = 1;
+  !     while the first i elements of the Householder vector u_j(i) are zero, and u_j(i)[i+1] = 1.
+  !     If m < n, the first i elements of the Householder vector v_j(i) are zero, and v_j(i)[i+1] = 1;
+  !     while the first i-1 elements of the Householder vector u_j(i) are zero, and u_j(i)[i] = 1.
+  ! 
+  !     @param[in]
+  !     handle    rocblas_handle.
+  !     @param[in]
+  !     m         rocblas_int. m >= 0.\n
+  !               The number of rows of all the matrices A_j in the batch.
+  !     @param[in]
+  !     n         rocblas_int. n >= 0.\n
+  !               The number of columns of all the matrices A_j in the batch.
+  !     @param[inout]
+  !     A         pointer to type. Array on the GPU (the size depends on the value of strideA).\n
+  !               On entry, the m-by-n matrices A_j to be factored.
+  !               On exit, the elements on the diagonal and superdiagonal (if m >= n), or
+  !               subdiagonal (if m < n) contain the bidiagonal form B_j.
+  !               If m >= n, the elements below the diagonal are the m - i elements
+  !               of vector v_j(i) for i = 1,2,...,n, and the elements above the
+  !               superdiagonal are the n - i - 1 elements of vector u_j(i) for i = 1,2,...,n-1.
+  !               If m < n, the elements below the subdiagonal are the m - i - 1
+  !               elements of vector v_j(i) for i = 1,2,...,m-1, and the elements above the
+  !               diagonal are the n - i elements of vector u_j(i) for i = 1,2,...,m.
+  !     @param[in]
+  !     lda       rocblas_int. lda >= m.\n
+  !               Specifies the leading dimension of matrices A_j. 
+  !     @param[in]
+  !     strideA   rocblas_stride.\n   
+  !               Stride from the start of one matrix A_j and the next one A_(j+1). 
+  !               There is no restriction for the value of strideA. Normal use case is strideA >= ldan.
+  !     @param[out]
+  !     D         pointer to real type. Array on the GPU (the size depends on the value of strideD).\n
+  !               The diagonal elements of B_j.
+  !     @param[in]
+  !     strideD   rocblas_stride.\n   
+  !               Stride from the start of one vector D_j and the next one D_(j+1). 
+  !               There is no restriction for the value of strideD. Normal use case is strideD >= min(m,n).
+  !     @param[out]
+  !     E         pointer to real type. Array on the GPU (the size depends on the value of strideE).\n
+  !               The off-diagonal elements of B_j.
+  !     @param[in]
+  !     strideE   rocblas_stride.\n   
+  !               Stride from the start of one vector E_j and the next one E_(j+1). 
+  !               There is no restriction for the value of strideE. Normal use case is strideE >= min(m,n)-1.
+  !     @param[out]
+  !     tauq      pointer to type. Array on the GPU (the size depends on the value of strideQ).\n
+  !               Contains the vectors tauq_j of scalar factors of the 
+  !               Householder matrices H_j(i).
+  !     @param[in]
+  !     strideQ   rocblas_stride.\n
+  !               Stride from the start of one vector tauq_j to the next one tauq_(j+1). 
+  !               There is no restriction for the value
+  !               of strideQ. Normal use is strideQ >= min(m,n).
+  !     @param[out]
+  !     taup      pointer to type. Array on the GPU (the size depends on the value of strideP).\n
+  !               Contains the vectors taup_j of scalar factors of the 
+  !               Householder matrices G_j(i).
+  !     @param[in]
+  !     strideP   rocblas_stride.\n
+  !               Stride from the start of one vector taup_j to the next one taup_(j+1). 
+  !               There is no restriction for the value
+  !               of strideP. Normal use is strideP >= min(m,n).
+  !     @param[in]
+  !     batch_count  rocblas_int. batch_count >= 0.\n
+  !                  Number of matrices in the batch.
+  ! 
+  !     
+    function rocsolver_sgebd2_strided_batched(handle,m,n,A,lda,strideA,D,strideD,E,strideE,tauq,strideQ,taup,strideP,batch_count) bind(c, name="rocsolver_sgebd2_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgebd2_strided_batched
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: E
+      integer(c_int64_t),value :: strideE
+      type(c_ptr),value :: tauq
+      integer(c_int64_t),value :: strideQ
+      type(c_ptr),value :: taup
+      integer(c_int64_t),value :: strideP
+      integer(c_int),value :: batch_count
+    end function
+
+  
+    function rocsolver_dgebd2_strided_batched(handle,m,n,A,lda,strideA,D,strideD,E,strideE,tauq,strideQ,taup,strideP,batch_count) bind(c, name="rocsolver_dgebd2_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgebd2_strided_batched
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: E
+      integer(c_int64_t),value :: strideE
+      type(c_ptr),value :: tauq
+      integer(c_int64_t),value :: strideQ
+      type(c_ptr),value :: taup
+      integer(c_int64_t),value :: strideP
+      integer(c_int),value :: batch_count
+    end function
+
+  
+    function rocsolver_cgebd2_strided_batched(handle,m,n,A,lda,strideA,D,strideD,E,strideE,tauq,strideQ,taup,strideP,batch_count) bind(c, name="rocsolver_cgebd2_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgebd2_strided_batched
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: E
+      integer(c_int64_t),value :: strideE
+      type(c_ptr),value :: tauq
+      integer(c_int64_t),value :: strideQ
+      type(c_ptr),value :: taup
+      integer(c_int64_t),value :: strideP
+      integer(c_int),value :: batch_count
+    end function
+
+  
+    function rocsolver_zgebd2_strided_batched(handle,m,n,A,lda,strideA,D,strideD,E,strideE,tauq,strideQ,taup,strideP,batch_count) bind(c, name="rocsolver_zgebd2_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgebd2_strided_batched
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: E
+      integer(c_int64_t),value :: strideE
+      type(c_ptr),value :: tauq
+      integer(c_int64_t),value :: strideQ
+      type(c_ptr),value :: taup
+      integer(c_int64_t),value :: strideP
+      integer(c_int),value :: batch_count
+    end function
+
+  ! ! \brief GEBRD computes the bidiagonal form of a general m-by-n matrix A.
+  ! 
+  !     \details
+  !     (This is the blocked version of the algorithm). 
+  ! 
+  !     The bidiagonal form is given by:
+  ! 
+  !         B = Q'  A  P
+  ! 
+  !     where B is upper bidiagonal if m >= n and lower bidiagonal if m < n, and Q and 
+  !     P are orthogonalunitary matrices represented as the product of Householder matrices
+  ! 
+  !         Q = H(1)  H(2)  ...   H(n)  and P = G(1)  G(2)  ...  G(n-1), if m >= n, or
+  !         Q = H(1)  H(2)  ...  H(m-1) and P = G(1)  G(2)  ...   G(m),  if m < n
+  ! 
+  !     Each Householder matrix H(i) and G(i) is given by
+  ! 
+  !         H(i) = I - tauq[i-1]  v(i)  v(i)', and
+  !         G(i) = I - taup[i-1]  u(i)  u(i)'
+  !     
+  !     If m >= n, the first i-1 elements of the Householder vector v(i) are zero, and v(i)[i] = 1;
+  !     while the first i elements of the Householder vector u(i) are zero, and u(i)[i+1] = 1.
+  !     If m < n, the first i elements of the Householder vector v(i) are zero, and v(i)[i+1] = 1;
+  !     while the first i-1 elements of the Householder vector u(i) are zero, and u(i)[i] = 1.
+  ! 
+  !     @param[in]
+  !     handle    rocblas_handle.
+  !     @param[in]
+  !     m         rocblas_int. m >= 0.\n
+  !               The number of rows of the matrix A.
+  !     @param[in]
+  !     n         rocblas_int. n >= 0.\n
+  !               The number of columns of the matrix A.
+  !     @param[inout]
+  !     A         pointer to type. Array on the GPU of dimension ldan.\n
+  !               On entry, the m-by-n matrix to be factored.
+  !               On exit, the elements on the diagonal and superdiagonal (if m >= n), or
+  !               subdiagonal (if m < n) contain the bidiagonal form B.
+  !               If m >= n, the elements below the diagonal are the m - i elements
+  !               of vector v(i) for i = 1,2,...,n, and the elements above the
+  !               superdiagonal are the n - i - 1 elements of vector u(i) for i = 1,2,...,n-1.
+  !               If m < n, the elements below the subdiagonal are the m - i - 1
+  !               elements of vector v(i) for i = 1,2,...,m-1, and the elements above the
+  !               diagonal are the n - i elements of vector u(i) for i = 1,2,...,m.
+  !     @param[in]
+  !     lda       rocblas_int. lda >= m.\n
+  !               specifies the leading dimension of A.
+  !     @param[out]
+  !     D         pointer to real type. Array on the GPU of dimension min(m,n).\n
+  !               The diagonal elements of B.
+  !     @param[out]
+  !     E         pointer to real type. Array on the GPU of dimension min(m,n)-1.\n
+  !               The off-diagonal elements of B.
+  !     @param[out]
+  !     tauq      pointer to type. Array on the GPU of dimension min(m,n).\n
+  !               The scalar factors of the Householder matrices H(i).
+  !     @param[out]
+  !     taup      pointer to type. Array on the GPU of dimension min(m,n).\n
+  !               The scalar factors of the Householder matrices G(i).
+  ! 
+  !     
+    function rocsolver_sgebrd(handle,m,n,A,lda,D,E,tauq,taup) bind(c, name="rocsolver_sgebrd")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgebrd
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: D
+      type(c_ptr),value :: E
+      type(c_ptr),value :: tauq
+      type(c_ptr),value :: taup
+    end function
+
+  
+    function rocsolver_dgebrd(handle,m,n,A,lda,D,E,tauq,taup) bind(c, name="rocsolver_dgebrd")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgebrd
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: D
+      type(c_ptr),value :: E
+      type(c_ptr),value :: tauq
+      type(c_ptr),value :: taup
+    end function
+
+  
+    function rocsolver_cgebrd(handle,m,n,A,lda,D,E,tauq,taup) bind(c, name="rocsolver_cgebrd")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgebrd
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: D
+      type(c_ptr),value :: E
+      type(c_ptr),value :: tauq
+      type(c_ptr),value :: taup
+    end function
+
+  
+    function rocsolver_zgebrd(handle,m,n,A,lda,D,E,tauq,taup) bind(c, name="rocsolver_zgebrd")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgebrd
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: D
+      type(c_ptr),value :: E
+      type(c_ptr),value :: tauq
+      type(c_ptr),value :: taup
+    end function
+
+  ! ! \brief GEBRD_BATCHED computes the bidiagonal form of a batch of general m-by-n matrices.
+  ! 
+  !     \details
+  !     (This is the blocked version of the algorithm). 
+  ! 
+  !     The bidiagonal form is given by:
+  ! 
+  !         B_j = Q_j'  A_j  P_j
+  ! 
+  !     where B_j is upper bidiagonal if m >= n and lower bidiagonal if m < n, and Q_j and 
+  !     P_j are orthogonalunitary matrices represented as the product of Householder matrices
+  ! 
+  !         Q_j = H_j(1)  H_j(2)  ...   H_j(n)  and P_j = G_j(1)  G_j(2)  ...  G_j(n-1), if m >= n, or
+  !         Q_j = H_j(1)  H_j(2)  ...  H_j(m-1) and P_j = G_j(1)  G_j(2)  ...   G_j(m),  if m < n
+  ! 
+  !     Each Householder matrix H_j(i) and G_j(i), for j = 1,2,...,batch_count, is given by
+  ! 
+  !         H_j(i) = I - tauq_j[i-1]  v_j(i)  v_j(i)', and
+  !         G_j(i) = I - taup_j[i-1]  u_j(i)  u_j(i)'
+  !     
+  !     If m >= n, the first i-1 elements of the Householder vector v_j(i) are zero, and v_j(i)[i] = 1;
+  !     while the first i elements of the Householder vector u_j(i) are zero, and u_j(i)[i+1] = 1.
+  !     If m < n, the first i elements of the Householder vector v_j(i) are zero, and v_j(i)[i+1] = 1;
+  !     while the first i-1 elements of the Householder vector u_j(i) are zero, and u_j(i)[i] = 1.
+  ! 
+  !     @param[in]
+  !     handle    rocblas_handle.
+  !     @param[in]
+  !     m         rocblas_int. m >= 0.\n
+  !               The number of rows of all the matrices A_j in the batch.
+  !     @param[in]
+  !     n         rocblas_int. n >= 0.\n
+  !               The number of columns of all the matrices A_j in the batch.
+  !     @param[inout]
+  !     A         Array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !               On entry, the m-by-n matrices A_j to be factored.
+  !               On exit, the elements on the diagonal and superdiagonal (if m >= n), or
+  !               subdiagonal (if m < n) contain the bidiagonal form B_j.
+  !               If m >= n, the elements below the diagonal are the m - i elements
+  !               of vector v_j(i) for i = 1,2,...,n, and the elements above the
+  !               superdiagonal are the n - i - 1 elements of vector u_j(i) for i = 1,2,...,n-1.
+  !               If m < n, the elements below the subdiagonal are the m - i - 1
+  !               elements of vector v_j(i) for i = 1,2,...,m-1, and the elements above the
+  !               diagonal are the n - i elements of vector u_j(i) for i = 1,2,...,m.
+  !     @param[in]
+  !     lda       rocblas_int. lda >= m.\n
+  !               Specifies the leading dimension of matrices A_j.
+  !     @param[out]
+  !     D         pointer to real type. Array on the GPU (the size depends on the value of strideD).\n
+  !               The diagonal elements of B_j.
+  !     @param[in]
+  !     strideD   rocblas_stride.\n   
+  !               Stride from the start of one vector D_j and the next one D_(j+1). 
+  !               There is no restriction for the value of strideD. Normal use case is strideD >= min(m,n).
+  !     @param[out]
+  !     E         pointer to real type. Array on the GPU (the size depends on the value of strideE).\n
+  !               The off-diagonal elements of B_j.
+  !     @param[in]
+  !     strideE   rocblas_stride.\n   
+  !               Stride from the start of one vector E_j and the next one E_(j+1). 
+  !               There is no restriction for the value of strideE. Normal use case is strideE >= min(m,n)-1.
+  !     @param[out]
+  !     tauq      pointer to type. Array on the GPU (the size depends on the value of strideQ).\n
+  !               Contains the vectors tauq_j of scalar factors of the 
+  !               Householder matrices H_j(i).
+  !     @param[in]
+  !     strideQ   rocblas_stride.\n
+  !               Stride from the start of one vector tauq_j to the next one tauq_(j+1). 
+  !               There is no restriction for the value
+  !               of strideQ. Normal use is strideQ >= min(m,n).
+  !     @param[out]
+  !     taup      pointer to type. Array on the GPU (the size depends on the value of strideP).\n
+  !               Contains the vectors taup_j of scalar factors of the 
+  !               Householder matrices G_j(i).
+  !     @param[in]
+  !     strideP   rocblas_stride.\n
+  !               Stride from the start of one vector taup_j to the next one taup_(j+1). 
+  !               There is no restriction for the value
+  !               of strideP. Normal use is strideP >= min(m,n).
+  !     @param[in]
+  !     batch_count  rocblas_int. batch_count >= 0.\n
+  !                  Number of matrices in the batch.
+  ! 
+  !     
+    function rocsolver_sgebrd_batched(handle,m,n,A,lda,D,strideD,E,strideE,tauq,strideQ,taup,strideP,batch_count) bind(c, name="rocsolver_sgebrd_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgebrd_batched
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: E
+      integer(c_int64_t),value :: strideE
+      type(c_ptr),value :: tauq
+      integer(c_int64_t),value :: strideQ
+      type(c_ptr),value :: taup
+      integer(c_int64_t),value :: strideP
+      integer(c_int),value :: batch_count
+    end function
+
+  
+    function rocsolver_dgebrd_batched(handle,m,n,A,lda,D,strideD,E,strideE,tauq,strideQ,taup,strideP,batch_count) bind(c, name="rocsolver_dgebrd_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgebrd_batched
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: E
+      integer(c_int64_t),value :: strideE
+      type(c_ptr),value :: tauq
+      integer(c_int64_t),value :: strideQ
+      type(c_ptr),value :: taup
+      integer(c_int64_t),value :: strideP
+      integer(c_int),value :: batch_count
+    end function
+
+  
+    function rocsolver_cgebrd_batched(handle,m,n,A,lda,D,strideD,E,strideE,tauq,strideQ,taup,strideP,batch_count) bind(c, name="rocsolver_cgebrd_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgebrd_batched
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: E
+      integer(c_int64_t),value :: strideE
+      type(c_ptr),value :: tauq
+      integer(c_int64_t),value :: strideQ
+      type(c_ptr),value :: taup
+      integer(c_int64_t),value :: strideP
+      integer(c_int),value :: batch_count
+    end function
+
+  
+    function rocsolver_zgebrd_batched(handle,m,n,A,lda,D,strideD,E,strideE,tauq,strideQ,taup,strideP,batch_count) bind(c, name="rocsolver_zgebrd_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgebrd_batched
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: E
+      integer(c_int64_t),value :: strideE
+      type(c_ptr),value :: tauq
+      integer(c_int64_t),value :: strideQ
+      type(c_ptr),value :: taup
+      integer(c_int64_t),value :: strideP
+      integer(c_int),value :: batch_count
+    end function
+
+  ! ! \brief GEBRD_STRIDED_BATCHED computes the bidiagonal form of a batch of general m-by-n matrices.
+  ! 
+  !     \details
+  !     (This is the blocked version of the algorithm). 
+  ! 
+  !     The bidiagonal form is given by:
+  ! 
+  !         B_j = Q_j'  A_j  P_j
+  ! 
+  !     where B_j is upper bidiagonal if m >= n and lower bidiagonal if m < n, and Q_j and 
+  !     P_j are orthogonalunitary matrices represented as the product of Householder matrices
+  ! 
+  !         Q_j = H_j(1)  H_j(2)  ...   H_j(n)  and P_j = G_j(1)  G_j(2)  ...  G_j(n-1), if m >= n, or
+  !         Q_j = H_j(1)  H_j(2)  ...  H_j(m-1) and P_j = G_j(1)  G_j(2)  ...   G_j(m),  if m < n
+  ! 
+  !     Each Householder matrix H_j(i) and G_j(i), for j = 1,2,...,batch_count, is given by
+  ! 
+  !         H_j(i) = I - tauq_j[i-1]  v_j(i)  v_j(i)', and
+  !         G_j(i) = I - taup_j[i-1]  u_j(i)  u_j(i)'
+  !     
+  !     If m >= n, the first i-1 elements of the Householder vector v_j(i) are zero, and v_j(i)[i] = 1;
+  !     while the first i elements of the Householder vector u_j(i) are zero, and u_j(i)[i+1] = 1.
+  !     If m < n, the first i elements of the Householder vector v_j(i) are zero, and v_j(i)[i+1] = 1;
+  !     while the first i-1 elements of the Householder vector u_j(i) are zero, and u_j(i)[i] = 1.
+  ! 
+  !     @param[in]
+  !     handle    rocblas_handle.
+  !     @param[in]
+  !     m         rocblas_int. m >= 0.\n
+  !               The number of rows of all the matrices A_j in the batch.
+  !     @param[in]
+  !     n         rocblas_int. n >= 0.\n
+  !               The number of columns of all the matrices A_j in the batch.
+  !     @param[inout]
+  !     A         pointer to type. Array on the GPU (the size depends on the value of strideA).\n
+  !               On entry, the m-by-n matrices A_j to be factored.
+  !               On exit, the elements on the diagonal and superdiagonal (if m >= n), or
+  !               subdiagonal (if m < n) contain the bidiagonal form B_j.
+  !               If m >= n, the elements below the diagonal are the m - i elements
+  !               of vector v_j(i) for i = 1,2,...,n, and the elements above the
+  !               superdiagonal are the n - i - 1 elements of vector u_j(i) for i = 1,2,...,n-1.
+  !               If m < n, the elements below the subdiagonal are the m - i - 1
+  !               elements of vector v_j(i) for i = 1,2,...,m-1, and the elements above the
+  !               diagonal are the n - i elements of vector u_j(i) for i = 1,2,...,m.
+  !     @param[in]
+  !     lda       rocblas_int. lda >= m.\n
+  !               Specifies the leading dimension of matrices A_j. 
+  !     @param[in]
+  !     strideA   rocblas_stride.\n   
+  !               Stride from the start of one matrix A_j and the next one A_(j+1). 
+  !               There is no restriction for the value of strideA. Normal use case is strideA >= ldan.
+  !     @param[out]
+  !     D         pointer to real type. Array on the GPU (the size depends on the value of strideD).\n
+  !               The diagonal elements of B_j.
+  !     @param[in]
+  !     strideD   rocblas_stride.\n   
+  !               Stride from the start of one vector D_j and the next one D_(j+1). 
+  !               There is no restriction for the value of strideD. Normal use case is strideD >= min(m,n).
+  !     @param[out]
+  !     E         pointer to real type. Array on the GPU (the size depends on the value of strideE).\n
+  !               The off-diagonal elements of B_j.
+  !     @param[in]
+  !     strideE   rocblas_stride.\n   
+  !               Stride from the start of one vector E_j and the next one E_(j+1). 
+  !               There is no restriction for the value of strideE. Normal use case is strideE >= min(m,n)-1.
+  !     @param[out]
+  !     tauq      pointer to type. Array on the GPU (the size depends on the value of strideQ).\n
+  !               Contains the vectors tauq_j of scalar factors of the 
+  !               Householder matrices H_j(i).
+  !     @param[in]
+  !     strideQ   rocblas_stride.\n
+  !               Stride from the start of one vector tauq_j to the next one tauq_(j+1). 
+  !               There is no restriction for the value
+  !               of strideQ. Normal use is strideQ >= min(m,n).
+  !     @param[out]
+  !     taup      pointer to type. Array on the GPU (the size depends on the value of strideP).\n
+  !               Contains the vectors taup_j of scalar factors of the 
+  !               Householder matrices G_j(i).
+  !     @param[in]
+  !     strideP   rocblas_stride.\n
+  !               Stride from the start of one vector taup_j to the next one taup_(j+1). 
+  !               There is no restriction for the value
+  !               of strideP. Normal use is strideP >= min(m,n).
+  !     @param[in]
+  !     batch_count  rocblas_int. batch_count >= 0.\n
+  !                  Number of matrices in the batch.
+  ! 
+  !     
+    function rocsolver_sgebrd_strided_batched(handle,m,n,A,lda,strideA,D,strideD,E,strideE,tauq,strideQ,taup,strideP,batch_count) bind(c, name="rocsolver_sgebrd_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgebrd_strided_batched
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: E
+      integer(c_int64_t),value :: strideE
+      type(c_ptr),value :: tauq
+      integer(c_int64_t),value :: strideQ
+      type(c_ptr),value :: taup
+      integer(c_int64_t),value :: strideP
+      integer(c_int),value :: batch_count
+    end function
+
+  
+    function rocsolver_dgebrd_strided_batched(handle,m,n,A,lda,strideA,D,strideD,E,strideE,tauq,strideQ,taup,strideP,batch_count) bind(c, name="rocsolver_dgebrd_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgebrd_strided_batched
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: E
+      integer(c_int64_t),value :: strideE
+      type(c_ptr),value :: tauq
+      integer(c_int64_t),value :: strideQ
+      type(c_ptr),value :: taup
+      integer(c_int64_t),value :: strideP
+      integer(c_int),value :: batch_count
+    end function
+
+  
+    function rocsolver_cgebrd_strided_batched(handle,m,n,A,lda,strideA,D,strideD,E,strideE,tauq,strideQ,taup,strideP,batch_count) bind(c, name="rocsolver_cgebrd_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgebrd_strided_batched
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: E
+      integer(c_int64_t),value :: strideE
+      type(c_ptr),value :: tauq
+      integer(c_int64_t),value :: strideQ
+      type(c_ptr),value :: taup
+      integer(c_int64_t),value :: strideP
+      integer(c_int),value :: batch_count
+    end function
+
+  
+    function rocsolver_zgebrd_strided_batched(handle,m,n,A,lda,strideA,D,strideD,E,strideE,tauq,strideQ,taup,strideP,batch_count) bind(c, name="rocsolver_zgebrd_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgebrd_strided_batched
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: D
+      integer(c_int64_t),value :: strideD
+      type(c_ptr),value :: E
+      integer(c_int64_t),value :: strideE
+      type(c_ptr),value :: tauq
+      integer(c_int64_t),value :: strideQ
+      type(c_ptr),value :: taup
+      integer(c_int64_t),value :: strideP
+      integer(c_int),value :: batch_count
+    end function
+
   ! ! \brief GETRS solves a system of n linear equations on n variables using the LU factorization computed by GETRF.
   ! 
   !     \details
@@ -3625,50 +5433,70 @@ module hipfort_rocsolver
   !                 The leading dimension of B.
   ! 
   !    
-    function rocsolver_sgetrs(handle,n,lda,ldb) bind(c, name="rocsolver_sgetrs")
+    function rocsolver_sgetrs(handle,trans,n,nrhs,A,lda,ipiv,B,ldb) bind(c, name="rocsolver_sgetrs")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocsolver_sgetrs
       type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
       integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
     end function
 
   
-    function rocsolver_dgetrs(handle,n,lda,ldb) bind(c, name="rocsolver_dgetrs")
+    function rocsolver_dgetrs(handle,trans,n,nrhs,A,lda,ipiv,B,ldb) bind(c, name="rocsolver_dgetrs")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocsolver_dgetrs
       type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
       integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
     end function
 
   
-    function rocsolver_cgetrs(handle,n,lda,ldb) bind(c, name="rocsolver_cgetrs")
+    function rocsolver_cgetrs(handle,trans,n,nrhs,A,lda,ipiv,B,ldb) bind(c, name="rocsolver_cgetrs")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocsolver_cgetrs
       type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
       integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
     end function
 
   
-    function rocsolver_zgetrs(handle,n,lda,ldb) bind(c, name="rocsolver_zgetrs")
+    function rocsolver_zgetrs(handle,trans,n,nrhs,A,lda,ipiv,B,ldb) bind(c, name="rocsolver_zgetrs")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocsolver_zgetrs
       type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
       integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
     end function
 
@@ -3721,56 +5549,78 @@ module hipfort_rocsolver
   !                 Number of instances (systems) in the batch. 
   ! 
   !    
-    function rocsolver_sgetrs_batched(handle,n,lda,batch_count) bind(c, name="rocsolver_sgetrs_batched")
+    function rocsolver_sgetrs_batched(handle,trans,n,nrhs,A,lda,ipiv,strideP,B,ldb,batch_count) bind(c, name="rocsolver_sgetrs_batched")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocsolver_sgetrs_batched
       type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
       integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr) :: A
       integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
       integer(c_int),value :: batch_count
     end function
 
   
-    function rocsolver_dgetrs_batched(handle,n,lda,batch_count) bind(c, name="rocsolver_dgetrs_batched")
+    function rocsolver_dgetrs_batched(handle,trans,n,nrhs,A,lda,ipiv,strideP,B,ldb,batch_count) bind(c, name="rocsolver_dgetrs_batched")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocsolver_dgetrs_batched
       type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
       integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr) :: A
       integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
       integer(c_int),value :: batch_count
     end function
 
   
-    function rocsolver_cgetrs_batched(handle,n,lda,ipiv,strideP,B,batch_count) bind(c, name="rocsolver_cgetrs_batched")
+    function rocsolver_cgetrs_batched(handle,trans,n,nrhs,A,lda,ipiv,strideP,B,ldb,batch_count) bind(c, name="rocsolver_cgetrs_batched")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocsolver_cgetrs_batched
       type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
       integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
       type(c_ptr) :: B
+      integer(c_int),value :: ldb
       integer(c_int),value :: batch_count
     end function
 
   
-    function rocsolver_zgetrs_batched(handle,n,lda,ipiv,strideP,B,batch_count) bind(c, name="rocsolver_zgetrs_batched")
+    function rocsolver_zgetrs_batched(handle,trans,n,nrhs,A,lda,ipiv,strideP,B,ldb,batch_count) bind(c, name="rocsolver_zgetrs_batched")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocsolver_zgetrs_batched
       type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
       integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
       type(c_ptr) :: B
+      integer(c_int),value :: ldb
       integer(c_int),value :: batch_count
     end function
 
@@ -3831,61 +5681,392 @@ module hipfort_rocsolver
   !                 Number of instances (systems) in the batch. 
   ! 
   !    
-    function rocsolver_sgetrs_strided_batched(handle,n,lda,strideA,batch_count) bind(c, name="rocsolver_sgetrs_strided_batched")
+    function rocsolver_sgetrs_strided_batched(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,batch_count) bind(c, name="rocsolver_sgetrs_strided_batched")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocsolver_sgetrs_strided_batched
       type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
       integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
       integer(c_int),value :: batch_count
     end function
 
   
-    function rocsolver_dgetrs_strided_batched(handle,n,lda,strideA,batch_count) bind(c, name="rocsolver_dgetrs_strided_batched")
+    function rocsolver_dgetrs_strided_batched(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,batch_count) bind(c, name="rocsolver_dgetrs_strided_batched")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocsolver_dgetrs_strided_batched
       type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
       integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
       integer(c_int),value :: batch_count
     end function
 
   
-    function rocsolver_cgetrs_strided_batched(handle,n,lda,strideA,ldb,batch_count) bind(c, name="rocsolver_cgetrs_strided_batched")
+    function rocsolver_cgetrs_strided_batched(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,batch_count) bind(c, name="rocsolver_cgetrs_strided_batched")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocsolver_cgetrs_strided_batched
       type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
       integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
       integer(c_int),value :: batch_count
     end function
 
   
-    function rocsolver_zgetrs_strided_batched(handle,n,lda,strideA,ldb,batch_count) bind(c, name="rocsolver_zgetrs_strided_batched")
+    function rocsolver_zgetrs_strided_batched(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,batch_count) bind(c, name="rocsolver_zgetrs_strided_batched")
       use iso_c_binding
       use hipfort_rocsolver_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocsolver_zgetrs_strided_batched
       type(c_ptr),value :: handle
+      integer(kind(rocblas_operation_none)),value :: trans
       integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      type(c_ptr),value :: B
       integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
       integer(c_int),value :: batch_count
     end function
 
-  ! ! \brief POTF2 computes the Cholesky factorization of a real symmetric
-  !     positive definite matrix A.
+  ! ! \brief GETRI inverts a general n-by-n matrix A using the LU factorization
+  !     computed by GETRF.
+  ! 
+  !     \details
+  !     The inverse is computed by solving the linear system
+  ! 
+  !         inv(A)  L = inv(U)
+  ! 
+  !     where L is the lower triangular factor of A with unit diagonal elements, and U is the
+  !     upper triangular factor.
+  ! 
+  !     @param[in]
+  !     handle    rocblas_handle.
+  !     @param[in]
+  !     n         rocblas_int. n >= 0.\n
+  !               The number of rows and columns of the matrix A. 
+  !     @param[inout]
+  !     A         pointer to type. Array on the GPU of dimension ldan.\n
+  !               On entry, the factors L and U of the factorization A = PLU returned by GETRF.
+  !               On exit, the inverse of A if info = 0; otherwise undefined.
+  !     @param[in]
+  !     lda       rocblas_int. lda >= n.\n
+  !               Specifies the leading dimension of A. 
+  !     @param[in]
+  !     ipiv      pointer to rocblas_int. Array on the GPU of dimension n.\n
+  !               The pivot indices returned by GETRF.
+  !     @param[out]
+  !     info      pointer to a rocblas_int on the GPU.\n
+  !               If info = 0, succesful exit. 
+  !               If info = i > 0, U is singular. U(i,i) is the first zero pivot.
+  !             
+  !     
+    function rocsolver_sgetri(handle,n,A,lda,ipiv,myInfo) bind(c, name="rocsolver_sgetri")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgetri
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+      type(c_ptr),value :: myInfo
+    end function
+
+  
+    function rocsolver_dgetri(handle,n,A,lda,ipiv,myInfo) bind(c, name="rocsolver_dgetri")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgetri
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+      type(c_ptr),value :: myInfo
+    end function
+
+  
+    function rocsolver_cgetri(handle,n,A,lda,ipiv,myInfo) bind(c, name="rocsolver_cgetri")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgetri
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+      type(c_ptr),value :: myInfo
+    end function
+
+  
+    function rocsolver_zgetri(handle,n,A,lda,ipiv,myInfo) bind(c, name="rocsolver_zgetri")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgetri
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+      type(c_ptr),value :: myInfo
+    end function
+
+  ! ! \brief GETRI_BATCHED inverts a batch of general n-by-n matrices using
+  !     the LU factorization computed by GETRF_BATCHED.
+  ! 
+  !     \details
+  !     The inverse is computed by solving the linear system
+  ! 
+  !         inv(A_j)  L_j = inv(U_j)
+  ! 
+  !     where L_j is the lower triangular factor of A_j with unit diagonal elements, and U_j is the
+  !     upper triangular factor.
+  ! 
+  !     @param[in]
+  !     handle    rocblas_handle.
+  !     @param[in]
+  !     n         rocblas_int. n >= 0.\n
+  !               The number of rows and columns of all matrices A_j in the batch.
+  !     @param[inout]
+  !     A         array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !               On entry, the factors L_j and U_j of the factorization A = P_jL_jU_j returned by
+  !               GETRF_BATCHED.
+  !               On exit, the inverses of A_j if info_j = 0; otherwise undefined.
+  !     @param[in]
+  !     lda       rocblas_int. lda >= n.\n
+  !               Specifies the leading dimension of matrices A_j.
+  !     @param[in]
+  !     ipiv      pointer to rocblas_int. Array on the GPU (the size depends on the value of strideP).\n 
+  !               The pivot indices returned by GETRF_BATCHED.
+  !     @param[in]
+  !     strideP   rocblas_stride.\n
+  !               Stride from the start of one vector ipiv_j to the next one ipiv_(i+j).
+  !               There is no restriction for the value of strideP. Normal use case is strideP >= n.
+  !     @param[out]
+  !     info      pointer to rocblas_int. Array of batch_count integers on the GPU.\n
+  !               If info_j = 0, successful exit for inversion of A_j. 
+  !               If info_j = i > 0, U_j is singular. U_j(i,i) is the first zero pivot.
+  !     @param[in]
+  !     batch_count rocblas_int. batch_count >= 0.\n
+  !                 Number of matrices in the batch. 
+  !             
+  !     
+    function rocsolver_sgetri_batched(handle,n,A,lda,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_sgetri_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgetri_batched
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+
+  
+    function rocsolver_dgetri_batched(handle,n,A,lda,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_dgetri_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgetri_batched
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+
+  
+    function rocsolver_cgetri_batched(handle,n,A,lda,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_cgetri_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgetri_batched
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+
+  
+    function rocsolver_zgetri_batched(handle,n,A,lda,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_zgetri_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgetri_batched
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+
+  ! ! \brief GETRI_STRIDED_BATCHED inverts a batch of general n-by-n matrices using
+  !     the LU factorization computed by GETRF_STRIDED_BATCHED.
+  ! 
+  !     \details
+  !     The inverse is computed by solving the linear system
+  ! 
+  !         inv(A_j)  L_j = inv(U_j)
+  ! 
+  !     where L_j is the lower triangular factor of A_j with unit diagonal elements, and U_j is the
+  !     upper triangular factor.
+  ! 
+  !     @param[in]
+  !     handle    rocblas_handle.
+  !     @param[in]
+  !     n         rocblas_int. n >= 0.\n
+  !               The number of rows and columns of all matrices A_i in the batch.
+  !     @param[inout]
+  !     A         pointer to type. Array on the GPU (the size depends on the value of strideA).\n
+  !               On entry, the factors L_j and U_j of the factorization A_j = P_jL_jU_j returned by
+  !               GETRF_STRIDED_BATCHED.
+  !               On exit, the inverses of A_j if info_j = 0; otherwise undefined.
+  !     @param[in]
+  !     lda       rocblas_int. lda >= n.\n
+  !               Specifies the leading dimension of matrices A_j.
+  !     @param[in]
+  !     strideA   rocblas_stride.\n
+  !               Stride from the start of one matrix A_j and the next one A_(j+1).
+  !               There is no restriction for the value of strideA. Normal use case is strideA >= ldan
+  !     @param[in]
+  !     ipiv      pointer to rocblas_int. Array on the GPU (the size depends on the value of strideP).\n 
+  !               The pivot indices returned by GETRF_STRIDED_BATCHED.
+  !     @param[in]
+  !     strideP   rocblas_stride.\n
+  !               Stride from the start of one vector ipiv_j to the next one ipiv_(j+1).
+  !               There is no restriction for the value of strideP. Normal use case is strideP >= n.
+  !     @param[out]
+  !     info      pointer to rocblas_int. Array of batch_count integers on the GPU.\n
+  !               If info_j = 0, successful exit for inversion of A_j. 
+  !               If info_j = i > 0, U_j is singular. U_j(i,i) is the first zero pivot.
+  !     @param[in]
+  !     batch_count rocblas_int. batch_count >= 0.\n
+  !                 Number of matrices in the batch. 
+  !             
+  !     
+    function rocsolver_sgetri_strided_batched(handle,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_sgetri_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgetri_strided_batched
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+
+  
+    function rocsolver_dgetri_strided_batched(handle,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_dgetri_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgetri_strided_batched
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+
+  
+    function rocsolver_cgetri_strided_batched(handle,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_cgetri_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgetri_strided_batched
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+
+  
+    function rocsolver_zgetri_strided_batched(handle,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_zgetri_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgetri_strided_batched
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: ipiv
+      integer(c_int64_t),value :: strideP
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+
+  ! ! \brief POTF2 computes the Cholesky factorization of a real symmetriccomplex
+  !     Hermitian positive definite matrix A.
   ! 
   !     \details
   !     (This is the unblocked version of the algorithm). 
@@ -3946,8 +6127,36 @@ module hipfort_rocsolver
       type(c_ptr),value :: myInfo
     end function
 
+  
+    function rocsolver_cpotf2(handle,uplo,n,A,lda,myInfo) bind(c, name="rocsolver_cpotf2")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cpotf2
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: myInfo
+    end function
+
+  
+    function rocsolver_zpotf2(handle,uplo,n,A,lda,myInfo) bind(c, name="rocsolver_zpotf2")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zpotf2
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: myInfo
+    end function
+
   ! ! \brief POTF2_BATCHED computes the Cholesky factorization of a 
-  !     batch of real symmetric positive definite matrices.
+  !     batch of real symmetriccomplex Hermitian positive definite matrices.
   ! 
   !     \details
   !     (This is the unblocked version of the algorithm). 
@@ -4013,8 +6222,38 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+  
+    function rocsolver_cpotf2_batched(handle,uplo,n,A,lda,myInfo,batch_count) bind(c, name="rocsolver_cpotf2_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cpotf2_batched
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+
+  
+    function rocsolver_zpotf2_batched(handle,uplo,n,A,lda,myInfo,batch_count) bind(c, name="rocsolver_zpotf2_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zpotf2_batched
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+
   ! ! \brief POTF2_STRIDED_BATCHED computes the Cholesky factorization of a 
-  !     batch of real symmetric positive definite matrices.
+  !     batch of real symmetriccomplex Hermitian positive definite matrices.
   ! 
   !     \details
   !     (This is the unblocked version of the algorithm). 
@@ -4086,8 +6325,40 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
-  ! ! \brief POTRF computes the Cholesky factorization of a real symmetric
-  !     positive definite matrix A.
+  
+    function rocsolver_cpotf2_strided_batched(handle,uplo,n,A,lda,strideA,myInfo,batch_count) bind(c, name="rocsolver_cpotf2_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cpotf2_strided_batched
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+
+  
+    function rocsolver_zpotf2_strided_batched(handle,uplo,n,A,lda,strideA,myInfo,batch_count) bind(c, name="rocsolver_zpotf2_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zpotf2_strided_batched
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+
+  ! ! \brief POTRF computes the Cholesky factorization of a real symmetriccomplex
+  !     Hermitian positive definite matrix A.
   ! 
   !     \details
   !     (This is the blocked version of the algorithm). 
@@ -4148,8 +6419,36 @@ module hipfort_rocsolver
       type(c_ptr),value :: myInfo
     end function
 
+  
+    function rocsolver_cpotrf(handle,uplo,n,A,lda,myInfo) bind(c, name="rocsolver_cpotrf")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cpotrf
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: myInfo
+    end function
+
+  
+    function rocsolver_zpotrf(handle,uplo,n,A,lda,myInfo) bind(c, name="rocsolver_zpotrf")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zpotrf
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: myInfo
+    end function
+
   ! ! \brief POTRF_BATCHED computes the Cholesky factorization of a 
-  !     batch of real symmetric positive definite matrices.
+  !     batch of real symmetriccomplex Hermitian positive definite matrices.
   ! 
   !     \details
   !     (This is the blocked version of the algorithm). 
@@ -4215,8 +6514,38 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+  
+    function rocsolver_cpotrf_batched(handle,uplo,n,A,lda,myInfo,batch_count) bind(c, name="rocsolver_cpotrf_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cpotrf_batched
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+
+  
+    function rocsolver_zpotrf_batched(handle,uplo,n,A,lda,myInfo,batch_count) bind(c, name="rocsolver_zpotrf_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zpotrf_batched
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+
   ! ! \brief POTRF_STRIDED_BATCHED computes the Cholesky factorization of a 
-  !     batch of real symmetric positive definite matrices.
+  !     batch of real symmetriccomplex Hermitian positive definite matrices.
   ! 
   !     \details
   !     (This is the blocked version of the algorithm). 
@@ -4278,6 +6607,38 @@ module hipfort_rocsolver
       use hipfort_rocsolver_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocsolver_dpotrf_strided_batched
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+
+  
+    function rocsolver_cpotrf_strided_batched(handle,uplo,n,A,lda,strideA,myInfo,batch_count) bind(c, name="rocsolver_cpotrf_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cpotrf_strided_batched
+      type(c_ptr),value :: handle
+      integer(kind(rocblas_fill_upper)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+
+  
+    function rocsolver_zpotrf_strided_batched(handle,uplo,n,A,lda,strideA,myInfo,batch_count) bind(c, name="rocsolver_zpotrf_strided_batched")
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zpotrf_strided_batched
       type(c_ptr),value :: handle
       integer(kind(rocblas_fill_upper)),value :: uplo
       integer(c_int),value :: n

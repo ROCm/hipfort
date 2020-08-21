@@ -189,52 +189,80 @@ module hipfort_hipblas
 
   
 #ifdef USE_CUDA_NAMES
-    function hipblasSgeam(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc) bind(c, name="cublasSgeam")
+    function hipblasSetVectorAsync(n,elem_size,x,incx,y,incy,stream) bind(c, name="cublasSetVectorAsync")
 #else
-    function hipblasSgeam(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc) bind(c, name="hipblasSgeam")
+    function hipblasSetVectorAsync(n,elem_size,x,incx,y,incy,stream) bind(c, name="hipblasSetVectorAsync")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeam
-      type(c_ptr),value :: handle
-      integer(kind(HIPBLAS_OP_N)),value :: transa
-      integer(kind(HIPBLAS_OP_N)),value :: transb
-      integer(c_int),value :: m
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSetVectorAsync
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
-      type(c_ptr),value :: A
-      integer(c_int),value :: lda
-      real(c_float),intent(IN) :: beta
-      type(c_ptr),value :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: C
-      integer(c_int),value :: ldc
+      integer(c_int),value :: elem_size
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
     end function
 
   
 #ifdef USE_CUDA_NAMES
-    function hipblasDgeam(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc) bind(c, name="cublasDgeam")
+    function hipblasGetVectorAsync(n,elem_size,x,incx,y,incy,stream) bind(c, name="cublasGetVectorAsync")
 #else
-    function hipblasDgeam(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc) bind(c, name="hipblasDgeam")
+    function hipblasGetVectorAsync(n,elem_size,x,incx,y,incy,stream) bind(c, name="hipblasGetVectorAsync")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeam
-      type(c_ptr),value :: handle
-      integer(kind(HIPBLAS_OP_N)),value :: transa
-      integer(kind(HIPBLAS_OP_N)),value :: transb
-      integer(c_int),value :: m
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGetVectorAsync
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      integer(c_int),value :: elem_size
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasSetMatrixAsync(rows,cols,elem_size,A,lda,B,ldb,stream) bind(c, name="cublasSetMatrixAsync")
+#else
+    function hipblasSetMatrixAsync(rows,cols,elem_size,A,lda,B,ldb,stream) bind(c, name="hipblasSetMatrixAsync")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSetMatrixAsync
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      integer(c_int),value :: elem_size
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      real(c_double),intent(IN) :: beta
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: C
-      integer(c_int),value :: ldc
+      type(c_ptr),value :: stream
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasGetMatrixAsync(rows,cols,elem_size,A,lda,B,ldb,stream) bind(c, name="cublasGetMatrixAsync")
+#else
+    function hipblasGetMatrixAsync(rows,cols,elem_size,A,lda,B,ldb,stream) bind(c, name="hipblasGetMatrixAsync")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGetMatrixAsync
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      integer(c_int),value :: elem_size
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
     end function
 
   
@@ -887,6 +915,25 @@ module hipfort_hipblas
 
   
 #ifdef USE_CUDA_NAMES
+    function hipblasHaxpy(handle,n,alpha,x,incx,y,incy) bind(c, name="cublasHaxpy")
+#else
+    function hipblasHaxpy(handle,n,alpha,x,incx,y,incy) bind(c, name="hipblasHaxpy")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasHaxpy
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      hipblasHalf :: alpha
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int),value :: incy
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
     function hipblasSaxpy(handle,n,alpha,x,incx,y,incy) bind(c, name="cublasSaxpy")
 #else
     function hipblasSaxpy(handle,n,alpha,x,incx,y,incy) bind(c, name="hipblasSaxpy")
@@ -897,7 +944,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSaxpy
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       type(c_ptr),value :: y
@@ -916,7 +963,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDaxpy
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       type(c_ptr),value :: y
@@ -935,7 +982,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCaxpy
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       type(c_ptr),value :: y
@@ -954,11 +1001,31 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZaxpy
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       type(c_ptr),value :: y
       integer(c_int),value :: incy
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasHaxpyBatched(handle,n,alpha,x,incx,y,incy,batch_count) bind(c, name="cublasHaxpyBatched")
+#else
+    function hipblasHaxpyBatched(handle,n,alpha,x,incx,y,incy,batch_count) bind(c, name="hipblasHaxpyBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasHaxpyBatched
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      hipblasHalf :: alpha
+      type(c_ptr) :: x
+      integer(c_int),value :: incx
+      type(c_ptr) :: y
+      integer(c_int),value :: incy
+      integer(c_int),value :: batch_count
     end function
 
   
@@ -973,7 +1040,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSaxpyBatched
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr) :: x
       integer(c_int),value :: incx
       type(c_ptr) :: y
@@ -993,7 +1060,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDaxpyBatched
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr) :: x
       integer(c_int),value :: incx
       type(c_ptr) :: y
@@ -1013,7 +1080,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCaxpyBatched
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr) :: x
       integer(c_int),value :: incx
       type(c_ptr) :: y
@@ -1033,11 +1100,33 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZaxpyBatched
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr) :: x
       integer(c_int),value :: incx
       type(c_ptr) :: y
       integer(c_int),value :: incy
+      integer(c_int),value :: batch_count
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasHaxpyStridedBatched(handle,n,alpha,x,incx,stridex,y,incy,stridey,batch_count) bind(c, name="cublasHaxpyStridedBatched")
+#else
+    function hipblasHaxpyStridedBatched(handle,n,alpha,x,incx,stridex,y,incy,stridey,batch_count) bind(c, name="hipblasHaxpyStridedBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasHaxpyStridedBatched
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      hipblasHalf :: alpha
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+      integer(c_int),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int),value :: incy
+      integer(c_int),value :: stridey
       integer(c_int),value :: batch_count
     end function
 
@@ -1053,7 +1142,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSaxpyStridedBatched
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
@@ -1075,7 +1164,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDaxpyStridedBatched
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
@@ -1097,7 +1186,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCaxpyStridedBatched
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
@@ -1119,7 +1208,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZaxpyStridedBatched
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
@@ -2935,7 +3024,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSscal
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
     end function
@@ -2952,7 +3041,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDscal
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
     end function
@@ -2969,7 +3058,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCscal
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
     end function
@@ -2986,7 +3075,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsscal
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
     end function
@@ -3003,7 +3092,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZscal
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
     end function
@@ -3020,7 +3109,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdscal
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
     end function
@@ -3037,7 +3126,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSscalBatched
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr) :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batchCount
@@ -3055,7 +3144,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDscalBatched
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr) :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batchCount
@@ -3073,7 +3162,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCscalBatched
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr) :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batchCount
@@ -3091,7 +3180,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZscalBatched
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr) :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batchCount
@@ -3109,7 +3198,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsscalBatched
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr) :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batchCount
@@ -3127,7 +3216,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdscalBatched
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr) :: x
       integer(c_int),value :: incx
       integer(c_int),value :: batchCount
@@ -3145,7 +3234,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSscalStridedBatched
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
@@ -3164,7 +3253,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDscalStridedBatched
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
@@ -3183,7 +3272,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCscalStridedBatched
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
@@ -3202,7 +3291,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZscalStridedBatched
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
@@ -3221,7 +3310,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsscalStridedBatched
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
@@ -3240,7 +3329,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdscalStridedBatched
       type(c_ptr),value :: handle
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
@@ -3495,12 +3584,12 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: kl
       integer(c_int),value :: ku
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: x
       integer(c_int),value :: incx
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: incy
     end function
@@ -3521,12 +3610,12 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: kl
       integer(c_int),value :: ku
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: x
       integer(c_int),value :: incx
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: incy
     end function
@@ -3547,12 +3636,12 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: kl
       integer(c_int),value :: ku
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: x
       integer(c_int),value :: incx
-      complex(c_float_complex),intent(IN) :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: incy
     end function
@@ -3573,12 +3662,12 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: kl
       integer(c_int),value :: ku
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: x
       integer(c_int),value :: incx
-      complex(c_double_complex),intent(IN) :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: incy
     end function
@@ -3599,12 +3688,12 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: kl
       integer(c_int),value :: ku
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: x
       integer(c_int),value :: incx
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr) :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
@@ -3626,12 +3715,12 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: kl
       integer(c_int),value :: ku
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: x
       integer(c_int),value :: incx
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr) :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
@@ -3653,12 +3742,12 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: kl
       integer(c_int),value :: ku
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: x
       integer(c_int),value :: incx
-      complex(c_float_complex),intent(IN) :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr) :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
@@ -3680,12 +3769,12 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: kl
       integer(c_int),value :: ku
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: x
       integer(c_int),value :: incx
-      complex(c_double_complex),intent(IN) :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr) :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
@@ -3707,14 +3796,14 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: kl
       integer(c_int),value :: ku
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: stride_a
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stride_x
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: stride_y
@@ -3737,14 +3826,14 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: kl
       integer(c_int),value :: ku
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: stride_a
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stride_x
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: stride_y
@@ -3767,14 +3856,14 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: kl
       integer(c_int),value :: ku
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: stride_a
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stride_x
-      complex(c_float_complex),intent(IN) :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: stride_y
@@ -3797,14 +3886,14 @@ module hipfort_hipblas
       integer(c_int),value :: n
       integer(c_int),value :: kl
       integer(c_int),value :: ku
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: stride_a
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stride_x
-      complex(c_double_complex),intent(IN) :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: stride_y
@@ -3825,12 +3914,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: x
       integer(c_int),value :: incx
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: incy
     end function
@@ -3849,12 +3938,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: x
       integer(c_int),value :: incx
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: incy
     end function
@@ -3873,12 +3962,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: x
       integer(c_int),value :: incx
-      complex(c_float_complex),intent(IN) :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: incy
     end function
@@ -3897,12 +3986,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: x
       integer(c_int),value :: incx
-      complex(c_double_complex),intent(IN) :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: incy
     end function
@@ -3921,12 +4010,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: x
       integer(c_int),value :: incx
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr) :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batchCount
@@ -3946,12 +4035,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: x
       integer(c_int),value :: incx
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr) :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batchCount
@@ -3971,12 +4060,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: x
       integer(c_int),value :: incx
-      complex(c_float_complex),intent(IN) :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr) :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batchCount
@@ -3996,12 +4085,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: x
       integer(c_int),value :: incx
-      complex(c_double_complex),intent(IN) :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr) :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batchCount
@@ -4021,14 +4110,14 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: strideA
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: stridey
@@ -4049,14 +4138,14 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: strideA
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: stridey
       integer(c_int),value :: incy
@@ -4077,14 +4166,14 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: strideA
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
-      complex(c_float_complex),intent(IN) :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: stridey
@@ -4105,14 +4194,14 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: strideA
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
-      complex(c_double_complex),intent(IN) :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: stridey
       integer(c_int),value :: incy
@@ -4132,7 +4221,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       type(c_ptr),value :: y
@@ -4154,7 +4243,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       type(c_ptr),value :: y
@@ -4176,7 +4265,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       type(c_ptr),value :: y
@@ -4198,7 +4287,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       type(c_ptr),value :: y
@@ -4220,7 +4309,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       type(c_ptr),value :: y
@@ -4242,7 +4331,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       type(c_ptr),value :: y
@@ -4264,7 +4353,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr) :: x
       integer(c_int),value :: incx
       type(c_ptr) :: y
@@ -4287,7 +4376,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr) :: x
       integer(c_int),value :: incx
       type(c_ptr) :: y
@@ -4310,7 +4399,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr) :: x
       integer(c_int),value :: incx
       type(c_ptr) :: y
@@ -4333,7 +4422,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr) :: x
       integer(c_int),value :: incx
       type(c_ptr) :: y
@@ -4356,7 +4445,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr) :: x
       integer(c_int),value :: incx
       type(c_ptr) :: y
@@ -4379,7 +4468,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr) :: x
       integer(c_int),value :: incx
       type(c_ptr) :: y
@@ -4402,7 +4491,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
@@ -4428,7 +4517,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
@@ -4454,7 +4543,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
@@ -4480,7 +4569,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
@@ -4506,7 +4595,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
@@ -4532,7 +4621,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
@@ -4559,12 +4648,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: x
       integer(c_int),value :: incx
-      complex(c_float_complex),intent(IN) :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: incy
     end function
@@ -4583,12 +4672,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: x
       integer(c_int),value :: incx
-      complex(c_double_complex),intent(IN) :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: incy
     end function
@@ -4607,12 +4696,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: x
       integer(c_int),value :: incx
-      complex(c_float_complex),intent(IN) :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr) :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batchCount
@@ -4632,12 +4721,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: x
       integer(c_int),value :: incx
-      complex(c_double_complex),intent(IN) :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr) :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batchCount
@@ -4657,14 +4746,14 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: strideA
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
-      complex(c_float_complex),intent(IN) :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: stridey
@@ -4685,14 +4774,14 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: strideA
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
-      complex(c_double_complex),intent(IN) :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: stridey
@@ -4712,12 +4801,12 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: x
       integer(c_int),value :: incx
-      complex(c_float_complex),intent(IN) :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: incy
     end function
@@ -4735,12 +4824,12 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: da
       type(c_ptr),value :: x
       integer(c_int),value :: incx
-      complex(c_double_complex),intent(IN) :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: incy
     end function
@@ -4758,12 +4847,12 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: x
       integer(c_int),value :: incx
-      complex(c_float_complex),intent(IN) :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr) :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
@@ -4782,12 +4871,12 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: x
       integer(c_int),value :: incx
-      complex(c_double_complex),intent(IN) :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr) :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batch_count
@@ -4806,14 +4895,14 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: stride_a
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stride_x
-      complex(c_float_complex),intent(IN) :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: stride_y
@@ -4833,14 +4922,14 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: stride_a
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stride_x
-      complex(c_double_complex),intent(IN) :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: stride_y
@@ -4860,7 +4949,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       type(c_ptr),value :: A
@@ -4880,7 +4969,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       type(c_ptr),value :: A
@@ -4900,7 +4989,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr) :: x
       integer(c_int),value :: incx
       type(c_ptr) :: A
@@ -4921,7 +5010,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr) :: x
       integer(c_int),value :: incx
       type(c_ptr) :: A
@@ -4942,7 +5031,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
@@ -4965,7 +5054,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
@@ -4988,7 +5077,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       type(c_ptr),value :: y
@@ -5010,7 +5099,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       type(c_ptr),value :: y
@@ -5032,7 +5121,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr) :: x
       integer(c_int),value :: incx
       type(c_ptr) :: y
@@ -5055,7 +5144,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr) :: x
       integer(c_int),value :: incx
       type(c_ptr) :: y
@@ -5078,7 +5167,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
@@ -5104,7 +5193,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
@@ -5130,11 +5219,11 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: AP
       type(c_ptr),value :: x
       integer(c_int),value :: incx
-      complex(c_float_complex),intent(IN) :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: incy
     end function
@@ -5152,11 +5241,11 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: AP
       type(c_ptr),value :: x
       integer(c_int),value :: incx
-      complex(c_double_complex),intent(IN) :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: incy
     end function
@@ -5174,11 +5263,11 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr) :: AP
       type(c_ptr) :: x
       integer(c_int),value :: incx
-      complex(c_float_complex),intent(IN) :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr) :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batchCount
@@ -5197,11 +5286,11 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr) :: AP
       type(c_ptr) :: x
       integer(c_int),value :: incx
-      complex(c_double_complex),intent(IN) :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr) :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batchCount
@@ -5220,13 +5309,13 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: AP
       integer(c_int),value :: strideAP
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
-      complex(c_float_complex),intent(IN) :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: stridey
@@ -5246,13 +5335,13 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: AP
       integer(c_int),value :: strideAP
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
-      complex(c_double_complex),intent(IN) :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: stridey
@@ -5272,7 +5361,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       type(c_ptr),value :: AP
@@ -5291,7 +5380,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       type(c_ptr),value :: AP
@@ -5310,7 +5399,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr) :: x
       integer(c_int),value :: incx
       type(c_ptr) :: AP
@@ -5330,7 +5419,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr) :: x
       integer(c_int),value :: incx
       type(c_ptr) :: AP
@@ -5350,7 +5439,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
@@ -5372,7 +5461,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
@@ -5394,7 +5483,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       type(c_ptr),value :: y
@@ -5415,7 +5504,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       type(c_ptr),value :: y
@@ -5436,7 +5525,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr) :: x
       integer(c_int),value :: incx
       type(c_ptr) :: y
@@ -5458,7 +5547,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr) :: x
       integer(c_int),value :: incx
       type(c_ptr) :: y
@@ -5480,7 +5569,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
@@ -5505,7 +5594,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
@@ -5531,12 +5620,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: k
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: x
       integer(c_int),value :: incx
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: incy
     end function
@@ -5555,12 +5644,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: k
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: x
       integer(c_int),value :: incx
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: incy
     end function
@@ -5579,12 +5668,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: k
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: x
       integer(c_int),value :: incx
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr) :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batchCount
@@ -5604,12 +5693,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: k
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: x
       integer(c_int),value :: incx
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr) :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batchCount
@@ -5629,14 +5718,14 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: k
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: strideA
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: stridey
@@ -5657,14 +5746,14 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: k
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: strideA
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: stridey
@@ -5684,11 +5773,11 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: AP
       type(c_ptr),value :: x
       integer(c_int),value :: incx
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: incy
     end function
@@ -5706,11 +5795,11 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: AP
       type(c_ptr),value :: x
       integer(c_int),value :: incx
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: incy
     end function
@@ -5728,11 +5817,11 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr) :: AP
       type(c_ptr) :: x
       integer(c_int),value :: incx
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr) :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batchCount
@@ -5751,11 +5840,11 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr) :: AP
       type(c_ptr) :: x
       integer(c_int),value :: incx
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr) :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batchCount
@@ -5774,13 +5863,13 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: AP
       integer(c_int),value :: strideAP
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: stridey
@@ -5800,13 +5889,13 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: AP
       integer(c_int),value :: strideAP
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: stridey
@@ -5826,7 +5915,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       type(c_ptr),value :: AP
@@ -5845,7 +5934,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       type(c_ptr),value :: AP
@@ -5864,7 +5953,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       type(c_ptr),value :: AP
@@ -5883,7 +5972,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       type(c_ptr),value :: AP
@@ -5902,7 +5991,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr) :: x
       integer(c_int),value :: incx
       type(c_ptr) :: AP
@@ -5922,7 +6011,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr) :: x
       integer(c_int),value :: incx
       type(c_ptr) :: AP
@@ -5942,7 +6031,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr) :: x
       integer(c_int),value :: incx
       type(c_ptr) :: AP
@@ -5962,7 +6051,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr) :: x
       integer(c_int),value :: incx
       type(c_ptr) :: AP
@@ -5982,7 +6071,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
@@ -6004,7 +6093,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
@@ -6026,7 +6115,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
@@ -6048,7 +6137,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
@@ -6070,7 +6159,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       type(c_ptr),value :: y
@@ -6091,7 +6180,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       type(c_ptr),value :: y
@@ -6112,7 +6201,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr) :: x
       integer(c_int),value :: incx
       type(c_ptr) :: y
@@ -6134,7 +6223,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr) :: x
       integer(c_int),value :: incx
       type(c_ptr) :: y
@@ -6156,7 +6245,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
@@ -6181,7 +6270,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
@@ -6206,12 +6295,12 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: x
       integer(c_int),value :: incx
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: incy
     end function
@@ -6229,12 +6318,12 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: x
       integer(c_int),value :: incx
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: incy
     end function
@@ -6252,12 +6341,12 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: x
       integer(c_int),value :: incx
-      complex(c_float_complex),intent(IN) :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: incy
     end function
@@ -6275,12 +6364,12 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: x
       integer(c_int),value :: incx
-      complex(c_double_complex),intent(IN) :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: incy
     end function
@@ -6298,12 +6387,12 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: x
       integer(c_int),value :: incx
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr) :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batchCount
@@ -6322,12 +6411,12 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: x
       integer(c_int),value :: incx
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr) :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batchCount
@@ -6346,12 +6435,12 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: x
       integer(c_int),value :: incx
-      complex(c_float_complex),intent(IN) :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr) :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batchCount
@@ -6370,12 +6459,12 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: x
       integer(c_int),value :: incx
-      complex(c_double_complex),intent(IN) :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr) :: y
       integer(c_int),value :: incy
       integer(c_int),value :: batchCount
@@ -6394,14 +6483,14 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: stirdeA
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: stridey
@@ -6421,14 +6510,14 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: stirdeA
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: stridey
@@ -6448,14 +6537,14 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: stirdeA
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
-      complex(c_float_complex),intent(IN) :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: stridey
@@ -6475,14 +6564,14 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: stirdeA
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
-      complex(c_double_complex),intent(IN) :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr),value :: y
       integer(c_int),value :: incy
       integer(c_int),value :: stridey
@@ -6502,7 +6591,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       type(c_ptr),value :: A
@@ -6522,7 +6611,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       type(c_ptr),value :: A
@@ -6542,7 +6631,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       type(c_ptr),value :: A
@@ -6562,7 +6651,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       type(c_ptr),value :: A
@@ -6582,7 +6671,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr) :: x
       integer(c_int),value :: incx
       type(c_ptr) :: A
@@ -6603,7 +6692,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr) :: x
       integer(c_int),value :: incx
       type(c_ptr) :: A
@@ -6624,7 +6713,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr) :: x
       integer(c_int),value :: incx
       type(c_ptr) :: A
@@ -6645,7 +6734,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr) :: x
       integer(c_int),value :: incx
       type(c_ptr) :: A
@@ -6666,7 +6755,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
@@ -6689,7 +6778,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
@@ -6712,7 +6801,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
@@ -6735,7 +6824,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
@@ -6758,7 +6847,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       type(c_ptr),value :: y
@@ -6780,7 +6869,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       type(c_ptr),value :: y
@@ -6802,7 +6891,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       type(c_ptr),value :: y
@@ -6824,7 +6913,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       type(c_ptr),value :: y
@@ -6846,7 +6935,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr) :: x
       integer(c_int),value :: incx
       type(c_ptr) :: y
@@ -6869,7 +6958,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr) :: x
       integer(c_int),value :: incx
       type(c_ptr) :: y
@@ -6892,7 +6981,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr) :: x
       integer(c_int),value :: incx
       type(c_ptr) :: y
@@ -6915,7 +7004,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr) :: x
       integer(c_int),value :: incx
       type(c_ptr) :: y
@@ -6938,7 +7027,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
@@ -6964,7 +7053,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
@@ -6990,7 +7079,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
@@ -7016,7 +7105,7 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: x
       integer(c_int),value :: incx
       integer(c_int),value :: stridex
@@ -7307,6 +7396,286 @@ module hipfort_hipblas
       integer(c_int),value :: incx
       integer(c_int),value :: stride_x
       integer(c_int),value :: batch_count
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasStbsv(handle,uplo,transA,diag,n,k,A,lda,x,incx) bind(c, name="cublasStbsv")
+#else
+    function hipblasStbsv(handle,uplo,transA,diag,n,k,A,lda,x,incx) bind(c, name="hipblasStbsv")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStbsv
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasDtbsv(handle,uplo,transA,diag,n,k,A,lda,x,incx) bind(c, name="cublasDtbsv")
+#else
+    function hipblasDtbsv(handle,uplo,transA,diag,n,k,A,lda,x,incx) bind(c, name="hipblasDtbsv")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtbsv
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasCtbsv(handle,uplo,transA,diag,n,k,A,lda,x,incx) bind(c, name="cublasCtbsv")
+#else
+    function hipblasCtbsv(handle,uplo,transA,diag,n,k,A,lda,x,incx) bind(c, name="hipblasCtbsv")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtbsv
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasZtbsv(handle,uplo,transA,diag,n,k,A,lda,x,incx) bind(c, name="cublasZtbsv")
+#else
+    function hipblasZtbsv(handle,uplo,transA,diag,n,k,A,lda,x,incx) bind(c, name="hipblasZtbsv")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtbsv
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasStbsvBatched(handle,uplo,transA,diag,n,k,A,lda,x,incx,batchCount) bind(c, name="cublasStbsvBatched")
+#else
+    function hipblasStbsvBatched(handle,uplo,transA,diag,n,k,A,lda,x,incx,batchCount) bind(c, name="hipblasStbsvBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStbsvBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: x
+      integer(c_int),value :: incx
+      integer(c_int),value :: batchCount
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasDtbsvBatched(handle,uplo,transA,diag,n,k,A,lda,x,incx,batchCount) bind(c, name="cublasDtbsvBatched")
+#else
+    function hipblasDtbsvBatched(handle,uplo,transA,diag,n,k,A,lda,x,incx,batchCount) bind(c, name="hipblasDtbsvBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtbsvBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: x
+      integer(c_int),value :: incx
+      integer(c_int),value :: batchCount
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasCtbsvBatched(handle,uplo,transA,diag,n,k,A,lda,x,incx,batchCount) bind(c, name="cublasCtbsvBatched")
+#else
+    function hipblasCtbsvBatched(handle,uplo,transA,diag,n,k,A,lda,x,incx,batchCount) bind(c, name="hipblasCtbsvBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtbsvBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: x
+      integer(c_int),value :: incx
+      integer(c_int),value :: batchCount
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasZtbsvBatched(handle,uplo,transA,diag,n,k,A,lda,x,incx,batchCount) bind(c, name="cublasZtbsvBatched")
+#else
+    function hipblasZtbsvBatched(handle,uplo,transA,diag,n,k,A,lda,x,incx,batchCount) bind(c, name="hipblasZtbsvBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtbsvBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: x
+      integer(c_int),value :: incx
+      integer(c_int),value :: batchCount
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasStbsvStridedBatched(handle,uplo,transA,diag,n,k,A,lda,strideA,x,incx,stridex,batchCount) bind(c, name="cublasStbsvStridedBatched")
+#else
+    function hipblasStbsvStridedBatched(handle,uplo,transA,diag,n,k,A,lda,strideA,x,incx,stridex,batchCount) bind(c, name="hipblasStbsvStridedBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStbsvStridedBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+      integer(c_int),value :: stridex
+      integer(c_int),value :: batchCount
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasDtbsvStridedBatched(handle,uplo,transA,diag,n,k,A,lda,strideA,x,incx,stridex,batchCount) bind(c, name="cublasDtbsvStridedBatched")
+#else
+    function hipblasDtbsvStridedBatched(handle,uplo,transA,diag,n,k,A,lda,strideA,x,incx,stridex,batchCount) bind(c, name="hipblasDtbsvStridedBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtbsvStridedBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+      integer(c_int),value :: stridex
+      integer(c_int),value :: batchCount
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasCtbsvStridedBatched(handle,uplo,transA,diag,n,k,A,lda,strideA,x,incx,stridex,batchCount) bind(c, name="cublasCtbsvStridedBatched")
+#else
+    function hipblasCtbsvStridedBatched(handle,uplo,transA,diag,n,k,A,lda,strideA,x,incx,stridex,batchCount) bind(c, name="hipblasCtbsvStridedBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtbsvStridedBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+      integer(c_int),value :: stridex
+      integer(c_int),value :: batchCount
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasZtbsvStridedBatched(handle,uplo,transA,diag,n,k,A,lda,strideA,x,incx,stridex,batchCount) bind(c, name="cublasZtbsvStridedBatched")
+#else
+    function hipblasZtbsvStridedBatched(handle,uplo,transA,diag,n,k,A,lda,strideA,x,incx,stridex,batchCount) bind(c, name="hipblasZtbsvStridedBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtbsvStridedBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+      integer(c_int),value :: stridex
+      integer(c_int),value :: batchCount
     end function
 
   
@@ -8372,10 +8741,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
     end function
@@ -8395,10 +8764,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
     end function
@@ -8418,10 +8787,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr) :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
@@ -8442,10 +8811,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr) :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
@@ -8466,11 +8835,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: strideA
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: strideC
@@ -8492,11 +8861,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: strideA
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: strideC
@@ -8518,12 +8887,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
     end function
@@ -8543,12 +8912,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
     end function
@@ -8568,12 +8937,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: B
       integer(c_int),value :: ldb
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr) :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
@@ -8594,12 +8963,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: B
       integer(c_int),value :: ldb
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr) :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
@@ -8620,14 +8989,14 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: strideA
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: strideB
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: strideC
@@ -8649,14 +9018,14 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: strideA
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: strideB
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: strideC
@@ -8678,12 +9047,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
     end function
@@ -8703,12 +9072,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
     end function
@@ -8728,12 +9097,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: B
       integer(c_int),value :: ldb
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr) :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
@@ -8754,12 +9123,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: B
       integer(c_int),value :: ldb
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr) :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
@@ -8780,14 +9149,14 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: strideA
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: strideB
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: strideC
@@ -8809,14 +9178,334 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: strideA
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: strideB
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+      integer(c_int),value :: strideC
+      integer(c_int),value :: batchCount
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasSsymm(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasSsymm")
+#else
+    function hipblasSsymm(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="hipblasSsymm")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymm
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      real(c_float) :: alpha
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      real(c_float) :: beta
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasDsymm(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasDsymm")
+#else
+    function hipblasDsymm(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="hipblasDsymm")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymm
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      real(c_double) :: alpha
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      real(c_double) :: beta
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasCsymm(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasCsymm")
+#else
+    function hipblasCsymm(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="hipblasCsymm")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymm
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      complex(c_float_complex) :: beta
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasZsymm(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasZsymm")
+#else
+    function hipblasZsymm(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="hipblasZsymm")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymm
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      complex(c_double_complex) :: beta
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasSsymmBatched(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="cublasSsymmBatched")
+#else
+    function hipblasSsymmBatched(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="hipblasSsymmBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymmBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      real(c_float) :: alpha
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      real(c_float) :: beta
+      type(c_ptr) :: C
+      integer(c_int),value :: ldc
+      integer(c_int),value :: batchCount
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasDsymmBatched(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="cublasDsymmBatched")
+#else
+    function hipblasDsymmBatched(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="hipblasDsymmBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymmBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      real(c_double) :: alpha
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      real(c_double) :: beta
+      type(c_ptr) :: C
+      integer(c_int),value :: ldc
+      integer(c_int),value :: batchCount
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasCsymmBatched(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="cublasCsymmBatched")
+#else
+    function hipblasCsymmBatched(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="hipblasCsymmBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymmBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      complex(c_float_complex) :: beta
+      type(c_ptr) :: C
+      integer(c_int),value :: ldc
+      integer(c_int),value :: batchCount
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasZsymmBatched(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="cublasZsymmBatched")
+#else
+    function hipblasZsymmBatched(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="hipblasZsymmBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymmBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      complex(c_double_complex) :: beta
+      type(c_ptr) :: C
+      integer(c_int),value :: ldc
+      integer(c_int),value :: batchCount
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasSsymmStridedBatched(handle,side,uplo,m,n,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount) bind(c, name="cublasSsymmStridedBatched")
+#else
+    function hipblasSsymmStridedBatched(handle,side,uplo,m,n,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount) bind(c, name="hipblasSsymmStridedBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymmStridedBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      real(c_float) :: alpha
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int),value :: strideB
+      real(c_float) :: beta
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+      integer(c_int),value :: strideC
+      integer(c_int),value :: batchCount
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasDsymmStridedBatched(handle,side,uplo,m,n,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount) bind(c, name="cublasDsymmStridedBatched")
+#else
+    function hipblasDsymmStridedBatched(handle,side,uplo,m,n,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount) bind(c, name="hipblasDsymmStridedBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymmStridedBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      real(c_double) :: alpha
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int),value :: strideB
+      real(c_double) :: beta
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+      integer(c_int),value :: strideC
+      integer(c_int),value :: batchCount
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasCsymmStridedBatched(handle,side,uplo,m,n,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount) bind(c, name="cublasCsymmStridedBatched")
+#else
+    function hipblasCsymmStridedBatched(handle,side,uplo,m,n,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount) bind(c, name="hipblasCsymmStridedBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymmStridedBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int),value :: strideB
+      complex(c_float_complex) :: beta
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+      integer(c_int),value :: strideC
+      integer(c_int),value :: batchCount
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasZsymmStridedBatched(handle,side,uplo,m,n,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount) bind(c, name="cublasZsymmStridedBatched")
+#else
+    function hipblasZsymmStridedBatched(handle,side,uplo,m,n,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount) bind(c, name="hipblasZsymmStridedBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymmStridedBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int),value :: strideB
+      complex(c_double_complex) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: strideC
@@ -8838,10 +9527,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
     end function
@@ -8861,10 +9550,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
     end function
@@ -8884,10 +9573,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      complex(c_float_complex),intent(IN) :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
     end function
@@ -8907,10 +9596,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      complex(c_double_complex),intent(IN) :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
     end function
@@ -8930,10 +9619,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr) :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
@@ -8954,10 +9643,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr) :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
@@ -8978,10 +9667,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
-      complex(c_float_complex),intent(IN) :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr) :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
@@ -9002,10 +9691,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
-      complex(c_double_complex),intent(IN) :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr) :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
@@ -9026,11 +9715,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: strideA
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: strideC
@@ -9052,11 +9741,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: strideA
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: strideC
@@ -9078,11 +9767,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: strideA
-      complex(c_float_complex),intent(IN) :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: strideC
@@ -9104,11 +9793,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: strideA
-      complex(c_double_complex),intent(IN) :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: strideC
@@ -9130,12 +9819,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
     end function
@@ -9155,12 +9844,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
     end function
@@ -9180,12 +9869,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      complex(c_float_complex),intent(IN) :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
     end function
@@ -9205,12 +9894,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      complex(c_double_complex),intent(IN) :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
     end function
@@ -9230,12 +9919,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: B
       integer(c_int),value :: ldb
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr) :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
@@ -9256,12 +9945,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: B
       integer(c_int),value :: ldb
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr) :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
@@ -9282,12 +9971,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: B
       integer(c_int),value :: ldb
-      complex(c_float_complex),intent(IN) :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr) :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
@@ -9308,12 +9997,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: B
       integer(c_int),value :: ldb
-      complex(c_double_complex),intent(IN) :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr) :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
@@ -9334,14 +10023,14 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: strideA
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: strideB
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: strideC
@@ -9363,14 +10052,14 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: strideA
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: strideB
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: strideC
@@ -9392,14 +10081,14 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: strideA
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: strideB
-      complex(c_float_complex),intent(IN) :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: strideC
@@ -9421,14 +10110,14 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: strideA
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: strideB
-      complex(c_double_complex),intent(IN) :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: strideC
@@ -9450,12 +10139,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
     end function
@@ -9475,12 +10164,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
     end function
@@ -9500,12 +10189,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      complex(c_float_complex),intent(IN) :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
     end function
@@ -9525,12 +10214,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      complex(c_double_complex),intent(IN) :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
     end function
@@ -9550,12 +10239,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: B
       integer(c_int),value :: ldb
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr) :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
@@ -9576,12 +10265,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: B
       integer(c_int),value :: ldb
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr) :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
@@ -9602,12 +10291,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: B
       integer(c_int),value :: ldb
-      complex(c_float_complex),intent(IN) :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr) :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
@@ -9628,12 +10317,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: B
       integer(c_int),value :: ldb
-      complex(c_double_complex),intent(IN) :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr) :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
@@ -9654,14 +10343,14 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: strideA
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: strideB
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: stridec
@@ -9683,14 +10372,14 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: strideA
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: strideB
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: stridec
@@ -9712,14 +10401,14 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: strideA
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: strideB
-      complex(c_float_complex),intent(IN) :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: stridec
@@ -9741,17 +10430,497 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)),value :: transA
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: strideA
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: strideB
-      complex(c_double_complex),intent(IN) :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: stridec
+      integer(c_int),value :: batchCount
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasSgeam(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc) bind(c, name="cublasSgeam")
+#else
+    function hipblasSgeam(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc) bind(c, name="hipblasSgeam")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeam
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transa
+      integer(kind(HIPBLAS_OP_N)),value :: transb
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      real(c_float) :: alpha
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      real(c_float) :: beta
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasDgeam(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc) bind(c, name="cublasDgeam")
+#else
+    function hipblasDgeam(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc) bind(c, name="hipblasDgeam")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeam
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transa
+      integer(kind(HIPBLAS_OP_N)),value :: transb
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      real(c_double) :: alpha
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      real(c_double) :: beta
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasCgeam(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc) bind(c, name="cublasCgeam")
+#else
+    function hipblasCgeam(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc) bind(c, name="hipblasCgeam")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeam
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transa
+      integer(kind(HIPBLAS_OP_N)),value :: transb
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      complex(c_float_complex) :: beta
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasZgeam(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc) bind(c, name="cublasZgeam")
+#else
+    function hipblasZgeam(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc) bind(c, name="hipblasZgeam")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeam
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transa
+      integer(kind(HIPBLAS_OP_N)),value :: transb
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      complex(c_double_complex) :: beta
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasSgeamBatched(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc,batchCount) bind(c, name="cublasSgeamBatched")
+#else
+    function hipblasSgeamBatched(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc,batchCount) bind(c, name="hipblasSgeamBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeamBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transa
+      integer(kind(HIPBLAS_OP_N)),value :: transb
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      real(c_float) :: alpha
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      real(c_float) :: beta
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr) :: C
+      integer(c_int),value :: ldc
+      integer(c_int),value :: batchCount
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasDgeamBatched(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc,batchCount) bind(c, name="cublasDgeamBatched")
+#else
+    function hipblasDgeamBatched(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc,batchCount) bind(c, name="hipblasDgeamBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeamBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transa
+      integer(kind(HIPBLAS_OP_N)),value :: transb
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      real(c_double) :: alpha
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      real(c_double) :: beta
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr) :: C
+      integer(c_int),value :: ldc
+      integer(c_int),value :: batchCount
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasCgeamBatched(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc,batchCount) bind(c, name="cublasCgeamBatched")
+#else
+    function hipblasCgeamBatched(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc,batchCount) bind(c, name="hipblasCgeamBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeamBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transa
+      integer(kind(HIPBLAS_OP_N)),value :: transb
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      complex(c_float_complex) :: beta
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr) :: C
+      integer(c_int),value :: ldc
+      integer(c_int),value :: batchCount
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasZgeamBatched(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc,batchCount) bind(c, name="cublasZgeamBatched")
+#else
+    function hipblasZgeamBatched(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc,batchCount) bind(c, name="hipblasZgeamBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeamBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transa
+      integer(kind(HIPBLAS_OP_N)),value :: transb
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      complex(c_double_complex) :: beta
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr) :: C
+      integer(c_int),value :: ldc
+      integer(c_int),value :: batchCount
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasSgeamStridedBatched(handle,transa,transb,m,n,alpha,A,lda,strideA,beta,B,ldb,strideB,C,ldc,strideC,batchCount) bind(c, name="cublasSgeamStridedBatched")
+#else
+    function hipblasSgeamStridedBatched(handle,transa,transb,m,n,alpha,A,lda,strideA,beta,B,ldb,strideB,C,ldc,strideC,batchCount) bind(c, name="hipblasSgeamStridedBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeamStridedBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transa
+      integer(kind(HIPBLAS_OP_N)),value :: transb
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      real(c_float) :: alpha
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int),value :: strideA
+      real(c_float) :: beta
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int),value :: strideB
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+      integer(c_int),value :: strideC
+      integer(c_int),value :: batchCount
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasDgeamStridedBatched(handle,transa,transb,m,n,alpha,A,lda,strideA,beta,B,ldb,strideB,C,ldc,strideC,batchCount) bind(c, name="cublasDgeamStridedBatched")
+#else
+    function hipblasDgeamStridedBatched(handle,transa,transb,m,n,alpha,A,lda,strideA,beta,B,ldb,strideB,C,ldc,strideC,batchCount) bind(c, name="hipblasDgeamStridedBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeamStridedBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transa
+      integer(kind(HIPBLAS_OP_N)),value :: transb
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      real(c_double) :: alpha
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int),value :: strideA
+      real(c_double) :: beta
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int),value :: strideB
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+      integer(c_int),value :: strideC
+      integer(c_int),value :: batchCount
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasCgeamStridedBatched(handle,transa,transb,m,n,alpha,A,lda,strideA,beta,B,ldb,strideB,C,ldc,strideC,batchCount) bind(c, name="cublasCgeamStridedBatched")
+#else
+    function hipblasCgeamStridedBatched(handle,transa,transb,m,n,alpha,A,lda,strideA,beta,B,ldb,strideB,C,ldc,strideC,batchCount) bind(c, name="hipblasCgeamStridedBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeamStridedBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transa
+      integer(kind(HIPBLAS_OP_N)),value :: transb
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int),value :: strideA
+      complex(c_float_complex) :: beta
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int),value :: strideB
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+      integer(c_int),value :: strideC
+      integer(c_int),value :: batchCount
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasZgeamStridedBatched(handle,transa,transb,m,n,alpha,A,lda,strideA,beta,B,ldb,strideB,C,ldc,strideC,batchCount) bind(c, name="cublasZgeamStridedBatched")
+#else
+    function hipblasZgeamStridedBatched(handle,transa,transb,m,n,alpha,A,lda,strideA,beta,B,ldb,strideB,C,ldc,strideC,batchCount) bind(c, name="hipblasZgeamStridedBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeamStridedBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transa
+      integer(kind(HIPBLAS_OP_N)),value :: transb
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int),value :: strideA
+      complex(c_double_complex) :: beta
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int),value :: strideB
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+      integer(c_int),value :: strideC
+      integer(c_int),value :: batchCount
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasChemm(handle,side,uplo,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasChemm")
+#else
+    function hipblasChemm(handle,side,uplo,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="hipblasChemm")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemm
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      complex(c_float_complex) :: beta
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasZhemm(handle,side,uplo,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasZhemm")
+#else
+    function hipblasZhemm(handle,side,uplo,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="hipblasZhemm")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemm
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      complex(c_double_complex) :: beta
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasChemmBatched(handle,side,uplo,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="cublasChemmBatched")
+#else
+    function hipblasChemmBatched(handle,side,uplo,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="hipblasChemmBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemmBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      complex(c_float_complex) :: beta
+      type(c_ptr) :: C
+      integer(c_int),value :: ldc
+      integer(c_int),value :: batchCount
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasZhemmBatched(handle,side,uplo,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="cublasZhemmBatched")
+#else
+    function hipblasZhemmBatched(handle,side,uplo,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="hipblasZhemmBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemmBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      complex(c_double_complex) :: beta
+      type(c_ptr) :: C
+      integer(c_int),value :: ldc
+      integer(c_int),value :: batchCount
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasChemmStridedBatched(handle,side,uplo,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount) bind(c, name="cublasChemmStridedBatched")
+#else
+    function hipblasChemmStridedBatched(handle,side,uplo,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount) bind(c, name="hipblasChemmStridedBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemmStridedBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int),value :: strideB
+      complex(c_float_complex) :: beta
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+      integer(c_int),value :: strideC
+      integer(c_int),value :: batchCount
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasZhemmStridedBatched(handle,side,uplo,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount) bind(c, name="cublasZhemmStridedBatched")
+#else
+    function hipblasZhemmStridedBatched(handle,side,uplo,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount) bind(c, name="hipblasZhemmStridedBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemmStridedBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int),value :: strideB
+      complex(c_double_complex) :: beta
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+      integer(c_int),value :: strideC
       integer(c_int),value :: batchCount
     end function
 
@@ -9772,7 +10941,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
       integer(c_int),value :: m
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: B
@@ -9796,7 +10965,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
       integer(c_int),value :: m
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: B
@@ -9820,7 +10989,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
       integer(c_int),value :: m
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: B
@@ -9844,7 +11013,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
       integer(c_int),value :: m
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: B
@@ -9868,7 +11037,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
       integer(c_int),value :: m
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: B
@@ -9893,7 +11062,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
       integer(c_int),value :: m
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: B
@@ -9918,7 +11087,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
       integer(c_int),value :: m
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: B
@@ -9943,7 +11112,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
       integer(c_int),value :: m
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: B
@@ -9968,7 +11137,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
       integer(c_int),value :: m
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: strideA
@@ -9995,7 +11164,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
       integer(c_int),value :: m
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: strideA
@@ -10022,7 +11191,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
       integer(c_int),value :: m
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: strideA
@@ -10049,7 +11218,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
       integer(c_int),value :: m
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: strideA
@@ -10076,7 +11245,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
       integer(c_int),value :: m
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: B
@@ -10100,7 +11269,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
       integer(c_int),value :: m
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: B
@@ -10124,7 +11293,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
       integer(c_int),value :: m
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: B
@@ -10148,7 +11317,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
       integer(c_int),value :: m
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: B
@@ -10172,7 +11341,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
       integer(c_int),value :: m
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: B
@@ -10197,7 +11366,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
       integer(c_int),value :: m
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: B
@@ -10222,7 +11391,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
       integer(c_int),value :: m
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: B
@@ -10247,7 +11416,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
       integer(c_int),value :: m
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: B
@@ -10272,7 +11441,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
       integer(c_int),value :: m
       integer(c_int),value :: n
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: strideA
@@ -10299,7 +11468,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
       integer(c_int),value :: m
       integer(c_int),value :: n
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: strideA
@@ -10326,7 +11495,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
       integer(c_int),value :: m
       integer(c_int),value :: n
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: strideA
@@ -10353,13 +11522,553 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
       integer(c_int),value :: m
       integer(c_int),value :: n
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int),value :: strideA
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int),value :: strideB
+      integer(c_int),value :: batch_count
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasStrtri(handle,uplo,diag,n,A,lda,invA,ldinvA) bind(c, name="cublasStrtri")
+#else
+    function hipblasStrtri(handle,uplo,diag,n,A,lda,invA,ldinvA) bind(c, name="hipblasStrtri")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrtri
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: invA
+      integer(c_int),value :: ldinvA
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasDtrtri(handle,uplo,diag,n,A,lda,invA,ldinvA) bind(c, name="cublasDtrtri")
+#else
+    function hipblasDtrtri(handle,uplo,diag,n,A,lda,invA,ldinvA) bind(c, name="hipblasDtrtri")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrtri
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: invA
+      integer(c_int),value :: ldinvA
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasCtrtri(handle,uplo,diag,n,A,lda,invA,ldinvA) bind(c, name="cublasCtrtri")
+#else
+    function hipblasCtrtri(handle,uplo,diag,n,A,lda,invA,ldinvA) bind(c, name="hipblasCtrtri")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrtri
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: invA
+      integer(c_int),value :: ldinvA
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasZtrtri(handle,uplo,diag,n,A,lda,invA,ldinvA) bind(c, name="cublasZtrtri")
+#else
+    function hipblasZtrtri(handle,uplo,diag,n,A,lda,invA,ldinvA) bind(c, name="hipblasZtrtri")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrtri
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: invA
+      integer(c_int),value :: ldinvA
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasStrtriBatched(handle,uplo,diag,n,A,lda,invA,ldinvA,batch_count) bind(c, name="cublasStrtriBatched")
+#else
+    function hipblasStrtriBatched(handle,uplo,diag,n,A,lda,invA,ldinvA,batch_count) bind(c, name="hipblasStrtriBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrtriBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: invA
+      integer(c_int),value :: ldinvA
+      integer(c_int),value :: batch_count
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasDtrtriBatched(handle,uplo,diag,n,A,lda,invA,ldinvA,batch_count) bind(c, name="cublasDtrtriBatched")
+#else
+    function hipblasDtrtriBatched(handle,uplo,diag,n,A,lda,invA,ldinvA,batch_count) bind(c, name="hipblasDtrtriBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrtriBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: invA
+      integer(c_int),value :: ldinvA
+      integer(c_int),value :: batch_count
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasCtrtriBatched(handle,uplo,diag,n,A,lda,invA,ldinvA,batch_count) bind(c, name="cublasCtrtriBatched")
+#else
+    function hipblasCtrtriBatched(handle,uplo,diag,n,A,lda,invA,ldinvA,batch_count) bind(c, name="hipblasCtrtriBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrtriBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: invA
+      integer(c_int),value :: ldinvA
+      integer(c_int),value :: batch_count
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasZtrtriBatched(handle,uplo,diag,n,A,lda,invA,ldinvA,batch_count) bind(c, name="cublasZtrtriBatched")
+#else
+    function hipblasZtrtriBatched(handle,uplo,diag,n,A,lda,invA,ldinvA,batch_count) bind(c, name="hipblasZtrtriBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrtriBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: invA
+      integer(c_int),value :: ldinvA
+      integer(c_int),value :: batch_count
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasStrtriStridedBatched(handle,uplo,diag,n,A,lda,stride_A,invA,ldinvA,stride_invA,batch_count) bind(c, name="cublasStrtriStridedBatched")
+#else
+    function hipblasStrtriStridedBatched(handle,uplo,diag,n,A,lda,stride_A,invA,ldinvA,stride_invA,batch_count) bind(c, name="hipblasStrtriStridedBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrtriStridedBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int),value :: stride_A
+      type(c_ptr),value :: invA
+      integer(c_int),value :: ldinvA
+      integer(c_int),value :: stride_invA
+      integer(c_int),value :: batch_count
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasDtrtriStridedBatched(handle,uplo,diag,n,A,lda,stride_A,invA,ldinvA,stride_invA,batch_count) bind(c, name="cublasDtrtriStridedBatched")
+#else
+    function hipblasDtrtriStridedBatched(handle,uplo,diag,n,A,lda,stride_A,invA,ldinvA,stride_invA,batch_count) bind(c, name="hipblasDtrtriStridedBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrtriStridedBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int),value :: stride_A
+      type(c_ptr),value :: invA
+      integer(c_int),value :: ldinvA
+      integer(c_int),value :: stride_invA
+      integer(c_int),value :: batch_count
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasCtrtriStridedBatched(handle,uplo,diag,n,A,lda,stride_A,invA,ldinvA,stride_invA,batch_count) bind(c, name="cublasCtrtriStridedBatched")
+#else
+    function hipblasCtrtriStridedBatched(handle,uplo,diag,n,A,lda,stride_A,invA,ldinvA,stride_invA,batch_count) bind(c, name="hipblasCtrtriStridedBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrtriStridedBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int),value :: stride_A
+      type(c_ptr),value :: invA
+      integer(c_int),value :: ldinvA
+      integer(c_int),value :: stride_invA
+      integer(c_int),value :: batch_count
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasZtrtriStridedBatched(handle,uplo,diag,n,A,lda,stride_A,invA,ldinvA,stride_invA,batch_count) bind(c, name="cublasZtrtriStridedBatched")
+#else
+    function hipblasZtrtriStridedBatched(handle,uplo,diag,n,A,lda,stride_A,invA,ldinvA,stride_invA,batch_count) bind(c, name="hipblasZtrtriStridedBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrtriStridedBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int),value :: stride_A
+      type(c_ptr),value :: invA
+      integer(c_int),value :: ldinvA
+      integer(c_int),value :: stride_invA
+      integer(c_int),value :: batch_count
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasSdgmm(handle,side,m,n,A,lda,x,incx,C,ldc) bind(c, name="cublasSdgmm")
+#else
+    function hipblasSdgmm(handle,side,m,n,A,lda,x,incx,C,ldc) bind(c, name="hipblasSdgmm")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdgmm
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasDdgmm(handle,side,m,n,A,lda,x,incx,C,ldc) bind(c, name="cublasDdgmm")
+#else
+    function hipblasDdgmm(handle,side,m,n,A,lda,x,incx,C,ldc) bind(c, name="hipblasDdgmm")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdgmm
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasCdgmm(handle,side,m,n,A,lda,x,incx,C,ldc) bind(c, name="cublasCdgmm")
+#else
+    function hipblasCdgmm(handle,side,m,n,A,lda,x,incx,C,ldc) bind(c, name="hipblasCdgmm")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdgmm
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasZdgmm(handle,side,m,n,A,lda,x,incx,C,ldc) bind(c, name="cublasZdgmm")
+#else
+    function hipblasZdgmm(handle,side,m,n,A,lda,x,incx,C,ldc) bind(c, name="hipblasZdgmm")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdgmm
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasSdgmmBatched(handle,side,m,n,A,lda,x,incx,C,ldc,batch_count) bind(c, name="cublasSdgmmBatched")
+#else
+    function hipblasSdgmmBatched(handle,side,m,n,A,lda,x,incx,C,ldc,batch_count) bind(c, name="hipblasSdgmmBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdgmmBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: x
+      integer(c_int),value :: incx
+      type(c_ptr) :: C
+      integer(c_int),value :: ldc
+      integer(c_int),value :: batch_count
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasDdgmmBatched(handle,side,m,n,A,lda,x,incx,C,ldc,batch_count) bind(c, name="cublasDdgmmBatched")
+#else
+    function hipblasDdgmmBatched(handle,side,m,n,A,lda,x,incx,C,ldc,batch_count) bind(c, name="hipblasDdgmmBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdgmmBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: x
+      integer(c_int),value :: incx
+      type(c_ptr) :: C
+      integer(c_int),value :: ldc
+      integer(c_int),value :: batch_count
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasCdgmmBatched(handle,side,m,n,A,lda,x,incx,C,ldc,batch_count) bind(c, name="cublasCdgmmBatched")
+#else
+    function hipblasCdgmmBatched(handle,side,m,n,A,lda,x,incx,C,ldc,batch_count) bind(c, name="hipblasCdgmmBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdgmmBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: x
+      integer(c_int),value :: incx
+      type(c_ptr) :: C
+      integer(c_int),value :: ldc
+      integer(c_int),value :: batch_count
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasZdgmmBatched(handle,side,m,n,A,lda,x,incx,C,ldc,batch_count) bind(c, name="cublasZdgmmBatched")
+#else
+    function hipblasZdgmmBatched(handle,side,m,n,A,lda,x,incx,C,ldc,batch_count) bind(c, name="hipblasZdgmmBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdgmmBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: x
+      integer(c_int),value :: incx
+      type(c_ptr) :: C
+      integer(c_int),value :: ldc
+      integer(c_int),value :: batch_count
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasSdgmmStridedBatched(handle,side,m,n,A,lda,stride_A,x,incx,stride_x,C,ldc,stride_C,batch_count) bind(c, name="cublasSdgmmStridedBatched")
+#else
+    function hipblasSdgmmStridedBatched(handle,side,m,n,A,lda,stride_A,x,incx,stride_x,C,ldc,stride_C,batch_count) bind(c, name="hipblasSdgmmStridedBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdgmmStridedBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int),value :: stride_A
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+      integer(c_int),value :: stride_x
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+      integer(c_int),value :: stride_C
+      integer(c_int),value :: batch_count
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasDdgmmStridedBatched(handle,side,m,n,A,lda,stride_A,x,incx,stride_x,C,ldc,stride_C,batch_count) bind(c, name="cublasDdgmmStridedBatched")
+#else
+    function hipblasDdgmmStridedBatched(handle,side,m,n,A,lda,stride_A,x,incx,stride_x,C,ldc,stride_C,batch_count) bind(c, name="hipblasDdgmmStridedBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdgmmStridedBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int),value :: stride_A
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+      integer(c_int),value :: stride_x
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+      integer(c_int),value :: stride_C
+      integer(c_int),value :: batch_count
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasCdgmmStridedBatched(handle,side,m,n,A,lda,stride_A,x,incx,stride_x,C,ldc,stride_C,batch_count) bind(c, name="cublasCdgmmStridedBatched")
+#else
+    function hipblasCdgmmStridedBatched(handle,side,m,n,A,lda,stride_A,x,incx,stride_x,C,ldc,stride_C,batch_count) bind(c, name="hipblasCdgmmStridedBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdgmmStridedBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int),value :: stride_A
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+      integer(c_int),value :: stride_x
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+      integer(c_int),value :: stride_C
+      integer(c_int),value :: batch_count
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasZdgmmStridedBatched(handle,side,m,n,A,lda,stride_A,x,incx,stride_x,C,ldc,stride_C,batch_count) bind(c, name="cublasZdgmmStridedBatched")
+#else
+    function hipblasZdgmmStridedBatched(handle,side,m,n,A,lda,stride_A,x,incx,stride_x,C,ldc,stride_C,batch_count) bind(c, name="hipblasZdgmmStridedBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdgmmStridedBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int),value :: stride_A
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+      integer(c_int),value :: stride_x
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+      integer(c_int),value :: stride_C
       integer(c_int),value :: batch_count
     end function
 
@@ -10881,6 +12590,90 @@ module hipfort_hipblas
 
   
 #ifdef USE_CUDA_NAMES
+    function hipblasSgetriBatched(handle,n,A,lda,ipiv,C,ldc,myInfo,batch_count) bind(c, name="cublasSgetriBatched")
+#else
+    function hipblasSgetriBatched(handle,n,A,lda,ipiv,C,ldc,myInfo,batch_count) bind(c, name="hipblasSgetriBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetriBatched
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+      type(c_ptr) :: C
+      integer(c_int),value :: ldc
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasDgetriBatched(handle,n,A,lda,ipiv,C,ldc,myInfo,batch_count) bind(c, name="cublasDgetriBatched")
+#else
+    function hipblasDgetriBatched(handle,n,A,lda,ipiv,C,ldc,myInfo,batch_count) bind(c, name="hipblasDgetriBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetriBatched
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+      type(c_ptr) :: C
+      integer(c_int),value :: ldc
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasCgetriBatched(handle,n,A,lda,ipiv,C,ldc,myInfo,batch_count) bind(c, name="cublasCgetriBatched")
+#else
+    function hipblasCgetriBatched(handle,n,A,lda,ipiv,C,ldc,myInfo,batch_count) bind(c, name="hipblasCgetriBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetriBatched
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+      type(c_ptr) :: C
+      integer(c_int),value :: ldc
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasZgetriBatched(handle,n,A,lda,ipiv,C,ldc,myInfo,batch_count) bind(c, name="cublasZgetriBatched")
+#else
+    function hipblasZgetriBatched(handle,n,A,lda,ipiv,C,ldc,myInfo,batch_count) bind(c, name="hipblasZgetriBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetriBatched
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: ipiv
+      type(c_ptr) :: C
+      integer(c_int),value :: ldc
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: batch_count
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
     function hipblasSgeqrf(handle,m,n,A,lda,ipiv,myInfo) bind(c, name="cublasSgeqrf")
 #else
     function hipblasSgeqrf(handle,m,n,A,lda,ipiv,myInfo) bind(c, name="hipblasSgeqrf")
@@ -11125,6 +12918,32 @@ module hipfort_hipblas
 
   
 #ifdef USE_CUDA_NAMES
+    function hipblasHgemm(handle,transa,transb,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasHgemm")
+#else
+    function hipblasHgemm(handle,transa,transb,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="hipblasHgemm")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasHgemm
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transa
+      integer(kind(HIPBLAS_OP_N)),value :: transb
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      hipblasHalf :: alpha
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      hipblasHalf :: beta
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
     function hipblasSgemm(handle,transa,transb,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasSgemm")
 #else
     function hipblasSgemm(handle,transa,transb,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="hipblasSgemm")
@@ -11139,12 +12958,12 @@ module hipfort_hipblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
     end function
@@ -11165,12 +12984,12 @@ module hipfort_hipblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
     end function
@@ -11191,12 +13010,12 @@ module hipfort_hipblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      complex(c_float_complex),intent(IN) :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
     end function
@@ -11217,14 +13036,41 @@ module hipfort_hipblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      complex(c_double_complex),intent(IN) :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasHgemmBatched(handle,transa,transb,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="cublasHgemmBatched")
+#else
+    function hipblasHgemmBatched(handle,transa,transb,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="hipblasHgemmBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasHgemmBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transa
+      integer(kind(HIPBLAS_OP_N)),value :: transb
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      hipblasHalf :: alpha
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      hipblasHalf :: beta
+      type(c_ptr) :: C
+      integer(c_int),value :: ldc
+      integer(c_int),value :: batchCount
     end function
 
   
@@ -11243,12 +13089,12 @@ module hipfort_hipblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: B
       integer(c_int),value :: ldb
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr) :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
@@ -11270,12 +13116,12 @@ module hipfort_hipblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: B
       integer(c_int),value :: ldb
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr) :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
@@ -11297,12 +13143,12 @@ module hipfort_hipblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: B
       integer(c_int),value :: ldb
-      complex(c_float_complex),intent(IN) :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr) :: C
       integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
@@ -11324,14 +13170,44 @@ module hipfort_hipblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr) :: A
       integer(c_int),value :: lda
       type(c_ptr) :: B
       integer(c_int),value :: ldb
-      complex(c_double_complex),intent(IN) :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr) :: C
       integer(c_int),value :: ldc
+      integer(c_int),value :: batchCount
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasHgemmStridedBatched(handle,transa,transb,m,n,k,alpha,A,lda,bsa,B,ldb,bsb,beta,C,ldc,bsc,batchCount) bind(c, name="cublasHgemmStridedBatched")
+#else
+    function hipblasHgemmStridedBatched(handle,transa,transb,m,n,k,alpha,A,lda,bsa,B,ldb,bsb,beta,C,ldc,bsc,batchCount) bind(c, name="hipblasHgemmStridedBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasHgemmStridedBatched
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transa
+      integer(kind(HIPBLAS_OP_N)),value :: transb
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      hipblasHalf :: alpha
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_long_long),value :: bsa
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_long_long),value :: bsb
+      hipblasHalf :: beta
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
+      integer(c_long_long),value :: bsc
       integer(c_int),value :: batchCount
     end function
 
@@ -11351,14 +13227,14 @@ module hipfort_hipblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
-      real(c_float),intent(IN) :: alpha
+      real(c_float) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_long_long),value :: bsa
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_long_long),value :: bsb
-      real(c_float),intent(IN) :: beta
+      real(c_float) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_long_long),value :: bsc
@@ -11381,14 +13257,14 @@ module hipfort_hipblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
-      real(c_double),intent(IN) :: alpha
+      real(c_double) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_long_long),value :: bsa
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_long_long),value :: bsb
-      real(c_double),intent(IN) :: beta
+      real(c_double) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_long_long),value :: bsc
@@ -11411,14 +13287,14 @@ module hipfort_hipblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_float_complex),intent(IN) :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_long_long),value :: bsa
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_long_long),value :: bsb
-      complex(c_float_complex),intent(IN) :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_long_long),value :: bsc
@@ -11441,18 +13317,171 @@ module hipfort_hipblas
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
-      complex(c_double_complex),intent(IN) :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_long_long),value :: bsa
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_long_long),value :: bsb
-      complex(c_double_complex),intent(IN) :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_long_long),value :: bsc
       integer(c_int),value :: batchCount
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasGemmBatchedEx(handle,trans_a,trans_b,m,n,k,alpha,a,a_type,lda,b,b_type,ldb,beta,c,c_type,ldc,batch_count,compute_type,algo) bind(c, name="cublasGemmBatchedEx")
+#else
+    function hipblasGemmBatchedEx(handle,trans_a,trans_b,m,n,k,alpha,a,a_type,lda,b,b_type,ldb,beta,c,c_type,ldc,batch_count,compute_type,algo) bind(c, name="hipblasGemmBatchedEx")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGemmBatchedEx
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: trans_a
+      integer(kind(HIPBLAS_OP_N)),value :: trans_b
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      void :: alpha
+      type(c_ptr) :: a
+      integer(kind(HIPBLAS_R_16F)),value :: a_type
+      integer(c_int),value :: lda
+      type(c_ptr) :: b
+      integer(kind(HIPBLAS_R_16F)),value :: b_type
+      integer(c_int),value :: ldb
+      void :: beta
+      type(c_ptr) :: c
+      integer(kind(HIPBLAS_R_16F)),value :: c_type
+      integer(c_int),value :: ldc
+      integer(c_int),value :: batch_count
+      integer(kind(HIPBLAS_R_16F)),value :: compute_type
+      integer(kind(HIPBLAS_GEMM_DEFAULT)),value :: algo
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasGemmStridedBatchedEx(handle,trans_a,trans_b,m,n,k,alpha,a,a_type,lda,stride_A,b,b_type,ldb,stride_B,beta,c,c_type,ldc,stride_C,batch_count,compute_type,algo) bind(c, name="cublasGemmStridedBatchedEx")
+#else
+    function hipblasGemmStridedBatchedEx(handle,trans_a,trans_b,m,n,k,alpha,a,a_type,lda,stride_A,b,b_type,ldb,stride_B,beta,c,c_type,ldc,stride_C,batch_count,compute_type,algo) bind(c, name="hipblasGemmStridedBatchedEx")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGemmStridedBatchedEx
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: trans_a
+      integer(kind(HIPBLAS_OP_N)),value :: trans_b
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      void :: alpha
+      type(c_ptr),value :: a
+      integer(kind(HIPBLAS_R_16F)),value :: a_type
+      integer(c_int),value :: lda
+      integer(c_int),value :: stride_A
+      type(c_ptr),value :: b
+      integer(kind(HIPBLAS_R_16F)),value :: b_type
+      integer(c_int),value :: ldb
+      integer(c_int),value :: stride_B
+      void :: beta
+      type(c_ptr),value :: c
+      integer(kind(HIPBLAS_R_16F)),value :: c_type
+      integer(c_int),value :: ldc
+      integer(c_int),value :: stride_C
+      integer(c_int),value :: batch_count
+      integer(kind(HIPBLAS_R_16F)),value :: compute_type
+      integer(kind(HIPBLAS_GEMM_DEFAULT)),value :: algo
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasTrsmEx(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,invA,invA_size,compute_type) bind(c, name="cublasTrsmEx")
+#else
+    function hipblasTrsmEx(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,invA,invA_size,compute_type) bind(c, name="hipblasTrsmEx")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasTrsmEx
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      void :: alpha
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: invA
+      integer(c_int),value :: invA_size
+      integer(kind(HIPBLAS_R_16F)),value :: compute_type
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasTrsmBatchedEx(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,batch_count,invA,invA_size,compute_type) bind(c, name="cublasTrsmBatchedEx")
+#else
+    function hipblasTrsmBatchedEx(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,batch_count,invA,invA_size,compute_type) bind(c, name="hipblasTrsmBatchedEx")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasTrsmBatchedEx
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      void :: alpha
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int),value :: batch_count
+      type(c_ptr),value :: invA
+      integer(c_int),value :: invA_size
+      integer(kind(HIPBLAS_R_16F)),value :: compute_type
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipblasTrsmStridedBatchedEx(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,batch_count,invA,invA_size,stride_invA,compute_type) bind(c, name="cublasTrsmStridedBatchedEx")
+#else
+    function hipblasTrsmStridedBatchedEx(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,batch_count,invA,invA_size,stride_invA,compute_type) bind(c, name="hipblasTrsmStridedBatchedEx")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasTrsmStridedBatchedEx
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      void :: alpha
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int),value :: stride_A
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int),value :: stride_B
+      integer(c_int),value :: batch_count
+      type(c_ptr),value :: invA
+      integer(c_int),value :: invA_size
+      integer(c_int),value :: stride_invA
+      integer(kind(HIPBLAS_R_16F)),value :: compute_type
     end function
 
   end interface

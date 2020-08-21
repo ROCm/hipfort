@@ -362,7 +362,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipDeviceGetLimit
 #endif
-      integer(c_size_t),intent(IN) :: pValue
+      integer(c_size_t) :: pValue
       integer(kind(hipLimitMallocHeapSize)),value :: limit
     end function
 
@@ -426,6 +426,33 @@ module hipfort
       integer(kind(hipSuccess)) :: hipDeviceGetSharedMemConfig
 #endif
       type(c_ptr),value :: pConfig
+    end function
+
+  ! 
+  !   @brief Gets the flags set for current device
+  !  
+  !   @param [out] flags
+  !  
+  !   @returns #hipSuccess, #hipErrorInvalidDevice, #hipErrorInvalidValue
+  !  
+#ifdef USE_CUDA_NAMES
+    function hipGetDeviceFlags(flags) bind(c, name="cudaGetDeviceFlags")
+#else
+    function hipGetDeviceFlags(flags) bind(c, name="hipGetDeviceFlags")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipGetDeviceFlags
+#else
+      integer(kind(hipSuccess)) :: hipGetDeviceFlags
+#endif
+      type(c_ptr),value :: flags
     end function
 
   ! 
@@ -921,7 +948,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipStreamWaitEvent
 #endif
       type(c_ptr),value :: stream
-      type(c_ptr) :: event
+      type(c_ptr),value :: event
       integer(kind=4),value :: flags
     end function
 
@@ -991,6 +1018,47 @@ module hipfort
 #endif
       type(c_ptr),value :: stream
       type(c_ptr),value :: priority
+    end function
+
+  ! 
+  !   @brief Create an asynchronous stream with the specified CU mask.
+  !  
+  !   @param[in, out] stream Pointer to new stream
+  !   @param[in ] cuMaskSize Size of CU mask bit array passed in.
+  !   @param[in ] cuMask Bit-vector representing the CU mask. Each active bit represents using one CU.
+  !   The first 32 bits represent the first 32 CUs, and so on. If its size is greater than physical
+  !   CU number (i.e., multiProcessorCount member of hipDeviceProp_t), the extra elements are ignored.
+  !   It is user's responsibility to make sure the input is meaningful.
+  !   @return #hipSuccess, #hipErrorInvalidHandle, #hipErrorInvalidValue
+  !  
+  !   Create a new asynchronous stream with the specified CU mask.  @p stream returns an opaque handle
+  !   that can be used to reference the newly created stream in subsequent hipStream commands.  The
+  !   stream is allocated on the heap and will remain allocated even if the handle goes out-of-scope.
+  !   To release the memory used by the stream, application must call hipStreamDestroy.
+  !  
+  !  
+  !   @see hipStreamCreate, hipStreamSynchronize, hipStreamWaitEvent, hipStreamDestroy
+  !  
+#ifdef USE_CUDA_NAMES
+    function hipExtStreamCreateWithCUMask(stream,cuMaskSize,cuMask) bind(c, name="cudaExtStreamCreateWithCUMask")
+#else
+    function hipExtStreamCreateWithCUMask(stream,cuMaskSize,cuMask) bind(c, name="hipExtStreamCreateWithCUMask")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipExtStreamCreateWithCUMask
+#else
+      integer(kind(hipSuccess)) :: hipExtStreamCreateWithCUMask
+#endif
+      type(c_ptr) :: stream
+      integer(kind=4),value :: cuMaskSize
+      type(c_ptr),value :: cuMask
     end function
 
   ! 
@@ -1151,7 +1219,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipEventRecord
 #endif
-      type(c_ptr) :: event
+      type(c_ptr),value :: event
       type(c_ptr),value :: stream
     end function
 
@@ -1188,7 +1256,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipEventDestroy
 #endif
-      type(c_ptr) :: event
+      type(c_ptr),value :: event
     end function
 
   ! 
@@ -1225,7 +1293,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipEventSynchronize
 #endif
-      type(c_ptr) :: event
+      type(c_ptr),value :: event
     end function
 
   ! 
@@ -1274,8 +1342,8 @@ module hipfort
       integer(kind(hipSuccess)) :: hipEventElapsedTime
 #endif
       type(c_ptr),value :: ms
-      type(c_ptr) :: start
-      type(c_ptr) :: myStop
+      type(c_ptr),value :: start
+      type(c_ptr),value :: myStop
     end function
 
   ! 
@@ -1310,7 +1378,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipEventQuery
 #endif
-      type(c_ptr) :: event
+      type(c_ptr),value :: event
     end function
 
   ! 
@@ -1701,7 +1769,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipMallocPitch
 #endif
       type(c_ptr) :: ptr
-      integer(c_size_t),intent(IN) :: pitch
+      integer(c_size_t) :: pitch
       integer(c_size_t),value :: width
       integer(c_size_t),value :: height
     end function
@@ -1745,7 +1813,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipMemAllocPitch
 #endif
       type(c_ptr) :: dptr
-      integer(c_size_t),intent(IN) :: pitch
+      integer(c_size_t) :: pitch
       integer(c_size_t),value :: widthInBytes
       integer(c_size_t),value :: height
       integer(kind=4),value :: elementSizeBytes
@@ -1847,10 +1915,12 @@ module hipfort
   !  
   !    For hipMemcpy, the copy is always performed by the current device (set by hipSetDevice).
   !    For multi-gpu or peer-to-peer configurations, it is recommended to set the current device to the
-  !   device where the src data is physically located. For optimal peer-to-peer copies, the copy device
-  !   must be able to access the src and dst pointers (by calling hipDeviceEnablePeerAccess with copy
-  !   agent as the current device and srcdest as the peerDevice argument.  if this is not done, the
-  !   hipMemcpy will still work, but will perform the copy using a staging buffer on the host.
+  !    device where the src data is physically located. For optimal peer-to-peer copies, the copy device
+  !    must be able to access the src and dst pointers (by calling hipDeviceEnablePeerAccess with copy
+  !    agent as the current device and srcdest as the peerDevice argument.  if this is not done, the
+  !    hipMemcpy will still work, but will perform the copy using a staging buffer on the host.
+  !    Calling hipMemcpy with dst and src pointers that do not match the hipMemcpyKind results in
+  !    undefined behavior.
   !  
   !    @param[out]  dst Data being copy to
   !    @param[in]  src Data being copy from
@@ -2169,8 +2239,8 @@ module hipfort
       integer(kind(hipSuccess)) :: hipModuleGetGlobal
 #endif
       type(c_ptr) :: dptr
-      integer(c_size_t),intent(IN) :: bytes
-      type(c_ptr) :: hmod
+      integer(c_size_t) :: bytes
+      type(c_ptr),value :: hmod
       type(c_ptr),value :: name
     end function
 
@@ -2214,7 +2284,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipGetSymbolSize
 #endif
-      integer(c_size_t),intent(IN) :: mySize
+      integer(c_size_t) :: mySize
       type(c_ptr),value :: symbol
     end function
 
@@ -2432,8 +2502,8 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipMemGetInfo
 #endif
-      integer(c_size_t),intent(IN) :: free
-      integer(c_size_t),intent(IN) :: total
+      integer(c_size_t) :: free
+      integer(c_size_t) :: total
     end function
 
   
@@ -2455,7 +2525,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipMemPtrGetInfo
 #endif
       type(c_ptr),value :: ptr
-      integer(c_size_t),intent(IN) :: mySize
+      integer(c_size_t) :: mySize
     end function
 
   
@@ -2576,7 +2646,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipFreeMipmappedArray
 #endif
-      type(c_ptr) :: mipmappedArray
+      type(c_ptr),value :: mipmappedArray
     end function
 
   ! 
@@ -2640,7 +2710,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipGetMipmappedArrayLevel
 #endif
       type(c_ptr) :: levelArray
-      type(c_ptr) :: mipmappedArray
+      type(c_ptr),value :: mipmappedArray
       integer(kind=4),value :: level
     end function
 
@@ -2718,13 +2788,14 @@ module hipfort
   ! 
   !    @brief Copies data between host and device.
   !  
-  !    @param[in]   dst    Destination memory address
-  !    @param[in]   dpitch Pitch of destination memory
-  !    @param[in]   src    Source memory address
-  !    @param[in]   spitch Pitch of source memory
-  !    @param[in]   width  Width of matrix transfer (columns in bytes)
-  !    @param[in]   height Height of matrix transfer (rows)
-  !    @param[in]   kind   Type of transfer
+  !    @param[in]   dst     Destination memory address
+  !    @param[in]   wOffset Destination starting X offset
+  !    @param[in]   hOffset Destination starting Y offset
+  !    @param[in]   src     Source memory address
+  !    @param[in]   spitch  Pitch of source memory
+  !    @param[in]   width   Width of matrix transfer (columns in bytes)
+  !    @param[in]   height  Height of matrix transfer (rows)
+  !    @param[in]   kind    Type of transfer
   !    @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
   !   #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
   !  
@@ -2761,13 +2832,12 @@ module hipfort
   ! 
   !    @brief Copies data between host and device.
   !  
-  !    @param[in]   dst    Destination memory address
-  !    @param[in]   dpitch Pitch of destination memory
-  !    @param[in]   src    Source memory address
-  !    @param[in]   spitch Pitch of source memory
-  !    @param[in]   width  Width of matrix transfer (columns in bytes)
-  !    @param[in]   height Height of matrix transfer (rows)
-  !    @param[in]   kind   Type of transfer
+  !    @param[in]   dst     Destination memory address
+  !    @param[in]   wOffset Destination starting X offset
+  !    @param[in]   hOffset Destination starting Y offset
+  !    @param[in]   src     Source memory address
+  !    @param[in]   count   size in bytes to copy
+  !    @param[in]   kind    Type of transfer
   !    @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
   !   #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
   !  
@@ -2832,7 +2902,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipMemcpyFromArray
 #endif
       type(c_ptr),value :: dst
-      type(c_ptr) :: srcArray
+      type(c_ptr),value :: srcArray
       integer(c_size_t),value :: wOffset
       integer(c_size_t),value :: hOffset
       integer(c_size_t),value :: count
@@ -2875,7 +2945,7 @@ module hipfort
 #endif
       type(c_ptr),value :: dst
       integer(c_size_t),value :: dpitch
-      type(c_ptr) :: src
+      type(c_ptr),value :: src
       integer(c_size_t),value :: wOffset
       integer(c_size_t),value :: hOffset
       integer(c_size_t),value :: width
@@ -3183,7 +3253,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipMemGetAddressRange
 #endif
       type(c_ptr) :: pbase
-      integer(c_size_t),intent(IN) :: psize
+      integer(c_size_t) :: psize
       type(c_ptr),value :: dptr
     end function
 
@@ -3284,7 +3354,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipCtxDestroy
 #endif
-      type(c_ptr) :: ctx
+      type(c_ptr),value :: ctx
     end function
 
   
@@ -3326,7 +3396,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipCtxPushCurrent
 #endif
-      type(c_ptr) :: ctx
+      type(c_ptr),value :: ctx
     end function
 
   
@@ -3347,7 +3417,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipCtxSetCurrent
 #endif
-      type(c_ptr) :: ctx
+      type(c_ptr),value :: ctx
     end function
 
   
@@ -3410,7 +3480,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipCtxGetApiVersion
 #endif
-      type(c_ptr) :: ctx
+      type(c_ptr),value :: ctx
       type(c_ptr),value :: apiVersion
     end function
 
@@ -3557,7 +3627,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipCtxEnablePeerAccess
 #endif
-      type(c_ptr) :: peerCtx
+      type(c_ptr),value :: peerCtx
       integer(kind=4),value :: flags
     end function
 
@@ -3579,7 +3649,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipCtxDisablePeerAccess
 #endif
-      type(c_ptr) :: peerCtx
+      type(c_ptr),value :: peerCtx
     end function
 
   ! 
@@ -3912,7 +3982,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipDeviceTotalMem
 #endif
-      integer(c_size_t),intent(IN) :: bytes
+      integer(c_size_t) :: bytes
       integer(c_int),value :: device
     end function
 
@@ -4041,7 +4111,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipModuleUnload
 #endif
-      type(c_ptr) :: myModule
+      type(c_ptr),value :: myModule
     end function
 
   ! 
@@ -4072,7 +4142,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipModuleGetFunction
 #endif
       type(c_ptr) :: myFunction
-      type(c_ptr) :: myModule
+      type(c_ptr),value :: myModule
       type(c_ptr),value :: kname
     end function
 
@@ -4133,7 +4203,7 @@ module hipfort
 #endif
       type(c_ptr),value :: myValue
       integer(kind(HIP_FUNC_ATTRIBUTE_MAX_THREADS_PER_BLOCK)),value :: attrib
-      type(c_ptr) :: hfunc
+      type(c_ptr),value :: hfunc
     end function
 
   
@@ -4155,7 +4225,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipModuleGetTexRef
 #endif
       type(c_ptr) :: texRef
-      type(c_ptr) :: hmod
+      type(c_ptr),value :: hmod
       type(c_ptr),value :: name
     end function
 
@@ -4266,7 +4336,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipModuleLaunchKernel
 #endif
-      type(c_ptr) :: f
+      type(c_ptr),value :: f
       integer(kind=4),value :: gridDimX
       integer(kind=4),value :: gridDimY
       integer(kind=4),value :: gridDimZ
@@ -4371,7 +4441,7 @@ module hipfort
 #endif
       type(c_ptr),value :: gridSize
       type(c_ptr),value :: blockSize
-      type(c_ptr) :: f
+      type(c_ptr),value :: f
       integer(c_size_t),value :: dynSharedMemPerBlk
       integer(c_int),value :: blockSizeLimit
     end function
@@ -4396,7 +4466,7 @@ module hipfort
 #endif
       type(c_ptr),value :: gridSize
       type(c_ptr),value :: blockSize
-      type(c_ptr) :: f
+      type(c_ptr),value :: f
       integer(c_size_t),value :: dynSharedMemPerBlk
       integer(c_int),value :: blockSizeLimit
       integer(kind=4),value :: flags
@@ -4428,7 +4498,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipModuleOccupancyMaxActiveBlocksPerMultiprocessor
 #endif
       type(c_ptr),value :: numBlocks
-      type(c_ptr) :: f
+      type(c_ptr),value :: f
       integer(c_int),value :: blockSize
       integer(c_size_t),value :: dynSharedMemPerBlk
     end function
@@ -4460,7 +4530,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags
 #endif
       type(c_ptr),value :: numBlocks
-      type(c_ptr) :: f
+      type(c_ptr),value :: f
       integer(c_int),value :: blockSize
       integer(c_size_t),value :: dynSharedMemPerBlk
       integer(kind=4),value :: flags
@@ -4766,7 +4836,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipIpcGetEventHandle
 #endif
       type(c_ptr) :: handle
-      type(c_ptr) :: event
+      type(c_ptr),value :: event
     end function
 
   
@@ -4851,6 +4921,143 @@ module hipfort
       type(c_ptr),value :: func
     end function
 
+  ! 
+  !   @brief Advise about the usage of a given memory range to AMD HMM.
+  !  
+  !   @param [in] dev_ptr  pointer to memory to set the advice for
+  !   @param [in] count    size in bytes of the memory range
+  !   @param [in] advice   advice to be applied for the specified memory range
+  !   @param [in] device   device to apply the advice for
+  !  
+  !   @returns #hipSuccess, #hipErrorInvalidValue
+  !  
+#ifdef USE_CUDA_NAMES
+    function hipMemAdvise(dev_ptr,count,advice,device) bind(c, name="cudaMemAdvise")
+#else
+    function hipMemAdvise(dev_ptr,count,advice,device) bind(c, name="hipMemAdvise")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemAdvise
+#else
+      integer(kind(hipSuccess)) :: hipMemAdvise
+#endif
+      type(c_ptr),value :: dev_ptr
+      integer(c_size_t),value :: count
+      integer(kind(hipMemAdviseSetReadMostly)),value :: advice
+      integer(c_int),value :: device
+    end function
+
+  ! 
+  !   @brief Query an attribute of a given memory range in AMD HMM.
+  !  
+  !   @param [inout] data   a pointer to a memory location where the result of each
+  !                          attribute query will be written to
+  !   @param [in] data_size  the size of data
+  !   @param [in] attribute  the attribute to query
+  !   @param [in] dev_ptr    start of the range to query
+  !   @param [in] count      size of the range to query
+  !  
+  !   @returns #hipSuccess, #hipErrorInvalidValue
+  !  
+#ifdef USE_CUDA_NAMES
+    function hipMemRangeGetAttribute(myData,data_size,attribute,dev_ptr,count) bind(c, name="cudaMemRangeGetAttribute")
+#else
+    function hipMemRangeGetAttribute(myData,data_size,attribute,dev_ptr,count) bind(c, name="hipMemRangeGetAttribute")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemRangeGetAttribute
+#else
+      integer(kind(hipSuccess)) :: hipMemRangeGetAttribute
+#endif
+      type(c_ptr),value :: myData
+      integer(c_size_t),value :: data_size
+      integer(kind(hipMemRangeAttributeReadMostly)),value :: attribute
+      type(c_ptr),value :: dev_ptr
+      integer(c_size_t),value :: count
+    end function
+
+  ! 
+  !   @brief Query attributes of a given memory range in AMD HMM.
+  !  
+  !   @param [inout] data     a two-dimensional array containing pointers to memory locations
+  !                            where the result of each attribute query will be written to
+  !   @param [in] data_sizes   an array, containing the sizes of each result
+  !   @param [in] attributes   the attribute to query
+  !   @param [in] num_attributes  an array of attributes to query (numAttributes and the number
+  !                            of attributes in this array should match)
+  !   @param [in] dev_ptr      start of the range to query
+  !   @param [in] count        size of the range to query
+  !  
+  !   @returns #hipSuccess, #hipErrorInvalidValue
+  !  
+#ifdef USE_CUDA_NAMES
+    function hipMemRangeGetAttributes(myData,data_sizes,attributes,num_attributes,dev_ptr,count) bind(c, name="cudaMemRangeGetAttributes")
+#else
+    function hipMemRangeGetAttributes(myData,data_sizes,attributes,num_attributes,dev_ptr,count) bind(c, name="hipMemRangeGetAttributes")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemRangeGetAttributes
+#else
+      integer(kind(hipSuccess)) :: hipMemRangeGetAttributes
+#endif
+      type(c_ptr) :: myData
+      type(c_ptr),value :: data_sizes
+      type(c_ptr),value :: attributes
+      integer(c_size_t),value :: num_attributes
+      type(c_ptr),value :: dev_ptr
+      integer(c_size_t),value :: count
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipExtLaunchKernel(function_address,numBlocks,dimBlocks,args,sharedMemBytes,stream,startEvent,stopEvent,flags) bind(c, name="cudaExtLaunchKernel")
+#else
+    function hipExtLaunchKernel(function_address,numBlocks,dimBlocks,args,sharedMemBytes,stream,startEvent,stopEvent,flags) bind(c, name="hipExtLaunchKernel")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipExtLaunchKernel
+#else
+      integer(kind(hipSuccess)) :: hipExtLaunchKernel
+#endif
+      type(c_ptr),value :: function_address
+      type(dim3),value :: numBlocks
+      type(dim3),value :: dimBlocks
+      type(c_ptr) :: args
+      integer(c_size_t),value :: sharedMemBytes
+      type(c_ptr),value :: stream
+      type(c_ptr),value :: startEvent
+      type(c_ptr),value :: stopEvent
+      integer(c_int),value :: flags
+    end function
+
   
 #ifdef USE_CUDA_NAMES
     function hipBindTexture2D(offset,tex,devPtr,desc,width,height,pitch) bind(c, name="cudaBindTexture2D")
@@ -4869,7 +5076,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipBindTexture2D
 #endif
-      integer(c_size_t),intent(IN) :: offset
+      integer(c_size_t) :: offset
       type(c_ptr) :: tex
       type(c_ptr),value :: devPtr
       type(c_ptr) :: desc
@@ -4897,7 +5104,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipBindTextureToArray
 #endif
       type(c_ptr) :: tex
-      type(c_ptr) :: array
+      type(c_ptr),value :: array
       type(c_ptr) :: desc
     end function
 
@@ -4920,7 +5127,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipBindTextureToMipmappedArray
 #endif
       type(c_ptr) :: tex
-      type(c_ptr) :: mipmappedArray
+      type(c_ptr),value :: mipmappedArray
       type(c_ptr) :: desc
     end function
 
@@ -4942,7 +5149,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipGetTextureAlignmentOffset
 #endif
-      integer(c_size_t),intent(IN) :: offset
+      integer(c_size_t) :: offset
       type(c_ptr) :: texref
     end function
 
@@ -5031,7 +5238,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipDestroyTextureObject
 #endif
-      type(c_ptr) :: textureObject
+      type(c_ptr),value :: textureObject
     end function
 
   
@@ -5053,7 +5260,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipGetChannelDesc
 #endif
       type(c_ptr) :: desc
-      type(c_ptr) :: array
+      type(c_ptr),value :: array
     end function
 
   
@@ -5075,7 +5282,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipGetTextureObjectResourceDesc
 #endif
       type(c_ptr) :: pResDesc
-      type(c_ptr) :: textureObject
+      type(c_ptr),value :: textureObject
     end function
 
   
@@ -5097,7 +5304,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipGetTextureObjectResourceViewDesc
 #endif
       type(c_ptr),value :: pResViewDesc
-      type(c_ptr) :: textureObject
+      type(c_ptr),value :: textureObject
     end function
 
   
@@ -5119,7 +5326,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipGetTextureObjectTextureDesc
 #endif
       type(c_ptr) :: pTexDesc
-      type(c_ptr) :: textureObject
+      type(c_ptr),value :: textureObject
     end function
 
   
@@ -5363,7 +5570,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipTexRefSetAddress
 #endif
-      integer(c_size_t),intent(IN) :: ByteOffset
+      integer(c_size_t) :: ByteOffset
       type(c_ptr) :: texRef
       type(c_ptr),value :: dptr
       integer(c_size_t),value :: bytes
@@ -5435,7 +5642,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipTexRefSetArray
 #endif
       type(c_ptr) :: tex
-      type(c_ptr) :: array
+      type(c_ptr),value :: array
       integer(kind=4),value :: flags
     end function
 
@@ -5681,7 +5888,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipMipmappedArrayDestroy
 #endif
-      type(c_ptr) :: hMipmappedArray
+      type(c_ptr),value :: hMipmappedArray
     end function
 
   
@@ -5703,7 +5910,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipMipmappedArrayGetLevel
 #endif
       type(c_ptr) :: pLevelArray
-      type(c_ptr) :: hMipMappedArray
+      type(c_ptr),value :: hMipMappedArray
       integer(kind=4),value :: level
     end function
 
@@ -5749,7 +5956,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipTexObjectDestroy
 #endif
-      type(c_ptr) :: texObject
+      type(c_ptr),value :: texObject
     end function
 
   
@@ -5771,7 +5978,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipTexObjectGetResourceDesc
 #endif
       type(c_ptr),value :: pResDesc
-      type(c_ptr) :: texObject
+      type(c_ptr),value :: texObject
     end function
 
   
@@ -5793,7 +6000,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipTexObjectGetResourceViewDesc
 #endif
       type(c_ptr),value :: pResViewDesc
-      type(c_ptr) :: texObject
+      type(c_ptr),value :: texObject
     end function
 
   
@@ -5815,7 +6022,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipTexObjectGetTextureDesc
 #endif
       type(c_ptr),value :: pTexDesc
-      type(c_ptr) :: texObject
+      type(c_ptr),value :: texObject
     end function
 
   ! 
