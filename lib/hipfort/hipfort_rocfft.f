@@ -79,7 +79,7 @@ module hipfort_rocfft
   !   rocfft_plan_description_create; can be
   !    null ptr for simple transforms
   !    
-    function rocfft_plan_create(plan,placement,transform_type,precision,dimensions,lengths,number_of_transforms,description) bind(c, name="rocfft_plan_create")
+    function rocfft_plan_create(plan,placement,transform_type,myPrecision,dimensions,lengths,number_of_transforms,description) bind(c, name="rocfft_plan_create")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
@@ -87,11 +87,11 @@ module hipfort_rocfft
       type(c_ptr) :: plan
       integer(kind(rocfft_placement_inplace)),value :: placement
       integer(kind(rocfft_transform_type_complex_forward)),value :: transform_type
-      integer(kind(rocfft_precision_single)),value :: precision
+      integer(kind(rocfft_precision_single)),value :: myPrecision
       integer(c_size_t),value :: dimensions
       type(c_ptr),value :: lengths
       integer(c_size_t),value :: number_of_transforms
-      type(c_ptr) :: description
+      type(c_ptr),value :: description
     end function
 
   ! ! @brief Execute an FFT plan
@@ -126,10 +126,10 @@ module hipfort_rocfft
       use hipfort_rocfft_enums
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_execute
-      type(c_ptr) :: plan
+      type(c_ptr),value :: plan
       type(c_ptr) :: in_buffer
       type(c_ptr) :: out_buffer
-      type(c_ptr) :: myInfo
+      type(c_ptr),value :: myInfo
     end function
 
   ! ! @brief Destroy an FFT plan
@@ -142,7 +142,7 @@ module hipfort_rocfft
       use hipfort_rocfft_enums
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_plan_destroy
-      type(c_ptr) :: plan
+      type(c_ptr),value :: plan
     end function
 
   ! ! @brief Set scaling factor in single precision
@@ -155,7 +155,7 @@ module hipfort_rocfft
       use hipfort_rocfft_enums
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_scale_float
-      type(c_ptr) :: description
+      type(c_ptr),value :: description
       real(c_float),value :: scale
     end function
 
@@ -169,7 +169,7 @@ module hipfort_rocfft
       use hipfort_rocfft_enums
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_scale_double
-      type(c_ptr) :: description
+      type(c_ptr),value :: description
       real(c_double),value :: scale
     end function
 
@@ -210,7 +210,7 @@ module hipfort_rocfft
       use hipfort_rocfft_enums
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_data_layout
-      type(c_ptr) :: description
+      type(c_ptr),value :: description
       integer(kind(rocfft_array_type_complex_interleaved)),value :: in_array_type
       integer(kind(rocfft_array_type_complex_interleaved)),value :: out_array_type
       type(c_ptr),value :: in_offsets
@@ -248,7 +248,7 @@ module hipfort_rocfft
       use hipfort_rocfft_enums
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_devices
-      type(c_ptr) :: description
+      type(c_ptr),value :: description
       type(c_ptr),value :: devices
       integer(c_size_t),value :: number_of_devices
     end function
@@ -264,7 +264,7 @@ module hipfort_rocfft
       use hipfort_rocfft_enums
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_plan_get_work_buffer_size
-      type(c_ptr) :: plan
+      type(c_ptr),value :: plan
       type(c_ptr),value :: size_in_bytes
     end function
 
@@ -279,7 +279,7 @@ module hipfort_rocfft
       use hipfort_rocfft_enums
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_plan_get_print
-      type(c_ptr) :: plan
+      type(c_ptr),value :: plan
     end function
 
   ! ! @brief Create plan description
@@ -304,7 +304,7 @@ module hipfort_rocfft
       use hipfort_rocfft_enums
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_plan_description_destroy
-      type(c_ptr) :: description
+      type(c_ptr),value :: description
     end function
 
   ! ! @brief Create execution info
@@ -329,7 +329,7 @@ module hipfort_rocfft
       use hipfort_rocfft_enums
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_execution_info_destroy
-      type(c_ptr) :: myInfo
+      type(c_ptr),value :: myInfo
     end function
 
   ! ! @brief Set work buffer in execution info
@@ -352,7 +352,7 @@ module hipfort_rocfft
       use hipfort_rocfft_enums
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_execution_info_set_work_buffer
-      type(c_ptr) :: myInfo
+      type(c_ptr),value :: myInfo
       type(c_ptr),value :: work_buffer
       integer(c_size_t),value :: size_in_bytes
     end function
@@ -369,7 +369,7 @@ module hipfort_rocfft
       use hipfort_rocfft_enums
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_execution_info_set_mode
-      type(c_ptr) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(kind(rocfft_exec_mode_nonblocking)),value :: mode
     end function
 
@@ -390,7 +390,7 @@ module hipfort_rocfft
       use hipfort_rocfft_enums
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_execution_info_set_stream
-      type(c_ptr) :: myInfo
+      type(c_ptr),value :: myInfo
       type(c_ptr),value :: stream
     end function
 
@@ -407,7 +407,7 @@ module hipfort_rocfft
       use hipfort_rocfft_enums
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_execution_info_get_events
-      type(c_ptr) :: myInfo
+      type(c_ptr),value :: myInfo
       type(c_ptr) :: events
       type(c_ptr),value :: number_of_events
     end function
