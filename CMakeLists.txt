@@ -7,24 +7,18 @@ set(HIPFORT_RANLIB "/usr/bin/gcc-ranlib" CACHE STRING "ranlib used to create Sta
 set(HIPFORT_COMPILER_FLAGS "-std=f2003 -ffree-form -cpp -ffree-line-length-512" CACHE STRING "Compiler flags to build HIPFORT")
 set(HIPFORT_BUILD_TYPE "RELEASE"  CACHE STRING "Set to RELEASE TESTING or DEBUG")
 
-#  Default HIPFORT_INSTALL_DIR and HIPFORT_VERSION are for iniital release of hipfort in ROCm
-#  Other integrators and future ROCm releases should build hipfort as follows:
+#  The ROCm release manager and other integrators should build hipfort as follows:
 #     cmake -DHIPFORT_INSTALL_DIR=/opt/rocm-<release>/hipfort -DHIPFORT_VERSION=<release> <githubrepo>
 
-IF(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
-  # No cmd line override to CMAKE_INSTALL_PREFIX, so set HIPFORT_INSTALL_DIR from cmd line or default
-  set(HIPFORT_INSTALL_DIR  "/opt/rocm-3.8.0/hipfort"  CACHE STRING "Install directory for hipfort")
+set(HIPFORT_VERSION "0.2-0"  CACHE STRING "Version of HIPFORT to build")
+set(HIPFORT_INSTALL_DIR  "/usr/local/hipfort-${HIPFORT_VERSION}" CACHE STRING "Install directory for hipfort")
+IF(CMAKE_INSTALL_PREFIX)
+  # Make HIPFORT_INSTALL_DIR be the same as CmAKE_INSTALL_PREFIX
+  set(HIPFORT_INSTALL_DIR ${CMAKE_INSTALL_PREFIX})
 ELSE()
-  # To support setting install dir with CMAKE_INSTALL_PREFIX on cmake command line
-  IF(HIPFORT_INSTALL_DIR)
-    # Oops both were set, use HIPFORT_INSTALL_DIR
-    SET(CMAKE_INSTALL_PREFIX ${HIPFORT_INSTALL_DIR})
-  ELSE()
-    # Set HIPFORT_INSTALL_DIR to cmd line value of CMAKE_INSTALL_PREFIX
-    SET(HIPFORT_INSTALL_DIR ${CMAKE_INSTALL_PREFIX})
-  ENDIF()
+  # Make CMAKE_INSTALL_PREFIX be the same as HIPFORT_INSTALL_PREFIX
+  set(CMAKE_INSTALL_PREFIX ${HIPFORT_INSTALL_DIR})
 ENDIF()
-set(HIPFORT_VERSION  "3.8-0"  CACHE STRING "Version of HIPFORT to build")
 message("-- HIPFORT -------------  cmake START -------------------")
 message("-- HIPFORT_COMPILER:       ${HIPFORT_COMPILER}")
 message("-- HIPFORT_AR:             ${HIPFORT_AR}")
