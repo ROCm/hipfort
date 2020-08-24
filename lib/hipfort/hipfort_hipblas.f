@@ -915,25 +915,6 @@ module hipfort_hipblas
 
   
 #ifdef USE_CUDA_NAMES
-    function hipblasHaxpy(handle,n,alpha,x,incx,y,incy) bind(c, name="cublasHaxpy")
-#else
-    function hipblasHaxpy(handle,n,alpha,x,incx,y,incy) bind(c, name="hipblasHaxpy")
-#endif
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasHaxpy
-      type(c_ptr),value :: handle
-      integer(c_int),value :: n
-      hipblasHalf :: alpha
-      type(c_ptr),value :: x
-      integer(c_int),value :: incx
-      type(c_ptr),value :: y
-      integer(c_int),value :: incy
-    end function
-
-  
-#ifdef USE_CUDA_NAMES
     function hipblasSaxpy(handle,n,alpha,x,incx,y,incy) bind(c, name="cublasSaxpy")
 #else
     function hipblasSaxpy(handle,n,alpha,x,incx,y,incy) bind(c, name="hipblasSaxpy")
@@ -1006,26 +987,6 @@ module hipfort_hipblas
       integer(c_int),value :: incx
       type(c_ptr),value :: y
       integer(c_int),value :: incy
-    end function
-
-  
-#ifdef USE_CUDA_NAMES
-    function hipblasHaxpyBatched(handle,n,alpha,x,incx,y,incy,batch_count) bind(c, name="cublasHaxpyBatched")
-#else
-    function hipblasHaxpyBatched(handle,n,alpha,x,incx,y,incy,batch_count) bind(c, name="hipblasHaxpyBatched")
-#endif
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasHaxpyBatched
-      type(c_ptr),value :: handle
-      integer(c_int),value :: n
-      hipblasHalf :: alpha
-      type(c_ptr) :: x
-      integer(c_int),value :: incx
-      type(c_ptr) :: y
-      integer(c_int),value :: incy
-      integer(c_int),value :: batch_count
     end function
 
   
@@ -1105,28 +1066,6 @@ module hipfort_hipblas
       integer(c_int),value :: incx
       type(c_ptr) :: y
       integer(c_int),value :: incy
-      integer(c_int),value :: batch_count
-    end function
-
-  
-#ifdef USE_CUDA_NAMES
-    function hipblasHaxpyStridedBatched(handle,n,alpha,x,incx,stridex,y,incy,stridey,batch_count) bind(c, name="cublasHaxpyStridedBatched")
-#else
-    function hipblasHaxpyStridedBatched(handle,n,alpha,x,incx,stridex,y,incy,stridey,batch_count) bind(c, name="hipblasHaxpyStridedBatched")
-#endif
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasHaxpyStridedBatched
-      type(c_ptr),value :: handle
-      integer(c_int),value :: n
-      hipblasHalf :: alpha
-      type(c_ptr),value :: x
-      integer(c_int),value :: incx
-      integer(c_int),value :: stridex
-      type(c_ptr),value :: y
-      integer(c_int),value :: incy
-      integer(c_int),value :: stridey
       integer(c_int),value :: batch_count
     end function
 
@@ -1452,25 +1391,6 @@ module hipfort_hipblas
 
   
 #ifdef USE_CUDA_NAMES
-    function hipblasHdot(handle,n,x,incx,y,incy,myResult) bind(c, name="cublasHdot")
-#else
-    function hipblasHdot(handle,n,x,incx,y,incy,myResult) bind(c, name="hipblasHdot")
-#endif
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasHdot
-      type(c_ptr),value :: handle
-      integer(c_int),value :: n
-      type(c_ptr),value :: x
-      integer(c_int),value :: incx
-      type(c_ptr),value :: y
-      integer(c_int),value :: incy
-      type(c_ptr),value :: myResult
-    end function
-
-  
-#ifdef USE_CUDA_NAMES
     function hipblasBfdot(handle,n,x,incx,y,incy,myResult) bind(c, name="cublasBfdot")
 #else
     function hipblasBfdot(handle,n,x,incx,y,incy,myResult) bind(c, name="hipblasBfdot")
@@ -1599,26 +1519,6 @@ module hipfort_hipblas
       integer(c_int),value :: incx
       type(c_ptr),value :: y
       integer(c_int),value :: incy
-      type(c_ptr),value :: myResult
-    end function
-
-  
-#ifdef USE_CUDA_NAMES
-    function hipblasHdotBatched(handle,n,x,incx,y,incy,batch_count,myResult) bind(c, name="cublasHdotBatched")
-#else
-    function hipblasHdotBatched(handle,n,x,incx,y,incy,batch_count,myResult) bind(c, name="hipblasHdotBatched")
-#endif
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasHdotBatched
-      type(c_ptr),value :: handle
-      integer(c_int),value :: n
-      type(c_ptr) :: x
-      integer(c_int),value :: incx
-      type(c_ptr) :: y
-      integer(c_int),value :: incy
-      integer(c_int),value :: batch_count
       type(c_ptr),value :: myResult
     end function
 
@@ -1758,28 +1658,6 @@ module hipfort_hipblas
       integer(c_int),value :: incx
       type(c_ptr) :: y
       integer(c_int),value :: incy
-      integer(c_int),value :: batch_count
-      type(c_ptr),value :: myResult
-    end function
-
-  
-#ifdef USE_CUDA_NAMES
-    function hipblasHdotStridedBatched(handle,n,x,incx,stridex,y,incy,stridey,batch_count,myResult) bind(c, name="cublasHdotStridedBatched")
-#else
-    function hipblasHdotStridedBatched(handle,n,x,incx,stridex,y,incy,stridey,batch_count,myResult) bind(c, name="hipblasHdotStridedBatched")
-#endif
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasHdotStridedBatched
-      type(c_ptr),value :: handle
-      integer(c_int),value :: n
-      type(c_ptr),value :: x
-      integer(c_int),value :: incx
-      integer(c_int),value :: stridex
-      type(c_ptr),value :: y
-      integer(c_int),value :: incy
-      integer(c_int),value :: stridey
       integer(c_int),value :: batch_count
       type(c_ptr),value :: myResult
     end function
@@ -12918,32 +12796,6 @@ module hipfort_hipblas
 
   
 #ifdef USE_CUDA_NAMES
-    function hipblasHgemm(handle,transa,transb,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasHgemm")
-#else
-    function hipblasHgemm(handle,transa,transb,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="hipblasHgemm")
-#endif
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasHgemm
-      type(c_ptr),value :: handle
-      integer(kind(HIPBLAS_OP_N)),value :: transa
-      integer(kind(HIPBLAS_OP_N)),value :: transb
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      hipblasHalf :: alpha
-      type(c_ptr),value :: A
-      integer(c_int),value :: lda
-      type(c_ptr),value :: B
-      integer(c_int),value :: ldb
-      hipblasHalf :: beta
-      type(c_ptr),value :: C
-      integer(c_int),value :: ldc
-    end function
-
-  
-#ifdef USE_CUDA_NAMES
     function hipblasSgemm(handle,transa,transb,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasSgemm")
 #else
     function hipblasSgemm(handle,transa,transb,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="hipblasSgemm")
@@ -13044,33 +12896,6 @@ module hipfort_hipblas
       complex(c_double_complex) :: beta
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
-    end function
-
-  
-#ifdef USE_CUDA_NAMES
-    function hipblasHgemmBatched(handle,transa,transb,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="cublasHgemmBatched")
-#else
-    function hipblasHgemmBatched(handle,transa,transb,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="hipblasHgemmBatched")
-#endif
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasHgemmBatched
-      type(c_ptr),value :: handle
-      integer(kind(HIPBLAS_OP_N)),value :: transa
-      integer(kind(HIPBLAS_OP_N)),value :: transb
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      hipblasHalf :: alpha
-      type(c_ptr) :: A
-      integer(c_int),value :: lda
-      type(c_ptr) :: B
-      integer(c_int),value :: ldb
-      hipblasHalf :: beta
-      type(c_ptr) :: C
-      integer(c_int),value :: ldc
-      integer(c_int),value :: batchCount
     end function
 
   
@@ -13178,36 +13003,6 @@ module hipfort_hipblas
       complex(c_double_complex) :: beta
       type(c_ptr) :: C
       integer(c_int),value :: ldc
-      integer(c_int),value :: batchCount
-    end function
-
-  
-#ifdef USE_CUDA_NAMES
-    function hipblasHgemmStridedBatched(handle,transa,transb,m,n,k,alpha,A,lda,bsa,B,ldb,bsb,beta,C,ldc,bsc,batchCount) bind(c, name="cublasHgemmStridedBatched")
-#else
-    function hipblasHgemmStridedBatched(handle,transa,transb,m,n,k,alpha,A,lda,bsa,B,ldb,bsb,beta,C,ldc,bsc,batchCount) bind(c, name="hipblasHgemmStridedBatched")
-#endif
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasHgemmStridedBatched
-      type(c_ptr),value :: handle
-      integer(kind(HIPBLAS_OP_N)),value :: transa
-      integer(kind(HIPBLAS_OP_N)),value :: transb
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      hipblasHalf :: alpha
-      type(c_ptr),value :: A
-      integer(c_int),value :: lda
-      integer(c_long_long),value :: bsa
-      type(c_ptr),value :: B
-      integer(c_int),value :: ldb
-      integer(c_long_long),value :: bsb
-      hipblasHalf :: beta
-      type(c_ptr),value :: C
-      integer(c_int),value :: ldc
-      integer(c_long_long),value :: bsc
       integer(c_int),value :: batchCount
     end function
 
@@ -13329,159 +13124,6 @@ module hipfort_hipblas
       integer(c_int),value :: ldc
       integer(c_long_long),value :: bsc
       integer(c_int),value :: batchCount
-    end function
-
-  
-#ifdef USE_CUDA_NAMES
-    function hipblasGemmBatchedEx(handle,trans_a,trans_b,m,n,k,alpha,a,a_type,lda,b,b_type,ldb,beta,c,c_type,ldc,batch_count,compute_type,algo) bind(c, name="cublasGemmBatchedEx")
-#else
-    function hipblasGemmBatchedEx(handle,trans_a,trans_b,m,n,k,alpha,a,a_type,lda,b,b_type,ldb,beta,c,c_type,ldc,batch_count,compute_type,algo) bind(c, name="hipblasGemmBatchedEx")
-#endif
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGemmBatchedEx
-      type(c_ptr),value :: handle
-      integer(kind(HIPBLAS_OP_N)),value :: trans_a
-      integer(kind(HIPBLAS_OP_N)),value :: trans_b
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      void :: alpha
-      type(c_ptr) :: a
-      integer(kind(HIPBLAS_R_16F)),value :: a_type
-      integer(c_int),value :: lda
-      type(c_ptr) :: b
-      integer(kind(HIPBLAS_R_16F)),value :: b_type
-      integer(c_int),value :: ldb
-      void :: beta
-      type(c_ptr) :: c
-      integer(kind(HIPBLAS_R_16F)),value :: c_type
-      integer(c_int),value :: ldc
-      integer(c_int),value :: batch_count
-      integer(kind(HIPBLAS_R_16F)),value :: compute_type
-      integer(kind(HIPBLAS_GEMM_DEFAULT)),value :: algo
-    end function
-
-  
-#ifdef USE_CUDA_NAMES
-    function hipblasGemmStridedBatchedEx(handle,trans_a,trans_b,m,n,k,alpha,a,a_type,lda,stride_A,b,b_type,ldb,stride_B,beta,c,c_type,ldc,stride_C,batch_count,compute_type,algo) bind(c, name="cublasGemmStridedBatchedEx")
-#else
-    function hipblasGemmStridedBatchedEx(handle,trans_a,trans_b,m,n,k,alpha,a,a_type,lda,stride_A,b,b_type,ldb,stride_B,beta,c,c_type,ldc,stride_C,batch_count,compute_type,algo) bind(c, name="hipblasGemmStridedBatchedEx")
-#endif
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGemmStridedBatchedEx
-      type(c_ptr),value :: handle
-      integer(kind(HIPBLAS_OP_N)),value :: trans_a
-      integer(kind(HIPBLAS_OP_N)),value :: trans_b
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      void :: alpha
-      type(c_ptr),value :: a
-      integer(kind(HIPBLAS_R_16F)),value :: a_type
-      integer(c_int),value :: lda
-      integer(c_int),value :: stride_A
-      type(c_ptr),value :: b
-      integer(kind(HIPBLAS_R_16F)),value :: b_type
-      integer(c_int),value :: ldb
-      integer(c_int),value :: stride_B
-      void :: beta
-      type(c_ptr),value :: c
-      integer(kind(HIPBLAS_R_16F)),value :: c_type
-      integer(c_int),value :: ldc
-      integer(c_int),value :: stride_C
-      integer(c_int),value :: batch_count
-      integer(kind(HIPBLAS_R_16F)),value :: compute_type
-      integer(kind(HIPBLAS_GEMM_DEFAULT)),value :: algo
-    end function
-
-  
-#ifdef USE_CUDA_NAMES
-    function hipblasTrsmEx(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,invA,invA_size,compute_type) bind(c, name="cublasTrsmEx")
-#else
-    function hipblasTrsmEx(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,invA,invA_size,compute_type) bind(c, name="hipblasTrsmEx")
-#endif
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasTrsmEx
-      type(c_ptr),value :: handle
-      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
-      integer(kind(HIPBLAS_OP_N)),value :: transA
-      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      void :: alpha
-      type(c_ptr),value :: A
-      integer(c_int),value :: lda
-      type(c_ptr),value :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: invA
-      integer(c_int),value :: invA_size
-      integer(kind(HIPBLAS_R_16F)),value :: compute_type
-    end function
-
-  
-#ifdef USE_CUDA_NAMES
-    function hipblasTrsmBatchedEx(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,batch_count,invA,invA_size,compute_type) bind(c, name="cublasTrsmBatchedEx")
-#else
-    function hipblasTrsmBatchedEx(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,batch_count,invA,invA_size,compute_type) bind(c, name="hipblasTrsmBatchedEx")
-#endif
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasTrsmBatchedEx
-      type(c_ptr),value :: handle
-      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
-      integer(kind(HIPBLAS_OP_N)),value :: transA
-      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      void :: alpha
-      type(c_ptr),value :: A
-      integer(c_int),value :: lda
-      type(c_ptr),value :: B
-      integer(c_int),value :: ldb
-      integer(c_int),value :: batch_count
-      type(c_ptr),value :: invA
-      integer(c_int),value :: invA_size
-      integer(kind(HIPBLAS_R_16F)),value :: compute_type
-    end function
-
-  
-#ifdef USE_CUDA_NAMES
-    function hipblasTrsmStridedBatchedEx(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,batch_count,invA,invA_size,stride_invA,compute_type) bind(c, name="cublasTrsmStridedBatchedEx")
-#else
-    function hipblasTrsmStridedBatchedEx(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,batch_count,invA,invA_size,stride_invA,compute_type) bind(c, name="hipblasTrsmStridedBatchedEx")
-#endif
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasTrsmStridedBatchedEx
-      type(c_ptr),value :: handle
-      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
-      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
-      integer(kind(HIPBLAS_OP_N)),value :: transA
-      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      void :: alpha
-      type(c_ptr),value :: A
-      integer(c_int),value :: lda
-      integer(c_int),value :: stride_A
-      type(c_ptr),value :: B
-      integer(c_int),value :: ldb
-      integer(c_int),value :: stride_B
-      integer(c_int),value :: batch_count
-      type(c_ptr),value :: invA
-      integer(c_int),value :: invA_size
-      integer(c_int),value :: stride_invA
-      integer(kind(HIPBLAS_R_16F)),value :: compute_type
     end function
 
   end interface
