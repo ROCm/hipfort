@@ -9,12 +9,7 @@ program rocfft_example
   integer(c_size_t), parameter :: N=16
   integer(c_size_t), parameter :: Nbytes = N*8*2
 
-  type double2
-     double precision :: x
-     double precision :: y
-  end type double2
-
-  type(double2), allocatable, target, dimension(:) :: hx
+  complex(c_double_complex), allocatable, target, dimension(:) :: hx
   type(c_ptr) :: dx = c_null_ptr
   type(c_ptr) :: plan = c_null_ptr
   integer(c_size_t), allocatable, target, dimension(:) :: lengths
@@ -31,8 +26,7 @@ program rocfft_example
   lengths(1) = N
 
   allocate(hx(N))
-  hx(:)%x = 1
-  hx(:)%y = -1
+  hx(:) = (1,-1)
 
   call hipCheck(hipMalloc(dx,Nbytes))
   call hipCheck(hipMemcpy(dx,c_loc(hx),Nbytes,hipMemcpyHostToDevice))
@@ -59,9 +53,9 @@ program rocfft_example
   ! first components were \pm 16 and the remaining componenents
   ! were zero, so the sum of each component pair should be zero
   do i = 1,N
-     error = abs(hx(i)%x+hx(i)%y)
+     error = abs(DBLE(hx(i))+DIMAG(hx(i)))
      if(error > error_max)then
-        write(*,*) "rocFFT FAILED! Error = ", error, "hx(i)%x = ", hx(i)%x, "hx(i)%y = "
+             write(*,*) "rocFFT FAILED! Error = ", error, "DBLE(hx(i)) = ", DBLE(hx(i)), "DIMAG(hx(i)) = ", DIMAG(hx(i))
      end if
   end do
 
