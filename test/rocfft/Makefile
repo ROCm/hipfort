@@ -1,9 +1,9 @@
 
-HIPFORT_HOME ?= /tmp/hipfort
-include $(HIPFORT_HOME)/bin/Makefile.hipfort
+HIPFORT_ROOT ?= /tmp/hipfort
+include $(HIPFORT_ROOT)/bin/Makefile.hipfort
 
 OUTPUT_DIR  ?= $(PWD)
-LINKOPTS    +=  -L$(ROCM)/rocfft/lib  -l rocfft
+LINKOPTS    +=  -L$(ROCFFT_ROOT)/lib  -l rocfft
 
 APP          = $(OUTPUT_DIR)/rocfft
 
