@@ -381,7 +381,8 @@ module hipfort_rocfft
   !    It is the underlying device queuestream where the library computations
   !   would be inserted. The library assumes user
   !    has created such a stream in the program and merely assigns work to the
-  !   stream.
+  !   stream. The stream must be of type hipStream_t. It is an error to pass the
+  !   address of a hipStream_t object.
   !    @param[in] info execution info handle
   !    @param[in] stream underlying compute stream
   !    
