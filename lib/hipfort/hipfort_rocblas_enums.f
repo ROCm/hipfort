@@ -92,6 +92,11 @@ module hipfort_rocblas_enums
   end enum
 
   enum, bind(c)
+    enumerator :: rocblas_atomics_not_allowed = 0
+    enumerator :: rocblas_atomics_allowed = 1
+  end enum
+
+  enum, bind(c)
     enumerator :: rocblas_layer_mode_none = 0
     enumerator :: rocblas_layer_mode_log_trace = 1
     enumerator :: rocblas_layer_mode_log_bench = 2
@@ -100,6 +105,10 @@ module hipfort_rocblas_enums
 
   enum, bind(c)
     enumerator :: rocblas_gemm_algo_standard = 0
+  end enum
+
+  enum, bind(c)
+    enumerator :: rocblas_gemm_flags_none = 0
   end enum
 
  

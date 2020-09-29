@@ -157,6 +157,7 @@ module hipfort_enums
     enumerator :: hipDeviceAttributeCooperativeMultiDeviceUnmatchedGridDim
     enumerator :: hipDeviceAttributeCooperativeMultiDeviceUnmatchedBlockDim
     enumerator :: hipDeviceAttributeCooperativeMultiDeviceUnmatchedSharedMem
+    enumerator :: hipDeviceAttributeAsicRevision
   end enum
 
   enum, bind(c)
@@ -167,7 +168,30 @@ module hipfort_enums
   end enum
 
   enum, bind(c)
+    enumerator :: hipDevP2PAttrPerformanceRank = 0
+    enumerator :: hipDevP2PAttrAccessSupported
+    enumerator :: hipDevP2PAttrNativeAtomicSupported
+    enumerator :: hipDevP2PAttrHipArrayAccessSupported
+  end enum
+
+  enum, bind(c)
     enumerator :: hipLimitMallocHeapSize = 2
+  end enum
+
+  enum, bind(c)
+    enumerator :: hipMemAdviseSetReadMostly = 1
+    enumerator :: hipMemAdviseUnsetReadMostly = 2
+    enumerator :: hipMemAdviseSetPreferredLocation = 3
+    enumerator :: hipMemAdviseUnsetPreferredLocation = 4
+    enumerator :: hipMemAdviseSetAccessedBy = 5
+    enumerator :: hipMemAdviseUnsetAccessedBy = 6
+  end enum
+
+  enum, bind(c)
+    enumerator :: hipMemRangeAttributeReadMostly = 1
+    enumerator :: hipMemRangeAttributePreferredLocation = 2
+    enumerator :: hipMemRangeAttributeAccessedBy = 3
+    enumerator :: hipMemRangeAttributeLastPrefetchLocation = 4
   end enum
 
   enum, bind(c)
