@@ -35,16 +35,16 @@ module hipfort
 
  
   interface
-  ! 
-  !   @brief Waits on all active streams on current device
-  !  
-  !   When this command is invoked, the host thread gets blocked until all the commands associated
-  !   with streams associated with the device. HIP does not support multiple blocking modes (yet!).
-  !  
-  !   @returns #hipSuccess
-  !  
-  !   @see hipSetDevice, hipDeviceReset
-  !  
+  !> 
+  !>   @brief Waits on all active streams on current device
+  !>  
+  !>   When this command is invoked, the host thread gets blocked until all the commands associated
+  !>   with streams associated with the device. HIP does not support multiple blocking modes (yet!).
+  !>  
+  !>   @returns #hipSuccess
+  !>  
+  !>   @see hipSetDevice, hipDeviceReset
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipDeviceSynchronize() bind(c, name="cudaDeviceSynchronize")
 #else
@@ -64,17 +64,17 @@ module hipfort
 #endif
     end function
 
-  ! 
-  !   @brief The state of current device is discarded and updated to a fresh state.
-  !  
-  !   Calling this function deletes all streams created, memory allocated, kernels running, events
-  !   created. Make sure that no other thread is using the device or streams, memory, kernels, events
-  !   associated with the current device.
-  !  
-  !   @returns #hipSuccess
-  !  
-  !   @see hipDeviceSynchronize
-  !  
+  !> 
+  !>   @brief The state of current device is discarded and updated to a fresh state.
+  !>  
+  !>   Calling this function deletes all streams created, memory allocated, kernels running, events
+  !>   created. Make sure that no other thread is using the device or streams, memory, kernels, events
+  !>   associated with the current device.
+  !>  
+  !>   @returns #hipSuccess
+  !>  
+  !>   @see hipDeviceSynchronize
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipDeviceReset() bind(c, name="cudaDeviceReset")
 #else
@@ -94,37 +94,37 @@ module hipfort
 #endif
     end function
 
-  ! 
-  !   @brief Set default device to be used for subsequent hip API calls from this thread.
-  !  
-  !   @param[in] deviceId Valid device in range 0...hipGetDeviceCount().
-  !  
-  !   Sets @p device as the default device for the calling host thread.  Valid device id's are 0...
-  !   (hipGetDeviceCount()-1).
-  !  
-  !   Many HIP APIs implicitly use the "default device" :
-  !  
-  !   - Any device memory subsequently allocated from this host thread (using hipMalloc) will be
-  !   allocated on device.
-  !   - Any streams or events created from this host thread will be associated with device.
-  !   - Any kernels launched from this host thread (using hipLaunchKernel) will be executed on device
-  !   (unless a specific stream is specified, in which case the device associated with that stream will
-  !   be used).
-  !  
-  !   This function may be called from any host thread.  Multiple host threads may use the same device.
-  !   This function does no synchronization with the previous or new device, and has very little
-  !   runtime overhead. Applications can use hipSetDevice to quickly switch the default device before
-  !   making a HIP runtime call which uses the default device.
-  !  
-  !   The default device is stored in thread-local-storage for each thread.
-  !   Thread-pool implementations may inherit the default device of the previous thread.  A good
-  !   practice is to always call hipSetDevice at the start of HIP coding sequency to establish a known
-  !   standard device.
-  !  
-  !   @returns #hipSuccess, #hipErrorInvalidDevice, #hipErrorDeviceAlreadyInUse
-  !  
-  !   @see hipGetDevice, hipGetDeviceCount
-  !  
+  !> 
+  !>   @brief Set default device to be used for subsequent hip API calls from this thread.
+  !>  
+  !>   @param[in] deviceId Valid device in range 0...hipGetDeviceCount().
+  !>  
+  !>   Sets @p device as the default device for the calling host thread.  Valid device id's are 0...
+  !>   (hipGetDeviceCount()-1).
+  !>  
+  !>   Many HIP APIs implicitly use the "default device" :
+  !>  
+  !>   - Any device memory subsequently allocated from this host thread (using hipMalloc) will be
+  !>   allocated on device.
+  !>   - Any streams or events created from this host thread will be associated with device.
+  !>   - Any kernels launched from this host thread (using hipLaunchKernel) will be executed on device
+  !>   (unless a specific stream is specified, in which case the device associated with that stream will
+  !>   be used).
+  !>  
+  !>   This function may be called from any host thread.  Multiple host threads may use the same device.
+  !>   This function does no synchronization with the previous or new device, and has very little
+  !>   runtime overhead. Applications can use hipSetDevice to quickly switch the default device before
+  !>   making a HIP runtime call which uses the default device.
+  !>  
+  !>   The default device is stored in thread-local-storage for each thread.
+  !>   Thread-pool implementations may inherit the default device of the previous thread.  A good
+  !>   practice is to always call hipSetDevice at the start of HIP coding sequency to establish a known
+  !>   standard device.
+  !>  
+  !>   @returns #hipSuccess, #hipErrorInvalidDevice, #hipErrorDeviceAlreadyInUse
+  !>  
+  !>   @see hipGetDevice, hipGetDeviceCount
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipSetDevice(deviceId) bind(c, name="cudaSetDevice")
 #else
@@ -145,19 +145,19 @@ module hipfort
       integer(c_int),value :: deviceId
     end function
 
-  ! 
-  !   @brief Return the default device id for the calling host thread.
-  !  
-  !   @param [out] device device is written with the default device
-  !  
-  !   HIP maintains an default device for each thread using thread-local-storage.
-  !   This device is used implicitly for HIP runtime APIs called by this thread.
-  !   hipGetDevice returns in  @p device the default device for the calling host thread.
-  !  
-  !   @returns #hipSuccess, #hipErrorInvalidDevice, #hipErrorInvalidValue
-  !  
-  !   @see hipSetDevice, hipGetDevicesizeBytes
-  !  
+  !> 
+  !>   @brief Return the default device id for the calling host thread.
+  !>  
+  !>   @param [out] device device is written with the default device
+  !>  
+  !>   HIP maintains an default device for each thread using thread-local-storage.
+  !>   This device is used implicitly for HIP runtime APIs called by this thread.
+  !>   hipGetDevice returns in  @p device the default device for the calling host thread.
+  !>  
+  !>   @returns #hipSuccess, #hipErrorInvalidDevice, #hipErrorInvalidValue
+  !>  
+  !>   @see hipSetDevice, hipGetDevicesizeBytes
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipGetDevice(deviceId) bind(c, name="cudaGetDevice")
 #else
@@ -178,18 +178,18 @@ module hipfort
       type(c_ptr),value :: deviceId
     end function
 
-  ! 
-  !   @brief Return number of compute-capable devices.
-  !  
-  !   @param [output] count Returns number of compute-capable devices.
-  !  
-  !   @returns #hipSuccess, #hipErrorNoDevice
-  !  
-  !  
-  !   Returns in @p count the number of devices that have ability to run compute commands.  If there
-  !   are no such devices, then @ref hipGetDeviceCount will return #hipErrorNoDevice. If 1 or more
-  !   devices can be found, then hipGetDeviceCount returns #hipSuccess.
-  !  
+  !> 
+  !>   @brief Return number of compute-capable devices.
+  !>  
+  !>   @param [output] count Returns number of compute-capable devices.
+  !>  
+  !>   @returns #hipSuccess, #hipErrorNoDevice
+  !>  
+  !>  
+  !>   Returns in @p count the number of devices that have ability to run compute commands.  If there
+  !>   are no such devices, then @ref hipGetDeviceCount will return #hipErrorNoDevice. If 1 or more
+  !>   devices can be found, then hipGetDeviceCount returns #hipSuccess.
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipGetDeviceCount(count) bind(c, name="cudaGetDeviceCount")
 #else
@@ -210,15 +210,15 @@ module hipfort
       type(c_ptr),value :: count
     end function
 
-  ! 
-  !   @brief Query for a specific device attribute.
-  !  
-  !   @param [out] pi pointer to value to return
-  !   @param [in] attr attribute to query
-  !   @param [in] deviceId which device to query for information
-  !  
-  !   @returns #hipSuccess, #hipErrorInvalidDevice, #hipErrorInvalidValue
-  !  
+  !> 
+  !>   @brief Query for a specific device attribute.
+  !>  
+  !>   @param [out] pi pointer to value to return
+  !>   @param [in] attr attribute to query
+  !>   @param [in] deviceId which device to query for information
+  !>  
+  !>   @returns #hipSuccess, #hipErrorInvalidDevice, #hipErrorInvalidValue
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipDeviceGetAttribute(pi,attr,deviceId) bind(c, name="cudaDeviceGetAttribute")
 #else
@@ -241,19 +241,19 @@ module hipfort
       integer(c_int),value :: deviceId
     end function
 
-  ! 
-  !   @brief Returns device properties.
-  !  
-  !   @param [out] prop written with device properties
-  !   @param [in]  deviceId which device to query for information
-  !  
-  !   @return #hipSuccess, #hipErrorInvalidDevice
-  !   @bug HCC always returns 0 for maxThreadsPerMultiProcessor
-  !   @bug HCC always returns 0 for regsPerBlock
-  !   @bug HCC always returns 0 for l2CacheSize
-  !  
-  !   Populates hipGetDeviceProperties with information for the specified device.
-  !  
+  !> 
+  !>   @brief Returns device properties.
+  !>  
+  !>   @param [out] prop written with device properties
+  !>   @param [in]  deviceId which device to query for information
+  !>  
+  !>   @return #hipSuccess, #hipErrorInvalidDevice
+  !>   @bug HCC always returns 0 for maxThreadsPerMultiProcessor
+  !>   @bug HCC always returns 0 for regsPerBlock
+  !>   @bug HCC always returns 0 for l2CacheSize
+  !>  
+  !>   Populates hipGetDeviceProperties with information for the specified device.
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipGetDeviceProperties(prop,deviceId) bind(c, name="cudaGetDeviceProperties")
 #else
@@ -275,16 +275,16 @@ module hipfort
       integer(c_int),value :: deviceId
     end function
 
-  ! 
-  !   @brief Set L1Shared cache partition.
-  !  
-  !   @param [in] cacheConfig
-  !  
-  !   @returns #hipSuccess, #hipErrorNotInitialized
-  !   Note: AMD devices and some Nvidia GPUS do not support reconfigurable cache.  This hint is ignored
-  !   on those architectures.
-  !  
-  !  
+  !> 
+  !>   @brief Set L1Shared cache partition.
+  !>  
+  !>   @param [in] cacheConfig
+  !>  
+  !>   @returns #hipSuccess, #hipErrorNotInitialized
+  !>   Note: AMD devices and some Nvidia GPUS do not support reconfigurable cache.  This hint is ignored
+  !>   on those architectures.
+  !>  
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipDeviceSetCacheConfig(cacheConfig) bind(c, name="cudaDeviceSetCacheConfig")
 #else
@@ -305,16 +305,16 @@ module hipfort
       integer(kind(hipFuncCachePreferNone)),value :: cacheConfig
     end function
 
-  ! 
-  !   @brief Set Cache configuration for a specific function
-  !  
-  !   @param [in] cacheConfig
-  !  
-  !   @returns #hipSuccess, #hipErrorNotInitialized
-  !   Note: AMD devices and some Nvidia GPUS do not support reconfigurable cache.  This hint is ignored
-  !   on those architectures.
-  !  
-  !  
+  !> 
+  !>   @brief Set Cache configuration for a specific function
+  !>  
+  !>   @param [in] cacheConfig
+  !>  
+  !>   @returns #hipSuccess, #hipErrorNotInitialized
+  !>   Note: AMD devices and some Nvidia GPUS do not support reconfigurable cache.  This hint is ignored
+  !>   on those architectures.
+  !>  
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipDeviceGetCacheConfig(cacheConfig) bind(c, name="cudaDeviceGetCacheConfig")
 #else
@@ -335,16 +335,16 @@ module hipfort
       type(c_ptr),value :: cacheConfig
     end function
 
-  ! 
-  !   @brief Get Resource limits of current device
-  !  
-  !   @param [out] pValue
-  !   @param [in]  limit
-  !  
-  !   @returns #hipSuccess, #hipErrorUnsupportedLimit, #hipErrorInvalidValue
-  !   Note: Currently, only hipLimitMallocHeapSize is available
-  !  
-  !  
+  !> 
+  !>   @brief Get Resource limits of current device
+  !>  
+  !>   @param [out] pValue
+  !>   @param [in]  limit
+  !>  
+  !>   @returns #hipSuccess, #hipErrorUnsupportedLimit, #hipErrorInvalidValue
+  !>   Note: Currently, only hipLimitMallocHeapSize is available
+  !>  
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipDeviceGetLimit(pValue,limit) bind(c, name="cudaDeviceGetLimit")
 #else
@@ -366,16 +366,16 @@ module hipfort
       integer(kind(hipLimitMallocHeapSize)),value :: limit
     end function
 
-  ! 
-  !   @brief Set Cache configuration for a specific function
-  !  
-  !   @param [in] config;
-  !  
-  !   @returns #hipSuccess, #hipErrorNotInitialized
-  !   Note: AMD devices and some Nvidia GPUS do not support reconfigurable cache.  This hint is ignored
-  !   on those architectures.
-  !  
-  !  
+  !> 
+  !>   @brief Set Cache configuration for a specific function
+  !>  
+  !>   @param [in] config;
+  !>  
+  !>   @returns #hipSuccess, #hipErrorNotInitialized
+  !>   Note: AMD devices and some Nvidia GPUS do not support reconfigurable cache.  This hint is ignored
+  !>   on those architectures.
+  !>  
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipFuncSetCacheConfig(func,config) bind(c, name="cudaFuncSetCacheConfig")
 #else
@@ -397,17 +397,17 @@ module hipfort
       integer(kind(hipFuncCachePreferNone)),value :: config
     end function
 
-  ! 
-  !   @brief Returns bank width of shared memory for current device
-  !  
-  !   @param [out] pConfig
-  !  
-  !   @returns #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized
-  !  
-  !   Note: AMD devices and some Nvidia GPUS do not support shared cache banking, and the hint is
-  !   ignored on those architectures.
-  !  
-  !  
+  !> 
+  !>   @brief Returns bank width of shared memory for current device
+  !>  
+  !>   @param [out] pConfig
+  !>  
+  !>   @returns #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized
+  !>  
+  !>   Note: AMD devices and some Nvidia GPUS do not support shared cache banking, and the hint is
+  !>   ignored on those architectures.
+  !>  
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipDeviceGetSharedMemConfig(pConfig) bind(c, name="cudaDeviceGetSharedMemConfig")
 #else
@@ -428,13 +428,13 @@ module hipfort
       type(c_ptr),value :: pConfig
     end function
 
-  ! 
-  !   @brief Gets the flags set for current device
-  !  
-  !   @param [out] flags
-  !  
-  !   @returns #hipSuccess, #hipErrorInvalidDevice, #hipErrorInvalidValue
-  !  
+  !> 
+  !>   @brief Gets the flags set for current device
+  !>  
+  !>   @param [out] flags
+  !>  
+  !>   @returns #hipSuccess, #hipErrorInvalidDevice, #hipErrorInvalidValue
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipGetDeviceFlags(flags) bind(c, name="cudaGetDeviceFlags")
 #else
@@ -455,17 +455,17 @@ module hipfort
       type(c_ptr),value :: flags
     end function
 
-  ! 
-  !   @brief The bank width of shared memory on current device is set
-  !  
-  !   @param [in] config
-  !  
-  !   @returns #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized
-  !  
-  !   Note: AMD devices and some Nvidia GPUS do not support shared cache banking, and the hint is
-  !   ignored on those architectures.
-  !  
-  !  
+  !> 
+  !>   @brief The bank width of shared memory on current device is set
+  !>  
+  !>   @param [in] config
+  !>  
+  !>   @returns #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized
+  !>  
+  !>   Note: AMD devices and some Nvidia GPUS do not support shared cache banking, and the hint is
+  !>   ignored on those architectures.
+  !>  
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipDeviceSetSharedMemConfig(config) bind(c, name="cudaDeviceSetSharedMemConfig")
 #else
@@ -486,30 +486,30 @@ module hipfort
       integer(kind(hipSharedMemBankSizeDefault)),value :: config
     end function
 
-  ! 
-  !   @brief The current device behavior is changed according the flags passed.
-  !  
-  !   @param [in] flags
-  !  
-  !   The schedule flags impact how HIP waits for the completion of a command running on a device.
-  !   hipDeviceScheduleSpin         : HIP runtime will actively spin in the thread which submitted the
-  !   work until the command completes.  This offers the lowest latency, but will consume a CPU core
-  !   and may increase power. hipDeviceScheduleYield        : The HIP runtime will yield the CPU to
-  !   system so that other tasks can use it.  This may increase latency to detect the completion but
-  !   will consume less power and is friendlier to other tasks in the system.
-  !   hipDeviceScheduleBlockingSync : On ROCm platform, this is a synonym for hipDeviceScheduleYield.
-  !   hipDeviceScheduleAuto         : Use a hueristic to select between Spin and Yield modes.  If the
-  !   number of HIP contexts is greater than the number of logical processors in the system, use Spin
-  !   scheduling.  Else use Yield scheduling.
-  !  
-  !  
-  !   hipDeviceMapHost              : Allow mapping host memory.  On ROCM, this is always allowed and
-  !   the flag is ignored. hipDeviceLmemResizeToMax      : @warning ROCm silently ignores this flag.
-  !  
-  !   @returns #hipSuccess, #hipErrorInvalidDevice, #hipErrorSetOnActiveProcess
-  !  
-  !  
-  !  
+  !> 
+  !>   @brief The current device behavior is changed according the flags passed.
+  !>  
+  !>   @param [in] flags
+  !>  
+  !>   The schedule flags impact how HIP waits for the completion of a command running on a device.
+  !>   hipDeviceScheduleSpin         : HIP runtime will actively spin in the thread which submitted the
+  !>   work until the command completes.  This offers the lowest latency, but will consume a CPU core
+  !>   and may increase power. hipDeviceScheduleYield        : The HIP runtime will yield the CPU to
+  !>   system so that other tasks can use it.  This may increase latency to detect the completion but
+  !>   will consume less power and is friendlier to other tasks in the system.
+  !>   hipDeviceScheduleBlockingSync : On ROCm platform, this is a synonym for hipDeviceScheduleYield.
+  !>   hipDeviceScheduleAuto         : Use a hueristic to select between Spin and Yield modes.  If the
+  !>   number of HIP contexts is greater than the number of logical processors in the system, use Spin
+  !>   scheduling.  Else use Yield scheduling.
+  !>  
+  !>  
+  !>   hipDeviceMapHost              : Allow mapping host memory.  On ROCM, this is always allowed and
+  !>   the flag is ignored. hipDeviceLmemResizeToMax      : @warning ROCm silently ignores this flag.
+  !>  
+  !>   @returns #hipSuccess, #hipErrorInvalidDevice, #hipErrorSetOnActiveProcess
+  !>  
+  !>  
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipSetDeviceFlags(flags) bind(c, name="cudaSetDeviceFlags")
 #else
@@ -530,14 +530,14 @@ module hipfort
       integer(kind=4),value :: flags
     end function
 
-  ! 
-  !   @brief Device which matches hipDeviceProp_t is returned
-  !  
-  !   @param [out] device ID
-  !   @param [in]  device properties pointer
-  !  
-  !   @returns #hipSuccess, #hipErrorInvalidValue
-  !  
+  !> 
+  !>   @brief Device which matches hipDeviceProp_t is returned
+  !>  
+  !>   @param [out] device ID
+  !>   @param [in]  device properties pointer
+  !>  
+  !>   @returns #hipSuccess, #hipErrorInvalidValue
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipChooseDevice(device,prop) bind(c, name="cudaChooseDevice")
 #else
@@ -559,18 +559,18 @@ module hipfort
       type(c_ptr) :: prop
     end function
 
-  ! 
-  !   @brief Returns the link type and hop count between two devices
-  !  
-  !   @param [in] device1 Ordinal for device1
-  !   @param [in] device2 Ordinal for device2
-  !   @param [out] linktype Returns the link type (See hsa_amd_link_info_type_t) between the two devices
-  !   @param [out] hopcount Returns the hop count between the two devices
-  !  
-  !   Queries and returns the HSA link type and the hop count between the two specified devices.
-  !  
-  !   @returns #hipSuccess, #hipInvalidDevice, #hipErrorRuntimeOther
-  !  
+  !> 
+  !>   @brief Returns the link type and hop count between two devices
+  !>  
+  !>   @param [in] device1 Ordinal for device1
+  !>   @param [in] device2 Ordinal for device2
+  !>   @param [out] linktype Returns the link type (See hsa_amd_link_info_type_t) between the two devices
+  !>   @param [out] hopcount Returns the hop count between the two devices
+  !>  
+  !>   Queries and returns the HSA link type and the hop count between the two specified devices.
+  !>  
+  !>   @returns #hipSuccess, #hipInvalidDevice, #hipErrorRuntimeOther
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipExtGetLinkTypeAndHopCount(device1,device2,linktype,hopcount) bind(c, name="cudaExtGetLinkTypeAndHopCount")
 #else
@@ -594,17 +594,17 @@ module hipfort
       type(c_ptr),value :: hopcount
     end function
 
-  ! 
-  !   @brief Return last error returned by any HIP runtime API call and resets the stored error code to
-  !   #hipSuccess
-  !  
-  !   @returns return code from last HIP called from the active host thread
-  !  
-  !   Returns the last error that has been returned by any of the runtime calls in the same host
-  !   thread, and then resets the saved error to #hipSuccess.
-  !  
-  !   @see hipGetErrorString, hipGetLastError, hipPeakAtLastError, hipError_t
-  !  
+  !> 
+  !>   @brief Return last error returned by any HIP runtime API call and resets the stored error code to
+  !>   #hipSuccess
+  !>  
+  !>   @returns return code from last HIP called from the active host thread
+  !>  
+  !>   Returns the last error that has been returned by any of the runtime calls in the same host
+  !>   thread, and then resets the saved error to #hipSuccess.
+  !>  
+  !>   @see hipGetErrorString, hipGetLastError, hipPeakAtLastError, hipError_t
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipGetLastError() bind(c, name="cudaGetLastError")
 #else
@@ -624,16 +624,16 @@ module hipfort
 #endif
     end function
 
-  ! 
-  !   @brief Return last error returned by any HIP runtime API call.
-  !  
-  !   @return #hipSuccess
-  !  
-  !   Returns the last error that has been returned by any of the runtime calls in the same host
-  !   thread. Unlike hipGetLastError, this function does not reset the saved error code.
-  !  
-  !   @see hipGetErrorString, hipGetLastError, hipPeakAtLastError, hipError_t
-  !  
+  !> 
+  !>   @brief Return last error returned by any HIP runtime API call.
+  !>  
+  !>   @return #hipSuccess
+  !>  
+  !>   Returns the last error that has been returned by any of the runtime calls in the same host
+  !>   thread. Unlike hipGetLastError, this function does not reset the saved error code.
+  !>  
+  !>   @see hipGetErrorString, hipGetLastError, hipPeakAtLastError, hipError_t
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipPeekAtLastError() bind(c, name="cudaPeekAtLastError")
 #else
@@ -653,22 +653,22 @@ module hipfort
 #endif
     end function
 
-  ! 
-  !   @brief Create an asynchronous stream.
-  !  
-  !   @param[in, out] stream Valid pointer to hipStream_t.  This function writes the memory with the
-  !   newly created stream.
-  !   @return #hipSuccess, #hipErrorInvalidValue
-  !  
-  !   Create a new asynchronous stream.  @p stream returns an opaque handle that can be used to
-  !   reference the newly created stream in subsequent hipStream commands.  The stream is allocated on
-  !   the heap and will remain allocated even if the handle goes out-of-scope.  To release the memory
-  !   used by the stream, applicaiton must call hipStreamDestroy.
-  !  
-  !   @return #hipSuccess, #hipErrorInvalidValue
-  !  
-  !   @see hipStreamCreateWithFlags, hipStreamCreateWithPriority, hipStreamSynchronize, hipStreamWaitEvent, hipStreamDestroy
-  !  
+  !> 
+  !>   @brief Create an asynchronous stream.
+  !>  
+  !>   @param[in, out] stream Valid pointer to hipStream_t.  This function writes the memory with the
+  !>   newly created stream.
+  !>   @return #hipSuccess, #hipErrorInvalidValue
+  !>  
+  !>   Create a new asynchronous stream.  @p stream returns an opaque handle that can be used to
+  !>   reference the newly created stream in subsequent hipStream commands.  The stream is allocated on
+  !>   the heap and will remain allocated even if the handle goes out-of-scope.  To release the memory
+  !>   used by the stream, applicaiton must call hipStreamDestroy.
+  !>  
+  !>   @return #hipSuccess, #hipErrorInvalidValue
+  !>  
+  !>   @see hipStreamCreateWithFlags, hipStreamCreateWithPriority, hipStreamSynchronize, hipStreamWaitEvent, hipStreamDestroy
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipStreamCreate(stream) bind(c, name="cudaStreamCreate")
 #else
@@ -689,22 +689,22 @@ module hipfort
       type(c_ptr) :: stream
     end function
 
-  ! 
-  !   @brief Create an asynchronous stream.
-  !  
-  !   @param[in, out] stream Pointer to new stream
-  !   @param[in ] flags to control stream creation.
-  !   @return #hipSuccess, #hipErrorInvalidValue
-  !  
-  !   Create a new asynchronous stream.  @p stream returns an opaque handle that can be used to
-  !   reference the newly created stream in subsequent hipStream commands.  The stream is allocated on
-  !   the heap and will remain allocated even if the handle goes out-of-scope.  To release the memory
-  !   used by the stream, applicaiton must call hipStreamDestroy. Flags controls behavior of the
-  !   stream.  See #hipStreamDefault, #hipStreamNonBlocking.
-  !  
-  !  
-  !   @see hipStreamCreate, hipStreamCreateWithPriority, hipStreamSynchronize, hipStreamWaitEvent, hipStreamDestroy
-  !  
+  !> 
+  !>   @brief Create an asynchronous stream.
+  !>  
+  !>   @param[in, out] stream Pointer to new stream
+  !>   @param[in ] flags to control stream creation.
+  !>   @return #hipSuccess, #hipErrorInvalidValue
+  !>  
+  !>   Create a new asynchronous stream.  @p stream returns an opaque handle that can be used to
+  !>   reference the newly created stream in subsequent hipStream commands.  The stream is allocated on
+  !>   the heap and will remain allocated even if the handle goes out-of-scope.  To release the memory
+  !>   used by the stream, applicaiton must call hipStreamDestroy. Flags controls behavior of the
+  !>   stream.  See #hipStreamDefault, #hipStreamNonBlocking.
+  !>  
+  !>  
+  !>   @see hipStreamCreate, hipStreamCreateWithPriority, hipStreamSynchronize, hipStreamWaitEvent, hipStreamDestroy
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipStreamCreateWithFlags(stream,flags) bind(c, name="cudaStreamCreateWithFlags")
 #else
@@ -726,23 +726,23 @@ module hipfort
       integer(kind=4),value :: flags
     end function
 
-  ! 
-  !   @brief Create an asynchronous stream with the specified priority.
-  !  
-  !   @param[in, out] stream Pointer to new stream
-  !   @param[in ] flags to control stream creation.
-  !   @param[in ] priority of the stream. Lower numbers represent higher priorities.
-  !   @return #hipSuccess, #hipErrorInvalidValue
-  !  
-  !   Create a new asynchronous stream with the specified priority.  @p stream returns an opaque handle
-  !   that can be used to reference the newly created stream in subsequent hipStream commands.  The
-  !   stream is allocated on the heap and will remain allocated even if the handle goes out-of-scope.
-  !   To release the memory used by the stream, applicaiton must call hipStreamDestroy. Flags controls
-  !   behavior of the stream.  See #hipStreamDefault, #hipStreamNonBlocking.
-  !  
-  !  
-  !   @see hipStreamCreate, hipStreamSynchronize, hipStreamWaitEvent, hipStreamDestroy
-  !  
+  !> 
+  !>   @brief Create an asynchronous stream with the specified priority.
+  !>  
+  !>   @param[in, out] stream Pointer to new stream
+  !>   @param[in ] flags to control stream creation.
+  !>   @param[in ] priority of the stream. Lower numbers represent higher priorities.
+  !>   @return #hipSuccess, #hipErrorInvalidValue
+  !>  
+  !>   Create a new asynchronous stream with the specified priority.  @p stream returns an opaque handle
+  !>   that can be used to reference the newly created stream in subsequent hipStream commands.  The
+  !>   stream is allocated on the heap and will remain allocated even if the handle goes out-of-scope.
+  !>   To release the memory used by the stream, applicaiton must call hipStreamDestroy. Flags controls
+  !>   behavior of the stream.  See #hipStreamDefault, #hipStreamNonBlocking.
+  !>  
+  !>  
+  !>   @see hipStreamCreate, hipStreamSynchronize, hipStreamWaitEvent, hipStreamDestroy
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipStreamCreateWithPriority(stream,flags,priority) bind(c, name="cudaStreamCreateWithPriority")
 #else
@@ -765,19 +765,19 @@ module hipfort
       integer(c_int),value :: priority
     end function
 
-  ! 
-  !   @brief Returns numerical values that correspond to the least and greatest stream priority.
-  !  
-  !   @param[in, out] leastPriority pointer in which value corresponding to least priority is returned.
-  !   @param[in, out] greatestPriority pointer in which value corresponding to greatest priority is returned.
-  !  
-  !   Returns in leastPriority and greatestPriority the numerical values that correspond to the least
-  !   and greatest stream priority respectively. Stream priorities follow a convention where lower numbers
-  !   imply greater priorities. The range of meaningful stream priorities is given by
-  !   [greatestPriority, leastPriority]. If the user attempts to create a stream with a priority value
-  !   that is outside the the meaningful range as specified by this API, the priority is automatically
-  !   clamped to within the valid range.
-  !  
+  !> 
+  !>   @brief Returns numerical values that correspond to the least and greatest stream priority.
+  !>  
+  !>   @param[in, out] leastPriority pointer in which value corresponding to least priority is returned.
+  !>   @param[in, out] greatestPriority pointer in which value corresponding to greatest priority is returned.
+  !>  
+  !>   Returns in leastPriority and greatestPriority the numerical values that correspond to the least
+  !>   and greatest stream priority respectively. Stream priorities follow a convention where lower numbers
+  !>   imply greater priorities. The range of meaningful stream priorities is given by
+  !>   [greatestPriority, leastPriority]. If the user attempts to create a stream with a priority value
+  !>   that is outside the the meaningful range as specified by this API, the priority is automatically
+  !>   clamped to within the valid range.
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipDeviceGetStreamPriorityRange(leastPriority,greatestPriority) bind(c, name="cudaDeviceGetStreamPriorityRange")
 #else
@@ -799,24 +799,24 @@ module hipfort
       type(c_ptr),value :: greatestPriority
     end function
 
-  ! 
-  !   @brief Destroys the specified stream.
-  !  
-  !   @param[in, out] stream Valid pointer to hipStream_t.  This function writes the memory with the
-  !   newly created stream.
-  !   @return #hipSuccess #hipErrorInvalidHandle
-  !  
-  !   Destroys the specified stream.
-  !  
-  !   If commands are still executing on the specified stream, some may complete execution before the
-  !   queue is deleted.
-  !  
-  !   The queue may be destroyed while some commands are still inflight, or may wait for all commands
-  !   queued to the stream before destroying it.
-  !  
-  !   @see hipStreamCreate, hipStreamCreateWithFlags, hipStreamCreateWithPriority, hipStreamQuery, hipStreamWaitEvent,
-  !   hipStreamSynchronize
-  !  
+  !> 
+  !>   @brief Destroys the specified stream.
+  !>  
+  !>   @param[in, out] stream Valid pointer to hipStream_t.  This function writes the memory with the
+  !>   newly created stream.
+  !>   @return #hipSuccess #hipErrorInvalidHandle
+  !>  
+  !>   Destroys the specified stream.
+  !>  
+  !>   If commands are still executing on the specified stream, some may complete execution before the
+  !>   queue is deleted.
+  !>  
+  !>   The queue may be destroyed while some commands are still inflight, or may wait for all commands
+  !>   queued to the stream before destroying it.
+  !>  
+  !>   @see hipStreamCreate, hipStreamCreateWithFlags, hipStreamCreateWithPriority, hipStreamQuery, hipStreamWaitEvent,
+  !>   hipStreamSynchronize
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipStreamDestroy(stream) bind(c, name="cudaStreamDestroy")
 #else
@@ -837,21 +837,21 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-  ! 
-  !   @brief Return #hipSuccess if all of the operations in the specified @p stream have completed, or
-  !   #hipErrorNotReady if not.
-  !  
-  !   @param[in] stream stream to query
-  !  
-  !   @return #hipSuccess, #hipErrorNotReady, #hipErrorInvalidHandle
-  !  
-  !   This is thread-safe and returns a snapshot of the current state of the queue.  However, if other
-  !   host threads are sending work to the stream, the status may change immediately after the function
-  !   is called.  It is typically used for debug.
-  !  
-  !   @see hipStreamCreate, hipStreamCreateWithFlags, hipStreamCreateWithPriority, hipStreamWaitEvent, hipStreamSynchronize,
-  !   hipStreamDestroy
-  !  
+  !> 
+  !>   @brief Return #hipSuccess if all of the operations in the specified @p stream have completed, or
+  !>   #hipErrorNotReady if not.
+  !>  
+  !>   @param[in] stream stream to query
+  !>  
+  !>   @return #hipSuccess, #hipErrorNotReady, #hipErrorInvalidHandle
+  !>  
+  !>   This is thread-safe and returns a snapshot of the current state of the queue.  However, if other
+  !>   host threads are sending work to the stream, the status may change immediately after the function
+  !>   is called.  It is typically used for debug.
+  !>  
+  !>   @see hipStreamCreate, hipStreamCreateWithFlags, hipStreamCreateWithPriority, hipStreamWaitEvent, hipStreamSynchronize,
+  !>   hipStreamDestroy
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipStreamQuery(stream) bind(c, name="cudaStreamQuery")
 #else
@@ -872,25 +872,25 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-  ! 
-  !   @brief Wait for all commands in stream to complete.
-  !  
-  !   @param[in] stream stream identifier.
-  !  
-  !   @return #hipSuccess, #hipErrorInvalidHandle
-  !  
-  !   This command is host-synchronous : the host will block until the specified stream is empty.
-  !  
-  !   This command follows standard null-stream semantics.  Specifically, specifying the null stream
-  !   will cause the command to wait for other streams on the same device to complete all pending
-  !   operations.
-  !  
-  !   This command honors the hipDeviceLaunchBlocking flag, which controls whether the wait is active
-  !   or blocking.
-  !  
-  !   @see hipStreamCreate, hipStreamCreateWithFlags, hipStreamCreateWithPriority, hipStreamWaitEvent, hipStreamDestroy
-  !  
-  !  
+  !> 
+  !>   @brief Wait for all commands in stream to complete.
+  !>  
+  !>   @param[in] stream stream identifier.
+  !>  
+  !>   @return #hipSuccess, #hipErrorInvalidHandle
+  !>  
+  !>   This command is host-synchronous : the host will block until the specified stream is empty.
+  !>  
+  !>   This command follows standard null-stream semantics.  Specifically, specifying the null stream
+  !>   will cause the command to wait for other streams on the same device to complete all pending
+  !>   operations.
+  !>  
+  !>   This command honors the hipDeviceLaunchBlocking flag, which controls whether the wait is active
+  !>   or blocking.
+  !>  
+  !>   @see hipStreamCreate, hipStreamCreateWithFlags, hipStreamCreateWithPriority, hipStreamWaitEvent, hipStreamDestroy
+  !>  
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipStreamSynchronize(stream) bind(c, name="cudaStreamSynchronize")
 #else
@@ -911,25 +911,25 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-  ! 
-  !   @brief Make the specified compute stream wait for an event
-  !  
-  !   @param[in] stream stream to make wait.
-  !   @param[in] event event to wait on
-  !   @param[in] flags control operation [must be 0]
-  !  
-  !   @return #hipSuccess, #hipErrorInvalidHandle
-  !  
-  !   This function inserts a wait operation into the specified stream.
-  !   All future work submitted to @p stream will wait until @p event reports completion before
-  !   beginning execution.
-  !  
-  !   This function only waits for commands in the current stream to complete.  Notably,, this function
-  !   does not impliciy wait for commands in the default stream to complete, even if the specified
-  !   stream is created with hipStreamNonBlocking = 0.
-  !  
-  !   @see hipStreamCreate, hipStreamCreateWithFlags, hipStreamCreateWithPriority, hipStreamSynchronize, hipStreamDestroy
-  !  
+  !> 
+  !>   @brief Make the specified compute stream wait for an event
+  !>  
+  !>   @param[in] stream stream to make wait.
+  !>   @param[in] event event to wait on
+  !>   @param[in] flags control operation [must be 0]
+  !>  
+  !>   @return #hipSuccess, #hipErrorInvalidHandle
+  !>  
+  !>   This function inserts a wait operation into the specified stream.
+  !>   All future work submitted to @p stream will wait until @p event reports completion before
+  !>   beginning execution.
+  !>  
+  !>   This function only waits for commands in the current stream to complete.  Notably,, this function
+  !>   does not impliciy wait for commands in the default stream to complete, even if the specified
+  !>   stream is created with hipStreamNonBlocking = 0.
+  !>  
+  !>   @see hipStreamCreate, hipStreamCreateWithFlags, hipStreamCreateWithPriority, hipStreamSynchronize, hipStreamDestroy
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipStreamWaitEvent(stream,event,flags) bind(c, name="cudaStreamWaitEvent")
 #else
@@ -952,19 +952,19 @@ module hipfort
       integer(kind=4),value :: flags
     end function
 
-  ! 
-  !   @brief Return flags associated with this stream.
-  !  
-  !   @param[in] stream stream to be queried
-  !   @param[in,out] flags Pointer to an unsigned integer in which the stream's flags are returned
-  !   @return #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidHandle
-  !  
-  !   @returns #hipSuccess #hipErrorInvalidValue #hipErrorInvalidHandle
-  !  
-  !   Return flags associated with this stream in @p flags.
-  !  
-  !   @see hipStreamCreateWithFlags
-  !  
+  !> 
+  !>   @brief Return flags associated with this stream.
+  !>  
+  !>   @param[in] stream stream to be queried
+  !>   @param[in,out] flags Pointer to an unsigned integer in which the stream's flags are returned
+  !>   @return #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidHandle
+  !>  
+  !>   @returns #hipSuccess #hipErrorInvalidValue #hipErrorInvalidHandle
+  !>  
+  !>   Return flags associated with this stream in @p flags.
+  !>  
+  !>   @see hipStreamCreateWithFlags
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipStreamGetFlags(stream,flags) bind(c, name="cudaStreamGetFlags")
 #else
@@ -986,19 +986,19 @@ module hipfort
       type(c_ptr),value :: flags
     end function
 
-  ! 
-  !   @brief Query the priority of a stream.
-  !  
-  !   @param[in] stream stream to be queried
-  !   @param[in,out] priority Pointer to an unsigned integer in which the stream's priority is returned
-  !   @return #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidHandle
-  !  
-  !   @returns #hipSuccess #hipErrorInvalidValue #hipErrorInvalidHandle
-  !  
-  !   Query the priority of a stream. The priority is returned in in priority.
-  !  
-  !   @see hipStreamCreateWithFlags
-  !  
+  !> 
+  !>   @brief Query the priority of a stream.
+  !>  
+  !>   @param[in] stream stream to be queried
+  !>   @param[in,out] priority Pointer to an unsigned integer in which the stream's priority is returned
+  !>   @return #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidHandle
+  !>  
+  !>   @returns #hipSuccess #hipErrorInvalidValue #hipErrorInvalidHandle
+  !>  
+  !>   Query the priority of a stream. The priority is returned in in priority.
+  !>  
+  !>   @see hipStreamCreateWithFlags
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipStreamGetPriority(stream,priority) bind(c, name="cudaStreamGetPriority")
 #else
@@ -1020,25 +1020,25 @@ module hipfort
       type(c_ptr),value :: priority
     end function
 
-  ! 
-  !   @brief Create an asynchronous stream with the specified CU mask.
-  !  
-  !   @param[in, out] stream Pointer to new stream
-  !   @param[in ] cuMaskSize Size of CU mask bit array passed in.
-  !   @param[in ] cuMask Bit-vector representing the CU mask. Each active bit represents using one CU.
-  !   The first 32 bits represent the first 32 CUs, and so on. If its size is greater than physical
-  !   CU number (i.e., multiProcessorCount member of hipDeviceProp_t), the extra elements are ignored.
-  !   It is user's responsibility to make sure the input is meaningful.
-  !   @return #hipSuccess, #hipErrorInvalidHandle, #hipErrorInvalidValue
-  !  
-  !   Create a new asynchronous stream with the specified CU mask.  @p stream returns an opaque handle
-  !   that can be used to reference the newly created stream in subsequent hipStream commands.  The
-  !   stream is allocated on the heap and will remain allocated even if the handle goes out-of-scope.
-  !   To release the memory used by the stream, application must call hipStreamDestroy.
-  !  
-  !  
-  !   @see hipStreamCreate, hipStreamSynchronize, hipStreamWaitEvent, hipStreamDestroy
-  !  
+  !> 
+  !>   @brief Create an asynchronous stream with the specified CU mask.
+  !>  
+  !>   @param[in, out] stream Pointer to new stream
+  !>   @param[in ] cuMaskSize Size of CU mask bit array passed in.
+  !>   @param[in ] cuMask Bit-vector representing the CU mask. Each active bit represents using one CU.
+  !>   The first 32 bits represent the first 32 CUs, and so on. If its size is greater than physical
+  !>   CU number (i.e., multiProcessorCount member of hipDeviceProp_t), the extra elements are ignored.
+  !>   It is user's responsibility to make sure the input is meaningful.
+  !>   @return #hipSuccess, #hipErrorInvalidHandle, #hipErrorInvalidValue
+  !>  
+  !>   Create a new asynchronous stream with the specified CU mask.  @p stream returns an opaque handle
+  !>   that can be used to reference the newly created stream in subsequent hipStream commands.  The
+  !>   stream is allocated on the heap and will remain allocated even if the handle goes out-of-scope.
+  !>   To release the memory used by the stream, application must call hipStreamDestroy.
+  !>  
+  !>  
+  !>   @see hipStreamCreate, hipStreamSynchronize, hipStreamWaitEvent, hipStreamDestroy
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipExtStreamCreateWithCUMask(stream,cuMaskSize,cuMask) bind(c, name="cudaExtStreamCreateWithCUMask")
 #else
@@ -1061,21 +1061,21 @@ module hipfort
       type(c_ptr),value :: cuMask
     end function
 
-  ! 
-  !   @brief Adds a callback to be called on the host after all currently enqueued
-  !   items in the stream have completed.  For each
-  !   cudaStreamAddCallback call, a callback will be executed exactly once.
-  !   The callback will block later work in the stream until it is finished.
-  !   @param[in] stream   - Stream to add callback to
-  !   @param[in] callback - The function to call once preceding stream operations are complete
-  !   @param[in] userData - User specified data to be passed to the callback function
-  !   @param[in] flags    - Reserved for future use, must be 0
-  !   @return #hipSuccess, #hipErrorInvalidHandle, #hipErrorNotSupported
-  !  
-  !   @see hipStreamCreate, hipStreamCreateWithFlags, hipStreamQuery, hipStreamSynchronize,
-  !   hipStreamWaitEvent, hipStreamDestroy, hipStreamCreateWithPriority
-  !  
-  !  
+  !> 
+  !>   @brief Adds a callback to be called on the host after all currently enqueued
+  !>   items in the stream have completed.  For each
+  !>   cudaStreamAddCallback call, a callback will be executed exactly once.
+  !>   The callback will block later work in the stream until it is finished.
+  !>   @param[in] stream   - Stream to add callback to
+  !>   @param[in] callback - The function to call once preceding stream operations are complete
+  !>   @param[in] userData - User specified data to be passed to the callback function
+  !>   @param[in] flags    - Reserved for future use, must be 0
+  !>   @return #hipSuccess, #hipErrorInvalidHandle, #hipErrorNotSupported
+  !>  
+  !>   @see hipStreamCreate, hipStreamCreateWithFlags, hipStreamQuery, hipStreamSynchronize,
+  !>   hipStreamWaitEvent, hipStreamDestroy, hipStreamCreateWithPriority
+  !>  
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipStreamAddCallback(stream,callback,userData,flags) bind(c, name="cudaStreamAddCallback")
 #else
@@ -1099,30 +1099,30 @@ module hipfort
       integer(kind=4),value :: flags
     end function
 
-  ! 
-  !   @brief Create an event with the specified flags
-  !  
-  !   @param[in,out] event Returns the newly created event.
-  !   @param[in] flags     Flags to control event behavior.  Valid values are #hipEventDefault,
-  !  #hipEventBlockingSync, #hipEventDisableTiming, #hipEventInterprocess
-  ! 
-  !   #hipEventDefault : Default flag.  The event will use active synchronization and will support
-  !  timing.  Blocking synchronization provides lowest possible latency at the expense of dedicating a
-  !  CPU to poll on the event.
-  !   #hipEventBlockingSync : The event will use blocking synchronization : if hipEventSynchronize is
-  !  called on this event, the thread will block until the event completes.  This can increase latency
-  !  for the synchroniation but can result in lower power and more resources for other CPU threads.
-  !   #hipEventDisableTiming : Disable recording of timing information.  On ROCM platform, timing
-  !  information is always recorded and this flag has no performance benefit.
-  ! 
-  !   @warning On HCC platform, hipEventInterprocess support is under development.  Use of this flag
-  !  will return an error.
-  !  
-  !   @returns #hipSuccess, #hipErrorNotInitialized, #hipErrorInvalidValue,
-  !  #hipErrorLaunchFailure, #hipErrorOutOfMemory
-  !  
-  !   @see hipEventCreate, hipEventSynchronize, hipEventDestroy, hipEventElapsedTime
-  !  
+  !> 
+  !>   @brief Create an event with the specified flags
+  !>  
+  !>   @param[in,out] event Returns the newly created event.
+  !>   @param[in] flags     Flags to control event behavior.  Valid values are #hipEventDefault,
+  !>  #hipEventBlockingSync, #hipEventDisableTiming, #hipEventInterprocess
+  !> 
+  !>   #hipEventDefault : Default flag.  The event will use active synchronization and will support
+  !>  timing.  Blocking synchronization provides lowest possible latency at the expense of dedicating a
+  !>  CPU to poll on the event.
+  !>   #hipEventBlockingSync : The event will use blocking synchronization : if hipEventSynchronize is
+  !>  called on this event, the thread will block until the event completes.  This can increase latency
+  !>  for the synchroniation but can result in lower power and more resources for other CPU threads.
+  !>   #hipEventDisableTiming : Disable recording of timing information.  On ROCM platform, timing
+  !>  information is always recorded and this flag has no performance benefit.
+  !> 
+  !>   @warning On HCC platform, hipEventInterprocess support is under development.  Use of this flag
+  !>  will return an error.
+  !>  
+  !>   @returns #hipSuccess, #hipErrorNotInitialized, #hipErrorInvalidValue,
+  !>  #hipErrorLaunchFailure, #hipErrorOutOfMemory
+  !>  
+  !>   @see hipEventCreate, hipEventSynchronize, hipEventDestroy, hipEventElapsedTime
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipEventCreateWithFlags(event,flags) bind(c, name="cudaEventCreateWithFlags")
 #else
@@ -1144,17 +1144,17 @@ module hipfort
       integer(kind=4),value :: flags
     end function
 
-  ! 
-  !    Create an event
-  !  
-  !   @param[in,out] event Returns the newly created event.
-  !  
-  !   @returns #hipSuccess, #hipErrorNotInitialized, #hipErrorInvalidValue,
-  !   #hipErrorLaunchFailure, #hipErrorOutOfMemory
-  !  
-  !   @see hipEventCreateWithFlags, hipEventRecord, hipEventQuery, hipEventSynchronize,
-  !   hipEventDestroy, hipEventElapsedTime
-  !  
+  !> 
+  !>    Create an event
+  !>  
+  !>   @param[in,out] event Returns the newly created event.
+  !>  
+  !>   @returns #hipSuccess, #hipErrorNotInitialized, #hipErrorInvalidValue,
+  !>   #hipErrorLaunchFailure, #hipErrorOutOfMemory
+  !>  
+  !>   @see hipEventCreateWithFlags, hipEventRecord, hipEventQuery, hipEventSynchronize,
+  !>   hipEventDestroy, hipEventElapsedTime
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipEventCreate(event) bind(c, name="cudaEventCreate")
 #else
@@ -1175,33 +1175,33 @@ module hipfort
       type(c_ptr) :: event
     end function
 
-  ! 
-  !   @brief Record an event in the specified stream.
-  !  
-  !   @param[in] event event to record.
-  !   @param[in] stream stream in which to record event.
-  !   @returns #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized,
-  !   #hipErrorInvalidHandle, #hipErrorLaunchFailure
-  !  
-  !   hipEventQuery() or hipEventSynchronize() must be used to determine when the event
-  !   transitions from "recording" (after hipEventRecord() is called) to "recorded"
-  !   (when timestamps are set, if requested).
-  !  
-  !   Events which are recorded in a non-NULL stream will transition to
-  !   from recording to "recorded" state when they reach the head of
-  !   the specified stream, after all previous
-  !   commands in that stream have completed executing.
-  !  
-  !   If hipEventRecord() has been previously called on this event, then this call will overwrite any
-  !   existing state in event.
-  !  
-  !   If this function is called on an event that is currently being recorded, results are undefined
-  !   - either outstanding recording may save state into the event, and the order is not guaranteed.
-  !  
-  !   @see hipEventCreate, hipEventCreateWithFlags, hipEventQuery, hipEventSynchronize,
-  !   hipEventDestroy, hipEventElapsedTime
-  !  
-  !  
+  !> 
+  !>   @brief Record an event in the specified stream.
+  !>  
+  !>   @param[in] event event to record.
+  !>   @param[in] stream stream in which to record event.
+  !>   @returns #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized,
+  !>   #hipErrorInvalidHandle, #hipErrorLaunchFailure
+  !>  
+  !>   hipEventQuery() or hipEventSynchronize() must be used to determine when the event
+  !>   transitions from "recording" (after hipEventRecord() is called) to "recorded"
+  !>   (when timestamps are set, if requested).
+  !>  
+  !>   Events which are recorded in a non-NULL stream will transition to
+  !>   from recording to "recorded" state when they reach the head of
+  !>   the specified stream, after all previous
+  !>   commands in that stream have completed executing.
+  !>  
+  !>   If hipEventRecord() has been previously called on this event, then this call will overwrite any
+  !>   existing state in event.
+  !>  
+  !>   If this function is called on an event that is currently being recorded, results are undefined
+  !>   - either outstanding recording may save state into the event, and the order is not guaranteed.
+  !>  
+  !>   @see hipEventCreate, hipEventCreateWithFlags, hipEventQuery, hipEventSynchronize,
+  !>   hipEventDestroy, hipEventElapsedTime
+  !>  
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipEventRecord(event,stream) bind(c, name="cudaEventRecord")
 #else
@@ -1223,22 +1223,22 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-  ! 
-  !    @brief Destroy the specified event.
-  !  
-  !    @param[in] event Event to destroy.
-  !    @returns #hipSuccess, #hipErrorNotInitialized, #hipErrorInvalidValue,
-  !   #hipErrorLaunchFailure
-  !  
-  !    Releases memory associated with the event.  If the event is recording but has not completed
-  !   recording when hipEventDestroy() is called, the function will return immediately and the
-  !   completion_future resources will be released later, when the hipDevice is synchronized.
-  !  
-  !   @see hipEventCreate, hipEventCreateWithFlags, hipEventQuery, hipEventSynchronize, hipEventRecord,
-  !   hipEventElapsedTime
-  !  
-  !   @returns #hipSuccess
-  !  
+  !> 
+  !>    @brief Destroy the specified event.
+  !>  
+  !>    @param[in] event Event to destroy.
+  !>    @returns #hipSuccess, #hipErrorNotInitialized, #hipErrorInvalidValue,
+  !>   #hipErrorLaunchFailure
+  !>  
+  !>    Releases memory associated with the event.  If the event is recording but has not completed
+  !>   recording when hipEventDestroy() is called, the function will return immediately and the
+  !>   completion_future resources will be released later, when the hipDevice is synchronized.
+  !>  
+  !>   @see hipEventCreate, hipEventCreateWithFlags, hipEventQuery, hipEventSynchronize, hipEventRecord,
+  !>   hipEventElapsedTime
+  !>  
+  !>   @returns #hipSuccess
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipEventDestroy(event) bind(c, name="cudaEventDestroy")
 #else
@@ -1259,23 +1259,23 @@ module hipfort
       type(c_ptr),value :: event
     end function
 
-  ! 
-  !    @brief Wait for an event to complete.
-  !  
-  !    This function will block until the event is ready, waiting for all previous work in the stream
-  !   specified when event was recorded with hipEventRecord().
-  !  
-  !    If hipEventRecord() has not been called on @p event, this function returns immediately.
-  !  
-  !    TODO-hcc - This function needs to support hipEventBlockingSync parameter.
-  !  
-  !    @param[in] event Event on which to wait.
-  !    @returns #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized,
-  !   #hipErrorInvalidHandle, #hipErrorLaunchFailure
-  !  
-  !    @see hipEventCreate, hipEventCreateWithFlags, hipEventQuery, hipEventDestroy, hipEventRecord,
-  !   hipEventElapsedTime
-  !  
+  !> 
+  !>    @brief Wait for an event to complete.
+  !>  
+  !>    This function will block until the event is ready, waiting for all previous work in the stream
+  !>   specified when event was recorded with hipEventRecord().
+  !>  
+  !>    If hipEventRecord() has not been called on @p event, this function returns immediately.
+  !>  
+  !>    TODO-hcc - This function needs to support hipEventBlockingSync parameter.
+  !>  
+  !>    @param[in] event Event on which to wait.
+  !>    @returns #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized,
+  !>   #hipErrorInvalidHandle, #hipErrorLaunchFailure
+  !>  
+  !>    @see hipEventCreate, hipEventCreateWithFlags, hipEventQuery, hipEventDestroy, hipEventRecord,
+  !>   hipEventElapsedTime
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipEventSynchronize(event) bind(c, name="cudaEventSynchronize")
 #else
@@ -1296,34 +1296,34 @@ module hipfort
       type(c_ptr),value :: event
     end function
 
-  ! 
-  !   @brief Return the elapsed time between two events.
-  !  
-  !   @param[out] ms : Return time between start and stop in ms.
-  !   @param[in]   start : Start event.
-  !   @param[in]   stop  : Stop event.
-  !   @returns #hipSuccess, #hipErrorInvalidValue, #hipErrorNotReady, #hipErrorInvalidHandle,
-  !   #hipErrorNotInitialized, #hipErrorLaunchFailure
-  !  
-  !   Computes the elapsed time between two events. Time is computed in ms, with
-  !   a resolution of approximately 1 us.
-  !  
-  !   Events which are recorded in a NULL stream will block until all commands
-  !   on all other streams complete execution, and then record the timestamp.
-  !  
-  !   Events which are recorded in a non-NULL stream will record their timestamp
-  !   when they reach the head of the specified stream, after all previous
-  !   commands in that stream have completed executing.  Thus the time that
-  !   the event recorded may be significantly after the host calls hipEventRecord().
-  !  
-  !   If hipEventRecord() has not been called on either event, then #hipErrorInvalidHandle is
-  !   returned. If hipEventRecord() has been called on both events, but the timestamp has not yet been
-  !   recorded on one or both events (that is, hipEventQuery() would return #hipErrorNotReady on at
-  !   least one of the events), then #hipErrorNotReady is returned.
-  !  
-  !   @see hipEventCreate, hipEventCreateWithFlags, hipEventQuery, hipEventDestroy, hipEventRecord,
-  !   hipEventSynchronize
-  !  
+  !> 
+  !>   @brief Return the elapsed time between two events.
+  !>  
+  !>   @param[out] ms : Return time between start and stop in ms.
+  !>   @param[in]   start : Start event.
+  !>   @param[in]   stop  : Stop event.
+  !>   @returns #hipSuccess, #hipErrorInvalidValue, #hipErrorNotReady, #hipErrorInvalidHandle,
+  !>   #hipErrorNotInitialized, #hipErrorLaunchFailure
+  !>  
+  !>   Computes the elapsed time between two events. Time is computed in ms, with
+  !>   a resolution of approximately 1 us.
+  !>  
+  !>   Events which are recorded in a NULL stream will block until all commands
+  !>   on all other streams complete execution, and then record the timestamp.
+  !>  
+  !>   Events which are recorded in a non-NULL stream will record their timestamp
+  !>   when they reach the head of the specified stream, after all previous
+  !>   commands in that stream have completed executing.  Thus the time that
+  !>   the event recorded may be significantly after the host calls hipEventRecord().
+  !>  
+  !>   If hipEventRecord() has not been called on either event, then #hipErrorInvalidHandle is
+  !>   returned. If hipEventRecord() has been called on both events, but the timestamp has not yet been
+  !>   recorded on one or both events (that is, hipEventQuery() would return #hipErrorNotReady on at
+  !>   least one of the events), then #hipErrorNotReady is returned.
+  !>  
+  !>   @see hipEventCreate, hipEventCreateWithFlags, hipEventQuery, hipEventDestroy, hipEventRecord,
+  !>   hipEventSynchronize
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipEventElapsedTime(ms,start,myStop) bind(c, name="cudaEventElapsedTime")
 #else
@@ -1346,21 +1346,21 @@ module hipfort
       type(c_ptr),value :: myStop
     end function
 
-  ! 
-  !   @brief Query event status
-  !  
-  !   @param[in] event Event to query.
-  !   @returns #hipSuccess, #hipErrorNotReady, #hipErrorInvalidHandle, #hipErrorInvalidValue,
-  !   #hipErrorNotInitialized, #hipErrorLaunchFailure
-  !  
-  !   Query the status of the specified event.  This function will return #hipErrorNotReady if all
-  !   commands in the appropriate stream (specified to hipEventRecord()) have completed.  If that work
-  !   has not completed, or if hipEventRecord() was not called on the event, then #hipSuccess is
-  !   returned.
-  !  
-  !   @see hipEventCreate, hipEventCreateWithFlags, hipEventRecord, hipEventDestroy,
-  !   hipEventSynchronize, hipEventElapsedTime
-  !  
+  !> 
+  !>   @brief Query event status
+  !>  
+  !>   @param[in] event Event to query.
+  !>   @returns #hipSuccess, #hipErrorNotReady, #hipErrorInvalidHandle, #hipErrorInvalidValue,
+  !>   #hipErrorNotInitialized, #hipErrorLaunchFailure
+  !>  
+  !>   Query the status of the specified event.  This function will return #hipErrorNotReady if all
+  !>   commands in the appropriate stream (specified to hipEventRecord()) have completed.  If that work
+  !>   has not completed, or if hipEventRecord() was not called on the event, then #hipSuccess is
+  !>   returned.
+  !>  
+  !>   @see hipEventCreate, hipEventCreateWithFlags, hipEventRecord, hipEventDestroy,
+  !>   hipEventSynchronize, hipEventElapsedTime
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipEventQuery(event) bind(c, name="cudaEventQuery")
 #else
@@ -1381,16 +1381,16 @@ module hipfort
       type(c_ptr),value :: event
     end function
 
-  ! 
-  !    @brief Return attributes for the specified pointer
-  !  
-  !    @param[out] attributes for the specified pointer
-  !    @param[in]  pointer to get attributes for
-  !  
-  !    @return #hipSuccess, #hipErrorInvalidDevice, #hipErrorInvalidValue
-  !  
-  !    @see hipGetDeviceCount, hipGetDevice, hipSetDevice, hipChooseDevice
-  !  
+  !> 
+  !>    @brief Return attributes for the specified pointer
+  !>  
+  !>    @param[out] attributes for the specified pointer
+  !>    @param[in]  pointer to get attributes for
+  !>  
+  !>    @return #hipSuccess, #hipErrorInvalidDevice, #hipErrorInvalidValue
+  !>  
+  !>    @see hipGetDeviceCount, hipGetDevice, hipSetDevice, hipChooseDevice
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipPointerGetAttributes(attributes,ptr) bind(c, name="cudaPointerGetAttributes")
 #else
@@ -1412,19 +1412,19 @@ module hipfort
       type(c_ptr),value :: ptr
     end function
 
-  ! 
-  !    @brief Allocate memory on the default accelerator
-  !  
-  !    @param[out] ptr Pointer to the allocated memory
-  !    @param[in]  size Requested memory size
-  !  
-  !    If size is 0, no memory is allocated, ptr returns nullptr, and hipSuccess is returned.
-  !  
-  !    @return #hipSuccess, #hipErrorOutOfMemory, #hipErrorInvalidValue (bad context, null ptr)
-  !  
-  !    @see hipMallocPitch, hipFree, hipMallocArray, hipFreeArray, hipMalloc3D, hipMalloc3DArray,
-  !   hipHostFree, hipHostMalloc
-  !  
+  !> 
+  !>    @brief Allocate memory on the default accelerator
+  !>  
+  !>    @param[out] ptr Pointer to the allocated memory
+  !>    @param[in]  size Requested memory size
+  !>  
+  !>    If size is 0, no memory is allocated, ptr returns nullptr, and hipSuccess is returned.
+  !>  
+  !>    @return #hipSuccess, #hipErrorOutOfMemory, #hipErrorInvalidValue (bad context, null ptr)
+  !>  
+  !>    @see hipMallocPitch, hipFree, hipMallocArray, hipFreeArray, hipMalloc3D, hipMalloc3DArray,
+  !>   hipHostFree, hipHostMalloc
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipMalloc(ptr,mySize) bind(c, name="cudaMalloc")
 #else
@@ -1446,20 +1446,20 @@ module hipfort
       integer(c_size_t),value :: mySize
     end function
 
-  ! 
-  !    @brief Allocate memory on the default accelerator
-  !  
-  !    @param[out] ptr Pointer to the allocated memory
-  !    @param[in]  size Requested memory size
-  !    @param[in]  flags Type of memory allocation
-  !  
-  !    If size is 0, no memory is allocated, ptr returns nullptr, and hipSuccess is returned.
-  !  
-  !    @return #hipSuccess, #hipErrorOutOfMemory, #hipErrorInvalidValue (bad context, null ptr)
-  !  
-  !    @see hipMallocPitch, hipFree, hipMallocArray, hipFreeArray, hipMalloc3D, hipMalloc3DArray,
-  !   hipHostFree, hipHostMalloc
-  !  
+  !> 
+  !>    @brief Allocate memory on the default accelerator
+  !>  
+  !>    @param[out] ptr Pointer to the allocated memory
+  !>    @param[in]  size Requested memory size
+  !>    @param[in]  flags Type of memory allocation
+  !>  
+  !>    If size is 0, no memory is allocated, ptr returns nullptr, and hipSuccess is returned.
+  !>  
+  !>    @return #hipSuccess, #hipErrorOutOfMemory, #hipErrorInvalidValue (bad context, null ptr)
+  !>  
+  !>    @see hipMallocPitch, hipFree, hipMallocArray, hipFreeArray, hipMalloc3D, hipMalloc3DArray,
+  !>   hipHostFree, hipHostMalloc
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipExtMallocWithFlags(ptr,sizeBytes,flags) bind(c, name="cudaExtMallocWithFlags")
 #else
@@ -1526,19 +1526,19 @@ module hipfort
       integer(c_size_t),value :: mySize
     end function
 
-  ! 
-  !    @brief Allocate device accessible page locked host memory
-  !  
-  !    @param[out] ptr Pointer to the allocated host pinned memory
-  !    @param[in]  size Requested memory size
-  !    @param[in]  flags Type of host memory allocation
-  !  
-  !    If size is 0, no memory is allocated, ptr returns nullptr, and hipSuccess is returned.
-  !  
-  !    @return #hipSuccess, #hipErrorOutOfMemory
-  !  
-  !    @see hipSetDeviceFlags, hipHostFree
-  !  
+  !> 
+  !>    @brief Allocate device accessible page locked host memory
+  !>  
+  !>    @param[out] ptr Pointer to the allocated host pinned memory
+  !>    @param[in]  size Requested memory size
+  !>    @param[in]  flags Type of host memory allocation
+  !>  
+  !>    If size is 0, no memory is allocated, ptr returns nullptr, and hipSuccess is returned.
+  !>  
+  !>    @return #hipSuccess, #hipErrorOutOfMemory
+  !>  
+  !>    @see hipSetDeviceFlags, hipHostFree
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipHostMalloc(ptr,mySize,flags) bind(c, name="cudaHostMalloc")
 #else
@@ -1584,17 +1584,17 @@ module hipfort
       integer(kind=4),value :: flags
     end function
 
-  ! 
-  !    @brief Get Device pointer from Host Pointer allocated through hipHostMalloc
-  !  
-  !    @param[out] dstPtr Device Pointer mapped to passed host pointer
-  !    @param[in]  hstPtr Host Pointer allocated through hipHostMalloc
-  !    @param[in]  flags Flags to be passed for extension
-  !  
-  !    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorOutOfMemory
-  !  
-  !    @see hipSetDeviceFlags, hipHostMalloc
-  !  
+  !> 
+  !>    @brief Get Device pointer from Host Pointer allocated through hipHostMalloc
+  !>  
+  !>    @param[out] dstPtr Device Pointer mapped to passed host pointer
+  !>    @param[in]  hstPtr Host Pointer allocated through hipHostMalloc
+  !>    @param[in]  flags Flags to be passed for extension
+  !>  
+  !>    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorOutOfMemory
+  !>  
+  !>    @see hipSetDeviceFlags, hipHostMalloc
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipHostGetDevicePointer(devPtr,hstPtr,flags) bind(c, name="cudaHostGetDevicePointer")
 #else
@@ -1617,15 +1617,15 @@ module hipfort
       integer(kind=4),value :: flags
     end function
 
-  ! 
-  !    @brief Return flags associated with host pointer
-  !  
-  !    @param[out] flagsPtr Memory location to store flags
-  !    @param[in]  hostPtr Host Pointer allocated through hipHostMalloc
-  !    @return #hipSuccess, #hipErrorInvalidValue
-  !  
-  !    @see hipHostMalloc
-  !  
+  !> 
+  !>    @brief Return flags associated with host pointer
+  !>  
+  !>    @param[out] flagsPtr Memory location to store flags
+  !>    @param[in]  hostPtr Host Pointer allocated through hipHostMalloc
+  !>    @return #hipSuccess, #hipErrorInvalidValue
+  !>  
+  !>    @see hipHostMalloc
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipHostGetFlags(flagsPtr,hostPtr) bind(c, name="cudaHostGetFlags")
 #else
@@ -1647,42 +1647,42 @@ module hipfort
       type(c_ptr),value :: hostPtr
     end function
 
-  ! 
-  !    @brief Register host memory so it can be accessed from the current device.
-  !  
-  !    @param[out] hostPtr Pointer to host memory to be registered.
-  !    @param[in] sizeBytes size of the host memory
-  !    @param[in] flags.  See below.
-  !  
-  !    Flags:
-  !    - #hipHostRegisterDefault   Memory is Mapped and Portable
-  !    - #hipHostRegisterPortable  Memory is considered registered by all contexts.  HIP only supports
-  !   one context so this is always assumed true.
-  !    - #hipHostRegisterMapped    Map the allocation into the address space for the current device.
-  !   The device pointer can be obtained with #hipHostGetDevicePointer.
-  !  
-  !  
-  !    After registering the memory, use #hipHostGetDevicePointer to obtain the mapped device pointer.
-  !    On many systems, the mapped device pointer will have a different value than the mapped host
-  !   pointer.  Applications must use the device pointer in device code, and the host pointer in device
-  !   code.
-  !  
-  !    On some systems, registered memory is pinned.  On some systems, registered memory may not be
-  !   actually be pinned but uses OS or hardware facilities to all GPU access to the host memory.
-  !  
-  !    Developers are strongly encouraged to register memory blocks which are aligned to the host
-  !   cache-line size. (typically 64-bytes but can be obtains from the CPUID instruction).
-  !  
-  !    If registering non-aligned pointers, the application must take care when register pointers from
-  !   the same cache line on different devices.  HIP's coarse-grained synchronization model does not
-  !   guarantee correct results if different devices write to different parts of the same cache block -
-  !   typically one of the writes will "win" and overwrite data from the other registered memory
-  !   region.
-  !  
-  !    @return #hipSuccess, #hipErrorOutOfMemory
-  !  
-  !    @see hipHostUnregister, hipHostGetFlags, hipHostGetDevicePointer
-  !  
+  !> 
+  !>    @brief Register host memory so it can be accessed from the current device.
+  !>  
+  !>    @param[out] hostPtr Pointer to host memory to be registered.
+  !>    @param[in] sizeBytes size of the host memory
+  !>    @param[in] flags.  See below.
+  !>  
+  !>    Flags:
+  !>    - #hipHostRegisterDefault   Memory is Mapped and Portable
+  !>    - #hipHostRegisterPortable  Memory is considered registered by all contexts.  HIP only supports
+  !>   one context so this is always assumed true.
+  !>    - #hipHostRegisterMapped    Map the allocation into the address space for the current device.
+  !>   The device pointer can be obtained with #hipHostGetDevicePointer.
+  !>  
+  !>  
+  !>    After registering the memory, use #hipHostGetDevicePointer to obtain the mapped device pointer.
+  !>    On many systems, the mapped device pointer will have a different value than the mapped host
+  !>   pointer.  Applications must use the device pointer in device code, and the host pointer in device
+  !>   code.
+  !>  
+  !>    On some systems, registered memory is pinned.  On some systems, registered memory may not be
+  !>   actually be pinned but uses OS or hardware facilities to all GPU access to the host memory.
+  !>  
+  !>    Developers are strongly encouraged to register memory blocks which are aligned to the host
+  !>   cache-line size. (typically 64-bytes but can be obtains from the CPUID instruction).
+  !>  
+  !>    If registering non-aligned pointers, the application must take care when register pointers from
+  !>   the same cache line on different devices.  HIP's coarse-grained synchronization model does not
+  !>   guarantee correct results if different devices write to different parts of the same cache block -
+  !>   typically one of the writes will "win" and overwrite data from the other registered memory
+  !>   region.
+  !>  
+  !>    @return #hipSuccess, #hipErrorOutOfMemory
+  !>  
+  !>    @see hipHostUnregister, hipHostGetFlags, hipHostGetDevicePointer
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipHostRegister(hostPtr,sizeBytes,flags) bind(c, name="cudaHostRegister")
 #else
@@ -1705,14 +1705,14 @@ module hipfort
       integer(kind=4),value :: flags
     end function
 
-  ! 
-  !    @brief Un-register host pointer
-  !  
-  !    @param[in] hostPtr Host pointer previously registered with #hipHostRegister
-  !    @return Error code
-  !  
-  !    @see hipHostRegister
-  !  
+  !> 
+  !>    @brief Un-register host pointer
+  !>  
+  !>    @param[in] hostPtr Host pointer previously registered with #hipHostRegister
+  !>    @return Error code
+  !>  
+  !>    @see hipHostRegister
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipHostUnregister(hostPtr) bind(c, name="cudaHostUnregister")
 #else
@@ -1733,24 +1733,24 @@ module hipfort
       type(c_ptr),value :: hostPtr
     end function
 
-  ! 
-  !    Allocates at least width (in bytes)  height bytes of linear memory
-  !    Padding may occur to ensure alighnment requirements are met for the given row
-  !    The change in width size due to padding will be returned in pitch.
-  !    Currently the alignment is set to 128 bytes
-  !  
-  !    @param[out] ptr Pointer to the allocated device memory
-  !    @param[out] pitch Pitch for allocation (in bytes)
-  !    @param[in]  width Requested pitched allocation width (in bytes)
-  !    @param[in]  height Requested pitched allocation height
-  !  
-  !    If size is 0, no memory is allocated, ptr returns nullptr, and hipSuccess is returned.
-  !  
-  !    @return Error code
-  !  
-  !    @see hipMalloc, hipFree, hipMallocArray, hipFreeArray, hipHostFree, hipMalloc3D,
-  !   hipMalloc3DArray, hipHostMalloc
-  !  
+  !> 
+  !>    Allocates at least width (in bytes)  height bytes of linear memory
+  !>    Padding may occur to ensure alighnment requirements are met for the given row
+  !>    The change in width size due to padding will be returned in pitch.
+  !>    Currently the alignment is set to 128 bytes
+  !>  
+  !>    @param[out] ptr Pointer to the allocated device memory
+  !>    @param[out] pitch Pitch for allocation (in bytes)
+  !>    @param[in]  width Requested pitched allocation width (in bytes)
+  !>    @param[in]  height Requested pitched allocation height
+  !>  
+  !>    If size is 0, no memory is allocated, ptr returns nullptr, and hipSuccess is returned.
+  !>  
+  !>    @return Error code
+  !>  
+  !>    @see hipMalloc, hipFree, hipMallocArray, hipFreeArray, hipHostFree, hipMalloc3D,
+  !>   hipMalloc3DArray, hipHostMalloc
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipMallocPitch(ptr,pitch,width,height) bind(c, name="cudaMallocPitch")
 #else
@@ -1774,27 +1774,27 @@ module hipfort
       integer(c_size_t),value :: height
     end function
 
-  ! 
-  !    Allocates at least width (in bytes)  height bytes of linear memory
-  !    Padding may occur to ensure alighnment requirements are met for the given row
-  !    The change in width size due to padding will be returned in pitch.
-  !    Currently the alignment is set to 128 bytes
-  !  
-  !    @param[out] dptr Pointer to the allocated device memory
-  !    @param[out] pitch Pitch for allocation (in bytes)
-  !    @param[in]  width Requested pitched allocation width (in bytes)
-  !    @param[in]  height Requested pitched allocation height
-  !  
-  !    If size is 0, no memory is allocated, ptr returns nullptr, and hipSuccess is returned.
-  !    The intended usage of pitch is as a separate parameter of the allocation, used to compute addresses within the 2D array. 
-  !    Given the row and column of an array element of type T, the address is computed as:
-  !    T pElement = (T)((char)BaseAddress + Row  Pitch) + Column;
-  !  
-  !    @return Error code
-  !  
-  !    @see hipMalloc, hipFree, hipMallocArray, hipFreeArray, hipHostFree, hipMalloc3D,
-  !   hipMalloc3DArray, hipHostMalloc
-  !  
+  !> 
+  !>    Allocates at least width (in bytes)  height bytes of linear memory
+  !>    Padding may occur to ensure alighnment requirements are met for the given row
+  !>    The change in width size due to padding will be returned in pitch.
+  !>    Currently the alignment is set to 128 bytes
+  !>  
+  !>    @param[out] dptr Pointer to the allocated device memory
+  !>    @param[out] pitch Pitch for allocation (in bytes)
+  !>    @param[in]  width Requested pitched allocation width (in bytes)
+  !>    @param[in]  height Requested pitched allocation height
+  !>  
+  !>    If size is 0, no memory is allocated, ptr returns nullptr, and hipSuccess is returned.
+  !>    The intended usage of pitch is as a separate parameter of the allocation, used to compute addresses within the 2D array. 
+  !>    Given the row and column of an array element of type T, the address is computed as:
+  !>    T pElement = (T)((char)BaseAddress + Row  Pitch) + Column;
+  !>  
+  !>    @return Error code
+  !>  
+  !>    @see hipMalloc, hipFree, hipMallocArray, hipFreeArray, hipHostFree, hipMalloc3D,
+  !>   hipMalloc3DArray, hipHostMalloc
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipMemAllocPitch(dptr,pitch,widthInBytes,height,elementSizeBytes) bind(c, name="cudaMemAllocPitch")
 #else
@@ -1819,19 +1819,19 @@ module hipfort
       integer(kind=4),value :: elementSizeBytes
     end function
 
-  ! 
-  !    @brief Free memory allocated by the hcc hip memory allocation API.
-  !    This API performs an implicit hipDeviceSynchronize() call.
-  !    If pointer is NULL, the hip runtime is initialized and hipSuccess is returned.
-  !  
-  !    @param[in] ptr Pointer to memory to be freed
-  !    @return #hipSuccess
-  !    @return #hipErrorInvalidDevicePointer (if pointer is invalid, including host pointers allocated
-  !   with hipHostMalloc)
-  !  
-  !    @see hipMalloc, hipMallocPitch, hipMallocArray, hipFreeArray, hipHostFree, hipMalloc3D,
-  !   hipMalloc3DArray, hipHostMalloc
-  !  
+  !> 
+  !>    @brief Free memory allocated by the hcc hip memory allocation API.
+  !>    This API performs an implicit hipDeviceSynchronize() call.
+  !>    If pointer is NULL, the hip runtime is initialized and hipSuccess is returned.
+  !>  
+  !>    @param[in] ptr Pointer to memory to be freed
+  !>    @return #hipSuccess
+  !>    @return #hipErrorInvalidDevicePointer (if pointer is invalid, including host pointers allocated
+  !>   with hipHostMalloc)
+  !>  
+  !>    @see hipMalloc, hipMallocPitch, hipMallocArray, hipFreeArray, hipHostFree, hipMalloc3D,
+  !>   hipMalloc3DArray, hipHostMalloc
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipFree(ptr) bind(c, name="cudaFree")
 #else
@@ -1873,19 +1873,19 @@ module hipfort
       type(c_ptr),value :: ptr
     end function
 
-  ! 
-  !    @brief Free memory allocated by the hcc hip host memory allocation API
-  !    This API performs an implicit hipDeviceSynchronize() call.
-  !    If pointer is NULL, the hip runtime is initialized and hipSuccess is returned.
-  !  
-  !    @param[in] ptr Pointer to memory to be freed
-  !    @return #hipSuccess,
-  !            #hipErrorInvalidValue (if pointer is invalid, including device pointers allocated with
-  !   hipMalloc)
-  !  
-  !    @see hipMalloc, hipMallocPitch, hipFree, hipMallocArray, hipFreeArray, hipMalloc3D,
-  !   hipMalloc3DArray, hipHostMalloc
-  !  
+  !> 
+  !>    @brief Free memory allocated by the hcc hip host memory allocation API
+  !>    This API performs an implicit hipDeviceSynchronize() call.
+  !>    If pointer is NULL, the hip runtime is initialized and hipSuccess is returned.
+  !>  
+  !>    @param[in] ptr Pointer to memory to be freed
+  !>    @return #hipSuccess,
+  !>            #hipErrorInvalidValue (if pointer is invalid, including device pointers allocated with
+  !>   hipMalloc)
+  !>  
+  !>    @see hipMalloc, hipMallocPitch, hipFree, hipMallocArray, hipFreeArray, hipMalloc3D,
+  !>   hipMalloc3DArray, hipHostMalloc
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipHostFree(ptr) bind(c, name="cudaHostFree")
 #else
@@ -1906,35 +1906,35 @@ module hipfort
       type(c_ptr),value :: ptr
     end function
 
-  ! 
-  !    @brief Copy data from src to dst.
-  !  
-  !    It supports memory from host to device,
-  !    device to host, device to device and host to host
-  !    The src and dst must not overlap.
-  !  
-  !    For hipMemcpy, the copy is always performed by the current device (set by hipSetDevice).
-  !    For multi-gpu or peer-to-peer configurations, it is recommended to set the current device to the
-  !    device where the src data is physically located. For optimal peer-to-peer copies, the copy device
-  !    must be able to access the src and dst pointers (by calling hipDeviceEnablePeerAccess with copy
-  !    agent as the current device and srcdest as the peerDevice argument.  if this is not done, the
-  !    hipMemcpy will still work, but will perform the copy using a staging buffer on the host.
-  !    Calling hipMemcpy with dst and src pointers that do not match the hipMemcpyKind results in
-  !    undefined behavior.
-  !  
-  !    @param[out]  dst Data being copy to
-  !    @param[in]  src Data being copy from
-  !    @param[in]  sizeBytes Data size in bytes
-  !    @param[in]  copyType Memory copy type
-  !    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryFree, #hipErrorUnknowni
-  !  
-  !    @see hipArrayCreate, hipArrayDestroy, hipArrayGetDescriptor, hipMemAlloc, hipMemAllocHost,
-  !   hipMemAllocPitch, hipMemcpy2D, hipMemcpy2DAsync, hipMemcpy2DUnaligned, hipMemcpyAtoA,
-  !   hipMemcpyAtoD, hipMemcpyAtoH, hipMemcpyAtoHAsync, hipMemcpyDtoA, hipMemcpyDtoD,
-  !   hipMemcpyDtoDAsync, hipMemcpyDtoH, hipMemcpyDtoHAsync, hipMemcpyHtoA, hipMemcpyHtoAAsync,
-  !   hipMemcpyHtoDAsync, hipMemFree, hipMemFreeHost, hipMemGetAddressRange, hipMemGetInfo,
-  !   hipMemHostAlloc, hipMemHostGetDevicePointer
-  !  
+  !> 
+  !>    @brief Copy data from src to dst.
+  !>  
+  !>    It supports memory from host to device,
+  !>    device to host, device to device and host to host
+  !>    The src and dst must not overlap.
+  !>  
+  !>    For hipMemcpy, the copy is always performed by the current device (set by hipSetDevice).
+  !>    For multi-gpu or peer-to-peer configurations, it is recommended to set the current device to the
+  !>    device where the src data is physically located. For optimal peer-to-peer copies, the copy device
+  !>    must be able to access the src and dst pointers (by calling hipDeviceEnablePeerAccess with copy
+  !>    agent as the current device and srcdest as the peerDevice argument.  if this is not done, the
+  !>    hipMemcpy will still work, but will perform the copy using a staging buffer on the host.
+  !>    Calling hipMemcpy with dst and src pointers that do not match the hipMemcpyKind results in
+  !>    undefined behavior.
+  !>  
+  !>    @param[out]  dst Data being copy to
+  !>    @param[in]  src Data being copy from
+  !>    @param[in]  sizeBytes Data size in bytes
+  !>    @param[in]  copyType Memory copy type
+  !>    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryFree, #hipErrorUnknowni
+  !>  
+  !>    @see hipArrayCreate, hipArrayDestroy, hipArrayGetDescriptor, hipMemAlloc, hipMemAllocHost,
+  !>   hipMemAllocPitch, hipMemcpy2D, hipMemcpy2DAsync, hipMemcpy2DUnaligned, hipMemcpyAtoA,
+  !>   hipMemcpyAtoD, hipMemcpyAtoH, hipMemcpyAtoHAsync, hipMemcpyDtoA, hipMemcpyDtoD,
+  !>   hipMemcpyDtoDAsync, hipMemcpyDtoH, hipMemcpyDtoHAsync, hipMemcpyHtoA, hipMemcpyHtoAAsync,
+  !>   hipMemcpyHtoDAsync, hipMemFree, hipMemFreeHost, hipMemGetAddressRange, hipMemGetInfo,
+  !>   hipMemHostAlloc, hipMemHostGetDevicePointer
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipMemcpy(dst,src,sizeBytes,myKind) bind(c, name="cudaMemcpy")
 #else
@@ -1983,23 +1983,23 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-  ! 
-  !    @brief Copy data from Host to Device
-  !  
-  !    @param[out]  dst Data being copy to
-  !    @param[in]   src Data being copy from
-  !    @param[in]   sizeBytes Data size in bytes
-  !  
-  !    @return #hipSuccess, #hipErrorDeInitialized, #hipErrorNotInitialized, #hipErrorInvalidContext,
-  !   #hipErrorInvalidValue
-  !  
-  !    @see hipArrayCreate, hipArrayDestroy, hipArrayGetDescriptor, hipMemAlloc, hipMemAllocHost,
-  !   hipMemAllocPitch, hipMemcpy2D, hipMemcpy2DAsync, hipMemcpy2DUnaligned, hipMemcpyAtoA,
-  !   hipMemcpyAtoD, hipMemcpyAtoH, hipMemcpyAtoHAsync, hipMemcpyDtoA, hipMemcpyDtoD,
-  !   hipMemcpyDtoDAsync, hipMemcpyDtoH, hipMemcpyDtoHAsync, hipMemcpyHtoA, hipMemcpyHtoAAsync,
-  !   hipMemcpyHtoDAsync, hipMemFree, hipMemFreeHost, hipMemGetAddressRange, hipMemGetInfo,
-  !   hipMemHostAlloc, hipMemHostGetDevicePointer
-  !  
+  !> 
+  !>    @brief Copy data from Host to Device
+  !>  
+  !>    @param[out]  dst Data being copy to
+  !>    @param[in]   src Data being copy from
+  !>    @param[in]   sizeBytes Data size in bytes
+  !>  
+  !>    @return #hipSuccess, #hipErrorDeInitialized, #hipErrorNotInitialized, #hipErrorInvalidContext,
+  !>   #hipErrorInvalidValue
+  !>  
+  !>    @see hipArrayCreate, hipArrayDestroy, hipArrayGetDescriptor, hipMemAlloc, hipMemAllocHost,
+  !>   hipMemAllocPitch, hipMemcpy2D, hipMemcpy2DAsync, hipMemcpy2DUnaligned, hipMemcpyAtoA,
+  !>   hipMemcpyAtoD, hipMemcpyAtoH, hipMemcpyAtoHAsync, hipMemcpyDtoA, hipMemcpyDtoD,
+  !>   hipMemcpyDtoDAsync, hipMemcpyDtoH, hipMemcpyDtoHAsync, hipMemcpyHtoA, hipMemcpyHtoAAsync,
+  !>   hipMemcpyHtoDAsync, hipMemFree, hipMemFreeHost, hipMemGetAddressRange, hipMemGetInfo,
+  !>   hipMemHostAlloc, hipMemHostGetDevicePointer
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipMemcpyHtoD(dst,src,sizeBytes) bind(c, name="cudaMemcpyHtoD")
 #else
@@ -2022,23 +2022,23 @@ module hipfort
       integer(c_size_t),value :: sizeBytes
     end function
 
-  ! 
-  !    @brief Copy data from Device to Host
-  !  
-  !    @param[out]  dst Data being copy to
-  !    @param[in]   src Data being copy from
-  !    @param[in]   sizeBytes Data size in bytes
-  !  
-  !    @return #hipSuccess, #hipErrorDeInitialized, #hipErrorNotInitialized, #hipErrorInvalidContext,
-  !   #hipErrorInvalidValue
-  !  
-  !    @see hipArrayCreate, hipArrayDestroy, hipArrayGetDescriptor, hipMemAlloc, hipMemAllocHost,
-  !   hipMemAllocPitch, hipMemcpy2D, hipMemcpy2DAsync, hipMemcpy2DUnaligned, hipMemcpyAtoA,
-  !   hipMemcpyAtoD, hipMemcpyAtoH, hipMemcpyAtoHAsync, hipMemcpyDtoA, hipMemcpyDtoD,
-  !   hipMemcpyDtoDAsync, hipMemcpyDtoH, hipMemcpyDtoHAsync, hipMemcpyHtoA, hipMemcpyHtoAAsync,
-  !   hipMemcpyHtoDAsync, hipMemFree, hipMemFreeHost, hipMemGetAddressRange, hipMemGetInfo,
-  !   hipMemHostAlloc, hipMemHostGetDevicePointer
-  !  
+  !> 
+  !>    @brief Copy data from Device to Host
+  !>  
+  !>    @param[out]  dst Data being copy to
+  !>    @param[in]   src Data being copy from
+  !>    @param[in]   sizeBytes Data size in bytes
+  !>  
+  !>    @return #hipSuccess, #hipErrorDeInitialized, #hipErrorNotInitialized, #hipErrorInvalidContext,
+  !>   #hipErrorInvalidValue
+  !>  
+  !>    @see hipArrayCreate, hipArrayDestroy, hipArrayGetDescriptor, hipMemAlloc, hipMemAllocHost,
+  !>   hipMemAllocPitch, hipMemcpy2D, hipMemcpy2DAsync, hipMemcpy2DUnaligned, hipMemcpyAtoA,
+  !>   hipMemcpyAtoD, hipMemcpyAtoH, hipMemcpyAtoHAsync, hipMemcpyDtoA, hipMemcpyDtoD,
+  !>   hipMemcpyDtoDAsync, hipMemcpyDtoH, hipMemcpyDtoHAsync, hipMemcpyHtoA, hipMemcpyHtoAAsync,
+  !>   hipMemcpyHtoDAsync, hipMemFree, hipMemFreeHost, hipMemGetAddressRange, hipMemGetInfo,
+  !>   hipMemHostAlloc, hipMemHostGetDevicePointer
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipMemcpyDtoH(dst,src,sizeBytes) bind(c, name="cudaMemcpyDtoH")
 #else
@@ -2061,23 +2061,23 @@ module hipfort
       integer(c_size_t),value :: sizeBytes
     end function
 
-  ! 
-  !    @brief Copy data from Device to Device
-  !  
-  !    @param[out]  dst Data being copy to
-  !    @param[in]   src Data being copy from
-  !    @param[in]   sizeBytes Data size in bytes
-  !  
-  !    @return #hipSuccess, #hipErrorDeInitialized, #hipErrorNotInitialized, #hipErrorInvalidContext,
-  !   #hipErrorInvalidValue
-  !  
-  !    @see hipArrayCreate, hipArrayDestroy, hipArrayGetDescriptor, hipMemAlloc, hipMemAllocHost,
-  !   hipMemAllocPitch, hipMemcpy2D, hipMemcpy2DAsync, hipMemcpy2DUnaligned, hipMemcpyAtoA,
-  !   hipMemcpyAtoD, hipMemcpyAtoH, hipMemcpyAtoHAsync, hipMemcpyDtoA, hipMemcpyDtoD,
-  !   hipMemcpyDtoDAsync, hipMemcpyDtoH, hipMemcpyDtoHAsync, hipMemcpyHtoA, hipMemcpyHtoAAsync,
-  !   hipMemcpyHtoDAsync, hipMemFree, hipMemFreeHost, hipMemGetAddressRange, hipMemGetInfo,
-  !   hipMemHostAlloc, hipMemHostGetDevicePointer
-  !  
+  !> 
+  !>    @brief Copy data from Device to Device
+  !>  
+  !>    @param[out]  dst Data being copy to
+  !>    @param[in]   src Data being copy from
+  !>    @param[in]   sizeBytes Data size in bytes
+  !>  
+  !>    @return #hipSuccess, #hipErrorDeInitialized, #hipErrorNotInitialized, #hipErrorInvalidContext,
+  !>   #hipErrorInvalidValue
+  !>  
+  !>    @see hipArrayCreate, hipArrayDestroy, hipArrayGetDescriptor, hipMemAlloc, hipMemAllocHost,
+  !>   hipMemAllocPitch, hipMemcpy2D, hipMemcpy2DAsync, hipMemcpy2DUnaligned, hipMemcpyAtoA,
+  !>   hipMemcpyAtoD, hipMemcpyAtoH, hipMemcpyAtoHAsync, hipMemcpyDtoA, hipMemcpyDtoD,
+  !>   hipMemcpyDtoDAsync, hipMemcpyDtoH, hipMemcpyDtoHAsync, hipMemcpyHtoA, hipMemcpyHtoAAsync,
+  !>   hipMemcpyHtoDAsync, hipMemFree, hipMemFreeHost, hipMemGetAddressRange, hipMemGetInfo,
+  !>   hipMemHostAlloc, hipMemHostGetDevicePointer
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipMemcpyDtoD(dst,src,sizeBytes) bind(c, name="cudaMemcpyDtoD")
 #else
@@ -2100,23 +2100,23 @@ module hipfort
       integer(c_size_t),value :: sizeBytes
     end function
 
-  ! 
-  !    @brief Copy data from Host to Device asynchronously
-  !  
-  !    @param[out]  dst Data being copy to
-  !    @param[in]   src Data being copy from
-  !    @param[in]   sizeBytes Data size in bytes
-  !  
-  !    @return #hipSuccess, #hipErrorDeInitialized, #hipErrorNotInitialized, #hipErrorInvalidContext,
-  !   #hipErrorInvalidValue
-  !  
-  !    @see hipArrayCreate, hipArrayDestroy, hipArrayGetDescriptor, hipMemAlloc, hipMemAllocHost,
-  !   hipMemAllocPitch, hipMemcpy2D, hipMemcpy2DAsync, hipMemcpy2DUnaligned, hipMemcpyAtoA,
-  !   hipMemcpyAtoD, hipMemcpyAtoH, hipMemcpyAtoHAsync, hipMemcpyDtoA, hipMemcpyDtoD,
-  !   hipMemcpyDtoDAsync, hipMemcpyDtoH, hipMemcpyDtoHAsync, hipMemcpyHtoA, hipMemcpyHtoAAsync,
-  !   hipMemcpyHtoDAsync, hipMemFree, hipMemFreeHost, hipMemGetAddressRange, hipMemGetInfo,
-  !   hipMemHostAlloc, hipMemHostGetDevicePointer
-  !  
+  !> 
+  !>    @brief Copy data from Host to Device asynchronously
+  !>  
+  !>    @param[out]  dst Data being copy to
+  !>    @param[in]   src Data being copy from
+  !>    @param[in]   sizeBytes Data size in bytes
+  !>  
+  !>    @return #hipSuccess, #hipErrorDeInitialized, #hipErrorNotInitialized, #hipErrorInvalidContext,
+  !>   #hipErrorInvalidValue
+  !>  
+  !>    @see hipArrayCreate, hipArrayDestroy, hipArrayGetDescriptor, hipMemAlloc, hipMemAllocHost,
+  !>   hipMemAllocPitch, hipMemcpy2D, hipMemcpy2DAsync, hipMemcpy2DUnaligned, hipMemcpyAtoA,
+  !>   hipMemcpyAtoD, hipMemcpyAtoH, hipMemcpyAtoHAsync, hipMemcpyDtoA, hipMemcpyDtoD,
+  !>   hipMemcpyDtoDAsync, hipMemcpyDtoH, hipMemcpyDtoHAsync, hipMemcpyHtoA, hipMemcpyHtoAAsync,
+  !>   hipMemcpyHtoDAsync, hipMemFree, hipMemFreeHost, hipMemGetAddressRange, hipMemGetInfo,
+  !>   hipMemHostAlloc, hipMemHostGetDevicePointer
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipMemcpyHtoDAsync(dst,src,sizeBytes,stream) bind(c, name="cudaMemcpyHtoDAsync")
 #else
@@ -2140,23 +2140,23 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-  ! 
-  !    @brief Copy data from Device to Host asynchronously
-  !  
-  !    @param[out]  dst Data being copy to
-  !    @param[in]   src Data being copy from
-  !    @param[in]   sizeBytes Data size in bytes
-  !  
-  !    @return #hipSuccess, #hipErrorDeInitialized, #hipErrorNotInitialized, #hipErrorInvalidContext,
-  !   #hipErrorInvalidValue
-  !  
-  !    @see hipArrayCreate, hipArrayDestroy, hipArrayGetDescriptor, hipMemAlloc, hipMemAllocHost,
-  !   hipMemAllocPitch, hipMemcpy2D, hipMemcpy2DAsync, hipMemcpy2DUnaligned, hipMemcpyAtoA,
-  !   hipMemcpyAtoD, hipMemcpyAtoH, hipMemcpyAtoHAsync, hipMemcpyDtoA, hipMemcpyDtoD,
-  !   hipMemcpyDtoDAsync, hipMemcpyDtoH, hipMemcpyDtoHAsync, hipMemcpyHtoA, hipMemcpyHtoAAsync,
-  !   hipMemcpyHtoDAsync, hipMemFree, hipMemFreeHost, hipMemGetAddressRange, hipMemGetInfo,
-  !   hipMemHostAlloc, hipMemHostGetDevicePointer
-  !  
+  !> 
+  !>    @brief Copy data from Device to Host asynchronously
+  !>  
+  !>    @param[out]  dst Data being copy to
+  !>    @param[in]   src Data being copy from
+  !>    @param[in]   sizeBytes Data size in bytes
+  !>  
+  !>    @return #hipSuccess, #hipErrorDeInitialized, #hipErrorNotInitialized, #hipErrorInvalidContext,
+  !>   #hipErrorInvalidValue
+  !>  
+  !>    @see hipArrayCreate, hipArrayDestroy, hipArrayGetDescriptor, hipMemAlloc, hipMemAllocHost,
+  !>   hipMemAllocPitch, hipMemcpy2D, hipMemcpy2DAsync, hipMemcpy2DUnaligned, hipMemcpyAtoA,
+  !>   hipMemcpyAtoD, hipMemcpyAtoH, hipMemcpyAtoHAsync, hipMemcpyDtoA, hipMemcpyDtoD,
+  !>   hipMemcpyDtoDAsync, hipMemcpyDtoH, hipMemcpyDtoHAsync, hipMemcpyHtoA, hipMemcpyHtoAAsync,
+  !>   hipMemcpyHtoDAsync, hipMemFree, hipMemFreeHost, hipMemGetAddressRange, hipMemGetInfo,
+  !>   hipMemHostAlloc, hipMemHostGetDevicePointer
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipMemcpyDtoHAsync(dst,src,sizeBytes,stream) bind(c, name="cudaMemcpyDtoHAsync")
 #else
@@ -2180,23 +2180,23 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-  ! 
-  !    @brief Copy data from Device to Device asynchronously
-  !  
-  !    @param[out]  dst Data being copy to
-  !    @param[in]   src Data being copy from
-  !    @param[in]   sizeBytes Data size in bytes
-  !  
-  !    @return #hipSuccess, #hipErrorDeInitialized, #hipErrorNotInitialized, #hipErrorInvalidContext,
-  !   #hipErrorInvalidValue
-  !  
-  !    @see hipArrayCreate, hipArrayDestroy, hipArrayGetDescriptor, hipMemAlloc, hipMemAllocHost,
-  !   hipMemAllocPitch, hipMemcpy2D, hipMemcpy2DAsync, hipMemcpy2DUnaligned, hipMemcpyAtoA,
-  !   hipMemcpyAtoD, hipMemcpyAtoH, hipMemcpyAtoHAsync, hipMemcpyDtoA, hipMemcpyDtoD,
-  !   hipMemcpyDtoDAsync, hipMemcpyDtoH, hipMemcpyDtoHAsync, hipMemcpyHtoA, hipMemcpyHtoAAsync,
-  !   hipMemcpyHtoDAsync, hipMemFree, hipMemFreeHost, hipMemGetAddressRange, hipMemGetInfo,
-  !   hipMemHostAlloc, hipMemHostGetDevicePointer
-  !  
+  !> 
+  !>    @brief Copy data from Device to Device asynchronously
+  !>  
+  !>    @param[out]  dst Data being copy to
+  !>    @param[in]   src Data being copy from
+  !>    @param[in]   sizeBytes Data size in bytes
+  !>  
+  !>    @return #hipSuccess, #hipErrorDeInitialized, #hipErrorNotInitialized, #hipErrorInvalidContext,
+  !>   #hipErrorInvalidValue
+  !>  
+  !>    @see hipArrayCreate, hipArrayDestroy, hipArrayGetDescriptor, hipMemAlloc, hipMemAllocHost,
+  !>   hipMemAllocPitch, hipMemcpy2D, hipMemcpy2DAsync, hipMemcpy2DUnaligned, hipMemcpyAtoA,
+  !>   hipMemcpyAtoD, hipMemcpyAtoH, hipMemcpyAtoHAsync, hipMemcpyDtoA, hipMemcpyDtoD,
+  !>   hipMemcpyDtoDAsync, hipMemcpyDtoH, hipMemcpyDtoHAsync, hipMemcpyHtoA, hipMemcpyHtoAAsync,
+  !>   hipMemcpyHtoDAsync, hipMemFree, hipMemFreeHost, hipMemGetAddressRange, hipMemGetInfo,
+  !>   hipMemHostAlloc, hipMemHostGetDevicePointer
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipMemcpyDtoDAsync(dst,src,sizeBytes,stream) bind(c, name="cudaMemcpyDtoDAsync")
 #else
@@ -2340,34 +2340,34 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-  ! 
-  !    @brief Copy data from src to dst asynchronously.
-  !  
-  !    @warning If host or dest are not pinned, the memory copy will be performed synchronously.  For
-  !   best performance, use hipHostMalloc to allocate host memory that is transferred asynchronously.
-  !  
-  !    @warning on HCC hipMemcpyAsync does not support overlapped H2D and D2H copies.
-  !    For hipMemcpy, the copy is always performed by the device associated with the specified stream.
-  !  
-  !    For multi-gpu or peer-to-peer configurations, it is recommended to use a stream which is a
-  !   attached to the device where the src data is physically located. For optimal peer-to-peer copies,
-  !   the copy device must be able to access the src and dst pointers (by calling
-  !   hipDeviceEnablePeerAccess with copy agent as the current device and srcdest as the peerDevice
-  !   argument.  if this is not done, the hipMemcpy will still work, but will perform the copy using a
-  !   staging buffer on the host.
-  !  
-  !    @param[out] dst Data being copy to
-  !    @param[in]  src Data being copy from
-  !    @param[in]  sizeBytes Data size in bytes
-  !    @param[in]  accelerator_view Accelerator view which the copy is being enqueued
-  !    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryFree, #hipErrorUnknown
-  !  
-  !    @see hipMemcpy, hipMemcpy2D, hipMemcpyToArray, hipMemcpy2DToArray, hipMemcpyFromArray,
-  !   hipMemcpy2DFromArray, hipMemcpyArrayToArray, hipMemcpy2DArrayToArray, hipMemcpyToSymbol,
-  !   hipMemcpyFromSymbol, hipMemcpy2DAsync, hipMemcpyToArrayAsync, hipMemcpy2DToArrayAsync,
-  !   hipMemcpyFromArrayAsync, hipMemcpy2DFromArrayAsync, hipMemcpyToSymbolAsync,
-  !   hipMemcpyFromSymbolAsync
-  !  
+  !> 
+  !>    @brief Copy data from src to dst asynchronously.
+  !>  
+  !>    @warning If host or dest are not pinned, the memory copy will be performed synchronously.  For
+  !>   best performance, use hipHostMalloc to allocate host memory that is transferred asynchronously.
+  !>  
+  !>    @warning on HCC hipMemcpyAsync does not support overlapped H2D and D2H copies.
+  !>    For hipMemcpy, the copy is always performed by the device associated with the specified stream.
+  !>  
+  !>    For multi-gpu or peer-to-peer configurations, it is recommended to use a stream which is a
+  !>   attached to the device where the src data is physically located. For optimal peer-to-peer copies,
+  !>   the copy device must be able to access the src and dst pointers (by calling
+  !>   hipDeviceEnablePeerAccess with copy agent as the current device and srcdest as the peerDevice
+  !>   argument.  if this is not done, the hipMemcpy will still work, but will perform the copy using a
+  !>   staging buffer on the host.
+  !>  
+  !>    @param[out] dst Data being copy to
+  !>    @param[in]  src Data being copy from
+  !>    @param[in]  sizeBytes Data size in bytes
+  !>    @param[in]  accelerator_view Accelerator view which the copy is being enqueued
+  !>    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryFree, #hipErrorUnknown
+  !>  
+  !>    @see hipMemcpy, hipMemcpy2D, hipMemcpyToArray, hipMemcpy2DToArray, hipMemcpyFromArray,
+  !>   hipMemcpy2DFromArray, hipMemcpyArrayToArray, hipMemcpy2DArrayToArray, hipMemcpyToSymbol,
+  !>   hipMemcpyFromSymbol, hipMemcpy2DAsync, hipMemcpyToArrayAsync, hipMemcpy2DToArrayAsync,
+  !>   hipMemcpyFromArrayAsync, hipMemcpy2DFromArrayAsync, hipMemcpyToSymbolAsync,
+  !>   hipMemcpyFromSymbolAsync
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipMemcpyAsync(dst,src,sizeBytes,myKind,stream) bind(c, name="cudaMemcpyAsync")
 #else
@@ -2392,15 +2392,15 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-  ! 
-  !    @brief Fills the first sizeBytes bytes of the memory area pointed to by dest with the ant
-  !   byte value value.
-  !  
-  !    @param[out] dst Data being filled
-  !    @param[in]  ant value to be set
-  !    @param[in]  sizeBytes Data size in bytes
-  !    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized
-  !  
+  !> 
+  !>    @brief Fills the first sizeBytes bytes of the memory area pointed to by dest with the ant
+  !>   byte value value.
+  !>  
+  !>    @param[out] dst Data being filled
+  !>    @param[in]  ant value to be set
+  !>    @param[in]  sizeBytes Data size in bytes
+  !>    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipMemset(dst,myValue,sizeBytes) bind(c, name="cudaMemset")
 #else
@@ -2423,15 +2423,15 @@ module hipfort
       integer(c_size_t),value :: sizeBytes
     end function
 
-  ! 
-  !    @brief Fills the first sizeBytes bytes of the memory area pointed to by dest with the ant
-  !   byte value value.
-  !  
-  !    @param[out] dst Data ptr to be filled
-  !    @param[in]  ant value to be set
-  !    @param[in]  number of values to be set
-  !    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized
-  !  
+  !> 
+  !>    @brief Fills the first sizeBytes bytes of the memory area pointed to by dest with the ant
+  !>   byte value value.
+  !>  
+  !>    @param[out] dst Data ptr to be filled
+  !>    @param[in]  ant value to be set
+  !>    @param[in]  number of values to be set
+  !>    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipMemsetD8(dest,myValue,count) bind(c, name="cudaMemsetD8")
 #else
@@ -2454,21 +2454,21 @@ module hipfort
       integer(c_size_t),value :: count
     end function
 
-  ! 
-  !    @brief Fills the first sizeBytes bytes of the memory area pointed to by dest with the ant
-  !   byte value value.
-  !  
-  !   hipMemsetD8Async() is asynchronous with respect to the host, so the call may return before the
-  !   memset is complete. The operation can optionally be associated to a stream by passing a non-zero
-  !   stream argument. If stream is non-zero, the operation may overlap with operations in other
-  !   streams.
-  !  
-  !    @param[out] dst Data ptr to be filled
-  !    @param[in]  ant value to be set
-  !    @param[in]  number of values to be set
-  !    @param[in]  stream - Stream identifier
-  !    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized
-  !  
+  !> 
+  !>    @brief Fills the first sizeBytes bytes of the memory area pointed to by dest with the ant
+  !>   byte value value.
+  !>  
+  !>   hipMemsetD8Async() is asynchronous with respect to the host, so the call may return before the
+  !>   memset is complete. The operation can optionally be associated to a stream by passing a non-zero
+  !>   stream argument. If stream is non-zero, the operation may overlap with operations in other
+  !>   streams.
+  !>  
+  !>    @param[out] dst Data ptr to be filled
+  !>    @param[in]  ant value to be set
+  !>    @param[in]  number of values to be set
+  !>    @param[in]  stream - Stream identifier
+  !>    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipMemsetD8Async(dest,myValue,count,stream) bind(c, name="cudaMemsetD8Async")
 #else
@@ -2492,15 +2492,15 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-  ! 
-  !    @brief Fills the first sizeBytes bytes of the memory area pointed to by dest with the ant
-  !   short value value.
-  !  
-  !    @param[out] dst Data ptr to be filled
-  !    @param[in]  ant value to be set
-  !    @param[in]  number of values to be set
-  !    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized
-  !  
+  !> 
+  !>    @brief Fills the first sizeBytes bytes of the memory area pointed to by dest with the ant
+  !>   short value value.
+  !>  
+  !>    @param[out] dst Data ptr to be filled
+  !>    @param[in]  ant value to be set
+  !>    @param[in]  number of values to be set
+  !>    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipMemsetD16(dest,myValue,count) bind(c, name="cudaMemsetD16")
 #else
@@ -2523,21 +2523,21 @@ module hipfort
       integer(c_size_t),value :: count
     end function
 
-  ! 
-  !    @brief Fills the first sizeBytes bytes of the memory area pointed to by dest with the ant
-  !   short value value.
-  !  
-  !   hipMemsetD16Async() is asynchronous with respect to the host, so the call may return before the
-  !   memset is complete. The operation can optionally be associated to a stream by passing a non-zero
-  !   stream argument. If stream is non-zero, the operation may overlap with operations in other
-  !   streams.
-  !  
-  !    @param[out] dst Data ptr to be filled
-  !    @param[in]  ant value to be set
-  !    @param[in]  number of values to be set
-  !    @param[in]  stream - Stream identifier
-  !    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized
-  !  
+  !> 
+  !>    @brief Fills the first sizeBytes bytes of the memory area pointed to by dest with the ant
+  !>   short value value.
+  !>  
+  !>   hipMemsetD16Async() is asynchronous with respect to the host, so the call may return before the
+  !>   memset is complete. The operation can optionally be associated to a stream by passing a non-zero
+  !>   stream argument. If stream is non-zero, the operation may overlap with operations in other
+  !>   streams.
+  !>  
+  !>    @param[out] dst Data ptr to be filled
+  !>    @param[in]  ant value to be set
+  !>    @param[in]  number of values to be set
+  !>    @param[in]  stream - Stream identifier
+  !>    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipMemsetD16Async(dest,myValue,count,stream) bind(c, name="cudaMemsetD16Async")
 #else
@@ -2561,15 +2561,15 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-  ! 
-  !    @brief Fills the memory area pointed to by dest with the ant integer
-  !   value for specified number of times.
-  !  
-  !    @param[out] dst Data being filled
-  !    @param[in]  ant value to be set
-  !    @param[in]  number of values to be set
-  !    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized
-  !  
+  !> 
+  !>    @brief Fills the memory area pointed to by dest with the ant integer
+  !>   value for specified number of times.
+  !>  
+  !>    @param[out] dst Data being filled
+  !>    @param[in]  ant value to be set
+  !>    @param[in]  number of values to be set
+  !>    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipMemsetD32(dest,myValue,count) bind(c, name="cudaMemsetD32")
 #else
@@ -2592,21 +2592,21 @@ module hipfort
       integer(c_size_t),value :: count
     end function
 
-  ! 
-  !    @brief Fills the first sizeBytes bytes of the memory area pointed to by dev with the ant
-  !   byte value value.
-  !  
-  !    hipMemsetAsync() is asynchronous with respect to the host, so the call may return before the
-  !   memset is complete. The operation can optionally be associated to a stream by passing a non-zero
-  !   stream argument. If stream is non-zero, the operation may overlap with operations in other
-  !   streams.
-  !  
-  !    @param[out] dst Pointer to device memory
-  !    @param[in]  value - Value to set for each byte of specified memory
-  !    @param[in]  sizeBytes - Size in bytes to set
-  !    @param[in]  stream - Stream identifier
-  !    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryFree
-  !  
+  !> 
+  !>    @brief Fills the first sizeBytes bytes of the memory area pointed to by dev with the ant
+  !>   byte value value.
+  !>  
+  !>    hipMemsetAsync() is asynchronous with respect to the host, so the call may return before the
+  !>   memset is complete. The operation can optionally be associated to a stream by passing a non-zero
+  !>   stream argument. If stream is non-zero, the operation may overlap with operations in other
+  !>   streams.
+  !>  
+  !>    @param[out] dst Pointer to device memory
+  !>    @param[in]  value - Value to set for each byte of specified memory
+  !>    @param[in]  sizeBytes - Size in bytes to set
+  !>    @param[in]  stream - Stream identifier
+  !>    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryFree
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipMemsetAsync(dst,myValue,sizeBytes,stream) bind(c, name="cudaMemsetAsync")
 #else
@@ -2630,21 +2630,21 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-  ! 
-  !    @brief Fills the memory area pointed to by dev with the ant integer
-  !   value for specified number of times.
-  !  
-  !    hipMemsetD32Async() is asynchronous with respect to the host, so the call may return before the
-  !   memset is complete. The operation can optionally be associated to a stream by passing a non-zero
-  !   stream argument. If stream is non-zero, the operation may overlap with operations in other
-  !   streams.
-  !  
-  !    @param[out] dst Pointer to device memory
-  !    @param[in]  value - Value to set for each byte of specified memory
-  !    @param[in]  count - number of values to be set
-  !    @param[in]  stream - Stream identifier
-  !    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryFree
-  !  
+  !> 
+  !>    @brief Fills the memory area pointed to by dev with the ant integer
+  !>   value for specified number of times.
+  !>  
+  !>    hipMemsetD32Async() is asynchronous with respect to the host, so the call may return before the
+  !>   memset is complete. The operation can optionally be associated to a stream by passing a non-zero
+  !>   stream argument. If stream is non-zero, the operation may overlap with operations in other
+  !>   streams.
+  !>  
+  !>    @param[out] dst Pointer to device memory
+  !>    @param[in]  value - Value to set for each byte of specified memory
+  !>    @param[in]  count - number of values to be set
+  !>    @param[in]  stream - Stream identifier
+  !>    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryFree
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipMemsetD32Async(dst,myValue,count,stream) bind(c, name="cudaMemsetD32Async")
 #else
@@ -2668,16 +2668,16 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-  ! 
-  !    @brief Fills the memory area pointed to by dst with the ant value.
-  !  
-  !    @param[out] dst Pointer to device memory
-  !    @param[in]  pitch - data size in bytes
-  !    @param[in]  value - ant value to be set
-  !    @param[in]  width
-  !    @param[in]  height
-  !    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryFree
-  !  
+  !> 
+  !>    @brief Fills the memory area pointed to by dst with the ant value.
+  !>  
+  !>    @param[out] dst Pointer to device memory
+  !>    @param[in]  pitch - data size in bytes
+  !>    @param[in]  value - ant value to be set
+  !>    @param[in]  width
+  !>    @param[in]  height
+  !>    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryFree
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipMemset2D(dst,pitch,myValue,width,height) bind(c, name="cudaMemset2D")
 #else
@@ -2702,17 +2702,17 @@ module hipfort
       integer(c_size_t),value :: height
     end function
 
-  ! 
-  !    @brief Fills asynchronously the memory area pointed to by dst with the ant value.
-  !  
-  !    @param[in]  dst Pointer to device memory
-  !    @param[in]  pitch - data size in bytes
-  !    @param[in]  value - ant value to be set
-  !    @param[in]  width
-  !    @param[in]  height
-  !    @param[in]  stream
-  !    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryFree
-  !  
+  !> 
+  !>    @brief Fills asynchronously the memory area pointed to by dst with the ant value.
+  !>  
+  !>    @param[in]  dst Pointer to device memory
+  !>    @param[in]  pitch - data size in bytes
+  !>    @param[in]  value - ant value to be set
+  !>    @param[in]  width
+  !>    @param[in]  height
+  !>    @param[in]  stream
+  !>    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryFree
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipMemset2DAsync(dst,pitch,myValue,width,height,stream) bind(c, name="cudaMemset2DAsync")
 #else
@@ -2738,14 +2738,14 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-  ! 
-  !    @brief Fills synchronously the memory area pointed to by pitchedDevPtr with the ant value.
-  !  
-  !    @param[in] pitchedDevPtr
-  !    @param[in]  value - ant value to be set
-  !    @param[in]  extent
-  !    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryFree
-  !  
+  !> 
+  !>    @brief Fills synchronously the memory area pointed to by pitchedDevPtr with the ant value.
+  !>  
+  !>    @param[in] pitchedDevPtr
+  !>    @param[in]  value - ant value to be set
+  !>    @param[in]  extent
+  !>    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryFree
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipMemset3D(pitchedDevPtr,myValue,extent) bind(c, name="cudaMemset3D")
 #else
@@ -2768,15 +2768,15 @@ module hipfort
       type(c_ptr),value :: extent
     end function
 
-  ! 
-  !    @brief Fills asynchronously the memory area pointed to by pitchedDevPtr with the ant value.
-  !  
-  !    @param[in] pitchedDevPtr
-  !    @param[in]  value - ant value to be set
-  !    @param[in]  extent
-  !    @param[in]  stream
-  !    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryFree
-  !  
+  !> 
+  !>    @brief Fills asynchronously the memory area pointed to by pitchedDevPtr with the ant value.
+  !>  
+  !>    @param[in] pitchedDevPtr
+  !>    @param[in]  value - ant value to be set
+  !>    @param[in]  extent
+  !>    @param[in]  stream
+  !>    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryFree
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipMemset3DAsync(pitchedDevPtr,myValue,extent,stream) bind(c, name="cudaMemset3DAsync")
 #else
@@ -2800,15 +2800,15 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-  ! 
-  !   @brief Query memory info.
-  !   Return snapshot of free memory, and total allocatable memory on the device.
-  !  
-  !   Returns in free a snapshot of the current free memory.
-  !   @returns #hipSuccess, #hipErrorInvalidDevice, #hipErrorInvalidValue
-  !   @warning On HCC, the free memory only accounts for memory allocated by this process and may be
-  !  optimistic.
-  !  
+  !> 
+  !>   @brief Query memory info.
+  !>   Return snapshot of free memory, and total allocatable memory on the device.
+  !>  
+  !>   Returns in free a snapshot of the current free memory.
+  !>   @returns #hipSuccess, #hipErrorInvalidDevice, #hipErrorInvalidValue
+  !>   @warning On HCC, the free memory only accounts for memory allocated by this process and may be
+  !>  optimistic.
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipMemGetInfo(free,total) bind(c, name="cudaMemGetInfo")
 #else
@@ -2918,14 +2918,14 @@ module hipfort
       type(c_ptr),value :: extent
     end function
 
-  ! 
-  !    @brief Frees an array on the device.
-  !  
-  !    @param[in]  array  Pointer to array to free
-  !    @return     #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized
-  !  
-  !    @see hipMalloc, hipMallocPitch, hipFree, hipMallocArray, hipHostMalloc, hipHostFree
-  !  
+  !> 
+  !>    @brief Frees an array on the device.
+  !>  
+  !>    @param[in]  array  Pointer to array to free
+  !>    @return     #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized
+  !>  
+  !>    @see hipMalloc, hipMallocPitch, hipFree, hipMallocArray, hipHostMalloc, hipHostFree
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipFreeArray(array) bind(c, name="cudaFreeArray")
 #else
@@ -2946,13 +2946,13 @@ module hipfort
       type(c_ptr) :: array
     end function
 
-  ! 
-  !   @brief Frees a mipmapped array on the device
-  !   
-  !   @param[in] mipmappedArray - Pointer to mipmapped array to free
-  !   
-  !   @return #hipSuccess, #hipErrorInvalidValue
-  !  
+  !> 
+  !>   @brief Frees a mipmapped array on the device
+  !>   
+  !>   @param[in] mipmappedArray - Pointer to mipmapped array to free
+  !>   
+  !>   @return #hipSuccess, #hipErrorInvalidValue
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipFreeMipmappedArray(mipmappedArray) bind(c, name="cudaFreeMipmappedArray")
 #else
@@ -2973,17 +2973,17 @@ module hipfort
       type(c_ptr),value :: mipmappedArray
     end function
 
-  ! 
-  !    @brief Allocate an array on the device.
-  !  
-  !    @param[out]  array  Pointer to allocated array in device memory
-  !    @param[in]   desc   Requested channel format
-  !    @param[in]   extent Requested array allocation width, height and depth
-  !    @param[in]   flags  Requested properties of allocated array
-  !    @return      #hipSuccess, #hipErrorOutOfMemory
-  !  
-  !    @see hipMalloc, hipMallocPitch, hipFree, hipFreeArray, hipHostMalloc, hipHostFree
-  !  
+  !> 
+  !>    @brief Allocate an array on the device.
+  !>  
+  !>    @param[out]  array  Pointer to allocated array in device memory
+  !>    @param[in]   desc   Requested channel format
+  !>    @param[in]   extent Requested array allocation width, height and depth
+  !>    @param[in]   flags  Requested properties of allocated array
+  !>    @return      #hipSuccess, #hipErrorOutOfMemory
+  !>  
+  !>    @see hipMalloc, hipMallocPitch, hipFree, hipFreeArray, hipHostMalloc, hipHostFree
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipMalloc3DArray(array,desc,extent,flags) bind(c, name="cudaMalloc3DArray")
 #else
@@ -3007,17 +3007,17 @@ module hipfort
       integer(kind=4),value :: flags
     end function
 
-  ! 
-  !   @brief Allocate a mipmapped array on the device
-  !  
-  !   @param[out] mipmappedArray  - Pointer to allocated mipmapped array in device memory
-  !   @param[in]  desc            - Requested channel format
-  !   @param[in]  extent          - Requested allocation size (width field in elements)
-  !   @param[in]  numLevels       - Number of mipmap levels to allocate
-  !   @param[in]  flags           - Flags for extensions
-  !   
-  !   @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryAllocation
-  !  
+  !> 
+  !>   @brief Allocate a mipmapped array on the device
+  !>  
+  !>   @param[out] mipmappedArray  - Pointer to allocated mipmapped array in device memory
+  !>   @param[in]  desc            - Requested channel format
+  !>   @param[in]  extent          - Requested allocation size (width field in elements)
+  !>   @param[in]  numLevels       - Number of mipmap levels to allocate
+  !>   @param[in]  flags           - Flags for extensions
+  !>   
+  !>   @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryAllocation
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipMallocMipmappedArray(mipmappedArray,desc,extent,numLevels,flags) bind(c, name="cudaMallocMipmappedArray")
 #else
@@ -3042,15 +3042,15 @@ module hipfort
       integer(kind=4),value :: flags
     end function
 
-  ! 
-  !   @brief Gets a mipmap level of a HIP mipmapped array
-  !  
-  !   @param[out] levelArray     - Returned mipmap level HIP array
-  !   @param[in]  mipmappedArray - HIP mipmapped array
-  !   @param[in]  level          - Mipmap level
-  !   
-  !   @return #hipSuccess, #hipErrorInvalidValue
-  !  
+  !> 
+  !>   @brief Gets a mipmap level of a HIP mipmapped array
+  !>  
+  !>   @param[out] levelArray     - Returned mipmap level HIP array
+  !>   @param[in]  mipmappedArray - HIP mipmapped array
+  !>   @param[in]  level          - Mipmap level
+  !>   
+  !>   @return #hipSuccess, #hipErrorInvalidValue
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipGetMipmappedArrayLevel(levelArray,mipmappedArray,level) bind(c, name="cudaGetMipmappedArrayLevel")
 #else
@@ -3073,22 +3073,22 @@ module hipfort
       integer(kind=4),value :: level
     end function
 
-  ! 
-  !    @brief Copies data between host and device.
-  !  
-  !    @param[in]   dst    Destination memory address
-  !    @param[in]   dpitch Pitch of destination memory
-  !    @param[in]   src    Source memory address
-  !    @param[in]   spitch Pitch of source memory
-  !    @param[in]   width  Width of matrix transfer (columns in bytes)
-  !    @param[in]   height Height of matrix transfer (rows)
-  !    @param[in]   kind   Type of transfer
-  !    @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
-  !   #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
-  !  
-  !    @see hipMemcpy, hipMemcpyToArray, hipMemcpy2DToArray, hipMemcpyFromArray, hipMemcpyToSymbol,
-  !   hipMemcpyAsync
-  !  
+  !> 
+  !>    @brief Copies data between host and device.
+  !>  
+  !>    @param[in]   dst    Destination memory address
+  !>    @param[in]   dpitch Pitch of destination memory
+  !>    @param[in]   src    Source memory address
+  !>    @param[in]   spitch Pitch of source memory
+  !>    @param[in]   width  Width of matrix transfer (columns in bytes)
+  !>    @param[in]   height Height of matrix transfer (rows)
+  !>    @param[in]   kind   Type of transfer
+  !>    @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
+  !>   #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
+  !>  
+  !>    @see hipMemcpy, hipMemcpyToArray, hipMemcpy2DToArray, hipMemcpyFromArray, hipMemcpyToSymbol,
+  !>   hipMemcpyAsync
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipMemcpy2D(dst,dpitch,src,spitch,width,height,myKind) bind(c, name="cudaMemcpy2D")
 #else
@@ -3115,15 +3115,15 @@ module hipfort
       integer(kind(hipMemcpyHostToHost)),value :: myKind
     end function
 
-  ! 
-  !    @brief Copies memory for 2D arrays.
-  !    @param[in]   pCopy Parameters for the memory copy
-  !    @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
-  !    #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
-  !  
-  !    @see hipMemcpy, hipMemcpy2D, hipMemcpyToArray, hipMemcpy2DToArray, hipMemcpyFromArray,
-  !   hipMemcpyToSymbol, hipMemcpyAsync
-  ! 
+  !> 
+  !>    @brief Copies memory for 2D arrays.
+  !>    @param[in]   pCopy Parameters for the memory copy
+  !>    @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
+  !>    #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
+  !>  
+  !>    @see hipMemcpy, hipMemcpy2D, hipMemcpyToArray, hipMemcpy2DToArray, hipMemcpyFromArray,
+  !>   hipMemcpyToSymbol, hipMemcpyAsync
+  !> 
 #ifdef USE_CUDA_NAMES
     function hipMemcpyParam2D(pCopy) bind(c, name="cudaMemcpyParam2D")
 #else
@@ -3144,16 +3144,16 @@ module hipfort
       type(c_ptr) :: pCopy
     end function
 
-  ! 
-  !    @brief Copies memory for 2D arrays.
-  !    @param[in]   pCopy Parameters for the memory copy
-  !    @param[in]   stream Stream to use
-  !    @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
-  !   #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
-  !  
-  !    @see hipMemcpy, hipMemcpy2D, hipMemcpyToArray, hipMemcpy2DToArray, hipMemcpyFromArray,
-  !   hipMemcpyToSymbol, hipMemcpyAsync
-  ! 
+  !> 
+  !>    @brief Copies memory for 2D arrays.
+  !>    @param[in]   pCopy Parameters for the memory copy
+  !>    @param[in]   stream Stream to use
+  !>    @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
+  !>   #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
+  !>  
+  !>    @see hipMemcpy, hipMemcpy2D, hipMemcpyToArray, hipMemcpy2DToArray, hipMemcpyFromArray,
+  !>   hipMemcpyToSymbol, hipMemcpyAsync
+  !> 
 #ifdef USE_CUDA_NAMES
     function hipMemcpyParam2DAsync(pCopy,stream) bind(c, name="cudaMemcpyParam2DAsync")
 #else
@@ -3175,23 +3175,23 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-  ! 
-  !    @brief Copies data between host and device.
-  !  
-  !    @param[in]   dst    Destination memory address
-  !    @param[in]   dpitch Pitch of destination memory
-  !    @param[in]   src    Source memory address
-  !    @param[in]   spitch Pitch of source memory
-  !    @param[in]   width  Width of matrix transfer (columns in bytes)
-  !    @param[in]   height Height of matrix transfer (rows)
-  !    @param[in]   kind   Type of transfer
-  !    @param[in]   stream Stream to use
-  !    @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
-  !   #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
-  !  
-  !    @see hipMemcpy, hipMemcpyToArray, hipMemcpy2DToArray, hipMemcpyFromArray, hipMemcpyToSymbol,
-  !   hipMemcpyAsync
-  !  
+  !> 
+  !>    @brief Copies data between host and device.
+  !>  
+  !>    @param[in]   dst    Destination memory address
+  !>    @param[in]   dpitch Pitch of destination memory
+  !>    @param[in]   src    Source memory address
+  !>    @param[in]   spitch Pitch of source memory
+  !>    @param[in]   width  Width of matrix transfer (columns in bytes)
+  !>    @param[in]   height Height of matrix transfer (rows)
+  !>    @param[in]   kind   Type of transfer
+  !>    @param[in]   stream Stream to use
+  !>    @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
+  !>   #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
+  !>  
+  !>    @see hipMemcpy, hipMemcpyToArray, hipMemcpy2DToArray, hipMemcpyFromArray, hipMemcpyToSymbol,
+  !>   hipMemcpyAsync
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipMemcpy2DAsync(dst,dpitch,src,spitch,width,height,myKind,stream) bind(c, name="cudaMemcpy2DAsync")
 #else
@@ -3219,23 +3219,23 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-  ! 
-  !    @brief Copies data between host and device.
-  !  
-  !    @param[in]   dst     Destination memory address
-  !    @param[in]   wOffset Destination starting X offset
-  !    @param[in]   hOffset Destination starting Y offset
-  !    @param[in]   src     Source memory address
-  !    @param[in]   spitch  Pitch of source memory
-  !    @param[in]   width   Width of matrix transfer (columns in bytes)
-  !    @param[in]   height  Height of matrix transfer (rows)
-  !    @param[in]   kind    Type of transfer
-  !    @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
-  !   #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
-  !  
-  !    @see hipMemcpy, hipMemcpyToArray, hipMemcpy2D, hipMemcpyFromArray, hipMemcpyToSymbol,
-  !   hipMemcpyAsync
-  !  
+  !> 
+  !>    @brief Copies data between host and device.
+  !>  
+  !>    @param[in]   dst     Destination memory address
+  !>    @param[in]   wOffset Destination starting X offset
+  !>    @param[in]   hOffset Destination starting Y offset
+  !>    @param[in]   src     Source memory address
+  !>    @param[in]   spitch  Pitch of source memory
+  !>    @param[in]   width   Width of matrix transfer (columns in bytes)
+  !>    @param[in]   height  Height of matrix transfer (rows)
+  !>    @param[in]   kind    Type of transfer
+  !>    @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
+  !>   #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
+  !>  
+  !>    @see hipMemcpy, hipMemcpyToArray, hipMemcpy2D, hipMemcpyFromArray, hipMemcpyToSymbol,
+  !>   hipMemcpyAsync
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipMemcpy2DToArray(dst,wOffset,hOffset,src,spitch,width,height,myKind) bind(c, name="cudaMemcpy2DToArray")
 #else
@@ -3315,23 +3315,23 @@ module hipfort
       integer(kind(hipMemcpyHostToHost)),value :: myKind
     end function
 
-  ! 
-  !    @brief Copies data between host and device.
-  !  
-  !    @param[in]   dst       Destination memory address
-  !    @param[in]   dpitch    Pitch of destination memory
-  !    @param[in]   src       Source memory address
-  !    @param[in]   wOffset   Source starting X offset
-  !    @param[in]   hOffset   Source starting Y offset
-  !    @param[in]   width     Width of matrix transfer (columns in bytes)
-  !    @param[in]   height    Height of matrix transfer (rows)
-  !    @param[in]   kind      Type of transfer
-  !    @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
-  !   #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
-  !  
-  !    @see hipMemcpy, hipMemcpy2DToArray, hipMemcpy2D, hipMemcpyFromArray, hipMemcpyToSymbol,
-  !   hipMemcpyAsync
-  !  
+  !> 
+  !>    @brief Copies data between host and device.
+  !>  
+  !>    @param[in]   dst       Destination memory address
+  !>    @param[in]   dpitch    Pitch of destination memory
+  !>    @param[in]   src       Source memory address
+  !>    @param[in]   wOffset   Source starting X offset
+  !>    @param[in]   hOffset   Source starting Y offset
+  !>    @param[in]   width     Width of matrix transfer (columns in bytes)
+  !>    @param[in]   height    Height of matrix transfer (rows)
+  !>    @param[in]   kind      Type of transfer
+  !>    @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
+  !>   #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
+  !>  
+  !>    @see hipMemcpy, hipMemcpy2DToArray, hipMemcpy2D, hipMemcpyFromArray, hipMemcpyToSymbol,
+  !>   hipMemcpyAsync
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipMemcpy2DFromArray(dst,dpitch,src,wOffset,hOffset,width,height,myKind) bind(c, name="cudaMemcpy2DFromArray")
 #else
@@ -3359,24 +3359,24 @@ module hipfort
       integer(kind(hipMemcpyHostToHost)),value :: myKind
     end function
 
-  ! 
-  !    @brief Copies data between host and device asynchronously.
-  !  
-  !    @param[in]   dst       Destination memory address
-  !    @param[in]   dpitch    Pitch of destination memory
-  !    @param[in]   src       Source memory address
-  !    @param[in]   wOffset   Source starting X offset
-  !    @param[in]   hOffset   Source starting Y offset
-  !    @param[in]   width     Width of matrix transfer (columns in bytes)
-  !    @param[in]   height    Height of matrix transfer (rows)
-  !    @param[in]   kind      Type of transfer
-  !    @param[in]   stream    Accelerator view which the copy is being enqueued
-  !    @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
-  !   #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
-  !  
-  !    @see hipMemcpy, hipMemcpy2DToArray, hipMemcpy2D, hipMemcpyFromArray, hipMemcpyToSymbol,
-  !   hipMemcpyAsync
-  !  
+  !> 
+  !>    @brief Copies data between host and device asynchronously.
+  !>  
+  !>    @param[in]   dst       Destination memory address
+  !>    @param[in]   dpitch    Pitch of destination memory
+  !>    @param[in]   src       Source memory address
+  !>    @param[in]   wOffset   Source starting X offset
+  !>    @param[in]   hOffset   Source starting Y offset
+  !>    @param[in]   width     Width of matrix transfer (columns in bytes)
+  !>    @param[in]   height    Height of matrix transfer (rows)
+  !>    @param[in]   kind      Type of transfer
+  !>    @param[in]   stream    Accelerator view which the copy is being enqueued
+  !>    @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
+  !>   #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
+  !>  
+  !>    @see hipMemcpy, hipMemcpy2DToArray, hipMemcpy2D, hipMemcpyFromArray, hipMemcpyToSymbol,
+  !>   hipMemcpyAsync
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipMemcpy2DFromArrayAsync(dst,dpitch,src,wOffset,hOffset,width,height,myKind,stream) bind(c, name="cudaMemcpy2DFromArrayAsync")
 #else
@@ -3405,19 +3405,19 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-  ! 
-  !    @brief Copies data between host and device.
-  !  
-  !    @param[in]   dst       Destination memory address
-  !    @param[in]   srcArray  Source array
-  !    @param[in]   srcoffset Offset in bytes of source array
-  !    @param[in]   count     Size of memory copy in bytes
-  !    @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
-  !   #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
-  !  
-  !    @see hipMemcpy, hipMemcpy2DToArray, hipMemcpy2D, hipMemcpyFromArray, hipMemcpyToSymbol,
-  !   hipMemcpyAsync
-  !  
+  !> 
+  !>    @brief Copies data between host and device.
+  !>  
+  !>    @param[in]   dst       Destination memory address
+  !>    @param[in]   srcArray  Source array
+  !>    @param[in]   srcoffset Offset in bytes of source array
+  !>    @param[in]   count     Size of memory copy in bytes
+  !>    @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
+  !>   #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
+  !>  
+  !>    @see hipMemcpy, hipMemcpy2DToArray, hipMemcpy2D, hipMemcpyFromArray, hipMemcpyToSymbol,
+  !>   hipMemcpyAsync
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipMemcpyAtoH(dst,srcArray,srcOffset,count) bind(c, name="cudaMemcpyAtoH")
 #else
@@ -3441,19 +3441,19 @@ module hipfort
       integer(c_size_t),value :: count
     end function
 
-  ! 
-  !    @brief Copies data between host and device.
-  !  
-  !    @param[in]   dstArray   Destination memory address
-  !    @param[in]   dstOffset  Offset in bytes of destination array
-  !    @param[in]   srcHost    Source host pointer
-  !    @param[in]   count      Size of memory copy in bytes
-  !    @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
-  !   #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
-  !  
-  !    @see hipMemcpy, hipMemcpy2DToArray, hipMemcpy2D, hipMemcpyFromArray, hipMemcpyToSymbol,
-  !   hipMemcpyAsync
-  !  
+  !> 
+  !>    @brief Copies data between host and device.
+  !>  
+  !>    @param[in]   dstArray   Destination memory address
+  !>    @param[in]   dstOffset  Offset in bytes of destination array
+  !>    @param[in]   srcHost    Source host pointer
+  !>    @param[in]   count      Size of memory copy in bytes
+  !>    @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
+  !>   #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
+  !>  
+  !>    @see hipMemcpy, hipMemcpy2DToArray, hipMemcpy2D, hipMemcpyFromArray, hipMemcpyToSymbol,
+  !>   hipMemcpyAsync
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipMemcpyHtoA(dstArray,dstOffset,srcHost,count) bind(c, name="cudaMemcpyHtoA")
 #else
@@ -3477,16 +3477,16 @@ module hipfort
       integer(c_size_t),value :: count
     end function
 
-  ! 
-  !    @brief Copies data between host and device.
-  !  
-  !    @param[in]   p   3D memory copy parameters
-  !    @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
-  !   #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
-  !  
-  !    @see hipMemcpy, hipMemcpy2DToArray, hipMemcpy2D, hipMemcpyFromArray, hipMemcpyToSymbol,
-  !   hipMemcpyAsync
-  !  
+  !> 
+  !>    @brief Copies data between host and device.
+  !>  
+  !>    @param[in]   p   3D memory copy parameters
+  !>    @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
+  !>   #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
+  !>  
+  !>    @see hipMemcpy, hipMemcpy2DToArray, hipMemcpy2D, hipMemcpyFromArray, hipMemcpyToSymbol,
+  !>   hipMemcpyAsync
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipMemcpy3D(p) bind(c, name="cudaMemcpy3D")
 #else
@@ -3507,17 +3507,17 @@ module hipfort
       type(c_ptr) :: p
     end function
 
-  ! 
-  !    @brief Copies data between host and device asynchronously.
-  !  
-  !    @param[in]   p        3D memory copy parameters
-  !    @param[in]   stream   Stream to use
-  !    @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
-  !   #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
-  !  
-  !    @see hipMemcpy, hipMemcpy2DToArray, hipMemcpy2D, hipMemcpyFromArray, hipMemcpyToSymbol,
-  !   hipMemcpyAsync
-  !  
+  !> 
+  !>    @brief Copies data between host and device asynchronously.
+  !>  
+  !>    @param[in]   p        3D memory copy parameters
+  !>    @param[in]   stream   Stream to use
+  !>    @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
+  !>   #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
+  !>  
+  !>    @see hipMemcpy, hipMemcpy2DToArray, hipMemcpy2D, hipMemcpyFromArray, hipMemcpyToSymbol,
+  !>   hipMemcpyAsync
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipMemcpy3DAsync(p,stream) bind(c, name="cudaMemcpy3DAsync")
 #else
@@ -3539,16 +3539,16 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-  ! 
-  !    @brief Copies data between host and device.
-  !  
-  !    @param[in]   pCopy   3D memory copy parameters
-  !    @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
-  !    #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
-  !  
-  !    @see hipMemcpy, hipMemcpy2DToArray, hipMemcpy2D, hipMemcpyFromArray, hipMemcpyToSymbol,
-  !   hipMemcpyAsync
-  !  
+  !> 
+  !>    @brief Copies data between host and device.
+  !>  
+  !>    @param[in]   pCopy   3D memory copy parameters
+  !>    @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
+  !>    #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
+  !>  
+  !>    @see hipMemcpy, hipMemcpy2DToArray, hipMemcpy2D, hipMemcpyFromArray, hipMemcpyToSymbol,
+  !>   hipMemcpyAsync
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipDrvMemcpy3D(pCopy) bind(c, name="cudaDrvMemcpy3D")
 #else
@@ -3569,17 +3569,17 @@ module hipfort
       type(c_ptr) :: pCopy
     end function
 
-  ! 
-  !    @brief Copies data between host and device asynchronously.
-  !  
-  !    @param[in]   pCopy    3D memory copy parameters
-  !    @param[in]   stream   Stream to use
-  !    @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
-  !    #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
-  !  
-  !    @see hipMemcpy, hipMemcpy2DToArray, hipMemcpy2D, hipMemcpyFromArray, hipMemcpyToSymbol,
-  !   hipMemcpyAsync
-  !  
+  !> 
+  !>    @brief Copies data between host and device asynchronously.
+  !>  
+  !>    @param[in]   pCopy    3D memory copy parameters
+  !>    @param[in]   stream   Stream to use
+  !>    @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
+  !>    #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
+  !>  
+  !>    @see hipMemcpy, hipMemcpy2DToArray, hipMemcpy2D, hipMemcpyFromArray, hipMemcpyToSymbol,
+  !>   hipMemcpyAsync
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipDrvMemcpy3DAsync(pCopy,stream) bind(c, name="cudaDrvMemcpy3DAsync")
 #else
@@ -3601,22 +3601,22 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-  ! 
-  !   @brief Determine if a device can access a peer's memory.
-  !  
-  !   @param [out] canAccessPeer Returns the peer access capability (0 or 1)
-  !   @param [in] device - device from where memory may be accessed.
-  !   @param [in] peerDevice - device where memory is physically located
-  !  
-  !   Returns "1" in @p canAccessPeer if the specified @p device is capable
-  !   of directly accessing memory physically located on peerDevice , or "0" if not.
-  !  
-  !   Returns "0" in @p canAccessPeer if deviceId == peerDeviceId, and both are valid devices : a
-  !   device is not a peer of itself.
-  !  
-  !   @returns #hipSuccess,
-  !   @returns #hipErrorInvalidDevice if deviceId or peerDeviceId are not valid devices
-  !  
+  !> 
+  !>   @brief Determine if a device can access a peer's memory.
+  !>  
+  !>   @param [out] canAccessPeer Returns the peer access capability (0 or 1)
+  !>   @param [in] device - device from where memory may be accessed.
+  !>   @param [in] peerDevice - device where memory is physically located
+  !>  
+  !>   Returns "1" in @p canAccessPeer if the specified @p device is capable
+  !>   of directly accessing memory physically located on peerDevice , or "0" if not.
+  !>  
+  !>   Returns "0" in @p canAccessPeer if deviceId == peerDeviceId, and both are valid devices : a
+  !>   device is not a peer of itself.
+  !>  
+  !>   @returns #hipSuccess,
+  !>   @returns #hipErrorInvalidDevice if deviceId or peerDeviceId are not valid devices
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipDeviceCanAccessPeer(canAccessPeer,deviceId,peerDeviceId) bind(c, name="cudaDeviceCanAccessPeer")
 #else
@@ -3639,22 +3639,22 @@ module hipfort
       integer(c_int),value :: peerDeviceId
     end function
 
-  ! 
-  !   @brief Enable direct access from current device's virtual address space to memory allocations
-  !   physically located on a peer device.
-  !  
-  !   Memory which already allocated on peer device will be mapped into the address space of the
-  !   current device.  In addition, all future memory allocations on peerDeviceId will be mapped into
-  !   the address space of the current device when the memory is allocated. The peer memory remains
-  !   accessible from the current device until a call to hipDeviceDisablePeerAccess or hipDeviceReset.
-  !  
-  !  
-  !   @param [in] peerDeviceId
-  !   @param [in] flags
-  !  
-  !   Returns #hipSuccess, #hipErrorInvalidDevice, #hipErrorInvalidValue,
-  !   @returns #hipErrorPeerAccessAlreadyEnabled if peer access is already enabled for this device.
-  !  
+  !> 
+  !>   @brief Enable direct access from current device's virtual address space to memory allocations
+  !>   physically located on a peer device.
+  !>  
+  !>   Memory which already allocated on peer device will be mapped into the address space of the
+  !>   current device.  In addition, all future memory allocations on peerDeviceId will be mapped into
+  !>   the address space of the current device when the memory is allocated. The peer memory remains
+  !>   accessible from the current device until a call to hipDeviceDisablePeerAccess or hipDeviceReset.
+  !>  
+  !>  
+  !>   @param [in] peerDeviceId
+  !>   @param [in] flags
+  !>  
+  !>   Returns #hipSuccess, #hipErrorInvalidDevice, #hipErrorInvalidValue,
+  !>   @returns #hipErrorPeerAccessAlreadyEnabled if peer access is already enabled for this device.
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipDeviceEnablePeerAccess(peerDeviceId,flags) bind(c, name="cudaDeviceEnablePeerAccess")
 #else
@@ -3676,17 +3676,17 @@ module hipfort
       integer(kind=4),value :: flags
     end function
 
-  ! 
-  !   @brief Disable direct access from current device's virtual address space to memory allocations
-  !   physically located on a peer device.
-  !  
-  !   Returns hipErrorPeerAccessNotEnabled if direct access to memory on peerDevice has not yet been
-  !   enabled from the current device.
-  !  
-  !   @param [in] peerDeviceId
-  !  
-  !   @returns #hipSuccess, #hipErrorPeerAccessNotEnabled
-  !  
+  !> 
+  !>   @brief Disable direct access from current device's virtual address space to memory allocations
+  !>   physically located on a peer device.
+  !>  
+  !>   Returns hipErrorPeerAccessNotEnabled if direct access to memory on peerDevice has not yet been
+  !>   enabled from the current device.
+  !>  
+  !>   @param [in] peerDeviceId
+  !>  
+  !>   @returns #hipSuccess, #hipErrorPeerAccessNotEnabled
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipDeviceDisablePeerAccess(peerDeviceId) bind(c, name="cudaDeviceDisablePeerAccess")
 #else
@@ -3707,18 +3707,18 @@ module hipfort
       integer(c_int),value :: peerDeviceId
     end function
 
-  ! 
-  !   @brief Get information on memory allocations.
-  !  
-  !   @param [out] pbase - BAse pointer address
-  !   @param [out] psize - Size of allocation
-  !   @param [in]  dptr- Device Pointer
-  !  
-  !   @returns #hipSuccess, #hipErrorInvalidDevicePointer
-  !  
-  !   @see hipCtxCreate, hipCtxDestroy, hipCtxGetFlags, hipCtxPopCurrent, hipCtxGetCurrent,
-  !   hipCtxSetCurrent, hipCtxPushCurrent, hipCtxSetCacheConfig, hipCtxSynchronize, hipCtxGetDevice
-  !  
+  !> 
+  !>   @brief Get information on memory allocations.
+  !>  
+  !>   @param [out] pbase - BAse pointer address
+  !>   @param [out] psize - Size of allocation
+  !>   @param [in]  dptr- Device Pointer
+  !>  
+  !>   @returns #hipSuccess, #hipErrorInvalidDevicePointer
+  !>  
+  !>   @see hipCtxCreate, hipCtxDestroy, hipCtxGetFlags, hipCtxPopCurrent, hipCtxGetCurrent,
+  !>   hipCtxSetCurrent, hipCtxPushCurrent, hipCtxSetCacheConfig, hipCtxSynchronize, hipCtxGetDevice
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipMemGetAddressRange(pbase,psize,dptr) bind(c, name="cudaMemGetAddressRange")
 #else
@@ -3741,17 +3741,17 @@ module hipfort
       type(c_ptr),value :: dptr
     end function
 
-  ! 
-  !   @brief Copies memory from one device to memory on another device.
-  !  
-  !   @param [out] dst - Destination device pointer.
-  !   @param [in] dstDeviceId - Destination device
-  !   @param [in] src - Source device pointer
-  !   @param [in] srcDeviceId - Source device
-  !   @param [in] sizeBytes - Size of memory copy in bytes
-  !  
-  !   @returns #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidDevice
-  !  
+  !> 
+  !>   @brief Copies memory from one device to memory on another device.
+  !>  
+  !>   @param [out] dst - Destination device pointer.
+  !>   @param [in] dstDeviceId - Destination device
+  !>   @param [in] src - Source device pointer
+  !>   @param [in] srcDeviceId - Source device
+  !>   @param [in] sizeBytes - Size of memory copy in bytes
+  !>  
+  !>   @returns #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidDevice
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipMemcpyPeer(dst,dstDeviceId,src,srcDeviceId,sizeBytes) bind(c, name="cudaMemcpyPeer")
 #else
@@ -3776,18 +3776,18 @@ module hipfort
       integer(c_size_t),value :: sizeBytes
     end function
 
-  ! 
-  !   @brief Copies memory from one device to memory on another device.
-  !  
-  !   @param [out] dst - Destination device pointer.
-  !   @param [in] dstDevice - Destination device
-  !   @param [in] src - Source device pointer
-  !   @param [in] srcDevice - Source device
-  !   @param [in] sizeBytes - Size of memory copy in bytes
-  !   @param [in] stream - Stream identifier
-  !  
-  !   @returns #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidDevice
-  !  
+  !> 
+  !>   @brief Copies memory from one device to memory on another device.
+  !>  
+  !>   @param [out] dst - Destination device pointer.
+  !>   @param [in] dstDevice - Destination device
+  !>   @param [in] src - Source device pointer
+  !>   @param [in] srcDevice - Source device
+  !>   @param [in] sizeBytes - Size of memory copy in bytes
+  !>   @param [in] stream - Stream identifier
+  !>  
+  !>   @returns #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidDevice
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipMemcpyPeerAsync(dst,dstDeviceId,src,srcDevice,sizeBytes,stream) bind(c, name="cudaMemcpyPeerAsync")
 #else
@@ -4173,18 +4173,18 @@ module hipfort
       type(c_ptr),value :: peerCtx
     end function
 
-  ! 
-  !   @brief Get the state of the primary context.
-  !  
-  !   @param [in] Device to get primary context flags for
-  !   @param [out] Pointer to store flags
-  !   @param [out] Pointer to store context state; 0 = inactive, 1 = active
-  !  
-  !   @returns #hipSuccess
-  !  
-  !   @see hipCtxCreate, hipCtxDestroy, hipCtxGetFlags, hipCtxPopCurrent, hipCtxGetCurrent,
-  !   hipCtxSetCurrent, hipCtxPushCurrent, hipCtxSetCacheConfig, hipCtxSynchronize, hipCtxGetDevice
-  !  
+  !> 
+  !>   @brief Get the state of the primary context.
+  !>  
+  !>   @param [in] Device to get primary context flags for
+  !>   @param [out] Pointer to store flags
+  !>   @param [out] Pointer to store context state; 0 = inactive, 1 = active
+  !>  
+  !>   @returns #hipSuccess
+  !>  
+  !>   @see hipCtxCreate, hipCtxDestroy, hipCtxGetFlags, hipCtxPopCurrent, hipCtxGetCurrent,
+  !>   hipCtxSetCurrent, hipCtxPushCurrent, hipCtxSetCacheConfig, hipCtxSynchronize, hipCtxGetDevice
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipDevicePrimaryCtxGetState(dev,flags,active) bind(c, name="cudaDevicePrimaryCtxGetState")
 #else
@@ -4207,18 +4207,18 @@ module hipfort
       type(c_ptr),value :: active
     end function
 
-  ! 
-  !   @brief Release the primary context on the GPU.
-  !  
-  !   @param [in] Device which primary context is released
-  !  
-  !   @returns #hipSuccess
-  !  
-  !   @see hipCtxCreate, hipCtxDestroy, hipCtxGetFlags, hipCtxPopCurrent, hipCtxGetCurrent,
-  !   hipCtxSetCurrent, hipCtxPushCurrent, hipCtxSetCacheConfig, hipCtxSynchronize, hipCtxGetDevice
-  !   @warning This function return #hipSuccess though doesn't release the primaryCtx by design on
-  !   HIPHCC path.
-  !  
+  !> 
+  !>   @brief Release the primary context on the GPU.
+  !>  
+  !>   @param [in] Device which primary context is released
+  !>  
+  !>   @returns #hipSuccess
+  !>  
+  !>   @see hipCtxCreate, hipCtxDestroy, hipCtxGetFlags, hipCtxPopCurrent, hipCtxGetCurrent,
+  !>   hipCtxSetCurrent, hipCtxPushCurrent, hipCtxSetCacheConfig, hipCtxSynchronize, hipCtxGetDevice
+  !>   @warning This function return #hipSuccess though doesn't release the primaryCtx by design on
+  !>   HIPHCC path.
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipDevicePrimaryCtxRelease(dev) bind(c, name="cudaDevicePrimaryCtxRelease")
 #else
@@ -4239,17 +4239,17 @@ module hipfort
       integer(c_int),value :: dev
     end function
 
-  ! 
-  !   @brief Retain the primary context on the GPU.
-  !  
-  !   @param [out] Returned context handle of the new context
-  !   @param [in] Device which primary context is released
-  !  
-  !   @returns #hipSuccess
-  !  
-  !   @see hipCtxCreate, hipCtxDestroy, hipCtxGetFlags, hipCtxPopCurrent, hipCtxGetCurrent,
-  !   hipCtxSetCurrent, hipCtxPushCurrent, hipCtxSetCacheConfig, hipCtxSynchronize, hipCtxGetDevice
-  !  
+  !> 
+  !>   @brief Retain the primary context on the GPU.
+  !>  
+  !>   @param [out] Returned context handle of the new context
+  !>   @param [in] Device which primary context is released
+  !>  
+  !>   @returns #hipSuccess
+  !>  
+  !>   @see hipCtxCreate, hipCtxDestroy, hipCtxGetFlags, hipCtxPopCurrent, hipCtxGetCurrent,
+  !>   hipCtxSetCurrent, hipCtxPushCurrent, hipCtxSetCacheConfig, hipCtxSynchronize, hipCtxGetDevice
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipDevicePrimaryCtxRetain(pctx,dev) bind(c, name="cudaDevicePrimaryCtxRetain")
 #else
@@ -4271,16 +4271,16 @@ module hipfort
       integer(c_int),value :: dev
     end function
 
-  ! 
-  !   @brief Resets the primary context on the GPU.
-  !  
-  !   @param [in] Device which primary context is reset
-  !  
-  !   @returns #hipSuccess
-  !  
-  !   @see hipCtxCreate, hipCtxDestroy, hipCtxGetFlags, hipCtxPopCurrent, hipCtxGetCurrent,
-  !   hipCtxSetCurrent, hipCtxPushCurrent, hipCtxSetCacheConfig, hipCtxSynchronize, hipCtxGetDevice
-  !  
+  !> 
+  !>   @brief Resets the primary context on the GPU.
+  !>  
+  !>   @param [in] Device which primary context is reset
+  !>  
+  !>   @returns #hipSuccess
+  !>  
+  !>   @see hipCtxCreate, hipCtxDestroy, hipCtxGetFlags, hipCtxPopCurrent, hipCtxGetCurrent,
+  !>   hipCtxSetCurrent, hipCtxPushCurrent, hipCtxSetCacheConfig, hipCtxSynchronize, hipCtxGetDevice
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipDevicePrimaryCtxReset(dev) bind(c, name="cudaDevicePrimaryCtxReset")
 #else
@@ -4301,17 +4301,17 @@ module hipfort
       integer(c_int),value :: dev
     end function
 
-  ! 
-  !   @brief Set flags for the primary context.
-  !  
-  !   @param [in] Device for which the primary context flags are set
-  !   @param [in] New flags for the device
-  !  
-  !   @returns #hipSuccess, #hipErrorContextAlreadyInUse
-  !  
-  !   @see hipCtxCreate, hipCtxDestroy, hipCtxGetFlags, hipCtxPopCurrent, hipCtxGetCurrent,
-  !   hipCtxSetCurrent, hipCtxPushCurrent, hipCtxSetCacheConfig, hipCtxSynchronize, hipCtxGetDevice
-  !  
+  !> 
+  !>   @brief Set flags for the primary context.
+  !>  
+  !>   @param [in] Device for which the primary context flags are set
+  !>   @param [in] New flags for the device
+  !>  
+  !>   @returns #hipSuccess, #hipErrorContextAlreadyInUse
+  !>  
+  !>   @see hipCtxCreate, hipCtxDestroy, hipCtxGetFlags, hipCtxPopCurrent, hipCtxGetCurrent,
+  !>   hipCtxSetCurrent, hipCtxPushCurrent, hipCtxSetCacheConfig, hipCtxSynchronize, hipCtxGetDevice
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipDevicePrimaryCtxSetFlags(dev,flags) bind(c, name="cudaDevicePrimaryCtxSetFlags")
 #else
@@ -4333,13 +4333,13 @@ module hipfort
       integer(kind=4),value :: flags
     end function
 
-  ! 
-  !   @brief Returns a handle to a compute device
-  !   @param [out] device
-  !   @param [in] ordinal
-  !  
-  !   @returns #hipSuccess, #hipErrorInavlidDevice
-  !  
+  !> 
+  !>   @brief Returns a handle to a compute device
+  !>   @param [out] device
+  !>   @param [in] ordinal
+  !>  
+  !>   @returns #hipSuccess, #hipErrorInavlidDevice
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipDeviceGet(device,ordinal) bind(c, name="cudaDeviceGet")
 #else
@@ -4361,14 +4361,14 @@ module hipfort
       integer(c_int),value :: ordinal
     end function
 
-  ! 
-  !   @brief Returns the compute capability of the device
-  !   @param [out] major
-  !   @param [out] minor
-  !   @param [in] device
-  !  
-  !   @returns #hipSuccess, #hipErrorInavlidDevice
-  !  
+  !> 
+  !>   @brief Returns the compute capability of the device
+  !>   @param [out] major
+  !>   @param [out] minor
+  !>   @param [in] device
+  !>  
+  !>   @returns #hipSuccess, #hipErrorInavlidDevice
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipDeviceComputeCapability(major,minor,device) bind(c, name="cudaDeviceComputeCapability")
 #else
@@ -4391,14 +4391,14 @@ module hipfort
       integer(c_int),value :: device
     end function
 
-  ! 
-  !   @brief Returns an identifer string for the device.
-  !   @param [out] name
-  !   @param [in] len
-  !   @param [in] device
-  !  
-  !   @returns #hipSuccess, #hipErrorInavlidDevice
-  !  
+  !> 
+  !>   @brief Returns an identifer string for the device.
+  !>   @param [out] name
+  !>   @param [in] len
+  !>   @param [in] device
+  !>  
+  !>   @returns #hipSuccess, #hipErrorInavlidDevice
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipDeviceGetName(name,len,device) bind(c, name="cudaDeviceGetName")
 #else
@@ -4421,15 +4421,15 @@ module hipfort
       integer(c_int),value :: device
     end function
 
-  ! 
-  !   @brief Returns a value for attr of link between two devices
-  !   @param [out] value
-  !   @param [in] attr
-  !   @param [in] srcDevice
-  !   @param [in] dstDevice
-  !  
-  !   @returns #hipSuccess, #hipErrorInavlidDevice
-  !  
+  !> 
+  !>   @brief Returns a value for attr of link between two devices
+  !>   @param [out] value
+  !>   @param [in] attr
+  !>   @param [in] srcDevice
+  !>   @param [in] dstDevice
+  !>  
+  !>   @returns #hipSuccess, #hipErrorInavlidDevice
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipDeviceGetP2PAttribute(myValue,attr,srcDevice,dstDevice) bind(c, name="cudaDeviceGetP2PAttribute")
 #else
@@ -4453,14 +4453,14 @@ module hipfort
       integer(c_int),value :: dstDevice
     end function
 
-  ! 
-  !   @brief Returns a PCI Bus Id string for the device, overloaded to take int device ID.
-  !   @param [out] pciBusId
-  !   @param [in] len
-  !   @param [in] device
-  !  
-  !   @returns #hipSuccess, #hipErrorInavlidDevice
-  !  
+  !> 
+  !>   @brief Returns a PCI Bus Id string for the device, overloaded to take int device ID.
+  !>   @param [out] pciBusId
+  !>   @param [in] len
+  !>   @param [in] device
+  !>  
+  !>   @returns #hipSuccess, #hipErrorInavlidDevice
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipDeviceGetPCIBusId(pciBusId,len,device) bind(c, name="cudaDeviceGetPCIBusId")
 #else
@@ -4483,13 +4483,13 @@ module hipfort
       integer(c_int),value :: device
     end function
 
-  ! 
-  !   @brief Returns a handle to a compute device.
-  !   @param [out] device handle
-  !   @param [in] PCI Bus ID
-  !  
-  !   @returns #hipSuccess, #hipErrorInavlidDevice, #hipErrorInvalidValue
-  !  
+  !> 
+  !>   @brief Returns a handle to a compute device.
+  !>   @param [out] device handle
+  !>   @param [in] PCI Bus ID
+  !>  
+  !>   @returns #hipSuccess, #hipErrorInavlidDevice, #hipErrorInvalidValue
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipDeviceGetByPCIBusId(device,pciBusId) bind(c, name="cudaDeviceGetByPCIBusId")
 #else
@@ -4511,13 +4511,13 @@ module hipfort
       type(c_ptr),value :: pciBusId
     end function
 
-  ! 
-  !   @brief Returns the total amount of memory on the device.
-  !   @param [out] bytes
-  !   @param [in] device
-  !  
-  !   @returns #hipSuccess, #hipErrorInavlidDevice
-  !  
+  !> 
+  !>   @brief Returns the total amount of memory on the device.
+  !>   @param [out] bytes
+  !>   @param [in] device
+  !>  
+  !>   @returns #hipSuccess, #hipErrorInavlidDevice
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipDeviceTotalMem(bytes,device) bind(c, name="cudaDeviceTotalMem")
 #else
@@ -4539,21 +4539,21 @@ module hipfort
       integer(c_int),value :: device
     end function
 
-  ! 
-  !   @brief Returns the approximate HIP driver version.
-  !  
-  !   @param [out] driverVersion
-  !  
-  !   @returns #hipSuccess, #hipErrorInavlidValue
-  !  
-  !   @warning The HIP feature set does not correspond to an exact CUDA SDK driver revision.
-  !   This function always set driverVersion to 4 as an approximation though HIP supports
-  !   some features which were introduced in later CUDA SDK revisions.
-  !   HIP apps code should not rely on the driver revision number here and should
-  !   use arch feature flags to test device capabilities or conditional compilation.
-  !  
-  !   @see hipRuntimeGetVersion
-  !  
+  !> 
+  !>   @brief Returns the approximate HIP driver version.
+  !>  
+  !>   @param [out] driverVersion
+  !>  
+  !>   @returns #hipSuccess, #hipErrorInavlidValue
+  !>  
+  !>   @warning The HIP feature set does not correspond to an exact CUDA SDK driver revision.
+  !>   This function always set driverVersion to 4 as an approximation though HIP supports
+  !>   some features which were introduced in later CUDA SDK revisions.
+  !>   HIP apps code should not rely on the driver revision number here and should
+  !>   use arch feature flags to test device capabilities or conditional compilation.
+  !>  
+  !>   @see hipRuntimeGetVersion
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipDriverGetVersion(driverVersion) bind(c, name="cudaDriverGetVersion")
 #else
@@ -4574,18 +4574,18 @@ module hipfort
       type(c_ptr),value :: driverVersion
     end function
 
-  ! 
-  !   @brief Returns the approximate HIP Runtime version.
-  !  
-  !   @param [out] runtimeVersion
-  !  
-  !   @returns #hipSuccess, #hipErrorInavlidValue
-  !  
-  !   @warning On HIPHCC path this function returns HIP runtime patch version however on
-  !   HIPNVCC path this function return CUDA runtime version.
-  !  
-  !   @see hipDriverGetVersion
-  !  
+  !> 
+  !>   @brief Returns the approximate HIP Runtime version.
+  !>  
+  !>   @param [out] runtimeVersion
+  !>  
+  !>   @returns #hipSuccess, #hipErrorInavlidValue
+  !>  
+  !>   @warning On HIPHCC path this function returns HIP runtime patch version however on
+  !>   HIPNVCC path this function return CUDA runtime version.
+  !>  
+  !>   @see hipDriverGetVersion
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipRuntimeGetVersion(runtimeVersion) bind(c, name="cudaRuntimeGetVersion")
 #else
@@ -4606,17 +4606,17 @@ module hipfort
       type(c_ptr),value :: runtimeVersion
     end function
 
-  ! 
-  !   @brief Loads code object from file into a hipModule_t
-  !  
-  !   @param [in] fname
-  !   @param [out] module
-  !  
-  !   @returns hipSuccess, hipErrorInvalidValue, hipErrorInvalidContext, hipErrorFileNotFound,
-  !   hipErrorOutOfMemory, hipErrorSharedObjectInitFailed, hipErrorNotInitialized
-  !  
-  !  
-  !  
+  !> 
+  !>   @brief Loads code object from file into a hipModule_t
+  !>  
+  !>   @param [in] fname
+  !>   @param [out] module
+  !>  
+  !>   @returns hipSuccess, hipErrorInvalidValue, hipErrorInvalidContext, hipErrorFileNotFound,
+  !>   hipErrorOutOfMemory, hipErrorSharedObjectInitFailed, hipErrorNotInitialized
+  !>  
+  !>  
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipModuleLoad(myModule,fname) bind(c, name="cudaModuleLoad")
 #else
@@ -4638,15 +4638,15 @@ module hipfort
       type(c_ptr),value :: fname
     end function
 
-  ! 
-  !   @brief Frees the module
-  !  
-  !   @param [in] module
-  !  
-  !   @returns hipSuccess, hipInvalidValue
-  !   module is freed and the code objects associated with it are destroyed
-  !  
-  !  
+  !> 
+  !>   @brief Frees the module
+  !>  
+  !>   @param [in] module
+  !>  
+  !>   @returns hipSuccess, hipInvalidValue
+  !>   module is freed and the code objects associated with it are destroyed
+  !>  
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipModuleUnload(myModule) bind(c, name="cudaModuleUnload")
 #else
@@ -4667,16 +4667,16 @@ module hipfort
       type(c_ptr),value :: myModule
     end function
 
-  ! 
-  !   @brief Function with kname will be extracted if present in module
-  !  
-  !   @param [in] module
-  !   @param [in] kname
-  !   @param [out] function
-  !  
-  !   @returns hipSuccess, hipErrorInvalidValue, hipErrorInvalidContext, hipErrorNotInitialized,
-  !   hipErrorNotFound,
-  !  
+  !> 
+  !>   @brief Function with kname will be extracted if present in module
+  !>  
+  !>   @param [in] module
+  !>   @param [in] kname
+  !>   @param [out] function
+  !>  
+  !>   @returns hipSuccess, hipErrorInvalidValue, hipErrorInvalidContext, hipErrorNotInitialized,
+  !>   hipErrorNotFound,
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipModuleGetFunction(myFunction,myModule,kname) bind(c, name="cudaModuleGetFunction")
 #else
@@ -4699,14 +4699,14 @@ module hipfort
       type(c_ptr),value :: kname
     end function
 
-  ! 
-  !   @brief Find out attributes for a given function.
-  !  
-  !   @param [out] attr
-  !   @param [in] func
-  !  
-  !   @returns hipSuccess, hipErrorInvalidValue, hipErrorInvalidDeviceFunction
-  !  
+  !> 
+  !>   @brief Find out attributes for a given function.
+  !>  
+  !>   @param [out] attr
+  !>   @param [in] func
+  !>  
+  !>   @returns hipSuccess, hipErrorInvalidValue, hipErrorInvalidDeviceFunction
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipFuncGetAttributes(attr,func) bind(c, name="cudaFuncGetAttributes")
 #else
@@ -4728,15 +4728,15 @@ module hipfort
       type(c_ptr),value :: func
     end function
 
-  ! 
-  !   @brief Find out a specific attribute for a given function.
-  !  
-  !   @param [out] value
-  !   @param [in]  attrib
-  !   @param [in]  hfunc
-  !  
-  !   @returns hipSuccess, hipErrorInvalidValue, hipErrorInvalidDeviceFunction
-  !  
+  !> 
+  !>   @brief Find out a specific attribute for a given function.
+  !>  
+  !>   @param [out] value
+  !>   @param [in]  attrib
+  !>   @param [in]  hfunc
+  !>  
+  !>   @returns hipSuccess, hipErrorInvalidValue, hipErrorInvalidDeviceFunction
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipFuncGetAttribute(myValue,attrib,hfunc) bind(c, name="cudaFuncGetAttribute")
 #else
@@ -4782,15 +4782,15 @@ module hipfort
       type(c_ptr),value :: name
     end function
 
-  ! 
-  !   @brief builds module from code object which resides in host memory. Image is pointer to that
-  !   location.
-  !  
-  !   @param [in] image
-  !   @param [out] module
-  !  
-  !   @returns hipSuccess, hipErrorNotInitialized, hipErrorOutOfMemory, hipErrorNotInitialized
-  !  
+  !> 
+  !>   @brief builds module from code object which resides in host memory. Image is pointer to that
+  !>   location.
+  !>  
+  !>   @param [in] image
+  !>   @param [out] module
+  !>  
+  !>   @returns hipSuccess, hipErrorNotInitialized, hipErrorOutOfMemory, hipErrorNotInitialized
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipModuleLoadData(myModule,image) bind(c, name="cudaModuleLoadData")
 #else
@@ -4812,18 +4812,18 @@ module hipfort
       type(c_ptr),value :: image
     end function
 
-  ! 
-  !   @brief builds module from code object which resides in host memory. Image is pointer to that
-  !   location. Options are not used. hipModuleLoadData is called.
-  !  
-  !   @param [in] image
-  !   @param [out] module
-  !   @param [in] number of options
-  !   @param [in] options for JIT
-  !   @param [in] option values for JIT
-  !  
-  !   @returns hipSuccess, hipErrorNotInitialized, hipErrorOutOfMemory, hipErrorNotInitialized
-  !  
+  !> 
+  !>   @brief builds module from code object which resides in host memory. Image is pointer to that
+  !>   location. Options are not used. hipModuleLoadData is called.
+  !>  
+  !>   @param [in] image
+  !>   @param [out] module
+  !>   @param [in] number of options
+  !>   @param [in] options for JIT
+  !>   @param [in] option values for JIT
+  !>  
+  !>   @returns hipSuccess, hipErrorNotInitialized, hipErrorOutOfMemory, hipErrorNotInitialized
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipModuleLoadDataEx(myModule,image,numOptions,options,optionValues) bind(c, name="cudaModuleLoadDataEx")
 #else
@@ -4848,30 +4848,30 @@ module hipfort
       type(c_ptr) :: optionValues
     end function
 
-  ! 
-  !   @brief launches kernel f with launch parameters and shared memory on stream with arguments passed
-  !   to kernelparams or extra
-  !  
-  !   @param [in] f         Kernel to launch.
-  !   @param [in] gridDimX  X grid dimension specified as multiple of blockDimX.
-  !   @param [in] gridDimY  Y grid dimension specified as multiple of blockDimY.
-  !   @param [in] gridDimZ  Z grid dimension specified as multiple of blockDimZ.
-  !   @param [in] blockDimX X block dimensions specified in work-items
-  !   @param [in] blockDimY Y grid dimension specified in work-items
-  !   @param [in] blockDimZ Z grid dimension specified in work-items
-  !   @param [in] sharedMemBytes Amount of dynamic shared memory to allocate for this kernel.  The
-  !   kernel can access this with HIP_DYNAMIC_SHARED.
-  !   @param [in] stream    Stream where the kernel should be dispatched.  May be 0, in which case th
-  !   default stream is used with associated synchronization rules.
-  !   @param [in] kernelParams
-  !   @param [in] extra     Pointer to kernel arguments.   These are passed directly to the kernel and
-  !   must be in the memory layout and alignment expected by the kernel.
-  !  
-  !   @returns hipSuccess, hipInvalidDevice, hipErrorNotInitialized, hipErrorInvalidValue
-  !  
-  !   @warning kernellParams argument is not yet implemented in HIP. Please use extra instead. Please
-  !   refer to hip_porting_driver_api.md for sample usage.
-  !  
+  !> 
+  !>   @brief launches kernel f with launch parameters and shared memory on stream with arguments passed
+  !>   to kernelparams or extra
+  !>  
+  !>   @param [in] f         Kernel to launch.
+  !>   @param [in] gridDimX  X grid dimension specified as multiple of blockDimX.
+  !>   @param [in] gridDimY  Y grid dimension specified as multiple of blockDimY.
+  !>   @param [in] gridDimZ  Z grid dimension specified as multiple of blockDimZ.
+  !>   @param [in] blockDimX X block dimensions specified in work-items
+  !>   @param [in] blockDimY Y grid dimension specified in work-items
+  !>   @param [in] blockDimZ Z grid dimension specified in work-items
+  !>   @param [in] sharedMemBytes Amount of dynamic shared memory to allocate for this kernel.  The
+  !>   kernel can access this with HIP_DYNAMIC_SHARED.
+  !>   @param [in] stream    Stream where the kernel should be dispatched.  May be 0, in which case th
+  !>   default stream is used with associated synchronization rules.
+  !>   @param [in] kernelParams
+  !>   @param [in] extra     Pointer to kernel arguments.   These are passed directly to the kernel and
+  !>   must be in the memory layout and alignment expected by the kernel.
+  !>  
+  !>   @returns hipSuccess, hipInvalidDevice, hipErrorNotInitialized, hipErrorInvalidValue
+  !>  
+  !>   @warning kernellParams argument is not yet implemented in HIP. Please use extra instead. Please
+  !>   refer to hip_porting_driver_api.md for sample usage.
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipModuleLaunchKernel(f,gridDimX,gridDimY,gridDimZ,blockDimX,blockDimY,blockDimZ,sharedMemBytes,stream,kernelParams,extra) bind(c, name="cudaModuleLaunchKernel")
 #else
@@ -4902,21 +4902,21 @@ module hipfort
       type(c_ptr) :: extra
     end function
 
-  ! 
-  !   @brief launches kernel f with launch parameters and shared memory on stream with arguments passed
-  !   to kernelparams or extra, where thread blocks can cooperate and synchronize as they execute
-  !  
-  !   @param [in] f         Kernel to launch.
-  !   @param [in] gridDim   Grid dimensions specified as multiple of blockDim.
-  !   @param [in] blockDim  Block dimensions specified in work-items
-  !   @param [in] kernelParams A list of kernel arguments
-  !   @param [in] sharedMemBytes Amount of dynamic shared memory to allocate for this kernel.  The
-  !   kernel can access this with HIP_DYNAMIC_SHARED.
-  !   @param [in] stream    Stream where the kernel should be dispatched.  May be 0, in which case th
-  !   default stream is used with associated synchronization rules.
-  !  
-  !   @returns hipSuccess, hipInvalidDevice, hipErrorNotInitialized, hipErrorInvalidValue, hipErrorCooperativeLaunchTooLarge
-  !  
+  !> 
+  !>   @brief launches kernel f with launch parameters and shared memory on stream with arguments passed
+  !>   to kernelparams or extra, where thread blocks can cooperate and synchronize as they execute
+  !>  
+  !>   @param [in] f         Kernel to launch.
+  !>   @param [in] gridDim   Grid dimensions specified as multiple of blockDim.
+  !>   @param [in] blockDim  Block dimensions specified in work-items
+  !>   @param [in] kernelParams A list of kernel arguments
+  !>   @param [in] sharedMemBytes Amount of dynamic shared memory to allocate for this kernel.  The
+  !>   kernel can access this with HIP_DYNAMIC_SHARED.
+  !>   @param [in] stream    Stream where the kernel should be dispatched.  May be 0, in which case th
+  !>   default stream is used with associated synchronization rules.
+  !>  
+  !>   @returns hipSuccess, hipInvalidDevice, hipErrorNotInitialized, hipErrorInvalidValue, hipErrorCooperativeLaunchTooLarge
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipLaunchCooperativeKernel(f,gridDim,blockDimX,kernelParams,sharedMemBytes,stream) bind(c, name="cudaLaunchCooperativeKernel")
 #else
@@ -4942,16 +4942,16 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-  ! 
-  !   @brief Launches kernels on multiple devices where thread blocks can cooperate and
-  !   synchronize as they execute.
-  !  
-  !   @param [in] hipLaunchParams          List of launch parameters, one per device.
-  !   @param [in] numDevices               Size of the launchParamsList array.
-  !   @param [in] flags                    Flags to control launch behavior.
-  !  
-  !   @returns hipSuccess, hipInvalidDevice, hipErrorNotInitialized, hipErrorInvalidValue, hipErrorCooperativeLaunchTooLarge
-  !  
+  !> 
+  !>   @brief Launches kernels on multiple devices where thread blocks can cooperate and
+  !>   synchronize as they execute.
+  !>  
+  !>   @param [in] hipLaunchParams          List of launch parameters, one per device.
+  !>   @param [in] numDevices               Size of the launchParamsList array.
+  !>   @param [in] flags                    Flags to control launch behavior.
+  !>  
+  !>   @returns hipSuccess, hipInvalidDevice, hipErrorNotInitialized, hipErrorInvalidValue, hipErrorCooperativeLaunchTooLarge
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipLaunchCooperativeKernelMultiDevice(launchParamsList,numDevices,flags) bind(c, name="cudaLaunchCooperativeKernelMultiDevice")
 #else
@@ -5025,14 +5025,14 @@ module hipfort
       integer(kind=4),value :: flags
     end function
 
-  ! 
-  !   @brief Returns occupancy for a device function.
-  !  
-  !   @param [out] numBlocks        Returned occupancy
-  !   @param [in]  func             Kernel function (hipFunction) for which occupancy is calulated
-  !   @param [in]  blockSize        Block size the kernel is intended to be launched with
-  !   @param [in]  dynSharedMemPerBlk dynamic shared memory usage (in bytes) intended for each block
-  !  
+  !> 
+  !>   @brief Returns occupancy for a device function.
+  !>  
+  !>   @param [out] numBlocks        Returned occupancy
+  !>   @param [in]  func             Kernel function (hipFunction) for which occupancy is calulated
+  !>   @param [in]  blockSize        Block size the kernel is intended to be launched with
+  !>   @param [in]  dynSharedMemPerBlk dynamic shared memory usage (in bytes) intended for each block
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipModuleOccupancyMaxActiveBlocksPerMultiprocessor(numBlocks,f,blockSize,dynSharedMemPerBlk) bind(c, name="cudaModuleOccupancyMaxActiveBlocksPerMultiprocessor")
 #else
@@ -5056,15 +5056,15 @@ module hipfort
       integer(c_size_t),value :: dynSharedMemPerBlk
     end function
 
-  ! 
-  !   @brief Returns occupancy for a device function.
-  !  
-  !   @param [out] numBlocks        Returned occupancy
-  !   @param [in]  f                Kernel function(hipFunction_t) for which occupancy is calulated
-  !   @param [in]  blockSize        Block size the kernel is intended to be launched with
-  !   @param [in]  dynSharedMemPerBlk dynamic shared memory usage (in bytes) intended for each block
-  !   @param [in]  flags            Extra flags for occupancy calculation (only default supported)
-  !  
+  !> 
+  !>   @brief Returns occupancy for a device function.
+  !>  
+  !>   @param [out] numBlocks        Returned occupancy
+  !>   @param [in]  f                Kernel function(hipFunction_t) for which occupancy is calulated
+  !>   @param [in]  blockSize        Block size the kernel is intended to be launched with
+  !>   @param [in]  dynSharedMemPerBlk dynamic shared memory usage (in bytes) intended for each block
+  !>   @param [in]  flags            Extra flags for occupancy calculation (only default supported)
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags(numBlocks,f,blockSize,dynSharedMemPerBlk,flags) bind(c, name="cudaModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags")
 #else
@@ -5089,14 +5089,14 @@ module hipfort
       integer(kind=4),value :: flags
     end function
 
-  ! 
-  !   @brief Returns occupancy for a device function.
-  !  
-  !   @param [out] numBlocks        Returned occupancy
-  !   @param [in]  func             Kernel function for which occupancy is calulated
-  !   @param [in]  blockSize        Block size the kernel is intended to be launched with
-  !   @param [in]  dynSharedMemPerBlk dynamic shared memory usage (in bytes) intended for each block
-  !  
+  !> 
+  !>   @brief Returns occupancy for a device function.
+  !>  
+  !>   @param [out] numBlocks        Returned occupancy
+  !>   @param [in]  func             Kernel function for which occupancy is calulated
+  !>   @param [in]  blockSize        Block size the kernel is intended to be launched with
+  !>   @param [in]  dynSharedMemPerBlk dynamic shared memory usage (in bytes) intended for each block
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipOccupancyMaxActiveBlocksPerMultiprocessor(numBlocks,f,blockSize,dynSharedMemPerBlk) bind(c, name="cudaOccupancyMaxActiveBlocksPerMultiprocessor")
 #else
@@ -5120,17 +5120,17 @@ module hipfort
       integer(c_size_t),value :: dynSharedMemPerBlk
     end function
 
-  ! 
-  !   @brief determine the grid and block sizes to achieves maximum occupancy for a kernel
-  !  
-  !   @param [out] gridSize           minimum grid size for maximum potential occupancy
-  !   @param [out] blockSize          block size for maximum potential occupancy
-  !   @param [in]  f                  kernel function for which occupancy is calulated
-  !   @param [in]  dynSharedMemPerBlk dynamic shared memory usage (in bytes) intended for each block
-  !   @param [in]  blockSizeLimit     the maximum block size for the kernel, use 0 for no limit
-  !  
-  !   @returns hipSuccess, hipInvalidDevice, hipErrorInvalidValue
-  !  
+  !> 
+  !>   @brief determine the grid and block sizes to achieves maximum occupancy for a kernel
+  !>  
+  !>   @param [out] gridSize           minimum grid size for maximum potential occupancy
+  !>   @param [out] blockSize          block size for maximum potential occupancy
+  !>   @param [in]  f                  kernel function for which occupancy is calulated
+  !>   @param [in]  dynSharedMemPerBlk dynamic shared memory usage (in bytes) intended for each block
+  !>   @param [in]  blockSizeLimit     the maximum block size for the kernel, use 0 for no limit
+  !>  
+  !>   @returns hipSuccess, hipInvalidDevice, hipErrorInvalidValue
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipOccupancyMaxPotentialBlockSize(gridSize,blockSize,f,dynSharedMemPerBlk,blockSizeLimit) bind(c, name="cudaOccupancyMaxPotentialBlockSize")
 #else
@@ -5155,17 +5155,17 @@ module hipfort
       integer(c_int),value :: blockSizeLimit
     end function
 
-  ! 
-  !   @brief Launches kernels on multiple devices and guarantees all specified kernels are dispatched
-  !   on respective streams before enqueuing any other work on the specified streams from any other threads
-  !  
-  !  
-  !   @param [in] hipLaunchParams          List of launch parameters, one per device.
-  !   @param [in] numDevices               Size of the launchParamsList array.
-  !   @param [in] flags                    Flags to control launch behavior.
-  !  
-  !   @returns hipSuccess, hipInvalidDevice, hipErrorNotInitialized, hipErrorInvalidValue
-  !  
+  !> 
+  !>   @brief Launches kernels on multiple devices and guarantees all specified kernels are dispatched
+  !>   on respective streams before enqueuing any other work on the specified streams from any other threads
+  !>  
+  !>  
+  !>   @param [in] hipLaunchParams          List of launch parameters, one per device.
+  !>   @param [in] numDevices               Size of the launchParamsList array.
+  !>   @param [in] flags                    Flags to control launch behavior.
+  !>  
+  !>   @returns hipSuccess, hipInvalidDevice, hipErrorNotInitialized, hipErrorInvalidValue
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipExtLaunchMultiKernelMultiDevice(launchParamsList,numDevices,flags) bind(c, name="cudaExtLaunchMultiKernelMultiDevice")
 #else
@@ -5228,31 +5228,31 @@ module hipfort
 #endif
     end function
 
-  ! 
-  !   @brief Gets an interprocess memory handle for an existing device memory
-  !            allocation
-  !  
-  !   Takes a pointer to the base of an existing device memory allocation created
-  !   with hipMalloc and exports it for use in another process. This is a
-  !   lightweight operation and may be called multiple times on an allocation
-  !   without adverse effects.
-  !  
-  !   If a region of memory is freed with hipFree and a subsequent call
-  !   to hipMalloc returns memory with the same device address,
-  !   hipIpcGetMemHandle will return a unique handle for the
-  !   new memory.
-  !  
-  !   @param handle - Pointer to user allocated hipIpcMemHandle to return
-  !                      the handle in.
-  !   @param devPtr - Base pointer to previously allocated device memory
-  !  
-  !   @returns
-  !   hipSuccess,
-  !   hipErrorInvalidHandle,
-  !   hipErrorOutOfMemory,
-  !   hipErrorMapFailed,
-  !  
-  !  
+  !> 
+  !>   @brief Gets an interprocess memory handle for an existing device memory
+  !>            allocation
+  !>  
+  !>   Takes a pointer to the base of an existing device memory allocation created
+  !>   with hipMalloc and exports it for use in another process. This is a
+  !>   lightweight operation and may be called multiple times on an allocation
+  !>   without adverse effects.
+  !>  
+  !>   If a region of memory is freed with hipFree and a subsequent call
+  !>   to hipMalloc returns memory with the same device address,
+  !>   hipIpcGetMemHandle will return a unique handle for the
+  !>   new memory.
+  !>  
+  !>   @param handle - Pointer to user allocated hipIpcMemHandle to return
+  !>                      the handle in.
+  !>   @param devPtr - Base pointer to previously allocated device memory
+  !>  
+  !>   @returns
+  !>   hipSuccess,
+  !>   hipErrorInvalidHandle,
+  !>   hipErrorOutOfMemory,
+  !>   hipErrorMapFailed,
+  !>  
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipIpcGetMemHandle(handle,devPtr) bind(c, name="cudaIpcGetMemHandle")
 #else
@@ -5274,42 +5274,42 @@ module hipfort
       type(c_ptr),value :: devPtr
     end function
 
-  ! 
-  !   @brief Opens an interprocess memory handle exported from another process
-  !            and returns a device pointer usable in the local process.
-  !  
-  !   Maps memory exported from another process with hipIpcGetMemHandle into
-  !   the current device address space. For contexts on different devices
-  !   hipIpcOpenMemHandle can attempt to enable peer access between the
-  !   devices as if the user called hipDeviceEnablePeerAccess. This behavior is
-  !   controlled by the hipIpcMemLazyEnablePeerAccess flag.
-  !   hipDeviceCanAccessPeer can determine if a mapping is possible.
-  !  
-  !   Contexts that may open hipIpcMemHandles are restricted in the following way.
-  !   hipIpcMemHandles from each device in a given process may only be opened
-  !   by one context per device per other process.
-  !  
-  !   Memory returned from hipIpcOpenMemHandle must be freed with
-  !   hipIpcCloseMemHandle.
-  !  
-  !   Calling hipFree on an exported memory region before calling
-  !   hipIpcCloseMemHandle in the importing context will result in undefined
-  !   behavior.
-  !  
-  !   @param devPtr - Returned device pointer
-  !   @param handle - hipIpcMemHandle to open
-  !   @param flags  - Flags for this operation. Must be specified as hipIpcMemLazyEnablePeerAccess
-  !  
-  !   @returns
-  !   hipSuccess,
-  !   hipErrorMapFailed,
-  !   hipErrorInvalidHandle,
-  !   hipErrorTooManyPeers
-  !  
-  !   @note No guarantees are made about the address returned in @p devPtr.
-  !   In particular, multiple processes may not receive the same address for the same @p handle.
-  !  
-  !  
+  !> 
+  !>   @brief Opens an interprocess memory handle exported from another process
+  !>            and returns a device pointer usable in the local process.
+  !>  
+  !>   Maps memory exported from another process with hipIpcGetMemHandle into
+  !>   the current device address space. For contexts on different devices
+  !>   hipIpcOpenMemHandle can attempt to enable peer access between the
+  !>   devices as if the user called hipDeviceEnablePeerAccess. This behavior is
+  !>   controlled by the hipIpcMemLazyEnablePeerAccess flag.
+  !>   hipDeviceCanAccessPeer can determine if a mapping is possible.
+  !>  
+  !>   Contexts that may open hipIpcMemHandles are restricted in the following way.
+  !>   hipIpcMemHandles from each device in a given process may only be opened
+  !>   by one context per device per other process.
+  !>  
+  !>   Memory returned from hipIpcOpenMemHandle must be freed with
+  !>   hipIpcCloseMemHandle.
+  !>  
+  !>   Calling hipFree on an exported memory region before calling
+  !>   hipIpcCloseMemHandle in the importing context will result in undefined
+  !>   behavior.
+  !>  
+  !>   @param devPtr - Returned device pointer
+  !>   @param handle - hipIpcMemHandle to open
+  !>   @param flags  - Flags for this operation. Must be specified as hipIpcMemLazyEnablePeerAccess
+  !>  
+  !>   @returns
+  !>   hipSuccess,
+  !>   hipErrorMapFailed,
+  !>   hipErrorInvalidHandle,
+  !>   hipErrorTooManyPeers
+  !>  
+  !>   @note No guarantees are made about the address returned in @p devPtr.
+  !>   In particular, multiple processes may not receive the same address for the same @p handle.
+  !>  
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipIpcOpenMemHandle(devPtr,handle,flags) bind(c, name="cudaIpcOpenMemHandle")
 #else
@@ -5332,24 +5332,24 @@ module hipfort
       integer(kind=4),value :: flags
     end function
 
-  ! 
-  !   @brief Close memory mapped with hipIpcOpenMemHandle
-  !  
-  !   Unmaps memory returnd by hipIpcOpenMemHandle. The original allocation
-  !   in the exporting process as well as imported mappings in other processes
-  !   will be unaffected.
-  !  
-  !   Any resources used to enable peer access will be freed if this is the
-  !   last mapping using them.
-  !  
-  !   @param devPtr - Device pointer returned by hipIpcOpenMemHandle
-  !  
-  !   @returns
-  !   hipSuccess,
-  !   hipErrorMapFailed,
-  !   hipErrorInvalidHandle,
-  !  
-  !  
+  !> 
+  !>   @brief Close memory mapped with hipIpcOpenMemHandle
+  !>  
+  !>   Unmaps memory returnd by hipIpcOpenMemHandle. The original allocation
+  !>   in the exporting process as well as imported mappings in other processes
+  !>   will be unaffected.
+  !>  
+  !>   Any resources used to enable peer access will be freed if this is the
+  !>   last mapping using them.
+  !>  
+  !>   @param devPtr - Device pointer returned by hipIpcOpenMemHandle
+  !>  
+  !>   @returns
+  !>   hipSuccess,
+  !>   hipErrorMapFailed,
+  !>   hipErrorInvalidHandle,
+  !>  
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipIpcCloseMemHandle(devPtr) bind(c, name="cudaIpcCloseMemHandle")
 #else
@@ -5414,19 +5414,19 @@ module hipfort
       type(c_ptr),value :: handle
     end function
 
-  ! 
-  !   @brief Configure a kernel launch.
-  !  
-  !   @param [in] gridDim   grid dimension specified as multiple of blockDim.
-  !   @param [in] blockDim  block dimensions specified in work-items
-  !   @param [in] sharedMem Amount of dynamic shared memory to allocate for this kernel.  The
-  !   kernel can access this with HIP_DYNAMIC_SHARED.
-  !   @param [in] stream    Stream where the kernel should be dispatched.  May be 0, in which case the
-  !   default stream is used with associated synchronization rules.
-  !  
-  !   @returns hipSuccess, hipInvalidDevice, hipErrorNotInitialized, hipErrorInvalidValue
-  !  
-  !  
+  !> 
+  !>   @brief Configure a kernel launch.
+  !>  
+  !>   @param [in] gridDim   grid dimension specified as multiple of blockDim.
+  !>   @param [in] blockDim  block dimensions specified in work-items
+  !>   @param [in] sharedMem Amount of dynamic shared memory to allocate for this kernel.  The
+  !>   kernel can access this with HIP_DYNAMIC_SHARED.
+  !>   @param [in] stream    Stream where the kernel should be dispatched.  May be 0, in which case the
+  !>   default stream is used with associated synchronization rules.
+  !>  
+  !>   @returns hipSuccess, hipInvalidDevice, hipErrorNotInitialized, hipErrorInvalidValue
+  !>  
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipConfigureCall(gridDim,blockDim,sharedMem,stream) bind(c, name="cudaConfigureCall")
 #else
@@ -5450,16 +5450,16 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-  ! 
-  !   @brief Set a kernel argument.
-  !  
-  !   @returns hipSuccess, hipInvalidDevice, hipErrorNotInitialized, hipErrorInvalidValue
-  !  
-  !   @param [in] arg    Pointer the argument in host memory.
-  !   @param [in] size   Size of the argument.
-  !   @param [in] offset Offset of the argument on the argument stack.
-  !  
-  !  
+  !> 
+  !>   @brief Set a kernel argument.
+  !>  
+  !>   @returns hipSuccess, hipInvalidDevice, hipErrorNotInitialized, hipErrorInvalidValue
+  !>  
+  !>   @param [in] arg    Pointer the argument in host memory.
+  !>   @param [in] size   Size of the argument.
+  !>   @param [in] offset Offset of the argument on the argument stack.
+  !>  
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipSetupArgument(arg,mySize,offset) bind(c, name="cudaSetupArgument")
 #else
@@ -5482,14 +5482,14 @@ module hipfort
       integer(c_size_t),value :: offset
     end function
 
-  ! 
-  !   @brief Launch a kernel.
-  !  
-  !   @param [in] func Kernel to launch.
-  !  
-  !   @returns hipSuccess, hipInvalidDevice, hipErrorNotInitialized, hipErrorInvalidValue
-  !  
-  !  
+  !> 
+  !>   @brief Launch a kernel.
+  !>  
+  !>   @param [in] func Kernel to launch.
+  !>  
+  !>   @returns hipSuccess, hipInvalidDevice, hipErrorNotInitialized, hipErrorInvalidValue
+  !>  
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipLaunchByPtr(func) bind(c, name="cudaLaunchByPtr")
 #else
@@ -5510,21 +5510,21 @@ module hipfort
       type(c_ptr),value :: func
     end function
 
-  ! 
-  !   @brief C compliant kernel launch API
-  !  
-  !   @param [in] function_address - kernel stub function pointer.
-  !   @param [in] numBlocks - number of blocks
-  !   @param [in] dimBlocks - dimension of a block
-  !   @param [in] args - kernel arguments
-  !   @param [in] sharedMemBytes - Amount of dynamic shared memory to allocate for this kernel.  The
-  !    Kernel can access this with HIP_DYNAMIC_SHARED.
-  !   @param [in] stream - Stream where the kernel should be dispatched.  May be 0, in which case th
-  !    default stream is used with associated synchronization rules.
-  !  
-  !   @returns #hipSuccess, #hipErrorInvalidValue, hipInvalidDevice
-  !  
-  !  
+  !> 
+  !>   @brief C compliant kernel launch API
+  !>  
+  !>   @param [in] function_address - kernel stub function pointer.
+  !>   @param [in] numBlocks - number of blocks
+  !>   @param [in] dimBlocks - dimension of a block
+  !>   @param [in] args - kernel arguments
+  !>   @param [in] sharedMemBytes - Amount of dynamic shared memory to allocate for this kernel.  The
+  !>    Kernel can access this with HIP_DYNAMIC_SHARED.
+  !>   @param [in] stream - Stream where the kernel should be dispatched.  May be 0, in which case th
+  !>    default stream is used with associated synchronization rules.
+  !>  
+  !>   @returns #hipSuccess, #hipErrorInvalidValue, hipInvalidDevice
+  !>  
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipLaunchKernel(function_address,numBlocks,dimBlocks,args,sharedMemBytes,stream) bind(c, name="cudaLaunchKernel")
 #else
@@ -5550,16 +5550,16 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-  ! 
-  !   @brief Prefetches memory to the specified destination device using AMD HMM.
-  !  
-  !   @param [in] dev_ptr  pointer to be prefetched
-  !   @param [in] count    size in bytes for prefetching
-  !   @param [in] device   destination device to prefetch to
-  !   @param [in] stream   stream to enqueue prefetch operation
-  !  
-  !   @returns #hipSuccess, #hipErrorInvalidValue
-  !  
+  !> 
+  !>   @brief Prefetches memory to the specified destination device using AMD HMM.
+  !>  
+  !>   @param [in] dev_ptr  pointer to be prefetched
+  !>   @param [in] count    size in bytes for prefetching
+  !>   @param [in] device   destination device to prefetch to
+  !>   @param [in] stream   stream to enqueue prefetch operation
+  !>  
+  !>   @returns #hipSuccess, #hipErrorInvalidValue
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipMemPrefetchAsync(dev_ptr,count,device,stream) bind(c, name="cudaMemPrefetchAsync")
 #else
@@ -5583,16 +5583,16 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-  ! 
-  !   @brief Advise about the usage of a given memory range to AMD HMM.
-  !  
-  !   @param [in] dev_ptr  pointer to memory to set the advice for
-  !   @param [in] count    size in bytes of the memory range
-  !   @param [in] advice   advice to be applied for the specified memory range
-  !   @param [in] device   device to apply the advice for
-  !  
-  !   @returns #hipSuccess, #hipErrorInvalidValue
-  !  
+  !> 
+  !>   @brief Advise about the usage of a given memory range to AMD HMM.
+  !>  
+  !>   @param [in] dev_ptr  pointer to memory to set the advice for
+  !>   @param [in] count    size in bytes of the memory range
+  !>   @param [in] advice   advice to be applied for the specified memory range
+  !>   @param [in] device   device to apply the advice for
+  !>  
+  !>   @returns #hipSuccess, #hipErrorInvalidValue
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipMemAdvise(dev_ptr,count,advice,device) bind(c, name="cudaMemAdvise")
 #else
@@ -5616,18 +5616,18 @@ module hipfort
       integer(c_int),value :: device
     end function
 
-  ! 
-  !   @brief Query an attribute of a given memory range in AMD HMM.
-  !  
-  !   @param [inout] data   a pointer to a memory location where the result of each
-  !                          attribute query will be written to
-  !   @param [in] data_size  the size of data
-  !   @param [in] attribute  the attribute to query
-  !   @param [in] dev_ptr    start of the range to query
-  !   @param [in] count      size of the range to query
-  !  
-  !   @returns #hipSuccess, #hipErrorInvalidValue
-  !  
+  !> 
+  !>   @brief Query an attribute of a given memory range in AMD HMM.
+  !>  
+  !>   @param [inout] data   a pointer to a memory location where the result of each
+  !>                          attribute query will be written to
+  !>   @param [in] data_size  the size of data
+  !>   @param [in] attribute  the attribute to query
+  !>   @param [in] dev_ptr    start of the range to query
+  !>   @param [in] count      size of the range to query
+  !>  
+  !>   @returns #hipSuccess, #hipErrorInvalidValue
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipMemRangeGetAttribute(myData,data_size,attribute,dev_ptr,count) bind(c, name="cudaMemRangeGetAttribute")
 #else
@@ -5652,20 +5652,20 @@ module hipfort
       integer(c_size_t),value :: count
     end function
 
-  ! 
-  !   @brief Query attributes of a given memory range in AMD HMM.
-  !  
-  !   @param [inout] data     a two-dimensional array containing pointers to memory locations
-  !                            where the result of each attribute query will be written to
-  !   @param [in] data_sizes   an array, containing the sizes of each result
-  !   @param [in] attributes   the attribute to query
-  !   @param [in] num_attributes  an array of attributes to query (numAttributes and the number
-  !                            of attributes in this array should match)
-  !   @param [in] dev_ptr      start of the range to query
-  !   @param [in] count        size of the range to query
-  !  
-  !   @returns #hipSuccess, #hipErrorInvalidValue
-  !  
+  !> 
+  !>   @brief Query attributes of a given memory range in AMD HMM.
+  !>  
+  !>   @param [inout] data     a two-dimensional array containing pointers to memory locations
+  !>                            where the result of each attribute query will be written to
+  !>   @param [in] data_sizes   an array, containing the sizes of each result
+  !>   @param [in] attributes   the attribute to query
+  !>   @param [in] num_attributes  an array of attributes to query (numAttributes and the number
+  !>                            of attributes in this array should match)
+  !>   @param [in] dev_ptr      start of the range to query
+  !>   @param [in] count        size of the range to query
+  !>  
+  !>   @returns #hipSuccess, #hipErrorInvalidValue
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipMemRangeGetAttributes(myData,data_sizes,attributes,num_attributes,dev_ptr,count) bind(c, name="cudaMemRangeGetAttributes")
 #else
@@ -6687,9 +6687,9 @@ module hipfort
       type(c_ptr),value :: texObject
     end function
 
-  ! 
-  !   CallbackActivity API
-  !  
+  !> 
+  !>   CallbackActivity API
+  !>  
 #ifdef USE_CUDA_NAMES
     function hipRegisterApiCallback(id,fun,arg) bind(c, name="cudaRegisterApiCallback")
 #else

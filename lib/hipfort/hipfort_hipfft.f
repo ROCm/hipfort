@@ -537,10 +537,10 @@ module hipfort_hipfft
       type(c_ptr),value :: stream
     end function
 
-  ! 
-  ! DLL_PUBLIC hipfftResult hipfftSetCompatibilityMode(hipfftHandle plan,
-  !                                                hipfftCompatibility mode);
-  ! 
+  !> 
+  !> DLL_PUBLIC hipfftResult hipfftSetCompatibilityMode(hipfftHandle plan,
+  !>                                                hipfftCompatibility mode);
+  !> 
 #ifdef USE_CUDA_NAMES
     function hipfftDestroy(plan) bind(c, name="cufftDestroy")
 #else

@@ -31,7 +31,7 @@ module hipfort_hipsparse
 
  
   interface
-  !  hipSPARSE initialization and management routines 
+  !>  hipSPARSE initialization and management routines 
 #ifdef USE_CUDA_NAMES
     function hipsparseCreate(handle) bind(c, name="cusparseCreate")
 #else
@@ -113,7 +113,7 @@ module hipfort_hipsparse
       type(c_ptr) :: streamId
     end function
 
-  !  hipSPARSE type creation, destruction, set and get routines 
+  !>  hipSPARSE type creation, destruction, set and get routines 
 #ifdef USE_CUDA_NAMES
     function hipsparseSetPointerMode(handle,mode) bind(c, name="cusparseSetPointerMode")
 #else
@@ -237,7 +237,7 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: base
     end function
 
-  !  Hybrid (HYB) format 
+  !>  Hybrid (HYB) format 
 #ifdef USE_CUDA_NAMES
     function hipsparseCreateHybMat(hybA) bind(c, name="cusparseCreateHybMat")
 #else
@@ -263,7 +263,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: hybA
     end function
 
-  !  Info structures 
+  !>  Info structures 
 #ifdef USE_CUDA_NAMES
     function hipsparseCreateBsrsv2Info(myInfo) bind(c, name="cusparseCreateBsrsv2Info")
 #else
@@ -445,8 +445,8 @@ module hipfort_hipsparse
       type(c_ptr),value :: myInfo
     end function
 
-  !  Description: Addition of a scalar multiple of a sparse vector x
-  !    and a dense vector y. 
+  !>  Description: Addition of a scalar multiple of a sparse vector x
+  !>    and a dense vector y. 
 #ifdef USE_CUDA_NAMES
     function hipsparseSaxpyi(handle,nnz,alpha,xVal,xInd,y,idxBase) bind(c, name="cusparseSaxpyi")
 #else
@@ -522,8 +522,8 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
-  !  Description: Compute the dot product of a sparse vector x
-  !    with a dense vector y. 
+  !>  Description: Compute the dot product of a sparse vector x
+  !>    with a dense vector y. 
 #ifdef USE_CUDA_NAMES
     function hipsparseSdoti(handle,nnz,xVal,xInd,y,myResult,idxBase) bind(c, name="cusparseSdoti")
 #else
@@ -599,8 +599,8 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
-  !  Description: Compute the conjugated dot product of a sparse
-  !    vector x with a dense vector y. 
+  !>  Description: Compute the conjugated dot product of a sparse
+  !>    vector x with a dense vector y. 
 #ifdef USE_CUDA_NAMES
     function hipsparseCdotci(handle,nnz,xVal,xInd,y,myResult,idxBase) bind(c, name="cusparseCdotci")
 #else
@@ -638,8 +638,8 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
-  !  Description: Gathers the elements that are listed in xInd from
-  !    a dense vector y and stores them in a sparse vector x. 
+  !>  Description: Gathers the elements that are listed in xInd from
+  !>    a dense vector y and stores them in a sparse vector x. 
 #ifdef USE_CUDA_NAMES
     function hipsparseSgthr(handle,nnz,y,xVal,xInd,idxBase) bind(c, name="cusparseSgthr")
 #else
@@ -711,9 +711,9 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
-  !  Description: Gathers the elements that are listed in xInd from
-  !    a dense vector y and stores them in a sparse vector x. Gathered
-  !    elements are replaced by zero in y. 
+  !>  Description: Gathers the elements that are listed in xInd from
+  !>    a dense vector y and stores them in a sparse vector x. Gathered
+  !>    elements are replaced by zero in y. 
 #ifdef USE_CUDA_NAMES
     function hipsparseSgthrz(handle,nnz,y,xVal,xInd,idxBase) bind(c, name="cusparseSgthrz")
 #else
@@ -785,8 +785,8 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
-  !  Description: Applies the Givens rotation matrix to a sparse vector
-  !    x and a dense vector y. 
+  !>  Description: Applies the Givens rotation matrix to a sparse vector
+  !>    x and a dense vector y. 
 #ifdef USE_CUDA_NAMES
     function hipsparseSroti(handle,nnz,xVal,xInd,y,c,s,idxBase) bind(c, name="cusparseSroti")
 #else
@@ -826,8 +826,8 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
-  !  Description: Scatters elements listed in xInd from a sparse vector x
-  !    into a dense vector y. 
+  !>  Description: Scatters elements listed in xInd from a sparse vector x
+  !>    into a dense vector y. 
 #ifdef USE_CUDA_NAMES
     function hipsparseSsctr(handle,nnz,xVal,xInd,y,idxBase) bind(c, name="cusparseSsctr")
 #else
@@ -899,8 +899,8 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
-  !  Description: Matrix-vector multiplication  y = alpha  op(A)  x  + beta  y,
-  !    where A is a sparse matrix in CSR storage format, x and y are dense vectors. 
+  !>  Description: Matrix-vector multiplication  y = alpha  op(A)  x  + beta  y,
+  !>    where A is a sparse matrix in CSR storage format, x and y are dense vectors. 
 #ifdef USE_CUDA_NAMES
     function hipsparseScsrmv(handle,transA,m,n,nnz,alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,x,beta,y) bind(c, name="cusparseScsrmv")
 #else
@@ -1000,8 +1000,8 @@ module hipfort_hipsparse
       type(c_ptr),value :: y
     end function
 
-  !  Description: Solution of triangular linear system op(A)  x = alpha  f,
-  !    where A is a sparse matrix in CSR storage format, x and f are dense vectors. 
+  !>  Description: Solution of triangular linear system op(A)  x = alpha  f,
+  !>    where A is a sparse matrix in CSR storage format, x and f are dense vectors. 
 #ifdef USE_CUDA_NAMES
     function hipsparseXcsrsv2_zeroPivot(handle,myInfo,position) bind(c, name="cusparseXcsrsv2_zeroPivot")
 #else
@@ -1388,8 +1388,8 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-  !  Description: Matrix-vector multiplication  y = alpha  op(A)  x  + beta  y,
-  !    where A is a sparse matrix in HYB storage format, x and y are dense vectors. 
+  !>  Description: Matrix-vector multiplication  y = alpha  op(A)  x  + beta  y,
+  !>    where A is a sparse matrix in HYB storage format, x and y are dense vectors. 
 #ifdef USE_CUDA_NAMES
     function hipsparseShybmv(handle,transA,alpha,descrA,hybA,x,beta,y) bind(c, name="cusparseShybmv")
 #else
@@ -1469,8 +1469,8 @@ module hipfort_hipsparse
       type(c_ptr),value :: y
     end function
 
-  !  Description: Matrix-vector multiplication  y = alpha  op(A)  x  + beta  y,
-  !    where A is a sparse matrix in BSR storage format, x and y are dense vectors. 
+  !>  Description: Matrix-vector multiplication  y = alpha  op(A)  x  + beta  y,
+  !>    where A is a sparse matrix in BSR storage format, x and y are dense vectors. 
 #ifdef USE_CUDA_NAMES
     function hipsparseSbsrmv(handle,dirA,transA,mb,nb,nnzb,alpha,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,x,beta,y) bind(c, name="cusparseSbsrmv")
 #else
@@ -1578,8 +1578,8 @@ module hipfort_hipsparse
       type(c_ptr),value :: y
     end function
 
-  !  Description: Solution of triangular linear system op(A)  x = alpha  f,
-  !    where A is a sparse matrix in BSR storage format, x and f are dense vectors. 
+  !>  Description: Solution of triangular linear system op(A)  x = alpha  f,
+  !>    where A is a sparse matrix in BSR storage format, x and f are dense vectors. 
 #ifdef USE_CUDA_NAMES
     function hipsparseXbsrsv2_zeroPivot(handle,myInfo,position) bind(c, name="cusparseXbsrsv2_zeroPivot")
 #else
@@ -1998,8 +1998,8 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-  !  Description: Matrix-matrix multiplication C = alpha  op(A)  B + beta  C,
-  !    where A is a sparse matrix in BSR storage format, B and C are dense matrices. 
+  !>  Description: Matrix-matrix multiplication C = alpha  op(A)  B + beta  C,
+  !>    where A is a sparse matrix in BSR storage format, B and C are dense matrices. 
 #ifdef USE_CUDA_NAMES
     function hipsparseSbsrmm(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA,bsrValA,bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc) bind(c, name="cusparseSbsrmm")
 #else
@@ -2123,8 +2123,8 @@ module hipfort_hipsparse
       integer(c_int),value :: ldc
     end function
 
-  !  Description: Matrix-matrix multiplication C = alpha  op(A)  B + beta  C,
-  !    where A is a sparse matrix in CSR storage format, B and C are dense matrices. 
+  !>  Description: Matrix-matrix multiplication C = alpha  op(A)  B + beta  C,
+  !>    where A is a sparse matrix in CSR storage format, B and C are dense matrices. 
 #ifdef USE_CUDA_NAMES
     function hipsparseScsrmm(handle,transA,m,n,k,nnz,alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc) bind(c, name="cusparseScsrmm")
 #else
@@ -2236,8 +2236,8 @@ module hipfort_hipsparse
       integer(c_int),value :: ldc
     end function
 
-  !  Description: Matrix-matrix multiplication C = alpha  op(A)  op(B) + beta  C,
-  !    where A is a sparse matrix in CSR storage format, B and C are dense matrices. 
+  !>  Description: Matrix-matrix multiplication C = alpha  op(A)  op(B) + beta  C,
+  !>    where A is a sparse matrix in CSR storage format, B and C are dense matrices. 
 #ifdef USE_CUDA_NAMES
     function hipsparseScsrmm2(handle,transA,transB,m,n,k,nnz,alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc) bind(c, name="cusparseScsrmm2")
 #else
@@ -2353,8 +2353,8 @@ module hipfort_hipsparse
       integer(c_int),value :: ldc
     end function
 
-  !  Description: Solution of triangular linear system op(A)  op(X) = alpha  op(B),
-  !    where A is a sparse matrix in CSR storage format, X and B are dense matrices. 
+  !>  Description: Solution of triangular linear system op(A)  op(X) = alpha  op(B),
+  !>    where A is a sparse matrix in CSR storage format, X and B are dense matrices. 
 #ifdef USE_CUDA_NAMES
     function hipsparseXcsrsm2_zeroPivot(handle,myInfo,position) bind(c, name="cusparseXcsrsm2_zeroPivot")
 #else
@@ -2717,8 +2717,8 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-  !  Description: Matrix-matrix multiplication C = alpha  A  B + beta  C,
-  !    where B is a sparse matrix in CSC storage format, A and C are dense matrices. 
+  !>  Description: Matrix-matrix multiplication C = alpha  A  B + beta  C,
+  !>    where B is a sparse matrix in CSC storage format, A and C are dense matrices. 
 #ifdef USE_CUDA_NAMES
     function hipsparseSgemmi(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB,cscRowIndB,beta,C,ldc) bind(c, name="cusparseSgemmi")
 #else
@@ -2822,8 +2822,8 @@ module hipfort_hipsparse
       integer(c_int),value :: ldc
     end function
 
-  !  Description: Sparse matrix sparse matrix addition C = alpha  A + beta  B, where A, B
-  !    and C are sparse matrices in CSR storage format. 
+  !>  Description: Sparse matrix sparse matrix addition C = alpha  A + beta  B, where A, B
+  !>    and C are sparse matrices in CSR storage format. 
 #ifdef USE_CUDA_NAMES
     function hipsparseXcsrgeamNnz(handle,m,n,descrA,nnzA,csrRowPtrA,csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,descrC,csrRowPtrC,nnzTotalDevHostPtr) bind(c, name="cusparseXcsrgeamNnz")
 #else
@@ -3256,8 +3256,8 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-  !  Description: Sparse matrix sparse matrix multiplication C = op(A)  op(B), where A, B
-  !    and C are sparse matrices in CSR storage format. 
+  !>  Description: Sparse matrix sparse matrix multiplication C = op(A)  op(B), where A, B
+  !>    and C are sparse matrices in CSR storage format. 
 #ifdef USE_CUDA_NAMES
     function hipsparseXcsrgemmNnz(handle,transA,transB,m,n,k,descrA,nnzA,csrRowPtrA,csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,descrC,csrRowPtrC,nnzTotalDevHostPtr) bind(c, name="cusparseXcsrgemmNnz")
 #else
@@ -3414,8 +3414,8 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrColIndC
     end function
 
-  !  Description: Sparse matrix sparse matrix multiplication C = alpha  A  B + beta  D,
-  !    where A, B and D are sparse matrices in CSR storage format. 
+  !>  Description: Sparse matrix sparse matrix multiplication C = alpha  A  B + beta  D,
+  !>    where A, B and D are sparse matrices in CSR storage format. 
 #ifdef USE_CUDA_NAMES
     function hipsparseScsrgemm2_bufferSizeExt(handle,m,n,k,alpha,descrA,nnzA,csrRowPtrA,csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrRowPtrD,csrColIndD,myInfo,pBufferSizeInBytes) bind(c, name="cusparseScsrgemm2_bufferSizeExt")
 #else
@@ -3732,8 +3732,8 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-  !  Description: Compute the incomplete-LU factorization with 0 fill-in (ILU0)
-  !    of the matrix A stored in CSR format. 
+  !>  Description: Compute the incomplete-LU factorization with 0 fill-in (ILU0)
+  !>    of the matrix A stored in CSR format. 
 #ifdef USE_CUDA_NAMES
     function hipsparseXcsrilu02_zeroPivot(handle,myInfo,position) bind(c, name="cusparseXcsrilu02_zeroPivot")
 #else
@@ -4092,8 +4092,8 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-  !  Description: Compute the incomplete Cholesky factorization with 0 fill-in (IC0)
-  !    of the matrix A stored in BSR format. 
+  !>  Description: Compute the incomplete Cholesky factorization with 0 fill-in (IC0)
+  !>    of the matrix A stored in BSR format. 
 #ifdef USE_CUDA_NAMES
     function hipsparseXbsric02_zeroPivot(handle,myInfo,position) bind(c, name="cusparseXbsric02_zeroPivot")
 #else
@@ -4392,8 +4392,8 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-  !  Description: Compute the incomplete Cholesky factorization with 0 fill-in (IC0)
-  !    of the matrix A stored in CSR format. 
+  !>  Description: Compute the incomplete Cholesky factorization with 0 fill-in (IC0)
+  !>    of the matrix A stored in CSR format. 
 #ifdef USE_CUDA_NAMES
     function hipsparseXcsric02_zeroPivot(handle,myInfo,position) bind(c, name="cusparseXcsric02_zeroPivot")
 #else
@@ -4752,8 +4752,8 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-  !  Description: 
-  !    This function computes the number of nonzero elements per row or column and the total number of nonzero elements in a dense matrix. 
+  !>  Description: 
+  !>    This function computes the number of nonzero elements per row or column and the total number of nonzero elements in a dense matrix. 
 #ifdef USE_CUDA_NAMES
     function hipsparseSnnz(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn,nnzTotalDevHostPtr) bind(c, name="cusparseSnnz")
 #else
@@ -4837,8 +4837,8 @@ module hipfort_hipsparse
       type(c_ptr),value :: nnzTotalDevHostPtr
     end function
 
-  !  Description: 
-  !    This function converts the matrix A in dense format into a sparse matrix in CSR format. 
+  !>  Description: 
+  !>    This function converts the matrix A in dense format into a sparse matrix in CSR format. 
 #ifdef USE_CUDA_NAMES
     function hipsparseSdense2csr(handle,m,n,descr,A,ld,nnz_per_rows,csr_val,csr_row_ptr,csr_col_ind) bind(c, name="cusparseSdense2csr")
 #else
@@ -4926,8 +4926,8 @@ module hipfort_hipsparse
       type(c_ptr),value :: csr_col_ind
     end function
 
-  !  Description: 
-  !    This function converts the matrix A in dense format into a sparse matrix in CSC format 
+  !>  Description: 
+  !>    This function converts the matrix A in dense format into a sparse matrix in CSC format 
 #ifdef USE_CUDA_NAMES
     function hipsparseSdense2csc(handle,m,n,descr,A,ld,nnz_per_columns,csc_val,csc_row_ind,csc_col_ptr) bind(c, name="cusparseSdense2csc")
 #else
@@ -5015,8 +5015,8 @@ module hipfort_hipsparse
       type(c_ptr),value :: csc_col_ptr
     end function
 
-  !  Description:
-  !    This function converts the sparse matrix in CSR format into a dense matrix 
+  !>  Description:
+  !>    This function converts the sparse matrix in CSR format into a dense matrix 
 #ifdef USE_CUDA_NAMES
     function hipsparseScsr2dense(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,A,ld) bind(c, name="cusparseScsr2dense")
 #else
@@ -5100,8 +5100,8 @@ module hipfort_hipsparse
       integer(c_int),value :: ld
     end function
 
-  !  Description:
-  !    This function converts the sparse matrix in CSC format into a dense matrix. 
+  !>  Description:
+  !>    This function converts the sparse matrix in CSC format into a dense matrix. 
 #ifdef USE_CUDA_NAMES
     function hipsparseScsc2dense(handle,m,n,descr,csc_val,csc_row_ind,csc_col_ptr,A,ld) bind(c, name="cusparseScsc2dense")
 #else
@@ -5185,9 +5185,9 @@ module hipfort_hipsparse
       integer(c_int),value :: ld
     end function
 
-  !  Description:
-  !    This function computes the number of nonzero block columns per block row and the total number of blocks in the BSR 
-  !    matrix where the BSR matrix is formed by converting the input CSR matrix. 
+  !>  Description:
+  !>    This function computes the number of nonzero block columns per block row and the total number of blocks in the BSR 
+  !>    matrix where the BSR matrix is formed by converting the input CSR matrix. 
 #ifdef USE_CUDA_NAMES
     function hipsparseXcsr2bsrNnz(handle,dirA,m,n,descrA,csrRowPtrA,csrColIndA,blockDim,descrC,bsrRowPtrC,bsrNnzb) bind(c, name="cusparseXcsr2bsrNnz")
 #else
@@ -5210,10 +5210,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrNnzb
     end function
 
-  !  Description:
-  !    This function computes the number of nonzero elements per row and the total number of nonzero elements 
-  !    in the compressed version of the input CSR matrix where the matrix is compressed by removing elements 
-  !    less than pr equal to the tolerance. 
+  !>  Description:
+  !>    This function computes the number of nonzero elements per row and the total number of nonzero elements 
+  !>    in the compressed version of the input CSR matrix where the matrix is compressed by removing elements 
+  !>    less than pr equal to the tolerance. 
 #ifdef USE_CUDA_NAMES
     function hipsparseSnnz_compress(handle,m,descrA,csrValA,csrRowPtrA,nnzPerRow,nnzC,tol) bind(c, name="cusparseSnnz_compress")
 #else
@@ -5293,8 +5293,8 @@ module hipfort_hipsparse
       complex(c_double_complex),value :: tol
     end function
 
-  !  Description: This routine converts a sparse matrix in CSR storage format
-  !    to a sparse matrix in COO storage format. 
+  !>  Description: This routine converts a sparse matrix in CSR storage format
+  !>    to a sparse matrix in COO storage format. 
 #ifdef USE_CUDA_NAMES
     function hipsparseXcsr2coo(handle,csrRowPtr,nnz,m,cooRowInd,idxBase) bind(c, name="cusparseXcsr2coo")
 #else
@@ -5312,8 +5312,8 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
-  !  Description: This routine converts a sparse matrix in CSR storage format
-  !    to a sparse matrix in CSC storage format. 
+  !>  Description: This routine converts a sparse matrix in CSR storage format
+  !>    to a sparse matrix in CSC storage format. 
 #ifdef USE_CUDA_NAMES
     function hipsparseScsr2csc(handle,m,n,nnz,csrSortedVal,csrSortedRowPtr,csrSortedColInd,cscSortedVal,cscSortedRowInd,cscSortedColPtr,copyValues,idxBase) bind(c, name="cusparseScsr2csc")
 #else
@@ -5409,8 +5409,8 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
-  !  Description: This routine converts a sparse matrix in CSR storage format
-  !    to a sparse matrix in HYB storage format. 
+  !>  Description: This routine converts a sparse matrix in CSR storage format
+  !>    to a sparse matrix in HYB storage format. 
 #ifdef USE_CUDA_NAMES
     function hipsparseScsr2hyb(handle,m,n,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,hybA,userEllWidth,partitionType) bind(c, name="cusparseScsr2hyb")
 #else
@@ -5498,8 +5498,8 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_HYB_PARTITION_AUTO)),value :: partitionType
     end function
 
-  !  Description: This routine converts a sparse matrix in CSR storage format
-  !    to a sparse matrix in BSR storage format. 
+  !>  Description: This routine converts a sparse matrix in CSR storage format
+  !>    to a sparse matrix in BSR storage format. 
 #ifdef USE_CUDA_NAMES
     function hipsparseScsr2bsr(handle,dirA,m,n,descrA,csrValA,csrRowPtrA,csrColIndA,blockDim,descrC,bsrValC,bsrRowPtrC,bsrColIndC) bind(c, name="cusparseScsr2bsr")
 #else
@@ -5599,8 +5599,8 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrColIndC
     end function
 
-  !  Description: This routine converts a sparse matrix in BSR storage format
-  !    to a sparse matrix in CSR storage format. 
+  !>  Description: This routine converts a sparse matrix in BSR storage format
+  !>    to a sparse matrix in CSR storage format. 
 #ifdef USE_CUDA_NAMES
     function hipsparseSbsr2csr(handle,dirA,mb,nb,descrA,bsrValA,bsrRowPtrA,bsrColIndA,blockDim,descrC,csrValC,csrRowPtrC,csrColIndC) bind(c, name="cusparseSbsr2csr")
 #else
@@ -5700,8 +5700,8 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrColIndC
     end function
 
-  !  Description: This routine compresses the input CSR matrix by removing elements that 
-  !    are less than or equal to the non-negative tolerance 
+  !>  Description: This routine compresses the input CSR matrix by removing elements that 
+  !>    are less than or equal to the non-negative tolerance 
 #ifdef USE_CUDA_NAMES
     function hipsparseScsr2csr_compress(handle,m,n,descrA,csrValA,csrColIndA,csrRowPtrA,nnzA,nnzPerRow,csrValC,csrColIndC,csrRowPtrC,tol) bind(c, name="cusparseScsr2csr_compress")
 #else
@@ -5801,8 +5801,8 @@ module hipfort_hipsparse
       complex(c_double_complex),value :: tol
     end function
 
-  !  Description: This routine converts a sparse matrix in HYB storage format
-  !    to a sparse matrix in CSR storage format. 
+  !>  Description: This routine converts a sparse matrix in HYB storage format
+  !>    to a sparse matrix in CSR storage format. 
 #ifdef USE_CUDA_NAMES
     function hipsparseShyb2csr(handle,descrA,hybA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA) bind(c, name="cusparseShyb2csr")
 #else
@@ -5874,8 +5874,8 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedColIndA
     end function
 
-  !  Description: This routine converts a sparse matrix in COO storage format
-  !    to a sparse matrix in CSR storage format. 
+  !>  Description: This routine converts a sparse matrix in COO storage format
+  !>    to a sparse matrix in CSR storage format. 
 #ifdef USE_CUDA_NAMES
     function hipsparseXcoo2csr(handle,cooRowInd,nnz,m,csrRowPtr,idxBase) bind(c, name="cusparseXcoo2csr")
 #else
@@ -5893,7 +5893,7 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
-  !  Description: This routine creates an identity map. 
+  !>  Description: This routine creates an identity map. 
 #ifdef USE_CUDA_NAMES
     function hipsparseCreateIdentityPermutation(handle,n,p) bind(c, name="cusparseCreateIdentityPermutation")
 #else
@@ -5908,7 +5908,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: p
     end function
 
-  !  Description: This routine computes the required buffer size for csrsort. 
+  !>  Description: This routine computes the required buffer size for csrsort. 
 #ifdef USE_CUDA_NAMES
     function hipsparseXcsrsort_bufferSizeExt(handle,m,n,nnz,csrRowPtr,csrColInd,pBufferSizeInBytes) bind(c, name="cusparseXcsrsort_bufferSizeExt")
 #else
@@ -5927,7 +5927,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBufferSizeInBytes
     end function
 
-  !  Description: This routine sorts CSR format. 
+  !>  Description: This routine sorts CSR format. 
 #ifdef USE_CUDA_NAMES
     function hipsparseXcsrsort(handle,m,n,nnz,descrA,csrRowPtr,csrColInd,P,pBuffer) bind(c, name="cusparseXcsrsort")
 #else
@@ -5948,7 +5948,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-  !  Description: This routine computes the required buffer size for cscsort. 
+  !>  Description: This routine computes the required buffer size for cscsort. 
 #ifdef USE_CUDA_NAMES
     function hipsparseXcscsort_bufferSizeExt(handle,m,n,nnz,cscColPtr,cscRowInd,pBufferSizeInBytes) bind(c, name="cusparseXcscsort_bufferSizeExt")
 #else
@@ -5967,7 +5967,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBufferSizeInBytes
     end function
 
-  !  Description: This routine sorts CSR format. 
+  !>  Description: This routine sorts CSR format. 
 #ifdef USE_CUDA_NAMES
     function hipsparseXcscsort(handle,m,n,nnz,descrA,cscColPtr,cscRowInd,P,pBuffer) bind(c, name="cusparseXcscsort")
 #else
@@ -5988,7 +5988,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-  !  Description: This routine computes the required buffer size for coosort. 
+  !>  Description: This routine computes the required buffer size for coosort. 
 #ifdef USE_CUDA_NAMES
     function hipsparseXcoosort_bufferSizeExt(handle,m,n,nnz,cooRows,cooCols,pBufferSizeInBytes) bind(c, name="cusparseXcoosort_bufferSizeExt")
 #else
@@ -6007,7 +6007,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBufferSizeInBytes
     end function
 
-  !  Description: This routine sorts COO format by rows. 
+  !>  Description: This routine sorts COO format by rows. 
 #ifdef USE_CUDA_NAMES
     function hipsparseXcoosortByRow(handle,m,n,nnz,cooRows,cooCols,P,pBuffer) bind(c, name="cusparseXcoosortByRow")
 #else
@@ -6027,7 +6027,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-  !  Description: This routine sorts COO format by columns. 
+  !>  Description: This routine sorts COO format by columns. 
 #ifdef USE_CUDA_NAMES
     function hipsparseXcoosortByColumn(handle,m,n,nnz,cooRows,cooCols,P,pBuffer) bind(c, name="cusparseXcoosortByColumn")
 #else
