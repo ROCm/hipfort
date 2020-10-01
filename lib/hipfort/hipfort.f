@@ -2288,6 +2288,110 @@ module hipfort
       type(c_ptr),value :: symbol
     end function
 
+  
+#ifdef USE_CUDA_NAMES
+    function hipMemcpyToSymbolAsync(symbol,src,sizeBytes,offset,myKind,stream) bind(c, name="cudaMemcpyToSymbolAsync")
+#else
+    function hipMemcpyToSymbolAsync(symbol,src,sizeBytes,offset,myKind,stream) bind(c, name="hipMemcpyToSymbolAsync")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpyToSymbolAsync
+#else
+      integer(kind(hipSuccess)) :: hipMemcpyToSymbolAsync
+#endif
+      type(c_ptr),value :: symbol
+      type(c_ptr),value :: src
+      integer(c_size_t),value :: sizeBytes
+      integer(c_size_t),value :: offset
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+      type(c_ptr),value :: stream
+    end function
+
+  
+#ifdef USE_CUDA_NAMES
+    function hipMemcpyFromSymbolAsync(dst,symbol,sizeBytes,offset,myKind,stream) bind(c, name="cudaMemcpyFromSymbolAsync")
+#else
+    function hipMemcpyFromSymbolAsync(dst,symbol,sizeBytes,offset,myKind,stream) bind(c, name="hipMemcpyFromSymbolAsync")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpyFromSymbolAsync
+#else
+      integer(kind(hipSuccess)) :: hipMemcpyFromSymbolAsync
+#endif
+      type(c_ptr),value :: dst
+      type(c_ptr),value :: symbol
+      integer(c_size_t),value :: sizeBytes
+      integer(c_size_t),value :: offset
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+      type(c_ptr),value :: stream
+    end function
+
+  ! 
+  !    @brief Copy data from src to dst asynchronously.
+  !  
+  !    @warning If host or dest are not pinned, the memory copy will be performed synchronously.  For
+  !   best performance, use hipHostMalloc to allocate host memory that is transferred asynchronously.
+  !  
+  !    @warning on HCC hipMemcpyAsync does not support overlapped H2D and D2H copies.
+  !    For hipMemcpy, the copy is always performed by the device associated with the specified stream.
+  !  
+  !    For multi-gpu or peer-to-peer configurations, it is recommended to use a stream which is a
+  !   attached to the device where the src data is physically located. For optimal peer-to-peer copies,
+  !   the copy device must be able to access the src and dst pointers (by calling
+  !   hipDeviceEnablePeerAccess with copy agent as the current device and srcdest as the peerDevice
+  !   argument.  if this is not done, the hipMemcpy will still work, but will perform the copy using a
+  !   staging buffer on the host.
+  !  
+  !    @param[out] dst Data being copy to
+  !    @param[in]  src Data being copy from
+  !    @param[in]  sizeBytes Data size in bytes
+  !    @param[in]  accelerator_view Accelerator view which the copy is being enqueued
+  !    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryFree, #hipErrorUnknown
+  !  
+  !    @see hipMemcpy, hipMemcpy2D, hipMemcpyToArray, hipMemcpy2DToArray, hipMemcpyFromArray,
+  !   hipMemcpy2DFromArray, hipMemcpyArrayToArray, hipMemcpy2DArrayToArray, hipMemcpyToSymbol,
+  !   hipMemcpyFromSymbol, hipMemcpy2DAsync, hipMemcpyToArrayAsync, hipMemcpy2DToArrayAsync,
+  !   hipMemcpyFromArrayAsync, hipMemcpy2DFromArrayAsync, hipMemcpyToSymbolAsync,
+  !   hipMemcpyFromSymbolAsync
+  !  
+#ifdef USE_CUDA_NAMES
+    function hipMemcpyAsync(dst,src,sizeBytes,myKind,stream) bind(c, name="cudaMemcpyAsync")
+#else
+    function hipMemcpyAsync(dst,src,sizeBytes,myKind,stream) bind(c, name="hipMemcpyAsync")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpyAsync
+#else
+      integer(kind(hipSuccess)) :: hipMemcpyAsync
+#endif
+      type(c_ptr),value :: dst
+      type(c_ptr),value :: src
+      integer(c_size_t),value :: sizeBytes
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+      type(c_ptr),value :: stream
+    end function
+
   ! 
   !    @brief Fills the first sizeBytes bytes of the memory area pointed to by dest with the ant
   !   byte value value.
@@ -2352,6 +2456,44 @@ module hipfort
 
   ! 
   !    @brief Fills the first sizeBytes bytes of the memory area pointed to by dest with the ant
+  !   byte value value.
+  !  
+  !   hipMemsetD8Async() is asynchronous with respect to the host, so the call may return before the
+  !   memset is complete. The operation can optionally be associated to a stream by passing a non-zero
+  !   stream argument. If stream is non-zero, the operation may overlap with operations in other
+  !   streams.
+  !  
+  !    @param[out] dst Data ptr to be filled
+  !    @param[in]  ant value to be set
+  !    @param[in]  number of values to be set
+  !    @param[in]  stream - Stream identifier
+  !    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized
+  !  
+#ifdef USE_CUDA_NAMES
+    function hipMemsetD8Async(dest,myValue,count,stream) bind(c, name="cudaMemsetD8Async")
+#else
+    function hipMemsetD8Async(dest,myValue,count,stream) bind(c, name="hipMemsetD8Async")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemsetD8Async
+#else
+      integer(kind(hipSuccess)) :: hipMemsetD8Async
+#endif
+      type(c_ptr),value :: dest
+      integer(kind=1),value :: myValue
+      integer(c_size_t),value :: count
+      type(c_ptr),value :: stream
+    end function
+
+  ! 
+  !    @brief Fills the first sizeBytes bytes of the memory area pointed to by dest with the ant
   !   short value value.
   !  
   !    @param[out] dst Data ptr to be filled
@@ -2379,6 +2521,44 @@ module hipfort
       type(c_ptr),value :: dest
       integer(kind=2),value :: myValue
       integer(c_size_t),value :: count
+    end function
+
+  ! 
+  !    @brief Fills the first sizeBytes bytes of the memory area pointed to by dest with the ant
+  !   short value value.
+  !  
+  !   hipMemsetD16Async() is asynchronous with respect to the host, so the call may return before the
+  !   memset is complete. The operation can optionally be associated to a stream by passing a non-zero
+  !   stream argument. If stream is non-zero, the operation may overlap with operations in other
+  !   streams.
+  !  
+  !    @param[out] dst Data ptr to be filled
+  !    @param[in]  ant value to be set
+  !    @param[in]  number of values to be set
+  !    @param[in]  stream - Stream identifier
+  !    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized
+  !  
+#ifdef USE_CUDA_NAMES
+    function hipMemsetD16Async(dest,myValue,count,stream) bind(c, name="cudaMemsetD16Async")
+#else
+    function hipMemsetD16Async(dest,myValue,count,stream) bind(c, name="hipMemsetD16Async")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemsetD16Async
+#else
+      integer(kind(hipSuccess)) :: hipMemsetD16Async
+#endif
+      type(c_ptr),value :: dest
+      integer(kind=2),value :: myValue
+      integer(c_size_t),value :: count
+      type(c_ptr),value :: stream
     end function
 
   ! 
@@ -2410,6 +2590,82 @@ module hipfort
       type(c_ptr),value :: dest
       integer(c_int),value :: myValue
       integer(c_size_t),value :: count
+    end function
+
+  ! 
+  !    @brief Fills the first sizeBytes bytes of the memory area pointed to by dev with the ant
+  !   byte value value.
+  !  
+  !    hipMemsetAsync() is asynchronous with respect to the host, so the call may return before the
+  !   memset is complete. The operation can optionally be associated to a stream by passing a non-zero
+  !   stream argument. If stream is non-zero, the operation may overlap with operations in other
+  !   streams.
+  !  
+  !    @param[out] dst Pointer to device memory
+  !    @param[in]  value - Value to set for each byte of specified memory
+  !    @param[in]  sizeBytes - Size in bytes to set
+  !    @param[in]  stream - Stream identifier
+  !    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryFree
+  !  
+#ifdef USE_CUDA_NAMES
+    function hipMemsetAsync(dst,myValue,sizeBytes,stream) bind(c, name="cudaMemsetAsync")
+#else
+    function hipMemsetAsync(dst,myValue,sizeBytes,stream) bind(c, name="hipMemsetAsync")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemsetAsync
+#else
+      integer(kind(hipSuccess)) :: hipMemsetAsync
+#endif
+      type(c_ptr),value :: dst
+      integer(c_int),value :: myValue
+      integer(c_size_t),value :: sizeBytes
+      type(c_ptr),value :: stream
+    end function
+
+  ! 
+  !    @brief Fills the memory area pointed to by dev with the ant integer
+  !   value for specified number of times.
+  !  
+  !    hipMemsetD32Async() is asynchronous with respect to the host, so the call may return before the
+  !   memset is complete. The operation can optionally be associated to a stream by passing a non-zero
+  !   stream argument. If stream is non-zero, the operation may overlap with operations in other
+  !   streams.
+  !  
+  !    @param[out] dst Pointer to device memory
+  !    @param[in]  value - Value to set for each byte of specified memory
+  !    @param[in]  count - number of values to be set
+  !    @param[in]  stream - Stream identifier
+  !    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryFree
+  !  
+#ifdef USE_CUDA_NAMES
+    function hipMemsetD32Async(dst,myValue,count,stream) bind(c, name="cudaMemsetD32Async")
+#else
+    function hipMemsetD32Async(dst,myValue,count,stream) bind(c, name="hipMemsetD32Async")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemsetD32Async
+#else
+      integer(kind(hipSuccess)) :: hipMemsetD32Async
+#endif
+      type(c_ptr),value :: dst
+      integer(c_int),value :: myValue
+      integer(c_size_t),value :: count
+      type(c_ptr),value :: stream
     end function
 
   ! 
@@ -2447,6 +2703,42 @@ module hipfort
     end function
 
   ! 
+  !    @brief Fills asynchronously the memory area pointed to by dst with the ant value.
+  !  
+  !    @param[in]  dst Pointer to device memory
+  !    @param[in]  pitch - data size in bytes
+  !    @param[in]  value - ant value to be set
+  !    @param[in]  width
+  !    @param[in]  height
+  !    @param[in]  stream
+  !    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryFree
+  !  
+#ifdef USE_CUDA_NAMES
+    function hipMemset2DAsync(dst,pitch,myValue,width,height,stream) bind(c, name="cudaMemset2DAsync")
+#else
+    function hipMemset2DAsync(dst,pitch,myValue,width,height,stream) bind(c, name="hipMemset2DAsync")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemset2DAsync
+#else
+      integer(kind(hipSuccess)) :: hipMemset2DAsync
+#endif
+      type(c_ptr),value :: dst
+      integer(c_size_t),value :: pitch
+      integer(c_int),value :: myValue
+      integer(c_size_t),value :: width
+      integer(c_size_t),value :: height
+      type(c_ptr),value :: stream
+    end function
+
+  ! 
   !    @brief Fills synchronously the memory area pointed to by pitchedDevPtr with the ant value.
   !  
   !    @param[in] pitchedDevPtr
@@ -2474,6 +2766,38 @@ module hipfort
       type(c_ptr),value :: pitchedDevPtr
       integer(c_int),value :: myValue
       type(c_ptr),value :: extent
+    end function
+
+  ! 
+  !    @brief Fills asynchronously the memory area pointed to by pitchedDevPtr with the ant value.
+  !  
+  !    @param[in] pitchedDevPtr
+  !    @param[in]  value - ant value to be set
+  !    @param[in]  extent
+  !    @param[in]  stream
+  !    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryFree
+  !  
+#ifdef USE_CUDA_NAMES
+    function hipMemset3DAsync(pitchedDevPtr,myValue,extent,stream) bind(c, name="cudaMemset3DAsync")
+#else
+    function hipMemset3DAsync(pitchedDevPtr,myValue,extent,stream) bind(c, name="hipMemset3DAsync")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemset3DAsync
+#else
+      integer(kind(hipSuccess)) :: hipMemset3DAsync
+#endif
+      type(c_ptr),value :: pitchedDevPtr
+      integer(c_int),value :: myValue
+      type(c_ptr),value :: extent
+      type(c_ptr),value :: stream
     end function
 
   ! 
@@ -2684,6 +3008,41 @@ module hipfort
     end function
 
   ! 
+  !   @brief Allocate a mipmapped array on the device
+  !  
+  !   @param[out] mipmappedArray  - Pointer to allocated mipmapped array in device memory
+  !   @param[in]  desc            - Requested channel format
+  !   @param[in]  extent          - Requested allocation size (width field in elements)
+  !   @param[in]  numLevels       - Number of mipmap levels to allocate
+  !   @param[in]  flags           - Flags for extensions
+  !   
+  !   @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryAllocation
+  !  
+#ifdef USE_CUDA_NAMES
+    function hipMallocMipmappedArray(mipmappedArray,desc,extent,numLevels,flags) bind(c, name="cudaMallocMipmappedArray")
+#else
+    function hipMallocMipmappedArray(mipmappedArray,desc,extent,numLevels,flags) bind(c, name="hipMallocMipmappedArray")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMallocMipmappedArray
+#else
+      integer(kind(hipSuccess)) :: hipMallocMipmappedArray
+#endif
+      type(c_ptr) :: mipmappedArray
+      type(c_ptr) :: desc
+      type(c_ptr),value :: extent
+      integer(kind=4),value :: numLevels
+      integer(kind=4),value :: flags
+    end function
+
+  ! 
   !   @brief Gets a mipmap level of a HIP mipmapped array
   !  
   !   @param[out] levelArray     - Returned mipmap level HIP array
@@ -2783,6 +3142,81 @@ module hipfort
       integer(kind(hipSuccess)) :: hipMemcpyParam2D
 #endif
       type(c_ptr) :: pCopy
+    end function
+
+  ! 
+  !    @brief Copies memory for 2D arrays.
+  !    @param[in]   pCopy Parameters for the memory copy
+  !    @param[in]   stream Stream to use
+  !    @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
+  !   #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
+  !  
+  !    @see hipMemcpy, hipMemcpy2D, hipMemcpyToArray, hipMemcpy2DToArray, hipMemcpyFromArray,
+  !   hipMemcpyToSymbol, hipMemcpyAsync
+  ! 
+#ifdef USE_CUDA_NAMES
+    function hipMemcpyParam2DAsync(pCopy,stream) bind(c, name="cudaMemcpyParam2DAsync")
+#else
+    function hipMemcpyParam2DAsync(pCopy,stream) bind(c, name="hipMemcpyParam2DAsync")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpyParam2DAsync
+#else
+      integer(kind(hipSuccess)) :: hipMemcpyParam2DAsync
+#endif
+      type(c_ptr) :: pCopy
+      type(c_ptr),value :: stream
+    end function
+
+  ! 
+  !    @brief Copies data between host and device.
+  !  
+  !    @param[in]   dst    Destination memory address
+  !    @param[in]   dpitch Pitch of destination memory
+  !    @param[in]   src    Source memory address
+  !    @param[in]   spitch Pitch of source memory
+  !    @param[in]   width  Width of matrix transfer (columns in bytes)
+  !    @param[in]   height Height of matrix transfer (rows)
+  !    @param[in]   kind   Type of transfer
+  !    @param[in]   stream Stream to use
+  !    @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
+  !   #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
+  !  
+  !    @see hipMemcpy, hipMemcpyToArray, hipMemcpy2DToArray, hipMemcpyFromArray, hipMemcpyToSymbol,
+  !   hipMemcpyAsync
+  !  
+#ifdef USE_CUDA_NAMES
+    function hipMemcpy2DAsync(dst,dpitch,src,spitch,width,height,myKind,stream) bind(c, name="cudaMemcpy2DAsync")
+#else
+    function hipMemcpy2DAsync(dst,dpitch,src,spitch,width,height,myKind,stream) bind(c, name="hipMemcpy2DAsync")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2DAsync
+#endif
+      type(c_ptr),value :: dst
+      integer(c_size_t),value :: dpitch
+      type(c_ptr),value :: src
+      integer(c_size_t),value :: spitch
+      integer(c_size_t),value :: width
+      integer(c_size_t),value :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+      type(c_ptr),value :: stream
     end function
 
   ! 
@@ -2926,6 +3360,52 @@ module hipfort
     end function
 
   ! 
+  !    @brief Copies data between host and device asynchronously.
+  !  
+  !    @param[in]   dst       Destination memory address
+  !    @param[in]   dpitch    Pitch of destination memory
+  !    @param[in]   src       Source memory address
+  !    @param[in]   wOffset   Source starting X offset
+  !    @param[in]   hOffset   Source starting Y offset
+  !    @param[in]   width     Width of matrix transfer (columns in bytes)
+  !    @param[in]   height    Height of matrix transfer (rows)
+  !    @param[in]   kind      Type of transfer
+  !    @param[in]   stream    Accelerator view which the copy is being enqueued
+  !    @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
+  !   #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
+  !  
+  !    @see hipMemcpy, hipMemcpy2DToArray, hipMemcpy2D, hipMemcpyFromArray, hipMemcpyToSymbol,
+  !   hipMemcpyAsync
+  !  
+#ifdef USE_CUDA_NAMES
+    function hipMemcpy2DFromArrayAsync(dst,dpitch,src,wOffset,hOffset,width,height,myKind,stream) bind(c, name="cudaMemcpy2DFromArrayAsync")
+#else
+    function hipMemcpy2DFromArrayAsync(dst,dpitch,src,wOffset,hOffset,width,height,myKind,stream) bind(c, name="hipMemcpy2DFromArrayAsync")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2DFromArrayAsync
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2DFromArrayAsync
+#endif
+      type(c_ptr),value :: dst
+      integer(c_size_t),value :: dpitch
+      type(c_ptr),value :: src
+      integer(c_size_t),value :: wOffset
+      integer(c_size_t),value :: hOffset
+      integer(c_size_t),value :: width
+      integer(c_size_t),value :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+      type(c_ptr),value :: stream
+    end function
+
+  ! 
   !    @brief Copies data between host and device.
   !  
   !    @param[in]   dst       Destination memory address
@@ -3025,6 +3505,38 @@ module hipfort
       integer(kind(hipSuccess)) :: hipMemcpy3D
 #endif
       type(c_ptr) :: p
+    end function
+
+  ! 
+  !    @brief Copies data between host and device asynchronously.
+  !  
+  !    @param[in]   p        3D memory copy parameters
+  !    @param[in]   stream   Stream to use
+  !    @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
+  !   #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
+  !  
+  !    @see hipMemcpy, hipMemcpy2DToArray, hipMemcpy2D, hipMemcpyFromArray, hipMemcpyToSymbol,
+  !   hipMemcpyAsync
+  !  
+#ifdef USE_CUDA_NAMES
+    function hipMemcpy3DAsync(p,stream) bind(c, name="cudaMemcpy3DAsync")
+#else
+    function hipMemcpy3DAsync(p,stream) bind(c, name="hipMemcpy3DAsync")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy3DAsync
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy3DAsync
+#endif
+      type(c_ptr) :: p
+      type(c_ptr),value :: stream
     end function
 
   ! 
@@ -3262,6 +3774,43 @@ module hipfort
       type(c_ptr),value :: src
       integer(c_int),value :: srcDeviceId
       integer(c_size_t),value :: sizeBytes
+    end function
+
+  ! 
+  !   @brief Copies memory from one device to memory on another device.
+  !  
+  !   @param [out] dst - Destination device pointer.
+  !   @param [in] dstDevice - Destination device
+  !   @param [in] src - Source device pointer
+  !   @param [in] srcDevice - Source device
+  !   @param [in] sizeBytes - Size of memory copy in bytes
+  !   @param [in] stream - Stream identifier
+  !  
+  !   @returns #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidDevice
+  !  
+#ifdef USE_CUDA_NAMES
+    function hipMemcpyPeerAsync(dst,dstDeviceId,src,srcDevice,sizeBytes,stream) bind(c, name="cudaMemcpyPeerAsync")
+#else
+    function hipMemcpyPeerAsync(dst,dstDeviceId,src,srcDevice,sizeBytes,stream) bind(c, name="hipMemcpyPeerAsync")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpyPeerAsync
+#else
+      integer(kind(hipSuccess)) :: hipMemcpyPeerAsync
+#endif
+      type(c_ptr),value :: dst
+      integer(c_int),value :: dstDeviceId
+      type(c_ptr),value :: src
+      integer(c_int),value :: srcDevice
+      integer(c_size_t),value :: sizeBytes
+      type(c_ptr),value :: stream
     end function
 
   
@@ -4866,6 +5415,42 @@ module hipfort
     end function
 
   ! 
+  !   @brief Configure a kernel launch.
+  !  
+  !   @param [in] gridDim   grid dimension specified as multiple of blockDim.
+  !   @param [in] blockDim  block dimensions specified in work-items
+  !   @param [in] sharedMem Amount of dynamic shared memory to allocate for this kernel.  The
+  !   kernel can access this with HIP_DYNAMIC_SHARED.
+  !   @param [in] stream    Stream where the kernel should be dispatched.  May be 0, in which case the
+  !   default stream is used with associated synchronization rules.
+  !  
+  !   @returns hipSuccess, hipInvalidDevice, hipErrorNotInitialized, hipErrorInvalidValue
+  !  
+  !  
+#ifdef USE_CUDA_NAMES
+    function hipConfigureCall(gridDim,blockDim,sharedMem,stream) bind(c, name="cudaConfigureCall")
+#else
+    function hipConfigureCall(gridDim,blockDim,sharedMem,stream) bind(c, name="hipConfigureCall")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipConfigureCall
+#else
+      integer(kind(hipSuccess)) :: hipConfigureCall
+#endif
+      type(dim3),value :: gridDim
+      type(dim3),value :: blockDim
+      integer(c_size_t),value :: sharedMem
+      type(c_ptr),value :: stream
+    end function
+
+  ! 
   !   @brief Set a kernel argument.
   !  
   !   @returns hipSuccess, hipInvalidDevice, hipErrorNotInitialized, hipErrorInvalidValue
@@ -4923,6 +5508,79 @@ module hipfort
       integer(kind(hipSuccess)) :: hipLaunchByPtr
 #endif
       type(c_ptr),value :: func
+    end function
+
+  ! 
+  !   @brief C compliant kernel launch API
+  !  
+  !   @param [in] function_address - kernel stub function pointer.
+  !   @param [in] numBlocks - number of blocks
+  !   @param [in] dimBlocks - dimension of a block
+  !   @param [in] args - kernel arguments
+  !   @param [in] sharedMemBytes - Amount of dynamic shared memory to allocate for this kernel.  The
+  !    Kernel can access this with HIP_DYNAMIC_SHARED.
+  !   @param [in] stream - Stream where the kernel should be dispatched.  May be 0, in which case th
+  !    default stream is used with associated synchronization rules.
+  !  
+  !   @returns #hipSuccess, #hipErrorInvalidValue, hipInvalidDevice
+  !  
+  !  
+#ifdef USE_CUDA_NAMES
+    function hipLaunchKernel(function_address,numBlocks,dimBlocks,args,sharedMemBytes,stream) bind(c, name="cudaLaunchKernel")
+#else
+    function hipLaunchKernel(function_address,numBlocks,dimBlocks,args,sharedMemBytes,stream) bind(c, name="hipLaunchKernel")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipLaunchKernel
+#else
+      integer(kind(hipSuccess)) :: hipLaunchKernel
+#endif
+      type(c_ptr),value :: function_address
+      type(dim3),value :: numBlocks
+      type(dim3),value :: dimBlocks
+      type(c_ptr) :: args
+      integer(c_size_t),value :: sharedMemBytes
+      type(c_ptr),value :: stream
+    end function
+
+  ! 
+  !   @brief Prefetches memory to the specified destination device using AMD HMM.
+  !  
+  !   @param [in] dev_ptr  pointer to be prefetched
+  !   @param [in] count    size in bytes for prefetching
+  !   @param [in] device   destination device to prefetch to
+  !   @param [in] stream   stream to enqueue prefetch operation
+  !  
+  !   @returns #hipSuccess, #hipErrorInvalidValue
+  !  
+#ifdef USE_CUDA_NAMES
+    function hipMemPrefetchAsync(dev_ptr,count,device,stream) bind(c, name="cudaMemPrefetchAsync")
+#else
+    function hipMemPrefetchAsync(dev_ptr,count,device,stream) bind(c, name="hipMemPrefetchAsync")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemPrefetchAsync
+#else
+      integer(kind(hipSuccess)) :: hipMemPrefetchAsync
+#endif
+      type(c_ptr),value :: dev_ptr
+      integer(c_size_t),value :: count
+      integer(c_int),value :: device
+      type(c_ptr),value :: stream
     end function
 
   ! 
