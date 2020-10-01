@@ -31,39 +31,39 @@ module hipfort_hiprand
 
  
   interface
-  ! 
-  !   \brief Creates a new random number generator.
-  !  
-  !   Creates a new random number generator of type \p rng_type,
-  !   and returns it in \p generator. That generator will use
-  !   GPU to create random numbers.
-  !  
-  !   Values for \p rng_type are:
-  !   - HIPRAND_RNG_PSEUDO_DEFAULT
-  !   - HIPRAND_RNG_PSEUDO_XORWOW
-  !   - HIPRAND_RNG_PSEUDO_MRG32K3A
-  !   - HIPRAND_RNG_PSEUDO_MTGP32
-  !   - HIPRAND_RNG_PSEUDO_MT19937
-  !   - HIPRAND_RNG_PSEUDO_PHILOX4_32_10
-  !   - HIPRAND_RNG_QUASI_DEFAULT
-  !   - HIPRAND_RNG_QUASI_SOBOL32
-  !   - HIPRAND_RNG_QUASI_SCRAMBLED_SOBOL32
-  !   - HIPRAND_RNG_QUASI_SOBOL64
-  !   - HIPRAND_RNG_QUASI_SCRAMBLED_SOBOL64
-  !  
-  !   \param generator - Pointer to generator
-  !   \param rng_type - Type of random number generator to create
-  !  
-  !   \return
-  !   - HIPRAND_STATUS_ALLOCATION_FAILED, if memory allocation failed \n
-  !   - HIPRAND_STATUS_INITIALIZATION_FAILED if there was a problem setting up the GPU \n
-  !   - HIPRAND_STATUS_VERSION_MISMATCH if the header file version does not match the
-  !     dynamically linked library version \n
-  !   - HIPRAND_STATUS_TYPE_ERROR if the value for \p rng_type is invalid \n
-  !   - HIPRAND_STATUS_NOT_IMPLEMENTED if generator of type \p rng_type is not implemented yet \n
-  !   - HIPRAND_STATUS_SUCCESS if generator was created successfully \n
-  !  
-  !  
+  !> 
+  !>   \brief Creates a new random number generator.
+  !>  
+  !>   Creates a new random number generator of type \p rng_type,
+  !>   and returns it in \p generator. That generator will use
+  !>   GPU to create random numbers.
+  !>  
+  !>   Values for \p rng_type are:
+  !>   - HIPRAND_RNG_PSEUDO_DEFAULT
+  !>   - HIPRAND_RNG_PSEUDO_XORWOW
+  !>   - HIPRAND_RNG_PSEUDO_MRG32K3A
+  !>   - HIPRAND_RNG_PSEUDO_MTGP32
+  !>   - HIPRAND_RNG_PSEUDO_MT19937
+  !>   - HIPRAND_RNG_PSEUDO_PHILOX4_32_10
+  !>   - HIPRAND_RNG_QUASI_DEFAULT
+  !>   - HIPRAND_RNG_QUASI_SOBOL32
+  !>   - HIPRAND_RNG_QUASI_SCRAMBLED_SOBOL32
+  !>   - HIPRAND_RNG_QUASI_SOBOL64
+  !>   - HIPRAND_RNG_QUASI_SCRAMBLED_SOBOL64
+  !>  
+  !>   \param generator - Pointer to generator
+  !>   \param rng_type - Type of random number generator to create
+  !>  
+  !>   \return
+  !>   - HIPRAND_STATUS_ALLOCATION_FAILED, if memory allocation failed \n
+  !>   - HIPRAND_STATUS_INITIALIZATION_FAILED if there was a problem setting up the GPU \n
+  !>   - HIPRAND_STATUS_VERSION_MISMATCH if the header file version does not match the
+  !>     dynamically linked library version \n
+  !>   - HIPRAND_STATUS_TYPE_ERROR if the value for \p rng_type is invalid \n
+  !>   - HIPRAND_STATUS_NOT_IMPLEMENTED if generator of type \p rng_type is not implemented yet \n
+  !>   - HIPRAND_STATUS_SUCCESS if generator was created successfully \n
+  !>  
+  !>  
 #ifdef USE_CUDA_NAMES
     function hiprandCreateGenerator(generator,rng_type) bind(c, name="curandCreateGenerator")
 #else
@@ -77,37 +77,37 @@ module hipfort_hiprand
       integer(kind(HIPRAND_RNG_TEST)),value :: rng_type
     end function
 
-  ! 
-  !   \brief Creates a new random number generator on host.
-  !  
-  !   Creates a new host random number generator of type \p rng_type
-  !   and returns it in \p generator. Created generator will use
-  !   host CPU to generate random numbers.
-  !  
-  !   Values for \p rng_type are:
-  !   - HIPRAND_RNG_PSEUDO_DEFAULT
-  !   - HIPRAND_RNG_PSEUDO_XORWOW
-  !   - HIPRAND_RNG_PSEUDO_MRG32K3A
-  !   - HIPRAND_RNG_PSEUDO_MTGP32
-  !   - HIPRAND_RNG_PSEUDO_MT19937
-  !   - HIPRAND_RNG_PSEUDO_PHILOX4_32_10
-  !   - HIPRAND_RNG_QUASI_DEFAULT
-  !   - HIPRAND_RNG_QUASI_SOBOL32
-  !   - HIPRAND_RNG_QUASI_SCRAMBLED_SOBOL32
-  !   - HIPRAND_RNG_QUASI_SOBOL64
-  !   - HIPRAND_RNG_QUASI_SCRAMBLED_SOBOL64
-  !  
-  !   \param generator - Pointer to generator
-  !   \param rng_type - Type of random number generator to create
-  !  
-  !   \return
-  !   - HIPRAND_STATUS_ALLOCATION_FAILED, if memory allocation failed \n
-  !   - HIPRAND_STATUS_VERSION_MISMATCH if the header file version does not match the
-  !     dynamically linked library version \n
-  !   - HIPRAND_STATUS_TYPE_ERROR if the value for \p rng_type is invalid \n
-  !   - HIPRAND_STATUS_NOT_IMPLEMENTED if host generator of type \p rng_type is not implemented yet \n
-  !   - HIPRAND_STATUS_SUCCESS if generator was created successfully \n
-  !  
+  !> 
+  !>   \brief Creates a new random number generator on host.
+  !>  
+  !>   Creates a new host random number generator of type \p rng_type
+  !>   and returns it in \p generator. Created generator will use
+  !>   host CPU to generate random numbers.
+  !>  
+  !>   Values for \p rng_type are:
+  !>   - HIPRAND_RNG_PSEUDO_DEFAULT
+  !>   - HIPRAND_RNG_PSEUDO_XORWOW
+  !>   - HIPRAND_RNG_PSEUDO_MRG32K3A
+  !>   - HIPRAND_RNG_PSEUDO_MTGP32
+  !>   - HIPRAND_RNG_PSEUDO_MT19937
+  !>   - HIPRAND_RNG_PSEUDO_PHILOX4_32_10
+  !>   - HIPRAND_RNG_QUASI_DEFAULT
+  !>   - HIPRAND_RNG_QUASI_SOBOL32
+  !>   - HIPRAND_RNG_QUASI_SCRAMBLED_SOBOL32
+  !>   - HIPRAND_RNG_QUASI_SOBOL64
+  !>   - HIPRAND_RNG_QUASI_SCRAMBLED_SOBOL64
+  !>  
+  !>   \param generator - Pointer to generator
+  !>   \param rng_type - Type of random number generator to create
+  !>  
+  !>   \return
+  !>   - HIPRAND_STATUS_ALLOCATION_FAILED, if memory allocation failed \n
+  !>   - HIPRAND_STATUS_VERSION_MISMATCH if the header file version does not match the
+  !>     dynamically linked library version \n
+  !>   - HIPRAND_STATUS_TYPE_ERROR if the value for \p rng_type is invalid \n
+  !>   - HIPRAND_STATUS_NOT_IMPLEMENTED if host generator of type \p rng_type is not implemented yet \n
+  !>   - HIPRAND_STATUS_SUCCESS if generator was created successfully \n
+  !>  
 #ifdef USE_CUDA_NAMES
     function hiprandCreateGeneratorHost(generator,rng_type) bind(c, name="curandCreateGeneratorHost")
 #else
@@ -121,17 +121,17 @@ module hipfort_hiprand
       integer(kind(HIPRAND_RNG_TEST)),value :: rng_type
     end function
 
-  ! 
-  !   \brief Destroys random number generator.
-  !  
-  !   Destroys random number generator and frees related memory.
-  !  
-  !   \param generator - Generator to be destroyed
-  !  
-  !   \return
-  !   - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized \n
-  !   - HIPRAND_STATUS_SUCCESS if generator was destroyed successfully \n
-  !  
+  !> 
+  !>   \brief Destroys random number generator.
+  !>  
+  !>   Destroys random number generator and frees related memory.
+  !>  
+  !>   \param generator - Generator to be destroyed
+  !>  
+  !>   \return
+  !>   - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized \n
+  !>   - HIPRAND_STATUS_SUCCESS if generator was destroyed successfully \n
+  !>  
 #ifdef USE_CUDA_NAMES
     function hiprandDestroyGenerator(generator) bind(c, name="curandDestroyGenerator")
 #else
@@ -144,24 +144,24 @@ module hipfort_hiprand
       type(c_ptr),value :: generator
     end function
 
-  ! 
-  !   \brief Generates uniformly distributed 32-bit unsigned integers.
-  !  
-  !   Generates \p n uniformly distributed 32-bit unsigned integers and
-  !   saves them to \p output_data.
-  !  
-  !   Generated numbers are between \p 0 and \p 2^32, including \p 0 and
-  !   excluding \p 2^32.
-  !  
-  !   \param generator - Generator to use
-  !   \param output_data - Pointer to memory to store generated numbers
-  !   \param n - Number of 32-bit unsigned integers to generate
-  !  
-  !   \return
-  !   - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized \n
-  !   - HIPRAND_STATUS_LAUNCH_FAILURE if generator failed to launch kernel \n
-  !   - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated \n
-  !  
+  !> 
+  !>   \brief Generates uniformly distributed 32-bit unsigned integers.
+  !>  
+  !>   Generates \p n uniformly distributed 32-bit unsigned integers and
+  !>   saves them to \p output_data.
+  !>  
+  !>   Generated numbers are between \p 0 and \p 2^32, including \p 0 and
+  !>   excluding \p 2^32.
+  !>  
+  !>   \param generator - Generator to use
+  !>   \param output_data - Pointer to memory to store generated numbers
+  !>   \param n - Number of 32-bit unsigned integers to generate
+  !>  
+  !>   \return
+  !>   - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized \n
+  !>   - HIPRAND_STATUS_LAUNCH_FAILURE if generator failed to launch kernel \n
+  !>   - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated \n
+  !>  
 #ifdef USE_CUDA_NAMES
     function hiprandGenerate(generator,output_data,n) bind(c, name="curandGenerate")
 #else
@@ -176,24 +176,24 @@ module hipfort_hiprand
       integer(c_size_t),value :: n
     end function
 
-  ! 
-  !   \brief Generates uniformly distributed 8-bit unsigned integers.
-  !  
-  !   Generates \p n uniformly distributed 8-bit unsigned integers and
-  !   saves them to \p output_data.
-  !  
-  !   Generated numbers are between \p 0 and \p 2^8, including \p 0 and
-  !   excluding \p 2^8.
-  !  
-  !   \param generator - Generator to use
-  !   \param output_data - Pointer to memory to store generated numbers
-  !   \param n - Number of 8-bit unsigned integers to generate
-  !  
-  !   \return
-  !   - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized \n
-  !   - HIPRAND_STATUS_LAUNCH_FAILURE if generator failed to launch kernel \n
-  !   - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated \n
-  !  
+  !> 
+  !>   \brief Generates uniformly distributed 8-bit unsigned integers.
+  !>  
+  !>   Generates \p n uniformly distributed 8-bit unsigned integers and
+  !>   saves them to \p output_data.
+  !>  
+  !>   Generated numbers are between \p 0 and \p 2^8, including \p 0 and
+  !>   excluding \p 2^8.
+  !>  
+  !>   \param generator - Generator to use
+  !>   \param output_data - Pointer to memory to store generated numbers
+  !>   \param n - Number of 8-bit unsigned integers to generate
+  !>  
+  !>   \return
+  !>   - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized \n
+  !>   - HIPRAND_STATUS_LAUNCH_FAILURE if generator failed to launch kernel \n
+  !>   - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated \n
+  !>  
 #ifdef USE_CUDA_NAMES
     function hiprandGenerateChar(generator,output_data,n) bind(c, name="curandGenerateChar")
 #else
@@ -208,24 +208,24 @@ module hipfort_hiprand
       integer(c_size_t),value :: n
     end function
 
-  ! 
-  !   \brief Generates uniformly distributed 16-bit unsigned integers.
-  !  
-  !   Generates \p n uniformly distributed 16-bit unsigned integers and
-  !   saves them to \p output_data.
-  !  
-  !   Generated numbers are between \p 0 and \p 2^16, including \p 0 and
-  !   excluding \p 2^16.
-  !  
-  !   \param generator - Generator to use
-  !   \param output_data - Pointer to memory to store generated numbers
-  !   \param n - Number of 16-bit unsigned integers to generate
-  !  
-  !   \return
-  !   - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized \n
-  !   - HIPRAND_STATUS_LAUNCH_FAILURE if generator failed to launch kernel \n
-  !   - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated \n
-  !  
+  !> 
+  !>   \brief Generates uniformly distributed 16-bit unsigned integers.
+  !>  
+  !>   Generates \p n uniformly distributed 16-bit unsigned integers and
+  !>   saves them to \p output_data.
+  !>  
+  !>   Generated numbers are between \p 0 and \p 2^16, including \p 0 and
+  !>   excluding \p 2^16.
+  !>  
+  !>   \param generator - Generator to use
+  !>   \param output_data - Pointer to memory to store generated numbers
+  !>   \param n - Number of 16-bit unsigned integers to generate
+  !>  
+  !>   \return
+  !>   - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized \n
+  !>   - HIPRAND_STATUS_LAUNCH_FAILURE if generator failed to launch kernel \n
+  !>   - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated \n
+  !>  
 #ifdef USE_CUDA_NAMES
     function hiprandGenerateShort(generator,output_data,n) bind(c, name="curandGenerateShort")
 #else
@@ -240,26 +240,26 @@ module hipfort_hiprand
       integer(c_size_t),value :: n
     end function
 
-  ! 
-  !   \brief Generates uniformly distributed floats.
-  !  
-  !   Generates \p n uniformly distributed 32-bit floating-point values
-  !   and saves them to \p output_data.
-  !  
-  !   Generated numbers are between \p 0.0f and \p 1.0f, excluding \p 0.0f and
-  !   including \p 1.0f.
-  !  
-  !   \param generator - Generator to use
-  !   \param output_data - Pointer to memory to store generated numbers
-  !   \param n - Number of floats to generate
-  !  
-  !   \return
-  !   - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized \n
-  !   - HIPRAND_STATUS_LAUNCH_FAILURE if generator failed to launch kernel \n
-  !   - HIPRAND_STATUS_LENGTH_NOT_MULTIPLE if \p n is not a multiple of the dimension
-  !   of used quasi-random generator \n
-  !   - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated \n
-  !  
+  !> 
+  !>   \brief Generates uniformly distributed floats.
+  !>  
+  !>   Generates \p n uniformly distributed 32-bit floating-point values
+  !>   and saves them to \p output_data.
+  !>  
+  !>   Generated numbers are between \p 0.0f and \p 1.0f, excluding \p 0.0f and
+  !>   including \p 1.0f.
+  !>  
+  !>   \param generator - Generator to use
+  !>   \param output_data - Pointer to memory to store generated numbers
+  !>   \param n - Number of floats to generate
+  !>  
+  !>   \return
+  !>   - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized \n
+  !>   - HIPRAND_STATUS_LAUNCH_FAILURE if generator failed to launch kernel \n
+  !>   - HIPRAND_STATUS_LENGTH_NOT_MULTIPLE if \p n is not a multiple of the dimension
+  !>   of used quasi-random generator \n
+  !>   - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated \n
+  !>  
 #ifdef USE_CUDA_NAMES
     function hiprandGenerateUniform(generator,output_data,n) bind(c, name="curandGenerateUniform")
 #else
@@ -274,31 +274,31 @@ module hipfort_hiprand
       integer(c_size_t),value :: n
     end function
 
-  ! 
-  !   \brief Generates uniformly distributed double-precision floating-point values.
-  !  
-  !   Generates \p n uniformly distributed 64-bit double-precision floating-point
-  !   values and saves them to \p output_data.
-  !  
-  !   Generated numbers are between \p 0.0 and \p 1.0, excluding \p 0.0 and
-  !   including \p 1.0.
-  !  
-  !   \param generator - Generator to use
-  !   \param output_data - Pointer to memory to store generated numbers
-  !   \param n - Number of floats to generate
-  !  
-  !   Note: When \p generator is of type: \p HIPRAND_RNG_PSEUDO_MRG32K3A,
-  !   \p HIPRAND_RNG_PSEUDO_MTGP32, or \p HIPRAND_RNG_QUASI_SOBOL32,
-  !   then the returned \p double values are generated from only 32 random bits
-  !   each (one <tt>unsigned int<tt> value per one generated \p double).
-  !  
-  !   \return
-  !   - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized \n
-  !   - HIPRAND_STATUS_LAUNCH_FAILURE if generator failed to launch kernel \n
-  !   - HIPRAND_STATUS_LENGTH_NOT_MULTIPLE if \p n is not a multiple of the dimension
-  !   of used quasi-random generator \n
-  !   - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated \n
-  !  
+  !> 
+  !>   \brief Generates uniformly distributed double-precision floating-point values.
+  !>  
+  !>   Generates \p n uniformly distributed 64-bit double-precision floating-point
+  !>   values and saves them to \p output_data.
+  !>  
+  !>   Generated numbers are between \p 0.0 and \p 1.0, excluding \p 0.0 and
+  !>   including \p 1.0.
+  !>  
+  !>   \param generator - Generator to use
+  !>   \param output_data - Pointer to memory to store generated numbers
+  !>   \param n - Number of floats to generate
+  !>  
+  !>   Note: When \p generator is of type: \p HIPRAND_RNG_PSEUDO_MRG32K3A,
+  !>   \p HIPRAND_RNG_PSEUDO_MTGP32, or \p HIPRAND_RNG_QUASI_SOBOL32,
+  !>   then the returned \p double values are generated from only 32 random bits
+  !>   each (one <tt>unsigned int<tt> value per one generated \p double).
+  !>  
+  !>   \return
+  !>   - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized \n
+  !>   - HIPRAND_STATUS_LAUNCH_FAILURE if generator failed to launch kernel \n
+  !>   - HIPRAND_STATUS_LENGTH_NOT_MULTIPLE if \p n is not a multiple of the dimension
+  !>   of used quasi-random generator \n
+  !>   - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated \n
+  !>  
 #ifdef USE_CUDA_NAMES
     function hiprandGenerateUniformDouble(generator,output_data,n) bind(c, name="curandGenerateUniformDouble")
 #else
@@ -313,26 +313,26 @@ module hipfort_hiprand
       integer(c_size_t),value :: n
     end function
 
-  ! 
-  !   \brief Generates normally distributed floats.
-  !  
-  !   Generates \p n normally distributed 32-bit floating-point
-  !   values and saves them to \p output_data.
-  !  
-  !   \param generator - Generator to use
-  !   \param output_data - Pointer to memory to store generated numbers
-  !   \param n - Number of floats to generate
-  !   \param mean - Mean value of normal distribution
-  !   \param stddev - Standard deviation value of normal distribution
-  !  
-  !   \return
-  !   - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized \n
-  !   - HIPRAND_STATUS_LAUNCH_FAILURE if generator failed to launch kernel \n
-  !   - HIPRAND_STATUS_LENGTH_NOT_MULTIPLE if \p n is not even, \p output_data is not
-  !   aligned to \p sizeof(float2) bytes, or \p n is not a multiple of the dimension
-  !   of used quasi-random generator \n
-  !   - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated \n
-  !  
+  !> 
+  !>   \brief Generates normally distributed floats.
+  !>  
+  !>   Generates \p n normally distributed 32-bit floating-point
+  !>   values and saves them to \p output_data.
+  !>  
+  !>   \param generator - Generator to use
+  !>   \param output_data - Pointer to memory to store generated numbers
+  !>   \param n - Number of floats to generate
+  !>   \param mean - Mean value of normal distribution
+  !>   \param stddev - Standard deviation value of normal distribution
+  !>  
+  !>   \return
+  !>   - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized \n
+  !>   - HIPRAND_STATUS_LAUNCH_FAILURE if generator failed to launch kernel \n
+  !>   - HIPRAND_STATUS_LENGTH_NOT_MULTIPLE if \p n is not even, \p output_data is not
+  !>   aligned to \p sizeof(float2) bytes, or \p n is not a multiple of the dimension
+  !>   of used quasi-random generator \n
+  !>   - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated \n
+  !>  
 #ifdef USE_CUDA_NAMES
     function hiprandGenerateNormal(generator,output_data,n,mean,stddev) bind(c, name="curandGenerateNormal")
 #else
@@ -349,26 +349,26 @@ module hipfort_hiprand
       real(c_float),value :: stddev
     end function
 
-  ! 
-  !   \brief Generates normally distributed doubles.
-  !  
-  !   Generates \p n normally distributed 64-bit double-precision floating-point
-  !   numbers and saves them to \p output_data.
-  !  
-  !   \param generator - Generator to use
-  !   \param output_data - Pointer to memory to store generated numbers
-  !   \param n - Number of doubles to generate
-  !   \param mean - Mean value of normal distribution
-  !   \param stddev - Standard deviation value of normal distribution
-  !  
-  !   \return
-  !   - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized \n
-  !   - HIPRAND_STATUS_LAUNCH_FAILURE if generator failed to launch kernel \n
-  !   - HIPRAND_STATUS_LENGTH_NOT_MULTIPLE if \p n is not even, \p output_data is not
-  !   aligned to \p sizeof(double2) bytes, or \p n is not a multiple of the dimension
-  !   of used quasi-random generator \n
-  !   - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated \n
-  !  
+  !> 
+  !>   \brief Generates normally distributed doubles.
+  !>  
+  !>   Generates \p n normally distributed 64-bit double-precision floating-point
+  !>   numbers and saves them to \p output_data.
+  !>  
+  !>   \param generator - Generator to use
+  !>   \param output_data - Pointer to memory to store generated numbers
+  !>   \param n - Number of doubles to generate
+  !>   \param mean - Mean value of normal distribution
+  !>   \param stddev - Standard deviation value of normal distribution
+  !>  
+  !>   \return
+  !>   - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized \n
+  !>   - HIPRAND_STATUS_LAUNCH_FAILURE if generator failed to launch kernel \n
+  !>   - HIPRAND_STATUS_LENGTH_NOT_MULTIPLE if \p n is not even, \p output_data is not
+  !>   aligned to \p sizeof(double2) bytes, or \p n is not a multiple of the dimension
+  !>   of used quasi-random generator \n
+  !>   - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated \n
+  !>  
 #ifdef USE_CUDA_NAMES
     function hiprandGenerateNormalDouble(generator,output_data,n,mean,stddev) bind(c, name="curandGenerateNormalDouble")
 #else
@@ -385,26 +385,26 @@ module hipfort_hiprand
       real(c_double),value :: stddev
     end function
 
-  ! 
-  !   \brief Generates log-normally distributed floats.
-  !  
-  !   Generates \p n log-normally distributed 32-bit floating-point values
-  !   and saves them to \p output_data.
-  !  
-  !   \param generator - Generator to use
-  !   \param output_data - Pointer to memory to store generated numbers
-  !   \param n - Number of floats to generate
-  !   \param mean - Mean value of log normal distribution
-  !   \param stddev - Standard deviation value of log normal distribution
-  !  
-  !   \return
-  !   - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized \n
-  !   - HIPRAND_STATUS_LAUNCH_FAILURE if generator failed to launch kernel \n
-  !   - HIPRAND_STATUS_LENGTH_NOT_MULTIPLE if \p n is not even, \p output_data is not
-  !   aligned to \p sizeof(float2) bytes, or \p n is not a multiple of the dimension
-  !   of used quasi-random generator \n
-  !   - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated \n
-  !  
+  !> 
+  !>   \brief Generates log-normally distributed floats.
+  !>  
+  !>   Generates \p n log-normally distributed 32-bit floating-point values
+  !>   and saves them to \p output_data.
+  !>  
+  !>   \param generator - Generator to use
+  !>   \param output_data - Pointer to memory to store generated numbers
+  !>   \param n - Number of floats to generate
+  !>   \param mean - Mean value of log normal distribution
+  !>   \param stddev - Standard deviation value of log normal distribution
+  !>  
+  !>   \return
+  !>   - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized \n
+  !>   - HIPRAND_STATUS_LAUNCH_FAILURE if generator failed to launch kernel \n
+  !>   - HIPRAND_STATUS_LENGTH_NOT_MULTIPLE if \p n is not even, \p output_data is not
+  !>   aligned to \p sizeof(float2) bytes, or \p n is not a multiple of the dimension
+  !>   of used quasi-random generator \n
+  !>   - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated \n
+  !>  
 #ifdef USE_CUDA_NAMES
     function hiprandGenerateLogNormal(generator,output_data,n,mean,stddev) bind(c, name="curandGenerateLogNormal")
 #else
@@ -421,26 +421,26 @@ module hipfort_hiprand
       real(c_float),value :: stddev
     end function
 
-  ! 
-  !   \brief Generates log-normally distributed doubles.
-  !  
-  !   Generates \p n log-normally distributed 64-bit double-precision floating-point
-  !   values and saves them to \p output_data.
-  !  
-  !   \param generator - Generator to use
-  !   \param output_data - Pointer to memory to store generated numbers
-  !   \param n - Number of doubles to generate
-  !   \param mean - Mean value of log normal distribution
-  !   \param stddev - Standard deviation value of log normal distribution
-  !  
-  !   \return
-  !   - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized \n
-  !   - HIPRAND_STATUS_LAUNCH_FAILURE if generator failed to launch kernel \n
-  !   - HIPRAND_STATUS_LENGTH_NOT_MULTIPLE if \p n is not even, \p output_data is not
-  !   aligned to \p sizeof(double2) bytes, or \p n is not a multiple of the dimension
-  !   of used quasi-random generator \n
-  !   - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated \n
-  !  
+  !> 
+  !>   \brief Generates log-normally distributed doubles.
+  !>  
+  !>   Generates \p n log-normally distributed 64-bit double-precision floating-point
+  !>   values and saves them to \p output_data.
+  !>  
+  !>   \param generator - Generator to use
+  !>   \param output_data - Pointer to memory to store generated numbers
+  !>   \param n - Number of doubles to generate
+  !>   \param mean - Mean value of log normal distribution
+  !>   \param stddev - Standard deviation value of log normal distribution
+  !>  
+  !>   \return
+  !>   - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized \n
+  !>   - HIPRAND_STATUS_LAUNCH_FAILURE if generator failed to launch kernel \n
+  !>   - HIPRAND_STATUS_LENGTH_NOT_MULTIPLE if \p n is not even, \p output_data is not
+  !>   aligned to \p sizeof(double2) bytes, or \p n is not a multiple of the dimension
+  !>   of used quasi-random generator \n
+  !>   - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated \n
+  !>  
 #ifdef USE_CUDA_NAMES
     function hiprandGenerateLogNormalDouble(generator,output_data,n,mean,stddev) bind(c, name="curandGenerateLogNormalDouble")
 #else
@@ -457,25 +457,25 @@ module hipfort_hiprand
       real(c_double),value :: stddev
     end function
 
-  ! 
-  !   \brief Generates Poisson-distributed 32-bit unsigned integers.
-  !  
-  !   Generates \p n Poisson-distributed 32-bit unsigned integers and
-  !   saves them to \p output_data.
-  !  
-  !   \param generator - Generator to use
-  !   \param output_data - Pointer to memory to store generated numbers
-  !   \param n - Number of 32-bit unsigned integers to generate
-  !   \param lambda - lambda for the Poisson distribution
-  !  
-  !   \return
-  !   - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized \n
-  !   - HIPRAND_STATUS_LAUNCH_FAILURE if generator failed to launch kernel \n
-  !   - HIPRAND_STATUS_OUT_OF_RANGE if lambda is non-positive \n
-  !   - HIPRAND_STATUS_LENGTH_NOT_MULTIPLE if \p n is not a multiple of the dimension
-  !   of used quasi-random generator \n
-  !   - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated \n
-  !  
+  !> 
+  !>   \brief Generates Poisson-distributed 32-bit unsigned integers.
+  !>  
+  !>   Generates \p n Poisson-distributed 32-bit unsigned integers and
+  !>   saves them to \p output_data.
+  !>  
+  !>   \param generator - Generator to use
+  !>   \param output_data - Pointer to memory to store generated numbers
+  !>   \param n - Number of 32-bit unsigned integers to generate
+  !>   \param lambda - lambda for the Poisson distribution
+  !>  
+  !>   \return
+  !>   - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized \n
+  !>   - HIPRAND_STATUS_LAUNCH_FAILURE if generator failed to launch kernel \n
+  !>   - HIPRAND_STATUS_OUT_OF_RANGE if lambda is non-positive \n
+  !>   - HIPRAND_STATUS_LENGTH_NOT_MULTIPLE if \p n is not a multiple of the dimension
+  !>   of used quasi-random generator \n
+  !>   - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated \n
+  !>  
 #ifdef USE_CUDA_NAMES
     function hiprandGeneratePoisson(generator,output_data,n,lambda) bind(c, name="curandGeneratePoisson")
 #else
@@ -491,24 +491,24 @@ module hipfort_hiprand
       real(c_double),value :: lambda
     end function
 
-  ! 
-  !   \brief Initializes the generator's state on GPU or host.
-  !  
-  !   Initializes the generator's state on GPU or host.
-  !  
-  !   If hiprandGenerateSeeds() was not called for a generator, it will be
-  !   automatically called by functions which generates random numbers like
-  !   hiprandGenerate(), hiprandGenerateUniform(), hiprandGenerateNormal() etc.
-  !  
-  !   \param generator - Generator to initialize
-  !  
-  !   \return
-  !   - HIPRAND_STATUS_NOT_INITIALIZED if the generator was never created \n
-  !   - HIPRAND_STATUS_PREEXISTING_FAILURE if there was an existing error from
-  !     a previous kernel launch \n
-  !   - HIPRAND_STATUS_LAUNCH_FAILURE if the kernel launch failed for any reason \n
-  !   - HIPRAND_STATUS_SUCCESS if the seeds were generated successfully \n
-  !  
+  !> 
+  !>   \brief Initializes the generator's state on GPU or host.
+  !>  
+  !>   Initializes the generator's state on GPU or host.
+  !>  
+  !>   If hiprandGenerateSeeds() was not called for a generator, it will be
+  !>   automatically called by functions which generates random numbers like
+  !>   hiprandGenerate(), hiprandGenerateUniform(), hiprandGenerateNormal() etc.
+  !>  
+  !>   \param generator - Generator to initialize
+  !>  
+  !>   \return
+  !>   - HIPRAND_STATUS_NOT_INITIALIZED if the generator was never created \n
+  !>   - HIPRAND_STATUS_PREEXISTING_FAILURE if there was an existing error from
+  !>     a previous kernel launch \n
+  !>   - HIPRAND_STATUS_LAUNCH_FAILURE if the kernel launch failed for any reason \n
+  !>   - HIPRAND_STATUS_SUCCESS if the seeds were generated successfully \n
+  !>  
 #ifdef USE_CUDA_NAMES
     function hiprandGenerateSeeds(generator) bind(c, name="curandGenerateSeeds")
 #else
@@ -521,19 +521,19 @@ module hipfort_hiprand
       type(c_ptr),value :: generator
     end function
 
-  ! 
-  !   \brief Sets the current stream for kernel launches.
-  !  
-  !   Sets the current stream for all kernel launches of the generator.
-  !   All functions will use this stream.
-  !  
-  !   \param generator - Generator to modify
-  !   \param stream - Stream to use or NULL for default stream
-  !  
-  !   \return
-  !   - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized \n
-  !   - HIPRAND_STATUS_SUCCESS if stream was set successfully \n
-  !  
+  !> 
+  !>   \brief Sets the current stream for kernel launches.
+  !>  
+  !>   Sets the current stream for all kernel launches of the generator.
+  !>   All functions will use this stream.
+  !>  
+  !>   \param generator - Generator to modify
+  !>   \param stream - Stream to use or NULL for default stream
+  !>  
+  !>   \return
+  !>   - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized \n
+  !>   - HIPRAND_STATUS_SUCCESS if stream was set successfully \n
+  !>  
 #ifdef USE_CUDA_NAMES
     function hiprandSetStream(generator,stream) bind(c, name="curandSetStream")
 #else
@@ -547,22 +547,22 @@ module hipfort_hiprand
       type(c_ptr),value :: stream
     end function
 
-  ! 
-  !   \brief Sets the seed of a pseudo-random number generator.
-  !  
-  !   Sets the seed of the pseudo-random number generator.
-  !  
-  !   - This operation resets the generator's internal state.
-  !   - This operation does not change the generator's offset.
-  !  
-  !   \param generator - Pseudo-random number generator
-  !   \param seed - New seed value
-  !  
-  !   \return
-  !   - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized \n
-  !   - HIPRAND_STATUS_TYPE_ERROR if the generator is a quasi random number generator \n
-  !   - HIPRAND_STATUS_SUCCESS if seed was set successfully \n
-  !  
+  !> 
+  !>   \brief Sets the seed of a pseudo-random number generator.
+  !>  
+  !>   Sets the seed of the pseudo-random number generator.
+  !>  
+  !>   - This operation resets the generator's internal state.
+  !>   - This operation does not change the generator's offset.
+  !>  
+  !>   \param generator - Pseudo-random number generator
+  !>   \param seed - New seed value
+  !>  
+  !>   \return
+  !>   - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized \n
+  !>   - HIPRAND_STATUS_TYPE_ERROR if the generator is a quasi random number generator \n
+  !>   - HIPRAND_STATUS_SUCCESS if seed was set successfully \n
+  !>  
 #ifdef USE_CUDA_NAMES
     function hiprandSetPseudoRandomGeneratorSeed(generator,seed) bind(c, name="curandSetPseudoRandomGeneratorSeed")
 #else
@@ -576,26 +576,26 @@ module hipfort_hiprand
       integer(c_long_long),value :: seed
     end function
 
-  ! 
-  !   \brief Sets the offset of a random number generator.
-  !  
-  !   Sets the absolute offset of the random number generator.
-  !  
-  !   - This operation resets the generator's internal state.
-  !   - This operation does not change the generator's seed.
-  !  
-  !   Absolute offset cannot be set if generator's type is
-  !   HIPRAND_RNG_PSEUDO_MTGP32 or HIPRAND_RNG_PSEUDO_MT19937.
-  !  
-  !   \param generator - Random number generator
-  !   \param offset - New absolute offset
-  !  
-  !   \return
-  !   - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized \n
-  !   - HIPRAND_STATUS_SUCCESS if offset was successfully set \n
-  !   - HIPRAND_STATUS_TYPE_ERROR if generator's type is HIPRAND_RNG_PSEUDO_MTGP32
-  !   or HIPRAND_RNG_PSEUDO_MT19937 \n
-  !  
+  !> 
+  !>   \brief Sets the offset of a random number generator.
+  !>  
+  !>   Sets the absolute offset of the random number generator.
+  !>  
+  !>   - This operation resets the generator's internal state.
+  !>   - This operation does not change the generator's seed.
+  !>  
+  !>   Absolute offset cannot be set if generator's type is
+  !>   HIPRAND_RNG_PSEUDO_MTGP32 or HIPRAND_RNG_PSEUDO_MT19937.
+  !>  
+  !>   \param generator - Random number generator
+  !>   \param offset - New absolute offset
+  !>  
+  !>   \return
+  !>   - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized \n
+  !>   - HIPRAND_STATUS_SUCCESS if offset was successfully set \n
+  !>   - HIPRAND_STATUS_TYPE_ERROR if generator's type is HIPRAND_RNG_PSEUDO_MTGP32
+  !>   or HIPRAND_RNG_PSEUDO_MT19937 \n
+  !>  
 #ifdef USE_CUDA_NAMES
     function hiprandSetGeneratorOffset(generator,offset) bind(c, name="curandSetGeneratorOffset")
 #else
@@ -609,24 +609,24 @@ module hipfort_hiprand
       integer(c_long_long),value :: offset
     end function
 
-  ! 
-  !   \brief Set the number of dimensions of a quasi-random number generator.
-  !  
-  !   Set the number of dimensions of a quasi-random number generator.
-  !   Supported values of \p dimensions are 1 to 20000.
-  !  
-  !   - This operation resets the generator's internal state.
-  !   - This operation does not change the generator's offset.
-  !  
-  !   \param generator - Quasi-random number generator
-  !   \param dimensions - Number of dimensions
-  !  
-  !   \return
-  !   - HIPRAND_STATUS_NOT_CREATED if the generator wasn't created \n
-  !   - HIPRAND_STATUS_TYPE_ERROR if the generator is not a quasi-random number generator \n
-  !   - HIPRAND_STATUS_OUT_OF_RANGE if \p dimensions is out of range \n
-  !   - HIPRAND_STATUS_SUCCESS if the number of dimensions was set successfully \n
-  !  
+  !> 
+  !>   \brief Set the number of dimensions of a quasi-random number generator.
+  !>  
+  !>   Set the number of dimensions of a quasi-random number generator.
+  !>   Supported values of \p dimensions are 1 to 20000.
+  !>  
+  !>   - This operation resets the generator's internal state.
+  !>   - This operation does not change the generator's offset.
+  !>  
+  !>   \param generator - Quasi-random number generator
+  !>   \param dimensions - Number of dimensions
+  !>  
+  !>   \return
+  !>   - HIPRAND_STATUS_NOT_CREATED if the generator wasn't created \n
+  !>   - HIPRAND_STATUS_TYPE_ERROR if the generator is not a quasi-random number generator \n
+  !>   - HIPRAND_STATUS_OUT_OF_RANGE if \p dimensions is out of range \n
+  !>   - HIPRAND_STATUS_SUCCESS if the number of dimensions was set successfully \n
+  !>  
 #ifdef USE_CUDA_NAMES
     function hiprandSetQuasiRandomGeneratorDimensions(generator,dimensions) bind(c, name="curandSetQuasiRandomGeneratorDimensions")
 #else
@@ -640,18 +640,18 @@ module hipfort_hiprand
       integer(kind=4),value :: dimensions
     end function
 
-  ! 
-  !   \brief Returns the version number of the cuRAND or rocRAND library.
-  !  
-  !   Returns in \p version the version number of the underlying cuRAND or
-  !   rocRAND library.
-  !  
-  !   \param version - Version of the library
-  !  
-  !   \return
-  !   - HIPRAND_STATUS_OUT_OF_RANGE if \p version is NULL \n
-  !   - HIPRAND_STATUS_SUCCESS if the version number was successfully returned \n
-  !  
+  !> 
+  !>   \brief Returns the version number of the cuRAND or rocRAND library.
+  !>  
+  !>   Returns in \p version the version number of the underlying cuRAND or
+  !>   rocRAND library.
+  !>  
+  !>   \param version - Version of the library
+  !>  
+  !>   \return
+  !>   - HIPRAND_STATUS_OUT_OF_RANGE if \p version is NULL \n
+  !>   - HIPRAND_STATUS_SUCCESS if the version number was successfully returned \n
+  !>  
 #ifdef USE_CUDA_NAMES
     function hiprandGetVersion(version) bind(c, name="curandGetVersion")
 #else
@@ -664,20 +664,20 @@ module hipfort_hiprand
       type(c_ptr),value :: version
     end function
 
-  ! 
-  !   \brief Construct the histogram for a Poisson distribution.
-  !  
-  !   Construct the histogram for the Poisson distribution with lambda \p lambda.
-  !  
-  !   \param lambda - lambda for the Poisson distribution
-  !   \param discrete_distribution - pointer to the histogram in device memory
-  !  
-  !   \return
-  !   - HIPRAND_STATUS_ALLOCATION_FAILED if memory could not be allocated \n
-  !   - HIPRAND_STATUS_OUT_OF_RANGE if \p discrete_distribution pointer was null \n
-  !   - HIPRAND_STATUS_OUT_OF_RANGE if lambda is non-positive \n
-  !   - HIPRAND_STATUS_SUCCESS if the histogram was ructed successfully \n
-  !  
+  !> 
+  !>   \brief Construct the histogram for a Poisson distribution.
+  !>  
+  !>   Construct the histogram for the Poisson distribution with lambda \p lambda.
+  !>  
+  !>   \param lambda - lambda for the Poisson distribution
+  !>   \param discrete_distribution - pointer to the histogram in device memory
+  !>  
+  !>   \return
+  !>   - HIPRAND_STATUS_ALLOCATION_FAILED if memory could not be allocated \n
+  !>   - HIPRAND_STATUS_OUT_OF_RANGE if \p discrete_distribution pointer was null \n
+  !>   - HIPRAND_STATUS_OUT_OF_RANGE if lambda is non-positive \n
+  !>   - HIPRAND_STATUS_SUCCESS if the histogram was ructed successfully \n
+  !>  
 #ifdef USE_CUDA_NAMES
     function hiprandCreatePoissonDistribution(lambda,discrete_distribution) bind(c, name="curandCreatePoissonDistribution")
 #else
@@ -691,18 +691,18 @@ module hipfort_hiprand
       type(c_ptr) :: discrete_distribution
     end function
 
-  ! 
-  !   \brief Destroy the histogram array for a discrete distribution.
-  !  
-  !   Destroy the histogram array for a discrete distribution created by
-  !   hiprandCreatePoissonDistribution.
-  !  
-  !   \param discrete_distribution - pointer to the histogram in device memory
-  !  
-  !   \return
-  !   - HIPRAND_STATUS_OUT_OF_RANGE if \p discrete_distribution was null \n
-  !   - HIPRAND_STATUS_SUCCESS if the histogram was destroyed successfully \n
-  !  
+  !> 
+  !>   \brief Destroy the histogram array for a discrete distribution.
+  !>  
+  !>   Destroy the histogram array for a discrete distribution created by
+  !>   hiprandCreatePoissonDistribution.
+  !>  
+  !>   \param discrete_distribution - pointer to the histogram in device memory
+  !>  
+  !>   \return
+  !>   - HIPRAND_STATUS_OUT_OF_RANGE if \p discrete_distribution was null \n
+  !>   - HIPRAND_STATUS_SUCCESS if the histogram was destroyed successfully \n
+  !>  
 #ifdef USE_CUDA_NAMES
     function hiprandDestroyDistribution(discrete_distribution) bind(c, name="curandDestroyDistribution")
 #else
