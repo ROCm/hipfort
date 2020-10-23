@@ -31,6 +31,8 @@ module hipfort
 #endif
   use hipfort_enums
   use hipfort_types
+  use hipfort_hipmalloc
+  use hipfort_hipmemcpy
   implicit none
 
  
@@ -1417,40 +1419,6 @@ module hipfort
   !>  
   !>    @param[out] ptr Pointer to the allocated memory
   !>    @param[in]  size Requested memory size
-  !>  
-  !>    If size is 0, no memory is allocated, ptr returns nullptr, and hipSuccess is returned.
-  !>  
-  !>    @return #hipSuccess, #hipErrorOutOfMemory, #hipErrorInvalidValue (bad context, null ptr)
-  !>  
-  !>    @see hipMallocPitch, hipFree, hipMallocArray, hipFreeArray, hipMalloc3D, hipMalloc3DArray,
-  !>   hipHostFree, hipHostMalloc
-  !>  
-#ifdef USE_CUDA_NAMES
-    function hipMalloc(ptr,mySize) bind(c, name="cudaMalloc")
-#else
-    function hipMalloc(ptr,mySize) bind(c, name="hipMalloc")
-#endif
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMalloc
-#else
-      integer(kind(hipSuccess)) :: hipMalloc
-#endif
-      type(c_ptr) :: ptr
-      integer(c_size_t),value :: mySize
-    end function
-
-  !> 
-  !>    @brief Allocate memory on the default accelerator
-  !>  
-  !>    @param[out] ptr Pointer to the allocated memory
-  !>    @param[in]  size Requested memory size
   !>    @param[in]  flags Type of memory allocation
   !>  
   !>    If size is 0, no memory is allocated, ptr returns nullptr, and hipSuccess is returned.
@@ -1524,41 +1492,6 @@ module hipfort
 #endif
       type(c_ptr) :: ptr
       integer(c_size_t),value :: mySize
-    end function
-
-  !> 
-  !>    @brief Allocate device accessible page locked host memory
-  !>  
-  !>    @param[out] ptr Pointer to the allocated host pinned memory
-  !>    @param[in]  size Requested memory size
-  !>    @param[in]  flags Type of host memory allocation
-  !>  
-  !>    If size is 0, no memory is allocated, ptr returns nullptr, and hipSuccess is returned.
-  !>  
-  !>    @return #hipSuccess, #hipErrorOutOfMemory
-  !>  
-  !>    @see hipSetDeviceFlags, hipHostFree
-  !>  
-#ifdef USE_CUDA_NAMES
-    function hipHostMalloc(ptr,mySize,flags) bind(c, name="cudaHostMalloc")
-#else
-    function hipHostMalloc(ptr,mySize,flags) bind(c, name="hipHostMalloc")
-#endif
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostMalloc
-#else
-      integer(kind(hipSuccess)) :: hipHostMalloc
-#endif
-      type(c_ptr) :: ptr
-      integer(c_size_t),value :: mySize
-      integer(kind=4),value :: flags
     end function
 
   
@@ -1819,39 +1752,6 @@ module hipfort
       integer(kind=4),value :: elementSizeBytes
     end function
 
-  !> 
-  !>    @brief Free memory allocated by the hcc hip memory allocation API.
-  !>    This API performs an implicit hipDeviceSynchronize() call.
-  !>    If pointer is NULL, the hip runtime is initialized and hipSuccess is returned.
-  !>  
-  !>    @param[in] ptr Pointer to memory to be freed
-  !>    @return #hipSuccess
-  !>    @return #hipErrorInvalidDevicePointer (if pointer is invalid, including host pointers allocated
-  !>   with hipHostMalloc)
-  !>  
-  !>    @see hipMalloc, hipMallocPitch, hipMallocArray, hipFreeArray, hipHostFree, hipMalloc3D,
-  !>   hipMalloc3DArray, hipHostMalloc
-  !>  
-#ifdef USE_CUDA_NAMES
-    function hipFree(ptr) bind(c, name="cudaFree")
-#else
-    function hipFree(ptr) bind(c, name="hipFree")
-#endif
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipFree
-#else
-      integer(kind(hipSuccess)) :: hipFree
-#endif
-      type(c_ptr),value :: ptr
-    end function
-
   
 #ifdef USE_CUDA_NAMES
     function hipFreeHost(ptr) bind(c, name="cudaFreeHost")
@@ -1871,91 +1771,6 @@ module hipfort
       integer(kind(hipSuccess)) :: hipFreeHost
 #endif
       type(c_ptr),value :: ptr
-    end function
-
-  !> 
-  !>    @brief Free memory allocated by the hcc hip host memory allocation API
-  !>    This API performs an implicit hipDeviceSynchronize() call.
-  !>    If pointer is NULL, the hip runtime is initialized and hipSuccess is returned.
-  !>  
-  !>    @param[in] ptr Pointer to memory to be freed
-  !>    @return #hipSuccess,
-  !>            #hipErrorInvalidValue (if pointer is invalid, including device pointers allocated with
-  !>   hipMalloc)
-  !>  
-  !>    @see hipMalloc, hipMallocPitch, hipFree, hipMallocArray, hipFreeArray, hipMalloc3D,
-  !>   hipMalloc3DArray, hipHostMalloc
-  !>  
-#ifdef USE_CUDA_NAMES
-    function hipHostFree(ptr) bind(c, name="cudaHostFree")
-#else
-    function hipHostFree(ptr) bind(c, name="hipHostFree")
-#endif
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostFree
-#else
-      integer(kind(hipSuccess)) :: hipHostFree
-#endif
-      type(c_ptr),value :: ptr
-    end function
-
-  !> 
-  !>    @brief Copy data from src to dst.
-  !>  
-  !>    It supports memory from host to device,
-  !>    device to host, device to device and host to host
-  !>    The src and dst must not overlap.
-  !>  
-  !>    For hipMemcpy, the copy is always performed by the current device (set by hipSetDevice).
-  !>    For multi-gpu or peer-to-peer configurations, it is recommended to set the current device to the
-  !>    device where the src data is physically located. For optimal peer-to-peer copies, the copy device
-  !>    must be able to access the src and dst pointers (by calling hipDeviceEnablePeerAccess with copy
-  !>    agent as the current device and srcdest as the peerDevice argument.  if this is not done, the
-  !>    hipMemcpy will still work, but will perform the copy using a staging buffer on the host.
-  !>    Calling hipMemcpy with dst and src pointers that do not match the hipMemcpyKind results in
-  !>    undefined behavior.
-  !>  
-  !>    @param[out]  dst Data being copy to
-  !>    @param[in]  src Data being copy from
-  !>    @param[in]  sizeBytes Data size in bytes
-  !>    @param[in]  copyType Memory copy type
-  !>    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryFree, #hipErrorUnknowni
-  !>  
-  !>    @see hipArrayCreate, hipArrayDestroy, hipArrayGetDescriptor, hipMemAlloc, hipMemAllocHost,
-  !>   hipMemAllocPitch, hipMemcpy2D, hipMemcpy2DAsync, hipMemcpy2DUnaligned, hipMemcpyAtoA,
-  !>   hipMemcpyAtoD, hipMemcpyAtoH, hipMemcpyAtoHAsync, hipMemcpyDtoA, hipMemcpyDtoD,
-  !>   hipMemcpyDtoDAsync, hipMemcpyDtoH, hipMemcpyDtoHAsync, hipMemcpyHtoA, hipMemcpyHtoAAsync,
-  !>   hipMemcpyHtoDAsync, hipMemFree, hipMemFreeHost, hipMemGetAddressRange, hipMemGetInfo,
-  !>   hipMemHostAlloc, hipMemHostGetDevicePointer
-  !>  
-#ifdef USE_CUDA_NAMES
-    function hipMemcpy(dst,src,sizeBytes,myKind) bind(c, name="cudaMemcpy")
-#else
-    function hipMemcpy(dst,src,sizeBytes,myKind) bind(c, name="hipMemcpy")
-#endif
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemcpy
-#else
-      integer(kind(hipSuccess)) :: hipMemcpy
-#endif
-      type(c_ptr),value :: dst
-      type(c_ptr),value :: src
-      integer(c_size_t),value :: sizeBytes
-      integer(kind(hipMemcpyHostToHost)),value :: myKind
     end function
 
   
@@ -2336,58 +2151,6 @@ module hipfort
       type(c_ptr),value :: symbol
       integer(c_size_t),value :: sizeBytes
       integer(c_size_t),value :: offset
-      integer(kind(hipMemcpyHostToHost)),value :: myKind
-      type(c_ptr),value :: stream
-    end function
-
-  !> 
-  !>    @brief Copy data from src to dst asynchronously.
-  !>  
-  !>    @warning If host or dest are not pinned, the memory copy will be performed synchronously.  For
-  !>   best performance, use hipHostMalloc to allocate host memory that is transferred asynchronously.
-  !>  
-  !>    @warning on HCC hipMemcpyAsync does not support overlapped H2D and D2H copies.
-  !>    For hipMemcpy, the copy is always performed by the device associated with the specified stream.
-  !>  
-  !>    For multi-gpu or peer-to-peer configurations, it is recommended to use a stream which is a
-  !>   attached to the device where the src data is physically located. For optimal peer-to-peer copies,
-  !>   the copy device must be able to access the src and dst pointers (by calling
-  !>   hipDeviceEnablePeerAccess with copy agent as the current device and srcdest as the peerDevice
-  !>   argument.  if this is not done, the hipMemcpy will still work, but will perform the copy using a
-  !>   staging buffer on the host.
-  !>  
-  !>    @param[out] dst Data being copy to
-  !>    @param[in]  src Data being copy from
-  !>    @param[in]  sizeBytes Data size in bytes
-  !>    @param[in]  accelerator_view Accelerator view which the copy is being enqueued
-  !>    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryFree, #hipErrorUnknown
-  !>  
-  !>    @see hipMemcpy, hipMemcpy2D, hipMemcpyToArray, hipMemcpy2DToArray, hipMemcpyFromArray,
-  !>   hipMemcpy2DFromArray, hipMemcpyArrayToArray, hipMemcpy2DArrayToArray, hipMemcpyToSymbol,
-  !>   hipMemcpyFromSymbol, hipMemcpy2DAsync, hipMemcpyToArrayAsync, hipMemcpy2DToArrayAsync,
-  !>   hipMemcpyFromArrayAsync, hipMemcpy2DFromArrayAsync, hipMemcpyToSymbolAsync,
-  !>   hipMemcpyFromSymbolAsync
-  !>  
-#ifdef USE_CUDA_NAMES
-    function hipMemcpyAsync(dst,src,sizeBytes,myKind,stream) bind(c, name="cudaMemcpyAsync")
-#else
-    function hipMemcpyAsync(dst,src,sizeBytes,myKind,stream) bind(c, name="hipMemcpyAsync")
-#endif
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemcpyAsync
-#else
-      integer(kind(hipSuccess)) :: hipMemcpyAsync
-#endif
-      type(c_ptr),value :: dst
-      type(c_ptr),value :: src
-      integer(c_size_t),value :: sizeBytes
       integer(kind(hipMemcpyHostToHost)),value :: myKind
       type(c_ptr),value :: stream
     end function
@@ -3074,48 +2837,6 @@ module hipfort
     end function
 
   !> 
-  !>    @brief Copies data between host and device.
-  !>  
-  !>    @param[in]   dst    Destination memory address
-  !>    @param[in]   dpitch Pitch of destination memory
-  !>    @param[in]   src    Source memory address
-  !>    @param[in]   spitch Pitch of source memory
-  !>    @param[in]   width  Width of matrix transfer (columns in bytes)
-  !>    @param[in]   height Height of matrix transfer (rows)
-  !>    @param[in]   kind   Type of transfer
-  !>    @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
-  !>   #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
-  !>  
-  !>    @see hipMemcpy, hipMemcpyToArray, hipMemcpy2DToArray, hipMemcpyFromArray, hipMemcpyToSymbol,
-  !>   hipMemcpyAsync
-  !>  
-#ifdef USE_CUDA_NAMES
-    function hipMemcpy2D(dst,dpitch,src,spitch,width,height,myKind) bind(c, name="cudaMemcpy2D")
-#else
-    function hipMemcpy2D(dst,dpitch,src,spitch,width,height,myKind) bind(c, name="hipMemcpy2D")
-#endif
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemcpy2D
-#else
-      integer(kind(hipSuccess)) :: hipMemcpy2D
-#endif
-      type(c_ptr),value :: dst
-      integer(c_size_t),value :: dpitch
-      type(c_ptr),value :: src
-      integer(c_size_t),value :: spitch
-      integer(c_size_t),value :: width
-      integer(c_size_t),value :: height
-      integer(kind(hipMemcpyHostToHost)),value :: myKind
-    end function
-
-  !> 
   !>    @brief Copies memory for 2D arrays.
   !>    @param[in]   pCopy Parameters for the memory copy
   !>    @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
@@ -3172,50 +2893,6 @@ module hipfort
       integer(kind(hipSuccess)) :: hipMemcpyParam2DAsync
 #endif
       type(c_ptr) :: pCopy
-      type(c_ptr),value :: stream
-    end function
-
-  !> 
-  !>    @brief Copies data between host and device.
-  !>  
-  !>    @param[in]   dst    Destination memory address
-  !>    @param[in]   dpitch Pitch of destination memory
-  !>    @param[in]   src    Source memory address
-  !>    @param[in]   spitch Pitch of source memory
-  !>    @param[in]   width  Width of matrix transfer (columns in bytes)
-  !>    @param[in]   height Height of matrix transfer (rows)
-  !>    @param[in]   kind   Type of transfer
-  !>    @param[in]   stream Stream to use
-  !>    @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
-  !>   #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
-  !>  
-  !>    @see hipMemcpy, hipMemcpyToArray, hipMemcpy2DToArray, hipMemcpyFromArray, hipMemcpyToSymbol,
-  !>   hipMemcpyAsync
-  !>  
-#ifdef USE_CUDA_NAMES
-    function hipMemcpy2DAsync(dst,dpitch,src,spitch,width,height,myKind,stream) bind(c, name="cudaMemcpy2DAsync")
-#else
-    function hipMemcpy2DAsync(dst,dpitch,src,spitch,width,height,myKind,stream) bind(c, name="hipMemcpy2DAsync")
-#endif
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync
-#else
-      integer(kind(hipSuccess)) :: hipMemcpy2DAsync
-#endif
-      type(c_ptr),value :: dst
-      integer(c_size_t),value :: dpitch
-      type(c_ptr),value :: src
-      integer(c_size_t),value :: spitch
-      integer(c_size_t),value :: width
-      integer(c_size_t),value :: height
-      integer(kind(hipMemcpyHostToHost)),value :: myKind
       type(c_ptr),value :: stream
     end function
 

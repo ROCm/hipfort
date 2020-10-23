@@ -10,12 +10,11 @@ __global__ void vector_add(double *out, double *a, double *b, int n)
     out[i] = a[i] + b[i];
 }
 
-
 extern "C"
 {
-  void launch(double **dout, double **da, double **db, int N)
+  void launch(dim3* grid, dim3* block, int shmem, hipStream_t stream, double *dout, double *da, double *db, int N)
   {
     printf("launching kernel\n");
-    hipLaunchKernelGGL((vector_add), dim3(320), dim3(256), 0, 0, *dout, *da, *db, N);
+    hipLaunchKernelGGL((vector_add), *grid, *block, shmem, stream, dout, da, db, N);
   }
 }
