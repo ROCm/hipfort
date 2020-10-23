@@ -2036,6 +2036,7 @@ module hipfort
   !    @param[out]  dst Data being copy to
   !    @param[in]   src Data being copy from
   !    @param[in]   sizeBytes Data size in bytes
+  !    @param[in]   stream stream identifier  
   !  
   !    @return #hipSuccess, #hipErrorDeInitialized, #hipErrorNotInitialized, #hipErrorInvalidContext,
   !   #hipErrorInvalidValue
@@ -2953,6 +2954,51 @@ module hipfort
       integer(c_size_t),value :: dstOffset
       type(c_ptr),value :: srcHost
       integer(c_size_t),value :: count
+    end function hipMemcpyHtoA
+
+  ! 
+  !    @brief Copies data between host and device asynchronously.
+  !  
+  !    @param[in]   dst    Destination memory address
+  !    @param[in]   dpitch Pitch of destination memory
+  !    @param[in]   src    Source memory address
+  !    @param[in]   spitch Pitch of source memory
+  !    @param[in]   width  Width of matrix transfer (columns in bytes)
+  !    @param[in]   height Height of matrix transfer (rows)
+  !    @param[in]   kind   Type of transfer
+  !    @param[in]   stream Stream identifier  
+  !    @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
+  !   #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
+  !  
+  !    @see hipMemcpy, hipMemcpyToArray, hipMemcpy2DToArray, hipMemcpyFromArray, hipMemcpyToSymbol,
+  !   hipMemcpyAsync
+  !
+
+#ifdef USE_CUDA_NAMES
+    function hipMemcpy2DAsync(dst,dpitch,src,spitch,width,height,myKind,stream) bind(c, name="cudaMemcpy2DAsync")
+#else
+    function hipMemcpy2DAsync(dst,dpitch,src,spitch,width,height,myKind,stream) bind(c, name="hipMemcpy2DAsync")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2DAsync
+#endif
+      type(c_ptr),value :: dst
+      integer(c_size_t),value :: dpitch
+      type(c_ptr),value :: src
+      integer(c_size_t),value :: spitch
+      integer(c_size_t),value :: width
+      integer(c_size_t),value :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+      type(c_ptr),value :: stream
     end function
 
   ! 
