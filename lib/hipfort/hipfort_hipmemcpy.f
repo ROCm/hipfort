@@ -181,7 +181,7 @@ module hipfort_hipmemcpy
       integer(kind(hipMemcpyHostToHost)),value :: myKind
     end function
 
-    module procedure hipMemcpy2D_i4_c_int,hipMemcpy2D_i4_c_size_t,hipMemcpy2D_i8_c_int,hipMemcpy2D_i8_c_size_t,hipMemcpy2D_r4_c_int,hipMemcpy2D_r4_c_size_t,hipMemcpy2D_r8_c_int,hipMemcpy2D_r8_c_size_t,hipMemcpy2D_c4_c_int,hipMemcpy2D_c4_c_size_t,hipMemcpy2D_c8_c_int,hipMemcpy2D_c8_c_size_t 
+    module procedure hipMemcpy2D_i4_1_c_int,hipMemcpy2D_i4_1_c_size_t,hipMemcpy2D_i4_2_c_int,hipMemcpy2D_i4_2_c_size_t,hipMemcpy2D_i8_1_c_int,hipMemcpy2D_i8_1_c_size_t,hipMemcpy2D_i8_2_c_int,hipMemcpy2D_i8_2_c_size_t,hipMemcpy2D_r4_1_c_int,hipMemcpy2D_r4_1_c_size_t,hipMemcpy2D_r4_2_c_int,hipMemcpy2D_r4_2_c_size_t,hipMemcpy2D_r8_1_c_int,hipMemcpy2D_r8_1_c_size_t,hipMemcpy2D_r8_2_c_int,hipMemcpy2D_r8_2_c_size_t,hipMemcpy2D_c4_1_c_int,hipMemcpy2D_c4_1_c_size_t,hipMemcpy2D_c4_2_c_int,hipMemcpy2D_c4_2_c_size_t,hipMemcpy2D_c8_1_c_int,hipMemcpy2D_c8_1_c_size_t,hipMemcpy2D_c8_2_c_int,hipMemcpy2D_c8_2_c_size_t 
   end interface
   
   interface hipMemcpy2DAsync
@@ -229,8 +229,7 @@ module hipfort_hipmemcpy
       type(c_ptr),value :: stream
     end function
 
-    module procedure hipMemcpy2DAsync_i4_c_int,hipMemcpy2DAsync_i4_c_size_t,hipMemcpy2DAsync_i8_c_int,hipMemcpy2DAsync_i8_c_size_t,hipMemcpy2DAsync_r4_c_int,hipMemcpy2DAsync_r4_c_size_t,hipMemcpy2DAsync_r8_c_int,hipMemcpy2DAsync_r8_c_size_t,hipMemcpy2DAsync_c4_c_int,hipMemcpy2DAsync_c4_c_size_t,hipMemcpy2DAsync_c8_c_int,hipMemcpy2DAsync_c8_c_size_t 
- 
+    module procedure hipMemcpy2DAsync_i4_1_c_int,hipMemcpy2DAsync_i4_1_c_size_t,hipMemcpy2DAsync_i4_2_c_int,hipMemcpy2DAsync_i4_2_c_size_t,hipMemcpy2DAsync_i8_1_c_int,hipMemcpy2DAsync_i8_1_c_size_t,hipMemcpy2DAsync_i8_2_c_int,hipMemcpy2DAsync_i8_2_c_size_t,hipMemcpy2DAsync_r4_1_c_int,hipMemcpy2DAsync_r4_1_c_size_t,hipMemcpy2DAsync_r4_2_c_int,hipMemcpy2DAsync_r4_2_c_size_t,hipMemcpy2DAsync_r8_1_c_int,hipMemcpy2DAsync_r8_1_c_size_t,hipMemcpy2DAsync_r8_2_c_int,hipMemcpy2DAsync_r8_2_c_size_t,hipMemcpy2DAsync_c4_1_c_int,hipMemcpy2DAsync_c4_1_c_size_t,hipMemcpy2DAsync_c4_2_c_int,hipMemcpy2DAsync_c4_2_c_size_t,hipMemcpy2DAsync_c8_1_c_int,hipMemcpy2DAsync_c8_1_c_size_t,hipMemcpy2DAsync_c8_2_c_int,hipMemcpy2DAsync_c8_2_c_size_t 
   end interface
 
   contains
@@ -3766,284 +3765,608 @@ function hipMemcpyAsync_c8_7_c_size_t(dest,src,length,myKind,stream)
     end function
  
 
-function hipMemcpy2D_i4_c_int(dest,dpitch,src,spitch,width,height,myKind)
-        use iso_c_binding
+function hipMemcpy2D_i4_1_c_int(dest,dpitch,src,spitch,width,height,myKind)
+      use iso_c_binding
 #ifdef USE_CUDA_NAMES
-        use hipfort_cuda_errors
+      use hipfort_cuda_errors
 #endif
-        use hipfort_enums
-        use hipfort_types
-        implicit none
-        integer(4),target,dimension(:,:), intent(inout) :: dest
-        integer(c_int) :: dpitch
-        integer(4),target,dimension(:,:), intent(in)    :: src
-        integer(c_int) :: spitch
-        integer(c_int) :: width
-        integer(c_int) :: height
-        integer(kind(hipMemcpyHostToHost)),value :: myKind
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(4),target,dimension(:), intent(inout) :: dest
+      integer(c_int) :: dpitch
+      integer(4),target,dimension(:), intent(in)    :: src
+      integer(c_int) :: spitch
+      integer(c_int) :: width
+      integer(c_int) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
 #ifdef USE_CUDA_NAMES
-        integer(kind(cudaSuccess)) :: hipMemcpy2D_i4_c_int
+      integer(kind(cudaSuccess)) :: hipMemcpy2D_i4_1_c_int
 #else
-        integer(kind(hipSuccess)) :: hipMemcpy2D_i4_c_int
+      integer(kind(hipSuccess)) :: hipMemcpy2D_i4_1_c_int
 #endif
-        !
-        hipMemcpy2D_i4_c_int = hipMemcpy2D_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind)
-      end function
-function hipMemcpy2D_i4_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
-        use iso_c_binding
+      !
+      hipMemcpy2D_i4_1_c_int = hipMemcpy2D_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind)
+    end function
+function hipMemcpy2D_i4_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
+      use iso_c_binding
 #ifdef USE_CUDA_NAMES
-        use hipfort_cuda_errors
+      use hipfort_cuda_errors
 #endif
-        use hipfort_enums
-        use hipfort_types
-        implicit none
-        integer(4),target,dimension(:,:), intent(inout) :: dest
-        integer(c_size_t) :: dpitch
-        integer(4),target,dimension(:,:), intent(in)    :: src
-        integer(c_size_t) :: spitch
-        integer(c_size_t) :: width
-        integer(c_size_t) :: height
-        integer(kind(hipMemcpyHostToHost)),value :: myKind
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(4),target,dimension(:), intent(inout) :: dest
+      integer(c_size_t) :: dpitch
+      integer(4),target,dimension(:), intent(in)    :: src
+      integer(c_size_t) :: spitch
+      integer(c_size_t) :: width
+      integer(c_size_t) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
 #ifdef USE_CUDA_NAMES
-        integer(kind(cudaSuccess)) :: hipMemcpy2D_i4_c_size_t
+      integer(kind(cudaSuccess)) :: hipMemcpy2D_i4_1_c_size_t
 #else
-        integer(kind(hipSuccess)) :: hipMemcpy2D_i4_c_size_t
+      integer(kind(hipSuccess)) :: hipMemcpy2D_i4_1_c_size_t
 #endif
-        !
-        hipMemcpy2D_i4_c_size_t = hipMemcpy2D_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind)
-      end function
-function hipMemcpy2D_i8_c_int(dest,dpitch,src,spitch,width,height,myKind)
-        use iso_c_binding
+      !
+      hipMemcpy2D_i4_1_c_size_t = hipMemcpy2D_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind)
+    end function
+function hipMemcpy2D_i4_2_c_int(dest,dpitch,src,spitch,width,height,myKind)
+      use iso_c_binding
 #ifdef USE_CUDA_NAMES
-        use hipfort_cuda_errors
+      use hipfort_cuda_errors
 #endif
-        use hipfort_enums
-        use hipfort_types
-        implicit none
-        integer(8),target,dimension(:,:), intent(inout) :: dest
-        integer(c_int) :: dpitch
-        integer(8),target,dimension(:,:), intent(in)    :: src
-        integer(c_int) :: spitch
-        integer(c_int) :: width
-        integer(c_int) :: height
-        integer(kind(hipMemcpyHostToHost)),value :: myKind
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(4),target,dimension(:,:), intent(inout) :: dest
+      integer(c_int) :: dpitch
+      integer(4),target,dimension(:,:), intent(in)    :: src
+      integer(c_int) :: spitch
+      integer(c_int) :: width
+      integer(c_int) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
 #ifdef USE_CUDA_NAMES
-        integer(kind(cudaSuccess)) :: hipMemcpy2D_i8_c_int
+      integer(kind(cudaSuccess)) :: hipMemcpy2D_i4_2_c_int
 #else
-        integer(kind(hipSuccess)) :: hipMemcpy2D_i8_c_int
+      integer(kind(hipSuccess)) :: hipMemcpy2D_i4_2_c_int
 #endif
-        !
-        hipMemcpy2D_i8_c_int = hipMemcpy2D_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind)
-      end function
-function hipMemcpy2D_i8_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
-        use iso_c_binding
+      !
+      hipMemcpy2D_i4_2_c_int = hipMemcpy2D_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind)
+    end function
+function hipMemcpy2D_i4_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
+      use iso_c_binding
 #ifdef USE_CUDA_NAMES
-        use hipfort_cuda_errors
+      use hipfort_cuda_errors
 #endif
-        use hipfort_enums
-        use hipfort_types
-        implicit none
-        integer(8),target,dimension(:,:), intent(inout) :: dest
-        integer(c_size_t) :: dpitch
-        integer(8),target,dimension(:,:), intent(in)    :: src
-        integer(c_size_t) :: spitch
-        integer(c_size_t) :: width
-        integer(c_size_t) :: height
-        integer(kind(hipMemcpyHostToHost)),value :: myKind
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(4),target,dimension(:,:), intent(inout) :: dest
+      integer(c_size_t) :: dpitch
+      integer(4),target,dimension(:,:), intent(in)    :: src
+      integer(c_size_t) :: spitch
+      integer(c_size_t) :: width
+      integer(c_size_t) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
 #ifdef USE_CUDA_NAMES
-        integer(kind(cudaSuccess)) :: hipMemcpy2D_i8_c_size_t
+      integer(kind(cudaSuccess)) :: hipMemcpy2D_i4_2_c_size_t
 #else
-        integer(kind(hipSuccess)) :: hipMemcpy2D_i8_c_size_t
+      integer(kind(hipSuccess)) :: hipMemcpy2D_i4_2_c_size_t
 #endif
-        !
-        hipMemcpy2D_i8_c_size_t = hipMemcpy2D_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind)
-      end function
-function hipMemcpy2D_r4_c_int(dest,dpitch,src,spitch,width,height,myKind)
-        use iso_c_binding
+      !
+      hipMemcpy2D_i4_2_c_size_t = hipMemcpy2D_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind)
+    end function
+function hipMemcpy2D_i8_1_c_int(dest,dpitch,src,spitch,width,height,myKind)
+      use iso_c_binding
 #ifdef USE_CUDA_NAMES
-        use hipfort_cuda_errors
+      use hipfort_cuda_errors
 #endif
-        use hipfort_enums
-        use hipfort_types
-        implicit none
-        real(4),target,dimension(:,:), intent(inout) :: dest
-        integer(c_int) :: dpitch
-        real(4),target,dimension(:,:), intent(in)    :: src
-        integer(c_int) :: spitch
-        integer(c_int) :: width
-        integer(c_int) :: height
-        integer(kind(hipMemcpyHostToHost)),value :: myKind
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(8),target,dimension(:), intent(inout) :: dest
+      integer(c_int) :: dpitch
+      integer(8),target,dimension(:), intent(in)    :: src
+      integer(c_int) :: spitch
+      integer(c_int) :: width
+      integer(c_int) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
 #ifdef USE_CUDA_NAMES
-        integer(kind(cudaSuccess)) :: hipMemcpy2D_r4_c_int
+      integer(kind(cudaSuccess)) :: hipMemcpy2D_i8_1_c_int
 #else
-        integer(kind(hipSuccess)) :: hipMemcpy2D_r4_c_int
+      integer(kind(hipSuccess)) :: hipMemcpy2D_i8_1_c_int
 #endif
-        !
-        hipMemcpy2D_r4_c_int = hipMemcpy2D_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind)
-      end function
-function hipMemcpy2D_r4_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
-        use iso_c_binding
+      !
+      hipMemcpy2D_i8_1_c_int = hipMemcpy2D_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind)
+    end function
+function hipMemcpy2D_i8_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
+      use iso_c_binding
 #ifdef USE_CUDA_NAMES
-        use hipfort_cuda_errors
+      use hipfort_cuda_errors
 #endif
-        use hipfort_enums
-        use hipfort_types
-        implicit none
-        real(4),target,dimension(:,:), intent(inout) :: dest
-        integer(c_size_t) :: dpitch
-        real(4),target,dimension(:,:), intent(in)    :: src
-        integer(c_size_t) :: spitch
-        integer(c_size_t) :: width
-        integer(c_size_t) :: height
-        integer(kind(hipMemcpyHostToHost)),value :: myKind
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(8),target,dimension(:), intent(inout) :: dest
+      integer(c_size_t) :: dpitch
+      integer(8),target,dimension(:), intent(in)    :: src
+      integer(c_size_t) :: spitch
+      integer(c_size_t) :: width
+      integer(c_size_t) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
 #ifdef USE_CUDA_NAMES
-        integer(kind(cudaSuccess)) :: hipMemcpy2D_r4_c_size_t
+      integer(kind(cudaSuccess)) :: hipMemcpy2D_i8_1_c_size_t
 #else
-        integer(kind(hipSuccess)) :: hipMemcpy2D_r4_c_size_t
+      integer(kind(hipSuccess)) :: hipMemcpy2D_i8_1_c_size_t
 #endif
-        !
-        hipMemcpy2D_r4_c_size_t = hipMemcpy2D_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind)
-      end function
-function hipMemcpy2D_r8_c_int(dest,dpitch,src,spitch,width,height,myKind)
-        use iso_c_binding
+      !
+      hipMemcpy2D_i8_1_c_size_t = hipMemcpy2D_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind)
+    end function
+function hipMemcpy2D_i8_2_c_int(dest,dpitch,src,spitch,width,height,myKind)
+      use iso_c_binding
 #ifdef USE_CUDA_NAMES
-        use hipfort_cuda_errors
+      use hipfort_cuda_errors
 #endif
-        use hipfort_enums
-        use hipfort_types
-        implicit none
-        real(8),target,dimension(:,:), intent(inout) :: dest
-        integer(c_int) :: dpitch
-        real(8),target,dimension(:,:), intent(in)    :: src
-        integer(c_int) :: spitch
-        integer(c_int) :: width
-        integer(c_int) :: height
-        integer(kind(hipMemcpyHostToHost)),value :: myKind
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(8),target,dimension(:,:), intent(inout) :: dest
+      integer(c_int) :: dpitch
+      integer(8),target,dimension(:,:), intent(in)    :: src
+      integer(c_int) :: spitch
+      integer(c_int) :: width
+      integer(c_int) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
 #ifdef USE_CUDA_NAMES
-        integer(kind(cudaSuccess)) :: hipMemcpy2D_r8_c_int
+      integer(kind(cudaSuccess)) :: hipMemcpy2D_i8_2_c_int
 #else
-        integer(kind(hipSuccess)) :: hipMemcpy2D_r8_c_int
+      integer(kind(hipSuccess)) :: hipMemcpy2D_i8_2_c_int
 #endif
-        !
-        hipMemcpy2D_r8_c_int = hipMemcpy2D_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind)
-      end function
-function hipMemcpy2D_r8_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
-        use iso_c_binding
+      !
+      hipMemcpy2D_i8_2_c_int = hipMemcpy2D_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind)
+    end function
+function hipMemcpy2D_i8_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
+      use iso_c_binding
 #ifdef USE_CUDA_NAMES
-        use hipfort_cuda_errors
+      use hipfort_cuda_errors
 #endif
-        use hipfort_enums
-        use hipfort_types
-        implicit none
-        real(8),target,dimension(:,:), intent(inout) :: dest
-        integer(c_size_t) :: dpitch
-        real(8),target,dimension(:,:), intent(in)    :: src
-        integer(c_size_t) :: spitch
-        integer(c_size_t) :: width
-        integer(c_size_t) :: height
-        integer(kind(hipMemcpyHostToHost)),value :: myKind
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(8),target,dimension(:,:), intent(inout) :: dest
+      integer(c_size_t) :: dpitch
+      integer(8),target,dimension(:,:), intent(in)    :: src
+      integer(c_size_t) :: spitch
+      integer(c_size_t) :: width
+      integer(c_size_t) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
 #ifdef USE_CUDA_NAMES
-        integer(kind(cudaSuccess)) :: hipMemcpy2D_r8_c_size_t
+      integer(kind(cudaSuccess)) :: hipMemcpy2D_i8_2_c_size_t
 #else
-        integer(kind(hipSuccess)) :: hipMemcpy2D_r8_c_size_t
+      integer(kind(hipSuccess)) :: hipMemcpy2D_i8_2_c_size_t
 #endif
-        !
-        hipMemcpy2D_r8_c_size_t = hipMemcpy2D_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind)
-      end function
-function hipMemcpy2D_c4_c_int(dest,dpitch,src,spitch,width,height,myKind)
-        use iso_c_binding
+      !
+      hipMemcpy2D_i8_2_c_size_t = hipMemcpy2D_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind)
+    end function
+function hipMemcpy2D_r4_1_c_int(dest,dpitch,src,spitch,width,height,myKind)
+      use iso_c_binding
 #ifdef USE_CUDA_NAMES
-        use hipfort_cuda_errors
+      use hipfort_cuda_errors
 #endif
-        use hipfort_enums
-        use hipfort_types
-        implicit none
-        complex(4),target,dimension(:,:), intent(inout) :: dest
-        integer(c_int) :: dpitch
-        complex(4),target,dimension(:,:), intent(in)    :: src
-        integer(c_int) :: spitch
-        integer(c_int) :: width
-        integer(c_int) :: height
-        integer(kind(hipMemcpyHostToHost)),value :: myKind
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      real(4),target,dimension(:), intent(inout) :: dest
+      integer(c_int) :: dpitch
+      real(4),target,dimension(:), intent(in)    :: src
+      integer(c_int) :: spitch
+      integer(c_int) :: width
+      integer(c_int) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
 #ifdef USE_CUDA_NAMES
-        integer(kind(cudaSuccess)) :: hipMemcpy2D_c4_c_int
+      integer(kind(cudaSuccess)) :: hipMemcpy2D_r4_1_c_int
 #else
-        integer(kind(hipSuccess)) :: hipMemcpy2D_c4_c_int
+      integer(kind(hipSuccess)) :: hipMemcpy2D_r4_1_c_int
 #endif
-        !
-        hipMemcpy2D_c4_c_int = hipMemcpy2D_b(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind)
-      end function
-function hipMemcpy2D_c4_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
-        use iso_c_binding
+      !
+      hipMemcpy2D_r4_1_c_int = hipMemcpy2D_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind)
+    end function
+function hipMemcpy2D_r4_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
+      use iso_c_binding
 #ifdef USE_CUDA_NAMES
-        use hipfort_cuda_errors
+      use hipfort_cuda_errors
 #endif
-        use hipfort_enums
-        use hipfort_types
-        implicit none
-        complex(4),target,dimension(:,:), intent(inout) :: dest
-        integer(c_size_t) :: dpitch
-        complex(4),target,dimension(:,:), intent(in)    :: src
-        integer(c_size_t) :: spitch
-        integer(c_size_t) :: width
-        integer(c_size_t) :: height
-        integer(kind(hipMemcpyHostToHost)),value :: myKind
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      real(4),target,dimension(:), intent(inout) :: dest
+      integer(c_size_t) :: dpitch
+      real(4),target,dimension(:), intent(in)    :: src
+      integer(c_size_t) :: spitch
+      integer(c_size_t) :: width
+      integer(c_size_t) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
 #ifdef USE_CUDA_NAMES
-        integer(kind(cudaSuccess)) :: hipMemcpy2D_c4_c_size_t
+      integer(kind(cudaSuccess)) :: hipMemcpy2D_r4_1_c_size_t
 #else
-        integer(kind(hipSuccess)) :: hipMemcpy2D_c4_c_size_t
+      integer(kind(hipSuccess)) :: hipMemcpy2D_r4_1_c_size_t
 #endif
-        !
-        hipMemcpy2D_c4_c_size_t = hipMemcpy2D_b(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind)
-      end function
-function hipMemcpy2D_c8_c_int(dest,dpitch,src,spitch,width,height,myKind)
-        use iso_c_binding
+      !
+      hipMemcpy2D_r4_1_c_size_t = hipMemcpy2D_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind)
+    end function
+function hipMemcpy2D_r4_2_c_int(dest,dpitch,src,spitch,width,height,myKind)
+      use iso_c_binding
 #ifdef USE_CUDA_NAMES
-        use hipfort_cuda_errors
+      use hipfort_cuda_errors
 #endif
-        use hipfort_enums
-        use hipfort_types
-        implicit none
-        complex(8),target,dimension(:,:), intent(inout) :: dest
-        integer(c_int) :: dpitch
-        complex(8),target,dimension(:,:), intent(in)    :: src
-        integer(c_int) :: spitch
-        integer(c_int) :: width
-        integer(c_int) :: height
-        integer(kind(hipMemcpyHostToHost)),value :: myKind
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      real(4),target,dimension(:,:), intent(inout) :: dest
+      integer(c_int) :: dpitch
+      real(4),target,dimension(:,:), intent(in)    :: src
+      integer(c_int) :: spitch
+      integer(c_int) :: width
+      integer(c_int) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
 #ifdef USE_CUDA_NAMES
-        integer(kind(cudaSuccess)) :: hipMemcpy2D_c8_c_int
+      integer(kind(cudaSuccess)) :: hipMemcpy2D_r4_2_c_int
 #else
-        integer(kind(hipSuccess)) :: hipMemcpy2D_c8_c_int
+      integer(kind(hipSuccess)) :: hipMemcpy2D_r4_2_c_int
 #endif
-        !
-        hipMemcpy2D_c8_c_int = hipMemcpy2D_b(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind)
-      end function
-function hipMemcpy2D_c8_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
-        use iso_c_binding
+      !
+      hipMemcpy2D_r4_2_c_int = hipMemcpy2D_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind)
+    end function
+function hipMemcpy2D_r4_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
+      use iso_c_binding
 #ifdef USE_CUDA_NAMES
-        use hipfort_cuda_errors
+      use hipfort_cuda_errors
 #endif
-        use hipfort_enums
-        use hipfort_types
-        implicit none
-        complex(8),target,dimension(:,:), intent(inout) :: dest
-        integer(c_size_t) :: dpitch
-        complex(8),target,dimension(:,:), intent(in)    :: src
-        integer(c_size_t) :: spitch
-        integer(c_size_t) :: width
-        integer(c_size_t) :: height
-        integer(kind(hipMemcpyHostToHost)),value :: myKind
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      real(4),target,dimension(:,:), intent(inout) :: dest
+      integer(c_size_t) :: dpitch
+      real(4),target,dimension(:,:), intent(in)    :: src
+      integer(c_size_t) :: spitch
+      integer(c_size_t) :: width
+      integer(c_size_t) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
 #ifdef USE_CUDA_NAMES
-        integer(kind(cudaSuccess)) :: hipMemcpy2D_c8_c_size_t
+      integer(kind(cudaSuccess)) :: hipMemcpy2D_r4_2_c_size_t
 #else
-        integer(kind(hipSuccess)) :: hipMemcpy2D_c8_c_size_t
+      integer(kind(hipSuccess)) :: hipMemcpy2D_r4_2_c_size_t
 #endif
-        !
-        hipMemcpy2D_c8_c_size_t = hipMemcpy2D_b(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind)
-      end function
+      !
+      hipMemcpy2D_r4_2_c_size_t = hipMemcpy2D_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind)
+    end function
+function hipMemcpy2D_r8_1_c_int(dest,dpitch,src,spitch,width,height,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      real(8),target,dimension(:), intent(inout) :: dest
+      integer(c_int) :: dpitch
+      real(8),target,dimension(:), intent(in)    :: src
+      integer(c_int) :: spitch
+      integer(c_int) :: width
+      integer(c_int) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2D_r8_1_c_int
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2D_r8_1_c_int
+#endif
+      !
+      hipMemcpy2D_r8_1_c_int = hipMemcpy2D_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind)
+    end function
+function hipMemcpy2D_r8_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      real(8),target,dimension(:), intent(inout) :: dest
+      integer(c_size_t) :: dpitch
+      real(8),target,dimension(:), intent(in)    :: src
+      integer(c_size_t) :: spitch
+      integer(c_size_t) :: width
+      integer(c_size_t) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2D_r8_1_c_size_t
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2D_r8_1_c_size_t
+#endif
+      !
+      hipMemcpy2D_r8_1_c_size_t = hipMemcpy2D_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind)
+    end function
+function hipMemcpy2D_r8_2_c_int(dest,dpitch,src,spitch,width,height,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      real(8),target,dimension(:,:), intent(inout) :: dest
+      integer(c_int) :: dpitch
+      real(8),target,dimension(:,:), intent(in)    :: src
+      integer(c_int) :: spitch
+      integer(c_int) :: width
+      integer(c_int) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2D_r8_2_c_int
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2D_r8_2_c_int
+#endif
+      !
+      hipMemcpy2D_r8_2_c_int = hipMemcpy2D_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind)
+    end function
+function hipMemcpy2D_r8_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      real(8),target,dimension(:,:), intent(inout) :: dest
+      integer(c_size_t) :: dpitch
+      real(8),target,dimension(:,:), intent(in)    :: src
+      integer(c_size_t) :: spitch
+      integer(c_size_t) :: width
+      integer(c_size_t) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2D_r8_2_c_size_t
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2D_r8_2_c_size_t
+#endif
+      !
+      hipMemcpy2D_r8_2_c_size_t = hipMemcpy2D_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind)
+    end function
+function hipMemcpy2D_c4_1_c_int(dest,dpitch,src,spitch,width,height,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      complex(4),target,dimension(:), intent(inout) :: dest
+      integer(c_int) :: dpitch
+      complex(4),target,dimension(:), intent(in)    :: src
+      integer(c_int) :: spitch
+      integer(c_int) :: width
+      integer(c_int) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2D_c4_1_c_int
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2D_c4_1_c_int
+#endif
+      !
+      hipMemcpy2D_c4_1_c_int = hipMemcpy2D_b(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind)
+    end function
+function hipMemcpy2D_c4_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      complex(4),target,dimension(:), intent(inout) :: dest
+      integer(c_size_t) :: dpitch
+      complex(4),target,dimension(:), intent(in)    :: src
+      integer(c_size_t) :: spitch
+      integer(c_size_t) :: width
+      integer(c_size_t) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2D_c4_1_c_size_t
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2D_c4_1_c_size_t
+#endif
+      !
+      hipMemcpy2D_c4_1_c_size_t = hipMemcpy2D_b(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind)
+    end function
+function hipMemcpy2D_c4_2_c_int(dest,dpitch,src,spitch,width,height,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      complex(4),target,dimension(:,:), intent(inout) :: dest
+      integer(c_int) :: dpitch
+      complex(4),target,dimension(:,:), intent(in)    :: src
+      integer(c_int) :: spitch
+      integer(c_int) :: width
+      integer(c_int) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2D_c4_2_c_int
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2D_c4_2_c_int
+#endif
+      !
+      hipMemcpy2D_c4_2_c_int = hipMemcpy2D_b(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind)
+    end function
+function hipMemcpy2D_c4_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      complex(4),target,dimension(:,:), intent(inout) :: dest
+      integer(c_size_t) :: dpitch
+      complex(4),target,dimension(:,:), intent(in)    :: src
+      integer(c_size_t) :: spitch
+      integer(c_size_t) :: width
+      integer(c_size_t) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2D_c4_2_c_size_t
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2D_c4_2_c_size_t
+#endif
+      !
+      hipMemcpy2D_c4_2_c_size_t = hipMemcpy2D_b(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind)
+    end function
+function hipMemcpy2D_c8_1_c_int(dest,dpitch,src,spitch,width,height,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      complex(8),target,dimension(:), intent(inout) :: dest
+      integer(c_int) :: dpitch
+      complex(8),target,dimension(:), intent(in)    :: src
+      integer(c_int) :: spitch
+      integer(c_int) :: width
+      integer(c_int) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2D_c8_1_c_int
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2D_c8_1_c_int
+#endif
+      !
+      hipMemcpy2D_c8_1_c_int = hipMemcpy2D_b(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind)
+    end function
+function hipMemcpy2D_c8_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      complex(8),target,dimension(:), intent(inout) :: dest
+      integer(c_size_t) :: dpitch
+      complex(8),target,dimension(:), intent(in)    :: src
+      integer(c_size_t) :: spitch
+      integer(c_size_t) :: width
+      integer(c_size_t) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2D_c8_1_c_size_t
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2D_c8_1_c_size_t
+#endif
+      !
+      hipMemcpy2D_c8_1_c_size_t = hipMemcpy2D_b(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind)
+    end function
+function hipMemcpy2D_c8_2_c_int(dest,dpitch,src,spitch,width,height,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      complex(8),target,dimension(:,:), intent(inout) :: dest
+      integer(c_int) :: dpitch
+      complex(8),target,dimension(:,:), intent(in)    :: src
+      integer(c_int) :: spitch
+      integer(c_int) :: width
+      integer(c_int) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2D_c8_2_c_int
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2D_c8_2_c_int
+#endif
+      !
+      hipMemcpy2D_c8_2_c_int = hipMemcpy2D_b(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind)
+    end function
+function hipMemcpy2D_c8_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      complex(8),target,dimension(:,:), intent(inout) :: dest
+      integer(c_size_t) :: dpitch
+      complex(8),target,dimension(:,:), intent(in)    :: src
+      integer(c_size_t) :: spitch
+      integer(c_size_t) :: width
+      integer(c_size_t) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2D_c8_2_c_size_t
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2D_c8_2_c_size_t
+#endif
+      !
+      hipMemcpy2D_c8_2_c_size_t = hipMemcpy2D_b(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind)
+    end function
     
-function hipMemcpy2DAsync_i4_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
+function hipMemcpy2DAsync_i4_1_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(4),target,dimension(:), intent(inout) :: dest
+      integer(c_int) :: dpitch
+      integer(4),target,dimension(:), intent(in)    :: src
+      integer(c_int) :: spitch
+      integer(c_int) :: width
+      integer(c_int) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+      type(c_ptr),value :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_i4_1_c_int
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_i4_1_c_int
+#endif
+      !
+      hipMemcpy2DAsync_i4_1_c_int = hipMemcpy2DAsync_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
+    end function
+function hipMemcpy2DAsync_i4_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(4),target,dimension(:), intent(inout) :: dest
+      integer(c_size_t) :: dpitch
+      integer(4),target,dimension(:), intent(in)    :: src
+      integer(c_size_t) :: spitch
+      integer(c_size_t) :: width
+      integer(c_size_t) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+      type(c_ptr),value :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_i4_1_c_size_t
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_i4_1_c_size_t
+#endif
+      !
+      hipMemcpy2DAsync_i4_1_c_size_t = hipMemcpy2DAsync_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
+    end function
+function hipMemcpy2DAsync_i4_2_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -4060,14 +4383,14 @@ function hipMemcpy2DAsync_i4_c_int(dest,dpitch,src,spitch,width,height,myKind,st
       integer(kind(hipMemcpyHostToHost)),value :: myKind
       type(c_ptr),value :: stream
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_i4_c_int
+      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_i4_2_c_int
 #else
-      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_i4_c_int
+      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_i4_2_c_int
 #endif
       !
-      hipMemcpy2DAsync_i4_c_int = hipMemcpy2DAsync_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_i4_2_c_int = hipMemcpy2DAsync_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
     end function
-function hipMemcpy2DAsync_i4_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
+function hipMemcpy2DAsync_i4_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -4084,14 +4407,62 @@ function hipMemcpy2DAsync_i4_c_size_t(dest,dpitch,src,spitch,width,height,myKind
       integer(kind(hipMemcpyHostToHost)),value :: myKind
       type(c_ptr),value :: stream
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_i4_c_size_t
+      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_i4_2_c_size_t
 #else
-      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_i4_c_size_t
+      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_i4_2_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_i4_c_size_t = hipMemcpy2DAsync_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_i4_2_c_size_t = hipMemcpy2DAsync_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
     end function
-function hipMemcpy2DAsync_i8_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
+function hipMemcpy2DAsync_i8_1_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(8),target,dimension(:), intent(inout) :: dest
+      integer(c_int) :: dpitch
+      integer(8),target,dimension(:), intent(in)    :: src
+      integer(c_int) :: spitch
+      integer(c_int) :: width
+      integer(c_int) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+      type(c_ptr),value :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_i8_1_c_int
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_i8_1_c_int
+#endif
+      !
+      hipMemcpy2DAsync_i8_1_c_int = hipMemcpy2DAsync_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
+    end function
+function hipMemcpy2DAsync_i8_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(8),target,dimension(:), intent(inout) :: dest
+      integer(c_size_t) :: dpitch
+      integer(8),target,dimension(:), intent(in)    :: src
+      integer(c_size_t) :: spitch
+      integer(c_size_t) :: width
+      integer(c_size_t) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+      type(c_ptr),value :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_i8_1_c_size_t
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_i8_1_c_size_t
+#endif
+      !
+      hipMemcpy2DAsync_i8_1_c_size_t = hipMemcpy2DAsync_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
+    end function
+function hipMemcpy2DAsync_i8_2_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -4108,14 +4479,14 @@ function hipMemcpy2DAsync_i8_c_int(dest,dpitch,src,spitch,width,height,myKind,st
       integer(kind(hipMemcpyHostToHost)),value :: myKind
       type(c_ptr),value :: stream
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_i8_c_int
+      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_i8_2_c_int
 #else
-      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_i8_c_int
+      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_i8_2_c_int
 #endif
       !
-      hipMemcpy2DAsync_i8_c_int = hipMemcpy2DAsync_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_i8_2_c_int = hipMemcpy2DAsync_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
     end function
-function hipMemcpy2DAsync_i8_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
+function hipMemcpy2DAsync_i8_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -4132,14 +4503,62 @@ function hipMemcpy2DAsync_i8_c_size_t(dest,dpitch,src,spitch,width,height,myKind
       integer(kind(hipMemcpyHostToHost)),value :: myKind
       type(c_ptr),value :: stream
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_i8_c_size_t
+      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_i8_2_c_size_t
 #else
-      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_i8_c_size_t
+      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_i8_2_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_i8_c_size_t = hipMemcpy2DAsync_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_i8_2_c_size_t = hipMemcpy2DAsync_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
     end function
-function hipMemcpy2DAsync_r4_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
+function hipMemcpy2DAsync_r4_1_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      real(4),target,dimension(:), intent(inout) :: dest
+      integer(c_int) :: dpitch
+      real(4),target,dimension(:), intent(in)    :: src
+      integer(c_int) :: spitch
+      integer(c_int) :: width
+      integer(c_int) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+      type(c_ptr),value :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_r4_1_c_int
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_r4_1_c_int
+#endif
+      !
+      hipMemcpy2DAsync_r4_1_c_int = hipMemcpy2DAsync_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
+    end function
+function hipMemcpy2DAsync_r4_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      real(4),target,dimension(:), intent(inout) :: dest
+      integer(c_size_t) :: dpitch
+      real(4),target,dimension(:), intent(in)    :: src
+      integer(c_size_t) :: spitch
+      integer(c_size_t) :: width
+      integer(c_size_t) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+      type(c_ptr),value :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_r4_1_c_size_t
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_r4_1_c_size_t
+#endif
+      !
+      hipMemcpy2DAsync_r4_1_c_size_t = hipMemcpy2DAsync_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
+    end function
+function hipMemcpy2DAsync_r4_2_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -4156,14 +4575,14 @@ function hipMemcpy2DAsync_r4_c_int(dest,dpitch,src,spitch,width,height,myKind,st
       integer(kind(hipMemcpyHostToHost)),value :: myKind
       type(c_ptr),value :: stream
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_r4_c_int
+      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_r4_2_c_int
 #else
-      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_r4_c_int
+      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_r4_2_c_int
 #endif
       !
-      hipMemcpy2DAsync_r4_c_int = hipMemcpy2DAsync_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_r4_2_c_int = hipMemcpy2DAsync_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
     end function
-function hipMemcpy2DAsync_r4_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
+function hipMemcpy2DAsync_r4_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -4180,14 +4599,62 @@ function hipMemcpy2DAsync_r4_c_size_t(dest,dpitch,src,spitch,width,height,myKind
       integer(kind(hipMemcpyHostToHost)),value :: myKind
       type(c_ptr),value :: stream
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_r4_c_size_t
+      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_r4_2_c_size_t
 #else
-      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_r4_c_size_t
+      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_r4_2_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_r4_c_size_t = hipMemcpy2DAsync_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_r4_2_c_size_t = hipMemcpy2DAsync_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
     end function
-function hipMemcpy2DAsync_r8_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
+function hipMemcpy2DAsync_r8_1_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      real(8),target,dimension(:), intent(inout) :: dest
+      integer(c_int) :: dpitch
+      real(8),target,dimension(:), intent(in)    :: src
+      integer(c_int) :: spitch
+      integer(c_int) :: width
+      integer(c_int) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+      type(c_ptr),value :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_r8_1_c_int
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_r8_1_c_int
+#endif
+      !
+      hipMemcpy2DAsync_r8_1_c_int = hipMemcpy2DAsync_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
+    end function
+function hipMemcpy2DAsync_r8_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      real(8),target,dimension(:), intent(inout) :: dest
+      integer(c_size_t) :: dpitch
+      real(8),target,dimension(:), intent(in)    :: src
+      integer(c_size_t) :: spitch
+      integer(c_size_t) :: width
+      integer(c_size_t) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+      type(c_ptr),value :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_r8_1_c_size_t
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_r8_1_c_size_t
+#endif
+      !
+      hipMemcpy2DAsync_r8_1_c_size_t = hipMemcpy2DAsync_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
+    end function
+function hipMemcpy2DAsync_r8_2_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -4204,14 +4671,14 @@ function hipMemcpy2DAsync_r8_c_int(dest,dpitch,src,spitch,width,height,myKind,st
       integer(kind(hipMemcpyHostToHost)),value :: myKind
       type(c_ptr),value :: stream
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_r8_c_int
+      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_r8_2_c_int
 #else
-      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_r8_c_int
+      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_r8_2_c_int
 #endif
       !
-      hipMemcpy2DAsync_r8_c_int = hipMemcpy2DAsync_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_r8_2_c_int = hipMemcpy2DAsync_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
     end function
-function hipMemcpy2DAsync_r8_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
+function hipMemcpy2DAsync_r8_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -4228,14 +4695,62 @@ function hipMemcpy2DAsync_r8_c_size_t(dest,dpitch,src,spitch,width,height,myKind
       integer(kind(hipMemcpyHostToHost)),value :: myKind
       type(c_ptr),value :: stream
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_r8_c_size_t
+      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_r8_2_c_size_t
 #else
-      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_r8_c_size_t
+      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_r8_2_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_r8_c_size_t = hipMemcpy2DAsync_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_r8_2_c_size_t = hipMemcpy2DAsync_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
     end function
-function hipMemcpy2DAsync_c4_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
+function hipMemcpy2DAsync_c4_1_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      complex(4),target,dimension(:), intent(inout) :: dest
+      integer(c_int) :: dpitch
+      complex(4),target,dimension(:), intent(in)    :: src
+      integer(c_int) :: spitch
+      integer(c_int) :: width
+      integer(c_int) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+      type(c_ptr),value :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_c4_1_c_int
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_c4_1_c_int
+#endif
+      !
+      hipMemcpy2DAsync_c4_1_c_int = hipMemcpy2DAsync_b(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind,stream)
+    end function
+function hipMemcpy2DAsync_c4_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      complex(4),target,dimension(:), intent(inout) :: dest
+      integer(c_size_t) :: dpitch
+      complex(4),target,dimension(:), intent(in)    :: src
+      integer(c_size_t) :: spitch
+      integer(c_size_t) :: width
+      integer(c_size_t) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+      type(c_ptr),value :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_c4_1_c_size_t
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_c4_1_c_size_t
+#endif
+      !
+      hipMemcpy2DAsync_c4_1_c_size_t = hipMemcpy2DAsync_b(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind,stream)
+    end function
+function hipMemcpy2DAsync_c4_2_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -4252,14 +4767,14 @@ function hipMemcpy2DAsync_c4_c_int(dest,dpitch,src,spitch,width,height,myKind,st
       integer(kind(hipMemcpyHostToHost)),value :: myKind
       type(c_ptr),value :: stream
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_c4_c_int
+      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_c4_2_c_int
 #else
-      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_c4_c_int
+      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_c4_2_c_int
 #endif
       !
-      hipMemcpy2DAsync_c4_c_int = hipMemcpy2DAsync_b(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_c4_2_c_int = hipMemcpy2DAsync_b(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind,stream)
     end function
-function hipMemcpy2DAsync_c4_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
+function hipMemcpy2DAsync_c4_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -4276,14 +4791,62 @@ function hipMemcpy2DAsync_c4_c_size_t(dest,dpitch,src,spitch,width,height,myKind
       integer(kind(hipMemcpyHostToHost)),value :: myKind
       type(c_ptr),value :: stream
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_c4_c_size_t
+      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_c4_2_c_size_t
 #else
-      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_c4_c_size_t
+      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_c4_2_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_c4_c_size_t = hipMemcpy2DAsync_b(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_c4_2_c_size_t = hipMemcpy2DAsync_b(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind,stream)
     end function
-function hipMemcpy2DAsync_c8_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
+function hipMemcpy2DAsync_c8_1_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      complex(8),target,dimension(:), intent(inout) :: dest
+      integer(c_int) :: dpitch
+      complex(8),target,dimension(:), intent(in)    :: src
+      integer(c_int) :: spitch
+      integer(c_int) :: width
+      integer(c_int) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+      type(c_ptr),value :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_c8_1_c_int
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_c8_1_c_int
+#endif
+      !
+      hipMemcpy2DAsync_c8_1_c_int = hipMemcpy2DAsync_b(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind,stream)
+    end function
+function hipMemcpy2DAsync_c8_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      complex(8),target,dimension(:), intent(inout) :: dest
+      integer(c_size_t) :: dpitch
+      complex(8),target,dimension(:), intent(in)    :: src
+      integer(c_size_t) :: spitch
+      integer(c_size_t) :: width
+      integer(c_size_t) :: height
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+      type(c_ptr),value :: stream
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_c8_1_c_size_t
+#else
+      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_c8_1_c_size_t
+#endif
+      !
+      hipMemcpy2DAsync_c8_1_c_size_t = hipMemcpy2DAsync_b(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind,stream)
+    end function
+function hipMemcpy2DAsync_c8_2_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -4300,14 +4863,14 @@ function hipMemcpy2DAsync_c8_c_int(dest,dpitch,src,spitch,width,height,myKind,st
       integer(kind(hipMemcpyHostToHost)),value :: myKind
       type(c_ptr),value :: stream
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_c8_c_int
+      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_c8_2_c_int
 #else
-      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_c8_c_int
+      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_c8_2_c_int
 #endif
       !
-      hipMemcpy2DAsync_c8_c_int = hipMemcpy2DAsync_b(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_c8_2_c_int = hipMemcpy2DAsync_b(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind,stream)
     end function
-function hipMemcpy2DAsync_c8_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
+function hipMemcpy2DAsync_c8_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -4324,12 +4887,12 @@ function hipMemcpy2DAsync_c8_c_size_t(dest,dpitch,src,spitch,width,height,myKind
       integer(kind(hipMemcpyHostToHost)),value :: myKind
       type(c_ptr),value :: stream
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_c8_c_size_t
+      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_c8_2_c_size_t
 #else
-      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_c8_c_size_t
+      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_c8_2_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_c8_c_size_t = hipMemcpy2DAsync_b(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_c8_2_c_size_t = hipMemcpy2DAsync_b(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind,stream)
     end function
 
 end module
