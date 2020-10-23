@@ -1,82 +1,66 @@
 program fortran_hip
-  use iso_c_binding
   use hipfort
   use hipfort_check
-
+  
   implicit none
 
   interface
-     subroutine launch(out,a,b,N) bind(c)
+     ! dim3(320), dim3(256), 0, 0
+     subroutine launch(grid,block,shmem,stream,out,a,b,N) bind(c)
        use iso_c_binding
+       use hipfort_types
        implicit none
-       type(c_ptr) :: a, b, out
-       integer, value :: N
+       type(c_ptr),value :: a, b, out
+       integer(c_int), value :: N, shmem
+       type(dim3) :: grid, block
+       type(c_ptr),value :: stream
      end subroutine
   end interface
 
-  type(c_ptr) :: da = c_null_ptr
-  type(c_ptr) :: db = c_null_ptr
-  type(c_ptr) :: dout = c_null_ptr
+  integer(c_int), parameter :: N = 1000000
 
-  integer, parameter :: N = 1000000
-  integer, parameter :: bytes_per_element = 8 !double precision
-  integer(c_size_t), parameter :: Nbytes = N*bytes_per_element
+  real(8),allocatable,target,dimension(:) :: a,b,out
+  real(8),pointer,dimension(:) :: da => null(), db => null(),dout => null()
 
-  ! Plain real should be equivalent to float
-  double precision,allocatable,target,dimension(:) :: a, b, out
-  double precision :: error
-  double precision, parameter :: error_max = 1.0d-10
-
+  type(dim3) :: grid = dim3(320,1,1) 
+  type(dim3) :: block = dim3(256,1,1) 
+  
   integer :: i
 
-  write(*,*) "Starting HIP vector addition test"
-#ifdef HIPFORT_ARCH
-  write(*,*) "HIPFORT_ARCH = ", HIPFORT_ARCH
-#endif
-
   ! Allocate host memory
-  allocate(a(N))
-  allocate(b(N))
-  allocate(out(N))
+  allocate(a(N),b(N),out(N))
 
   ! Initialize host arrays
   a(:) = 1.0
-  b(:) = 2.0
+  b(:) = 1.0
 
   ! Allocate array space on the device
-  call hipCheck(hipMalloc(da,Nbytes))
-  call hipCheck(hipMalloc(db,Nbytes))
-  call hipCheck(hipMalloc(dout,Nbytes))
+  call hipCheck(hipMalloc(da,N))
+  call hipCheck(hipMalloc(db,N))
+  call hipCheck(hipMalloc(dout,N))
 
   ! Transfer data from host to device memory
-  call hipCheck(hipMemcpy(da, c_loc(a), Nbytes, hipMemcpyHostToDevice))
-  call hipCheck(hipMemcpy(db, c_loc(b), Nbytes, hipMemcpyHostToDevice))
+  call hipCheck(hipMemcpy(da, a, N, hipMemcpyHostToDevice))
+  call hipCheck(hipMemcpy(db, b, N, hipMemcpyHostToDevice))
 
-  call launch(dout,da,db,N)
-
+  ! launch kernel
+  call launch(grid,block,0,c_null_ptr,c_loc(dout),c_loc(da),c_loc(db),N)
   call hipCheck(hipDeviceSynchronize())
 
   ! Transfer data back to host memory
-  call hipCheck(hipMemcpy(c_loc(out), dout, Nbytes, hipMemcpyDeviceToHost))
+  call hipCheck(hipMemcpy(out, dout, N, hipMemcpyDeviceToHost))
 
-  ! Verification
-  do i = 1,N
-     error = abs(out(i) - (a(i)+b(i)) )
-     if( error .gt. error_max ) then
-        write(*,*) "HIP FAILED! Error bigger than max! Error = ", error, " Out = ", out(i)
-        call exit
-     endif
-  end do
+  if ( sum(out) .eq. N*2.0 ) then
+     print *, "PASSED!"
+  else
+     print *, "FAILED!"
+  endif
 
   call hipCheck(hipFree(da))
   call hipCheck(hipFree(db))
   call hipCheck(hipFree(dout))
 
   ! Deallocate host memory
-  deallocate(a)
-  deallocate(b)
-  deallocate(out)
-
-  write(*,*) "HIP test PASSED!"
+  deallocate(a,b,out)
 
 end program fortran_hip

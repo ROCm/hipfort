@@ -4,7 +4,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.0.2)
 set(HIPFORT_COMPILER "/usr/bin/gfortran" CACHE STRING "Fortran Compiler to build HIPFORT")
 set(HIPFORT_AR "/usr/bin/gcc-ar" CACHE STRING "Static archive command")
 set(HIPFORT_RANLIB "/usr/bin/gcc-ranlib" CACHE STRING "ranlib used to create Static archive")
-set(HIPFORT_COMPILER_FLAGS "-std=f2003 -ffree-form -cpp -ffree-line-length-none" CACHE STRING "Compiler flags to build HIPFORT")
+set(HIPFORT_COMPILER_FLAGS "-std=f2008 -ffree-form -cpp -ffree-line-length-none" CACHE STRING "Compiler flags to build HIPFORT")
 set(HIPFORT_BUILD_TYPE "RELEASE"  CACHE STRING "Set to RELEASE TESTING or DEBUG")
 
 #  The ROCm release manager and other integrators should build hipfort as follows:
