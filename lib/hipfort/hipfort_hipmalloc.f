@@ -8792,7 +8792,7 @@ module hipfort_hipmalloc
 
 
                                         
-    function hipFree_i4_1(ptr)
+    function hipFree_i4_1(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -8801,16 +8801,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       integer(4),pointer,dimension(:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_i4_1 
 #else
       integer(kind(hipSuccess)) :: hipFree_i4_1
 #endif
       !
-      hipFree_i4_1 = hipFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_i4_1 = cudaSuccess
+#else
+      hipFree_i4_1 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_i4_1 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipFree_i4_2(ptr)
+    function hipFree_i4_2(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -8819,16 +8832,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       integer(4),pointer,dimension(:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_i4_2 
 #else
       integer(kind(hipSuccess)) :: hipFree_i4_2
 #endif
       !
-      hipFree_i4_2 = hipFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_i4_2 = cudaSuccess
+#else
+      hipFree_i4_2 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_i4_2 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipFree_i4_3(ptr)
+    function hipFree_i4_3(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -8837,16 +8863,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       integer(4),pointer,dimension(:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_i4_3 
 #else
       integer(kind(hipSuccess)) :: hipFree_i4_3
 #endif
       !
-      hipFree_i4_3 = hipFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_i4_3 = cudaSuccess
+#else
+      hipFree_i4_3 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_i4_3 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipFree_i4_4(ptr)
+    function hipFree_i4_4(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -8855,16 +8894,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       integer(4),pointer,dimension(:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_i4_4 
 #else
       integer(kind(hipSuccess)) :: hipFree_i4_4
 #endif
       !
-      hipFree_i4_4 = hipFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_i4_4 = cudaSuccess
+#else
+      hipFree_i4_4 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_i4_4 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipFree_i4_5(ptr)
+    function hipFree_i4_5(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -8873,16 +8925,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       integer(4),pointer,dimension(:,:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_i4_5 
 #else
       integer(kind(hipSuccess)) :: hipFree_i4_5
 #endif
       !
-      hipFree_i4_5 = hipFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_i4_5 = cudaSuccess
+#else
+      hipFree_i4_5 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_i4_5 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipFree_i4_6(ptr)
+    function hipFree_i4_6(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -8891,16 +8956,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       integer(4),pointer,dimension(:,:,:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_i4_6 
 #else
       integer(kind(hipSuccess)) :: hipFree_i4_6
 #endif
       !
-      hipFree_i4_6 = hipFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_i4_6 = cudaSuccess
+#else
+      hipFree_i4_6 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_i4_6 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipFree_i4_7(ptr)
+    function hipFree_i4_7(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -8909,16 +8987,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       integer(4),pointer,dimension(:,:,:,:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_i4_7 
 #else
       integer(kind(hipSuccess)) :: hipFree_i4_7
 #endif
       !
-      hipFree_i4_7 = hipFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_i4_7 = cudaSuccess
+#else
+      hipFree_i4_7 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_i4_7 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipFree_i8_1(ptr)
+    function hipFree_i8_1(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -8927,16 +9018,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       integer(8),pointer,dimension(:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_i8_1 
 #else
       integer(kind(hipSuccess)) :: hipFree_i8_1
 #endif
       !
-      hipFree_i8_1 = hipFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_i8_1 = cudaSuccess
+#else
+      hipFree_i8_1 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_i8_1 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipFree_i8_2(ptr)
+    function hipFree_i8_2(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -8945,16 +9049,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       integer(8),pointer,dimension(:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_i8_2 
 #else
       integer(kind(hipSuccess)) :: hipFree_i8_2
 #endif
       !
-      hipFree_i8_2 = hipFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_i8_2 = cudaSuccess
+#else
+      hipFree_i8_2 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_i8_2 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipFree_i8_3(ptr)
+    function hipFree_i8_3(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -8963,16 +9080,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       integer(8),pointer,dimension(:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_i8_3 
 #else
       integer(kind(hipSuccess)) :: hipFree_i8_3
 #endif
       !
-      hipFree_i8_3 = hipFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_i8_3 = cudaSuccess
+#else
+      hipFree_i8_3 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_i8_3 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipFree_i8_4(ptr)
+    function hipFree_i8_4(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -8981,16 +9111,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       integer(8),pointer,dimension(:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_i8_4 
 #else
       integer(kind(hipSuccess)) :: hipFree_i8_4
 #endif
       !
-      hipFree_i8_4 = hipFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_i8_4 = cudaSuccess
+#else
+      hipFree_i8_4 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_i8_4 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipFree_i8_5(ptr)
+    function hipFree_i8_5(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -8999,16 +9142,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       integer(8),pointer,dimension(:,:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_i8_5 
 #else
       integer(kind(hipSuccess)) :: hipFree_i8_5
 #endif
       !
-      hipFree_i8_5 = hipFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_i8_5 = cudaSuccess
+#else
+      hipFree_i8_5 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_i8_5 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipFree_i8_6(ptr)
+    function hipFree_i8_6(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9017,16 +9173,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       integer(8),pointer,dimension(:,:,:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_i8_6 
 #else
       integer(kind(hipSuccess)) :: hipFree_i8_6
 #endif
       !
-      hipFree_i8_6 = hipFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_i8_6 = cudaSuccess
+#else
+      hipFree_i8_6 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_i8_6 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipFree_i8_7(ptr)
+    function hipFree_i8_7(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9035,16 +9204,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       integer(8),pointer,dimension(:,:,:,:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_i8_7 
 #else
       integer(kind(hipSuccess)) :: hipFree_i8_7
 #endif
       !
-      hipFree_i8_7 = hipFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_i8_7 = cudaSuccess
+#else
+      hipFree_i8_7 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_i8_7 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipFree_r4_1(ptr)
+    function hipFree_r4_1(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9053,16 +9235,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       real(4),pointer,dimension(:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_r4_1 
 #else
       integer(kind(hipSuccess)) :: hipFree_r4_1
 #endif
       !
-      hipFree_r4_1 = hipFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_r4_1 = cudaSuccess
+#else
+      hipFree_r4_1 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_r4_1 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipFree_r4_2(ptr)
+    function hipFree_r4_2(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9071,16 +9266,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       real(4),pointer,dimension(:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_r4_2 
 #else
       integer(kind(hipSuccess)) :: hipFree_r4_2
 #endif
       !
-      hipFree_r4_2 = hipFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_r4_2 = cudaSuccess
+#else
+      hipFree_r4_2 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_r4_2 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipFree_r4_3(ptr)
+    function hipFree_r4_3(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9089,16 +9297,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       real(4),pointer,dimension(:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_r4_3 
 #else
       integer(kind(hipSuccess)) :: hipFree_r4_3
 #endif
       !
-      hipFree_r4_3 = hipFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_r4_3 = cudaSuccess
+#else
+      hipFree_r4_3 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_r4_3 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipFree_r4_4(ptr)
+    function hipFree_r4_4(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9107,16 +9328,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       real(4),pointer,dimension(:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_r4_4 
 #else
       integer(kind(hipSuccess)) :: hipFree_r4_4
 #endif
       !
-      hipFree_r4_4 = hipFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_r4_4 = cudaSuccess
+#else
+      hipFree_r4_4 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_r4_4 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipFree_r4_5(ptr)
+    function hipFree_r4_5(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9125,16 +9359,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       real(4),pointer,dimension(:,:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_r4_5 
 #else
       integer(kind(hipSuccess)) :: hipFree_r4_5
 #endif
       !
-      hipFree_r4_5 = hipFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_r4_5 = cudaSuccess
+#else
+      hipFree_r4_5 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_r4_5 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipFree_r4_6(ptr)
+    function hipFree_r4_6(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9143,16 +9390,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       real(4),pointer,dimension(:,:,:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_r4_6 
 #else
       integer(kind(hipSuccess)) :: hipFree_r4_6
 #endif
       !
-      hipFree_r4_6 = hipFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_r4_6 = cudaSuccess
+#else
+      hipFree_r4_6 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_r4_6 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipFree_r4_7(ptr)
+    function hipFree_r4_7(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9161,16 +9421,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       real(4),pointer,dimension(:,:,:,:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_r4_7 
 #else
       integer(kind(hipSuccess)) :: hipFree_r4_7
 #endif
       !
-      hipFree_r4_7 = hipFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_r4_7 = cudaSuccess
+#else
+      hipFree_r4_7 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_r4_7 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipFree_r8_1(ptr)
+    function hipFree_r8_1(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9179,16 +9452,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       real(8),pointer,dimension(:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_r8_1 
 #else
       integer(kind(hipSuccess)) :: hipFree_r8_1
 #endif
       !
-      hipFree_r8_1 = hipFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_r8_1 = cudaSuccess
+#else
+      hipFree_r8_1 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_r8_1 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipFree_r8_2(ptr)
+    function hipFree_r8_2(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9197,16 +9483,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       real(8),pointer,dimension(:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_r8_2 
 #else
       integer(kind(hipSuccess)) :: hipFree_r8_2
 #endif
       !
-      hipFree_r8_2 = hipFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_r8_2 = cudaSuccess
+#else
+      hipFree_r8_2 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_r8_2 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipFree_r8_3(ptr)
+    function hipFree_r8_3(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9215,16 +9514,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       real(8),pointer,dimension(:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_r8_3 
 #else
       integer(kind(hipSuccess)) :: hipFree_r8_3
 #endif
       !
-      hipFree_r8_3 = hipFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_r8_3 = cudaSuccess
+#else
+      hipFree_r8_3 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_r8_3 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipFree_r8_4(ptr)
+    function hipFree_r8_4(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9233,16 +9545,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       real(8),pointer,dimension(:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_r8_4 
 #else
       integer(kind(hipSuccess)) :: hipFree_r8_4
 #endif
       !
-      hipFree_r8_4 = hipFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_r8_4 = cudaSuccess
+#else
+      hipFree_r8_4 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_r8_4 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipFree_r8_5(ptr)
+    function hipFree_r8_5(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9251,16 +9576,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       real(8),pointer,dimension(:,:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_r8_5 
 #else
       integer(kind(hipSuccess)) :: hipFree_r8_5
 #endif
       !
-      hipFree_r8_5 = hipFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_r8_5 = cudaSuccess
+#else
+      hipFree_r8_5 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_r8_5 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipFree_r8_6(ptr)
+    function hipFree_r8_6(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9269,16 +9607,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       real(8),pointer,dimension(:,:,:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_r8_6 
 #else
       integer(kind(hipSuccess)) :: hipFree_r8_6
 #endif
       !
-      hipFree_r8_6 = hipFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_r8_6 = cudaSuccess
+#else
+      hipFree_r8_6 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_r8_6 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipFree_r8_7(ptr)
+    function hipFree_r8_7(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9287,16 +9638,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       real(8),pointer,dimension(:,:,:,:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_r8_7 
 #else
       integer(kind(hipSuccess)) :: hipFree_r8_7
 #endif
       !
-      hipFree_r8_7 = hipFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_r8_7 = cudaSuccess
+#else
+      hipFree_r8_7 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_r8_7 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipFree_c4_1(ptr)
+    function hipFree_c4_1(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9305,16 +9669,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       complex(4),pointer,dimension(:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_c4_1 
 #else
       integer(kind(hipSuccess)) :: hipFree_c4_1
 #endif
       !
-      hipFree_c4_1 = hipFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_c4_1 = cudaSuccess
+#else
+      hipFree_c4_1 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_c4_1 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipFree_c4_2(ptr)
+    function hipFree_c4_2(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9323,16 +9700,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       complex(4),pointer,dimension(:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_c4_2 
 #else
       integer(kind(hipSuccess)) :: hipFree_c4_2
 #endif
       !
-      hipFree_c4_2 = hipFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_c4_2 = cudaSuccess
+#else
+      hipFree_c4_2 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_c4_2 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipFree_c4_3(ptr)
+    function hipFree_c4_3(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9341,16 +9731,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       complex(4),pointer,dimension(:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_c4_3 
 #else
       integer(kind(hipSuccess)) :: hipFree_c4_3
 #endif
       !
-      hipFree_c4_3 = hipFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_c4_3 = cudaSuccess
+#else
+      hipFree_c4_3 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_c4_3 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipFree_c4_4(ptr)
+    function hipFree_c4_4(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9359,16 +9762,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       complex(4),pointer,dimension(:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_c4_4 
 #else
       integer(kind(hipSuccess)) :: hipFree_c4_4
 #endif
       !
-      hipFree_c4_4 = hipFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_c4_4 = cudaSuccess
+#else
+      hipFree_c4_4 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_c4_4 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipFree_c4_5(ptr)
+    function hipFree_c4_5(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9377,16 +9793,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       complex(4),pointer,dimension(:,:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_c4_5 
 #else
       integer(kind(hipSuccess)) :: hipFree_c4_5
 #endif
       !
-      hipFree_c4_5 = hipFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_c4_5 = cudaSuccess
+#else
+      hipFree_c4_5 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_c4_5 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipFree_c4_6(ptr)
+    function hipFree_c4_6(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9395,16 +9824,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       complex(4),pointer,dimension(:,:,:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_c4_6 
 #else
       integer(kind(hipSuccess)) :: hipFree_c4_6
 #endif
       !
-      hipFree_c4_6 = hipFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_c4_6 = cudaSuccess
+#else
+      hipFree_c4_6 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_c4_6 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipFree_c4_7(ptr)
+    function hipFree_c4_7(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9413,16 +9855,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       complex(4),pointer,dimension(:,:,:,:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_c4_7 
 #else
       integer(kind(hipSuccess)) :: hipFree_c4_7
 #endif
       !
-      hipFree_c4_7 = hipFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_c4_7 = cudaSuccess
+#else
+      hipFree_c4_7 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_c4_7 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipFree_c8_1(ptr)
+    function hipFree_c8_1(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9431,16 +9886,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       complex(8),pointer,dimension(:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_c8_1 
 #else
       integer(kind(hipSuccess)) :: hipFree_c8_1
 #endif
       !
-      hipFree_c8_1 = hipFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_c8_1 = cudaSuccess
+#else
+      hipFree_c8_1 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_c8_1 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipFree_c8_2(ptr)
+    function hipFree_c8_2(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9449,16 +9917,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       complex(8),pointer,dimension(:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_c8_2 
 #else
       integer(kind(hipSuccess)) :: hipFree_c8_2
 #endif
       !
-      hipFree_c8_2 = hipFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_c8_2 = cudaSuccess
+#else
+      hipFree_c8_2 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_c8_2 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipFree_c8_3(ptr)
+    function hipFree_c8_3(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9467,16 +9948,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       complex(8),pointer,dimension(:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_c8_3 
 #else
       integer(kind(hipSuccess)) :: hipFree_c8_3
 #endif
       !
-      hipFree_c8_3 = hipFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_c8_3 = cudaSuccess
+#else
+      hipFree_c8_3 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_c8_3 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipFree_c8_4(ptr)
+    function hipFree_c8_4(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9485,16 +9979,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       complex(8),pointer,dimension(:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_c8_4 
 #else
       integer(kind(hipSuccess)) :: hipFree_c8_4
 #endif
       !
-      hipFree_c8_4 = hipFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_c8_4 = cudaSuccess
+#else
+      hipFree_c8_4 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_c8_4 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipFree_c8_5(ptr)
+    function hipFree_c8_5(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9503,16 +10010,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       complex(8),pointer,dimension(:,:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_c8_5 
 #else
       integer(kind(hipSuccess)) :: hipFree_c8_5
 #endif
       !
-      hipFree_c8_5 = hipFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_c8_5 = cudaSuccess
+#else
+      hipFree_c8_5 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_c8_5 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipFree_c8_6(ptr)
+    function hipFree_c8_6(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9521,16 +10041,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       complex(8),pointer,dimension(:,:,:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_c8_6 
 #else
       integer(kind(hipSuccess)) :: hipFree_c8_6
 #endif
       !
-      hipFree_c8_6 = hipFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_c8_6 = cudaSuccess
+#else
+      hipFree_c8_6 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_c8_6 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipFree_c8_7(ptr)
+    function hipFree_c8_7(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9539,17 +10072,30 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       complex(8),pointer,dimension(:,:,:,:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_c8_7 
 #else
       integer(kind(hipSuccess)) :: hipFree_c8_7
 #endif
       !
-      hipFree_c8_7 = hipFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_c8_7 = cudaSuccess
+#else
+      hipFree_c8_7 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_c8_7 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
     
                                         
-    function hipHostFree_i4_1(ptr)
+    function hipHostFree_i4_1(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9558,16 +10104,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       integer(4),pointer,dimension(:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_i4_1 
 #else
       integer(kind(hipSuccess)) :: hipHostFree_i4_1
 #endif
       !
-      hipHostFree_i4_1 = hipHostFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_i4_1 = cudaSuccess
+#else
+      hipHostFree_i4_1 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_i4_1 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipHostFree_i4_2(ptr)
+    function hipHostFree_i4_2(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9576,16 +10135,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       integer(4),pointer,dimension(:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_i4_2 
 #else
       integer(kind(hipSuccess)) :: hipHostFree_i4_2
 #endif
       !
-      hipHostFree_i4_2 = hipHostFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_i4_2 = cudaSuccess
+#else
+      hipHostFree_i4_2 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_i4_2 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipHostFree_i4_3(ptr)
+    function hipHostFree_i4_3(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9594,16 +10166,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       integer(4),pointer,dimension(:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_i4_3 
 #else
       integer(kind(hipSuccess)) :: hipHostFree_i4_3
 #endif
       !
-      hipHostFree_i4_3 = hipHostFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_i4_3 = cudaSuccess
+#else
+      hipHostFree_i4_3 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_i4_3 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipHostFree_i4_4(ptr)
+    function hipHostFree_i4_4(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9612,16 +10197,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       integer(4),pointer,dimension(:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_i4_4 
 #else
       integer(kind(hipSuccess)) :: hipHostFree_i4_4
 #endif
       !
-      hipHostFree_i4_4 = hipHostFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_i4_4 = cudaSuccess
+#else
+      hipHostFree_i4_4 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_i4_4 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipHostFree_i4_5(ptr)
+    function hipHostFree_i4_5(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9630,16 +10228,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       integer(4),pointer,dimension(:,:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_i4_5 
 #else
       integer(kind(hipSuccess)) :: hipHostFree_i4_5
 #endif
       !
-      hipHostFree_i4_5 = hipHostFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_i4_5 = cudaSuccess
+#else
+      hipHostFree_i4_5 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_i4_5 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipHostFree_i4_6(ptr)
+    function hipHostFree_i4_6(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9648,16 +10259,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       integer(4),pointer,dimension(:,:,:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_i4_6 
 #else
       integer(kind(hipSuccess)) :: hipHostFree_i4_6
 #endif
       !
-      hipHostFree_i4_6 = hipHostFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_i4_6 = cudaSuccess
+#else
+      hipHostFree_i4_6 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_i4_6 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipHostFree_i4_7(ptr)
+    function hipHostFree_i4_7(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9666,16 +10290,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       integer(4),pointer,dimension(:,:,:,:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_i4_7 
 #else
       integer(kind(hipSuccess)) :: hipHostFree_i4_7
 #endif
       !
-      hipHostFree_i4_7 = hipHostFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_i4_7 = cudaSuccess
+#else
+      hipHostFree_i4_7 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_i4_7 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipHostFree_i8_1(ptr)
+    function hipHostFree_i8_1(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9684,16 +10321,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       integer(8),pointer,dimension(:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_i8_1 
 #else
       integer(kind(hipSuccess)) :: hipHostFree_i8_1
 #endif
       !
-      hipHostFree_i8_1 = hipHostFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_i8_1 = cudaSuccess
+#else
+      hipHostFree_i8_1 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_i8_1 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipHostFree_i8_2(ptr)
+    function hipHostFree_i8_2(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9702,16 +10352,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       integer(8),pointer,dimension(:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_i8_2 
 #else
       integer(kind(hipSuccess)) :: hipHostFree_i8_2
 #endif
       !
-      hipHostFree_i8_2 = hipHostFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_i8_2 = cudaSuccess
+#else
+      hipHostFree_i8_2 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_i8_2 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipHostFree_i8_3(ptr)
+    function hipHostFree_i8_3(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9720,16 +10383,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       integer(8),pointer,dimension(:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_i8_3 
 #else
       integer(kind(hipSuccess)) :: hipHostFree_i8_3
 #endif
       !
-      hipHostFree_i8_3 = hipHostFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_i8_3 = cudaSuccess
+#else
+      hipHostFree_i8_3 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_i8_3 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipHostFree_i8_4(ptr)
+    function hipHostFree_i8_4(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9738,16 +10414,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       integer(8),pointer,dimension(:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_i8_4 
 #else
       integer(kind(hipSuccess)) :: hipHostFree_i8_4
 #endif
       !
-      hipHostFree_i8_4 = hipHostFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_i8_4 = cudaSuccess
+#else
+      hipHostFree_i8_4 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_i8_4 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipHostFree_i8_5(ptr)
+    function hipHostFree_i8_5(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9756,16 +10445,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       integer(8),pointer,dimension(:,:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_i8_5 
 #else
       integer(kind(hipSuccess)) :: hipHostFree_i8_5
 #endif
       !
-      hipHostFree_i8_5 = hipHostFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_i8_5 = cudaSuccess
+#else
+      hipHostFree_i8_5 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_i8_5 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipHostFree_i8_6(ptr)
+    function hipHostFree_i8_6(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9774,16 +10476,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       integer(8),pointer,dimension(:,:,:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_i8_6 
 #else
       integer(kind(hipSuccess)) :: hipHostFree_i8_6
 #endif
       !
-      hipHostFree_i8_6 = hipHostFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_i8_6 = cudaSuccess
+#else
+      hipHostFree_i8_6 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_i8_6 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipHostFree_i8_7(ptr)
+    function hipHostFree_i8_7(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9792,16 +10507,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       integer(8),pointer,dimension(:,:,:,:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_i8_7 
 #else
       integer(kind(hipSuccess)) :: hipHostFree_i8_7
 #endif
       !
-      hipHostFree_i8_7 = hipHostFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_i8_7 = cudaSuccess
+#else
+      hipHostFree_i8_7 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_i8_7 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipHostFree_r4_1(ptr)
+    function hipHostFree_r4_1(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9810,16 +10538,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       real(4),pointer,dimension(:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_r4_1 
 #else
       integer(kind(hipSuccess)) :: hipHostFree_r4_1
 #endif
       !
-      hipHostFree_r4_1 = hipHostFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_r4_1 = cudaSuccess
+#else
+      hipHostFree_r4_1 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_r4_1 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipHostFree_r4_2(ptr)
+    function hipHostFree_r4_2(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9828,16 +10569,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       real(4),pointer,dimension(:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_r4_2 
 #else
       integer(kind(hipSuccess)) :: hipHostFree_r4_2
 #endif
       !
-      hipHostFree_r4_2 = hipHostFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_r4_2 = cudaSuccess
+#else
+      hipHostFree_r4_2 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_r4_2 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipHostFree_r4_3(ptr)
+    function hipHostFree_r4_3(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9846,16 +10600,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       real(4),pointer,dimension(:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_r4_3 
 #else
       integer(kind(hipSuccess)) :: hipHostFree_r4_3
 #endif
       !
-      hipHostFree_r4_3 = hipHostFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_r4_3 = cudaSuccess
+#else
+      hipHostFree_r4_3 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_r4_3 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipHostFree_r4_4(ptr)
+    function hipHostFree_r4_4(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9864,16 +10631,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       real(4),pointer,dimension(:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_r4_4 
 #else
       integer(kind(hipSuccess)) :: hipHostFree_r4_4
 #endif
       !
-      hipHostFree_r4_4 = hipHostFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_r4_4 = cudaSuccess
+#else
+      hipHostFree_r4_4 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_r4_4 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipHostFree_r4_5(ptr)
+    function hipHostFree_r4_5(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9882,16 +10662,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       real(4),pointer,dimension(:,:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_r4_5 
 #else
       integer(kind(hipSuccess)) :: hipHostFree_r4_5
 #endif
       !
-      hipHostFree_r4_5 = hipHostFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_r4_5 = cudaSuccess
+#else
+      hipHostFree_r4_5 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_r4_5 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipHostFree_r4_6(ptr)
+    function hipHostFree_r4_6(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9900,16 +10693,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       real(4),pointer,dimension(:,:,:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_r4_6 
 #else
       integer(kind(hipSuccess)) :: hipHostFree_r4_6
 #endif
       !
-      hipHostFree_r4_6 = hipHostFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_r4_6 = cudaSuccess
+#else
+      hipHostFree_r4_6 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_r4_6 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipHostFree_r4_7(ptr)
+    function hipHostFree_r4_7(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9918,16 +10724,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       real(4),pointer,dimension(:,:,:,:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_r4_7 
 #else
       integer(kind(hipSuccess)) :: hipHostFree_r4_7
 #endif
       !
-      hipHostFree_r4_7 = hipHostFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_r4_7 = cudaSuccess
+#else
+      hipHostFree_r4_7 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_r4_7 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipHostFree_r8_1(ptr)
+    function hipHostFree_r8_1(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9936,16 +10755,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       real(8),pointer,dimension(:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_r8_1 
 #else
       integer(kind(hipSuccess)) :: hipHostFree_r8_1
 #endif
       !
-      hipHostFree_r8_1 = hipHostFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_r8_1 = cudaSuccess
+#else
+      hipHostFree_r8_1 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_r8_1 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipHostFree_r8_2(ptr)
+    function hipHostFree_r8_2(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9954,16 +10786,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       real(8),pointer,dimension(:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_r8_2 
 #else
       integer(kind(hipSuccess)) :: hipHostFree_r8_2
 #endif
       !
-      hipHostFree_r8_2 = hipHostFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_r8_2 = cudaSuccess
+#else
+      hipHostFree_r8_2 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_r8_2 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipHostFree_r8_3(ptr)
+    function hipHostFree_r8_3(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9972,16 +10817,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       real(8),pointer,dimension(:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_r8_3 
 #else
       integer(kind(hipSuccess)) :: hipHostFree_r8_3
 #endif
       !
-      hipHostFree_r8_3 = hipHostFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_r8_3 = cudaSuccess
+#else
+      hipHostFree_r8_3 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_r8_3 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipHostFree_r8_4(ptr)
+    function hipHostFree_r8_4(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -9990,16 +10848,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       real(8),pointer,dimension(:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_r8_4 
 #else
       integer(kind(hipSuccess)) :: hipHostFree_r8_4
 #endif
       !
-      hipHostFree_r8_4 = hipHostFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_r8_4 = cudaSuccess
+#else
+      hipHostFree_r8_4 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_r8_4 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipHostFree_r8_5(ptr)
+    function hipHostFree_r8_5(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -10008,16 +10879,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       real(8),pointer,dimension(:,:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_r8_5 
 #else
       integer(kind(hipSuccess)) :: hipHostFree_r8_5
 #endif
       !
-      hipHostFree_r8_5 = hipHostFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_r8_5 = cudaSuccess
+#else
+      hipHostFree_r8_5 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_r8_5 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipHostFree_r8_6(ptr)
+    function hipHostFree_r8_6(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -10026,16 +10910,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       real(8),pointer,dimension(:,:,:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_r8_6 
 #else
       integer(kind(hipSuccess)) :: hipHostFree_r8_6
 #endif
       !
-      hipHostFree_r8_6 = hipHostFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_r8_6 = cudaSuccess
+#else
+      hipHostFree_r8_6 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_r8_6 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipHostFree_r8_7(ptr)
+    function hipHostFree_r8_7(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -10044,16 +10941,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       real(8),pointer,dimension(:,:,:,:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_r8_7 
 #else
       integer(kind(hipSuccess)) :: hipHostFree_r8_7
 #endif
       !
-      hipHostFree_r8_7 = hipHostFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_r8_7 = cudaSuccess
+#else
+      hipHostFree_r8_7 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_r8_7 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipHostFree_c4_1(ptr)
+    function hipHostFree_c4_1(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -10062,16 +10972,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       complex(4),pointer,dimension(:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_c4_1 
 #else
       integer(kind(hipSuccess)) :: hipHostFree_c4_1
 #endif
       !
-      hipHostFree_c4_1 = hipHostFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_c4_1 = cudaSuccess
+#else
+      hipHostFree_c4_1 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_c4_1 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipHostFree_c4_2(ptr)
+    function hipHostFree_c4_2(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -10080,16 +11003,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       complex(4),pointer,dimension(:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_c4_2 
 #else
       integer(kind(hipSuccess)) :: hipHostFree_c4_2
 #endif
       !
-      hipHostFree_c4_2 = hipHostFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_c4_2 = cudaSuccess
+#else
+      hipHostFree_c4_2 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_c4_2 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipHostFree_c4_3(ptr)
+    function hipHostFree_c4_3(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -10098,16 +11034,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       complex(4),pointer,dimension(:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_c4_3 
 #else
       integer(kind(hipSuccess)) :: hipHostFree_c4_3
 #endif
       !
-      hipHostFree_c4_3 = hipHostFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_c4_3 = cudaSuccess
+#else
+      hipHostFree_c4_3 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_c4_3 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipHostFree_c4_4(ptr)
+    function hipHostFree_c4_4(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -10116,16 +11065,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       complex(4),pointer,dimension(:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_c4_4 
 #else
       integer(kind(hipSuccess)) :: hipHostFree_c4_4
 #endif
       !
-      hipHostFree_c4_4 = hipHostFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_c4_4 = cudaSuccess
+#else
+      hipHostFree_c4_4 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_c4_4 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipHostFree_c4_5(ptr)
+    function hipHostFree_c4_5(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -10134,16 +11096,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       complex(4),pointer,dimension(:,:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_c4_5 
 #else
       integer(kind(hipSuccess)) :: hipHostFree_c4_5
 #endif
       !
-      hipHostFree_c4_5 = hipHostFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_c4_5 = cudaSuccess
+#else
+      hipHostFree_c4_5 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_c4_5 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipHostFree_c4_6(ptr)
+    function hipHostFree_c4_6(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -10152,16 +11127,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       complex(4),pointer,dimension(:,:,:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_c4_6 
 #else
       integer(kind(hipSuccess)) :: hipHostFree_c4_6
 #endif
       !
-      hipHostFree_c4_6 = hipHostFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_c4_6 = cudaSuccess
+#else
+      hipHostFree_c4_6 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_c4_6 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipHostFree_c4_7(ptr)
+    function hipHostFree_c4_7(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -10170,16 +11158,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       complex(4),pointer,dimension(:,:,:,:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_c4_7 
 #else
       integer(kind(hipSuccess)) :: hipHostFree_c4_7
 #endif
       !
-      hipHostFree_c4_7 = hipHostFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_c4_7 = cudaSuccess
+#else
+      hipHostFree_c4_7 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_c4_7 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipHostFree_c8_1(ptr)
+    function hipHostFree_c8_1(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -10188,16 +11189,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       complex(8),pointer,dimension(:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_c8_1 
 #else
       integer(kind(hipSuccess)) :: hipHostFree_c8_1
 #endif
       !
-      hipHostFree_c8_1 = hipHostFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_c8_1 = cudaSuccess
+#else
+      hipHostFree_c8_1 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_c8_1 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipHostFree_c8_2(ptr)
+    function hipHostFree_c8_2(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -10206,16 +11220,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       complex(8),pointer,dimension(:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_c8_2 
 #else
       integer(kind(hipSuccess)) :: hipHostFree_c8_2
 #endif
       !
-      hipHostFree_c8_2 = hipHostFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_c8_2 = cudaSuccess
+#else
+      hipHostFree_c8_2 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_c8_2 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipHostFree_c8_3(ptr)
+    function hipHostFree_c8_3(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -10224,16 +11251,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       complex(8),pointer,dimension(:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_c8_3 
 #else
       integer(kind(hipSuccess)) :: hipHostFree_c8_3
 #endif
       !
-      hipHostFree_c8_3 = hipHostFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_c8_3 = cudaSuccess
+#else
+      hipHostFree_c8_3 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_c8_3 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipHostFree_c8_4(ptr)
+    function hipHostFree_c8_4(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -10242,16 +11282,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       complex(8),pointer,dimension(:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_c8_4 
 #else
       integer(kind(hipSuccess)) :: hipHostFree_c8_4
 #endif
       !
-      hipHostFree_c8_4 = hipHostFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_c8_4 = cudaSuccess
+#else
+      hipHostFree_c8_4 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_c8_4 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipHostFree_c8_5(ptr)
+    function hipHostFree_c8_5(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -10260,16 +11313,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       complex(8),pointer,dimension(:,:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_c8_5 
 #else
       integer(kind(hipSuccess)) :: hipHostFree_c8_5
 #endif
       !
-      hipHostFree_c8_5 = hipHostFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_c8_5 = cudaSuccess
+#else
+      hipHostFree_c8_5 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_c8_5 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipHostFree_c8_6(ptr)
+    function hipHostFree_c8_6(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -10278,16 +11344,29 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       complex(8),pointer,dimension(:,:,:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_c8_6 
 #else
       integer(kind(hipSuccess)) :: hipHostFree_c8_6
 #endif
       !
-      hipHostFree_c8_6 = hipHostFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_c8_6 = cudaSuccess
+#else
+      hipHostFree_c8_6 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_c8_6 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
                                         
-    function hipHostFree_c8_7(ptr)
+    function hipHostFree_c8_7(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
       use hipfort_cuda_errors
@@ -10296,13 +11375,26 @@ module hipfort_hipmalloc
       use hipfort_types
       implicit none
       complex(8),pointer,dimension(:,:,:,:,:,:,:) :: ptr
+      logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_c8_7 
 #else
       integer(kind(hipSuccess)) :: hipHostFree_c8_7
 #endif
       !
-      hipHostFree_c8_7 = hipHostFree_b(c_loc(ptr))
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_c8_7 = cudaSuccess
+#else
+      hipHostFree_c8_7 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_c8_7 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
     end function
 
 end module
