@@ -36,7 +36,6 @@ module hipfort
   implicit none
 
  
-  interface
   !> 
   !>   @brief Waits on all active streams on current device
   !>  
@@ -47,10 +46,11 @@ module hipfort
   !>  
   !>   @see hipSetDevice, hipDeviceReset
   !>  
+  interface hipDeviceSynchronize
 #ifdef USE_CUDA_NAMES
-    function hipDeviceSynchronize() bind(c, name="cudaDeviceSynchronize")
+    function hipDeviceSynchronize_orig() bind(c, name="cudaDeviceSynchronize")
 #else
-    function hipDeviceSynchronize() bind(c, name="hipDeviceSynchronize")
+    function hipDeviceSynchronize_orig() bind(c, name="hipDeviceSynchronize")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -60,12 +60,14 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipDeviceSynchronize
+      integer(kind(cudaSuccess)) :: hipDeviceSynchronize_orig
 #else
-      integer(kind(hipSuccess)) :: hipDeviceSynchronize
+      integer(kind(hipSuccess)) :: hipDeviceSynchronize_orig
 #endif
     end function
 
+
+  end interface
   !> 
   !>   @brief The state of current device is discarded and updated to a fresh state.
   !>  
@@ -77,10 +79,11 @@ module hipfort
   !>  
   !>   @see hipDeviceSynchronize
   !>  
+  interface hipDeviceReset
 #ifdef USE_CUDA_NAMES
-    function hipDeviceReset() bind(c, name="cudaDeviceReset")
+    function hipDeviceReset_orig() bind(c, name="cudaDeviceReset")
 #else
-    function hipDeviceReset() bind(c, name="hipDeviceReset")
+    function hipDeviceReset_orig() bind(c, name="hipDeviceReset")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -90,12 +93,14 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipDeviceReset
+      integer(kind(cudaSuccess)) :: hipDeviceReset_orig
 #else
-      integer(kind(hipSuccess)) :: hipDeviceReset
+      integer(kind(hipSuccess)) :: hipDeviceReset_orig
 #endif
     end function
 
+
+  end interface
   !> 
   !>   @brief Set default device to be used for subsequent hip API calls from this thread.
   !>  
@@ -127,10 +132,11 @@ module hipfort
   !>  
   !>   @see hipGetDevice, hipGetDeviceCount
   !>  
+  interface hipSetDevice
 #ifdef USE_CUDA_NAMES
-    function hipSetDevice(deviceId) bind(c, name="cudaSetDevice")
+    function hipSetDevice_orig(deviceId) bind(c, name="cudaSetDevice")
 #else
-    function hipSetDevice(deviceId) bind(c, name="hipSetDevice")
+    function hipSetDevice_orig(deviceId) bind(c, name="hipSetDevice")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -140,13 +146,15 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipSetDevice
+      integer(kind(cudaSuccess)) :: hipSetDevice_orig
 #else
-      integer(kind(hipSuccess)) :: hipSetDevice
+      integer(kind(hipSuccess)) :: hipSetDevice_orig
 #endif
       integer(c_int),value :: deviceId
     end function
 
+
+  end interface
   !> 
   !>   @brief Return the default device id for the calling host thread.
   !>  
@@ -160,10 +168,11 @@ module hipfort
   !>  
   !>   @see hipSetDevice, hipGetDevicesizeBytes
   !>  
+  interface hipGetDevice
 #ifdef USE_CUDA_NAMES
-    function hipGetDevice(deviceId) bind(c, name="cudaGetDevice")
+    function hipGetDevice_orig(deviceId) bind(c, name="cudaGetDevice")
 #else
-    function hipGetDevice(deviceId) bind(c, name="hipGetDevice")
+    function hipGetDevice_orig(deviceId) bind(c, name="hipGetDevice")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -173,13 +182,15 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipGetDevice
+      integer(kind(cudaSuccess)) :: hipGetDevice_orig
 #else
-      integer(kind(hipSuccess)) :: hipGetDevice
+      integer(kind(hipSuccess)) :: hipGetDevice_orig
 #endif
       type(c_ptr),value :: deviceId
     end function
 
+
+  end interface
   !> 
   !>   @brief Return number of compute-capable devices.
   !>  
@@ -192,10 +203,11 @@ module hipfort
   !>   are no such devices, then @ref hipGetDeviceCount will return #hipErrorNoDevice. If 1 or more
   !>   devices can be found, then hipGetDeviceCount returns #hipSuccess.
   !>  
+  interface hipGetDeviceCount
 #ifdef USE_CUDA_NAMES
-    function hipGetDeviceCount(count) bind(c, name="cudaGetDeviceCount")
+    function hipGetDeviceCount_orig(count) bind(c, name="cudaGetDeviceCount")
 #else
-    function hipGetDeviceCount(count) bind(c, name="hipGetDeviceCount")
+    function hipGetDeviceCount_orig(count) bind(c, name="hipGetDeviceCount")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -205,13 +217,15 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipGetDeviceCount
+      integer(kind(cudaSuccess)) :: hipGetDeviceCount_orig
 #else
-      integer(kind(hipSuccess)) :: hipGetDeviceCount
+      integer(kind(hipSuccess)) :: hipGetDeviceCount_orig
 #endif
       type(c_ptr),value :: count
     end function
 
+
+  end interface
   !> 
   !>   @brief Query for a specific device attribute.
   !>  
@@ -221,10 +235,11 @@ module hipfort
   !>  
   !>   @returns #hipSuccess, #hipErrorInvalidDevice, #hipErrorInvalidValue
   !>  
+  interface hipDeviceGetAttribute
 #ifdef USE_CUDA_NAMES
-    function hipDeviceGetAttribute(pi,attr,deviceId) bind(c, name="cudaDeviceGetAttribute")
+    function hipDeviceGetAttribute_orig(pi,attr,deviceId) bind(c, name="cudaDeviceGetAttribute")
 #else
-    function hipDeviceGetAttribute(pi,attr,deviceId) bind(c, name="hipDeviceGetAttribute")
+    function hipDeviceGetAttribute_orig(pi,attr,deviceId) bind(c, name="hipDeviceGetAttribute")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -234,15 +249,17 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipDeviceGetAttribute
+      integer(kind(cudaSuccess)) :: hipDeviceGetAttribute_orig
 #else
-      integer(kind(hipSuccess)) :: hipDeviceGetAttribute
+      integer(kind(hipSuccess)) :: hipDeviceGetAttribute_orig
 #endif
       type(c_ptr),value :: pi
       integer(kind(hipDeviceAttributeMaxThreadsPerBlock)),value :: attr
       integer(c_int),value :: deviceId
     end function
 
+
+  end interface
   !> 
   !>   @brief Returns device properties.
   !>  
@@ -256,10 +273,11 @@ module hipfort
   !>  
   !>   Populates hipGetDeviceProperties with information for the specified device.
   !>  
+  interface hipGetDeviceProperties
 #ifdef USE_CUDA_NAMES
-    function hipGetDeviceProperties(prop,deviceId) bind(c, name="cudaGetDeviceProperties")
+    function hipGetDeviceProperties_orig(prop,deviceId) bind(c, name="cudaGetDeviceProperties")
 #else
-    function hipGetDeviceProperties(prop,deviceId) bind(c, name="hipGetDeviceProperties")
+    function hipGetDeviceProperties_orig(prop,deviceId) bind(c, name="hipGetDeviceProperties")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -269,14 +287,16 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipGetDeviceProperties
+      integer(kind(cudaSuccess)) :: hipGetDeviceProperties_orig
 #else
-      integer(kind(hipSuccess)) :: hipGetDeviceProperties
+      integer(kind(hipSuccess)) :: hipGetDeviceProperties_orig
 #endif
       type(c_ptr) :: prop
       integer(c_int),value :: deviceId
     end function
 
+
+  end interface
   !> 
   !>   @brief Set L1Shared cache partition.
   !>  
@@ -287,10 +307,11 @@ module hipfort
   !>   on those architectures.
   !>  
   !>  
+  interface hipDeviceSetCacheConfig
 #ifdef USE_CUDA_NAMES
-    function hipDeviceSetCacheConfig(cacheConfig) bind(c, name="cudaDeviceSetCacheConfig")
+    function hipDeviceSetCacheConfig_orig(cacheConfig) bind(c, name="cudaDeviceSetCacheConfig")
 #else
-    function hipDeviceSetCacheConfig(cacheConfig) bind(c, name="hipDeviceSetCacheConfig")
+    function hipDeviceSetCacheConfig_orig(cacheConfig) bind(c, name="hipDeviceSetCacheConfig")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -300,13 +321,15 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipDeviceSetCacheConfig
+      integer(kind(cudaSuccess)) :: hipDeviceSetCacheConfig_orig
 #else
-      integer(kind(hipSuccess)) :: hipDeviceSetCacheConfig
+      integer(kind(hipSuccess)) :: hipDeviceSetCacheConfig_orig
 #endif
       integer(kind(hipFuncCachePreferNone)),value :: cacheConfig
     end function
 
+
+  end interface
   !> 
   !>   @brief Set Cache configuration for a specific function
   !>  
@@ -317,10 +340,11 @@ module hipfort
   !>   on those architectures.
   !>  
   !>  
+  interface hipDeviceGetCacheConfig
 #ifdef USE_CUDA_NAMES
-    function hipDeviceGetCacheConfig(cacheConfig) bind(c, name="cudaDeviceGetCacheConfig")
+    function hipDeviceGetCacheConfig_orig(cacheConfig) bind(c, name="cudaDeviceGetCacheConfig")
 #else
-    function hipDeviceGetCacheConfig(cacheConfig) bind(c, name="hipDeviceGetCacheConfig")
+    function hipDeviceGetCacheConfig_orig(cacheConfig) bind(c, name="hipDeviceGetCacheConfig")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -330,13 +354,15 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipDeviceGetCacheConfig
+      integer(kind(cudaSuccess)) :: hipDeviceGetCacheConfig_orig
 #else
-      integer(kind(hipSuccess)) :: hipDeviceGetCacheConfig
+      integer(kind(hipSuccess)) :: hipDeviceGetCacheConfig_orig
 #endif
       type(c_ptr),value :: cacheConfig
     end function
 
+
+  end interface
   !> 
   !>   @brief Get Resource limits of current device
   !>  
@@ -347,10 +373,11 @@ module hipfort
   !>   Note: Currently, only hipLimitMallocHeapSize is available
   !>  
   !>  
+  interface hipDeviceGetLimit
 #ifdef USE_CUDA_NAMES
-    function hipDeviceGetLimit(pValue,limit) bind(c, name="cudaDeviceGetLimit")
+    function hipDeviceGetLimit_orig(pValue,limit) bind(c, name="cudaDeviceGetLimit")
 #else
-    function hipDeviceGetLimit(pValue,limit) bind(c, name="hipDeviceGetLimit")
+    function hipDeviceGetLimit_orig(pValue,limit) bind(c, name="hipDeviceGetLimit")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -360,14 +387,54 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipDeviceGetLimit
+      integer(kind(cudaSuccess)) :: hipDeviceGetLimit_orig
 #else
-      integer(kind(hipSuccess)) :: hipDeviceGetLimit
+      integer(kind(hipSuccess)) :: hipDeviceGetLimit_orig
 #endif
       integer(c_size_t) :: pValue
       integer(kind(hipLimitMallocHeapSize)),value :: limit
     end function
 
+
+  end interface
+  !> 
+  !>   @brief Set attribute for a specific function
+  !>  
+  !>   @param [in] func;
+  !>   @param [in] attr;
+  !>   @param [in] value;
+  !>  
+  !>   @returns #hipSuccess, #hipErrorInvalidDeviceFunction, #hipErrorInvalidValue
+  !>  
+  !>   Note: AMD devices and some Nvidia GPUS do not support shared cache banking, and the hint is
+  !>   ignored on those architectures.
+  !>  
+  !>  
+  interface hipFuncSetAttribute
+#ifdef USE_CUDA_NAMES
+    function hipFuncSetAttribute_orig(func,attr,myValue) bind(c, name="cudaFuncSetAttribute")
+#else
+    function hipFuncSetAttribute_orig(func,attr,myValue) bind(c, name="hipFuncSetAttribute")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipFuncSetAttribute_orig
+#else
+      integer(kind(hipSuccess)) :: hipFuncSetAttribute_orig
+#endif
+      type(c_ptr),value :: func
+      integer(kind(hipFuncAttributeMaxDynamicSharedMemorySize)),value :: attr
+      integer(c_int),value :: myValue
+    end function
+
+
+  end interface
   !> 
   !>   @brief Set Cache configuration for a specific function
   !>  
@@ -378,10 +445,11 @@ module hipfort
   !>   on those architectures.
   !>  
   !>  
+  interface hipFuncSetCacheConfig
 #ifdef USE_CUDA_NAMES
-    function hipFuncSetCacheConfig(func,config) bind(c, name="cudaFuncSetCacheConfig")
+    function hipFuncSetCacheConfig_orig(func,config) bind(c, name="cudaFuncSetCacheConfig")
 #else
-    function hipFuncSetCacheConfig(func,config) bind(c, name="hipFuncSetCacheConfig")
+    function hipFuncSetCacheConfig_orig(func,config) bind(c, name="hipFuncSetCacheConfig")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -391,14 +459,52 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipFuncSetCacheConfig
+      integer(kind(cudaSuccess)) :: hipFuncSetCacheConfig_orig
 #else
-      integer(kind(hipSuccess)) :: hipFuncSetCacheConfig
+      integer(kind(hipSuccess)) :: hipFuncSetCacheConfig_orig
 #endif
       type(c_ptr),value :: func
       integer(kind(hipFuncCachePreferNone)),value :: config
     end function
 
+
+  end interface
+  !> 
+  !>   @brief Set shared memory configuation for a specific function
+  !>  
+  !>   @param [in] func
+  !>   @param [in] config
+  !>  
+  !>   @returns #hipSuccess, #hipErrorInvalidDeviceFunction, #hipErrorInvalidValue
+  !>  
+  !>   Note: AMD devices and some Nvidia GPUS do not support shared cache banking, and the hint is
+  !>   ignored on those architectures.
+  !>  
+  !>  
+  interface hipFuncSetSharedMemConfig
+#ifdef USE_CUDA_NAMES
+    function hipFuncSetSharedMemConfig_orig(func,config) bind(c, name="cudaFuncSetSharedMemConfig")
+#else
+    function hipFuncSetSharedMemConfig_orig(func,config) bind(c, name="hipFuncSetSharedMemConfig")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipFuncSetSharedMemConfig_orig
+#else
+      integer(kind(hipSuccess)) :: hipFuncSetSharedMemConfig_orig
+#endif
+      type(c_ptr),value :: func
+      integer(kind(hipSharedMemBankSizeDefault)),value :: config
+    end function
+
+
+  end interface
   !> 
   !>   @brief Returns bank width of shared memory for current device
   !>  
@@ -410,10 +516,11 @@ module hipfort
   !>   ignored on those architectures.
   !>  
   !>  
+  interface hipDeviceGetSharedMemConfig
 #ifdef USE_CUDA_NAMES
-    function hipDeviceGetSharedMemConfig(pConfig) bind(c, name="cudaDeviceGetSharedMemConfig")
+    function hipDeviceGetSharedMemConfig_orig(pConfig) bind(c, name="cudaDeviceGetSharedMemConfig")
 #else
-    function hipDeviceGetSharedMemConfig(pConfig) bind(c, name="hipDeviceGetSharedMemConfig")
+    function hipDeviceGetSharedMemConfig_orig(pConfig) bind(c, name="hipDeviceGetSharedMemConfig")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -423,13 +530,15 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipDeviceGetSharedMemConfig
+      integer(kind(cudaSuccess)) :: hipDeviceGetSharedMemConfig_orig
 #else
-      integer(kind(hipSuccess)) :: hipDeviceGetSharedMemConfig
+      integer(kind(hipSuccess)) :: hipDeviceGetSharedMemConfig_orig
 #endif
       type(c_ptr),value :: pConfig
     end function
 
+
+  end interface
   !> 
   !>   @brief Gets the flags set for current device
   !>  
@@ -437,10 +546,11 @@ module hipfort
   !>  
   !>   @returns #hipSuccess, #hipErrorInvalidDevice, #hipErrorInvalidValue
   !>  
+  interface hipGetDeviceFlags
 #ifdef USE_CUDA_NAMES
-    function hipGetDeviceFlags(flags) bind(c, name="cudaGetDeviceFlags")
+    function hipGetDeviceFlags_orig(flags) bind(c, name="cudaGetDeviceFlags")
 #else
-    function hipGetDeviceFlags(flags) bind(c, name="hipGetDeviceFlags")
+    function hipGetDeviceFlags_orig(flags) bind(c, name="hipGetDeviceFlags")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -450,13 +560,15 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipGetDeviceFlags
+      integer(kind(cudaSuccess)) :: hipGetDeviceFlags_orig
 #else
-      integer(kind(hipSuccess)) :: hipGetDeviceFlags
+      integer(kind(hipSuccess)) :: hipGetDeviceFlags_orig
 #endif
       type(c_ptr),value :: flags
     end function
 
+
+  end interface
   !> 
   !>   @brief The bank width of shared memory on current device is set
   !>  
@@ -468,10 +580,11 @@ module hipfort
   !>   ignored on those architectures.
   !>  
   !>  
+  interface hipDeviceSetSharedMemConfig
 #ifdef USE_CUDA_NAMES
-    function hipDeviceSetSharedMemConfig(config) bind(c, name="cudaDeviceSetSharedMemConfig")
+    function hipDeviceSetSharedMemConfig_orig(config) bind(c, name="cudaDeviceSetSharedMemConfig")
 #else
-    function hipDeviceSetSharedMemConfig(config) bind(c, name="hipDeviceSetSharedMemConfig")
+    function hipDeviceSetSharedMemConfig_orig(config) bind(c, name="hipDeviceSetSharedMemConfig")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -481,13 +594,15 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipDeviceSetSharedMemConfig
+      integer(kind(cudaSuccess)) :: hipDeviceSetSharedMemConfig_orig
 #else
-      integer(kind(hipSuccess)) :: hipDeviceSetSharedMemConfig
+      integer(kind(hipSuccess)) :: hipDeviceSetSharedMemConfig_orig
 #endif
       integer(kind(hipSharedMemBankSizeDefault)),value :: config
     end function
 
+
+  end interface
   !> 
   !>   @brief The current device behavior is changed according the flags passed.
   !>  
@@ -512,10 +627,11 @@ module hipfort
   !>  
   !>  
   !>  
+  interface hipSetDeviceFlags
 #ifdef USE_CUDA_NAMES
-    function hipSetDeviceFlags(flags) bind(c, name="cudaSetDeviceFlags")
+    function hipSetDeviceFlags_orig(flags) bind(c, name="cudaSetDeviceFlags")
 #else
-    function hipSetDeviceFlags(flags) bind(c, name="hipSetDeviceFlags")
+    function hipSetDeviceFlags_orig(flags) bind(c, name="hipSetDeviceFlags")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -525,13 +641,15 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipSetDeviceFlags
+      integer(kind(cudaSuccess)) :: hipSetDeviceFlags_orig
 #else
-      integer(kind(hipSuccess)) :: hipSetDeviceFlags
+      integer(kind(hipSuccess)) :: hipSetDeviceFlags_orig
 #endif
       integer(kind=4),value :: flags
     end function
 
+
+  end interface
   !> 
   !>   @brief Device which matches hipDeviceProp_t is returned
   !>  
@@ -540,10 +658,11 @@ module hipfort
   !>  
   !>   @returns #hipSuccess, #hipErrorInvalidValue
   !>  
+  interface hipChooseDevice
 #ifdef USE_CUDA_NAMES
-    function hipChooseDevice(device,prop) bind(c, name="cudaChooseDevice")
+    function hipChooseDevice_orig(device,prop) bind(c, name="cudaChooseDevice")
 #else
-    function hipChooseDevice(device,prop) bind(c, name="hipChooseDevice")
+    function hipChooseDevice_orig(device,prop) bind(c, name="hipChooseDevice")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -553,14 +672,16 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipChooseDevice
+      integer(kind(cudaSuccess)) :: hipChooseDevice_orig
 #else
-      integer(kind(hipSuccess)) :: hipChooseDevice
+      integer(kind(hipSuccess)) :: hipChooseDevice_orig
 #endif
       type(c_ptr),value :: device
       type(c_ptr) :: prop
     end function
 
+
+  end interface
   !> 
   !>   @brief Returns the link type and hop count between two devices
   !>  
@@ -573,10 +694,11 @@ module hipfort
   !>  
   !>   @returns #hipSuccess, #hipInvalidDevice, #hipErrorRuntimeOther
   !>  
+  interface hipExtGetLinkTypeAndHopCount
 #ifdef USE_CUDA_NAMES
-    function hipExtGetLinkTypeAndHopCount(device1,device2,linktype,hopcount) bind(c, name="cudaExtGetLinkTypeAndHopCount")
+    function hipExtGetLinkTypeAndHopCount_orig(device1,device2,linktype,hopcount) bind(c, name="cudaExtGetLinkTypeAndHopCount")
 #else
-    function hipExtGetLinkTypeAndHopCount(device1,device2,linktype,hopcount) bind(c, name="hipExtGetLinkTypeAndHopCount")
+    function hipExtGetLinkTypeAndHopCount_orig(device1,device2,linktype,hopcount) bind(c, name="hipExtGetLinkTypeAndHopCount")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -586,9 +708,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipExtGetLinkTypeAndHopCount
+      integer(kind(cudaSuccess)) :: hipExtGetLinkTypeAndHopCount_orig
 #else
-      integer(kind(hipSuccess)) :: hipExtGetLinkTypeAndHopCount
+      integer(kind(hipSuccess)) :: hipExtGetLinkTypeAndHopCount_orig
 #endif
       integer(c_int),value :: device1
       integer(c_int),value :: device2
@@ -596,6 +718,8 @@ module hipfort
       type(c_ptr),value :: hopcount
     end function
 
+
+  end interface
   !> 
   !>   @brief Return last error returned by any HIP runtime API call and resets the stored error code to
   !>   #hipSuccess
@@ -607,10 +731,11 @@ module hipfort
   !>  
   !>   @see hipGetErrorString, hipGetLastError, hipPeakAtLastError, hipError_t
   !>  
+  interface hipGetLastError
 #ifdef USE_CUDA_NAMES
-    function hipGetLastError() bind(c, name="cudaGetLastError")
+    function hipGetLastError_orig() bind(c, name="cudaGetLastError")
 #else
-    function hipGetLastError() bind(c, name="hipGetLastError")
+    function hipGetLastError_orig() bind(c, name="hipGetLastError")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -620,12 +745,14 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipGetLastError
+      integer(kind(cudaSuccess)) :: hipGetLastError_orig
 #else
-      integer(kind(hipSuccess)) :: hipGetLastError
+      integer(kind(hipSuccess)) :: hipGetLastError_orig
 #endif
     end function
 
+
+  end interface
   !> 
   !>   @brief Return last error returned by any HIP runtime API call.
   !>  
@@ -636,10 +763,11 @@ module hipfort
   !>  
   !>   @see hipGetErrorString, hipGetLastError, hipPeakAtLastError, hipError_t
   !>  
+  interface hipPeekAtLastError
 #ifdef USE_CUDA_NAMES
-    function hipPeekAtLastError() bind(c, name="cudaPeekAtLastError")
+    function hipPeekAtLastError_orig() bind(c, name="cudaPeekAtLastError")
 #else
-    function hipPeekAtLastError() bind(c, name="hipPeekAtLastError")
+    function hipPeekAtLastError_orig() bind(c, name="hipPeekAtLastError")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -649,12 +777,14 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipPeekAtLastError
+      integer(kind(cudaSuccess)) :: hipPeekAtLastError_orig
 #else
-      integer(kind(hipSuccess)) :: hipPeekAtLastError
+      integer(kind(hipSuccess)) :: hipPeekAtLastError_orig
 #endif
     end function
 
+
+  end interface
   !> 
   !>   @brief Create an asynchronous stream.
   !>  
@@ -671,10 +801,11 @@ module hipfort
   !>  
   !>   @see hipStreamCreateWithFlags, hipStreamCreateWithPriority, hipStreamSynchronize, hipStreamWaitEvent, hipStreamDestroy
   !>  
+  interface hipStreamCreate
 #ifdef USE_CUDA_NAMES
-    function hipStreamCreate(stream) bind(c, name="cudaStreamCreate")
+    function hipStreamCreate_orig(stream) bind(c, name="cudaStreamCreate")
 #else
-    function hipStreamCreate(stream) bind(c, name="hipStreamCreate")
+    function hipStreamCreate_orig(stream) bind(c, name="hipStreamCreate")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -684,13 +815,15 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipStreamCreate
+      integer(kind(cudaSuccess)) :: hipStreamCreate_orig
 #else
-      integer(kind(hipSuccess)) :: hipStreamCreate
+      integer(kind(hipSuccess)) :: hipStreamCreate_orig
 #endif
       type(c_ptr) :: stream
     end function
 
+
+  end interface
   !> 
   !>   @brief Create an asynchronous stream.
   !>  
@@ -707,10 +840,11 @@ module hipfort
   !>  
   !>   @see hipStreamCreate, hipStreamCreateWithPriority, hipStreamSynchronize, hipStreamWaitEvent, hipStreamDestroy
   !>  
+  interface hipStreamCreateWithFlags
 #ifdef USE_CUDA_NAMES
-    function hipStreamCreateWithFlags(stream,flags) bind(c, name="cudaStreamCreateWithFlags")
+    function hipStreamCreateWithFlags_orig(stream,flags) bind(c, name="cudaStreamCreateWithFlags")
 #else
-    function hipStreamCreateWithFlags(stream,flags) bind(c, name="hipStreamCreateWithFlags")
+    function hipStreamCreateWithFlags_orig(stream,flags) bind(c, name="hipStreamCreateWithFlags")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -720,14 +854,16 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipStreamCreateWithFlags
+      integer(kind(cudaSuccess)) :: hipStreamCreateWithFlags_orig
 #else
-      integer(kind(hipSuccess)) :: hipStreamCreateWithFlags
+      integer(kind(hipSuccess)) :: hipStreamCreateWithFlags_orig
 #endif
       type(c_ptr) :: stream
       integer(kind=4),value :: flags
     end function
 
+
+  end interface
   !> 
   !>   @brief Create an asynchronous stream with the specified priority.
   !>  
@@ -745,10 +881,11 @@ module hipfort
   !>  
   !>   @see hipStreamCreate, hipStreamSynchronize, hipStreamWaitEvent, hipStreamDestroy
   !>  
+  interface hipStreamCreateWithPriority
 #ifdef USE_CUDA_NAMES
-    function hipStreamCreateWithPriority(stream,flags,priority) bind(c, name="cudaStreamCreateWithPriority")
+    function hipStreamCreateWithPriority_orig(stream,flags,priority) bind(c, name="cudaStreamCreateWithPriority")
 #else
-    function hipStreamCreateWithPriority(stream,flags,priority) bind(c, name="hipStreamCreateWithPriority")
+    function hipStreamCreateWithPriority_orig(stream,flags,priority) bind(c, name="hipStreamCreateWithPriority")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -758,15 +895,17 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipStreamCreateWithPriority
+      integer(kind(cudaSuccess)) :: hipStreamCreateWithPriority_orig
 #else
-      integer(kind(hipSuccess)) :: hipStreamCreateWithPriority
+      integer(kind(hipSuccess)) :: hipStreamCreateWithPriority_orig
 #endif
       type(c_ptr) :: stream
       integer(kind=4),value :: flags
       integer(c_int),value :: priority
     end function
 
+
+  end interface
   !> 
   !>   @brief Returns numerical values that correspond to the least and greatest stream priority.
   !>  
@@ -780,10 +919,11 @@ module hipfort
   !>   that is outside the the meaningful range as specified by this API, the priority is automatically
   !>   clamped to within the valid range.
   !>  
+  interface hipDeviceGetStreamPriorityRange
 #ifdef USE_CUDA_NAMES
-    function hipDeviceGetStreamPriorityRange(leastPriority,greatestPriority) bind(c, name="cudaDeviceGetStreamPriorityRange")
+    function hipDeviceGetStreamPriorityRange_orig(leastPriority,greatestPriority) bind(c, name="cudaDeviceGetStreamPriorityRange")
 #else
-    function hipDeviceGetStreamPriorityRange(leastPriority,greatestPriority) bind(c, name="hipDeviceGetStreamPriorityRange")
+    function hipDeviceGetStreamPriorityRange_orig(leastPriority,greatestPriority) bind(c, name="hipDeviceGetStreamPriorityRange")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -793,14 +933,16 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipDeviceGetStreamPriorityRange
+      integer(kind(cudaSuccess)) :: hipDeviceGetStreamPriorityRange_orig
 #else
-      integer(kind(hipSuccess)) :: hipDeviceGetStreamPriorityRange
+      integer(kind(hipSuccess)) :: hipDeviceGetStreamPriorityRange_orig
 #endif
       type(c_ptr),value :: leastPriority
       type(c_ptr),value :: greatestPriority
     end function
 
+
+  end interface
   !> 
   !>   @brief Destroys the specified stream.
   !>  
@@ -819,10 +961,11 @@ module hipfort
   !>   @see hipStreamCreate, hipStreamCreateWithFlags, hipStreamCreateWithPriority, hipStreamQuery, hipStreamWaitEvent,
   !>   hipStreamSynchronize
   !>  
+  interface hipStreamDestroy
 #ifdef USE_CUDA_NAMES
-    function hipStreamDestroy(stream) bind(c, name="cudaStreamDestroy")
+    function hipStreamDestroy_orig(stream) bind(c, name="cudaStreamDestroy")
 #else
-    function hipStreamDestroy(stream) bind(c, name="hipStreamDestroy")
+    function hipStreamDestroy_orig(stream) bind(c, name="hipStreamDestroy")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -832,13 +975,15 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipStreamDestroy
+      integer(kind(cudaSuccess)) :: hipStreamDestroy_orig
 #else
-      integer(kind(hipSuccess)) :: hipStreamDestroy
+      integer(kind(hipSuccess)) :: hipStreamDestroy_orig
 #endif
       type(c_ptr),value :: stream
     end function
 
+
+  end interface
   !> 
   !>   @brief Return #hipSuccess if all of the operations in the specified @p stream have completed, or
   !>   #hipErrorNotReady if not.
@@ -854,10 +999,11 @@ module hipfort
   !>   @see hipStreamCreate, hipStreamCreateWithFlags, hipStreamCreateWithPriority, hipStreamWaitEvent, hipStreamSynchronize,
   !>   hipStreamDestroy
   !>  
+  interface hipStreamQuery
 #ifdef USE_CUDA_NAMES
-    function hipStreamQuery(stream) bind(c, name="cudaStreamQuery")
+    function hipStreamQuery_orig(stream) bind(c, name="cudaStreamQuery")
 #else
-    function hipStreamQuery(stream) bind(c, name="hipStreamQuery")
+    function hipStreamQuery_orig(stream) bind(c, name="hipStreamQuery")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -867,13 +1013,15 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipStreamQuery
+      integer(kind(cudaSuccess)) :: hipStreamQuery_orig
 #else
-      integer(kind(hipSuccess)) :: hipStreamQuery
+      integer(kind(hipSuccess)) :: hipStreamQuery_orig
 #endif
       type(c_ptr),value :: stream
     end function
 
+
+  end interface
   !> 
   !>   @brief Wait for all commands in stream to complete.
   !>  
@@ -893,10 +1041,11 @@ module hipfort
   !>   @see hipStreamCreate, hipStreamCreateWithFlags, hipStreamCreateWithPriority, hipStreamWaitEvent, hipStreamDestroy
   !>  
   !>  
+  interface hipStreamSynchronize
 #ifdef USE_CUDA_NAMES
-    function hipStreamSynchronize(stream) bind(c, name="cudaStreamSynchronize")
+    function hipStreamSynchronize_orig(stream) bind(c, name="cudaStreamSynchronize")
 #else
-    function hipStreamSynchronize(stream) bind(c, name="hipStreamSynchronize")
+    function hipStreamSynchronize_orig(stream) bind(c, name="hipStreamSynchronize")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -906,13 +1055,15 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipStreamSynchronize
+      integer(kind(cudaSuccess)) :: hipStreamSynchronize_orig
 #else
-      integer(kind(hipSuccess)) :: hipStreamSynchronize
+      integer(kind(hipSuccess)) :: hipStreamSynchronize_orig
 #endif
       type(c_ptr),value :: stream
     end function
 
+
+  end interface
   !> 
   !>   @brief Make the specified compute stream wait for an event
   !>  
@@ -932,10 +1083,11 @@ module hipfort
   !>  
   !>   @see hipStreamCreate, hipStreamCreateWithFlags, hipStreamCreateWithPriority, hipStreamSynchronize, hipStreamDestroy
   !>  
+  interface hipStreamWaitEvent
 #ifdef USE_CUDA_NAMES
-    function hipStreamWaitEvent(stream,event,flags) bind(c, name="cudaStreamWaitEvent")
+    function hipStreamWaitEvent_orig(stream,event,flags) bind(c, name="cudaStreamWaitEvent")
 #else
-    function hipStreamWaitEvent(stream,event,flags) bind(c, name="hipStreamWaitEvent")
+    function hipStreamWaitEvent_orig(stream,event,flags) bind(c, name="hipStreamWaitEvent")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -945,15 +1097,17 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipStreamWaitEvent
+      integer(kind(cudaSuccess)) :: hipStreamWaitEvent_orig
 #else
-      integer(kind(hipSuccess)) :: hipStreamWaitEvent
+      integer(kind(hipSuccess)) :: hipStreamWaitEvent_orig
 #endif
       type(c_ptr),value :: stream
       type(c_ptr),value :: event
       integer(kind=4),value :: flags
     end function
 
+
+  end interface
   !> 
   !>   @brief Return flags associated with this stream.
   !>  
@@ -967,10 +1121,11 @@ module hipfort
   !>  
   !>   @see hipStreamCreateWithFlags
   !>  
+  interface hipStreamGetFlags
 #ifdef USE_CUDA_NAMES
-    function hipStreamGetFlags(stream,flags) bind(c, name="cudaStreamGetFlags")
+    function hipStreamGetFlags_orig(stream,flags) bind(c, name="cudaStreamGetFlags")
 #else
-    function hipStreamGetFlags(stream,flags) bind(c, name="hipStreamGetFlags")
+    function hipStreamGetFlags_orig(stream,flags) bind(c, name="hipStreamGetFlags")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -980,14 +1135,16 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipStreamGetFlags
+      integer(kind(cudaSuccess)) :: hipStreamGetFlags_orig
 #else
-      integer(kind(hipSuccess)) :: hipStreamGetFlags
+      integer(kind(hipSuccess)) :: hipStreamGetFlags_orig
 #endif
       type(c_ptr),value :: stream
       type(c_ptr),value :: flags
     end function
 
+
+  end interface
   !> 
   !>   @brief Query the priority of a stream.
   !>  
@@ -1001,10 +1158,11 @@ module hipfort
   !>  
   !>   @see hipStreamCreateWithFlags
   !>  
+  interface hipStreamGetPriority
 #ifdef USE_CUDA_NAMES
-    function hipStreamGetPriority(stream,priority) bind(c, name="cudaStreamGetPriority")
+    function hipStreamGetPriority_orig(stream,priority) bind(c, name="cudaStreamGetPriority")
 #else
-    function hipStreamGetPriority(stream,priority) bind(c, name="hipStreamGetPriority")
+    function hipStreamGetPriority_orig(stream,priority) bind(c, name="hipStreamGetPriority")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1014,14 +1172,16 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipStreamGetPriority
+      integer(kind(cudaSuccess)) :: hipStreamGetPriority_orig
 #else
-      integer(kind(hipSuccess)) :: hipStreamGetPriority
+      integer(kind(hipSuccess)) :: hipStreamGetPriority_orig
 #endif
       type(c_ptr),value :: stream
       type(c_ptr),value :: priority
     end function
 
+
+  end interface
   !> 
   !>   @brief Create an asynchronous stream with the specified CU mask.
   !>  
@@ -1041,10 +1201,11 @@ module hipfort
   !>  
   !>   @see hipStreamCreate, hipStreamSynchronize, hipStreamWaitEvent, hipStreamDestroy
   !>  
+  interface hipExtStreamCreateWithCUMask
 #ifdef USE_CUDA_NAMES
-    function hipExtStreamCreateWithCUMask(stream,cuMaskSize,cuMask) bind(c, name="cudaExtStreamCreateWithCUMask")
+    function hipExtStreamCreateWithCUMask_orig(stream,cuMaskSize,cuMask) bind(c, name="cudaExtStreamCreateWithCUMask")
 #else
-    function hipExtStreamCreateWithCUMask(stream,cuMaskSize,cuMask) bind(c, name="hipExtStreamCreateWithCUMask")
+    function hipExtStreamCreateWithCUMask_orig(stream,cuMaskSize,cuMask) bind(c, name="hipExtStreamCreateWithCUMask")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1054,15 +1215,17 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipExtStreamCreateWithCUMask
+      integer(kind(cudaSuccess)) :: hipExtStreamCreateWithCUMask_orig
 #else
-      integer(kind(hipSuccess)) :: hipExtStreamCreateWithCUMask
+      integer(kind(hipSuccess)) :: hipExtStreamCreateWithCUMask_orig
 #endif
       type(c_ptr) :: stream
       integer(kind=4),value :: cuMaskSize
       type(c_ptr),value :: cuMask
     end function
 
+
+  end interface
   !> 
   !>   @brief Adds a callback to be called on the host after all currently enqueued
   !>   items in the stream have completed.  For each
@@ -1078,10 +1241,11 @@ module hipfort
   !>   hipStreamWaitEvent, hipStreamDestroy, hipStreamCreateWithPriority
   !>  
   !>  
+  interface hipStreamAddCallback
 #ifdef USE_CUDA_NAMES
-    function hipStreamAddCallback(stream,callback,userData,flags) bind(c, name="cudaStreamAddCallback")
+    function hipStreamAddCallback_orig(stream,callback,userData,flags) bind(c, name="cudaStreamAddCallback")
 #else
-    function hipStreamAddCallback(stream,callback,userData,flags) bind(c, name="hipStreamAddCallback")
+    function hipStreamAddCallback_orig(stream,callback,userData,flags) bind(c, name="hipStreamAddCallback")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1091,9 +1255,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipStreamAddCallback
+      integer(kind(cudaSuccess)) :: hipStreamAddCallback_orig
 #else
-      integer(kind(hipSuccess)) :: hipStreamAddCallback
+      integer(kind(hipSuccess)) :: hipStreamAddCallback_orig
 #endif
       type(c_ptr),value :: stream
       type(c_funptr),value :: callback
@@ -1101,6 +1265,8 @@ module hipfort
       integer(kind=4),value :: flags
     end function
 
+
+  end interface
   !> 
   !>   @brief Create an event with the specified flags
   !>  
@@ -1125,10 +1291,11 @@ module hipfort
   !>  
   !>   @see hipEventCreate, hipEventSynchronize, hipEventDestroy, hipEventElapsedTime
   !>  
+  interface hipEventCreateWithFlags
 #ifdef USE_CUDA_NAMES
-    function hipEventCreateWithFlags(event,flags) bind(c, name="cudaEventCreateWithFlags")
+    function hipEventCreateWithFlags_orig(event,flags) bind(c, name="cudaEventCreateWithFlags")
 #else
-    function hipEventCreateWithFlags(event,flags) bind(c, name="hipEventCreateWithFlags")
+    function hipEventCreateWithFlags_orig(event,flags) bind(c, name="hipEventCreateWithFlags")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1138,14 +1305,16 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipEventCreateWithFlags
+      integer(kind(cudaSuccess)) :: hipEventCreateWithFlags_orig
 #else
-      integer(kind(hipSuccess)) :: hipEventCreateWithFlags
+      integer(kind(hipSuccess)) :: hipEventCreateWithFlags_orig
 #endif
       type(c_ptr) :: event
       integer(kind=4),value :: flags
     end function
 
+
+  end interface
   !> 
   !>    Create an event
   !>  
@@ -1157,10 +1326,11 @@ module hipfort
   !>   @see hipEventCreateWithFlags, hipEventRecord, hipEventQuery, hipEventSynchronize,
   !>   hipEventDestroy, hipEventElapsedTime
   !>  
+  interface hipEventCreate
 #ifdef USE_CUDA_NAMES
-    function hipEventCreate(event) bind(c, name="cudaEventCreate")
+    function hipEventCreate_orig(event) bind(c, name="cudaEventCreate")
 #else
-    function hipEventCreate(event) bind(c, name="hipEventCreate")
+    function hipEventCreate_orig(event) bind(c, name="hipEventCreate")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1170,13 +1340,15 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipEventCreate
+      integer(kind(cudaSuccess)) :: hipEventCreate_orig
 #else
-      integer(kind(hipSuccess)) :: hipEventCreate
+      integer(kind(hipSuccess)) :: hipEventCreate_orig
 #endif
       type(c_ptr) :: event
     end function
 
+
+  end interface
   !> 
   !>   @brief Record an event in the specified stream.
   !>  
@@ -1204,10 +1376,11 @@ module hipfort
   !>   hipEventDestroy, hipEventElapsedTime
   !>  
   !>  
+  interface hipEventRecord
 #ifdef USE_CUDA_NAMES
-    function hipEventRecord(event,stream) bind(c, name="cudaEventRecord")
+    function hipEventRecord_orig(event,stream) bind(c, name="cudaEventRecord")
 #else
-    function hipEventRecord(event,stream) bind(c, name="hipEventRecord")
+    function hipEventRecord_orig(event,stream) bind(c, name="hipEventRecord")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1217,14 +1390,16 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipEventRecord
+      integer(kind(cudaSuccess)) :: hipEventRecord_orig
 #else
-      integer(kind(hipSuccess)) :: hipEventRecord
+      integer(kind(hipSuccess)) :: hipEventRecord_orig
 #endif
       type(c_ptr),value :: event
       type(c_ptr),value :: stream
     end function
 
+
+  end interface
   !> 
   !>    @brief Destroy the specified event.
   !>  
@@ -1241,10 +1416,11 @@ module hipfort
   !>  
   !>   @returns #hipSuccess
   !>  
+  interface hipEventDestroy
 #ifdef USE_CUDA_NAMES
-    function hipEventDestroy(event) bind(c, name="cudaEventDestroy")
+    function hipEventDestroy_orig(event) bind(c, name="cudaEventDestroy")
 #else
-    function hipEventDestroy(event) bind(c, name="hipEventDestroy")
+    function hipEventDestroy_orig(event) bind(c, name="hipEventDestroy")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1254,13 +1430,15 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipEventDestroy
+      integer(kind(cudaSuccess)) :: hipEventDestroy_orig
 #else
-      integer(kind(hipSuccess)) :: hipEventDestroy
+      integer(kind(hipSuccess)) :: hipEventDestroy_orig
 #endif
       type(c_ptr),value :: event
     end function
 
+
+  end interface
   !> 
   !>    @brief Wait for an event to complete.
   !>  
@@ -1278,10 +1456,11 @@ module hipfort
   !>    @see hipEventCreate, hipEventCreateWithFlags, hipEventQuery, hipEventDestroy, hipEventRecord,
   !>   hipEventElapsedTime
   !>  
+  interface hipEventSynchronize
 #ifdef USE_CUDA_NAMES
-    function hipEventSynchronize(event) bind(c, name="cudaEventSynchronize")
+    function hipEventSynchronize_orig(event) bind(c, name="cudaEventSynchronize")
 #else
-    function hipEventSynchronize(event) bind(c, name="hipEventSynchronize")
+    function hipEventSynchronize_orig(event) bind(c, name="hipEventSynchronize")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1291,13 +1470,15 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipEventSynchronize
+      integer(kind(cudaSuccess)) :: hipEventSynchronize_orig
 #else
-      integer(kind(hipSuccess)) :: hipEventSynchronize
+      integer(kind(hipSuccess)) :: hipEventSynchronize_orig
 #endif
       type(c_ptr),value :: event
     end function
 
+
+  end interface
   !> 
   !>   @brief Return the elapsed time between two events.
   !>  
@@ -1326,10 +1507,11 @@ module hipfort
   !>   @see hipEventCreate, hipEventCreateWithFlags, hipEventQuery, hipEventDestroy, hipEventRecord,
   !>   hipEventSynchronize
   !>  
+  interface hipEventElapsedTime
 #ifdef USE_CUDA_NAMES
-    function hipEventElapsedTime(ms,start,myStop) bind(c, name="cudaEventElapsedTime")
+    function hipEventElapsedTime_orig(ms,start,myStop) bind(c, name="cudaEventElapsedTime")
 #else
-    function hipEventElapsedTime(ms,start,myStop) bind(c, name="hipEventElapsedTime")
+    function hipEventElapsedTime_orig(ms,start,myStop) bind(c, name="hipEventElapsedTime")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1339,15 +1521,17 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipEventElapsedTime
+      integer(kind(cudaSuccess)) :: hipEventElapsedTime_orig
 #else
-      integer(kind(hipSuccess)) :: hipEventElapsedTime
+      integer(kind(hipSuccess)) :: hipEventElapsedTime_orig
 #endif
       type(c_ptr),value :: ms
       type(c_ptr),value :: start
       type(c_ptr),value :: myStop
     end function
 
+
+  end interface
   !> 
   !>   @brief Query event status
   !>  
@@ -1363,10 +1547,11 @@ module hipfort
   !>   @see hipEventCreate, hipEventCreateWithFlags, hipEventRecord, hipEventDestroy,
   !>   hipEventSynchronize, hipEventElapsedTime
   !>  
+  interface hipEventQuery
 #ifdef USE_CUDA_NAMES
-    function hipEventQuery(event) bind(c, name="cudaEventQuery")
+    function hipEventQuery_orig(event) bind(c, name="cudaEventQuery")
 #else
-    function hipEventQuery(event) bind(c, name="hipEventQuery")
+    function hipEventQuery_orig(event) bind(c, name="hipEventQuery")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1376,13 +1561,15 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipEventQuery
+      integer(kind(cudaSuccess)) :: hipEventQuery_orig
 #else
-      integer(kind(hipSuccess)) :: hipEventQuery
+      integer(kind(hipSuccess)) :: hipEventQuery_orig
 #endif
       type(c_ptr),value :: event
     end function
 
+
+  end interface
   !> 
   !>    @brief Return attributes for the specified pointer
   !>  
@@ -1393,10 +1580,11 @@ module hipfort
   !>  
   !>    @see hipGetDeviceCount, hipGetDevice, hipSetDevice, hipChooseDevice
   !>  
+  interface hipPointerGetAttributes
 #ifdef USE_CUDA_NAMES
-    function hipPointerGetAttributes(attributes,ptr) bind(c, name="cudaPointerGetAttributes")
+    function hipPointerGetAttributes_orig(attributes,ptr) bind(c, name="cudaPointerGetAttributes")
 #else
-    function hipPointerGetAttributes(attributes,ptr) bind(c, name="hipPointerGetAttributes")
+    function hipPointerGetAttributes_orig(attributes,ptr) bind(c, name="hipPointerGetAttributes")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1406,14 +1594,16 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipPointerGetAttributes
+      integer(kind(cudaSuccess)) :: hipPointerGetAttributes_orig
 #else
-      integer(kind(hipSuccess)) :: hipPointerGetAttributes
+      integer(kind(hipSuccess)) :: hipPointerGetAttributes_orig
 #endif
       type(c_ptr) :: attributes
       type(c_ptr),value :: ptr
     end function
 
+
+  end interface
   !> 
   !>    @brief Allocate memory on the default accelerator
   !>  
@@ -1428,10 +1618,11 @@ module hipfort
   !>    @see hipMallocPitch, hipFree, hipMallocArray, hipFreeArray, hipMalloc3D, hipMalloc3DArray,
   !>   hipHostFree, hipHostMalloc
   !>  
+  interface hipExtMallocWithFlags
 #ifdef USE_CUDA_NAMES
-    function hipExtMallocWithFlags(ptr,sizeBytes,flags) bind(c, name="cudaExtMallocWithFlags")
+    function hipExtMallocWithFlags_orig(ptr,sizeBytes,flags) bind(c, name="cudaExtMallocWithFlags")
 #else
-    function hipExtMallocWithFlags(ptr,sizeBytes,flags) bind(c, name="hipExtMallocWithFlags")
+    function hipExtMallocWithFlags_orig(ptr,sizeBytes,flags) bind(c, name="hipExtMallocWithFlags")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1441,20 +1632,23 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipExtMallocWithFlags
+      integer(kind(cudaSuccess)) :: hipExtMallocWithFlags_orig
 #else
-      integer(kind(hipSuccess)) :: hipExtMallocWithFlags
+      integer(kind(hipSuccess)) :: hipExtMallocWithFlags_orig
 #endif
       type(c_ptr) :: ptr
       integer(c_size_t),value :: sizeBytes
       integer(kind=4),value :: flags
     end function
 
+
+  end interface
   
+  interface hipMallocHost
 #ifdef USE_CUDA_NAMES
-    function hipMallocHost(ptr,mySize) bind(c, name="cudaMallocHost")
+    function hipMallocHost_orig(ptr,mySize) bind(c, name="cudaMallocHost")
 #else
-    function hipMallocHost(ptr,mySize) bind(c, name="hipMallocHost")
+    function hipMallocHost_orig(ptr,mySize) bind(c, name="hipMallocHost")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1464,19 +1658,22 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMallocHost
+      integer(kind(cudaSuccess)) :: hipMallocHost_orig
 #else
-      integer(kind(hipSuccess)) :: hipMallocHost
+      integer(kind(hipSuccess)) :: hipMallocHost_orig
 #endif
       type(c_ptr) :: ptr
       integer(c_size_t),value :: mySize
     end function
 
+
+  end interface
   
+  interface hipMemAllocHost
 #ifdef USE_CUDA_NAMES
-    function hipMemAllocHost(ptr,mySize) bind(c, name="cudaMemAllocHost")
+    function hipMemAllocHost_orig(ptr,mySize) bind(c, name="cudaMemAllocHost")
 #else
-    function hipMemAllocHost(ptr,mySize) bind(c, name="hipMemAllocHost")
+    function hipMemAllocHost_orig(ptr,mySize) bind(c, name="hipMemAllocHost")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1486,19 +1683,22 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemAllocHost
+      integer(kind(cudaSuccess)) :: hipMemAllocHost_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemAllocHost
+      integer(kind(hipSuccess)) :: hipMemAllocHost_orig
 #endif
       type(c_ptr) :: ptr
       integer(c_size_t),value :: mySize
     end function
 
+
+  end interface
   
+  interface hipHostAlloc
 #ifdef USE_CUDA_NAMES
-    function hipHostAlloc(ptr,mySize,flags) bind(c, name="cudaHostAlloc")
+    function hipHostAlloc_orig(ptr,mySize,flags) bind(c, name="cudaHostAlloc")
 #else
-    function hipHostAlloc(ptr,mySize,flags) bind(c, name="hipHostAlloc")
+    function hipHostAlloc_orig(ptr,mySize,flags) bind(c, name="hipHostAlloc")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1508,15 +1708,17 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostAlloc
+      integer(kind(cudaSuccess)) :: hipHostAlloc_orig
 #else
-      integer(kind(hipSuccess)) :: hipHostAlloc
+      integer(kind(hipSuccess)) :: hipHostAlloc_orig
 #endif
       type(c_ptr) :: ptr
       integer(c_size_t),value :: mySize
       integer(kind=4),value :: flags
     end function
 
+
+  end interface
   !> 
   !>    @brief Get Device pointer from Host Pointer allocated through hipHostMalloc
   !>  
@@ -1528,10 +1730,11 @@ module hipfort
   !>  
   !>    @see hipSetDeviceFlags, hipHostMalloc
   !>  
+  interface hipHostGetDevicePointer
 #ifdef USE_CUDA_NAMES
-    function hipHostGetDevicePointer(devPtr,hstPtr,flags) bind(c, name="cudaHostGetDevicePointer")
+    function hipHostGetDevicePointer_orig(devPtr,hstPtr,flags) bind(c, name="cudaHostGetDevicePointer")
 #else
-    function hipHostGetDevicePointer(devPtr,hstPtr,flags) bind(c, name="hipHostGetDevicePointer")
+    function hipHostGetDevicePointer_orig(devPtr,hstPtr,flags) bind(c, name="hipHostGetDevicePointer")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1541,15 +1744,17 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_orig
 #else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_orig
 #endif
       type(c_ptr) :: devPtr
       type(c_ptr),value :: hstPtr
       integer(kind=4),value :: flags
     end function
 
+
+  end interface
   !> 
   !>    @brief Return flags associated with host pointer
   !>  
@@ -1559,10 +1764,11 @@ module hipfort
   !>  
   !>    @see hipHostMalloc
   !>  
+  interface hipHostGetFlags
 #ifdef USE_CUDA_NAMES
-    function hipHostGetFlags(flagsPtr,hostPtr) bind(c, name="cudaHostGetFlags")
+    function hipHostGetFlags_orig(flagsPtr,hostPtr) bind(c, name="cudaHostGetFlags")
 #else
-    function hipHostGetFlags(flagsPtr,hostPtr) bind(c, name="hipHostGetFlags")
+    function hipHostGetFlags_orig(flagsPtr,hostPtr) bind(c, name="hipHostGetFlags")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1572,14 +1778,16 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetFlags
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_orig
 #else
-      integer(kind(hipSuccess)) :: hipHostGetFlags
+      integer(kind(hipSuccess)) :: hipHostGetFlags_orig
 #endif
       type(c_ptr),value :: flagsPtr
       type(c_ptr),value :: hostPtr
     end function
 
+
+  end interface
   !> 
   !>    @brief Register host memory so it can be accessed from the current device.
   !>  
@@ -1616,10 +1824,11 @@ module hipfort
   !>  
   !>    @see hipHostUnregister, hipHostGetFlags, hipHostGetDevicePointer
   !>  
+  interface hipHostRegister
 #ifdef USE_CUDA_NAMES
-    function hipHostRegister(hostPtr,sizeBytes,flags) bind(c, name="cudaHostRegister")
+    function hipHostRegister_orig(hostPtr,sizeBytes,flags) bind(c, name="cudaHostRegister")
 #else
-    function hipHostRegister(hostPtr,sizeBytes,flags) bind(c, name="hipHostRegister")
+    function hipHostRegister_orig(hostPtr,sizeBytes,flags) bind(c, name="hipHostRegister")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1629,15 +1838,17 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister
+      integer(kind(cudaSuccess)) :: hipHostRegister_orig
 #else
-      integer(kind(hipSuccess)) :: hipHostRegister
+      integer(kind(hipSuccess)) :: hipHostRegister_orig
 #endif
       type(c_ptr),value :: hostPtr
       integer(c_size_t),value :: sizeBytes
       integer(kind=4),value :: flags
     end function
 
+
+  end interface
   !> 
   !>    @brief Un-register host pointer
   !>  
@@ -1646,10 +1857,11 @@ module hipfort
   !>  
   !>    @see hipHostRegister
   !>  
+  interface hipHostUnregister
 #ifdef USE_CUDA_NAMES
-    function hipHostUnregister(hostPtr) bind(c, name="cudaHostUnregister")
+    function hipHostUnregister_orig(hostPtr) bind(c, name="cudaHostUnregister")
 #else
-    function hipHostUnregister(hostPtr) bind(c, name="hipHostUnregister")
+    function hipHostUnregister_orig(hostPtr) bind(c, name="hipHostUnregister")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1659,13 +1871,15 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostUnregister
+      integer(kind(cudaSuccess)) :: hipHostUnregister_orig
 #else
-      integer(kind(hipSuccess)) :: hipHostUnregister
+      integer(kind(hipSuccess)) :: hipHostUnregister_orig
 #endif
       type(c_ptr),value :: hostPtr
     end function
 
+
+  end interface
   !> 
   !>    Allocates at least width (in bytes)  height bytes of linear memory
   !>    Padding may occur to ensure alighnment requirements are met for the given row
@@ -1684,10 +1898,11 @@ module hipfort
   !>    @see hipMalloc, hipFree, hipMallocArray, hipFreeArray, hipHostFree, hipMalloc3D,
   !>   hipMalloc3DArray, hipHostMalloc
   !>  
+  interface hipMallocPitch
 #ifdef USE_CUDA_NAMES
-    function hipMallocPitch(ptr,pitch,width,height) bind(c, name="cudaMallocPitch")
+    function hipMallocPitch_orig(ptr,pitch,width,height) bind(c, name="cudaMallocPitch")
 #else
-    function hipMallocPitch(ptr,pitch,width,height) bind(c, name="hipMallocPitch")
+    function hipMallocPitch_orig(ptr,pitch,width,height) bind(c, name="hipMallocPitch")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1697,9 +1912,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMallocPitch
+      integer(kind(cudaSuccess)) :: hipMallocPitch_orig
 #else
-      integer(kind(hipSuccess)) :: hipMallocPitch
+      integer(kind(hipSuccess)) :: hipMallocPitch_orig
 #endif
       type(c_ptr) :: ptr
       integer(c_size_t) :: pitch
@@ -1707,6 +1922,8 @@ module hipfort
       integer(c_size_t),value :: height
     end function
 
+
+  end interface
   !> 
   !>    Allocates at least width (in bytes)  height bytes of linear memory
   !>    Padding may occur to ensure alighnment requirements are met for the given row
@@ -1728,10 +1945,11 @@ module hipfort
   !>    @see hipMalloc, hipFree, hipMallocArray, hipFreeArray, hipHostFree, hipMalloc3D,
   !>   hipMalloc3DArray, hipHostMalloc
   !>  
+  interface hipMemAllocPitch
 #ifdef USE_CUDA_NAMES
-    function hipMemAllocPitch(dptr,pitch,widthInBytes,height,elementSizeBytes) bind(c, name="cudaMemAllocPitch")
+    function hipMemAllocPitch_orig(dptr,pitch,widthInBytes,height,elementSizeBytes) bind(c, name="cudaMemAllocPitch")
 #else
-    function hipMemAllocPitch(dptr,pitch,widthInBytes,height,elementSizeBytes) bind(c, name="hipMemAllocPitch")
+    function hipMemAllocPitch_orig(dptr,pitch,widthInBytes,height,elementSizeBytes) bind(c, name="hipMemAllocPitch")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1741,9 +1959,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemAllocPitch
+      integer(kind(cudaSuccess)) :: hipMemAllocPitch_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemAllocPitch
+      integer(kind(hipSuccess)) :: hipMemAllocPitch_orig
 #endif
       type(c_ptr) :: dptr
       integer(c_size_t) :: pitch
@@ -1752,11 +1970,14 @@ module hipfort
       integer(kind=4),value :: elementSizeBytes
     end function
 
+
+  end interface
   
+  interface hipFreeHost
 #ifdef USE_CUDA_NAMES
-    function hipFreeHost(ptr) bind(c, name="cudaFreeHost")
+    function hipFreeHost_orig(ptr) bind(c, name="cudaFreeHost")
 #else
-    function hipFreeHost(ptr) bind(c, name="hipFreeHost")
+    function hipFreeHost_orig(ptr) bind(c, name="hipFreeHost")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1766,18 +1987,21 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipFreeHost
+      integer(kind(cudaSuccess)) :: hipFreeHost_orig
 #else
-      integer(kind(hipSuccess)) :: hipFreeHost
+      integer(kind(hipSuccess)) :: hipFreeHost_orig
 #endif
       type(c_ptr),value :: ptr
     end function
 
+
+  end interface
   
+  interface hipMemcpyWithStream
 #ifdef USE_CUDA_NAMES
-    function hipMemcpyWithStream(dst,src,sizeBytes,myKind,stream) bind(c, name="cudaMemcpyWithStream")
+    function hipMemcpyWithStream_orig(dst,src,sizeBytes,myKind,stream) bind(c, name="cudaMemcpyWithStream")
 #else
-    function hipMemcpyWithStream(dst,src,sizeBytes,myKind,stream) bind(c, name="hipMemcpyWithStream")
+    function hipMemcpyWithStream_orig(dst,src,sizeBytes,myKind,stream) bind(c, name="hipMemcpyWithStream")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1787,9 +2011,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemcpyWithStream
+      integer(kind(cudaSuccess)) :: hipMemcpyWithStream_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemcpyWithStream
+      integer(kind(hipSuccess)) :: hipMemcpyWithStream_orig
 #endif
       type(c_ptr),value :: dst
       type(c_ptr),value :: src
@@ -1798,6 +2022,8 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
+
+  end interface
   !> 
   !>    @brief Copy data from Host to Device
   !>  
@@ -1815,10 +2041,11 @@ module hipfort
   !>   hipMemcpyHtoDAsync, hipMemFree, hipMemFreeHost, hipMemGetAddressRange, hipMemGetInfo,
   !>   hipMemHostAlloc, hipMemHostGetDevicePointer
   !>  
+  interface hipMemcpyHtoD
 #ifdef USE_CUDA_NAMES
-    function hipMemcpyHtoD(dst,src,sizeBytes) bind(c, name="cudaMemcpyHtoD")
+    function hipMemcpyHtoD_orig(dst,src,sizeBytes) bind(c, name="cudaMemcpyHtoD")
 #else
-    function hipMemcpyHtoD(dst,src,sizeBytes) bind(c, name="hipMemcpyHtoD")
+    function hipMemcpyHtoD_orig(dst,src,sizeBytes) bind(c, name="hipMemcpyHtoD")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1828,15 +2055,17 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemcpyHtoD
+      integer(kind(cudaSuccess)) :: hipMemcpyHtoD_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemcpyHtoD
+      integer(kind(hipSuccess)) :: hipMemcpyHtoD_orig
 #endif
       type(c_ptr),value :: dst
       type(c_ptr),value :: src
       integer(c_size_t),value :: sizeBytes
     end function
 
+
+  end interface
   !> 
   !>    @brief Copy data from Device to Host
   !>  
@@ -1854,10 +2083,11 @@ module hipfort
   !>   hipMemcpyHtoDAsync, hipMemFree, hipMemFreeHost, hipMemGetAddressRange, hipMemGetInfo,
   !>   hipMemHostAlloc, hipMemHostGetDevicePointer
   !>  
+  interface hipMemcpyDtoH
 #ifdef USE_CUDA_NAMES
-    function hipMemcpyDtoH(dst,src,sizeBytes) bind(c, name="cudaMemcpyDtoH")
+    function hipMemcpyDtoH_orig(dst,src,sizeBytes) bind(c, name="cudaMemcpyDtoH")
 #else
-    function hipMemcpyDtoH(dst,src,sizeBytes) bind(c, name="hipMemcpyDtoH")
+    function hipMemcpyDtoH_orig(dst,src,sizeBytes) bind(c, name="hipMemcpyDtoH")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1867,15 +2097,17 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemcpyDtoH
+      integer(kind(cudaSuccess)) :: hipMemcpyDtoH_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemcpyDtoH
+      integer(kind(hipSuccess)) :: hipMemcpyDtoH_orig
 #endif
       type(c_ptr),value :: dst
       type(c_ptr),value :: src
       integer(c_size_t),value :: sizeBytes
     end function
 
+
+  end interface
   !> 
   !>    @brief Copy data from Device to Device
   !>  
@@ -1893,10 +2125,11 @@ module hipfort
   !>   hipMemcpyHtoDAsync, hipMemFree, hipMemFreeHost, hipMemGetAddressRange, hipMemGetInfo,
   !>   hipMemHostAlloc, hipMemHostGetDevicePointer
   !>  
+  interface hipMemcpyDtoD
 #ifdef USE_CUDA_NAMES
-    function hipMemcpyDtoD(dst,src,sizeBytes) bind(c, name="cudaMemcpyDtoD")
+    function hipMemcpyDtoD_orig(dst,src,sizeBytes) bind(c, name="cudaMemcpyDtoD")
 #else
-    function hipMemcpyDtoD(dst,src,sizeBytes) bind(c, name="hipMemcpyDtoD")
+    function hipMemcpyDtoD_orig(dst,src,sizeBytes) bind(c, name="hipMemcpyDtoD")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1906,15 +2139,17 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemcpyDtoD
+      integer(kind(cudaSuccess)) :: hipMemcpyDtoD_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemcpyDtoD
+      integer(kind(hipSuccess)) :: hipMemcpyDtoD_orig
 #endif
       type(c_ptr),value :: dst
       type(c_ptr),value :: src
       integer(c_size_t),value :: sizeBytes
     end function
 
+
+  end interface
   !> 
   !>    @brief Copy data from Host to Device asynchronously
   !>  
@@ -1932,10 +2167,11 @@ module hipfort
   !>   hipMemcpyHtoDAsync, hipMemFree, hipMemFreeHost, hipMemGetAddressRange, hipMemGetInfo,
   !>   hipMemHostAlloc, hipMemHostGetDevicePointer
   !>  
+  interface hipMemcpyHtoDAsync
 #ifdef USE_CUDA_NAMES
-    function hipMemcpyHtoDAsync(dst,src,sizeBytes,stream) bind(c, name="cudaMemcpyHtoDAsync")
+    function hipMemcpyHtoDAsync_orig(dst,src,sizeBytes,stream) bind(c, name="cudaMemcpyHtoDAsync")
 #else
-    function hipMemcpyHtoDAsync(dst,src,sizeBytes,stream) bind(c, name="hipMemcpyHtoDAsync")
+    function hipMemcpyHtoDAsync_orig(dst,src,sizeBytes,stream) bind(c, name="hipMemcpyHtoDAsync")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1945,9 +2181,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemcpyHtoDAsync
+      integer(kind(cudaSuccess)) :: hipMemcpyHtoDAsync_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemcpyHtoDAsync
+      integer(kind(hipSuccess)) :: hipMemcpyHtoDAsync_orig
 #endif
       type(c_ptr),value :: dst
       type(c_ptr),value :: src
@@ -1955,6 +2191,8 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
+
+  end interface
   !> 
   !>    @brief Copy data from Device to Host asynchronously
   !>  
@@ -1972,10 +2210,11 @@ module hipfort
   !>   hipMemcpyHtoDAsync, hipMemFree, hipMemFreeHost, hipMemGetAddressRange, hipMemGetInfo,
   !>   hipMemHostAlloc, hipMemHostGetDevicePointer
   !>  
+  interface hipMemcpyDtoHAsync
 #ifdef USE_CUDA_NAMES
-    function hipMemcpyDtoHAsync(dst,src,sizeBytes,stream) bind(c, name="cudaMemcpyDtoHAsync")
+    function hipMemcpyDtoHAsync_orig(dst,src,sizeBytes,stream) bind(c, name="cudaMemcpyDtoHAsync")
 #else
-    function hipMemcpyDtoHAsync(dst,src,sizeBytes,stream) bind(c, name="hipMemcpyDtoHAsync")
+    function hipMemcpyDtoHAsync_orig(dst,src,sizeBytes,stream) bind(c, name="hipMemcpyDtoHAsync")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1985,9 +2224,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemcpyDtoHAsync
+      integer(kind(cudaSuccess)) :: hipMemcpyDtoHAsync_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemcpyDtoHAsync
+      integer(kind(hipSuccess)) :: hipMemcpyDtoHAsync_orig
 #endif
       type(c_ptr),value :: dst
       type(c_ptr),value :: src
@@ -1995,6 +2234,8 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
+
+  end interface
   !> 
   !>    @brief Copy data from Device to Device asynchronously
   !>  
@@ -2012,10 +2253,11 @@ module hipfort
   !>   hipMemcpyHtoDAsync, hipMemFree, hipMemFreeHost, hipMemGetAddressRange, hipMemGetInfo,
   !>   hipMemHostAlloc, hipMemHostGetDevicePointer
   !>  
+  interface hipMemcpyDtoDAsync
 #ifdef USE_CUDA_NAMES
-    function hipMemcpyDtoDAsync(dst,src,sizeBytes,stream) bind(c, name="cudaMemcpyDtoDAsync")
+    function hipMemcpyDtoDAsync_orig(dst,src,sizeBytes,stream) bind(c, name="cudaMemcpyDtoDAsync")
 #else
-    function hipMemcpyDtoDAsync(dst,src,sizeBytes,stream) bind(c, name="hipMemcpyDtoDAsync")
+    function hipMemcpyDtoDAsync_orig(dst,src,sizeBytes,stream) bind(c, name="hipMemcpyDtoDAsync")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2025,9 +2267,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemcpyDtoDAsync
+      integer(kind(cudaSuccess)) :: hipMemcpyDtoDAsync_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemcpyDtoDAsync
+      integer(kind(hipSuccess)) :: hipMemcpyDtoDAsync_orig
 #endif
       type(c_ptr),value :: dst
       type(c_ptr),value :: src
@@ -2035,11 +2277,14 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
+
+  end interface
   
+  interface hipModuleGetGlobal
 #ifdef USE_CUDA_NAMES
-    function hipModuleGetGlobal(dptr,bytes,hmod,name) bind(c, name="cudaModuleGetGlobal")
+    function hipModuleGetGlobal_orig(dptr,bytes,hmod,name) bind(c, name="cudaModuleGetGlobal")
 #else
-    function hipModuleGetGlobal(dptr,bytes,hmod,name) bind(c, name="hipModuleGetGlobal")
+    function hipModuleGetGlobal_orig(dptr,bytes,hmod,name) bind(c, name="hipModuleGetGlobal")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2049,9 +2294,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipModuleGetGlobal
+      integer(kind(cudaSuccess)) :: hipModuleGetGlobal_orig
 #else
-      integer(kind(hipSuccess)) :: hipModuleGetGlobal
+      integer(kind(hipSuccess)) :: hipModuleGetGlobal_orig
 #endif
       type(c_ptr) :: dptr
       integer(c_size_t) :: bytes
@@ -2059,11 +2304,14 @@ module hipfort
       type(c_ptr),value :: name
     end function
 
+
+  end interface
   
+  interface hipGetSymbolAddress
 #ifdef USE_CUDA_NAMES
-    function hipGetSymbolAddress(devPtr,symbol) bind(c, name="cudaGetSymbolAddress")
+    function hipGetSymbolAddress_orig(devPtr,symbol) bind(c, name="cudaGetSymbolAddress")
 #else
-    function hipGetSymbolAddress(devPtr,symbol) bind(c, name="hipGetSymbolAddress")
+    function hipGetSymbolAddress_orig(devPtr,symbol) bind(c, name="hipGetSymbolAddress")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2073,19 +2321,22 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipGetSymbolAddress
+      integer(kind(cudaSuccess)) :: hipGetSymbolAddress_orig
 #else
-      integer(kind(hipSuccess)) :: hipGetSymbolAddress
+      integer(kind(hipSuccess)) :: hipGetSymbolAddress_orig
 #endif
       type(c_ptr) :: devPtr
       type(c_ptr),value :: symbol
     end function
 
+
+  end interface
   
+  interface hipGetSymbolSize
 #ifdef USE_CUDA_NAMES
-    function hipGetSymbolSize(mySize,symbol) bind(c, name="cudaGetSymbolSize")
+    function hipGetSymbolSize_orig(mySize,symbol) bind(c, name="cudaGetSymbolSize")
 #else
-    function hipGetSymbolSize(mySize,symbol) bind(c, name="hipGetSymbolSize")
+    function hipGetSymbolSize_orig(mySize,symbol) bind(c, name="hipGetSymbolSize")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2095,19 +2346,22 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipGetSymbolSize
+      integer(kind(cudaSuccess)) :: hipGetSymbolSize_orig
 #else
-      integer(kind(hipSuccess)) :: hipGetSymbolSize
+      integer(kind(hipSuccess)) :: hipGetSymbolSize_orig
 #endif
       integer(c_size_t) :: mySize
       type(c_ptr),value :: symbol
     end function
 
+
+  end interface
   
+  interface hipMemcpyToSymbolAsync
 #ifdef USE_CUDA_NAMES
-    function hipMemcpyToSymbolAsync(symbol,src,sizeBytes,offset,myKind,stream) bind(c, name="cudaMemcpyToSymbolAsync")
+    function hipMemcpyToSymbolAsync_orig(symbol,src,sizeBytes,offset,myKind,stream) bind(c, name="cudaMemcpyToSymbolAsync")
 #else
-    function hipMemcpyToSymbolAsync(symbol,src,sizeBytes,offset,myKind,stream) bind(c, name="hipMemcpyToSymbolAsync")
+    function hipMemcpyToSymbolAsync_orig(symbol,src,sizeBytes,offset,myKind,stream) bind(c, name="hipMemcpyToSymbolAsync")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2117,9 +2371,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemcpyToSymbolAsync
+      integer(kind(cudaSuccess)) :: hipMemcpyToSymbolAsync_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemcpyToSymbolAsync
+      integer(kind(hipSuccess)) :: hipMemcpyToSymbolAsync_orig
 #endif
       type(c_ptr),value :: symbol
       type(c_ptr),value :: src
@@ -2129,11 +2383,14 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
+
+  end interface
   
+  interface hipMemcpyFromSymbolAsync
 #ifdef USE_CUDA_NAMES
-    function hipMemcpyFromSymbolAsync(dst,symbol,sizeBytes,offset,myKind,stream) bind(c, name="cudaMemcpyFromSymbolAsync")
+    function hipMemcpyFromSymbolAsync_orig(dst,symbol,sizeBytes,offset,myKind,stream) bind(c, name="cudaMemcpyFromSymbolAsync")
 #else
-    function hipMemcpyFromSymbolAsync(dst,symbol,sizeBytes,offset,myKind,stream) bind(c, name="hipMemcpyFromSymbolAsync")
+    function hipMemcpyFromSymbolAsync_orig(dst,symbol,sizeBytes,offset,myKind,stream) bind(c, name="hipMemcpyFromSymbolAsync")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2143,9 +2400,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemcpyFromSymbolAsync
+      integer(kind(cudaSuccess)) :: hipMemcpyFromSymbolAsync_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemcpyFromSymbolAsync
+      integer(kind(hipSuccess)) :: hipMemcpyFromSymbolAsync_orig
 #endif
       type(c_ptr),value :: dst
       type(c_ptr),value :: symbol
@@ -2155,6 +2412,8 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
+
+  end interface
   !> 
   !>    @brief Fills the first sizeBytes bytes of the memory area pointed to by dest with the ant
   !>   byte value value.
@@ -2164,10 +2423,11 @@ module hipfort
   !>    @param[in]  sizeBytes Data size in bytes
   !>    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized
   !>  
+  interface hipMemset
 #ifdef USE_CUDA_NAMES
-    function hipMemset(dst,myValue,sizeBytes) bind(c, name="cudaMemset")
+    function hipMemset_orig(dst,myValue,sizeBytes) bind(c, name="cudaMemset")
 #else
-    function hipMemset(dst,myValue,sizeBytes) bind(c, name="hipMemset")
+    function hipMemset_orig(dst,myValue,sizeBytes) bind(c, name="hipMemset")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2177,15 +2437,17 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemset
+      integer(kind(cudaSuccess)) :: hipMemset_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemset
+      integer(kind(hipSuccess)) :: hipMemset_orig
 #endif
       type(c_ptr),value :: dst
       integer(c_int),value :: myValue
       integer(c_size_t),value :: sizeBytes
     end function
 
+
+  end interface
   !> 
   !>    @brief Fills the first sizeBytes bytes of the memory area pointed to by dest with the ant
   !>   byte value value.
@@ -2195,10 +2457,11 @@ module hipfort
   !>    @param[in]  number of values to be set
   !>    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized
   !>  
+  interface hipMemsetD8
 #ifdef USE_CUDA_NAMES
-    function hipMemsetD8(dest,myValue,count) bind(c, name="cudaMemsetD8")
+    function hipMemsetD8_orig(dest,myValue,count) bind(c, name="cudaMemsetD8")
 #else
-    function hipMemsetD8(dest,myValue,count) bind(c, name="hipMemsetD8")
+    function hipMemsetD8_orig(dest,myValue,count) bind(c, name="hipMemsetD8")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2208,15 +2471,17 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemsetD8
+      integer(kind(cudaSuccess)) :: hipMemsetD8_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemsetD8
+      integer(kind(hipSuccess)) :: hipMemsetD8_orig
 #endif
       type(c_ptr),value :: dest
       integer(kind=1),value :: myValue
       integer(c_size_t),value :: count
     end function
 
+
+  end interface
   !> 
   !>    @brief Fills the first sizeBytes bytes of the memory area pointed to by dest with the ant
   !>   byte value value.
@@ -2232,10 +2497,11 @@ module hipfort
   !>    @param[in]  stream - Stream identifier
   !>    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized
   !>  
+  interface hipMemsetD8Async
 #ifdef USE_CUDA_NAMES
-    function hipMemsetD8Async(dest,myValue,count,stream) bind(c, name="cudaMemsetD8Async")
+    function hipMemsetD8Async_orig(dest,myValue,count,stream) bind(c, name="cudaMemsetD8Async")
 #else
-    function hipMemsetD8Async(dest,myValue,count,stream) bind(c, name="hipMemsetD8Async")
+    function hipMemsetD8Async_orig(dest,myValue,count,stream) bind(c, name="hipMemsetD8Async")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2245,9 +2511,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemsetD8Async
+      integer(kind(cudaSuccess)) :: hipMemsetD8Async_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemsetD8Async
+      integer(kind(hipSuccess)) :: hipMemsetD8Async_orig
 #endif
       type(c_ptr),value :: dest
       integer(kind=1),value :: myValue
@@ -2255,6 +2521,8 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
+
+  end interface
   !> 
   !>    @brief Fills the first sizeBytes bytes of the memory area pointed to by dest with the ant
   !>   short value value.
@@ -2264,10 +2532,11 @@ module hipfort
   !>    @param[in]  number of values to be set
   !>    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized
   !>  
+  interface hipMemsetD16
 #ifdef USE_CUDA_NAMES
-    function hipMemsetD16(dest,myValue,count) bind(c, name="cudaMemsetD16")
+    function hipMemsetD16_orig(dest,myValue,count) bind(c, name="cudaMemsetD16")
 #else
-    function hipMemsetD16(dest,myValue,count) bind(c, name="hipMemsetD16")
+    function hipMemsetD16_orig(dest,myValue,count) bind(c, name="hipMemsetD16")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2277,15 +2546,17 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemsetD16
+      integer(kind(cudaSuccess)) :: hipMemsetD16_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemsetD16
+      integer(kind(hipSuccess)) :: hipMemsetD16_orig
 #endif
       type(c_ptr),value :: dest
       integer(kind=2),value :: myValue
       integer(c_size_t),value :: count
     end function
 
+
+  end interface
   !> 
   !>    @brief Fills the first sizeBytes bytes of the memory area pointed to by dest with the ant
   !>   short value value.
@@ -2301,10 +2572,11 @@ module hipfort
   !>    @param[in]  stream - Stream identifier
   !>    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized
   !>  
+  interface hipMemsetD16Async
 #ifdef USE_CUDA_NAMES
-    function hipMemsetD16Async(dest,myValue,count,stream) bind(c, name="cudaMemsetD16Async")
+    function hipMemsetD16Async_orig(dest,myValue,count,stream) bind(c, name="cudaMemsetD16Async")
 #else
-    function hipMemsetD16Async(dest,myValue,count,stream) bind(c, name="hipMemsetD16Async")
+    function hipMemsetD16Async_orig(dest,myValue,count,stream) bind(c, name="hipMemsetD16Async")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2314,9 +2586,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemsetD16Async
+      integer(kind(cudaSuccess)) :: hipMemsetD16Async_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemsetD16Async
+      integer(kind(hipSuccess)) :: hipMemsetD16Async_orig
 #endif
       type(c_ptr),value :: dest
       integer(kind=2),value :: myValue
@@ -2324,6 +2596,8 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
+
+  end interface
   !> 
   !>    @brief Fills the memory area pointed to by dest with the ant integer
   !>   value for specified number of times.
@@ -2333,10 +2607,11 @@ module hipfort
   !>    @param[in]  number of values to be set
   !>    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized
   !>  
+  interface hipMemsetD32
 #ifdef USE_CUDA_NAMES
-    function hipMemsetD32(dest,myValue,count) bind(c, name="cudaMemsetD32")
+    function hipMemsetD32_orig(dest,myValue,count) bind(c, name="cudaMemsetD32")
 #else
-    function hipMemsetD32(dest,myValue,count) bind(c, name="hipMemsetD32")
+    function hipMemsetD32_orig(dest,myValue,count) bind(c, name="hipMemsetD32")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2346,15 +2621,17 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemsetD32
+      integer(kind(cudaSuccess)) :: hipMemsetD32_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemsetD32
+      integer(kind(hipSuccess)) :: hipMemsetD32_orig
 #endif
       type(c_ptr),value :: dest
       integer(c_int),value :: myValue
       integer(c_size_t),value :: count
     end function
 
+
+  end interface
   !> 
   !>    @brief Fills the first sizeBytes bytes of the memory area pointed to by dev with the ant
   !>   byte value value.
@@ -2370,10 +2647,11 @@ module hipfort
   !>    @param[in]  stream - Stream identifier
   !>    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryFree
   !>  
+  interface hipMemsetAsync
 #ifdef USE_CUDA_NAMES
-    function hipMemsetAsync(dst,myValue,sizeBytes,stream) bind(c, name="cudaMemsetAsync")
+    function hipMemsetAsync_orig(dst,myValue,sizeBytes,stream) bind(c, name="cudaMemsetAsync")
 #else
-    function hipMemsetAsync(dst,myValue,sizeBytes,stream) bind(c, name="hipMemsetAsync")
+    function hipMemsetAsync_orig(dst,myValue,sizeBytes,stream) bind(c, name="hipMemsetAsync")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2383,9 +2661,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemsetAsync
+      integer(kind(cudaSuccess)) :: hipMemsetAsync_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemsetAsync
+      integer(kind(hipSuccess)) :: hipMemsetAsync_orig
 #endif
       type(c_ptr),value :: dst
       integer(c_int),value :: myValue
@@ -2393,6 +2671,8 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
+
+  end interface
   !> 
   !>    @brief Fills the memory area pointed to by dev with the ant integer
   !>   value for specified number of times.
@@ -2408,10 +2688,11 @@ module hipfort
   !>    @param[in]  stream - Stream identifier
   !>    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryFree
   !>  
+  interface hipMemsetD32Async
 #ifdef USE_CUDA_NAMES
-    function hipMemsetD32Async(dst,myValue,count,stream) bind(c, name="cudaMemsetD32Async")
+    function hipMemsetD32Async_orig(dst,myValue,count,stream) bind(c, name="cudaMemsetD32Async")
 #else
-    function hipMemsetD32Async(dst,myValue,count,stream) bind(c, name="hipMemsetD32Async")
+    function hipMemsetD32Async_orig(dst,myValue,count,stream) bind(c, name="hipMemsetD32Async")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2421,9 +2702,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemsetD32Async
+      integer(kind(cudaSuccess)) :: hipMemsetD32Async_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemsetD32Async
+      integer(kind(hipSuccess)) :: hipMemsetD32Async_orig
 #endif
       type(c_ptr),value :: dst
       integer(c_int),value :: myValue
@@ -2431,6 +2712,8 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
+
+  end interface
   !> 
   !>    @brief Fills the memory area pointed to by dst with the ant value.
   !>  
@@ -2441,10 +2724,11 @@ module hipfort
   !>    @param[in]  height
   !>    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryFree
   !>  
+  interface hipMemset2D
 #ifdef USE_CUDA_NAMES
-    function hipMemset2D(dst,pitch,myValue,width,height) bind(c, name="cudaMemset2D")
+    function hipMemset2D_orig(dst,pitch,myValue,width,height) bind(c, name="cudaMemset2D")
 #else
-    function hipMemset2D(dst,pitch,myValue,width,height) bind(c, name="hipMemset2D")
+    function hipMemset2D_orig(dst,pitch,myValue,width,height) bind(c, name="hipMemset2D")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2454,9 +2738,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemset2D
+      integer(kind(cudaSuccess)) :: hipMemset2D_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemset2D
+      integer(kind(hipSuccess)) :: hipMemset2D_orig
 #endif
       type(c_ptr),value :: dst
       integer(c_size_t),value :: pitch
@@ -2465,6 +2749,8 @@ module hipfort
       integer(c_size_t),value :: height
     end function
 
+
+  end interface
   !> 
   !>    @brief Fills asynchronously the memory area pointed to by dst with the ant value.
   !>  
@@ -2476,10 +2762,11 @@ module hipfort
   !>    @param[in]  stream
   !>    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryFree
   !>  
+  interface hipMemset2DAsync
 #ifdef USE_CUDA_NAMES
-    function hipMemset2DAsync(dst,pitch,myValue,width,height,stream) bind(c, name="cudaMemset2DAsync")
+    function hipMemset2DAsync_orig(dst,pitch,myValue,width,height,stream) bind(c, name="cudaMemset2DAsync")
 #else
-    function hipMemset2DAsync(dst,pitch,myValue,width,height,stream) bind(c, name="hipMemset2DAsync")
+    function hipMemset2DAsync_orig(dst,pitch,myValue,width,height,stream) bind(c, name="hipMemset2DAsync")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2489,9 +2776,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemset2DAsync
+      integer(kind(cudaSuccess)) :: hipMemset2DAsync_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemset2DAsync
+      integer(kind(hipSuccess)) :: hipMemset2DAsync_orig
 #endif
       type(c_ptr),value :: dst
       integer(c_size_t),value :: pitch
@@ -2501,6 +2788,8 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
+
+  end interface
   !> 
   !>    @brief Fills synchronously the memory area pointed to by pitchedDevPtr with the ant value.
   !>  
@@ -2509,10 +2798,11 @@ module hipfort
   !>    @param[in]  extent
   !>    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryFree
   !>  
+  interface hipMemset3D
 #ifdef USE_CUDA_NAMES
-    function hipMemset3D(pitchedDevPtr,myValue,extent) bind(c, name="cudaMemset3D")
+    function hipMemset3D_orig(pitchedDevPtr,myValue,extent) bind(c, name="cudaMemset3D")
 #else
-    function hipMemset3D(pitchedDevPtr,myValue,extent) bind(c, name="hipMemset3D")
+    function hipMemset3D_orig(pitchedDevPtr,myValue,extent) bind(c, name="hipMemset3D")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2522,15 +2812,17 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemset3D
+      integer(kind(cudaSuccess)) :: hipMemset3D_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemset3D
+      integer(kind(hipSuccess)) :: hipMemset3D_orig
 #endif
       type(c_ptr),value :: pitchedDevPtr
       integer(c_int),value :: myValue
       type(c_ptr),value :: extent
     end function
 
+
+  end interface
   !> 
   !>    @brief Fills asynchronously the memory area pointed to by pitchedDevPtr with the ant value.
   !>  
@@ -2540,10 +2832,11 @@ module hipfort
   !>    @param[in]  stream
   !>    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryFree
   !>  
+  interface hipMemset3DAsync
 #ifdef USE_CUDA_NAMES
-    function hipMemset3DAsync(pitchedDevPtr,myValue,extent,stream) bind(c, name="cudaMemset3DAsync")
+    function hipMemset3DAsync_orig(pitchedDevPtr,myValue,extent,stream) bind(c, name="cudaMemset3DAsync")
 #else
-    function hipMemset3DAsync(pitchedDevPtr,myValue,extent,stream) bind(c, name="hipMemset3DAsync")
+    function hipMemset3DAsync_orig(pitchedDevPtr,myValue,extent,stream) bind(c, name="hipMemset3DAsync")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2553,9 +2846,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemset3DAsync
+      integer(kind(cudaSuccess)) :: hipMemset3DAsync_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemset3DAsync
+      integer(kind(hipSuccess)) :: hipMemset3DAsync_orig
 #endif
       type(c_ptr),value :: pitchedDevPtr
       integer(c_int),value :: myValue
@@ -2563,6 +2856,8 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
+
+  end interface
   !> 
   !>   @brief Query memory info.
   !>   Return snapshot of free memory, and total allocatable memory on the device.
@@ -2572,10 +2867,11 @@ module hipfort
   !>   @warning On HCC, the free memory only accounts for memory allocated by this process and may be
   !>  optimistic.
   !>  
+  interface hipMemGetInfo
 #ifdef USE_CUDA_NAMES
-    function hipMemGetInfo(free,total) bind(c, name="cudaMemGetInfo")
+    function hipMemGetInfo_orig(free,total) bind(c, name="cudaMemGetInfo")
 #else
-    function hipMemGetInfo(free,total) bind(c, name="hipMemGetInfo")
+    function hipMemGetInfo_orig(free,total) bind(c, name="hipMemGetInfo")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2585,19 +2881,22 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemGetInfo
+      integer(kind(cudaSuccess)) :: hipMemGetInfo_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemGetInfo
+      integer(kind(hipSuccess)) :: hipMemGetInfo_orig
 #endif
       integer(c_size_t) :: free
       integer(c_size_t) :: total
     end function
 
+
+  end interface
   
+  interface hipMemPtrGetInfo
 #ifdef USE_CUDA_NAMES
-    function hipMemPtrGetInfo(ptr,mySize) bind(c, name="cudaMemPtrGetInfo")
+    function hipMemPtrGetInfo_orig(ptr,mySize) bind(c, name="cudaMemPtrGetInfo")
 #else
-    function hipMemPtrGetInfo(ptr,mySize) bind(c, name="hipMemPtrGetInfo")
+    function hipMemPtrGetInfo_orig(ptr,mySize) bind(c, name="hipMemPtrGetInfo")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2607,19 +2906,22 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemPtrGetInfo
+      integer(kind(cudaSuccess)) :: hipMemPtrGetInfo_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemPtrGetInfo
+      integer(kind(hipSuccess)) :: hipMemPtrGetInfo_orig
 #endif
       type(c_ptr),value :: ptr
       integer(c_size_t) :: mySize
     end function
 
+
+  end interface
   
+  interface hipArrayCreate
 #ifdef USE_CUDA_NAMES
-    function hipArrayCreate(pHandle,pAllocateArray) bind(c, name="cudaArrayCreate")
+    function hipArrayCreate_orig(pHandle,pAllocateArray) bind(c, name="cudaArrayCreate")
 #else
-    function hipArrayCreate(pHandle,pAllocateArray) bind(c, name="hipArrayCreate")
+    function hipArrayCreate_orig(pHandle,pAllocateArray) bind(c, name="hipArrayCreate")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2629,19 +2931,22 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipArrayCreate
+      integer(kind(cudaSuccess)) :: hipArrayCreate_orig
 #else
-      integer(kind(hipSuccess)) :: hipArrayCreate
+      integer(kind(hipSuccess)) :: hipArrayCreate_orig
 #endif
       type(c_ptr) :: pHandle
       type(c_ptr) :: pAllocateArray
     end function
 
+
+  end interface
   
+  interface hipArray3DCreate
 #ifdef USE_CUDA_NAMES
-    function hipArray3DCreate(array,pAllocateArray) bind(c, name="cudaArray3DCreate")
+    function hipArray3DCreate_orig(array,pAllocateArray) bind(c, name="cudaArray3DCreate")
 #else
-    function hipArray3DCreate(array,pAllocateArray) bind(c, name="hipArray3DCreate")
+    function hipArray3DCreate_orig(array,pAllocateArray) bind(c, name="hipArray3DCreate")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2651,19 +2956,22 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipArray3DCreate
+      integer(kind(cudaSuccess)) :: hipArray3DCreate_orig
 #else
-      integer(kind(hipSuccess)) :: hipArray3DCreate
+      integer(kind(hipSuccess)) :: hipArray3DCreate_orig
 #endif
       type(c_ptr) :: array
       type(c_ptr) :: pAllocateArray
     end function
 
+
+  end interface
   
+  interface hipMalloc3D
 #ifdef USE_CUDA_NAMES
-    function hipMalloc3D(pitchedDevPtr,extent) bind(c, name="cudaMalloc3D")
+    function hipMalloc3D_orig(pitchedDevPtr,extent) bind(c, name="cudaMalloc3D")
 #else
-    function hipMalloc3D(pitchedDevPtr,extent) bind(c, name="hipMalloc3D")
+    function hipMalloc3D_orig(pitchedDevPtr,extent) bind(c, name="hipMalloc3D")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2673,14 +2981,16 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMalloc3D
+      integer(kind(cudaSuccess)) :: hipMalloc3D_orig
 #else
-      integer(kind(hipSuccess)) :: hipMalloc3D
+      integer(kind(hipSuccess)) :: hipMalloc3D_orig
 #endif
       type(c_ptr) :: pitchedDevPtr
       type(c_ptr),value :: extent
     end function
 
+
+  end interface
   !> 
   !>    @brief Frees an array on the device.
   !>  
@@ -2689,10 +2999,11 @@ module hipfort
   !>  
   !>    @see hipMalloc, hipMallocPitch, hipFree, hipMallocArray, hipHostMalloc, hipHostFree
   !>  
+  interface hipFreeArray
 #ifdef USE_CUDA_NAMES
-    function hipFreeArray(array) bind(c, name="cudaFreeArray")
+    function hipFreeArray_orig(array) bind(c, name="cudaFreeArray")
 #else
-    function hipFreeArray(array) bind(c, name="hipFreeArray")
+    function hipFreeArray_orig(array) bind(c, name="hipFreeArray")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2702,13 +3013,15 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipFreeArray
+      integer(kind(cudaSuccess)) :: hipFreeArray_orig
 #else
-      integer(kind(hipSuccess)) :: hipFreeArray
+      integer(kind(hipSuccess)) :: hipFreeArray_orig
 #endif
       type(c_ptr) :: array
     end function
 
+
+  end interface
   !> 
   !>   @brief Frees a mipmapped array on the device
   !>   
@@ -2716,10 +3029,11 @@ module hipfort
   !>   
   !>   @return #hipSuccess, #hipErrorInvalidValue
   !>  
+  interface hipFreeMipmappedArray
 #ifdef USE_CUDA_NAMES
-    function hipFreeMipmappedArray(mipmappedArray) bind(c, name="cudaFreeMipmappedArray")
+    function hipFreeMipmappedArray_orig(mipmappedArray) bind(c, name="cudaFreeMipmappedArray")
 #else
-    function hipFreeMipmappedArray(mipmappedArray) bind(c, name="hipFreeMipmappedArray")
+    function hipFreeMipmappedArray_orig(mipmappedArray) bind(c, name="hipFreeMipmappedArray")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2729,13 +3043,15 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipFreeMipmappedArray
+      integer(kind(cudaSuccess)) :: hipFreeMipmappedArray_orig
 #else
-      integer(kind(hipSuccess)) :: hipFreeMipmappedArray
+      integer(kind(hipSuccess)) :: hipFreeMipmappedArray_orig
 #endif
       type(c_ptr),value :: mipmappedArray
     end function
 
+
+  end interface
   !> 
   !>    @brief Allocate an array on the device.
   !>  
@@ -2747,10 +3063,11 @@ module hipfort
   !>  
   !>    @see hipMalloc, hipMallocPitch, hipFree, hipFreeArray, hipHostMalloc, hipHostFree
   !>  
+  interface hipMalloc3DArray
 #ifdef USE_CUDA_NAMES
-    function hipMalloc3DArray(array,desc,extent,flags) bind(c, name="cudaMalloc3DArray")
+    function hipMalloc3DArray_orig(array,desc,extent,flags) bind(c, name="cudaMalloc3DArray")
 #else
-    function hipMalloc3DArray(array,desc,extent,flags) bind(c, name="hipMalloc3DArray")
+    function hipMalloc3DArray_orig(array,desc,extent,flags) bind(c, name="hipMalloc3DArray")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2760,9 +3077,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMalloc3DArray
+      integer(kind(cudaSuccess)) :: hipMalloc3DArray_orig
 #else
-      integer(kind(hipSuccess)) :: hipMalloc3DArray
+      integer(kind(hipSuccess)) :: hipMalloc3DArray_orig
 #endif
       type(c_ptr) :: array
       type(c_ptr) :: desc
@@ -2770,6 +3087,8 @@ module hipfort
       integer(kind=4),value :: flags
     end function
 
+
+  end interface
   !> 
   !>   @brief Allocate a mipmapped array on the device
   !>  
@@ -2781,10 +3100,11 @@ module hipfort
   !>   
   !>   @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryAllocation
   !>  
+  interface hipMallocMipmappedArray
 #ifdef USE_CUDA_NAMES
-    function hipMallocMipmappedArray(mipmappedArray,desc,extent,numLevels,flags) bind(c, name="cudaMallocMipmappedArray")
+    function hipMallocMipmappedArray_orig(mipmappedArray,desc,extent,numLevels,flags) bind(c, name="cudaMallocMipmappedArray")
 #else
-    function hipMallocMipmappedArray(mipmappedArray,desc,extent,numLevels,flags) bind(c, name="hipMallocMipmappedArray")
+    function hipMallocMipmappedArray_orig(mipmappedArray,desc,extent,numLevels,flags) bind(c, name="hipMallocMipmappedArray")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2794,9 +3114,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMallocMipmappedArray
+      integer(kind(cudaSuccess)) :: hipMallocMipmappedArray_orig
 #else
-      integer(kind(hipSuccess)) :: hipMallocMipmappedArray
+      integer(kind(hipSuccess)) :: hipMallocMipmappedArray_orig
 #endif
       type(c_ptr) :: mipmappedArray
       type(c_ptr) :: desc
@@ -2805,6 +3125,8 @@ module hipfort
       integer(kind=4),value :: flags
     end function
 
+
+  end interface
   !> 
   !>   @brief Gets a mipmap level of a HIP mipmapped array
   !>  
@@ -2814,10 +3136,11 @@ module hipfort
   !>   
   !>   @return #hipSuccess, #hipErrorInvalidValue
   !>  
+  interface hipGetMipmappedArrayLevel
 #ifdef USE_CUDA_NAMES
-    function hipGetMipmappedArrayLevel(levelArray,mipmappedArray,level) bind(c, name="cudaGetMipmappedArrayLevel")
+    function hipGetMipmappedArrayLevel_orig(levelArray,mipmappedArray,level) bind(c, name="cudaGetMipmappedArrayLevel")
 #else
-    function hipGetMipmappedArrayLevel(levelArray,mipmappedArray,level) bind(c, name="hipGetMipmappedArrayLevel")
+    function hipGetMipmappedArrayLevel_orig(levelArray,mipmappedArray,level) bind(c, name="hipGetMipmappedArrayLevel")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2827,15 +3150,17 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipGetMipmappedArrayLevel
+      integer(kind(cudaSuccess)) :: hipGetMipmappedArrayLevel_orig
 #else
-      integer(kind(hipSuccess)) :: hipGetMipmappedArrayLevel
+      integer(kind(hipSuccess)) :: hipGetMipmappedArrayLevel_orig
 #endif
       type(c_ptr) :: levelArray
       type(c_ptr),value :: mipmappedArray
       integer(kind=4),value :: level
     end function
 
+
+  end interface
   !> 
   !>    @brief Copies memory for 2D arrays.
   !>    @param[in]   pCopy Parameters for the memory copy
@@ -2845,10 +3170,11 @@ module hipfort
   !>    @see hipMemcpy, hipMemcpy2D, hipMemcpyToArray, hipMemcpy2DToArray, hipMemcpyFromArray,
   !>   hipMemcpyToSymbol, hipMemcpyAsync
   !> 
+  interface hipMemcpyParam2D
 #ifdef USE_CUDA_NAMES
-    function hipMemcpyParam2D(pCopy) bind(c, name="cudaMemcpyParam2D")
+    function hipMemcpyParam2D_orig(pCopy) bind(c, name="cudaMemcpyParam2D")
 #else
-    function hipMemcpyParam2D(pCopy) bind(c, name="hipMemcpyParam2D")
+    function hipMemcpyParam2D_orig(pCopy) bind(c, name="hipMemcpyParam2D")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2858,13 +3184,15 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemcpyParam2D
+      integer(kind(cudaSuccess)) :: hipMemcpyParam2D_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemcpyParam2D
+      integer(kind(hipSuccess)) :: hipMemcpyParam2D_orig
 #endif
       type(c_ptr) :: pCopy
     end function
 
+
+  end interface
   !> 
   !>    @brief Copies memory for 2D arrays.
   !>    @param[in]   pCopy Parameters for the memory copy
@@ -2875,10 +3203,11 @@ module hipfort
   !>    @see hipMemcpy, hipMemcpy2D, hipMemcpyToArray, hipMemcpy2DToArray, hipMemcpyFromArray,
   !>   hipMemcpyToSymbol, hipMemcpyAsync
   !> 
+  interface hipMemcpyParam2DAsync
 #ifdef USE_CUDA_NAMES
-    function hipMemcpyParam2DAsync(pCopy,stream) bind(c, name="cudaMemcpyParam2DAsync")
+    function hipMemcpyParam2DAsync_orig(pCopy,stream) bind(c, name="cudaMemcpyParam2DAsync")
 #else
-    function hipMemcpyParam2DAsync(pCopy,stream) bind(c, name="hipMemcpyParam2DAsync")
+    function hipMemcpyParam2DAsync_orig(pCopy,stream) bind(c, name="hipMemcpyParam2DAsync")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2888,14 +3217,16 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemcpyParam2DAsync
+      integer(kind(cudaSuccess)) :: hipMemcpyParam2DAsync_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemcpyParam2DAsync
+      integer(kind(hipSuccess)) :: hipMemcpyParam2DAsync_orig
 #endif
       type(c_ptr) :: pCopy
       type(c_ptr),value :: stream
     end function
 
+
+  end interface
   !> 
   !>    @brief Copies data between host and device.
   !>  
@@ -2913,10 +3244,11 @@ module hipfort
   !>    @see hipMemcpy, hipMemcpyToArray, hipMemcpy2D, hipMemcpyFromArray, hipMemcpyToSymbol,
   !>   hipMemcpyAsync
   !>  
+  interface hipMemcpy2DToArray
 #ifdef USE_CUDA_NAMES
-    function hipMemcpy2DToArray(dst,wOffset,hOffset,src,spitch,width,height,myKind) bind(c, name="cudaMemcpy2DToArray")
+    function hipMemcpy2DToArray_orig(dst,wOffset,hOffset,src,spitch,width,height,myKind) bind(c, name="cudaMemcpy2DToArray")
 #else
-    function hipMemcpy2DToArray(dst,wOffset,hOffset,src,spitch,width,height,myKind) bind(c, name="hipMemcpy2DToArray")
+    function hipMemcpy2DToArray_orig(dst,wOffset,hOffset,src,spitch,width,height,myKind) bind(c, name="hipMemcpy2DToArray")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2926,9 +3258,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemcpy2DToArray
+      integer(kind(cudaSuccess)) :: hipMemcpy2DToArray_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemcpy2DToArray
+      integer(kind(hipSuccess)) :: hipMemcpy2DToArray_orig
 #endif
       type(c_ptr) :: dst
       integer(c_size_t),value :: wOffset
@@ -2940,11 +3272,14 @@ module hipfort
       integer(kind(hipMemcpyHostToHost)),value :: myKind
     end function
 
+
+  end interface
   
+  interface hipMemcpyToArray
 #ifdef USE_CUDA_NAMES
-    function hipMemcpyToArray(dst,wOffset,hOffset,src,count,myKind) bind(c, name="cudaMemcpyToArray")
+    function hipMemcpyToArray_orig(dst,wOffset,hOffset,src,count,myKind) bind(c, name="cudaMemcpyToArray")
 #else
-    function hipMemcpyToArray(dst,wOffset,hOffset,src,count,myKind) bind(c, name="hipMemcpyToArray")
+    function hipMemcpyToArray_orig(dst,wOffset,hOffset,src,count,myKind) bind(c, name="hipMemcpyToArray")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2954,9 +3289,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemcpyToArray
+      integer(kind(cudaSuccess)) :: hipMemcpyToArray_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemcpyToArray
+      integer(kind(hipSuccess)) :: hipMemcpyToArray_orig
 #endif
       type(c_ptr) :: dst
       integer(c_size_t),value :: wOffset
@@ -2966,11 +3301,14 @@ module hipfort
       integer(kind(hipMemcpyHostToHost)),value :: myKind
     end function
 
+
+  end interface
   
+  interface hipMemcpyFromArray
 #ifdef USE_CUDA_NAMES
-    function hipMemcpyFromArray(dst,srcArray,wOffset,hOffset,count,myKind) bind(c, name="cudaMemcpyFromArray")
+    function hipMemcpyFromArray_orig(dst,srcArray,wOffset,hOffset,count,myKind) bind(c, name="cudaMemcpyFromArray")
 #else
-    function hipMemcpyFromArray(dst,srcArray,wOffset,hOffset,count,myKind) bind(c, name="hipMemcpyFromArray")
+    function hipMemcpyFromArray_orig(dst,srcArray,wOffset,hOffset,count,myKind) bind(c, name="hipMemcpyFromArray")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2980,9 +3318,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemcpyFromArray
+      integer(kind(cudaSuccess)) :: hipMemcpyFromArray_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemcpyFromArray
+      integer(kind(hipSuccess)) :: hipMemcpyFromArray_orig
 #endif
       type(c_ptr),value :: dst
       type(c_ptr),value :: srcArray
@@ -2992,6 +3330,8 @@ module hipfort
       integer(kind(hipMemcpyHostToHost)),value :: myKind
     end function
 
+
+  end interface
   !> 
   !>    @brief Copies data between host and device.
   !>  
@@ -3009,10 +3349,11 @@ module hipfort
   !>    @see hipMemcpy, hipMemcpy2DToArray, hipMemcpy2D, hipMemcpyFromArray, hipMemcpyToSymbol,
   !>   hipMemcpyAsync
   !>  
+  interface hipMemcpy2DFromArray
 #ifdef USE_CUDA_NAMES
-    function hipMemcpy2DFromArray(dst,dpitch,src,wOffset,hOffset,width,height,myKind) bind(c, name="cudaMemcpy2DFromArray")
+    function hipMemcpy2DFromArray_orig(dst,dpitch,src,wOffset,hOffset,width,height,myKind) bind(c, name="cudaMemcpy2DFromArray")
 #else
-    function hipMemcpy2DFromArray(dst,dpitch,src,wOffset,hOffset,width,height,myKind) bind(c, name="hipMemcpy2DFromArray")
+    function hipMemcpy2DFromArray_orig(dst,dpitch,src,wOffset,hOffset,width,height,myKind) bind(c, name="hipMemcpy2DFromArray")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3022,9 +3363,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemcpy2DFromArray
+      integer(kind(cudaSuccess)) :: hipMemcpy2DFromArray_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemcpy2DFromArray
+      integer(kind(hipSuccess)) :: hipMemcpy2DFromArray_orig
 #endif
       type(c_ptr),value :: dst
       integer(c_size_t),value :: dpitch
@@ -3036,6 +3377,8 @@ module hipfort
       integer(kind(hipMemcpyHostToHost)),value :: myKind
     end function
 
+
+  end interface
   !> 
   !>    @brief Copies data between host and device asynchronously.
   !>  
@@ -3054,10 +3397,11 @@ module hipfort
   !>    @see hipMemcpy, hipMemcpy2DToArray, hipMemcpy2D, hipMemcpyFromArray, hipMemcpyToSymbol,
   !>   hipMemcpyAsync
   !>  
+  interface hipMemcpy2DFromArrayAsync
 #ifdef USE_CUDA_NAMES
-    function hipMemcpy2DFromArrayAsync(dst,dpitch,src,wOffset,hOffset,width,height,myKind,stream) bind(c, name="cudaMemcpy2DFromArrayAsync")
+    function hipMemcpy2DFromArrayAsync_orig(dst,dpitch,src,wOffset,hOffset,width,height,myKind,stream) bind(c, name="cudaMemcpy2DFromArrayAsync")
 #else
-    function hipMemcpy2DFromArrayAsync(dst,dpitch,src,wOffset,hOffset,width,height,myKind,stream) bind(c, name="hipMemcpy2DFromArrayAsync")
+    function hipMemcpy2DFromArrayAsync_orig(dst,dpitch,src,wOffset,hOffset,width,height,myKind,stream) bind(c, name="hipMemcpy2DFromArrayAsync")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3067,9 +3411,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemcpy2DFromArrayAsync
+      integer(kind(cudaSuccess)) :: hipMemcpy2DFromArrayAsync_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemcpy2DFromArrayAsync
+      integer(kind(hipSuccess)) :: hipMemcpy2DFromArrayAsync_orig
 #endif
       type(c_ptr),value :: dst
       integer(c_size_t),value :: dpitch
@@ -3082,6 +3426,8 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
+
+  end interface
   !> 
   !>    @brief Copies data between host and device.
   !>  
@@ -3095,10 +3441,11 @@ module hipfort
   !>    @see hipMemcpy, hipMemcpy2DToArray, hipMemcpy2D, hipMemcpyFromArray, hipMemcpyToSymbol,
   !>   hipMemcpyAsync
   !>  
+  interface hipMemcpyAtoH
 #ifdef USE_CUDA_NAMES
-    function hipMemcpyAtoH(dst,srcArray,srcOffset,count) bind(c, name="cudaMemcpyAtoH")
+    function hipMemcpyAtoH_orig(dst,srcArray,srcOffset,count) bind(c, name="cudaMemcpyAtoH")
 #else
-    function hipMemcpyAtoH(dst,srcArray,srcOffset,count) bind(c, name="hipMemcpyAtoH")
+    function hipMemcpyAtoH_orig(dst,srcArray,srcOffset,count) bind(c, name="hipMemcpyAtoH")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3108,9 +3455,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemcpyAtoH
+      integer(kind(cudaSuccess)) :: hipMemcpyAtoH_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemcpyAtoH
+      integer(kind(hipSuccess)) :: hipMemcpyAtoH_orig
 #endif
       type(c_ptr),value :: dst
       type(c_ptr) :: srcArray
@@ -3118,6 +3465,8 @@ module hipfort
       integer(c_size_t),value :: count
     end function
 
+
+  end interface
   !> 
   !>    @brief Copies data between host and device.
   !>  
@@ -3131,10 +3480,11 @@ module hipfort
   !>    @see hipMemcpy, hipMemcpy2DToArray, hipMemcpy2D, hipMemcpyFromArray, hipMemcpyToSymbol,
   !>   hipMemcpyAsync
   !>  
+  interface hipMemcpyHtoA
 #ifdef USE_CUDA_NAMES
-    function hipMemcpyHtoA(dstArray,dstOffset,srcHost,count) bind(c, name="cudaMemcpyHtoA")
+    function hipMemcpyHtoA_orig(dstArray,dstOffset,srcHost,count) bind(c, name="cudaMemcpyHtoA")
 #else
-    function hipMemcpyHtoA(dstArray,dstOffset,srcHost,count) bind(c, name="hipMemcpyHtoA")
+    function hipMemcpyHtoA_orig(dstArray,dstOffset,srcHost,count) bind(c, name="hipMemcpyHtoA")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3144,9 +3494,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemcpyHtoA
+      integer(kind(cudaSuccess)) :: hipMemcpyHtoA_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemcpyHtoA
+      integer(kind(hipSuccess)) :: hipMemcpyHtoA_orig
 #endif
       type(c_ptr) :: dstArray
       integer(c_size_t),value :: dstOffset
@@ -3154,6 +3504,8 @@ module hipfort
       integer(c_size_t),value :: count
     end function
 
+
+  end interface
   !> 
   !>    @brief Copies data between host and device.
   !>  
@@ -3164,10 +3516,11 @@ module hipfort
   !>    @see hipMemcpy, hipMemcpy2DToArray, hipMemcpy2D, hipMemcpyFromArray, hipMemcpyToSymbol,
   !>   hipMemcpyAsync
   !>  
+  interface hipMemcpy3D
 #ifdef USE_CUDA_NAMES
-    function hipMemcpy3D(p) bind(c, name="cudaMemcpy3D")
+    function hipMemcpy3D_orig(p) bind(c, name="cudaMemcpy3D")
 #else
-    function hipMemcpy3D(p) bind(c, name="hipMemcpy3D")
+    function hipMemcpy3D_orig(p) bind(c, name="hipMemcpy3D")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3177,13 +3530,15 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemcpy3D
+      integer(kind(cudaSuccess)) :: hipMemcpy3D_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemcpy3D
+      integer(kind(hipSuccess)) :: hipMemcpy3D_orig
 #endif
       type(c_ptr) :: p
     end function
 
+
+  end interface
   !> 
   !>    @brief Copies data between host and device asynchronously.
   !>  
@@ -3195,10 +3550,11 @@ module hipfort
   !>    @see hipMemcpy, hipMemcpy2DToArray, hipMemcpy2D, hipMemcpyFromArray, hipMemcpyToSymbol,
   !>   hipMemcpyAsync
   !>  
+  interface hipMemcpy3DAsync
 #ifdef USE_CUDA_NAMES
-    function hipMemcpy3DAsync(p,stream) bind(c, name="cudaMemcpy3DAsync")
+    function hipMemcpy3DAsync_orig(p,stream) bind(c, name="cudaMemcpy3DAsync")
 #else
-    function hipMemcpy3DAsync(p,stream) bind(c, name="hipMemcpy3DAsync")
+    function hipMemcpy3DAsync_orig(p,stream) bind(c, name="hipMemcpy3DAsync")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3208,14 +3564,16 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemcpy3DAsync
+      integer(kind(cudaSuccess)) :: hipMemcpy3DAsync_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemcpy3DAsync
+      integer(kind(hipSuccess)) :: hipMemcpy3DAsync_orig
 #endif
       type(c_ptr) :: p
       type(c_ptr),value :: stream
     end function
 
+
+  end interface
   !> 
   !>    @brief Copies data between host and device.
   !>  
@@ -3226,10 +3584,11 @@ module hipfort
   !>    @see hipMemcpy, hipMemcpy2DToArray, hipMemcpy2D, hipMemcpyFromArray, hipMemcpyToSymbol,
   !>   hipMemcpyAsync
   !>  
+  interface hipDrvMemcpy3D
 #ifdef USE_CUDA_NAMES
-    function hipDrvMemcpy3D(pCopy) bind(c, name="cudaDrvMemcpy3D")
+    function hipDrvMemcpy3D_orig(pCopy) bind(c, name="cudaDrvMemcpy3D")
 #else
-    function hipDrvMemcpy3D(pCopy) bind(c, name="hipDrvMemcpy3D")
+    function hipDrvMemcpy3D_orig(pCopy) bind(c, name="hipDrvMemcpy3D")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3239,13 +3598,15 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipDrvMemcpy3D
+      integer(kind(cudaSuccess)) :: hipDrvMemcpy3D_orig
 #else
-      integer(kind(hipSuccess)) :: hipDrvMemcpy3D
+      integer(kind(hipSuccess)) :: hipDrvMemcpy3D_orig
 #endif
       type(c_ptr) :: pCopy
     end function
 
+
+  end interface
   !> 
   !>    @brief Copies data between host and device asynchronously.
   !>  
@@ -3257,10 +3618,11 @@ module hipfort
   !>    @see hipMemcpy, hipMemcpy2DToArray, hipMemcpy2D, hipMemcpyFromArray, hipMemcpyToSymbol,
   !>   hipMemcpyAsync
   !>  
+  interface hipDrvMemcpy3DAsync
 #ifdef USE_CUDA_NAMES
-    function hipDrvMemcpy3DAsync(pCopy,stream) bind(c, name="cudaDrvMemcpy3DAsync")
+    function hipDrvMemcpy3DAsync_orig(pCopy,stream) bind(c, name="cudaDrvMemcpy3DAsync")
 #else
-    function hipDrvMemcpy3DAsync(pCopy,stream) bind(c, name="hipDrvMemcpy3DAsync")
+    function hipDrvMemcpy3DAsync_orig(pCopy,stream) bind(c, name="hipDrvMemcpy3DAsync")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3270,14 +3632,16 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipDrvMemcpy3DAsync
+      integer(kind(cudaSuccess)) :: hipDrvMemcpy3DAsync_orig
 #else
-      integer(kind(hipSuccess)) :: hipDrvMemcpy3DAsync
+      integer(kind(hipSuccess)) :: hipDrvMemcpy3DAsync_orig
 #endif
       type(c_ptr) :: pCopy
       type(c_ptr),value :: stream
     end function
 
+
+  end interface
   !> 
   !>   @brief Determine if a device can access a peer's memory.
   !>  
@@ -3294,10 +3658,11 @@ module hipfort
   !>   @returns #hipSuccess,
   !>   @returns #hipErrorInvalidDevice if deviceId or peerDeviceId are not valid devices
   !>  
+  interface hipDeviceCanAccessPeer
 #ifdef USE_CUDA_NAMES
-    function hipDeviceCanAccessPeer(canAccessPeer,deviceId,peerDeviceId) bind(c, name="cudaDeviceCanAccessPeer")
+    function hipDeviceCanAccessPeer_orig(canAccessPeer,deviceId,peerDeviceId) bind(c, name="cudaDeviceCanAccessPeer")
 #else
-    function hipDeviceCanAccessPeer(canAccessPeer,deviceId,peerDeviceId) bind(c, name="hipDeviceCanAccessPeer")
+    function hipDeviceCanAccessPeer_orig(canAccessPeer,deviceId,peerDeviceId) bind(c, name="hipDeviceCanAccessPeer")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3307,15 +3672,17 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipDeviceCanAccessPeer
+      integer(kind(cudaSuccess)) :: hipDeviceCanAccessPeer_orig
 #else
-      integer(kind(hipSuccess)) :: hipDeviceCanAccessPeer
+      integer(kind(hipSuccess)) :: hipDeviceCanAccessPeer_orig
 #endif
       type(c_ptr),value :: canAccessPeer
       integer(c_int),value :: deviceId
       integer(c_int),value :: peerDeviceId
     end function
 
+
+  end interface
   !> 
   !>   @brief Enable direct access from current device's virtual address space to memory allocations
   !>   physically located on a peer device.
@@ -3332,10 +3699,11 @@ module hipfort
   !>   Returns #hipSuccess, #hipErrorInvalidDevice, #hipErrorInvalidValue,
   !>   @returns #hipErrorPeerAccessAlreadyEnabled if peer access is already enabled for this device.
   !>  
+  interface hipDeviceEnablePeerAccess
 #ifdef USE_CUDA_NAMES
-    function hipDeviceEnablePeerAccess(peerDeviceId,flags) bind(c, name="cudaDeviceEnablePeerAccess")
+    function hipDeviceEnablePeerAccess_orig(peerDeviceId,flags) bind(c, name="cudaDeviceEnablePeerAccess")
 #else
-    function hipDeviceEnablePeerAccess(peerDeviceId,flags) bind(c, name="hipDeviceEnablePeerAccess")
+    function hipDeviceEnablePeerAccess_orig(peerDeviceId,flags) bind(c, name="hipDeviceEnablePeerAccess")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3345,14 +3713,16 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipDeviceEnablePeerAccess
+      integer(kind(cudaSuccess)) :: hipDeviceEnablePeerAccess_orig
 #else
-      integer(kind(hipSuccess)) :: hipDeviceEnablePeerAccess
+      integer(kind(hipSuccess)) :: hipDeviceEnablePeerAccess_orig
 #endif
       integer(c_int),value :: peerDeviceId
       integer(kind=4),value :: flags
     end function
 
+
+  end interface
   !> 
   !>   @brief Disable direct access from current device's virtual address space to memory allocations
   !>   physically located on a peer device.
@@ -3364,10 +3734,11 @@ module hipfort
   !>  
   !>   @returns #hipSuccess, #hipErrorPeerAccessNotEnabled
   !>  
+  interface hipDeviceDisablePeerAccess
 #ifdef USE_CUDA_NAMES
-    function hipDeviceDisablePeerAccess(peerDeviceId) bind(c, name="cudaDeviceDisablePeerAccess")
+    function hipDeviceDisablePeerAccess_orig(peerDeviceId) bind(c, name="cudaDeviceDisablePeerAccess")
 #else
-    function hipDeviceDisablePeerAccess(peerDeviceId) bind(c, name="hipDeviceDisablePeerAccess")
+    function hipDeviceDisablePeerAccess_orig(peerDeviceId) bind(c, name="hipDeviceDisablePeerAccess")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3377,13 +3748,15 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipDeviceDisablePeerAccess
+      integer(kind(cudaSuccess)) :: hipDeviceDisablePeerAccess_orig
 #else
-      integer(kind(hipSuccess)) :: hipDeviceDisablePeerAccess
+      integer(kind(hipSuccess)) :: hipDeviceDisablePeerAccess_orig
 #endif
       integer(c_int),value :: peerDeviceId
     end function
 
+
+  end interface
   !> 
   !>   @brief Get information on memory allocations.
   !>  
@@ -3396,10 +3769,11 @@ module hipfort
   !>   @see hipCtxCreate, hipCtxDestroy, hipCtxGetFlags, hipCtxPopCurrent, hipCtxGetCurrent,
   !>   hipCtxSetCurrent, hipCtxPushCurrent, hipCtxSetCacheConfig, hipCtxSynchronize, hipCtxGetDevice
   !>  
+  interface hipMemGetAddressRange
 #ifdef USE_CUDA_NAMES
-    function hipMemGetAddressRange(pbase,psize,dptr) bind(c, name="cudaMemGetAddressRange")
+    function hipMemGetAddressRange_orig(pbase,psize,dptr) bind(c, name="cudaMemGetAddressRange")
 #else
-    function hipMemGetAddressRange(pbase,psize,dptr) bind(c, name="hipMemGetAddressRange")
+    function hipMemGetAddressRange_orig(pbase,psize,dptr) bind(c, name="hipMemGetAddressRange")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3409,15 +3783,17 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemGetAddressRange
+      integer(kind(cudaSuccess)) :: hipMemGetAddressRange_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemGetAddressRange
+      integer(kind(hipSuccess)) :: hipMemGetAddressRange_orig
 #endif
       type(c_ptr) :: pbase
       integer(c_size_t) :: psize
       type(c_ptr),value :: dptr
     end function
 
+
+  end interface
   !> 
   !>   @brief Copies memory from one device to memory on another device.
   !>  
@@ -3429,10 +3805,11 @@ module hipfort
   !>  
   !>   @returns #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidDevice
   !>  
+  interface hipMemcpyPeer
 #ifdef USE_CUDA_NAMES
-    function hipMemcpyPeer(dst,dstDeviceId,src,srcDeviceId,sizeBytes) bind(c, name="cudaMemcpyPeer")
+    function hipMemcpyPeer_orig(dst,dstDeviceId,src,srcDeviceId,sizeBytes) bind(c, name="cudaMemcpyPeer")
 #else
-    function hipMemcpyPeer(dst,dstDeviceId,src,srcDeviceId,sizeBytes) bind(c, name="hipMemcpyPeer")
+    function hipMemcpyPeer_orig(dst,dstDeviceId,src,srcDeviceId,sizeBytes) bind(c, name="hipMemcpyPeer")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3442,9 +3819,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemcpyPeer
+      integer(kind(cudaSuccess)) :: hipMemcpyPeer_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemcpyPeer
+      integer(kind(hipSuccess)) :: hipMemcpyPeer_orig
 #endif
       type(c_ptr),value :: dst
       integer(c_int),value :: dstDeviceId
@@ -3453,6 +3830,8 @@ module hipfort
       integer(c_size_t),value :: sizeBytes
     end function
 
+
+  end interface
   !> 
   !>   @brief Copies memory from one device to memory on another device.
   !>  
@@ -3465,10 +3844,11 @@ module hipfort
   !>  
   !>   @returns #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidDevice
   !>  
+  interface hipMemcpyPeerAsync
 #ifdef USE_CUDA_NAMES
-    function hipMemcpyPeerAsync(dst,dstDeviceId,src,srcDevice,sizeBytes,stream) bind(c, name="cudaMemcpyPeerAsync")
+    function hipMemcpyPeerAsync_orig(dst,dstDeviceId,src,srcDevice,sizeBytes,stream) bind(c, name="cudaMemcpyPeerAsync")
 #else
-    function hipMemcpyPeerAsync(dst,dstDeviceId,src,srcDevice,sizeBytes,stream) bind(c, name="hipMemcpyPeerAsync")
+    function hipMemcpyPeerAsync_orig(dst,dstDeviceId,src,srcDevice,sizeBytes,stream) bind(c, name="hipMemcpyPeerAsync")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3478,9 +3858,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemcpyPeerAsync
+      integer(kind(cudaSuccess)) :: hipMemcpyPeerAsync_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemcpyPeerAsync
+      integer(kind(hipSuccess)) :: hipMemcpyPeerAsync_orig
 #endif
       type(c_ptr),value :: dst
       integer(c_int),value :: dstDeviceId
@@ -3490,11 +3870,14 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
+
+  end interface
   
+  interface hipInit
 #ifdef USE_CUDA_NAMES
-    function hipInit(flags) bind(c, name="cudaInit")
+    function hipInit_orig(flags) bind(c, name="cudaInit")
 #else
-    function hipInit(flags) bind(c, name="hipInit")
+    function hipInit_orig(flags) bind(c, name="hipInit")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3504,18 +3887,21 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipInit
+      integer(kind(cudaSuccess)) :: hipInit_orig
 #else
-      integer(kind(hipSuccess)) :: hipInit
+      integer(kind(hipSuccess)) :: hipInit_orig
 #endif
       integer(kind=4),value :: flags
     end function
 
+
+  end interface
   
+  interface hipCtxCreate
 #ifdef USE_CUDA_NAMES
-    function hipCtxCreate(ctx,flags,device) bind(c, name="cudaCtxCreate")
+    function hipCtxCreate_orig(ctx,flags,device) bind(c, name="cudaCtxCreate")
 #else
-    function hipCtxCreate(ctx,flags,device) bind(c, name="hipCtxCreate")
+    function hipCtxCreate_orig(ctx,flags,device) bind(c, name="hipCtxCreate")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3525,20 +3911,23 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipCtxCreate
+      integer(kind(cudaSuccess)) :: hipCtxCreate_orig
 #else
-      integer(kind(hipSuccess)) :: hipCtxCreate
+      integer(kind(hipSuccess)) :: hipCtxCreate_orig
 #endif
       type(c_ptr) :: ctx
       integer(kind=4),value :: flags
       integer(c_int),value :: device
     end function
 
+
+  end interface
   
+  interface hipCtxDestroy
 #ifdef USE_CUDA_NAMES
-    function hipCtxDestroy(ctx) bind(c, name="cudaCtxDestroy")
+    function hipCtxDestroy_orig(ctx) bind(c, name="cudaCtxDestroy")
 #else
-    function hipCtxDestroy(ctx) bind(c, name="hipCtxDestroy")
+    function hipCtxDestroy_orig(ctx) bind(c, name="hipCtxDestroy")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3548,18 +3937,21 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipCtxDestroy
+      integer(kind(cudaSuccess)) :: hipCtxDestroy_orig
 #else
-      integer(kind(hipSuccess)) :: hipCtxDestroy
+      integer(kind(hipSuccess)) :: hipCtxDestroy_orig
 #endif
       type(c_ptr),value :: ctx
     end function
 
+
+  end interface
   
+  interface hipCtxPopCurrent
 #ifdef USE_CUDA_NAMES
-    function hipCtxPopCurrent(ctx) bind(c, name="cudaCtxPopCurrent")
+    function hipCtxPopCurrent_orig(ctx) bind(c, name="cudaCtxPopCurrent")
 #else
-    function hipCtxPopCurrent(ctx) bind(c, name="hipCtxPopCurrent")
+    function hipCtxPopCurrent_orig(ctx) bind(c, name="hipCtxPopCurrent")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3569,18 +3961,21 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipCtxPopCurrent
+      integer(kind(cudaSuccess)) :: hipCtxPopCurrent_orig
 #else
-      integer(kind(hipSuccess)) :: hipCtxPopCurrent
+      integer(kind(hipSuccess)) :: hipCtxPopCurrent_orig
 #endif
       type(c_ptr) :: ctx
     end function
 
+
+  end interface
   
+  interface hipCtxPushCurrent
 #ifdef USE_CUDA_NAMES
-    function hipCtxPushCurrent(ctx) bind(c, name="cudaCtxPushCurrent")
+    function hipCtxPushCurrent_orig(ctx) bind(c, name="cudaCtxPushCurrent")
 #else
-    function hipCtxPushCurrent(ctx) bind(c, name="hipCtxPushCurrent")
+    function hipCtxPushCurrent_orig(ctx) bind(c, name="hipCtxPushCurrent")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3590,18 +3985,21 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipCtxPushCurrent
+      integer(kind(cudaSuccess)) :: hipCtxPushCurrent_orig
 #else
-      integer(kind(hipSuccess)) :: hipCtxPushCurrent
+      integer(kind(hipSuccess)) :: hipCtxPushCurrent_orig
 #endif
       type(c_ptr),value :: ctx
     end function
 
+
+  end interface
   
+  interface hipCtxSetCurrent
 #ifdef USE_CUDA_NAMES
-    function hipCtxSetCurrent(ctx) bind(c, name="cudaCtxSetCurrent")
+    function hipCtxSetCurrent_orig(ctx) bind(c, name="cudaCtxSetCurrent")
 #else
-    function hipCtxSetCurrent(ctx) bind(c, name="hipCtxSetCurrent")
+    function hipCtxSetCurrent_orig(ctx) bind(c, name="hipCtxSetCurrent")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3611,18 +4009,21 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipCtxSetCurrent
+      integer(kind(cudaSuccess)) :: hipCtxSetCurrent_orig
 #else
-      integer(kind(hipSuccess)) :: hipCtxSetCurrent
+      integer(kind(hipSuccess)) :: hipCtxSetCurrent_orig
 #endif
       type(c_ptr),value :: ctx
     end function
 
+
+  end interface
   
+  interface hipCtxGetCurrent
 #ifdef USE_CUDA_NAMES
-    function hipCtxGetCurrent(ctx) bind(c, name="cudaCtxGetCurrent")
+    function hipCtxGetCurrent_orig(ctx) bind(c, name="cudaCtxGetCurrent")
 #else
-    function hipCtxGetCurrent(ctx) bind(c, name="hipCtxGetCurrent")
+    function hipCtxGetCurrent_orig(ctx) bind(c, name="hipCtxGetCurrent")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3632,18 +4033,21 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipCtxGetCurrent
+      integer(kind(cudaSuccess)) :: hipCtxGetCurrent_orig
 #else
-      integer(kind(hipSuccess)) :: hipCtxGetCurrent
+      integer(kind(hipSuccess)) :: hipCtxGetCurrent_orig
 #endif
       type(c_ptr) :: ctx
     end function
 
+
+  end interface
   
+  interface hipCtxGetDevice
 #ifdef USE_CUDA_NAMES
-    function hipCtxGetDevice(device) bind(c, name="cudaCtxGetDevice")
+    function hipCtxGetDevice_orig(device) bind(c, name="cudaCtxGetDevice")
 #else
-    function hipCtxGetDevice(device) bind(c, name="hipCtxGetDevice")
+    function hipCtxGetDevice_orig(device) bind(c, name="hipCtxGetDevice")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3653,18 +4057,21 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipCtxGetDevice
+      integer(kind(cudaSuccess)) :: hipCtxGetDevice_orig
 #else
-      integer(kind(hipSuccess)) :: hipCtxGetDevice
+      integer(kind(hipSuccess)) :: hipCtxGetDevice_orig
 #endif
       type(c_ptr),value :: device
     end function
 
+
+  end interface
   
+  interface hipCtxGetApiVersion
 #ifdef USE_CUDA_NAMES
-    function hipCtxGetApiVersion(ctx,apiVersion) bind(c, name="cudaCtxGetApiVersion")
+    function hipCtxGetApiVersion_orig(ctx,apiVersion) bind(c, name="cudaCtxGetApiVersion")
 #else
-    function hipCtxGetApiVersion(ctx,apiVersion) bind(c, name="hipCtxGetApiVersion")
+    function hipCtxGetApiVersion_orig(ctx,apiVersion) bind(c, name="hipCtxGetApiVersion")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3674,19 +4081,22 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipCtxGetApiVersion
+      integer(kind(cudaSuccess)) :: hipCtxGetApiVersion_orig
 #else
-      integer(kind(hipSuccess)) :: hipCtxGetApiVersion
+      integer(kind(hipSuccess)) :: hipCtxGetApiVersion_orig
 #endif
       type(c_ptr),value :: ctx
       type(c_ptr),value :: apiVersion
     end function
 
+
+  end interface
   
+  interface hipCtxGetCacheConfig
 #ifdef USE_CUDA_NAMES
-    function hipCtxGetCacheConfig(cacheConfig) bind(c, name="cudaCtxGetCacheConfig")
+    function hipCtxGetCacheConfig_orig(cacheConfig) bind(c, name="cudaCtxGetCacheConfig")
 #else
-    function hipCtxGetCacheConfig(cacheConfig) bind(c, name="hipCtxGetCacheConfig")
+    function hipCtxGetCacheConfig_orig(cacheConfig) bind(c, name="hipCtxGetCacheConfig")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3696,18 +4106,21 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipCtxGetCacheConfig
+      integer(kind(cudaSuccess)) :: hipCtxGetCacheConfig_orig
 #else
-      integer(kind(hipSuccess)) :: hipCtxGetCacheConfig
+      integer(kind(hipSuccess)) :: hipCtxGetCacheConfig_orig
 #endif
       type(c_ptr),value :: cacheConfig
     end function
 
+
+  end interface
   
+  interface hipCtxSetCacheConfig
 #ifdef USE_CUDA_NAMES
-    function hipCtxSetCacheConfig(cacheConfig) bind(c, name="cudaCtxSetCacheConfig")
+    function hipCtxSetCacheConfig_orig(cacheConfig) bind(c, name="cudaCtxSetCacheConfig")
 #else
-    function hipCtxSetCacheConfig(cacheConfig) bind(c, name="hipCtxSetCacheConfig")
+    function hipCtxSetCacheConfig_orig(cacheConfig) bind(c, name="hipCtxSetCacheConfig")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3717,18 +4130,21 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipCtxSetCacheConfig
+      integer(kind(cudaSuccess)) :: hipCtxSetCacheConfig_orig
 #else
-      integer(kind(hipSuccess)) :: hipCtxSetCacheConfig
+      integer(kind(hipSuccess)) :: hipCtxSetCacheConfig_orig
 #endif
       integer(kind(hipFuncCachePreferNone)),value :: cacheConfig
     end function
 
+
+  end interface
   
+  interface hipCtxSetSharedMemConfig
 #ifdef USE_CUDA_NAMES
-    function hipCtxSetSharedMemConfig(config) bind(c, name="cudaCtxSetSharedMemConfig")
+    function hipCtxSetSharedMemConfig_orig(config) bind(c, name="cudaCtxSetSharedMemConfig")
 #else
-    function hipCtxSetSharedMemConfig(config) bind(c, name="hipCtxSetSharedMemConfig")
+    function hipCtxSetSharedMemConfig_orig(config) bind(c, name="hipCtxSetSharedMemConfig")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3738,18 +4154,21 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipCtxSetSharedMemConfig
+      integer(kind(cudaSuccess)) :: hipCtxSetSharedMemConfig_orig
 #else
-      integer(kind(hipSuccess)) :: hipCtxSetSharedMemConfig
+      integer(kind(hipSuccess)) :: hipCtxSetSharedMemConfig_orig
 #endif
       integer(kind(hipSharedMemBankSizeDefault)),value :: config
     end function
 
+
+  end interface
   
+  interface hipCtxGetSharedMemConfig
 #ifdef USE_CUDA_NAMES
-    function hipCtxGetSharedMemConfig(pConfig) bind(c, name="cudaCtxGetSharedMemConfig")
+    function hipCtxGetSharedMemConfig_orig(pConfig) bind(c, name="cudaCtxGetSharedMemConfig")
 #else
-    function hipCtxGetSharedMemConfig(pConfig) bind(c, name="hipCtxGetSharedMemConfig")
+    function hipCtxGetSharedMemConfig_orig(pConfig) bind(c, name="hipCtxGetSharedMemConfig")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3759,18 +4178,21 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipCtxGetSharedMemConfig
+      integer(kind(cudaSuccess)) :: hipCtxGetSharedMemConfig_orig
 #else
-      integer(kind(hipSuccess)) :: hipCtxGetSharedMemConfig
+      integer(kind(hipSuccess)) :: hipCtxGetSharedMemConfig_orig
 #endif
       type(c_ptr),value :: pConfig
     end function
 
+
+  end interface
   
+  interface hipCtxSynchronize
 #ifdef USE_CUDA_NAMES
-    function hipCtxSynchronize() bind(c, name="cudaCtxSynchronize")
+    function hipCtxSynchronize_orig() bind(c, name="cudaCtxSynchronize")
 #else
-    function hipCtxSynchronize() bind(c, name="hipCtxSynchronize")
+    function hipCtxSynchronize_orig() bind(c, name="hipCtxSynchronize")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3780,17 +4202,20 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipCtxSynchronize
+      integer(kind(cudaSuccess)) :: hipCtxSynchronize_orig
 #else
-      integer(kind(hipSuccess)) :: hipCtxSynchronize
+      integer(kind(hipSuccess)) :: hipCtxSynchronize_orig
 #endif
     end function
 
+
+  end interface
   
+  interface hipCtxGetFlags
 #ifdef USE_CUDA_NAMES
-    function hipCtxGetFlags(flags) bind(c, name="cudaCtxGetFlags")
+    function hipCtxGetFlags_orig(flags) bind(c, name="cudaCtxGetFlags")
 #else
-    function hipCtxGetFlags(flags) bind(c, name="hipCtxGetFlags")
+    function hipCtxGetFlags_orig(flags) bind(c, name="hipCtxGetFlags")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3800,18 +4225,21 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipCtxGetFlags
+      integer(kind(cudaSuccess)) :: hipCtxGetFlags_orig
 #else
-      integer(kind(hipSuccess)) :: hipCtxGetFlags
+      integer(kind(hipSuccess)) :: hipCtxGetFlags_orig
 #endif
       type(c_ptr),value :: flags
     end function
 
+
+  end interface
   
+  interface hipCtxEnablePeerAccess
 #ifdef USE_CUDA_NAMES
-    function hipCtxEnablePeerAccess(peerCtx,flags) bind(c, name="cudaCtxEnablePeerAccess")
+    function hipCtxEnablePeerAccess_orig(peerCtx,flags) bind(c, name="cudaCtxEnablePeerAccess")
 #else
-    function hipCtxEnablePeerAccess(peerCtx,flags) bind(c, name="hipCtxEnablePeerAccess")
+    function hipCtxEnablePeerAccess_orig(peerCtx,flags) bind(c, name="hipCtxEnablePeerAccess")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3821,19 +4249,22 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipCtxEnablePeerAccess
+      integer(kind(cudaSuccess)) :: hipCtxEnablePeerAccess_orig
 #else
-      integer(kind(hipSuccess)) :: hipCtxEnablePeerAccess
+      integer(kind(hipSuccess)) :: hipCtxEnablePeerAccess_orig
 #endif
       type(c_ptr),value :: peerCtx
       integer(kind=4),value :: flags
     end function
 
+
+  end interface
   
+  interface hipCtxDisablePeerAccess
 #ifdef USE_CUDA_NAMES
-    function hipCtxDisablePeerAccess(peerCtx) bind(c, name="cudaCtxDisablePeerAccess")
+    function hipCtxDisablePeerAccess_orig(peerCtx) bind(c, name="cudaCtxDisablePeerAccess")
 #else
-    function hipCtxDisablePeerAccess(peerCtx) bind(c, name="hipCtxDisablePeerAccess")
+    function hipCtxDisablePeerAccess_orig(peerCtx) bind(c, name="hipCtxDisablePeerAccess")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3843,13 +4274,15 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipCtxDisablePeerAccess
+      integer(kind(cudaSuccess)) :: hipCtxDisablePeerAccess_orig
 #else
-      integer(kind(hipSuccess)) :: hipCtxDisablePeerAccess
+      integer(kind(hipSuccess)) :: hipCtxDisablePeerAccess_orig
 #endif
       type(c_ptr),value :: peerCtx
     end function
 
+
+  end interface
   !> 
   !>   @brief Get the state of the primary context.
   !>  
@@ -3862,10 +4295,11 @@ module hipfort
   !>   @see hipCtxCreate, hipCtxDestroy, hipCtxGetFlags, hipCtxPopCurrent, hipCtxGetCurrent,
   !>   hipCtxSetCurrent, hipCtxPushCurrent, hipCtxSetCacheConfig, hipCtxSynchronize, hipCtxGetDevice
   !>  
+  interface hipDevicePrimaryCtxGetState
 #ifdef USE_CUDA_NAMES
-    function hipDevicePrimaryCtxGetState(dev,flags,active) bind(c, name="cudaDevicePrimaryCtxGetState")
+    function hipDevicePrimaryCtxGetState_orig(dev,flags,active) bind(c, name="cudaDevicePrimaryCtxGetState")
 #else
-    function hipDevicePrimaryCtxGetState(dev,flags,active) bind(c, name="hipDevicePrimaryCtxGetState")
+    function hipDevicePrimaryCtxGetState_orig(dev,flags,active) bind(c, name="hipDevicePrimaryCtxGetState")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3875,15 +4309,17 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipDevicePrimaryCtxGetState
+      integer(kind(cudaSuccess)) :: hipDevicePrimaryCtxGetState_orig
 #else
-      integer(kind(hipSuccess)) :: hipDevicePrimaryCtxGetState
+      integer(kind(hipSuccess)) :: hipDevicePrimaryCtxGetState_orig
 #endif
       integer(c_int),value :: dev
       type(c_ptr),value :: flags
       type(c_ptr),value :: active
     end function
 
+
+  end interface
   !> 
   !>   @brief Release the primary context on the GPU.
   !>  
@@ -3896,10 +4332,11 @@ module hipfort
   !>   @warning This function return #hipSuccess though doesn't release the primaryCtx by design on
   !>   HIPHCC path.
   !>  
+  interface hipDevicePrimaryCtxRelease
 #ifdef USE_CUDA_NAMES
-    function hipDevicePrimaryCtxRelease(dev) bind(c, name="cudaDevicePrimaryCtxRelease")
+    function hipDevicePrimaryCtxRelease_orig(dev) bind(c, name="cudaDevicePrimaryCtxRelease")
 #else
-    function hipDevicePrimaryCtxRelease(dev) bind(c, name="hipDevicePrimaryCtxRelease")
+    function hipDevicePrimaryCtxRelease_orig(dev) bind(c, name="hipDevicePrimaryCtxRelease")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3909,13 +4346,15 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipDevicePrimaryCtxRelease
+      integer(kind(cudaSuccess)) :: hipDevicePrimaryCtxRelease_orig
 #else
-      integer(kind(hipSuccess)) :: hipDevicePrimaryCtxRelease
+      integer(kind(hipSuccess)) :: hipDevicePrimaryCtxRelease_orig
 #endif
       integer(c_int),value :: dev
     end function
 
+
+  end interface
   !> 
   !>   @brief Retain the primary context on the GPU.
   !>  
@@ -3927,10 +4366,11 @@ module hipfort
   !>   @see hipCtxCreate, hipCtxDestroy, hipCtxGetFlags, hipCtxPopCurrent, hipCtxGetCurrent,
   !>   hipCtxSetCurrent, hipCtxPushCurrent, hipCtxSetCacheConfig, hipCtxSynchronize, hipCtxGetDevice
   !>  
+  interface hipDevicePrimaryCtxRetain
 #ifdef USE_CUDA_NAMES
-    function hipDevicePrimaryCtxRetain(pctx,dev) bind(c, name="cudaDevicePrimaryCtxRetain")
+    function hipDevicePrimaryCtxRetain_orig(pctx,dev) bind(c, name="cudaDevicePrimaryCtxRetain")
 #else
-    function hipDevicePrimaryCtxRetain(pctx,dev) bind(c, name="hipDevicePrimaryCtxRetain")
+    function hipDevicePrimaryCtxRetain_orig(pctx,dev) bind(c, name="hipDevicePrimaryCtxRetain")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3940,14 +4380,16 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipDevicePrimaryCtxRetain
+      integer(kind(cudaSuccess)) :: hipDevicePrimaryCtxRetain_orig
 #else
-      integer(kind(hipSuccess)) :: hipDevicePrimaryCtxRetain
+      integer(kind(hipSuccess)) :: hipDevicePrimaryCtxRetain_orig
 #endif
       type(c_ptr) :: pctx
       integer(c_int),value :: dev
     end function
 
+
+  end interface
   !> 
   !>   @brief Resets the primary context on the GPU.
   !>  
@@ -3958,10 +4400,11 @@ module hipfort
   !>   @see hipCtxCreate, hipCtxDestroy, hipCtxGetFlags, hipCtxPopCurrent, hipCtxGetCurrent,
   !>   hipCtxSetCurrent, hipCtxPushCurrent, hipCtxSetCacheConfig, hipCtxSynchronize, hipCtxGetDevice
   !>  
+  interface hipDevicePrimaryCtxReset
 #ifdef USE_CUDA_NAMES
-    function hipDevicePrimaryCtxReset(dev) bind(c, name="cudaDevicePrimaryCtxReset")
+    function hipDevicePrimaryCtxReset_orig(dev) bind(c, name="cudaDevicePrimaryCtxReset")
 #else
-    function hipDevicePrimaryCtxReset(dev) bind(c, name="hipDevicePrimaryCtxReset")
+    function hipDevicePrimaryCtxReset_orig(dev) bind(c, name="hipDevicePrimaryCtxReset")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3971,13 +4414,15 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipDevicePrimaryCtxReset
+      integer(kind(cudaSuccess)) :: hipDevicePrimaryCtxReset_orig
 #else
-      integer(kind(hipSuccess)) :: hipDevicePrimaryCtxReset
+      integer(kind(hipSuccess)) :: hipDevicePrimaryCtxReset_orig
 #endif
       integer(c_int),value :: dev
     end function
 
+
+  end interface
   !> 
   !>   @brief Set flags for the primary context.
   !>  
@@ -3989,10 +4434,11 @@ module hipfort
   !>   @see hipCtxCreate, hipCtxDestroy, hipCtxGetFlags, hipCtxPopCurrent, hipCtxGetCurrent,
   !>   hipCtxSetCurrent, hipCtxPushCurrent, hipCtxSetCacheConfig, hipCtxSynchronize, hipCtxGetDevice
   !>  
+  interface hipDevicePrimaryCtxSetFlags
 #ifdef USE_CUDA_NAMES
-    function hipDevicePrimaryCtxSetFlags(dev,flags) bind(c, name="cudaDevicePrimaryCtxSetFlags")
+    function hipDevicePrimaryCtxSetFlags_orig(dev,flags) bind(c, name="cudaDevicePrimaryCtxSetFlags")
 #else
-    function hipDevicePrimaryCtxSetFlags(dev,flags) bind(c, name="hipDevicePrimaryCtxSetFlags")
+    function hipDevicePrimaryCtxSetFlags_orig(dev,flags) bind(c, name="hipDevicePrimaryCtxSetFlags")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4002,14 +4448,16 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipDevicePrimaryCtxSetFlags
+      integer(kind(cudaSuccess)) :: hipDevicePrimaryCtxSetFlags_orig
 #else
-      integer(kind(hipSuccess)) :: hipDevicePrimaryCtxSetFlags
+      integer(kind(hipSuccess)) :: hipDevicePrimaryCtxSetFlags_orig
 #endif
       integer(c_int),value :: dev
       integer(kind=4),value :: flags
     end function
 
+
+  end interface
   !> 
   !>   @brief Returns a handle to a compute device
   !>   @param [out] device
@@ -4017,10 +4465,11 @@ module hipfort
   !>  
   !>   @returns #hipSuccess, #hipErrorInavlidDevice
   !>  
+  interface hipDeviceGet
 #ifdef USE_CUDA_NAMES
-    function hipDeviceGet(device,ordinal) bind(c, name="cudaDeviceGet")
+    function hipDeviceGet_orig(device,ordinal) bind(c, name="cudaDeviceGet")
 #else
-    function hipDeviceGet(device,ordinal) bind(c, name="hipDeviceGet")
+    function hipDeviceGet_orig(device,ordinal) bind(c, name="hipDeviceGet")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4030,14 +4479,16 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipDeviceGet
+      integer(kind(cudaSuccess)) :: hipDeviceGet_orig
 #else
-      integer(kind(hipSuccess)) :: hipDeviceGet
+      integer(kind(hipSuccess)) :: hipDeviceGet_orig
 #endif
       type(c_ptr),value :: device
       integer(c_int),value :: ordinal
     end function
 
+
+  end interface
   !> 
   !>   @brief Returns the compute capability of the device
   !>   @param [out] major
@@ -4046,10 +4497,11 @@ module hipfort
   !>  
   !>   @returns #hipSuccess, #hipErrorInavlidDevice
   !>  
+  interface hipDeviceComputeCapability
 #ifdef USE_CUDA_NAMES
-    function hipDeviceComputeCapability(major,minor,device) bind(c, name="cudaDeviceComputeCapability")
+    function hipDeviceComputeCapability_orig(major,minor,device) bind(c, name="cudaDeviceComputeCapability")
 #else
-    function hipDeviceComputeCapability(major,minor,device) bind(c, name="hipDeviceComputeCapability")
+    function hipDeviceComputeCapability_orig(major,minor,device) bind(c, name="hipDeviceComputeCapability")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4059,15 +4511,17 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipDeviceComputeCapability
+      integer(kind(cudaSuccess)) :: hipDeviceComputeCapability_orig
 #else
-      integer(kind(hipSuccess)) :: hipDeviceComputeCapability
+      integer(kind(hipSuccess)) :: hipDeviceComputeCapability_orig
 #endif
       type(c_ptr),value :: major
       type(c_ptr),value :: minor
       integer(c_int),value :: device
     end function
 
+
+  end interface
   !> 
   !>   @brief Returns an identifer string for the device.
   !>   @param [out] name
@@ -4076,10 +4530,11 @@ module hipfort
   !>  
   !>   @returns #hipSuccess, #hipErrorInavlidDevice
   !>  
+  interface hipDeviceGetName
 #ifdef USE_CUDA_NAMES
-    function hipDeviceGetName(name,len,device) bind(c, name="cudaDeviceGetName")
+    function hipDeviceGetName_orig(name,len,device) bind(c, name="cudaDeviceGetName")
 #else
-    function hipDeviceGetName(name,len,device) bind(c, name="hipDeviceGetName")
+    function hipDeviceGetName_orig(name,len,device) bind(c, name="hipDeviceGetName")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4089,15 +4544,17 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipDeviceGetName
+      integer(kind(cudaSuccess)) :: hipDeviceGetName_orig
 #else
-      integer(kind(hipSuccess)) :: hipDeviceGetName
+      integer(kind(hipSuccess)) :: hipDeviceGetName_orig
 #endif
       type(c_ptr),value :: name
       integer(c_int),value :: len
       integer(c_int),value :: device
     end function
 
+
+  end interface
   !> 
   !>   @brief Returns a value for attr of link between two devices
   !>   @param [out] value
@@ -4107,10 +4564,11 @@ module hipfort
   !>  
   !>   @returns #hipSuccess, #hipErrorInavlidDevice
   !>  
+  interface hipDeviceGetP2PAttribute
 #ifdef USE_CUDA_NAMES
-    function hipDeviceGetP2PAttribute(myValue,attr,srcDevice,dstDevice) bind(c, name="cudaDeviceGetP2PAttribute")
+    function hipDeviceGetP2PAttribute_orig(myValue,attr,srcDevice,dstDevice) bind(c, name="cudaDeviceGetP2PAttribute")
 #else
-    function hipDeviceGetP2PAttribute(myValue,attr,srcDevice,dstDevice) bind(c, name="hipDeviceGetP2PAttribute")
+    function hipDeviceGetP2PAttribute_orig(myValue,attr,srcDevice,dstDevice) bind(c, name="hipDeviceGetP2PAttribute")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4120,9 +4578,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipDeviceGetP2PAttribute
+      integer(kind(cudaSuccess)) :: hipDeviceGetP2PAttribute_orig
 #else
-      integer(kind(hipSuccess)) :: hipDeviceGetP2PAttribute
+      integer(kind(hipSuccess)) :: hipDeviceGetP2PAttribute_orig
 #endif
       type(c_ptr),value :: myValue
       integer(kind(hipDevP2PAttrPerformanceRank)),value :: attr
@@ -4130,6 +4588,8 @@ module hipfort
       integer(c_int),value :: dstDevice
     end function
 
+
+  end interface
   !> 
   !>   @brief Returns a PCI Bus Id string for the device, overloaded to take int device ID.
   !>   @param [out] pciBusId
@@ -4138,10 +4598,11 @@ module hipfort
   !>  
   !>   @returns #hipSuccess, #hipErrorInavlidDevice
   !>  
+  interface hipDeviceGetPCIBusId
 #ifdef USE_CUDA_NAMES
-    function hipDeviceGetPCIBusId(pciBusId,len,device) bind(c, name="cudaDeviceGetPCIBusId")
+    function hipDeviceGetPCIBusId_orig(pciBusId,len,device) bind(c, name="cudaDeviceGetPCIBusId")
 #else
-    function hipDeviceGetPCIBusId(pciBusId,len,device) bind(c, name="hipDeviceGetPCIBusId")
+    function hipDeviceGetPCIBusId_orig(pciBusId,len,device) bind(c, name="hipDeviceGetPCIBusId")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4151,15 +4612,17 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipDeviceGetPCIBusId
+      integer(kind(cudaSuccess)) :: hipDeviceGetPCIBusId_orig
 #else
-      integer(kind(hipSuccess)) :: hipDeviceGetPCIBusId
+      integer(kind(hipSuccess)) :: hipDeviceGetPCIBusId_orig
 #endif
       type(c_ptr),value :: pciBusId
       integer(c_int),value :: len
       integer(c_int),value :: device
     end function
 
+
+  end interface
   !> 
   !>   @brief Returns a handle to a compute device.
   !>   @param [out] device handle
@@ -4167,10 +4630,11 @@ module hipfort
   !>  
   !>   @returns #hipSuccess, #hipErrorInavlidDevice, #hipErrorInvalidValue
   !>  
+  interface hipDeviceGetByPCIBusId
 #ifdef USE_CUDA_NAMES
-    function hipDeviceGetByPCIBusId(device,pciBusId) bind(c, name="cudaDeviceGetByPCIBusId")
+    function hipDeviceGetByPCIBusId_orig(device,pciBusId) bind(c, name="cudaDeviceGetByPCIBusId")
 #else
-    function hipDeviceGetByPCIBusId(device,pciBusId) bind(c, name="hipDeviceGetByPCIBusId")
+    function hipDeviceGetByPCIBusId_orig(device,pciBusId) bind(c, name="hipDeviceGetByPCIBusId")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4180,14 +4644,16 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipDeviceGetByPCIBusId
+      integer(kind(cudaSuccess)) :: hipDeviceGetByPCIBusId_orig
 #else
-      integer(kind(hipSuccess)) :: hipDeviceGetByPCIBusId
+      integer(kind(hipSuccess)) :: hipDeviceGetByPCIBusId_orig
 #endif
       type(c_ptr),value :: device
       type(c_ptr),value :: pciBusId
     end function
 
+
+  end interface
   !> 
   !>   @brief Returns the total amount of memory on the device.
   !>   @param [out] bytes
@@ -4195,10 +4661,11 @@ module hipfort
   !>  
   !>   @returns #hipSuccess, #hipErrorInavlidDevice
   !>  
+  interface hipDeviceTotalMem
 #ifdef USE_CUDA_NAMES
-    function hipDeviceTotalMem(bytes,device) bind(c, name="cudaDeviceTotalMem")
+    function hipDeviceTotalMem_orig(bytes,device) bind(c, name="cudaDeviceTotalMem")
 #else
-    function hipDeviceTotalMem(bytes,device) bind(c, name="hipDeviceTotalMem")
+    function hipDeviceTotalMem_orig(bytes,device) bind(c, name="hipDeviceTotalMem")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4208,14 +4675,16 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipDeviceTotalMem
+      integer(kind(cudaSuccess)) :: hipDeviceTotalMem_orig
 #else
-      integer(kind(hipSuccess)) :: hipDeviceTotalMem
+      integer(kind(hipSuccess)) :: hipDeviceTotalMem_orig
 #endif
       integer(c_size_t) :: bytes
       integer(c_int),value :: device
     end function
 
+
+  end interface
   !> 
   !>   @brief Returns the approximate HIP driver version.
   !>  
@@ -4231,10 +4700,11 @@ module hipfort
   !>  
   !>   @see hipRuntimeGetVersion
   !>  
+  interface hipDriverGetVersion
 #ifdef USE_CUDA_NAMES
-    function hipDriverGetVersion(driverVersion) bind(c, name="cudaDriverGetVersion")
+    function hipDriverGetVersion_orig(driverVersion) bind(c, name="cudaDriverGetVersion")
 #else
-    function hipDriverGetVersion(driverVersion) bind(c, name="hipDriverGetVersion")
+    function hipDriverGetVersion_orig(driverVersion) bind(c, name="hipDriverGetVersion")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4244,13 +4714,15 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipDriverGetVersion
+      integer(kind(cudaSuccess)) :: hipDriverGetVersion_orig
 #else
-      integer(kind(hipSuccess)) :: hipDriverGetVersion
+      integer(kind(hipSuccess)) :: hipDriverGetVersion_orig
 #endif
       type(c_ptr),value :: driverVersion
     end function
 
+
+  end interface
   !> 
   !>   @brief Returns the approximate HIP Runtime version.
   !>  
@@ -4263,10 +4735,11 @@ module hipfort
   !>  
   !>   @see hipDriverGetVersion
   !>  
+  interface hipRuntimeGetVersion
 #ifdef USE_CUDA_NAMES
-    function hipRuntimeGetVersion(runtimeVersion) bind(c, name="cudaRuntimeGetVersion")
+    function hipRuntimeGetVersion_orig(runtimeVersion) bind(c, name="cudaRuntimeGetVersion")
 #else
-    function hipRuntimeGetVersion(runtimeVersion) bind(c, name="hipRuntimeGetVersion")
+    function hipRuntimeGetVersion_orig(runtimeVersion) bind(c, name="hipRuntimeGetVersion")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4276,13 +4749,15 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipRuntimeGetVersion
+      integer(kind(cudaSuccess)) :: hipRuntimeGetVersion_orig
 #else
-      integer(kind(hipSuccess)) :: hipRuntimeGetVersion
+      integer(kind(hipSuccess)) :: hipRuntimeGetVersion_orig
 #endif
       type(c_ptr),value :: runtimeVersion
     end function
 
+
+  end interface
   !> 
   !>   @brief Loads code object from file into a hipModule_t
   !>  
@@ -4294,10 +4769,11 @@ module hipfort
   !>  
   !>  
   !>  
+  interface hipModuleLoad
 #ifdef USE_CUDA_NAMES
-    function hipModuleLoad(myModule,fname) bind(c, name="cudaModuleLoad")
+    function hipModuleLoad_orig(myModule,fname) bind(c, name="cudaModuleLoad")
 #else
-    function hipModuleLoad(myModule,fname) bind(c, name="hipModuleLoad")
+    function hipModuleLoad_orig(myModule,fname) bind(c, name="hipModuleLoad")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4307,14 +4783,16 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipModuleLoad
+      integer(kind(cudaSuccess)) :: hipModuleLoad_orig
 #else
-      integer(kind(hipSuccess)) :: hipModuleLoad
+      integer(kind(hipSuccess)) :: hipModuleLoad_orig
 #endif
       type(c_ptr) :: myModule
       type(c_ptr),value :: fname
     end function
 
+
+  end interface
   !> 
   !>   @brief Frees the module
   !>  
@@ -4324,10 +4802,11 @@ module hipfort
   !>   module is freed and the code objects associated with it are destroyed
   !>  
   !>  
+  interface hipModuleUnload
 #ifdef USE_CUDA_NAMES
-    function hipModuleUnload(myModule) bind(c, name="cudaModuleUnload")
+    function hipModuleUnload_orig(myModule) bind(c, name="cudaModuleUnload")
 #else
-    function hipModuleUnload(myModule) bind(c, name="hipModuleUnload")
+    function hipModuleUnload_orig(myModule) bind(c, name="hipModuleUnload")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4337,13 +4816,15 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipModuleUnload
+      integer(kind(cudaSuccess)) :: hipModuleUnload_orig
 #else
-      integer(kind(hipSuccess)) :: hipModuleUnload
+      integer(kind(hipSuccess)) :: hipModuleUnload_orig
 #endif
       type(c_ptr),value :: myModule
     end function
 
+
+  end interface
   !> 
   !>   @brief Function with kname will be extracted if present in module
   !>  
@@ -4354,10 +4835,11 @@ module hipfort
   !>   @returns hipSuccess, hipErrorInvalidValue, hipErrorInvalidContext, hipErrorNotInitialized,
   !>   hipErrorNotFound,
   !>  
+  interface hipModuleGetFunction
 #ifdef USE_CUDA_NAMES
-    function hipModuleGetFunction(myFunction,myModule,kname) bind(c, name="cudaModuleGetFunction")
+    function hipModuleGetFunction_orig(myFunction,myModule,kname) bind(c, name="cudaModuleGetFunction")
 #else
-    function hipModuleGetFunction(myFunction,myModule,kname) bind(c, name="hipModuleGetFunction")
+    function hipModuleGetFunction_orig(myFunction,myModule,kname) bind(c, name="hipModuleGetFunction")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4367,15 +4849,17 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipModuleGetFunction
+      integer(kind(cudaSuccess)) :: hipModuleGetFunction_orig
 #else
-      integer(kind(hipSuccess)) :: hipModuleGetFunction
+      integer(kind(hipSuccess)) :: hipModuleGetFunction_orig
 #endif
       type(c_ptr) :: myFunction
       type(c_ptr),value :: myModule
       type(c_ptr),value :: kname
     end function
 
+
+  end interface
   !> 
   !>   @brief Find out attributes for a given function.
   !>  
@@ -4384,10 +4868,11 @@ module hipfort
   !>  
   !>   @returns hipSuccess, hipErrorInvalidValue, hipErrorInvalidDeviceFunction
   !>  
+  interface hipFuncGetAttributes
 #ifdef USE_CUDA_NAMES
-    function hipFuncGetAttributes(attr,func) bind(c, name="cudaFuncGetAttributes")
+    function hipFuncGetAttributes_orig(attr,func) bind(c, name="cudaFuncGetAttributes")
 #else
-    function hipFuncGetAttributes(attr,func) bind(c, name="hipFuncGetAttributes")
+    function hipFuncGetAttributes_orig(attr,func) bind(c, name="hipFuncGetAttributes")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4397,14 +4882,16 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipFuncGetAttributes
+      integer(kind(cudaSuccess)) :: hipFuncGetAttributes_orig
 #else
-      integer(kind(hipSuccess)) :: hipFuncGetAttributes
+      integer(kind(hipSuccess)) :: hipFuncGetAttributes_orig
 #endif
       type(c_ptr) :: attr
       type(c_ptr),value :: func
     end function
 
+
+  end interface
   !> 
   !>   @brief Find out a specific attribute for a given function.
   !>  
@@ -4414,10 +4901,11 @@ module hipfort
   !>  
   !>   @returns hipSuccess, hipErrorInvalidValue, hipErrorInvalidDeviceFunction
   !>  
+  interface hipFuncGetAttribute
 #ifdef USE_CUDA_NAMES
-    function hipFuncGetAttribute(myValue,attrib,hfunc) bind(c, name="cudaFuncGetAttribute")
+    function hipFuncGetAttribute_orig(myValue,attrib,hfunc) bind(c, name="cudaFuncGetAttribute")
 #else
-    function hipFuncGetAttribute(myValue,attrib,hfunc) bind(c, name="hipFuncGetAttribute")
+    function hipFuncGetAttribute_orig(myValue,attrib,hfunc) bind(c, name="hipFuncGetAttribute")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4427,20 +4915,23 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipFuncGetAttribute
+      integer(kind(cudaSuccess)) :: hipFuncGetAttribute_orig
 #else
-      integer(kind(hipSuccess)) :: hipFuncGetAttribute
+      integer(kind(hipSuccess)) :: hipFuncGetAttribute_orig
 #endif
       type(c_ptr),value :: myValue
       integer(kind(HIP_FUNC_ATTRIBUTE_MAX_THREADS_PER_BLOCK)),value :: attrib
       type(c_ptr),value :: hfunc
     end function
 
+
+  end interface
   
+  interface hipModuleGetTexRef
 #ifdef USE_CUDA_NAMES
-    function hipModuleGetTexRef(texRef,hmod,name) bind(c, name="cudaModuleGetTexRef")
+    function hipModuleGetTexRef_orig(texRef,hmod,name) bind(c, name="cudaModuleGetTexRef")
 #else
-    function hipModuleGetTexRef(texRef,hmod,name) bind(c, name="hipModuleGetTexRef")
+    function hipModuleGetTexRef_orig(texRef,hmod,name) bind(c, name="hipModuleGetTexRef")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4450,15 +4941,17 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipModuleGetTexRef
+      integer(kind(cudaSuccess)) :: hipModuleGetTexRef_orig
 #else
-      integer(kind(hipSuccess)) :: hipModuleGetTexRef
+      integer(kind(hipSuccess)) :: hipModuleGetTexRef_orig
 #endif
       type(c_ptr) :: texRef
       type(c_ptr),value :: hmod
       type(c_ptr),value :: name
     end function
 
+
+  end interface
   !> 
   !>   @brief builds module from code object which resides in host memory. Image is pointer to that
   !>   location.
@@ -4468,10 +4961,11 @@ module hipfort
   !>  
   !>   @returns hipSuccess, hipErrorNotInitialized, hipErrorOutOfMemory, hipErrorNotInitialized
   !>  
+  interface hipModuleLoadData
 #ifdef USE_CUDA_NAMES
-    function hipModuleLoadData(myModule,image) bind(c, name="cudaModuleLoadData")
+    function hipModuleLoadData_orig(myModule,image) bind(c, name="cudaModuleLoadData")
 #else
-    function hipModuleLoadData(myModule,image) bind(c, name="hipModuleLoadData")
+    function hipModuleLoadData_orig(myModule,image) bind(c, name="hipModuleLoadData")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4481,14 +4975,16 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipModuleLoadData
+      integer(kind(cudaSuccess)) :: hipModuleLoadData_orig
 #else
-      integer(kind(hipSuccess)) :: hipModuleLoadData
+      integer(kind(hipSuccess)) :: hipModuleLoadData_orig
 #endif
       type(c_ptr) :: myModule
       type(c_ptr),value :: image
     end function
 
+
+  end interface
   !> 
   !>   @brief builds module from code object which resides in host memory. Image is pointer to that
   !>   location. Options are not used. hipModuleLoadData is called.
@@ -4501,10 +4997,11 @@ module hipfort
   !>  
   !>   @returns hipSuccess, hipErrorNotInitialized, hipErrorOutOfMemory, hipErrorNotInitialized
   !>  
+  interface hipModuleLoadDataEx
 #ifdef USE_CUDA_NAMES
-    function hipModuleLoadDataEx(myModule,image,numOptions,options,optionValues) bind(c, name="cudaModuleLoadDataEx")
+    function hipModuleLoadDataEx_orig(myModule,image,numOptions,options,optionValues) bind(c, name="cudaModuleLoadDataEx")
 #else
-    function hipModuleLoadDataEx(myModule,image,numOptions,options,optionValues) bind(c, name="hipModuleLoadDataEx")
+    function hipModuleLoadDataEx_orig(myModule,image,numOptions,options,optionValues) bind(c, name="hipModuleLoadDataEx")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4514,9 +5011,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipModuleLoadDataEx
+      integer(kind(cudaSuccess)) :: hipModuleLoadDataEx_orig
 #else
-      integer(kind(hipSuccess)) :: hipModuleLoadDataEx
+      integer(kind(hipSuccess)) :: hipModuleLoadDataEx_orig
 #endif
       type(c_ptr) :: myModule
       type(c_ptr),value :: image
@@ -4525,6 +5022,8 @@ module hipfort
       type(c_ptr) :: optionValues
     end function
 
+
+  end interface
   !> 
   !>   @brief launches kernel f with launch parameters and shared memory on stream with arguments passed
   !>   to kernelparams or extra
@@ -4549,10 +5048,11 @@ module hipfort
   !>   @warning kernellParams argument is not yet implemented in HIP. Please use extra instead. Please
   !>   refer to hip_porting_driver_api.md for sample usage.
   !>  
+  interface hipModuleLaunchKernel
 #ifdef USE_CUDA_NAMES
-    function hipModuleLaunchKernel(f,gridDimX,gridDimY,gridDimZ,blockDimX,blockDimY,blockDimZ,sharedMemBytes,stream,kernelParams,extra) bind(c, name="cudaModuleLaunchKernel")
+    function hipModuleLaunchKernel_orig(f,gridDimX,gridDimY,gridDimZ,blockDimX,blockDimY,blockDimZ,sharedMemBytes,stream,kernelParams,extra) bind(c, name="cudaModuleLaunchKernel")
 #else
-    function hipModuleLaunchKernel(f,gridDimX,gridDimY,gridDimZ,blockDimX,blockDimY,blockDimZ,sharedMemBytes,stream,kernelParams,extra) bind(c, name="hipModuleLaunchKernel")
+    function hipModuleLaunchKernel_orig(f,gridDimX,gridDimY,gridDimZ,blockDimX,blockDimY,blockDimZ,sharedMemBytes,stream,kernelParams,extra) bind(c, name="hipModuleLaunchKernel")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4562,9 +5062,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipModuleLaunchKernel
+      integer(kind(cudaSuccess)) :: hipModuleLaunchKernel_orig
 #else
-      integer(kind(hipSuccess)) :: hipModuleLaunchKernel
+      integer(kind(hipSuccess)) :: hipModuleLaunchKernel_orig
 #endif
       type(c_ptr),value :: f
       integer(kind=4),value :: gridDimX
@@ -4579,6 +5079,8 @@ module hipfort
       type(c_ptr) :: extra
     end function
 
+
+  end interface
   !> 
   !>   @brief launches kernel f with launch parameters and shared memory on stream with arguments passed
   !>   to kernelparams or extra, where thread blocks can cooperate and synchronize as they execute
@@ -4594,10 +5096,11 @@ module hipfort
   !>  
   !>   @returns hipSuccess, hipInvalidDevice, hipErrorNotInitialized, hipErrorInvalidValue, hipErrorCooperativeLaunchTooLarge
   !>  
+  interface hipLaunchCooperativeKernel
 #ifdef USE_CUDA_NAMES
-    function hipLaunchCooperativeKernel(f,gridDim,blockDimX,kernelParams,sharedMemBytes,stream) bind(c, name="cudaLaunchCooperativeKernel")
+    function hipLaunchCooperativeKernel_orig(f,gridDim,blockDimX,kernelParams,sharedMemBytes,stream) bind(c, name="cudaLaunchCooperativeKernel")
 #else
-    function hipLaunchCooperativeKernel(f,gridDim,blockDimX,kernelParams,sharedMemBytes,stream) bind(c, name="hipLaunchCooperativeKernel")
+    function hipLaunchCooperativeKernel_orig(f,gridDim,blockDimX,kernelParams,sharedMemBytes,stream) bind(c, name="hipLaunchCooperativeKernel")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4607,9 +5110,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipLaunchCooperativeKernel
+      integer(kind(cudaSuccess)) :: hipLaunchCooperativeKernel_orig
 #else
-      integer(kind(hipSuccess)) :: hipLaunchCooperativeKernel
+      integer(kind(hipSuccess)) :: hipLaunchCooperativeKernel_orig
 #endif
       type(c_ptr),value :: f
       type(dim3),value :: gridDim
@@ -4619,6 +5122,8 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
+
+  end interface
   !> 
   !>   @brief Launches kernels on multiple devices where thread blocks can cooperate and
   !>   synchronize as they execute.
@@ -4629,10 +5134,11 @@ module hipfort
   !>  
   !>   @returns hipSuccess, hipInvalidDevice, hipErrorNotInitialized, hipErrorInvalidValue, hipErrorCooperativeLaunchTooLarge
   !>  
+  interface hipLaunchCooperativeKernelMultiDevice
 #ifdef USE_CUDA_NAMES
-    function hipLaunchCooperativeKernelMultiDevice(launchParamsList,numDevices,flags) bind(c, name="cudaLaunchCooperativeKernelMultiDevice")
+    function hipLaunchCooperativeKernelMultiDevice_orig(launchParamsList,numDevices,flags) bind(c, name="cudaLaunchCooperativeKernelMultiDevice")
 #else
-    function hipLaunchCooperativeKernelMultiDevice(launchParamsList,numDevices,flags) bind(c, name="hipLaunchCooperativeKernelMultiDevice")
+    function hipLaunchCooperativeKernelMultiDevice_orig(launchParamsList,numDevices,flags) bind(c, name="hipLaunchCooperativeKernelMultiDevice")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4642,20 +5148,23 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipLaunchCooperativeKernelMultiDevice
+      integer(kind(cudaSuccess)) :: hipLaunchCooperativeKernelMultiDevice_orig
 #else
-      integer(kind(hipSuccess)) :: hipLaunchCooperativeKernelMultiDevice
+      integer(kind(hipSuccess)) :: hipLaunchCooperativeKernelMultiDevice_orig
 #endif
       type(c_ptr),value :: launchParamsList
       integer(c_int),value :: numDevices
       integer(kind=4),value :: flags
     end function
 
+
+  end interface
   
+  interface hipModuleOccupancyMaxPotentialBlockSize
 #ifdef USE_CUDA_NAMES
-    function hipModuleOccupancyMaxPotentialBlockSize(gridSize,blockSize,f,dynSharedMemPerBlk,blockSizeLimit) bind(c, name="cudaModuleOccupancyMaxPotentialBlockSize")
+    function hipModuleOccupancyMaxPotentialBlockSize_orig(gridSize,blockSize,f,dynSharedMemPerBlk,blockSizeLimit) bind(c, name="cudaModuleOccupancyMaxPotentialBlockSize")
 #else
-    function hipModuleOccupancyMaxPotentialBlockSize(gridSize,blockSize,f,dynSharedMemPerBlk,blockSizeLimit) bind(c, name="hipModuleOccupancyMaxPotentialBlockSize")
+    function hipModuleOccupancyMaxPotentialBlockSize_orig(gridSize,blockSize,f,dynSharedMemPerBlk,blockSizeLimit) bind(c, name="hipModuleOccupancyMaxPotentialBlockSize")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4665,9 +5174,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipModuleOccupancyMaxPotentialBlockSize
+      integer(kind(cudaSuccess)) :: hipModuleOccupancyMaxPotentialBlockSize_orig
 #else
-      integer(kind(hipSuccess)) :: hipModuleOccupancyMaxPotentialBlockSize
+      integer(kind(hipSuccess)) :: hipModuleOccupancyMaxPotentialBlockSize_orig
 #endif
       type(c_ptr),value :: gridSize
       type(c_ptr),value :: blockSize
@@ -4676,11 +5185,14 @@ module hipfort
       integer(c_int),value :: blockSizeLimit
     end function
 
+
+  end interface
   
+  interface hipModuleOccupancyMaxPotentialBlockSizeWithFlags
 #ifdef USE_CUDA_NAMES
-    function hipModuleOccupancyMaxPotentialBlockSizeWithFlags(gridSize,blockSize,f,dynSharedMemPerBlk,blockSizeLimit,flags) bind(c, name="cudaModuleOccupancyMaxPotentialBlockSizeWithFlags")
+    function hipModuleOccupancyMaxPotentialBlockSizeWithFlags_orig(gridSize,blockSize,f,dynSharedMemPerBlk,blockSizeLimit,flags) bind(c, name="cudaModuleOccupancyMaxPotentialBlockSizeWithFlags")
 #else
-    function hipModuleOccupancyMaxPotentialBlockSizeWithFlags(gridSize,blockSize,f,dynSharedMemPerBlk,blockSizeLimit,flags) bind(c, name="hipModuleOccupancyMaxPotentialBlockSizeWithFlags")
+    function hipModuleOccupancyMaxPotentialBlockSizeWithFlags_orig(gridSize,blockSize,f,dynSharedMemPerBlk,blockSizeLimit,flags) bind(c, name="hipModuleOccupancyMaxPotentialBlockSizeWithFlags")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4690,9 +5202,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipModuleOccupancyMaxPotentialBlockSizeWithFlags
+      integer(kind(cudaSuccess)) :: hipModuleOccupancyMaxPotentialBlockSizeWithFlags_orig
 #else
-      integer(kind(hipSuccess)) :: hipModuleOccupancyMaxPotentialBlockSizeWithFlags
+      integer(kind(hipSuccess)) :: hipModuleOccupancyMaxPotentialBlockSizeWithFlags_orig
 #endif
       type(c_ptr),value :: gridSize
       type(c_ptr),value :: blockSize
@@ -4702,6 +5214,8 @@ module hipfort
       integer(kind=4),value :: flags
     end function
 
+
+  end interface
   !> 
   !>   @brief Returns occupancy for a device function.
   !>  
@@ -4710,10 +5224,11 @@ module hipfort
   !>   @param [in]  blockSize        Block size the kernel is intended to be launched with
   !>   @param [in]  dynSharedMemPerBlk dynamic shared memory usage (in bytes) intended for each block
   !>  
+  interface hipModuleOccupancyMaxActiveBlocksPerMultiprocessor
 #ifdef USE_CUDA_NAMES
-    function hipModuleOccupancyMaxActiveBlocksPerMultiprocessor(numBlocks,f,blockSize,dynSharedMemPerBlk) bind(c, name="cudaModuleOccupancyMaxActiveBlocksPerMultiprocessor")
+    function hipModuleOccupancyMaxActiveBlocksPerMultiprocessor_orig(numBlocks,f,blockSize,dynSharedMemPerBlk) bind(c, name="cudaModuleOccupancyMaxActiveBlocksPerMultiprocessor")
 #else
-    function hipModuleOccupancyMaxActiveBlocksPerMultiprocessor(numBlocks,f,blockSize,dynSharedMemPerBlk) bind(c, name="hipModuleOccupancyMaxActiveBlocksPerMultiprocessor")
+    function hipModuleOccupancyMaxActiveBlocksPerMultiprocessor_orig(numBlocks,f,blockSize,dynSharedMemPerBlk) bind(c, name="hipModuleOccupancyMaxActiveBlocksPerMultiprocessor")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4723,9 +5238,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipModuleOccupancyMaxActiveBlocksPerMultiprocessor
+      integer(kind(cudaSuccess)) :: hipModuleOccupancyMaxActiveBlocksPerMultiprocessor_orig
 #else
-      integer(kind(hipSuccess)) :: hipModuleOccupancyMaxActiveBlocksPerMultiprocessor
+      integer(kind(hipSuccess)) :: hipModuleOccupancyMaxActiveBlocksPerMultiprocessor_orig
 #endif
       type(c_ptr),value :: numBlocks
       type(c_ptr),value :: f
@@ -4733,39 +5248,8 @@ module hipfort
       integer(c_size_t),value :: dynSharedMemPerBlk
     end function
 
-  !> 
-  !>   @brief Returns occupancy for a device function.
-  !>  
-  !>   @param [out] numBlocks        Returned occupancy
-  !>   @param [in]  f                Kernel function(hipFunction_t) for which occupancy is calulated
-  !>   @param [in]  blockSize        Block size the kernel is intended to be launched with
-  !>   @param [in]  dynSharedMemPerBlk dynamic shared memory usage (in bytes) intended for each block
-  !>   @param [in]  flags            Extra flags for occupancy calculation (only default supported)
-  !>  
-#ifdef USE_CUDA_NAMES
-    function hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags(numBlocks,f,blockSize,dynSharedMemPerBlk,flags) bind(c, name="cudaModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags")
-#else
-    function hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags(numBlocks,f,blockSize,dynSharedMemPerBlk,flags) bind(c, name="hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags")
-#endif
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags
-#else
-      integer(kind(hipSuccess)) :: hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags
-#endif
-      type(c_ptr),value :: numBlocks
-      type(c_ptr),value :: f
-      integer(c_int),value :: blockSize
-      integer(c_size_t),value :: dynSharedMemPerBlk
-      integer(kind=4),value :: flags
-    end function
 
+  end interface
   !> 
   !>   @brief Returns occupancy for a device function.
   !>  
@@ -4774,10 +5258,11 @@ module hipfort
   !>   @param [in]  blockSize        Block size the kernel is intended to be launched with
   !>   @param [in]  dynSharedMemPerBlk dynamic shared memory usage (in bytes) intended for each block
   !>  
+  interface hipOccupancyMaxActiveBlocksPerMultiprocessor
 #ifdef USE_CUDA_NAMES
-    function hipOccupancyMaxActiveBlocksPerMultiprocessor(numBlocks,f,blockSize,dynSharedMemPerBlk) bind(c, name="cudaOccupancyMaxActiveBlocksPerMultiprocessor")
+    function hipOccupancyMaxActiveBlocksPerMultiprocessor_orig(numBlocks,f,blockSize,dynSharedMemPerBlk) bind(c, name="cudaOccupancyMaxActiveBlocksPerMultiprocessor")
 #else
-    function hipOccupancyMaxActiveBlocksPerMultiprocessor(numBlocks,f,blockSize,dynSharedMemPerBlk) bind(c, name="hipOccupancyMaxActiveBlocksPerMultiprocessor")
+    function hipOccupancyMaxActiveBlocksPerMultiprocessor_orig(numBlocks,f,blockSize,dynSharedMemPerBlk) bind(c, name="hipOccupancyMaxActiveBlocksPerMultiprocessor")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4787,9 +5272,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipOccupancyMaxActiveBlocksPerMultiprocessor
+      integer(kind(cudaSuccess)) :: hipOccupancyMaxActiveBlocksPerMultiprocessor_orig
 #else
-      integer(kind(hipSuccess)) :: hipOccupancyMaxActiveBlocksPerMultiprocessor
+      integer(kind(hipSuccess)) :: hipOccupancyMaxActiveBlocksPerMultiprocessor_orig
 #endif
       type(c_ptr),value :: numBlocks
       type(c_ptr),value :: f
@@ -4797,6 +5282,8 @@ module hipfort
       integer(c_size_t),value :: dynSharedMemPerBlk
     end function
 
+
+  end interface
   !> 
   !>   @brief determine the grid and block sizes to achieves maximum occupancy for a kernel
   !>  
@@ -4808,10 +5295,11 @@ module hipfort
   !>  
   !>   @returns hipSuccess, hipInvalidDevice, hipErrorInvalidValue
   !>  
+  interface hipOccupancyMaxPotentialBlockSize
 #ifdef USE_CUDA_NAMES
-    function hipOccupancyMaxPotentialBlockSize(gridSize,blockSize,f,dynSharedMemPerBlk,blockSizeLimit) bind(c, name="cudaOccupancyMaxPotentialBlockSize")
+    function hipOccupancyMaxPotentialBlockSize_orig(gridSize,blockSize,f,dynSharedMemPerBlk,blockSizeLimit) bind(c, name="cudaOccupancyMaxPotentialBlockSize")
 #else
-    function hipOccupancyMaxPotentialBlockSize(gridSize,blockSize,f,dynSharedMemPerBlk,blockSizeLimit) bind(c, name="hipOccupancyMaxPotentialBlockSize")
+    function hipOccupancyMaxPotentialBlockSize_orig(gridSize,blockSize,f,dynSharedMemPerBlk,blockSizeLimit) bind(c, name="hipOccupancyMaxPotentialBlockSize")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4821,9 +5309,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipOccupancyMaxPotentialBlockSize
+      integer(kind(cudaSuccess)) :: hipOccupancyMaxPotentialBlockSize_orig
 #else
-      integer(kind(hipSuccess)) :: hipOccupancyMaxPotentialBlockSize
+      integer(kind(hipSuccess)) :: hipOccupancyMaxPotentialBlockSize_orig
 #endif
       type(c_ptr),value :: gridSize
       type(c_ptr),value :: blockSize
@@ -4832,6 +5320,8 @@ module hipfort
       integer(c_int),value :: blockSizeLimit
     end function
 
+
+  end interface
   !> 
   !>   @brief Launches kernels on multiple devices and guarantees all specified kernels are dispatched
   !>   on respective streams before enqueuing any other work on the specified streams from any other threads
@@ -4843,10 +5333,11 @@ module hipfort
   !>  
   !>   @returns hipSuccess, hipInvalidDevice, hipErrorNotInitialized, hipErrorInvalidValue
   !>  
+  interface hipExtLaunchMultiKernelMultiDevice
 #ifdef USE_CUDA_NAMES
-    function hipExtLaunchMultiKernelMultiDevice(launchParamsList,numDevices,flags) bind(c, name="cudaExtLaunchMultiKernelMultiDevice")
+    function hipExtLaunchMultiKernelMultiDevice_orig(launchParamsList,numDevices,flags) bind(c, name="cudaExtLaunchMultiKernelMultiDevice")
 #else
-    function hipExtLaunchMultiKernelMultiDevice(launchParamsList,numDevices,flags) bind(c, name="hipExtLaunchMultiKernelMultiDevice")
+    function hipExtLaunchMultiKernelMultiDevice_orig(launchParamsList,numDevices,flags) bind(c, name="hipExtLaunchMultiKernelMultiDevice")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4856,20 +5347,23 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipExtLaunchMultiKernelMultiDevice
+      integer(kind(cudaSuccess)) :: hipExtLaunchMultiKernelMultiDevice_orig
 #else
-      integer(kind(hipSuccess)) :: hipExtLaunchMultiKernelMultiDevice
+      integer(kind(hipSuccess)) :: hipExtLaunchMultiKernelMultiDevice_orig
 #endif
       type(c_ptr),value :: launchParamsList
       integer(c_int),value :: numDevices
       integer(kind=4),value :: flags
     end function
 
+
+  end interface
   
+  interface hipProfilerStart
 #ifdef USE_CUDA_NAMES
-    function hipProfilerStart() bind(c, name="cudaProfilerStart")
+    function hipProfilerStart_orig() bind(c, name="cudaProfilerStart")
 #else
-    function hipProfilerStart() bind(c, name="hipProfilerStart")
+    function hipProfilerStart_orig() bind(c, name="hipProfilerStart")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4879,17 +5373,20 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipProfilerStart
+      integer(kind(cudaSuccess)) :: hipProfilerStart_orig
 #else
-      integer(kind(hipSuccess)) :: hipProfilerStart
+      integer(kind(hipSuccess)) :: hipProfilerStart_orig
 #endif
     end function
 
+
+  end interface
   
+  interface hipProfilerStop
 #ifdef USE_CUDA_NAMES
-    function hipProfilerStop() bind(c, name="cudaProfilerStop")
+    function hipProfilerStop_orig() bind(c, name="cudaProfilerStop")
 #else
-    function hipProfilerStop() bind(c, name="hipProfilerStop")
+    function hipProfilerStop_orig() bind(c, name="hipProfilerStop")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4899,12 +5396,14 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipProfilerStop
+      integer(kind(cudaSuccess)) :: hipProfilerStop_orig
 #else
-      integer(kind(hipSuccess)) :: hipProfilerStop
+      integer(kind(hipSuccess)) :: hipProfilerStop_orig
 #endif
     end function
 
+
+  end interface
   !> 
   !>   @brief Gets an interprocess memory handle for an existing device memory
   !>            allocation
@@ -4930,10 +5429,11 @@ module hipfort
   !>   hipErrorMapFailed,
   !>  
   !>  
+  interface hipIpcGetMemHandle
 #ifdef USE_CUDA_NAMES
-    function hipIpcGetMemHandle(handle,devPtr) bind(c, name="cudaIpcGetMemHandle")
+    function hipIpcGetMemHandle_orig(handle,devPtr) bind(c, name="cudaIpcGetMemHandle")
 #else
-    function hipIpcGetMemHandle(handle,devPtr) bind(c, name="hipIpcGetMemHandle")
+    function hipIpcGetMemHandle_orig(handle,devPtr) bind(c, name="hipIpcGetMemHandle")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4943,14 +5443,16 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipIpcGetMemHandle
+      integer(kind(cudaSuccess)) :: hipIpcGetMemHandle_orig
 #else
-      integer(kind(hipSuccess)) :: hipIpcGetMemHandle
+      integer(kind(hipSuccess)) :: hipIpcGetMemHandle_orig
 #endif
       type(c_ptr) :: handle
       type(c_ptr),value :: devPtr
     end function
 
+
+  end interface
   !> 
   !>   @brief Opens an interprocess memory handle exported from another process
   !>            and returns a device pointer usable in the local process.
@@ -4987,10 +5489,11 @@ module hipfort
   !>   In particular, multiple processes may not receive the same address for the same @p handle.
   !>  
   !>  
+  interface hipIpcOpenMemHandle
 #ifdef USE_CUDA_NAMES
-    function hipIpcOpenMemHandle(devPtr,handle,flags) bind(c, name="cudaIpcOpenMemHandle")
+    function hipIpcOpenMemHandle_orig(devPtr,handle,flags) bind(c, name="cudaIpcOpenMemHandle")
 #else
-    function hipIpcOpenMemHandle(devPtr,handle,flags) bind(c, name="hipIpcOpenMemHandle")
+    function hipIpcOpenMemHandle_orig(devPtr,handle,flags) bind(c, name="hipIpcOpenMemHandle")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5000,15 +5503,17 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipIpcOpenMemHandle
+      integer(kind(cudaSuccess)) :: hipIpcOpenMemHandle_orig
 #else
-      integer(kind(hipSuccess)) :: hipIpcOpenMemHandle
+      integer(kind(hipSuccess)) :: hipIpcOpenMemHandle_orig
 #endif
       type(c_ptr) :: devPtr
       type(c_ptr),value :: handle
       integer(kind=4),value :: flags
     end function
 
+
+  end interface
   !> 
   !>   @brief Close memory mapped with hipIpcOpenMemHandle
   !>  
@@ -5027,10 +5532,11 @@ module hipfort
   !>   hipErrorInvalidHandle,
   !>  
   !>  
+  interface hipIpcCloseMemHandle
 #ifdef USE_CUDA_NAMES
-    function hipIpcCloseMemHandle(devPtr) bind(c, name="cudaIpcCloseMemHandle")
+    function hipIpcCloseMemHandle_orig(devPtr) bind(c, name="cudaIpcCloseMemHandle")
 #else
-    function hipIpcCloseMemHandle(devPtr) bind(c, name="hipIpcCloseMemHandle")
+    function hipIpcCloseMemHandle_orig(devPtr) bind(c, name="hipIpcCloseMemHandle")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5040,18 +5546,21 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipIpcCloseMemHandle
+      integer(kind(cudaSuccess)) :: hipIpcCloseMemHandle_orig
 #else
-      integer(kind(hipSuccess)) :: hipIpcCloseMemHandle
+      integer(kind(hipSuccess)) :: hipIpcCloseMemHandle_orig
 #endif
       type(c_ptr),value :: devPtr
     end function
 
+
+  end interface
   
+  interface hipIpcGetEventHandle
 #ifdef USE_CUDA_NAMES
-    function hipIpcGetEventHandle(handle,event) bind(c, name="cudaIpcGetEventHandle")
+    function hipIpcGetEventHandle_orig(handle,event) bind(c, name="cudaIpcGetEventHandle")
 #else
-    function hipIpcGetEventHandle(handle,event) bind(c, name="hipIpcGetEventHandle")
+    function hipIpcGetEventHandle_orig(handle,event) bind(c, name="hipIpcGetEventHandle")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5061,19 +5570,22 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipIpcGetEventHandle
+      integer(kind(cudaSuccess)) :: hipIpcGetEventHandle_orig
 #else
-      integer(kind(hipSuccess)) :: hipIpcGetEventHandle
+      integer(kind(hipSuccess)) :: hipIpcGetEventHandle_orig
 #endif
       type(c_ptr) :: handle
       type(c_ptr),value :: event
     end function
 
+
+  end interface
   
+  interface hipIpcOpenEventHandle
 #ifdef USE_CUDA_NAMES
-    function hipIpcOpenEventHandle(event,handle) bind(c, name="cudaIpcOpenEventHandle")
+    function hipIpcOpenEventHandle_orig(event,handle) bind(c, name="cudaIpcOpenEventHandle")
 #else
-    function hipIpcOpenEventHandle(event,handle) bind(c, name="hipIpcOpenEventHandle")
+    function hipIpcOpenEventHandle_orig(event,handle) bind(c, name="hipIpcOpenEventHandle")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5083,14 +5595,16 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipIpcOpenEventHandle
+      integer(kind(cudaSuccess)) :: hipIpcOpenEventHandle_orig
 #else
-      integer(kind(hipSuccess)) :: hipIpcOpenEventHandle
+      integer(kind(hipSuccess)) :: hipIpcOpenEventHandle_orig
 #endif
       type(c_ptr) :: event
       type(c_ptr),value :: handle
     end function
 
+
+  end interface
   !> 
   !>   @brief Configure a kernel launch.
   !>  
@@ -5104,10 +5618,11 @@ module hipfort
   !>   @returns hipSuccess, hipInvalidDevice, hipErrorNotInitialized, hipErrorInvalidValue
   !>  
   !>  
+  interface hipConfigureCall
 #ifdef USE_CUDA_NAMES
-    function hipConfigureCall(gridDim,blockDim,sharedMem,stream) bind(c, name="cudaConfigureCall")
+    function hipConfigureCall_orig(gridDim,blockDim,sharedMem,stream) bind(c, name="cudaConfigureCall")
 #else
-    function hipConfigureCall(gridDim,blockDim,sharedMem,stream) bind(c, name="hipConfigureCall")
+    function hipConfigureCall_orig(gridDim,blockDim,sharedMem,stream) bind(c, name="hipConfigureCall")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5117,9 +5632,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipConfigureCall
+      integer(kind(cudaSuccess)) :: hipConfigureCall_orig
 #else
-      integer(kind(hipSuccess)) :: hipConfigureCall
+      integer(kind(hipSuccess)) :: hipConfigureCall_orig
 #endif
       type(dim3),value :: gridDim
       type(dim3),value :: blockDim
@@ -5127,6 +5642,8 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
+
+  end interface
   !> 
   !>   @brief Set a kernel argument.
   !>  
@@ -5137,10 +5654,11 @@ module hipfort
   !>   @param [in] offset Offset of the argument on the argument stack.
   !>  
   !>  
+  interface hipSetupArgument
 #ifdef USE_CUDA_NAMES
-    function hipSetupArgument(arg,mySize,offset) bind(c, name="cudaSetupArgument")
+    function hipSetupArgument_orig(arg,mySize,offset) bind(c, name="cudaSetupArgument")
 #else
-    function hipSetupArgument(arg,mySize,offset) bind(c, name="hipSetupArgument")
+    function hipSetupArgument_orig(arg,mySize,offset) bind(c, name="hipSetupArgument")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5150,15 +5668,17 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipSetupArgument
+      integer(kind(cudaSuccess)) :: hipSetupArgument_orig
 #else
-      integer(kind(hipSuccess)) :: hipSetupArgument
+      integer(kind(hipSuccess)) :: hipSetupArgument_orig
 #endif
       type(c_ptr),value :: arg
       integer(c_size_t),value :: mySize
       integer(c_size_t),value :: offset
     end function
 
+
+  end interface
   !> 
   !>   @brief Launch a kernel.
   !>  
@@ -5167,10 +5687,11 @@ module hipfort
   !>   @returns hipSuccess, hipInvalidDevice, hipErrorNotInitialized, hipErrorInvalidValue
   !>  
   !>  
+  interface hipLaunchByPtr
 #ifdef USE_CUDA_NAMES
-    function hipLaunchByPtr(func) bind(c, name="cudaLaunchByPtr")
+    function hipLaunchByPtr_orig(func) bind(c, name="cudaLaunchByPtr")
 #else
-    function hipLaunchByPtr(func) bind(c, name="hipLaunchByPtr")
+    function hipLaunchByPtr_orig(func) bind(c, name="hipLaunchByPtr")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5180,13 +5701,15 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipLaunchByPtr
+      integer(kind(cudaSuccess)) :: hipLaunchByPtr_orig
 #else
-      integer(kind(hipSuccess)) :: hipLaunchByPtr
+      integer(kind(hipSuccess)) :: hipLaunchByPtr_orig
 #endif
       type(c_ptr),value :: func
     end function
 
+
+  end interface
   !> 
   !>   @brief C compliant kernel launch API
   !>  
@@ -5202,10 +5725,11 @@ module hipfort
   !>   @returns #hipSuccess, #hipErrorInvalidValue, hipInvalidDevice
   !>  
   !>  
+  interface hipLaunchKernel
 #ifdef USE_CUDA_NAMES
-    function hipLaunchKernel(function_address,numBlocks,dimBlocks,args,sharedMemBytes,stream) bind(c, name="cudaLaunchKernel")
+    function hipLaunchKernel_orig(function_address,numBlocks,dimBlocks,args,sharedMemBytes,stream) bind(c, name="cudaLaunchKernel")
 #else
-    function hipLaunchKernel(function_address,numBlocks,dimBlocks,args,sharedMemBytes,stream) bind(c, name="hipLaunchKernel")
+    function hipLaunchKernel_orig(function_address,numBlocks,dimBlocks,args,sharedMemBytes,stream) bind(c, name="hipLaunchKernel")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5215,9 +5739,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipLaunchKernel
+      integer(kind(cudaSuccess)) :: hipLaunchKernel_orig
 #else
-      integer(kind(hipSuccess)) :: hipLaunchKernel
+      integer(kind(hipSuccess)) :: hipLaunchKernel_orig
 #endif
       type(c_ptr),value :: function_address
       type(dim3),value :: numBlocks
@@ -5227,6 +5751,8 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
+
+  end interface
   !> 
   !>   @brief Prefetches memory to the specified destination device using AMD HMM.
   !>  
@@ -5237,10 +5763,11 @@ module hipfort
   !>  
   !>   @returns #hipSuccess, #hipErrorInvalidValue
   !>  
+  interface hipMemPrefetchAsync
 #ifdef USE_CUDA_NAMES
-    function hipMemPrefetchAsync(dev_ptr,count,device,stream) bind(c, name="cudaMemPrefetchAsync")
+    function hipMemPrefetchAsync_orig(dev_ptr,count,device,stream) bind(c, name="cudaMemPrefetchAsync")
 #else
-    function hipMemPrefetchAsync(dev_ptr,count,device,stream) bind(c, name="hipMemPrefetchAsync")
+    function hipMemPrefetchAsync_orig(dev_ptr,count,device,stream) bind(c, name="hipMemPrefetchAsync")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5250,9 +5777,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemPrefetchAsync
+      integer(kind(cudaSuccess)) :: hipMemPrefetchAsync_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemPrefetchAsync
+      integer(kind(hipSuccess)) :: hipMemPrefetchAsync_orig
 #endif
       type(c_ptr),value :: dev_ptr
       integer(c_size_t),value :: count
@@ -5260,6 +5787,8 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
+
+  end interface
   !> 
   !>   @brief Advise about the usage of a given memory range to AMD HMM.
   !>  
@@ -5270,10 +5799,11 @@ module hipfort
   !>  
   !>   @returns #hipSuccess, #hipErrorInvalidValue
   !>  
+  interface hipMemAdvise
 #ifdef USE_CUDA_NAMES
-    function hipMemAdvise(dev_ptr,count,advice,device) bind(c, name="cudaMemAdvise")
+    function hipMemAdvise_orig(dev_ptr,count,advice,device) bind(c, name="cudaMemAdvise")
 #else
-    function hipMemAdvise(dev_ptr,count,advice,device) bind(c, name="hipMemAdvise")
+    function hipMemAdvise_orig(dev_ptr,count,advice,device) bind(c, name="hipMemAdvise")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5283,9 +5813,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemAdvise
+      integer(kind(cudaSuccess)) :: hipMemAdvise_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemAdvise
+      integer(kind(hipSuccess)) :: hipMemAdvise_orig
 #endif
       type(c_ptr),value :: dev_ptr
       integer(c_size_t),value :: count
@@ -5293,6 +5823,8 @@ module hipfort
       integer(c_int),value :: device
     end function
 
+
+  end interface
   !> 
   !>   @brief Query an attribute of a given memory range in AMD HMM.
   !>  
@@ -5305,10 +5837,11 @@ module hipfort
   !>  
   !>   @returns #hipSuccess, #hipErrorInvalidValue
   !>  
+  interface hipMemRangeGetAttribute
 #ifdef USE_CUDA_NAMES
-    function hipMemRangeGetAttribute(myData,data_size,attribute,dev_ptr,count) bind(c, name="cudaMemRangeGetAttribute")
+    function hipMemRangeGetAttribute_orig(myData,data_size,attribute,dev_ptr,count) bind(c, name="cudaMemRangeGetAttribute")
 #else
-    function hipMemRangeGetAttribute(myData,data_size,attribute,dev_ptr,count) bind(c, name="hipMemRangeGetAttribute")
+    function hipMemRangeGetAttribute_orig(myData,data_size,attribute,dev_ptr,count) bind(c, name="hipMemRangeGetAttribute")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5318,9 +5851,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemRangeGetAttribute
+      integer(kind(cudaSuccess)) :: hipMemRangeGetAttribute_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemRangeGetAttribute
+      integer(kind(hipSuccess)) :: hipMemRangeGetAttribute_orig
 #endif
       type(c_ptr),value :: myData
       integer(c_size_t),value :: data_size
@@ -5329,6 +5862,8 @@ module hipfort
       integer(c_size_t),value :: count
     end function
 
+
+  end interface
   !> 
   !>   @brief Query attributes of a given memory range in AMD HMM.
   !>  
@@ -5343,10 +5878,11 @@ module hipfort
   !>  
   !>   @returns #hipSuccess, #hipErrorInvalidValue
   !>  
+  interface hipMemRangeGetAttributes
 #ifdef USE_CUDA_NAMES
-    function hipMemRangeGetAttributes(myData,data_sizes,attributes,num_attributes,dev_ptr,count) bind(c, name="cudaMemRangeGetAttributes")
+    function hipMemRangeGetAttributes_orig(myData,data_sizes,attributes,num_attributes,dev_ptr,count) bind(c, name="cudaMemRangeGetAttributes")
 #else
-    function hipMemRangeGetAttributes(myData,data_sizes,attributes,num_attributes,dev_ptr,count) bind(c, name="hipMemRangeGetAttributes")
+    function hipMemRangeGetAttributes_orig(myData,data_sizes,attributes,num_attributes,dev_ptr,count) bind(c, name="hipMemRangeGetAttributes")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5356,9 +5892,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemRangeGetAttributes
+      integer(kind(cudaSuccess)) :: hipMemRangeGetAttributes_orig
 #else
-      integer(kind(hipSuccess)) :: hipMemRangeGetAttributes
+      integer(kind(hipSuccess)) :: hipMemRangeGetAttributes_orig
 #endif
       type(c_ptr) :: myData
       type(c_ptr),value :: data_sizes
@@ -5368,11 +5904,14 @@ module hipfort
       integer(c_size_t),value :: count
     end function
 
+
+  end interface
   
+  interface hipExtLaunchKernel
 #ifdef USE_CUDA_NAMES
-    function hipExtLaunchKernel(function_address,numBlocks,dimBlocks,args,sharedMemBytes,stream,startEvent,stopEvent,flags) bind(c, name="cudaExtLaunchKernel")
+    function hipExtLaunchKernel_orig(function_address,numBlocks,dimBlocks,args,sharedMemBytes,stream,startEvent,stopEvent,flags) bind(c, name="cudaExtLaunchKernel")
 #else
-    function hipExtLaunchKernel(function_address,numBlocks,dimBlocks,args,sharedMemBytes,stream,startEvent,stopEvent,flags) bind(c, name="hipExtLaunchKernel")
+    function hipExtLaunchKernel_orig(function_address,numBlocks,dimBlocks,args,sharedMemBytes,stream,startEvent,stopEvent,flags) bind(c, name="hipExtLaunchKernel")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5382,9 +5921,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipExtLaunchKernel
+      integer(kind(cudaSuccess)) :: hipExtLaunchKernel_orig
 #else
-      integer(kind(hipSuccess)) :: hipExtLaunchKernel
+      integer(kind(hipSuccess)) :: hipExtLaunchKernel_orig
 #endif
       type(c_ptr),value :: function_address
       type(dim3),value :: numBlocks
@@ -5397,11 +5936,14 @@ module hipfort
       integer(c_int),value :: flags
     end function
 
+
+  end interface
   
+  interface hipBindTexture2D
 #ifdef USE_CUDA_NAMES
-    function hipBindTexture2D(offset,tex,devPtr,desc,width,height,pitch) bind(c, name="cudaBindTexture2D")
+    function hipBindTexture2D_orig(offset,tex,devPtr,desc,width,height,pitch) bind(c, name="cudaBindTexture2D")
 #else
-    function hipBindTexture2D(offset,tex,devPtr,desc,width,height,pitch) bind(c, name="hipBindTexture2D")
+    function hipBindTexture2D_orig(offset,tex,devPtr,desc,width,height,pitch) bind(c, name="hipBindTexture2D")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5411,9 +5953,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipBindTexture2D
+      integer(kind(cudaSuccess)) :: hipBindTexture2D_orig
 #else
-      integer(kind(hipSuccess)) :: hipBindTexture2D
+      integer(kind(hipSuccess)) :: hipBindTexture2D_orig
 #endif
       integer(c_size_t) :: offset
       type(c_ptr) :: tex
@@ -5424,11 +5966,14 @@ module hipfort
       integer(c_size_t),value :: pitch
     end function
 
+
+  end interface
   
+  interface hipBindTextureToArray
 #ifdef USE_CUDA_NAMES
-    function hipBindTextureToArray(tex,array,desc) bind(c, name="cudaBindTextureToArray")
+    function hipBindTextureToArray_orig(tex,array,desc) bind(c, name="cudaBindTextureToArray")
 #else
-    function hipBindTextureToArray(tex,array,desc) bind(c, name="hipBindTextureToArray")
+    function hipBindTextureToArray_orig(tex,array,desc) bind(c, name="hipBindTextureToArray")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5438,20 +5983,23 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipBindTextureToArray
+      integer(kind(cudaSuccess)) :: hipBindTextureToArray_orig
 #else
-      integer(kind(hipSuccess)) :: hipBindTextureToArray
+      integer(kind(hipSuccess)) :: hipBindTextureToArray_orig
 #endif
       type(c_ptr) :: tex
       type(c_ptr),value :: array
       type(c_ptr) :: desc
     end function
 
+
+  end interface
   
+  interface hipBindTextureToMipmappedArray
 #ifdef USE_CUDA_NAMES
-    function hipBindTextureToMipmappedArray(tex,mipmappedArray,desc) bind(c, name="cudaBindTextureToMipmappedArray")
+    function hipBindTextureToMipmappedArray_orig(tex,mipmappedArray,desc) bind(c, name="cudaBindTextureToMipmappedArray")
 #else
-    function hipBindTextureToMipmappedArray(tex,mipmappedArray,desc) bind(c, name="hipBindTextureToMipmappedArray")
+    function hipBindTextureToMipmappedArray_orig(tex,mipmappedArray,desc) bind(c, name="hipBindTextureToMipmappedArray")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5461,20 +6009,23 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipBindTextureToMipmappedArray
+      integer(kind(cudaSuccess)) :: hipBindTextureToMipmappedArray_orig
 #else
-      integer(kind(hipSuccess)) :: hipBindTextureToMipmappedArray
+      integer(kind(hipSuccess)) :: hipBindTextureToMipmappedArray_orig
 #endif
       type(c_ptr) :: tex
       type(c_ptr),value :: mipmappedArray
       type(c_ptr) :: desc
     end function
 
+
+  end interface
   
+  interface hipGetTextureAlignmentOffset
 #ifdef USE_CUDA_NAMES
-    function hipGetTextureAlignmentOffset(offset,texref) bind(c, name="cudaGetTextureAlignmentOffset")
+    function hipGetTextureAlignmentOffset_orig(offset,texref) bind(c, name="cudaGetTextureAlignmentOffset")
 #else
-    function hipGetTextureAlignmentOffset(offset,texref) bind(c, name="hipGetTextureAlignmentOffset")
+    function hipGetTextureAlignmentOffset_orig(offset,texref) bind(c, name="hipGetTextureAlignmentOffset")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5484,19 +6035,22 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipGetTextureAlignmentOffset
+      integer(kind(cudaSuccess)) :: hipGetTextureAlignmentOffset_orig
 #else
-      integer(kind(hipSuccess)) :: hipGetTextureAlignmentOffset
+      integer(kind(hipSuccess)) :: hipGetTextureAlignmentOffset_orig
 #endif
       integer(c_size_t) :: offset
       type(c_ptr) :: texref
     end function
 
+
+  end interface
   
+  interface hipGetTextureReference
 #ifdef USE_CUDA_NAMES
-    function hipGetTextureReference(texref,symbol) bind(c, name="cudaGetTextureReference")
+    function hipGetTextureReference_orig(texref,symbol) bind(c, name="cudaGetTextureReference")
 #else
-    function hipGetTextureReference(texref,symbol) bind(c, name="hipGetTextureReference")
+    function hipGetTextureReference_orig(texref,symbol) bind(c, name="hipGetTextureReference")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5506,19 +6060,22 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipGetTextureReference
+      integer(kind(cudaSuccess)) :: hipGetTextureReference_orig
 #else
-      integer(kind(hipSuccess)) :: hipGetTextureReference
+      integer(kind(hipSuccess)) :: hipGetTextureReference_orig
 #endif
       type(c_ptr) :: texref
       type(c_ptr),value :: symbol
     end function
 
+
+  end interface
   
+  interface hipUnbindTexture
 #ifdef USE_CUDA_NAMES
-    function hipUnbindTexture(tex) bind(c, name="cudaUnbindTexture")
+    function hipUnbindTexture_orig(tex) bind(c, name="cudaUnbindTexture")
 #else
-    function hipUnbindTexture(tex) bind(c, name="hipUnbindTexture")
+    function hipUnbindTexture_orig(tex) bind(c, name="hipUnbindTexture")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5528,18 +6085,21 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipUnbindTexture
+      integer(kind(cudaSuccess)) :: hipUnbindTexture_orig
 #else
-      integer(kind(hipSuccess)) :: hipUnbindTexture
+      integer(kind(hipSuccess)) :: hipUnbindTexture_orig
 #endif
       type(c_ptr) :: tex
     end function
 
+
+  end interface
   
+  interface hipCreateTextureObject
 #ifdef USE_CUDA_NAMES
-    function hipCreateTextureObject(pTexObject,pResDesc,pTexDesc,pResViewDesc) bind(c, name="cudaCreateTextureObject")
+    function hipCreateTextureObject_orig(pTexObject,pResDesc,pTexDesc,pResViewDesc) bind(c, name="cudaCreateTextureObject")
 #else
-    function hipCreateTextureObject(pTexObject,pResDesc,pTexDesc,pResViewDesc) bind(c, name="hipCreateTextureObject")
+    function hipCreateTextureObject_orig(pTexObject,pResDesc,pTexDesc,pResViewDesc) bind(c, name="hipCreateTextureObject")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5549,9 +6109,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipCreateTextureObject
+      integer(kind(cudaSuccess)) :: hipCreateTextureObject_orig
 #else
-      integer(kind(hipSuccess)) :: hipCreateTextureObject
+      integer(kind(hipSuccess)) :: hipCreateTextureObject_orig
 #endif
       type(c_ptr) :: pTexObject
       type(c_ptr) :: pResDesc
@@ -5559,11 +6119,14 @@ module hipfort
       type(c_ptr),value :: pResViewDesc
     end function
 
+
+  end interface
   
+  interface hipDestroyTextureObject
 #ifdef USE_CUDA_NAMES
-    function hipDestroyTextureObject(textureObject) bind(c, name="cudaDestroyTextureObject")
+    function hipDestroyTextureObject_orig(textureObject) bind(c, name="cudaDestroyTextureObject")
 #else
-    function hipDestroyTextureObject(textureObject) bind(c, name="hipDestroyTextureObject")
+    function hipDestroyTextureObject_orig(textureObject) bind(c, name="hipDestroyTextureObject")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5573,18 +6136,21 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipDestroyTextureObject
+      integer(kind(cudaSuccess)) :: hipDestroyTextureObject_orig
 #else
-      integer(kind(hipSuccess)) :: hipDestroyTextureObject
+      integer(kind(hipSuccess)) :: hipDestroyTextureObject_orig
 #endif
       type(c_ptr),value :: textureObject
     end function
 
+
+  end interface
   
+  interface hipGetChannelDesc
 #ifdef USE_CUDA_NAMES
-    function hipGetChannelDesc(desc,array) bind(c, name="cudaGetChannelDesc")
+    function hipGetChannelDesc_orig(desc,array) bind(c, name="cudaGetChannelDesc")
 #else
-    function hipGetChannelDesc(desc,array) bind(c, name="hipGetChannelDesc")
+    function hipGetChannelDesc_orig(desc,array) bind(c, name="hipGetChannelDesc")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5594,19 +6160,22 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipGetChannelDesc
+      integer(kind(cudaSuccess)) :: hipGetChannelDesc_orig
 #else
-      integer(kind(hipSuccess)) :: hipGetChannelDesc
+      integer(kind(hipSuccess)) :: hipGetChannelDesc_orig
 #endif
       type(c_ptr) :: desc
       type(c_ptr),value :: array
     end function
 
+
+  end interface
   
+  interface hipGetTextureObjectResourceDesc
 #ifdef USE_CUDA_NAMES
-    function hipGetTextureObjectResourceDesc(pResDesc,textureObject) bind(c, name="cudaGetTextureObjectResourceDesc")
+    function hipGetTextureObjectResourceDesc_orig(pResDesc,textureObject) bind(c, name="cudaGetTextureObjectResourceDesc")
 #else
-    function hipGetTextureObjectResourceDesc(pResDesc,textureObject) bind(c, name="hipGetTextureObjectResourceDesc")
+    function hipGetTextureObjectResourceDesc_orig(pResDesc,textureObject) bind(c, name="hipGetTextureObjectResourceDesc")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5616,19 +6185,22 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipGetTextureObjectResourceDesc
+      integer(kind(cudaSuccess)) :: hipGetTextureObjectResourceDesc_orig
 #else
-      integer(kind(hipSuccess)) :: hipGetTextureObjectResourceDesc
+      integer(kind(hipSuccess)) :: hipGetTextureObjectResourceDesc_orig
 #endif
       type(c_ptr) :: pResDesc
       type(c_ptr),value :: textureObject
     end function
 
+
+  end interface
   
+  interface hipGetTextureObjectResourceViewDesc
 #ifdef USE_CUDA_NAMES
-    function hipGetTextureObjectResourceViewDesc(pResViewDesc,textureObject) bind(c, name="cudaGetTextureObjectResourceViewDesc")
+    function hipGetTextureObjectResourceViewDesc_orig(pResViewDesc,textureObject) bind(c, name="cudaGetTextureObjectResourceViewDesc")
 #else
-    function hipGetTextureObjectResourceViewDesc(pResViewDesc,textureObject) bind(c, name="hipGetTextureObjectResourceViewDesc")
+    function hipGetTextureObjectResourceViewDesc_orig(pResViewDesc,textureObject) bind(c, name="hipGetTextureObjectResourceViewDesc")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5638,19 +6210,22 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipGetTextureObjectResourceViewDesc
+      integer(kind(cudaSuccess)) :: hipGetTextureObjectResourceViewDesc_orig
 #else
-      integer(kind(hipSuccess)) :: hipGetTextureObjectResourceViewDesc
+      integer(kind(hipSuccess)) :: hipGetTextureObjectResourceViewDesc_orig
 #endif
       type(c_ptr),value :: pResViewDesc
       type(c_ptr),value :: textureObject
     end function
 
+
+  end interface
   
+  interface hipGetTextureObjectTextureDesc
 #ifdef USE_CUDA_NAMES
-    function hipGetTextureObjectTextureDesc(pTexDesc,textureObject) bind(c, name="cudaGetTextureObjectTextureDesc")
+    function hipGetTextureObjectTextureDesc_orig(pTexDesc,textureObject) bind(c, name="cudaGetTextureObjectTextureDesc")
 #else
-    function hipGetTextureObjectTextureDesc(pTexDesc,textureObject) bind(c, name="hipGetTextureObjectTextureDesc")
+    function hipGetTextureObjectTextureDesc_orig(pTexDesc,textureObject) bind(c, name="hipGetTextureObjectTextureDesc")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5660,19 +6235,22 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipGetTextureObjectTextureDesc
+      integer(kind(cudaSuccess)) :: hipGetTextureObjectTextureDesc_orig
 #else
-      integer(kind(hipSuccess)) :: hipGetTextureObjectTextureDesc
+      integer(kind(hipSuccess)) :: hipGetTextureObjectTextureDesc_orig
 #endif
       type(c_ptr) :: pTexDesc
       type(c_ptr),value :: textureObject
     end function
 
+
+  end interface
   
+  interface hipTexRefGetAddress
 #ifdef USE_CUDA_NAMES
-    function hipTexRefGetAddress(dev_ptr,texRef) bind(c, name="cudaTexRefGetAddress")
+    function hipTexRefGetAddress_orig(dev_ptr,texRef) bind(c, name="cudaTexRefGetAddress")
 #else
-    function hipTexRefGetAddress(dev_ptr,texRef) bind(c, name="hipTexRefGetAddress")
+    function hipTexRefGetAddress_orig(dev_ptr,texRef) bind(c, name="hipTexRefGetAddress")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5682,19 +6260,22 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipTexRefGetAddress
+      integer(kind(cudaSuccess)) :: hipTexRefGetAddress_orig
 #else
-      integer(kind(hipSuccess)) :: hipTexRefGetAddress
+      integer(kind(hipSuccess)) :: hipTexRefGetAddress_orig
 #endif
       type(c_ptr) :: dev_ptr
       type(c_ptr) :: texRef
     end function
 
+
+  end interface
   
+  interface hipTexRefGetAddressMode
 #ifdef USE_CUDA_NAMES
-    function hipTexRefGetAddressMode(pam,texRef,dim) bind(c, name="cudaTexRefGetAddressMode")
+    function hipTexRefGetAddressMode_orig(pam,texRef,dim) bind(c, name="cudaTexRefGetAddressMode")
 #else
-    function hipTexRefGetAddressMode(pam,texRef,dim) bind(c, name="hipTexRefGetAddressMode")
+    function hipTexRefGetAddressMode_orig(pam,texRef,dim) bind(c, name="hipTexRefGetAddressMode")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5704,20 +6285,23 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipTexRefGetAddressMode
+      integer(kind(cudaSuccess)) :: hipTexRefGetAddressMode_orig
 #else
-      integer(kind(hipSuccess)) :: hipTexRefGetAddressMode
+      integer(kind(hipSuccess)) :: hipTexRefGetAddressMode_orig
 #endif
       type(c_ptr),value :: pam
       type(c_ptr) :: texRef
       integer(c_int),value :: dim
     end function
 
+
+  end interface
   
+  interface hipTexRefGetFilterMode
 #ifdef USE_CUDA_NAMES
-    function hipTexRefGetFilterMode(pfm,texRef) bind(c, name="cudaTexRefGetFilterMode")
+    function hipTexRefGetFilterMode_orig(pfm,texRef) bind(c, name="cudaTexRefGetFilterMode")
 #else
-    function hipTexRefGetFilterMode(pfm,texRef) bind(c, name="hipTexRefGetFilterMode")
+    function hipTexRefGetFilterMode_orig(pfm,texRef) bind(c, name="hipTexRefGetFilterMode")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5727,19 +6311,22 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipTexRefGetFilterMode
+      integer(kind(cudaSuccess)) :: hipTexRefGetFilterMode_orig
 #else
-      integer(kind(hipSuccess)) :: hipTexRefGetFilterMode
+      integer(kind(hipSuccess)) :: hipTexRefGetFilterMode_orig
 #endif
       type(c_ptr),value :: pfm
       type(c_ptr) :: texRef
     end function
 
+
+  end interface
   
+  interface hipTexRefGetFlags
 #ifdef USE_CUDA_NAMES
-    function hipTexRefGetFlags(pFlags,texRef) bind(c, name="cudaTexRefGetFlags")
+    function hipTexRefGetFlags_orig(pFlags,texRef) bind(c, name="cudaTexRefGetFlags")
 #else
-    function hipTexRefGetFlags(pFlags,texRef) bind(c, name="hipTexRefGetFlags")
+    function hipTexRefGetFlags_orig(pFlags,texRef) bind(c, name="hipTexRefGetFlags")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5749,19 +6336,22 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipTexRefGetFlags
+      integer(kind(cudaSuccess)) :: hipTexRefGetFlags_orig
 #else
-      integer(kind(hipSuccess)) :: hipTexRefGetFlags
+      integer(kind(hipSuccess)) :: hipTexRefGetFlags_orig
 #endif
       type(c_ptr),value :: pFlags
       type(c_ptr) :: texRef
     end function
 
+
+  end interface
   
+  interface hipTexRefGetFormat
 #ifdef USE_CUDA_NAMES
-    function hipTexRefGetFormat(pFormat,pNumChannels,texRef) bind(c, name="cudaTexRefGetFormat")
+    function hipTexRefGetFormat_orig(pFormat,pNumChannels,texRef) bind(c, name="cudaTexRefGetFormat")
 #else
-    function hipTexRefGetFormat(pFormat,pNumChannels,texRef) bind(c, name="hipTexRefGetFormat")
+    function hipTexRefGetFormat_orig(pFormat,pNumChannels,texRef) bind(c, name="hipTexRefGetFormat")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5771,20 +6361,23 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipTexRefGetFormat
+      integer(kind(cudaSuccess)) :: hipTexRefGetFormat_orig
 #else
-      integer(kind(hipSuccess)) :: hipTexRefGetFormat
+      integer(kind(hipSuccess)) :: hipTexRefGetFormat_orig
 #endif
       type(c_ptr),value :: pFormat
       type(c_ptr),value :: pNumChannels
       type(c_ptr) :: texRef
     end function
 
+
+  end interface
   
+  interface hipTexRefGetMaxAnisotropy
 #ifdef USE_CUDA_NAMES
-    function hipTexRefGetMaxAnisotropy(pmaxAnsio,texRef) bind(c, name="cudaTexRefGetMaxAnisotropy")
+    function hipTexRefGetMaxAnisotropy_orig(pmaxAnsio,texRef) bind(c, name="cudaTexRefGetMaxAnisotropy")
 #else
-    function hipTexRefGetMaxAnisotropy(pmaxAnsio,texRef) bind(c, name="hipTexRefGetMaxAnisotropy")
+    function hipTexRefGetMaxAnisotropy_orig(pmaxAnsio,texRef) bind(c, name="hipTexRefGetMaxAnisotropy")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5794,19 +6387,22 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipTexRefGetMaxAnisotropy
+      integer(kind(cudaSuccess)) :: hipTexRefGetMaxAnisotropy_orig
 #else
-      integer(kind(hipSuccess)) :: hipTexRefGetMaxAnisotropy
+      integer(kind(hipSuccess)) :: hipTexRefGetMaxAnisotropy_orig
 #endif
       type(c_ptr),value :: pmaxAnsio
       type(c_ptr) :: texRef
     end function
 
+
+  end interface
   
+  interface hipTexRefGetMipmapFilterMode
 #ifdef USE_CUDA_NAMES
-    function hipTexRefGetMipmapFilterMode(pfm,texRef) bind(c, name="cudaTexRefGetMipmapFilterMode")
+    function hipTexRefGetMipmapFilterMode_orig(pfm,texRef) bind(c, name="cudaTexRefGetMipmapFilterMode")
 #else
-    function hipTexRefGetMipmapFilterMode(pfm,texRef) bind(c, name="hipTexRefGetMipmapFilterMode")
+    function hipTexRefGetMipmapFilterMode_orig(pfm,texRef) bind(c, name="hipTexRefGetMipmapFilterMode")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5816,19 +6412,22 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipTexRefGetMipmapFilterMode
+      integer(kind(cudaSuccess)) :: hipTexRefGetMipmapFilterMode_orig
 #else
-      integer(kind(hipSuccess)) :: hipTexRefGetMipmapFilterMode
+      integer(kind(hipSuccess)) :: hipTexRefGetMipmapFilterMode_orig
 #endif
       type(c_ptr),value :: pfm
       type(c_ptr) :: texRef
     end function
 
+
+  end interface
   
+  interface hipTexRefGetMipmapLevelBias
 #ifdef USE_CUDA_NAMES
-    function hipTexRefGetMipmapLevelBias(pbias,texRef) bind(c, name="cudaTexRefGetMipmapLevelBias")
+    function hipTexRefGetMipmapLevelBias_orig(pbias,texRef) bind(c, name="cudaTexRefGetMipmapLevelBias")
 #else
-    function hipTexRefGetMipmapLevelBias(pbias,texRef) bind(c, name="hipTexRefGetMipmapLevelBias")
+    function hipTexRefGetMipmapLevelBias_orig(pbias,texRef) bind(c, name="hipTexRefGetMipmapLevelBias")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5838,19 +6437,22 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipTexRefGetMipmapLevelBias
+      integer(kind(cudaSuccess)) :: hipTexRefGetMipmapLevelBias_orig
 #else
-      integer(kind(hipSuccess)) :: hipTexRefGetMipmapLevelBias
+      integer(kind(hipSuccess)) :: hipTexRefGetMipmapLevelBias_orig
 #endif
       type(c_ptr),value :: pbias
       type(c_ptr) :: texRef
     end function
 
+
+  end interface
   
+  interface hipTexRefGetMipmapLevelClamp
 #ifdef USE_CUDA_NAMES
-    function hipTexRefGetMipmapLevelClamp(pminMipmapLevelClamp,pmaxMipmapLevelClamp,texRef) bind(c, name="cudaTexRefGetMipmapLevelClamp")
+    function hipTexRefGetMipmapLevelClamp_orig(pminMipmapLevelClamp,pmaxMipmapLevelClamp,texRef) bind(c, name="cudaTexRefGetMipmapLevelClamp")
 #else
-    function hipTexRefGetMipmapLevelClamp(pminMipmapLevelClamp,pmaxMipmapLevelClamp,texRef) bind(c, name="hipTexRefGetMipmapLevelClamp")
+    function hipTexRefGetMipmapLevelClamp_orig(pminMipmapLevelClamp,pmaxMipmapLevelClamp,texRef) bind(c, name="hipTexRefGetMipmapLevelClamp")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5860,20 +6462,23 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipTexRefGetMipmapLevelClamp
+      integer(kind(cudaSuccess)) :: hipTexRefGetMipmapLevelClamp_orig
 #else
-      integer(kind(hipSuccess)) :: hipTexRefGetMipmapLevelClamp
+      integer(kind(hipSuccess)) :: hipTexRefGetMipmapLevelClamp_orig
 #endif
       type(c_ptr),value :: pminMipmapLevelClamp
       type(c_ptr),value :: pmaxMipmapLevelClamp
       type(c_ptr) :: texRef
     end function
 
+
+  end interface
   
+  interface hipTexRefGetMipMappedArray
 #ifdef USE_CUDA_NAMES
-    function hipTexRefGetMipMappedArray(pArray,texRef) bind(c, name="cudaTexRefGetMipMappedArray")
+    function hipTexRefGetMipMappedArray_orig(pArray,texRef) bind(c, name="cudaTexRefGetMipMappedArray")
 #else
-    function hipTexRefGetMipMappedArray(pArray,texRef) bind(c, name="hipTexRefGetMipMappedArray")
+    function hipTexRefGetMipMappedArray_orig(pArray,texRef) bind(c, name="hipTexRefGetMipMappedArray")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5883,19 +6488,22 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipTexRefGetMipMappedArray
+      integer(kind(cudaSuccess)) :: hipTexRefGetMipMappedArray_orig
 #else
-      integer(kind(hipSuccess)) :: hipTexRefGetMipMappedArray
+      integer(kind(hipSuccess)) :: hipTexRefGetMipMappedArray_orig
 #endif
       type(c_ptr) :: pArray
       type(c_ptr) :: texRef
     end function
 
+
+  end interface
   
+  interface hipTexRefSetAddress
 #ifdef USE_CUDA_NAMES
-    function hipTexRefSetAddress(ByteOffset,texRef,dptr,bytes) bind(c, name="cudaTexRefSetAddress")
+    function hipTexRefSetAddress_orig(ByteOffset,texRef,dptr,bytes) bind(c, name="cudaTexRefSetAddress")
 #else
-    function hipTexRefSetAddress(ByteOffset,texRef,dptr,bytes) bind(c, name="hipTexRefSetAddress")
+    function hipTexRefSetAddress_orig(ByteOffset,texRef,dptr,bytes) bind(c, name="hipTexRefSetAddress")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5905,9 +6513,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipTexRefSetAddress
+      integer(kind(cudaSuccess)) :: hipTexRefSetAddress_orig
 #else
-      integer(kind(hipSuccess)) :: hipTexRefSetAddress
+      integer(kind(hipSuccess)) :: hipTexRefSetAddress_orig
 #endif
       integer(c_size_t) :: ByteOffset
       type(c_ptr) :: texRef
@@ -5915,11 +6523,14 @@ module hipfort
       integer(c_size_t),value :: bytes
     end function
 
+
+  end interface
   
+  interface hipTexRefSetAddress2D
 #ifdef USE_CUDA_NAMES
-    function hipTexRefSetAddress2D(texRef,desc,dptr,Pitch) bind(c, name="cudaTexRefSetAddress2D")
+    function hipTexRefSetAddress2D_orig(texRef,desc,dptr,Pitch) bind(c, name="cudaTexRefSetAddress2D")
 #else
-    function hipTexRefSetAddress2D(texRef,desc,dptr,Pitch) bind(c, name="hipTexRefSetAddress2D")
+    function hipTexRefSetAddress2D_orig(texRef,desc,dptr,Pitch) bind(c, name="hipTexRefSetAddress2D")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5929,9 +6540,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipTexRefSetAddress2D
+      integer(kind(cudaSuccess)) :: hipTexRefSetAddress2D_orig
 #else
-      integer(kind(hipSuccess)) :: hipTexRefSetAddress2D
+      integer(kind(hipSuccess)) :: hipTexRefSetAddress2D_orig
 #endif
       type(c_ptr) :: texRef
       type(c_ptr) :: desc
@@ -5939,11 +6550,14 @@ module hipfort
       integer(c_size_t),value :: Pitch
     end function
 
+
+  end interface
   
+  interface hipTexRefSetAddressMode
 #ifdef USE_CUDA_NAMES
-    function hipTexRefSetAddressMode(texRef,dim,am) bind(c, name="cudaTexRefSetAddressMode")
+    function hipTexRefSetAddressMode_orig(texRef,dim,am) bind(c, name="cudaTexRefSetAddressMode")
 #else
-    function hipTexRefSetAddressMode(texRef,dim,am) bind(c, name="hipTexRefSetAddressMode")
+    function hipTexRefSetAddressMode_orig(texRef,dim,am) bind(c, name="hipTexRefSetAddressMode")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5953,20 +6567,23 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipTexRefSetAddressMode
+      integer(kind(cudaSuccess)) :: hipTexRefSetAddressMode_orig
 #else
-      integer(kind(hipSuccess)) :: hipTexRefSetAddressMode
+      integer(kind(hipSuccess)) :: hipTexRefSetAddressMode_orig
 #endif
       type(c_ptr) :: texRef
       integer(c_int),value :: dim
       integer(kind(hipAddressModeWrap)),value :: am
     end function
 
+
+  end interface
   
+  interface hipTexRefSetArray
 #ifdef USE_CUDA_NAMES
-    function hipTexRefSetArray(tex,array,flags) bind(c, name="cudaTexRefSetArray")
+    function hipTexRefSetArray_orig(tex,array,flags) bind(c, name="cudaTexRefSetArray")
 #else
-    function hipTexRefSetArray(tex,array,flags) bind(c, name="hipTexRefSetArray")
+    function hipTexRefSetArray_orig(tex,array,flags) bind(c, name="hipTexRefSetArray")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5976,20 +6593,23 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipTexRefSetArray
+      integer(kind(cudaSuccess)) :: hipTexRefSetArray_orig
 #else
-      integer(kind(hipSuccess)) :: hipTexRefSetArray
+      integer(kind(hipSuccess)) :: hipTexRefSetArray_orig
 #endif
       type(c_ptr) :: tex
       type(c_ptr),value :: array
       integer(kind=4),value :: flags
     end function
 
+
+  end interface
   
+  interface hipTexRefSetBorderColor
 #ifdef USE_CUDA_NAMES
-    function hipTexRefSetBorderColor(texRef,pBorderColor) bind(c, name="cudaTexRefSetBorderColor")
+    function hipTexRefSetBorderColor_orig(texRef,pBorderColor) bind(c, name="cudaTexRefSetBorderColor")
 #else
-    function hipTexRefSetBorderColor(texRef,pBorderColor) bind(c, name="hipTexRefSetBorderColor")
+    function hipTexRefSetBorderColor_orig(texRef,pBorderColor) bind(c, name="hipTexRefSetBorderColor")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -5999,19 +6619,22 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipTexRefSetBorderColor
+      integer(kind(cudaSuccess)) :: hipTexRefSetBorderColor_orig
 #else
-      integer(kind(hipSuccess)) :: hipTexRefSetBorderColor
+      integer(kind(hipSuccess)) :: hipTexRefSetBorderColor_orig
 #endif
       type(c_ptr) :: texRef
       type(c_ptr),value :: pBorderColor
     end function
 
+
+  end interface
   
+  interface hipTexRefSetFilterMode
 #ifdef USE_CUDA_NAMES
-    function hipTexRefSetFilterMode(texRef,fm) bind(c, name="cudaTexRefSetFilterMode")
+    function hipTexRefSetFilterMode_orig(texRef,fm) bind(c, name="cudaTexRefSetFilterMode")
 #else
-    function hipTexRefSetFilterMode(texRef,fm) bind(c, name="hipTexRefSetFilterMode")
+    function hipTexRefSetFilterMode_orig(texRef,fm) bind(c, name="hipTexRefSetFilterMode")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -6021,19 +6644,22 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipTexRefSetFilterMode
+      integer(kind(cudaSuccess)) :: hipTexRefSetFilterMode_orig
 #else
-      integer(kind(hipSuccess)) :: hipTexRefSetFilterMode
+      integer(kind(hipSuccess)) :: hipTexRefSetFilterMode_orig
 #endif
       type(c_ptr) :: texRef
       integer(kind(hipFilterModePoint)),value :: fm
     end function
 
+
+  end interface
   
+  interface hipTexRefSetFlags
 #ifdef USE_CUDA_NAMES
-    function hipTexRefSetFlags(texRef,Flags) bind(c, name="cudaTexRefSetFlags")
+    function hipTexRefSetFlags_orig(texRef,Flags) bind(c, name="cudaTexRefSetFlags")
 #else
-    function hipTexRefSetFlags(texRef,Flags) bind(c, name="hipTexRefSetFlags")
+    function hipTexRefSetFlags_orig(texRef,Flags) bind(c, name="hipTexRefSetFlags")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -6043,19 +6669,22 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipTexRefSetFlags
+      integer(kind(cudaSuccess)) :: hipTexRefSetFlags_orig
 #else
-      integer(kind(hipSuccess)) :: hipTexRefSetFlags
+      integer(kind(hipSuccess)) :: hipTexRefSetFlags_orig
 #endif
       type(c_ptr) :: texRef
       integer(kind=4),value :: Flags
     end function
 
+
+  end interface
   
+  interface hipTexRefSetFormat
 #ifdef USE_CUDA_NAMES
-    function hipTexRefSetFormat(texRef,fmt,NumPackedComponents) bind(c, name="cudaTexRefSetFormat")
+    function hipTexRefSetFormat_orig(texRef,fmt,NumPackedComponents) bind(c, name="cudaTexRefSetFormat")
 #else
-    function hipTexRefSetFormat(texRef,fmt,NumPackedComponents) bind(c, name="hipTexRefSetFormat")
+    function hipTexRefSetFormat_orig(texRef,fmt,NumPackedComponents) bind(c, name="hipTexRefSetFormat")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -6065,20 +6694,23 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipTexRefSetFormat
+      integer(kind(cudaSuccess)) :: hipTexRefSetFormat_orig
 #else
-      integer(kind(hipSuccess)) :: hipTexRefSetFormat
+      integer(kind(hipSuccess)) :: hipTexRefSetFormat_orig
 #endif
       type(c_ptr) :: texRef
       integer(kind(HIP_AD_FORMAT_UNSIGNED_INT8)),value :: fmt
       integer(c_int),value :: NumPackedComponents
     end function
 
+
+  end interface
   
+  interface hipTexRefSetMaxAnisotropy
 #ifdef USE_CUDA_NAMES
-    function hipTexRefSetMaxAnisotropy(texRef,maxAniso) bind(c, name="cudaTexRefSetMaxAnisotropy")
+    function hipTexRefSetMaxAnisotropy_orig(texRef,maxAniso) bind(c, name="cudaTexRefSetMaxAnisotropy")
 #else
-    function hipTexRefSetMaxAnisotropy(texRef,maxAniso) bind(c, name="hipTexRefSetMaxAnisotropy")
+    function hipTexRefSetMaxAnisotropy_orig(texRef,maxAniso) bind(c, name="hipTexRefSetMaxAnisotropy")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -6088,19 +6720,22 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipTexRefSetMaxAnisotropy
+      integer(kind(cudaSuccess)) :: hipTexRefSetMaxAnisotropy_orig
 #else
-      integer(kind(hipSuccess)) :: hipTexRefSetMaxAnisotropy
+      integer(kind(hipSuccess)) :: hipTexRefSetMaxAnisotropy_orig
 #endif
       type(c_ptr) :: texRef
       integer(kind=4),value :: maxAniso
     end function
 
+
+  end interface
   
+  interface hipTexRefSetMipmapFilterMode
 #ifdef USE_CUDA_NAMES
-    function hipTexRefSetMipmapFilterMode(texRef,fm) bind(c, name="cudaTexRefSetMipmapFilterMode")
+    function hipTexRefSetMipmapFilterMode_orig(texRef,fm) bind(c, name="cudaTexRefSetMipmapFilterMode")
 #else
-    function hipTexRefSetMipmapFilterMode(texRef,fm) bind(c, name="hipTexRefSetMipmapFilterMode")
+    function hipTexRefSetMipmapFilterMode_orig(texRef,fm) bind(c, name="hipTexRefSetMipmapFilterMode")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -6110,19 +6745,22 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipTexRefSetMipmapFilterMode
+      integer(kind(cudaSuccess)) :: hipTexRefSetMipmapFilterMode_orig
 #else
-      integer(kind(hipSuccess)) :: hipTexRefSetMipmapFilterMode
+      integer(kind(hipSuccess)) :: hipTexRefSetMipmapFilterMode_orig
 #endif
       type(c_ptr) :: texRef
       integer(kind(hipFilterModePoint)),value :: fm
     end function
 
+
+  end interface
   
+  interface hipTexRefSetMipmapLevelBias
 #ifdef USE_CUDA_NAMES
-    function hipTexRefSetMipmapLevelBias(texRef,bias) bind(c, name="cudaTexRefSetMipmapLevelBias")
+    function hipTexRefSetMipmapLevelBias_orig(texRef,bias) bind(c, name="cudaTexRefSetMipmapLevelBias")
 #else
-    function hipTexRefSetMipmapLevelBias(texRef,bias) bind(c, name="hipTexRefSetMipmapLevelBias")
+    function hipTexRefSetMipmapLevelBias_orig(texRef,bias) bind(c, name="hipTexRefSetMipmapLevelBias")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -6132,19 +6770,22 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipTexRefSetMipmapLevelBias
+      integer(kind(cudaSuccess)) :: hipTexRefSetMipmapLevelBias_orig
 #else
-      integer(kind(hipSuccess)) :: hipTexRefSetMipmapLevelBias
+      integer(kind(hipSuccess)) :: hipTexRefSetMipmapLevelBias_orig
 #endif
       type(c_ptr) :: texRef
       real(c_float),value :: bias
     end function
 
+
+  end interface
   
+  interface hipTexRefSetMipmapLevelClamp
 #ifdef USE_CUDA_NAMES
-    function hipTexRefSetMipmapLevelClamp(texRef,minMipMapLevelClamp,maxMipMapLevelClamp) bind(c, name="cudaTexRefSetMipmapLevelClamp")
+    function hipTexRefSetMipmapLevelClamp_orig(texRef,minMipMapLevelClamp,maxMipMapLevelClamp) bind(c, name="cudaTexRefSetMipmapLevelClamp")
 #else
-    function hipTexRefSetMipmapLevelClamp(texRef,minMipMapLevelClamp,maxMipMapLevelClamp) bind(c, name="hipTexRefSetMipmapLevelClamp")
+    function hipTexRefSetMipmapLevelClamp_orig(texRef,minMipMapLevelClamp,maxMipMapLevelClamp) bind(c, name="hipTexRefSetMipmapLevelClamp")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -6154,20 +6795,23 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipTexRefSetMipmapLevelClamp
+      integer(kind(cudaSuccess)) :: hipTexRefSetMipmapLevelClamp_orig
 #else
-      integer(kind(hipSuccess)) :: hipTexRefSetMipmapLevelClamp
+      integer(kind(hipSuccess)) :: hipTexRefSetMipmapLevelClamp_orig
 #endif
       type(c_ptr) :: texRef
       real(c_float),value :: minMipMapLevelClamp
       real(c_float),value :: maxMipMapLevelClamp
     end function
 
+
+  end interface
   
+  interface hipTexRefSetMipmappedArray
 #ifdef USE_CUDA_NAMES
-    function hipTexRefSetMipmappedArray(texRef,mipmappedArray,Flags) bind(c, name="cudaTexRefSetMipmappedArray")
+    function hipTexRefSetMipmappedArray_orig(texRef,mipmappedArray,Flags) bind(c, name="cudaTexRefSetMipmappedArray")
 #else
-    function hipTexRefSetMipmappedArray(texRef,mipmappedArray,Flags) bind(c, name="hipTexRefSetMipmappedArray")
+    function hipTexRefSetMipmappedArray_orig(texRef,mipmappedArray,Flags) bind(c, name="hipTexRefSetMipmappedArray")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -6177,20 +6821,23 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipTexRefSetMipmappedArray
+      integer(kind(cudaSuccess)) :: hipTexRefSetMipmappedArray_orig
 #else
-      integer(kind(hipSuccess)) :: hipTexRefSetMipmappedArray
+      integer(kind(hipSuccess)) :: hipTexRefSetMipmappedArray_orig
 #endif
       type(c_ptr) :: texRef
       type(c_ptr),value :: mipmappedArray
       integer(kind=4),value :: Flags
     end function
 
+
+  end interface
   
+  interface hipMipmappedArrayCreate
 #ifdef USE_CUDA_NAMES
-    function hipMipmappedArrayCreate(pHandle,pMipmappedArrayDesc,numMipmapLevels) bind(c, name="cudaMipmappedArrayCreate")
+    function hipMipmappedArrayCreate_orig(pHandle,pMipmappedArrayDesc,numMipmapLevels) bind(c, name="cudaMipmappedArrayCreate")
 #else
-    function hipMipmappedArrayCreate(pHandle,pMipmappedArrayDesc,numMipmapLevels) bind(c, name="hipMipmappedArrayCreate")
+    function hipMipmappedArrayCreate_orig(pHandle,pMipmappedArrayDesc,numMipmapLevels) bind(c, name="hipMipmappedArrayCreate")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -6200,20 +6847,23 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMipmappedArrayCreate
+      integer(kind(cudaSuccess)) :: hipMipmappedArrayCreate_orig
 #else
-      integer(kind(hipSuccess)) :: hipMipmappedArrayCreate
+      integer(kind(hipSuccess)) :: hipMipmappedArrayCreate_orig
 #endif
       type(c_ptr) :: pHandle
       type(c_ptr) :: pMipmappedArrayDesc
       integer(kind=4),value :: numMipmapLevels
     end function
 
+
+  end interface
   
+  interface hipMipmappedArrayDestroy
 #ifdef USE_CUDA_NAMES
-    function hipMipmappedArrayDestroy(hMipmappedArray) bind(c, name="cudaMipmappedArrayDestroy")
+    function hipMipmappedArrayDestroy_orig(hMipmappedArray) bind(c, name="cudaMipmappedArrayDestroy")
 #else
-    function hipMipmappedArrayDestroy(hMipmappedArray) bind(c, name="hipMipmappedArrayDestroy")
+    function hipMipmappedArrayDestroy_orig(hMipmappedArray) bind(c, name="hipMipmappedArrayDestroy")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -6223,18 +6873,21 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMipmappedArrayDestroy
+      integer(kind(cudaSuccess)) :: hipMipmappedArrayDestroy_orig
 #else
-      integer(kind(hipSuccess)) :: hipMipmappedArrayDestroy
+      integer(kind(hipSuccess)) :: hipMipmappedArrayDestroy_orig
 #endif
       type(c_ptr),value :: hMipmappedArray
     end function
 
+
+  end interface
   
+  interface hipMipmappedArrayGetLevel
 #ifdef USE_CUDA_NAMES
-    function hipMipmappedArrayGetLevel(pLevelArray,hMipMappedArray,level) bind(c, name="cudaMipmappedArrayGetLevel")
+    function hipMipmappedArrayGetLevel_orig(pLevelArray,hMipMappedArray,level) bind(c, name="cudaMipmappedArrayGetLevel")
 #else
-    function hipMipmappedArrayGetLevel(pLevelArray,hMipMappedArray,level) bind(c, name="hipMipmappedArrayGetLevel")
+    function hipMipmappedArrayGetLevel_orig(pLevelArray,hMipMappedArray,level) bind(c, name="hipMipmappedArrayGetLevel")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -6244,20 +6897,23 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMipmappedArrayGetLevel
+      integer(kind(cudaSuccess)) :: hipMipmappedArrayGetLevel_orig
 #else
-      integer(kind(hipSuccess)) :: hipMipmappedArrayGetLevel
+      integer(kind(hipSuccess)) :: hipMipmappedArrayGetLevel_orig
 #endif
       type(c_ptr) :: pLevelArray
       type(c_ptr),value :: hMipMappedArray
       integer(kind=4),value :: level
     end function
 
+
+  end interface
   
+  interface hipTexObjectCreate
 #ifdef USE_CUDA_NAMES
-    function hipTexObjectCreate(pTexObject,pResDesc,pTexDesc,pResViewDesc) bind(c, name="cudaTexObjectCreate")
+    function hipTexObjectCreate_orig(pTexObject,pResDesc,pTexDesc,pResViewDesc) bind(c, name="cudaTexObjectCreate")
 #else
-    function hipTexObjectCreate(pTexObject,pResDesc,pTexDesc,pResViewDesc) bind(c, name="hipTexObjectCreate")
+    function hipTexObjectCreate_orig(pTexObject,pResDesc,pTexDesc,pResViewDesc) bind(c, name="hipTexObjectCreate")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -6267,9 +6923,9 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipTexObjectCreate
+      integer(kind(cudaSuccess)) :: hipTexObjectCreate_orig
 #else
-      integer(kind(hipSuccess)) :: hipTexObjectCreate
+      integer(kind(hipSuccess)) :: hipTexObjectCreate_orig
 #endif
       type(c_ptr) :: pTexObject
       type(c_ptr),value :: pResDesc
@@ -6277,11 +6933,14 @@ module hipfort
       type(c_ptr),value :: pResViewDesc
     end function
 
+
+  end interface
   
+  interface hipTexObjectDestroy
 #ifdef USE_CUDA_NAMES
-    function hipTexObjectDestroy(texObject) bind(c, name="cudaTexObjectDestroy")
+    function hipTexObjectDestroy_orig(texObject) bind(c, name="cudaTexObjectDestroy")
 #else
-    function hipTexObjectDestroy(texObject) bind(c, name="hipTexObjectDestroy")
+    function hipTexObjectDestroy_orig(texObject) bind(c, name="hipTexObjectDestroy")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -6291,18 +6950,21 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipTexObjectDestroy
+      integer(kind(cudaSuccess)) :: hipTexObjectDestroy_orig
 #else
-      integer(kind(hipSuccess)) :: hipTexObjectDestroy
+      integer(kind(hipSuccess)) :: hipTexObjectDestroy_orig
 #endif
       type(c_ptr),value :: texObject
     end function
 
+
+  end interface
   
+  interface hipTexObjectGetResourceDesc
 #ifdef USE_CUDA_NAMES
-    function hipTexObjectGetResourceDesc(pResDesc,texObject) bind(c, name="cudaTexObjectGetResourceDesc")
+    function hipTexObjectGetResourceDesc_orig(pResDesc,texObject) bind(c, name="cudaTexObjectGetResourceDesc")
 #else
-    function hipTexObjectGetResourceDesc(pResDesc,texObject) bind(c, name="hipTexObjectGetResourceDesc")
+    function hipTexObjectGetResourceDesc_orig(pResDesc,texObject) bind(c, name="hipTexObjectGetResourceDesc")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -6312,19 +6974,22 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipTexObjectGetResourceDesc
+      integer(kind(cudaSuccess)) :: hipTexObjectGetResourceDesc_orig
 #else
-      integer(kind(hipSuccess)) :: hipTexObjectGetResourceDesc
+      integer(kind(hipSuccess)) :: hipTexObjectGetResourceDesc_orig
 #endif
       type(c_ptr),value :: pResDesc
       type(c_ptr),value :: texObject
     end function
 
+
+  end interface
   
+  interface hipTexObjectGetResourceViewDesc
 #ifdef USE_CUDA_NAMES
-    function hipTexObjectGetResourceViewDesc(pResViewDesc,texObject) bind(c, name="cudaTexObjectGetResourceViewDesc")
+    function hipTexObjectGetResourceViewDesc_orig(pResViewDesc,texObject) bind(c, name="cudaTexObjectGetResourceViewDesc")
 #else
-    function hipTexObjectGetResourceViewDesc(pResViewDesc,texObject) bind(c, name="hipTexObjectGetResourceViewDesc")
+    function hipTexObjectGetResourceViewDesc_orig(pResViewDesc,texObject) bind(c, name="hipTexObjectGetResourceViewDesc")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -6334,19 +6999,22 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipTexObjectGetResourceViewDesc
+      integer(kind(cudaSuccess)) :: hipTexObjectGetResourceViewDesc_orig
 #else
-      integer(kind(hipSuccess)) :: hipTexObjectGetResourceViewDesc
+      integer(kind(hipSuccess)) :: hipTexObjectGetResourceViewDesc_orig
 #endif
       type(c_ptr),value :: pResViewDesc
       type(c_ptr),value :: texObject
     end function
 
+
+  end interface
   
+  interface hipTexObjectGetTextureDesc
 #ifdef USE_CUDA_NAMES
-    function hipTexObjectGetTextureDesc(pTexDesc,texObject) bind(c, name="cudaTexObjectGetTextureDesc")
+    function hipTexObjectGetTextureDesc_orig(pTexDesc,texObject) bind(c, name="cudaTexObjectGetTextureDesc")
 #else
-    function hipTexObjectGetTextureDesc(pTexDesc,texObject) bind(c, name="hipTexObjectGetTextureDesc")
+    function hipTexObjectGetTextureDesc_orig(pTexDesc,texObject) bind(c, name="hipTexObjectGetTextureDesc")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -6356,21 +7024,24 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipTexObjectGetTextureDesc
+      integer(kind(cudaSuccess)) :: hipTexObjectGetTextureDesc_orig
 #else
-      integer(kind(hipSuccess)) :: hipTexObjectGetTextureDesc
+      integer(kind(hipSuccess)) :: hipTexObjectGetTextureDesc_orig
 #endif
       type(c_ptr),value :: pTexDesc
       type(c_ptr),value :: texObject
     end function
 
+
+  end interface
   !> 
   !>   CallbackActivity API
   !>  
+  interface hipRegisterApiCallback
 #ifdef USE_CUDA_NAMES
-    function hipRegisterApiCallback(id,fun,arg) bind(c, name="cudaRegisterApiCallback")
+    function hipRegisterApiCallback_orig(id,fun,arg) bind(c, name="cudaRegisterApiCallback")
 #else
-    function hipRegisterApiCallback(id,fun,arg) bind(c, name="hipRegisterApiCallback")
+    function hipRegisterApiCallback_orig(id,fun,arg) bind(c, name="hipRegisterApiCallback")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -6380,80 +7051,93 @@ module hipfort
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipRegisterApiCallback
+      integer(kind(cudaSuccess)) :: hipRegisterApiCallback_orig
 #else
-      integer(kind(hipSuccess)) :: hipRegisterApiCallback
+      integer(kind(hipSuccess)) :: hipRegisterApiCallback_orig
 #endif
       integer(kind=4),value :: id
       type(c_ptr),value :: fun
       type(c_ptr),value :: arg
     end function
 
-  
-#ifdef USE_CUDA_NAMES
-    function hipRemoveApiCallback(id) bind(c, name="cudaRemoveApiCallback")
-#else
-    function hipRemoveApiCallback(id) bind(c, name="hipRemoveApiCallback")
-#endif
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipRemoveApiCallback
-#else
-      integer(kind(hipSuccess)) :: hipRemoveApiCallback
-#endif
-      integer(kind=4),value :: id
-    end function
-
-  
-#ifdef USE_CUDA_NAMES
-    function hipRegisterActivityCallback(id,fun,arg) bind(c, name="cudaRegisterActivityCallback")
-#else
-    function hipRegisterActivityCallback(id,fun,arg) bind(c, name="hipRegisterActivityCallback")
-#endif
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipRegisterActivityCallback
-#else
-      integer(kind(hipSuccess)) :: hipRegisterActivityCallback
-#endif
-      integer(kind=4),value :: id
-      type(c_ptr),value :: fun
-      type(c_ptr),value :: arg
-    end function
-
-  
-#ifdef USE_CUDA_NAMES
-    function hipRemoveActivityCallback(id) bind(c, name="cudaRemoveActivityCallback")
-#else
-    function hipRemoveActivityCallback(id) bind(c, name="hipRemoveActivityCallback")
-#endif
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipRemoveActivityCallback
-#else
-      integer(kind(hipSuccess)) :: hipRemoveActivityCallback
-#endif
-      integer(kind=4),value :: id
-    end function
 
   end interface
+  
+  interface hipRemoveApiCallback
+#ifdef USE_CUDA_NAMES
+    function hipRemoveApiCallback_orig(id) bind(c, name="cudaRemoveApiCallback")
+#else
+    function hipRemoveApiCallback_orig(id) bind(c, name="hipRemoveApiCallback")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipRemoveApiCallback_orig
+#else
+      integer(kind(hipSuccess)) :: hipRemoveApiCallback_orig
+#endif
+      integer(kind=4),value :: id
+    end function
+
+
+  end interface
+  
+  interface hipRegisterActivityCallback
+#ifdef USE_CUDA_NAMES
+    function hipRegisterActivityCallback_orig(id,fun,arg) bind(c, name="cudaRegisterActivityCallback")
+#else
+    function hipRegisterActivityCallback_orig(id,fun,arg) bind(c, name="hipRegisterActivityCallback")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipRegisterActivityCallback_orig
+#else
+      integer(kind(hipSuccess)) :: hipRegisterActivityCallback_orig
+#endif
+      integer(kind=4),value :: id
+      type(c_ptr),value :: fun
+      type(c_ptr),value :: arg
+    end function
+
+
+  end interface
+  
+  interface hipRemoveActivityCallback
+#ifdef USE_CUDA_NAMES
+    function hipRemoveActivityCallback_orig(id) bind(c, name="cudaRemoveActivityCallback")
+#else
+    function hipRemoveActivityCallback_orig(id) bind(c, name="hipRemoveActivityCallback")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipRemoveActivityCallback_orig
+#else
+      integer(kind(hipSuccess)) :: hipRemoveActivityCallback_orig
+#endif
+      integer(kind=4),value :: id
+    end function
+
+
+  end interface
+
+  contains
+
   
 end module hipfort

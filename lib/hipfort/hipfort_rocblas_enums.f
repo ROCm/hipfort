@@ -113,5 +113,7 @@ module hipfort_rocblas_enums
 
  
 
+  contains
+
   
 end module hipfort_rocblas_enums

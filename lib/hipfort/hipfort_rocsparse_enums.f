@@ -107,5 +107,7 @@ module hipfort_rocsparse_enums
 
  
 
+  contains
+
   
 end module hipfort_rocsparse_enums

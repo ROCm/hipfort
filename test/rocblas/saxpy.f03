@@ -31,17 +31,15 @@ program rocblas_saxpy_test
     implicit none
 
     integer, parameter :: N = 12000
-    integer, parameter :: bytes_per_element = 4 ! single precision
-    integer(c_size_t), parameter :: Nbytes = N * bytes_per_element
 
     real(c_float), target :: alpha = 12.5
-
-    type(c_ptr) :: dx = c_null_ptr
-    type(c_ptr) :: dy = c_null_ptr
 
     real,allocatable,target,dimension(:) :: hx
     real,allocatable,target,dimension(:) :: hy
     real,allocatable,target,dimension(:) :: hz
+    
+    real,pointer,dimension(:) :: dx
+    real,pointer,dimension(:) :: dy
 
     real :: error
     real :: result
@@ -61,20 +59,17 @@ program rocblas_saxpy_test
     allocate(hy(N))
     allocate(hz(N))
 
-    ! Allocate device-side memory
-    call hipCheck(hipMalloc(dx, Nbytes))
-    call hipCheck(hipMalloc(dy, Nbytes))
-
     ! Initialize host memory
-    do i = 1, n
+    do i = 1, N
         hx(i) = i
-        hy(i) = n - i
-        hz(i) = n - i
-    end do
-    
-    ! Transfer data from host to deivce memory
-    call hipCheck(hipMemcpy(dx, c_loc(hx), Nbytes, hipMemcpyHostToDevice))
-    call hipCheck(hipmemcpy(dy, c_loc(hy), Nbytes, hipMemcpyHostToDevice))
+        hy(i) = N - i
+        hz(i) = N - i
+    eNd do
+
+    ! Allocate device-side memory
+    ! Transfer data from host to device memory
+    call hipCheck(hipMalloc(dx, source=hx))
+    call hipCheck(hipMalloc(dy, source=hy))
 
     ! Call rocblas function
     call rocblasCheck(rocblas_set_pointer_mode(rocblas_handle, 0))
@@ -82,7 +77,7 @@ program rocblas_saxpy_test
     call hipCheck(hipDeviceSynchronize())
 
     ! Transfer data back to host memory
-    call hipcheck(hipMemcpy(c_loc(hy), dy, Nbytes, hipMemcpyDeviceToHost))
+    call hipcheck(hipMemcpy(hy, dy, hipMemcpyDeviceToHost))
 
     ! Verification
     do i = 1, N

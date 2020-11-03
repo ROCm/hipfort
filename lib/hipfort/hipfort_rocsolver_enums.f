@@ -39,6 +39,18 @@ module hipfort_rocsolver_enums
   end enum
 
   enum, bind(c)
+    enumerator :: rocblas_svect_all = 191
+    enumerator :: rocblas_svect_singular = 192
+    enumerator :: rocblas_svect_overwrite = 193
+    enumerator :: rocblas_svect_none = 194
+  end enum
+
+  enum, bind(c)
+    enumerator :: rocblas_outofplace = 201
+    enumerator :: rocblas_inplace = 202
+  end enum
+
+  enum, bind(c)
     enumerator :: rocblas_operation_none = 111
     enumerator :: rocblas_operation_transpose = 112
     enumerator :: rocblas_operation_conjugate_transpose = 113
@@ -122,6 +134,8 @@ module hipfort_rocsolver_enums
   end enum
 
  
+
+  contains
 
   
 end module hipfort_rocsolver_enums

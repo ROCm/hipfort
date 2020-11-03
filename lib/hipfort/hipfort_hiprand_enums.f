@@ -62,5 +62,7 @@ module hipfort_hiprand_enums
 
  
 
+  contains
+
   
 end module hipfort_hiprand_enums

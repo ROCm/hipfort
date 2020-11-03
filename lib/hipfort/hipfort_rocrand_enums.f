@@ -53,5 +53,7 @@ module hipfort_rocrand_enums
 
  
 
+  contains
+
   
 end module hipfort_rocrand_enums
