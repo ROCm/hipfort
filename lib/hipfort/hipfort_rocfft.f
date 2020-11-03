@@ -30,25 +30,30 @@ module hipfort_rocfft
   implicit none
 
  
-  interface
   !> ! @brief Library setup function, called once in program before start of
   !>   library use 
-    function rocfft_setup() bind(c, name="rocfft_setup")
+  interface rocfft_setup
+    function rocfft_setup_orig() bind(c, name="rocfft_setup")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_setup
+      integer(kind(rocfft_status_success)) :: rocfft_setup_orig
     end function
 
+
+  end interface
   !> ! @brief Library cleanup function, called once in program after end of library
   !>   use 
-    function rocfft_cleanup() bind(c, name="rocfft_cleanup")
+  interface rocfft_cleanup
+    function rocfft_cleanup_orig() bind(c, name="rocfft_cleanup")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_cleanup
+      integer(kind(rocfft_status_success)) :: rocfft_cleanup_orig
     end function
 
+
+  end interface
   !> ! @brief Create an FFT plan
   !>  
   !>    @details This API creates a plan, which the user can execute subsequently.
@@ -79,11 +84,12 @@ module hipfort_rocfft
   !>   rocfft_plan_description_create; can be
   !>    null ptr for simple transforms
   !>    
-    function rocfft_plan_create(plan,placement,transform_type,myPrecision,dimensions,lengths,number_of_transforms,description) bind(c, name="rocfft_plan_create")
+  interface rocfft_plan_create
+    function rocfft_plan_create_orig(plan,placement,transform_type,myPrecision,dimensions,lengths,number_of_transforms,description) bind(c, name="rocfft_plan_create")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_plan_create
+      integer(kind(rocfft_status_success)) :: rocfft_plan_create_orig
       type(c_ptr) :: plan
       integer(kind(rocfft_placement_inplace)),value :: placement
       integer(kind(rocfft_transform_type_complex_forward)),value :: transform_type
@@ -94,6 +100,8 @@ module hipfort_rocfft
       type(c_ptr),value :: description
     end function
 
+    module procedure rocfft_plan_create_rank_0,rocfft_plan_create_rank_1
+  end interface
   !> ! @brief Execute an FFT plan
   !>  
   !>    @details This API executes an FFT plan on buffers given by the user. If the
@@ -121,58 +129,70 @@ module hipfort_rocfft
   !>    @param[in] info execution info handle created by
   !>   rocfft_execution_info_create
   !>    
-    function rocfft_execute(plan,in_buffer,out_buffer,myInfo) bind(c, name="rocfft_execute")
+  interface rocfft_execute
+    function rocfft_execute_orig(plan,in_buffer,out_buffer,myInfo) bind(c, name="rocfft_execute")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_execute
+      integer(kind(rocfft_status_success)) :: rocfft_execute_orig
       type(c_ptr),value :: plan
       type(c_ptr) :: in_buffer
       type(c_ptr) :: out_buffer
       type(c_ptr),value :: myInfo
     end function
 
+
+  end interface
   !> ! @brief Destroy an FFT plan
   !>    @details This API frees the plan. This function destructs a plan after it is
   !>   no longer needed.
   !>    @param[in] plan plan handle
   !>    
-    function rocfft_plan_destroy(plan) bind(c, name="rocfft_plan_destroy")
+  interface rocfft_plan_destroy
+    function rocfft_plan_destroy_orig(plan) bind(c, name="rocfft_plan_destroy")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_plan_destroy
+      integer(kind(rocfft_status_success)) :: rocfft_plan_destroy_orig
       type(c_ptr),value :: plan
     end function
 
+
+  end interface
   !> ! @brief Set scaling factor in single precision
   !>    @details This is one of plan description functions to specify optional additional plan properties using the description handle. This API specifies scaling factor.
   !>    @param[in] description description handle
   !>    @param[in] scale scaling factor
   !>    
-    function rocfft_plan_description_set_scale_float(description,scale) bind(c, name="rocfft_plan_description_set_scale_float")
+  interface rocfft_plan_description_set_scale_float
+    function rocfft_plan_description_set_scale_float_orig(description,scale) bind(c, name="rocfft_plan_description_set_scale_float")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_scale_float
+      integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_scale_float_orig
       type(c_ptr),value :: description
       real(c_float),value :: scale
     end function
 
+
+  end interface
   !> ! @brief Set scaling factor in double precision
   !>    @details This is one of plan description functions to specify optional additional plan properties using the description handle. This API specifies scaling factor.
   !>    @param[in] description description handle
   !>    @param[in] scale scaling factor
   !>    
-    function rocfft_plan_description_set_scale_double(description,scale) bind(c, name="rocfft_plan_description_set_scale_double")
+  interface rocfft_plan_description_set_scale_double
+    function rocfft_plan_description_set_scale_double_orig(description,scale) bind(c, name="rocfft_plan_description_set_scale_double")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_scale_double
+      integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_scale_double_orig
       type(c_ptr),value :: description
       real(c_double),value :: scale
     end function
 
+
+  end interface
   !> !
   !>    @brief Set data layout
   !>   
@@ -205,11 +225,12 @@ module hipfort_rocfft
   !>     output buffer; if set to null ptr library chooses defaults
   !>    @param[in] out_distance distance between start of each data instance in output buffer
   !>  
-    function rocfft_plan_description_set_data_layout(description,in_array_type,out_array_type,in_offsets,out_offsets,in_strides_size,in_strides,in_distance,out_strides_size,out_strides,out_distance) bind(c, name="rocfft_plan_description_set_data_layout")
+  interface rocfft_plan_description_set_data_layout
+    function rocfft_plan_description_set_data_layout_orig(description,in_array_type,out_array_type,in_offsets,out_offsets,in_strides_size,in_strides,in_distance,out_strides_size,out_strides,out_distance) bind(c, name="rocfft_plan_description_set_data_layout")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_data_layout
+      integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_data_layout_orig
       type(c_ptr),value :: description
       integer(kind(rocfft_array_type_complex_interleaved)),value :: in_array_type
       integer(kind(rocfft_array_type_complex_interleaved)),value :: out_array_type
@@ -223,115 +244,141 @@ module hipfort_rocfft
       integer(c_size_t),value :: out_distance
     end function
 
+    module procedure rocfft_plan_description_set_data_layout_rank_0,rocfft_plan_description_set_data_layout_rank_1
+  end interface
   !> ! @brief Get library version string
   !>  
   !>   @param[in, out] buf buffer of version string
   !>   @param[in] len the length of input string buffer, expecting minimum 30
   !>  
-    function rocfft_get_version_string(buf,len) bind(c, name="rocfft_get_version_string")
+  interface rocfft_get_version_string
+    function rocfft_get_version_string_orig(buf,len) bind(c, name="rocfft_get_version_string")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_get_version_string
+      integer(kind(rocfft_status_success)) :: rocfft_get_version_string_orig
       type(c_ptr),value :: buf
       integer(c_size_t),value :: len
     end function
 
+
+  end interface
   !> ! @brief Set devices in plan description
   !>    @details This is one of plan description functions to specify optional additional plan properties using the description handle. This API specifies what compute devices to target.
   !>    @param[in] description description handle
   !>    @param[in] devices array of device identifiers
   !>    @param[in] number_of_devices number of devices (size of devices array)
   !>    
-    function rocfft_plan_description_set_devices(description,devices,number_of_devices) bind(c, name="rocfft_plan_description_set_devices")
+  interface rocfft_plan_description_set_devices
+    function rocfft_plan_description_set_devices_orig(description,devices,number_of_devices) bind(c, name="rocfft_plan_description_set_devices")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_devices
+      integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_devices_orig
       type(c_ptr),value :: description
       type(c_ptr),value :: devices
       integer(c_size_t),value :: number_of_devices
     end function
 
+
+  end interface
   !> ! @brief Get work buffer size
   !>    @details This is one of plan query functions to obtain information regarding
   !>   a plan. This API gets the work buffer size.
   !>    @param[in] plan plan handle
   !>    @param[out] size_in_bytes size of needed work buffer in bytes
   !>    
-    function rocfft_plan_get_work_buffer_size(plan,size_in_bytes) bind(c, name="rocfft_plan_get_work_buffer_size")
+  interface rocfft_plan_get_work_buffer_size
+    function rocfft_plan_get_work_buffer_size_orig(plan,size_in_bytes) bind(c, name="rocfft_plan_get_work_buffer_size")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_plan_get_work_buffer_size
+      integer(kind(rocfft_status_success)) :: rocfft_plan_get_work_buffer_size_orig
       type(c_ptr),value :: plan
       type(c_ptr),value :: size_in_bytes
     end function
 
+
+  end interface
   !> ! @brief Print all plan information
   !>    @details This is one of plan query functions to obtain information regarding
   !>   a plan. This API prints all plan info to stdout to help user verify plan
   !>   specification.
   !>    @param[in] plan plan handle
   !>    
-    function rocfft_plan_get_print(plan) bind(c, name="rocfft_plan_get_print")
+  interface rocfft_plan_get_print
+    function rocfft_plan_get_print_orig(plan) bind(c, name="rocfft_plan_get_print")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_plan_get_print
+      integer(kind(rocfft_status_success)) :: rocfft_plan_get_print_orig
       type(c_ptr),value :: plan
     end function
 
+
+  end interface
   !> ! @brief Create plan description
   !>    @details This API creates a plan description with which the user can set
   !>   more plan properties
   !>    @param[out] description plan description handle
   !>    
-    function rocfft_plan_description_create(description) bind(c, name="rocfft_plan_description_create")
+  interface rocfft_plan_description_create
+    function rocfft_plan_description_create_orig(description) bind(c, name="rocfft_plan_description_create")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_plan_description_create
+      integer(kind(rocfft_status_success)) :: rocfft_plan_description_create_orig
       type(c_ptr) :: description
     end function
 
+
+  end interface
   !> ! @brief Destroy a plan description
   !>    @details This API frees the plan description
   !>    @param[in] description plan description handle
   !>    
-    function rocfft_plan_description_destroy(description) bind(c, name="rocfft_plan_description_destroy")
+  interface rocfft_plan_description_destroy
+    function rocfft_plan_description_destroy_orig(description) bind(c, name="rocfft_plan_description_destroy")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_plan_description_destroy
+      integer(kind(rocfft_status_success)) :: rocfft_plan_description_destroy_orig
       type(c_ptr),value :: description
     end function
 
+
+  end interface
   !> ! @brief Create execution info
   !>    @details This API creates an execution info with which the user can control
   !>   plan execution & retrieve execution information
   !>    @param[out] info execution info handle
   !>    
-    function rocfft_execution_info_create(myInfo) bind(c, name="rocfft_execution_info_create")
+  interface rocfft_execution_info_create
+    function rocfft_execution_info_create_orig(myInfo) bind(c, name="rocfft_execution_info_create")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_execution_info_create
+      integer(kind(rocfft_status_success)) :: rocfft_execution_info_create_orig
       type(c_ptr) :: myInfo
     end function
 
+
+  end interface
   !> ! @brief Destroy an execution info
   !>    @details This API frees the execution info
   !>    @param[in] info execution info handle
   !>    
-    function rocfft_execution_info_destroy(myInfo) bind(c, name="rocfft_execution_info_destroy")
+  interface rocfft_execution_info_destroy
+    function rocfft_execution_info_destroy_orig(myInfo) bind(c, name="rocfft_execution_info_destroy")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_execution_info_destroy
+      integer(kind(rocfft_status_success)) :: rocfft_execution_info_destroy_orig
       type(c_ptr),value :: myInfo
     end function
 
+
+  end interface
   !> ! @brief Set work buffer in execution info
   !>  
   !>    @details This is one of the execution info functions to specify optional
@@ -347,16 +394,19 @@ module hipfort_rocfft
   !>    @param[in] work_buffer work buffer
   !>    @param[in] size_in_bytes size of work buffer in bytes
   !>    
-    function rocfft_execution_info_set_work_buffer(myInfo,work_buffer,size_in_bytes) bind(c, name="rocfft_execution_info_set_work_buffer")
+  interface rocfft_execution_info_set_work_buffer
+    function rocfft_execution_info_set_work_buffer_orig(myInfo,work_buffer,size_in_bytes) bind(c, name="rocfft_execution_info_set_work_buffer")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_execution_info_set_work_buffer
+      integer(kind(rocfft_status_success)) :: rocfft_execution_info_set_work_buffer_orig
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: work_buffer
       integer(c_size_t),value :: size_in_bytes
     end function
 
+
+  end interface
   !> ! @brief Set execution mode in execution info
   !>    @details This is one of the execution info functions to specify optional additional information to control execution.
   !>    This API specifies execution mode. It has to be called before the call to rocfft_execute.
@@ -364,15 +414,18 @@ module hipfort_rocfft
   !>    @param[in] info execution info handle
   !>    @param[in] mode execution mode
   !>    
-    function rocfft_execution_info_set_mode(myInfo,mode) bind(c, name="rocfft_execution_info_set_mode")
+  interface rocfft_execution_info_set_mode
+    function rocfft_execution_info_set_mode_orig(myInfo,mode) bind(c, name="rocfft_execution_info_set_mode")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_execution_info_set_mode
+      integer(kind(rocfft_status_success)) :: rocfft_execution_info_set_mode_orig
       type(c_ptr),value :: myInfo
       integer(kind(rocfft_exec_mode_nonblocking)),value :: mode
     end function
 
+
+  end interface
   !> ! @brief Set stream in execution info
   !>    @details This is one of the execution info functions to specify optional
   !>   additional information to control execution.
@@ -386,15 +439,18 @@ module hipfort_rocfft
   !>    @param[in] info execution info handle
   !>    @param[in] stream underlying compute stream
   !>    
-    function rocfft_execution_info_set_stream(myInfo,stream) bind(c, name="rocfft_execution_info_set_stream")
+  interface rocfft_execution_info_set_stream
+    function rocfft_execution_info_set_stream_orig(myInfo,stream) bind(c, name="rocfft_execution_info_set_stream")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_execution_info_set_stream
+      integer(kind(rocfft_status_success)) :: rocfft_execution_info_set_stream_orig
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: stream
     end function
 
+
+  end interface
   !> ! @brief Get events from execution info
   !>    @details This is one of the execution info functions to retrieve information from execution.
   !>    This API obtains event information. It has to be called after the call to rocfft_execute.
@@ -403,16 +459,95 @@ module hipfort_rocfft
   !>    @param[out] events array of events
   !>    @param[out] number_of_events number of events (size of events array)
   !>    
-    function rocfft_execution_info_get_events(myInfo,events,number_of_events) bind(c, name="rocfft_execution_info_get_events")
+  interface rocfft_execution_info_get_events
+    function rocfft_execution_info_get_events_orig(myInfo,events,number_of_events) bind(c, name="rocfft_execution_info_get_events")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_execution_info_get_events
+      integer(kind(rocfft_status_success)) :: rocfft_execution_info_get_events_orig
       type(c_ptr),value :: myInfo
       type(c_ptr) :: events
       type(c_ptr),value :: number_of_events
     end function
 
+
   end interface
+
+  contains
+
+    function rocfft_plan_create_rank_0(plan,placement,transform_type,myPrecision,dimensions,lengths,number_of_transforms,description)
+      use iso_c_binding
+      use hipfort_rocfft_enums
+      implicit none
+      integer(kind(rocfft_status_success)) :: rocfft_plan_create_rank_0
+      type(c_ptr) :: plan
+      integer(kind(rocfft_placement_inplace)),value :: placement
+      integer(kind(rocfft_transform_type_complex_forward)),value :: transform_type
+      integer(kind(rocfft_precision_single)),value :: myPrecision
+      integer(c_size_t),value :: dimensions
+      integer(c_size_t),target :: lengths
+      integer(c_size_t),value :: number_of_transforms
+      type(c_ptr),value :: description
+      !
+      rocfft_plan_create_rank_0 = rocfft_plan_create_orig(plan,placement,transform_type,myPrecision,dimensions,c_loc(lengths),number_of_transforms,description)
+    end function
+
+    function rocfft_plan_create_rank_1(plan,placement,transform_type,myPrecision,dimensions,lengths,number_of_transforms,description)
+      use iso_c_binding
+      use hipfort_rocfft_enums
+      implicit none
+      integer(kind(rocfft_status_success)) :: rocfft_plan_create_rank_1
+      type(c_ptr) :: plan
+      integer(kind(rocfft_placement_inplace)),value :: placement
+      integer(kind(rocfft_transform_type_complex_forward)),value :: transform_type
+      integer(kind(rocfft_precision_single)),value :: myPrecision
+      integer(c_size_t),value :: dimensions
+      integer(c_size_t),target,dimension(:) :: lengths
+      integer(c_size_t),value :: number_of_transforms
+      type(c_ptr),value :: description
+      !
+      rocfft_plan_create_rank_1 = rocfft_plan_create_orig(plan,placement,transform_type,myPrecision,dimensions,c_loc(lengths),number_of_transforms,description)
+    end function
+
+    function rocfft_plan_description_set_data_layout_rank_0(description,in_array_type,out_array_type,in_offsets,out_offsets,in_strides_size,in_strides,in_distance,out_strides_size,out_strides,out_distance)
+      use iso_c_binding
+      use hipfort_rocfft_enums
+      implicit none
+      integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_data_layout_rank_0
+      type(c_ptr),value :: description
+      integer(kind(rocfft_array_type_complex_interleaved)),value :: in_array_type
+      integer(kind(rocfft_array_type_complex_interleaved)),value :: out_array_type
+      integer(c_size_t),target :: in_offsets
+      integer(c_size_t),target :: out_offsets
+      integer(c_size_t),value :: in_strides_size
+      integer(c_size_t),target :: in_strides
+      integer(c_size_t),value :: in_distance
+      integer(c_size_t),value :: out_strides_size
+      integer(c_size_t),target :: out_strides
+      integer(c_size_t),value :: out_distance
+      !
+      rocfft_plan_description_set_data_layout_rank_0 = rocfft_plan_description_set_data_layout_orig(description,in_array_type,out_array_type,c_loc(in_offsets),c_loc(out_offsets),in_strides_size,c_loc(in_strides),in_distance,out_strides_size,c_loc(out_strides),out_distance)
+    end function
+
+    function rocfft_plan_description_set_data_layout_rank_1(description,in_array_type,out_array_type,in_offsets,out_offsets,in_strides_size,in_strides,in_distance,out_strides_size,out_strides,out_distance)
+      use iso_c_binding
+      use hipfort_rocfft_enums
+      implicit none
+      integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_data_layout_rank_1
+      type(c_ptr),value :: description
+      integer(kind(rocfft_array_type_complex_interleaved)),value :: in_array_type
+      integer(kind(rocfft_array_type_complex_interleaved)),value :: out_array_type
+      integer(c_size_t),target,dimension(:) :: in_offsets
+      integer(c_size_t),target,dimension(:) :: out_offsets
+      integer(c_size_t),value :: in_strides_size
+      integer(c_size_t),target,dimension(:) :: in_strides
+      integer(c_size_t),value :: in_distance
+      integer(c_size_t),value :: out_strides_size
+      integer(c_size_t),target,dimension(:) :: out_strides
+      integer(c_size_t),value :: out_distance
+      !
+      rocfft_plan_description_set_data_layout_rank_1 = rocfft_plan_description_set_data_layout_orig(description,in_array_type,out_array_type,c_loc(in_offsets),c_loc(out_offsets),in_strides_size,c_loc(in_strides),in_distance,out_strides_size,c_loc(out_strides),out_distance)
+    end function
+
   
 end module hipfort_rocfft

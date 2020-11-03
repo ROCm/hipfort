@@ -94,5 +94,7 @@ module hipfort_hipblas_enums
 
  
 
+  contains
+
   
 end module hipfort_hipblas_enums

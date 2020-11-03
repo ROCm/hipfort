@@ -64,5 +64,7 @@ module hipfort_hipfft_enums
 
  
 
+  contains
+
   
 end module hipfort_hipfft_enums

@@ -80,5 +80,7 @@ module hipfort_rocfft_enums
 
  
 
+  contains
+
   
 end module hipfort_rocfft_enums

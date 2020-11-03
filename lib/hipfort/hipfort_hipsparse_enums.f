@@ -102,5 +102,7 @@ module hipfort_hipsparse_enums
 
  
 
+  contains
+
   
 end module hipfort_hipsparse_enums

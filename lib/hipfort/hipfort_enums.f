@@ -216,6 +216,12 @@ module hipfort_enums
   end enum
 
   enum, bind(c)
+    enumerator :: hipFuncAttributeMaxDynamicSharedMemorySize = 8
+    enumerator :: hipFuncAttributePreferredSharedMemoryCarveout = 9
+    enumerator :: hipFuncAttributeMax
+  end enum
+
+  enum, bind(c)
     enumerator :: hipFuncCachePreferNone
     enumerator :: hipFuncCachePreferShared
     enumerator :: hipFuncCachePreferL1
@@ -388,6 +394,8 @@ module hipfort_enums
   end enum
 
  
+
+  contains
 
   
 end module hipfort_enums
