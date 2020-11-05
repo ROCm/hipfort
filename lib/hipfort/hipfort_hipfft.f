@@ -513,7 +513,7 @@ module hipfort_hipfft
       integer(c_int),value :: direction
     end function
 
-    module procedure hipfftExecC2C_rank_0,hipfftExecC2C_rank_1
+    module procedure hipfftExecC2C_rank_0,hipfftExecC2C_rank_1,hipfftExecC2C_rank_2,hipfftExecC2C_rank_3
   end interface
   
   interface hipfftExecR2C
@@ -531,7 +531,7 @@ module hipfort_hipfft
       type(c_ptr),value :: odata
     end function
 
-    module procedure hipfftExecR2C_rank_0,hipfftExecR2C_rank_1
+    module procedure hipfftExecR2C_rank_0,hipfftExecR2C_rank_1,hipfftExecR2C_rank_2,hipfftExecR2C_rank_3
   end interface
   
   interface hipfftExecC2R
@@ -549,7 +549,7 @@ module hipfort_hipfft
       type(c_ptr),value :: odata
     end function
 
-    module procedure hipfftExecC2R_rank_0,hipfftExecC2R_rank_1
+    module procedure hipfftExecC2R_rank_0,hipfftExecC2R_rank_1,hipfftExecC2R_rank_2,hipfftExecC2R_rank_3
   end interface
   
   interface hipfftExecZ2Z
@@ -568,7 +568,7 @@ module hipfort_hipfft
       integer(c_int),value :: direction
     end function
 
-    module procedure hipfftExecZ2Z_rank_0,hipfftExecZ2Z_rank_1
+    module procedure hipfftExecZ2Z_rank_0,hipfftExecZ2Z_rank_1,hipfftExecZ2Z_rank_2,hipfftExecZ2Z_rank_3
   end interface
   
   interface hipfftExecD2Z
@@ -586,7 +586,7 @@ module hipfort_hipfft
       type(c_ptr),value :: odata
     end function
 
-    module procedure hipfftExecD2Z_rank_0,hipfftExecD2Z_rank_1
+    module procedure hipfftExecD2Z_rank_0,hipfftExecD2Z_rank_1,hipfftExecD2Z_rank_2,hipfftExecD2Z_rank_3
   end interface
   
   interface hipfftExecZ2D
@@ -604,7 +604,7 @@ module hipfort_hipfft
       type(c_ptr),value :: odata
     end function
 
-    module procedure hipfftExecZ2D_rank_0,hipfftExecZ2D_rank_1
+    module procedure hipfftExecZ2D_rank_0,hipfftExecZ2D_rank_1,hipfftExecZ2D_rank_2,hipfftExecZ2D_rank_3
   end interface
   
   interface hipfftSetStream
