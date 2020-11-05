@@ -295,7 +295,7 @@ module hipfort_rocfft
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_plan_get_work_buffer_size_orig
       type(c_ptr),value :: plan
-      type(c_ptr),value :: size_in_bytes
+      integer(c_size_t) :: size_in_bytes
     end function
 
 
@@ -467,7 +467,7 @@ module hipfort_rocfft
       integer(kind(rocfft_status_success)) :: rocfft_execution_info_get_events_orig
       type(c_ptr),value :: myInfo
       type(c_ptr) :: events
-      type(c_ptr),value :: number_of_events
+      integer(c_size_t) :: number_of_events
     end function
 
 
