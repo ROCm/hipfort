@@ -179,7 +179,48 @@ module hipfort_hipmalloc
 
   contains
 
+! scalars
                                                               
+    function hipMalloc_i4_0_source(ptr,dsource,source)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      use hipfort_hipmemcpy, ONLY: hipMemcpy
+      implicit none
+      integer(4),pointer,intent(inout) :: ptr
+      integer(4),target,intent(in),optional :: dsource,source
+      !
+      type(c_ptr) :: cptr
+      integer :: nOptArgs 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMalloc_i4_0_source
+#else
+      integer(kind(hipSuccess)) :: hipMalloc_i4_0_source
+#endif
+      !
+      nOptArgs = 0
+      if ( present(dsource) ) nOptArgs = nOptArgs + 1
+      if ( present(source) ) nOptArgs = nOptArgs + 1
+      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc (scalar version): Only one optional argument ('dsource','source') must be specified."
+
+      if ( present(dsource) ) then
+        hipMalloc_i4_0_source = hipMalloc_b(cptr,4_8)
+        hipMalloc_i4_0_source = hipMemcpy(cptr,C_LOC(dsource),4_8,hipMemcpyDeviceToDevice)
+        call C_F_POINTER(cptr,ptr)
+      else if ( present(source) ) then
+        hipMalloc_i4_0_source = hipMalloc_b(cptr,4_8)
+        hipMalloc_i4_0_source = hipMemcpy(cptr,C_LOC(source),4_8,hipMemcpyHostToDevice)
+        call C_F_POINTER(cptr,ptr)
+      else
+        hipMalloc_i4_0_source = hipMalloc_b(cptr,4_8)
+        call C_F_POINTER(cptr,ptr)
+      end if
+    end function
+
+! arrays
                                                               
     function hipMalloc_i4_1_source(ptr,dims,dims8,dsource,source,mold)
       use iso_c_binding
@@ -281,7 +322,6 @@ module hipfort_hipmalloc
     end function
 
                                                               
-                                                              
     function hipMalloc_i4_2_source(ptr,dims,dims8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -381,7 +421,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2])
     end function
 
-                                                              
                                                               
     function hipMalloc_i4_3_source(ptr,dims,dims8,dsource,source,mold)
       use iso_c_binding
@@ -483,7 +522,6 @@ module hipfort_hipmalloc
     end function
 
                                                               
-                                                              
     function hipMalloc_i4_4_source(ptr,dims,dims8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -583,7 +621,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2,length3,length4])
     end function
 
-                                                              
                                                               
     function hipMalloc_i4_5_source(ptr,dims,dims8,dsource,source,mold)
       use iso_c_binding
@@ -685,7 +722,6 @@ module hipfort_hipmalloc
     end function
 
                                                               
-                                                              
     function hipMalloc_i4_6_source(ptr,dims,dims8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -786,7 +822,6 @@ module hipfort_hipmalloc
     end function
 
                                                               
-                                                              
     function hipMalloc_i4_7_source(ptr,dims,dims8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -886,7 +921,48 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2,length3,length4,length5,length6,length7])
     end function
 
+! scalars
                                                               
+    function hipMalloc_i8_0_source(ptr,dsource,source)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      use hipfort_hipmemcpy, ONLY: hipMemcpy
+      implicit none
+      integer(8),pointer,intent(inout) :: ptr
+      integer(8),target,intent(in),optional :: dsource,source
+      !
+      type(c_ptr) :: cptr
+      integer :: nOptArgs 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMalloc_i8_0_source
+#else
+      integer(kind(hipSuccess)) :: hipMalloc_i8_0_source
+#endif
+      !
+      nOptArgs = 0
+      if ( present(dsource) ) nOptArgs = nOptArgs + 1
+      if ( present(source) ) nOptArgs = nOptArgs + 1
+      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc (scalar version): Only one optional argument ('dsource','source') must be specified."
+
+      if ( present(dsource) ) then
+        hipMalloc_i8_0_source = hipMalloc_b(cptr,8_8)
+        hipMalloc_i8_0_source = hipMemcpy(cptr,C_LOC(dsource),8_8,hipMemcpyDeviceToDevice)
+        call C_F_POINTER(cptr,ptr)
+      else if ( present(source) ) then
+        hipMalloc_i8_0_source = hipMalloc_b(cptr,8_8)
+        hipMalloc_i8_0_source = hipMemcpy(cptr,C_LOC(source),8_8,hipMemcpyHostToDevice)
+        call C_F_POINTER(cptr,ptr)
+      else
+        hipMalloc_i8_0_source = hipMalloc_b(cptr,8_8)
+        call C_F_POINTER(cptr,ptr)
+      end if
+    end function
+
+! arrays
                                                               
     function hipMalloc_i8_1_source(ptr,dims,dims8,dsource,source,mold)
       use iso_c_binding
@@ -988,7 +1064,6 @@ module hipfort_hipmalloc
     end function
 
                                                               
-                                                              
     function hipMalloc_i8_2_source(ptr,dims,dims8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1088,7 +1163,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2])
     end function
 
-                                                              
                                                               
     function hipMalloc_i8_3_source(ptr,dims,dims8,dsource,source,mold)
       use iso_c_binding
@@ -1190,7 +1264,6 @@ module hipfort_hipmalloc
     end function
 
                                                               
-                                                              
     function hipMalloc_i8_4_source(ptr,dims,dims8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1290,7 +1363,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2,length3,length4])
     end function
 
-                                                              
                                                               
     function hipMalloc_i8_5_source(ptr,dims,dims8,dsource,source,mold)
       use iso_c_binding
@@ -1392,7 +1464,6 @@ module hipfort_hipmalloc
     end function
 
                                                               
-                                                              
     function hipMalloc_i8_6_source(ptr,dims,dims8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1493,7 +1564,6 @@ module hipfort_hipmalloc
     end function
 
                                                               
-                                                              
     function hipMalloc_i8_7_source(ptr,dims,dims8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1593,7 +1663,48 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2,length3,length4,length5,length6,length7])
     end function
 
+! scalars
                                                               
+    function hipMalloc_r4_0_source(ptr,dsource,source)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      use hipfort_hipmemcpy, ONLY: hipMemcpy
+      implicit none
+      real(4),pointer,intent(inout) :: ptr
+      real(4),target,intent(in),optional :: dsource,source
+      !
+      type(c_ptr) :: cptr
+      integer :: nOptArgs 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMalloc_r4_0_source
+#else
+      integer(kind(hipSuccess)) :: hipMalloc_r4_0_source
+#endif
+      !
+      nOptArgs = 0
+      if ( present(dsource) ) nOptArgs = nOptArgs + 1
+      if ( present(source) ) nOptArgs = nOptArgs + 1
+      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc (scalar version): Only one optional argument ('dsource','source') must be specified."
+
+      if ( present(dsource) ) then
+        hipMalloc_r4_0_source = hipMalloc_b(cptr,4_8)
+        hipMalloc_r4_0_source = hipMemcpy(cptr,C_LOC(dsource),4_8,hipMemcpyDeviceToDevice)
+        call C_F_POINTER(cptr,ptr)
+      else if ( present(source) ) then
+        hipMalloc_r4_0_source = hipMalloc_b(cptr,4_8)
+        hipMalloc_r4_0_source = hipMemcpy(cptr,C_LOC(source),4_8,hipMemcpyHostToDevice)
+        call C_F_POINTER(cptr,ptr)
+      else
+        hipMalloc_r4_0_source = hipMalloc_b(cptr,4_8)
+        call C_F_POINTER(cptr,ptr)
+      end if
+    end function
+
+! arrays
                                                               
     function hipMalloc_r4_1_source(ptr,dims,dims8,dsource,source,mold)
       use iso_c_binding
@@ -1695,7 +1806,6 @@ module hipfort_hipmalloc
     end function
 
                                                               
-                                                              
     function hipMalloc_r4_2_source(ptr,dims,dims8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1795,7 +1905,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2])
     end function
 
-                                                              
                                                               
     function hipMalloc_r4_3_source(ptr,dims,dims8,dsource,source,mold)
       use iso_c_binding
@@ -1897,7 +2006,6 @@ module hipfort_hipmalloc
     end function
 
                                                               
-                                                              
     function hipMalloc_r4_4_source(ptr,dims,dims8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -1997,7 +2105,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2,length3,length4])
     end function
 
-                                                              
                                                               
     function hipMalloc_r4_5_source(ptr,dims,dims8,dsource,source,mold)
       use iso_c_binding
@@ -2099,7 +2206,6 @@ module hipfort_hipmalloc
     end function
 
                                                               
-                                                              
     function hipMalloc_r4_6_source(ptr,dims,dims8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2200,7 +2306,6 @@ module hipfort_hipmalloc
     end function
 
                                                               
-                                                              
     function hipMalloc_r4_7_source(ptr,dims,dims8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2300,7 +2405,48 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2,length3,length4,length5,length6,length7])
     end function
 
+! scalars
                                                               
+    function hipMalloc_r8_0_source(ptr,dsource,source)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      use hipfort_hipmemcpy, ONLY: hipMemcpy
+      implicit none
+      real(8),pointer,intent(inout) :: ptr
+      real(8),target,intent(in),optional :: dsource,source
+      !
+      type(c_ptr) :: cptr
+      integer :: nOptArgs 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMalloc_r8_0_source
+#else
+      integer(kind(hipSuccess)) :: hipMalloc_r8_0_source
+#endif
+      !
+      nOptArgs = 0
+      if ( present(dsource) ) nOptArgs = nOptArgs + 1
+      if ( present(source) ) nOptArgs = nOptArgs + 1
+      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc (scalar version): Only one optional argument ('dsource','source') must be specified."
+
+      if ( present(dsource) ) then
+        hipMalloc_r8_0_source = hipMalloc_b(cptr,8_8)
+        hipMalloc_r8_0_source = hipMemcpy(cptr,C_LOC(dsource),8_8,hipMemcpyDeviceToDevice)
+        call C_F_POINTER(cptr,ptr)
+      else if ( present(source) ) then
+        hipMalloc_r8_0_source = hipMalloc_b(cptr,8_8)
+        hipMalloc_r8_0_source = hipMemcpy(cptr,C_LOC(source),8_8,hipMemcpyHostToDevice)
+        call C_F_POINTER(cptr,ptr)
+      else
+        hipMalloc_r8_0_source = hipMalloc_b(cptr,8_8)
+        call C_F_POINTER(cptr,ptr)
+      end if
+    end function
+
+! arrays
                                                               
     function hipMalloc_r8_1_source(ptr,dims,dims8,dsource,source,mold)
       use iso_c_binding
@@ -2402,7 +2548,6 @@ module hipfort_hipmalloc
     end function
 
                                                               
-                                                              
     function hipMalloc_r8_2_source(ptr,dims,dims8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2502,7 +2647,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2])
     end function
 
-                                                              
                                                               
     function hipMalloc_r8_3_source(ptr,dims,dims8,dsource,source,mold)
       use iso_c_binding
@@ -2604,7 +2748,6 @@ module hipfort_hipmalloc
     end function
 
                                                               
-                                                              
     function hipMalloc_r8_4_source(ptr,dims,dims8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2704,7 +2847,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2,length3,length4])
     end function
 
-                                                              
                                                               
     function hipMalloc_r8_5_source(ptr,dims,dims8,dsource,source,mold)
       use iso_c_binding
@@ -2806,7 +2948,6 @@ module hipfort_hipmalloc
     end function
 
                                                               
-                                                              
     function hipMalloc_r8_6_source(ptr,dims,dims8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -2907,7 +3048,6 @@ module hipfort_hipmalloc
     end function
 
                                                               
-                                                              
     function hipMalloc_r8_7_source(ptr,dims,dims8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3007,7 +3147,48 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2,length3,length4,length5,length6,length7])
     end function
 
+! scalars
                                                               
+    function hipMalloc_c4_0_source(ptr,dsource,source)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      use hipfort_hipmemcpy, ONLY: hipMemcpy
+      implicit none
+      complex(4),pointer,intent(inout) :: ptr
+      complex(4),target,intent(in),optional :: dsource,source
+      !
+      type(c_ptr) :: cptr
+      integer :: nOptArgs 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMalloc_c4_0_source
+#else
+      integer(kind(hipSuccess)) :: hipMalloc_c4_0_source
+#endif
+      !
+      nOptArgs = 0
+      if ( present(dsource) ) nOptArgs = nOptArgs + 1
+      if ( present(source) ) nOptArgs = nOptArgs + 1
+      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc (scalar version): Only one optional argument ('dsource','source') must be specified."
+
+      if ( present(dsource) ) then
+        hipMalloc_c4_0_source = hipMalloc_b(cptr,2*4_8)
+        hipMalloc_c4_0_source = hipMemcpy(cptr,C_LOC(dsource),2*4_8,hipMemcpyDeviceToDevice)
+        call C_F_POINTER(cptr,ptr)
+      else if ( present(source) ) then
+        hipMalloc_c4_0_source = hipMalloc_b(cptr,2*4_8)
+        hipMalloc_c4_0_source = hipMemcpy(cptr,C_LOC(source),2*4_8,hipMemcpyHostToDevice)
+        call C_F_POINTER(cptr,ptr)
+      else
+        hipMalloc_c4_0_source = hipMalloc_b(cptr,2*4_8)
+        call C_F_POINTER(cptr,ptr)
+      end if
+    end function
+
+! arrays
                                                               
     function hipMalloc_c4_1_source(ptr,dims,dims8,dsource,source,mold)
       use iso_c_binding
@@ -3109,7 +3290,6 @@ module hipfort_hipmalloc
     end function
 
                                                               
-                                                              
     function hipMalloc_c4_2_source(ptr,dims,dims8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3209,7 +3389,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2])
     end function
 
-                                                              
                                                               
     function hipMalloc_c4_3_source(ptr,dims,dims8,dsource,source,mold)
       use iso_c_binding
@@ -3311,7 +3490,6 @@ module hipfort_hipmalloc
     end function
 
                                                               
-                                                              
     function hipMalloc_c4_4_source(ptr,dims,dims8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3411,7 +3589,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2,length3,length4])
     end function
 
-                                                              
                                                               
     function hipMalloc_c4_5_source(ptr,dims,dims8,dsource,source,mold)
       use iso_c_binding
@@ -3513,7 +3690,6 @@ module hipfort_hipmalloc
     end function
 
                                                               
-                                                              
     function hipMalloc_c4_6_source(ptr,dims,dims8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3614,7 +3790,6 @@ module hipfort_hipmalloc
     end function
 
                                                               
-                                                              
     function hipMalloc_c4_7_source(ptr,dims,dims8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3714,7 +3889,48 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2,length3,length4,length5,length6,length7])
     end function
 
+! scalars
                                                               
+    function hipMalloc_c8_0_source(ptr,dsource,source)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      use hipfort_hipmemcpy, ONLY: hipMemcpy
+      implicit none
+      complex(8),pointer,intent(inout) :: ptr
+      complex(8),target,intent(in),optional :: dsource,source
+      !
+      type(c_ptr) :: cptr
+      integer :: nOptArgs 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMalloc_c8_0_source
+#else
+      integer(kind(hipSuccess)) :: hipMalloc_c8_0_source
+#endif
+      !
+      nOptArgs = 0
+      if ( present(dsource) ) nOptArgs = nOptArgs + 1
+      if ( present(source) ) nOptArgs = nOptArgs + 1
+      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc (scalar version): Only one optional argument ('dsource','source') must be specified."
+
+      if ( present(dsource) ) then
+        hipMalloc_c8_0_source = hipMalloc_b(cptr,2*8_8)
+        hipMalloc_c8_0_source = hipMemcpy(cptr,C_LOC(dsource),2*8_8,hipMemcpyDeviceToDevice)
+        call C_F_POINTER(cptr,ptr)
+      else if ( present(source) ) then
+        hipMalloc_c8_0_source = hipMalloc_b(cptr,2*8_8)
+        hipMalloc_c8_0_source = hipMemcpy(cptr,C_LOC(source),2*8_8,hipMemcpyHostToDevice)
+        call C_F_POINTER(cptr,ptr)
+      else
+        hipMalloc_c8_0_source = hipMalloc_b(cptr,2*8_8)
+        call C_F_POINTER(cptr,ptr)
+      end if
+    end function
+
+! arrays
                                                               
     function hipMalloc_c8_1_source(ptr,dims,dims8,dsource,source,mold)
       use iso_c_binding
@@ -3816,7 +4032,6 @@ module hipfort_hipmalloc
     end function
 
                                                               
-                                                              
     function hipMalloc_c8_2_source(ptr,dims,dims8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -3916,7 +4131,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2])
     end function
 
-                                                              
                                                               
     function hipMalloc_c8_3_source(ptr,dims,dims8,dsource,source,mold)
       use iso_c_binding
@@ -4018,7 +4232,6 @@ module hipfort_hipmalloc
     end function
 
                                                               
-                                                              
     function hipMalloc_c8_4_source(ptr,dims,dims8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4118,7 +4331,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2,length3,length4])
     end function
 
-                                                              
                                                               
     function hipMalloc_c8_5_source(ptr,dims,dims8,dsource,source,mold)
       use iso_c_binding
@@ -4220,7 +4432,6 @@ module hipfort_hipmalloc
     end function
 
                                                               
-                                                              
     function hipMalloc_c8_6_source(ptr,dims,dims8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4321,7 +4532,6 @@ module hipfort_hipmalloc
     end function
 
                                                               
-                                                              
     function hipMalloc_c8_7_source(ptr,dims,dims8,dsource,source,mold)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -4421,8 +4631,50 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2,length3,length4,length5,length6,length7])
     end function
 
-  
+
+! scalars
                                                               
+    function hipHostMalloc_i4_0_source(ptr,dsource,source,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      use hipfort_hipmemcpy, ONLY: hipMemcpy
+      implicit none
+      integer(4),pointer,intent(inout) :: ptr
+      integer(4),target,intent(in),optional :: dsource,source
+      integer(kind=4),intent(in) :: flags
+      !
+      type(c_ptr) :: cptr
+      integer :: nOptArgs 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostMalloc_i4_0_source
+#else
+      integer(kind(hipSuccess)) :: hipHostMalloc_i4_0_source
+#endif
+      !
+      nOptArgs = 0
+      if ( present(dsource) ) nOptArgs = nOptArgs + 1
+      if ( present(source) ) nOptArgs = nOptArgs + 1
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc (scalar version): Only one optional argument ('dsource','source') must be specified."
+
+      if ( present(dsource) ) then
+        hipHostMalloc_i4_0_source = hipHostMalloc_b(cptr,4_8,flags)
+        hipHostMalloc_i4_0_source = hipMemcpy(cptr,C_LOC(dsource),4_8,hipMemcpyDeviceToHost)
+        call C_F_POINTER(cptr,ptr)
+      else if ( present(source) ) then
+        hipHostMalloc_i4_0_source = hipHostMalloc_b(cptr,4_8,flags)
+        hipHostMalloc_i4_0_source = hipMemcpy(cptr,C_LOC(source),4_8,hipMemcpyHostToHost)
+        call C_F_POINTER(cptr,ptr)
+      else
+        hipHostMalloc_i4_0_source = hipHostMalloc_b(cptr,4_8,flags)
+        call C_F_POINTER(cptr,ptr)
+      end if
+    end function
+
+! arrays
                                                               
     function hipHostMalloc_i4_1_source(ptr,dims,dims8,dsource,source,mold,flags)
       use iso_c_binding
@@ -4437,7 +4689,7 @@ module hipfort_hipmalloc
       integer(4),intent(in),optional :: dims(1)
       integer(8),intent(in),optional :: dims8(1)
       integer(4),target,dimension(:),intent(in),optional :: dsource,source,mold
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       !
       integer(4),pointer,dimension(:) :: tmp
       type(c_ptr) :: cptr
@@ -4454,8 +4706,8 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_i4_1_source = hipHostMalloc_b(cptr,SIZE(dsource)*4_8,flags)
@@ -4491,7 +4743,7 @@ module hipfort_hipmalloc
       implicit none
       integer(4),pointer,dimension(:) :: ptr
       integer(c_int),intent(in) :: length1 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_i4_1_c_int 
@@ -4514,7 +4766,7 @@ module hipfort_hipmalloc
       implicit none
       integer(4),pointer,dimension(:) :: ptr
       integer(c_size_t),intent(in) :: length1 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_i4_1_c_size_t 
@@ -4526,7 +4778,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1])
     end function
 
-                                                              
                                                               
     function hipHostMalloc_i4_2_source(ptr,dims,dims8,dsource,source,mold,flags)
       use iso_c_binding
@@ -4541,7 +4792,7 @@ module hipfort_hipmalloc
       integer(4),intent(in),optional :: dims(2)
       integer(8),intent(in),optional :: dims8(2)
       integer(4),target,dimension(:,:),intent(in),optional :: dsource,source,mold
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       !
       integer(4),pointer,dimension(:,:) :: tmp
       type(c_ptr) :: cptr
@@ -4558,8 +4809,8 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_i4_2_source = hipHostMalloc_b(cptr,SIZE(dsource)*4_8,flags)
@@ -4595,7 +4846,7 @@ module hipfort_hipmalloc
       implicit none
       integer(4),pointer,dimension(:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_i4_2_c_int 
@@ -4618,7 +4869,7 @@ module hipfort_hipmalloc
       implicit none
       integer(4),pointer,dimension(:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_i4_2_c_size_t 
@@ -4630,7 +4881,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2])
     end function
 
-                                                              
                                                               
     function hipHostMalloc_i4_3_source(ptr,dims,dims8,dsource,source,mold,flags)
       use iso_c_binding
@@ -4645,7 +4895,7 @@ module hipfort_hipmalloc
       integer(4),intent(in),optional :: dims(3)
       integer(8),intent(in),optional :: dims8(3)
       integer(4),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       !
       integer(4),pointer,dimension(:,:,:) :: tmp
       type(c_ptr) :: cptr
@@ -4662,8 +4912,8 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_i4_3_source = hipHostMalloc_b(cptr,SIZE(dsource)*4_8,flags)
@@ -4699,7 +4949,7 @@ module hipfort_hipmalloc
       implicit none
       integer(4),pointer,dimension(:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_i4_3_c_int 
@@ -4722,7 +4972,7 @@ module hipfort_hipmalloc
       implicit none
       integer(4),pointer,dimension(:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_i4_3_c_size_t 
@@ -4734,7 +4984,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2,length3])
     end function
 
-                                                              
                                                               
     function hipHostMalloc_i4_4_source(ptr,dims,dims8,dsource,source,mold,flags)
       use iso_c_binding
@@ -4749,7 +4998,7 @@ module hipfort_hipmalloc
       integer(4),intent(in),optional :: dims(4)
       integer(8),intent(in),optional :: dims8(4)
       integer(4),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       !
       integer(4),pointer,dimension(:,:,:,:) :: tmp
       type(c_ptr) :: cptr
@@ -4766,8 +5015,8 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_i4_4_source = hipHostMalloc_b(cptr,SIZE(dsource)*4_8,flags)
@@ -4803,7 +5052,7 @@ module hipfort_hipmalloc
       implicit none
       integer(4),pointer,dimension(:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_i4_4_c_int 
@@ -4826,7 +5075,7 @@ module hipfort_hipmalloc
       implicit none
       integer(4),pointer,dimension(:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_i4_4_c_size_t 
@@ -4838,7 +5087,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2,length3,length4])
     end function
 
-                                                              
                                                               
     function hipHostMalloc_i4_5_source(ptr,dims,dims8,dsource,source,mold,flags)
       use iso_c_binding
@@ -4853,7 +5101,7 @@ module hipfort_hipmalloc
       integer(4),intent(in),optional :: dims(5)
       integer(8),intent(in),optional :: dims8(5)
       integer(4),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       !
       integer(4),pointer,dimension(:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
@@ -4870,8 +5118,8 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_i4_5_source = hipHostMalloc_b(cptr,SIZE(dsource)*4_8,flags)
@@ -4907,7 +5155,7 @@ module hipfort_hipmalloc
       implicit none
       integer(4),pointer,dimension(:,:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4,length5 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_i4_5_c_int 
@@ -4930,7 +5178,7 @@ module hipfort_hipmalloc
       implicit none
       integer(4),pointer,dimension(:,:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_i4_5_c_size_t 
@@ -4942,7 +5190,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2,length3,length4,length5])
     end function
 
-                                                              
                                                               
     function hipHostMalloc_i4_6_source(ptr,dims,dims8,dsource,source,mold,flags)
       use iso_c_binding
@@ -4957,7 +5204,7 @@ module hipfort_hipmalloc
       integer(4),intent(in),optional :: dims(6)
       integer(8),intent(in),optional :: dims8(6)
       integer(4),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       !
       integer(4),pointer,dimension(:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
@@ -4974,8 +5221,8 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_i4_6_source = hipHostMalloc_b(cptr,SIZE(dsource)*4_8,flags)
@@ -5011,7 +5258,7 @@ module hipfort_hipmalloc
       implicit none
       integer(4),pointer,dimension(:,:,:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4,length5,length6 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_i4_6_c_int 
@@ -5034,7 +5281,7 @@ module hipfort_hipmalloc
       implicit none
       integer(4),pointer,dimension(:,:,:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5,length6 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_i4_6_c_size_t 
@@ -5046,7 +5293,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2,length3,length4,length5,length6])
     end function
 
-                                                              
                                                               
     function hipHostMalloc_i4_7_source(ptr,dims,dims8,dsource,source,mold,flags)
       use iso_c_binding
@@ -5061,7 +5307,7 @@ module hipfort_hipmalloc
       integer(4),intent(in),optional :: dims(7)
       integer(8),intent(in),optional :: dims8(7)
       integer(4),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       !
       integer(4),pointer,dimension(:,:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
@@ -5078,8 +5324,8 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_i4_7_source = hipHostMalloc_b(cptr,SIZE(dsource)*4_8,flags)
@@ -5115,7 +5361,7 @@ module hipfort_hipmalloc
       implicit none
       integer(4),pointer,dimension(:,:,:,:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4,length5,length6,length7 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_i4_7_c_int 
@@ -5138,7 +5384,7 @@ module hipfort_hipmalloc
       implicit none
       integer(4),pointer,dimension(:,:,:,:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5,length6,length7 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_i4_7_c_size_t 
@@ -5150,7 +5396,49 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2,length3,length4,length5,length6,length7])
     end function
 
+! scalars
                                                               
+    function hipHostMalloc_i8_0_source(ptr,dsource,source,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      use hipfort_hipmemcpy, ONLY: hipMemcpy
+      implicit none
+      integer(8),pointer,intent(inout) :: ptr
+      integer(8),target,intent(in),optional :: dsource,source
+      integer(kind=4),intent(in) :: flags
+      !
+      type(c_ptr) :: cptr
+      integer :: nOptArgs 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostMalloc_i8_0_source
+#else
+      integer(kind(hipSuccess)) :: hipHostMalloc_i8_0_source
+#endif
+      !
+      nOptArgs = 0
+      if ( present(dsource) ) nOptArgs = nOptArgs + 1
+      if ( present(source) ) nOptArgs = nOptArgs + 1
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc (scalar version): Only one optional argument ('dsource','source') must be specified."
+
+      if ( present(dsource) ) then
+        hipHostMalloc_i8_0_source = hipHostMalloc_b(cptr,8_8,flags)
+        hipHostMalloc_i8_0_source = hipMemcpy(cptr,C_LOC(dsource),8_8,hipMemcpyDeviceToHost)
+        call C_F_POINTER(cptr,ptr)
+      else if ( present(source) ) then
+        hipHostMalloc_i8_0_source = hipHostMalloc_b(cptr,8_8,flags)
+        hipHostMalloc_i8_0_source = hipMemcpy(cptr,C_LOC(source),8_8,hipMemcpyHostToHost)
+        call C_F_POINTER(cptr,ptr)
+      else
+        hipHostMalloc_i8_0_source = hipHostMalloc_b(cptr,8_8,flags)
+        call C_F_POINTER(cptr,ptr)
+      end if
+    end function
+
+! arrays
                                                               
     function hipHostMalloc_i8_1_source(ptr,dims,dims8,dsource,source,mold,flags)
       use iso_c_binding
@@ -5165,7 +5453,7 @@ module hipfort_hipmalloc
       integer(4),intent(in),optional :: dims(1)
       integer(8),intent(in),optional :: dims8(1)
       integer(8),target,dimension(:),intent(in),optional :: dsource,source,mold
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       !
       integer(8),pointer,dimension(:) :: tmp
       type(c_ptr) :: cptr
@@ -5182,8 +5470,8 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_i8_1_source = hipHostMalloc_b(cptr,SIZE(dsource)*8_8,flags)
@@ -5219,7 +5507,7 @@ module hipfort_hipmalloc
       implicit none
       integer(8),pointer,dimension(:) :: ptr
       integer(c_int),intent(in) :: length1 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_i8_1_c_int 
@@ -5242,7 +5530,7 @@ module hipfort_hipmalloc
       implicit none
       integer(8),pointer,dimension(:) :: ptr
       integer(c_size_t),intent(in) :: length1 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_i8_1_c_size_t 
@@ -5254,7 +5542,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1])
     end function
 
-                                                              
                                                               
     function hipHostMalloc_i8_2_source(ptr,dims,dims8,dsource,source,mold,flags)
       use iso_c_binding
@@ -5269,7 +5556,7 @@ module hipfort_hipmalloc
       integer(4),intent(in),optional :: dims(2)
       integer(8),intent(in),optional :: dims8(2)
       integer(8),target,dimension(:,:),intent(in),optional :: dsource,source,mold
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       !
       integer(8),pointer,dimension(:,:) :: tmp
       type(c_ptr) :: cptr
@@ -5286,8 +5573,8 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_i8_2_source = hipHostMalloc_b(cptr,SIZE(dsource)*8_8,flags)
@@ -5323,7 +5610,7 @@ module hipfort_hipmalloc
       implicit none
       integer(8),pointer,dimension(:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_i8_2_c_int 
@@ -5346,7 +5633,7 @@ module hipfort_hipmalloc
       implicit none
       integer(8),pointer,dimension(:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_i8_2_c_size_t 
@@ -5358,7 +5645,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2])
     end function
 
-                                                              
                                                               
     function hipHostMalloc_i8_3_source(ptr,dims,dims8,dsource,source,mold,flags)
       use iso_c_binding
@@ -5373,7 +5659,7 @@ module hipfort_hipmalloc
       integer(4),intent(in),optional :: dims(3)
       integer(8),intent(in),optional :: dims8(3)
       integer(8),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       !
       integer(8),pointer,dimension(:,:,:) :: tmp
       type(c_ptr) :: cptr
@@ -5390,8 +5676,8 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_i8_3_source = hipHostMalloc_b(cptr,SIZE(dsource)*8_8,flags)
@@ -5427,7 +5713,7 @@ module hipfort_hipmalloc
       implicit none
       integer(8),pointer,dimension(:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_i8_3_c_int 
@@ -5450,7 +5736,7 @@ module hipfort_hipmalloc
       implicit none
       integer(8),pointer,dimension(:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_i8_3_c_size_t 
@@ -5462,7 +5748,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2,length3])
     end function
 
-                                                              
                                                               
     function hipHostMalloc_i8_4_source(ptr,dims,dims8,dsource,source,mold,flags)
       use iso_c_binding
@@ -5477,7 +5762,7 @@ module hipfort_hipmalloc
       integer(4),intent(in),optional :: dims(4)
       integer(8),intent(in),optional :: dims8(4)
       integer(8),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       !
       integer(8),pointer,dimension(:,:,:,:) :: tmp
       type(c_ptr) :: cptr
@@ -5494,8 +5779,8 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_i8_4_source = hipHostMalloc_b(cptr,SIZE(dsource)*8_8,flags)
@@ -5531,7 +5816,7 @@ module hipfort_hipmalloc
       implicit none
       integer(8),pointer,dimension(:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_i8_4_c_int 
@@ -5554,7 +5839,7 @@ module hipfort_hipmalloc
       implicit none
       integer(8),pointer,dimension(:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_i8_4_c_size_t 
@@ -5566,7 +5851,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2,length3,length4])
     end function
 
-                                                              
                                                               
     function hipHostMalloc_i8_5_source(ptr,dims,dims8,dsource,source,mold,flags)
       use iso_c_binding
@@ -5581,7 +5865,7 @@ module hipfort_hipmalloc
       integer(4),intent(in),optional :: dims(5)
       integer(8),intent(in),optional :: dims8(5)
       integer(8),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       !
       integer(8),pointer,dimension(:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
@@ -5598,8 +5882,8 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_i8_5_source = hipHostMalloc_b(cptr,SIZE(dsource)*8_8,flags)
@@ -5635,7 +5919,7 @@ module hipfort_hipmalloc
       implicit none
       integer(8),pointer,dimension(:,:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4,length5 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_i8_5_c_int 
@@ -5658,7 +5942,7 @@ module hipfort_hipmalloc
       implicit none
       integer(8),pointer,dimension(:,:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_i8_5_c_size_t 
@@ -5670,7 +5954,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2,length3,length4,length5])
     end function
 
-                                                              
                                                               
     function hipHostMalloc_i8_6_source(ptr,dims,dims8,dsource,source,mold,flags)
       use iso_c_binding
@@ -5685,7 +5968,7 @@ module hipfort_hipmalloc
       integer(4),intent(in),optional :: dims(6)
       integer(8),intent(in),optional :: dims8(6)
       integer(8),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       !
       integer(8),pointer,dimension(:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
@@ -5702,8 +5985,8 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_i8_6_source = hipHostMalloc_b(cptr,SIZE(dsource)*8_8,flags)
@@ -5739,7 +6022,7 @@ module hipfort_hipmalloc
       implicit none
       integer(8),pointer,dimension(:,:,:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4,length5,length6 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_i8_6_c_int 
@@ -5762,7 +6045,7 @@ module hipfort_hipmalloc
       implicit none
       integer(8),pointer,dimension(:,:,:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5,length6 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_i8_6_c_size_t 
@@ -5774,7 +6057,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2,length3,length4,length5,length6])
     end function
 
-                                                              
                                                               
     function hipHostMalloc_i8_7_source(ptr,dims,dims8,dsource,source,mold,flags)
       use iso_c_binding
@@ -5789,7 +6071,7 @@ module hipfort_hipmalloc
       integer(4),intent(in),optional :: dims(7)
       integer(8),intent(in),optional :: dims8(7)
       integer(8),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       !
       integer(8),pointer,dimension(:,:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
@@ -5806,8 +6088,8 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_i8_7_source = hipHostMalloc_b(cptr,SIZE(dsource)*8_8,flags)
@@ -5843,7 +6125,7 @@ module hipfort_hipmalloc
       implicit none
       integer(8),pointer,dimension(:,:,:,:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4,length5,length6,length7 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_i8_7_c_int 
@@ -5866,7 +6148,7 @@ module hipfort_hipmalloc
       implicit none
       integer(8),pointer,dimension(:,:,:,:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5,length6,length7 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_i8_7_c_size_t 
@@ -5878,7 +6160,49 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2,length3,length4,length5,length6,length7])
     end function
 
+! scalars
                                                               
+    function hipHostMalloc_r4_0_source(ptr,dsource,source,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      use hipfort_hipmemcpy, ONLY: hipMemcpy
+      implicit none
+      real(4),pointer,intent(inout) :: ptr
+      real(4),target,intent(in),optional :: dsource,source
+      integer(kind=4),intent(in) :: flags
+      !
+      type(c_ptr) :: cptr
+      integer :: nOptArgs 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostMalloc_r4_0_source
+#else
+      integer(kind(hipSuccess)) :: hipHostMalloc_r4_0_source
+#endif
+      !
+      nOptArgs = 0
+      if ( present(dsource) ) nOptArgs = nOptArgs + 1
+      if ( present(source) ) nOptArgs = nOptArgs + 1
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc (scalar version): Only one optional argument ('dsource','source') must be specified."
+
+      if ( present(dsource) ) then
+        hipHostMalloc_r4_0_source = hipHostMalloc_b(cptr,4_8,flags)
+        hipHostMalloc_r4_0_source = hipMemcpy(cptr,C_LOC(dsource),4_8,hipMemcpyDeviceToHost)
+        call C_F_POINTER(cptr,ptr)
+      else if ( present(source) ) then
+        hipHostMalloc_r4_0_source = hipHostMalloc_b(cptr,4_8,flags)
+        hipHostMalloc_r4_0_source = hipMemcpy(cptr,C_LOC(source),4_8,hipMemcpyHostToHost)
+        call C_F_POINTER(cptr,ptr)
+      else
+        hipHostMalloc_r4_0_source = hipHostMalloc_b(cptr,4_8,flags)
+        call C_F_POINTER(cptr,ptr)
+      end if
+    end function
+
+! arrays
                                                               
     function hipHostMalloc_r4_1_source(ptr,dims,dims8,dsource,source,mold,flags)
       use iso_c_binding
@@ -5893,7 +6217,7 @@ module hipfort_hipmalloc
       integer(4),intent(in),optional :: dims(1)
       integer(8),intent(in),optional :: dims8(1)
       real(4),target,dimension(:),intent(in),optional :: dsource,source,mold
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       !
       real(4),pointer,dimension(:) :: tmp
       type(c_ptr) :: cptr
@@ -5910,8 +6234,8 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_r4_1_source = hipHostMalloc_b(cptr,SIZE(dsource)*4_8,flags)
@@ -5947,7 +6271,7 @@ module hipfort_hipmalloc
       implicit none
       real(4),pointer,dimension(:) :: ptr
       integer(c_int),intent(in) :: length1 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_r4_1_c_int 
@@ -5970,7 +6294,7 @@ module hipfort_hipmalloc
       implicit none
       real(4),pointer,dimension(:) :: ptr
       integer(c_size_t),intent(in) :: length1 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_r4_1_c_size_t 
@@ -5982,7 +6306,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1])
     end function
 
-                                                              
                                                               
     function hipHostMalloc_r4_2_source(ptr,dims,dims8,dsource,source,mold,flags)
       use iso_c_binding
@@ -5997,7 +6320,7 @@ module hipfort_hipmalloc
       integer(4),intent(in),optional :: dims(2)
       integer(8),intent(in),optional :: dims8(2)
       real(4),target,dimension(:,:),intent(in),optional :: dsource,source,mold
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       !
       real(4),pointer,dimension(:,:) :: tmp
       type(c_ptr) :: cptr
@@ -6014,8 +6337,8 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_r4_2_source = hipHostMalloc_b(cptr,SIZE(dsource)*4_8,flags)
@@ -6051,7 +6374,7 @@ module hipfort_hipmalloc
       implicit none
       real(4),pointer,dimension(:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_r4_2_c_int 
@@ -6074,7 +6397,7 @@ module hipfort_hipmalloc
       implicit none
       real(4),pointer,dimension(:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_r4_2_c_size_t 
@@ -6086,7 +6409,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2])
     end function
 
-                                                              
                                                               
     function hipHostMalloc_r4_3_source(ptr,dims,dims8,dsource,source,mold,flags)
       use iso_c_binding
@@ -6101,7 +6423,7 @@ module hipfort_hipmalloc
       integer(4),intent(in),optional :: dims(3)
       integer(8),intent(in),optional :: dims8(3)
       real(4),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       !
       real(4),pointer,dimension(:,:,:) :: tmp
       type(c_ptr) :: cptr
@@ -6118,8 +6440,8 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_r4_3_source = hipHostMalloc_b(cptr,SIZE(dsource)*4_8,flags)
@@ -6155,7 +6477,7 @@ module hipfort_hipmalloc
       implicit none
       real(4),pointer,dimension(:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_r4_3_c_int 
@@ -6178,7 +6500,7 @@ module hipfort_hipmalloc
       implicit none
       real(4),pointer,dimension(:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_r4_3_c_size_t 
@@ -6190,7 +6512,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2,length3])
     end function
 
-                                                              
                                                               
     function hipHostMalloc_r4_4_source(ptr,dims,dims8,dsource,source,mold,flags)
       use iso_c_binding
@@ -6205,7 +6526,7 @@ module hipfort_hipmalloc
       integer(4),intent(in),optional :: dims(4)
       integer(8),intent(in),optional :: dims8(4)
       real(4),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       !
       real(4),pointer,dimension(:,:,:,:) :: tmp
       type(c_ptr) :: cptr
@@ -6222,8 +6543,8 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_r4_4_source = hipHostMalloc_b(cptr,SIZE(dsource)*4_8,flags)
@@ -6259,7 +6580,7 @@ module hipfort_hipmalloc
       implicit none
       real(4),pointer,dimension(:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_r4_4_c_int 
@@ -6282,7 +6603,7 @@ module hipfort_hipmalloc
       implicit none
       real(4),pointer,dimension(:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_r4_4_c_size_t 
@@ -6294,7 +6615,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2,length3,length4])
     end function
 
-                                                              
                                                               
     function hipHostMalloc_r4_5_source(ptr,dims,dims8,dsource,source,mold,flags)
       use iso_c_binding
@@ -6309,7 +6629,7 @@ module hipfort_hipmalloc
       integer(4),intent(in),optional :: dims(5)
       integer(8),intent(in),optional :: dims8(5)
       real(4),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       !
       real(4),pointer,dimension(:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
@@ -6326,8 +6646,8 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_r4_5_source = hipHostMalloc_b(cptr,SIZE(dsource)*4_8,flags)
@@ -6363,7 +6683,7 @@ module hipfort_hipmalloc
       implicit none
       real(4),pointer,dimension(:,:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4,length5 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_r4_5_c_int 
@@ -6386,7 +6706,7 @@ module hipfort_hipmalloc
       implicit none
       real(4),pointer,dimension(:,:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_r4_5_c_size_t 
@@ -6398,7 +6718,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2,length3,length4,length5])
     end function
 
-                                                              
                                                               
     function hipHostMalloc_r4_6_source(ptr,dims,dims8,dsource,source,mold,flags)
       use iso_c_binding
@@ -6413,7 +6732,7 @@ module hipfort_hipmalloc
       integer(4),intent(in),optional :: dims(6)
       integer(8),intent(in),optional :: dims8(6)
       real(4),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       !
       real(4),pointer,dimension(:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
@@ -6430,8 +6749,8 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_r4_6_source = hipHostMalloc_b(cptr,SIZE(dsource)*4_8,flags)
@@ -6467,7 +6786,7 @@ module hipfort_hipmalloc
       implicit none
       real(4),pointer,dimension(:,:,:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4,length5,length6 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_r4_6_c_int 
@@ -6490,7 +6809,7 @@ module hipfort_hipmalloc
       implicit none
       real(4),pointer,dimension(:,:,:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5,length6 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_r4_6_c_size_t 
@@ -6502,7 +6821,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2,length3,length4,length5,length6])
     end function
 
-                                                              
                                                               
     function hipHostMalloc_r4_7_source(ptr,dims,dims8,dsource,source,mold,flags)
       use iso_c_binding
@@ -6517,7 +6835,7 @@ module hipfort_hipmalloc
       integer(4),intent(in),optional :: dims(7)
       integer(8),intent(in),optional :: dims8(7)
       real(4),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       !
       real(4),pointer,dimension(:,:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
@@ -6534,8 +6852,8 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_r4_7_source = hipHostMalloc_b(cptr,SIZE(dsource)*4_8,flags)
@@ -6571,7 +6889,7 @@ module hipfort_hipmalloc
       implicit none
       real(4),pointer,dimension(:,:,:,:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4,length5,length6,length7 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_r4_7_c_int 
@@ -6594,7 +6912,7 @@ module hipfort_hipmalloc
       implicit none
       real(4),pointer,dimension(:,:,:,:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5,length6,length7 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_r4_7_c_size_t 
@@ -6606,7 +6924,49 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2,length3,length4,length5,length6,length7])
     end function
 
+! scalars
                                                               
+    function hipHostMalloc_r8_0_source(ptr,dsource,source,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      use hipfort_hipmemcpy, ONLY: hipMemcpy
+      implicit none
+      real(8),pointer,intent(inout) :: ptr
+      real(8),target,intent(in),optional :: dsource,source
+      integer(kind=4),intent(in) :: flags
+      !
+      type(c_ptr) :: cptr
+      integer :: nOptArgs 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostMalloc_r8_0_source
+#else
+      integer(kind(hipSuccess)) :: hipHostMalloc_r8_0_source
+#endif
+      !
+      nOptArgs = 0
+      if ( present(dsource) ) nOptArgs = nOptArgs + 1
+      if ( present(source) ) nOptArgs = nOptArgs + 1
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc (scalar version): Only one optional argument ('dsource','source') must be specified."
+
+      if ( present(dsource) ) then
+        hipHostMalloc_r8_0_source = hipHostMalloc_b(cptr,8_8,flags)
+        hipHostMalloc_r8_0_source = hipMemcpy(cptr,C_LOC(dsource),8_8,hipMemcpyDeviceToHost)
+        call C_F_POINTER(cptr,ptr)
+      else if ( present(source) ) then
+        hipHostMalloc_r8_0_source = hipHostMalloc_b(cptr,8_8,flags)
+        hipHostMalloc_r8_0_source = hipMemcpy(cptr,C_LOC(source),8_8,hipMemcpyHostToHost)
+        call C_F_POINTER(cptr,ptr)
+      else
+        hipHostMalloc_r8_0_source = hipHostMalloc_b(cptr,8_8,flags)
+        call C_F_POINTER(cptr,ptr)
+      end if
+    end function
+
+! arrays
                                                               
     function hipHostMalloc_r8_1_source(ptr,dims,dims8,dsource,source,mold,flags)
       use iso_c_binding
@@ -6621,7 +6981,7 @@ module hipfort_hipmalloc
       integer(4),intent(in),optional :: dims(1)
       integer(8),intent(in),optional :: dims8(1)
       real(8),target,dimension(:),intent(in),optional :: dsource,source,mold
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       !
       real(8),pointer,dimension(:) :: tmp
       type(c_ptr) :: cptr
@@ -6638,8 +6998,8 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_r8_1_source = hipHostMalloc_b(cptr,SIZE(dsource)*8_8,flags)
@@ -6675,7 +7035,7 @@ module hipfort_hipmalloc
       implicit none
       real(8),pointer,dimension(:) :: ptr
       integer(c_int),intent(in) :: length1 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_r8_1_c_int 
@@ -6698,7 +7058,7 @@ module hipfort_hipmalloc
       implicit none
       real(8),pointer,dimension(:) :: ptr
       integer(c_size_t),intent(in) :: length1 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_r8_1_c_size_t 
@@ -6710,7 +7070,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1])
     end function
 
-                                                              
                                                               
     function hipHostMalloc_r8_2_source(ptr,dims,dims8,dsource,source,mold,flags)
       use iso_c_binding
@@ -6725,7 +7084,7 @@ module hipfort_hipmalloc
       integer(4),intent(in),optional :: dims(2)
       integer(8),intent(in),optional :: dims8(2)
       real(8),target,dimension(:,:),intent(in),optional :: dsource,source,mold
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       !
       real(8),pointer,dimension(:,:) :: tmp
       type(c_ptr) :: cptr
@@ -6742,8 +7101,8 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_r8_2_source = hipHostMalloc_b(cptr,SIZE(dsource)*8_8,flags)
@@ -6779,7 +7138,7 @@ module hipfort_hipmalloc
       implicit none
       real(8),pointer,dimension(:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_r8_2_c_int 
@@ -6802,7 +7161,7 @@ module hipfort_hipmalloc
       implicit none
       real(8),pointer,dimension(:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_r8_2_c_size_t 
@@ -6814,7 +7173,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2])
     end function
 
-                                                              
                                                               
     function hipHostMalloc_r8_3_source(ptr,dims,dims8,dsource,source,mold,flags)
       use iso_c_binding
@@ -6829,7 +7187,7 @@ module hipfort_hipmalloc
       integer(4),intent(in),optional :: dims(3)
       integer(8),intent(in),optional :: dims8(3)
       real(8),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       !
       real(8),pointer,dimension(:,:,:) :: tmp
       type(c_ptr) :: cptr
@@ -6846,8 +7204,8 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_r8_3_source = hipHostMalloc_b(cptr,SIZE(dsource)*8_8,flags)
@@ -6883,7 +7241,7 @@ module hipfort_hipmalloc
       implicit none
       real(8),pointer,dimension(:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_r8_3_c_int 
@@ -6906,7 +7264,7 @@ module hipfort_hipmalloc
       implicit none
       real(8),pointer,dimension(:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_r8_3_c_size_t 
@@ -6918,7 +7276,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2,length3])
     end function
 
-                                                              
                                                               
     function hipHostMalloc_r8_4_source(ptr,dims,dims8,dsource,source,mold,flags)
       use iso_c_binding
@@ -6933,7 +7290,7 @@ module hipfort_hipmalloc
       integer(4),intent(in),optional :: dims(4)
       integer(8),intent(in),optional :: dims8(4)
       real(8),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       !
       real(8),pointer,dimension(:,:,:,:) :: tmp
       type(c_ptr) :: cptr
@@ -6950,8 +7307,8 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_r8_4_source = hipHostMalloc_b(cptr,SIZE(dsource)*8_8,flags)
@@ -6987,7 +7344,7 @@ module hipfort_hipmalloc
       implicit none
       real(8),pointer,dimension(:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_r8_4_c_int 
@@ -7010,7 +7367,7 @@ module hipfort_hipmalloc
       implicit none
       real(8),pointer,dimension(:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_r8_4_c_size_t 
@@ -7022,7 +7379,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2,length3,length4])
     end function
 
-                                                              
                                                               
     function hipHostMalloc_r8_5_source(ptr,dims,dims8,dsource,source,mold,flags)
       use iso_c_binding
@@ -7037,7 +7393,7 @@ module hipfort_hipmalloc
       integer(4),intent(in),optional :: dims(5)
       integer(8),intent(in),optional :: dims8(5)
       real(8),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       !
       real(8),pointer,dimension(:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
@@ -7054,8 +7410,8 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_r8_5_source = hipHostMalloc_b(cptr,SIZE(dsource)*8_8,flags)
@@ -7091,7 +7447,7 @@ module hipfort_hipmalloc
       implicit none
       real(8),pointer,dimension(:,:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4,length5 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_r8_5_c_int 
@@ -7114,7 +7470,7 @@ module hipfort_hipmalloc
       implicit none
       real(8),pointer,dimension(:,:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_r8_5_c_size_t 
@@ -7126,7 +7482,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2,length3,length4,length5])
     end function
 
-                                                              
                                                               
     function hipHostMalloc_r8_6_source(ptr,dims,dims8,dsource,source,mold,flags)
       use iso_c_binding
@@ -7141,7 +7496,7 @@ module hipfort_hipmalloc
       integer(4),intent(in),optional :: dims(6)
       integer(8),intent(in),optional :: dims8(6)
       real(8),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       !
       real(8),pointer,dimension(:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
@@ -7158,8 +7513,8 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_r8_6_source = hipHostMalloc_b(cptr,SIZE(dsource)*8_8,flags)
@@ -7195,7 +7550,7 @@ module hipfort_hipmalloc
       implicit none
       real(8),pointer,dimension(:,:,:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4,length5,length6 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_r8_6_c_int 
@@ -7218,7 +7573,7 @@ module hipfort_hipmalloc
       implicit none
       real(8),pointer,dimension(:,:,:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5,length6 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_r8_6_c_size_t 
@@ -7230,7 +7585,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2,length3,length4,length5,length6])
     end function
 
-                                                              
                                                               
     function hipHostMalloc_r8_7_source(ptr,dims,dims8,dsource,source,mold,flags)
       use iso_c_binding
@@ -7245,7 +7599,7 @@ module hipfort_hipmalloc
       integer(4),intent(in),optional :: dims(7)
       integer(8),intent(in),optional :: dims8(7)
       real(8),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       !
       real(8),pointer,dimension(:,:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
@@ -7262,8 +7616,8 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_r8_7_source = hipHostMalloc_b(cptr,SIZE(dsource)*8_8,flags)
@@ -7299,7 +7653,7 @@ module hipfort_hipmalloc
       implicit none
       real(8),pointer,dimension(:,:,:,:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4,length5,length6,length7 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_r8_7_c_int 
@@ -7322,7 +7676,7 @@ module hipfort_hipmalloc
       implicit none
       real(8),pointer,dimension(:,:,:,:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5,length6,length7 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_r8_7_c_size_t 
@@ -7334,7 +7688,49 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2,length3,length4,length5,length6,length7])
     end function
 
+! scalars
                                                               
+    function hipHostMalloc_c4_0_source(ptr,dsource,source,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      use hipfort_hipmemcpy, ONLY: hipMemcpy
+      implicit none
+      complex(4),pointer,intent(inout) :: ptr
+      complex(4),target,intent(in),optional :: dsource,source
+      integer(kind=4),intent(in) :: flags
+      !
+      type(c_ptr) :: cptr
+      integer :: nOptArgs 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostMalloc_c4_0_source
+#else
+      integer(kind(hipSuccess)) :: hipHostMalloc_c4_0_source
+#endif
+      !
+      nOptArgs = 0
+      if ( present(dsource) ) nOptArgs = nOptArgs + 1
+      if ( present(source) ) nOptArgs = nOptArgs + 1
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc (scalar version): Only one optional argument ('dsource','source') must be specified."
+
+      if ( present(dsource) ) then
+        hipHostMalloc_c4_0_source = hipHostMalloc_b(cptr,2*4_8,flags)
+        hipHostMalloc_c4_0_source = hipMemcpy(cptr,C_LOC(dsource),2*4_8,hipMemcpyDeviceToHost)
+        call C_F_POINTER(cptr,ptr)
+      else if ( present(source) ) then
+        hipHostMalloc_c4_0_source = hipHostMalloc_b(cptr,2*4_8,flags)
+        hipHostMalloc_c4_0_source = hipMemcpy(cptr,C_LOC(source),2*4_8,hipMemcpyHostToHost)
+        call C_F_POINTER(cptr,ptr)
+      else
+        hipHostMalloc_c4_0_source = hipHostMalloc_b(cptr,2*4_8,flags)
+        call C_F_POINTER(cptr,ptr)
+      end if
+    end function
+
+! arrays
                                                               
     function hipHostMalloc_c4_1_source(ptr,dims,dims8,dsource,source,mold,flags)
       use iso_c_binding
@@ -7349,7 +7745,7 @@ module hipfort_hipmalloc
       integer(4),intent(in),optional :: dims(1)
       integer(8),intent(in),optional :: dims8(1)
       complex(4),target,dimension(:),intent(in),optional :: dsource,source,mold
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       !
       complex(4),pointer,dimension(:) :: tmp
       type(c_ptr) :: cptr
@@ -7366,8 +7762,8 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_c4_1_source = hipHostMalloc_b(cptr,SIZE(dsource)*2*4_8,flags)
@@ -7403,7 +7799,7 @@ module hipfort_hipmalloc
       implicit none
       complex(4),pointer,dimension(:) :: ptr
       integer(c_int),intent(in) :: length1 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_c4_1_c_int 
@@ -7426,7 +7822,7 @@ module hipfort_hipmalloc
       implicit none
       complex(4),pointer,dimension(:) :: ptr
       integer(c_size_t),intent(in) :: length1 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_c4_1_c_size_t 
@@ -7438,7 +7834,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1])
     end function
 
-                                                              
                                                               
     function hipHostMalloc_c4_2_source(ptr,dims,dims8,dsource,source,mold,flags)
       use iso_c_binding
@@ -7453,7 +7848,7 @@ module hipfort_hipmalloc
       integer(4),intent(in),optional :: dims(2)
       integer(8),intent(in),optional :: dims8(2)
       complex(4),target,dimension(:,:),intent(in),optional :: dsource,source,mold
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       !
       complex(4),pointer,dimension(:,:) :: tmp
       type(c_ptr) :: cptr
@@ -7470,8 +7865,8 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_c4_2_source = hipHostMalloc_b(cptr,SIZE(dsource)*2*4_8,flags)
@@ -7507,7 +7902,7 @@ module hipfort_hipmalloc
       implicit none
       complex(4),pointer,dimension(:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_c4_2_c_int 
@@ -7530,7 +7925,7 @@ module hipfort_hipmalloc
       implicit none
       complex(4),pointer,dimension(:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_c4_2_c_size_t 
@@ -7542,7 +7937,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2])
     end function
 
-                                                              
                                                               
     function hipHostMalloc_c4_3_source(ptr,dims,dims8,dsource,source,mold,flags)
       use iso_c_binding
@@ -7557,7 +7951,7 @@ module hipfort_hipmalloc
       integer(4),intent(in),optional :: dims(3)
       integer(8),intent(in),optional :: dims8(3)
       complex(4),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       !
       complex(4),pointer,dimension(:,:,:) :: tmp
       type(c_ptr) :: cptr
@@ -7574,8 +7968,8 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_c4_3_source = hipHostMalloc_b(cptr,SIZE(dsource)*2*4_8,flags)
@@ -7611,7 +8005,7 @@ module hipfort_hipmalloc
       implicit none
       complex(4),pointer,dimension(:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_c4_3_c_int 
@@ -7634,7 +8028,7 @@ module hipfort_hipmalloc
       implicit none
       complex(4),pointer,dimension(:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_c4_3_c_size_t 
@@ -7646,7 +8040,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2,length3])
     end function
 
-                                                              
                                                               
     function hipHostMalloc_c4_4_source(ptr,dims,dims8,dsource,source,mold,flags)
       use iso_c_binding
@@ -7661,7 +8054,7 @@ module hipfort_hipmalloc
       integer(4),intent(in),optional :: dims(4)
       integer(8),intent(in),optional :: dims8(4)
       complex(4),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       !
       complex(4),pointer,dimension(:,:,:,:) :: tmp
       type(c_ptr) :: cptr
@@ -7678,8 +8071,8 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_c4_4_source = hipHostMalloc_b(cptr,SIZE(dsource)*2*4_8,flags)
@@ -7715,7 +8108,7 @@ module hipfort_hipmalloc
       implicit none
       complex(4),pointer,dimension(:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_c4_4_c_int 
@@ -7738,7 +8131,7 @@ module hipfort_hipmalloc
       implicit none
       complex(4),pointer,dimension(:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_c4_4_c_size_t 
@@ -7750,7 +8143,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2,length3,length4])
     end function
 
-                                                              
                                                               
     function hipHostMalloc_c4_5_source(ptr,dims,dims8,dsource,source,mold,flags)
       use iso_c_binding
@@ -7765,7 +8157,7 @@ module hipfort_hipmalloc
       integer(4),intent(in),optional :: dims(5)
       integer(8),intent(in),optional :: dims8(5)
       complex(4),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       !
       complex(4),pointer,dimension(:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
@@ -7782,8 +8174,8 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_c4_5_source = hipHostMalloc_b(cptr,SIZE(dsource)*2*4_8,flags)
@@ -7819,7 +8211,7 @@ module hipfort_hipmalloc
       implicit none
       complex(4),pointer,dimension(:,:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4,length5 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_c4_5_c_int 
@@ -7842,7 +8234,7 @@ module hipfort_hipmalloc
       implicit none
       complex(4),pointer,dimension(:,:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_c4_5_c_size_t 
@@ -7854,7 +8246,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2,length3,length4,length5])
     end function
 
-                                                              
                                                               
     function hipHostMalloc_c4_6_source(ptr,dims,dims8,dsource,source,mold,flags)
       use iso_c_binding
@@ -7869,7 +8260,7 @@ module hipfort_hipmalloc
       integer(4),intent(in),optional :: dims(6)
       integer(8),intent(in),optional :: dims8(6)
       complex(4),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       !
       complex(4),pointer,dimension(:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
@@ -7886,8 +8277,8 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_c4_6_source = hipHostMalloc_b(cptr,SIZE(dsource)*2*4_8,flags)
@@ -7923,7 +8314,7 @@ module hipfort_hipmalloc
       implicit none
       complex(4),pointer,dimension(:,:,:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4,length5,length6 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_c4_6_c_int 
@@ -7946,7 +8337,7 @@ module hipfort_hipmalloc
       implicit none
       complex(4),pointer,dimension(:,:,:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5,length6 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_c4_6_c_size_t 
@@ -7958,7 +8349,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2,length3,length4,length5,length6])
     end function
 
-                                                              
                                                               
     function hipHostMalloc_c4_7_source(ptr,dims,dims8,dsource,source,mold,flags)
       use iso_c_binding
@@ -7973,7 +8363,7 @@ module hipfort_hipmalloc
       integer(4),intent(in),optional :: dims(7)
       integer(8),intent(in),optional :: dims8(7)
       complex(4),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       !
       complex(4),pointer,dimension(:,:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
@@ -7990,8 +8380,8 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_c4_7_source = hipHostMalloc_b(cptr,SIZE(dsource)*2*4_8,flags)
@@ -8027,7 +8417,7 @@ module hipfort_hipmalloc
       implicit none
       complex(4),pointer,dimension(:,:,:,:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4,length5,length6,length7 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_c4_7_c_int 
@@ -8050,7 +8440,7 @@ module hipfort_hipmalloc
       implicit none
       complex(4),pointer,dimension(:,:,:,:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5,length6,length7 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_c4_7_c_size_t 
@@ -8062,7 +8452,49 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2,length3,length4,length5,length6,length7])
     end function
 
+! scalars
                                                               
+    function hipHostMalloc_c8_0_source(ptr,dsource,source,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      use hipfort_hipmemcpy, ONLY: hipMemcpy
+      implicit none
+      complex(8),pointer,intent(inout) :: ptr
+      complex(8),target,intent(in),optional :: dsource,source
+      integer(kind=4),intent(in) :: flags
+      !
+      type(c_ptr) :: cptr
+      integer :: nOptArgs 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostMalloc_c8_0_source
+#else
+      integer(kind(hipSuccess)) :: hipHostMalloc_c8_0_source
+#endif
+      !
+      nOptArgs = 0
+      if ( present(dsource) ) nOptArgs = nOptArgs + 1
+      if ( present(source) ) nOptArgs = nOptArgs + 1
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc (scalar version): Only one optional argument ('dsource','source') must be specified."
+
+      if ( present(dsource) ) then
+        hipHostMalloc_c8_0_source = hipHostMalloc_b(cptr,2*8_8,flags)
+        hipHostMalloc_c8_0_source = hipMemcpy(cptr,C_LOC(dsource),2*8_8,hipMemcpyDeviceToHost)
+        call C_F_POINTER(cptr,ptr)
+      else if ( present(source) ) then
+        hipHostMalloc_c8_0_source = hipHostMalloc_b(cptr,2*8_8,flags)
+        hipHostMalloc_c8_0_source = hipMemcpy(cptr,C_LOC(source),2*8_8,hipMemcpyHostToHost)
+        call C_F_POINTER(cptr,ptr)
+      else
+        hipHostMalloc_c8_0_source = hipHostMalloc_b(cptr,2*8_8,flags)
+        call C_F_POINTER(cptr,ptr)
+      end if
+    end function
+
+! arrays
                                                               
     function hipHostMalloc_c8_1_source(ptr,dims,dims8,dsource,source,mold,flags)
       use iso_c_binding
@@ -8077,7 +8509,7 @@ module hipfort_hipmalloc
       integer(4),intent(in),optional :: dims(1)
       integer(8),intent(in),optional :: dims8(1)
       complex(8),target,dimension(:),intent(in),optional :: dsource,source,mold
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       !
       complex(8),pointer,dimension(:) :: tmp
       type(c_ptr) :: cptr
@@ -8094,8 +8526,8 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_c8_1_source = hipHostMalloc_b(cptr,SIZE(dsource)*2*8_8,flags)
@@ -8131,7 +8563,7 @@ module hipfort_hipmalloc
       implicit none
       complex(8),pointer,dimension(:) :: ptr
       integer(c_int),intent(in) :: length1 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_c8_1_c_int 
@@ -8154,7 +8586,7 @@ module hipfort_hipmalloc
       implicit none
       complex(8),pointer,dimension(:) :: ptr
       integer(c_size_t),intent(in) :: length1 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_c8_1_c_size_t 
@@ -8166,7 +8598,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1])
     end function
 
-                                                              
                                                               
     function hipHostMalloc_c8_2_source(ptr,dims,dims8,dsource,source,mold,flags)
       use iso_c_binding
@@ -8181,7 +8612,7 @@ module hipfort_hipmalloc
       integer(4),intent(in),optional :: dims(2)
       integer(8),intent(in),optional :: dims8(2)
       complex(8),target,dimension(:,:),intent(in),optional :: dsource,source,mold
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       !
       complex(8),pointer,dimension(:,:) :: tmp
       type(c_ptr) :: cptr
@@ -8198,8 +8629,8 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_c8_2_source = hipHostMalloc_b(cptr,SIZE(dsource)*2*8_8,flags)
@@ -8235,7 +8666,7 @@ module hipfort_hipmalloc
       implicit none
       complex(8),pointer,dimension(:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_c8_2_c_int 
@@ -8258,7 +8689,7 @@ module hipfort_hipmalloc
       implicit none
       complex(8),pointer,dimension(:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_c8_2_c_size_t 
@@ -8270,7 +8701,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2])
     end function
 
-                                                              
                                                               
     function hipHostMalloc_c8_3_source(ptr,dims,dims8,dsource,source,mold,flags)
       use iso_c_binding
@@ -8285,7 +8715,7 @@ module hipfort_hipmalloc
       integer(4),intent(in),optional :: dims(3)
       integer(8),intent(in),optional :: dims8(3)
       complex(8),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       !
       complex(8),pointer,dimension(:,:,:) :: tmp
       type(c_ptr) :: cptr
@@ -8302,8 +8732,8 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_c8_3_source = hipHostMalloc_b(cptr,SIZE(dsource)*2*8_8,flags)
@@ -8339,7 +8769,7 @@ module hipfort_hipmalloc
       implicit none
       complex(8),pointer,dimension(:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_c8_3_c_int 
@@ -8362,7 +8792,7 @@ module hipfort_hipmalloc
       implicit none
       complex(8),pointer,dimension(:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_c8_3_c_size_t 
@@ -8374,7 +8804,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2,length3])
     end function
 
-                                                              
                                                               
     function hipHostMalloc_c8_4_source(ptr,dims,dims8,dsource,source,mold,flags)
       use iso_c_binding
@@ -8389,7 +8818,7 @@ module hipfort_hipmalloc
       integer(4),intent(in),optional :: dims(4)
       integer(8),intent(in),optional :: dims8(4)
       complex(8),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       !
       complex(8),pointer,dimension(:,:,:,:) :: tmp
       type(c_ptr) :: cptr
@@ -8406,8 +8835,8 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_c8_4_source = hipHostMalloc_b(cptr,SIZE(dsource)*2*8_8,flags)
@@ -8443,7 +8872,7 @@ module hipfort_hipmalloc
       implicit none
       complex(8),pointer,dimension(:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_c8_4_c_int 
@@ -8466,7 +8895,7 @@ module hipfort_hipmalloc
       implicit none
       complex(8),pointer,dimension(:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_c8_4_c_size_t 
@@ -8478,7 +8907,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2,length3,length4])
     end function
 
-                                                              
                                                               
     function hipHostMalloc_c8_5_source(ptr,dims,dims8,dsource,source,mold,flags)
       use iso_c_binding
@@ -8493,7 +8921,7 @@ module hipfort_hipmalloc
       integer(4),intent(in),optional :: dims(5)
       integer(8),intent(in),optional :: dims8(5)
       complex(8),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       !
       complex(8),pointer,dimension(:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
@@ -8510,8 +8938,8 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_c8_5_source = hipHostMalloc_b(cptr,SIZE(dsource)*2*8_8,flags)
@@ -8547,7 +8975,7 @@ module hipfort_hipmalloc
       implicit none
       complex(8),pointer,dimension(:,:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4,length5 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_c8_5_c_int 
@@ -8570,7 +8998,7 @@ module hipfort_hipmalloc
       implicit none
       complex(8),pointer,dimension(:,:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_c8_5_c_size_t 
@@ -8582,7 +9010,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2,length3,length4,length5])
     end function
 
-                                                              
                                                               
     function hipHostMalloc_c8_6_source(ptr,dims,dims8,dsource,source,mold,flags)
       use iso_c_binding
@@ -8597,7 +9024,7 @@ module hipfort_hipmalloc
       integer(4),intent(in),optional :: dims(6)
       integer(8),intent(in),optional :: dims8(6)
       complex(8),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       !
       complex(8),pointer,dimension(:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
@@ -8614,8 +9041,8 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_c8_6_source = hipHostMalloc_b(cptr,SIZE(dsource)*2*8_8,flags)
@@ -8651,7 +9078,7 @@ module hipfort_hipmalloc
       implicit none
       complex(8),pointer,dimension(:,:,:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4,length5,length6 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_c8_6_c_int 
@@ -8674,7 +9101,7 @@ module hipfort_hipmalloc
       implicit none
       complex(8),pointer,dimension(:,:,:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5,length6 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_c8_6_c_size_t 
@@ -8686,7 +9113,6 @@ module hipfort_hipmalloc
       call C_F_POINTER(cptr,ptr,SHAPE=[length1,length2,length3,length4,length5,length6])
     end function
 
-                                                              
                                                               
     function hipHostMalloc_c8_7_source(ptr,dims,dims8,dsource,source,mold,flags)
       use iso_c_binding
@@ -8701,7 +9127,7 @@ module hipfort_hipmalloc
       integer(4),intent(in),optional :: dims(7)
       integer(8),intent(in),optional :: dims8(7)
       complex(8),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       !
       complex(8),pointer,dimension(:,:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
@@ -8718,8 +9144,8 @@ module hipfort_hipmalloc
       if ( present(dsource) ) nOptArgs = nOptArgs + 1
       if ( present(source) ) nOptArgs = nOptArgs + 1
       if ( present(mold) ) nOptArgs = nOptArgs + 1
-      if ( nOptArgs == 0 ) STOP "ERROR: hipMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
-      if ( nOptArgs > 1 ) STOP "ERROR: hipMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs == 0 ) STOP "ERROR: hipHostMalloc: At least one optional argument ('dims','dims8','dsource','source','mold') must be specified."
+      if ( nOptArgs > 1 ) STOP "ERROR: hipHostMalloc: Only one optional argument ('dims','dims8','dsource','source','mold') must be specified."
 
       if ( present(dsource) ) then
         hipHostMalloc_c8_7_source = hipHostMalloc_b(cptr,SIZE(dsource)*2*8_8,flags)
@@ -8755,7 +9181,7 @@ module hipfort_hipmalloc
       implicit none
       complex(8),pointer,dimension(:,:,:,:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4,length5,length6,length7 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_c8_7_c_int 
@@ -8778,7 +9204,7 @@ module hipfort_hipmalloc
       implicit none
       complex(8),pointer,dimension(:,:,:,:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5,length6,length7 
-      integer(kind=4) :: flags
+      integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostMalloc_c8_7_c_size_t 
