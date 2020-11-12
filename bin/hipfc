@@ -376,13 +376,19 @@ else
      fi
      LINKOPTS="$LINKOPTS -L$ROCM_DIR/hipblas/lib -lhipblas"
    fi
-   if [ $ROCFFT ] ; then 
-     if [ ! -d $ROCM_DIR/rocfft/lib ] ; then 
-        echo "ERROR:  Directory $ROCM_DIR/rocfft/lib does not exist"
-        echo "        Please install rocfft"
-        exit $DEADRC
-     fi
-     LINKOPTS="$LINKOPTS -L$ROCM_DIR/rocfft/lib -lrocfft"
+
+   # If ROCFFT_ROOT is defined, then use it; otherwise try ROCM_DIR/rocfft.
+   if [ -v ROCFFT_ROOT ]; then
+       LINKOPTS="$LINKOPTS -L$ROCFFT_ROOT/lib -lrocfft"
+   else
+       if [ $ROCFFT ] ; then
+	   if [ ! -d $ROCM_DIR/rocfft/lib ] ; then
+               echo "ERROR:  Directory $ROCM_DIR/rocfft/lib does not exist"
+               echo "        Please install rocfft"
+               exit $DEADRC
+	   fi
+	   LINKOPTS="$LINKOPTS -L$ROCM_DIR/rocfft/lib -lrocfft"
+       fi
    fi
 fi
 
