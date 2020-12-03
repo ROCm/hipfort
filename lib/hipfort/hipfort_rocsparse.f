@@ -8128,6 +8128,106 @@ module hipfort_rocsparse
 
     module procedure rocsparse_zbsr2csr_rank_0,rocsparse_zbsr2csr_rank_1
   end interface
+  !> @{
+  interface rocsparse_sgebsr2csr
+    function rocsparse_sgebsr2csr_orig(handle,dir,mb,nb,bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,csr_descr,csr_val,csr_row_ptr,csr_col_ind) bind(c, name="rocsparse_sgebsr2csr")
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_sgebsr2csr_orig
+      type(c_ptr),value :: handle
+      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: mb
+      integer(c_int),value :: nb
+      type(c_ptr),value :: bsr_descr
+      type(c_ptr),value :: bsr_val
+      type(c_ptr),value :: bsr_row_ptr
+      type(c_ptr),value :: bsr_col_ind
+      integer(c_int),value :: row_block_dim
+      integer(c_int),value :: col_block_dim
+      type(c_ptr),value :: csr_descr
+      type(c_ptr),value :: csr_val
+      type(c_ptr),value :: csr_row_ptr
+      type(c_ptr),value :: csr_col_ind
+    end function
+
+    module procedure rocsparse_sgebsr2csr_rank_0,rocsparse_sgebsr2csr_rank_1
+  end interface
+  
+  interface rocsparse_dgebsr2csr
+    function rocsparse_dgebsr2csr_orig(handle,dir,mb,nb,bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,csr_descr,csr_val,csr_row_ptr,csr_col_ind) bind(c, name="rocsparse_dgebsr2csr")
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_dgebsr2csr_orig
+      type(c_ptr),value :: handle
+      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: mb
+      integer(c_int),value :: nb
+      type(c_ptr),value :: bsr_descr
+      type(c_ptr),value :: bsr_val
+      type(c_ptr),value :: bsr_row_ptr
+      type(c_ptr),value :: bsr_col_ind
+      integer(c_int),value :: row_block_dim
+      integer(c_int),value :: col_block_dim
+      type(c_ptr),value :: csr_descr
+      type(c_ptr),value :: csr_val
+      type(c_ptr),value :: csr_row_ptr
+      type(c_ptr),value :: csr_col_ind
+    end function
+
+    module procedure rocsparse_dgebsr2csr_rank_0,rocsparse_dgebsr2csr_rank_1
+  end interface
+  
+  interface rocsparse_cgebsr2csr
+    function rocsparse_cgebsr2csr_orig(handle,dir,mb,nb,bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,csr_descr,csr_val,csr_row_ptr,csr_col_ind) bind(c, name="rocsparse_cgebsr2csr")
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_cgebsr2csr_orig
+      type(c_ptr),value :: handle
+      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: mb
+      integer(c_int),value :: nb
+      type(c_ptr),value :: bsr_descr
+      type(c_ptr),value :: bsr_val
+      type(c_ptr),value :: bsr_row_ptr
+      type(c_ptr),value :: bsr_col_ind
+      integer(c_int),value :: row_block_dim
+      integer(c_int),value :: col_block_dim
+      type(c_ptr),value :: csr_descr
+      type(c_ptr),value :: csr_val
+      type(c_ptr),value :: csr_row_ptr
+      type(c_ptr),value :: csr_col_ind
+    end function
+
+    module procedure rocsparse_cgebsr2csr_rank_0,rocsparse_cgebsr2csr_rank_1
+  end interface
+  
+  interface rocsparse_zgebsr2csr
+    function rocsparse_zgebsr2csr_orig(handle,dir,mb,nb,bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,csr_descr,csr_val,csr_row_ptr,csr_col_ind) bind(c, name="rocsparse_zgebsr2csr")
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_zgebsr2csr_orig
+      type(c_ptr),value :: handle
+      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: mb
+      integer(c_int),value :: nb
+      type(c_ptr),value :: bsr_descr
+      type(c_ptr),value :: bsr_val
+      type(c_ptr),value :: bsr_row_ptr
+      type(c_ptr),value :: bsr_col_ind
+      integer(c_int),value :: row_block_dim
+      integer(c_int),value :: col_block_dim
+      type(c_ptr),value :: csr_descr
+      type(c_ptr),value :: csr_val
+      type(c_ptr),value :: csr_row_ptr
+      type(c_ptr),value :: csr_col_ind
+    end function
+
+    module procedure rocsparse_zgebsr2csr_rank_0,rocsparse_zgebsr2csr_rank_1
+  end interface
 
   contains
 
@@ -19925,6 +20025,190 @@ module hipfort_rocsparse
       integer(c_int),target,dimension(:) :: csr_col_ind
       !
       rocsparse_zbsr2csr_rank_1 = rocsparse_zbsr2csr_orig(handle,dir,mb,nb,bsr_descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind))
+    end function
+
+    function rocsparse_sgebsr2csr_rank_0(handle,dir,mb,nb,bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,csr_descr,csr_val,csr_row_ptr,csr_col_ind)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_sgebsr2csr_rank_0
+      type(c_ptr),value :: handle
+      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: mb
+      integer(c_int),value :: nb
+      type(c_ptr),value :: bsr_descr
+      real(c_float),target :: bsr_val
+      integer(c_int),target :: bsr_row_ptr
+      integer(c_int),target :: bsr_col_ind
+      integer(c_int),value :: row_block_dim
+      integer(c_int),value :: col_block_dim
+      type(c_ptr),value :: csr_descr
+      real(c_float),target :: csr_val
+      integer(c_int),target :: csr_row_ptr
+      integer(c_int),target :: csr_col_ind
+      !
+      rocsparse_sgebsr2csr_rank_0 = rocsparse_sgebsr2csr_orig(handle,dir,mb,nb,bsr_descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind))
+    end function
+
+    function rocsparse_sgebsr2csr_rank_1(handle,dir,mb,nb,bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,csr_descr,csr_val,csr_row_ptr,csr_col_ind)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_sgebsr2csr_rank_1
+      type(c_ptr),value :: handle
+      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: mb
+      integer(c_int),value :: nb
+      type(c_ptr),value :: bsr_descr
+      real(c_float),target,dimension(:) :: bsr_val
+      integer(c_int),target,dimension(:) :: bsr_row_ptr
+      integer(c_int),target,dimension(:) :: bsr_col_ind
+      integer(c_int),value :: row_block_dim
+      integer(c_int),value :: col_block_dim
+      type(c_ptr),value :: csr_descr
+      real(c_float),target,dimension(:) :: csr_val
+      integer(c_int),target,dimension(:) :: csr_row_ptr
+      integer(c_int),target,dimension(:) :: csr_col_ind
+      !
+      rocsparse_sgebsr2csr_rank_1 = rocsparse_sgebsr2csr_orig(handle,dir,mb,nb,bsr_descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind))
+    end function
+
+    function rocsparse_dgebsr2csr_rank_0(handle,dir,mb,nb,bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,csr_descr,csr_val,csr_row_ptr,csr_col_ind)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_dgebsr2csr_rank_0
+      type(c_ptr),value :: handle
+      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: mb
+      integer(c_int),value :: nb
+      type(c_ptr),value :: bsr_descr
+      real(c_double),target :: bsr_val
+      integer(c_int),target :: bsr_row_ptr
+      integer(c_int),target :: bsr_col_ind
+      integer(c_int),value :: row_block_dim
+      integer(c_int),value :: col_block_dim
+      type(c_ptr),value :: csr_descr
+      real(c_double),target :: csr_val
+      integer(c_int),target :: csr_row_ptr
+      integer(c_int),target :: csr_col_ind
+      !
+      rocsparse_dgebsr2csr_rank_0 = rocsparse_dgebsr2csr_orig(handle,dir,mb,nb,bsr_descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind))
+    end function
+
+    function rocsparse_dgebsr2csr_rank_1(handle,dir,mb,nb,bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,csr_descr,csr_val,csr_row_ptr,csr_col_ind)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_dgebsr2csr_rank_1
+      type(c_ptr),value :: handle
+      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: mb
+      integer(c_int),value :: nb
+      type(c_ptr),value :: bsr_descr
+      real(c_double),target,dimension(:) :: bsr_val
+      integer(c_int),target,dimension(:) :: bsr_row_ptr
+      integer(c_int),target,dimension(:) :: bsr_col_ind
+      integer(c_int),value :: row_block_dim
+      integer(c_int),value :: col_block_dim
+      type(c_ptr),value :: csr_descr
+      real(c_double),target,dimension(:) :: csr_val
+      integer(c_int),target,dimension(:) :: csr_row_ptr
+      integer(c_int),target,dimension(:) :: csr_col_ind
+      !
+      rocsparse_dgebsr2csr_rank_1 = rocsparse_dgebsr2csr_orig(handle,dir,mb,nb,bsr_descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind))
+    end function
+
+    function rocsparse_cgebsr2csr_rank_0(handle,dir,mb,nb,bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,csr_descr,csr_val,csr_row_ptr,csr_col_ind)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_cgebsr2csr_rank_0
+      type(c_ptr),value :: handle
+      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: mb
+      integer(c_int),value :: nb
+      type(c_ptr),value :: bsr_descr
+      complex(c_float_complex),target :: bsr_val
+      integer(c_int),target :: bsr_row_ptr
+      integer(c_int),target :: bsr_col_ind
+      integer(c_int),value :: row_block_dim
+      integer(c_int),value :: col_block_dim
+      type(c_ptr),value :: csr_descr
+      complex(c_float_complex),target :: csr_val
+      integer(c_int),target :: csr_row_ptr
+      integer(c_int),target :: csr_col_ind
+      !
+      rocsparse_cgebsr2csr_rank_0 = rocsparse_cgebsr2csr_orig(handle,dir,mb,nb,bsr_descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind))
+    end function
+
+    function rocsparse_cgebsr2csr_rank_1(handle,dir,mb,nb,bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,csr_descr,csr_val,csr_row_ptr,csr_col_ind)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_cgebsr2csr_rank_1
+      type(c_ptr),value :: handle
+      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: mb
+      integer(c_int),value :: nb
+      type(c_ptr),value :: bsr_descr
+      complex(c_float_complex),target,dimension(:) :: bsr_val
+      integer(c_int),target,dimension(:) :: bsr_row_ptr
+      integer(c_int),target,dimension(:) :: bsr_col_ind
+      integer(c_int),value :: row_block_dim
+      integer(c_int),value :: col_block_dim
+      type(c_ptr),value :: csr_descr
+      complex(c_float_complex),target,dimension(:) :: csr_val
+      integer(c_int),target,dimension(:) :: csr_row_ptr
+      integer(c_int),target,dimension(:) :: csr_col_ind
+      !
+      rocsparse_cgebsr2csr_rank_1 = rocsparse_cgebsr2csr_orig(handle,dir,mb,nb,bsr_descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind))
+    end function
+
+    function rocsparse_zgebsr2csr_rank_0(handle,dir,mb,nb,bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,csr_descr,csr_val,csr_row_ptr,csr_col_ind)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_zgebsr2csr_rank_0
+      type(c_ptr),value :: handle
+      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: mb
+      integer(c_int),value :: nb
+      type(c_ptr),value :: bsr_descr
+      complex(c_double_complex),target :: bsr_val
+      integer(c_int),target :: bsr_row_ptr
+      integer(c_int),target :: bsr_col_ind
+      integer(c_int),value :: row_block_dim
+      integer(c_int),value :: col_block_dim
+      type(c_ptr),value :: csr_descr
+      complex(c_double_complex),target :: csr_val
+      integer(c_int),target :: csr_row_ptr
+      integer(c_int),target :: csr_col_ind
+      !
+      rocsparse_zgebsr2csr_rank_0 = rocsparse_zgebsr2csr_orig(handle,dir,mb,nb,bsr_descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind))
+    end function
+
+    function rocsparse_zgebsr2csr_rank_1(handle,dir,mb,nb,bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,csr_descr,csr_val,csr_row_ptr,csr_col_ind)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_zgebsr2csr_rank_1
+      type(c_ptr),value :: handle
+      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: mb
+      integer(c_int),value :: nb
+      type(c_ptr),value :: bsr_descr
+      complex(c_double_complex),target,dimension(:) :: bsr_val
+      integer(c_int),target,dimension(:) :: bsr_row_ptr
+      integer(c_int),target,dimension(:) :: bsr_col_ind
+      integer(c_int),value :: row_block_dim
+      integer(c_int),value :: col_block_dim
+      type(c_ptr),value :: csr_descr
+      complex(c_double_complex),target,dimension(:) :: csr_val
+      integer(c_int),target,dimension(:) :: csr_row_ptr
+      integer(c_int),target,dimension(:) :: csr_col_ind
+      !
+      rocsparse_zgebsr2csr_rank_1 = rocsparse_zgebsr2csr_orig(handle,dir,mb,nb,bsr_descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind))
     end function
 
   

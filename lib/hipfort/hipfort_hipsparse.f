@@ -4692,6 +4692,86 @@ module hipfort_hipsparse
 
   end interface
   
+  interface hipsparseScsrilu02_numericBoost
+#ifdef USE_CUDA_NAMES
+    function hipsparseScsrilu02_numericBoost_orig(handle,myInfo,enable_boost,tol,boost_val) bind(c, name="cusparseScsrilu02_numericBoost")
+#else
+    function hipsparseScsrilu02_numericBoost_orig(handle,myInfo,enable_boost,tol,boost_val) bind(c, name="hipsparseScsrilu02_numericBoost")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrilu02_numericBoost_orig
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: enable_boost
+      real(c_double) :: tol
+      real(c_float) :: boost_val
+    end function
+
+
+  end interface
+  
+  interface hipsparseDcsrilu02_numericBoost
+#ifdef USE_CUDA_NAMES
+    function hipsparseDcsrilu02_numericBoost_orig(handle,myInfo,enable_boost,tol,boost_val) bind(c, name="cusparseDcsrilu02_numericBoost")
+#else
+    function hipsparseDcsrilu02_numericBoost_orig(handle,myInfo,enable_boost,tol,boost_val) bind(c, name="hipsparseDcsrilu02_numericBoost")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrilu02_numericBoost_orig
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: enable_boost
+      real(c_double) :: tol
+      real(c_double) :: boost_val
+    end function
+
+
+  end interface
+  
+  interface hipsparseCcsrilu02_numericBoost
+#ifdef USE_CUDA_NAMES
+    function hipsparseCcsrilu02_numericBoost_orig(handle,myInfo,enable_boost,tol,boost_val) bind(c, name="cusparseCcsrilu02_numericBoost")
+#else
+    function hipsparseCcsrilu02_numericBoost_orig(handle,myInfo,enable_boost,tol,boost_val) bind(c, name="hipsparseCcsrilu02_numericBoost")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrilu02_numericBoost_orig
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: enable_boost
+      real(c_double) :: tol
+      complex(c_float_complex) :: boost_val
+    end function
+
+
+  end interface
+  
+  interface hipsparseZcsrilu02_numericBoost
+#ifdef USE_CUDA_NAMES
+    function hipsparseZcsrilu02_numericBoost_orig(handle,myInfo,enable_boost,tol,boost_val) bind(c, name="cusparseZcsrilu02_numericBoost")
+#else
+    function hipsparseZcsrilu02_numericBoost_orig(handle,myInfo,enable_boost,tol,boost_val) bind(c, name="hipsparseZcsrilu02_numericBoost")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrilu02_numericBoost_orig
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: enable_boost
+      real(c_double) :: tol
+      complex(c_double_complex) :: boost_val
+    end function
+
+
+  end interface
+  
   interface hipsparseScsrilu02_bufferSize
 #ifdef USE_CUDA_NAMES
     function hipsparseScsrilu02_bufferSize_orig(handle,m,nnz,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes) bind(c, name="cusparseScsrilu02_bufferSize")
