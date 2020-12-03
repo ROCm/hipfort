@@ -92,6 +92,11 @@ module hipfort_hipblas_enums
     enumerator :: HIPBLAS_GEMM_DEFAULT = 160
   end enum
 
+  enum, bind(c)
+    enumerator :: HIPBLAS_ATOMICS_NOT_ALLOWED = 0
+    enumerator :: HIPBLAS_ATOMICS_ALLOWED = 1
+  end enum
+
  
 
   contains

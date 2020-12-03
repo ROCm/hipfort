@@ -44,7 +44,7 @@ module hipfort_hipblas_auxiliary
       integer(c_int),value :: incy
     end function
 
-    module procedure hipblasSetVector_i4_rank_0,hipblasSetVector_i4_full_rank,hipblasSetVector_i8_rank_0,hipblasSetVector_i8_full_rank,hipblasSetVector_r4_rank_0,hipblasSetVector_r4_full_rank,hipblasSetVector_r8_rank_0,hipblasSetVector_r8_full_rank,hipblasSetVector_c4_rank_0,hipblasSetVector_c4_full_rank,hipblasSetVector_c8_rank_0,hipblasSetVector_c8_full_rank 
+    module procedure hipblasSetVector_l_rank_0,hipblasSetVector_l_full_rank,hipblasSetVector_i4_rank_0,hipblasSetVector_i4_full_rank,hipblasSetVector_i8_rank_0,hipblasSetVector_i8_full_rank,hipblasSetVector_r4_rank_0,hipblasSetVector_r4_full_rank,hipblasSetVector_r8_rank_0,hipblasSetVector_r8_full_rank,hipblasSetVector_c4_rank_0,hipblasSetVector_c4_full_rank,hipblasSetVector_c8_rank_0,hipblasSetVector_c8_full_rank 
   end interface
 
   interface hipblasGetVector
@@ -65,7 +65,7 @@ module hipfort_hipblas_auxiliary
       integer(c_int),value :: incy
     end function
 
-    module procedure hipblasGetVector_i4_rank_0,hipblasGetVector_i4_full_rank,hipblasGetVector_i8_rank_0,hipblasGetVector_i8_full_rank,hipblasGetVector_r4_rank_0,hipblasGetVector_r4_full_rank,hipblasGetVector_r8_rank_0,hipblasGetVector_r8_full_rank,hipblasGetVector_c4_rank_0,hipblasGetVector_c4_full_rank,hipblasGetVector_c8_rank_0,hipblasGetVector_c8_full_rank 
+    module procedure hipblasGetVector_l_rank_0,hipblasGetVector_l_full_rank,hipblasGetVector_i4_rank_0,hipblasGetVector_i4_full_rank,hipblasGetVector_i8_rank_0,hipblasGetVector_i8_full_rank,hipblasGetVector_r4_rank_0,hipblasGetVector_r4_full_rank,hipblasGetVector_r8_rank_0,hipblasGetVector_r8_full_rank,hipblasGetVector_c4_rank_0,hipblasGetVector_c4_full_rank,hipblasGetVector_c8_rank_0,hipblasGetVector_c8_full_rank 
   end interface
 
   interface hipblasSetMatrix
@@ -87,7 +87,7 @@ module hipfort_hipblas_auxiliary
       integer(c_int),value :: ldb
     end function
 
-    module procedure hipblasSetMatrix_i4_full_rank,hipblasSetMatrix_i4_rank_0,hipblasSetMatrix_i4_rank_1,hipblasSetMatrix_i8_full_rank,hipblasSetMatrix_i8_rank_0,hipblasSetMatrix_i8_rank_1,hipblasSetMatrix_r4_full_rank,hipblasSetMatrix_r4_rank_0,hipblasSetMatrix_r4_rank_1,hipblasSetMatrix_r8_full_rank,hipblasSetMatrix_r8_rank_0,hipblasSetMatrix_r8_rank_1,hipblasSetMatrix_c4_full_rank,hipblasSetMatrix_c4_rank_0,hipblasSetMatrix_c4_rank_1,hipblasSetMatrix_c8_full_rank,hipblasSetMatrix_c8_rank_0,hipblasSetMatrix_c8_rank_1 
+    module procedure hipblasSetMatrix_l_full_rank,hipblasSetMatrix_l_rank_0,hipblasSetMatrix_l_rank_1,hipblasSetMatrix_i4_full_rank,hipblasSetMatrix_i4_rank_0,hipblasSetMatrix_i4_rank_1,hipblasSetMatrix_i8_full_rank,hipblasSetMatrix_i8_rank_0,hipblasSetMatrix_i8_rank_1,hipblasSetMatrix_r4_full_rank,hipblasSetMatrix_r4_rank_0,hipblasSetMatrix_r4_rank_1,hipblasSetMatrix_r8_full_rank,hipblasSetMatrix_r8_rank_0,hipblasSetMatrix_r8_rank_1,hipblasSetMatrix_c4_full_rank,hipblasSetMatrix_c4_rank_0,hipblasSetMatrix_c4_rank_1,hipblasSetMatrix_c8_full_rank,hipblasSetMatrix_c8_rank_0,hipblasSetMatrix_c8_rank_1 
   end interface
 
   interface hipblasGetMatrix
@@ -109,7 +109,7 @@ module hipfort_hipblas_auxiliary
       integer(c_int),value :: ldb
     end function
 
-    module procedure hipblasGetMatrix_i4_full_rank,hipblasGetMatrix_i4_rank_0,hipblasGetMatrix_i4_rank_1,hipblasGetMatrix_i8_full_rank,hipblasGetMatrix_i8_rank_0,hipblasGetMatrix_i8_rank_1,hipblasGetMatrix_r4_full_rank,hipblasGetMatrix_r4_rank_0,hipblasGetMatrix_r4_rank_1,hipblasGetMatrix_r8_full_rank,hipblasGetMatrix_r8_rank_0,hipblasGetMatrix_r8_rank_1,hipblasGetMatrix_c4_full_rank,hipblasGetMatrix_c4_rank_0,hipblasGetMatrix_c4_rank_1,hipblasGetMatrix_c8_full_rank,hipblasGetMatrix_c8_rank_0,hipblasGetMatrix_c8_rank_1 
+    module procedure hipblasGetMatrix_l_full_rank,hipblasGetMatrix_l_rank_0,hipblasGetMatrix_l_rank_1,hipblasGetMatrix_i4_full_rank,hipblasGetMatrix_i4_rank_0,hipblasGetMatrix_i4_rank_1,hipblasGetMatrix_i8_full_rank,hipblasGetMatrix_i8_rank_0,hipblasGetMatrix_i8_rank_1,hipblasGetMatrix_r4_full_rank,hipblasGetMatrix_r4_rank_0,hipblasGetMatrix_r4_rank_1,hipblasGetMatrix_r8_full_rank,hipblasGetMatrix_r8_rank_0,hipblasGetMatrix_r8_rank_1,hipblasGetMatrix_c4_full_rank,hipblasGetMatrix_c4_rank_0,hipblasGetMatrix_c4_rank_1,hipblasGetMatrix_c8_full_rank,hipblasGetMatrix_c8_rank_0,hipblasGetMatrix_c8_rank_1 
   end interface
 
   interface hipblasSetVectorAsync
@@ -131,7 +131,7 @@ module hipfort_hipblas_auxiliary
       type(c_ptr),value :: stream
     end function
 
-    module procedure hipblasSetVectorAsync_i4_rank_0,hipblasSetVectorAsync_i4_full_rank,hipblasSetVectorAsync_i8_rank_0,hipblasSetVectorAsync_i8_full_rank,hipblasSetVectorAsync_r4_rank_0,hipblasSetVectorAsync_r4_full_rank,hipblasSetVectorAsync_r8_rank_0,hipblasSetVectorAsync_r8_full_rank,hipblasSetVectorAsync_c4_rank_0,hipblasSetVectorAsync_c4_full_rank,hipblasSetVectorAsync_c8_rank_0,hipblasSetVectorAsync_c8_full_rank 
+    module procedure hipblasSetVectorAsync_l_rank_0,hipblasSetVectorAsync_l_full_rank,hipblasSetVectorAsync_i4_rank_0,hipblasSetVectorAsync_i4_full_rank,hipblasSetVectorAsync_i8_rank_0,hipblasSetVectorAsync_i8_full_rank,hipblasSetVectorAsync_r4_rank_0,hipblasSetVectorAsync_r4_full_rank,hipblasSetVectorAsync_r8_rank_0,hipblasSetVectorAsync_r8_full_rank,hipblasSetVectorAsync_c4_rank_0,hipblasSetVectorAsync_c4_full_rank,hipblasSetVectorAsync_c8_rank_0,hipblasSetVectorAsync_c8_full_rank 
   end interface
 
   interface hipblasGetVectorAsync
@@ -153,7 +153,7 @@ module hipfort_hipblas_auxiliary
       type(c_ptr),value :: stream
     end function
 
-    module procedure hipblasGetVectorAsync_i4_rank_0,hipblasGetVectorAsync_i4_full_rank,hipblasGetVectorAsync_i8_rank_0,hipblasGetVectorAsync_i8_full_rank,hipblasGetVectorAsync_r4_rank_0,hipblasGetVectorAsync_r4_full_rank,hipblasGetVectorAsync_r8_rank_0,hipblasGetVectorAsync_r8_full_rank,hipblasGetVectorAsync_c4_rank_0,hipblasGetVectorAsync_c4_full_rank,hipblasGetVectorAsync_c8_rank_0,hipblasGetVectorAsync_c8_full_rank 
+    module procedure hipblasGetVectorAsync_l_rank_0,hipblasGetVectorAsync_l_full_rank,hipblasGetVectorAsync_i4_rank_0,hipblasGetVectorAsync_i4_full_rank,hipblasGetVectorAsync_i8_rank_0,hipblasGetVectorAsync_i8_full_rank,hipblasGetVectorAsync_r4_rank_0,hipblasGetVectorAsync_r4_full_rank,hipblasGetVectorAsync_r8_rank_0,hipblasGetVectorAsync_r8_full_rank,hipblasGetVectorAsync_c4_rank_0,hipblasGetVectorAsync_c4_full_rank,hipblasGetVectorAsync_c8_rank_0,hipblasGetVectorAsync_c8_full_rank 
   end interface
 
   interface hipblasSetMatrixAsync
@@ -176,7 +176,7 @@ module hipfort_hipblas_auxiliary
       type(c_ptr),value :: stream
     end function
 
-    module procedure hipblasSetMatrixAsync_i4_full_rank,hipblasSetMatrixAsync_i4_rank_0,hipblasSetMatrixAsync_i4_rank_1,hipblasSetMatrixAsync_i8_full_rank,hipblasSetMatrixAsync_i8_rank_0,hipblasSetMatrixAsync_i8_rank_1,hipblasSetMatrixAsync_r4_full_rank,hipblasSetMatrixAsync_r4_rank_0,hipblasSetMatrixAsync_r4_rank_1,hipblasSetMatrixAsync_r8_full_rank,hipblasSetMatrixAsync_r8_rank_0,hipblasSetMatrixAsync_r8_rank_1,hipblasSetMatrixAsync_c4_full_rank,hipblasSetMatrixAsync_c4_rank_0,hipblasSetMatrixAsync_c4_rank_1,hipblasSetMatrixAsync_c8_full_rank,hipblasSetMatrixAsync_c8_rank_0,hipblasSetMatrixAsync_c8_rank_1 
+    module procedure hipblasSetMatrixAsync_l_full_rank,hipblasSetMatrixAsync_l_rank_0,hipblasSetMatrixAsync_l_rank_1,hipblasSetMatrixAsync_i4_full_rank,hipblasSetMatrixAsync_i4_rank_0,hipblasSetMatrixAsync_i4_rank_1,hipblasSetMatrixAsync_i8_full_rank,hipblasSetMatrixAsync_i8_rank_0,hipblasSetMatrixAsync_i8_rank_1,hipblasSetMatrixAsync_r4_full_rank,hipblasSetMatrixAsync_r4_rank_0,hipblasSetMatrixAsync_r4_rank_1,hipblasSetMatrixAsync_r8_full_rank,hipblasSetMatrixAsync_r8_rank_0,hipblasSetMatrixAsync_r8_rank_1,hipblasSetMatrixAsync_c4_full_rank,hipblasSetMatrixAsync_c4_rank_0,hipblasSetMatrixAsync_c4_rank_1,hipblasSetMatrixAsync_c8_full_rank,hipblasSetMatrixAsync_c8_rank_0,hipblasSetMatrixAsync_c8_rank_1 
   end interface
 
   interface hipblasGetMatrixAsync
@@ -199,11 +199,304 @@ module hipfort_hipblas_auxiliary
       type(c_ptr),value :: stream
     end function
 
-    module procedure hipblasGetMatrixAsync_i4_full_rank,hipblasGetMatrixAsync_i4_rank_0,hipblasGetMatrixAsync_i4_rank_1,hipblasGetMatrixAsync_i8_full_rank,hipblasGetMatrixAsync_i8_rank_0,hipblasGetMatrixAsync_i8_rank_1,hipblasGetMatrixAsync_r4_full_rank,hipblasGetMatrixAsync_r4_rank_0,hipblasGetMatrixAsync_r4_rank_1,hipblasGetMatrixAsync_r8_full_rank,hipblasGetMatrixAsync_r8_rank_0,hipblasGetMatrixAsync_r8_rank_1,hipblasGetMatrixAsync_c4_full_rank,hipblasGetMatrixAsync_c4_rank_0,hipblasGetMatrixAsync_c4_rank_1,hipblasGetMatrixAsync_c8_full_rank,hipblasGetMatrixAsync_c8_rank_0,hipblasGetMatrixAsync_c8_rank_1 
+    module procedure hipblasGetMatrixAsync_l_full_rank,hipblasGetMatrixAsync_l_rank_0,hipblasGetMatrixAsync_l_rank_1,hipblasGetMatrixAsync_i4_full_rank,hipblasGetMatrixAsync_i4_rank_0,hipblasGetMatrixAsync_i4_rank_1,hipblasGetMatrixAsync_i8_full_rank,hipblasGetMatrixAsync_i8_rank_0,hipblasGetMatrixAsync_i8_rank_1,hipblasGetMatrixAsync_r4_full_rank,hipblasGetMatrixAsync_r4_rank_0,hipblasGetMatrixAsync_r4_rank_1,hipblasGetMatrixAsync_r8_full_rank,hipblasGetMatrixAsync_r8_rank_0,hipblasGetMatrixAsync_r8_rank_1,hipblasGetMatrixAsync_c4_full_rank,hipblasGetMatrixAsync_c4_rank_0,hipblasGetMatrixAsync_c4_rank_1,hipblasGetMatrixAsync_c8_full_rank,hipblasGetMatrixAsync_c8_rank_0,hipblasGetMatrixAsync_c8_rank_1 
   end interface
 
 contains
 
+    function hipblasSetVector_l_rank_0(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      logical,target :: x
+      integer(c_int),value :: incx
+      logical,target :: y
+      integer(c_int),value :: incy
+      !
+      ret = hipblasSetVector_orig(n,1,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function hipblasSetVector_l_full_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      logical,target,dimension(:) :: x
+      integer(c_int),value :: incx
+      logical,target,dimension(:) :: y
+      integer(c_int),value :: incy
+      !
+      ret = hipblasSetVector_orig(n,1,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function hipblasGetVector_l_rank_0(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      logical,target :: x
+      integer(c_int),value :: incx
+      logical,target :: y
+      integer(c_int),value :: incy
+      !
+      ret = hipblasGetVector_orig(n,1,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function hipblasGetVector_l_full_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      logical,target,dimension(:) :: x
+      integer(c_int),value :: incx
+      logical,target,dimension(:) :: y
+      integer(c_int),value :: incy
+      !
+      ret = hipblasGetVector_orig(n,1,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function hipblasSetMatrix_l_full_rank(rows,cols,A,B) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      logical,target,dimension(:,:) :: A
+      logical,target,dimension(:,:) :: B
+      !
+      ret = hipblasSetMatrix_orig(rows,cols,1,c_loc(A),size(A,1),c_loc(B),size(B,1))
+    end function
+
+    function hipblasSetMatrix_l_rank_0(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      logical,target :: A
+      integer(c_int),value :: lda
+      logical,target :: B
+      integer(c_int),value :: ldb
+      !
+      ret = hipblasSetMatrix_orig(rows,cols,1,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function hipblasSetMatrix_l_rank_1(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      logical,target,dimension(:) :: A
+      integer(c_int),value :: lda
+      logical,target,dimension(:) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = hipblasSetMatrix_orig(rows,cols,1,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function hipblasGetMatrix_l_full_rank(rows,cols,A,B) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      logical,target,dimension(:,:) :: A
+      logical,target,dimension(:,:) :: B
+      !
+      ret = hipblasGetMatrix_orig(rows,cols,1,c_loc(A),size(A,1),c_loc(B),size(B,1))
+    end function
+
+    function hipblasGetMatrix_l_rank_0(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      logical,target :: A
+      integer(c_int),value :: lda
+      logical,target :: B
+      integer(c_int),value :: ldb
+      !
+      ret = hipblasGetMatrix_orig(rows,cols,1,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function hipblasGetMatrix_l_rank_1(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      logical,target,dimension(:) :: A
+      integer(c_int),value :: lda
+      logical,target,dimension(:) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = hipblasGetMatrix_orig(rows,cols,1,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function hipblasSetVectorAsync_l_rank_0(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      logical,target :: x
+      integer(c_int),value :: incx
+      logical,target :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasSetVectorAsync_orig(n,1,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function hipblasSetVectorAsync_l_full_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      logical,target,dimension(:) :: x
+      integer(c_int),value :: incx
+      logical,target,dimension(:) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasSetVectorAsync_orig(n,1,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function hipblasGetVectorAsync_l_rank_0(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      logical,target :: x
+      integer(c_int),value :: incx
+      logical,target :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasGetVectorAsync_orig(n,1,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function hipblasGetVectorAsync_l_full_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: n
+      logical,target,dimension(:) :: x
+      integer(c_int),value :: incx
+      logical,target,dimension(:) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasGetVectorAsync_orig(n,1,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function hipblasSetMatrixAsync_l_full_rank(rows,cols,A,B,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      logical,target,dimension(:,:) :: A
+      logical,target,dimension(:,:) :: B
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasSetMatrixAsync_orig(rows,cols,1,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
+    end function
+
+    function hipblasSetMatrixAsync_l_rank_0(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      logical,target :: A
+      integer(c_int),value :: lda
+      logical,target :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasSetMatrixAsync_orig(rows,cols,1,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function hipblasSetMatrixAsync_l_rank_1(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      logical,target,dimension(:) :: A
+      integer(c_int),value :: lda
+      logical,target,dimension(:) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasSetMatrixAsync_orig(rows,cols,1,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function hipblasGetMatrixAsync_l_full_rank(rows,cols,A,B,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      logical,target,dimension(:,:) :: A
+      logical,target,dimension(:,:) :: B
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasGetMatrixAsync_orig(rows,cols,1,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
+    end function
+
+    function hipblasGetMatrixAsync_l_rank_0(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      logical,target :: A
+      integer(c_int),value :: lda
+      logical,target :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasGetMatrixAsync_orig(rows,cols,1,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function hipblasGetMatrixAsync_l_rank_1(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      logical,target,dimension(:) :: A
+      integer(c_int),value :: lda
+      logical,target,dimension(:) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = hipblasGetMatrixAsync_orig(rows,cols,1,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
     function hipblasSetVector_i4_rank_0(n,x,incx,y,incy) result(ret)
       use iso_c_binding
       use hipfort_hipblas_enums

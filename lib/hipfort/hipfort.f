@@ -1283,7 +1283,7 @@ module hipfort
   !>   #hipEventDisableTiming : Disable recording of timing information.  On ROCM platform, timing
   !>  information is always recorded and this flag has no performance benefit.
   !> 
-  !>   @warning On HCC platform, hipEventInterprocess support is under development.  Use of this flag
+  !>   @warning On AMD platform, hipEventInterprocess support is under development.  Use of this flag
   !>  will return an error.
   !>  
   !>   @returns #hipSuccess, #hipErrorNotInitialized, #hipErrorInvalidValue,
@@ -1447,7 +1447,7 @@ module hipfort
   !>  
   !>    If hipEventRecord() has not been called on @p event, this function returns immediately.
   !>  
-  !>    TODO-hcc - This function needs to support hipEventBlockingSync parameter.
+  !>    TODO-hip- This function needs to support hipEventBlockingSync parameter.
   !>  
   !>    @param[in] event Event on which to wait.
   !>    @returns #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized,

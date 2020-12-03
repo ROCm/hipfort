@@ -132,6 +132,40 @@ module hipfort_hipblas
 
   end interface
   
+  interface hipblasSetAtomicsMode
+#ifdef USE_CUDA_NAMES
+    function hipblasSetAtomicsMode_orig(handle,atomics_mode) bind(c, name="cublasSetAtomicsMode")
+#else
+    function hipblasSetAtomicsMode_orig(handle,atomics_mode) bind(c, name="hipblasSetAtomicsMode")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSetAtomicsMode_orig
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_ATOMICS_NOT_ALLOWED)),value :: atomics_mode
+    end function
+
+
+  end interface
+  
+  interface hipblasGetAtomicsMode
+#ifdef USE_CUDA_NAMES
+    function hipblasGetAtomicsMode_orig(handle,atomics_mode) bind(c, name="cublasGetAtomicsMode")
+#else
+    function hipblasGetAtomicsMode_orig(handle,atomics_mode) bind(c, name="hipblasGetAtomicsMode")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGetAtomicsMode_orig
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: atomics_mode
+    end function
+
+
+  end interface
+  
   interface hipblasIsamax
 #ifdef USE_CUDA_NAMES
     function hipblasIsamax_orig(handle,n,x,incx,myResult) bind(c, name="cublasIsamax")

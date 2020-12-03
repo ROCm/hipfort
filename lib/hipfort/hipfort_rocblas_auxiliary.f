@@ -40,7 +40,7 @@ module hipfort_rocblas_auxiliary
       integer(c_int),value :: incy
     end function
 
-    module procedure rocblas_set_vector_i4_rank_0,rocblas_set_vector_i4_full_rank,rocblas_set_vector_i8_rank_0,rocblas_set_vector_i8_full_rank,rocblas_set_vector_r4_rank_0,rocblas_set_vector_r4_full_rank,rocblas_set_vector_r8_rank_0,rocblas_set_vector_r8_full_rank,rocblas_set_vector_c4_rank_0,rocblas_set_vector_c4_full_rank,rocblas_set_vector_c8_rank_0,rocblas_set_vector_c8_full_rank 
+    module procedure rocblas_set_vector_l_rank_0,rocblas_set_vector_l_full_rank,rocblas_set_vector_i4_rank_0,rocblas_set_vector_i4_full_rank,rocblas_set_vector_i8_rank_0,rocblas_set_vector_i8_full_rank,rocblas_set_vector_r4_rank_0,rocblas_set_vector_r4_full_rank,rocblas_set_vector_r8_rank_0,rocblas_set_vector_r8_full_rank,rocblas_set_vector_c4_rank_0,rocblas_set_vector_c4_full_rank,rocblas_set_vector_c8_rank_0,rocblas_set_vector_c8_full_rank 
   end interface
 
   interface rocblas_get_vector
@@ -57,7 +57,7 @@ module hipfort_rocblas_auxiliary
       integer(c_int),value :: incy
     end function
 
-    module procedure rocblas_get_vector_i4_rank_0,rocblas_get_vector_i4_full_rank,rocblas_get_vector_i8_rank_0,rocblas_get_vector_i8_full_rank,rocblas_get_vector_r4_rank_0,rocblas_get_vector_r4_full_rank,rocblas_get_vector_r8_rank_0,rocblas_get_vector_r8_full_rank,rocblas_get_vector_c4_rank_0,rocblas_get_vector_c4_full_rank,rocblas_get_vector_c8_rank_0,rocblas_get_vector_c8_full_rank 
+    module procedure rocblas_get_vector_l_rank_0,rocblas_get_vector_l_full_rank,rocblas_get_vector_i4_rank_0,rocblas_get_vector_i4_full_rank,rocblas_get_vector_i8_rank_0,rocblas_get_vector_i8_full_rank,rocblas_get_vector_r4_rank_0,rocblas_get_vector_r4_full_rank,rocblas_get_vector_r8_rank_0,rocblas_get_vector_r8_full_rank,rocblas_get_vector_c4_rank_0,rocblas_get_vector_c4_full_rank,rocblas_get_vector_c8_rank_0,rocblas_get_vector_c8_full_rank 
   end interface
 
   interface rocblas_set_matrix
@@ -75,7 +75,7 @@ module hipfort_rocblas_auxiliary
       integer(c_int),value :: ldb
     end function
 
-    module procedure rocblas_set_matrix_i4_full_rank,rocblas_set_matrix_i4_rank_0,rocblas_set_matrix_i4_rank_1,rocblas_set_matrix_i8_full_rank,rocblas_set_matrix_i8_rank_0,rocblas_set_matrix_i8_rank_1,rocblas_set_matrix_r4_full_rank,rocblas_set_matrix_r4_rank_0,rocblas_set_matrix_r4_rank_1,rocblas_set_matrix_r8_full_rank,rocblas_set_matrix_r8_rank_0,rocblas_set_matrix_r8_rank_1,rocblas_set_matrix_c4_full_rank,rocblas_set_matrix_c4_rank_0,rocblas_set_matrix_c4_rank_1,rocblas_set_matrix_c8_full_rank,rocblas_set_matrix_c8_rank_0,rocblas_set_matrix_c8_rank_1 
+    module procedure rocblas_set_matrix_l_full_rank,rocblas_set_matrix_l_rank_0,rocblas_set_matrix_l_rank_1,rocblas_set_matrix_i4_full_rank,rocblas_set_matrix_i4_rank_0,rocblas_set_matrix_i4_rank_1,rocblas_set_matrix_i8_full_rank,rocblas_set_matrix_i8_rank_0,rocblas_set_matrix_i8_rank_1,rocblas_set_matrix_r4_full_rank,rocblas_set_matrix_r4_rank_0,rocblas_set_matrix_r4_rank_1,rocblas_set_matrix_r8_full_rank,rocblas_set_matrix_r8_rank_0,rocblas_set_matrix_r8_rank_1,rocblas_set_matrix_c4_full_rank,rocblas_set_matrix_c4_rank_0,rocblas_set_matrix_c4_rank_1,rocblas_set_matrix_c8_full_rank,rocblas_set_matrix_c8_rank_0,rocblas_set_matrix_c8_rank_1 
   end interface
 
   interface rocblas_get_matrix
@@ -93,7 +93,7 @@ module hipfort_rocblas_auxiliary
       integer(c_int),value :: ldb
     end function
 
-    module procedure rocblas_get_matrix_i4_full_rank,rocblas_get_matrix_i4_rank_0,rocblas_get_matrix_i4_rank_1,rocblas_get_matrix_i8_full_rank,rocblas_get_matrix_i8_rank_0,rocblas_get_matrix_i8_rank_1,rocblas_get_matrix_r4_full_rank,rocblas_get_matrix_r4_rank_0,rocblas_get_matrix_r4_rank_1,rocblas_get_matrix_r8_full_rank,rocblas_get_matrix_r8_rank_0,rocblas_get_matrix_r8_rank_1,rocblas_get_matrix_c4_full_rank,rocblas_get_matrix_c4_rank_0,rocblas_get_matrix_c4_rank_1,rocblas_get_matrix_c8_full_rank,rocblas_get_matrix_c8_rank_0,rocblas_get_matrix_c8_rank_1 
+    module procedure rocblas_get_matrix_l_full_rank,rocblas_get_matrix_l_rank_0,rocblas_get_matrix_l_rank_1,rocblas_get_matrix_i4_full_rank,rocblas_get_matrix_i4_rank_0,rocblas_get_matrix_i4_rank_1,rocblas_get_matrix_i8_full_rank,rocblas_get_matrix_i8_rank_0,rocblas_get_matrix_i8_rank_1,rocblas_get_matrix_r4_full_rank,rocblas_get_matrix_r4_rank_0,rocblas_get_matrix_r4_rank_1,rocblas_get_matrix_r8_full_rank,rocblas_get_matrix_r8_rank_0,rocblas_get_matrix_r8_rank_1,rocblas_get_matrix_c4_full_rank,rocblas_get_matrix_c4_rank_0,rocblas_get_matrix_c4_rank_1,rocblas_get_matrix_c8_full_rank,rocblas_get_matrix_c8_rank_0,rocblas_get_matrix_c8_rank_1 
   end interface
 
   interface rocblas_set_vector_async
@@ -111,7 +111,7 @@ module hipfort_rocblas_auxiliary
       type(c_ptr),value :: stream
     end function
 
-    module procedure rocblas_set_vector_async_i4_rank_0,rocblas_set_vector_async_i4_full_rank,rocblas_set_vector_async_i8_rank_0,rocblas_set_vector_async_i8_full_rank,rocblas_set_vector_async_r4_rank_0,rocblas_set_vector_async_r4_full_rank,rocblas_set_vector_async_r8_rank_0,rocblas_set_vector_async_r8_full_rank,rocblas_set_vector_async_c4_rank_0,rocblas_set_vector_async_c4_full_rank,rocblas_set_vector_async_c8_rank_0,rocblas_set_vector_async_c8_full_rank 
+    module procedure rocblas_set_vector_async_l_rank_0,rocblas_set_vector_async_l_full_rank,rocblas_set_vector_async_i4_rank_0,rocblas_set_vector_async_i4_full_rank,rocblas_set_vector_async_i8_rank_0,rocblas_set_vector_async_i8_full_rank,rocblas_set_vector_async_r4_rank_0,rocblas_set_vector_async_r4_full_rank,rocblas_set_vector_async_r8_rank_0,rocblas_set_vector_async_r8_full_rank,rocblas_set_vector_async_c4_rank_0,rocblas_set_vector_async_c4_full_rank,rocblas_set_vector_async_c8_rank_0,rocblas_set_vector_async_c8_full_rank 
   end interface
 
   interface rocblas_get_vector_async
@@ -129,7 +129,7 @@ module hipfort_rocblas_auxiliary
       type(c_ptr),value :: stream
     end function
 
-    module procedure rocblas_get_vector_async_i4_rank_0,rocblas_get_vector_async_i4_full_rank,rocblas_get_vector_async_i8_rank_0,rocblas_get_vector_async_i8_full_rank,rocblas_get_vector_async_r4_rank_0,rocblas_get_vector_async_r4_full_rank,rocblas_get_vector_async_r8_rank_0,rocblas_get_vector_async_r8_full_rank,rocblas_get_vector_async_c4_rank_0,rocblas_get_vector_async_c4_full_rank,rocblas_get_vector_async_c8_rank_0,rocblas_get_vector_async_c8_full_rank 
+    module procedure rocblas_get_vector_async_l_rank_0,rocblas_get_vector_async_l_full_rank,rocblas_get_vector_async_i4_rank_0,rocblas_get_vector_async_i4_full_rank,rocblas_get_vector_async_i8_rank_0,rocblas_get_vector_async_i8_full_rank,rocblas_get_vector_async_r4_rank_0,rocblas_get_vector_async_r4_full_rank,rocblas_get_vector_async_r8_rank_0,rocblas_get_vector_async_r8_full_rank,rocblas_get_vector_async_c4_rank_0,rocblas_get_vector_async_c4_full_rank,rocblas_get_vector_async_c8_rank_0,rocblas_get_vector_async_c8_full_rank 
   end interface
 
   interface rocblas_set_matrix_async
@@ -148,7 +148,7 @@ module hipfort_rocblas_auxiliary
       type(c_ptr),value :: stream
     end function
 
-    module procedure rocblas_set_matrix_async_i4_full_rank,rocblas_set_matrix_async_i4_rank_0,rocblas_set_matrix_async_i4_rank_1,rocblas_set_matrix_async_i8_full_rank,rocblas_set_matrix_async_i8_rank_0,rocblas_set_matrix_async_i8_rank_1,rocblas_set_matrix_async_r4_full_rank,rocblas_set_matrix_async_r4_rank_0,rocblas_set_matrix_async_r4_rank_1,rocblas_set_matrix_async_r8_full_rank,rocblas_set_matrix_async_r8_rank_0,rocblas_set_matrix_async_r8_rank_1,rocblas_set_matrix_async_c4_full_rank,rocblas_set_matrix_async_c4_rank_0,rocblas_set_matrix_async_c4_rank_1,rocblas_set_matrix_async_c8_full_rank,rocblas_set_matrix_async_c8_rank_0,rocblas_set_matrix_async_c8_rank_1 
+    module procedure rocblas_set_matrix_async_l_full_rank,rocblas_set_matrix_async_l_rank_0,rocblas_set_matrix_async_l_rank_1,rocblas_set_matrix_async_i4_full_rank,rocblas_set_matrix_async_i4_rank_0,rocblas_set_matrix_async_i4_rank_1,rocblas_set_matrix_async_i8_full_rank,rocblas_set_matrix_async_i8_rank_0,rocblas_set_matrix_async_i8_rank_1,rocblas_set_matrix_async_r4_full_rank,rocblas_set_matrix_async_r4_rank_0,rocblas_set_matrix_async_r4_rank_1,rocblas_set_matrix_async_r8_full_rank,rocblas_set_matrix_async_r8_rank_0,rocblas_set_matrix_async_r8_rank_1,rocblas_set_matrix_async_c4_full_rank,rocblas_set_matrix_async_c4_rank_0,rocblas_set_matrix_async_c4_rank_1,rocblas_set_matrix_async_c8_full_rank,rocblas_set_matrix_async_c8_rank_0,rocblas_set_matrix_async_c8_rank_1 
   end interface
 
   interface rocblas_get_matrix_async
@@ -167,11 +167,304 @@ module hipfort_rocblas_auxiliary
       type(c_ptr),value :: stream
     end function
 
-    module procedure rocblas_get_matrix_async_i4_full_rank,rocblas_get_matrix_async_i4_rank_0,rocblas_get_matrix_async_i4_rank_1,rocblas_get_matrix_async_i8_full_rank,rocblas_get_matrix_async_i8_rank_0,rocblas_get_matrix_async_i8_rank_1,rocblas_get_matrix_async_r4_full_rank,rocblas_get_matrix_async_r4_rank_0,rocblas_get_matrix_async_r4_rank_1,rocblas_get_matrix_async_r8_full_rank,rocblas_get_matrix_async_r8_rank_0,rocblas_get_matrix_async_r8_rank_1,rocblas_get_matrix_async_c4_full_rank,rocblas_get_matrix_async_c4_rank_0,rocblas_get_matrix_async_c4_rank_1,rocblas_get_matrix_async_c8_full_rank,rocblas_get_matrix_async_c8_rank_0,rocblas_get_matrix_async_c8_rank_1 
+    module procedure rocblas_get_matrix_async_l_full_rank,rocblas_get_matrix_async_l_rank_0,rocblas_get_matrix_async_l_rank_1,rocblas_get_matrix_async_i4_full_rank,rocblas_get_matrix_async_i4_rank_0,rocblas_get_matrix_async_i4_rank_1,rocblas_get_matrix_async_i8_full_rank,rocblas_get_matrix_async_i8_rank_0,rocblas_get_matrix_async_i8_rank_1,rocblas_get_matrix_async_r4_full_rank,rocblas_get_matrix_async_r4_rank_0,rocblas_get_matrix_async_r4_rank_1,rocblas_get_matrix_async_r8_full_rank,rocblas_get_matrix_async_r8_rank_0,rocblas_get_matrix_async_r8_rank_1,rocblas_get_matrix_async_c4_full_rank,rocblas_get_matrix_async_c4_rank_0,rocblas_get_matrix_async_c4_rank_1,rocblas_get_matrix_async_c8_full_rank,rocblas_get_matrix_async_c8_rank_0,rocblas_get_matrix_async_c8_rank_1 
   end interface
 
 contains
 
+    function rocblas_set_vector_l_rank_0(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: n
+      logical,target :: x
+      integer(c_int),value :: incx
+      logical,target :: y
+      integer(c_int),value :: incy
+      !
+      ret = rocblas_set_vector_orig(n,1,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function rocblas_set_vector_l_full_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: n
+      logical,target,dimension(:) :: x
+      integer(c_int),value :: incx
+      logical,target,dimension(:) :: y
+      integer(c_int),value :: incy
+      !
+      ret = rocblas_set_vector_orig(n,1,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function rocblas_get_vector_l_rank_0(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: n
+      logical,target :: x
+      integer(c_int),value :: incx
+      logical,target :: y
+      integer(c_int),value :: incy
+      !
+      ret = rocblas_get_vector_orig(n,1,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function rocblas_get_vector_l_full_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: n
+      logical,target,dimension(:) :: x
+      integer(c_int),value :: incx
+      logical,target,dimension(:) :: y
+      integer(c_int),value :: incy
+      !
+      ret = rocblas_get_vector_orig(n,1,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function rocblas_set_matrix_l_full_rank(rows,cols,A,B) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      logical,target,dimension(:,:) :: A
+      logical,target,dimension(:,:) :: B
+      !
+      ret = rocblas_set_matrix_orig(rows,cols,1,c_loc(A),size(A,1),c_loc(B),size(B,1))
+    end function
+
+    function rocblas_set_matrix_l_rank_0(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      logical,target :: A
+      integer(c_int),value :: lda
+      logical,target :: B
+      integer(c_int),value :: ldb
+      !
+      ret = rocblas_set_matrix_orig(rows,cols,1,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function rocblas_set_matrix_l_rank_1(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      logical,target,dimension(:) :: A
+      integer(c_int),value :: lda
+      logical,target,dimension(:) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = rocblas_set_matrix_orig(rows,cols,1,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function rocblas_get_matrix_l_full_rank(rows,cols,A,B) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      logical,target,dimension(:,:) :: A
+      logical,target,dimension(:,:) :: B
+      !
+      ret = rocblas_get_matrix_orig(rows,cols,1,c_loc(A),size(A,1),c_loc(B),size(B,1))
+    end function
+
+    function rocblas_get_matrix_l_rank_0(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      logical,target :: A
+      integer(c_int),value :: lda
+      logical,target :: B
+      integer(c_int),value :: ldb
+      !
+      ret = rocblas_get_matrix_orig(rows,cols,1,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function rocblas_get_matrix_l_rank_1(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      logical,target,dimension(:) :: A
+      integer(c_int),value :: lda
+      logical,target,dimension(:) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = rocblas_get_matrix_orig(rows,cols,1,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function rocblas_set_vector_async_l_rank_0(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: n
+      logical,target :: x
+      integer(c_int),value :: incx
+      logical,target :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = rocblas_set_vector_async_orig(n,1,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function rocblas_set_vector_async_l_full_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: n
+      logical,target,dimension(:) :: x
+      integer(c_int),value :: incx
+      logical,target,dimension(:) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = rocblas_set_vector_async_orig(n,1,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function rocblas_get_vector_async_l_rank_0(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: n
+      logical,target :: x
+      integer(c_int),value :: incx
+      logical,target :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = rocblas_get_vector_async_orig(n,1,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function rocblas_get_vector_async_l_full_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: n
+      logical,target,dimension(:) :: x
+      integer(c_int),value :: incx
+      logical,target,dimension(:) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = rocblas_get_vector_async_orig(n,1,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function rocblas_set_matrix_async_l_full_rank(rows,cols,A,B,stream) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      logical,target,dimension(:,:) :: A
+      logical,target,dimension(:,:) :: B
+      type(c_ptr),value :: stream
+      !
+      ret = rocblas_set_matrix_async_orig(rows,cols,1,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
+    end function
+
+    function rocblas_set_matrix_async_l_rank_0(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      logical,target :: A
+      integer(c_int),value :: lda
+      logical,target :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = rocblas_set_matrix_async_orig(rows,cols,1,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function rocblas_set_matrix_async_l_rank_1(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      logical,target,dimension(:) :: A
+      integer(c_int),value :: lda
+      logical,target,dimension(:) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = rocblas_set_matrix_async_orig(rows,cols,1,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function rocblas_get_matrix_async_l_full_rank(rows,cols,A,B,stream) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      logical,target,dimension(:,:) :: A
+      logical,target,dimension(:,:) :: B
+      type(c_ptr),value :: stream
+      !
+      ret = rocblas_get_matrix_async_orig(rows,cols,1,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
+    end function
+
+    function rocblas_get_matrix_async_l_rank_0(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      logical,target :: A
+      integer(c_int),value :: lda
+      logical,target :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = rocblas_get_matrix_async_orig(rows,cols,1,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function rocblas_get_matrix_async_l_rank_1(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      logical,target,dimension(:) :: A
+      integer(c_int),value :: lda
+      logical,target,dimension(:) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = rocblas_get_matrix_async_orig(rows,cols,1,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
     function rocblas_set_vector_i4_rank_0(n,x,incx,y,incy) result(ret)
       use iso_c_binding
       use hipfort_rocblas_enums

@@ -158,6 +158,11 @@ module hipfort_enums
     enumerator :: hipDeviceAttributeCooperativeMultiDeviceUnmatchedBlockDim
     enumerator :: hipDeviceAttributeCooperativeMultiDeviceUnmatchedSharedMem
     enumerator :: hipDeviceAttributeAsicRevision
+    enumerator :: hipDeviceAttributeManagedMemory
+    enumerator :: hipDeviceAttributeDirectManagedMemAccessFromHost
+    enumerator :: hipDeviceAttributeConcurrentManagedAccess
+    enumerator :: hipDeviceAttributePageableMemoryAccess
+    enumerator :: hipDeviceAttributePageableMemoryAccessUsesHostPageTables
   end enum
 
   enum, bind(c)
