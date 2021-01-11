@@ -2,7 +2,7 @@
 ! ==============================================================================
 ! hipfort: FORTRAN Interfaces for GPU kernels
 ! ==============================================================================
-! Copyright (c) 2020 Advanced Micro Devices, Inc. All rights reserved.
+! Copyright (c) 2021 Advanced Micro Devices, Inc. All rights reserved.
 ! [MITx11 License]
 ! 
 ! Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -75,7 +75,10 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cscal_rank_0,rocblas_cscal_rank_1
+#endif
+
   end interface
   
   interface rocblas_zscal
@@ -91,7 +94,10 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zscal_rank_0,rocblas_zscal_rank_1
+#endif
+
   end interface
   
   interface rocblas_csscal
@@ -107,7 +113,10 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_csscal_rank_0,rocblas_csscal_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 1 API
   !> 
@@ -145,7 +154,10 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zdscal_rank_0,rocblas_zdscal_rank_1
+#endif
+
   end interface
   
   interface rocblas_sscal_batched
@@ -162,7 +174,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_sscal_batched_full_rank,rocblas_sscal_batched_rank_0,rocblas_sscal_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dscal_batched
@@ -179,7 +194,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dscal_batched_full_rank,rocblas_dscal_batched_rank_0,rocblas_dscal_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_cscal_batched
@@ -196,7 +214,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cscal_batched_full_rank,rocblas_cscal_batched_rank_0,rocblas_cscal_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_zscal_batched
@@ -213,7 +234,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zscal_batched_full_rank,rocblas_zscal_batched_rank_0,rocblas_zscal_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_csscal_batched
@@ -230,7 +254,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_csscal_batched_full_rank,rocblas_csscal_batched_rank_0,rocblas_csscal_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 1 API
   !>      \details
@@ -270,7 +297,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zdscal_batched_full_rank,rocblas_zdscal_batched_rank_0,rocblas_zdscal_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_sscal_strided_batched
@@ -288,7 +318,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_sscal_strided_batched_rank_0,rocblas_sscal_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dscal_strided_batched
@@ -306,7 +339,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dscal_strided_batched_rank_0,rocblas_dscal_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_cscal_strided_batched
@@ -324,7 +360,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cscal_strided_batched_rank_0,rocblas_cscal_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_zscal_strided_batched
@@ -342,7 +381,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zscal_strided_batched_rank_0,rocblas_zscal_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_csscal_strided_batched
@@ -360,7 +402,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_csscal_strided_batched_rank_0,rocblas_csscal_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 1 API
   !>      \details
@@ -407,7 +452,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zdscal_strided_batched_rank_0,rocblas_zdscal_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_scopy
@@ -424,7 +472,10 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_scopy_rank_0,rocblas_scopy_rank_1
+#endif
+
   end interface
   
   interface rocblas_dcopy
@@ -441,7 +492,10 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dcopy_rank_0,rocblas_dcopy_rank_1
+#endif
+
   end interface
   
   interface rocblas_ccopy
@@ -458,7 +512,10 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ccopy_rank_0,rocblas_ccopy_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 1 API
   !> 
@@ -499,7 +556,10 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zcopy_rank_0,rocblas_zcopy_rank_1
+#endif
+
   end interface
   
   interface rocblas_scopy_batched
@@ -517,7 +577,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_scopy_batched_full_rank,rocblas_scopy_batched_rank_0,rocblas_scopy_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dcopy_batched
@@ -535,7 +598,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dcopy_batched_full_rank,rocblas_dcopy_batched_rank_0,rocblas_dcopy_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_ccopy_batched
@@ -553,7 +619,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ccopy_batched_full_rank,rocblas_ccopy_batched_rank_0,rocblas_ccopy_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 1 API
   !> 
@@ -601,7 +670,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zcopy_batched_full_rank,rocblas_zcopy_batched_rank_0,rocblas_zcopy_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_scopy_strided_batched
@@ -621,7 +693,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_scopy_strided_batched_rank_0,rocblas_scopy_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dcopy_strided_batched
@@ -641,7 +716,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dcopy_strided_batched_rank_0,rocblas_dcopy_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_ccopy_strided_batched
@@ -661,7 +739,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ccopy_strided_batched_rank_0,rocblas_ccopy_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 1 API
   !> 
@@ -726,7 +807,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zcopy_strided_batched_rank_0,rocblas_zcopy_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_sdot
@@ -744,7 +828,10 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_sdot_rank_0,rocblas_sdot_rank_1
+#endif
+
   end interface
   
   interface rocblas_ddot
@@ -762,7 +849,10 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ddot_rank_0,rocblas_ddot_rank_1
+#endif
+
   end interface
   
   interface rocblas_cdotu
@@ -780,7 +870,10 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cdotu_rank_0,rocblas_cdotu_rank_1
+#endif
+
   end interface
   
   interface rocblas_zdotu
@@ -798,7 +891,10 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zdotu_rank_0,rocblas_zdotu_rank_1
+#endif
+
   end interface
   
   interface rocblas_cdotc
@@ -816,7 +912,10 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cdotc_rank_0,rocblas_cdotc_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 1 API
   !> 
@@ -866,7 +965,10 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zdotc_rank_0,rocblas_zdotc_rank_1
+#endif
+
   end interface
   
   interface rocblas_sdot_batched
@@ -885,7 +987,10 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_sdot_batched_full_rank,rocblas_sdot_batched_rank_0,rocblas_sdot_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_ddot_batched
@@ -904,7 +1009,10 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ddot_batched_full_rank,rocblas_ddot_batched_rank_0,rocblas_ddot_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_cdotu_batched
@@ -923,7 +1031,10 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cdotu_batched_full_rank,rocblas_cdotu_batched_rank_0,rocblas_cdotu_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_zdotu_batched
@@ -942,7 +1053,10 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zdotu_batched_full_rank,rocblas_zdotu_batched_rank_0,rocblas_zdotu_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_cdotc_batched
@@ -961,7 +1075,10 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cdotc_batched_full_rank,rocblas_cdotc_batched_rank_0,rocblas_cdotc_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 1 API
   !> 
@@ -1018,7 +1135,10 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zdotc_batched_full_rank,rocblas_zdotc_batched_rank_0,rocblas_zdotc_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_sdot_strided_batched
@@ -1039,7 +1159,10 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_sdot_strided_batched_rank_0,rocblas_sdot_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_ddot_strided_batched
@@ -1060,7 +1183,10 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ddot_strided_batched_rank_0,rocblas_ddot_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_cdotu_strided_batched
@@ -1081,7 +1207,10 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cdotu_strided_batched_rank_0,rocblas_cdotu_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_zdotu_strided_batched
@@ -1102,7 +1231,10 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zdotu_strided_batched_rank_0,rocblas_zdotu_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_cdotc_strided_batched
@@ -1123,7 +1255,10 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cdotc_strided_batched_rank_0,rocblas_cdotc_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 1 API
   !> 
@@ -1188,7 +1323,10 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zdotc_strided_batched_rank_0,rocblas_zdotc_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_sswap
@@ -1231,7 +1369,10 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cswap_rank_0,rocblas_cswap_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 1 API
   !> 
@@ -1272,7 +1413,10 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zswap_rank_0,rocblas_zswap_rank_1
+#endif
+
   end interface
   
   interface rocblas_sswap_batched
@@ -1290,7 +1434,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_sswap_batched_full_rank,rocblas_sswap_batched_rank_0,rocblas_sswap_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dswap_batched
@@ -1308,7 +1455,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dswap_batched_full_rank,rocblas_dswap_batched_rank_0,rocblas_dswap_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_cswap_batched
@@ -1326,7 +1476,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cswap_batched_full_rank,rocblas_cswap_batched_rank_0,rocblas_cswap_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 1 API
   !> 
@@ -1371,7 +1524,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zswap_batched_full_rank,rocblas_zswap_batched_rank_0,rocblas_zswap_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_sswap_strided_batched
@@ -1391,7 +1547,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_sswap_strided_batched_rank_0,rocblas_sswap_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dswap_strided_batched
@@ -1411,7 +1570,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dswap_strided_batched_rank_0,rocblas_dswap_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_cswap_strided_batched
@@ -1431,7 +1593,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cswap_strided_batched_rank_0,rocblas_cswap_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 1 API
   !> 
@@ -1490,7 +1655,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zswap_strided_batched_rank_0,rocblas_zswap_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_saxpy
@@ -1508,7 +1676,10 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_saxpy_rank_0,rocblas_saxpy_rank_1
+#endif
+
   end interface
   
   interface rocblas_daxpy
@@ -1526,7 +1697,10 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_daxpy_rank_0,rocblas_daxpy_rank_1
+#endif
+
   end interface
   
   interface rocblas_caxpy
@@ -1544,7 +1718,10 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_caxpy_rank_0,rocblas_caxpy_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 1 API
   !> 
@@ -1588,7 +1765,10 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zaxpy_rank_0,rocblas_zaxpy_rank_1
+#endif
+
   end interface
   
   interface rocblas_saxpy_batched
@@ -1607,7 +1787,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_saxpy_batched_full_rank,rocblas_saxpy_batched_rank_0,rocblas_saxpy_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_daxpy_batched
@@ -1626,7 +1809,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_daxpy_batched_full_rank,rocblas_daxpy_batched_rank_0,rocblas_daxpy_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_caxpy_batched
@@ -1645,7 +1831,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_caxpy_batched_full_rank,rocblas_caxpy_batched_rank_0,rocblas_caxpy_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 1 API
   !> 
@@ -1691,7 +1880,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zaxpy_batched_full_rank,rocblas_zaxpy_batched_rank_0,rocblas_zaxpy_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_saxpy_strided_batched
@@ -1712,7 +1904,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_saxpy_strided_batched_rank_0,rocblas_saxpy_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_daxpy_strided_batched
@@ -1733,7 +1928,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_daxpy_strided_batched_rank_0,rocblas_daxpy_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_caxpy_strided_batched
@@ -1754,7 +1952,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_caxpy_strided_batched_rank_0,rocblas_caxpy_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 1 API
   !> 
@@ -1808,7 +2009,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zaxpy_strided_batched_rank_0,rocblas_zaxpy_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_sasum
@@ -1852,7 +2056,10 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_scasum_rank_0,rocblas_scasum_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 1 API
   !> 
@@ -1891,7 +2098,10 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dzasum_rank_0,rocblas_dzasum_rank_1
+#endif
+
   end interface
   
   interface rocblas_sasum_batched
@@ -1908,7 +2118,10 @@ module hipfort_rocblas
       type(c_ptr),value :: results
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_sasum_batched_full_rank,rocblas_sasum_batched_rank_0,rocblas_sasum_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dasum_batched
@@ -1925,7 +2138,10 @@ module hipfort_rocblas
       type(c_ptr),value :: results
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dasum_batched_full_rank,rocblas_dasum_batched_rank_0,rocblas_dasum_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_scasum_batched
@@ -1942,7 +2158,10 @@ module hipfort_rocblas
       type(c_ptr),value :: results
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_scasum_batched_full_rank,rocblas_scasum_batched_rank_0,rocblas_scasum_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 1 API
   !> 
@@ -1984,7 +2203,10 @@ module hipfort_rocblas
       type(c_ptr),value :: results
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dzasum_batched_full_rank,rocblas_dzasum_batched_rank_0,rocblas_dzasum_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_sasum_strided_batched
@@ -2002,7 +2224,10 @@ module hipfort_rocblas
       type(c_ptr),value :: results
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_sasum_strided_batched_rank_0,rocblas_sasum_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dasum_strided_batched
@@ -2020,7 +2245,10 @@ module hipfort_rocblas
       type(c_ptr),value :: results
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dasum_strided_batched_rank_0,rocblas_dasum_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_scasum_strided_batched
@@ -2038,7 +2266,10 @@ module hipfort_rocblas
       type(c_ptr),value :: results
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_scasum_strided_batched_rank_0,rocblas_scasum_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 1 API
   !> 
@@ -2087,7 +2318,10 @@ module hipfort_rocblas
       type(c_ptr),value :: results
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dzasum_strided_batched_rank_0,rocblas_dzasum_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_snrm2
@@ -2131,7 +2365,10 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_scnrm2_rank_0,rocblas_scnrm2_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 1 API
   !> 
@@ -2170,7 +2407,10 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dznrm2_rank_0,rocblas_dznrm2_rank_1
+#endif
+
   end interface
   
   interface rocblas_snrm2_batched
@@ -2187,7 +2427,10 @@ module hipfort_rocblas
       type(c_ptr),value :: results
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_snrm2_batched_full_rank,rocblas_snrm2_batched_rank_0,rocblas_snrm2_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dnrm2_batched
@@ -2204,7 +2447,10 @@ module hipfort_rocblas
       type(c_ptr),value :: results
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dnrm2_batched_full_rank,rocblas_dnrm2_batched_rank_0,rocblas_dnrm2_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_scnrm2_batched
@@ -2221,7 +2467,10 @@ module hipfort_rocblas
       type(c_ptr),value :: results
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_scnrm2_batched_full_rank,rocblas_scnrm2_batched_rank_0,rocblas_scnrm2_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 1 API
   !> 
@@ -2265,7 +2514,10 @@ module hipfort_rocblas
       type(c_ptr),value :: results
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dznrm2_batched_full_rank,rocblas_dznrm2_batched_rank_0,rocblas_dznrm2_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_snrm2_strided_batched
@@ -2283,7 +2535,10 @@ module hipfort_rocblas
       type(c_ptr),value :: results
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_snrm2_strided_batched_rank_0,rocblas_snrm2_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dnrm2_strided_batched
@@ -2301,7 +2556,10 @@ module hipfort_rocblas
       type(c_ptr),value :: results
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dnrm2_strided_batched_rank_0,rocblas_dnrm2_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_scnrm2_strided_batched
@@ -2319,7 +2577,10 @@ module hipfort_rocblas
       type(c_ptr),value :: results
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_scnrm2_strided_batched_rank_0,rocblas_scnrm2_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 1 API
   !> 
@@ -2370,7 +2631,10 @@ module hipfort_rocblas
       type(c_ptr),value :: results
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dznrm2_strided_batched_rank_0,rocblas_dznrm2_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_isamax
@@ -2412,7 +2676,10 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_icamax_rank_0,rocblas_icamax_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 1 API
   !> 
@@ -2449,7 +2716,10 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_izamax_rank_0,rocblas_izamax_rank_1
+#endif
+
   end interface
   
   interface rocblas_isamax_batched
@@ -2466,7 +2736,10 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_isamax_batched_full_rank,rocblas_isamax_batched_rank_0,rocblas_isamax_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_idamax_batched
@@ -2483,7 +2756,10 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_idamax_batched_full_rank,rocblas_idamax_batched_rank_0,rocblas_idamax_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_icamax_batched
@@ -2500,7 +2776,10 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_icamax_batched_full_rank,rocblas_icamax_batched_rank_0,rocblas_icamax_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 1 API
   !> 
@@ -2540,7 +2819,10 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_izamax_batched_full_rank,rocblas_izamax_batched_rank_0,rocblas_izamax_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_isamax_strided_batched
@@ -2558,7 +2840,10 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_isamax_strided_batched_rank_0,rocblas_isamax_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_idamax_strided_batched
@@ -2576,7 +2861,10 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_idamax_strided_batched_rank_0,rocblas_idamax_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_icamax_strided_batched
@@ -2594,7 +2882,10 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_icamax_strided_batched_rank_0,rocblas_icamax_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 1 API
   !> 
@@ -2639,7 +2930,10 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_izamax_strided_batched_rank_0,rocblas_izamax_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_isamin
@@ -2681,7 +2975,10 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_icamin_rank_0,rocblas_icamin_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 1 API
   !> 
@@ -2719,7 +3016,10 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_izamin_rank_0,rocblas_izamin_rank_1
+#endif
+
   end interface
   
   interface rocblas_isamin_batched
@@ -2736,7 +3036,10 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_isamin_batched_full_rank,rocblas_isamin_batched_rank_0,rocblas_isamin_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_idamin_batched
@@ -2753,7 +3056,10 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_idamin_batched_full_rank,rocblas_idamin_batched_rank_0,rocblas_idamin_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_icamin_batched
@@ -2770,7 +3076,10 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_icamin_batched_full_rank,rocblas_icamin_batched_rank_0,rocblas_icamin_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 1 API
   !> 
@@ -2810,7 +3119,10 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_izamin_batched_full_rank,rocblas_izamin_batched_rank_0,rocblas_izamin_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_isamin_strided_batched
@@ -2828,7 +3140,10 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_isamin_strided_batched_rank_0,rocblas_isamin_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_idamin_strided_batched
@@ -2846,7 +3161,10 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_idamin_strided_batched_rank_0,rocblas_idamin_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_icamin_strided_batched
@@ -2864,7 +3182,10 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_icamin_strided_batched_rank_0,rocblas_icamin_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 1 API
   !> 
@@ -2909,7 +3230,10 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_izamin_strided_batched_rank_0,rocblas_izamin_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_srot
@@ -2928,7 +3252,10 @@ module hipfort_rocblas
       type(c_ptr),value :: s
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_srot_rank_0,rocblas_srot_rank_1
+#endif
+
   end interface
   
   interface rocblas_drot
@@ -2947,7 +3274,10 @@ module hipfort_rocblas
       type(c_ptr),value :: s
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_drot_rank_0,rocblas_drot_rank_1
+#endif
+
   end interface
   
   interface rocblas_crot
@@ -2966,7 +3296,10 @@ module hipfort_rocblas
       type(c_ptr),value :: s
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_crot_rank_0,rocblas_crot_rank_1
+#endif
+
   end interface
   
   interface rocblas_csrot
@@ -2985,7 +3318,10 @@ module hipfort_rocblas
       type(c_ptr),value :: s
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_csrot_rank_0,rocblas_csrot_rank_1
+#endif
+
   end interface
   
   interface rocblas_zrot
@@ -3004,7 +3340,10 @@ module hipfort_rocblas
       type(c_ptr),value :: s
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zrot_rank_0,rocblas_zrot_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 1 API
   !> 
@@ -3050,7 +3389,10 @@ module hipfort_rocblas
       type(c_ptr),value :: s
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zdrot_rank_0,rocblas_zdrot_rank_1
+#endif
+
   end interface
   
   interface rocblas_srot_batched
@@ -3070,7 +3412,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_srot_batched_full_rank,rocblas_srot_batched_rank_0,rocblas_srot_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_drot_batched
@@ -3090,7 +3435,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_drot_batched_full_rank,rocblas_drot_batched_rank_0,rocblas_drot_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_crot_batched
@@ -3110,7 +3458,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_crot_batched_full_rank,rocblas_crot_batched_rank_0,rocblas_crot_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_csrot_batched
@@ -3130,7 +3481,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_csrot_batched_full_rank,rocblas_csrot_batched_rank_0,rocblas_csrot_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_zrot_batched
@@ -3150,7 +3504,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zrot_batched_full_rank,rocblas_zrot_batched_rank_0,rocblas_zrot_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 1 API
   !> 
@@ -3200,7 +3557,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zdrot_batched_full_rank,rocblas_zdrot_batched_rank_0,rocblas_zdrot_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_srot_strided_batched
@@ -3222,7 +3582,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_srot_strided_batched_rank_0,rocblas_srot_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_drot_strided_batched
@@ -3244,7 +3607,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_drot_strided_batched_rank_0,rocblas_drot_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_crot_strided_batched
@@ -3266,7 +3632,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_crot_strided_batched_rank_0,rocblas_crot_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_csrot_strided_batched
@@ -3288,7 +3657,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_csrot_strided_batched_rank_0,rocblas_csrot_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_zrot_strided_batched
@@ -3310,7 +3682,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zrot_strided_batched_rank_0,rocblas_zrot_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 1 API
   !> 
@@ -3368,7 +3743,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zdrot_strided_batched_rank_0,rocblas_zdrot_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_srotg
@@ -3680,7 +4058,10 @@ module hipfort_rocblas
       type(c_ptr),value :: param
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_srotm_rank_0,rocblas_srotm_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 1 API
   !> 
@@ -3733,7 +4114,10 @@ module hipfort_rocblas
       type(c_ptr),value :: param
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_drotm_rank_0,rocblas_drotm_rank_1
+#endif
+
   end interface
   
   interface rocblas_srotm_batched
@@ -3752,7 +4136,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_srotm_batched_full_rank,rocblas_srotm_batched_rank_0,rocblas_srotm_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 1 API
   !> 
@@ -3809,7 +4196,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_drotm_batched_full_rank,rocblas_drotm_batched_rank_0,rocblas_drotm_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_srotm_strided_batched
@@ -3831,7 +4221,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_srotm_strided_batched_rank_0,rocblas_srotm_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 1 API
   !> 
@@ -3900,7 +4293,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_drotm_strided_batched_rank_0,rocblas_drotm_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_srotmg
@@ -4165,7 +4561,10 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_sgbmv_full_rank,rocblas_sgbmv_rank_0,rocblas_sgbmv_rank_1
+#endif
+
   end interface
   
   interface rocblas_dgbmv
@@ -4190,7 +4589,10 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dgbmv_full_rank,rocblas_dgbmv_rank_0,rocblas_dgbmv_rank_1
+#endif
+
   end interface
   
   interface rocblas_cgbmv
@@ -4215,7 +4617,10 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cgbmv_full_rank,rocblas_cgbmv_rank_0,rocblas_cgbmv_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -4305,7 +4710,10 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zgbmv_full_rank,rocblas_zgbmv_rank_0,rocblas_zgbmv_rank_1
+#endif
+
   end interface
   
   interface rocblas_sgbmv_batched
@@ -4331,7 +4739,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_sgbmv_batched_full_rank,rocblas_sgbmv_batched_rank_0,rocblas_sgbmv_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dgbmv_batched
@@ -4357,7 +4768,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dgbmv_batched_full_rank,rocblas_dgbmv_batched_rank_0,rocblas_dgbmv_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_cgbmv_batched
@@ -4383,7 +4797,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cgbmv_batched_full_rank,rocblas_cgbmv_batched_rank_0,rocblas_cgbmv_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -4479,7 +4896,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zgbmv_batched_full_rank,rocblas_zgbmv_batched_rank_0,rocblas_zgbmv_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_sgbmv_strided_batched
@@ -4508,7 +4928,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_sgbmv_strided_batched_full_rank,rocblas_sgbmv_strided_batched_rank_0,rocblas_sgbmv_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dgbmv_strided_batched
@@ -4537,7 +4960,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dgbmv_strided_batched_full_rank,rocblas_dgbmv_strided_batched_rank_0,rocblas_dgbmv_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_cgbmv_strided_batched
@@ -4566,7 +4992,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cgbmv_strided_batched_full_rank,rocblas_cgbmv_strided_batched_rank_0,rocblas_cgbmv_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -4674,7 +5103,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zgbmv_strided_batched_full_rank,rocblas_zgbmv_strided_batched_rank_0,rocblas_zgbmv_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_sgemv
@@ -4697,7 +5129,10 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_sgemv_full_rank,rocblas_sgemv_rank_0,rocblas_sgemv_rank_1
+#endif
+
   end interface
   
   interface rocblas_dgemv
@@ -4720,7 +5155,10 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dgemv_full_rank,rocblas_dgemv_rank_0,rocblas_dgemv_rank_1
+#endif
+
   end interface
   
   interface rocblas_cgemv
@@ -4743,7 +5181,10 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cgemv_full_rank,rocblas_cgemv_rank_0,rocblas_cgemv_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -4810,7 +5251,10 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zgemv_full_rank,rocblas_zgemv_rank_0,rocblas_zgemv_rank_1
+#endif
+
   end interface
   
   interface rocblas_sgemv_batched
@@ -4834,7 +5278,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_sgemv_batched_full_rank,rocblas_sgemv_batched_rank_0,rocblas_sgemv_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dgemv_batched
@@ -4858,7 +5305,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dgemv_batched_full_rank,rocblas_dgemv_batched_rank_0,rocblas_dgemv_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_cgemv_batched
@@ -4882,7 +5332,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cgemv_batched_full_rank,rocblas_cgemv_batched_rank_0,rocblas_cgemv_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -4954,7 +5407,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zgemv_batched_full_rank,rocblas_zgemv_batched_rank_0,rocblas_zgemv_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_sgemv_strided_batched
@@ -4981,7 +5437,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_sgemv_strided_batched_full_rank,rocblas_sgemv_strided_batched_rank_0,rocblas_sgemv_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dgemv_strided_batched
@@ -5008,7 +5467,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dgemv_strided_batched_full_rank,rocblas_dgemv_strided_batched_rank_0,rocblas_dgemv_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_cgemv_strided_batched
@@ -5035,7 +5497,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cgemv_strided_batched_full_rank,rocblas_cgemv_strided_batched_rank_0,rocblas_cgemv_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -5125,7 +5590,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zgemv_strided_batched_full_rank,rocblas_zgemv_strided_batched_rank_0,rocblas_zgemv_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_chbmv
@@ -5148,7 +5616,10 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_chbmv_full_rank,rocblas_chbmv_rank_0,rocblas_chbmv_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -5242,7 +5713,10 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zhbmv_full_rank,rocblas_zhbmv_rank_0,rocblas_zhbmv_rank_1
+#endif
+
   end interface
   
   interface rocblas_chbmv_batched
@@ -5266,7 +5740,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_chbmv_batched_full_rank,rocblas_chbmv_batched_rank_0,rocblas_chbmv_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -5364,7 +5841,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zhbmv_batched_full_rank,rocblas_zhbmv_batched_rank_0,rocblas_zhbmv_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_chbmv_strided_batched
@@ -5391,7 +5871,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_chbmv_strided_batched_full_rank,rocblas_chbmv_strided_batched_rank_0,rocblas_chbmv_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -5501,7 +5984,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zhbmv_strided_batched_full_rank,rocblas_zhbmv_strided_batched_rank_0,rocblas_zhbmv_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_chemv
@@ -5523,7 +6009,10 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_chemv_full_rank,rocblas_chemv_rank_0,rocblas_chemv_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -5595,7 +6084,10 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zhemv_full_rank,rocblas_zhemv_rank_0,rocblas_zhemv_rank_1
+#endif
+
   end interface
   
   interface rocblas_chemv_batched
@@ -5618,7 +6110,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_chemv_batched_full_rank,rocblas_chemv_batched_rank_0,rocblas_chemv_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -5694,7 +6189,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zhemv_batched_full_rank,rocblas_zhemv_batched_rank_0,rocblas_zhemv_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_chemv_strided_batched
@@ -5720,7 +6218,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_chemv_strided_batched_full_rank,rocblas_chemv_strided_batched_rank_0,rocblas_chemv_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -5799,7 +6300,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zhemv_strided_batched_full_rank,rocblas_zhemv_strided_batched_rank_0,rocblas_zhemv_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_cher
@@ -5818,7 +6322,10 @@ module hipfort_rocblas
       integer(c_int),value :: lda
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cher_full_rank,rocblas_cher_rank_0,rocblas_cher_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -5880,7 +6387,10 @@ module hipfort_rocblas
       integer(c_int),value :: lda
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zher_full_rank,rocblas_zher_rank_0,rocblas_zher_rank_1
+#endif
+
   end interface
   
   interface rocblas_cher_batched
@@ -5900,7 +6410,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cher_batched_full_rank,rocblas_cher_batched_rank_0,rocblas_cher_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -5966,7 +6479,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zher_batched_full_rank,rocblas_zher_batched_rank_0,rocblas_zher_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_cher_strided_batched
@@ -5988,7 +6504,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cher_strided_batched_full_rank,rocblas_cher_strided_batched_rank_0,rocblas_cher_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -6062,7 +6581,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zher_strided_batched_full_rank,rocblas_zher_strided_batched_rank_0,rocblas_zher_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_cher2
@@ -6083,7 +6605,10 @@ module hipfort_rocblas
       integer(c_int),value :: lda
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cher2_full_rank,rocblas_cher2_rank_0,rocblas_cher2_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -6152,7 +6677,10 @@ module hipfort_rocblas
       integer(c_int),value :: lda
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zher2_full_rank,rocblas_zher2_rank_0,rocblas_zher2_rank_1
+#endif
+
   end interface
   
   interface rocblas_cher2_batched
@@ -6174,7 +6702,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cher2_batched_full_rank,rocblas_cher2_batched_rank_0,rocblas_cher2_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -6247,7 +6778,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zher2_batched_full_rank,rocblas_zher2_batched_rank_0,rocblas_zher2_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_cher2_strided_batched
@@ -6272,7 +6806,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cher2_strided_batched_full_rank,rocblas_cher2_strided_batched_rank_0,rocblas_cher2_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -6357,7 +6894,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zher2_strided_batched_full_rank,rocblas_zher2_strided_batched_rank_0,rocblas_zher2_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_chpmv
@@ -6378,7 +6918,10 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_chpmv_rank_0,rocblas_chpmv_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -6461,7 +7004,10 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zhpmv_rank_0,rocblas_zhpmv_rank_1
+#endif
+
   end interface
   
   interface rocblas_chpmv_batched
@@ -6483,7 +7029,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_chpmv_batched_full_rank,rocblas_chpmv_batched_rank_0,rocblas_chpmv_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -6571,7 +7120,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zhpmv_batched_full_rank,rocblas_zhpmv_batched_rank_0,rocblas_zhpmv_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_chpmv_strided_batched
@@ -6596,7 +7148,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_chpmv_strided_batched_rank_0,rocblas_chpmv_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -6696,7 +7251,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zhpmv_strided_batched_rank_0,rocblas_zhpmv_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_chpr
@@ -6714,7 +7272,10 @@ module hipfort_rocblas
       type(c_ptr),value :: AP
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_chpr_rank_0,rocblas_chpr_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -6788,7 +7349,10 @@ module hipfort_rocblas
       type(c_ptr),value :: AP
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zhpr_rank_0,rocblas_zhpr_rank_1
+#endif
+
   end interface
   
   interface rocblas_chpr_batched
@@ -6807,7 +7371,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_chpr_batched_full_rank,rocblas_chpr_batched_rank_0,rocblas_chpr_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -6885,7 +7452,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zhpr_batched_full_rank,rocblas_zhpr_batched_rank_0,rocblas_zhpr_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_chpr_strided_batched
@@ -6906,7 +7476,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_chpr_strided_batched_rank_0,rocblas_chpr_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -6992,7 +7565,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zhpr_strided_batched_rank_0,rocblas_zhpr_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_chpr2
@@ -7012,7 +7588,10 @@ module hipfort_rocblas
       type(c_ptr),value :: AP
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_chpr2_rank_0,rocblas_chpr2_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -7093,7 +7672,10 @@ module hipfort_rocblas
       type(c_ptr),value :: AP
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zhpr2_rank_0,rocblas_zhpr2_rank_1
+#endif
+
   end interface
   
   interface rocblas_chpr2_batched
@@ -7114,7 +7696,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_chpr2_batched_full_rank,rocblas_chpr2_batched_rank_0,rocblas_chpr2_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -7199,7 +7784,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zhpr2_batched_full_rank,rocblas_zhpr2_batched_rank_0,rocblas_zhpr2_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_chpr2_strided_batched
@@ -7223,7 +7811,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_chpr2_strided_batched_rank_0,rocblas_chpr2_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -7320,7 +7911,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zhpr2_strided_batched_rank_0,rocblas_zhpr2_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_strmv
@@ -7340,7 +7934,10 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_strmv_full_rank,rocblas_strmv_rank_0,rocblas_strmv_rank_1
+#endif
+
   end interface
   
   interface rocblas_dtrmv
@@ -7360,7 +7957,10 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dtrmv_full_rank,rocblas_dtrmv_rank_0,rocblas_dtrmv_rank_1
+#endif
+
   end interface
   
   interface rocblas_ctrmv
@@ -7380,7 +7980,10 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ctrmv_full_rank,rocblas_ctrmv_rank_0,rocblas_ctrmv_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -7448,7 +8051,10 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ztrmv_full_rank,rocblas_ztrmv_rank_0,rocblas_ztrmv_rank_1
+#endif
+
   end interface
   
   interface rocblas_strmv_strided_batched
@@ -7471,7 +8077,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_strmv_strided_batched_full_rank,rocblas_strmv_strided_batched_rank_0,rocblas_strmv_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dtrmv_strided_batched
@@ -7494,7 +8103,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dtrmv_strided_batched_full_rank,rocblas_dtrmv_strided_batched_rank_0,rocblas_dtrmv_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_ctrmv_strided_batched
@@ -7517,7 +8129,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ctrmv_strided_batched_full_rank,rocblas_ctrmv_strided_batched_rank_0,rocblas_ctrmv_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -7602,7 +8217,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ztrmv_strided_batched_full_rank,rocblas_ztrmv_strided_batched_rank_0,rocblas_ztrmv_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_stpmv
@@ -7621,7 +8239,10 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_stpmv_full_rank,rocblas_stpmv_rank_0,rocblas_stpmv_rank_1
+#endif
+
   end interface
   
   interface rocblas_dtpmv
@@ -7640,7 +8261,10 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dtpmv_full_rank,rocblas_dtpmv_rank_0,rocblas_dtpmv_rank_1
+#endif
+
   end interface
   
   interface rocblas_ctpmv
@@ -7659,7 +8283,10 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ctpmv_full_rank,rocblas_ctpmv_rank_0,rocblas_ctpmv_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -7731,7 +8358,10 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ztpmv_full_rank,rocblas_ztpmv_rank_0,rocblas_ztpmv_rank_1
+#endif
+
   end interface
   
   interface rocblas_stpmv_strided_batched
@@ -7753,7 +8383,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_stpmv_strided_batched_full_rank,rocblas_stpmv_strided_batched_rank_0,rocblas_stpmv_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dtpmv_strided_batched
@@ -7775,7 +8408,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dtpmv_strided_batched_full_rank,rocblas_dtpmv_strided_batched_rank_0,rocblas_dtpmv_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_ctpmv_strided_batched
@@ -7797,7 +8433,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ctpmv_strided_batched_full_rank,rocblas_ctpmv_strided_batched_rank_0,rocblas_ctpmv_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -7876,7 +8515,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ztpmv_strided_batched_full_rank,rocblas_ztpmv_strided_batched_rank_0,rocblas_ztpmv_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_stbmv
@@ -7897,7 +8539,10 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_stbmv_full_rank,rocblas_stbmv_rank_0,rocblas_stbmv_rank_1
+#endif
+
   end interface
   
   interface rocblas_dtbmv
@@ -7918,7 +8563,10 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dtbmv_full_rank,rocblas_dtbmv_rank_0,rocblas_dtbmv_rank_1
+#endif
+
   end interface
   
   interface rocblas_ctbmv
@@ -7939,7 +8587,10 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ctbmv_full_rank,rocblas_ctbmv_rank_0,rocblas_ctbmv_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -8032,7 +8683,10 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ztbmv_full_rank,rocblas_ztbmv_rank_0,rocblas_ztbmv_rank_1
+#endif
+
   end interface
   
   interface rocblas_stbmv_batched
@@ -8054,7 +8708,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_stbmv_batched_full_rank,rocblas_stbmv_batched_rank_0,rocblas_stbmv_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dtbmv_batched
@@ -8076,7 +8733,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dtbmv_batched_full_rank,rocblas_dtbmv_batched_rank_0,rocblas_dtbmv_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_ctbmv_batched
@@ -8098,7 +8758,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ctbmv_batched_full_rank,rocblas_ctbmv_batched_rank_0,rocblas_ctbmv_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -8196,7 +8859,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ztbmv_batched_full_rank,rocblas_ztbmv_batched_rank_0,rocblas_ztbmv_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_stbmv_strided_batched
@@ -8220,7 +8886,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_stbmv_strided_batched_full_rank,rocblas_stbmv_strided_batched_rank_0,rocblas_stbmv_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dtbmv_strided_batched
@@ -8244,7 +8913,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dtbmv_strided_batched_full_rank,rocblas_dtbmv_strided_batched_rank_0,rocblas_dtbmv_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_ctbmv_strided_batched
@@ -8268,7 +8940,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ctbmv_strided_batched_full_rank,rocblas_ctbmv_strided_batched_rank_0,rocblas_ctbmv_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -8374,7 +9049,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ztbmv_strided_batched_full_rank,rocblas_ztbmv_strided_batched_rank_0,rocblas_ztbmv_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_stbsv
@@ -8395,7 +9073,10 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_stbsv_full_rank,rocblas_stbsv_rank_0,rocblas_stbsv_rank_1
+#endif
+
   end interface
   
   interface rocblas_dtbsv
@@ -8416,7 +9097,10 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dtbsv_full_rank,rocblas_dtbsv_rank_0,rocblas_dtbsv_rank_1
+#endif
+
   end interface
   
   interface rocblas_ctbsv
@@ -8437,7 +9121,10 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ctbsv_full_rank,rocblas_ctbsv_rank_0,rocblas_ctbsv_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -8514,7 +9201,10 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ztbsv_full_rank,rocblas_ztbsv_rank_0,rocblas_ztbsv_rank_1
+#endif
+
   end interface
   
   interface rocblas_stbsv_batched
@@ -8536,7 +9226,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_stbsv_batched_full_rank,rocblas_stbsv_batched_rank_0,rocblas_stbsv_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dtbsv_batched
@@ -8558,7 +9251,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dtbsv_batched_full_rank,rocblas_dtbsv_batched_rank_0,rocblas_dtbsv_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_ctbsv_batched
@@ -8580,7 +9276,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ctbsv_batched_full_rank,rocblas_ctbsv_batched_rank_0,rocblas_ctbsv_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -8664,7 +9363,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ztbsv_batched_full_rank,rocblas_ztbsv_batched_rank_0,rocblas_ztbsv_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_stbsv_strided_batched
@@ -8688,7 +9390,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_stbsv_strided_batched_full_rank,rocblas_stbsv_strided_batched_rank_0,rocblas_stbsv_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dtbsv_strided_batched
@@ -8712,7 +9417,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dtbsv_strided_batched_full_rank,rocblas_dtbsv_strided_batched_rank_0,rocblas_dtbsv_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_ctbsv_strided_batched
@@ -8736,7 +9444,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ctbsv_strided_batched_full_rank,rocblas_ctbsv_strided_batched_rank_0,rocblas_ctbsv_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -8827,7 +9538,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ztbsv_strided_batched_full_rank,rocblas_ztbsv_strided_batched_rank_0,rocblas_ztbsv_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_strsv
@@ -8847,7 +9561,10 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_strsv_full_rank,rocblas_strsv_rank_0,rocblas_strsv_rank_1
+#endif
+
   end interface
   
   interface rocblas_dtrsv
@@ -8867,7 +9584,10 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dtrsv_full_rank,rocblas_dtrsv_rank_0,rocblas_dtrsv_rank_1
+#endif
+
   end interface
   
   interface rocblas_ctrsv
@@ -8887,7 +9607,10 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ctrsv_full_rank,rocblas_ctrsv_rank_0,rocblas_ctrsv_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -8955,7 +9678,10 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ztrsv_full_rank,rocblas_ztrsv_rank_0,rocblas_ztrsv_rank_1
+#endif
+
   end interface
   
   interface rocblas_strsv_batched
@@ -8976,7 +9702,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_strsv_batched_full_rank,rocblas_strsv_batched_rank_0,rocblas_strsv_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dtrsv_batched
@@ -8997,7 +9726,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dtrsv_batched_full_rank,rocblas_dtrsv_batched_rank_0,rocblas_dtrsv_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_ctrsv_batched
@@ -9018,7 +9750,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ctrsv_batched_full_rank,rocblas_ctrsv_batched_rank_0,rocblas_ctrsv_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -9092,7 +9827,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ztrsv_batched_full_rank,rocblas_ztrsv_batched_rank_0,rocblas_ztrsv_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_strsv_strided_batched
@@ -9115,7 +9853,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_strsv_strided_batched_full_rank,rocblas_strsv_strided_batched_rank_0,rocblas_strsv_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dtrsv_strided_batched
@@ -9138,7 +9879,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dtrsv_strided_batched_full_rank,rocblas_dtrsv_strided_batched_rank_0,rocblas_dtrsv_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_ctrsv_strided_batched
@@ -9161,7 +9905,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ctrsv_strided_batched_full_rank,rocblas_ctrsv_strided_batched_rank_0,rocblas_ctrsv_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -9244,7 +9991,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ztrsv_strided_batched_full_rank,rocblas_ztrsv_strided_batched_rank_0,rocblas_ztrsv_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_stpsv
@@ -9263,7 +10013,10 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_stpsv_rank_0,rocblas_stpsv_rank_1
+#endif
+
   end interface
   
   interface rocblas_dtpsv
@@ -9282,7 +10035,10 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dtpsv_rank_0,rocblas_dtpsv_rank_1
+#endif
+
   end interface
   
   interface rocblas_ctpsv
@@ -9301,7 +10057,10 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ctpsv_rank_0,rocblas_ctpsv_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -9367,7 +10126,10 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ztpsv_rank_0,rocblas_ztpsv_rank_1
+#endif
+
   end interface
   
   interface rocblas_stpsv_batched
@@ -9387,7 +10149,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_stpsv_batched_full_rank,rocblas_stpsv_batched_rank_0,rocblas_stpsv_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dtpsv_batched
@@ -9407,7 +10172,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dtpsv_batched_full_rank,rocblas_dtpsv_batched_rank_0,rocblas_dtpsv_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_ctpsv_batched
@@ -9427,7 +10195,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ctpsv_batched_full_rank,rocblas_ctpsv_batched_rank_0,rocblas_ctpsv_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -9498,7 +10269,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ztpsv_batched_full_rank,rocblas_ztpsv_batched_rank_0,rocblas_ztpsv_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_stpsv_strided_batched
@@ -9520,7 +10294,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_stpsv_strided_batched_rank_0,rocblas_stpsv_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dtpsv_strided_batched
@@ -9542,7 +10319,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dtpsv_strided_batched_rank_0,rocblas_dtpsv_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_ctpsv_strided_batched
@@ -9564,7 +10344,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ctpsv_strided_batched_rank_0,rocblas_ctpsv_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -9644,7 +10427,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ztpsv_strided_batched_rank_0,rocblas_ztpsv_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_ssymv
@@ -9666,7 +10452,10 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ssymv_full_rank,rocblas_ssymv_rank_0,rocblas_ssymv_rank_1
+#endif
+
   end interface
   
   interface rocblas_dsymv
@@ -9688,7 +10477,10 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dsymv_full_rank,rocblas_dsymv_rank_0,rocblas_dsymv_rank_1
+#endif
+
   end interface
   
   interface rocblas_csymv
@@ -9710,7 +10502,10 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_csymv_full_rank,rocblas_csymv_rank_0,rocblas_csymv_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -9773,7 +10568,10 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zsymv_full_rank,rocblas_zsymv_rank_0,rocblas_zsymv_rank_1
+#endif
+
   end interface
   
   interface rocblas_ssymv_batched
@@ -9796,7 +10594,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ssymv_batched_full_rank,rocblas_ssymv_batched_rank_0,rocblas_ssymv_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dsymv_batched
@@ -9819,7 +10620,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dsymv_batched_full_rank,rocblas_dsymv_batched_rank_0,rocblas_dsymv_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_csymv_batched
@@ -9842,7 +10646,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_csymv_batched_full_rank,rocblas_csymv_batched_rank_0,rocblas_csymv_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -9913,7 +10720,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zsymv_batched_full_rank,rocblas_zsymv_batched_rank_0,rocblas_zsymv_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_ssymv_strided_batched
@@ -9939,7 +10749,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ssymv_strided_batched_full_rank,rocblas_ssymv_strided_batched_rank_0,rocblas_ssymv_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dsymv_strided_batched
@@ -9965,7 +10778,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dsymv_strided_batched_full_rank,rocblas_dsymv_strided_batched_rank_0,rocblas_dsymv_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_csymv_strided_batched
@@ -9991,7 +10807,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_csymv_strided_batched_full_rank,rocblas_csymv_strided_batched_rank_0,rocblas_csymv_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -10080,7 +10899,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zsymv_strided_batched_full_rank,rocblas_zsymv_strided_batched_rank_0,rocblas_zsymv_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_sspmv
@@ -10101,7 +10923,10 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_sspmv_full_rank,rocblas_sspmv_rank_0,rocblas_sspmv_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -10160,7 +10985,10 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dspmv_full_rank,rocblas_dspmv_rank_0,rocblas_dspmv_rank_1
+#endif
+
   end interface
   
   interface rocblas_sspmv_batched
@@ -10182,7 +11010,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_sspmv_batched_full_rank,rocblas_sspmv_batched_rank_0,rocblas_sspmv_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -10248,7 +11079,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dspmv_batched_full_rank,rocblas_dspmv_batched_rank_0,rocblas_dspmv_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_sspmv_strided_batched
@@ -10273,7 +11107,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_sspmv_strided_batched_full_rank,rocblas_sspmv_strided_batched_rank_0,rocblas_sspmv_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -10357,7 +11194,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dspmv_strided_batched_full_rank,rocblas_dspmv_strided_batched_rank_0,rocblas_dspmv_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_ssbmv
@@ -10380,7 +11220,10 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ssbmv_full_rank,rocblas_ssbmv_rank_0,rocblas_ssbmv_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -10447,7 +11290,10 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dsbmv_full_rank,rocblas_dsbmv_rank_0,rocblas_dsbmv_rank_1
+#endif
+
   end interface
   
   interface rocblas_dsbmv_batched
@@ -10471,7 +11317,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dsbmv_batched_full_rank,rocblas_dsbmv_batched_rank_0,rocblas_dsbmv_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -10545,7 +11394,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ssbmv_batched_full_rank,rocblas_ssbmv_batched_rank_0,rocblas_ssbmv_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_ssbmv_strided_batched
@@ -10572,7 +11424,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ssbmv_strided_batched_full_rank,rocblas_ssbmv_strided_batched_rank_0,rocblas_ssbmv_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -10664,7 +11519,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dsbmv_strided_batched_full_rank,rocblas_dsbmv_strided_batched_rank_0,rocblas_dsbmv_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_sger
@@ -10685,7 +11543,10 @@ module hipfort_rocblas
       integer(c_int),value :: lda
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_sger_full_rank,rocblas_sger_rank_0,rocblas_sger_rank_1
+#endif
+
   end interface
   
   interface rocblas_dger
@@ -10706,7 +11567,10 @@ module hipfort_rocblas
       integer(c_int),value :: lda
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dger_full_rank,rocblas_dger_rank_0,rocblas_dger_rank_1
+#endif
+
   end interface
   
   interface rocblas_cgeru
@@ -10727,7 +11591,10 @@ module hipfort_rocblas
       integer(c_int),value :: lda
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cgeru_full_rank,rocblas_cgeru_rank_0,rocblas_cgeru_rank_1
+#endif
+
   end interface
   
   interface rocblas_zgeru
@@ -10748,7 +11615,10 @@ module hipfort_rocblas
       integer(c_int),value :: lda
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zgeru_full_rank,rocblas_zgeru_rank_0,rocblas_zgeru_rank_1
+#endif
+
   end interface
   
   interface rocblas_cgerc
@@ -10769,7 +11639,10 @@ module hipfort_rocblas
       integer(c_int),value :: lda
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cgerc_full_rank,rocblas_cgerc_rank_0,rocblas_cgerc_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -10829,7 +11702,10 @@ module hipfort_rocblas
       integer(c_int),value :: lda
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zgerc_full_rank,rocblas_zgerc_rank_0,rocblas_zgerc_rank_1
+#endif
+
   end interface
   
   interface rocblas_sger_batched
@@ -10851,7 +11727,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_sger_batched_full_rank,rocblas_sger_batched_rank_0,rocblas_sger_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dger_batched
@@ -10873,7 +11752,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dger_batched_full_rank,rocblas_dger_batched_rank_0,rocblas_dger_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_cgeru_batched
@@ -10895,7 +11777,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cgeru_batched_full_rank,rocblas_cgeru_batched_rank_0,rocblas_cgeru_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_zgeru_batched
@@ -10917,7 +11802,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zgeru_batched_full_rank,rocblas_zgeru_batched_rank_0,rocblas_zgeru_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_cgerc_batched
@@ -10939,7 +11827,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cgerc_batched_full_rank,rocblas_cgerc_batched_rank_0,rocblas_cgerc_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -11004,7 +11895,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zgerc_batched_full_rank,rocblas_zgerc_batched_rank_0,rocblas_zgerc_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_sger_strided_batched
@@ -11029,7 +11923,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_sger_strided_batched_full_rank,rocblas_sger_strided_batched_rank_0,rocblas_sger_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dger_strided_batched
@@ -11054,7 +11951,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dger_strided_batched_full_rank,rocblas_dger_strided_batched_rank_0,rocblas_dger_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_cgeru_strided_batched
@@ -11079,7 +11979,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cgeru_strided_batched_full_rank,rocblas_cgeru_strided_batched_rank_0,rocblas_cgeru_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_zgeru_strided_batched
@@ -11104,7 +12007,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zgeru_strided_batched_full_rank,rocblas_zgeru_strided_batched_rank_0,rocblas_zgeru_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_cgerc_strided_batched
@@ -11129,7 +12035,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cgerc_strided_batched_full_rank,rocblas_cgerc_strided_batched_rank_0,rocblas_cgerc_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -11212,7 +12121,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zgerc_strided_batched_full_rank,rocblas_zgerc_strided_batched_rank_0,rocblas_zgerc_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_sspr
@@ -11230,7 +12142,10 @@ module hipfort_rocblas
       type(c_ptr),value :: AP
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_sspr_rank_0,rocblas_sspr_rank_1
+#endif
+
   end interface
   
   interface rocblas_dspr
@@ -11248,7 +12163,10 @@ module hipfort_rocblas
       type(c_ptr),value :: AP
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dspr_rank_0,rocblas_dspr_rank_1
+#endif
+
   end interface
   
   interface rocblas_cspr
@@ -11266,7 +12184,10 @@ module hipfort_rocblas
       type(c_ptr),value :: AP
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cspr_rank_0,rocblas_cspr_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -11340,7 +12261,10 @@ module hipfort_rocblas
       type(c_ptr),value :: AP
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zspr_rank_0,rocblas_zspr_rank_1
+#endif
+
   end interface
   
   interface rocblas_sspr_batched
@@ -11359,7 +12283,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_sspr_batched_full_rank,rocblas_sspr_batched_rank_0,rocblas_sspr_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dspr_batched
@@ -11378,7 +12305,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dspr_batched_full_rank,rocblas_dspr_batched_rank_0,rocblas_dspr_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_cspr_batched
@@ -11397,7 +12327,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cspr_batched_full_rank,rocblas_cspr_batched_rank_0,rocblas_cspr_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -11475,7 +12408,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zspr_batched_full_rank,rocblas_zspr_batched_rank_0,rocblas_zspr_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_sspr_strided_batched
@@ -11496,7 +12432,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_sspr_strided_batched_rank_0,rocblas_sspr_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dspr_strided_batched
@@ -11517,7 +12456,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dspr_strided_batched_rank_0,rocblas_dspr_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_cspr_strided_batched
@@ -11538,7 +12480,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cspr_strided_batched_rank_0,rocblas_cspr_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -11624,7 +12569,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zspr_strided_batched_rank_0,rocblas_zspr_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_sspr2
@@ -11644,7 +12592,10 @@ module hipfort_rocblas
       type(c_ptr),value :: AP
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_sspr2_rank_0,rocblas_sspr2_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -11725,7 +12676,10 @@ module hipfort_rocblas
       type(c_ptr),value :: AP
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dspr2_rank_0,rocblas_dspr2_rank_1
+#endif
+
   end interface
   
   interface rocblas_sspr2_batched
@@ -11746,7 +12700,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_sspr2_batched_full_rank,rocblas_sspr2_batched_rank_0,rocblas_sspr2_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -11831,7 +12788,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dspr2_batched_full_rank,rocblas_dspr2_batched_rank_0,rocblas_dspr2_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_sspr2_strided_batched
@@ -11855,7 +12815,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_sspr2_strided_batched_rank_0,rocblas_sspr2_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -11952,7 +12915,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dspr2_strided_batched_rank_0,rocblas_dspr2_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_ssyr
@@ -11971,7 +12937,10 @@ module hipfort_rocblas
       integer(c_int),value :: lda
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ssyr_full_rank,rocblas_ssyr_rank_0,rocblas_ssyr_rank_1
+#endif
+
   end interface
   
   interface rocblas_dsyr
@@ -11990,7 +12959,10 @@ module hipfort_rocblas
       integer(c_int),value :: lda
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dsyr_full_rank,rocblas_dsyr_rank_0,rocblas_dsyr_rank_1
+#endif
+
   end interface
   
   interface rocblas_csyr
@@ -12009,7 +12981,10 @@ module hipfort_rocblas
       integer(c_int),value :: lda
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_csyr_full_rank,rocblas_csyr_rank_0,rocblas_csyr_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -12064,7 +13039,10 @@ module hipfort_rocblas
       integer(c_int),value :: lda
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zsyr_full_rank,rocblas_zsyr_rank_0,rocblas_zsyr_rank_1
+#endif
+
   end interface
   
   interface rocblas_ssyr_batched
@@ -12084,7 +13062,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ssyr_batched_full_rank,rocblas_ssyr_batched_rank_0,rocblas_ssyr_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dsyr_batched
@@ -12104,7 +13085,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dsyr_batched_full_rank,rocblas_dsyr_batched_rank_0,rocblas_dsyr_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_csyr_batched
@@ -12124,7 +13108,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_csyr_batched_full_rank,rocblas_csyr_batched_rank_0,rocblas_csyr_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -12182,7 +13169,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zsyr_batched_full_rank,rocblas_zsyr_batched_rank_0,rocblas_zsyr_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_ssyr_strided_batched
@@ -12204,7 +13194,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ssyr_strided_batched_full_rank,rocblas_ssyr_strided_batched_rank_0,rocblas_ssyr_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dsyr_strided_batched
@@ -12226,7 +13219,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dsyr_strided_batched_full_rank,rocblas_dsyr_strided_batched_rank_0,rocblas_dsyr_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_csyr_strided_batched
@@ -12248,7 +13244,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_csyr_strided_batched_full_rank,rocblas_csyr_strided_batched_rank_0,rocblas_csyr_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -12314,7 +13313,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zsyr_strided_batched_full_rank,rocblas_zsyr_strided_batched_rank_0,rocblas_zsyr_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_ssyr2
@@ -12335,7 +13337,10 @@ module hipfort_rocblas
       integer(c_int),value :: lda
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ssyr2_full_rank,rocblas_ssyr2_rank_0,rocblas_ssyr2_rank_1
+#endif
+
   end interface
   
   interface rocblas_dsyr2
@@ -12356,7 +13361,10 @@ module hipfort_rocblas
       integer(c_int),value :: lda
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dsyr2_full_rank,rocblas_dsyr2_rank_0,rocblas_dsyr2_rank_1
+#endif
+
   end interface
   
   interface rocblas_csyr2
@@ -12377,7 +13385,10 @@ module hipfort_rocblas
       integer(c_int),value :: lda
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_csyr2_full_rank,rocblas_csyr2_rank_0,rocblas_csyr2_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -12439,7 +13450,10 @@ module hipfort_rocblas
       integer(c_int),value :: lda
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zsyr2_full_rank,rocblas_zsyr2_rank_0,rocblas_zsyr2_rank_1
+#endif
+
   end interface
   
   interface rocblas_ssyr2_batched
@@ -12461,7 +13475,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ssyr2_batched_full_rank,rocblas_ssyr2_batched_rank_0,rocblas_ssyr2_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dsyr2_batched
@@ -12483,7 +13500,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dsyr2_batched_full_rank,rocblas_dsyr2_batched_rank_0,rocblas_dsyr2_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_csyr2_batched
@@ -12505,7 +13525,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_csyr2_batched_full_rank,rocblas_csyr2_batched_rank_0,rocblas_csyr2_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -12570,7 +13593,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zsyr2_batched_full_rank,rocblas_zsyr2_batched_rank_0,rocblas_zsyr2_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_ssyr2_strided_batched
@@ -12595,7 +13621,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ssyr2_strided_batched_full_rank,rocblas_ssyr2_strided_batched_rank_0,rocblas_ssyr2_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dsyr2_strided_batched
@@ -12620,7 +13649,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dsyr2_strided_batched_full_rank,rocblas_dsyr2_strided_batched_rank_0,rocblas_dsyr2_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_csyr2_strided_batched
@@ -12645,7 +13677,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_csyr2_strided_batched_full_rank,rocblas_csyr2_strided_batched_rank_0,rocblas_csyr2_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 2 API
   !> 
@@ -12722,7 +13757,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zsyr2_strided_batched_full_rank,rocblas_zsyr2_strided_batched_rank_0,rocblas_zsyr2_strided_batched_rank_1
+#endif
+
   end interface
   !> 
   !>   ===========================================================================
@@ -12750,7 +13788,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_chemm_full_rank,rocblas_chemm_rank_0,rocblas_chemm_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 3 API
   !> 
@@ -12847,7 +13888,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zhemm_full_rank,rocblas_zhemm_rank_0,rocblas_zhemm_rank_1
+#endif
+
   end interface
   
   interface rocblas_chemm_batched
@@ -12872,7 +13916,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_chemm_batched_full_rank,rocblas_chemm_batched_rank_0,rocblas_chemm_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 3 API
   !> 
@@ -12974,7 +14021,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zhemm_batched_full_rank,rocblas_zhemm_batched_rank_0,rocblas_zhemm_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_chemm_strided_batched
@@ -13002,7 +14052,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_chemm_strided_batched_full_rank,rocblas_chemm_strided_batched_rank_0,rocblas_chemm_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 3 API
   !> 
@@ -13119,7 +14172,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zhemm_strided_batched_full_rank,rocblas_zhemm_strided_batched_rank_0,rocblas_zhemm_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_cherk
@@ -13141,7 +14197,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cherk_full_rank,rocblas_cherk_rank_0,rocblas_cherk_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 3 API
   !> 
@@ -13229,7 +14288,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zherk_full_rank,rocblas_zherk_rank_0,rocblas_zherk_rank_1
+#endif
+
   end interface
   
   interface rocblas_cherk_batched
@@ -13252,7 +14314,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cherk_batched_full_rank,rocblas_cherk_batched_rank_0,rocblas_cherk_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 3 API
   !> 
@@ -13343,7 +14408,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zherk_batched_full_rank,rocblas_zherk_batched_rank_0,rocblas_zherk_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_cherk_strided_batched
@@ -13368,7 +14436,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cherk_strided_batched_full_rank,rocblas_cherk_strided_batched_rank_0,rocblas_cherk_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 3 API
   !> 
@@ -13471,7 +14542,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zherk_strided_batched_full_rank,rocblas_zherk_strided_batched_rank_0,rocblas_zherk_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_cher2k
@@ -13495,7 +14569,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cher2k_full_rank,rocblas_cher2k_rank_0,rocblas_cher2k_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 3 API
   !> 
@@ -13594,7 +14671,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zher2k_full_rank,rocblas_zher2k_rank_0,rocblas_zher2k_rank_1
+#endif
+
   end interface
   
   interface rocblas_cher2k_batched
@@ -13619,7 +14699,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cher2k_batched_full_rank,rocblas_cher2k_batched_rank_0,rocblas_cher2k_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 3 API
   !> 
@@ -13720,7 +14803,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zher2k_batched_full_rank,rocblas_zher2k_batched_rank_0,rocblas_zher2k_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_cher2k_strided_batched
@@ -13748,7 +14834,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cher2k_strided_batched_full_rank,rocblas_cher2k_strided_batched_rank_0,rocblas_cher2k_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 3 API
   !> 
@@ -13867,7 +14956,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zher2k_strided_batched_full_rank,rocblas_zher2k_strided_batched_rank_0,rocblas_zher2k_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_cherkx
@@ -13891,7 +14983,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cherkx_full_rank,rocblas_cherkx_rank_0,rocblas_cherkx_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 3 API
   !> 
@@ -13992,7 +15087,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zherkx_full_rank,rocblas_zherkx_rank_0,rocblas_zherkx_rank_1
+#endif
+
   end interface
   
   interface rocblas_cherkx_batched
@@ -14017,7 +15115,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cherkx_batched_full_rank,rocblas_cherkx_batched_rank_0,rocblas_cherkx_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 3 API
   !> 
@@ -14122,7 +15223,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zherkx_batched_full_rank,rocblas_zherkx_batched_rank_0,rocblas_zherkx_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_cherkx_strided_batched
@@ -14150,7 +15254,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cherkx_strided_batched_full_rank,rocblas_cherkx_strided_batched_rank_0,rocblas_cherkx_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 3 API
   !> 
@@ -14270,7 +15377,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zherkx_strided_batched_full_rank,rocblas_zherkx_strided_batched_rank_0,rocblas_zherkx_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_ssymm
@@ -14294,7 +15404,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ssymm_full_rank,rocblas_ssymm_rank_0,rocblas_ssymm_rank_1
+#endif
+
   end interface
   
   interface rocblas_dsymm
@@ -14318,7 +15431,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dsymm_full_rank,rocblas_dsymm_rank_0,rocblas_dsymm_rank_1
+#endif
+
   end interface
   
   interface rocblas_csymm
@@ -14342,7 +15458,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_csymm_full_rank,rocblas_csymm_rank_0,rocblas_csymm_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 3 API
   !> 
@@ -14438,7 +15557,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zsymm_full_rank,rocblas_zsymm_rank_0,rocblas_zsymm_rank_1
+#endif
+
   end interface
   
   interface rocblas_ssymm_batched
@@ -14463,7 +15585,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ssymm_batched_full_rank,rocblas_ssymm_batched_rank_0,rocblas_ssymm_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dsymm_batched
@@ -14488,7 +15613,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dsymm_batched_full_rank,rocblas_dsymm_batched_rank_0,rocblas_dsymm_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_csymm_batched
@@ -14513,7 +15641,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_csymm_batched_full_rank,rocblas_csymm_batched_rank_0,rocblas_csymm_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 3 API
   !> 
@@ -14614,7 +15745,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zsymm_batched_full_rank,rocblas_zsymm_batched_rank_0,rocblas_zsymm_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_ssymm_strided_batched
@@ -14642,7 +15776,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ssymm_strided_batched_full_rank,rocblas_ssymm_strided_batched_rank_0,rocblas_ssymm_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dsymm_strided_batched
@@ -14670,7 +15807,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dsymm_strided_batched_full_rank,rocblas_dsymm_strided_batched_rank_0,rocblas_dsymm_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_csymm_strided_batched
@@ -14698,7 +15838,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_csymm_strided_batched_full_rank,rocblas_csymm_strided_batched_rank_0,rocblas_csymm_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 3 API
   !> 
@@ -14811,7 +15954,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zsymm_strided_batched_full_rank,rocblas_zsymm_strided_batched_rank_0,rocblas_zsymm_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_ssyrk
@@ -14833,7 +15979,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ssyrk_full_rank,rocblas_ssyrk_rank_0,rocblas_ssyrk_rank_1
+#endif
+
   end interface
   
   interface rocblas_dsyrk
@@ -14855,7 +16004,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dsyrk_full_rank,rocblas_dsyrk_rank_0,rocblas_dsyrk_rank_1
+#endif
+
   end interface
   
   interface rocblas_csyrk
@@ -14877,7 +16029,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_csyrk_full_rank,rocblas_csyrk_rank_0,rocblas_csyrk_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 3 API
   !> 
@@ -14964,7 +16119,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zsyrk_full_rank,rocblas_zsyrk_rank_0,rocblas_zsyrk_rank_1
+#endif
+
   end interface
   
   interface rocblas_ssyrk_batched
@@ -14987,7 +16145,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ssyrk_batched_full_rank,rocblas_ssyrk_batched_rank_0,rocblas_ssyrk_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dsyrk_batched
@@ -15010,7 +16171,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dsyrk_batched_full_rank,rocblas_dsyrk_batched_rank_0,rocblas_dsyrk_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_csyrk_batched
@@ -15033,7 +16197,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_csyrk_batched_full_rank,rocblas_csyrk_batched_rank_0,rocblas_csyrk_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 3 API
   !> 
@@ -15123,7 +16290,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zsyrk_batched_full_rank,rocblas_zsyrk_batched_rank_0,rocblas_zsyrk_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_ssyrk_strided_batched
@@ -15148,7 +16318,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ssyrk_strided_batched_full_rank,rocblas_ssyrk_strided_batched_rank_0,rocblas_ssyrk_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dsyrk_strided_batched
@@ -15173,7 +16346,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dsyrk_strided_batched_full_rank,rocblas_dsyrk_strided_batched_rank_0,rocblas_dsyrk_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_csyrk_strided_batched
@@ -15198,7 +16374,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_csyrk_strided_batched_full_rank,rocblas_csyrk_strided_batched_rank_0,rocblas_csyrk_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 3 API
   !> 
@@ -15299,7 +16478,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zsyrk_strided_batched_full_rank,rocblas_zsyrk_strided_batched_rank_0,rocblas_zsyrk_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_ssyr2k
@@ -15323,7 +16505,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ssyr2k_full_rank,rocblas_ssyr2k_rank_0,rocblas_ssyr2k_rank_1
+#endif
+
   end interface
   
   interface rocblas_dsyr2k
@@ -15347,7 +16532,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dsyr2k_full_rank,rocblas_dsyr2k_rank_0,rocblas_dsyr2k_rank_1
+#endif
+
   end interface
   
   interface rocblas_csyr2k
@@ -15371,7 +16559,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_csyr2k_full_rank,rocblas_csyr2k_rank_0,rocblas_csyr2k_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 3 API
   !> 
@@ -15469,7 +16660,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zsyr2k_full_rank,rocblas_zsyr2k_rank_0,rocblas_zsyr2k_rank_1
+#endif
+
   end interface
   
   interface rocblas_ssyr2k_batched
@@ -15494,7 +16688,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ssyr2k_batched_full_rank,rocblas_ssyr2k_batched_rank_0,rocblas_ssyr2k_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dsyr2k_batched
@@ -15519,7 +16716,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dsyr2k_batched_full_rank,rocblas_dsyr2k_batched_rank_0,rocblas_dsyr2k_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_csyr2k_batched
@@ -15544,7 +16744,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_csyr2k_batched_full_rank,rocblas_csyr2k_batched_rank_0,rocblas_csyr2k_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 3 API
   !> 
@@ -15643,7 +16846,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zsyr2k_batched_full_rank,rocblas_zsyr2k_batched_rank_0,rocblas_zsyr2k_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_ssyr2k_strided_batched
@@ -15671,7 +16877,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ssyr2k_strided_batched_full_rank,rocblas_ssyr2k_strided_batched_rank_0,rocblas_ssyr2k_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dsyr2k_strided_batched
@@ -15699,7 +16908,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dsyr2k_strided_batched_full_rank,rocblas_dsyr2k_strided_batched_rank_0,rocblas_dsyr2k_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_csyr2k_strided_batched
@@ -15727,7 +16939,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_csyr2k_strided_batched_full_rank,rocblas_csyr2k_strided_batched_rank_0,rocblas_csyr2k_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 3 API
   !> 
@@ -15845,7 +17060,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zsyr2k_strided_batched_full_rank,rocblas_zsyr2k_strided_batched_rank_0,rocblas_zsyr2k_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_ssyrkx
@@ -15869,7 +17087,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ssyrkx_full_rank,rocblas_ssyrkx_rank_0,rocblas_ssyrkx_rank_1
+#endif
+
   end interface
   
   interface rocblas_dsyrkx
@@ -15893,7 +17114,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dsyrkx_full_rank,rocblas_dsyrkx_rank_0,rocblas_dsyrkx_rank_1
+#endif
+
   end interface
   
   interface rocblas_csyrkx
@@ -15917,7 +17141,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_csyrkx_full_rank,rocblas_csyrkx_rank_0,rocblas_csyrkx_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 3 API
   !> 
@@ -16018,7 +17245,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zsyrkx_full_rank,rocblas_zsyrkx_rank_0,rocblas_zsyrkx_rank_1
+#endif
+
   end interface
   
   interface rocblas_ssyrkx_batched
@@ -16043,7 +17273,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ssyrkx_batched_full_rank,rocblas_ssyrkx_batched_rank_0,rocblas_ssyrkx_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dsyrkx_batched
@@ -16068,7 +17301,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dsyrkx_batched_full_rank,rocblas_dsyrkx_batched_rank_0,rocblas_dsyrkx_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_csyrkx_batched
@@ -16093,7 +17329,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_csyrkx_batched_full_rank,rocblas_csyrkx_batched_rank_0,rocblas_csyrkx_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 3 API
   !> 
@@ -16197,7 +17436,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zsyrkx_batched_full_rank,rocblas_zsyrkx_batched_rank_0,rocblas_zsyrkx_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_ssyrkx_strided_batched
@@ -16225,7 +17467,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ssyrkx_strided_batched_full_rank,rocblas_ssyrkx_strided_batched_rank_0,rocblas_ssyrkx_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dsyrkx_strided_batched
@@ -16253,7 +17498,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dsyrkx_strided_batched_full_rank,rocblas_dsyrkx_strided_batched_rank_0,rocblas_dsyrkx_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_csyrkx_strided_batched
@@ -16281,7 +17529,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_csyrkx_strided_batched_full_rank,rocblas_csyrkx_strided_batched_rank_0,rocblas_csyrkx_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 3 API
   !> 
@@ -16400,7 +17651,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zsyrkx_strided_batched_full_rank,rocblas_zsyrkx_strided_batched_rank_0,rocblas_zsyrkx_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_strmm
@@ -16423,7 +17677,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldb
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_strmm_full_rank,rocblas_strmm_rank_0,rocblas_strmm_rank_1
+#endif
+
   end interface
   
   interface rocblas_dtrmm
@@ -16446,7 +17703,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldb
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dtrmm_full_rank,rocblas_dtrmm_rank_0,rocblas_dtrmm_rank_1
+#endif
+
   end interface
   
   interface rocblas_ctrmm
@@ -16469,7 +17729,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldb
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ctrmm_full_rank,rocblas_ctrmm_rank_0,rocblas_ctrmm_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 3 API
   !> 
@@ -16583,7 +17846,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldb
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ztrmm_full_rank,rocblas_ztrmm_rank_0,rocblas_ztrmm_rank_1
+#endif
+
   end interface
   
   interface rocblas_strmm_batched
@@ -16997,7 +18263,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldinvA
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_strtri_full_rank,rocblas_strtri_rank_0,rocblas_strtri_rank_1
+#endif
+
   end interface
   
   interface rocblas_dtrtri
@@ -17016,7 +18285,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldinvA
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dtrtri_full_rank,rocblas_dtrtri_rank_0,rocblas_dtrtri_rank_1
+#endif
+
   end interface
   
   interface rocblas_ctrtri
@@ -17035,7 +18307,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldinvA
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ctrtri_full_rank,rocblas_ctrtri_rank_0,rocblas_ctrtri_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 3 API
   !> 
@@ -17087,7 +18362,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldinvA
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ztrtri_full_rank,rocblas_ztrtri_rank_0,rocblas_ztrtri_rank_1
+#endif
+
   end interface
   
   interface rocblas_strtri_batched
@@ -17107,7 +18385,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_strtri_batched_full_rank,rocblas_strtri_batched_rank_0,rocblas_strtri_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dtrtri_batched
@@ -17127,7 +18408,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dtrtri_batched_full_rank,rocblas_dtrtri_batched_rank_0,rocblas_dtrtri_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_ctrtri_batched
@@ -17147,7 +18431,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ctrtri_batched_full_rank,rocblas_ctrtri_batched_rank_0,rocblas_ctrtri_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 3 API
   !> 
@@ -17206,7 +18493,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ztrtri_batched_full_rank,rocblas_ztrtri_batched_rank_0,rocblas_ztrtri_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_strtri_strided_batched
@@ -17228,7 +18518,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_strtri_strided_batched_full_rank,rocblas_strtri_strided_batched_rank_0,rocblas_strtri_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dtrtri_strided_batched
@@ -17250,7 +18543,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dtrtri_strided_batched_full_rank,rocblas_dtrtri_strided_batched_rank_0,rocblas_dtrtri_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_ctrtri_strided_batched
@@ -17272,7 +18568,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ctrtri_strided_batched_full_rank,rocblas_ctrtri_strided_batched_rank_0,rocblas_ctrtri_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 3 API
   !> 
@@ -17339,7 +18638,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ztrtri_strided_batched_full_rank,rocblas_ztrtri_strided_batched_rank_0,rocblas_ztrtri_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_strsm
@@ -17362,7 +18664,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldb
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_strsm_full_rank,rocblas_strsm_rank_0,rocblas_strsm_rank_1
+#endif
+
   end interface
   
   interface rocblas_dtrsm
@@ -17385,7 +18690,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldb
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dtrsm_full_rank,rocblas_dtrsm_rank_0,rocblas_dtrsm_rank_1
+#endif
+
   end interface
   
   interface rocblas_ctrsm
@@ -17408,7 +18716,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldb
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ctrsm_full_rank,rocblas_ctrsm_rank_0,rocblas_ctrsm_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 3 API
   !> 
@@ -17516,7 +18827,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldb
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ztrsm_full_rank,rocblas_ztrsm_rank_0,rocblas_ztrsm_rank_1
+#endif
+
   end interface
   
   interface rocblas_strsm_batched
@@ -17540,7 +18854,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_strsm_batched_full_rank,rocblas_strsm_batched_rank_0,rocblas_strsm_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dtrsm_batched
@@ -17564,7 +18881,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dtrsm_batched_full_rank,rocblas_dtrsm_batched_rank_0,rocblas_dtrsm_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_ctrsm_batched
@@ -17588,7 +18908,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ctrsm_batched_full_rank,rocblas_ctrsm_batched_rank_0,rocblas_ctrsm_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 3 API
   !>     \details
@@ -17684,7 +19007,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ztrsm_batched_full_rank,rocblas_ztrsm_batched_rank_0,rocblas_ztrsm_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_strsm_strided_batched
@@ -17710,7 +19036,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_strsm_strided_batched_full_rank,rocblas_strsm_strided_batched_rank_0,rocblas_strsm_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dtrsm_strided_batched
@@ -17736,7 +19065,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dtrsm_strided_batched_full_rank,rocblas_dtrsm_strided_batched_rank_0,rocblas_dtrsm_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_ctrsm_strided_batched
@@ -17762,7 +19094,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ctrsm_strided_batched_full_rank,rocblas_ctrsm_strided_batched_rank_0,rocblas_ctrsm_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 3 API
   !>     \details
@@ -17866,7 +19201,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ztrsm_strided_batched_full_rank,rocblas_ztrsm_strided_batched_rank_0,rocblas_ztrsm_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_sgemm
@@ -17891,7 +19229,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_sgemm_full_rank,rocblas_sgemm_rank_0,rocblas_sgemm_rank_1
+#endif
+
   end interface
   
   interface rocblas_dgemm
@@ -17916,7 +19257,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dgemm_full_rank,rocblas_dgemm_rank_0,rocblas_dgemm_rank_1
+#endif
+
   end interface
   
   interface rocblas_cgemm
@@ -17941,7 +19285,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cgemm_full_rank,rocblas_cgemm_rank_0,rocblas_cgemm_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 3 API
   !> 
@@ -18020,7 +19367,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zgemm_full_rank,rocblas_zgemm_rank_0,rocblas_zgemm_rank_1
+#endif
+
   end interface
   
   interface rocblas_sgemm_batched
@@ -18046,7 +19396,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_sgemm_batched_full_rank,rocblas_sgemm_batched_rank_0,rocblas_sgemm_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dgemm_batched
@@ -18072,7 +19425,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dgemm_batched_full_rank,rocblas_dgemm_batched_rank_0,rocblas_dgemm_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_cgemm_batched
@@ -18098,7 +19454,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cgemm_batched_full_rank,rocblas_cgemm_batched_rank_0,rocblas_cgemm_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 3 API
   !>      \details
@@ -18177,7 +19536,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zgemm_batched_full_rank,rocblas_zgemm_batched_rank_0,rocblas_zgemm_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_sgemm_strided_batched
@@ -18206,7 +19568,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_sgemm_strided_batched_full_rank,rocblas_sgemm_strided_batched_rank_0,rocblas_sgemm_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dgemm_strided_batched
@@ -18235,7 +19600,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dgemm_strided_batched_full_rank,rocblas_dgemm_strided_batched_rank_0,rocblas_dgemm_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_sgemm_kernel_name
@@ -18264,7 +19632,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_sgemm_kernel_name_full_rank,rocblas_sgemm_kernel_name_rank_0,rocblas_sgemm_kernel_name_rank_1
+#endif
+
   end interface
   
   interface rocblas_dgemm_kernel_name
@@ -18293,7 +19664,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dgemm_kernel_name_full_rank,rocblas_dgemm_kernel_name_rank_0,rocblas_dgemm_kernel_name_rank_1
+#endif
+
   end interface
   
   interface rocblas_cgemm_strided_batched
@@ -18322,7 +19696,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cgemm_strided_batched_full_rank,rocblas_cgemm_strided_batched_rank_0,rocblas_cgemm_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 3 API
   !> 
@@ -18420,7 +19797,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zgemm_strided_batched_full_rank,rocblas_zgemm_strided_batched_rank_0,rocblas_zgemm_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_sdgmm
@@ -18441,7 +19821,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_sdgmm_full_rank,rocblas_sdgmm_rank_0,rocblas_sdgmm_rank_1
+#endif
+
   end interface
   
   interface rocblas_ddgmm
@@ -18462,7 +19845,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ddgmm_full_rank,rocblas_ddgmm_rank_0,rocblas_ddgmm_rank_1
+#endif
+
   end interface
   
   interface rocblas_cdgmm
@@ -18483,7 +19869,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cdgmm_full_rank,rocblas_cdgmm_rank_0,rocblas_cdgmm_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 3 API
   !> 
@@ -18545,7 +19934,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zdgmm_full_rank,rocblas_zdgmm_rank_0,rocblas_zdgmm_rank_1
+#endif
+
   end interface
   
   interface rocblas_sdgmm_batched
@@ -18567,7 +19959,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_sdgmm_batched_full_rank,rocblas_sdgmm_batched_rank_0,rocblas_sdgmm_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_ddgmm_batched
@@ -18589,7 +19984,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ddgmm_batched_full_rank,rocblas_ddgmm_batched_rank_0,rocblas_ddgmm_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_cdgmm_batched
@@ -18611,7 +20009,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cdgmm_batched_full_rank,rocblas_cdgmm_batched_rank_0,rocblas_cdgmm_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 3 API
   !> 
@@ -18680,7 +20081,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zdgmm_batched_full_rank,rocblas_zdgmm_batched_rank_0,rocblas_zdgmm_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_sdgmm_strided_batched
@@ -18705,7 +20109,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_sdgmm_strided_batched_full_rank,rocblas_sdgmm_strided_batched_rank_0,rocblas_sdgmm_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_ddgmm_strided_batched
@@ -18730,7 +20137,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_ddgmm_strided_batched_full_rank,rocblas_ddgmm_strided_batched_rank_0,rocblas_ddgmm_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_cdgmm_strided_batched
@@ -18755,7 +20165,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cdgmm_strided_batched_full_rank,rocblas_cdgmm_strided_batched_rank_0,rocblas_cdgmm_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 3 API
   !> 
@@ -18836,7 +20249,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zdgmm_strided_batched_full_rank,rocblas_zdgmm_strided_batched_rank_0,rocblas_zdgmm_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_sgeam
@@ -18860,7 +20276,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_sgeam_full_rank,rocblas_sgeam_rank_0,rocblas_sgeam_rank_1
+#endif
+
   end interface
   
   interface rocblas_dgeam
@@ -18884,7 +20303,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dgeam_full_rank,rocblas_dgeam_rank_0,rocblas_dgeam_rank_1
+#endif
+
   end interface
   
   interface rocblas_cgeam
@@ -18908,7 +20330,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cgeam_full_rank,rocblas_cgeam_rank_0,rocblas_cgeam_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 3 API
   !> 
@@ -18983,7 +20408,10 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zgeam_full_rank,rocblas_zgeam_rank_0,rocblas_zgeam_rank_1
+#endif
+
   end interface
   
   interface rocblas_sgeam_batched
@@ -19008,7 +20436,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_sgeam_batched_full_rank,rocblas_sgeam_batched_rank_0,rocblas_sgeam_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dgeam_batched
@@ -19033,7 +20464,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dgeam_batched_full_rank,rocblas_dgeam_batched_rank_0,rocblas_dgeam_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_cgeam_batched
@@ -19058,7 +20492,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cgeam_batched_full_rank,rocblas_cgeam_batched_rank_0,rocblas_cgeam_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 3 API
   !> 
@@ -19142,7 +20579,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zgeam_batched_full_rank,rocblas_zgeam_batched_rank_0,rocblas_zgeam_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_sgeam_strided_batched
@@ -19170,7 +20610,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_sgeam_strided_batched_full_rank,rocblas_sgeam_strided_batched_rank_0,rocblas_sgeam_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_dgeam_strided_batched
@@ -19198,7 +20641,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_dgeam_strided_batched_full_rank,rocblas_dgeam_strided_batched_rank_0,rocblas_dgeam_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocblas_cgeam_strided_batched
@@ -19226,7 +20672,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_cgeam_strided_batched_full_rank,rocblas_cgeam_strided_batched_rank_0,rocblas_cgeam_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief BLAS Level 3 API
   !> 
@@ -19337,7 +20786,10 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_zgeam_strided_batched_full_rank,rocblas_zgeam_strided_batched_rank_0,rocblas_zgeam_strided_batched_rank_1
+#endif
+
   end interface
   !> ! \brief   loads char buf with the rocblas library version. size_t len
   !>     is the maximum length of char buf.
@@ -19617,8 +21069,8 @@ module hipfort_rocblas
 
   end interface
 
+#ifdef USE_FPOINTER_INTERFACES
   contains
-
     function rocblas_cscal_rank_0(handle,n,alpha,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -46504,4 +47956,5 @@ module hipfort_rocblas
     end function
 
   
+#endif
 end module hipfort_rocblas

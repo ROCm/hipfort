@@ -2,7 +2,7 @@
 ! ==============================================================================
 ! hipfort: FORTRAN Interfaces for GPU kernels
 ! ==============================================================================
-! Copyright (c) 2020 Advanced Micro Devices, Inc. All rights reserved.
+! Copyright (c) 2021 Advanced Micro Devices, Inc. All rights reserved.
 ! [MITx11 License]
 ! 
 ! Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -621,7 +621,10 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseSaxpyi_rank_0,hipsparseSaxpyi_rank_1
+#endif
+
   end interface
   
   interface hipsparseDaxpyi
@@ -643,7 +646,10 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDaxpyi_rank_0,hipsparseDaxpyi_rank_1
+#endif
+
   end interface
   
   interface hipsparseCaxpyi
@@ -665,7 +671,10 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCaxpyi_rank_0,hipsparseCaxpyi_rank_1
+#endif
+
   end interface
   
   interface hipsparseZaxpyi
@@ -687,7 +696,10 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZaxpyi_rank_0,hipsparseZaxpyi_rank_1
+#endif
+
   end interface
   
   interface hipsparseSdoti
@@ -709,7 +721,10 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseSdoti_rank_0,hipsparseSdoti_rank_1
+#endif
+
   end interface
   
   interface hipsparseDdoti
@@ -731,7 +746,10 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDdoti_rank_0,hipsparseDdoti_rank_1
+#endif
+
   end interface
   
   interface hipsparseCdoti
@@ -753,7 +771,10 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCdoti_rank_0,hipsparseCdoti_rank_1
+#endif
+
   end interface
   
   interface hipsparseZdoti
@@ -775,7 +796,10 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZdoti_rank_0,hipsparseZdoti_rank_1
+#endif
+
   end interface
   
   interface hipsparseCdotci
@@ -797,7 +821,10 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCdotci_rank_0,hipsparseCdotci_rank_1
+#endif
+
   end interface
   
   interface hipsparseZdotci
@@ -819,7 +846,10 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZdotci_rank_0,hipsparseZdotci_rank_1
+#endif
+
   end interface
   
   interface hipsparseSgthr
@@ -840,7 +870,10 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseSgthr_rank_0,hipsparseSgthr_rank_1
+#endif
+
   end interface
   
   interface hipsparseDgthr
@@ -861,7 +894,10 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDgthr_rank_0,hipsparseDgthr_rank_1
+#endif
+
   end interface
   
   interface hipsparseCgthr
@@ -882,7 +918,10 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCgthr_rank_0,hipsparseCgthr_rank_1
+#endif
+
   end interface
   
   interface hipsparseZgthr
@@ -903,7 +942,10 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZgthr_rank_0,hipsparseZgthr_rank_1
+#endif
+
   end interface
   
   interface hipsparseSgthrz
@@ -924,7 +966,10 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseSgthrz_rank_0,hipsparseSgthrz_rank_1
+#endif
+
   end interface
   
   interface hipsparseDgthrz
@@ -945,7 +990,10 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDgthrz_rank_0,hipsparseDgthrz_rank_1
+#endif
+
   end interface
   
   interface hipsparseCgthrz
@@ -966,7 +1014,10 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCgthrz_rank_0,hipsparseCgthrz_rank_1
+#endif
+
   end interface
   
   interface hipsparseZgthrz
@@ -987,7 +1038,10 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZgthrz_rank_0,hipsparseZgthrz_rank_1
+#endif
+
   end interface
   
   interface hipsparseSroti
@@ -1010,7 +1064,10 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseSroti_rank_0,hipsparseSroti_rank_1
+#endif
+
   end interface
   
   interface hipsparseDroti
@@ -1033,7 +1090,10 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDroti_rank_0,hipsparseDroti_rank_1
+#endif
+
   end interface
   
   interface hipsparseSsctr
@@ -1054,7 +1114,10 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseSsctr_rank_0,hipsparseSsctr_rank_1
+#endif
+
   end interface
   
   interface hipsparseDsctr
@@ -1075,7 +1138,10 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDsctr_rank_0,hipsparseDsctr_rank_1
+#endif
+
   end interface
   
   interface hipsparseCsctr
@@ -1096,7 +1162,10 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCsctr_rank_0,hipsparseCsctr_rank_1
+#endif
+
   end interface
   
   interface hipsparseZsctr
@@ -1117,7 +1186,10 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZsctr_rank_0,hipsparseZsctr_rank_1
+#endif
+
   end interface
   
   interface hipsparseScsrmv
@@ -1145,7 +1217,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: y
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseScsrmv_rank_0,hipsparseScsrmv_rank_1
+#endif
+
   end interface
   
   interface hipsparseDcsrmv
@@ -1173,7 +1248,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: y
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDcsrmv_rank_0,hipsparseDcsrmv_rank_1
+#endif
+
   end interface
   
   interface hipsparseCcsrmv
@@ -1201,7 +1279,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: y
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCcsrmv_rank_0,hipsparseCcsrmv_rank_1
+#endif
+
   end interface
   
   interface hipsparseZcsrmv
@@ -1229,7 +1310,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: y
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZcsrmv_rank_0,hipsparseZcsrmv_rank_1
+#endif
+
   end interface
   !>  Description: Solution of triangular linear system op(A)  x = alpha  f,
   !> where A is a sparse matrix in CSR storage format, x and f are dense vectors. 
@@ -1273,7 +1357,10 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseScsrsv2_bufferSize_rank_0,hipsparseScsrsv2_bufferSize_rank_1
+#endif
+
   end interface
   
   interface hipsparseDcsrsv2_bufferSize
@@ -1298,7 +1385,10 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDcsrsv2_bufferSize_rank_0,hipsparseDcsrsv2_bufferSize_rank_1
+#endif
+
   end interface
   
   interface hipsparseCcsrsv2_bufferSize
@@ -1323,7 +1413,10 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCcsrsv2_bufferSize_rank_0,hipsparseCcsrsv2_bufferSize_rank_1
+#endif
+
   end interface
   
   interface hipsparseZcsrsv2_bufferSize
@@ -1348,7 +1441,10 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZcsrsv2_bufferSize_rank_0,hipsparseZcsrsv2_bufferSize_rank_1
+#endif
+
   end interface
   
   interface hipsparseScsrsv2_bufferSizeExt
@@ -1373,7 +1469,10 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseScsrsv2_bufferSizeExt_rank_0,hipsparseScsrsv2_bufferSizeExt_rank_1
+#endif
+
   end interface
   
   interface hipsparseDcsrsv2_bufferSizeExt
@@ -1398,7 +1497,10 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDcsrsv2_bufferSizeExt_rank_0,hipsparseDcsrsv2_bufferSizeExt_rank_1
+#endif
+
   end interface
   
   interface hipsparseCcsrsv2_bufferSizeExt
@@ -1423,7 +1525,10 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCcsrsv2_bufferSizeExt_rank_0,hipsparseCcsrsv2_bufferSizeExt_rank_1
+#endif
+
   end interface
   
   interface hipsparseZcsrsv2_bufferSizeExt
@@ -1448,7 +1553,10 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZcsrsv2_bufferSizeExt_rank_0,hipsparseZcsrsv2_bufferSizeExt_rank_1
+#endif
+
   end interface
   
   interface hipsparseScsrsv2_analysis
@@ -1474,7 +1582,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseScsrsv2_analysis_rank_0,hipsparseScsrsv2_analysis_rank_1
+#endif
+
   end interface
   
   interface hipsparseDcsrsv2_analysis
@@ -1500,7 +1611,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDcsrsv2_analysis_rank_0,hipsparseDcsrsv2_analysis_rank_1
+#endif
+
   end interface
   
   interface hipsparseCcsrsv2_analysis
@@ -1526,7 +1640,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCcsrsv2_analysis_rank_0,hipsparseCcsrsv2_analysis_rank_1
+#endif
+
   end interface
   
   interface hipsparseZcsrsv2_analysis
@@ -1552,7 +1669,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZcsrsv2_analysis_rank_0,hipsparseZcsrsv2_analysis_rank_1
+#endif
+
   end interface
   
   interface hipsparseScsrsv2_solve
@@ -1581,7 +1701,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseScsrsv2_solve_rank_0,hipsparseScsrsv2_solve_rank_1
+#endif
+
   end interface
   
   interface hipsparseDcsrsv2_solve
@@ -1610,7 +1733,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDcsrsv2_solve_rank_0,hipsparseDcsrsv2_solve_rank_1
+#endif
+
   end interface
   
   interface hipsparseCcsrsv2_solve
@@ -1639,7 +1765,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCcsrsv2_solve_rank_0,hipsparseCcsrsv2_solve_rank_1
+#endif
+
   end interface
   
   interface hipsparseZcsrsv2_solve
@@ -1668,7 +1797,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZcsrsv2_solve_rank_0,hipsparseZcsrsv2_solve_rank_1
+#endif
+
   end interface
   
   interface hipsparseShybmv
@@ -1691,7 +1823,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: y
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseShybmv_rank_0,hipsparseShybmv_rank_1
+#endif
+
   end interface
   
   interface hipsparseDhybmv
@@ -1714,7 +1849,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: y
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDhybmv_rank_0,hipsparseDhybmv_rank_1
+#endif
+
   end interface
   
   interface hipsparseChybmv
@@ -1737,7 +1875,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: y
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseChybmv_rank_0,hipsparseChybmv_rank_1
+#endif
+
   end interface
   
   interface hipsparseZhybmv
@@ -1760,7 +1901,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: y
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZhybmv_rank_0,hipsparseZhybmv_rank_1
+#endif
+
   end interface
   !>  Description: Matrix-vector multiplication  y = alpha  op(A)  x  + beta  y,
   !> where A is a sparse matrix in BSR storage format, x and y are dense vectors. 
@@ -1791,7 +1935,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: y
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseSbsrmv_rank_0,hipsparseSbsrmv_rank_1
+#endif
+
   end interface
   
   interface hipsparseDbsrmv
@@ -1821,7 +1968,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: y
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDbsrmv_rank_0,hipsparseDbsrmv_rank_1
+#endif
+
   end interface
   
   interface hipsparseCbsrmv
@@ -1851,7 +2001,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: y
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCbsrmv_rank_0,hipsparseCbsrmv_rank_1
+#endif
+
   end interface
   
   interface hipsparseZbsrmv
@@ -1881,7 +2034,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: y
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZbsrmv_rank_0,hipsparseZbsrmv_rank_1
+#endif
+
   end interface
   !>  Description: Solution of triangular linear system op(A)  x = alpha  f,
   !> where A is a sparse matrix in BSR storage format, x and f are dense vectors. 
@@ -1927,7 +2083,10 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseSbsrsv2_bufferSize_rank_0,hipsparseSbsrsv2_bufferSize_rank_1
+#endif
+
   end interface
   
   interface hipsparseDbsrsv2_bufferSize
@@ -1954,7 +2113,10 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDbsrsv2_bufferSize_rank_0,hipsparseDbsrsv2_bufferSize_rank_1
+#endif
+
   end interface
   
   interface hipsparseCbsrsv2_bufferSize
@@ -1981,7 +2143,10 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCbsrsv2_bufferSize_rank_0,hipsparseCbsrsv2_bufferSize_rank_1
+#endif
+
   end interface
   
   interface hipsparseZbsrsv2_bufferSize
@@ -2008,7 +2173,10 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZbsrsv2_bufferSize_rank_0,hipsparseZbsrsv2_bufferSize_rank_1
+#endif
+
   end interface
   
   interface hipsparseSbsrsv2_bufferSizeExt
@@ -2035,7 +2203,10 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseSbsrsv2_bufferSizeExt_rank_0,hipsparseSbsrsv2_bufferSizeExt_rank_1
+#endif
+
   end interface
   
   interface hipsparseDbsrsv2_bufferSizeExt
@@ -2062,7 +2233,10 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDbsrsv2_bufferSizeExt_rank_0,hipsparseDbsrsv2_bufferSizeExt_rank_1
+#endif
+
   end interface
   
   interface hipsparseCbsrsv2_bufferSizeExt
@@ -2089,7 +2263,10 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCbsrsv2_bufferSizeExt_rank_0,hipsparseCbsrsv2_bufferSizeExt_rank_1
+#endif
+
   end interface
   
   interface hipsparseZbsrsv2_bufferSizeExt
@@ -2116,7 +2293,10 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZbsrsv2_bufferSizeExt_rank_0,hipsparseZbsrsv2_bufferSizeExt_rank_1
+#endif
+
   end interface
   
   interface hipsparseSbsrsv2_analysis
@@ -2144,7 +2324,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseSbsrsv2_analysis_rank_0,hipsparseSbsrsv2_analysis_rank_1
+#endif
+
   end interface
   
   interface hipsparseDbsrsv2_analysis
@@ -2172,7 +2355,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDbsrsv2_analysis_rank_0,hipsparseDbsrsv2_analysis_rank_1
+#endif
+
   end interface
   
   interface hipsparseCbsrsv2_analysis
@@ -2200,7 +2386,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCbsrsv2_analysis_rank_0,hipsparseCbsrsv2_analysis_rank_1
+#endif
+
   end interface
   
   interface hipsparseZbsrsv2_analysis
@@ -2228,7 +2417,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZbsrsv2_analysis_rank_0,hipsparseZbsrsv2_analysis_rank_1
+#endif
+
   end interface
   
   interface hipsparseSbsrsv2_solve
@@ -2259,7 +2451,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseSbsrsv2_solve_rank_0,hipsparseSbsrsv2_solve_rank_1
+#endif
+
   end interface
   
   interface hipsparseDbsrsv2_solve
@@ -2290,7 +2485,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDbsrsv2_solve_rank_0,hipsparseDbsrsv2_solve_rank_1
+#endif
+
   end interface
   
   interface hipsparseCbsrsv2_solve
@@ -2321,7 +2519,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCbsrsv2_solve_rank_0,hipsparseCbsrsv2_solve_rank_1
+#endif
+
   end interface
   
   interface hipsparseZbsrsv2_solve
@@ -2352,7 +2553,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZbsrsv2_solve_rank_0,hipsparseZbsrsv2_solve_rank_1
+#endif
+
   end interface
   !>  Description: Matrix-matrix multiplication C = alpha  op(A)  B + beta  C,
   !> where A is a sparse matrix in BSR storage format, B and C are dense matrices. 
@@ -2387,7 +2591,10 @@ module hipfort_hipsparse
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseSbsrmm_full_rank,hipsparseSbsrmm_rank_0,hipsparseSbsrmm_rank_1
+#endif
+
   end interface
   
   interface hipsparseDbsrmm
@@ -2421,7 +2628,10 @@ module hipfort_hipsparse
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDbsrmm_full_rank,hipsparseDbsrmm_rank_0,hipsparseDbsrmm_rank_1
+#endif
+
   end interface
   
   interface hipsparseCbsrmm
@@ -2455,7 +2665,10 @@ module hipfort_hipsparse
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCbsrmm_full_rank,hipsparseCbsrmm_rank_0,hipsparseCbsrmm_rank_1
+#endif
+
   end interface
   
   interface hipsparseZbsrmm
@@ -2489,7 +2702,10 @@ module hipfort_hipsparse
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZbsrmm_full_rank,hipsparseZbsrmm_rank_0,hipsparseZbsrmm_rank_1
+#endif
+
   end interface
   
   interface hipsparseScsrmm
@@ -2520,7 +2736,10 @@ module hipfort_hipsparse
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseScsrmm_full_rank,hipsparseScsrmm_rank_0,hipsparseScsrmm_rank_1
+#endif
+
   end interface
   
   interface hipsparseDcsrmm
@@ -2551,7 +2770,10 @@ module hipfort_hipsparse
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDcsrmm_full_rank,hipsparseDcsrmm_rank_0,hipsparseDcsrmm_rank_1
+#endif
+
   end interface
   
   interface hipsparseCcsrmm
@@ -2582,7 +2804,10 @@ module hipfort_hipsparse
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCcsrmm_full_rank,hipsparseCcsrmm_rank_0,hipsparseCcsrmm_rank_1
+#endif
+
   end interface
   
   interface hipsparseZcsrmm
@@ -2613,7 +2838,10 @@ module hipfort_hipsparse
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZcsrmm_full_rank,hipsparseZcsrmm_rank_0,hipsparseZcsrmm_rank_1
+#endif
+
   end interface
   
   interface hipsparseScsrmm2
@@ -2645,7 +2873,10 @@ module hipfort_hipsparse
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseScsrmm2_full_rank,hipsparseScsrmm2_rank_0,hipsparseScsrmm2_rank_1
+#endif
+
   end interface
   
   interface hipsparseDcsrmm2
@@ -2677,7 +2908,10 @@ module hipfort_hipsparse
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDcsrmm2_full_rank,hipsparseDcsrmm2_rank_0,hipsparseDcsrmm2_rank_1
+#endif
+
   end interface
   
   interface hipsparseCcsrmm2
@@ -2709,7 +2943,10 @@ module hipfort_hipsparse
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCcsrmm2_full_rank,hipsparseCcsrmm2_rank_0,hipsparseCcsrmm2_rank_1
+#endif
+
   end interface
   
   interface hipsparseZcsrmm2
@@ -2741,7 +2978,10 @@ module hipfort_hipsparse
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZcsrmm2_full_rank,hipsparseZcsrmm2_rank_0,hipsparseZcsrmm2_rank_1
+#endif
+
   end interface
   !>  Description: Solution of triangular linear system op(A)  op(X) = alpha  op(B),
   !> where A is a sparse matrix in CSR storage format, X and B are dense matrices. 
@@ -2792,7 +3032,10 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseScsrsm2_bufferSizeExt_full_rank,hipsparseScsrsm2_bufferSizeExt_rank_0,hipsparseScsrsm2_bufferSizeExt_rank_1
+#endif
+
   end interface
   
   interface hipsparseDcsrsm2_bufferSizeExt
@@ -2824,7 +3067,10 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDcsrsm2_bufferSizeExt_full_rank,hipsparseDcsrsm2_bufferSizeExt_rank_0,hipsparseDcsrsm2_bufferSizeExt_rank_1
+#endif
+
   end interface
   
   interface hipsparseCcsrsm2_bufferSizeExt
@@ -2856,7 +3102,10 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCcsrsm2_bufferSizeExt_full_rank,hipsparseCcsrsm2_bufferSizeExt_rank_0,hipsparseCcsrsm2_bufferSizeExt_rank_1
+#endif
+
   end interface
   
   interface hipsparseZcsrsm2_bufferSizeExt
@@ -2888,7 +3137,10 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZcsrsm2_bufferSizeExt_full_rank,hipsparseZcsrsm2_bufferSizeExt_rank_0,hipsparseZcsrsm2_bufferSizeExt_rank_1
+#endif
+
   end interface
   
   interface hipsparseScsrsm2_analysis
@@ -2920,7 +3172,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseScsrsm2_analysis_full_rank,hipsparseScsrsm2_analysis_rank_0,hipsparseScsrsm2_analysis_rank_1
+#endif
+
   end interface
   
   interface hipsparseDcsrsm2_analysis
@@ -2952,7 +3207,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDcsrsm2_analysis_full_rank,hipsparseDcsrsm2_analysis_rank_0,hipsparseDcsrsm2_analysis_rank_1
+#endif
+
   end interface
   
   interface hipsparseCcsrsm2_analysis
@@ -2984,7 +3242,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCcsrsm2_analysis_full_rank,hipsparseCcsrsm2_analysis_rank_0,hipsparseCcsrsm2_analysis_rank_1
+#endif
+
   end interface
   
   interface hipsparseZcsrsm2_analysis
@@ -3016,7 +3277,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZcsrsm2_analysis_full_rank,hipsparseZcsrsm2_analysis_rank_0,hipsparseZcsrsm2_analysis_rank_1
+#endif
+
   end interface
   
   interface hipsparseScsrsm2_solve
@@ -3048,7 +3312,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseScsrsm2_solve_full_rank,hipsparseScsrsm2_solve_rank_0,hipsparseScsrsm2_solve_rank_1
+#endif
+
   end interface
   
   interface hipsparseDcsrsm2_solve
@@ -3080,7 +3347,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDcsrsm2_solve_full_rank,hipsparseDcsrsm2_solve_rank_0,hipsparseDcsrsm2_solve_rank_1
+#endif
+
   end interface
   
   interface hipsparseCcsrsm2_solve
@@ -3112,7 +3382,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCcsrsm2_solve_full_rank,hipsparseCcsrsm2_solve_rank_0,hipsparseCcsrsm2_solve_rank_1
+#endif
+
   end interface
   
   interface hipsparseZcsrsm2_solve
@@ -3144,7 +3417,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZcsrsm2_solve_full_rank,hipsparseZcsrsm2_solve_rank_0,hipsparseZcsrsm2_solve_rank_1
+#endif
+
   end interface
   
   interface hipsparseSgemmi
@@ -3173,7 +3449,10 @@ module hipfort_hipsparse
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseSgemmi_full_rank,hipsparseSgemmi_rank_0,hipsparseSgemmi_rank_1
+#endif
+
   end interface
   
   interface hipsparseDgemmi
@@ -3202,7 +3481,10 @@ module hipfort_hipsparse
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDgemmi_full_rank,hipsparseDgemmi_rank_0,hipsparseDgemmi_rank_1
+#endif
+
   end interface
   
   interface hipsparseCgemmi
@@ -3231,7 +3513,10 @@ module hipfort_hipsparse
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCgemmi_full_rank,hipsparseCgemmi_rank_0,hipsparseCgemmi_rank_1
+#endif
+
   end interface
   
   interface hipsparseZgemmi
@@ -3260,7 +3545,10 @@ module hipfort_hipsparse
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZgemmi_full_rank,hipsparseZgemmi_rank_0,hipsparseZgemmi_rank_1
+#endif
+
   end interface
   
   interface hipsparseXcsrgeamNnz
@@ -3289,7 +3577,10 @@ module hipfort_hipsparse
       integer(c_int) :: nnzTotalDevHostPtr
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseXcsrgeamNnz_rank_0,hipsparseXcsrgeamNnz_rank_1
+#endif
+
   end interface
   
   interface hipsparseScsrgeam
@@ -3323,7 +3614,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrColIndC
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseScsrgeam_rank_0,hipsparseScsrgeam_rank_1
+#endif
+
   end interface
   
   interface hipsparseDcsrgeam
@@ -3357,7 +3651,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrColIndC
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDcsrgeam_rank_0,hipsparseDcsrgeam_rank_1
+#endif
+
   end interface
   
   interface hipsparseCcsrgeam
@@ -3391,7 +3688,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrColIndC
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCcsrgeam_rank_0,hipsparseCcsrgeam_rank_1
+#endif
+
   end interface
   
   interface hipsparseZcsrgeam
@@ -3425,7 +3725,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrColIndC
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZcsrgeam_rank_0,hipsparseZcsrgeam_rank_1
+#endif
+
   end interface
   
   interface hipsparseScsrgeam2_bufferSizeExt
@@ -3460,7 +3763,10 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseScsrgeam2_bufferSizeExt_rank_0,hipsparseScsrgeam2_bufferSizeExt_rank_1
+#endif
+
   end interface
   
   interface hipsparseDcsrgeam2_bufferSizeExt
@@ -3495,7 +3801,10 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDcsrgeam2_bufferSizeExt_rank_0,hipsparseDcsrgeam2_bufferSizeExt_rank_1
+#endif
+
   end interface
   
   interface hipsparseCcsrgeam2_bufferSizeExt
@@ -3530,7 +3839,10 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCcsrgeam2_bufferSizeExt_rank_0,hipsparseCcsrgeam2_bufferSizeExt_rank_1
+#endif
+
   end interface
   
   interface hipsparseZcsrgeam2_bufferSizeExt
@@ -3565,7 +3877,10 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZcsrgeam2_bufferSizeExt_rank_0,hipsparseZcsrgeam2_bufferSizeExt_rank_1
+#endif
+
   end interface
   
   interface hipsparseXcsrgeam2Nnz
@@ -3595,7 +3910,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: workspace
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseXcsrgeam2Nnz_rank_0,hipsparseXcsrgeam2Nnz_rank_1
+#endif
+
   end interface
   
   interface hipsparseScsrgeam2
@@ -3630,7 +3948,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseScsrgeam2_rank_0,hipsparseScsrgeam2_rank_1
+#endif
+
   end interface
   
   interface hipsparseDcsrgeam2
@@ -3665,7 +3986,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDcsrgeam2_rank_0,hipsparseDcsrgeam2_rank_1
+#endif
+
   end interface
   
   interface hipsparseCcsrgeam2
@@ -3700,7 +4024,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCcsrgeam2_rank_0,hipsparseCcsrgeam2_rank_1
+#endif
+
   end interface
   
   interface hipsparseZcsrgeam2
@@ -3735,7 +4062,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZcsrgeam2_rank_0,hipsparseZcsrgeam2_rank_1
+#endif
+
   end interface
   
   interface hipsparseXcsrgemmNnz
@@ -3767,7 +4097,10 @@ module hipfort_hipsparse
       integer(c_int) :: nnzTotalDevHostPtr
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseXcsrgemmNnz_rank_0,hipsparseXcsrgemmNnz_rank_1
+#endif
+
   end interface
   
   interface hipsparseScsrgemm
@@ -3802,7 +4135,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrColIndC
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseScsrgemm_rank_0,hipsparseScsrgemm_rank_1
+#endif
+
   end interface
   
   interface hipsparseDcsrgemm
@@ -3837,7 +4173,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrColIndC
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDcsrgemm_rank_0,hipsparseDcsrgemm_rank_1
+#endif
+
   end interface
   
   interface hipsparseCcsrgemm
@@ -3872,7 +4211,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrColIndC
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCcsrgemm_rank_0,hipsparseCcsrgemm_rank_1
+#endif
+
   end interface
   
   interface hipsparseZcsrgemm
@@ -3907,7 +4249,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrColIndC
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZcsrgemm_rank_0,hipsparseZcsrgemm_rank_1
+#endif
+
   end interface
   
   interface hipsparseScsrgemm2_bufferSizeExt
@@ -3942,7 +4287,10 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseScsrgemm2_bufferSizeExt_rank_0,hipsparseScsrgemm2_bufferSizeExt_rank_1
+#endif
+
   end interface
   
   interface hipsparseDcsrgemm2_bufferSizeExt
@@ -3977,7 +4325,10 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDcsrgemm2_bufferSizeExt_rank_0,hipsparseDcsrgemm2_bufferSizeExt_rank_1
+#endif
+
   end interface
   
   interface hipsparseCcsrgemm2_bufferSizeExt
@@ -4012,7 +4363,10 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCcsrgemm2_bufferSizeExt_rank_0,hipsparseCcsrgemm2_bufferSizeExt_rank_1
+#endif
+
   end interface
   
   interface hipsparseZcsrgemm2_bufferSizeExt
@@ -4047,7 +4401,10 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZcsrgemm2_bufferSizeExt_rank_0,hipsparseZcsrgemm2_bufferSizeExt_rank_1
+#endif
+
   end interface
   
   interface hipsparseXcsrgemm2Nnz
@@ -4083,7 +4440,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseXcsrgemm2Nnz_rank_0,hipsparseXcsrgemm2Nnz_rank_1
+#endif
+
   end interface
   
   interface hipsparseScsrgemm2
@@ -4125,7 +4485,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseScsrgemm2_rank_0,hipsparseScsrgemm2_rank_1
+#endif
+
   end interface
   
   interface hipsparseDcsrgemm2
@@ -4167,7 +4530,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDcsrgemm2_rank_0,hipsparseDcsrgemm2_rank_1
+#endif
+
   end interface
   
   interface hipsparseCcsrgemm2
@@ -4209,7 +4575,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCcsrgemm2_rank_0,hipsparseCcsrgemm2_rank_1
+#endif
+
   end interface
   
   interface hipsparseZcsrgemm2
@@ -4251,7 +4620,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZcsrgemm2_rank_0,hipsparseZcsrgemm2_rank_1
+#endif
+
   end interface
   !>  Description: Compute the incomplete-LU factorization with 0 fill-in (ILU0)
   !>    of the matrix A stored in BSR format. 
@@ -4376,7 +4748,10 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseSbsrilu02_bufferSize_rank_0,hipsparseSbsrilu02_bufferSize_rank_1
+#endif
+
   end interface
   
   interface hipsparseDbsrilu02_bufferSize
@@ -4402,7 +4777,10 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDbsrilu02_bufferSize_rank_0,hipsparseDbsrilu02_bufferSize_rank_1
+#endif
+
   end interface
   
   interface hipsparseCbsrilu02_bufferSize
@@ -4428,7 +4806,10 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCbsrilu02_bufferSize_rank_0,hipsparseCbsrilu02_bufferSize_rank_1
+#endif
+
   end interface
   
   interface hipsparseZbsrilu02_bufferSize
@@ -4454,7 +4835,10 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZbsrilu02_bufferSize_rank_0,hipsparseZbsrilu02_bufferSize_rank_1
+#endif
+
   end interface
   
   interface hipsparseSbsrilu02_analysis
@@ -4481,7 +4865,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseSbsrilu02_analysis_rank_0,hipsparseSbsrilu02_analysis_rank_1
+#endif
+
   end interface
   
   interface hipsparseDbsrilu02_analysis
@@ -4508,7 +4895,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDbsrilu02_analysis_rank_0,hipsparseDbsrilu02_analysis_rank_1
+#endif
+
   end interface
   
   interface hipsparseCbsrilu02_analysis
@@ -4535,7 +4925,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCbsrilu02_analysis_rank_0,hipsparseCbsrilu02_analysis_rank_1
+#endif
+
   end interface
   
   interface hipsparseZbsrilu02_analysis
@@ -4562,7 +4955,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZbsrilu02_analysis_rank_0,hipsparseZbsrilu02_analysis_rank_1
+#endif
+
   end interface
   
   interface hipsparseSbsrilu02
@@ -4589,7 +4985,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseSbsrilu02_rank_0,hipsparseSbsrilu02_rank_1
+#endif
+
   end interface
   
   interface hipsparseDbsrilu02
@@ -4616,7 +5015,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDbsrilu02_rank_0,hipsparseDbsrilu02_rank_1
+#endif
+
   end interface
   
   interface hipsparseCbsrilu02
@@ -4643,7 +5045,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCbsrilu02_rank_0,hipsparseCbsrilu02_rank_1
+#endif
+
   end interface
   
   interface hipsparseZbsrilu02
@@ -4670,7 +5075,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZbsrilu02_rank_0,hipsparseZbsrilu02_rank_1
+#endif
+
   end interface
   !>  Description: Compute the incomplete-LU factorization with 0 fill-in (ILU0)
   !> of the matrix A stored in CSR format. 
@@ -4793,7 +5201,10 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseScsrilu02_bufferSize_rank_0,hipsparseScsrilu02_bufferSize_rank_1
+#endif
+
   end interface
   
   interface hipsparseDcsrilu02_bufferSize
@@ -4817,7 +5228,10 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDcsrilu02_bufferSize_rank_0,hipsparseDcsrilu02_bufferSize_rank_1
+#endif
+
   end interface
   
   interface hipsparseCcsrilu02_bufferSize
@@ -4841,7 +5255,10 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCcsrilu02_bufferSize_rank_0,hipsparseCcsrilu02_bufferSize_rank_1
+#endif
+
   end interface
   
   interface hipsparseZcsrilu02_bufferSize
@@ -4865,7 +5282,10 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZcsrilu02_bufferSize_rank_0,hipsparseZcsrilu02_bufferSize_rank_1
+#endif
+
   end interface
   
   interface hipsparseScsrilu02_bufferSizeExt
@@ -4889,7 +5309,10 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseScsrilu02_bufferSizeExt_rank_0,hipsparseScsrilu02_bufferSizeExt_rank_1
+#endif
+
   end interface
   
   interface hipsparseDcsrilu02_bufferSizeExt
@@ -4913,7 +5336,10 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDcsrilu02_bufferSizeExt_rank_0,hipsparseDcsrilu02_bufferSizeExt_rank_1
+#endif
+
   end interface
   
   interface hipsparseCcsrilu02_bufferSizeExt
@@ -4937,7 +5363,10 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCcsrilu02_bufferSizeExt_rank_0,hipsparseCcsrilu02_bufferSizeExt_rank_1
+#endif
+
   end interface
   
   interface hipsparseZcsrilu02_bufferSizeExt
@@ -4961,7 +5390,10 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZcsrilu02_bufferSizeExt_rank_0,hipsparseZcsrilu02_bufferSizeExt_rank_1
+#endif
+
   end interface
   
   interface hipsparseScsrilu02_analysis
@@ -4986,7 +5418,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseScsrilu02_analysis_rank_0,hipsparseScsrilu02_analysis_rank_1
+#endif
+
   end interface
   
   interface hipsparseDcsrilu02_analysis
@@ -5011,7 +5446,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDcsrilu02_analysis_rank_0,hipsparseDcsrilu02_analysis_rank_1
+#endif
+
   end interface
   
   interface hipsparseCcsrilu02_analysis
@@ -5036,7 +5474,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCcsrilu02_analysis_rank_0,hipsparseCcsrilu02_analysis_rank_1
+#endif
+
   end interface
   
   interface hipsparseZcsrilu02_analysis
@@ -5061,7 +5502,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZcsrilu02_analysis_rank_0,hipsparseZcsrilu02_analysis_rank_1
+#endif
+
   end interface
   
   interface hipsparseScsrilu02
@@ -5086,7 +5530,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseScsrilu02_rank_0,hipsparseScsrilu02_rank_1
+#endif
+
   end interface
   
   interface hipsparseDcsrilu02
@@ -5111,7 +5558,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDcsrilu02_rank_0,hipsparseDcsrilu02_rank_1
+#endif
+
   end interface
   
   interface hipsparseCcsrilu02
@@ -5136,7 +5586,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCcsrilu02_rank_0,hipsparseCcsrilu02_rank_1
+#endif
+
   end interface
   
   interface hipsparseZcsrilu02
@@ -5161,7 +5614,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZcsrilu02_rank_0,hipsparseZcsrilu02_rank_1
+#endif
+
   end interface
   !>  Description: Compute the incomplete Cholesky factorization with 0 fill-in (IC0)
   !> of the matrix A stored in BSR format. 
@@ -5206,7 +5662,10 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseSbsric02_bufferSize_rank_0,hipsparseSbsric02_bufferSize_rank_1
+#endif
+
   end interface
   
   interface hipsparseDbsric02_bufferSize
@@ -5232,7 +5691,10 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDbsric02_bufferSize_rank_0,hipsparseDbsric02_bufferSize_rank_1
+#endif
+
   end interface
   
   interface hipsparseCbsric02_bufferSize
@@ -5258,7 +5720,10 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCbsric02_bufferSize_rank_0,hipsparseCbsric02_bufferSize_rank_1
+#endif
+
   end interface
   
   interface hipsparseZbsric02_bufferSize
@@ -5284,7 +5749,10 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZbsric02_bufferSize_rank_0,hipsparseZbsric02_bufferSize_rank_1
+#endif
+
   end interface
   
   interface hipsparseSbsric02_analysis
@@ -5311,7 +5779,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseSbsric02_analysis_rank_0,hipsparseSbsric02_analysis_rank_1
+#endif
+
   end interface
   
   interface hipsparseDbsric02_analysis
@@ -5338,7 +5809,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDbsric02_analysis_rank_0,hipsparseDbsric02_analysis_rank_1
+#endif
+
   end interface
   
   interface hipsparseCbsric02_analysis
@@ -5365,7 +5839,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCbsric02_analysis_rank_0,hipsparseCbsric02_analysis_rank_1
+#endif
+
   end interface
   
   interface hipsparseZbsric02_analysis
@@ -5392,7 +5869,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZbsric02_analysis_rank_0,hipsparseZbsric02_analysis_rank_1
+#endif
+
   end interface
   
   interface hipsparseSbsric02
@@ -5419,7 +5899,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseSbsric02_rank_0,hipsparseSbsric02_rank_1
+#endif
+
   end interface
   
   interface hipsparseDbsric02
@@ -5446,7 +5929,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDbsric02_rank_0,hipsparseDbsric02_rank_1
+#endif
+
   end interface
   
   interface hipsparseCbsric02
@@ -5473,7 +5959,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCbsric02_rank_0,hipsparseCbsric02_rank_1
+#endif
+
   end interface
   
   interface hipsparseZbsric02
@@ -5500,7 +5989,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZbsric02_rank_0,hipsparseZbsric02_rank_1
+#endif
+
   end interface
   !>  Description: Compute the incomplete Cholesky factorization with 0 fill-in (IC0)
   !> of the matrix A stored in CSR format. 
@@ -5543,7 +6035,10 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseScsric02_bufferSize_rank_0,hipsparseScsric02_bufferSize_rank_1
+#endif
+
   end interface
   
   interface hipsparseDcsric02_bufferSize
@@ -5567,7 +6062,10 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDcsric02_bufferSize_rank_0,hipsparseDcsric02_bufferSize_rank_1
+#endif
+
   end interface
   
   interface hipsparseCcsric02_bufferSize
@@ -5591,7 +6089,10 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCcsric02_bufferSize_rank_0,hipsparseCcsric02_bufferSize_rank_1
+#endif
+
   end interface
   
   interface hipsparseZcsric02_bufferSize
@@ -5615,7 +6116,10 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZcsric02_bufferSize_rank_0,hipsparseZcsric02_bufferSize_rank_1
+#endif
+
   end interface
   
   interface hipsparseScsric02_bufferSizeExt
@@ -5639,7 +6143,10 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseScsric02_bufferSizeExt_rank_0,hipsparseScsric02_bufferSizeExt_rank_1
+#endif
+
   end interface
   
   interface hipsparseDcsric02_bufferSizeExt
@@ -5663,7 +6170,10 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDcsric02_bufferSizeExt_rank_0,hipsparseDcsric02_bufferSizeExt_rank_1
+#endif
+
   end interface
   
   interface hipsparseCcsric02_bufferSizeExt
@@ -5687,7 +6197,10 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCcsric02_bufferSizeExt_rank_0,hipsparseCcsric02_bufferSizeExt_rank_1
+#endif
+
   end interface
   
   interface hipsparseZcsric02_bufferSizeExt
@@ -5711,7 +6224,10 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZcsric02_bufferSizeExt_rank_0,hipsparseZcsric02_bufferSizeExt_rank_1
+#endif
+
   end interface
   
   interface hipsparseScsric02_analysis
@@ -5736,7 +6252,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseScsric02_analysis_rank_0,hipsparseScsric02_analysis_rank_1
+#endif
+
   end interface
   
   interface hipsparseDcsric02_analysis
@@ -5761,7 +6280,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDcsric02_analysis_rank_0,hipsparseDcsric02_analysis_rank_1
+#endif
+
   end interface
   
   interface hipsparseCcsric02_analysis
@@ -5786,7 +6308,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCcsric02_analysis_rank_0,hipsparseCcsric02_analysis_rank_1
+#endif
+
   end interface
   
   interface hipsparseZcsric02_analysis
@@ -5811,7 +6336,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZcsric02_analysis_rank_0,hipsparseZcsric02_analysis_rank_1
+#endif
+
   end interface
   
   interface hipsparseScsric02
@@ -5836,7 +6364,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseScsric02_rank_0,hipsparseScsric02_rank_1
+#endif
+
   end interface
   
   interface hipsparseDcsric02
@@ -5861,7 +6392,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDcsric02_rank_0,hipsparseDcsric02_rank_1
+#endif
+
   end interface
   
   interface hipsparseCcsric02
@@ -5886,7 +6420,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCcsric02_rank_0,hipsparseCcsric02_rank_1
+#endif
+
   end interface
   
   interface hipsparseZcsric02
@@ -5911,7 +6448,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZcsric02_rank_0,hipsparseZcsric02_rank_1
+#endif
+
   end interface
   !>  Description: 
   !> This function computes the number of nonzero elements per row or column and the total number of nonzero elements in a dense matrix. 
@@ -5936,7 +6476,10 @@ module hipfort_hipsparse
       integer(c_int) :: nnzTotalDevHostPtr
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseSnnz_full_rank,hipsparseSnnz_rank_0,hipsparseSnnz_rank_1
+#endif
+
   end interface
   
   interface hipsparseDnnz
@@ -5960,7 +6503,10 @@ module hipfort_hipsparse
       integer(c_int) :: nnzTotalDevHostPtr
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDnnz_full_rank,hipsparseDnnz_rank_0,hipsparseDnnz_rank_1
+#endif
+
   end interface
   
   interface hipsparseCnnz
@@ -5984,7 +6530,10 @@ module hipfort_hipsparse
       integer(c_int) :: nnzTotalDevHostPtr
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCnnz_full_rank,hipsparseCnnz_rank_0,hipsparseCnnz_rank_1
+#endif
+
   end interface
   
   interface hipsparseZnnz
@@ -6008,7 +6557,10 @@ module hipfort_hipsparse
       integer(c_int) :: nnzTotalDevHostPtr
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZnnz_full_rank,hipsparseZnnz_rank_0,hipsparseZnnz_rank_1
+#endif
+
   end interface
   !>  Description: 
   !> This function converts the matrix A in dense format into a sparse matrix in CSR format. 
@@ -6034,7 +6586,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: csr_col_ind
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseSdense2csr_full_rank,hipsparseSdense2csr_rank_0,hipsparseSdense2csr_rank_1
+#endif
+
   end interface
   
   interface hipsparseDdense2csr
@@ -6059,7 +6614,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: csr_col_ind
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDdense2csr_full_rank,hipsparseDdense2csr_rank_0,hipsparseDdense2csr_rank_1
+#endif
+
   end interface
   
   interface hipsparseCdense2csr
@@ -6084,7 +6642,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: csr_col_ind
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCdense2csr_full_rank,hipsparseCdense2csr_rank_0,hipsparseCdense2csr_rank_1
+#endif
+
   end interface
   
   interface hipsparseZdense2csr
@@ -6109,7 +6670,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: csr_col_ind
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZdense2csr_full_rank,hipsparseZdense2csr_rank_0,hipsparseZdense2csr_rank_1
+#endif
+
   end interface
   !>  Description: 
   !> These functions convert the matrix A in dense format into a sparse matrix in CSR format where entries 
@@ -6137,7 +6701,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: bufferSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseSpruneDense2csr_bufferSize_full_rank,hipsparseSpruneDense2csr_bufferSize_rank_0,hipsparseSpruneDense2csr_bufferSize_rank_1
+#endif
+
   end interface
   
   interface hipsparseDpruneDense2csr_bufferSize
@@ -6163,7 +6730,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: bufferSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDpruneDense2csr_bufferSize_full_rank,hipsparseDpruneDense2csr_bufferSize_rank_0,hipsparseDpruneDense2csr_bufferSize_rank_1
+#endif
+
   end interface
   
   interface hipsparseSpruneDense2csr_bufferSizeExt
@@ -6189,7 +6759,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: bufferSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseSpruneDense2csr_bufferSizeExt_full_rank,hipsparseSpruneDense2csr_bufferSizeExt_rank_0,hipsparseSpruneDense2csr_bufferSizeExt_rank_1
+#endif
+
   end interface
   
   interface hipsparseDpruneDense2csr_bufferSizeExt
@@ -6215,7 +6788,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: bufferSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDpruneDense2csr_bufferSizeExt_full_rank,hipsparseDpruneDense2csr_bufferSizeExt_rank_0,hipsparseDpruneDense2csr_bufferSizeExt_rank_1
+#endif
+
   end interface
   
   interface hipsparseSpruneDense2csrNnz
@@ -6240,7 +6816,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseSpruneDense2csrNnz_full_rank,hipsparseSpruneDense2csrNnz_rank_0,hipsparseSpruneDense2csrNnz_rank_1
+#endif
+
   end interface
   
   interface hipsparseDpruneDense2csrNnz
@@ -6265,7 +6844,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDpruneDense2csrNnz_full_rank,hipsparseDpruneDense2csrNnz_rank_0,hipsparseDpruneDense2csrNnz_rank_1
+#endif
+
   end interface
   
   interface hipsparseSpruneDense2csr
@@ -6291,7 +6873,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseSpruneDense2csr_full_rank,hipsparseSpruneDense2csr_rank_0,hipsparseSpruneDense2csr_rank_1
+#endif
+
   end interface
   
   interface hipsparseDpruneDense2csr
@@ -6317,7 +6902,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDpruneDense2csr_full_rank,hipsparseDpruneDense2csr_rank_0,hipsparseDpruneDense2csr_rank_1
+#endif
+
   end interface
   !>  Description: 
   !> These functions convert the matrix A in dense format into a sparse matrix in CSR format where the bottom 
@@ -6346,7 +6934,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: bufferSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseSpruneDense2csrByPercentage_bufferSize_full_rank,hipsparseSpruneDense2csrByPercentage_bufferSize_rank_0,hipsparseSpruneDense2csrByPercentage_bufferSize_rank_1
+#endif
+
   end interface
   
   interface hipsparseDpruneDense2csrByPercentage_bufferSize
@@ -6373,7 +6964,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: bufferSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDpruneDense2csrByPercentage_bufferSize_full_rank,hipsparseDpruneDense2csrByPercentage_bufferSize_rank_0,hipsparseDpruneDense2csrByPercentage_bufferSize_rank_1
+#endif
+
   end interface
   
   interface hipsparseSpruneDense2csrByPercentage_bufferSizeExt
@@ -6400,7 +6994,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: bufferSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseSpruneDense2csrByPercentage_bufferSizeExt_full_rank,hipsparseSpruneDense2csrByPercentage_bufferSizeExt_rank_0,hipsparseSpruneDense2csrByPercentage_bufferSizeExt_rank_1
+#endif
+
   end interface
   
   interface hipsparseDpruneDense2csrByPercentage_bufferSizeExt
@@ -6427,7 +7024,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: bufferSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDpruneDense2csrByPercentage_bufferSizeExt_full_rank,hipsparseDpruneDense2csrByPercentage_bufferSizeExt_rank_0,hipsparseDpruneDense2csrByPercentage_bufferSizeExt_rank_1
+#endif
+
   end interface
   
   interface hipsparseSpruneDense2csrNnzByPercentage
@@ -6453,7 +7053,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseSpruneDense2csrNnzByPercentage_full_rank,hipsparseSpruneDense2csrNnzByPercentage_rank_0,hipsparseSpruneDense2csrNnzByPercentage_rank_1
+#endif
+
   end interface
   
   interface hipsparseDpruneDense2csrNnzByPercentage
@@ -6479,7 +7082,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDpruneDense2csrNnzByPercentage_full_rank,hipsparseDpruneDense2csrNnzByPercentage_rank_0,hipsparseDpruneDense2csrNnzByPercentage_rank_1
+#endif
+
   end interface
   
   interface hipsparseSpruneDense2csrByPercentage
@@ -6506,7 +7112,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseSpruneDense2csrByPercentage_full_rank,hipsparseSpruneDense2csrByPercentage_rank_0,hipsparseSpruneDense2csrByPercentage_rank_1
+#endif
+
   end interface
   
   interface hipsparseDpruneDense2csrByPercentage
@@ -6533,7 +7142,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDpruneDense2csrByPercentage_full_rank,hipsparseDpruneDense2csrByPercentage_rank_0,hipsparseDpruneDense2csrByPercentage_rank_1
+#endif
+
   end interface
   !>  Description: 
   !> This function converts the matrix A in dense format into a sparse matrix in CSC format 
@@ -6559,7 +7171,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: csc_col_ptr
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseSdense2csc_full_rank,hipsparseSdense2csc_rank_0,hipsparseSdense2csc_rank_1
+#endif
+
   end interface
   
   interface hipsparseDdense2csc
@@ -6584,7 +7199,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: csc_col_ptr
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDdense2csc_full_rank,hipsparseDdense2csc_rank_0,hipsparseDdense2csc_rank_1
+#endif
+
   end interface
   
   interface hipsparseCdense2csc
@@ -6609,7 +7227,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: csc_col_ptr
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCdense2csc_full_rank,hipsparseCdense2csc_rank_0,hipsparseCdense2csc_rank_1
+#endif
+
   end interface
   
   interface hipsparseZdense2csc
@@ -6634,7 +7255,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: csc_col_ptr
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZdense2csc_full_rank,hipsparseZdense2csc_rank_0,hipsparseZdense2csc_rank_1
+#endif
+
   end interface
   !>  Description:
   !> This function converts the sparse matrix in CSR format into a dense matrix 
@@ -6659,7 +7283,10 @@ module hipfort_hipsparse
       integer(c_int),value :: ld
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseScsr2dense_full_rank,hipsparseScsr2dense_rank_0,hipsparseScsr2dense_rank_1
+#endif
+
   end interface
   
   interface hipsparseDcsr2dense
@@ -6683,7 +7310,10 @@ module hipfort_hipsparse
       integer(c_int),value :: ld
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDcsr2dense_full_rank,hipsparseDcsr2dense_rank_0,hipsparseDcsr2dense_rank_1
+#endif
+
   end interface
   
   interface hipsparseCcsr2dense
@@ -6707,7 +7337,10 @@ module hipfort_hipsparse
       integer(c_int),value :: ld
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCcsr2dense_full_rank,hipsparseCcsr2dense_rank_0,hipsparseCcsr2dense_rank_1
+#endif
+
   end interface
   
   interface hipsparseZcsr2dense
@@ -6731,7 +7364,10 @@ module hipfort_hipsparse
       integer(c_int),value :: ld
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZcsr2dense_full_rank,hipsparseZcsr2dense_rank_0,hipsparseZcsr2dense_rank_1
+#endif
+
   end interface
   !>  Description:
   !> This function converts the sparse matrix in CSC format into a dense matrix. 
@@ -6756,7 +7392,10 @@ module hipfort_hipsparse
       integer(c_int),value :: ld
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseScsc2dense_full_rank,hipsparseScsc2dense_rank_0,hipsparseScsc2dense_rank_1
+#endif
+
   end interface
   
   interface hipsparseDcsc2dense
@@ -6780,7 +7419,10 @@ module hipfort_hipsparse
       integer(c_int),value :: ld
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDcsc2dense_full_rank,hipsparseDcsc2dense_rank_0,hipsparseDcsc2dense_rank_1
+#endif
+
   end interface
   
   interface hipsparseCcsc2dense
@@ -6804,7 +7446,10 @@ module hipfort_hipsparse
       integer(c_int),value :: ld
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCcsc2dense_full_rank,hipsparseCcsc2dense_rank_0,hipsparseCcsc2dense_rank_1
+#endif
+
   end interface
   
   interface hipsparseZcsc2dense
@@ -6828,7 +7473,10 @@ module hipfort_hipsparse
       integer(c_int),value :: ld
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZcsc2dense_full_rank,hipsparseZcsc2dense_rank_0,hipsparseZcsc2dense_rank_1
+#endif
+
   end interface
   !>  Description:
   !> This function computes the number of nonzero block columns per block row and the total number of blocks in the BSR 
@@ -6856,7 +7504,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrNnzb
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseXcsr2bsrNnz_rank_0,hipsparseXcsr2bsrNnz_rank_1
+#endif
+
   end interface
   !>  Description:
   !> This function computes the number of nonzero elements per row and the total number of nonzero elements 
@@ -6882,7 +7533,10 @@ module hipfort_hipsparse
       real(c_float),value :: tol
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseSnnz_compress_rank_0,hipsparseSnnz_compress_rank_1
+#endif
+
   end interface
   
   interface hipsparseDnnz_compress
@@ -6905,7 +7559,10 @@ module hipfort_hipsparse
       real(c_double),value :: tol
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDnnz_compress_rank_0,hipsparseDnnz_compress_rank_1
+#endif
+
   end interface
   
   interface hipsparseCnnz_compress
@@ -6928,7 +7585,10 @@ module hipfort_hipsparse
       complex(c_float_complex),value :: tol
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCnnz_compress_rank_0,hipsparseCnnz_compress_rank_1
+#endif
+
   end interface
   
   interface hipsparseZnnz_compress
@@ -6951,7 +7611,10 @@ module hipfort_hipsparse
       complex(c_double_complex),value :: tol
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZnnz_compress_rank_0,hipsparseZnnz_compress_rank_1
+#endif
+
   end interface
   !>  Description: This routine converts a sparse matrix in CSR storage format
   !> to a sparse matrix in COO storage format. 
@@ -6973,7 +7636,10 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseXcsr2coo_rank_0,hipsparseXcsr2coo_rank_1
+#endif
+
   end interface
   
   interface hipsparseScsr2csc
@@ -7000,7 +7666,10 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseScsr2csc_rank_0,hipsparseScsr2csc_rank_1
+#endif
+
   end interface
   
   interface hipsparseDcsr2csc
@@ -7027,7 +7696,10 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDcsr2csc_rank_0,hipsparseDcsr2csc_rank_1
+#endif
+
   end interface
   
   interface hipsparseCcsr2csc
@@ -7054,7 +7726,10 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCcsr2csc_rank_0,hipsparseCcsr2csc_rank_1
+#endif
+
   end interface
   
   interface hipsparseZcsr2csc
@@ -7081,7 +7756,10 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZcsr2csc_rank_0,hipsparseZcsr2csc_rank_1
+#endif
+
   end interface
   
   interface hipsparseScsr2hyb
@@ -7106,7 +7784,10 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_HYB_PARTITION_AUTO)),value :: partitionType
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseScsr2hyb_rank_0,hipsparseScsr2hyb_rank_1
+#endif
+
   end interface
   
   interface hipsparseDcsr2hyb
@@ -7131,7 +7812,10 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_HYB_PARTITION_AUTO)),value :: partitionType
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDcsr2hyb_rank_0,hipsparseDcsr2hyb_rank_1
+#endif
+
   end interface
   
   interface hipsparseCcsr2hyb
@@ -7156,7 +7840,10 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_HYB_PARTITION_AUTO)),value :: partitionType
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCcsr2hyb_rank_0,hipsparseCcsr2hyb_rank_1
+#endif
+
   end interface
   
   interface hipsparseZcsr2hyb
@@ -7181,7 +7868,10 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_HYB_PARTITION_AUTO)),value :: partitionType
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZcsr2hyb_rank_0,hipsparseZcsr2hyb_rank_1
+#endif
+
   end interface
   !>  Description: This routine converts a sparse matrix in CSR storage format
   !> to a sparse matrix in BSR storage format. 
@@ -7210,7 +7900,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrColIndC
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseScsr2bsr_rank_0,hipsparseScsr2bsr_rank_1
+#endif
+
   end interface
   
   interface hipsparseDcsr2bsr
@@ -7238,7 +7931,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrColIndC
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDcsr2bsr_rank_0,hipsparseDcsr2bsr_rank_1
+#endif
+
   end interface
   
   interface hipsparseCcsr2bsr
@@ -7266,7 +7962,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrColIndC
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCcsr2bsr_rank_0,hipsparseCcsr2bsr_rank_1
+#endif
+
   end interface
   
   interface hipsparseZcsr2bsr
@@ -7294,7 +7993,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrColIndC
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZcsr2bsr_rank_0,hipsparseZcsr2bsr_rank_1
+#endif
+
   end interface
   !>  Description: This routine converts a sparse matrix in BSR storage format
   !> to a sparse matrix in CSR storage format. 
@@ -7323,7 +8025,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrColIndC
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseSbsr2csr_rank_0,hipsparseSbsr2csr_rank_1
+#endif
+
   end interface
   
   interface hipsparseDbsr2csr
@@ -7351,7 +8056,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrColIndC
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDbsr2csr_rank_0,hipsparseDbsr2csr_rank_1
+#endif
+
   end interface
   
   interface hipsparseCbsr2csr
@@ -7379,7 +8087,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrColIndC
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCbsr2csr_rank_0,hipsparseCbsr2csr_rank_1
+#endif
+
   end interface
   
   interface hipsparseZbsr2csr
@@ -7407,7 +8118,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrColIndC
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZbsr2csr_rank_0,hipsparseZbsr2csr_rank_1
+#endif
+
   end interface
   !>  Description: This routine compresses the input CSR matrix by removing elements that 
   !> are less than or equal to the non-negative tolerance 
@@ -7436,7 +8150,10 @@ module hipfort_hipsparse
       real(c_float),value :: tol
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseScsr2csr_compress_rank_0,hipsparseScsr2csr_compress_rank_1
+#endif
+
   end interface
   
   interface hipsparseDcsr2csr_compress
@@ -7464,7 +8181,10 @@ module hipfort_hipsparse
       real(c_double),value :: tol
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDcsr2csr_compress_rank_0,hipsparseDcsr2csr_compress_rank_1
+#endif
+
   end interface
   
   interface hipsparseCcsr2csr_compress
@@ -7492,7 +8212,10 @@ module hipfort_hipsparse
       complex(c_float_complex),value :: tol
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCcsr2csr_compress_rank_0,hipsparseCcsr2csr_compress_rank_1
+#endif
+
   end interface
   
   interface hipsparseZcsr2csr_compress
@@ -7520,7 +8243,10 @@ module hipfort_hipsparse
       complex(c_double_complex),value :: tol
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZcsr2csr_compress_rank_0,hipsparseZcsr2csr_compress_rank_1
+#endif
+
   end interface
   !>  Description: These routines prune the input CSR matrix by removing elements that 
   !>    are less than or equal to the non-negative threshold 
@@ -7550,7 +8276,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: bufferSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseSpruneCsr2csr_bufferSize_rank_0,hipsparseSpruneCsr2csr_bufferSize_rank_1
+#endif
+
   end interface
   
   interface hipsparseDpruneCsr2csr_bufferSize
@@ -7579,7 +8308,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: bufferSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDpruneCsr2csr_bufferSize_rank_0,hipsparseDpruneCsr2csr_bufferSize_rank_1
+#endif
+
   end interface
   
   interface hipsparseSpruneCsr2csr_bufferSizeExt
@@ -7608,7 +8340,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: bufferSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseSpruneCsr2csr_bufferSizeExt_rank_0,hipsparseSpruneCsr2csr_bufferSizeExt_rank_1
+#endif
+
   end interface
   
   interface hipsparseDpruneCsr2csr_bufferSizeExt
@@ -7637,7 +8372,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: bufferSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDpruneCsr2csr_bufferSizeExt_rank_0,hipsparseDpruneCsr2csr_bufferSizeExt_rank_1
+#endif
+
   end interface
   
   interface hipsparseSpruneCsr2csrNnz
@@ -7665,7 +8403,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseSpruneCsr2csrNnz_rank_0,hipsparseSpruneCsr2csrNnz_rank_1
+#endif
+
   end interface
   
   interface hipsparseDpruneCsr2csrNnz
@@ -7693,7 +8434,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDpruneCsr2csrNnz_rank_0,hipsparseDpruneCsr2csrNnz_rank_1
+#endif
+
   end interface
   
   interface hipsparseSpruneCsr2csr
@@ -7722,7 +8466,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseSpruneCsr2csr_rank_0,hipsparseSpruneCsr2csr_rank_1
+#endif
+
   end interface
   
   interface hipsparseDpruneCsr2csr
@@ -7751,7 +8498,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDpruneCsr2csr_rank_0,hipsparseDpruneCsr2csr_rank_1
+#endif
+
   end interface
   !>  Description: These functions convert the matrix A in CSR format into a sparse matrix in CSR format where the bottom 
   !>     percentage of absolute valued entries from A have been removed. 
@@ -7782,7 +8532,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: bufferSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseSpruneCsr2csrByPercentage_bufferSize_rank_0,hipsparseSpruneCsr2csrByPercentage_bufferSize_rank_1
+#endif
+
   end interface
   
   interface hipsparseDpruneCsr2csrByPercentage_bufferSize
@@ -7812,7 +8565,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: bufferSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDpruneCsr2csrByPercentage_bufferSize_rank_0,hipsparseDpruneCsr2csrByPercentage_bufferSize_rank_1
+#endif
+
   end interface
   
   interface hipsparseSpruneCsr2csrByPercentage_bufferSizeExt
@@ -7842,7 +8598,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: bufferSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseSpruneCsr2csrByPercentage_bufferSizeExt_rank_0,hipsparseSpruneCsr2csrByPercentage_bufferSizeExt_rank_1
+#endif
+
   end interface
   
   interface hipsparseDpruneCsr2csrByPercentage_bufferSizeExt
@@ -7872,7 +8631,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: bufferSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDpruneCsr2csrByPercentage_bufferSizeExt_rank_0,hipsparseDpruneCsr2csrByPercentage_bufferSizeExt_rank_1
+#endif
+
   end interface
   
   interface hipsparseSpruneCsr2csrNnzByPercentage
@@ -7901,7 +8663,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseSpruneCsr2csrNnzByPercentage_rank_0,hipsparseSpruneCsr2csrNnzByPercentage_rank_1
+#endif
+
   end interface
   
   interface hipsparseDpruneCsr2csrNnzByPercentage
@@ -7930,7 +8695,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDpruneCsr2csrNnzByPercentage_rank_0,hipsparseDpruneCsr2csrNnzByPercentage_rank_1
+#endif
+
   end interface
   
   interface hipsparseSpruneCsr2csrByPercentage
@@ -7960,7 +8728,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseSpruneCsr2csrByPercentage_rank_0,hipsparseSpruneCsr2csrByPercentage_rank_1
+#endif
+
   end interface
   
   interface hipsparseDpruneCsr2csrByPercentage
@@ -7990,7 +8761,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDpruneCsr2csrByPercentage_rank_0,hipsparseDpruneCsr2csrByPercentage_rank_1
+#endif
+
   end interface
   
   interface hipsparseShyb2csr
@@ -8011,7 +8785,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedColIndA
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseShyb2csr_rank_0,hipsparseShyb2csr_rank_1
+#endif
+
   end interface
   
   interface hipsparseDhyb2csr
@@ -8032,7 +8809,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedColIndA
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseDhyb2csr_rank_0,hipsparseDhyb2csr_rank_1
+#endif
+
   end interface
   
   interface hipsparseChyb2csr
@@ -8053,7 +8833,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedColIndA
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseChyb2csr_rank_0,hipsparseChyb2csr_rank_1
+#endif
+
   end interface
   
   interface hipsparseZhyb2csr
@@ -8074,7 +8857,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedColIndA
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseZhyb2csr_rank_0,hipsparseZhyb2csr_rank_1
+#endif
+
   end interface
   !>  Description: This routine converts a sparse matrix in COO storage format
   !> to a sparse matrix in CSR storage format. 
@@ -8096,7 +8882,10 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseXcoo2csr_rank_0,hipsparseXcoo2csr_rank_1
+#endif
+
   end interface
   !>  Description: This routine creates an identity map. 
   interface hipsparseCreateIdentityPermutation
@@ -8114,7 +8903,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: p
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseCreateIdentityPermutation_rank_0,hipsparseCreateIdentityPermutation_rank_1
+#endif
+
   end interface
   !>  Description: This routine computes the required buffer size for csrsort. 
   interface hipsparseXcsrsort_bufferSizeExt
@@ -8136,7 +8928,10 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseXcsrsort_bufferSizeExt_rank_0,hipsparseXcsrsort_bufferSizeExt_rank_1
+#endif
+
   end interface
   !>  Description: This routine sorts CSR format. 
   interface hipsparseXcsrsort
@@ -8160,7 +8955,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseXcsrsort_full_rank,hipsparseXcsrsort_rank_0,hipsparseXcsrsort_rank_1
+#endif
+
   end interface
   !>  Description: This routine computes the required buffer size for cscsort. 
   interface hipsparseXcscsort_bufferSizeExt
@@ -8182,7 +8980,10 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseXcscsort_bufferSizeExt_rank_0,hipsparseXcscsort_bufferSizeExt_rank_1
+#endif
+
   end interface
   !>  Description: This routine sorts CSR format. 
   interface hipsparseXcscsort
@@ -8206,7 +9007,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseXcscsort_full_rank,hipsparseXcscsort_rank_0,hipsparseXcscsort_rank_1
+#endif
+
   end interface
   !>  Description: This routine computes the required buffer size for coosort. 
   interface hipsparseXcoosort_bufferSizeExt
@@ -8228,7 +9032,10 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseXcoosort_bufferSizeExt_rank_0,hipsparseXcoosort_bufferSizeExt_rank_1
+#endif
+
   end interface
   !>  Description: This routine sorts COO format by rows. 
   interface hipsparseXcoosortByRow
@@ -8251,7 +9058,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseXcoosortByRow_full_rank,hipsparseXcoosortByRow_rank_0,hipsparseXcoosortByRow_rank_1
+#endif
+
   end interface
   !>  Description: This routine sorts COO format by columns. 
   interface hipsparseXcoosortByColumn
@@ -8274,11 +9084,14 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipsparseXcoosortByColumn_full_rank,hipsparseXcoosortByColumn_rank_0,hipsparseXcoosortByColumn_rank_1
+#endif
+
   end interface
 
+#ifdef USE_FPOINTER_INTERFACES
   contains
-
     function hipsparseSaxpyi_rank_0(handle,nnz,alpha,xVal,xInd,y,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -21228,4 +22041,5 @@ module hipfort_hipsparse
     end function
 
   
+#endif
 end module hipfort_hipsparse
