@@ -2,7 +2,7 @@
 ! ==============================================================================
 ! hipfort: FORTRAN Interfaces for GPU kernels
 ! ==============================================================================
-! Copyright (c) 2020 Advanced Micro Devices, Inc. All rights reserved.
+! Copyright (c) 2021 Advanced Micro Devices, Inc. All rights reserved.
 ! [MITx11 License]
 ! 
 ! Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -400,7 +400,8 @@ module hipfort_enums
 
  
 
-  contains
+#ifdef USE_FPOINTER_INTERFACES
 
   
+#endif
 end module hipfort_enums

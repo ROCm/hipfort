@@ -2,7 +2,7 @@
 ! ==============================================================================
 ! hipfort: FORTRAN Interfaces for GPU kernels
 ! ==============================================================================
-! Copyright (c) 2020 Advanced Micro Devices, Inc. All rights reserved.
+! Copyright (c) 2021 Advanced Micro Devices, Inc. All rights reserved.
 ! [MITx11 License]
 ! 
 ! Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -576,7 +576,10 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_saxpyi_rank_0,rocsparse_saxpyi_rank_1
+#endif
+
   end interface
   
   interface rocsparse_daxpyi
@@ -594,7 +597,10 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_daxpyi_rank_0,rocsparse_daxpyi_rank_1
+#endif
+
   end interface
   
   interface rocsparse_caxpyi
@@ -612,7 +618,10 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_caxpyi_rank_0,rocsparse_caxpyi_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zaxpyi
@@ -630,7 +639,10 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zaxpyi_rank_0,rocsparse_zaxpyi_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_sdoti
@@ -648,7 +660,10 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_sdoti_rank_0,rocsparse_sdoti_rank_1
+#endif
+
   end interface
   
   interface rocsparse_ddoti
@@ -666,7 +681,10 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_ddoti_rank_0,rocsparse_ddoti_rank_1
+#endif
+
   end interface
   
   interface rocsparse_cdoti
@@ -684,7 +702,10 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_cdoti_rank_0,rocsparse_cdoti_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zdoti
@@ -702,7 +723,10 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zdoti_rank_0,rocsparse_zdoti_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_cdotci
@@ -720,7 +744,10 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_cdotci_rank_0,rocsparse_cdotci_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zdotci
@@ -738,7 +765,10 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zdotci_rank_0,rocsparse_zdotci_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_sgthr
@@ -755,7 +785,10 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_sgthr_rank_0,rocsparse_sgthr_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dgthr
@@ -772,7 +805,10 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dgthr_rank_0,rocsparse_dgthr_rank_1
+#endif
+
   end interface
   
   interface rocsparse_cgthr
@@ -789,7 +825,10 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_cgthr_rank_0,rocsparse_cgthr_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zgthr
@@ -806,7 +845,10 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zgthr_rank_0,rocsparse_zgthr_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_sgthrz
@@ -823,7 +865,10 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_sgthrz_rank_0,rocsparse_sgthrz_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dgthrz
@@ -840,7 +885,10 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dgthrz_rank_0,rocsparse_dgthrz_rank_1
+#endif
+
   end interface
   
   interface rocsparse_cgthrz
@@ -857,7 +905,10 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_cgthrz_rank_0,rocsparse_cgthrz_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zgthrz
@@ -874,7 +925,10 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zgthrz_rank_0,rocsparse_zgthrz_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_sroti
@@ -893,7 +947,10 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_sroti_rank_0,rocsparse_sroti_rank_1
+#endif
+
   end interface
   
   interface rocsparse_droti
@@ -912,7 +969,10 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_droti_rank_0,rocsparse_droti_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_ssctr
@@ -929,7 +989,10 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_ssctr_rank_0,rocsparse_ssctr_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dsctr
@@ -946,7 +1009,10 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dsctr_rank_0,rocsparse_dsctr_rank_1
+#endif
+
   end interface
   
   interface rocsparse_csctr
@@ -963,7 +1029,10 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_csctr_rank_0,rocsparse_csctr_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zsctr
@@ -980,7 +1049,10 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zsctr_rank_0,rocsparse_zsctr_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_sbsrmv
@@ -1006,7 +1078,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_sbsrmv_rank_0,rocsparse_sbsrmv_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dbsrmv
@@ -1032,7 +1107,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dbsrmv_rank_0,rocsparse_dbsrmv_rank_1
+#endif
+
   end interface
   
   interface rocsparse_cbsrmv
@@ -1058,7 +1136,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_cbsrmv_rank_0,rocsparse_cbsrmv_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zbsrmv
@@ -1084,7 +1165,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zbsrmv_rank_0,rocsparse_zbsrmv_rank_1
+#endif
+
   end interface
   !> ! \ingroup level2_module
   !>   \brief Sparse triangular solve using BSR storage format
@@ -1150,7 +1234,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_sbsrsv_buffer_size_rank_0,rocsparse_sbsrsv_buffer_size_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dbsrsv_buffer_size
@@ -1173,7 +1260,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dbsrsv_buffer_size_rank_0,rocsparse_dbsrsv_buffer_size_rank_1
+#endif
+
   end interface
   
   interface rocsparse_cbsrsv_buffer_size
@@ -1196,7 +1286,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_cbsrsv_buffer_size_rank_0,rocsparse_cbsrsv_buffer_size_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zbsrsv_buffer_size
@@ -1219,7 +1312,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zbsrsv_buffer_size_rank_0,rocsparse_zbsrsv_buffer_size_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_sbsrsv_analysis
@@ -1244,7 +1340,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_sbsrsv_analysis_rank_0,rocsparse_sbsrsv_analysis_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dbsrsv_analysis
@@ -1269,7 +1368,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dbsrsv_analysis_rank_0,rocsparse_dbsrsv_analysis_rank_1
+#endif
+
   end interface
   
   interface rocsparse_cbsrsv_analysis
@@ -1294,7 +1396,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_cbsrsv_analysis_rank_0,rocsparse_cbsrsv_analysis_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zbsrsv_analysis
@@ -1319,7 +1424,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zbsrsv_analysis_rank_0,rocsparse_zbsrsv_analysis_rank_1
+#endif
+
   end interface
   !> ! \ingroup level2_module
   !>   \brief Sparse triangular solve using BSR storage format
@@ -1382,7 +1490,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_sbsrsv_solve_rank_0,rocsparse_sbsrsv_solve_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dbsrsv_solve
@@ -1409,7 +1520,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dbsrsv_solve_rank_0,rocsparse_dbsrsv_solve_rank_1
+#endif
+
   end interface
   
   interface rocsparse_cbsrsv_solve
@@ -1436,7 +1550,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_cbsrsv_solve_rank_0,rocsparse_cbsrsv_solve_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zbsrsv_solve
@@ -1463,7 +1580,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zbsrsv_solve_rank_0,rocsparse_zbsrsv_solve_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_scoomv
@@ -1487,7 +1607,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_scoomv_rank_0,rocsparse_scoomv_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dcoomv
@@ -1511,7 +1634,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dcoomv_rank_0,rocsparse_dcoomv_rank_1
+#endif
+
   end interface
   
   interface rocsparse_ccoomv
@@ -1535,7 +1661,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_ccoomv_rank_0,rocsparse_ccoomv_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zcoomv
@@ -1559,7 +1688,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zcoomv_rank_0,rocsparse_zcoomv_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_scsrmv_analysis
@@ -1580,7 +1712,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: myInfo
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_scsrmv_analysis_rank_0,rocsparse_scsrmv_analysis_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dcsrmv_analysis
@@ -1601,7 +1736,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: myInfo
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dcsrmv_analysis_rank_0,rocsparse_dcsrmv_analysis_rank_1
+#endif
+
   end interface
   
   interface rocsparse_ccsrmv_analysis
@@ -1622,7 +1760,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: myInfo
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_ccsrmv_analysis_rank_0,rocsparse_ccsrmv_analysis_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zcsrmv_analysis
@@ -1643,7 +1784,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: myInfo
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zcsrmv_analysis_rank_0,rocsparse_zcsrmv_analysis_rank_1
+#endif
+
   end interface
   !> ! \ingroup level2_module
   !>   \brief Sparse matrix vector multiplication using CSR storage format
@@ -1707,7 +1851,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_scsrmv_rank_0,rocsparse_scsrmv_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dcsrmv
@@ -1732,7 +1879,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dcsrmv_rank_0,rocsparse_dcsrmv_rank_1
+#endif
+
   end interface
   
   interface rocsparse_ccsrmv
@@ -1757,7 +1907,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_ccsrmv_rank_0,rocsparse_ccsrmv_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zcsrmv
@@ -1782,7 +1935,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zcsrmv_rank_0,rocsparse_zcsrmv_rank_1
+#endif
+
   end interface
   !> ! \ingroup level2_module
   !>   \brief Sparse triangular solve using CSR storage format
@@ -1849,7 +2005,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_scsrsv_buffer_size_rank_0,rocsparse_scsrsv_buffer_size_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dcsrsv_buffer_size
@@ -1870,7 +2029,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dcsrsv_buffer_size_rank_0,rocsparse_dcsrsv_buffer_size_rank_1
+#endif
+
   end interface
   
   interface rocsparse_ccsrsv_buffer_size
@@ -1891,7 +2053,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_ccsrsv_buffer_size_rank_0,rocsparse_ccsrsv_buffer_size_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zcsrsv_buffer_size
@@ -1912,7 +2077,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zcsrsv_buffer_size_rank_0,rocsparse_zcsrsv_buffer_size_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_scsrsv_analysis
@@ -1935,7 +2103,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_scsrsv_analysis_rank_0,rocsparse_scsrsv_analysis_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dcsrsv_analysis
@@ -1958,7 +2129,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dcsrsv_analysis_rank_0,rocsparse_dcsrsv_analysis_rank_1
+#endif
+
   end interface
   
   interface rocsparse_ccsrsv_analysis
@@ -1981,7 +2155,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_ccsrsv_analysis_rank_0,rocsparse_ccsrsv_analysis_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zcsrsv_analysis
@@ -2004,7 +2181,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zcsrsv_analysis_rank_0,rocsparse_zcsrsv_analysis_rank_1
+#endif
+
   end interface
   !> ! \ingroup level2_module
   !>   \brief Sparse triangular solve using CSR storage format
@@ -2068,7 +2248,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_scsrsv_solve_rank_0,rocsparse_scsrsv_solve_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dcsrsv_solve
@@ -2093,7 +2276,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dcsrsv_solve_rank_0,rocsparse_dcsrsv_solve_rank_1
+#endif
+
   end interface
   
   interface rocsparse_ccsrsv_solve
@@ -2118,7 +2304,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_ccsrsv_solve_rank_0,rocsparse_ccsrsv_solve_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zcsrsv_solve
@@ -2143,7 +2332,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zcsrsv_solve_rank_0,rocsparse_zcsrsv_solve_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_sellmv
@@ -2166,7 +2358,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_sellmv_rank_0,rocsparse_sellmv_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dellmv
@@ -2189,7 +2384,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dellmv_rank_0,rocsparse_dellmv_rank_1
+#endif
+
   end interface
   
   interface rocsparse_cellmv
@@ -2212,7 +2410,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_cellmv_rank_0,rocsparse_cellmv_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zellmv
@@ -2235,7 +2436,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zellmv_rank_0,rocsparse_zellmv_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_shybmv
@@ -2254,7 +2458,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_shybmv_rank_0,rocsparse_shybmv_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dhybmv
@@ -2273,7 +2480,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dhybmv_rank_0,rocsparse_dhybmv_rank_1
+#endif
+
   end interface
   
   interface rocsparse_chybmv
@@ -2292,7 +2502,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_chybmv_rank_0,rocsparse_chybmv_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zhybmv
@@ -2311,7 +2524,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zhybmv_rank_0,rocsparse_zhybmv_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_sbsrmm
@@ -2341,7 +2557,10 @@ module hipfort_rocsparse
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_sbsrmm_full_rank,rocsparse_sbsrmm_rank_0,rocsparse_sbsrmm_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dbsrmm
@@ -2371,7 +2590,10 @@ module hipfort_rocsparse
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dbsrmm_full_rank,rocsparse_dbsrmm_rank_0,rocsparse_dbsrmm_rank_1
+#endif
+
   end interface
   
   interface rocsparse_cbsrmm
@@ -2401,7 +2623,10 @@ module hipfort_rocsparse
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_cbsrmm_full_rank,rocsparse_cbsrmm_rank_0,rocsparse_cbsrmm_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zbsrmm
@@ -2431,7 +2656,10 @@ module hipfort_rocsparse
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zbsrmm_full_rank,rocsparse_zbsrmm_rank_0,rocsparse_zbsrmm_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_scsrmm
@@ -2459,7 +2687,10 @@ module hipfort_rocsparse
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_scsrmm_full_rank,rocsparse_scsrmm_rank_0,rocsparse_scsrmm_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dcsrmm
@@ -2487,7 +2718,10 @@ module hipfort_rocsparse
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dcsrmm_full_rank,rocsparse_dcsrmm_rank_0,rocsparse_dcsrmm_rank_1
+#endif
+
   end interface
   
   interface rocsparse_ccsrmm
@@ -2515,7 +2749,10 @@ module hipfort_rocsparse
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_ccsrmm_full_rank,rocsparse_ccsrmm_rank_0,rocsparse_ccsrmm_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zcsrmm
@@ -2543,7 +2780,10 @@ module hipfort_rocsparse
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zcsrmm_full_rank,rocsparse_zcsrmm_rank_0,rocsparse_zcsrmm_rank_1
+#endif
+
   end interface
   !> ! \ingroup level3_module
   !>   \brief Sparse triangular system solve using CSR storage format
@@ -2613,7 +2853,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_scsrsm_buffer_size_full_rank,rocsparse_scsrsm_buffer_size_rank_0,rocsparse_scsrsm_buffer_size_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dcsrsm_buffer_size
@@ -2640,7 +2883,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dcsrsm_buffer_size_full_rank,rocsparse_dcsrsm_buffer_size_rank_0,rocsparse_dcsrsm_buffer_size_rank_1
+#endif
+
   end interface
   
   interface rocsparse_ccsrsm_buffer_size
@@ -2667,7 +2913,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_ccsrsm_buffer_size_full_rank,rocsparse_ccsrsm_buffer_size_rank_0,rocsparse_ccsrsm_buffer_size_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zcsrsm_buffer_size
@@ -2694,7 +2943,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zcsrsm_buffer_size_full_rank,rocsparse_zcsrsm_buffer_size_rank_0,rocsparse_zcsrsm_buffer_size_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_scsrsm_analysis
@@ -2722,7 +2974,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_scsrsm_analysis_full_rank,rocsparse_scsrsm_analysis_rank_0,rocsparse_scsrsm_analysis_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dcsrsm_analysis
@@ -2750,7 +3005,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dcsrsm_analysis_full_rank,rocsparse_dcsrsm_analysis_rank_0,rocsparse_dcsrsm_analysis_rank_1
+#endif
+
   end interface
   
   interface rocsparse_ccsrsm_analysis
@@ -2778,7 +3036,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_ccsrsm_analysis_full_rank,rocsparse_ccsrsm_analysis_rank_0,rocsparse_ccsrsm_analysis_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zcsrsm_analysis
@@ -2806,7 +3067,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zcsrsm_analysis_full_rank,rocsparse_zcsrsm_analysis_rank_0,rocsparse_zcsrsm_analysis_rank_1
+#endif
+
   end interface
   !> ! \ingroup level3_module
   !>   \brief Sparse triangular system solve using CSR storage format
@@ -2869,7 +3133,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_scsrsm_solve_full_rank,rocsparse_scsrsm_solve_rank_0,rocsparse_scsrsm_solve_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dcsrsm_solve
@@ -2896,7 +3163,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dcsrsm_solve_full_rank,rocsparse_dcsrsm_solve_rank_0,rocsparse_dcsrsm_solve_rank_1
+#endif
+
   end interface
   
   interface rocsparse_ccsrsm_solve
@@ -2923,7 +3193,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_ccsrsm_solve_full_rank,rocsparse_ccsrsm_solve_rank_0,rocsparse_ccsrsm_solve_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zcsrsm_solve
@@ -2950,7 +3223,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zcsrsm_solve_full_rank,rocsparse_zcsrsm_solve_rank_0,rocsparse_zcsrsm_solve_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_sgemmi
@@ -2978,7 +3254,10 @@ module hipfort_rocsparse
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_sgemmi_full_rank,rocsparse_sgemmi_rank_0,rocsparse_sgemmi_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dgemmi
@@ -3006,7 +3285,10 @@ module hipfort_rocsparse
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dgemmi_full_rank,rocsparse_dgemmi_rank_0,rocsparse_dgemmi_rank_1
+#endif
+
   end interface
   
   interface rocsparse_cgemmi
@@ -3034,7 +3316,10 @@ module hipfort_rocsparse
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_cgemmi_full_rank,rocsparse_cgemmi_rank_0,rocsparse_cgemmi_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zgemmi
@@ -3062,7 +3347,10 @@ module hipfort_rocsparse
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zgemmi_full_rank,rocsparse_zgemmi_rank_0,rocsparse_zgemmi_rank_1
+#endif
+
   end interface
   !> ! \ingroup extra_module
   !>   \brief Sparse matrix sparse matrix addition using CSR storage format
@@ -3148,7 +3436,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: nnz_C
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_csrgeam_nnz_rank_0,rocsparse_csrgeam_nnz_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_scsrgeam
@@ -3178,7 +3469,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind_C
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_scsrgeam_rank_0,rocsparse_scsrgeam_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dcsrgeam
@@ -3208,7 +3502,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind_C
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dcsrgeam_rank_0,rocsparse_dcsrgeam_rank_1
+#endif
+
   end interface
   
   interface rocsparse_ccsrgeam
@@ -3238,7 +3535,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind_C
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_ccsrgeam_rank_0,rocsparse_ccsrgeam_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zcsrgeam
@@ -3268,7 +3568,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind_C
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zcsrgeam_rank_0,rocsparse_zcsrgeam_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_scsrgemm_buffer_size
@@ -3301,7 +3604,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_scsrgemm_buffer_size_rank_0,rocsparse_scsrgemm_buffer_size_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dcsrgemm_buffer_size
@@ -3334,7 +3640,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dcsrgemm_buffer_size_rank_0,rocsparse_dcsrgemm_buffer_size_rank_1
+#endif
+
   end interface
   
   interface rocsparse_ccsrgemm_buffer_size
@@ -3367,7 +3676,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_ccsrgemm_buffer_size_rank_0,rocsparse_ccsrgemm_buffer_size_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zcsrgemm_buffer_size
@@ -3400,7 +3712,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zcsrgemm_buffer_size_rank_0,rocsparse_zcsrgemm_buffer_size_rank_1
+#endif
+
   end interface
   !> ! \ingroup extra_module
   !>   \brief Sparse matrix sparse matrix multiplication using CSR storage format
@@ -3538,7 +3853,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_csrgemm_nnz_rank_0,rocsparse_csrgemm_nnz_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_scsrgemm
@@ -3578,7 +3896,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_scsrgemm_rank_0,rocsparse_scsrgemm_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dcsrgemm
@@ -3618,7 +3939,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dcsrgemm_rank_0,rocsparse_dcsrgemm_rank_1
+#endif
+
   end interface
   
   interface rocsparse_ccsrgemm
@@ -3658,7 +3982,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_ccsrgemm_rank_0,rocsparse_ccsrgemm_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zcsrgemm
@@ -3698,7 +4025,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zcsrgemm_rank_0,rocsparse_zcsrgemm_rank_1
+#endif
+
   end interface
   !> ! \ingroup precond_module
   !>    \brief Incomplete Cholesky factorization with 0 fill-ins and no pivoting using BSR
@@ -3769,7 +4099,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_sbsric0_buffer_size_rank_0,rocsparse_sbsric0_buffer_size_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dbsric0_buffer_size
@@ -3791,7 +4124,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dbsric0_buffer_size_rank_0,rocsparse_dbsric0_buffer_size_rank_1
+#endif
+
   end interface
   
   interface rocsparse_cbsric0_buffer_size
@@ -3813,7 +4149,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_cbsric0_buffer_size_rank_0,rocsparse_cbsric0_buffer_size_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zbsric0_buffer_size
@@ -3835,7 +4174,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zbsric0_buffer_size_rank_0,rocsparse_zbsric0_buffer_size_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_sbsric0_analysis
@@ -3859,7 +4201,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_sbsric0_analysis_rank_0,rocsparse_sbsric0_analysis_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dbsric0_analysis
@@ -3883,7 +4228,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dbsric0_analysis_rank_0,rocsparse_dbsric0_analysis_rank_1
+#endif
+
   end interface
   
   interface rocsparse_cbsric0_analysis
@@ -3907,7 +4255,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_cbsric0_analysis_rank_0,rocsparse_cbsric0_analysis_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zbsric0_analysis
@@ -3931,7 +4282,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zbsric0_analysis_rank_0,rocsparse_zbsric0_analysis_rank_1
+#endif
+
   end interface
   !> ! \ingroup precond_module
   !>    \brief Incomplete Cholesky factorization with 0 fill-ins and no pivoting using BSR
@@ -3993,7 +4347,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_sbsric0_rank_0,rocsparse_sbsric0_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dbsric0
@@ -4016,7 +4373,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dbsric0_rank_0,rocsparse_dbsric0_rank_1
+#endif
+
   end interface
   
   interface rocsparse_cbsric0
@@ -4039,7 +4399,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_cbsric0_rank_0,rocsparse_cbsric0_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zbsric0
@@ -4062,7 +4425,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zbsric0_rank_0,rocsparse_zbsric0_rank_1
+#endif
+
   end interface
   !> ! \ingroup precond_module
   !>    \brief Incomplete LU factorization with 0 fill-ins and no pivoting using BSR storage
@@ -4197,7 +4563,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_sbsrilu0_buffer_size_rank_0,rocsparse_sbsrilu0_buffer_size_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dbsrilu0_buffer_size
@@ -4219,7 +4588,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dbsrilu0_buffer_size_rank_0,rocsparse_dbsrilu0_buffer_size_rank_1
+#endif
+
   end interface
   
   interface rocsparse_cbsrilu0_buffer_size
@@ -4241,7 +4613,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_cbsrilu0_buffer_size_rank_0,rocsparse_cbsrilu0_buffer_size_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zbsrilu0_buffer_size
@@ -4263,7 +4638,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zbsrilu0_buffer_size_rank_0,rocsparse_zbsrilu0_buffer_size_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_sbsrilu0_analysis
@@ -4287,7 +4665,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_sbsrilu0_analysis_rank_0,rocsparse_sbsrilu0_analysis_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dbsrilu0_analysis
@@ -4311,7 +4692,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dbsrilu0_analysis_rank_0,rocsparse_dbsrilu0_analysis_rank_1
+#endif
+
   end interface
   
   interface rocsparse_cbsrilu0_analysis
@@ -4335,7 +4719,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_cbsrilu0_analysis_rank_0,rocsparse_cbsrilu0_analysis_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zbsrilu0_analysis
@@ -4359,7 +4746,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zbsrilu0_analysis_rank_0,rocsparse_zbsrilu0_analysis_rank_1
+#endif
+
   end interface
   !> ! \ingroup precond_module
   !>    \brief Incomplete LU factorization with 0 fill-ins and no pivoting using BSR storage
@@ -4421,7 +4811,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_sbsrilu0_rank_0,rocsparse_sbsrilu0_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dbsrilu0
@@ -4444,7 +4837,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dbsrilu0_rank_0,rocsparse_dbsrilu0_rank_1
+#endif
+
   end interface
   
   interface rocsparse_cbsrilu0
@@ -4467,7 +4863,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_cbsrilu0_rank_0,rocsparse_cbsrilu0_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zbsrilu0
@@ -4490,7 +4889,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zbsrilu0_rank_0,rocsparse_zbsrilu0_rank_1
+#endif
+
   end interface
   !> ! \ingroup precond_module
   !>   \brief Incomplete Cholesky factorization with 0 fill-ins and no pivoting using CSR
@@ -4553,7 +4955,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_scsric0_buffer_size_rank_0,rocsparse_scsric0_buffer_size_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dcsric0_buffer_size
@@ -4573,7 +4978,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dcsric0_buffer_size_rank_0,rocsparse_dcsric0_buffer_size_rank_1
+#endif
+
   end interface
   
   interface rocsparse_ccsric0_buffer_size
@@ -4593,7 +5001,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_ccsric0_buffer_size_rank_0,rocsparse_ccsric0_buffer_size_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zcsric0_buffer_size
@@ -4613,7 +5024,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zcsric0_buffer_size_rank_0,rocsparse_zcsric0_buffer_size_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_scsric0_analysis
@@ -4635,7 +5049,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_scsric0_analysis_rank_0,rocsparse_scsric0_analysis_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dcsric0_analysis
@@ -4657,7 +5074,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dcsric0_analysis_rank_0,rocsparse_dcsric0_analysis_rank_1
+#endif
+
   end interface
   
   interface rocsparse_ccsric0_analysis
@@ -4679,7 +5099,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_ccsric0_analysis_rank_0,rocsparse_ccsric0_analysis_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zcsric0_analysis
@@ -4701,7 +5124,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zcsric0_analysis_rank_0,rocsparse_zcsric0_analysis_rank_1
+#endif
+
   end interface
   !> ! \ingroup precond_module
   !>   \brief Incomplete Cholesky factorization with 0 fill-ins and no pivoting using CSR
@@ -4761,7 +5187,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_scsric0_rank_0,rocsparse_scsric0_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dcsric0
@@ -4782,7 +5211,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dcsric0_rank_0,rocsparse_dcsric0_rank_1
+#endif
+
   end interface
   
   interface rocsparse_ccsric0
@@ -4803,7 +5235,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_ccsric0_rank_0,rocsparse_ccsric0_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zcsric0
@@ -4824,7 +5259,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zcsric0_rank_0,rocsparse_zcsric0_rank_1
+#endif
+
   end interface
   !> ! \ingroup precond_module
   !>   \brief Incomplete LU factorization with 0 fill-ins and no pivoting using CSR
@@ -4952,7 +5390,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_scsrilu0_buffer_size_rank_0,rocsparse_scsrilu0_buffer_size_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dcsrilu0_buffer_size
@@ -4972,7 +5413,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dcsrilu0_buffer_size_rank_0,rocsparse_dcsrilu0_buffer_size_rank_1
+#endif
+
   end interface
   
   interface rocsparse_ccsrilu0_buffer_size
@@ -4992,7 +5436,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_ccsrilu0_buffer_size_rank_0,rocsparse_ccsrilu0_buffer_size_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zcsrilu0_buffer_size
@@ -5012,7 +5459,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zcsrilu0_buffer_size_rank_0,rocsparse_zcsrilu0_buffer_size_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_scsrilu0_analysis
@@ -5034,7 +5484,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_scsrilu0_analysis_rank_0,rocsparse_scsrilu0_analysis_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dcsrilu0_analysis
@@ -5056,7 +5509,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dcsrilu0_analysis_rank_0,rocsparse_dcsrilu0_analysis_rank_1
+#endif
+
   end interface
   
   interface rocsparse_ccsrilu0_analysis
@@ -5078,7 +5534,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_ccsrilu0_analysis_rank_0,rocsparse_ccsrilu0_analysis_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zcsrilu0_analysis
@@ -5100,7 +5559,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zcsrilu0_analysis_rank_0,rocsparse_zcsrilu0_analysis_rank_1
+#endif
+
   end interface
   !> ! \ingroup precond_module
   !>   \brief Incomplete LU factorization with 0 fill-ins and no pivoting using CSR
@@ -5161,7 +5623,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_scsrilu0_rank_0,rocsparse_scsrilu0_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dcsrilu0
@@ -5182,7 +5647,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dcsrilu0_rank_0,rocsparse_dcsrilu0_rank_1
+#endif
+
   end interface
   
   interface rocsparse_ccsrilu0
@@ -5203,7 +5671,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_ccsrilu0_rank_0,rocsparse_ccsrilu0_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zcsrilu0
@@ -5224,7 +5695,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zcsrilu0_rank_0,rocsparse_zcsrilu0_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_snnz
@@ -5244,7 +5718,10 @@ module hipfort_rocsparse
       integer(c_int) :: nnz_total_dev_host_ptr
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_snnz_full_rank,rocsparse_snnz_rank_0,rocsparse_snnz_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dnnz
@@ -5264,7 +5741,10 @@ module hipfort_rocsparse
       integer(c_int) :: nnz_total_dev_host_ptr
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dnnz_full_rank,rocsparse_dnnz_rank_0,rocsparse_dnnz_rank_1
+#endif
+
   end interface
   
   interface rocsparse_cnnz
@@ -5284,7 +5764,10 @@ module hipfort_rocsparse
       integer(c_int) :: nnz_total_dev_host_ptr
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_cnnz_full_rank,rocsparse_cnnz_rank_0,rocsparse_cnnz_rank_1
+#endif
+
   end interface
   
   interface rocsparse_znnz
@@ -5304,7 +5787,10 @@ module hipfort_rocsparse
       integer(c_int) :: nnz_total_dev_host_ptr
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_znnz_full_rank,rocsparse_znnz_rank_0,rocsparse_znnz_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_sdense2csr
@@ -5325,7 +5811,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_sdense2csr_full_rank,rocsparse_sdense2csr_rank_0,rocsparse_sdense2csr_rank_1
+#endif
+
   end interface
   
   interface rocsparse_ddense2csr
@@ -5346,7 +5835,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_ddense2csr_full_rank,rocsparse_ddense2csr_rank_0,rocsparse_ddense2csr_rank_1
+#endif
+
   end interface
   
   interface rocsparse_cdense2csr
@@ -5367,7 +5859,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_cdense2csr_full_rank,rocsparse_cdense2csr_rank_0,rocsparse_cdense2csr_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zdense2csr
@@ -5388,7 +5883,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zdense2csr_full_rank,rocsparse_zdense2csr_rank_0,rocsparse_zdense2csr_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_sprune_dense2csr_buffer_size
@@ -5410,7 +5908,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_sprune_dense2csr_buffer_size_full_rank,rocsparse_sprune_dense2csr_buffer_size_rank_0,rocsparse_sprune_dense2csr_buffer_size_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dprune_dense2csr_buffer_size
@@ -5432,7 +5933,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dprune_dense2csr_buffer_size_full_rank,rocsparse_dprune_dense2csr_buffer_size_rank_0,rocsparse_dprune_dense2csr_buffer_size_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_sprune_dense2csr_nnz
@@ -5453,7 +5957,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_sprune_dense2csr_nnz_full_rank,rocsparse_sprune_dense2csr_nnz_rank_0,rocsparse_sprune_dense2csr_nnz_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dprune_dense2csr_nnz
@@ -5474,7 +5981,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dprune_dense2csr_nnz_full_rank,rocsparse_dprune_dense2csr_nnz_rank_0,rocsparse_dprune_dense2csr_nnz_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_sprune_dense2csr
@@ -5496,7 +6006,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_sprune_dense2csr_full_rank,rocsparse_sprune_dense2csr_rank_0,rocsparse_sprune_dense2csr_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dprune_dense2csr
@@ -5518,7 +6031,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dprune_dense2csr_full_rank,rocsparse_dprune_dense2csr_rank_0,rocsparse_dprune_dense2csr_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_sprune_dense2csr_by_percentage_buffer_size
@@ -5541,7 +6057,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_sprune_dense2csr_by_percentage_buffer_size_full_rank,rocsparse_sprune_dense2csr_by_percentage_buffer_size_rank_0,rocsparse_sprune_dense2csr_by_percentage_buffer_size_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dprune_dense2csr_by_percentage_buffer_size
@@ -5564,7 +6083,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dprune_dense2csr_by_percentage_buffer_size_full_rank,rocsparse_dprune_dense2csr_by_percentage_buffer_size_rank_0,rocsparse_dprune_dense2csr_by_percentage_buffer_size_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_sprune_dense2csr_nnz_by_percentage
@@ -5586,7 +6108,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_sprune_dense2csr_nnz_by_percentage_full_rank,rocsparse_sprune_dense2csr_nnz_by_percentage_rank_0,rocsparse_sprune_dense2csr_nnz_by_percentage_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dprune_dense2csr_nnz_by_percentage
@@ -5608,7 +6133,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dprune_dense2csr_nnz_by_percentage_full_rank,rocsparse_dprune_dense2csr_nnz_by_percentage_rank_0,rocsparse_dprune_dense2csr_nnz_by_percentage_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_sprune_dense2csr_by_percentage
@@ -5631,7 +6159,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_sprune_dense2csr_by_percentage_full_rank,rocsparse_sprune_dense2csr_by_percentage_rank_0,rocsparse_sprune_dense2csr_by_percentage_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dprune_dense2csr_by_percentage
@@ -5654,7 +6185,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dprune_dense2csr_by_percentage_full_rank,rocsparse_dprune_dense2csr_by_percentage_rank_0,rocsparse_dprune_dense2csr_by_percentage_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_sdense2csc
@@ -5675,7 +6209,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csc_row_ind
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_sdense2csc_full_rank,rocsparse_sdense2csc_rank_0,rocsparse_sdense2csc_rank_1
+#endif
+
   end interface
   
   interface rocsparse_ddense2csc
@@ -5696,7 +6233,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csc_row_ind
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_ddense2csc_full_rank,rocsparse_ddense2csc_rank_0,rocsparse_ddense2csc_rank_1
+#endif
+
   end interface
   
   interface rocsparse_cdense2csc
@@ -5717,7 +6257,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csc_row_ind
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_cdense2csc_full_rank,rocsparse_cdense2csc_rank_0,rocsparse_cdense2csc_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zdense2csc
@@ -5738,7 +6281,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csc_row_ind
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zdense2csc_full_rank,rocsparse_zdense2csc_rank_0,rocsparse_zdense2csc_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_scsr2dense
@@ -5758,7 +6304,10 @@ module hipfort_rocsparse
       integer(c_int),value :: ld
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_scsr2dense_full_rank,rocsparse_scsr2dense_rank_0,rocsparse_scsr2dense_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dcsr2dense
@@ -5778,7 +6327,10 @@ module hipfort_rocsparse
       integer(c_int),value :: ld
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dcsr2dense_full_rank,rocsparse_dcsr2dense_rank_0,rocsparse_dcsr2dense_rank_1
+#endif
+
   end interface
   
   interface rocsparse_ccsr2dense
@@ -5798,7 +6350,10 @@ module hipfort_rocsparse
       integer(c_int),value :: ld
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_ccsr2dense_full_rank,rocsparse_ccsr2dense_rank_0,rocsparse_ccsr2dense_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zcsr2dense
@@ -5818,7 +6373,10 @@ module hipfort_rocsparse
       integer(c_int),value :: ld
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zcsr2dense_full_rank,rocsparse_zcsr2dense_rank_0,rocsparse_zcsr2dense_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_scsc2dense
@@ -5838,7 +6396,10 @@ module hipfort_rocsparse
       integer(c_int),value :: ld
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_scsc2dense_full_rank,rocsparse_scsc2dense_rank_0,rocsparse_scsc2dense_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dcsc2dense
@@ -5858,7 +6419,10 @@ module hipfort_rocsparse
       integer(c_int),value :: ld
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dcsc2dense_full_rank,rocsparse_dcsc2dense_rank_0,rocsparse_dcsc2dense_rank_1
+#endif
+
   end interface
   
   interface rocsparse_ccsc2dense
@@ -5878,7 +6442,10 @@ module hipfort_rocsparse
       integer(c_int),value :: ld
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_ccsc2dense_full_rank,rocsparse_ccsc2dense_rank_0,rocsparse_ccsc2dense_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zcsc2dense
@@ -5898,7 +6465,10 @@ module hipfort_rocsparse
       integer(c_int),value :: ld
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zcsc2dense_full_rank,rocsparse_zcsc2dense_rank_0,rocsparse_zcsc2dense_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_snnz_compress
@@ -5917,7 +6487,10 @@ module hipfort_rocsparse
       real(c_float),value :: tol
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_snnz_compress_rank_0,rocsparse_snnz_compress_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dnnz_compress
@@ -5936,7 +6509,10 @@ module hipfort_rocsparse
       real(c_double),value :: tol
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dnnz_compress_rank_0,rocsparse_dnnz_compress_rank_1
+#endif
+
   end interface
   
   interface rocsparse_cnnz_compress
@@ -5955,7 +6531,10 @@ module hipfort_rocsparse
       complex(c_float_complex),value :: tol
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_cnnz_compress_rank_0,rocsparse_cnnz_compress_rank_1
+#endif
+
   end interface
   
   interface rocsparse_znnz_compress
@@ -5974,7 +6553,10 @@ module hipfort_rocsparse
       complex(c_double_complex),value :: tol
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_znnz_compress_rank_0,rocsparse_znnz_compress_rank_1
+#endif
+
   end interface
   !> ! \ingroup conv_module
   !>   \brief Convert a sparse CSR matrix into a sparse COO matrix
@@ -6071,7 +6653,10 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_csr2coo_rank_0,rocsparse_csr2coo_rank_1
+#endif
+
   end interface
   !> ! \ingroup conv_module
   !>   \brief Convert a sparse CSR matrix into a sparse CSC matrix
@@ -6125,7 +6710,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_csr2csc_buffer_size_rank_0,rocsparse_csr2csc_buffer_size_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_scsr2csc
@@ -6149,7 +6737,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_scsr2csc_rank_0,rocsparse_scsr2csc_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dcsr2csc
@@ -6173,7 +6764,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dcsr2csc_rank_0,rocsparse_dcsr2csc_rank_1
+#endif
+
   end interface
   
   interface rocsparse_ccsr2csc
@@ -6197,7 +6791,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_ccsr2csc_rank_0,rocsparse_ccsr2csc_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zcsr2csc
@@ -6221,7 +6818,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zcsr2csc_rank_0,rocsparse_zcsr2csc_rank_1
+#endif
+
   end interface
   !> ! \ingroup conv_module
   !>   \brief Convert a sparse CSR matrix into a sparse ELL matrix
@@ -6274,7 +6874,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: ell_width
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_csr2ell_width_rank_0,rocsparse_csr2ell_width_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_scsr2ell
@@ -6295,7 +6898,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: ell_col_ind
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_scsr2ell_rank_0,rocsparse_scsr2ell_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dcsr2ell
@@ -6316,7 +6922,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: ell_col_ind
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dcsr2ell_rank_0,rocsparse_dcsr2ell_rank_1
+#endif
+
   end interface
   
   interface rocsparse_ccsr2ell
@@ -6337,7 +6946,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: ell_col_ind
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_ccsr2ell_rank_0,rocsparse_ccsr2ell_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zcsr2ell
@@ -6358,7 +6970,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: ell_col_ind
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zcsr2ell_rank_0,rocsparse_zcsr2ell_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_scsr2hyb
@@ -6379,7 +6994,10 @@ module hipfort_rocsparse
       integer(kind(rocsparse_hyb_partition_auto)),value :: partition_type
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_scsr2hyb_rank_0,rocsparse_scsr2hyb_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dcsr2hyb
@@ -6400,7 +7018,10 @@ module hipfort_rocsparse
       integer(kind(rocsparse_hyb_partition_auto)),value :: partition_type
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dcsr2hyb_rank_0,rocsparse_dcsr2hyb_rank_1
+#endif
+
   end interface
   
   interface rocsparse_ccsr2hyb
@@ -6421,7 +7042,10 @@ module hipfort_rocsparse
       integer(kind(rocsparse_hyb_partition_auto)),value :: partition_type
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_ccsr2hyb_rank_0,rocsparse_ccsr2hyb_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zcsr2hyb
@@ -6442,7 +7066,10 @@ module hipfort_rocsparse
       integer(kind(rocsparse_hyb_partition_auto)),value :: partition_type
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zcsr2hyb_rank_0,rocsparse_zcsr2hyb_rank_1
+#endif
+
   end interface
   !> ! \ingroup conv_module
   !>   \brief
@@ -6511,7 +7138,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_nnz
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_csr2bsr_nnz_rank_0,rocsparse_csr2bsr_nnz_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_scsr2bsr
@@ -6535,7 +7165,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_col_ind
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_scsr2bsr_rank_0,rocsparse_scsr2bsr_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dcsr2bsr
@@ -6559,7 +7192,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_col_ind
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dcsr2bsr_rank_0,rocsparse_dcsr2bsr_rank_1
+#endif
+
   end interface
   
   interface rocsparse_ccsr2bsr
@@ -6583,7 +7219,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_col_ind
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_ccsr2bsr_rank_0,rocsparse_ccsr2bsr_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zcsr2bsr
@@ -6607,7 +7246,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_col_ind
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zcsr2bsr_rank_0,rocsparse_zcsr2bsr_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_scsr2csr_compress
@@ -6631,7 +7273,10 @@ module hipfort_rocsparse
       real(c_float),value :: tol
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_scsr2csr_compress_rank_0,rocsparse_scsr2csr_compress_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dcsr2csr_compress
@@ -6655,7 +7300,10 @@ module hipfort_rocsparse
       real(c_double),value :: tol
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dcsr2csr_compress_rank_0,rocsparse_dcsr2csr_compress_rank_1
+#endif
+
   end interface
   
   interface rocsparse_ccsr2csr_compress
@@ -6679,7 +7327,10 @@ module hipfort_rocsparse
       complex(c_float_complex),value :: tol
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_ccsr2csr_compress_rank_0,rocsparse_ccsr2csr_compress_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zcsr2csr_compress
@@ -6703,7 +7354,10 @@ module hipfort_rocsparse
       complex(c_double_complex),value :: tol
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zcsr2csr_compress_rank_0,rocsparse_zcsr2csr_compress_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_sprune_csr2csr_buffer_size
@@ -6728,7 +7382,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_sprune_csr2csr_buffer_size_rank_0,rocsparse_sprune_csr2csr_buffer_size_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dprune_csr2csr_buffer_size
@@ -6753,7 +7410,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dprune_csr2csr_buffer_size_rank_0,rocsparse_dprune_csr2csr_buffer_size_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_sprune_csr2csr_nnz
@@ -6777,7 +7437,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_sprune_csr2csr_nnz_rank_0,rocsparse_sprune_csr2csr_nnz_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dprune_csr2csr_nnz
@@ -6801,7 +7464,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dprune_csr2csr_nnz_rank_0,rocsparse_dprune_csr2csr_nnz_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_sprune_csr2csr
@@ -6826,7 +7492,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_sprune_csr2csr_rank_0,rocsparse_sprune_csr2csr_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dprune_csr2csr
@@ -6851,7 +7520,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dprune_csr2csr_rank_0,rocsparse_dprune_csr2csr_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_sprune_csr2csr_by_percentage_buffer_size
@@ -6877,7 +7549,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_sprune_csr2csr_by_percentage_buffer_size_rank_0,rocsparse_sprune_csr2csr_by_percentage_buffer_size_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dprune_csr2csr_by_percentage_buffer_size
@@ -6903,7 +7578,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dprune_csr2csr_by_percentage_buffer_size_rank_0,rocsparse_dprune_csr2csr_by_percentage_buffer_size_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_sprune_csr2csr_nnz_by_percentage
@@ -6928,7 +7606,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_sprune_csr2csr_nnz_by_percentage_rank_0,rocsparse_sprune_csr2csr_nnz_by_percentage_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dprune_csr2csr_nnz_by_percentage
@@ -6953,7 +7634,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dprune_csr2csr_nnz_by_percentage_rank_0,rocsparse_dprune_csr2csr_nnz_by_percentage_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_sprune_csr2csr_by_percentage
@@ -6979,7 +7663,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_sprune_csr2csr_by_percentage_rank_0,rocsparse_sprune_csr2csr_by_percentage_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dprune_csr2csr_by_percentage
@@ -7005,7 +7692,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dprune_csr2csr_by_percentage_rank_0,rocsparse_dprune_csr2csr_by_percentage_rank_1
+#endif
+
   end interface
   !> ! \ingroup conv_module
   !>    \brief Convert a sparse COO matrix into a sparse CSR matrix
@@ -7102,7 +7792,10 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_coo2csr_rank_0,rocsparse_coo2csr_rank_1
+#endif
+
   end interface
   !> ! \ingroup conv_module
   !>   \brief Convert a sparse ELL matrix into a sparse CSR matrix
@@ -7166,7 +7859,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_nnz
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_ell2csr_nnz_rank_0,rocsparse_ell2csr_nnz_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_sell2csr
@@ -7188,7 +7884,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_sell2csr_rank_0,rocsparse_sell2csr_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dell2csr
@@ -7210,7 +7909,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dell2csr_rank_0,rocsparse_dell2csr_rank_1
+#endif
+
   end interface
   
   interface rocsparse_cell2csr
@@ -7232,7 +7934,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_cell2csr_rank_0,rocsparse_cell2csr_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zell2csr
@@ -7254,7 +7959,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zell2csr_rank_0,rocsparse_zell2csr_rank_1
+#endif
+
   end interface
   !> ! \ingroup conv_module
   !>   \brief Convert a sparse HYB matrix into a sparse CSR matrix
@@ -7300,7 +8008,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_hyb2csr_buffer_size_rank_0,rocsparse_hyb2csr_buffer_size_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_shyb2csr
@@ -7318,7 +8029,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_shyb2csr_rank_0,rocsparse_shyb2csr_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dhyb2csr
@@ -7336,7 +8050,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dhyb2csr_rank_0,rocsparse_dhyb2csr_rank_1
+#endif
+
   end interface
   
   interface rocsparse_chyb2csr
@@ -7354,7 +8071,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_chyb2csr_rank_0,rocsparse_chyb2csr_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zhyb2csr
@@ -7372,7 +8092,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zhyb2csr_rank_0,rocsparse_zhyb2csr_rank_1
+#endif
+
   end interface
   !> ! \ingroup conv_module
   !>   \brief Create the identity map
@@ -7428,7 +8151,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: p
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_create_identity_permutation_rank_0,rocsparse_create_identity_permutation_rank_1
+#endif
+
   end interface
   !> ! \ingroup conv_module
   !>   \brief Sort a sparse CSR matrix
@@ -7477,7 +8203,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_csrsort_buffer_size_rank_0,rocsparse_csrsort_buffer_size_rank_1
+#endif
+
   end interface
   !> ! \ingroup conv_module
   !>   \brief Sort a sparse CSR matrix
@@ -7586,7 +8315,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_csrsort_rank_0,rocsparse_csrsort_rank_1
+#endif
+
   end interface
   !> ! \ingroup conv_module
   !>   \brief Sort a sparse CSC matrix
@@ -7635,7 +8367,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_cscsort_buffer_size_rank_0,rocsparse_cscsort_buffer_size_rank_1
+#endif
+
   end interface
   !> ! \ingroup conv_module
   !>   \brief Sort a sparse CSC matrix
@@ -7744,7 +8479,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_cscsort_rank_0,rocsparse_cscsort_rank_1
+#endif
+
   end interface
   !> ! \ingroup conv_module
   !>   \brief Sort a sparse COO matrix
@@ -7794,7 +8532,10 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_coosort_buffer_size_rank_0,rocsparse_coosort_buffer_size_rank_1
+#endif
+
   end interface
   !> ! \ingroup conv_module
   !>   \brief Sort a sparse COO matrix by row
@@ -7912,7 +8653,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_coosort_by_row_rank_0,rocsparse_coosort_by_row_rank_1
+#endif
+
   end interface
   !> ! \ingroup conv_module
   !>   \brief Sort a sparse COO matrix by column
@@ -8030,7 +8774,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_coosort_by_column_rank_0,rocsparse_coosort_by_column_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_sbsr2csr
@@ -8054,7 +8801,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_sbsr2csr_rank_0,rocsparse_sbsr2csr_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dbsr2csr
@@ -8078,7 +8828,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dbsr2csr_rank_0,rocsparse_dbsr2csr_rank_1
+#endif
+
   end interface
   
   interface rocsparse_cbsr2csr
@@ -8102,7 +8855,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_cbsr2csr_rank_0,rocsparse_cbsr2csr_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zbsr2csr
@@ -8126,7 +8882,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zbsr2csr_rank_0,rocsparse_zbsr2csr_rank_1
+#endif
+
   end interface
   !> @{
   interface rocsparse_sgebsr2csr
@@ -8151,7 +8910,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_sgebsr2csr_rank_0,rocsparse_sgebsr2csr_rank_1
+#endif
+
   end interface
   
   interface rocsparse_dgebsr2csr
@@ -8176,7 +8938,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_dgebsr2csr_rank_0,rocsparse_dgebsr2csr_rank_1
+#endif
+
   end interface
   
   interface rocsparse_cgebsr2csr
@@ -8201,7 +8966,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_cgebsr2csr_rank_0,rocsparse_cgebsr2csr_rank_1
+#endif
+
   end interface
   
   interface rocsparse_zgebsr2csr
@@ -8226,11 +8994,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsparse_zgebsr2csr_rank_0,rocsparse_zgebsr2csr_rank_1
+#endif
+
   end interface
 
+#ifdef USE_FPOINTER_INTERFACES
   contains
-
     function rocsparse_saxpyi_rank_0(handle,nnz,alpha,x_val,x_ind,y,idx_base)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -20212,4 +20983,5 @@ module hipfort_rocsparse
     end function
 
   
+#endif
 end module hipfort_rocsparse

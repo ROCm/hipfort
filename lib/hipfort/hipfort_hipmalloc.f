@@ -2,7 +2,7 @@
 ! ==============================================================================
 ! hipfort: FORTRAN Interfaces for GPU kernels
 ! ==============================================================================
-! Copyright (c) 2020 Advanced Micro Devices, Inc. All rights reserved.
+! Copyright (c) 2021 Advanced Micro Devices, Inc. All rights reserved.
 ! [MITx11 License]
 ! 
 ! Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -61,7 +61,9 @@ module hipfort_hipmalloc
       integer(c_size_t),value :: mySize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipMalloc_l_1_source,hipMalloc_l_1_c_int, hipMalloc_l_1_c_size_t,hipMalloc_l_2_source,hipMalloc_l_2_c_int, hipMalloc_l_2_c_size_t,hipMalloc_l_3_source,hipMalloc_l_3_c_int, hipMalloc_l_3_c_size_t,hipMalloc_l_4_source,hipMalloc_l_4_c_int, hipMalloc_l_4_c_size_t,hipMalloc_l_5_source,hipMalloc_l_5_c_int, hipMalloc_l_5_c_size_t,hipMalloc_l_6_source,hipMalloc_l_6_c_int, hipMalloc_l_6_c_size_t,hipMalloc_l_7_source,hipMalloc_l_7_c_int, hipMalloc_l_7_c_size_t,hipMalloc_i4_1_source,hipMalloc_i4_1_c_int, hipMalloc_i4_1_c_size_t,hipMalloc_i4_2_source,hipMalloc_i4_2_c_int, hipMalloc_i4_2_c_size_t,hipMalloc_i4_3_source,hipMalloc_i4_3_c_int, hipMalloc_i4_3_c_size_t,hipMalloc_i4_4_source,hipMalloc_i4_4_c_int, hipMalloc_i4_4_c_size_t,hipMalloc_i4_5_source,hipMalloc_i4_5_c_int, hipMalloc_i4_5_c_size_t,hipMalloc_i4_6_source,hipMalloc_i4_6_c_int, hipMalloc_i4_6_c_size_t,hipMalloc_i4_7_source,hipMalloc_i4_7_c_int, hipMalloc_i4_7_c_size_t,hipMalloc_i8_1_source,hipMalloc_i8_1_c_int, hipMalloc_i8_1_c_size_t,hipMalloc_i8_2_source,hipMalloc_i8_2_c_int, hipMalloc_i8_2_c_size_t,hipMalloc_i8_3_source,hipMalloc_i8_3_c_int, hipMalloc_i8_3_c_size_t,hipMalloc_i8_4_source,hipMalloc_i8_4_c_int, hipMalloc_i8_4_c_size_t,hipMalloc_i8_5_source,hipMalloc_i8_5_c_int, hipMalloc_i8_5_c_size_t,hipMalloc_i8_6_source,hipMalloc_i8_6_c_int, hipMalloc_i8_6_c_size_t,hipMalloc_i8_7_source,hipMalloc_i8_7_c_int, hipMalloc_i8_7_c_size_t,hipMalloc_r4_1_source,hipMalloc_r4_1_c_int, hipMalloc_r4_1_c_size_t,hipMalloc_r4_2_source,hipMalloc_r4_2_c_int, hipMalloc_r4_2_c_size_t,hipMalloc_r4_3_source,hipMalloc_r4_3_c_int, hipMalloc_r4_3_c_size_t,hipMalloc_r4_4_source,hipMalloc_r4_4_c_int, hipMalloc_r4_4_c_size_t,hipMalloc_r4_5_source,hipMalloc_r4_5_c_int, hipMalloc_r4_5_c_size_t,hipMalloc_r4_6_source,hipMalloc_r4_6_c_int, hipMalloc_r4_6_c_size_t,hipMalloc_r4_7_source,hipMalloc_r4_7_c_int, hipMalloc_r4_7_c_size_t,hipMalloc_r8_1_source,hipMalloc_r8_1_c_int, hipMalloc_r8_1_c_size_t,hipMalloc_r8_2_source,hipMalloc_r8_2_c_int, hipMalloc_r8_2_c_size_t,hipMalloc_r8_3_source,hipMalloc_r8_3_c_int, hipMalloc_r8_3_c_size_t,hipMalloc_r8_4_source,hipMalloc_r8_4_c_int, hipMalloc_r8_4_c_size_t,hipMalloc_r8_5_source,hipMalloc_r8_5_c_int, hipMalloc_r8_5_c_size_t,hipMalloc_r8_6_source,hipMalloc_r8_6_c_int, hipMalloc_r8_6_c_size_t,hipMalloc_r8_7_source,hipMalloc_r8_7_c_int, hipMalloc_r8_7_c_size_t,hipMalloc_c4_1_source,hipMalloc_c4_1_c_int, hipMalloc_c4_1_c_size_t,hipMalloc_c4_2_source,hipMalloc_c4_2_c_int, hipMalloc_c4_2_c_size_t,hipMalloc_c4_3_source,hipMalloc_c4_3_c_int, hipMalloc_c4_3_c_size_t,hipMalloc_c4_4_source,hipMalloc_c4_4_c_int, hipMalloc_c4_4_c_size_t,hipMalloc_c4_5_source,hipMalloc_c4_5_c_int, hipMalloc_c4_5_c_size_t,hipMalloc_c4_6_source,hipMalloc_c4_6_c_int, hipMalloc_c4_6_c_size_t,hipMalloc_c4_7_source,hipMalloc_c4_7_c_int, hipMalloc_c4_7_c_size_t,hipMalloc_c8_1_source,hipMalloc_c8_1_c_int, hipMalloc_c8_1_c_size_t,hipMalloc_c8_2_source,hipMalloc_c8_2_c_int, hipMalloc_c8_2_c_size_t,hipMalloc_c8_3_source,hipMalloc_c8_3_c_int, hipMalloc_c8_3_c_size_t,hipMalloc_c8_4_source,hipMalloc_c8_4_c_int, hipMalloc_c8_4_c_size_t,hipMalloc_c8_5_source,hipMalloc_c8_5_c_int, hipMalloc_c8_5_c_size_t,hipMalloc_c8_6_source,hipMalloc_c8_6_c_int, hipMalloc_c8_6_c_size_t,hipMalloc_c8_7_source,hipMalloc_c8_7_c_int, hipMalloc_c8_7_c_size_t 
+#endif
   end interface
   
   interface hipHostMalloc
@@ -100,7 +102,9 @@ module hipfort_hipmalloc
       integer(kind=4),value :: flags
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipHostMalloc_l_1_source,hipHostMalloc_l_1_c_int, hipHostMalloc_l_1_c_size_t,hipHostMalloc_l_2_source,hipHostMalloc_l_2_c_int, hipHostMalloc_l_2_c_size_t,hipHostMalloc_l_3_source,hipHostMalloc_l_3_c_int, hipHostMalloc_l_3_c_size_t,hipHostMalloc_l_4_source,hipHostMalloc_l_4_c_int, hipHostMalloc_l_4_c_size_t,hipHostMalloc_l_5_source,hipHostMalloc_l_5_c_int, hipHostMalloc_l_5_c_size_t,hipHostMalloc_l_6_source,hipHostMalloc_l_6_c_int, hipHostMalloc_l_6_c_size_t,hipHostMalloc_l_7_source,hipHostMalloc_l_7_c_int, hipHostMalloc_l_7_c_size_t,hipHostMalloc_i4_1_source,hipHostMalloc_i4_1_c_int, hipHostMalloc_i4_1_c_size_t,hipHostMalloc_i4_2_source,hipHostMalloc_i4_2_c_int, hipHostMalloc_i4_2_c_size_t,hipHostMalloc_i4_3_source,hipHostMalloc_i4_3_c_int, hipHostMalloc_i4_3_c_size_t,hipHostMalloc_i4_4_source,hipHostMalloc_i4_4_c_int, hipHostMalloc_i4_4_c_size_t,hipHostMalloc_i4_5_source,hipHostMalloc_i4_5_c_int, hipHostMalloc_i4_5_c_size_t,hipHostMalloc_i4_6_source,hipHostMalloc_i4_6_c_int, hipHostMalloc_i4_6_c_size_t,hipHostMalloc_i4_7_source,hipHostMalloc_i4_7_c_int, hipHostMalloc_i4_7_c_size_t,hipHostMalloc_i8_1_source,hipHostMalloc_i8_1_c_int, hipHostMalloc_i8_1_c_size_t,hipHostMalloc_i8_2_source,hipHostMalloc_i8_2_c_int, hipHostMalloc_i8_2_c_size_t,hipHostMalloc_i8_3_source,hipHostMalloc_i8_3_c_int, hipHostMalloc_i8_3_c_size_t,hipHostMalloc_i8_4_source,hipHostMalloc_i8_4_c_int, hipHostMalloc_i8_4_c_size_t,hipHostMalloc_i8_5_source,hipHostMalloc_i8_5_c_int, hipHostMalloc_i8_5_c_size_t,hipHostMalloc_i8_6_source,hipHostMalloc_i8_6_c_int, hipHostMalloc_i8_6_c_size_t,hipHostMalloc_i8_7_source,hipHostMalloc_i8_7_c_int, hipHostMalloc_i8_7_c_size_t,hipHostMalloc_r4_1_source,hipHostMalloc_r4_1_c_int, hipHostMalloc_r4_1_c_size_t,hipHostMalloc_r4_2_source,hipHostMalloc_r4_2_c_int, hipHostMalloc_r4_2_c_size_t,hipHostMalloc_r4_3_source,hipHostMalloc_r4_3_c_int, hipHostMalloc_r4_3_c_size_t,hipHostMalloc_r4_4_source,hipHostMalloc_r4_4_c_int, hipHostMalloc_r4_4_c_size_t,hipHostMalloc_r4_5_source,hipHostMalloc_r4_5_c_int, hipHostMalloc_r4_5_c_size_t,hipHostMalloc_r4_6_source,hipHostMalloc_r4_6_c_int, hipHostMalloc_r4_6_c_size_t,hipHostMalloc_r4_7_source,hipHostMalloc_r4_7_c_int, hipHostMalloc_r4_7_c_size_t,hipHostMalloc_r8_1_source,hipHostMalloc_r8_1_c_int, hipHostMalloc_r8_1_c_size_t,hipHostMalloc_r8_2_source,hipHostMalloc_r8_2_c_int, hipHostMalloc_r8_2_c_size_t,hipHostMalloc_r8_3_source,hipHostMalloc_r8_3_c_int, hipHostMalloc_r8_3_c_size_t,hipHostMalloc_r8_4_source,hipHostMalloc_r8_4_c_int, hipHostMalloc_r8_4_c_size_t,hipHostMalloc_r8_5_source,hipHostMalloc_r8_5_c_int, hipHostMalloc_r8_5_c_size_t,hipHostMalloc_r8_6_source,hipHostMalloc_r8_6_c_int, hipHostMalloc_r8_6_c_size_t,hipHostMalloc_r8_7_source,hipHostMalloc_r8_7_c_int, hipHostMalloc_r8_7_c_size_t,hipHostMalloc_c4_1_source,hipHostMalloc_c4_1_c_int, hipHostMalloc_c4_1_c_size_t,hipHostMalloc_c4_2_source,hipHostMalloc_c4_2_c_int, hipHostMalloc_c4_2_c_size_t,hipHostMalloc_c4_3_source,hipHostMalloc_c4_3_c_int, hipHostMalloc_c4_3_c_size_t,hipHostMalloc_c4_4_source,hipHostMalloc_c4_4_c_int, hipHostMalloc_c4_4_c_size_t,hipHostMalloc_c4_5_source,hipHostMalloc_c4_5_c_int, hipHostMalloc_c4_5_c_size_t,hipHostMalloc_c4_6_source,hipHostMalloc_c4_6_c_int, hipHostMalloc_c4_6_c_size_t,hipHostMalloc_c4_7_source,hipHostMalloc_c4_7_c_int, hipHostMalloc_c4_7_c_size_t,hipHostMalloc_c8_1_source,hipHostMalloc_c8_1_c_int, hipHostMalloc_c8_1_c_size_t,hipHostMalloc_c8_2_source,hipHostMalloc_c8_2_c_int, hipHostMalloc_c8_2_c_size_t,hipHostMalloc_c8_3_source,hipHostMalloc_c8_3_c_int, hipHostMalloc_c8_3_c_size_t,hipHostMalloc_c8_4_source,hipHostMalloc_c8_4_c_int, hipHostMalloc_c8_4_c_size_t,hipHostMalloc_c8_5_source,hipHostMalloc_c8_5_c_int, hipHostMalloc_c8_5_c_size_t,hipHostMalloc_c8_6_source,hipHostMalloc_c8_6_c_int, hipHostMalloc_c8_6_c_size_t,hipHostMalloc_c8_7_source,hipHostMalloc_c8_7_c_int, hipHostMalloc_c8_7_c_size_t 
+#endif
   end interface
   
   interface hipFree
@@ -137,7 +141,9 @@ module hipfort_hipmalloc
       type(c_ptr),value :: ptr
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipFree_l_1, hipFree_l_2, hipFree_l_3, hipFree_l_4, hipFree_l_5, hipFree_l_6, hipFree_l_7,hipFree_i4_1, hipFree_i4_2, hipFree_i4_3, hipFree_i4_4, hipFree_i4_5, hipFree_i4_6, hipFree_i4_7,hipFree_i8_1, hipFree_i8_2, hipFree_i8_3, hipFree_i8_4, hipFree_i8_5, hipFree_i8_6, hipFree_i8_7,hipFree_r4_1, hipFree_r4_2, hipFree_r4_3, hipFree_r4_4, hipFree_r4_5, hipFree_r4_6, hipFree_r4_7,hipFree_r8_1, hipFree_r8_2, hipFree_r8_3, hipFree_r8_4, hipFree_r8_5, hipFree_r8_6, hipFree_r8_7,hipFree_c4_1, hipFree_c4_2, hipFree_c4_3, hipFree_c4_4, hipFree_c4_5, hipFree_c4_6, hipFree_c4_7,hipFree_c8_1, hipFree_c8_2, hipFree_c8_3, hipFree_c8_4, hipFree_c8_5, hipFree_c8_6, hipFree_c8_7 
+#endif
   end interface
 
   interface hipHostFree
@@ -174,9 +180,12 @@ module hipfort_hipmalloc
       type(c_ptr),value :: ptr
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipHostFree_l_1, hipHostFree_l_2, hipHostFree_l_3, hipHostFree_l_4, hipHostFree_l_5, hipHostFree_l_6, hipHostFree_l_7,hipHostFree_i4_1, hipHostFree_i4_2, hipHostFree_i4_3, hipHostFree_i4_4, hipHostFree_i4_5, hipHostFree_i4_6, hipHostFree_i4_7,hipHostFree_i8_1, hipHostFree_i8_2, hipHostFree_i8_3, hipHostFree_i8_4, hipHostFree_i8_5, hipHostFree_i8_6, hipHostFree_i8_7,hipHostFree_r4_1, hipHostFree_r4_2, hipHostFree_r4_3, hipHostFree_r4_4, hipHostFree_r4_5, hipHostFree_r4_6, hipHostFree_r4_7,hipHostFree_r8_1, hipHostFree_r8_2, hipHostFree_r8_3, hipHostFree_r8_4, hipHostFree_r8_5, hipHostFree_r8_6, hipHostFree_r8_7,hipHostFree_c4_1, hipHostFree_c4_2, hipHostFree_c4_3, hipHostFree_c4_4, hipHostFree_c4_5, hipHostFree_c4_6, hipHostFree_c4_7,hipHostFree_c8_1, hipHostFree_c8_2, hipHostFree_c8_3, hipHostFree_c8_4, hipHostFree_c8_5, hipHostFree_c8_6, hipHostFree_c8_7 
+#endif
   end interface
 
+#ifdef USE_FPOINTER_INTERFACES
   contains
 
 ! scalars
@@ -15331,4 +15340,5 @@ module hipfort_hipmalloc
       endif
     end function
 
+#endif
 end module

@@ -2,7 +2,7 @@
 ! ==============================================================================
 ! hipfort: FORTRAN Interfaces for GPU kernels
 ! ==============================================================================
-! Copyright (c) 2020 Advanced Micro Devices, Inc. All rights reserved.
+! Copyright (c) 2021 Advanced Micro Devices, Inc. All rights reserved.
 ! [MITx11 License]
 ! 
 ! Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -40,7 +40,9 @@ module hipfort_rocblas_auxiliary
       integer(c_int),value :: incy
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_set_vector_l_rank_0,rocblas_set_vector_l_full_rank,rocblas_set_vector_i4_rank_0,rocblas_set_vector_i4_full_rank,rocblas_set_vector_i8_rank_0,rocblas_set_vector_i8_full_rank,rocblas_set_vector_r4_rank_0,rocblas_set_vector_r4_full_rank,rocblas_set_vector_r8_rank_0,rocblas_set_vector_r8_full_rank,rocblas_set_vector_c4_rank_0,rocblas_set_vector_c4_full_rank,rocblas_set_vector_c8_rank_0,rocblas_set_vector_c8_full_rank 
+#endif
   end interface
 
   interface rocblas_get_vector
@@ -57,7 +59,9 @@ module hipfort_rocblas_auxiliary
       integer(c_int),value :: incy
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_get_vector_l_rank_0,rocblas_get_vector_l_full_rank,rocblas_get_vector_i4_rank_0,rocblas_get_vector_i4_full_rank,rocblas_get_vector_i8_rank_0,rocblas_get_vector_i8_full_rank,rocblas_get_vector_r4_rank_0,rocblas_get_vector_r4_full_rank,rocblas_get_vector_r8_rank_0,rocblas_get_vector_r8_full_rank,rocblas_get_vector_c4_rank_0,rocblas_get_vector_c4_full_rank,rocblas_get_vector_c8_rank_0,rocblas_get_vector_c8_full_rank 
+#endif
   end interface
 
   interface rocblas_set_matrix
@@ -75,7 +79,9 @@ module hipfort_rocblas_auxiliary
       integer(c_int),value :: ldb
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_set_matrix_l_full_rank,rocblas_set_matrix_l_rank_0,rocblas_set_matrix_l_rank_1,rocblas_set_matrix_i4_full_rank,rocblas_set_matrix_i4_rank_0,rocblas_set_matrix_i4_rank_1,rocblas_set_matrix_i8_full_rank,rocblas_set_matrix_i8_rank_0,rocblas_set_matrix_i8_rank_1,rocblas_set_matrix_r4_full_rank,rocblas_set_matrix_r4_rank_0,rocblas_set_matrix_r4_rank_1,rocblas_set_matrix_r8_full_rank,rocblas_set_matrix_r8_rank_0,rocblas_set_matrix_r8_rank_1,rocblas_set_matrix_c4_full_rank,rocblas_set_matrix_c4_rank_0,rocblas_set_matrix_c4_rank_1,rocblas_set_matrix_c8_full_rank,rocblas_set_matrix_c8_rank_0,rocblas_set_matrix_c8_rank_1 
+#endif
   end interface
 
   interface rocblas_get_matrix
@@ -93,7 +99,9 @@ module hipfort_rocblas_auxiliary
       integer(c_int),value :: ldb
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_get_matrix_l_full_rank,rocblas_get_matrix_l_rank_0,rocblas_get_matrix_l_rank_1,rocblas_get_matrix_i4_full_rank,rocblas_get_matrix_i4_rank_0,rocblas_get_matrix_i4_rank_1,rocblas_get_matrix_i8_full_rank,rocblas_get_matrix_i8_rank_0,rocblas_get_matrix_i8_rank_1,rocblas_get_matrix_r4_full_rank,rocblas_get_matrix_r4_rank_0,rocblas_get_matrix_r4_rank_1,rocblas_get_matrix_r8_full_rank,rocblas_get_matrix_r8_rank_0,rocblas_get_matrix_r8_rank_1,rocblas_get_matrix_c4_full_rank,rocblas_get_matrix_c4_rank_0,rocblas_get_matrix_c4_rank_1,rocblas_get_matrix_c8_full_rank,rocblas_get_matrix_c8_rank_0,rocblas_get_matrix_c8_rank_1 
+#endif
   end interface
 
   interface rocblas_set_vector_async
@@ -111,7 +119,9 @@ module hipfort_rocblas_auxiliary
       type(c_ptr),value :: stream
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_set_vector_async_l_rank_0,rocblas_set_vector_async_l_full_rank,rocblas_set_vector_async_i4_rank_0,rocblas_set_vector_async_i4_full_rank,rocblas_set_vector_async_i8_rank_0,rocblas_set_vector_async_i8_full_rank,rocblas_set_vector_async_r4_rank_0,rocblas_set_vector_async_r4_full_rank,rocblas_set_vector_async_r8_rank_0,rocblas_set_vector_async_r8_full_rank,rocblas_set_vector_async_c4_rank_0,rocblas_set_vector_async_c4_full_rank,rocblas_set_vector_async_c8_rank_0,rocblas_set_vector_async_c8_full_rank 
+#endif
   end interface
 
   interface rocblas_get_vector_async
@@ -129,7 +139,9 @@ module hipfort_rocblas_auxiliary
       type(c_ptr),value :: stream
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_get_vector_async_l_rank_0,rocblas_get_vector_async_l_full_rank,rocblas_get_vector_async_i4_rank_0,rocblas_get_vector_async_i4_full_rank,rocblas_get_vector_async_i8_rank_0,rocblas_get_vector_async_i8_full_rank,rocblas_get_vector_async_r4_rank_0,rocblas_get_vector_async_r4_full_rank,rocblas_get_vector_async_r8_rank_0,rocblas_get_vector_async_r8_full_rank,rocblas_get_vector_async_c4_rank_0,rocblas_get_vector_async_c4_full_rank,rocblas_get_vector_async_c8_rank_0,rocblas_get_vector_async_c8_full_rank 
+#endif
   end interface
 
   interface rocblas_set_matrix_async
@@ -148,7 +160,9 @@ module hipfort_rocblas_auxiliary
       type(c_ptr),value :: stream
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_set_matrix_async_l_full_rank,rocblas_set_matrix_async_l_rank_0,rocblas_set_matrix_async_l_rank_1,rocblas_set_matrix_async_i4_full_rank,rocblas_set_matrix_async_i4_rank_0,rocblas_set_matrix_async_i4_rank_1,rocblas_set_matrix_async_i8_full_rank,rocblas_set_matrix_async_i8_rank_0,rocblas_set_matrix_async_i8_rank_1,rocblas_set_matrix_async_r4_full_rank,rocblas_set_matrix_async_r4_rank_0,rocblas_set_matrix_async_r4_rank_1,rocblas_set_matrix_async_r8_full_rank,rocblas_set_matrix_async_r8_rank_0,rocblas_set_matrix_async_r8_rank_1,rocblas_set_matrix_async_c4_full_rank,rocblas_set_matrix_async_c4_rank_0,rocblas_set_matrix_async_c4_rank_1,rocblas_set_matrix_async_c8_full_rank,rocblas_set_matrix_async_c8_rank_0,rocblas_set_matrix_async_c8_rank_1 
+#endif
   end interface
 
   interface rocblas_get_matrix_async
@@ -167,9 +181,12 @@ module hipfort_rocblas_auxiliary
       type(c_ptr),value :: stream
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocblas_get_matrix_async_l_full_rank,rocblas_get_matrix_async_l_rank_0,rocblas_get_matrix_async_l_rank_1,rocblas_get_matrix_async_i4_full_rank,rocblas_get_matrix_async_i4_rank_0,rocblas_get_matrix_async_i4_rank_1,rocblas_get_matrix_async_i8_full_rank,rocblas_get_matrix_async_i8_rank_0,rocblas_get_matrix_async_i8_rank_1,rocblas_get_matrix_async_r4_full_rank,rocblas_get_matrix_async_r4_rank_0,rocblas_get_matrix_async_r4_rank_1,rocblas_get_matrix_async_r8_full_rank,rocblas_get_matrix_async_r8_rank_0,rocblas_get_matrix_async_r8_rank_1,rocblas_get_matrix_async_c4_full_rank,rocblas_get_matrix_async_c4_rank_0,rocblas_get_matrix_async_c4_rank_1,rocblas_get_matrix_async_c8_full_rank,rocblas_get_matrix_async_c8_rank_0,rocblas_get_matrix_async_c8_rank_1 
+#endif
   end interface
 
+#ifdef USE_FPOINTER_INTERFACES
 contains
 
     function rocblas_set_vector_l_rank_0(n,x,incx,y,incy) result(ret)
@@ -2225,4 +2242,5 @@ contains
     end function
  
 
+#endif
 end module

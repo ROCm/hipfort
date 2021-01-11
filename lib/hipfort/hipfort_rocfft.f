@@ -2,7 +2,7 @@
 ! ==============================================================================
 ! hipfort: FORTRAN Interfaces for GPU kernels
 ! ==============================================================================
-! Copyright (c) 2020 Advanced Micro Devices, Inc. All rights reserved.
+! Copyright (c) 2021 Advanced Micro Devices, Inc. All rights reserved.
 ! [MITx11 License]
 ! 
 ! Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -100,7 +100,10 @@ module hipfort_rocfft
       type(c_ptr),value :: description
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocfft_plan_create_rank_0,rocfft_plan_create_rank_1
+#endif
+
   end interface
   !> ! @brief Execute an FFT plan
   !>  
@@ -244,7 +247,10 @@ module hipfort_rocfft
       integer(c_size_t),value :: out_distance
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocfft_plan_description_set_data_layout_rank_0,rocfft_plan_description_set_data_layout_rank_1
+#endif
+
   end interface
   !> ! @brief Get library version string
   !>  
@@ -473,8 +479,8 @@ module hipfort_rocfft
 
   end interface
 
+#ifdef USE_FPOINTER_INTERFACES
   contains
-
     function rocfft_plan_create_rank_0(plan,placement,transform_type,myPrecision,dimensions,lengths,number_of_transforms,description)
       use iso_c_binding
       use hipfort_rocfft_enums
@@ -550,4 +556,5 @@ module hipfort_rocfft
     end function
 
   
+#endif
 end module hipfort_rocfft

@@ -2,7 +2,7 @@
 ! ==============================================================================
 ! hipfort: FORTRAN Interfaces for GPU kernels
 ! ==============================================================================
-! Copyright (c) 2020 Advanced Micro Devices, Inc. All rights reserved.
+! Copyright (c) 2021 Advanced Micro Devices, Inc. All rights reserved.
 ! [MITx11 License]
 ! 
 ! Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -113,7 +113,10 @@ module hipfort_hipfft
       integer(c_int),value :: batch
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipfftPlanMany_rank_0,hipfftPlanMany_rank_1
+#endif
+
   end interface
   
   interface hipfftMakePlan1d
@@ -133,7 +136,10 @@ module hipfort_hipfft
       type(c_ptr),value :: workSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipfftMakePlan1d_rank_0,hipfftMakePlan1d_rank_1
+#endif
+
   end interface
   
   interface hipfftMakePlan2d
@@ -153,7 +159,10 @@ module hipfort_hipfft
       type(c_ptr),value :: workSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipfftMakePlan2d_rank_0,hipfftMakePlan2d_rank_1
+#endif
+
   end interface
   
   interface hipfftMakePlan3d
@@ -174,7 +183,10 @@ module hipfort_hipfft
       type(c_ptr),value :: workSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipfftMakePlan3d_rank_0,hipfftMakePlan3d_rank_1
+#endif
+
   end interface
   
   interface hipfftMakePlanMany
@@ -201,7 +213,10 @@ module hipfort_hipfft
       type(c_ptr),value :: workSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipfftMakePlanMany_rank_0,hipfftMakePlanMany_rank_1
+#endif
+
   end interface
   
   interface hipfftMakePlanMany64
@@ -228,7 +243,10 @@ module hipfort_hipfft
       type(c_ptr),value :: workSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipfftMakePlanMany64_rank_0,hipfftMakePlanMany64_rank_1
+#endif
+
   end interface
   
   interface hipfftGetSizeMany64
@@ -255,7 +273,10 @@ module hipfort_hipfft
       type(c_ptr),value :: workSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipfftGetSizeMany64_rank_0,hipfftGetSizeMany64_rank_1
+#endif
+
   end interface
   
   interface hipfftEstimate1d
@@ -274,7 +295,10 @@ module hipfort_hipfft
       type(c_ptr),value :: workSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipfftEstimate1d_rank_0,hipfftEstimate1d_rank_1
+#endif
+
   end interface
   
   interface hipfftEstimate2d
@@ -293,7 +317,10 @@ module hipfort_hipfft
       type(c_ptr),value :: workSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipfftEstimate2d_rank_0,hipfftEstimate2d_rank_1
+#endif
+
   end interface
   
   interface hipfftEstimate3d
@@ -313,7 +340,10 @@ module hipfort_hipfft
       type(c_ptr),value :: workSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipfftEstimate3d_rank_0,hipfftEstimate3d_rank_1
+#endif
+
   end interface
   
   interface hipfftEstimateMany
@@ -339,7 +369,10 @@ module hipfort_hipfft
       type(c_ptr),value :: workSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipfftEstimateMany_rank_0,hipfftEstimateMany_rank_1
+#endif
+
   end interface
   
   interface hipfftCreate
@@ -375,7 +408,10 @@ module hipfort_hipfft
       type(c_ptr),value :: workSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipfftGetSize1d_rank_0,hipfftGetSize1d_rank_1
+#endif
+
   end interface
   
   interface hipfftGetSize2d
@@ -395,7 +431,10 @@ module hipfort_hipfft
       type(c_ptr),value :: workSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipfftGetSize2d_rank_0,hipfftGetSize2d_rank_1
+#endif
+
   end interface
   
   interface hipfftGetSize3d
@@ -416,7 +455,10 @@ module hipfort_hipfft
       type(c_ptr),value :: workSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipfftGetSize3d_rank_0,hipfftGetSize3d_rank_1
+#endif
+
   end interface
   
   interface hipfftGetSizeMany
@@ -443,7 +485,10 @@ module hipfort_hipfft
       type(c_ptr),value :: workSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipfftGetSizeMany_rank_0,hipfftGetSizeMany_rank_1
+#endif
+
   end interface
   
   interface hipfftGetSize
@@ -460,7 +505,10 @@ module hipfort_hipfft
       type(c_ptr),value :: workSize
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipfftGetSize_rank_0,hipfftGetSize_rank_1
+#endif
+
   end interface
   
   interface hipfftSetWorkArea
@@ -513,7 +561,10 @@ module hipfort_hipfft
       integer(c_int),value :: direction
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipfftExecC2C_rank_0,hipfftExecC2C_rank_1,hipfftExecC2C_rank_2,hipfftExecC2C_rank_3
+#endif
+
   end interface
   
   interface hipfftExecR2C
@@ -531,7 +582,10 @@ module hipfort_hipfft
       type(c_ptr),value :: odata
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipfftExecR2C_rank_0,hipfftExecR2C_rank_1,hipfftExecR2C_rank_2,hipfftExecR2C_rank_3
+#endif
+
   end interface
   
   interface hipfftExecC2R
@@ -549,7 +603,10 @@ module hipfort_hipfft
       type(c_ptr),value :: odata
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipfftExecC2R_rank_0,hipfftExecC2R_rank_1,hipfftExecC2R_rank_2,hipfftExecC2R_rank_3
+#endif
+
   end interface
   
   interface hipfftExecZ2Z
@@ -568,7 +625,10 @@ module hipfort_hipfft
       integer(c_int),value :: direction
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipfftExecZ2Z_rank_0,hipfftExecZ2Z_rank_1,hipfftExecZ2Z_rank_2,hipfftExecZ2Z_rank_3
+#endif
+
   end interface
   
   interface hipfftExecD2Z
@@ -586,7 +646,10 @@ module hipfort_hipfft
       type(c_ptr),value :: odata
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipfftExecD2Z_rank_0,hipfftExecD2Z_rank_1,hipfftExecD2Z_rank_2,hipfftExecD2Z_rank_3
+#endif
+
   end interface
   
   interface hipfftExecZ2D
@@ -604,7 +667,10 @@ module hipfort_hipfft
       type(c_ptr),value :: odata
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipfftExecZ2D_rank_0,hipfftExecZ2D_rank_1,hipfftExecZ2D_rank_2,hipfftExecZ2D_rank_3
+#endif
+
   end interface
   
   interface hipfftSetStream
@@ -676,8 +742,8 @@ module hipfort_hipfft
 
   end interface
 
+#ifdef USE_FPOINTER_INTERFACES
   contains
-
     function hipfftPlanMany_rank_0(plan,rank,n,inembed,istride,idist,onembed,ostride,odist,myType,batch)
       use iso_c_binding
       use hipfort_hipfft_enums
@@ -1497,4 +1563,5 @@ module hipfort_hipfft
       !
       hipfftExecZ2D_rank_3 = hipfftExecZ2D_orig(plan,c_loc(idata),c_loc(odata))
     end function
+#endif
 end module hipfort_hipfft

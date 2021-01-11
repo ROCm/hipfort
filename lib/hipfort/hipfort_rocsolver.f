@@ -2,7 +2,7 @@
 ! ==============================================================================
 ! hipfort: FORTRAN Interfaces for GPU kernels
 ! ==============================================================================
-! Copyright (c) 2020 Advanced Micro Devices, Inc. All rights reserved.
+! Copyright (c) 2021 Advanced Micro Devices, Inc. All rights reserved.
 ! [MITx11 License]
 ! 
 ! Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -82,7 +82,10 @@ module hipfort_rocsolver
       integer(c_int),value :: incx
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_clacgv_rank_0,rocsolver_clacgv_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zlacgv
@@ -97,7 +100,10 @@ module hipfort_rocsolver
       integer(c_int),value :: incx
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zlacgv_rank_0,rocsolver_zlacgv_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief LASWP performs a series of row interchanges on the matrix A.
@@ -152,7 +158,10 @@ module hipfort_rocsolver
       integer(c_int),value :: incx
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_slaswp_full_rank,rocsolver_slaswp_rank_0,rocsolver_slaswp_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dlaswp
@@ -171,7 +180,10 @@ module hipfort_rocsolver
       integer(c_int),value :: incx
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dlaswp_full_rank,rocsolver_dlaswp_rank_0,rocsolver_dlaswp_rank_1
+#endif
+
   end interface
   
   interface rocsolver_claswp
@@ -190,7 +202,10 @@ module hipfort_rocsolver
       integer(c_int),value :: incx
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_claswp_full_rank,rocsolver_claswp_rank_0,rocsolver_claswp_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zlaswp
@@ -209,7 +224,10 @@ module hipfort_rocsolver
       integer(c_int),value :: incx
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zlaswp_full_rank,rocsolver_zlaswp_rank_0,rocsolver_zlaswp_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief LARFG generates an orthogonal Householder reflector H of order n.
@@ -263,7 +281,10 @@ module hipfort_rocsolver
       real(c_float) :: tau
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_slarfg_rank_0,rocsolver_slarfg_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dlarfg
@@ -280,7 +301,10 @@ module hipfort_rocsolver
       real(c_double) :: tau
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dlarfg_rank_0,rocsolver_dlarfg_rank_1
+#endif
+
   end interface
   
   interface rocsolver_clarfg
@@ -297,7 +321,10 @@ module hipfort_rocsolver
       complex(c_float_complex) :: tau
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_clarfg_rank_0,rocsolver_clarfg_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zlarfg
@@ -314,7 +341,10 @@ module hipfort_rocsolver
       complex(c_double_complex) :: tau
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zlarfg_rank_0,rocsolver_zlarfg_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief LARFT Generates the triangular factor T of a block reflector H of
@@ -389,7 +419,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldt
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_slarft_full_rank,rocsolver_slarft_rank_0,rocsolver_slarft_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dlarft
@@ -410,7 +443,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldt
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dlarft_full_rank,rocsolver_dlarft_rank_0,rocsolver_dlarft_rank_1
+#endif
+
   end interface
   
   interface rocsolver_clarft
@@ -431,7 +467,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldt
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_clarft_full_rank,rocsolver_clarft_rank_0,rocsolver_clarft_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zlarft
@@ -452,7 +491,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldt
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zlarft_full_rank,rocsolver_zlarft_rank_0,rocsolver_zlarft_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief LARF applies a Householder reflector H to a general matrix A.
@@ -515,7 +557,10 @@ module hipfort_rocsolver
       integer(c_int),value :: lda
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_slarf_full_rank,rocsolver_slarf_rank_0,rocsolver_slarf_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dlarf
@@ -535,7 +580,10 @@ module hipfort_rocsolver
       integer(c_int),value :: lda
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dlarf_full_rank,rocsolver_dlarf_rank_0,rocsolver_dlarf_rank_1
+#endif
+
   end interface
   
   interface rocsolver_clarf
@@ -555,7 +603,10 @@ module hipfort_rocsolver
       integer(c_int),value :: lda
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_clarf_full_rank,rocsolver_clarf_rank_0,rocsolver_clarf_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zlarf
@@ -575,7 +626,10 @@ module hipfort_rocsolver
       integer(c_int),value :: lda
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zlarf_full_rank,rocsolver_zlarf_rank_0,rocsolver_zlarf_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief LARFB applies a block reflector H to a general m-by-n matrix A.
@@ -673,7 +727,10 @@ module hipfort_rocsolver
       integer(c_int),value :: lda
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_slarfb_full_rank,rocsolver_slarfb_rank_0,rocsolver_slarfb_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dlarfb
@@ -698,7 +755,10 @@ module hipfort_rocsolver
       integer(c_int),value :: lda
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dlarfb_full_rank,rocsolver_dlarfb_rank_0,rocsolver_dlarfb_rank_1
+#endif
+
   end interface
   
   interface rocsolver_clarfb
@@ -723,7 +783,10 @@ module hipfort_rocsolver
       integer(c_int),value :: lda
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_clarfb_full_rank,rocsolver_clarfb_rank_0,rocsolver_clarfb_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zlarfb
@@ -748,7 +811,10 @@ module hipfort_rocsolver
       integer(c_int),value :: lda
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zlarfb_full_rank,rocsolver_zlarfb_rank_0,rocsolver_zlarfb_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief LABRD computes the bidiagonal form of the first k rows and columns of
@@ -855,7 +921,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldy
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_slabrd_full_rank,rocsolver_slabrd_rank_0,rocsolver_slabrd_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dlabrd
@@ -880,7 +949,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldy
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dlabrd_full_rank,rocsolver_dlabrd_rank_0,rocsolver_dlabrd_rank_1
+#endif
+
   end interface
   
   interface rocsolver_clabrd
@@ -905,7 +977,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldy
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_clabrd_full_rank,rocsolver_clabrd_rank_0,rocsolver_clabrd_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zlabrd
@@ -930,7 +1005,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldy
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zlabrd_full_rank,rocsolver_zlabrd_rank_0,rocsolver_zlabrd_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief ORG2R generates a m-by-n Matrix Q with orthonormal columns.
@@ -985,7 +1063,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sorg2r_full_rank,rocsolver_sorg2r_rank_0,rocsolver_sorg2r_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dorg2r
@@ -1003,7 +1084,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dorg2r_full_rank,rocsolver_dorg2r_rank_0,rocsolver_dorg2r_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief UNG2R generates a m-by-n complex Matrix Q with orthonormal columns.
@@ -1058,7 +1142,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cung2r_full_rank,rocsolver_cung2r_rank_0,rocsolver_cung2r_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zung2r
@@ -1076,7 +1163,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zung2r_full_rank,rocsolver_zung2r_rank_0,rocsolver_zung2r_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief ORGQR generates a m-by-n Matrix Q with orthonormal columns.
@@ -1131,7 +1221,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sorgqr_full_rank,rocsolver_sorgqr_rank_0,rocsolver_sorgqr_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dorgqr
@@ -1149,7 +1242,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dorgqr_full_rank,rocsolver_dorgqr_rank_0,rocsolver_dorgqr_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief UNGQR generates a m-by-n complex Matrix Q with orthonormal columns.
@@ -1204,7 +1300,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cungqr_full_rank,rocsolver_cungqr_rank_0,rocsolver_cungqr_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zungqr
@@ -1222,7 +1321,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zungqr_full_rank,rocsolver_zungqr_rank_0,rocsolver_zungqr_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief ORGL2 generates a m-by-n Matrix Q with orthonormal rows.
@@ -1277,7 +1379,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sorgl2_full_rank,rocsolver_sorgl2_rank_0,rocsolver_sorgl2_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dorgl2
@@ -1295,7 +1400,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dorgl2_full_rank,rocsolver_dorgl2_rank_0,rocsolver_dorgl2_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief UNGL2 generates a m-by-n complex Matrix Q with orthonormal rows.
@@ -1350,7 +1458,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cungl2_full_rank,rocsolver_cungl2_rank_0,rocsolver_cungl2_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zungl2
@@ -1368,7 +1479,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zungl2_full_rank,rocsolver_zungl2_rank_0,rocsolver_zungl2_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief ORGLQ generates a m-by-n Matrix Q with orthonormal rows.
@@ -1423,7 +1537,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sorglq_full_rank,rocsolver_sorglq_rank_0,rocsolver_sorglq_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dorglq
@@ -1441,7 +1558,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dorglq_full_rank,rocsolver_dorglq_rank_0,rocsolver_dorglq_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief UNGLQ generates a m-by-n complex Matrix Q with orthonormal rows.
@@ -1496,7 +1616,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cunglq_full_rank,rocsolver_cunglq_rank_0,rocsolver_cunglq_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zunglq
@@ -1514,7 +1637,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zunglq_full_rank,rocsolver_zunglq_rank_0,rocsolver_zunglq_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief ORG2L generates a m-by-n Matrix Q with orthonormal columns.
@@ -1569,7 +1695,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sorg2l_full_rank,rocsolver_sorg2l_rank_0,rocsolver_sorg2l_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dorg2l
@@ -1587,7 +1716,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dorg2l_full_rank,rocsolver_dorg2l_rank_0,rocsolver_dorg2l_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief UNG2L generates a m-by-n complex Matrix Q with orthonormal columns.
@@ -1642,7 +1774,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cung2l_full_rank,rocsolver_cung2l_rank_0,rocsolver_cung2l_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zung2l
@@ -1660,7 +1795,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zung2l_full_rank,rocsolver_zung2l_rank_0,rocsolver_zung2l_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief ORGQL generates a m-by-n Matrix Q with orthonormal columns.
@@ -1715,7 +1853,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sorgql_full_rank,rocsolver_sorgql_rank_0,rocsolver_sorgql_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dorgql
@@ -1733,7 +1874,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dorgql_full_rank,rocsolver_dorgql_rank_0,rocsolver_dorgql_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief UNGQL generates a m-by-n complex Matrix Q with orthonormal columns.
@@ -1788,7 +1932,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cungql_full_rank,rocsolver_cungql_rank_0,rocsolver_cungql_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zungql
@@ -1806,7 +1953,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zungql_full_rank,rocsolver_zungql_rank_0,rocsolver_zungql_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief ORGBR generates a m-by-n Matrix Q with orthonormal rows or columns.
@@ -1879,7 +2029,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sorgbr_full_rank,rocsolver_sorgbr_rank_0,rocsolver_sorgbr_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dorgbr
@@ -1898,7 +2051,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dorgbr_full_rank,rocsolver_dorgbr_rank_0,rocsolver_dorgbr_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief UNGBR generates a m-by-n complex Matrix Q with orthonormal rows or
@@ -1972,7 +2128,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cungbr_full_rank,rocsolver_cungbr_rank_0,rocsolver_cungbr_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zungbr
@@ -1991,7 +2150,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zungbr_full_rank,rocsolver_zungbr_rank_0,rocsolver_zungbr_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief ORGTR generates a n-by-n orthogonal Matrix Q.
@@ -2048,7 +2210,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sorgtr_full_rank,rocsolver_sorgtr_rank_0,rocsolver_sorgtr_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dorgtr
@@ -2065,7 +2230,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dorgtr_full_rank,rocsolver_dorgtr_rank_0,rocsolver_dorgtr_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief UNGTR generates a n-by-n unitary Matrix Q.
@@ -2122,7 +2290,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cungtr_full_rank,rocsolver_cungtr_rank_0,rocsolver_cungtr_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zungtr
@@ -2139,7 +2310,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zungtr_full_rank,rocsolver_zungtr_rank_0,rocsolver_zungtr_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief ORM2R applies a matrix Q with orthonormal columns to a general m-by-n
@@ -2218,7 +2392,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sorm2r_full_rank,rocsolver_sorm2r_rank_0,rocsolver_sorm2r_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dorm2r
@@ -2240,7 +2417,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dorm2r_full_rank,rocsolver_dorm2r_rank_0,rocsolver_dorm2r_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief UNM2R applies a complex matrix Q with orthonormal columns to a
@@ -2319,7 +2499,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cunm2r_full_rank,rocsolver_cunm2r_rank_0,rocsolver_cunm2r_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zunm2r
@@ -2341,7 +2524,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zunm2r_full_rank,rocsolver_zunm2r_rank_0,rocsolver_zunm2r_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief ORMQR applies a matrix Q with orthonormal columns to a general m-by-n
@@ -2420,7 +2606,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sormqr_full_rank,rocsolver_sormqr_rank_0,rocsolver_sormqr_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dormqr
@@ -2442,7 +2631,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dormqr_full_rank,rocsolver_dormqr_rank_0,rocsolver_dormqr_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief UNMQR applies a complex matrix Q with orthonormal columns to a
@@ -2521,7 +2713,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cunmqr_full_rank,rocsolver_cunmqr_rank_0,rocsolver_cunmqr_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zunmqr
@@ -2543,7 +2738,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zunmqr_full_rank,rocsolver_zunmqr_rank_0,rocsolver_zunmqr_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief ORML2 applies a matrix Q with orthonormal rows to a general m-by-n
@@ -2622,7 +2820,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sorml2_full_rank,rocsolver_sorml2_rank_0,rocsolver_sorml2_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dorml2
@@ -2644,7 +2845,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dorml2_full_rank,rocsolver_dorml2_rank_0,rocsolver_dorml2_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief UNML2 applies a complex matrix Q with orthonormal rows to a general
@@ -2723,7 +2927,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cunml2_full_rank,rocsolver_cunml2_rank_0,rocsolver_cunml2_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zunml2
@@ -2745,7 +2952,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zunml2_full_rank,rocsolver_zunml2_rank_0,rocsolver_zunml2_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief ORMLQ applies a matrix Q with orthonormal rows to a general m-by-n
@@ -2824,7 +3034,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sormlq_full_rank,rocsolver_sormlq_rank_0,rocsolver_sormlq_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dormlq
@@ -2846,7 +3059,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dormlq_full_rank,rocsolver_dormlq_rank_0,rocsolver_dormlq_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief UNMLQ applies a complex matrix Q with orthonormal rows to a general
@@ -2925,7 +3141,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cunmlq_full_rank,rocsolver_cunmlq_rank_0,rocsolver_cunmlq_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zunmlq
@@ -2947,7 +3166,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zunmlq_full_rank,rocsolver_zunmlq_rank_0,rocsolver_zunmlq_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief ORM2L applies a matrix Q with orthonormal columns to a general m-by-n
@@ -3031,7 +3253,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sorm2l_full_rank,rocsolver_sorm2l_rank_0,rocsolver_sorm2l_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dorm2l
@@ -3053,7 +3278,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dorm2l_full_rank,rocsolver_dorm2l_rank_0,rocsolver_dorm2l_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief UNM2L applies a complex matrix Q with orthonormal columns to a
@@ -3136,7 +3364,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cunm2l_full_rank,rocsolver_cunm2l_rank_0,rocsolver_cunm2l_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zunm2l
@@ -3158,7 +3389,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zunm2l_full_rank,rocsolver_zunm2l_rank_0,rocsolver_zunm2l_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief ORMQL applies a matrix Q with orthonormal columns to a general m-by-n
@@ -3242,7 +3476,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sormql_full_rank,rocsolver_sormql_rank_0,rocsolver_sormql_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dormql
@@ -3264,7 +3501,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dormql_full_rank,rocsolver_dormql_rank_0,rocsolver_dormql_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief UNMQL applies a complex matrix Q with orthonormal columns to a
@@ -3347,7 +3587,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cunmql_full_rank,rocsolver_cunmql_rank_0,rocsolver_cunmql_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zunmql
@@ -3369,7 +3612,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zunmql_full_rank,rocsolver_zunmql_rank_0,rocsolver_zunmql_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief ORMBR applies a matrix Q with orthonormal rows or columns to a
@@ -3466,7 +3712,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sormbr_full_rank,rocsolver_sormbr_rank_0,rocsolver_sormbr_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dormbr
@@ -3489,7 +3738,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dormbr_full_rank,rocsolver_dormbr_rank_0,rocsolver_dormbr_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief UNMBR applies a complex matrix Q with orthonormal rows or columns to
@@ -3586,7 +3838,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cunmbr_full_rank,rocsolver_cunmbr_rank_0,rocsolver_cunmbr_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zunmbr
@@ -3609,7 +3864,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zunmbr_full_rank,rocsolver_zunmbr_rank_0,rocsolver_zunmbr_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief ORMTR applies an orthogonal matrix Q to a general m-by-n matrix C.
@@ -3699,7 +3957,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sormtr_full_rank,rocsolver_sormtr_rank_0,rocsolver_sormtr_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dormtr
@@ -3721,7 +3982,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dormtr_full_rank,rocsolver_dormtr_rank_0,rocsolver_dormtr_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief UNMTR applies a unitary matrix Q to a general m-by-n matrix C.
@@ -3811,7 +4075,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cunmtr_full_rank,rocsolver_cunmtr_rank_0,rocsolver_cunmtr_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zunmtr
@@ -3833,7 +4100,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldc
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zunmtr_full_rank,rocsolver_zunmtr_rank_0,rocsolver_zunmtr_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief BDSQR computes the singular value decomposition (SVD) of a
@@ -3931,7 +4201,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: myInfo
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sbdsqr_full_rank,rocsolver_sbdsqr_rank_0,rocsolver_sbdsqr_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dbdsqr
@@ -3957,7 +4230,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: myInfo
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dbdsqr_full_rank,rocsolver_dbdsqr_rank_0,rocsolver_dbdsqr_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cbdsqr
@@ -3983,7 +4259,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: myInfo
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cbdsqr_full_rank,rocsolver_cbdsqr_rank_0,rocsolver_cbdsqr_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zbdsqr
@@ -4009,7 +4288,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: myInfo
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zbdsqr_full_rank,rocsolver_zbdsqr_rank_0,rocsolver_zbdsqr_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GETF2_NPVT computes the LU factorization of a general m-by-n matrix A
@@ -4068,7 +4350,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: myInfo
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgetf2_npvt_full_rank,rocsolver_sgetf2_npvt_rank_0,rocsolver_sgetf2_npvt_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgetf2_npvt
@@ -4085,7 +4370,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: myInfo
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgetf2_npvt_full_rank,rocsolver_dgetf2_npvt_rank_0,rocsolver_dgetf2_npvt_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgetf2_npvt
@@ -4102,7 +4390,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: myInfo
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgetf2_npvt_full_rank,rocsolver_cgetf2_npvt_rank_0,rocsolver_cgetf2_npvt_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgetf2_npvt
@@ -4119,7 +4410,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: myInfo
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgetf2_npvt_full_rank,rocsolver_zgetf2_npvt_rank_0,rocsolver_zgetf2_npvt_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GETF2_NPVT_BATCHED computes the LU factorization of a batch of
@@ -4182,7 +4476,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgetf2_npvt_batched_full_rank,rocsolver_sgetf2_npvt_batched_rank_0,rocsolver_sgetf2_npvt_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgetf2_npvt_batched
@@ -4200,7 +4497,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgetf2_npvt_batched_full_rank,rocsolver_dgetf2_npvt_batched_rank_0,rocsolver_dgetf2_npvt_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgetf2_npvt_batched
@@ -4218,7 +4518,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgetf2_npvt_batched_full_rank,rocsolver_cgetf2_npvt_batched_rank_0,rocsolver_cgetf2_npvt_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgetf2_npvt_batched
@@ -4236,7 +4539,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgetf2_npvt_batched_full_rank,rocsolver_zgetf2_npvt_batched_rank_0,rocsolver_zgetf2_npvt_batched_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GETF2_NPVT_STRIDED_BATCHED computes the LU factorization of a batch
@@ -4304,7 +4610,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgetf2_npvt_strided_batched_full_rank,rocsolver_sgetf2_npvt_strided_batched_rank_0,rocsolver_sgetf2_npvt_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgetf2_npvt_strided_batched
@@ -4323,7 +4632,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgetf2_npvt_strided_batched_full_rank,rocsolver_dgetf2_npvt_strided_batched_rank_0,rocsolver_dgetf2_npvt_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgetf2_npvt_strided_batched
@@ -4342,7 +4654,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgetf2_npvt_strided_batched_full_rank,rocsolver_cgetf2_npvt_strided_batched_rank_0,rocsolver_cgetf2_npvt_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgetf2_npvt_strided_batched
@@ -4361,7 +4676,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgetf2_npvt_strided_batched_full_rank,rocsolver_zgetf2_npvt_strided_batched_rank_0,rocsolver_zgetf2_npvt_strided_batched_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GETRF_NPVT computes the LU factorization of a general m-by-n matrix A
@@ -4420,7 +4738,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: myInfo
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgetrf_npvt_full_rank,rocsolver_sgetrf_npvt_rank_0,rocsolver_sgetrf_npvt_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgetrf_npvt
@@ -4437,7 +4758,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: myInfo
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgetrf_npvt_full_rank,rocsolver_dgetrf_npvt_rank_0,rocsolver_dgetrf_npvt_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgetrf_npvt
@@ -4454,7 +4778,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: myInfo
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgetrf_npvt_full_rank,rocsolver_cgetrf_npvt_rank_0,rocsolver_cgetrf_npvt_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgetrf_npvt
@@ -4471,7 +4798,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: myInfo
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgetrf_npvt_full_rank,rocsolver_zgetrf_npvt_rank_0,rocsolver_zgetrf_npvt_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GETRF_NPVT_BATCHED computes the LU factorization of a batch of
@@ -4534,7 +4864,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgetrf_npvt_batched_full_rank,rocsolver_sgetrf_npvt_batched_rank_0,rocsolver_sgetrf_npvt_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgetrf_npvt_batched
@@ -4552,7 +4885,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgetrf_npvt_batched_full_rank,rocsolver_dgetrf_npvt_batched_rank_0,rocsolver_dgetrf_npvt_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgetrf_npvt_batched
@@ -4570,7 +4906,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgetrf_npvt_batched_full_rank,rocsolver_cgetrf_npvt_batched_rank_0,rocsolver_cgetrf_npvt_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgetrf_npvt_batched
@@ -4588,7 +4927,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgetrf_npvt_batched_full_rank,rocsolver_zgetrf_npvt_batched_rank_0,rocsolver_zgetrf_npvt_batched_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GETRF_NPVT_STRIDED_BATCHED computes the LU factorization of a batch
@@ -4656,7 +4998,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgetrf_npvt_strided_batched_full_rank,rocsolver_sgetrf_npvt_strided_batched_rank_0,rocsolver_sgetrf_npvt_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgetrf_npvt_strided_batched
@@ -4675,7 +5020,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgetrf_npvt_strided_batched_full_rank,rocsolver_dgetrf_npvt_strided_batched_rank_0,rocsolver_dgetrf_npvt_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgetrf_npvt_strided_batched
@@ -4694,7 +5042,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgetrf_npvt_strided_batched_full_rank,rocsolver_cgetrf_npvt_strided_batched_rank_0,rocsolver_cgetrf_npvt_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgetrf_npvt_strided_batched
@@ -4713,7 +5064,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgetrf_npvt_strided_batched_full_rank,rocsolver_zgetrf_npvt_strided_batched_rank_0,rocsolver_zgetrf_npvt_strided_batched_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GETF2 computes the LU factorization of a general m-by-n matrix A
@@ -4775,7 +5129,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: myInfo
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgetf2_full_rank,rocsolver_sgetf2_rank_0,rocsolver_sgetf2_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgetf2
@@ -4793,7 +5150,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: myInfo
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgetf2_full_rank,rocsolver_dgetf2_rank_0,rocsolver_dgetf2_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgetf2
@@ -4811,7 +5171,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: myInfo
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgetf2_full_rank,rocsolver_cgetf2_rank_0,rocsolver_cgetf2_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgetf2
@@ -4829,7 +5192,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: myInfo
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgetf2_full_rank,rocsolver_zgetf2_rank_0,rocsolver_zgetf2_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GETF2_BATCHED computes the LU factorization of a batch of general
@@ -4903,7 +5269,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgetf2_batched_full_rank,rocsolver_sgetf2_batched_rank_0,rocsolver_sgetf2_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgetf2_batched
@@ -4923,7 +5292,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgetf2_batched_full_rank,rocsolver_dgetf2_batched_rank_0,rocsolver_dgetf2_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgetf2_batched
@@ -4943,7 +5315,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgetf2_batched_full_rank,rocsolver_cgetf2_batched_rank_0,rocsolver_cgetf2_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgetf2_batched
@@ -4963,7 +5338,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgetf2_batched_full_rank,rocsolver_zgetf2_batched_rank_0,rocsolver_zgetf2_batched_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GETF2_STRIDED_BATCHED computes the LU factorization of a batch of
@@ -5041,7 +5419,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgetf2_strided_batched_full_rank,rocsolver_sgetf2_strided_batched_rank_0,rocsolver_sgetf2_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgetf2_strided_batched
@@ -5062,7 +5443,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgetf2_strided_batched_full_rank,rocsolver_dgetf2_strided_batched_rank_0,rocsolver_dgetf2_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgetf2_strided_batched
@@ -5083,7 +5467,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgetf2_strided_batched_full_rank,rocsolver_cgetf2_strided_batched_rank_0,rocsolver_cgetf2_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgetf2_strided_batched
@@ -5104,7 +5491,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgetf2_strided_batched_full_rank,rocsolver_zgetf2_strided_batched_rank_0,rocsolver_zgetf2_strided_batched_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GETRF computes the LU factorization of a general m-by-n matrix A
@@ -5166,7 +5556,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: myInfo
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgetrf_full_rank,rocsolver_sgetrf_rank_0,rocsolver_sgetrf_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgetrf
@@ -5184,7 +5577,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: myInfo
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgetrf_full_rank,rocsolver_dgetrf_rank_0,rocsolver_dgetrf_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgetrf
@@ -5202,7 +5598,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: myInfo
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgetrf_full_rank,rocsolver_cgetrf_rank_0,rocsolver_cgetrf_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgetrf
@@ -5220,7 +5619,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: myInfo
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgetrf_full_rank,rocsolver_zgetrf_rank_0,rocsolver_zgetrf_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GETRF_BATCHED computes the LU factorization of a batch of general
@@ -5293,7 +5695,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgetrf_batched_full_rank,rocsolver_sgetrf_batched_rank_0,rocsolver_sgetrf_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgetrf_batched
@@ -5313,7 +5718,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgetrf_batched_full_rank,rocsolver_dgetrf_batched_rank_0,rocsolver_dgetrf_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgetrf_batched
@@ -5333,7 +5741,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgetrf_batched_full_rank,rocsolver_cgetrf_batched_rank_0,rocsolver_cgetrf_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgetrf_batched
@@ -5353,7 +5764,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgetrf_batched_full_rank,rocsolver_zgetrf_batched_rank_0,rocsolver_zgetrf_batched_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GETRF_STRIDED_BATCHED computes the LU factorization of a batch of
@@ -5431,7 +5845,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgetrf_strided_batched_full_rank,rocsolver_sgetrf_strided_batched_rank_0,rocsolver_sgetrf_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgetrf_strided_batched
@@ -5452,7 +5869,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgetrf_strided_batched_full_rank,rocsolver_dgetrf_strided_batched_rank_0,rocsolver_dgetrf_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgetrf_strided_batched
@@ -5473,7 +5893,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgetrf_strided_batched_full_rank,rocsolver_cgetrf_strided_batched_rank_0,rocsolver_cgetrf_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgetrf_strided_batched
@@ -5494,7 +5917,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgetrf_strided_batched_full_rank,rocsolver_zgetrf_strided_batched_rank_0,rocsolver_zgetrf_strided_batched_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GEQR2 computes a QR factorization of a general m-by-n matrix A.
@@ -5554,7 +5980,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgeqr2_full_rank,rocsolver_sgeqr2_rank_0,rocsolver_sgeqr2_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgeqr2
@@ -5571,7 +6000,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgeqr2_full_rank,rocsolver_dgeqr2_rank_0,rocsolver_dgeqr2_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgeqr2
@@ -5588,7 +6020,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgeqr2_full_rank,rocsolver_cgeqr2_rank_0,rocsolver_cgeqr2_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgeqr2
@@ -5605,7 +6040,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgeqr2_full_rank,rocsolver_zgeqr2_rank_0,rocsolver_zgeqr2_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GEQR2_BATCHED computes the QR factorization of a batch of general
@@ -5677,7 +6115,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgeqr2_batched_full_rank,rocsolver_sgeqr2_batched_rank_0,rocsolver_sgeqr2_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgeqr2_batched
@@ -5696,7 +6137,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgeqr2_batched_full_rank,rocsolver_dgeqr2_batched_rank_0,rocsolver_dgeqr2_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgeqr2_batched
@@ -5715,7 +6159,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgeqr2_batched_full_rank,rocsolver_cgeqr2_batched_rank_0,rocsolver_cgeqr2_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgeqr2_batched
@@ -5734,7 +6181,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgeqr2_batched_full_rank,rocsolver_zgeqr2_batched_rank_0,rocsolver_zgeqr2_batched_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GEQR2_STRIDED_BATCHED computes the QR factorization of a batch of
@@ -5811,7 +6261,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgeqr2_strided_batched_full_rank,rocsolver_sgeqr2_strided_batched_rank_0,rocsolver_sgeqr2_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgeqr2_strided_batched
@@ -5831,7 +6284,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgeqr2_strided_batched_full_rank,rocsolver_dgeqr2_strided_batched_rank_0,rocsolver_dgeqr2_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgeqr2_strided_batched
@@ -5851,7 +6307,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgeqr2_strided_batched_full_rank,rocsolver_cgeqr2_strided_batched_rank_0,rocsolver_cgeqr2_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgeqr2_strided_batched
@@ -5871,7 +6330,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgeqr2_strided_batched_full_rank,rocsolver_zgeqr2_strided_batched_rank_0,rocsolver_zgeqr2_strided_batched_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GEQL2 computes a QL factorization of a general m-by-n matrix A.
@@ -5932,7 +6394,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgeql2_full_rank,rocsolver_sgeql2_rank_0,rocsolver_sgeql2_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgeql2
@@ -5949,7 +6414,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgeql2_full_rank,rocsolver_dgeql2_rank_0,rocsolver_dgeql2_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgeql2
@@ -5966,7 +6434,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgeql2_full_rank,rocsolver_cgeql2_rank_0,rocsolver_cgeql2_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgeql2
@@ -5983,7 +6454,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgeql2_full_rank,rocsolver_zgeql2_rank_0,rocsolver_zgeql2_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GEQL2_BATCHED computes the QL factorization of a batch of general
@@ -6056,7 +6530,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgeql2_batched_full_rank,rocsolver_sgeql2_batched_rank_0,rocsolver_sgeql2_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgeql2_batched
@@ -6075,7 +6552,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgeql2_batched_full_rank,rocsolver_dgeql2_batched_rank_0,rocsolver_dgeql2_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgeql2_batched
@@ -6094,7 +6574,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgeql2_batched_full_rank,rocsolver_cgeql2_batched_rank_0,rocsolver_cgeql2_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgeql2_batched
@@ -6113,7 +6596,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgeql2_batched_full_rank,rocsolver_zgeql2_batched_rank_0,rocsolver_zgeql2_batched_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GEQL2_STRIDED_BATCHED computes the QL factorization of a batch of
@@ -6191,7 +6677,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgeql2_strided_batched_full_rank,rocsolver_sgeql2_strided_batched_rank_0,rocsolver_sgeql2_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgeql2_strided_batched
@@ -6211,7 +6700,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgeql2_strided_batched_full_rank,rocsolver_dgeql2_strided_batched_rank_0,rocsolver_dgeql2_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgeql2_strided_batched
@@ -6231,7 +6723,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgeql2_strided_batched_full_rank,rocsolver_cgeql2_strided_batched_rank_0,rocsolver_cgeql2_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgeql2_strided_batched
@@ -6251,7 +6746,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgeql2_strided_batched_full_rank,rocsolver_zgeql2_strided_batched_rank_0,rocsolver_zgeql2_strided_batched_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GELQ2 computes a LQ factorization of a general m-by-n matrix A.
@@ -6310,7 +6808,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgelq2_full_rank,rocsolver_sgelq2_rank_0,rocsolver_sgelq2_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgelq2
@@ -6327,7 +6828,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgelq2_full_rank,rocsolver_dgelq2_rank_0,rocsolver_dgelq2_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgelq2
@@ -6344,7 +6848,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgelq2_full_rank,rocsolver_cgelq2_rank_0,rocsolver_cgelq2_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgelq2
@@ -6361,7 +6868,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgelq2_full_rank,rocsolver_zgelq2_rank_0,rocsolver_zgelq2_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GELQ2_BATCHED computes the LQ factorization of a batch of general
@@ -6432,7 +6942,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgelq2_batched_full_rank,rocsolver_sgelq2_batched_rank_0,rocsolver_sgelq2_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgelq2_batched
@@ -6451,7 +6964,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgelq2_batched_full_rank,rocsolver_dgelq2_batched_rank_0,rocsolver_dgelq2_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgelq2_batched
@@ -6470,7 +6986,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgelq2_batched_full_rank,rocsolver_cgelq2_batched_rank_0,rocsolver_cgelq2_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgelq2_batched
@@ -6489,7 +7008,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgelq2_batched_full_rank,rocsolver_zgelq2_batched_rank_0,rocsolver_zgelq2_batched_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GELQ2_STRIDED_BATCHED computes the LQ factorization of a batch of
@@ -6565,7 +7087,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgelq2_strided_batched_full_rank,rocsolver_sgelq2_strided_batched_rank_0,rocsolver_sgelq2_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgelq2_strided_batched
@@ -6585,7 +7110,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgelq2_strided_batched_full_rank,rocsolver_dgelq2_strided_batched_rank_0,rocsolver_dgelq2_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgelq2_strided_batched
@@ -6605,7 +7133,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgelq2_strided_batched_full_rank,rocsolver_cgelq2_strided_batched_rank_0,rocsolver_cgelq2_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgelq2_strided_batched
@@ -6625,7 +7156,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgelq2_strided_batched_full_rank,rocsolver_zgelq2_strided_batched_rank_0,rocsolver_zgelq2_strided_batched_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GEQRF computes a QR factorization of a general m-by-n matrix A.
@@ -6685,7 +7219,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgeqrf_full_rank,rocsolver_sgeqrf_rank_0,rocsolver_sgeqrf_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgeqrf
@@ -6702,7 +7239,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgeqrf_full_rank,rocsolver_dgeqrf_rank_0,rocsolver_dgeqrf_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgeqrf
@@ -6719,7 +7259,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgeqrf_full_rank,rocsolver_cgeqrf_rank_0,rocsolver_cgeqrf_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgeqrf
@@ -6736,7 +7279,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgeqrf_full_rank,rocsolver_zgeqrf_rank_0,rocsolver_zgeqrf_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GEQRF_BATCHED computes the QR factorization of a batch of general
@@ -6808,7 +7354,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgeqrf_batched_full_rank,rocsolver_sgeqrf_batched_rank_0,rocsolver_sgeqrf_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgeqrf_batched
@@ -6827,7 +7376,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgeqrf_batched_full_rank,rocsolver_dgeqrf_batched_rank_0,rocsolver_dgeqrf_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgeqrf_batched
@@ -6846,7 +7398,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgeqrf_batched_full_rank,rocsolver_cgeqrf_batched_rank_0,rocsolver_cgeqrf_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgeqrf_batched
@@ -6865,7 +7420,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgeqrf_batched_full_rank,rocsolver_zgeqrf_batched_rank_0,rocsolver_zgeqrf_batched_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GEQRF_STRIDED_BATCHED computes the QR factorization of a batch of
@@ -6942,7 +7500,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgeqrf_strided_batched_full_rank,rocsolver_sgeqrf_strided_batched_rank_0,rocsolver_sgeqrf_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgeqrf_strided_batched
@@ -6962,7 +7523,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgeqrf_strided_batched_full_rank,rocsolver_dgeqrf_strided_batched_rank_0,rocsolver_dgeqrf_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgeqrf_strided_batched
@@ -6982,7 +7546,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgeqrf_strided_batched_full_rank,rocsolver_cgeqrf_strided_batched_rank_0,rocsolver_cgeqrf_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgeqrf_strided_batched
@@ -7002,7 +7569,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgeqrf_strided_batched_full_rank,rocsolver_zgeqrf_strided_batched_rank_0,rocsolver_zgeqrf_strided_batched_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GEQLF computes a QL factorization of a general m-by-n matrix A.
@@ -7063,7 +7633,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgeqlf_full_rank,rocsolver_sgeqlf_rank_0,rocsolver_sgeqlf_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgeqlf
@@ -7080,7 +7653,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgeqlf_full_rank,rocsolver_dgeqlf_rank_0,rocsolver_dgeqlf_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgeqlf
@@ -7097,7 +7673,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgeqlf_full_rank,rocsolver_cgeqlf_rank_0,rocsolver_cgeqlf_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgeqlf
@@ -7114,7 +7693,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgeqlf_full_rank,rocsolver_zgeqlf_rank_0,rocsolver_zgeqlf_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GEQLF_BATCHED computes the QL factorization of a batch of general
@@ -7187,7 +7769,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgeqlf_batched_full_rank,rocsolver_sgeqlf_batched_rank_0,rocsolver_sgeqlf_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgeqlf_batched
@@ -7206,7 +7791,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgeqlf_batched_full_rank,rocsolver_dgeqlf_batched_rank_0,rocsolver_dgeqlf_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgeqlf_batched
@@ -7225,7 +7813,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgeqlf_batched_full_rank,rocsolver_cgeqlf_batched_rank_0,rocsolver_cgeqlf_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgeqlf_batched
@@ -7244,7 +7835,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgeqlf_batched_full_rank,rocsolver_zgeqlf_batched_rank_0,rocsolver_zgeqlf_batched_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GEQLF_STRIDED_BATCHED computes the QL factorization of a batch of
@@ -7322,7 +7916,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgeqlf_strided_batched_full_rank,rocsolver_sgeqlf_strided_batched_rank_0,rocsolver_sgeqlf_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgeqlf_strided_batched
@@ -7342,7 +7939,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgeqlf_strided_batched_full_rank,rocsolver_dgeqlf_strided_batched_rank_0,rocsolver_dgeqlf_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgeqlf_strided_batched
@@ -7362,7 +7962,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgeqlf_strided_batched_full_rank,rocsolver_cgeqlf_strided_batched_rank_0,rocsolver_cgeqlf_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgeqlf_strided_batched
@@ -7382,7 +7985,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgeqlf_strided_batched_full_rank,rocsolver_zgeqlf_strided_batched_rank_0,rocsolver_zgeqlf_strided_batched_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GELQF computes a LQ factorization of a general m-by-n matrix A.
@@ -7441,7 +8047,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgelqf_full_rank,rocsolver_sgelqf_rank_0,rocsolver_sgelqf_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgelqf
@@ -7458,7 +8067,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgelqf_full_rank,rocsolver_dgelqf_rank_0,rocsolver_dgelqf_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgelqf
@@ -7475,7 +8087,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgelqf_full_rank,rocsolver_cgelqf_rank_0,rocsolver_cgelqf_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgelqf
@@ -7492,7 +8107,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: ipiv
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgelqf_full_rank,rocsolver_zgelqf_rank_0,rocsolver_zgelqf_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GELQF_BATCHED computes the LQ factorization of a batch of general
@@ -7563,7 +8181,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgelqf_batched_full_rank,rocsolver_sgelqf_batched_rank_0,rocsolver_sgelqf_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgelqf_batched
@@ -7582,7 +8203,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgelqf_batched_full_rank,rocsolver_dgelqf_batched_rank_0,rocsolver_dgelqf_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgelqf_batched
@@ -7601,7 +8225,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgelqf_batched_full_rank,rocsolver_cgelqf_batched_rank_0,rocsolver_cgelqf_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgelqf_batched
@@ -7620,7 +8247,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgelqf_batched_full_rank,rocsolver_zgelqf_batched_rank_0,rocsolver_zgelqf_batched_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GELQF_STRIDED_BATCHED computes the LQ factorization of a batch of
@@ -7696,7 +8326,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgelqf_strided_batched_full_rank,rocsolver_sgelqf_strided_batched_rank_0,rocsolver_sgelqf_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgelqf_strided_batched
@@ -7716,7 +8349,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgelqf_strided_batched_full_rank,rocsolver_dgelqf_strided_batched_rank_0,rocsolver_dgelqf_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgelqf_strided_batched
@@ -7736,7 +8372,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgelqf_strided_batched_full_rank,rocsolver_cgelqf_strided_batched_rank_0,rocsolver_cgelqf_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgelqf_strided_batched
@@ -7756,7 +8395,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgelqf_strided_batched_full_rank,rocsolver_zgelqf_strided_batched_rank_0,rocsolver_zgelqf_strided_batched_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GEBD2 computes the bidiagonal form of a general m-by-n matrix A.
@@ -7837,7 +8479,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: taup
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgebd2_full_rank,rocsolver_sgebd2_rank_0,rocsolver_sgebd2_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgebd2
@@ -7857,7 +8502,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: taup
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgebd2_full_rank,rocsolver_dgebd2_rank_0,rocsolver_dgebd2_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgebd2
@@ -7877,7 +8525,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: taup
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgebd2_full_rank,rocsolver_cgebd2_rank_0,rocsolver_cgebd2_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgebd2
@@ -7897,7 +8548,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: taup
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgebd2_full_rank,rocsolver_zgebd2_rank_0,rocsolver_zgebd2_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GEBD2_BATCHED computes the bidiagonal form of a batch of general
@@ -8007,7 +8661,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgebd2_batched_full_rank,rocsolver_sgebd2_batched_rank_0,rocsolver_sgebd2_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgebd2_batched
@@ -8032,7 +8689,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgebd2_batched_full_rank,rocsolver_dgebd2_batched_rank_0,rocsolver_dgebd2_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgebd2_batched
@@ -8057,7 +8717,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgebd2_batched_full_rank,rocsolver_cgebd2_batched_rank_0,rocsolver_cgebd2_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgebd2_batched
@@ -8082,7 +8745,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgebd2_batched_full_rank,rocsolver_zgebd2_batched_rank_0,rocsolver_zgebd2_batched_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GEBD2_STRIDED_BATCHED computes the bidiagonal form of a batch of
@@ -8197,7 +8863,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgebd2_strided_batched_full_rank,rocsolver_sgebd2_strided_batched_rank_0,rocsolver_sgebd2_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgebd2_strided_batched
@@ -8223,7 +8892,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgebd2_strided_batched_full_rank,rocsolver_dgebd2_strided_batched_rank_0,rocsolver_dgebd2_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgebd2_strided_batched
@@ -8249,7 +8921,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgebd2_strided_batched_full_rank,rocsolver_cgebd2_strided_batched_rank_0,rocsolver_cgebd2_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgebd2_strided_batched
@@ -8275,7 +8950,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgebd2_strided_batched_full_rank,rocsolver_zgebd2_strided_batched_rank_0,rocsolver_zgebd2_strided_batched_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GEBRD computes the bidiagonal form of a general m-by-n matrix A.
@@ -8356,7 +9034,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: taup
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgebrd_full_rank,rocsolver_sgebrd_rank_0,rocsolver_sgebrd_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgebrd
@@ -8376,7 +9057,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: taup
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgebrd_full_rank,rocsolver_dgebrd_rank_0,rocsolver_dgebrd_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgebrd
@@ -8396,7 +9080,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: taup
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgebrd_full_rank,rocsolver_cgebrd_rank_0,rocsolver_cgebrd_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgebrd
@@ -8416,7 +9103,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: taup
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgebrd_full_rank,rocsolver_zgebrd_rank_0,rocsolver_zgebrd_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GEBRD_BATCHED computes the bidiagonal form of a batch of general
@@ -8526,7 +9216,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgebrd_batched_full_rank,rocsolver_sgebrd_batched_rank_0,rocsolver_sgebrd_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgebrd_batched
@@ -8551,7 +9244,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgebrd_batched_full_rank,rocsolver_dgebrd_batched_rank_0,rocsolver_dgebrd_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgebrd_batched
@@ -8576,7 +9272,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgebrd_batched_full_rank,rocsolver_cgebrd_batched_rank_0,rocsolver_cgebrd_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgebrd_batched
@@ -8601,7 +9300,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgebrd_batched_full_rank,rocsolver_zgebrd_batched_rank_0,rocsolver_zgebrd_batched_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GEBRD_STRIDED_BATCHED computes the bidiagonal form of a batch of
@@ -8716,7 +9418,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgebrd_strided_batched_full_rank,rocsolver_sgebrd_strided_batched_rank_0,rocsolver_sgebrd_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgebrd_strided_batched
@@ -8742,7 +9447,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgebrd_strided_batched_full_rank,rocsolver_dgebrd_strided_batched_rank_0,rocsolver_dgebrd_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgebrd_strided_batched
@@ -8768,7 +9476,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgebrd_strided_batched_full_rank,rocsolver_cgebrd_strided_batched_rank_0,rocsolver_cgebrd_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgebrd_strided_batched
@@ -8794,7 +9505,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgebrd_strided_batched_full_rank,rocsolver_zgebrd_strided_batched_rank_0,rocsolver_zgebrd_strided_batched_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GETRS solves a system of n linear equations on n variables using the
@@ -8856,7 +9570,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldb
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgetrs_full_rank,rocsolver_sgetrs_rank_0,rocsolver_sgetrs_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgetrs
@@ -8876,7 +9593,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldb
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgetrs_full_rank,rocsolver_dgetrs_rank_0,rocsolver_dgetrs_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgetrs
@@ -8896,7 +9616,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldb
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgetrs_full_rank,rocsolver_cgetrs_rank_0,rocsolver_cgetrs_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgetrs
@@ -8916,7 +9639,10 @@ module hipfort_rocsolver
       integer(c_int),value :: ldb
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgetrs_full_rank,rocsolver_zgetrs_rank_0,rocsolver_zgetrs_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GETRS_BATCHED solves a batch of systems of n linear equations on n
@@ -8987,7 +9713,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgetrs_batched_full_rank,rocsolver_sgetrs_batched_rank_0,rocsolver_sgetrs_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgetrs_batched
@@ -9009,7 +9738,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgetrs_batched_full_rank,rocsolver_dgetrs_batched_rank_0,rocsolver_dgetrs_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgetrs_batched
@@ -9031,7 +9763,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgetrs_batched_full_rank,rocsolver_cgetrs_batched_rank_0,rocsolver_cgetrs_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgetrs_batched
@@ -9053,7 +9788,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgetrs_batched_full_rank,rocsolver_zgetrs_batched_rank_0,rocsolver_zgetrs_batched_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GETRS_STRIDED_BATCHED solves a batch of systems of n linear equations
@@ -9134,7 +9872,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgetrs_strided_batched_full_rank,rocsolver_sgetrs_strided_batched_rank_0,rocsolver_sgetrs_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgetrs_strided_batched
@@ -9158,7 +9899,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgetrs_strided_batched_full_rank,rocsolver_dgetrs_strided_batched_rank_0,rocsolver_dgetrs_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgetrs_strided_batched
@@ -9182,7 +9926,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgetrs_strided_batched_full_rank,rocsolver_cgetrs_strided_batched_rank_0,rocsolver_cgetrs_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgetrs_strided_batched
@@ -9206,7 +9953,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgetrs_strided_batched_full_rank,rocsolver_zgetrs_strided_batched_rank_0,rocsolver_zgetrs_strided_batched_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GETRI inverts a general n-by-n matrix A using the LU factorization
@@ -9255,7 +10005,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: myInfo
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgetri_full_rank,rocsolver_sgetri_rank_0,rocsolver_sgetri_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgetri
@@ -9272,7 +10025,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: myInfo
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgetri_full_rank,rocsolver_dgetri_rank_0,rocsolver_dgetri_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgetri
@@ -9289,7 +10045,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: myInfo
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgetri_full_rank,rocsolver_cgetri_rank_0,rocsolver_cgetri_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgetri
@@ -9306,7 +10065,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: myInfo
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgetri_full_rank,rocsolver_zgetri_rank_0,rocsolver_zgetri_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GETRI_BATCHED inverts a batch of general n-by-n matrices using
@@ -9365,7 +10127,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgetri_batched_full_rank,rocsolver_sgetri_batched_rank_0,rocsolver_sgetri_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgetri_batched
@@ -9384,7 +10149,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgetri_batched_full_rank,rocsolver_dgetri_batched_rank_0,rocsolver_dgetri_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgetri_batched
@@ -9403,7 +10171,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgetri_batched_full_rank,rocsolver_cgetri_batched_rank_0,rocsolver_cgetri_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgetri_batched
@@ -9422,7 +10193,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgetri_batched_full_rank,rocsolver_zgetri_batched_rank_0,rocsolver_zgetri_batched_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GETRI_STRIDED_BATCHED inverts a batch of general n-by-n matrices
@@ -9486,7 +10260,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgetri_strided_batched_full_rank,rocsolver_sgetri_strided_batched_rank_0,rocsolver_sgetri_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgetri_strided_batched
@@ -9506,7 +10283,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgetri_strided_batched_full_rank,rocsolver_dgetri_strided_batched_rank_0,rocsolver_dgetri_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgetri_strided_batched
@@ -9526,7 +10306,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgetri_strided_batched_full_rank,rocsolver_cgetri_strided_batched_rank_0,rocsolver_cgetri_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgetri_strided_batched
@@ -9546,7 +10329,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgetri_strided_batched_full_rank,rocsolver_zgetri_strided_batched_rank_0,rocsolver_zgetri_strided_batched_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief POTF2 computes the Cholesky factorization of a real symmetriccomplex
@@ -9598,7 +10384,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: myInfo
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_spotf2_full_rank,rocsolver_spotf2_rank_0,rocsolver_spotf2_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dpotf2
@@ -9615,7 +10404,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: myInfo
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dpotf2_full_rank,rocsolver_dpotf2_rank_0,rocsolver_dpotf2_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cpotf2
@@ -9632,7 +10424,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: myInfo
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cpotf2_full_rank,rocsolver_cpotf2_rank_0,rocsolver_cpotf2_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zpotf2
@@ -9649,7 +10444,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: myInfo
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zpotf2_full_rank,rocsolver_zpotf2_rank_0,rocsolver_zpotf2_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief POTF2_BATCHED computes the Cholesky factorization of a
@@ -9705,7 +10503,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_spotf2_batched_full_rank,rocsolver_spotf2_batched_rank_0,rocsolver_spotf2_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dpotf2_batched
@@ -9723,7 +10524,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dpotf2_batched_full_rank,rocsolver_dpotf2_batched_rank_0,rocsolver_dpotf2_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cpotf2_batched
@@ -9741,7 +10545,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cpotf2_batched_full_rank,rocsolver_cpotf2_batched_rank_0,rocsolver_cpotf2_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zpotf2_batched
@@ -9759,7 +10566,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zpotf2_batched_full_rank,rocsolver_zpotf2_batched_rank_0,rocsolver_zpotf2_batched_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief POTF2_STRIDED_BATCHED computes the Cholesky factorization of a
@@ -9820,7 +10630,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_spotf2_strided_batched_full_rank,rocsolver_spotf2_strided_batched_rank_0,rocsolver_spotf2_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dpotf2_strided_batched
@@ -9839,7 +10652,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dpotf2_strided_batched_full_rank,rocsolver_dpotf2_strided_batched_rank_0,rocsolver_dpotf2_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cpotf2_strided_batched
@@ -9858,7 +10674,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cpotf2_strided_batched_full_rank,rocsolver_cpotf2_strided_batched_rank_0,rocsolver_cpotf2_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zpotf2_strided_batched
@@ -9877,7 +10696,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zpotf2_strided_batched_full_rank,rocsolver_zpotf2_strided_batched_rank_0,rocsolver_zpotf2_strided_batched_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief POTRF computes the Cholesky factorization of a real symmetriccomplex
@@ -9929,7 +10751,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: myInfo
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_spotrf_full_rank,rocsolver_spotrf_rank_0,rocsolver_spotrf_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dpotrf
@@ -9946,7 +10771,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: myInfo
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dpotrf_full_rank,rocsolver_dpotrf_rank_0,rocsolver_dpotrf_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cpotrf
@@ -9963,7 +10791,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: myInfo
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cpotrf_full_rank,rocsolver_cpotrf_rank_0,rocsolver_cpotrf_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zpotrf
@@ -9980,7 +10811,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: myInfo
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zpotrf_full_rank,rocsolver_zpotrf_rank_0,rocsolver_zpotrf_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief POTRF_BATCHED computes the Cholesky factorization of a
@@ -10036,7 +10870,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_spotrf_batched_full_rank,rocsolver_spotrf_batched_rank_0,rocsolver_spotrf_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dpotrf_batched
@@ -10054,7 +10891,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dpotrf_batched_full_rank,rocsolver_dpotrf_batched_rank_0,rocsolver_dpotrf_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cpotrf_batched
@@ -10072,7 +10912,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cpotrf_batched_full_rank,rocsolver_cpotrf_batched_rank_0,rocsolver_cpotrf_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zpotrf_batched
@@ -10090,7 +10933,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zpotrf_batched_full_rank,rocsolver_zpotrf_batched_rank_0,rocsolver_zpotrf_batched_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief POTRF_STRIDED_BATCHED computes the Cholesky factorization of a
@@ -10151,7 +10997,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_spotrf_strided_batched_full_rank,rocsolver_spotrf_strided_batched_rank_0,rocsolver_spotrf_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dpotrf_strided_batched
@@ -10170,7 +11019,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dpotrf_strided_batched_full_rank,rocsolver_dpotrf_strided_batched_rank_0,rocsolver_dpotrf_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cpotrf_strided_batched
@@ -10189,7 +11041,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cpotrf_strided_batched_full_rank,rocsolver_cpotrf_strided_batched_rank_0,rocsolver_cpotrf_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zpotrf_strided_batched
@@ -10208,7 +11063,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zpotrf_strided_batched_full_rank,rocsolver_zpotrf_strided_batched_rank_0,rocsolver_zpotrf_strided_batched_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GESVD computes the Singular Values and optionally the Singular
@@ -10337,7 +11195,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: myInfo
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgesvd_full_rank,rocsolver_sgesvd_rank_0,rocsolver_sgesvd_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgesvd
@@ -10363,7 +11224,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: myInfo
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgesvd_full_rank,rocsolver_dgesvd_rank_0,rocsolver_dgesvd_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgesvd
@@ -10389,7 +11253,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: myInfo
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgesvd_full_rank,rocsolver_cgesvd_rank_0,rocsolver_cgesvd_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgesvd
@@ -10415,7 +11282,10 @@ module hipfort_rocsolver
       type(c_ptr),value :: myInfo
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgesvd_full_rank,rocsolver_zgesvd_rank_0,rocsolver_zgesvd_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GESVD_BATCHED computes the Singular Values and optionally the
@@ -10571,7 +11441,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgesvd_batched_full_rank,rocsolver_sgesvd_batched_rank_0,rocsolver_sgesvd_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgesvd_batched
@@ -10602,7 +11475,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgesvd_batched_full_rank,rocsolver_dgesvd_batched_rank_0,rocsolver_dgesvd_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgesvd_batched
@@ -10633,7 +11509,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgesvd_batched_full_rank,rocsolver_cgesvd_batched_rank_0,rocsolver_cgesvd_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgesvd_batched
@@ -10664,7 +11543,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgesvd_batched_full_rank,rocsolver_zgesvd_batched_rank_0,rocsolver_zgesvd_batched_rank_1
+#endif
+
   end interface
   !> ! @{
   !>     \brief GESVD_STRIDED_BATCHED computes the Singular Values and optionally the
@@ -10826,7 +11708,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_sgesvd_strided_batched_full_rank,rocsolver_sgesvd_strided_batched_rank_0,rocsolver_sgesvd_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_dgesvd_strided_batched
@@ -10858,7 +11743,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_dgesvd_strided_batched_full_rank,rocsolver_dgesvd_strided_batched_rank_0,rocsolver_dgesvd_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_cgesvd_strided_batched
@@ -10890,7 +11778,10 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_cgesvd_strided_batched_full_rank,rocsolver_cgesvd_strided_batched_rank_0,rocsolver_cgesvd_strided_batched_rank_1
+#endif
+
   end interface
   
   interface rocsolver_zgesvd_strided_batched
@@ -10922,11 +11813,14 @@ module hipfort_rocsolver
       integer(c_int),value :: batch_count
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure rocsolver_zgesvd_strided_batched_full_rank,rocsolver_zgesvd_strided_batched_rank_0,rocsolver_zgesvd_strided_batched_rank_1
+#endif
+
   end interface
 
+#ifdef USE_FPOINTER_INTERFACES
   contains
-
     function rocsolver_clacgv_rank_0(handle,n,x,incx)
       use iso_c_binding
       use hipfort_rocsolver_enums
@@ -27108,4 +28002,5 @@ module hipfort_rocsolver
     end function
 
   
+#endif
 end module hipfort_rocsolver

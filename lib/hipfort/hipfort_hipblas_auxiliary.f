@@ -2,7 +2,7 @@
 ! ==============================================================================
 ! hipfort: FORTRAN Interfaces for GPU kernels
 ! ==============================================================================
-! Copyright (c) 2020 Advanced Micro Devices, Inc. All rights reserved.
+! Copyright (c) 2021 Advanced Micro Devices, Inc. All rights reserved.
 ! [MITx11 License]
 ! 
 ! Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -44,7 +44,9 @@ module hipfort_hipblas_auxiliary
       integer(c_int),value :: incy
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipblasSetVector_l_rank_0,hipblasSetVector_l_full_rank,hipblasSetVector_i4_rank_0,hipblasSetVector_i4_full_rank,hipblasSetVector_i8_rank_0,hipblasSetVector_i8_full_rank,hipblasSetVector_r4_rank_0,hipblasSetVector_r4_full_rank,hipblasSetVector_r8_rank_0,hipblasSetVector_r8_full_rank,hipblasSetVector_c4_rank_0,hipblasSetVector_c4_full_rank,hipblasSetVector_c8_rank_0,hipblasSetVector_c8_full_rank 
+#endif
   end interface
 
   interface hipblasGetVector
@@ -65,7 +67,9 @@ module hipfort_hipblas_auxiliary
       integer(c_int),value :: incy
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipblasGetVector_l_rank_0,hipblasGetVector_l_full_rank,hipblasGetVector_i4_rank_0,hipblasGetVector_i4_full_rank,hipblasGetVector_i8_rank_0,hipblasGetVector_i8_full_rank,hipblasGetVector_r4_rank_0,hipblasGetVector_r4_full_rank,hipblasGetVector_r8_rank_0,hipblasGetVector_r8_full_rank,hipblasGetVector_c4_rank_0,hipblasGetVector_c4_full_rank,hipblasGetVector_c8_rank_0,hipblasGetVector_c8_full_rank 
+#endif
   end interface
 
   interface hipblasSetMatrix
@@ -87,7 +91,9 @@ module hipfort_hipblas_auxiliary
       integer(c_int),value :: ldb
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipblasSetMatrix_l_full_rank,hipblasSetMatrix_l_rank_0,hipblasSetMatrix_l_rank_1,hipblasSetMatrix_i4_full_rank,hipblasSetMatrix_i4_rank_0,hipblasSetMatrix_i4_rank_1,hipblasSetMatrix_i8_full_rank,hipblasSetMatrix_i8_rank_0,hipblasSetMatrix_i8_rank_1,hipblasSetMatrix_r4_full_rank,hipblasSetMatrix_r4_rank_0,hipblasSetMatrix_r4_rank_1,hipblasSetMatrix_r8_full_rank,hipblasSetMatrix_r8_rank_0,hipblasSetMatrix_r8_rank_1,hipblasSetMatrix_c4_full_rank,hipblasSetMatrix_c4_rank_0,hipblasSetMatrix_c4_rank_1,hipblasSetMatrix_c8_full_rank,hipblasSetMatrix_c8_rank_0,hipblasSetMatrix_c8_rank_1 
+#endif
   end interface
 
   interface hipblasGetMatrix
@@ -109,7 +115,9 @@ module hipfort_hipblas_auxiliary
       integer(c_int),value :: ldb
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipblasGetMatrix_l_full_rank,hipblasGetMatrix_l_rank_0,hipblasGetMatrix_l_rank_1,hipblasGetMatrix_i4_full_rank,hipblasGetMatrix_i4_rank_0,hipblasGetMatrix_i4_rank_1,hipblasGetMatrix_i8_full_rank,hipblasGetMatrix_i8_rank_0,hipblasGetMatrix_i8_rank_1,hipblasGetMatrix_r4_full_rank,hipblasGetMatrix_r4_rank_0,hipblasGetMatrix_r4_rank_1,hipblasGetMatrix_r8_full_rank,hipblasGetMatrix_r8_rank_0,hipblasGetMatrix_r8_rank_1,hipblasGetMatrix_c4_full_rank,hipblasGetMatrix_c4_rank_0,hipblasGetMatrix_c4_rank_1,hipblasGetMatrix_c8_full_rank,hipblasGetMatrix_c8_rank_0,hipblasGetMatrix_c8_rank_1 
+#endif
   end interface
 
   interface hipblasSetVectorAsync
@@ -131,7 +139,9 @@ module hipfort_hipblas_auxiliary
       type(c_ptr),value :: stream
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipblasSetVectorAsync_l_rank_0,hipblasSetVectorAsync_l_full_rank,hipblasSetVectorAsync_i4_rank_0,hipblasSetVectorAsync_i4_full_rank,hipblasSetVectorAsync_i8_rank_0,hipblasSetVectorAsync_i8_full_rank,hipblasSetVectorAsync_r4_rank_0,hipblasSetVectorAsync_r4_full_rank,hipblasSetVectorAsync_r8_rank_0,hipblasSetVectorAsync_r8_full_rank,hipblasSetVectorAsync_c4_rank_0,hipblasSetVectorAsync_c4_full_rank,hipblasSetVectorAsync_c8_rank_0,hipblasSetVectorAsync_c8_full_rank 
+#endif
   end interface
 
   interface hipblasGetVectorAsync
@@ -153,7 +163,9 @@ module hipfort_hipblas_auxiliary
       type(c_ptr),value :: stream
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipblasGetVectorAsync_l_rank_0,hipblasGetVectorAsync_l_full_rank,hipblasGetVectorAsync_i4_rank_0,hipblasGetVectorAsync_i4_full_rank,hipblasGetVectorAsync_i8_rank_0,hipblasGetVectorAsync_i8_full_rank,hipblasGetVectorAsync_r4_rank_0,hipblasGetVectorAsync_r4_full_rank,hipblasGetVectorAsync_r8_rank_0,hipblasGetVectorAsync_r8_full_rank,hipblasGetVectorAsync_c4_rank_0,hipblasGetVectorAsync_c4_full_rank,hipblasGetVectorAsync_c8_rank_0,hipblasGetVectorAsync_c8_full_rank 
+#endif
   end interface
 
   interface hipblasSetMatrixAsync
@@ -176,7 +188,9 @@ module hipfort_hipblas_auxiliary
       type(c_ptr),value :: stream
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipblasSetMatrixAsync_l_full_rank,hipblasSetMatrixAsync_l_rank_0,hipblasSetMatrixAsync_l_rank_1,hipblasSetMatrixAsync_i4_full_rank,hipblasSetMatrixAsync_i4_rank_0,hipblasSetMatrixAsync_i4_rank_1,hipblasSetMatrixAsync_i8_full_rank,hipblasSetMatrixAsync_i8_rank_0,hipblasSetMatrixAsync_i8_rank_1,hipblasSetMatrixAsync_r4_full_rank,hipblasSetMatrixAsync_r4_rank_0,hipblasSetMatrixAsync_r4_rank_1,hipblasSetMatrixAsync_r8_full_rank,hipblasSetMatrixAsync_r8_rank_0,hipblasSetMatrixAsync_r8_rank_1,hipblasSetMatrixAsync_c4_full_rank,hipblasSetMatrixAsync_c4_rank_0,hipblasSetMatrixAsync_c4_rank_1,hipblasSetMatrixAsync_c8_full_rank,hipblasSetMatrixAsync_c8_rank_0,hipblasSetMatrixAsync_c8_rank_1 
+#endif
   end interface
 
   interface hipblasGetMatrixAsync
@@ -199,9 +213,12 @@ module hipfort_hipblas_auxiliary
       type(c_ptr),value :: stream
     end function
 
+#ifdef USE_FPOINTER_INTERFACES
     module procedure hipblasGetMatrixAsync_l_full_rank,hipblasGetMatrixAsync_l_rank_0,hipblasGetMatrixAsync_l_rank_1,hipblasGetMatrixAsync_i4_full_rank,hipblasGetMatrixAsync_i4_rank_0,hipblasGetMatrixAsync_i4_rank_1,hipblasGetMatrixAsync_i8_full_rank,hipblasGetMatrixAsync_i8_rank_0,hipblasGetMatrixAsync_i8_rank_1,hipblasGetMatrixAsync_r4_full_rank,hipblasGetMatrixAsync_r4_rank_0,hipblasGetMatrixAsync_r4_rank_1,hipblasGetMatrixAsync_r8_full_rank,hipblasGetMatrixAsync_r8_rank_0,hipblasGetMatrixAsync_r8_rank_1,hipblasGetMatrixAsync_c4_full_rank,hipblasGetMatrixAsync_c4_rank_0,hipblasGetMatrixAsync_c4_rank_1,hipblasGetMatrixAsync_c8_full_rank,hipblasGetMatrixAsync_c8_rank_0,hipblasGetMatrixAsync_c8_rank_1 
+#endif
   end interface
 
+#ifdef USE_FPOINTER_INTERFACES
 contains
 
     function hipblasSetVector_l_rank_0(n,x,incx,y,incy) result(ret)
@@ -2257,4 +2274,5 @@ contains
     end function
  
 
+#endif
 end module
