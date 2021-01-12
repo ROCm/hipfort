@@ -186,7 +186,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipGetDevice_orig
 #endif
-      type(c_ptr),value :: deviceId
+      integer(c_int) :: deviceId
     end function
 
 
@@ -221,7 +221,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipGetDeviceCount_orig
 #endif
-      type(c_ptr),value :: count
+      integer(c_int) :: count
     end function
 
 
@@ -676,7 +676,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipChooseDevice_orig
 #endif
-      type(c_ptr),value :: device
+      integer(c_int) :: device
       type(c_ptr) :: prop
     end function
 
@@ -4061,7 +4061,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipCtxGetDevice_orig
 #endif
-      type(c_ptr),value :: device
+      integer(c_int) :: device
     end function
 
 
@@ -4483,7 +4483,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipDeviceGet_orig
 #endif
-      type(c_ptr),value :: device
+      integer(c_int) :: device
       integer(c_int),value :: ordinal
     end function
 
@@ -4648,7 +4648,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipDeviceGetByPCIBusId_orig
 #endif
-      type(c_ptr),value :: device
+      integer(c_int) :: device
       type(c_ptr),value :: pciBusId
     end function
 
