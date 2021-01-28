@@ -52,26 +52,40 @@ ENDIF(NOT CMAKE_Fortran_COMPILER_SUPPORTS_F90)
 
 # Test for Fortran 08 support by using an f08-specific construct.
 IF(NOT DEFINED CMAKE_Fortran_COMPILER_SUPPORTS_F08)
-  message(CHECK_START "Checking whether ${CMAKE_Fortran_COMPILER} supports Fortran 08")
-  file(WRITE ${CMAKE_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/CMakeTmp/testFortranCompilerF08.f90 "
+  MESSAGE(CHECK_START "Checking whether ${CMAKE_Fortran_COMPILER} supports Fortran 08")
+  FILE(WRITE ${CMAKE_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/CMakeTmp/testFortranCompilerF08.f90 "
+    module mod
+      interface foo
+        module procedure :: foo_a,foo_b
+      end interface
+    contains
+      subroutine foo_a(a)
+        integer,target,dimension(:) :: a
+      end
+      subroutine foo_b(b)
+        integer,pointer,dimension(:,:) :: b
+      end
+    end
     PROGRAM TESTFortran08
-    integer :: a(5)
-    integer,allocatable :: b(:)
-    allocate(b,mold=a)
-    deallocate(b)
+      use mod
+      implicit none
+      integer :: a(5)
+      integer,allocatable :: b(:)
+      allocate(b,mold=a)
+      deallocate(b)
     END PROGRAM TESTFortran08
 ")
-  try_compile(CMAKE_Fortran_COMPILER_SUPPORTS_F08 ${CMAKE_BINARY_DIR}
+  TRY_COMPILE(CMAKE_Fortran_COMPILER_SUPPORTS_F08 ${CMAKE_BINARY_DIR}
     ${CMAKE_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/CMakeTmp/testFortranCompilerF08.f90
     OUTPUT_VARIABLE OUTPUT)
   IF(CMAKE_Fortran_COMPILER_SUPPORTS_F08)
-    message(CHECK_PASS "yes")
+    MESSAGE(CHECK_PASS "yes")
     file(APPEND ${CMAKE_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/CMakeOutput.log
       "Determining if the Fortran compiler supports Fortran 08 passed with "
       "the following output:\n${OUTPUT}\n\n")
     set(CMAKE_Fortran_COMPILER_SUPPORTS_F08 1)
   ELSE(CMAKE_Fortran_COMPILER_SUPPORTS_F08)
-    message(CHECK_FAIL "no")
+    MESSAGE(CHECK_FAIL "no")
     file(APPEND ${CMAKE_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/CMakeError.log
       "Determining if the Fortran compiler supports Fortran 08 failed with "
       "the following output:\n${OUTPUT}\n\n")
@@ -83,7 +97,6 @@ ENDIF(NOT DEFINED CMAKE_Fortran_COMPILER_SUPPORTS_F08)
 #OPTION(USE_MPI "Use the MPI library for parallelization" OFF)
 #OPTION(USE_OPENMP "Use OpenMP for parallelization" OFF)
 
-# Allow long lines:
 IF(CMAKE_Fortran_COMPILER_SUPPORTS_F08)
   set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} ${HIPFORT_COMPILER_FLAGS} -std=f2008")
 ELSE(CMAKE_Fortran_COMPILER_SUPPORTS_F08)
