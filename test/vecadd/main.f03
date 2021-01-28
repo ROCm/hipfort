@@ -57,6 +57,7 @@ program fortran_hip
   endif
 
   call hipCheck(hipFree(da))
+  call hipCheck(hipFree(da, only_if_allocated = .TRUE.))
   call hipCheck(hipFree(db))
   call hipCheck(hipFree(dout))
 
