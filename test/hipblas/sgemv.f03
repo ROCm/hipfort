@@ -17,41 +17,30 @@ program hip_sgemv
 
   real(kind=4), allocatable, target, dimension(:) :: a, x, y
 
-  type(c_ptr) :: da = c_null_ptr, dx = c_null_ptr, dy = c_null_ptr
-
-  integer(c_size_t) :: Nabytes, Nxbytes, Nybytes
-  integer, parameter :: bytes_per_element = 4 !float precision
+  real(kind=4), pointer, dimension(:) :: da, dx, dy
 
   real :: error
   real, parameter :: error_max = 10*epsilon(error)
-
-  Nabytes = m * n * bytes_per_element
-  Nxbytes = n * bytes_per_element
-  Nybytes = m * bytes_per_element
 
   allocate(x(n))
   allocate(y(m))
   allocate(a(m*n))
 
-    a(:) = 1.0
-    x(:) = 1.0
-    y(:) = 1.0
+  a(:) = 1.0
+  x(:) = 1.0
+  y(:) = 1.0
 
   write(*,*) "Starting SGEMV test"
 
   call hipblasCheck(hipblasCreate(handle))
 
-  call hipCheck(hipMalloc(dx,Nxbytes))
-  call hipCheck(hipMalloc(dy,Nybytes))
-  call hipCheck(hipMalloc(da,Nabytes))
-
-  call hipCheck(hipMemcpy(da, c_loc(a), Nabytes, hipMemcpyHostToDevice))
-  call hipCheck(hipMemcpy(dx, c_loc(x), Nxbytes, hipMemcpyHostToDevice))
-  call hipCheck(hipMemcpy(dy, c_loc(y), Nybytes, hipMemcpyHostToDevice))
+  call hipCheck(hipMalloc(dx,source=x))
+  call hipCheck(hipMalloc(dy,source=y))
+  call hipCheck(hipMalloc(da,source=a))
 
   call hipCheck(hipblasSgemv(handle,HIPBLAS_OP_N,m,n,alpha,da,m,dx,1,beta,dy,1))
 
-  call hipCheck(hipMemcpy(c_loc(y), dy, Nybytes, hipMemcpyDeviceToHost))
+  call hipCheck(hipMemcpy(y, dy, hipMemcpyDeviceToHost))
 
   do i = 1,m
     error = abs(5.0 - y(i))
@@ -67,9 +56,7 @@ program hip_sgemv
   call hipCheck(hipFree(dx))
   call hipCheck(hipFree(dy))
 
-  deallocate(a)
-  deallocate(x)
-  deallocate(y)
+  deallocate(a,x,y)
 
   write(*,*) "SGEMV PASSED!"
 

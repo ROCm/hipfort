@@ -8,12 +8,10 @@ program hip_dscal
   implicit none
 
   integer, parameter :: N = 10240;
-  integer, parameter :: bytes_per_element = 8 !double precision
-  integer(c_size_t), parameter :: Nbytes = N*bytes_per_element
 
   double precision, parameter :: alpha = 10.d0
 
-  type(c_ptr) :: dx = c_null_ptr
+  double precision,pointer,dimension(:) :: dx
 
   double precision,allocatable,target,dimension(:) :: hx
   double precision,allocatable,dimension(:) ::hx_scaled
@@ -35,17 +33,17 @@ program hip_dscal
 
   call hipblasCheck(hipblasCreate(hip_blas_handle))
 
-  call hipCheck(hipMalloc(dx,Nbytes))
+  call hipCheck(hipMalloc(dx,shape(hx)))
 
    ! Transfer data from host to device memory
-  call hipCheck(hipMemcpy(dx, c_loc(hx), Nbytes, hipMemcpyHostToDevice))
+  call hipCheck(hipMemcpy(dx, hx, hipMemcpyHostToDevice))
 
   call hipblasCheck(hipblasDscal(hip_blas_handle, N, alpha, dx, 1))
 
   call hipCheck(hipDeviceSynchronize())
 
   ! Transfer data back to host memory
-  call hipCheck(hipMemcpy(c_loc(hx), dx, Nbytes, hipMemcpyDeviceToHost))
+  call hipCheck(hipMemcpy(hx, dx, hipMemcpyDeviceToHost))
 
   call hipCheck(hipFree(dx))
 
@@ -60,8 +58,7 @@ program hip_dscal
 
   call hipblasCheck(hipblasDestroy(hip_blas_handle))
 
-  deallocate(hx_scaled)
-  deallocate(hx)
+  deallocate(hx_scaled,hx)
 
   write(*,*) "dscal PASSED!"
 

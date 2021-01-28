@@ -12,16 +12,11 @@ program hip_scopy
   real, allocatable, target, dimension(:) :: x, y
   integer, parameter :: bytes_per_element = 4 !float precision
  
-  type(c_ptr) :: dx = c_null_ptr, dy = c_null_ptr
-
-  integer(c_size_t) :: Nxbytes
-  integer(c_size_t) :: Nybytes
+  real, pointer, dimension(:) :: dx,dy
 
   real :: error
   real, parameter :: error_max = 10*epsilon(error)
 
-  Nxbytes = n * bytes_per_element
-  Nybytes = n * bytes_per_element
   allocate(x(n))
   allocate(y(n))
 
@@ -39,17 +34,14 @@ program hip_scopy
   
   call hipblasCheck(hipblasCreate(handle))
 
-  call hipCheck(hipMalloc(dx,Nxbytes))
-  call hipCheck(hipMalloc(dy,Nybytes))
-
-  call hipCheck(hipMemcpy(dx, c_loc(x), Nxbytes, hipMemcpyHostToDevice))
-  call hipCheck(hipMemcpy(dy, c_loc(y), Nybytes, hipMemcpyHostToDevice))
+  call hipCheck(hipMalloc(dx,source=x))
+  call hipCheck(hipMalloc(dy,source=y))
 
   call hipblasCheck(hipblasScopy(handle,n,dx,1,dy,1))
 
   call hipCheck(hipDeviceSynchronize())
 
-  call hipCheck(hipMemcpy(c_loc(y), dy, Nybytes, hipMemcpyDeviceToHost))
+  call hipCheck(hipMemcpy(y, dy, hipMemcpyDeviceToHost))
 
   do j = 0,n
     error = abs(y(j) - x(j))
@@ -64,8 +56,7 @@ program hip_scopy
 
   call hipblasCheck(hipblasDestroy(handle))
 
-  deallocate(x)
-  deallocate(y)
+  deallocate(x,y)
 
   write(*,*) "SCOPY PASSED!"
   

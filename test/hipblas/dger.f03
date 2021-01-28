@@ -9,15 +9,16 @@ program hip_dger
 
   integer, parameter ::  m = 100, n = 100
   double precision, parameter ::  alpha = 1.1d0
-  integer, parameter :: bytes_per_element = 8 !double precision
 
-  double precision, allocatable, target, dimension(:) :: hx, hy, hA
+  double precision, allocatable, target, dimension(:)   :: hx, hy
+  double precision, allocatable, target, dimension(:,:) :: hA
 
   type(c_ptr) :: handle = c_null_ptr
-  type(c_ptr) :: dx = c_null_ptr, dy = c_null_ptr, dA = c_null_ptr
-  integer(c_size_t), parameter :: Nbytes = m*bytes_per_element
+  
+  double precision, pointer, dimension(:)   :: dx, dy
+  double precision, pointer, dimension(:,:) :: dA
 
-  integer :: i
+  integer :: i,j
   double precision :: error
 
   write(*,*) "Starting dger test"
@@ -26,35 +27,37 @@ program hip_dger
 
   allocate(hx(m))
   allocate(hy(n))
-  allocate(ha(m*n))
+  allocate(ha(m,n))
 
-  hx(:) = 1.d0
-  hy(:) = 1.d0
-  hA(:) = 1.d0
+  hx(:)   = 1.d0
+  hy(:)   = 1.d0
+  hA(:,:) = 1.d0
 
   ! Allocate device memory
-  call hipCheck(hipMalloc(dx,Nbytes))
-  call hipCheck(hipMalloc(dy,Nbytes))
-  call hipCheck(hipMalloc(dA,Nbytes*n))
+  call hipCheck(hipMalloc(dx,m))
+  call hipCheck(hipMalloc(dy,n))
+  call hipCheck(hipMalloc(dA,m,n))
 
   !Transfer from host to device
-  call hipCheck(hipMemcpy(dx, c_loc(hx), Nbytes, hipMemcpyHostToDevice))
-  call hipCheck(hipMemcpy(dy, c_loc(hy), Nbytes, hipMemcpyHostToDevice))
-  call hipCheck(hipMemcpy(dA, c_loc(hA), Nbytes*n, hipMemcpyHostToDevice))
+  call hipCheck(hipMemcpy(dx, hx, hipMemcpyHostToDevice))
+  call hipCheck(hipMemcpy(dy, hy, hipMemcpyHostToDevice))
+  call hipCheck(hipMemcpy(dA, hA, hipMemcpyHostToDevice))
 
   call hipblasCheck(hipblasDger(handle,m,n,alpha,dx,1,dy,1,dA,m))
 
   call hipCheck(hipDeviceSynchronize())
 
   ! Transfer data back to host memory
-  call hipCheck(hipMemcpy(c_loc(hA), dA, Nbytes*n, hipMemcpyDeviceToHost))
+  call hipCheck(hipMemcpy(hA, dA, hipMemcpyDeviceToHost))
 
-  do i = 1,m*n
-     error = abs(2.1d0 - hA(i))
+  do j = 1,n
+    do i = 1,m
+     error = abs(2.1d0 - hA(i,j))
      if( error > 10*epsilon(error) )then
-        write(*,*) "dger FAILED! Error bigger than max! Error = ", error, "hA(i) = ", hA(i)
+        write(*,*) "dger FAILED! Error bigger than max! Error = ", error, "hA(i,j) = ", hA(i,j)
         call exit(1)
      end if
+   end do
   end do
 
   call hipCheck(hipFree(dx))
@@ -63,9 +66,7 @@ program hip_dger
 
   call hipblasCheck(hipblasDestroy(handle))
 
-  deallocate(hx)
-  deallocate(hy)
-  deallocate(hA)
+  deallocate(hx,hy,hA)
 
   write(*,*) "dger PASSED!"
 
