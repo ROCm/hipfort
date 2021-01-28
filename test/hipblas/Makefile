@@ -1,5 +1,5 @@
 
-HIPFORT_HOME ?= /tmp/hipfort
+HIPFORT_HOME ?= /opt/rocm/hipfort
 include $(HIPFORT_HOME)/bin/Makefile.hipfort
 
 OUTPUT_DIR ?= $(PWD)

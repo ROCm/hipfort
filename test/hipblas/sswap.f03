@@ -9,17 +9,11 @@ program hip_sswap
   integer :: n = 6
   integer :: i
   real(kind=4), allocatable, target, dimension(:) :: x, y, x_exact, y_exact
-  type(c_ptr) :: dx = c_null_ptr, dy = c_null_ptr
+  real(kind=4), pointer, dimension(:) :: dx, dy
   type(c_ptr) :: handle = c_null_ptr
 
   real :: error
   real, parameter :: error_max = 10*epsilon(error)
-  
-  integer(c_size_t) :: Nxbytes, Nybytes
-  integer, parameter :: bytes_per_element = 4 !float precision
- 
-  Nxbytes = n * bytes_per_element
-  Nybytes = n * bytes_per_element
   
   allocate(x(n))
   allocate(y(n))
@@ -37,16 +31,16 @@ program hip_sswap
   
   call hipblasCheck(hipblasCreate(handle))
   
-  call hipCheck(hipMalloc(dx,Nxbytes))  
-  call hipCheck(hipMalloc(dy,Nybytes))
+  call hipCheck(hipMalloc(dx,shape(x)))  
+  call hipCheck(hipMalloc(dy,shape(y)))
   
-  call hipCheck(hipMemcpy(dx, c_loc(x), Nxbytes, hipMemcpyHostToDevice))
-  call hipCheck(hipMemcpy(dy, c_loc(y), Nybytes, hipMemcpyHostToDevice))
+  call hipCheck(hipMemcpy(dx, x, hipMemcpyHostToDevice))
+  call hipCheck(hipMemcpy(dy, y, hipMemcpyHostToDevice))
   
   call hipblasCheck(hipblasSswap(handle,n,dx,1,dy,1))
   
-  call hipCheck(hipMemcpy(c_loc(x), dx, Nxbytes, hipMemcpyDeviceToHost))
-  call hipCheck(hipMemcpy(c_loc(y), dy, Nybytes, hipMemcpyDeviceToHost))
+  call hipCheck(hipMemcpy(x, dx, hipMemcpyDeviceToHost))
+  call hipCheck(hipMemcpy(y, dy, hipMemcpyDeviceToHost))
   
   do i = 1,n
     error = MAX(abs((y_exact(i) - x(i))/y_exact(i)), abs((x_exact(i) - y(i))/x_exact(i)))
@@ -61,8 +55,7 @@ program hip_sswap
   call hipCheck(hipFree(dx))
   call hipCheck(hipFree(dy))
   
-  deallocate(x)
-  deallocate(y)
+  deallocate(x,y)
   
   write(*,*) "SSWAP PASSED!"
   

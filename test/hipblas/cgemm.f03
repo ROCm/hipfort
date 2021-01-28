@@ -9,17 +9,13 @@ program hip_dgemm
   integer(kind(HIPBLAS_OP_N)), parameter :: transa = HIPBLAS_OP_N, transb = HIPBLAS_OP_N;
   complex(kind=4), parameter ::  alpha = 1.1d0, beta = 0.9d0;
 
-  integer, parameter ::  m = 512, n = 512, k = 512;
-  integer :: lda, ldb, ldc, size_a, size_b, size_c;
+  integer, parameter :: m = 512, n = 512, k = 512;
 
-  complex(kind=4), allocatable, target, dimension(:,:) :: ha, hb, hc
+  complex(kind=4), allocatable, dimension(:,:) :: ha, hb, hc
   complex(kind=4), allocatable, dimension(:,:) :: hc_exact
 
-  type(c_ptr) :: da = c_null_ptr, db = c_null_ptr, dc = c_null_ptr
+  complex(kind=4), pointer, dimension(:,:) :: da, db, dc
   type(c_ptr) :: handle = c_null_ptr
-
-  integer, parameter :: bytes_per_element = 8 ! 2x float
-  integer(c_size_t) :: Nabytes, Nbbytes, Ncbytes
 
   integer :: i,j
   double precision :: error
@@ -28,18 +24,6 @@ program hip_dgemm
   write(*,*) "Starting CGEMM test"
 
   call hipblasCheck(hipblasCreate(handle))
-
-  lda        = m;
-  size_a     = k * lda;
-  Nabytes = size_a*bytes_per_element
-
-  ldb        = k;
-  size_b     = n * ldb;
-  Nbbytes = size_b*bytes_per_element
-
-  ldc    = m;
-  size_c = n * ldc;
-  Ncbytes = size_c*bytes_per_element
 
   ! C = A_MxK * B_KxN
   
@@ -56,31 +40,31 @@ program hip_dgemm
   hc_exact(:,:) = alpha*k*2.d0 + beta*3.d0
 
   ! Allocate device memory
-  call hipCheck(hipMalloc(da,Nabytes))
-  call hipCheck(hipMalloc(db,Nbbytes))
-  call hipCheck(hipMalloc(dc,Ncbytes))
+  call hipCheck(hipMalloc(da,mold=ha))
+  call hipCheck(hipMalloc(db,mold=hb))
+  call hipCheck(hipMalloc(dc,mold=hc))
 
   !Transfer from host to device
-  call hipCheck(hipMemcpy(da, c_loc(ha), Nabytes, hipMemcpyHostToDevice))
-  call hipCheck(hipMemcpy(db, c_loc(hb), Nbbytes, hipMemcpyHostToDevice))
-  call hipCheck(hipMemcpy(dc, c_loc(hc), Ncbytes, hipMemcpyHostToDevice))
+  call hipCheck(hipMemcpy(da, ha, hipMemcpyHostToDevice))
+  call hipCheck(hipMemcpy(db, hb, hipMemcpyHostToDevice))
+  call hipCheck(hipMemcpy(dc, hc, hipMemcpyHostToDevice))
 
-  call hipblasCheck(hipblasCgemm(handle,transa,transb,m,n,k,alpha,da,lda,db,ldb,beta,dc,ldc))
+  call hipblasCheck(hipblasCgemm(handle,transa,transb,m,n,k,alpha,da,size(da,1),db,size(db,1),beta,dc,size(dc,1)))
 
   call hipCheck(hipDeviceSynchronize())
 
   ! Transfer data back to host memory
-  call hipCheck(hipMemcpy(c_loc(hc), dc, Ncbytes, hipMemcpyDeviceToHost))
+  call hipCheck(hipMemcpy(hc, dc, hipMemcpyDeviceToHost))
 
-  do i = 1,m
   do j = 1,n
-     !write(*,*) "hc(i,j)=",hc(i,j),",hc_exact(i,j)=",hc_exact(i,j)
-     error = abs((hc_exact(i,j) - hc(i,j))/hc_exact(i,j))
-     if( error > error_max )then
-        write(*,*) "CGEMM FAILED! Error bigger than max! Error = ", error
-        call exit(1)
-     end if
-  end do
+    do i = 1,m
+      !write(*,*) "hc(i,j)=",hc(i,j),",hc_exact(i,j)=",hc_exact(i,j)
+      error = abs((hc_exact(i,j) - hc(i,j))/hc_exact(i,j))
+      if( error > error_max )then
+         write(*,*) "CGEMM FAILED! Error bigger than max! Error = ", error
+         call exit(1)
+      end if
+    end do
   end do
 
   call hipCheck(hipFree(da))
@@ -89,10 +73,7 @@ program hip_dgemm
 
   call hipblasCheck(hipblasDestroy(handle))
 
-  deallocate(ha)
-  deallocate(hb)
-  deallocate(hc)
-  deallocate(hc_exact)
+  deallocate(ha,hb,hc,hc_exact)
 
   write(*,*) "CGEMM PASSED!"
 
