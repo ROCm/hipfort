@@ -1,71 +1,16 @@
+TEST_SOURCES := $(shell find . -name "*.f03" | sed "s,^\./,,g")
+TEST_APPS    := $(TEST_SOURCES:.f03=) 
+RUN_TEST_APPS := $(addprefix run., $(TEST_APPS))
 
-HIPFORT_HOME ?= /opt/rocm/hipfort
-include $(HIPFORT_HOME)/bin/Makefile.hipfort
+all: $(TEST_APPS)
 
-OUTPUT_DIR ?= $(PWD)
-LINKOPTS   += -L$(ROCM)/hipblas/lib -l hipblas
+$(TEST_APPS): %:
+	hipfc $@.f03 -o $@ -lhipblas
 
-CGEMM_APP = $(OUTPUT_DIR)/cgemm
-DGEMM_APP = $(OUTPUT_DIR)/dgemm
-DGER_APP  = $(OUTPUT_DIR)/dger
-DSCAL_APP = $(OUTPUT_DIR)/dscal
-SAXPY_APP = $(OUTPUT_DIR)/saxpy
-SCOPY_APP = $(OUTPUT_DIR)/scopy
-SGEMV_APP = $(OUTPUT_DIR)/sgemv
-SGER_APP  = $(OUTPUT_DIR)/sger
-SSWAP_APP = $(OUTPUT_DIR)/sswap
+$(RUN_TEST_APPS): run.%: %
+	HIP_TRACE_API=1 ./$^
 
-CGEMM_SRC = cgemm.f03
-DGEMM_SRC = dgemm.f03
-DGER_SRC  = dger.f03
-DSCAL_SRC = dscal.f03
-SAXPY_SRC = saxpy.f03
-SCOPY_SRC = scopy.f03
-SGEMV_SRC = sgemv.f03
-SGER_SRC  = sger.f03
-SSWAP_SRC = sswap.f03
-
-.DEFAULT_GOAL := all
-
-$(CGEMM_APP): $(CGEMM_SRC) 
-	$(FC) $(CGEMM_SRC) -o $@ $(LINKOPTS)
-
-$(DSCAL_APP): $(DSCAL_SRC)
-	$(FC)  $(DSCAL_SRC) -o $@ $(LINKOPTS)
-
-$(DGEMM_APP): $(DGEMM_SRC) 
-	$(FC) $(DGEMM_SRC) -o $@ $(LINKOPTS)
-
-$(DGER_APP): $(DGER_SRC) 
-	$(FC) $(DGER_SRC) -o $@ $(LINKOPTS)
-
-$(SAXPY_APP): $(SAXPY_SRC)
-	$(FC) $(SAXPY_SRC) -o $@ $(LINKOPTS)
-
-$(SGER_APP): $(SGER_SRC)
-	$(FC) $(SGER_SRC) -o $@ $(LINKOPTS)
-
-$(SCOPY_APP): $(SCOPY_SRC)
-	$(FC) $(SCOPY_SRC) -o $@ $(LINKOPTS)
-
-$(SSWAP_APP): $(SSWAP_SRC)
-	$(FC) $(SSWAP_SRC) -o $@ $(LINKOPTS)
-
-$(SGEMV_APP): $(SGEMV_SRC)
-	$(FC) $(SGEMV_SRC) -o $@ $(LINKOPTS)
-
-
-all: $(CGEMM_APP) $(DSCAL_APP) $(DGEMM_APP) $(DGER_APP)  $(SAXPY_APP) $(SGER_APP) $(SCOPY_APP) $(SSWAP_APP) $(SGEMV_APP)
-run: $(CGEMM_APP) $(DSCAL_APP) $(DGER_APP) $(DGEMM_APP) $(SAXPY_APP) $(SGER_APP) $(SCOPY_APP) $(SSWAP_APP) $(SGEMV_APP)
-	HIP_TRACE_API=1 $(CGEMM_APP)
-	HIP_TRACE_API=1 $(DSCAL_APP)
-	HIP_TRACE_API=1 $(DGER_APP)
-	HIP_TRACE_API=1 $(DGEMM_APP)
-	HIP_TRACE_API=1 $(SAXPY_APP)
-	HIP_TRACE_API=1 $(SGER_APP)
-	HIP_TRACE_API=1 $(SCOPY_APP)
-	HIP_TRACE_API=1 $(SSWAP_APP)
-	HIP_TRACE_API=1 $(SGEMV_APP)
+run: $(RUN_TEST_APPS) 
 
 clean:
-	rm -f $(CGEMM_APP) $(DSCAL_APP) $(DGEMM_APP) $(DGER_APP) $(SAXPY_APP) $(SGER_APP) $(SCOPY_APP) $(SSWAP_APP) $(SGEMV_APP) *.o *.mod *~
+	rm -f $(TEST_APPS) *.o *.mod
