@@ -1,10 +1,10 @@
-PHONY: all run clean
-
-TEST_SOURCES := $(shell find . -name "*.f03" | sed "s,^\./,,g")
-TEST_APPS    := $(TEST_SOURCES:.f03=) 
+TEST_SOURCES  := $(shell find . -name "*.f03" | sed "s,^\./,,g")
+TEST_APPS     := $(TEST_SOURCES:.f03=) 
 RUN_TEST_APPS := $(addprefix run., $(TEST_APPS))
 
 all: $(TEST_APPS)
+
+PHONY: all run clean $(TEST_APPS) $(RUN_TEST_APPS)
 
 $(TEST_APPS): %:
 	hipfc $@.f03 -o $@ $(LDOPTS)
