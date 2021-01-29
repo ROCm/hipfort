@@ -30,14 +30,13 @@ program rocsparse_ddoti_test
 
     implicit none
 
-    integer, target :: h_xind(3)
-    real(8), target :: h_xval(3), h_y(9)
-    real(8), target :: h_dot
-
-    type(c_ptr) :: d_xind
-    type(c_ptr) :: d_xval
-    type(c_ptr) :: d_y
-    type(c_ptr) :: d_dot
+    integer :: h_xind(3)
+    real(8) :: h_xval(3), h_y(9)
+    real(8) :: h_dot
+    
+    integer, pointer :: d_xind(:)
+    real(8), pointer :: d_xval(:), d_y(:)
+    real(8), pointer :: d_dot
 
     integer :: i
     integer(c_int) :: M, nnz
@@ -57,16 +56,11 @@ program rocsparse_ddoti_test
     h_xval = (/1, 2, 3/)
     h_y    = (/1, 2, 3, 4, 5, 6, 7, 8, 9/)
 
-!   Allocate device memory
-    call hipCheck(hipMalloc(d_xind, (int(nnz, c_size_t) + 1) * 4))
-    call hipCheck(hipMalloc(d_xval, int(nnz, c_size_t) * 8))
-    call hipCheck(hipMalloc(d_y, int(M, c_size_t) * 8))
-    call hipCheck(hipMalloc(d_dot, int(8, c_size_t)))
-
-!   Copy host data to device
-    call hipCheck(hipMemcpy(d_xind, c_loc(h_xind), (int(nnz, c_size_t) + 1) * 4, hipMemcpyHostToDevice))
-    call hipCheck(hipMemcpy(d_xval, c_loc(h_xval), int(nnz, c_size_t) * 8, hipMemcpyHostToDevice))
-    call hipCheck(hipMemcpy(d_y, c_loc(h_y), int(M, c_size_t) * 8, hipMemcpyHostToDevice))
+!   Allocate device memory and copy host data to device
+    call hipCheck(hipMalloc(d_xind, source=h_xind))
+    call hipCheck(hipMalloc(d_xval,source=h_xval))
+    call hipCheck(hipMalloc(d_y,source=h_y))
+    call hipCheck(hipMalloc(d_dot,source=h_dot))
 
 !   Create rocSPARSE handle
     call rocsparseCheck(rocsparse_create_handle(handle))
@@ -75,14 +69,14 @@ program rocsparse_ddoti_test
 !   Call ddoti
     call rocsparseCheck(rocsparse_ddoti(handle, &
                                         nnz, &
-                                        d_xval, &
-                                        d_xind, &
-                                        d_y, &
+                                        d_xval(1), &
+                                        d_xind(1), &
+                                        d_y(1), &
                                         d_dot, &
                                         rocsparse_index_base_zero))
 
 !   Copy result back to host
-    call hipCheck(hipMemcpy(c_loc(h_dot), d_dot, int(8, c_size_t), hipMemcpyDeviceToHost))
+    call hipCheck(hipMemcpy(h_dot, d_dot, hipMemcpyDeviceToHost))
 
 !   Verification
     if(h_dot /= 27d0) then

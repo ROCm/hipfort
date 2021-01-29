@@ -1,16 +1,3 @@
-TEST_SOURCES := $(shell find . -name "*.f03" | sed "s,^\./,,g")
-TEST_APPS    := $(TEST_SOURCES:.f03=) 
-RUN_TEST_APPS := $(addprefix run., $(TEST_APPS))
+LDOPTS = -lhipblas
 
-all: $(TEST_APPS)
-
-$(TEST_APPS): %:
-	hipfc $@.f03 -o $@ -lhipblas
-
-$(RUN_TEST_APPS): run.%: %
-	HIP_TRACE_API=1 ./$^
-
-run: $(RUN_TEST_APPS) 
-
-clean:
-	rm -f $(TEST_APPS) *.o *.mod
+include ../Makefile.in
