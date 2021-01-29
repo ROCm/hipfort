@@ -1,8 +1,3 @@
-.PHONY: run all clean
+LDOPTS = -lrocfft
 
-run: all
-	./rocfft
-all:
-	hipfc rocfft.f03 -o rocfft -lrocfft
-clean:
-	rm -f rocfft *.o *.mod
+include ../Makefile.in

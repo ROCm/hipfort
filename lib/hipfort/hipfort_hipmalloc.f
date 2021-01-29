@@ -62,7 +62,7 @@ module hipfort_hipmalloc
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipMalloc_l_1_source,hipMalloc_l_1_c_int, hipMalloc_l_1_c_size_t,hipMalloc_l_2_source,hipMalloc_l_2_c_int, hipMalloc_l_2_c_size_t,hipMalloc_l_3_source,hipMalloc_l_3_c_int, hipMalloc_l_3_c_size_t,hipMalloc_l_4_source,hipMalloc_l_4_c_int, hipMalloc_l_4_c_size_t,hipMalloc_l_5_source,hipMalloc_l_5_c_int, hipMalloc_l_5_c_size_t,hipMalloc_l_6_source,hipMalloc_l_6_c_int, hipMalloc_l_6_c_size_t,hipMalloc_l_7_source,hipMalloc_l_7_c_int, hipMalloc_l_7_c_size_t,hipMalloc_i4_1_source,hipMalloc_i4_1_c_int, hipMalloc_i4_1_c_size_t,hipMalloc_i4_2_source,hipMalloc_i4_2_c_int, hipMalloc_i4_2_c_size_t,hipMalloc_i4_3_source,hipMalloc_i4_3_c_int, hipMalloc_i4_3_c_size_t,hipMalloc_i4_4_source,hipMalloc_i4_4_c_int, hipMalloc_i4_4_c_size_t,hipMalloc_i4_5_source,hipMalloc_i4_5_c_int, hipMalloc_i4_5_c_size_t,hipMalloc_i4_6_source,hipMalloc_i4_6_c_int, hipMalloc_i4_6_c_size_t,hipMalloc_i4_7_source,hipMalloc_i4_7_c_int, hipMalloc_i4_7_c_size_t,hipMalloc_i8_1_source,hipMalloc_i8_1_c_int, hipMalloc_i8_1_c_size_t,hipMalloc_i8_2_source,hipMalloc_i8_2_c_int, hipMalloc_i8_2_c_size_t,hipMalloc_i8_3_source,hipMalloc_i8_3_c_int, hipMalloc_i8_3_c_size_t,hipMalloc_i8_4_source,hipMalloc_i8_4_c_int, hipMalloc_i8_4_c_size_t,hipMalloc_i8_5_source,hipMalloc_i8_5_c_int, hipMalloc_i8_5_c_size_t,hipMalloc_i8_6_source,hipMalloc_i8_6_c_int, hipMalloc_i8_6_c_size_t,hipMalloc_i8_7_source,hipMalloc_i8_7_c_int, hipMalloc_i8_7_c_size_t,hipMalloc_r4_1_source,hipMalloc_r4_1_c_int, hipMalloc_r4_1_c_size_t,hipMalloc_r4_2_source,hipMalloc_r4_2_c_int, hipMalloc_r4_2_c_size_t,hipMalloc_r4_3_source,hipMalloc_r4_3_c_int, hipMalloc_r4_3_c_size_t,hipMalloc_r4_4_source,hipMalloc_r4_4_c_int, hipMalloc_r4_4_c_size_t,hipMalloc_r4_5_source,hipMalloc_r4_5_c_int, hipMalloc_r4_5_c_size_t,hipMalloc_r4_6_source,hipMalloc_r4_6_c_int, hipMalloc_r4_6_c_size_t,hipMalloc_r4_7_source,hipMalloc_r4_7_c_int, hipMalloc_r4_7_c_size_t,hipMalloc_r8_1_source,hipMalloc_r8_1_c_int, hipMalloc_r8_1_c_size_t,hipMalloc_r8_2_source,hipMalloc_r8_2_c_int, hipMalloc_r8_2_c_size_t,hipMalloc_r8_3_source,hipMalloc_r8_3_c_int, hipMalloc_r8_3_c_size_t,hipMalloc_r8_4_source,hipMalloc_r8_4_c_int, hipMalloc_r8_4_c_size_t,hipMalloc_r8_5_source,hipMalloc_r8_5_c_int, hipMalloc_r8_5_c_size_t,hipMalloc_r8_6_source,hipMalloc_r8_6_c_int, hipMalloc_r8_6_c_size_t,hipMalloc_r8_7_source,hipMalloc_r8_7_c_int, hipMalloc_r8_7_c_size_t,hipMalloc_c4_1_source,hipMalloc_c4_1_c_int, hipMalloc_c4_1_c_size_t,hipMalloc_c4_2_source,hipMalloc_c4_2_c_int, hipMalloc_c4_2_c_size_t,hipMalloc_c4_3_source,hipMalloc_c4_3_c_int, hipMalloc_c4_3_c_size_t,hipMalloc_c4_4_source,hipMalloc_c4_4_c_int, hipMalloc_c4_4_c_size_t,hipMalloc_c4_5_source,hipMalloc_c4_5_c_int, hipMalloc_c4_5_c_size_t,hipMalloc_c4_6_source,hipMalloc_c4_6_c_int, hipMalloc_c4_6_c_size_t,hipMalloc_c4_7_source,hipMalloc_c4_7_c_int, hipMalloc_c4_7_c_size_t,hipMalloc_c8_1_source,hipMalloc_c8_1_c_int, hipMalloc_c8_1_c_size_t,hipMalloc_c8_2_source,hipMalloc_c8_2_c_int, hipMalloc_c8_2_c_size_t,hipMalloc_c8_3_source,hipMalloc_c8_3_c_int, hipMalloc_c8_3_c_size_t,hipMalloc_c8_4_source,hipMalloc_c8_4_c_int, hipMalloc_c8_4_c_size_t,hipMalloc_c8_5_source,hipMalloc_c8_5_c_int, hipMalloc_c8_5_c_size_t,hipMalloc_c8_6_source,hipMalloc_c8_6_c_int, hipMalloc_c8_6_c_size_t,hipMalloc_c8_7_source,hipMalloc_c8_7_c_int, hipMalloc_c8_7_c_size_t 
+    module procedure hipMalloc_l_0_source,hipMalloc_l_1_source,hipMalloc_l_1_c_int, hipMalloc_l_1_c_size_t,hipMalloc_l_2_source,hipMalloc_l_2_c_int, hipMalloc_l_2_c_size_t,hipMalloc_l_3_source,hipMalloc_l_3_c_int, hipMalloc_l_3_c_size_t,hipMalloc_l_4_source,hipMalloc_l_4_c_int, hipMalloc_l_4_c_size_t,hipMalloc_l_5_source,hipMalloc_l_5_c_int, hipMalloc_l_5_c_size_t,hipMalloc_l_6_source,hipMalloc_l_6_c_int, hipMalloc_l_6_c_size_t,hipMalloc_l_7_source,hipMalloc_l_7_c_int, hipMalloc_l_7_c_size_t,hipMalloc_i4_0_source,hipMalloc_i4_1_source,hipMalloc_i4_1_c_int, hipMalloc_i4_1_c_size_t,hipMalloc_i4_2_source,hipMalloc_i4_2_c_int, hipMalloc_i4_2_c_size_t,hipMalloc_i4_3_source,hipMalloc_i4_3_c_int, hipMalloc_i4_3_c_size_t,hipMalloc_i4_4_source,hipMalloc_i4_4_c_int, hipMalloc_i4_4_c_size_t,hipMalloc_i4_5_source,hipMalloc_i4_5_c_int, hipMalloc_i4_5_c_size_t,hipMalloc_i4_6_source,hipMalloc_i4_6_c_int, hipMalloc_i4_6_c_size_t,hipMalloc_i4_7_source,hipMalloc_i4_7_c_int, hipMalloc_i4_7_c_size_t,hipMalloc_i8_0_source,hipMalloc_i8_1_source,hipMalloc_i8_1_c_int, hipMalloc_i8_1_c_size_t,hipMalloc_i8_2_source,hipMalloc_i8_2_c_int, hipMalloc_i8_2_c_size_t,hipMalloc_i8_3_source,hipMalloc_i8_3_c_int, hipMalloc_i8_3_c_size_t,hipMalloc_i8_4_source,hipMalloc_i8_4_c_int, hipMalloc_i8_4_c_size_t,hipMalloc_i8_5_source,hipMalloc_i8_5_c_int, hipMalloc_i8_5_c_size_t,hipMalloc_i8_6_source,hipMalloc_i8_6_c_int, hipMalloc_i8_6_c_size_t,hipMalloc_i8_7_source,hipMalloc_i8_7_c_int, hipMalloc_i8_7_c_size_t,hipMalloc_r4_0_source,hipMalloc_r4_1_source,hipMalloc_r4_1_c_int, hipMalloc_r4_1_c_size_t,hipMalloc_r4_2_source,hipMalloc_r4_2_c_int, hipMalloc_r4_2_c_size_t,hipMalloc_r4_3_source,hipMalloc_r4_3_c_int, hipMalloc_r4_3_c_size_t,hipMalloc_r4_4_source,hipMalloc_r4_4_c_int, hipMalloc_r4_4_c_size_t,hipMalloc_r4_5_source,hipMalloc_r4_5_c_int, hipMalloc_r4_5_c_size_t,hipMalloc_r4_6_source,hipMalloc_r4_6_c_int, hipMalloc_r4_6_c_size_t,hipMalloc_r4_7_source,hipMalloc_r4_7_c_int, hipMalloc_r4_7_c_size_t,hipMalloc_r8_0_source,hipMalloc_r8_1_source,hipMalloc_r8_1_c_int, hipMalloc_r8_1_c_size_t,hipMalloc_r8_2_source,hipMalloc_r8_2_c_int, hipMalloc_r8_2_c_size_t,hipMalloc_r8_3_source,hipMalloc_r8_3_c_int, hipMalloc_r8_3_c_size_t,hipMalloc_r8_4_source,hipMalloc_r8_4_c_int, hipMalloc_r8_4_c_size_t,hipMalloc_r8_5_source,hipMalloc_r8_5_c_int, hipMalloc_r8_5_c_size_t,hipMalloc_r8_6_source,hipMalloc_r8_6_c_int, hipMalloc_r8_6_c_size_t,hipMalloc_r8_7_source,hipMalloc_r8_7_c_int, hipMalloc_r8_7_c_size_t,hipMalloc_c4_0_source,hipMalloc_c4_1_source,hipMalloc_c4_1_c_int, hipMalloc_c4_1_c_size_t,hipMalloc_c4_2_source,hipMalloc_c4_2_c_int, hipMalloc_c4_2_c_size_t,hipMalloc_c4_3_source,hipMalloc_c4_3_c_int, hipMalloc_c4_3_c_size_t,hipMalloc_c4_4_source,hipMalloc_c4_4_c_int, hipMalloc_c4_4_c_size_t,hipMalloc_c4_5_source,hipMalloc_c4_5_c_int, hipMalloc_c4_5_c_size_t,hipMalloc_c4_6_source,hipMalloc_c4_6_c_int, hipMalloc_c4_6_c_size_t,hipMalloc_c4_7_source,hipMalloc_c4_7_c_int, hipMalloc_c4_7_c_size_t,hipMalloc_c8_0_source,hipMalloc_c8_1_source,hipMalloc_c8_1_c_int, hipMalloc_c8_1_c_size_t,hipMalloc_c8_2_source,hipMalloc_c8_2_c_int, hipMalloc_c8_2_c_size_t,hipMalloc_c8_3_source,hipMalloc_c8_3_c_int, hipMalloc_c8_3_c_size_t,hipMalloc_c8_4_source,hipMalloc_c8_4_c_int, hipMalloc_c8_4_c_size_t,hipMalloc_c8_5_source,hipMalloc_c8_5_c_int, hipMalloc_c8_5_c_size_t,hipMalloc_c8_6_source,hipMalloc_c8_6_c_int, hipMalloc_c8_6_c_size_t,hipMalloc_c8_7_source,hipMalloc_c8_7_c_int, hipMalloc_c8_7_c_size_t 
 #endif
   end interface
   
@@ -103,7 +103,7 @@ module hipfort_hipmalloc
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipHostMalloc_l_1_source,hipHostMalloc_l_1_c_int, hipHostMalloc_l_1_c_size_t,hipHostMalloc_l_2_source,hipHostMalloc_l_2_c_int, hipHostMalloc_l_2_c_size_t,hipHostMalloc_l_3_source,hipHostMalloc_l_3_c_int, hipHostMalloc_l_3_c_size_t,hipHostMalloc_l_4_source,hipHostMalloc_l_4_c_int, hipHostMalloc_l_4_c_size_t,hipHostMalloc_l_5_source,hipHostMalloc_l_5_c_int, hipHostMalloc_l_5_c_size_t,hipHostMalloc_l_6_source,hipHostMalloc_l_6_c_int, hipHostMalloc_l_6_c_size_t,hipHostMalloc_l_7_source,hipHostMalloc_l_7_c_int, hipHostMalloc_l_7_c_size_t,hipHostMalloc_i4_1_source,hipHostMalloc_i4_1_c_int, hipHostMalloc_i4_1_c_size_t,hipHostMalloc_i4_2_source,hipHostMalloc_i4_2_c_int, hipHostMalloc_i4_2_c_size_t,hipHostMalloc_i4_3_source,hipHostMalloc_i4_3_c_int, hipHostMalloc_i4_3_c_size_t,hipHostMalloc_i4_4_source,hipHostMalloc_i4_4_c_int, hipHostMalloc_i4_4_c_size_t,hipHostMalloc_i4_5_source,hipHostMalloc_i4_5_c_int, hipHostMalloc_i4_5_c_size_t,hipHostMalloc_i4_6_source,hipHostMalloc_i4_6_c_int, hipHostMalloc_i4_6_c_size_t,hipHostMalloc_i4_7_source,hipHostMalloc_i4_7_c_int, hipHostMalloc_i4_7_c_size_t,hipHostMalloc_i8_1_source,hipHostMalloc_i8_1_c_int, hipHostMalloc_i8_1_c_size_t,hipHostMalloc_i8_2_source,hipHostMalloc_i8_2_c_int, hipHostMalloc_i8_2_c_size_t,hipHostMalloc_i8_3_source,hipHostMalloc_i8_3_c_int, hipHostMalloc_i8_3_c_size_t,hipHostMalloc_i8_4_source,hipHostMalloc_i8_4_c_int, hipHostMalloc_i8_4_c_size_t,hipHostMalloc_i8_5_source,hipHostMalloc_i8_5_c_int, hipHostMalloc_i8_5_c_size_t,hipHostMalloc_i8_6_source,hipHostMalloc_i8_6_c_int, hipHostMalloc_i8_6_c_size_t,hipHostMalloc_i8_7_source,hipHostMalloc_i8_7_c_int, hipHostMalloc_i8_7_c_size_t,hipHostMalloc_r4_1_source,hipHostMalloc_r4_1_c_int, hipHostMalloc_r4_1_c_size_t,hipHostMalloc_r4_2_source,hipHostMalloc_r4_2_c_int, hipHostMalloc_r4_2_c_size_t,hipHostMalloc_r4_3_source,hipHostMalloc_r4_3_c_int, hipHostMalloc_r4_3_c_size_t,hipHostMalloc_r4_4_source,hipHostMalloc_r4_4_c_int, hipHostMalloc_r4_4_c_size_t,hipHostMalloc_r4_5_source,hipHostMalloc_r4_5_c_int, hipHostMalloc_r4_5_c_size_t,hipHostMalloc_r4_6_source,hipHostMalloc_r4_6_c_int, hipHostMalloc_r4_6_c_size_t,hipHostMalloc_r4_7_source,hipHostMalloc_r4_7_c_int, hipHostMalloc_r4_7_c_size_t,hipHostMalloc_r8_1_source,hipHostMalloc_r8_1_c_int, hipHostMalloc_r8_1_c_size_t,hipHostMalloc_r8_2_source,hipHostMalloc_r8_2_c_int, hipHostMalloc_r8_2_c_size_t,hipHostMalloc_r8_3_source,hipHostMalloc_r8_3_c_int, hipHostMalloc_r8_3_c_size_t,hipHostMalloc_r8_4_source,hipHostMalloc_r8_4_c_int, hipHostMalloc_r8_4_c_size_t,hipHostMalloc_r8_5_source,hipHostMalloc_r8_5_c_int, hipHostMalloc_r8_5_c_size_t,hipHostMalloc_r8_6_source,hipHostMalloc_r8_6_c_int, hipHostMalloc_r8_6_c_size_t,hipHostMalloc_r8_7_source,hipHostMalloc_r8_7_c_int, hipHostMalloc_r8_7_c_size_t,hipHostMalloc_c4_1_source,hipHostMalloc_c4_1_c_int, hipHostMalloc_c4_1_c_size_t,hipHostMalloc_c4_2_source,hipHostMalloc_c4_2_c_int, hipHostMalloc_c4_2_c_size_t,hipHostMalloc_c4_3_source,hipHostMalloc_c4_3_c_int, hipHostMalloc_c4_3_c_size_t,hipHostMalloc_c4_4_source,hipHostMalloc_c4_4_c_int, hipHostMalloc_c4_4_c_size_t,hipHostMalloc_c4_5_source,hipHostMalloc_c4_5_c_int, hipHostMalloc_c4_5_c_size_t,hipHostMalloc_c4_6_source,hipHostMalloc_c4_6_c_int, hipHostMalloc_c4_6_c_size_t,hipHostMalloc_c4_7_source,hipHostMalloc_c4_7_c_int, hipHostMalloc_c4_7_c_size_t,hipHostMalloc_c8_1_source,hipHostMalloc_c8_1_c_int, hipHostMalloc_c8_1_c_size_t,hipHostMalloc_c8_2_source,hipHostMalloc_c8_2_c_int, hipHostMalloc_c8_2_c_size_t,hipHostMalloc_c8_3_source,hipHostMalloc_c8_3_c_int, hipHostMalloc_c8_3_c_size_t,hipHostMalloc_c8_4_source,hipHostMalloc_c8_4_c_int, hipHostMalloc_c8_4_c_size_t,hipHostMalloc_c8_5_source,hipHostMalloc_c8_5_c_int, hipHostMalloc_c8_5_c_size_t,hipHostMalloc_c8_6_source,hipHostMalloc_c8_6_c_int, hipHostMalloc_c8_6_c_size_t,hipHostMalloc_c8_7_source,hipHostMalloc_c8_7_c_int, hipHostMalloc_c8_7_c_size_t 
+    module procedure hipHostMalloc_l_0_source,hipHostMalloc_l_1_source,hipHostMalloc_l_1_c_int, hipHostMalloc_l_1_c_size_t,hipHostMalloc_l_2_source,hipHostMalloc_l_2_c_int, hipHostMalloc_l_2_c_size_t,hipHostMalloc_l_3_source,hipHostMalloc_l_3_c_int, hipHostMalloc_l_3_c_size_t,hipHostMalloc_l_4_source,hipHostMalloc_l_4_c_int, hipHostMalloc_l_4_c_size_t,hipHostMalloc_l_5_source,hipHostMalloc_l_5_c_int, hipHostMalloc_l_5_c_size_t,hipHostMalloc_l_6_source,hipHostMalloc_l_6_c_int, hipHostMalloc_l_6_c_size_t,hipHostMalloc_l_7_source,hipHostMalloc_l_7_c_int, hipHostMalloc_l_7_c_size_t,hipHostMalloc_i4_0_source,hipHostMalloc_i4_1_source,hipHostMalloc_i4_1_c_int, hipHostMalloc_i4_1_c_size_t,hipHostMalloc_i4_2_source,hipHostMalloc_i4_2_c_int, hipHostMalloc_i4_2_c_size_t,hipHostMalloc_i4_3_source,hipHostMalloc_i4_3_c_int, hipHostMalloc_i4_3_c_size_t,hipHostMalloc_i4_4_source,hipHostMalloc_i4_4_c_int, hipHostMalloc_i4_4_c_size_t,hipHostMalloc_i4_5_source,hipHostMalloc_i4_5_c_int, hipHostMalloc_i4_5_c_size_t,hipHostMalloc_i4_6_source,hipHostMalloc_i4_6_c_int, hipHostMalloc_i4_6_c_size_t,hipHostMalloc_i4_7_source,hipHostMalloc_i4_7_c_int, hipHostMalloc_i4_7_c_size_t,hipHostMalloc_i8_0_source,hipHostMalloc_i8_1_source,hipHostMalloc_i8_1_c_int, hipHostMalloc_i8_1_c_size_t,hipHostMalloc_i8_2_source,hipHostMalloc_i8_2_c_int, hipHostMalloc_i8_2_c_size_t,hipHostMalloc_i8_3_source,hipHostMalloc_i8_3_c_int, hipHostMalloc_i8_3_c_size_t,hipHostMalloc_i8_4_source,hipHostMalloc_i8_4_c_int, hipHostMalloc_i8_4_c_size_t,hipHostMalloc_i8_5_source,hipHostMalloc_i8_5_c_int, hipHostMalloc_i8_5_c_size_t,hipHostMalloc_i8_6_source,hipHostMalloc_i8_6_c_int, hipHostMalloc_i8_6_c_size_t,hipHostMalloc_i8_7_source,hipHostMalloc_i8_7_c_int, hipHostMalloc_i8_7_c_size_t,hipHostMalloc_r4_0_source,hipHostMalloc_r4_1_source,hipHostMalloc_r4_1_c_int, hipHostMalloc_r4_1_c_size_t,hipHostMalloc_r4_2_source,hipHostMalloc_r4_2_c_int, hipHostMalloc_r4_2_c_size_t,hipHostMalloc_r4_3_source,hipHostMalloc_r4_3_c_int, hipHostMalloc_r4_3_c_size_t,hipHostMalloc_r4_4_source,hipHostMalloc_r4_4_c_int, hipHostMalloc_r4_4_c_size_t,hipHostMalloc_r4_5_source,hipHostMalloc_r4_5_c_int, hipHostMalloc_r4_5_c_size_t,hipHostMalloc_r4_6_source,hipHostMalloc_r4_6_c_int, hipHostMalloc_r4_6_c_size_t,hipHostMalloc_r4_7_source,hipHostMalloc_r4_7_c_int, hipHostMalloc_r4_7_c_size_t,hipHostMalloc_r8_0_source,hipHostMalloc_r8_1_source,hipHostMalloc_r8_1_c_int, hipHostMalloc_r8_1_c_size_t,hipHostMalloc_r8_2_source,hipHostMalloc_r8_2_c_int, hipHostMalloc_r8_2_c_size_t,hipHostMalloc_r8_3_source,hipHostMalloc_r8_3_c_int, hipHostMalloc_r8_3_c_size_t,hipHostMalloc_r8_4_source,hipHostMalloc_r8_4_c_int, hipHostMalloc_r8_4_c_size_t,hipHostMalloc_r8_5_source,hipHostMalloc_r8_5_c_int, hipHostMalloc_r8_5_c_size_t,hipHostMalloc_r8_6_source,hipHostMalloc_r8_6_c_int, hipHostMalloc_r8_6_c_size_t,hipHostMalloc_r8_7_source,hipHostMalloc_r8_7_c_int, hipHostMalloc_r8_7_c_size_t,hipHostMalloc_c4_0_source,hipHostMalloc_c4_1_source,hipHostMalloc_c4_1_c_int, hipHostMalloc_c4_1_c_size_t,hipHostMalloc_c4_2_source,hipHostMalloc_c4_2_c_int, hipHostMalloc_c4_2_c_size_t,hipHostMalloc_c4_3_source,hipHostMalloc_c4_3_c_int, hipHostMalloc_c4_3_c_size_t,hipHostMalloc_c4_4_source,hipHostMalloc_c4_4_c_int, hipHostMalloc_c4_4_c_size_t,hipHostMalloc_c4_5_source,hipHostMalloc_c4_5_c_int, hipHostMalloc_c4_5_c_size_t,hipHostMalloc_c4_6_source,hipHostMalloc_c4_6_c_int, hipHostMalloc_c4_6_c_size_t,hipHostMalloc_c4_7_source,hipHostMalloc_c4_7_c_int, hipHostMalloc_c4_7_c_size_t,hipHostMalloc_c8_0_source,hipHostMalloc_c8_1_source,hipHostMalloc_c8_1_c_int, hipHostMalloc_c8_1_c_size_t,hipHostMalloc_c8_2_source,hipHostMalloc_c8_2_c_int, hipHostMalloc_c8_2_c_size_t,hipHostMalloc_c8_3_source,hipHostMalloc_c8_3_c_int, hipHostMalloc_c8_3_c_size_t,hipHostMalloc_c8_4_source,hipHostMalloc_c8_4_c_int, hipHostMalloc_c8_4_c_size_t,hipHostMalloc_c8_5_source,hipHostMalloc_c8_5_c_int, hipHostMalloc_c8_5_c_size_t,hipHostMalloc_c8_6_source,hipHostMalloc_c8_6_c_int, hipHostMalloc_c8_6_c_size_t,hipHostMalloc_c8_7_source,hipHostMalloc_c8_7_c_int, hipHostMalloc_c8_7_c_size_t 
 #endif
   end interface
   
@@ -142,7 +142,7 @@ module hipfort_hipmalloc
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipFree_l_1, hipFree_l_2, hipFree_l_3, hipFree_l_4, hipFree_l_5, hipFree_l_6, hipFree_l_7,hipFree_i4_1, hipFree_i4_2, hipFree_i4_3, hipFree_i4_4, hipFree_i4_5, hipFree_i4_6, hipFree_i4_7,hipFree_i8_1, hipFree_i8_2, hipFree_i8_3, hipFree_i8_4, hipFree_i8_5, hipFree_i8_6, hipFree_i8_7,hipFree_r4_1, hipFree_r4_2, hipFree_r4_3, hipFree_r4_4, hipFree_r4_5, hipFree_r4_6, hipFree_r4_7,hipFree_r8_1, hipFree_r8_2, hipFree_r8_3, hipFree_r8_4, hipFree_r8_5, hipFree_r8_6, hipFree_r8_7,hipFree_c4_1, hipFree_c4_2, hipFree_c4_3, hipFree_c4_4, hipFree_c4_5, hipFree_c4_6, hipFree_c4_7,hipFree_c8_1, hipFree_c8_2, hipFree_c8_3, hipFree_c8_4, hipFree_c8_5, hipFree_c8_6, hipFree_c8_7 
+    module procedure hipFree_l_0, hipFree_l_1, hipFree_l_2, hipFree_l_3, hipFree_l_4, hipFree_l_5, hipFree_l_6, hipFree_l_7,hipFree_i4_0, hipFree_i4_1, hipFree_i4_2, hipFree_i4_3, hipFree_i4_4, hipFree_i4_5, hipFree_i4_6, hipFree_i4_7,hipFree_i8_0, hipFree_i8_1, hipFree_i8_2, hipFree_i8_3, hipFree_i8_4, hipFree_i8_5, hipFree_i8_6, hipFree_i8_7,hipFree_r4_0, hipFree_r4_1, hipFree_r4_2, hipFree_r4_3, hipFree_r4_4, hipFree_r4_5, hipFree_r4_6, hipFree_r4_7,hipFree_r8_0, hipFree_r8_1, hipFree_r8_2, hipFree_r8_3, hipFree_r8_4, hipFree_r8_5, hipFree_r8_6, hipFree_r8_7,hipFree_c4_0, hipFree_c4_1, hipFree_c4_2, hipFree_c4_3, hipFree_c4_4, hipFree_c4_5, hipFree_c4_6, hipFree_c4_7,hipFree_c8_0, hipFree_c8_1, hipFree_c8_2, hipFree_c8_3, hipFree_c8_4, hipFree_c8_5, hipFree_c8_6, hipFree_c8_7 
 #endif
   end interface
 
@@ -181,7 +181,7 @@ module hipfort_hipmalloc
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipHostFree_l_1, hipHostFree_l_2, hipHostFree_l_3, hipHostFree_l_4, hipHostFree_l_5, hipHostFree_l_6, hipHostFree_l_7,hipHostFree_i4_1, hipHostFree_i4_2, hipHostFree_i4_3, hipHostFree_i4_4, hipHostFree_i4_5, hipHostFree_i4_6, hipHostFree_i4_7,hipHostFree_i8_1, hipHostFree_i8_2, hipHostFree_i8_3, hipHostFree_i8_4, hipHostFree_i8_5, hipHostFree_i8_6, hipHostFree_i8_7,hipHostFree_r4_1, hipHostFree_r4_2, hipHostFree_r4_3, hipHostFree_r4_4, hipHostFree_r4_5, hipHostFree_r4_6, hipHostFree_r4_7,hipHostFree_r8_1, hipHostFree_r8_2, hipHostFree_r8_3, hipHostFree_r8_4, hipHostFree_r8_5, hipHostFree_r8_6, hipHostFree_r8_7,hipHostFree_c4_1, hipHostFree_c4_2, hipHostFree_c4_3, hipHostFree_c4_4, hipHostFree_c4_5, hipHostFree_c4_6, hipHostFree_c4_7,hipHostFree_c8_1, hipHostFree_c8_2, hipHostFree_c8_3, hipHostFree_c8_4, hipHostFree_c8_5, hipHostFree_c8_6, hipHostFree_c8_7 
+    module procedure hipHostFree_l_0, hipHostFree_l_1, hipHostFree_l_2, hipHostFree_l_3, hipHostFree_l_4, hipHostFree_l_5, hipHostFree_l_6, hipHostFree_l_7,hipHostFree_i4_0, hipHostFree_i4_1, hipHostFree_i4_2, hipHostFree_i4_3, hipHostFree_i4_4, hipHostFree_i4_5, hipHostFree_i4_6, hipHostFree_i4_7,hipHostFree_i8_0, hipHostFree_i8_1, hipHostFree_i8_2, hipHostFree_i8_3, hipHostFree_i8_4, hipHostFree_i8_5, hipHostFree_i8_6, hipHostFree_i8_7,hipHostFree_r4_0, hipHostFree_r4_1, hipHostFree_r4_2, hipHostFree_r4_3, hipHostFree_r4_4, hipHostFree_r4_5, hipHostFree_r4_6, hipHostFree_r4_7,hipHostFree_r8_0, hipHostFree_r8_1, hipHostFree_r8_2, hipHostFree_r8_3, hipHostFree_r8_4, hipHostFree_r8_5, hipHostFree_r8_6, hipHostFree_r8_7,hipHostFree_c4_0, hipHostFree_c4_1, hipHostFree_c4_2, hipHostFree_c4_3, hipHostFree_c4_4, hipHostFree_c4_5, hipHostFree_c4_6, hipHostFree_c4_7,hipHostFree_c8_0, hipHostFree_c8_1, hipHostFree_c8_2, hipHostFree_c8_3, hipHostFree_c8_4, hipHostFree_c8_5, hipHostFree_c8_6, hipHostFree_c8_7 
 #endif
   end interface
 
@@ -12301,6 +12301,38 @@ module hipfort_hipmalloc
 
 
                                         
+    function hipFree_l_0(ptr,only_if_allocated)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      logical,pointer :: ptr
+      logical,intent(in),optional :: only_if_allocated
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipFree_l_0 
+#else
+      integer(kind(hipSuccess)) :: hipFree_l_0
+#endif
+      !
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_l_0 = cudaSuccess
+#else
+      hipFree_l_0 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_l_0 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
+    end function
+ 
+                                        
     function hipFree_l_1(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -12331,6 +12363,7 @@ module hipfort_hipmalloc
         nullify(ptr)
       endif
     end function
+ 
                                         
     function hipFree_l_2(ptr,only_if_allocated)
       use iso_c_binding
@@ -12362,6 +12395,7 @@ module hipfort_hipmalloc
         nullify(ptr)
       endif
     end function
+ 
                                         
     function hipFree_l_3(ptr,only_if_allocated)
       use iso_c_binding
@@ -12393,6 +12427,7 @@ module hipfort_hipmalloc
         nullify(ptr)
       endif
     end function
+ 
                                         
     function hipFree_l_4(ptr,only_if_allocated)
       use iso_c_binding
@@ -12424,6 +12459,7 @@ module hipfort_hipmalloc
         nullify(ptr)
       endif
     end function
+ 
                                         
     function hipFree_l_5(ptr,only_if_allocated)
       use iso_c_binding
@@ -12455,6 +12491,7 @@ module hipfort_hipmalloc
         nullify(ptr)
       endif
     end function
+ 
                                         
     function hipFree_l_6(ptr,only_if_allocated)
       use iso_c_binding
@@ -12486,6 +12523,7 @@ module hipfort_hipmalloc
         nullify(ptr)
       endif
     end function
+ 
                                         
     function hipFree_l_7(ptr,only_if_allocated)
       use iso_c_binding
@@ -12518,6 +12556,38 @@ module hipfort_hipmalloc
       endif
     end function
                                         
+    function hipFree_i4_0(ptr,only_if_allocated)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(4),pointer :: ptr
+      logical,intent(in),optional :: only_if_allocated
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipFree_i4_0 
+#else
+      integer(kind(hipSuccess)) :: hipFree_i4_0
+#endif
+      !
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_i4_0 = cudaSuccess
+#else
+      hipFree_i4_0 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_i4_0 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
+    end function
+ 
+                                        
     function hipFree_i4_1(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -12548,6 +12618,7 @@ module hipfort_hipmalloc
         nullify(ptr)
       endif
     end function
+ 
                                         
     function hipFree_i4_2(ptr,only_if_allocated)
       use iso_c_binding
@@ -12579,6 +12650,7 @@ module hipfort_hipmalloc
         nullify(ptr)
       endif
     end function
+ 
                                         
     function hipFree_i4_3(ptr,only_if_allocated)
       use iso_c_binding
@@ -12610,6 +12682,7 @@ module hipfort_hipmalloc
         nullify(ptr)
       endif
     end function
+ 
                                         
     function hipFree_i4_4(ptr,only_if_allocated)
       use iso_c_binding
@@ -12641,6 +12714,7 @@ module hipfort_hipmalloc
         nullify(ptr)
       endif
     end function
+ 
                                         
     function hipFree_i4_5(ptr,only_if_allocated)
       use iso_c_binding
@@ -12672,6 +12746,7 @@ module hipfort_hipmalloc
         nullify(ptr)
       endif
     end function
+ 
                                         
     function hipFree_i4_6(ptr,only_if_allocated)
       use iso_c_binding
@@ -12703,6 +12778,7 @@ module hipfort_hipmalloc
         nullify(ptr)
       endif
     end function
+ 
                                         
     function hipFree_i4_7(ptr,only_if_allocated)
       use iso_c_binding
@@ -12735,6 +12811,38 @@ module hipfort_hipmalloc
       endif
     end function
                                         
+    function hipFree_i8_0(ptr,only_if_allocated)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(8),pointer :: ptr
+      logical,intent(in),optional :: only_if_allocated
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipFree_i8_0 
+#else
+      integer(kind(hipSuccess)) :: hipFree_i8_0
+#endif
+      !
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_i8_0 = cudaSuccess
+#else
+      hipFree_i8_0 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_i8_0 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
+    end function
+ 
+                                        
     function hipFree_i8_1(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -12765,6 +12873,7 @@ module hipfort_hipmalloc
         nullify(ptr)
       endif
     end function
+ 
                                         
     function hipFree_i8_2(ptr,only_if_allocated)
       use iso_c_binding
@@ -12796,6 +12905,7 @@ module hipfort_hipmalloc
         nullify(ptr)
       endif
     end function
+ 
                                         
     function hipFree_i8_3(ptr,only_if_allocated)
       use iso_c_binding
@@ -12827,6 +12937,7 @@ module hipfort_hipmalloc
         nullify(ptr)
       endif
     end function
+ 
                                         
     function hipFree_i8_4(ptr,only_if_allocated)
       use iso_c_binding
@@ -12858,6 +12969,7 @@ module hipfort_hipmalloc
         nullify(ptr)
       endif
     end function
+ 
                                         
     function hipFree_i8_5(ptr,only_if_allocated)
       use iso_c_binding
@@ -12889,6 +13001,7 @@ module hipfort_hipmalloc
         nullify(ptr)
       endif
     end function
+ 
                                         
     function hipFree_i8_6(ptr,only_if_allocated)
       use iso_c_binding
@@ -12920,6 +13033,7 @@ module hipfort_hipmalloc
         nullify(ptr)
       endif
     end function
+ 
                                         
     function hipFree_i8_7(ptr,only_if_allocated)
       use iso_c_binding
@@ -12952,6 +13066,38 @@ module hipfort_hipmalloc
       endif
     end function
                                         
+    function hipFree_r4_0(ptr,only_if_allocated)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      real(4),pointer :: ptr
+      logical,intent(in),optional :: only_if_allocated
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipFree_r4_0 
+#else
+      integer(kind(hipSuccess)) :: hipFree_r4_0
+#endif
+      !
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_r4_0 = cudaSuccess
+#else
+      hipFree_r4_0 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_r4_0 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
+    end function
+ 
+                                        
     function hipFree_r4_1(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -12982,6 +13128,7 @@ module hipfort_hipmalloc
         nullify(ptr)
       endif
     end function
+ 
                                         
     function hipFree_r4_2(ptr,only_if_allocated)
       use iso_c_binding
@@ -13013,6 +13160,7 @@ module hipfort_hipmalloc
         nullify(ptr)
       endif
     end function
+ 
                                         
     function hipFree_r4_3(ptr,only_if_allocated)
       use iso_c_binding
@@ -13044,6 +13192,7 @@ module hipfort_hipmalloc
         nullify(ptr)
       endif
     end function
+ 
                                         
     function hipFree_r4_4(ptr,only_if_allocated)
       use iso_c_binding
@@ -13075,6 +13224,7 @@ module hipfort_hipmalloc
         nullify(ptr)
       endif
     end function
+ 
                                         
     function hipFree_r4_5(ptr,only_if_allocated)
       use iso_c_binding
@@ -13106,6 +13256,7 @@ module hipfort_hipmalloc
         nullify(ptr)
       endif
     end function
+ 
                                         
     function hipFree_r4_6(ptr,only_if_allocated)
       use iso_c_binding
@@ -13137,6 +13288,7 @@ module hipfort_hipmalloc
         nullify(ptr)
       endif
     end function
+ 
                                         
     function hipFree_r4_7(ptr,only_if_allocated)
       use iso_c_binding
@@ -13169,6 +13321,38 @@ module hipfort_hipmalloc
       endif
     end function
                                         
+    function hipFree_r8_0(ptr,only_if_allocated)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      real(8),pointer :: ptr
+      logical,intent(in),optional :: only_if_allocated
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipFree_r8_0 
+#else
+      integer(kind(hipSuccess)) :: hipFree_r8_0
+#endif
+      !
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_r8_0 = cudaSuccess
+#else
+      hipFree_r8_0 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_r8_0 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
+    end function
+ 
+                                        
     function hipFree_r8_1(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -13199,6 +13383,7 @@ module hipfort_hipmalloc
         nullify(ptr)
       endif
     end function
+ 
                                         
     function hipFree_r8_2(ptr,only_if_allocated)
       use iso_c_binding
@@ -13230,6 +13415,7 @@ module hipfort_hipmalloc
         nullify(ptr)
       endif
     end function
+ 
                                         
     function hipFree_r8_3(ptr,only_if_allocated)
       use iso_c_binding
@@ -13261,6 +13447,7 @@ module hipfort_hipmalloc
         nullify(ptr)
       endif
     end function
+ 
                                         
     function hipFree_r8_4(ptr,only_if_allocated)
       use iso_c_binding
@@ -13292,6 +13479,7 @@ module hipfort_hipmalloc
         nullify(ptr)
       endif
     end function
+ 
                                         
     function hipFree_r8_5(ptr,only_if_allocated)
       use iso_c_binding
@@ -13323,6 +13511,7 @@ module hipfort_hipmalloc
         nullify(ptr)
       endif
     end function
+ 
                                         
     function hipFree_r8_6(ptr,only_if_allocated)
       use iso_c_binding
@@ -13354,6 +13543,7 @@ module hipfort_hipmalloc
         nullify(ptr)
       endif
     end function
+ 
                                         
     function hipFree_r8_7(ptr,only_if_allocated)
       use iso_c_binding
@@ -13386,6 +13576,38 @@ module hipfort_hipmalloc
       endif
     end function
                                         
+    function hipFree_c4_0(ptr,only_if_allocated)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      complex(4),pointer :: ptr
+      logical,intent(in),optional :: only_if_allocated
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipFree_c4_0 
+#else
+      integer(kind(hipSuccess)) :: hipFree_c4_0
+#endif
+      !
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_c4_0 = cudaSuccess
+#else
+      hipFree_c4_0 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_c4_0 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
+    end function
+ 
+                                        
     function hipFree_c4_1(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -13416,6 +13638,7 @@ module hipfort_hipmalloc
         nullify(ptr)
       endif
     end function
+ 
                                         
     function hipFree_c4_2(ptr,only_if_allocated)
       use iso_c_binding
@@ -13447,6 +13670,7 @@ module hipfort_hipmalloc
         nullify(ptr)
       endif
     end function
+ 
                                         
     function hipFree_c4_3(ptr,only_if_allocated)
       use iso_c_binding
@@ -13478,6 +13702,7 @@ module hipfort_hipmalloc
         nullify(ptr)
       endif
     end function
+ 
                                         
     function hipFree_c4_4(ptr,only_if_allocated)
       use iso_c_binding
@@ -13509,6 +13734,7 @@ module hipfort_hipmalloc
         nullify(ptr)
       endif
     end function
+ 
                                         
     function hipFree_c4_5(ptr,only_if_allocated)
       use iso_c_binding
@@ -13540,6 +13766,7 @@ module hipfort_hipmalloc
         nullify(ptr)
       endif
     end function
+ 
                                         
     function hipFree_c4_6(ptr,only_if_allocated)
       use iso_c_binding
@@ -13571,6 +13798,7 @@ module hipfort_hipmalloc
         nullify(ptr)
       endif
     end function
+ 
                                         
     function hipFree_c4_7(ptr,only_if_allocated)
       use iso_c_binding
@@ -13603,6 +13831,38 @@ module hipfort_hipmalloc
       endif
     end function
                                         
+    function hipFree_c8_0(ptr,only_if_allocated)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      complex(8),pointer :: ptr
+      logical,intent(in),optional :: only_if_allocated
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipFree_c8_0 
+#else
+      integer(kind(hipSuccess)) :: hipFree_c8_0
+#endif
+      !
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipFree_c8_0 = cudaSuccess
+#else
+      hipFree_c8_0 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipFree_c8_0 = hipFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
+    end function
+ 
+                                        
     function hipFree_c8_1(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -13633,6 +13893,7 @@ module hipfort_hipmalloc
         nullify(ptr)
       endif
     end function
+ 
                                         
     function hipFree_c8_2(ptr,only_if_allocated)
       use iso_c_binding
@@ -13664,6 +13925,7 @@ module hipfort_hipmalloc
         nullify(ptr)
       endif
     end function
+ 
                                         
     function hipFree_c8_3(ptr,only_if_allocated)
       use iso_c_binding
@@ -13695,6 +13957,7 @@ module hipfort_hipmalloc
         nullify(ptr)
       endif
     end function
+ 
                                         
     function hipFree_c8_4(ptr,only_if_allocated)
       use iso_c_binding
@@ -13726,6 +13989,7 @@ module hipfort_hipmalloc
         nullify(ptr)
       endif
     end function
+ 
                                         
     function hipFree_c8_5(ptr,only_if_allocated)
       use iso_c_binding
@@ -13757,6 +14021,7 @@ module hipfort_hipmalloc
         nullify(ptr)
       endif
     end function
+ 
                                         
     function hipFree_c8_6(ptr,only_if_allocated)
       use iso_c_binding
@@ -13788,6 +14053,7 @@ module hipfort_hipmalloc
         nullify(ptr)
       endif
     end function
+ 
                                         
     function hipFree_c8_7(ptr,only_if_allocated)
       use iso_c_binding
@@ -13820,6 +14086,37 @@ module hipfort_hipmalloc
       endif
     end function
     
+                                        
+    function hipHostFree_l_0(ptr,only_if_allocated)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      logical,pointer :: ptr
+      logical,intent(in),optional :: only_if_allocated
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostFree_l_0 
+#else
+      integer(kind(hipSuccess)) :: hipHostFree_l_0
+#endif
+      !
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_l_0 = cudaSuccess
+#else
+      hipHostFree_l_0 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_l_0 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
+    end function
                                         
     function hipHostFree_l_1(ptr,only_if_allocated)
       use iso_c_binding
@@ -14034,6 +14331,37 @@ module hipfort_hipmalloc
       if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
       if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
         hipHostFree_l_7 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
+    end function
+                                        
+    function hipHostFree_i4_0(ptr,only_if_allocated)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(4),pointer :: ptr
+      logical,intent(in),optional :: only_if_allocated
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostFree_i4_0 
+#else
+      integer(kind(hipSuccess)) :: hipHostFree_i4_0
+#endif
+      !
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_i4_0 = cudaSuccess
+#else
+      hipHostFree_i4_0 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_i4_0 = hipHostFree_b(c_loc(ptr))
         nullify(ptr)
       endif
     end function
@@ -14255,6 +14583,37 @@ module hipfort_hipmalloc
       endif
     end function
                                         
+    function hipHostFree_i8_0(ptr,only_if_allocated)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(8),pointer :: ptr
+      logical,intent(in),optional :: only_if_allocated
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostFree_i8_0 
+#else
+      integer(kind(hipSuccess)) :: hipHostFree_i8_0
+#endif
+      !
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_i8_0 = cudaSuccess
+#else
+      hipHostFree_i8_0 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_i8_0 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
+    end function
+                                        
     function hipHostFree_i8_1(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -14468,6 +14827,37 @@ module hipfort_hipmalloc
       if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
       if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
         hipHostFree_i8_7 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
+    end function
+                                        
+    function hipHostFree_r4_0(ptr,only_if_allocated)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      real(4),pointer :: ptr
+      logical,intent(in),optional :: only_if_allocated
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostFree_r4_0 
+#else
+      integer(kind(hipSuccess)) :: hipHostFree_r4_0
+#endif
+      !
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_r4_0 = cudaSuccess
+#else
+      hipHostFree_r4_0 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_r4_0 = hipHostFree_b(c_loc(ptr))
         nullify(ptr)
       endif
     end function
@@ -14689,6 +15079,37 @@ module hipfort_hipmalloc
       endif
     end function
                                         
+    function hipHostFree_r8_0(ptr,only_if_allocated)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      real(8),pointer :: ptr
+      logical,intent(in),optional :: only_if_allocated
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostFree_r8_0 
+#else
+      integer(kind(hipSuccess)) :: hipHostFree_r8_0
+#endif
+      !
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_r8_0 = cudaSuccess
+#else
+      hipHostFree_r8_0 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_r8_0 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
+    end function
+                                        
     function hipHostFree_r8_1(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -14906,6 +15327,37 @@ module hipfort_hipmalloc
       endif
     end function
                                         
+    function hipHostFree_c4_0(ptr,only_if_allocated)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      complex(4),pointer :: ptr
+      logical,intent(in),optional :: only_if_allocated
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostFree_c4_0 
+#else
+      integer(kind(hipSuccess)) :: hipHostFree_c4_0
+#endif
+      !
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_c4_0 = cudaSuccess
+#else
+      hipHostFree_c4_0 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_c4_0 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
+    end function
+                                        
     function hipHostFree_c4_1(ptr,only_if_allocated)
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -15119,6 +15571,37 @@ module hipfort_hipmalloc
       if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
       if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
         hipHostFree_c4_7 = hipHostFree_b(c_loc(ptr))
+        nullify(ptr)
+      endif
+    end function
+                                        
+    function hipHostFree_c8_0(ptr,only_if_allocated)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      complex(8),pointer :: ptr
+      logical,intent(in),optional :: only_if_allocated
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostFree_c8_0 
+#else
+      integer(kind(hipSuccess)) :: hipHostFree_c8_0
+#endif
+      !
+      logical :: opt_only_if_allocated
+      !
+#ifdef USE_CUDA_NAMES
+      hipHostFree_c8_0 = cudaSuccess
+#else
+      hipHostFree_c8_0 = hipSuccess
+#endif
+      opt_only_if_allocated = .FALSE.
+      if ( present(only_if_allocated) ) opt_only_if_allocated = only_if_allocated
+      if ( .not. opt_only_if_allocated .or. associated(ptr) ) then
+        hipHostFree_c8_0 = hipHostFree_b(c_loc(ptr))
         nullify(ptr)
       endif
     end function
