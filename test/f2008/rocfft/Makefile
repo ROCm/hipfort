@@ -1,3 +1,3 @@
-LDOPTS = -lrocfft
+LDFLAGS = -lrocfft
 
 include ../../Makefile.in

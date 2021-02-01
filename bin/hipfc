@@ -4,7 +4,7 @@
 #
 PROGVERSION=X.Y-Z
 
-# Copyright (c) 2020 Advanced Micro Devices, Inc. All rights reserved.
+# Copyright (c) 2021 Advanced Micro Devices, Inc. All rights reserved.
 # [MITx11 License]
 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -63,6 +63,7 @@ function usage(){
     hipfc myapp.f -o myapp             /* Compile FORTRAN to create myapp  */
     hipfc myapp.f -o myapp -lrocblas   /* Compile FORTRAN with rocblas     */
     hipfc myapp.f kernels.cpp -o myapp /* Compile FORTRAN and c++ and link */
+    hipfc --offload-arch=sm_70 myapp.f -o myapp /* Compile for NVPTX target */
 
    Instead of these command line options:
         -hipfort, -cuda-path, -hipfort-compiler -rocm-dir
@@ -70,7 +71,7 @@ function usage(){
         HIPFORT,  CUDA_PATH,  HIPFORT_COMPILER, ROCM_DIR
       Command line options take precedence over environment variables. 
 
-   Copyright (c) 2020 ADVANCED MICRO DEVICES, INC.
+   Copyright (c) 2021 ADVANCED MICRO DEVICES, INC.
 
 EOF
    exit 0 

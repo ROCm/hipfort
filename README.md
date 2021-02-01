@@ -34,7 +34,7 @@ If you change the location of hipfort change the value for HIPFORT_HOME.
 
 <A NAME="Copyright">
 
-Copyright (c) 2020 Advanced Micro Devices, Inc. All rights reserved.
+Copyright (c) 2021 Advanced Micro Devices, Inc. All rights reserved.
 [MITx11 License]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy

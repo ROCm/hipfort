@@ -30,7 +30,7 @@ program hip_sgemv
   x(:) = 1.0
   y(:) = 1.0
 
-  write(*,*) "Starting SGEMV test"
+  write(*,"(a)",advance="no") "-- Running test 'SGEMV' (Fortran 2008 interfaces) - "
 
   call hipblasCheck(hipblasCreate(handle))
 
@@ -45,7 +45,7 @@ program hip_sgemv
   do i = 1,m
     error = abs(5.0 - y(i))
       if( error > 10*epsilon(error) )then
-        write(*,*) "sgemv FAILED! Error bigger than max! Error = ", error, "y(i) = ", y(i)
+        write(*,*) "FAILED! Error bigger than max! Error = ", error, "y(i) = ", y(i)
         call exit(1)
      end if
   end do
@@ -58,7 +58,7 @@ program hip_sgemv
 
   deallocate(a,x,y)
 
-  write(*,*) "SGEMV PASSED!"
+  write(*,*) "PASSED!"
 
 end program hip_sgemv
 

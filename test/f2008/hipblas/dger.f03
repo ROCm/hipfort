@@ -21,7 +21,7 @@ program hip_dger
   integer :: i,j
   double precision :: error
 
-  write(*,*) "Starting dger test"
+  write(*,"(a)",advance="no") "-- Running test 'dger' (Fortran 2008 interfaces) - "
 
   call hipblasCheck(hipblasCreate(handle))
 
@@ -54,7 +54,7 @@ program hip_dger
     do i = 1,m
      error = abs(2.1d0 - hA(i,j))
      if( error > 10*epsilon(error) )then
-        write(*,*) "dger FAILED! Error bigger than max! Error = ", error, "hA(i,j) = ", hA(i,j)
+        write(*,*) "FAILED! Error bigger than max! Error = ", error, "hA(i,j) = ", hA(i,j)
         call exit(1)
      end if
    end do
@@ -68,6 +68,6 @@ program hip_dger
 
   deallocate(hx,hy,hA)
 
-  write(*,*) "dger PASSED!"
+  write(*,*) "PASSED!"
 
 end program hip_dger

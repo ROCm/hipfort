@@ -23,7 +23,7 @@ program rocfft_example
   double precision :: error
   double precision, parameter :: error_max = epsilon(error)
 
-  write(*,*) "Starting rocFFT test"
+  write(*,"(a)",advance="no") "-- Running test 'rocFFT' (Fortran 2003 interfaces) - "
 
   call rocfftCheck(rocfft_setup())
 
@@ -61,7 +61,7 @@ program rocfft_example
   do i = 1,N
      error = abs(hx(i)%x+hx(i)%y)
      if(error > error_max)then
-        write(*,*) "rocFFT FAILED! Error = ", error, "hx(i)%x = ", hx(i)%x, "hx(i)%y = "
+        write(*,*) "FAILED! Error = ", error, "hx(i)%x = ", hx(i)%x, "hx(i)%y = "
      end if
   end do
 
@@ -70,6 +70,6 @@ program rocfft_example
 
   call rocfftCheck(rocfft_cleanup())
 
-  write(*,*) "rocFFT PASSED!"
+  write(*,*) "PASSED!"
 
 end program rocfft_example

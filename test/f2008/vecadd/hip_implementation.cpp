@@ -14,7 +14,7 @@ extern "C"
 {
   void launch(dim3* grid, dim3* block, int shmem, hipStream_t stream, double *dout, double *da, double *db, int N)
   {
-    printf("launching kernel\n");
+    //printf("launching kernel\n");
     hipLaunchKernelGGL((vector_add), *grid, *block, shmem, stream, dout, da, db, N);
   }
 }

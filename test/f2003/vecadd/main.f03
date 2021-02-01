@@ -29,10 +29,7 @@ program fortran_hip
 
   integer :: i
 
-  write(*,*) "Starting HIP vector addition test"
-#ifdef HIPFORT_ARCH
-  write(*,*) "HIPFORT_ARCH = ", HIPFORT_ARCH
-#endif
+  write(*,"(a)",advance="no") "-- Running test 'vecadd' (Fortran 2003 interfaces) - "
 
   ! Allocate host memory
   allocate(a(N))
@@ -63,7 +60,7 @@ program fortran_hip
   do i = 1,N
      error = abs(out(i) - (a(i)+b(i)) )
      if( error .gt. error_max ) then
-        write(*,*) "HIP FAILED! Error bigger than max! Error = ", error, " Out = ", out(i)
+        write(*,*) "FAILED! Error bigger than max! Error = ", error, " Out = ", out(i)
         call exit
      endif
   end do
@@ -77,6 +74,6 @@ program fortran_hip
   deallocate(b)
   deallocate(out)
 
-  write(*,*) "HIP test PASSED!"
+  write(*,*) "PASSED!"
 
 end program fortran_hip

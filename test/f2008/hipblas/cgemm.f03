@@ -21,7 +21,7 @@ program hip_dgemm
   double precision :: error
   double precision, parameter :: error_max = 10*epsilon(error)
 
-  write(*,*) "Starting CGEMM test"
+  write(*,"(a)",advance="no") "-- Running test 'CGEMM' (Fortran 2008 interfaces) - "
 
   call hipblasCheck(hipblasCreate(handle))
 
@@ -61,7 +61,7 @@ program hip_dgemm
       !write(*,*) "hc(i,j)=",hc(i,j),",hc_exact(i,j)=",hc_exact(i,j)
       error = abs((hc_exact(i,j) - hc(i,j))/hc_exact(i,j))
       if( error > error_max )then
-         write(*,*) "CGEMM FAILED! Error bigger than max! Error = ", error
+         write(*,*) "FAILED! Error bigger than max! Error = ", error
          call exit(1)
       end if
     end do
@@ -75,6 +75,6 @@ program hip_dgemm
 
   deallocate(ha,hb,hc,hc_exact)
 
-  write(*,*) "CGEMM PASSED!"
+  write(*,*) "PASSED!"
 
 end program hip_dgemm

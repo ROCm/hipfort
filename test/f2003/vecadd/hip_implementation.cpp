@@ -15,7 +15,7 @@ extern "C"
 {
   void launch(double **dout, double **da, double **db, int N)
   {
-    printf("launching kernel\n");
+    //printf("launching kernel\n");
     hipLaunchKernelGGL((vector_add), dim3(320), dim3(256), 0, 0, *dout, *da, *db, N);
   }
 }

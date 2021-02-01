@@ -1,8 +1,11 @@
-.PHONY: run clean
+.PHONY: build run clean
 
-all:
-	hipfc -g -ggdb -O0 main.f03 hip_implementation.cpp -o main 
-run: all
+build: main
+
+main:
+	hipfc $(CFLAGS) main.f03 hip_implementation.cpp -o main 
+
+run: main
 	./main
 
 clean:

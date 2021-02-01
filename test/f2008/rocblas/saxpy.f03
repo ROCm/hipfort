@@ -1,5 +1,5 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-! Copyright (c) 2020 Advanced Micro Devices, Inc.
+! Copyright (c) 2021 Advanced Micro Devices, Inc.
 !
 ! Permission is hereby granted, free of charge, to any person obtaining a copy
 ! of this software and associated documentation files (the "Software"), to deal
@@ -49,7 +49,7 @@ program rocblas_saxpy_test
 
     integer :: i
 
-    write(*,*) "Starting saxpy test"
+    write(*,"(a)",advance="no") "-- Running test 'saxpy' (Fortran 2008 interfaces) - "
 
     ! Create rocblas handle
     call rocblasCheck(rocblas_create_handle(rocblas_handle))
@@ -84,7 +84,7 @@ program rocblas_saxpy_test
         result = alpha * hx(i) + hz(i)
         error = abs(hy(i) - result)
         if(error .gt. error_max) then
-            write(*,*) "saxpy FAILED! Error bigger than max! Error = ", error, " hy(", i, ") = ", hy(i)
+            write(*,*) "FAILED! Error bigger than max! Error = ", error, " hy(", i, ") = ", hy(i)
             call exit
         end if
     end do
@@ -95,6 +95,6 @@ program rocblas_saxpy_test
     deallocate(hx, hy, hz)
     call rocblasCheck(rocblas_destroy_handle(rocblas_handle))
 
-    write(*,*) "saxpy PASSED!"
+    write(*,*) "PASSED!"
 
 end program rocblas_saxpy_test

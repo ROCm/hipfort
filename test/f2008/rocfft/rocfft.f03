@@ -25,7 +25,7 @@ program rocfft_example
   
   call hipCheck(hipMalloc(dx,source=hx))
   
-  write(*,*) "Starting rocFFT test"
+  write(*,"(a)",advance="no") "-- Running test 'rocFFT' (Fortran 2008 interfaces) - "
 
   call rocfftCheck(rocfft_setup())
   call rocfftCheck(rocfft_plan_create(plan,&
@@ -52,7 +52,7 @@ program rocfft_example
   do i = 1,N
      error = DBLE(hx(i)) + AIMAG(hx(i))
      if(error > error_max)then
-        write(*,*) "rocFFT FAILED! Error = ", error, "hx(i)=",hx(i)
+        write(*,*) "FAILED! Error = ", error, "hx(i)=",hx(i)
         STOP 1
      end if
   end do
@@ -62,6 +62,6 @@ program rocfft_example
 
   call rocfftCheck(rocfft_cleanup())
 
-  write(*,*) "rocFFT PASSED!"
+  write(*,*) "PASSED!"
 
 end program rocfft_example
