@@ -1,3 +1,3 @@
-LDFLAGS = -lrocblas
+CFLAGS ?= -lrocblas
 
 include ../../Makefile.in

@@ -1,3 +1,3 @@
-LDFLAGS = -lhipblas
+CFLAGS ?= -lhipblas
 
 include ../../Makefile.in
