@@ -7,7 +7,7 @@ RUN_TEST_APPS := $(addprefix run., $(TEST_APPS))
 build: $(TEST_APPS)
 
 $(TEST_APPS): %:
-	hipfc $(CFLAGS) $@.f03 -o $@ $(LDFLAGS)
+	hipfc $(CFLAGS) $@.f03 -o $@
 
 $(RUN_TEST_APPS): run.%: %
 	HIP_TRACE_API=1 ./$^

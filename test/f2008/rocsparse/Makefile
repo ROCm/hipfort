@@ -1,3 +1,3 @@
-LDFLAGS = -lrocsparse
+CFLAGS ?= -lrocsparse
 
 include ../../Makefile.in

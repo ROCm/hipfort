@@ -1,3 +1,3 @@
-LDFLAGS = -lrocfft
+CFLAGS ?= -lrocfft
 
 include ../../Makefile.in
