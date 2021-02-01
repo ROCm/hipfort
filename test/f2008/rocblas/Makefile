@@ -1,3 +1,3 @@
-LDOPTS = -lrocblas
+LDFLAGS = -lrocblas
 
 include ../../Makefile.in

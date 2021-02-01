@@ -38,7 +38,7 @@ program hip_saxpy
     y_exact(j) = alpha*x(j) + y(j)
   end do
  
-  write(*,*) "Starting SAXPY test"
+  write(*,"(a)",advance="no") "-- Running test 'SAXPY' (Fortran 2003 interfaces) - "
 
   call hipblasCheck(hipblasCreate(handle))
 
@@ -57,7 +57,7 @@ program hip_saxpy
   do j = 1,n
     error = abs((y_exact(j) - y(j))/y_exact(j))
       if( error > error_max )then
-        write(*,*) "SAXPY FAILED! Error bigger than max! Error = ", error
+        write(*,*) "FAILED! Error bigger than max! Error = ", error
         call exit(1)
       end if
   end do
@@ -70,6 +70,6 @@ program hip_saxpy
   deallocate(x)
   deallocate(y)
 
-  write(*,*) "SAXPY PASSED!"
+  write(*,*) "PASSED!"
 
 end program hip_saxpy

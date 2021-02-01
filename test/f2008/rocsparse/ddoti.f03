@@ -1,5 +1,5 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-! Copyright (c) 2020 Advanced Micro Devices, Inc.
+! Copyright (c) 2021 Advanced Micro Devices, Inc.
 !
 ! Permission is hereby granted, free of charge, to any person obtaining a copy
 ! of this software and associated documentation files (the "Software"), to deal
@@ -42,6 +42,8 @@ program rocsparse_ddoti_test
     integer(c_int) :: M, nnz
 
     type(c_ptr) :: handle
+    
+    write(*,"(a)",advance="no") "-- Running test 'ddoti' (Fortran 2008 interfaces) - "
 
 !   Input data
 
@@ -80,7 +82,7 @@ program rocsparse_ddoti_test
 
 !   Verification
     if(h_dot /= 27d0) then
-        write(*,*) 'ddoti FAILED!'
+        write(*,*) 'FAILED!'
         call exit
     end if
 
@@ -94,6 +96,6 @@ program rocsparse_ddoti_test
     call hipCheck(hipFree(d_dot))
 
 !   Print success
-    write(*,*) 'ddoti PASSED!'
+    write(*,*) 'PASSED!'
 
 end program rocsparse_ddoti_test

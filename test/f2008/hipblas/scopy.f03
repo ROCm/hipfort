@@ -25,7 +25,7 @@ program hip_scopy
    ! write(*,*) "value of x(j)" , x(j)
   end do
 
-  write(*,*) "Starting Scopy test"
+  write(*,"(a)",advance="no") "-- Running test 'Scopy' (Fortran 2008 interfaces) - "
 
   do j = 0,n
     y(j) = x(j)
@@ -46,7 +46,7 @@ program hip_scopy
   do j = 0,n
     error = abs(y(j) - x(j))
       if( error > error_max )then
-        write(*,*) "SCOPY FAILED! Error bigger than max! Error = ", error
+        write(*,*) "FAILED! Error bigger than max! Error = ", error
         call exit(1)
       end if
   end do
@@ -58,6 +58,6 @@ program hip_scopy
 
   deallocate(x,y)
 
-  write(*,*) "SCOPY PASSED!"
+  write(*,*) "PASSED!"
   
 end program hip_scopy

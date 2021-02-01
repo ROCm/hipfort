@@ -48,7 +48,7 @@ program hip_sger
   end do
  
 
-  write(*,*) "Starting SGER test"
+  write(*,"(a)",advance="no") "-- Running test 'SGER' (Fortran 2008 interfaces) - "
   
   call hipblasCheck(hipblasCreate(handle))
   
@@ -81,7 +81,7 @@ program hip_sger
   do j = 1,n
     error = abs(3.0 - a(i,j))
       if( error > 10*epsilon(error) )then
-        write(*,*) "sger FAILED! Error bigger than max! Error = ", error, "a(i,j) = ", a(i,j)
+        write(*,*) "FAILED! Error bigger than max! Error = ", error, "a(i,j) = ", a(i,j)
         call exit(1)
      end if
   end do
@@ -97,6 +97,6 @@ program hip_sger
   deallocate(x)
   deallocate(y)
   
-  write(*,*) "SGER PASSED!"
+  write(*,*) "PASSED!"
   
 end program hip_sger

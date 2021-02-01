@@ -23,7 +23,7 @@ program hip_dscal
 
   integer :: i
 
-  write(*,*) "Starting dscal test"
+  write(*,"(a)",advance="no") "-- Running test 'dscal' (Fortran 2008 interfaces) - "
   allocate(hx(N))
   allocate(hx_scaled(N))
 
@@ -51,7 +51,7 @@ program hip_dscal
   do i = 1,N
      error = abs(hx(i) - hx_scaled(i) )
      if( error .gt. error_max ) then
-        write(*,*) "dscal FAILED! Error bigger than max! Error = ", error, " hx(i) = ", hx(i)
+        write(*,*) "FAILED! Error bigger than max! Error = ", error, " hx(i) = ", hx(i)
         call exit
      endif
   end do
@@ -60,6 +60,6 @@ program hip_dscal
 
   deallocate(hx_scaled,hx)
 
-  write(*,*) "dscal PASSED!"
+  write(*,*) "PASSED!"
 
 end program hip_dscal

@@ -19,7 +19,7 @@ program hipfft_example
   double precision :: error
   double precision, parameter :: error_max = epsilon(error)
 
-  write(*,*) "Starting hipFFT test"
+  write(*,"(a)",advance="no") "-- Running test 'hipFFT' (Fortran 2008 interfaces) - "
 
   lengths(1) = N
 
@@ -43,7 +43,7 @@ program hipfft_example
   do i = 1,N
      error = abs(DBLE(hx(i)) + AIMAG(hx(i)))
      if(error > error_max)then
-        write(*,*) "hipFFT FAILED! Error = ", error, "hx(i)%x = ", DBLE(hx(i)), "hx(i)%y = ", AIMAG(hx(i))
+        write(*,*) "FAILED! Error = ", error, "hx(i)%x = ", DBLE(hx(i)), "hx(i)%y = ", AIMAG(hx(i))
      end if
   end do
 

@@ -19,13 +19,15 @@ program fortran_hip
 
   integer(c_int), parameter :: N = 1000000
 
-  real(8),allocatable,target,dimension(:) :: a,b,out
+  real(8),allocatable,dimension(:) :: a,b,out
   real(8),pointer,dimension(:) :: da => null(), db => null(),dout => null()
 
   type(dim3) :: grid = dim3(320,1,1) 
   type(dim3) :: block = dim3(256,1,1) 
   
   integer :: i
+
+  write(*,"(a)",advance="no") "-- Running test 'vecadd' (Fortran 2008 interfaces) - "
 
   ! Allocate host memory
   allocate(a(N),b(N),out(N))
@@ -57,7 +59,6 @@ program fortran_hip
   endif
 
   call hipCheck(hipFree(da))
-  call hipCheck(hipFree(da, only_if_allocated = .TRUE.))
   call hipCheck(hipFree(db))
   call hipCheck(hipFree(dout))
 

@@ -27,7 +27,7 @@ program hip_sswap
     y_exact(i) = y(i)
   end do
   
-  write(*,*) "Starting SSWAP test"
+  write(*,"(a)",advance="no") "-- Running test 'SSWAP' (Fortran 2008 interfaces) - "
   
   call hipblasCheck(hipblasCreate(handle))
   
@@ -45,7 +45,7 @@ program hip_sswap
   do i = 1,n
     error = MAX(abs((y_exact(i) - x(i))/y_exact(i)), abs((x_exact(i) - y(i))/x_exact(i)))
       if( error > error_max )then
-        write(*,*) "SSWAP FAILED! Error bigger than max! Error = ", error
+        write(*,*) "FAILED! Error bigger than max! Error = ", error
         call exit(1)
       end if
   end do
@@ -57,6 +57,6 @@ program hip_sswap
   
   deallocate(x,y)
   
-  write(*,*) "SSWAP PASSED!"
+  write(*,*) "PASSED!"
   
 end program hip_sswap

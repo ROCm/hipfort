@@ -13,15 +13,25 @@ endif()
 set(CMAKE_BUILD_PARALLEL_LEVEL "4" CACHE STRING "Number of build jobs")
 
 add_custom_target(all-f2003-tests
-	COMMAND make -C ${CMAKE_CURRENT_SOURCE_DIR} -j${CMAKE_BUILD_PARALLEL_LEVEL} PREFIX=f2003)
+	COMMAND make -C ${CMAKE_CURRENT_SOURCE_DIR} -j${CMAKE_BUILD_PARALLEL_LEVEL} PREFIX=f2003 build)
 add_custom_target(all-f2003-tests-run
-	COMMAND make -C ${CMAKE_CURRENT_SOURCE_DIR} -j1 PREFIX=f2003 run)
+	COMMAND make -C ${CMAKE_CURRENT_SOURCE_DIR} -j1 PREFIX=f2003 run
+	DEPENDS all-f2003-tests)
 add_custom_target(all-f2003-tests-clean
 	COMMAND make -C ${CMAKE_CURRENT_SOURCE_DIR} -j${CMAKE_BUILD_PARALLEL_LEVEL} PREFIX=f2003 clean)
 
 add_custom_target(all-f2008-tests
-	COMMAND make -C ${CMAKE_CURRENT_SOURCE_DIR} -j${CMAKE_BUILD_PARALLEL_LEVEL} PREFIX=f2008)
+	COMMAND make -C ${CMAKE_CURRENT_SOURCE_DIR} -j${CMAKE_BUILD_PARALLEL_LEVEL} PREFIX=f2008 build)
 add_custom_target(all-f2008-tests-run
-	COMMAND make -C ${CMAKE_CURRENT_SOURCE_DIR} -j1 PREFIX=f2008 run)
+	COMMAND make -C ${CMAKE_CURRENT_SOURCE_DIR} -j1 PREFIX=f2008 run
+	DEPENDS all-f2008-tests)
 add_custom_target(all-f2008-tests-clean
 	COMMAND make -C ${CMAKE_CURRENT_SOURCE_DIR} -j${CMAKE_BUILD_PARALLEL_LEVEL} PREFIX=f2008 clean)
+
+add_custom_target(all-tests
+	COMMAND make -C ${CMAKE_CURRENT_SOURCE_DIR} -j${CMAKE_BUILD_PARALLEL_LEVEL} build_all)
+add_custom_target(all-tests-run
+	COMMAND make -C ${CMAKE_CURRENT_SOURCE_DIR} -j1 run_all
+	DEPENDS all-tests)
+add_custom_target(all-tests-clean
+	COMMAND make -C ${CMAKE_CURRENT_SOURCE_DIR} -j${CMAKE_BUILD_PARALLEL_LEVEL} clean_all)

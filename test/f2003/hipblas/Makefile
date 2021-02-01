@@ -1,3 +1,3 @@
-LDOPTS = -lhipblas
+LDFLAGS = -lhipblas
 
 include ../../Makefile.in
