@@ -34,7 +34,7 @@ module hipfort_hipblas
   
   interface hipblasCreate
 #ifdef USE_CUDA_NAMES
-    function hipblasCreate_orig(handle) bind(c, name="cublasCreate")
+    function hipblasCreate_orig(handle) bind(c, name="cublasCreate_v2")
 #else
     function hipblasCreate_orig(handle) bind(c, name="hipblasCreate")
 #endif
@@ -50,7 +50,7 @@ module hipfort_hipblas
   
   interface hipblasDestroy
 #ifdef USE_CUDA_NAMES
-    function hipblasDestroy_orig(handle) bind(c, name="cublasDestroy")
+    function hipblasDestroy_orig(handle) bind(c, name="cublasDestroy_v2")
 #else
     function hipblasDestroy_orig(handle) bind(c, name="hipblasDestroy")
 #endif
@@ -66,7 +66,7 @@ module hipfort_hipblas
   
   interface hipblasSetStream
 #ifdef USE_CUDA_NAMES
-    function hipblasSetStream_orig(handle,streamId) bind(c, name="cublasSetStream")
+    function hipblasSetStream_orig(handle,streamId) bind(c, name="cublasSetStream_v2")
 #else
     function hipblasSetStream_orig(handle,streamId) bind(c, name="hipblasSetStream")
 #endif
@@ -83,7 +83,7 @@ module hipfort_hipblas
   
   interface hipblasGetStream
 #ifdef USE_CUDA_NAMES
-    function hipblasGetStream_orig(handle,streamId) bind(c, name="cublasGetStream")
+    function hipblasGetStream_orig(handle,streamId) bind(c, name="cublasGetStream_v2")
 #else
     function hipblasGetStream_orig(handle,streamId) bind(c, name="hipblasGetStream")
 #endif
@@ -100,7 +100,7 @@ module hipfort_hipblas
   
   interface hipblasSetPointerMode
 #ifdef USE_CUDA_NAMES
-    function hipblasSetPointerMode_orig(handle,mode) bind(c, name="cublasSetPointerMode")
+    function hipblasSetPointerMode_orig(handle,mode) bind(c, name="cublasSetPointerMode_v2")
 #else
     function hipblasSetPointerMode_orig(handle,mode) bind(c, name="hipblasSetPointerMode")
 #endif
@@ -117,7 +117,7 @@ module hipfort_hipblas
   
   interface hipblasGetPointerMode
 #ifdef USE_CUDA_NAMES
-    function hipblasGetPointerMode_orig(handle,mode) bind(c, name="cublasGetPointerMode")
+    function hipblasGetPointerMode_orig(handle,mode) bind(c, name="cublasGetPointerMode_v2")
 #else
     function hipblasGetPointerMode_orig(handle,mode) bind(c, name="hipblasGetPointerMode")
 #endif
@@ -168,7 +168,7 @@ module hipfort_hipblas
   
   interface hipblasIsamax
 #ifdef USE_CUDA_NAMES
-    function hipblasIsamax_orig(handle,n,x,incx,myResult) bind(c, name="cublasIsamax")
+    function hipblasIsamax_orig(handle,n,x,incx,myResult) bind(c, name="cublasIsamax_v2")
 #else
     function hipblasIsamax_orig(handle,n,x,incx,myResult) bind(c, name="hipblasIsamax")
 #endif
@@ -191,7 +191,7 @@ module hipfort_hipblas
   
   interface hipblasIdamax
 #ifdef USE_CUDA_NAMES
-    function hipblasIdamax_orig(handle,n,x,incx,myResult) bind(c, name="cublasIdamax")
+    function hipblasIdamax_orig(handle,n,x,incx,myResult) bind(c, name="cublasIdamax_v2")
 #else
     function hipblasIdamax_orig(handle,n,x,incx,myResult) bind(c, name="hipblasIdamax")
 #endif
@@ -214,7 +214,7 @@ module hipfort_hipblas
   
   interface hipblasIcamax
 #ifdef USE_CUDA_NAMES
-    function hipblasIcamax_orig(handle,n,x,incx,myResult) bind(c, name="cublasIcamax")
+    function hipblasIcamax_orig(handle,n,x,incx,myResult) bind(c, name="cublasIcamax_v2")
 #else
     function hipblasIcamax_orig(handle,n,x,incx,myResult) bind(c, name="hipblasIcamax")
 #endif
@@ -237,7 +237,7 @@ module hipfort_hipblas
   
   interface hipblasIzamax
 #ifdef USE_CUDA_NAMES
-    function hipblasIzamax_orig(handle,n,x,incx,myResult) bind(c, name="cublasIzamax")
+    function hipblasIzamax_orig(handle,n,x,incx,myResult) bind(c, name="cublasIzamax_v2")
 #else
     function hipblasIzamax_orig(handle,n,x,incx,myResult) bind(c, name="hipblasIzamax")
 #endif
@@ -456,7 +456,7 @@ module hipfort_hipblas
   
   interface hipblasIsamin
 #ifdef USE_CUDA_NAMES
-    function hipblasIsamin_orig(handle,n,x,incx,myResult) bind(c, name="cublasIsamin")
+    function hipblasIsamin_orig(handle,n,x,incx,myResult) bind(c, name="cublasIsamin_v2")
 #else
     function hipblasIsamin_orig(handle,n,x,incx,myResult) bind(c, name="hipblasIsamin")
 #endif
@@ -479,7 +479,7 @@ module hipfort_hipblas
   
   interface hipblasIdamin
 #ifdef USE_CUDA_NAMES
-    function hipblasIdamin_orig(handle,n,x,incx,myResult) bind(c, name="cublasIdamin")
+    function hipblasIdamin_orig(handle,n,x,incx,myResult) bind(c, name="cublasIdamin_v2")
 #else
     function hipblasIdamin_orig(handle,n,x,incx,myResult) bind(c, name="hipblasIdamin")
 #endif
@@ -502,7 +502,7 @@ module hipfort_hipblas
   
   interface hipblasIcamin
 #ifdef USE_CUDA_NAMES
-    function hipblasIcamin_orig(handle,n,x,incx,myResult) bind(c, name="cublasIcamin")
+    function hipblasIcamin_orig(handle,n,x,incx,myResult) bind(c, name="cublasIcamin_v2")
 #else
     function hipblasIcamin_orig(handle,n,x,incx,myResult) bind(c, name="hipblasIcamin")
 #endif
@@ -525,7 +525,7 @@ module hipfort_hipblas
   
   interface hipblasIzamin
 #ifdef USE_CUDA_NAMES
-    function hipblasIzamin_orig(handle,n,x,incx,myResult) bind(c, name="cublasIzamin")
+    function hipblasIzamin_orig(handle,n,x,incx,myResult) bind(c, name="cublasIzamin_v2")
 #else
     function hipblasIzamin_orig(handle,n,x,incx,myResult) bind(c, name="hipblasIzamin")
 #endif
@@ -744,7 +744,7 @@ module hipfort_hipblas
   
   interface hipblasSasum
 #ifdef USE_CUDA_NAMES
-    function hipblasSasum_orig(handle,n,x,incx,myResult) bind(c, name="cublasSasum")
+    function hipblasSasum_orig(handle,n,x,incx,myResult) bind(c, name="cublasSasum_v2")
 #else
     function hipblasSasum_orig(handle,n,x,incx,myResult) bind(c, name="hipblasSasum")
 #endif
@@ -767,7 +767,7 @@ module hipfort_hipblas
   
   interface hipblasDasum
 #ifdef USE_CUDA_NAMES
-    function hipblasDasum_orig(handle,n,x,incx,myResult) bind(c, name="cublasDasum")
+    function hipblasDasum_orig(handle,n,x,incx,myResult) bind(c, name="cublasDasum_v2")
 #else
     function hipblasDasum_orig(handle,n,x,incx,myResult) bind(c, name="hipblasDasum")
 #endif
@@ -790,7 +790,7 @@ module hipfort_hipblas
   
   interface hipblasScasum
 #ifdef USE_CUDA_NAMES
-    function hipblasScasum_orig(handle,n,x,incx,myResult) bind(c, name="cublasScasum")
+    function hipblasScasum_orig(handle,n,x,incx,myResult) bind(c, name="cublasScasum_v2")
 #else
     function hipblasScasum_orig(handle,n,x,incx,myResult) bind(c, name="hipblasScasum")
 #endif
@@ -813,7 +813,7 @@ module hipfort_hipblas
   
   interface hipblasDzasum
 #ifdef USE_CUDA_NAMES
-    function hipblasDzasum_orig(handle,n,x,incx,myResult) bind(c, name="cublasDzasum")
+    function hipblasDzasum_orig(handle,n,x,incx,myResult) bind(c, name="cublasDzasum_v2")
 #else
     function hipblasDzasum_orig(handle,n,x,incx,myResult) bind(c, name="hipblasDzasum")
 #endif
@@ -1032,7 +1032,7 @@ module hipfort_hipblas
   
   interface hipblasSaxpy
 #ifdef USE_CUDA_NAMES
-    function hipblasSaxpy_orig(handle,n,alpha,x,incx,y,incy) bind(c, name="cublasSaxpy")
+    function hipblasSaxpy_orig(handle,n,alpha,x,incx,y,incy) bind(c, name="cublasSaxpy_v2")
 #else
     function hipblasSaxpy_orig(handle,n,alpha,x,incx,y,incy) bind(c, name="hipblasSaxpy")
 #endif
@@ -1057,7 +1057,7 @@ module hipfort_hipblas
   
   interface hipblasDaxpy
 #ifdef USE_CUDA_NAMES
-    function hipblasDaxpy_orig(handle,n,alpha,x,incx,y,incy) bind(c, name="cublasDaxpy")
+    function hipblasDaxpy_orig(handle,n,alpha,x,incx,y,incy) bind(c, name="cublasDaxpy_v2")
 #else
     function hipblasDaxpy_orig(handle,n,alpha,x,incx,y,incy) bind(c, name="hipblasDaxpy")
 #endif
@@ -1082,7 +1082,7 @@ module hipfort_hipblas
   
   interface hipblasCaxpy
 #ifdef USE_CUDA_NAMES
-    function hipblasCaxpy_orig(handle,n,alpha,x,incx,y,incy) bind(c, name="cublasCaxpy")
+    function hipblasCaxpy_orig(handle,n,alpha,x,incx,y,incy) bind(c, name="cublasCaxpy_v2")
 #else
     function hipblasCaxpy_orig(handle,n,alpha,x,incx,y,incy) bind(c, name="hipblasCaxpy")
 #endif
@@ -1107,7 +1107,7 @@ module hipfort_hipblas
   
   interface hipblasZaxpy
 #ifdef USE_CUDA_NAMES
-    function hipblasZaxpy_orig(handle,n,alpha,x,incx,y,incy) bind(c, name="cublasZaxpy")
+    function hipblasZaxpy_orig(handle,n,alpha,x,incx,y,incy) bind(c, name="cublasZaxpy_v2")
 #else
     function hipblasZaxpy_orig(handle,n,alpha,x,incx,y,incy) bind(c, name="hipblasZaxpy")
 #endif
@@ -1348,7 +1348,7 @@ module hipfort_hipblas
   
   interface hipblasScopy
 #ifdef USE_CUDA_NAMES
-    function hipblasScopy_orig(handle,n,x,incx,y,incy) bind(c, name="cublasScopy")
+    function hipblasScopy_orig(handle,n,x,incx,y,incy) bind(c, name="cublasScopy_v2")
 #else
     function hipblasScopy_orig(handle,n,x,incx,y,incy) bind(c, name="hipblasScopy")
 #endif
@@ -1372,7 +1372,7 @@ module hipfort_hipblas
   
   interface hipblasDcopy
 #ifdef USE_CUDA_NAMES
-    function hipblasDcopy_orig(handle,n,x,incx,y,incy) bind(c, name="cublasDcopy")
+    function hipblasDcopy_orig(handle,n,x,incx,y,incy) bind(c, name="cublasDcopy_v2")
 #else
     function hipblasDcopy_orig(handle,n,x,incx,y,incy) bind(c, name="hipblasDcopy")
 #endif
@@ -1396,7 +1396,7 @@ module hipfort_hipblas
   
   interface hipblasCcopy
 #ifdef USE_CUDA_NAMES
-    function hipblasCcopy_orig(handle,n,x,incx,y,incy) bind(c, name="cublasCcopy")
+    function hipblasCcopy_orig(handle,n,x,incx,y,incy) bind(c, name="cublasCcopy_v2")
 #else
     function hipblasCcopy_orig(handle,n,x,incx,y,incy) bind(c, name="hipblasCcopy")
 #endif
@@ -1420,7 +1420,7 @@ module hipfort_hipblas
   
   interface hipblasZcopy
 #ifdef USE_CUDA_NAMES
-    function hipblasZcopy_orig(handle,n,x,incx,y,incy) bind(c, name="cublasZcopy")
+    function hipblasZcopy_orig(handle,n,x,incx,y,incy) bind(c, name="cublasZcopy_v2")
 #else
     function hipblasZcopy_orig(handle,n,x,incx,y,incy) bind(c, name="hipblasZcopy")
 #endif
@@ -1652,7 +1652,7 @@ module hipfort_hipblas
   
   interface hipblasSdot
 #ifdef USE_CUDA_NAMES
-    function hipblasSdot_orig(handle,n,x,incx,y,incy,myResult) bind(c, name="cublasSdot")
+    function hipblasSdot_orig(handle,n,x,incx,y,incy,myResult) bind(c, name="cublasSdot_v2")
 #else
     function hipblasSdot_orig(handle,n,x,incx,y,incy,myResult) bind(c, name="hipblasSdot")
 #endif
@@ -1677,7 +1677,7 @@ module hipfort_hipblas
   
   interface hipblasDdot
 #ifdef USE_CUDA_NAMES
-    function hipblasDdot_orig(handle,n,x,incx,y,incy,myResult) bind(c, name="cublasDdot")
+    function hipblasDdot_orig(handle,n,x,incx,y,incy,myResult) bind(c, name="cublasDdot_v2")
 #else
     function hipblasDdot_orig(handle,n,x,incx,y,incy,myResult) bind(c, name="hipblasDdot")
 #endif
@@ -1702,7 +1702,7 @@ module hipfort_hipblas
   
   interface hipblasCdotc
 #ifdef USE_CUDA_NAMES
-    function hipblasCdotc_orig(handle,n,x,incx,y,incy,myResult) bind(c, name="cublasCdotc")
+    function hipblasCdotc_orig(handle,n,x,incx,y,incy,myResult) bind(c, name="cublasCdotc_v2")
 #else
     function hipblasCdotc_orig(handle,n,x,incx,y,incy,myResult) bind(c, name="hipblasCdotc")
 #endif
@@ -1727,7 +1727,7 @@ module hipfort_hipblas
   
   interface hipblasCdotu
 #ifdef USE_CUDA_NAMES
-    function hipblasCdotu_orig(handle,n,x,incx,y,incy,myResult) bind(c, name="cublasCdotu")
+    function hipblasCdotu_orig(handle,n,x,incx,y,incy,myResult) bind(c, name="cublasCdotu_v2")
 #else
     function hipblasCdotu_orig(handle,n,x,incx,y,incy,myResult) bind(c, name="hipblasCdotu")
 #endif
@@ -1752,7 +1752,7 @@ module hipfort_hipblas
   
   interface hipblasZdotc
 #ifdef USE_CUDA_NAMES
-    function hipblasZdotc_orig(handle,n,x,incx,y,incy,myResult) bind(c, name="cublasZdotc")
+    function hipblasZdotc_orig(handle,n,x,incx,y,incy,myResult) bind(c, name="cublasZdotc_v2")
 #else
     function hipblasZdotc_orig(handle,n,x,incx,y,incy,myResult) bind(c, name="hipblasZdotc")
 #endif
@@ -1777,7 +1777,7 @@ module hipfort_hipblas
   
   interface hipblasZdotu
 #ifdef USE_CUDA_NAMES
-    function hipblasZdotu_orig(handle,n,x,incx,y,incy,myResult) bind(c, name="cublasZdotu")
+    function hipblasZdotu_orig(handle,n,x,incx,y,incy,myResult) bind(c, name="cublasZdotu_v2")
 #else
     function hipblasZdotu_orig(handle,n,x,incx,y,incy,myResult) bind(c, name="hipblasZdotu")
 #endif
@@ -2126,7 +2126,7 @@ module hipfort_hipblas
   
   interface hipblasSnrm2
 #ifdef USE_CUDA_NAMES
-    function hipblasSnrm2_orig(handle,n,x,incx,myResult) bind(c, name="cublasSnrm2")
+    function hipblasSnrm2_orig(handle,n,x,incx,myResult) bind(c, name="cublasSnrm2_v2")
 #else
     function hipblasSnrm2_orig(handle,n,x,incx,myResult) bind(c, name="hipblasSnrm2")
 #endif
@@ -2149,7 +2149,7 @@ module hipfort_hipblas
   
   interface hipblasDnrm2
 #ifdef USE_CUDA_NAMES
-    function hipblasDnrm2_orig(handle,n,x,incx,myResult) bind(c, name="cublasDnrm2")
+    function hipblasDnrm2_orig(handle,n,x,incx,myResult) bind(c, name="cublasDnrm2_v2")
 #else
     function hipblasDnrm2_orig(handle,n,x,incx,myResult) bind(c, name="hipblasDnrm2")
 #endif
@@ -2172,7 +2172,7 @@ module hipfort_hipblas
   
   interface hipblasScnrm2
 #ifdef USE_CUDA_NAMES
-    function hipblasScnrm2_orig(handle,n,x,incx,myResult) bind(c, name="cublasScnrm2")
+    function hipblasScnrm2_orig(handle,n,x,incx,myResult) bind(c, name="cublasScnrm2_v2")
 #else
     function hipblasScnrm2_orig(handle,n,x,incx,myResult) bind(c, name="hipblasScnrm2")
 #endif
@@ -2195,7 +2195,7 @@ module hipfort_hipblas
   
   interface hipblasDznrm2
 #ifdef USE_CUDA_NAMES
-    function hipblasDznrm2_orig(handle,n,x,incx,myResult) bind(c, name="cublasDznrm2")
+    function hipblasDznrm2_orig(handle,n,x,incx,myResult) bind(c, name="cublasDznrm2_v2")
 #else
     function hipblasDznrm2_orig(handle,n,x,incx,myResult) bind(c, name="hipblasDznrm2")
 #endif
@@ -2414,7 +2414,7 @@ module hipfort_hipblas
   
   interface hipblasSrot
 #ifdef USE_CUDA_NAMES
-    function hipblasSrot_orig(handle,n,x,incx,y,incy,c,s) bind(c, name="cublasSrot")
+    function hipblasSrot_orig(handle,n,x,incx,y,incy,c,s) bind(c, name="cublasSrot_v2")
 #else
     function hipblasSrot_orig(handle,n,x,incx,y,incy,c,s) bind(c, name="hipblasSrot")
 #endif
@@ -2440,7 +2440,7 @@ module hipfort_hipblas
   
   interface hipblasDrot
 #ifdef USE_CUDA_NAMES
-    function hipblasDrot_orig(handle,n,x,incx,y,incy,c,s) bind(c, name="cublasDrot")
+    function hipblasDrot_orig(handle,n,x,incx,y,incy,c,s) bind(c, name="cublasDrot_v2")
 #else
     function hipblasDrot_orig(handle,n,x,incx,y,incy,c,s) bind(c, name="hipblasDrot")
 #endif
@@ -2466,7 +2466,7 @@ module hipfort_hipblas
   
   interface hipblasCrot
 #ifdef USE_CUDA_NAMES
-    function hipblasCrot_orig(handle,n,x,incx,y,incy,c,s) bind(c, name="cublasCrot")
+    function hipblasCrot_orig(handle,n,x,incx,y,incy,c,s) bind(c, name="cublasCrot_v2")
 #else
     function hipblasCrot_orig(handle,n,x,incx,y,incy,c,s) bind(c, name="hipblasCrot")
 #endif
@@ -2492,7 +2492,7 @@ module hipfort_hipblas
   
   interface hipblasCsrot
 #ifdef USE_CUDA_NAMES
-    function hipblasCsrot_orig(handle,n,x,incx,y,incy,c,s) bind(c, name="cublasCsrot")
+    function hipblasCsrot_orig(handle,n,x,incx,y,incy,c,s) bind(c, name="cublasCsrot_v2")
 #else
     function hipblasCsrot_orig(handle,n,x,incx,y,incy,c,s) bind(c, name="hipblasCsrot")
 #endif
@@ -2518,7 +2518,7 @@ module hipfort_hipblas
   
   interface hipblasZrot
 #ifdef USE_CUDA_NAMES
-    function hipblasZrot_orig(handle,n,x,incx,y,incy,c,s) bind(c, name="cublasZrot")
+    function hipblasZrot_orig(handle,n,x,incx,y,incy,c,s) bind(c, name="cublasZrot_v2")
 #else
     function hipblasZrot_orig(handle,n,x,incx,y,incy,c,s) bind(c, name="hipblasZrot")
 #endif
@@ -2544,7 +2544,7 @@ module hipfort_hipblas
   
   interface hipblasZdrot
 #ifdef USE_CUDA_NAMES
-    function hipblasZdrot_orig(handle,n,x,incx,y,incy,c,s) bind(c, name="cublasZdrot")
+    function hipblasZdrot_orig(handle,n,x,incx,y,incy,c,s) bind(c, name="cublasZdrot_v2")
 #else
     function hipblasZdrot_orig(handle,n,x,incx,y,incy,c,s) bind(c, name="hipblasZdrot")
 #endif
@@ -2906,7 +2906,7 @@ module hipfort_hipblas
   
   interface hipblasSrotg
 #ifdef USE_CUDA_NAMES
-    function hipblasSrotg_orig(handle,a,b,c,s) bind(c, name="cublasSrotg")
+    function hipblasSrotg_orig(handle,a,b,c,s) bind(c, name="cublasSrotg_v2")
 #else
     function hipblasSrotg_orig(handle,a,b,c,s) bind(c, name="hipblasSrotg")
 #endif
@@ -2926,7 +2926,7 @@ module hipfort_hipblas
   
   interface hipblasDrotg
 #ifdef USE_CUDA_NAMES
-    function hipblasDrotg_orig(handle,a,b,c,s) bind(c, name="cublasDrotg")
+    function hipblasDrotg_orig(handle,a,b,c,s) bind(c, name="cublasDrotg_v2")
 #else
     function hipblasDrotg_orig(handle,a,b,c,s) bind(c, name="hipblasDrotg")
 #endif
@@ -2946,7 +2946,7 @@ module hipfort_hipblas
   
   interface hipblasCrotg
 #ifdef USE_CUDA_NAMES
-    function hipblasCrotg_orig(handle,a,b,c,s) bind(c, name="cublasCrotg")
+    function hipblasCrotg_orig(handle,a,b,c,s) bind(c, name="cublasCrotg_v2")
 #else
     function hipblasCrotg_orig(handle,a,b,c,s) bind(c, name="hipblasCrotg")
 #endif
@@ -2966,7 +2966,7 @@ module hipfort_hipblas
   
   interface hipblasZrotg
 #ifdef USE_CUDA_NAMES
-    function hipblasZrotg_orig(handle,a,b,c,s) bind(c, name="cublasZrotg")
+    function hipblasZrotg_orig(handle,a,b,c,s) bind(c, name="cublasZrotg_v2")
 #else
     function hipblasZrotg_orig(handle,a,b,c,s) bind(c, name="hipblasZrotg")
 #endif
@@ -3170,7 +3170,7 @@ module hipfort_hipblas
   
   interface hipblasSrotm
 #ifdef USE_CUDA_NAMES
-    function hipblasSrotm_orig(handle,n,x,incx,y,incy,param) bind(c, name="cublasSrotm")
+    function hipblasSrotm_orig(handle,n,x,incx,y,incy,param) bind(c, name="cublasSrotm_v2")
 #else
     function hipblasSrotm_orig(handle,n,x,incx,y,incy,param) bind(c, name="hipblasSrotm")
 #endif
@@ -3195,7 +3195,7 @@ module hipfort_hipblas
   
   interface hipblasDrotm
 #ifdef USE_CUDA_NAMES
-    function hipblasDrotm_orig(handle,n,x,incx,y,incy,param) bind(c, name="cublasDrotm")
+    function hipblasDrotm_orig(handle,n,x,incx,y,incy,param) bind(c, name="cublasDrotm_v2")
 #else
     function hipblasDrotm_orig(handle,n,x,incx,y,incy,param) bind(c, name="hipblasDrotm")
 #endif
@@ -3330,7 +3330,7 @@ module hipfort_hipblas
   
   interface hipblasSrotmg
 #ifdef USE_CUDA_NAMES
-    function hipblasSrotmg_orig(handle,d1,d2,x1,y1,param) bind(c, name="cublasSrotmg")
+    function hipblasSrotmg_orig(handle,d1,d2,x1,y1,param) bind(c, name="cublasSrotmg_v2")
 #else
     function hipblasSrotmg_orig(handle,d1,d2,x1,y1,param) bind(c, name="hipblasSrotmg")
 #endif
@@ -3351,7 +3351,7 @@ module hipfort_hipblas
   
   interface hipblasDrotmg
 #ifdef USE_CUDA_NAMES
-    function hipblasDrotmg_orig(handle,d1,d2,x1,y1,param) bind(c, name="cublasDrotmg")
+    function hipblasDrotmg_orig(handle,d1,d2,x1,y1,param) bind(c, name="cublasDrotmg_v2")
 #else
     function hipblasDrotmg_orig(handle,d1,d2,x1,y1,param) bind(c, name="hipblasDrotmg")
 #endif
@@ -3470,7 +3470,7 @@ module hipfort_hipblas
   
   interface hipblasSscal
 #ifdef USE_CUDA_NAMES
-    function hipblasSscal_orig(handle,n,alpha,x,incx) bind(c, name="cublasSscal")
+    function hipblasSscal_orig(handle,n,alpha,x,incx) bind(c, name="cublasSscal_v2")
 #else
     function hipblasSscal_orig(handle,n,alpha,x,incx) bind(c, name="hipblasSscal")
 #endif
@@ -3493,7 +3493,7 @@ module hipfort_hipblas
   
   interface hipblasDscal
 #ifdef USE_CUDA_NAMES
-    function hipblasDscal_orig(handle,n,alpha,x,incx) bind(c, name="cublasDscal")
+    function hipblasDscal_orig(handle,n,alpha,x,incx) bind(c, name="cublasDscal_v2")
 #else
     function hipblasDscal_orig(handle,n,alpha,x,incx) bind(c, name="hipblasDscal")
 #endif
@@ -3516,7 +3516,7 @@ module hipfort_hipblas
   
   interface hipblasCscal
 #ifdef USE_CUDA_NAMES
-    function hipblasCscal_orig(handle,n,alpha,x,incx) bind(c, name="cublasCscal")
+    function hipblasCscal_orig(handle,n,alpha,x,incx) bind(c, name="cublasCscal_v2")
 #else
     function hipblasCscal_orig(handle,n,alpha,x,incx) bind(c, name="hipblasCscal")
 #endif
@@ -3539,7 +3539,7 @@ module hipfort_hipblas
   
   interface hipblasCsscal
 #ifdef USE_CUDA_NAMES
-    function hipblasCsscal_orig(handle,n,alpha,x,incx) bind(c, name="cublasCsscal")
+    function hipblasCsscal_orig(handle,n,alpha,x,incx) bind(c, name="cublasCsscal_v2")
 #else
     function hipblasCsscal_orig(handle,n,alpha,x,incx) bind(c, name="hipblasCsscal")
 #endif
@@ -3562,7 +3562,7 @@ module hipfort_hipblas
   
   interface hipblasZscal
 #ifdef USE_CUDA_NAMES
-    function hipblasZscal_orig(handle,n,alpha,x,incx) bind(c, name="cublasZscal")
+    function hipblasZscal_orig(handle,n,alpha,x,incx) bind(c, name="cublasZscal_v2")
 #else
     function hipblasZscal_orig(handle,n,alpha,x,incx) bind(c, name="hipblasZscal")
 #endif
@@ -3585,7 +3585,7 @@ module hipfort_hipblas
   
   interface hipblasZdscal
 #ifdef USE_CUDA_NAMES
-    function hipblasZdscal_orig(handle,n,alpha,x,incx) bind(c, name="cublasZdscal")
+    function hipblasZdscal_orig(handle,n,alpha,x,incx) bind(c, name="cublasZdscal_v2")
 #else
     function hipblasZdscal_orig(handle,n,alpha,x,incx) bind(c, name="hipblasZdscal")
 #endif
@@ -3902,7 +3902,7 @@ module hipfort_hipblas
   
   interface hipblasSswap
 #ifdef USE_CUDA_NAMES
-    function hipblasSswap_orig(handle,n,x,incx,y,incy) bind(c, name="cublasSswap")
+    function hipblasSswap_orig(handle,n,x,incx,y,incy) bind(c, name="cublasSswap_v2")
 #else
     function hipblasSswap_orig(handle,n,x,incx,y,incy) bind(c, name="hipblasSswap")
 #endif
@@ -3926,7 +3926,7 @@ module hipfort_hipblas
   
   interface hipblasDswap
 #ifdef USE_CUDA_NAMES
-    function hipblasDswap_orig(handle,n,x,incx,y,incy) bind(c, name="cublasDswap")
+    function hipblasDswap_orig(handle,n,x,incx,y,incy) bind(c, name="cublasDswap_v2")
 #else
     function hipblasDswap_orig(handle,n,x,incx,y,incy) bind(c, name="hipblasDswap")
 #endif
@@ -3950,7 +3950,7 @@ module hipfort_hipblas
   
   interface hipblasCswap
 #ifdef USE_CUDA_NAMES
-    function hipblasCswap_orig(handle,n,x,incx,y,incy) bind(c, name="cublasCswap")
+    function hipblasCswap_orig(handle,n,x,incx,y,incy) bind(c, name="cublasCswap_v2")
 #else
     function hipblasCswap_orig(handle,n,x,incx,y,incy) bind(c, name="hipblasCswap")
 #endif
@@ -3974,7 +3974,7 @@ module hipfort_hipblas
   
   interface hipblasZswap
 #ifdef USE_CUDA_NAMES
-    function hipblasZswap_orig(handle,n,x,incx,y,incy) bind(c, name="cublasZswap")
+    function hipblasZswap_orig(handle,n,x,incx,y,incy) bind(c, name="cublasZswap_v2")
 #else
     function hipblasZswap_orig(handle,n,x,incx,y,incy) bind(c, name="hipblasZswap")
 #endif
@@ -4206,7 +4206,7 @@ module hipfort_hipblas
   
   interface hipblasSgbmv
 #ifdef USE_CUDA_NAMES
-    function hipblasSgbmv_orig(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="cublasSgbmv")
+    function hipblasSgbmv_orig(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="cublasSgbmv_v2")
 #else
     function hipblasSgbmv_orig(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="hipblasSgbmv")
 #endif
@@ -4238,7 +4238,7 @@ module hipfort_hipblas
   
   interface hipblasDgbmv
 #ifdef USE_CUDA_NAMES
-    function hipblasDgbmv_orig(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="cublasDgbmv")
+    function hipblasDgbmv_orig(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="cublasDgbmv_v2")
 #else
     function hipblasDgbmv_orig(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="hipblasDgbmv")
 #endif
@@ -4270,7 +4270,7 @@ module hipfort_hipblas
   
   interface hipblasCgbmv
 #ifdef USE_CUDA_NAMES
-    function hipblasCgbmv_orig(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="cublasCgbmv")
+    function hipblasCgbmv_orig(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="cublasCgbmv_v2")
 #else
     function hipblasCgbmv_orig(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="hipblasCgbmv")
 #endif
@@ -4302,7 +4302,7 @@ module hipfort_hipblas
   
   interface hipblasZgbmv
 #ifdef USE_CUDA_NAMES
-    function hipblasZgbmv_orig(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="cublasZgbmv")
+    function hipblasZgbmv_orig(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="cublasZgbmv_v2")
 #else
     function hipblasZgbmv_orig(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="hipblasZgbmv")
 #endif
@@ -4610,7 +4610,7 @@ module hipfort_hipblas
   
   interface hipblasSgemv
 #ifdef USE_CUDA_NAMES
-    function hipblasSgemv_orig(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="cublasSgemv")
+    function hipblasSgemv_orig(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="cublasSgemv_v2")
 #else
     function hipblasSgemv_orig(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="hipblasSgemv")
 #endif
@@ -4640,7 +4640,7 @@ module hipfort_hipblas
   
   interface hipblasDgemv
 #ifdef USE_CUDA_NAMES
-    function hipblasDgemv_orig(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="cublasDgemv")
+    function hipblasDgemv_orig(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="cublasDgemv_v2")
 #else
     function hipblasDgemv_orig(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="hipblasDgemv")
 #endif
@@ -4670,7 +4670,7 @@ module hipfort_hipblas
   
   interface hipblasCgemv
 #ifdef USE_CUDA_NAMES
-    function hipblasCgemv_orig(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="cublasCgemv")
+    function hipblasCgemv_orig(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="cublasCgemv_v2")
 #else
     function hipblasCgemv_orig(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="hipblasCgemv")
 #endif
@@ -4700,7 +4700,7 @@ module hipfort_hipblas
   
   interface hipblasZgemv
 #ifdef USE_CUDA_NAMES
-    function hipblasZgemv_orig(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="cublasZgemv")
+    function hipblasZgemv_orig(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="cublasZgemv_v2")
 #else
     function hipblasZgemv_orig(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="hipblasZgemv")
 #endif
@@ -4990,7 +4990,7 @@ module hipfort_hipblas
   
   interface hipblasSger
 #ifdef USE_CUDA_NAMES
-    function hipblasSger_orig(handle,m,n,alpha,x,incx,y,incy,A,lda) bind(c, name="cublasSger")
+    function hipblasSger_orig(handle,m,n,alpha,x,incx,y,incy,A,lda) bind(c, name="cublasSger_v2")
 #else
     function hipblasSger_orig(handle,m,n,alpha,x,incx,y,incy,A,lda) bind(c, name="hipblasSger")
 #endif
@@ -5018,7 +5018,7 @@ module hipfort_hipblas
   
   interface hipblasDger
 #ifdef USE_CUDA_NAMES
-    function hipblasDger_orig(handle,m,n,alpha,x,incx,y,incy,A,lda) bind(c, name="cublasDger")
+    function hipblasDger_orig(handle,m,n,alpha,x,incx,y,incy,A,lda) bind(c, name="cublasDger_v2")
 #else
     function hipblasDger_orig(handle,m,n,alpha,x,incx,y,incy,A,lda) bind(c, name="hipblasDger")
 #endif
@@ -5046,7 +5046,7 @@ module hipfort_hipblas
   
   interface hipblasCgeru
 #ifdef USE_CUDA_NAMES
-    function hipblasCgeru_orig(handle,m,n,alpha,x,incx,y,incy,A,lda) bind(c, name="cublasCgeru")
+    function hipblasCgeru_orig(handle,m,n,alpha,x,incx,y,incy,A,lda) bind(c, name="cublasCgeru_v2")
 #else
     function hipblasCgeru_orig(handle,m,n,alpha,x,incx,y,incy,A,lda) bind(c, name="hipblasCgeru")
 #endif
@@ -5074,7 +5074,7 @@ module hipfort_hipblas
   
   interface hipblasCgerc
 #ifdef USE_CUDA_NAMES
-    function hipblasCgerc_orig(handle,m,n,alpha,x,incx,y,incy,A,lda) bind(c, name="cublasCgerc")
+    function hipblasCgerc_orig(handle,m,n,alpha,x,incx,y,incy,A,lda) bind(c, name="cublasCgerc_v2")
 #else
     function hipblasCgerc_orig(handle,m,n,alpha,x,incx,y,incy,A,lda) bind(c, name="hipblasCgerc")
 #endif
@@ -5102,7 +5102,7 @@ module hipfort_hipblas
   
   interface hipblasZgeru
 #ifdef USE_CUDA_NAMES
-    function hipblasZgeru_orig(handle,m,n,alpha,x,incx,y,incy,A,lda) bind(c, name="cublasZgeru")
+    function hipblasZgeru_orig(handle,m,n,alpha,x,incx,y,incy,A,lda) bind(c, name="cublasZgeru_v2")
 #else
     function hipblasZgeru_orig(handle,m,n,alpha,x,incx,y,incy,A,lda) bind(c, name="hipblasZgeru")
 #endif
@@ -5130,7 +5130,7 @@ module hipfort_hipblas
   
   interface hipblasZgerc
 #ifdef USE_CUDA_NAMES
-    function hipblasZgerc_orig(handle,m,n,alpha,x,incx,y,incy,A,lda) bind(c, name="cublasZgerc")
+    function hipblasZgerc_orig(handle,m,n,alpha,x,incx,y,incy,A,lda) bind(c, name="cublasZgerc_v2")
 #else
     function hipblasZgerc_orig(handle,m,n,alpha,x,incx,y,incy,A,lda) bind(c, name="hipblasZgerc")
 #endif
@@ -5524,7 +5524,7 @@ module hipfort_hipblas
   
   interface hipblasChbmv
 #ifdef USE_CUDA_NAMES
-    function hipblasChbmv_orig(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="cublasChbmv")
+    function hipblasChbmv_orig(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="cublasChbmv_v2")
 #else
     function hipblasChbmv_orig(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="hipblasChbmv")
 #endif
@@ -5554,7 +5554,7 @@ module hipfort_hipblas
   
   interface hipblasZhbmv
 #ifdef USE_CUDA_NAMES
-    function hipblasZhbmv_orig(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="cublasZhbmv")
+    function hipblasZhbmv_orig(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="cublasZhbmv_v2")
 #else
     function hipblasZhbmv_orig(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="hipblasZhbmv")
 #endif
@@ -5714,7 +5714,7 @@ module hipfort_hipblas
   
   interface hipblasChemv
 #ifdef USE_CUDA_NAMES
-    function hipblasChemv_orig(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="cublasChemv")
+    function hipblasChemv_orig(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="cublasChemv_v2")
 #else
     function hipblasChemv_orig(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="hipblasChemv")
 #endif
@@ -5743,7 +5743,7 @@ module hipfort_hipblas
   
   interface hipblasZhemv
 #ifdef USE_CUDA_NAMES
-    function hipblasZhemv_orig(handle,uplo,n,alpha,A,da,x,incx,beta,y,incy) bind(c, name="cublasZhemv")
+    function hipblasZhemv_orig(handle,uplo,n,alpha,A,da,x,incx,beta,y,incy) bind(c, name="cublasZhemv_v2")
 #else
     function hipblasZhemv_orig(handle,uplo,n,alpha,A,da,x,incx,beta,y,incy) bind(c, name="hipblasZhemv")
 #endif
@@ -5898,7 +5898,7 @@ module hipfort_hipblas
   
   interface hipblasCher
 #ifdef USE_CUDA_NAMES
-    function hipblasCher_orig(handle,uplo,n,alpha,x,incx,A,lda) bind(c, name="cublasCher")
+    function hipblasCher_orig(handle,uplo,n,alpha,x,incx,A,lda) bind(c, name="cublasCher_v2")
 #else
     function hipblasCher_orig(handle,uplo,n,alpha,x,incx,A,lda) bind(c, name="hipblasCher")
 #endif
@@ -5924,7 +5924,7 @@ module hipfort_hipblas
   
   interface hipblasZher
 #ifdef USE_CUDA_NAMES
-    function hipblasZher_orig(handle,uplo,n,alpha,x,incx,A,lda) bind(c, name="cublasZher")
+    function hipblasZher_orig(handle,uplo,n,alpha,x,incx,A,lda) bind(c, name="cublasZher_v2")
 #else
     function hipblasZher_orig(handle,uplo,n,alpha,x,incx,A,lda) bind(c, name="hipblasZher")
 #endif
@@ -6062,7 +6062,7 @@ module hipfort_hipblas
   
   interface hipblasCher2
 #ifdef USE_CUDA_NAMES
-    function hipblasCher2_orig(handle,uplo,n,alpha,x,incx,y,incy,A,lda) bind(c, name="cublasCher2")
+    function hipblasCher2_orig(handle,uplo,n,alpha,x,incx,y,incy,A,lda) bind(c, name="cublasCher2_v2")
 #else
     function hipblasCher2_orig(handle,uplo,n,alpha,x,incx,y,incy,A,lda) bind(c, name="hipblasCher2")
 #endif
@@ -6090,7 +6090,7 @@ module hipfort_hipblas
   
   interface hipblasZher2
 #ifdef USE_CUDA_NAMES
-    function hipblasZher2_orig(handle,uplo,n,alpha,x,incx,y,incy,A,lda) bind(c, name="cublasZher2")
+    function hipblasZher2_orig(handle,uplo,n,alpha,x,incx,y,incy,A,lda) bind(c, name="cublasZher2_v2")
 #else
     function hipblasZher2_orig(handle,uplo,n,alpha,x,incx,y,incy,A,lda) bind(c, name="hipblasZher2")
 #endif
@@ -6240,7 +6240,7 @@ module hipfort_hipblas
   
   interface hipblasChpmv
 #ifdef USE_CUDA_NAMES
-    function hipblasChpmv_orig(handle,uplo,n,alpha,AP,x,incx,beta,y,incy) bind(c, name="cublasChpmv")
+    function hipblasChpmv_orig(handle,uplo,n,alpha,AP,x,incx,beta,y,incy) bind(c, name="cublasChpmv_v2")
 #else
     function hipblasChpmv_orig(handle,uplo,n,alpha,AP,x,incx,beta,y,incy) bind(c, name="hipblasChpmv")
 #endif
@@ -6268,7 +6268,7 @@ module hipfort_hipblas
   
   interface hipblasZhpmv
 #ifdef USE_CUDA_NAMES
-    function hipblasZhpmv_orig(handle,uplo,n,alpha,AP,x,incx,beta,y,incy) bind(c, name="cublasZhpmv")
+    function hipblasZhpmv_orig(handle,uplo,n,alpha,AP,x,incx,beta,y,incy) bind(c, name="cublasZhpmv_v2")
 #else
     function hipblasZhpmv_orig(handle,uplo,n,alpha,AP,x,incx,beta,y,incy) bind(c, name="hipblasZhpmv")
 #endif
@@ -6418,7 +6418,7 @@ module hipfort_hipblas
   
   interface hipblasChpr
 #ifdef USE_CUDA_NAMES
-    function hipblasChpr_orig(handle,uplo,n,alpha,x,incx,AP) bind(c, name="cublasChpr")
+    function hipblasChpr_orig(handle,uplo,n,alpha,x,incx,AP) bind(c, name="cublasChpr_v2")
 #else
     function hipblasChpr_orig(handle,uplo,n,alpha,x,incx,AP) bind(c, name="hipblasChpr")
 #endif
@@ -6443,7 +6443,7 @@ module hipfort_hipblas
   
   interface hipblasZhpr
 #ifdef USE_CUDA_NAMES
-    function hipblasZhpr_orig(handle,uplo,n,alpha,x,incx,AP) bind(c, name="cublasZhpr")
+    function hipblasZhpr_orig(handle,uplo,n,alpha,x,incx,AP) bind(c, name="cublasZhpr_v2")
 #else
     function hipblasZhpr_orig(handle,uplo,n,alpha,x,incx,AP) bind(c, name="hipblasZhpr")
 #endif
@@ -6576,7 +6576,7 @@ module hipfort_hipblas
   
   interface hipblasChpr2
 #ifdef USE_CUDA_NAMES
-    function hipblasChpr2_orig(handle,uplo,n,alpha,x,incx,y,incy,AP) bind(c, name="cublasChpr2")
+    function hipblasChpr2_orig(handle,uplo,n,alpha,x,incx,y,incy,AP) bind(c, name="cublasChpr2_v2")
 #else
     function hipblasChpr2_orig(handle,uplo,n,alpha,x,incx,y,incy,AP) bind(c, name="hipblasChpr2")
 #endif
@@ -6603,7 +6603,7 @@ module hipfort_hipblas
   
   interface hipblasZhpr2
 #ifdef USE_CUDA_NAMES
-    function hipblasZhpr2_orig(handle,uplo,n,alpha,x,incx,y,incy,AP) bind(c, name="cublasZhpr2")
+    function hipblasZhpr2_orig(handle,uplo,n,alpha,x,incx,y,incy,AP) bind(c, name="cublasZhpr2_v2")
 #else
     function hipblasZhpr2_orig(handle,uplo,n,alpha,x,incx,y,incy,AP) bind(c, name="hipblasZhpr2")
 #endif
@@ -6748,7 +6748,7 @@ module hipfort_hipblas
   
   interface hipblasSsbmv
 #ifdef USE_CUDA_NAMES
-    function hipblasSsbmv_orig(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="cublasSsbmv")
+    function hipblasSsbmv_orig(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="cublasSsbmv_v2")
 #else
     function hipblasSsbmv_orig(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="hipblasSsbmv")
 #endif
@@ -6778,7 +6778,7 @@ module hipfort_hipblas
   
   interface hipblasDsbmv
 #ifdef USE_CUDA_NAMES
-    function hipblasDsbmv_orig(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="cublasDsbmv")
+    function hipblasDsbmv_orig(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="cublasDsbmv_v2")
 #else
     function hipblasDsbmv_orig(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="hipblasDsbmv")
 #endif
@@ -6938,7 +6938,7 @@ module hipfort_hipblas
   
   interface hipblasSspmv
 #ifdef USE_CUDA_NAMES
-    function hipblasSspmv_orig(handle,uplo,n,alpha,AP,x,incx,beta,y,incy) bind(c, name="cublasSspmv")
+    function hipblasSspmv_orig(handle,uplo,n,alpha,AP,x,incx,beta,y,incy) bind(c, name="cublasSspmv_v2")
 #else
     function hipblasSspmv_orig(handle,uplo,n,alpha,AP,x,incx,beta,y,incy) bind(c, name="hipblasSspmv")
 #endif
@@ -6966,7 +6966,7 @@ module hipfort_hipblas
   
   interface hipblasDspmv
 #ifdef USE_CUDA_NAMES
-    function hipblasDspmv_orig(handle,uplo,n,alpha,AP,x,incx,beta,y,incy) bind(c, name="cublasDspmv")
+    function hipblasDspmv_orig(handle,uplo,n,alpha,AP,x,incx,beta,y,incy) bind(c, name="cublasDspmv_v2")
 #else
     function hipblasDspmv_orig(handle,uplo,n,alpha,AP,x,incx,beta,y,incy) bind(c, name="hipblasDspmv")
 #endif
@@ -7116,7 +7116,7 @@ module hipfort_hipblas
   
   interface hipblasSspr
 #ifdef USE_CUDA_NAMES
-    function hipblasSspr_orig(handle,uplo,n,alpha,x,incx,AP) bind(c, name="cublasSspr")
+    function hipblasSspr_orig(handle,uplo,n,alpha,x,incx,AP) bind(c, name="cublasSspr_v2")
 #else
     function hipblasSspr_orig(handle,uplo,n,alpha,x,incx,AP) bind(c, name="hipblasSspr")
 #endif
@@ -7141,7 +7141,7 @@ module hipfort_hipblas
   
   interface hipblasDspr
 #ifdef USE_CUDA_NAMES
-    function hipblasDspr_orig(handle,uplo,n,alpha,x,incx,AP) bind(c, name="cublasDspr")
+    function hipblasDspr_orig(handle,uplo,n,alpha,x,incx,AP) bind(c, name="cublasDspr_v2")
 #else
     function hipblasDspr_orig(handle,uplo,n,alpha,x,incx,AP) bind(c, name="hipblasDspr")
 #endif
@@ -7432,7 +7432,7 @@ module hipfort_hipblas
   
   interface hipblasSspr2
 #ifdef USE_CUDA_NAMES
-    function hipblasSspr2_orig(handle,uplo,n,alpha,x,incx,y,incy,AP) bind(c, name="cublasSspr2")
+    function hipblasSspr2_orig(handle,uplo,n,alpha,x,incx,y,incy,AP) bind(c, name="cublasSspr2_v2")
 #else
     function hipblasSspr2_orig(handle,uplo,n,alpha,x,incx,y,incy,AP) bind(c, name="hipblasSspr2")
 #endif
@@ -7459,7 +7459,7 @@ module hipfort_hipblas
   
   interface hipblasDspr2
 #ifdef USE_CUDA_NAMES
-    function hipblasDspr2_orig(handle,uplo,n,alpha,x,incx,y,incy,AP) bind(c, name="cublasDspr2")
+    function hipblasDspr2_orig(handle,uplo,n,alpha,x,incx,y,incy,AP) bind(c, name="cublasDspr2_v2")
 #else
     function hipblasDspr2_orig(handle,uplo,n,alpha,x,incx,y,incy,AP) bind(c, name="hipblasDspr2")
 #endif
@@ -7604,7 +7604,7 @@ module hipfort_hipblas
   
   interface hipblasSsymv
 #ifdef USE_CUDA_NAMES
-    function hipblasSsymv_orig(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="cublasSsymv")
+    function hipblasSsymv_orig(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="cublasSsymv_v2")
 #else
     function hipblasSsymv_orig(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="hipblasSsymv")
 #endif
@@ -7633,7 +7633,7 @@ module hipfort_hipblas
   
   interface hipblasDsymv
 #ifdef USE_CUDA_NAMES
-    function hipblasDsymv_orig(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="cublasDsymv")
+    function hipblasDsymv_orig(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="cublasDsymv_v2")
 #else
     function hipblasDsymv_orig(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="hipblasDsymv")
 #endif
@@ -7662,7 +7662,7 @@ module hipfort_hipblas
   
   interface hipblasCsymv
 #ifdef USE_CUDA_NAMES
-    function hipblasCsymv_orig(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="cublasCsymv")
+    function hipblasCsymv_orig(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="cublasCsymv_v2")
 #else
     function hipblasCsymv_orig(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="hipblasCsymv")
 #endif
@@ -7691,7 +7691,7 @@ module hipfort_hipblas
   
   interface hipblasZsymv
 #ifdef USE_CUDA_NAMES
-    function hipblasZsymv_orig(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="cublasZsymv")
+    function hipblasZsymv_orig(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="cublasZsymv_v2")
 #else
     function hipblasZsymv_orig(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="hipblasZsymv")
 #endif
@@ -7972,7 +7972,7 @@ module hipfort_hipblas
   
   interface hipblasSsyr
 #ifdef USE_CUDA_NAMES
-    function hipblasSsyr_orig(handle,uplo,n,alpha,x,incx,A,lda) bind(c, name="cublasSsyr")
+    function hipblasSsyr_orig(handle,uplo,n,alpha,x,incx,A,lda) bind(c, name="cublasSsyr_v2")
 #else
     function hipblasSsyr_orig(handle,uplo,n,alpha,x,incx,A,lda) bind(c, name="hipblasSsyr")
 #endif
@@ -7998,7 +7998,7 @@ module hipfort_hipblas
   
   interface hipblasDsyr
 #ifdef USE_CUDA_NAMES
-    function hipblasDsyr_orig(handle,uplo,n,alpha,x,incx,A,lda) bind(c, name="cublasDsyr")
+    function hipblasDsyr_orig(handle,uplo,n,alpha,x,incx,A,lda) bind(c, name="cublasDsyr_v2")
 #else
     function hipblasDsyr_orig(handle,uplo,n,alpha,x,incx,A,lda) bind(c, name="hipblasDsyr")
 #endif
@@ -8024,7 +8024,7 @@ module hipfort_hipblas
   
   interface hipblasCsyr
 #ifdef USE_CUDA_NAMES
-    function hipblasCsyr_orig(handle,uplo,n,alpha,x,incx,A,lda) bind(c, name="cublasCsyr")
+    function hipblasCsyr_orig(handle,uplo,n,alpha,x,incx,A,lda) bind(c, name="cublasCsyr_v2")
 #else
     function hipblasCsyr_orig(handle,uplo,n,alpha,x,incx,A,lda) bind(c, name="hipblasCsyr")
 #endif
@@ -8050,7 +8050,7 @@ module hipfort_hipblas
   
   interface hipblasZsyr
 #ifdef USE_CUDA_NAMES
-    function hipblasZsyr_orig(handle,uplo,n,alpha,x,incx,A,lda) bind(c, name="cublasZsyr")
+    function hipblasZsyr_orig(handle,uplo,n,alpha,x,incx,A,lda) bind(c, name="cublasZsyr_v2")
 #else
     function hipblasZsyr_orig(handle,uplo,n,alpha,x,incx,A,lda) bind(c, name="hipblasZsyr")
 #endif
@@ -8300,7 +8300,7 @@ module hipfort_hipblas
   
   interface hipblasSsyr2
 #ifdef USE_CUDA_NAMES
-    function hipblasSsyr2_orig(handle,uplo,n,alpha,x,incx,y,incy,A,lda) bind(c, name="cublasSsyr2")
+    function hipblasSsyr2_orig(handle,uplo,n,alpha,x,incx,y,incy,A,lda) bind(c, name="cublasSsyr2_v2")
 #else
     function hipblasSsyr2_orig(handle,uplo,n,alpha,x,incx,y,incy,A,lda) bind(c, name="hipblasSsyr2")
 #endif
@@ -8328,7 +8328,7 @@ module hipfort_hipblas
   
   interface hipblasDsyr2
 #ifdef USE_CUDA_NAMES
-    function hipblasDsyr2_orig(handle,uplo,n,alpha,x,incx,y,incy,A,lda) bind(c, name="cublasDsyr2")
+    function hipblasDsyr2_orig(handle,uplo,n,alpha,x,incx,y,incy,A,lda) bind(c, name="cublasDsyr2_v2")
 #else
     function hipblasDsyr2_orig(handle,uplo,n,alpha,x,incx,y,incy,A,lda) bind(c, name="hipblasDsyr2")
 #endif
@@ -8356,7 +8356,7 @@ module hipfort_hipblas
   
   interface hipblasCsyr2
 #ifdef USE_CUDA_NAMES
-    function hipblasCsyr2_orig(handle,uplo,n,alpha,x,incx,y,incy,A,lda) bind(c, name="cublasCsyr2")
+    function hipblasCsyr2_orig(handle,uplo,n,alpha,x,incx,y,incy,A,lda) bind(c, name="cublasCsyr2_v2")
 #else
     function hipblasCsyr2_orig(handle,uplo,n,alpha,x,incx,y,incy,A,lda) bind(c, name="hipblasCsyr2")
 #endif
@@ -8384,7 +8384,7 @@ module hipfort_hipblas
   
   interface hipblasZsyr2
 #ifdef USE_CUDA_NAMES
-    function hipblasZsyr2_orig(handle,uplo,n,alpha,x,incx,y,incy,A,lda) bind(c, name="cublasZsyr2")
+    function hipblasZsyr2_orig(handle,uplo,n,alpha,x,incx,y,incy,A,lda) bind(c, name="cublasZsyr2_v2")
 #else
     function hipblasZsyr2_orig(handle,uplo,n,alpha,x,incx,y,incy,A,lda) bind(c, name="hipblasZsyr2")
 #endif
@@ -8656,7 +8656,7 @@ module hipfort_hipblas
   
   interface hipblasStbmv
 #ifdef USE_CUDA_NAMES
-    function hipblasStbmv_orig(handle,uplo,transA,diag,m,k,A,lda,x,incx) bind(c, name="cublasStbmv")
+    function hipblasStbmv_orig(handle,uplo,transA,diag,m,k,A,lda,x,incx) bind(c, name="cublasStbmv_v2")
 #else
     function hipblasStbmv_orig(handle,uplo,transA,diag,m,k,A,lda,x,incx) bind(c, name="hipblasStbmv")
 #endif
@@ -8684,7 +8684,7 @@ module hipfort_hipblas
   
   interface hipblasDtbmv
 #ifdef USE_CUDA_NAMES
-    function hipblasDtbmv_orig(handle,uplo,transA,diag,m,k,A,lda,x,incx) bind(c, name="cublasDtbmv")
+    function hipblasDtbmv_orig(handle,uplo,transA,diag,m,k,A,lda,x,incx) bind(c, name="cublasDtbmv_v2")
 #else
     function hipblasDtbmv_orig(handle,uplo,transA,diag,m,k,A,lda,x,incx) bind(c, name="hipblasDtbmv")
 #endif
@@ -8712,7 +8712,7 @@ module hipfort_hipblas
   
   interface hipblasCtbmv
 #ifdef USE_CUDA_NAMES
-    function hipblasCtbmv_orig(handle,uplo,transA,diag,m,k,A,lda,x,incx) bind(c, name="cublasCtbmv")
+    function hipblasCtbmv_orig(handle,uplo,transA,diag,m,k,A,lda,x,incx) bind(c, name="cublasCtbmv_v2")
 #else
     function hipblasCtbmv_orig(handle,uplo,transA,diag,m,k,A,lda,x,incx) bind(c, name="hipblasCtbmv")
 #endif
@@ -8740,7 +8740,7 @@ module hipfort_hipblas
   
   interface hipblasZtbmv
 #ifdef USE_CUDA_NAMES
-    function hipblasZtbmv_orig(handle,uplo,transA,diag,m,k,A,lda,x,incx) bind(c, name="cublasZtbmv")
+    function hipblasZtbmv_orig(handle,uplo,transA,diag,m,k,A,lda,x,incx) bind(c, name="cublasZtbmv_v2")
 #else
     function hipblasZtbmv_orig(handle,uplo,transA,diag,m,k,A,lda,x,incx) bind(c, name="hipblasZtbmv")
 #endif
@@ -9008,7 +9008,7 @@ module hipfort_hipblas
   
   interface hipblasStbsv
 #ifdef USE_CUDA_NAMES
-    function hipblasStbsv_orig(handle,uplo,transA,diag,n,k,A,lda,x,incx) bind(c, name="cublasStbsv")
+    function hipblasStbsv_orig(handle,uplo,transA,diag,n,k,A,lda,x,incx) bind(c, name="cublasStbsv_v2")
 #else
     function hipblasStbsv_orig(handle,uplo,transA,diag,n,k,A,lda,x,incx) bind(c, name="hipblasStbsv")
 #endif
@@ -9036,7 +9036,7 @@ module hipfort_hipblas
   
   interface hipblasDtbsv
 #ifdef USE_CUDA_NAMES
-    function hipblasDtbsv_orig(handle,uplo,transA,diag,n,k,A,lda,x,incx) bind(c, name="cublasDtbsv")
+    function hipblasDtbsv_orig(handle,uplo,transA,diag,n,k,A,lda,x,incx) bind(c, name="cublasDtbsv_v2")
 #else
     function hipblasDtbsv_orig(handle,uplo,transA,diag,n,k,A,lda,x,incx) bind(c, name="hipblasDtbsv")
 #endif
@@ -9064,7 +9064,7 @@ module hipfort_hipblas
   
   interface hipblasCtbsv
 #ifdef USE_CUDA_NAMES
-    function hipblasCtbsv_orig(handle,uplo,transA,diag,n,k,A,lda,x,incx) bind(c, name="cublasCtbsv")
+    function hipblasCtbsv_orig(handle,uplo,transA,diag,n,k,A,lda,x,incx) bind(c, name="cublasCtbsv_v2")
 #else
     function hipblasCtbsv_orig(handle,uplo,transA,diag,n,k,A,lda,x,incx) bind(c, name="hipblasCtbsv")
 #endif
@@ -9092,7 +9092,7 @@ module hipfort_hipblas
   
   interface hipblasZtbsv
 #ifdef USE_CUDA_NAMES
-    function hipblasZtbsv_orig(handle,uplo,transA,diag,n,k,A,lda,x,incx) bind(c, name="cublasZtbsv")
+    function hipblasZtbsv_orig(handle,uplo,transA,diag,n,k,A,lda,x,incx) bind(c, name="cublasZtbsv_v2")
 #else
     function hipblasZtbsv_orig(handle,uplo,transA,diag,n,k,A,lda,x,incx) bind(c, name="hipblasZtbsv")
 #endif
@@ -9360,7 +9360,7 @@ module hipfort_hipblas
   
   interface hipblasStpmv
 #ifdef USE_CUDA_NAMES
-    function hipblasStpmv_orig(handle,uplo,transA,diag,m,AP,x,incx) bind(c, name="cublasStpmv")
+    function hipblasStpmv_orig(handle,uplo,transA,diag,m,AP,x,incx) bind(c, name="cublasStpmv_v2")
 #else
     function hipblasStpmv_orig(handle,uplo,transA,diag,m,AP,x,incx) bind(c, name="hipblasStpmv")
 #endif
@@ -9386,7 +9386,7 @@ module hipfort_hipblas
   
   interface hipblasDtpmv
 #ifdef USE_CUDA_NAMES
-    function hipblasDtpmv_orig(handle,uplo,transA,diag,m,AP,x,incx) bind(c, name="cublasDtpmv")
+    function hipblasDtpmv_orig(handle,uplo,transA,diag,m,AP,x,incx) bind(c, name="cublasDtpmv_v2")
 #else
     function hipblasDtpmv_orig(handle,uplo,transA,diag,m,AP,x,incx) bind(c, name="hipblasDtpmv")
 #endif
@@ -9412,7 +9412,7 @@ module hipfort_hipblas
   
   interface hipblasCtpmv
 #ifdef USE_CUDA_NAMES
-    function hipblasCtpmv_orig(handle,uplo,transA,diag,m,AP,x,incx) bind(c, name="cublasCtpmv")
+    function hipblasCtpmv_orig(handle,uplo,transA,diag,m,AP,x,incx) bind(c, name="cublasCtpmv_v2")
 #else
     function hipblasCtpmv_orig(handle,uplo,transA,diag,m,AP,x,incx) bind(c, name="hipblasCtpmv")
 #endif
@@ -9438,7 +9438,7 @@ module hipfort_hipblas
   
   interface hipblasZtpmv
 #ifdef USE_CUDA_NAMES
-    function hipblasZtpmv_orig(handle,uplo,transA,diag,m,AP,x,incx) bind(c, name="cublasZtpmv")
+    function hipblasZtpmv_orig(handle,uplo,transA,diag,m,AP,x,incx) bind(c, name="cublasZtpmv_v2")
 #else
     function hipblasZtpmv_orig(handle,uplo,transA,diag,m,AP,x,incx) bind(c, name="hipblasZtpmv")
 #endif
@@ -9688,7 +9688,7 @@ module hipfort_hipblas
   
   interface hipblasStpsv
 #ifdef USE_CUDA_NAMES
-    function hipblasStpsv_orig(handle,uplo,transA,diag,m,AP,x,incx) bind(c, name="cublasStpsv")
+    function hipblasStpsv_orig(handle,uplo,transA,diag,m,AP,x,incx) bind(c, name="cublasStpsv_v2")
 #else
     function hipblasStpsv_orig(handle,uplo,transA,diag,m,AP,x,incx) bind(c, name="hipblasStpsv")
 #endif
@@ -9714,7 +9714,7 @@ module hipfort_hipblas
   
   interface hipblasDtpsv
 #ifdef USE_CUDA_NAMES
-    function hipblasDtpsv_orig(handle,uplo,transA,diag,m,AP,x,incx) bind(c, name="cublasDtpsv")
+    function hipblasDtpsv_orig(handle,uplo,transA,diag,m,AP,x,incx) bind(c, name="cublasDtpsv_v2")
 #else
     function hipblasDtpsv_orig(handle,uplo,transA,diag,m,AP,x,incx) bind(c, name="hipblasDtpsv")
 #endif
@@ -9740,7 +9740,7 @@ module hipfort_hipblas
   
   interface hipblasCtpsv
 #ifdef USE_CUDA_NAMES
-    function hipblasCtpsv_orig(handle,uplo,transA,diag,m,AP,x,incx) bind(c, name="cublasCtpsv")
+    function hipblasCtpsv_orig(handle,uplo,transA,diag,m,AP,x,incx) bind(c, name="cublasCtpsv_v2")
 #else
     function hipblasCtpsv_orig(handle,uplo,transA,diag,m,AP,x,incx) bind(c, name="hipblasCtpsv")
 #endif
@@ -9766,7 +9766,7 @@ module hipfort_hipblas
   
   interface hipblasZtpsv
 #ifdef USE_CUDA_NAMES
-    function hipblasZtpsv_orig(handle,uplo,transA,diag,m,AP,x,incx) bind(c, name="cublasZtpsv")
+    function hipblasZtpsv_orig(handle,uplo,transA,diag,m,AP,x,incx) bind(c, name="cublasZtpsv_v2")
 #else
     function hipblasZtpsv_orig(handle,uplo,transA,diag,m,AP,x,incx) bind(c, name="hipblasZtpsv")
 #endif
@@ -10016,7 +10016,7 @@ module hipfort_hipblas
   
   interface hipblasStrmv
 #ifdef USE_CUDA_NAMES
-    function hipblasStrmv_orig(handle,uplo,transA,diag,m,A,lda,x,incx) bind(c, name="cublasStrmv")
+    function hipblasStrmv_orig(handle,uplo,transA,diag,m,A,lda,x,incx) bind(c, name="cublasStrmv_v2")
 #else
     function hipblasStrmv_orig(handle,uplo,transA,diag,m,A,lda,x,incx) bind(c, name="hipblasStrmv")
 #endif
@@ -10043,7 +10043,7 @@ module hipfort_hipblas
   
   interface hipblasDtrmv
 #ifdef USE_CUDA_NAMES
-    function hipblasDtrmv_orig(handle,uplo,transA,diag,m,A,lda,x,incx) bind(c, name="cublasDtrmv")
+    function hipblasDtrmv_orig(handle,uplo,transA,diag,m,A,lda,x,incx) bind(c, name="cublasDtrmv_v2")
 #else
     function hipblasDtrmv_orig(handle,uplo,transA,diag,m,A,lda,x,incx) bind(c, name="hipblasDtrmv")
 #endif
@@ -10070,7 +10070,7 @@ module hipfort_hipblas
   
   interface hipblasCtrmv
 #ifdef USE_CUDA_NAMES
-    function hipblasCtrmv_orig(handle,uplo,transA,diag,m,A,lda,x,incx) bind(c, name="cublasCtrmv")
+    function hipblasCtrmv_orig(handle,uplo,transA,diag,m,A,lda,x,incx) bind(c, name="cublasCtrmv_v2")
 #else
     function hipblasCtrmv_orig(handle,uplo,transA,diag,m,A,lda,x,incx) bind(c, name="hipblasCtrmv")
 #endif
@@ -10097,7 +10097,7 @@ module hipfort_hipblas
   
   interface hipblasZtrmv
 #ifdef USE_CUDA_NAMES
-    function hipblasZtrmv_orig(handle,uplo,transA,diag,m,A,lda,x,incx) bind(c, name="cublasZtrmv")
+    function hipblasZtrmv_orig(handle,uplo,transA,diag,m,A,lda,x,incx) bind(c, name="cublasZtrmv_v2")
 #else
     function hipblasZtrmv_orig(handle,uplo,transA,diag,m,A,lda,x,incx) bind(c, name="hipblasZtrmv")
 #endif
@@ -10356,7 +10356,7 @@ module hipfort_hipblas
   
   interface hipblasStrsv
 #ifdef USE_CUDA_NAMES
-    function hipblasStrsv_orig(handle,uplo,transA,diag,m,A,lda,x,incx) bind(c, name="cublasStrsv")
+    function hipblasStrsv_orig(handle,uplo,transA,diag,m,A,lda,x,incx) bind(c, name="cublasStrsv_v2")
 #else
     function hipblasStrsv_orig(handle,uplo,transA,diag,m,A,lda,x,incx) bind(c, name="hipblasStrsv")
 #endif
@@ -10383,7 +10383,7 @@ module hipfort_hipblas
   
   interface hipblasDtrsv
 #ifdef USE_CUDA_NAMES
-    function hipblasDtrsv_orig(handle,uplo,transA,diag,m,A,lda,x,incx) bind(c, name="cublasDtrsv")
+    function hipblasDtrsv_orig(handle,uplo,transA,diag,m,A,lda,x,incx) bind(c, name="cublasDtrsv_v2")
 #else
     function hipblasDtrsv_orig(handle,uplo,transA,diag,m,A,lda,x,incx) bind(c, name="hipblasDtrsv")
 #endif
@@ -10410,7 +10410,7 @@ module hipfort_hipblas
   
   interface hipblasCtrsv
 #ifdef USE_CUDA_NAMES
-    function hipblasCtrsv_orig(handle,uplo,transA,diag,m,A,lda,x,incx) bind(c, name="cublasCtrsv")
+    function hipblasCtrsv_orig(handle,uplo,transA,diag,m,A,lda,x,incx) bind(c, name="cublasCtrsv_v2")
 #else
     function hipblasCtrsv_orig(handle,uplo,transA,diag,m,A,lda,x,incx) bind(c, name="hipblasCtrsv")
 #endif
@@ -10437,7 +10437,7 @@ module hipfort_hipblas
   
   interface hipblasZtrsv
 #ifdef USE_CUDA_NAMES
-    function hipblasZtrsv_orig(handle,uplo,transA,diag,m,A,lda,x,incx) bind(c, name="cublasZtrsv")
+    function hipblasZtrsv_orig(handle,uplo,transA,diag,m,A,lda,x,incx) bind(c, name="cublasZtrsv_v2")
 #else
     function hipblasZtrsv_orig(handle,uplo,transA,diag,m,A,lda,x,incx) bind(c, name="hipblasZtrsv")
 #endif
@@ -10696,7 +10696,7 @@ module hipfort_hipblas
   
   interface hipblasCherk
 #ifdef USE_CUDA_NAMES
-    function hipblasCherk_orig(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) bind(c, name="cublasCherk")
+    function hipblasCherk_orig(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) bind(c, name="cublasCherk_v2")
 #else
     function hipblasCherk_orig(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) bind(c, name="hipblasCherk")
 #endif
@@ -10725,7 +10725,7 @@ module hipfort_hipblas
   
   interface hipblasZherk
 #ifdef USE_CUDA_NAMES
-    function hipblasZherk_orig(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) bind(c, name="cublasZherk")
+    function hipblasZherk_orig(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) bind(c, name="cublasZherk_v2")
 #else
     function hipblasZherk_orig(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) bind(c, name="hipblasZherk")
 #endif
@@ -11074,7 +11074,7 @@ module hipfort_hipblas
   
   interface hipblasCher2k
 #ifdef USE_CUDA_NAMES
-    function hipblasCher2k_orig(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasCher2k")
+    function hipblasCher2k_orig(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasCher2k_v2")
 #else
     function hipblasCher2k_orig(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="hipblasCher2k")
 #endif
@@ -11105,7 +11105,7 @@ module hipfort_hipblas
   
   interface hipblasZher2k
 #ifdef USE_CUDA_NAMES
-    function hipblasZher2k_orig(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasZher2k")
+    function hipblasZher2k_orig(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasZher2k_v2")
 #else
     function hipblasZher2k_orig(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="hipblasZher2k")
 #endif
@@ -11270,7 +11270,7 @@ module hipfort_hipblas
   
   interface hipblasSsymm
 #ifdef USE_CUDA_NAMES
-    function hipblasSsymm_orig(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasSsymm")
+    function hipblasSsymm_orig(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasSsymm_v2")
 #else
     function hipblasSsymm_orig(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="hipblasSsymm")
 #endif
@@ -11301,7 +11301,7 @@ module hipfort_hipblas
   
   interface hipblasDsymm
 #ifdef USE_CUDA_NAMES
-    function hipblasDsymm_orig(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasDsymm")
+    function hipblasDsymm_orig(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasDsymm_v2")
 #else
     function hipblasDsymm_orig(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="hipblasDsymm")
 #endif
@@ -11332,7 +11332,7 @@ module hipfort_hipblas
   
   interface hipblasCsymm
 #ifdef USE_CUDA_NAMES
-    function hipblasCsymm_orig(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasCsymm")
+    function hipblasCsymm_orig(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasCsymm_v2")
 #else
     function hipblasCsymm_orig(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="hipblasCsymm")
 #endif
@@ -11363,7 +11363,7 @@ module hipfort_hipblas
   
   interface hipblasZsymm
 #ifdef USE_CUDA_NAMES
-    function hipblasZsymm_orig(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasZsymm")
+    function hipblasZsymm_orig(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasZsymm_v2")
 #else
     function hipblasZsymm_orig(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="hipblasZsymm")
 #endif
@@ -11662,7 +11662,7 @@ module hipfort_hipblas
   
   interface hipblasSsyrk
 #ifdef USE_CUDA_NAMES
-    function hipblasSsyrk_orig(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) bind(c, name="cublasSsyrk")
+    function hipblasSsyrk_orig(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) bind(c, name="cublasSsyrk_v2")
 #else
     function hipblasSsyrk_orig(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) bind(c, name="hipblasSsyrk")
 #endif
@@ -11691,7 +11691,7 @@ module hipfort_hipblas
   
   interface hipblasDsyrk
 #ifdef USE_CUDA_NAMES
-    function hipblasDsyrk_orig(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) bind(c, name="cublasDsyrk")
+    function hipblasDsyrk_orig(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) bind(c, name="cublasDsyrk_v2")
 #else
     function hipblasDsyrk_orig(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) bind(c, name="hipblasDsyrk")
 #endif
@@ -11720,7 +11720,7 @@ module hipfort_hipblas
   
   interface hipblasCsyrk
 #ifdef USE_CUDA_NAMES
-    function hipblasCsyrk_orig(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) bind(c, name="cublasCsyrk")
+    function hipblasCsyrk_orig(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) bind(c, name="cublasCsyrk_v2")
 #else
     function hipblasCsyrk_orig(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) bind(c, name="hipblasCsyrk")
 #endif
@@ -11749,7 +11749,7 @@ module hipfort_hipblas
   
   interface hipblasZsyrk
 #ifdef USE_CUDA_NAMES
-    function hipblasZsyrk_orig(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) bind(c, name="cublasZsyrk")
+    function hipblasZsyrk_orig(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) bind(c, name="cublasZsyrk_v2")
 #else
     function hipblasZsyrk_orig(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) bind(c, name="hipblasZsyrk")
 #endif
@@ -12026,7 +12026,7 @@ module hipfort_hipblas
   
   interface hipblasSsyr2k
 #ifdef USE_CUDA_NAMES
-    function hipblasSsyr2k_orig(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasSsyr2k")
+    function hipblasSsyr2k_orig(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasSsyr2k_v2")
 #else
     function hipblasSsyr2k_orig(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="hipblasSsyr2k")
 #endif
@@ -12057,7 +12057,7 @@ module hipfort_hipblas
   
   interface hipblasDsyr2k
 #ifdef USE_CUDA_NAMES
-    function hipblasDsyr2k_orig(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasDsyr2k")
+    function hipblasDsyr2k_orig(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasDsyr2k_v2")
 #else
     function hipblasDsyr2k_orig(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="hipblasDsyr2k")
 #endif
@@ -12088,7 +12088,7 @@ module hipfort_hipblas
   
   interface hipblasCsyr2k
 #ifdef USE_CUDA_NAMES
-    function hipblasCsyr2k_orig(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasCsyr2k")
+    function hipblasCsyr2k_orig(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasCsyr2k_v2")
 #else
     function hipblasCsyr2k_orig(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="hipblasCsyr2k")
 #endif
@@ -12119,7 +12119,7 @@ module hipfort_hipblas
   
   interface hipblasZsyr2k
 #ifdef USE_CUDA_NAMES
-    function hipblasZsyr2k_orig(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasZsyr2k")
+    function hipblasZsyr2k_orig(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasZsyr2k_v2")
 #else
     function hipblasZsyr2k_orig(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="hipblasZsyr2k")
 #endif
@@ -13202,7 +13202,7 @@ module hipfort_hipblas
   
   interface hipblasChemm
 #ifdef USE_CUDA_NAMES
-    function hipblasChemm_orig(handle,side,uplo,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasChemm")
+    function hipblasChemm_orig(handle,side,uplo,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasChemm_v2")
 #else
     function hipblasChemm_orig(handle,side,uplo,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="hipblasChemm")
 #endif
@@ -13233,7 +13233,7 @@ module hipfort_hipblas
   
   interface hipblasZhemm
 #ifdef USE_CUDA_NAMES
-    function hipblasZhemm_orig(handle,side,uplo,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasZhemm")
+    function hipblasZhemm_orig(handle,side,uplo,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasZhemm_v2")
 #else
     function hipblasZhemm_orig(handle,side,uplo,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="hipblasZhemm")
 #endif
@@ -13398,7 +13398,7 @@ module hipfort_hipblas
   
   interface hipblasStrmm
 #ifdef USE_CUDA_NAMES
-    function hipblasStrmm_orig(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="cublasStrmm")
+    function hipblasStrmm_orig(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="cublasStrmm_v2")
 #else
     function hipblasStrmm_orig(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="hipblasStrmm")
 #endif
@@ -13428,7 +13428,7 @@ module hipfort_hipblas
   
   interface hipblasDtrmm
 #ifdef USE_CUDA_NAMES
-    function hipblasDtrmm_orig(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="cublasDtrmm")
+    function hipblasDtrmm_orig(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="cublasDtrmm_v2")
 #else
     function hipblasDtrmm_orig(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="hipblasDtrmm")
 #endif
@@ -13458,7 +13458,7 @@ module hipfort_hipblas
   
   interface hipblasCtrmm
 #ifdef USE_CUDA_NAMES
-    function hipblasCtrmm_orig(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="cublasCtrmm")
+    function hipblasCtrmm_orig(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="cublasCtrmm_v2")
 #else
     function hipblasCtrmm_orig(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="hipblasCtrmm")
 #endif
@@ -13488,7 +13488,7 @@ module hipfort_hipblas
   
   interface hipblasZtrmm
 #ifdef USE_CUDA_NAMES
-    function hipblasZtrmm_orig(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="cublasZtrmm")
+    function hipblasZtrmm_orig(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="cublasZtrmm_v2")
 #else
     function hipblasZtrmm_orig(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="hipblasZtrmm")
 #endif
@@ -13774,7 +13774,7 @@ module hipfort_hipblas
   
   interface hipblasStrsm
 #ifdef USE_CUDA_NAMES
-    function hipblasStrsm_orig(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="cublasStrsm")
+    function hipblasStrsm_orig(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="cublasStrsm_v2")
 #else
     function hipblasStrsm_orig(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="hipblasStrsm")
 #endif
@@ -13804,7 +13804,7 @@ module hipfort_hipblas
   
   interface hipblasDtrsm
 #ifdef USE_CUDA_NAMES
-    function hipblasDtrsm_orig(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="cublasDtrsm")
+    function hipblasDtrsm_orig(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="cublasDtrsm_v2")
 #else
     function hipblasDtrsm_orig(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="hipblasDtrsm")
 #endif
@@ -13834,7 +13834,7 @@ module hipfort_hipblas
   
   interface hipblasCtrsm
 #ifdef USE_CUDA_NAMES
-    function hipblasCtrsm_orig(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="cublasCtrsm")
+    function hipblasCtrsm_orig(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="cublasCtrsm_v2")
 #else
     function hipblasCtrsm_orig(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="hipblasCtrsm")
 #endif
@@ -13864,7 +13864,7 @@ module hipfort_hipblas
   
   interface hipblasZtrsm
 #ifdef USE_CUDA_NAMES
-    function hipblasZtrsm_orig(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="cublasZtrsm")
+    function hipblasZtrsm_orig(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="cublasZtrsm_v2")
 #else
     function hipblasZtrsm_orig(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="hipblasZtrsm")
 #endif
@@ -15918,7 +15918,7 @@ module hipfort_hipblas
   
   interface hipblasSgemm
 #ifdef USE_CUDA_NAMES
-    function hipblasSgemm_orig(handle,transa,transb,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasSgemm")
+    function hipblasSgemm_orig(handle,transa,transb,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasSgemm_v2")
 #else
     function hipblasSgemm_orig(handle,transa,transb,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="hipblasSgemm")
 #endif
@@ -15950,7 +15950,7 @@ module hipfort_hipblas
   
   interface hipblasDgemm
 #ifdef USE_CUDA_NAMES
-    function hipblasDgemm_orig(handle,transa,transb,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasDgemm")
+    function hipblasDgemm_orig(handle,transa,transb,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasDgemm_v2")
 #else
     function hipblasDgemm_orig(handle,transa,transb,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="hipblasDgemm")
 #endif
@@ -15982,7 +15982,7 @@ module hipfort_hipblas
   
   interface hipblasCgemm
 #ifdef USE_CUDA_NAMES
-    function hipblasCgemm_orig(handle,transa,transb,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasCgemm")
+    function hipblasCgemm_orig(handle,transa,transb,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasCgemm_v2")
 #else
     function hipblasCgemm_orig(handle,transa,transb,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="hipblasCgemm")
 #endif
@@ -16014,7 +16014,7 @@ module hipfort_hipblas
   
   interface hipblasZgemm
 #ifdef USE_CUDA_NAMES
-    function hipblasZgemm_orig(handle,transa,transb,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasZgemm")
+    function hipblasZgemm_orig(handle,transa,transb,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasZgemm_v2")
 #else
     function hipblasZgemm_orig(handle,transa,transb,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="hipblasZgemm")
 #endif
