@@ -1,6 +1,6 @@
 PREFIX ?= f2008
 
-TEST_COLLECTIONS        = vecadd rocfft rocsparse hipblas rocblas 
+TEST_COLLECTIONS        = vecadd rocfft rocsparse hipblas rocblas hipfft 
 RUN_TEST_COLLECTIONS   := $(addprefix run., $(TEST_COLLECTIONS))
 CLEAN_TEST_COLLECTIONS := $(addprefix clean., $(TEST_COLLECTIONS))
 
@@ -15,8 +15,18 @@ $(RUN_TEST_COLLECTIONS):
 $(CLEAN_TEST_COLLECTIONS):
 	+make -C $(PREFIX)/$(shell echo $@ | sed "s,clean.,,g") clean
 
-all: $(TEST_COLLECTIONS)
+build: $(TEST_COLLECTIONS)
 
 run: $(RUN_TEST_COLLECTIONS)
 
 clean: $(CLEAN_TEST_COLLECTIONS)
+
+build_all:
+	+make -C . build  PREFIX=f2003
+	+make -C . build  PREFIX=f2008
+clean_all:
+	+make -C . clean PREFIX=f2003
+	+make -C . clean PREFIX=f2008
+run_all:
+	+make -C . run PREFIX=f2003
+	+make -C . run PREFIX=f2008
