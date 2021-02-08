@@ -9,7 +9,7 @@ program hipfft_example
   integer(c_int), parameter :: N = 16
 
   complex(8), allocatable, dimension(:) :: hx
-  integer(c_int) :: direction
+  integer(c_int) :: direction = HIPFFT_FORWARD
   complex(8), pointer, dimension(:) :: dx
   type(c_ptr) :: plan = c_null_ptr
   integer(c_size_t)            :: lengths(3)

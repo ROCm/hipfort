@@ -5,7 +5,7 @@
 # Each test is contained in its own subdirectory of this test directory
 # The Makefile must create a binary with the same name as the directory name.
 
-cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
+cmake_minimum_required(VERSION 2.8.12 FATAL_ERROR)
 if ("${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_CURRENT_SOURCE_DIR}")
   project(test-hipfort)
 endif()
