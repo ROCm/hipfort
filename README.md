@@ -18,17 +18,44 @@ cd ../test/vecadd
 hipfc -v hip_implementation.cpp main.f03
 ./a.out
 ```
-The above demonstrates the use of the hipfc utility.  hipfc calls hipcc for non-fortran files and then
-compiles the fortran files and links to the object file created by hipcc.
 
-## Examples
-Examples are found in the test directory.  The examples have a simple Makefile 
-that includes the hipfort Makefile.hipfort from the bin directory as follows.
+The above steps demonstrate the use of the hipfc utility. hipfc calls hipcc for non-Fortran files and then
+compiles the Fortran files and links to the object file created by hipcc.
+
+## TESTS/Examples
+
+Tests can be run from the `cmake` `build` folder 
+or directly from the repo's `test` subfolder.
+
+### AMD GPUs
+
 ```
-HIPFORT_HOME ?= /tmp/hipfort
-include $(HIPFORT_HOME)/bin/Makefile.hipfort
+cd build/
+make all-tests-run
 ```
-If you change the location of hipfort change the value for HIPFORT_HOME.
+
+Alternatively:
+
+```
+cd test/
+make run_all
+```
+
+### NVIDIA GPUs
+
+```
+cd build/
+make all-tests-run CFLAGS="--offload-arch=sm_70 -lcublas -lcusolver -lcufft"
+```
+
+Alternatively:
+
+```
+cd test/
+make run_all CFLAGS="--offload-arch=sm_70 -lcublas -lcusolver -lcufft"
+```
+
+NOTE: Choose offload architecture value according to used device.
 
 ## Copyright, License, and Disclaimer
 
