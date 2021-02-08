@@ -15,7 +15,7 @@ program hipfft_example
   end type double2
 
   type(double2), allocatable, target, dimension(:) :: hx
-  integer(c_int) :: direction
+  integer(c_int) :: direction = HIPFFT_FORWARD
   type(c_ptr) :: dx = c_null_ptr
   type(c_ptr) :: plan = c_null_ptr
   integer(c_size_t), allocatable, target, dimension(:) :: lengths
