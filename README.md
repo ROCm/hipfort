@@ -55,7 +55,7 @@ cd test/
 make run_all CFLAGS="--offload-arch=sm_70 -lcublas -lcusolver -lcufft"
 ```
 
-NOTE: Choose offload architecture value according to used device.
+| **NOTE**: Choose offload architecture value according to used device.
 
 ## Copyright, License, and Disclaimer
 
