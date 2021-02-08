@@ -14,7 +14,10 @@ mkdir build ; cd build
 cmake -DHIPFORT_INSTALL_DIR=/tmp/hipfort ..
 make install
 export PATH=/tmp/hipfort/bin:$PATH
-cd ../test/vecadd
+cd ../test/f2003/vecadd
+hipfc -v hip_implementation.cpp main.f03
+./a.out
+cd ../../f2008/vecadd
 hipfc -v hip_implementation.cpp main.f03
 ./a.out
 ```
