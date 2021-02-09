@@ -6,8 +6,8 @@ This is a FORTRAN interface library for accessing GPU Kernels.
 
 ## Build and test hipfort from source
 
-Install gfortran, git, cmake, and hip, if not yet installed.
-Then build, install, and test hipfort from source with these commands.
+Install `gfortran`, `git`, `cmake`, and HIP, if not yet installed.
+Then build, install, and test hipfort from source with the commands below:
 ```
 git clone https://github.com/ROCmSoftwarePlatform/hipfort
 mkdir build ; cd build
@@ -17,20 +17,19 @@ export PATH=/tmp/hipfort/bin:$PATH
 cd ../test/f2003/vecadd
 hipfc -v hip_implementation.cpp main.f03
 ./a.out
-cd ../../f2008/vecadd
-hipfc -v hip_implementation.cpp main.f03
-./a.out
 ```
 
-The above steps demonstrate the use of the hipfc utility. hipfc calls hipcc for non-Fortran files and then
-compiles the Fortran files and links to the object file created by hipcc.
+The above steps demonstrate the use of the `hipfc` utility. `hipfc` calls `hipcc` for non-Fortran files and then
+compiles the Fortran files and links to the object file created by `hipcc`.
 
-## TESTS/Examples
+## Tests / Examples
 
-Tests can be run from the `cmake` `build` folder 
-or directly from the repo's `test` subfolder.
+Tests can be run from the `build/` folder 
+or from the repo's `test/` folder.
 
 ### AMD GPUs
+
+| **NOTE**: Running all tests as below requires that all ROCm math libraries can be found at `/opt/rocm`.
 
 ```
 cd build/
@@ -46,6 +45,10 @@ make run_all
 
 ### NVIDIA GPUs
 
+| **NOTE**: Running all tests as below requires that CUDA can be found at `/usr/local/cuda`.
+
+| **NOTE**: Choose offload architecture value according to used device.
+
 ```
 cd build/
 make all-tests-run CFLAGS="--offload-arch=sm_70 -lcublas -lcusolver -lcufft"
@@ -57,8 +60,6 @@ Alternatively:
 cd test/
 make run_all CFLAGS="--offload-arch=sm_70 -lcublas -lcusolver -lcufft"
 ```
-
-| **NOTE**: Choose offload architecture value according to used device.
 
 ## Copyright, License, and Disclaimer
 
@@ -84,3 +85,4 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+a
