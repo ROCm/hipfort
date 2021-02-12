@@ -37,7 +37,7 @@ ifeq (nvptx,$(findstring nvptx,$(HIPFORT_ARCHGPU)))
   HIPCC_ENV  = HIP_PLATFORM=nvcc
   HIPCC_OPTS = "--gpu-architecture=$(GPU)"
 else
-  LINKOPTS   = -L$(LIB_DIR) -lhipfort-$(ARCH) -L$(ROCM)/lib $(HIPCC_LIBS) -lamdhip64 -Wl,-rpath=$(ROCM)/lib
+  LINKOPTS   = -L$(LIB_DIR) -lhipfort-$(ARCH) -L$(ROCM_PATH)/lib $(HIPCC_LIBS) -lamdhip64 -Wl,-rpath=$(ROCM_PATH)/lib
   HIPCC_ENV  = HIP_PLATFORM=$(HIP_PLATFORM) DEVICE_LIB_PATH=$(DEVICE_LIB_PATH) HIP_CLANG_PATH=$(HIP_CLANG_PATH)
   HIPCC_OPTS = -fno-gpu-rdc -fPIC --offload-arch=$(GPU)
 endif
