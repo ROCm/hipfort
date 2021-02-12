@@ -59,7 +59,7 @@ function usage(){
     -hipfort-compiler <bin>   $HIPFORT_COMPILER or gfortran
     -hipfort          <path>  $HIPFORT   or _HIPFORT_INSTALL_DIR_
     -cuda-dir         <path>  $CUDA_HOME or /usr/local/cuda
-    -rocm-dir         <path>  $ROCM_DIR  or /opt/rocm
+    -rocm-path         <path>  $ROCM_PATH  or /opt/rocm
     -I         <include dir>  Provide one directory per -I option
     -O         <LLVM opt>     LLVM optimization level
     -o         <outfilename>  Default=a.out
@@ -74,9 +74,9 @@ function usage(){
     hipfc --offload-arch=sm_70 myapp.f -o myapp /* Compile for NVPTX target */
 
    Instead of these command line options:
-        -hipfort, -cuda-dir, -hipfort-compiler -rocm-dir
+        -hipfort, -cuda-dir, -hipfort-compiler -rocm-path
       you may alternatively set these environment variables, respectively:
-        HIPFORT,  CUDA_HOME,  HIPFORT_COMPILER, ROCM_DIR
+        HIPFORT,  CUDA_HOME,  HIPFORT_COMPILER, ROCM_PATH
       Command line options take precedence over environment variables. 
 
    Copyright (c) 2021 ADVANCED MICRO DEVICES, INC.
@@ -147,12 +147,12 @@ function getdname(){
 
 function addrocmlib(){
   name=$1
-  if [ ! -d $ROCM_DIR/$name/lib ] ; then 
-     echo "ERROR:  Directory $ROCM_DIR/$name/lib does not exist"
+  if [ ! -d $ROCM_PATH/$name/lib ] ; then 
+     echo "ERROR:  Directory $ROCM_PATH/$name/lib does not exist"
      echo "        Please install $name"
      exit $DEADRC
   fi
-  LINKOPTS="$LINKOPTS -L$ROCM_DIR/$name/lib -l$name"
+  LINKOPTS="$LINKOPTS -L$ROCM_PATH/$name/lib -l$name"
 }
 
 function addcudalib(){
@@ -205,7 +205,7 @@ while [ $# -gt 0 ] ; do
       -lcurand)         CUDA_LIBS+=" curand" ;;
       -triple)          TARGET_TRIPLE=$2; shift ;;
       -cuda-dir)        CUDA_HOME=$2; shift ;;
-      -rocm-dir)        ROCM_DIR=$2; shift ;;
+      -rocm-dir)        ROCM_PATH=$2; shift ;;
       -hipfort)         HIPFORT=$2; shift ;;
       -hipfort-compiler) HIPFORT_COMPILER=$2; shift ;;
       -h) 	        usage ;;
@@ -252,11 +252,12 @@ cdir=$(getdname $0)
 HOW_CALLED=${0##*/}
 
 CUDA_HOME=${CUDA_HOME:-/usr/local/cuda}
-ROCM_DIR=${ROCM_DIR:-/opt/rocm}
+ROCM_PATH=${ROCM_PATH:-/opt/rocm}
+HIP_PLATFORM=${HIP_PLATFORM:-amd}
 
 HIPFORT=${HIPFORT:-_HIPFORT_INSTALL_DIR_}
 if [ ! -d $HIPFORT ] ; then
-   HIPFORT="$ROCM_DIR/hipfort"
+   HIPFORT="$ROCM_PATH/hipfort"
 fi
 if [ ! -d $HIPFORT ] ; then
    HIPFORT="/tmp/hipfort"
@@ -287,10 +288,10 @@ if [ ! $HIPFORT_GPU ] ; then
 fi
 
 # Future versions of ROCm will install the device library in ROCM_DIR/amdgcn/bitcode
-if [ -d $ROCM_DIR/amdgcn/bitcode ] ; then
-    DEVICE_LIB_PATH=$ROCM_DIR/amdgcn/bitcode
+if [ -d $ROCM_PATH/amdgcn/bitcode ] ; then
+    DEVICE_LIB_PATH=$ROCM_PATH/amdgcn/bitcode
 else
-    DEVICE_LIB_PATH=$ROCM_DIR/lib
+    DEVICE_LIB_PATH=$ROCM_PATH/lib
 fi
 
 #  Handle all differences between amdgcn and nvidia here
@@ -302,12 +303,12 @@ if [ "${HIPFORT_GPU:0:3}" == "sm_" ] ; then
    HIPCC_OPTS="--gpu-architecture=$HIPFORT_GPU -x cu $CUOPTS"
    # fixme: add test for minimum cuda version here
 else 
-   if [ ! -f $ROCM_DIR/bin/hipconfig ] ; then
-      echo "ERROR: hipconfig not found at $ROCM_DIR/bin/hipconfig"
+   if [ ! -f $ROCM_PATH/bin/hipconfig ] ; then
+      echo "ERROR: hipconfig not found at $ROCM_PATH/bin/hipconfig"
       echo "       Please install ROCm hip"
       exit 1
    fi
-   hipversion=`$ROCM_DIR/bin/hipconfig -v`
+   hipversion=`$ROCM_PATH/bin/hipconfig -v`
    hipver=`echo $hipversion | cut -d"." -f1`
    hiprel=`echo $hipversion | cut -d"." -f2`
    if [ $hipver -lt 3 ] || ( [ $hipver == 3 ] && [ $hiprel -lt 5 ] ) ; then
@@ -317,8 +318,8 @@ else
    fi
    TARGET_TRIPLE=${TARGET_TRIPLE:-amdgcn-amd-amdhsa}
    TARGET_ARCH="amdgcn"
-   TARGET_LIBS="-L$ROCM_DIR/lib -lamdhip64 -Wl,-rpath=$ROCM_DIR/lib "
-   HIPCC_ENV="HIP_PLATFORM=hcc DEVICE_LIB_PATH=$DEVICE_LIB_PATH HIP_CLANG_PATH=$ROCM_DIR/llvm/bin"
+   TARGET_LIBS="-L$ROCM_PATH/lib -lamdhip64 -Wl,-rpath=$ROCM_PATH/lib "
+   HIPCC_ENV="HIP_PLATFORM=$HIP_PLATFORM DEVICE_LIB_PATH=$DEVICE_LIB_PATH HIP_CLANG_PATH=$ROCM_PATH/llvm/bin"
    HIPCC_OPTS="-fno-gpu-rdc -fPIC --offload-arch=$HIPFORT_GPU"
 fi
 
@@ -438,7 +439,7 @@ if [ $VV ] ; then
    echo "#Info:  HIPFORT Version:	$PROGVERSION" 
    echo "#Info:  HIPFORT Compiler:	$HIPFORT_COMPILER"
    echo "#Info:  HIPFORT Path:		$HIPFORT"
-   echo "#Info:  ROCM Path:		$ROCM_DIR"
+   echo "#Info:  ROCM Path:		$ROCM_PATH"
    echo "#Info:  CUDA Path:		$CUDA_HOME"
    echo "#Info:  How called:		$HOW_CALLED"
    echo "#Info:  Target GPU:		$HIPFORT_GPU"
@@ -461,14 +462,14 @@ if [ "$__HIPCC_INPUTS" != "" ] ; then
       __HIPCC_OUTFILE="$TMPDIR/hipcc.o"
       __INPUTS+=" $__HIPCC_OUTFILE"
    fi
-   if [ ! -f $ROCM_DIR/bin/hipcc ] ; then
-      echo "ERROR:  hipcc compiler not found at $ROCM_DIR/bin/hipcc"
+   if [ ! -f $ROCM_PATH/bin/hipcc ] ; then
+      echo "ERROR:  hipcc compiler not found at $ROCM_PATH/bin/hipcc"
       echo "        Please install hip"
       exit $DEADRC
    fi
    [ $VERBOSE ] && echo "export $HIPCC_ENV"
    export $HIPCC_ENV
-   runcmd "$ROCM_DIR/bin/hipcc $HIPCC_OPTS $PASSTHRUARGS $__HIPCC_INPUTS $__HIPCC_LINKOPTS -o $__HIPCC_OUTFILE"
+   runcmd "$ROCM_PATH/bin/hipcc $HIPCC_OPTS $PASSTHRUARGS $__HIPCC_INPUTS $__HIPCC_LINKOPTS -o $__HIPCC_OUTFILE"
 fi
 
 if [ "$__INPUTS" != "" ] ; then
