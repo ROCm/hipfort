@@ -287,7 +287,7 @@ if [ ! $HIPFORT_GPU ] ; then
    fi
 fi
 
-# Future versions of ROCm will install the device library in ROCM_DIR/amdgcn/bitcode
+# Future versions of ROCm will install the device library in ROCM_PATH/amdgcn/bitcode
 if [ -d $ROCM_PATH/amdgcn/bitcode ] ; then
     DEVICE_LIB_PATH=$ROCM_PATH/amdgcn/bitcode
 else
