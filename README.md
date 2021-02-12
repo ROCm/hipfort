@@ -8,12 +8,13 @@ This is a FORTRAN interface library for accessing GPU Kernels.
 
 Install `gfortran`, `git`, `cmake`, and HIP, if not yet installed.
 Then build, install, and test hipfort from source with the commands below:
+If you want to explicit use different ROCM Driver Installed path, export ROCM_PATH to desired location else default will be /opt/rocm
 ```
 git clone https://github.com/ROCmSoftwarePlatform/hipfort
 mkdir build ; cd build
-cmake -DHIPFORT_INSTALL_DIR=/tmp/hipfort ..
+cmake -DHIPFORT_INSTALL_DIR=$ROCM_PATH/hipfort ..
 make install
-export PATH=/tmp/hipfort/bin:$PATH
+export PATH=$ROCM_PATH/hipfort/bin:$PATH
 cd ../test/f2003/vecadd
 hipfc -v hip_implementation.cpp main.f03
 ./a.out
