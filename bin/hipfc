@@ -58,7 +58,7 @@ function usage(){
    Options with values:       Defaults  
     -hipfort-compiler <bin>   $HIPFORT_COMPILER or gfortran
     -hipfort          <path>  $HIPFORT   or _HIPFORT_INSTALL_DIR_
-    -cuda-dir         <path>  $CUDA_HOME or /usr/local/cuda
+    -cuda-path         <path> $CUDA_PATH or /usr/local/cuda
     -rocm-path         <path>  $ROCM_PATH  or /opt/rocm
     -I         <include dir>  Provide one directory per -I option
     -O         <LLVM opt>     LLVM optimization level
@@ -74,9 +74,9 @@ function usage(){
     hipfc --offload-arch=sm_70 myapp.f -o myapp /* Compile for NVPTX target */
 
    Instead of these command line options:
-        -hipfort, -cuda-dir, -hipfort-compiler -rocm-path
+        -hipfort, -cuda-path, -hipfort-compiler -rocm-path
       you may alternatively set these environment variables, respectively:
-        HIPFORT,  CUDA_HOME,  HIPFORT_COMPILER, ROCM_PATH
+        HIPFORT,  CUDA_PATH,  HIPFORT_COMPILER, ROCM_PATH
       Command line options take precedence over environment variables. 
 
    Copyright (c) 2021 ADVANCED MICRO DEVICES, INC.
@@ -157,7 +157,7 @@ function addrocmlib(){
 
 function addcudalib(){
   name=$1
-  libdir=$CUDA_HOME/targets/x86_64-linux/lib
+  libdir=$CUDA_PATH/targets/x86_64-linux/lib
   if [ ! -d $libdir ] ; then 
      echo "ERROR:  Directory $libdir does not exist"
      echo "        Please install CUDA"
@@ -204,8 +204,8 @@ while [ $# -gt 0 ] ; do
       -lcublas)         CUDA_LIBS+=" cublas" ;;
       -lcurand)         CUDA_LIBS+=" curand" ;;
       -triple)          TARGET_TRIPLE=$2; shift ;;
-      -cuda-dir)        CUDA_HOME=$2; shift ;;
-      -rocm-dir)        ROCM_PATH=$2; shift ;;
+      -cuda-path)        CUDA_PATH=$2; shift ;;
+      -rocm-path)        ROCM_PATH=$2; shift ;;
       -hipfort)         HIPFORT=$2; shift ;;
       -hipfort-compiler) HIPFORT_COMPILER=$2; shift ;;
       -h) 	        usage ;;
@@ -251,7 +251,7 @@ cdir=$(getdname $0)
 [ ! -L "$cdir/hipfc" ] || cdir=$(getdname `readlink "$cdir/hipfc"`)
 HOW_CALLED=${0##*/}
 
-CUDA_HOME=${CUDA_HOME:-/usr/local/cuda}
+CUDA_PATH=${CUDA_PATH:-/usr/local/cuda}
 ROCM_PATH=${ROCM_PATH:-/opt/rocm}
 HIP_PLATFORM=${HIP_PLATFORM:-amd}
 
@@ -298,7 +298,7 @@ fi
 if [ "${HIPFORT_GPU:0:3}" == "sm_" ] ; then 
    TARGET_ARCH="nvptx"
    TARGET_TRIPLE=${TARGET_TRIPLE:-nvptx64-nvidia-cuda}
-   TARGET_LIBS="-L$CUDA_HOME/targets/x86_64-linux/lib -lcudart"
+   TARGET_LIBS="-L$CUDA_PATH/targets/x86_64-linux/lib -lcudart"
    HIPCC_ENV="HIP_PLATFORM=nvcc"
    HIPCC_OPTS="--gpu-architecture=$HIPFORT_GPU -x cu $CUOPTS"
    # fixme: add test for minimum cuda version here
@@ -440,7 +440,7 @@ if [ $VV ] ; then
    echo "#Info:  HIPFORT Compiler:	$HIPFORT_COMPILER"
    echo "#Info:  HIPFORT Path:		$HIPFORT"
    echo "#Info:  ROCM Path:		$ROCM_PATH"
-   echo "#Info:  CUDA Path:		$CUDA_HOME"
+   echo "#Info:  CUDA Path:		$CUDA_PATH"
    echo "#Info:  How called:		$HOW_CALLED"
    echo "#Info:  Target GPU:		$HIPFORT_GPU"
    echo "#Info:  Input files:		$INPUTFILES"
