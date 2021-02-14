@@ -20,8 +20,8 @@
 
 HIPFORT_ARCHGPU ?= $(shell $(HIPFORT_HOME)/bin/myarchgpu)
 ARCH = $(firstword $(subst -, ,$(HIPFORT_ARCHGPU)))
-CUDA_PATH       ?= /usr/local/cuda
 HIPFORT_COMPILER ?= gfortran
+CUDA_PATH=${ROCM_PATH:-/usr/local/cuda}
 ROCM_PATH=${ROCM_PATH:-/opt/rocm}
 DEVICE_LIB_PATH  ?= $(ROCM_PATH)/lib
 HIP_CLANG_PATH   ?= $(ROCM_PATH)/llvm/bin
