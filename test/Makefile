@@ -3,7 +3,7 @@ PREFIX ?= f2008
 ifneq (,$(findstring sm_,$(CFLAGS))) # have CUDA arch flag
   TEST_COLLECTIONS = vecadd hipblas hipfft  
 else
-  TEST_COLLECTIONS = vecadd rocfft rocsparse hipblas rocblas hipfft 
+  TEST_COLLECTIONS = vecadd rocfft rocsparse rocsolver hipblas rocblas hipfft 
 endif
 RUN_TEST_COLLECTIONS   := $(addprefix run., $(TEST_COLLECTIONS))
 CLEAN_TEST_COLLECTIONS := $(addprefix clean., $(TEST_COLLECTIONS))
