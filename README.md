@@ -86,6 +86,12 @@ ierr = hipMalloc(a_d,source=a_h)       ! take shape (incl. bounds) of a_h and pe
 
 In addition to `source`, there is also `dsource` in case the source is a device array.
 
+### Documentation
+
+Documentation for the interfaces is hosted here:
+
+https://rocmsoftwareplatform.github.io/hipfort/
+
 ## hipfc wrapper compiler and Makefile.hipfort
 
 Aside from Fortran interfaces to the HIP and ROCm libraries, hipfort ships the `hipfc` wrapper compiler
