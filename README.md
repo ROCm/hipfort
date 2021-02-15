@@ -8,7 +8,8 @@ This is a FORTRAN interface library for accessing GPU Kernels.
 
 Install `gfortran`, `git`, `cmake`, and HIP, if not yet installed.
 Then build, install, and test hipfort from source with the commands below:
-```
+
+```shell
 git clone https://github.com/ROCmSoftwarePlatform/hipfort
 mkdir build ; cd build
 cmake -DHIPFORT_INSTALL_DIR=/tmp/hipfort ..
@@ -43,39 +44,44 @@ modules and libraries. These directly take Fortran (array) variables and the num
 elements instead of `type(c_ptr)` variables and the number of bytes, respectively. This reduces the chance to introduce compile-time and runtime errors
 into your code and makes it easier to read too.
 
-**Example:**
+### Example
 
 While you could write the following using the `f2003` interfaces:
 
-```
+```Fortran
 use iso_c_binding
 use hipfort
 integer     :: ierr        ! error code
 real        :: a_h(5,6)    ! host array
 type(c_ptr) :: a_d         ! device array pointer
 !
-ierr = hipMalloc(a_d,size(a_h)*4_c_size_t) ! real has 4 bytes; append suffix _c_size_t to express '4' as c_size_t
+ierr = hipMalloc(a_d,size(a_h)*4_c_size_t) ! real has 4 bytes
+                                           ! append suffix '_c_size_t' to write '4' 
+                                           ! as 'integer(c_size_t)'
 ierr = hipMemcpy(a_d,c_loc(a_h),size(a_h)*4_c_size_t,hipMemcpyHostToDevice)
 ```
 
 you could express the same with the `f2008` interfaces as follows:
 
-```
+```Fortran
 use hipfort
-! ... other lines as in declaration list of previous snippet
+integer     :: ierr        ! error code
+real        :: a_h(5,6)    ! host array
 real,pointer :: a_d(:,:)   ! device array pointer
 !
-ierr = hipMalloc(a_d,shape(a_h)) ! or hipMalloc(a_d,[5,6]) or hipMalloc(a_d,5,6) or hipMalloc(a_d,mold=a_h)
+ierr = hipMalloc(a_d,shape(a_h))      ! or hipMalloc(a_d,[5,6]) or hipMalloc(a_d,5,6) or hipMalloc(a_d,mold=a_h)
 ierr = hipMemcpy(a_d,a_h,size(a_h),hipMemcpyHostToDevice)
 ```
 
 The `f2008` interfaces also overload `hipMalloc` similar to the Fortran 2008 `ALLOCATE` intrinsic. 
 So you could write the whole code as shown below:
 
-```
-! ... other lines as in declaration list of previous snippet
+```Fortran
+integer     :: ierr        ! error code
+real        :: a_h(5,6)    ! host array
+real,pointer :: a_d(:,:)   ! device array pointer
 !
-ierr = hipMalloc(a_d,source=a_h) ! takes shape (incl. bounds) of a_h and performs a blocking copy to device
+ierr = hipMalloc(a_d,source=a_h)       ! take shape (incl. bounds) of a_h and perform a blocking copy to device
 ```
 
 In addition to `source`, there is also `dsource` in case the source is a device array.
@@ -113,19 +119,20 @@ There are further subcategories per `hip*` or `roc*` library that is tested.
 To compile for AMD devices you can simply call `make` in the test directories.
 
 If you want to compile for CUDA devices, you need to build as follows:
-```
+
+```shell
 make CFLAGS="--offload-arch=sm_70 <libs>"
 ```
 where you must substitute `<libs>` by `-lcublas`, `-lcusparse`, ... as needed.
 Compilation typically boils down to calling `hipfc` as follows:
 
-```
+```shell
 hipfc <CFLAGS> <test_name>.f03 -o <test_name>
 ```
 
 The `vecadd` test is the exception as the additional HIP C++ source must be supplied too:
 
-```
+```shell
 hipfc <CFLAGS> hip_implementation.cpp main.f03 -o main
 ```
 
@@ -142,14 +149,14 @@ Specify a different ROCm location via the `ROCM_PATH` environment variable.
 > **NOTE**: When using older ROCm versions, you might need to manually set the environment variable `HIP_PLATFORM` to `hcc`
 before running the tests.
 
-```
+```shell
 cd build/
 make all-tests-run
 ```
 
 Alternatively:
 
-```
+```shell
 cd test/
 make run_all
 ```
@@ -161,14 +168,14 @@ make run_all
 
 > **NOTE**: Choose offload architecture value according to used device.
 
-```
+```shell
 cd build/
 make all-tests-run CFLAGS="--offload-arch=sm_70 -lcublas -lcusolver -lcufft"
 ```
 
 Alternatively:
 
-```
+```shell
 cd test/
 make run_all CFLAGS="--offload-arch=sm_70 -lcublas -lcusolver -lcufft"
 ```
