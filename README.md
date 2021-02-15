@@ -33,7 +33,7 @@ compiles the Fortran files and links to the object file created by `hipcc`.
 While the HIP interfaces and libraries allow to write portable code for both AMD and CUDA devices, the ROCm ones 
 can only be used with AMD devices.
 
-The available interfaces depend on Fortran compiler that is used to compile the `hipfort` modules and libraries.
+The available interfaces depend on the Fortran compiler that is used to compile the `hipfort` modules and libraries.
 As the interfaces make use of the `iso_c_binding` module, the minimum requirement is a Fortran compiler 
 that supports the Fortran 2003 standard (`f2003`).
 These interfaces typically require to pass `type(c_ptr)` variables and the number of bytes to memory
@@ -88,7 +88,7 @@ In addition to `source`, there is also `dsource` in case the source is a device 
 
 ## hipfc wrapper compiler and Makefile.hipfort
 
-Aside from Fortran interfaces to the HIP and ROCm GPU libraries, hipfort ships the `hipfc` wrapper compiler
+Aside from Fortran interfaces to the HIP and ROCm libraries, hipfort ships the `hipfc` wrapper compiler
 and a `Makefile.hipfort` that can be included into a project's build system. Both are located in the `bin/` subdirectory
 of the repository. While both can be configured via a number of environment variables, `hipfc` also understands a greater number of 
 command line options that you can print to screen via `hipfc -h`. 
@@ -114,7 +114,7 @@ There are further subcategories per `hip*` or `roc*` library that is tested.
 
 > **NOTE** Only the `hip*` tests can be compiled for CUDA devices. The `roc*` tests cannot.
 
-> **NOTE** The AMD GPU make targets append the correct libraries to the `CFLAGS` variable internally.
+> **NOTE** The make targets append the linker flags for AMD devices to the `CFLAGS` variable per default.
 
 To compile for AMD devices you can simply call `make` in the test directories.
 
@@ -141,7 +141,7 @@ hipfc <CFLAGS> hip_implementation.cpp main.f03 -o main
 You can build and run the whole test collection from the `build/` folder (see [Build and test hipfort from source](#build-and-test-hipfort-from-source)) or
 from the `test/` folder. The instructions are given below.
 
-#### AMD GPUs
+#### AMD devices
 
 > **NOTE**: Running all tests as below requires that all ROCm math libraries can be found at `/opt/rocm`.
 Specify a different ROCm location via the `ROCM_PATH` environment variable.
@@ -161,7 +161,7 @@ cd test/
 make run_all
 ```
 
-#### NVIDIA GPUs
+#### CUDA devices
 
 > **NOTE**: Running all tests as below requires that CUDA can be found at `/usr/local/cuda`. Specify a different CUDA location via the `CUDA_PATH` environment variable
 > or supply it to the `CFLAGS` variable by appending `-cuda-path <path_to_cuda>`.
