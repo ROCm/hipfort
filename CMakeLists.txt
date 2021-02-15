@@ -128,6 +128,8 @@ if(NOT CPACK_PACKAGING_INSTALL_PREFIX)
 endif()
 
 set(CPACK_RPM_EXCLUDE_FROM_AUTO_FILELIST_ADDITION "\${CPACK_PACKAGING_INSTALL_PREFIX}" "\${CPACK_PACKAGING_INSTALL_PREFIX}/include" )
+# Prevent rpmbuild from stripping binaries, which caused issues on CentOS
+set(CPACK_RPM_SPEC_INSTALL_POST "/bin/true")
 
 rocm_create_package(
   NAME hipfort
