@@ -22,6 +22,59 @@ hipfc -v hip_implementation.cpp main.f03
 The above steps demonstrate the use of the `hipfc` utility. `hipfc` calls `hipcc` for non-Fortran files and then
 compiles the Fortran files and links to the object file created by `hipcc`.
 
+## Fortran interfaces
+
+`hipfort` provides interfaces to the following HIP and ROCm libraries:
+
+* **HIP:**   HIP runtime, hipBLAS, hipSPARSE, hipFFT, hipRAND
+* **ROCm:** rocBLAS, rocSPARSE, rocFFT, rocRAND, **rocSOLVER**
+
+While the HIP interfaces and libraries allow to write portable code for both AMD and CUDA devices, the ROCm ones 
+are only suitable for AMD devices.
+
+The available interfaces depend on Fortran compiler that is used to compile the `hipfort` modules and libraries.
+As the interfaces make use of the `iso_c_binding` module, the minimum requirement is a Fortran compiler 
+that supports the Fortran 2003 standard (`f2003`).
+These interfaces typically require to pass `type(c_ptr)` variables and the number of bytes to memory
+management (e.g. `hipMalloc`) and math library routines (e.g. `hipblasDGEMM`).
+
+If your compiler understands Fortran 2008 code (`f2008`), additional interfaces are compiled into the `hipfort`
+modules and libraries that can directly deal with Fortran array variables and take the number of
+elements instead of the number of bytes. This reduces the chance to introduce compile-time and runtime errors
+into your code and makes it easier to read too.
+
+**Example:**
+
+While you could write the following using the `f2003` interfaces:
+
+```
+integer     :: ierr        ! error code
+real        :: a_h(5,6)    ! host array
+type(c_ptr) :: a_d         ! device array pointer
+!
+ierr = hipMalloc(a_d,size(a_h)*4_8)
+ierr = hipMemcpy(a_d,c_loc(a_h),size(a_h)*4_8,hipMemcpyHostToDevice)
+```
+
+you could express the same with the `f2008` interfaces as follows:
+
+```
+! ...
+real,pointer :: a_d(:,:)   ! device array pointer
+!
+ierr = hipMalloc(a_d,shape(a_h)) ! or hipMalloc(a_d,[5,6]) or hipMalloc(a_d,5,6) (or hipMalloc(a_d,mold=a_h))
+ierr = hipMemcpy(a_d,a_h,size(a_h),hipMemcpyHostToDevice)
+```
+
+The `f2008` also introduce some shortcuts. So you could write isntead:
+
+```
+real         :: a_h(5,6)         ! host array
+real,pointer :: a_d(:,:)         ! device array pointer
+integer     :: ierr              ! error code
+ierr = hipMalloc(a_d,source=a_h) ! takes shape (incl. bounds) of a_h and performs a blocking copy to device
+```
+
 ## hipfc wrapper compiler and Makefile.hipfort
 
 Aside from Fortran interfaces to the HIP and ROCm GPU libraries, hipfort ships the `hipfc` wrapper compiler
