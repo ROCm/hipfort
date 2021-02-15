@@ -8,7 +8,8 @@ This is a FORTRAN interface library for accessing GPU Kernels.
 
 Install `gfortran`, `git`, `cmake`, and HIP, if not yet installed.
 Then build, install, and test hipfort from source with the commands below:
-```
+
+```shell
 git clone https://github.com/ROCmSoftwarePlatform/hipfort
 mkdir build ; cd build
 cmake -DHIPFORT_INSTALL_DIR=/tmp/hipfort ..
@@ -21,6 +22,69 @@ hipfc -v hip_implementation.cpp main.f03
 
 The above steps demonstrate the use of the `hipfc` utility. `hipfc` calls `hipcc` for non-Fortran files and then
 compiles the Fortran files and links to the object file created by `hipcc`.
+
+## Fortran interfaces
+
+`hipfort` provides interfaces to the following HIP and ROCm libraries:
+
+* **HIP:**   HIP runtime, hipBLAS, hipSPARSE, hipFFT, hipRAND
+* **ROCm:** rocBLAS, rocSPARSE, rocFFT, rocRAND, **rocSOLVER**
+
+While the HIP interfaces and libraries allow to write portable code for both AMD and CUDA devices, the ROCm ones 
+can only be used with AMD devices.
+
+The available interfaces depend on Fortran compiler that is used to compile the `hipfort` modules and libraries.
+As the interfaces make use of the `iso_c_binding` module, the minimum requirement is a Fortran compiler 
+that supports the Fortran 2003 standard (`f2003`).
+These interfaces typically require to pass `type(c_ptr)` variables and the number of bytes to memory
+management (e.g. `hipMalloc`) and math library routines (e.g. `hipblasDGEMM`).
+
+If your compiler understands Fortran 2008 code (`f2008`), additional interfaces are compiled into the `hipfort`
+modules and libraries. These directly take Fortran (array) variables and the number of
+elements instead of `type(c_ptr)` variables and the number of bytes, respectively. This reduces the chance to introduce compile-time and runtime errors
+into your code and makes it easier to read too.
+
+### Example
+
+While you could write the following using the `f2003` interfaces:
+
+```Fortran
+use iso_c_binding
+use hipfort
+integer     :: ierr        ! error code
+real        :: a_h(5,6)    ! host array
+type(c_ptr) :: a_d         ! device array pointer
+!
+ierr = hipMalloc(a_d,size(a_h)*4_c_size_t) ! real has 4 bytes
+                                           ! append suffix '_c_size_t' to write '4' 
+                                           ! as 'integer(c_size_t)'
+ierr = hipMemcpy(a_d,c_loc(a_h),size(a_h)*4_c_size_t,hipMemcpyHostToDevice)
+```
+
+you could express the same with the `f2008` interfaces as follows:
+
+```Fortran
+use hipfort
+integer     :: ierr        ! error code
+real        :: a_h(5,6)    ! host array
+real,pointer :: a_d(:,:)   ! device array pointer
+!
+ierr = hipMalloc(a_d,shape(a_h))      ! or hipMalloc(a_d,[5,6]) or hipMalloc(a_d,5,6) or hipMalloc(a_d,mold=a_h)
+ierr = hipMemcpy(a_d,a_h,size(a_h),hipMemcpyHostToDevice)
+```
+
+The `f2008` interfaces also overload `hipMalloc` similar to the Fortran 2008 `ALLOCATE` intrinsic. 
+So you could write the whole code as shown below:
+
+```Fortran
+integer     :: ierr        ! error code
+real        :: a_h(5,6)    ! host array
+real,pointer :: a_d(:,:)   ! device array pointer
+!
+ierr = hipMalloc(a_d,source=a_h)       ! take shape (incl. bounds) of a_h and perform a blocking copy to device
+```
+
+In addition to `source`, there is also `dsource` in case the source is a device array.
 
 ## hipfc wrapper compiler and Makefile.hipfort
 
@@ -55,25 +119,26 @@ There are further subcategories per `hip*` or `roc*` library that is tested.
 To compile for AMD devices you can simply call `make` in the test directories.
 
 If you want to compile for CUDA devices, you need to build as follows:
-```
+
+```shell
 make CFLAGS="--offload-arch=sm_70 <libs>"
 ```
 where you must substitute `<libs>` by `-lcublas`, `-lcusparse`, ... as needed.
 Compilation typically boils down to calling `hipfc` as follows:
 
-```
+```shell
 hipfc <CFLAGS> <test_name>.f03 -o <test_name>
 ```
 
 The `vecadd` test is the exception as the additional HIP C++ source must be supplied too:
 
-```
+```shell
 hipfc <CFLAGS> hip_implementation.cpp main.f03 -o main
 ```
 
 ### Building and running all tests
 
-You can build and run the whole test collection from the `build/` folder (see [Build and test hipfort from source](##-build-and-test-hipfort-from-source)) or
+You can build and run the whole test collection from the `build/` folder (see [Build and test hipfort from source](#build-and-test-hipfort-from-source)) or
 from the `test/` folder. The instructions are given below.
 
 #### AMD GPUs
@@ -84,14 +149,14 @@ Specify a different ROCm location via the `ROCM_PATH` environment variable.
 > **NOTE**: When using older ROCm versions, you might need to manually set the environment variable `HIP_PLATFORM` to `hcc`
 before running the tests.
 
-```
+```shell
 cd build/
 make all-tests-run
 ```
 
 Alternatively:
 
-```
+```shell
 cd test/
 make run_all
 ```
@@ -103,14 +168,14 @@ make run_all
 
 > **NOTE**: Choose offload architecture value according to used device.
 
-```
+```shell
 cd build/
 make all-tests-run CFLAGS="--offload-arch=sm_70 -lcublas -lcusolver -lcufft"
 ```
 
 Alternatively:
 
-```
+```shell
 cd test/
 make run_all CFLAGS="--offload-arch=sm_70 -lcublas -lcusolver -lcufft"
 ```
