@@ -73,7 +73,7 @@ hipfc <CFLAGS> hip_implementation.cpp main.f03 -o main
 
 ### Building and running all tests
 
-You can build and run the whole test collection from the `build/` folder (see [Build and test hipfort from source](##-build-and-test-hipfort-from-source)) or
+You can build and run the whole test collection from the `build/` folder (see [Build and test hipfort from source](#build-and-test-hipfort-from-source)) or
 from the `test/` folder. The instructions are given below.
 
 #### AMD GPUs
