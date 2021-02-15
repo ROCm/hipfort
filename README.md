@@ -22,12 +22,61 @@ hipfc -v hip_implementation.cpp main.f03
 The above steps demonstrate the use of the `hipfc` utility. `hipfc` calls `hipcc` for non-Fortran files and then
 compiles the Fortran files and links to the object file created by `hipcc`.
 
-## Tests / Examples
+## hipfc wrapper compiler and Makefile.hipfort
 
-Tests can be run from the `build/` folder 
-or from the repo's `test/` folder.
+Aside from Fortran interfaces to the HIP and ROCm GPU libraries, hipfort ships the `hipfc` wrapper compiler
+and a `Makefile.hipfort` that can be included into a project's build system. Both are located in the `bin/` subdirectory
+of the repository. While both can be configured via a number of environment variables, `hipfc` also understands a greater number of 
+command line options that you can print to screen via `hipfc -h`. 
 
-### AMD GPUs
+Among the environment variables, the most important are:
+
+| Variable | Description | Default |
+|---|---|---|
+| `HIP_PLATFORM` | The platform to compile for (either 'amd' or 'nvcc') | `amd` |
+| `ROCM_PATH` | Path to CUDA installation | `/opt/rocm` |
+| `CUDA_PATH` | Path to ROCm installation | `/usr/local/cuda` | 
+| `HIPFORT_COMPILER` | Fortran compiler to be used | `gfortran` | 
+
+## Examples and tests
+
+The examples, which simultaneously serve as tests, are located in the 
+`f2003` and `f2008` subdirectories of the repo's `test/` folder.
+Both test collections implement the same tests but require
+that the used Fortran compiler supports at least the respective Fortran standard.
+There are further subcategories per `hip*` or `roc*` library that is tested.
+
+### Building a single test
+
+> **NOTE** Only the `hip*` tests can be compiled for CUDA devices. The `roc*` tests cannot.
+
+> **NOTE** The AMD GPU make targets append the correct libraries to the `CFLAGS` variable internally.
+
+To compile for AMD devices you can simply call `make` in the test directories.
+
+If you want to compile for CUDA devices, you need to build as follows:
+```
+make CFLAGS="--offload-arch=sm_70 <libs>"
+```
+where you must substitute `<libs>` by `-lcublas`, `-lcusparse`, ... as needed.
+Compilation typically boils down to calling `hipfc` as follows:
+
+```
+hipfc <CFLAGS> <test_name>.f03 -o <test_name>
+```
+
+The `vecadd` test is the exception as the additional HIP C++ source must be supplied too:
+
+```
+hipfc <CFLAGS> hip_implementation.cpp main.f03 -o main
+```
+
+### Building and running all tests
+
+You can build and run the whole test collection from the `build/` folder (see [Build and test hipfort from source](##-build-and-test-hipfort-from-source)) or
+from the `test/` folder. The instructions are given below.
+
+#### AMD GPUs
 
 > **NOTE**: Running all tests as below requires that all ROCm math libraries can be found at `/opt/rocm`.
 Specify a different ROCm location via the `ROCM_PATH` environment variable.
@@ -47,7 +96,7 @@ cd test/
 make run_all
 ```
 
-### NVIDIA GPUs
+#### NVIDIA GPUs
 
 > **NOTE**: Running all tests as below requires that CUDA can be found at `/usr/local/cuda`. Specify a different CUDA location via the `CUDA_PATH` environment variable
 > or supply it to the `CFLAGS` variable by appending `-cuda-path <path_to_cuda>`.
@@ -90,4 +139,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-a
