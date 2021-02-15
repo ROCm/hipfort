@@ -29,7 +29,11 @@ or from the repo's `test/` folder.
 
 ### AMD GPUs
 
-| **NOTE**: Running all tests as below requires that all ROCm math libraries can be found at `/opt/rocm`.
+> **NOTE**: Running all tests as below requires that all ROCm math libraries can be found at `/opt/rocm`.
+Specify a different ROCm location via the `ROCM_PATH` environment variable.
+
+> **NOTE**: When using older ROCm versions, you might need to manually set the environment variable `HIP_PLATFORM` to `hcc`
+before running the tests.
 
 ```
 cd build/
@@ -45,9 +49,10 @@ make run_all
 
 ### NVIDIA GPUs
 
-| **NOTE**: Running all tests as below requires that CUDA can be found at `/usr/local/cuda`.
+> **NOTE**: Running all tests as below requires that CUDA can be found at `/usr/local/cuda`. Specify a different CUDA location via the `CUDA_PATH` environment variable
+> or supply it to the `CFLAGS` variable by appending `-cuda-path <path_to_cuda>`.
 
-| **NOTE**: Choose offload architecture value according to used device.
+> **NOTE**: Choose offload architecture value according to used device.
 
 ```
 cd build/
