@@ -33,7 +33,7 @@ compiles the Fortran files and links to the object file created by `hipcc`.
 While the HIP interfaces and libraries allow to write portable code for both AMD and CUDA devices, the ROCm ones 
 can only be used with AMD devices.
 
-The available interfaces depend on Fortran compiler that is used to compile the `hipfort` modules and libraries.
+The available interfaces depend on the Fortran compiler that is used to compile the `hipfort` modules and libraries.
 As the interfaces make use of the `iso_c_binding` module, the minimum requirement is a Fortran compiler 
 that supports the Fortran 2003 standard (`f2003`).
 These interfaces typically require to pass `type(c_ptr)` variables and the number of bytes to memory
