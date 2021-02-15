@@ -30,7 +30,7 @@ compiles the Fortran files and links to the object file created by `hipcc`.
 * **ROCm:** rocBLAS, rocSPARSE, rocFFT, rocRAND, **rocSOLVER**
 
 While the HIP interfaces and libraries allow to write portable code for both AMD and CUDA devices, the ROCm ones 
-are only suitable for AMD devices.
+can only be used with AMD devices.
 
 The available interfaces depend on Fortran compiler that is used to compile the `hipfort` modules and libraries.
 As the interfaces make use of the `iso_c_binding` module, the minimum requirement is a Fortran compiler 
