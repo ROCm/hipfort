@@ -39,8 +39,8 @@ These interfaces typically require to pass `type(c_ptr)` variables and the numbe
 management (e.g. `hipMalloc`) and math library routines (e.g. `hipblasDGEMM`).
 
 If your compiler understands Fortran 2008 code (`f2008`), additional interfaces are compiled into the `hipfort`
-modules and libraries that can directly deal with Fortran array variables and take the number of
-elements instead of the number of bytes. This reduces the chance to introduce compile-time and runtime errors
+modules and libraries. These directly take Fortran (array) variables and the number of
+elements instead of `type(c_ptr)` variables and the number of bytes, respectively. This reduces the chance to introduce compile-time and runtime errors
 into your code and makes it easier to read too.
 
 **Example:**
@@ -48,32 +48,37 @@ into your code and makes it easier to read too.
 While you could write the following using the `f2003` interfaces:
 
 ```
+use iso_c_binding
+use hipfort
 integer     :: ierr        ! error code
 real        :: a_h(5,6)    ! host array
 type(c_ptr) :: a_d         ! device array pointer
 !
-ierr = hipMalloc(a_d,size(a_h)*4_8)
-ierr = hipMemcpy(a_d,c_loc(a_h),size(a_h)*4_8,hipMemcpyHostToDevice)
+ierr = hipMalloc(a_d,size(a_h)*4_c_size_t) ! real has 4 bytes; append suffix _c_size_t to express '4' as c_size_t
+ierr = hipMemcpy(a_d,c_loc(a_h),size(a_h)*4_c_size_t,hipMemcpyHostToDevice)
 ```
 
 you could express the same with the `f2008` interfaces as follows:
 
 ```
-! ...
+use hipfort
+! ... other lines as in declaration list of previous snippet
 real,pointer :: a_d(:,:)   ! device array pointer
 !
-ierr = hipMalloc(a_d,shape(a_h)) ! or hipMalloc(a_d,[5,6]) or hipMalloc(a_d,5,6) (or hipMalloc(a_d,mold=a_h))
+ierr = hipMalloc(a_d,shape(a_h)) ! or hipMalloc(a_d,[5,6]) or hipMalloc(a_d,5,6) or hipMalloc(a_d,mold=a_h)
 ierr = hipMemcpy(a_d,a_h,size(a_h),hipMemcpyHostToDevice)
 ```
 
-The `f2008` also introduce some shortcuts. So you could write isntead:
+The `f2008` interfaces also overload `hipMalloc` similar to the Fortran 2008 `ALLOCATE` intrinsic. 
+So you could write the whole code as shown below:
 
 ```
-real         :: a_h(5,6)         ! host array
-real,pointer :: a_d(:,:)         ! device array pointer
-integer     :: ierr              ! error code
+! ... other lines as in declaration list of previous snippet
+!
 ierr = hipMalloc(a_d,source=a_h) ! takes shape (incl. bounds) of a_h and performs a blocking copy to device
 ```
+
+In addition to `source`, there is also `dsource` in case the source is a device array.
 
 ## hipfc wrapper compiler and Makefile.hipfort
 
