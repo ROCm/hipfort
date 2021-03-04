@@ -1693,6 +1693,41 @@ module hipfort
 
 
   end interface
+  !> 
+  !>   @brief Allocates memory that will be automatically managed by AMD HMM.
+  !>  
+  !>   @param [out] dev_ptr - pointer to allocated device memory
+  !>   @param [in]  size    - requested allocation size in bytes
+  !>   @param [in]  flags   - must be either hipMemAttachGlobal or hipMemAttachHost
+  !>                          (defaults to hipMemAttachGlobal)
+  !>  
+  !>   @returns #hipSuccess, #hipErrorMemoryAllocation, #hipErrorNotSupported, #hipErrorInvalidValue
+  !>  
+  interface hipMallocManaged
+#ifdef USE_CUDA_NAMES
+    function hipMallocManaged_orig(dev_ptr,mySize,flags) bind(c, name="cudaMallocManaged")
+#else
+    function hipMallocManaged_orig(dev_ptr,mySize,flags) bind(c, name="hipMallocManaged")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMallocManaged_orig
+#else
+      integer(kind(hipSuccess)) :: hipMallocManaged_orig
+#endif
+      type(c_ptr) :: dev_ptr
+      integer(c_size_t),value :: mySize
+      integer(kind=4),value :: flags
+    end function
+
+
+  end interface
   
   interface hipHostAlloc
 #ifdef USE_CUDA_NAMES
@@ -2357,6 +2392,34 @@ module hipfort
 
   end interface
   
+  interface hipMemcpyToSymbol
+#ifdef USE_CUDA_NAMES
+    function hipMemcpyToSymbol_orig(symbol,src,sizeBytes,offset,myKind) bind(c, name="cudaMemcpyToSymbol")
+#else
+    function hipMemcpyToSymbol_orig(symbol,src,sizeBytes,offset,myKind) bind(c, name="hipMemcpyToSymbol")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpyToSymbol_orig
+#else
+      integer(kind(hipSuccess)) :: hipMemcpyToSymbol_orig
+#endif
+      type(c_ptr),value :: symbol
+      type(c_ptr),value :: src
+      integer(c_size_t),value :: sizeBytes
+      integer(c_size_t),value :: offset
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+    end function
+
+
+  end interface
+  
   interface hipMemcpyToSymbolAsync
 #ifdef USE_CUDA_NAMES
     function hipMemcpyToSymbolAsync_orig(symbol,src,sizeBytes,offset,myKind,stream) bind(c, name="cudaMemcpyToSymbolAsync")
@@ -2381,6 +2444,34 @@ module hipfort
       integer(c_size_t),value :: offset
       integer(kind(hipMemcpyHostToHost)),value :: myKind
       type(c_ptr),value :: stream
+    end function
+
+
+  end interface
+  
+  interface hipMemcpyFromSymbol
+#ifdef USE_CUDA_NAMES
+    function hipMemcpyFromSymbol_orig(dst,symbol,sizeBytes,offset,myKind) bind(c, name="cudaMemcpyFromSymbol")
+#else
+    function hipMemcpyFromSymbol_orig(dst,symbol,sizeBytes,offset,myKind) bind(c, name="hipMemcpyFromSymbol")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMemcpyFromSymbol_orig
+#else
+      integer(kind(hipSuccess)) :: hipMemcpyFromSymbol_orig
+#endif
+      type(c_ptr),value :: dst
+      type(c_ptr),value :: symbol
+      integer(c_size_t),value :: sizeBytes
+      integer(c_size_t),value :: offset
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
     end function
 
 
@@ -2912,6 +3003,45 @@ module hipfort
 #endif
       type(c_ptr),value :: ptr
       integer(c_size_t) :: mySize
+    end function
+
+
+  end interface
+  !> 
+  !>    @brief Allocate an array on the device.
+  !>  
+  !>    @param[out]  array  Pointer to allocated array in device memory
+  !>    @param[in]   desc   Requested channel format
+  !>    @param[in]   width  Requested array allocation width
+  !>    @param[in]   height Requested array allocation height
+  !>    @param[in]   flags  Requested properties of allocated array
+  !>    @return      #hipSuccess, #hipErrorOutOfMemory
+  !>  
+  !>    @see hipMalloc, hipMallocPitch, hipFree, hipFreeArray, hipHostMalloc, hipHostFree
+  !>  
+  interface hipMallocArray
+#ifdef USE_CUDA_NAMES
+    function hipMallocArray_orig(array,desc,width,height,flags) bind(c, name="cudaMallocArray")
+#else
+    function hipMallocArray_orig(array,desc,width,height,flags) bind(c, name="hipMallocArray")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipMallocArray_orig
+#else
+      integer(kind(hipSuccess)) :: hipMallocArray_orig
+#endif
+      type(c_ptr) :: array
+      type(c_ptr) :: desc
+      integer(c_size_t),value :: width
+      integer(c_size_t),value :: height
+      integer(kind=4),value :: flags
     end function
 
 
@@ -5285,6 +5415,42 @@ module hipfort
 
   end interface
   !> 
+  !>   @brief Returns occupancy for a device function.
+  !>  
+  !>   @param [out] numBlocks        Returned occupancy
+  !>   @param [in]  f                Kernel function for which occupancy is calulated
+  !>   @param [in]  blockSize        Block size the kernel is intended to be launched with
+  !>   @param [in]  dynSharedMemPerBlk dynamic shared memory usage (in bytes) intended for each block
+  !>   @param [in]  flags            Extra flags for occupancy calculation (currently ignored)
+  !>  
+  interface hipOccupancyMaxActiveBlocksPerMultiprocessorWithFlags
+#ifdef USE_CUDA_NAMES
+    function hipOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_orig(numBlocks,f,blockSize,dynSharedMemPerBlk,flags) bind(c, name="cudaOccupancyMaxActiveBlocksPerMultiprocessorWithFlags")
+#else
+    function hipOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_orig(numBlocks,f,blockSize,dynSharedMemPerBlk,flags) bind(c, name="hipOccupancyMaxActiveBlocksPerMultiprocessorWithFlags")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_orig
+#else
+      integer(kind(hipSuccess)) :: hipOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_orig
+#endif
+      type(c_ptr),value :: numBlocks
+      type(c_ptr),value :: f
+      integer(c_int),value :: blockSize
+      integer(c_size_t),value :: dynSharedMemPerBlk
+      integer(kind=4),value :: flags
+    end function
+
+
+  end interface
+  !> 
   !>   @brief determine the grid and block sizes to achieves maximum occupancy for a kernel
   !>  
   !>   @param [out] gridSize           minimum grid size for maximum potential occupancy
@@ -5906,6 +6072,44 @@ module hipfort
 
 
   end interface
+  !> 
+  !>   @brief Attach memory to a stream asynchronously in AMD HMM.
+  !>  
+  !>   @param [in] stream     - stream in which to enqueue the attach operation
+  !>   @param [in] dev_ptr    - pointer to memory (must be a pointer to managed memory or
+  !>                            to a valid host-accessible region of system-allocated memory)
+  !>   @param [in] length     - length of memory (defaults to zero)
+  !>   @param [in] flags      - must be one of cudaMemAttachGlobal, cudaMemAttachHost or
+  !>                            cudaMemAttachSingle (defaults to cudaMemAttachSingle)
+  !>  
+  !>   @returns #hipSuccess, #hipErrorInvalidValue
+  !>  
+  interface hipStreamAttachMemAsync
+#ifdef USE_CUDA_NAMES
+    function hipStreamAttachMemAsync_orig(stream,dev_ptr,length,flags) bind(c, name="cudaStreamAttachMemAsync")
+#else
+    function hipStreamAttachMemAsync_orig(stream,dev_ptr,length,flags) bind(c, name="hipStreamAttachMemAsync")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipStreamAttachMemAsync_orig
+#else
+      integer(kind(hipSuccess)) :: hipStreamAttachMemAsync_orig
+#endif
+      type(c_ptr),value :: stream
+      type(c_ptr) :: dev_ptr
+      integer(c_size_t),value :: length
+      integer(kind=4),value :: flags
+    end function
+
+
+  end interface
   
   interface hipExtLaunchKernel
 #ifdef USE_CUDA_NAMES
@@ -5934,6 +6138,34 @@ module hipfort
       type(c_ptr),value :: startEvent
       type(c_ptr),value :: stopEvent
       integer(c_int),value :: flags
+    end function
+
+
+  end interface
+  
+  interface hipBindTexture
+#ifdef USE_CUDA_NAMES
+    function hipBindTexture_orig(offset,tex,devPtr,desc,mySize) bind(c, name="cudaBindTexture")
+#else
+    function hipBindTexture_orig(offset,tex,devPtr,desc,mySize) bind(c, name="hipBindTexture")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipBindTexture_orig
+#else
+      integer(kind(hipSuccess)) :: hipBindTexture_orig
+#endif
+      integer(c_size_t) :: offset
+      type(c_ptr) :: tex
+      type(c_ptr),value :: devPtr
+      type(c_ptr) :: desc
+      integer(c_size_t),value :: mySize
     end function
 
 
