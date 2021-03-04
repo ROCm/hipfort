@@ -33,6 +33,7 @@ module hipfort
   use hipfort_types
   use hipfort_hipmalloc
   use hipfort_hipmemcpy
+  use hipfort_hiphostregister
   implicit none
 
  
@@ -1720,42 +1721,6 @@ module hipfort
 
   end interface
   !> 
-  !>    @brief Get Device pointer from Host Pointer allocated through hipHostMalloc
-  !>  
-  !>    @param[out] dstPtr Device Pointer mapped to passed host pointer
-  !>    @param[in]  hstPtr Host Pointer allocated through hipHostMalloc
-  !>    @param[in]  flags Flags to be passed for extension
-  !>  
-  !>    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorOutOfMemory
-  !>  
-  !>    @see hipSetDeviceFlags, hipHostMalloc
-  !>  
-  interface hipHostGetDevicePointer
-#ifdef USE_CUDA_NAMES
-    function hipHostGetDevicePointer_orig(devPtr,hstPtr,flags) bind(c, name="cudaHostGetDevicePointer")
-#else
-    function hipHostGetDevicePointer_orig(devPtr,hstPtr,flags) bind(c, name="hipHostGetDevicePointer")
-#endif
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_orig
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_orig
-#endif
-      type(c_ptr) :: devPtr
-      type(c_ptr),value :: hstPtr
-      integer(kind=4),value :: flags
-    end function
-
-
-  end interface
-  !> 
   !>    @brief Return flags associated with host pointer
   !>  
   !>    @param[out] flagsPtr Memory location to store flags
@@ -1783,98 +1748,6 @@ module hipfort
       integer(kind(hipSuccess)) :: hipHostGetFlags_orig
 #endif
       type(c_ptr),value :: flagsPtr
-      type(c_ptr),value :: hostPtr
-    end function
-
-
-  end interface
-  !> 
-  !>    @brief Register host memory so it can be accessed from the current device.
-  !>  
-  !>    @param[out] hostPtr Pointer to host memory to be registered.
-  !>    @param[in] sizeBytes size of the host memory
-  !>    @param[in] flags.  See below.
-  !>  
-  !>    Flags:
-  !>    - #hipHostRegisterDefault   Memory is Mapped and Portable
-  !>    - #hipHostRegisterPortable  Memory is considered registered by all contexts.  HIP only supports
-  !>   one context so this is always assumed true.
-  !>    - #hipHostRegisterMapped    Map the allocation into the address space for the current device.
-  !>   The device pointer can be obtained with #hipHostGetDevicePointer.
-  !>  
-  !>  
-  !>    After registering the memory, use #hipHostGetDevicePointer to obtain the mapped device pointer.
-  !>    On many systems, the mapped device pointer will have a different value than the mapped host
-  !>   pointer.  Applications must use the device pointer in device code, and the host pointer in device
-  !>   code.
-  !>  
-  !>    On some systems, registered memory is pinned.  On some systems, registered memory may not be
-  !>   actually be pinned but uses OS or hardware facilities to all GPU access to the host memory.
-  !>  
-  !>    Developers are strongly encouraged to register memory blocks which are aligned to the host
-  !>   cache-line size. (typically 64-bytes but can be obtains from the CPUID instruction).
-  !>  
-  !>    If registering non-aligned pointers, the application must take care when register pointers from
-  !>   the same cache line on different devices.  HIP's coarse-grained synchronization model does not
-  !>   guarantee correct results if different devices write to different parts of the same cache block -
-  !>   typically one of the writes will "win" and overwrite data from the other registered memory
-  !>   region.
-  !>  
-  !>    @return #hipSuccess, #hipErrorOutOfMemory
-  !>  
-  !>    @see hipHostUnregister, hipHostGetFlags, hipHostGetDevicePointer
-  !>  
-  interface hipHostRegister
-#ifdef USE_CUDA_NAMES
-    function hipHostRegister_orig(hostPtr,sizeBytes,flags) bind(c, name="cudaHostRegister")
-#else
-    function hipHostRegister_orig(hostPtr,sizeBytes,flags) bind(c, name="hipHostRegister")
-#endif
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_orig
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_orig
-#endif
-      type(c_ptr),value :: hostPtr
-      integer(c_size_t),value :: sizeBytes
-      integer(kind=4),value :: flags
-    end function
-
-
-  end interface
-  !> 
-  !>    @brief Un-register host pointer
-  !>  
-  !>    @param[in] hostPtr Host pointer previously registered with #hipHostRegister
-  !>    @return Error code
-  !>  
-  !>    @see hipHostRegister
-  !>  
-  interface hipHostUnregister
-#ifdef USE_CUDA_NAMES
-    function hipHostUnregister_orig(hostPtr) bind(c, name="cudaHostUnregister")
-#else
-    function hipHostUnregister_orig(hostPtr) bind(c, name="hipHostUnregister")
-#endif
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostUnregister_orig
-#else
-      integer(kind(hipSuccess)) :: hipHostUnregister_orig
-#endif
       type(c_ptr),value :: hostPtr
     end function
 
