@@ -1693,41 +1693,6 @@ module hipfort
 
 
   end interface
-  !> 
-  !>   @brief Allocates memory that will be automatically managed by AMD HMM.
-  !>  
-  !>   @param [out] dev_ptr - pointer to allocated device memory
-  !>   @param [in]  size    - requested allocation size in bytes
-  !>   @param [in]  flags   - must be either hipMemAttachGlobal or hipMemAttachHost
-  !>                          (defaults to hipMemAttachGlobal)
-  !>  
-  !>   @returns #hipSuccess, #hipErrorMemoryAllocation, #hipErrorNotSupported, #hipErrorInvalidValue
-  !>  
-  interface hipMallocManaged
-#ifdef USE_CUDA_NAMES
-    function hipMallocManaged_orig(dev_ptr,mySize,flags) bind(c, name="cudaMallocManaged")
-#else
-    function hipMallocManaged_orig(dev_ptr,mySize,flags) bind(c, name="hipMallocManaged")
-#endif
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMallocManaged_orig
-#else
-      integer(kind(hipSuccess)) :: hipMallocManaged_orig
-#endif
-      type(c_ptr) :: dev_ptr
-      integer(c_size_t),value :: mySize
-      integer(kind=4),value :: flags
-    end function
-
-
-  end interface
   
   interface hipHostAlloc
 #ifdef USE_CUDA_NAMES
