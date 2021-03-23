@@ -120,7 +120,7 @@ module hipfort_hipmalloc
     !>    @see hipSetDeviceFlags, hipHostFree
     !>  
 #ifdef USE_CUDA_NAMES
-    function hipHostMalloc_b(ptr,mySize,flags) bind(c, name="cudaHostMalloc")
+    function hipHostMalloc_b(ptr,mySize,flags) bind(c, name="cudaMallocHost")
 #else
     function hipHostMalloc_b(ptr,mySize,flags) bind(c, name="hipHostMalloc")
 #endif
@@ -200,7 +200,7 @@ module hipfort_hipmalloc
     !>   hipMalloc3DArray, hipHostMalloc
     !>  
 #ifdef USE_CUDA_NAMES
-    function hipHostFree_b(ptr) bind(c, name="cudaHostFree")
+    function hipHostFree_b(ptr) bind(c, name="cudaFreeHost")
 #else
     function hipHostFree_b(ptr) bind(c, name="hipHostFree")
 #endif
