@@ -299,7 +299,7 @@ if [ "${HIPFORT_GPU:0:3}" == "sm_" ] ; then
    TARGET_ARCH="nvptx"
    TARGET_TRIPLE=${TARGET_TRIPLE:-nvptx64-nvidia-cuda}
    TARGET_LIBS="-L$CUDA_PATH/targets/x86_64-linux/lib -lcudart"
-   HIPCC_ENV="HIP_PLATFORM=nvcc"
+   HIPCC_ENV="HIP_PLATFORM=nvidia"
    HIPCC_OPTS="--gpu-architecture=$HIPFORT_GPU -x cu $CUOPTS"
    # fixme: add test for minimum cuda version here
 else 
