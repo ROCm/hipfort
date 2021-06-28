@@ -129,6 +129,8 @@ function code2gpu(){
       ;;
       "NRAXJ2")   gpuname="gfx90a"
       ;;
+      "navi12") gpuname="gfx1011"
+      ;;
       "navi21") gpuname="gfx1030"
       ;;
       "sm_30") gpuname="sm_30"
