@@ -20,7 +20,8 @@ set(HIPFORT_ARCH "amdgcn")
     target_compile_definitions(${HIPFORT_LIB} PRIVATE _HIPFORT_ARCH='${HIPFORT_ARCH}')
     install(TARGETS ${HIPFORT_LIB} 
             ARCHIVE DESTINATION lib
-            LIBRARY DESTINATION lib)
+            LIBRARY DESTINATION lib
+            ${DEVEL_COMPONENT})
 
 set(HIPFORT_ARCH "nvptx")
     # nvptx
@@ -38,9 +39,10 @@ set(HIPFORT_ARCH "nvptx")
     target_compile_definitions(${HIPFORT_LIB} PRIVATE _HIPFORT_ARCH='${HIPFORT_ARCH}')
     install(TARGETS ${HIPFORT_LIB} 
             ARCHIVE DESTINATION lib
-            LIBRARY DESTINATION lib)
+            LIBRARY DESTINATION lib
+            ${DEVEL_COMPONENT})
    
-install(DIRECTORY ${CMAKE_BINARY_DIR}/include DESTINATION .)
+install(DIRECTORY ${CMAKE_BINARY_DIR}/include DESTINATION . ${DEVEL_COMPONENT})
 
 #   target_link_libraries(${HIPFORT_LIB} PUBLIC 
 #   /usr/local/cuda/targets/x86_64-linux/lib/libcudart_static.a)

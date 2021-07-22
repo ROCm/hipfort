@@ -51,9 +51,11 @@ install(PROGRAMS
    ${CMAKE_CURRENT_BINARY_DIR}/../bin/hipfc
    ${CMAKE_CURRENT_BINARY_DIR}/../bin/mymcpu
    DESTINATION bin
+   ${RUNTIME_COMPONENT}
 )
 
 install(FILES
    ${CMAKE_CURRENT_SOURCE_DIR}/gputable.txt
    ${CMAKE_CURRENT_BINARY_DIR}/../bin/Makefile.hipfort
-   DESTINATION bin)
+   DESTINATION bin
+   ${RUNTIME_COMPONENT})
