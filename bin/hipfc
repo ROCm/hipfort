@@ -388,7 +388,12 @@ if [ "$UNAMEP" == "ppc64le" ] ; then
   HOST_TARGET="ppc64le-linux-gnu"
 fi
 
-FCARGS="-cpp -I$HIPFORT/include/$TARGET_ARCH"
+if [[ "$HIPFORT_COMPILER" == *"ftn" ]] ; then
+  FCARGS="-eT -J$HIPFORT/include/$TARGET_ARCH"
+else
+  FCARGS="-cpp -I$HIPFORT/include/$TARGET_ARCH"
+fi
+
 if [ $GEN_OBJECT_ONLY ]  ; then 
    FCARGS=" -c $FCARGS"
    HIPCC_OPTS=" -c $HIPCC_OPTS"
