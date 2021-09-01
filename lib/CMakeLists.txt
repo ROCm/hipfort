@@ -1,5 +1,7 @@
 
+IF(NOT CMAKE_Fortran_COMPILER_ID MATCHES "Cray")
 set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -fno-underscoring")
+ENDIF(NOT CMAKE_Fortran_COMPILER_ID MATCHES "Cray")
 file(GLOB HIPFORT_SRC_HIP     "${CMAKE_CURRENT_SOURCE_DIR}/hipfort/*.f*")
 #file(GLOB HIPFORT_SRC_amdgcn  "${CMAKE_CURRENT_SOURCE_DIR}/modules-amdgcn/*.f*")
 #file(GLOB HIPFORT_SRC_nvptx   "${CMAKE_CURRENT_SOURCE_DIR}/modules-nvptx/*.f*")
