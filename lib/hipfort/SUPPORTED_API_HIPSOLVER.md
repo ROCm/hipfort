@@ -1,3 +1,5 @@
+API Name | Specializations
+---------------|---------
 [hipsolverCreate](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercreate.html "Interface documentation") | orig, 
 [hipsolverDestroy](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdestroy.html "Interface documentation") | orig, 
 [hipsolverSetStream](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolversetstream.html "Interface documentation") | orig, 

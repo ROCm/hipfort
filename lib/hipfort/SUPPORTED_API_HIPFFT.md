@@ -1,3 +1,5 @@
+API Name | Specializations
+---------------|---------
 [hipfftPlan1d](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftplan1d.html "Interface documentation") | orig, 
 [hipfftPlan2d](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftplan2d.html "Interface documentation") | orig, 
 [hipfftPlan3d](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftplan3d.html "Interface documentation") | orig, 

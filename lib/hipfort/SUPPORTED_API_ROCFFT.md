@@ -1,3 +1,5 @@
+API Name | Specializations
+---------------|---------
 [rocfft_setup](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft_setup.html "Interface documentation") | orig, 
 [rocfft_setup](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft_setup.html "Interface documentation") | orig, 
 [rocfft_cleanup](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft_cleanup.html "Interface documentation") | orig, 
