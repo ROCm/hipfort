@@ -1,3 +1,5 @@
+API Name | Specializations
+---------------|---------
 [rocsolver_get_version_string](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver_get_version_string.html "Interface documentation") | orig, 
 [rocsolver_get_version_string](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver_get_version_string.html "Interface documentation") | orig, 
 [rocsolver_log_begin](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver_log_begin.html "Interface documentation") | orig, 

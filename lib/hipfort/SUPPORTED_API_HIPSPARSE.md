@@ -1,3 +1,5 @@
+API Name | Specializations
+---------------|---------
 [hipsparseCreate](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecreate.html "Interface documentation") | orig, 
 [hipsparseDestroy](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedestroy.html "Interface documentation") | orig, 
 [hipsparseGetVersion](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsegetversion.html "Interface documentation") | orig, 

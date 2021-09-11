@@ -1,3 +1,5 @@
+API Name | Specializations
+---------------|---------
 [rocsparse_create_handle](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsparse_1_1rocsparse_create_handle.html "Interface documentation") | orig, 
 [rocsparse_create_handle](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsparse_1_1rocsparse_create_handle.html "Interface documentation") | orig, 
 [rocsparse_destroy_handle](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsparse_1_1rocsparse_destroy_handle.html "Interface documentation") | orig, 
