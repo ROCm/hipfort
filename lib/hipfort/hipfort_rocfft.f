@@ -664,13 +664,13 @@ rocfft_plan_description_set_data_layout_rank_1
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_plan_create_rank_0
       type(c_ptr) :: plan
-      integer(kind(rocfft_placement_inplace)),value :: placement
-      integer(kind(rocfft_transform_type_complex_forward)),value :: transform_type
-      integer(kind(rocfft_precision_single)),value :: myPrecision
-      integer(c_size_t),value :: dimensions
+      integer(kind(rocfft_placement_inplace)) :: placement
+      integer(kind(rocfft_transform_type_complex_forward)) :: transform_type
+      integer(kind(rocfft_precision_single)) :: myPrecision
+      integer(c_size_t) :: dimensions
       integer(c_size_t),target :: lengths
-      integer(c_size_t),value :: number_of_transforms
-      type(c_ptr),value :: description
+      integer(c_size_t) :: number_of_transforms
+      type(c_ptr) :: description
       !
       rocfft_plan_create_rank_0 = rocfft_plan_create_raw(plan,placement,transform_type,myPrecision,dimensions,c_loc(lengths),number_of_transforms,description)
     end function
@@ -681,13 +681,13 @@ rocfft_plan_description_set_data_layout_rank_1
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_plan_create_rank_1
       type(c_ptr) :: plan
-      integer(kind(rocfft_placement_inplace)),value :: placement
-      integer(kind(rocfft_transform_type_complex_forward)),value :: transform_type
-      integer(kind(rocfft_precision_single)),value :: myPrecision
-      integer(c_size_t),value :: dimensions
+      integer(kind(rocfft_placement_inplace)) :: placement
+      integer(kind(rocfft_transform_type_complex_forward)) :: transform_type
+      integer(kind(rocfft_precision_single)) :: myPrecision
+      integer(c_size_t) :: dimensions
       integer(c_size_t),target,dimension(:) :: lengths
-      integer(c_size_t),value :: number_of_transforms
-      type(c_ptr),value :: description
+      integer(c_size_t) :: number_of_transforms
+      type(c_ptr) :: description
       !
       rocfft_plan_create_rank_1 = rocfft_plan_create_raw(plan,placement,transform_type,myPrecision,dimensions,c_loc(lengths),number_of_transforms,description)
     end function
@@ -697,17 +697,17 @@ rocfft_plan_description_set_data_layout_rank_1
       use hipfort_rocfft_enums
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_data_layout_rank_0
-      type(c_ptr),value :: description
-      integer(kind(rocfft_array_type_complex_interleaved)),value :: in_array_type
-      integer(kind(rocfft_array_type_complex_interleaved)),value :: out_array_type
+      type(c_ptr) :: description
+      integer(kind(rocfft_array_type_complex_interleaved)) :: in_array_type
+      integer(kind(rocfft_array_type_complex_interleaved)) :: out_array_type
       integer(c_size_t),target :: in_offsets
       integer(c_size_t),target :: out_offsets
-      integer(c_size_t),value :: in_strides_size
+      integer(c_size_t) :: in_strides_size
       integer(c_size_t),target :: in_strides
-      integer(c_size_t),value :: in_distance
-      integer(c_size_t),value :: out_strides_size
+      integer(c_size_t) :: in_distance
+      integer(c_size_t) :: out_strides_size
       integer(c_size_t),target :: out_strides
-      integer(c_size_t),value :: out_distance
+      integer(c_size_t) :: out_distance
       !
       rocfft_plan_description_set_data_layout_rank_0 = rocfft_plan_description_set_data_layout_raw(description,in_array_type,out_array_type,c_loc(in_offsets),c_loc(out_offsets),in_strides_size,c_loc(in_strides),in_distance,out_strides_size,c_loc(out_strides),out_distance)
     end function
@@ -717,17 +717,17 @@ rocfft_plan_description_set_data_layout_rank_1
       use hipfort_rocfft_enums
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_data_layout_rank_1
-      type(c_ptr),value :: description
-      integer(kind(rocfft_array_type_complex_interleaved)),value :: in_array_type
-      integer(kind(rocfft_array_type_complex_interleaved)),value :: out_array_type
+      type(c_ptr) :: description
+      integer(kind(rocfft_array_type_complex_interleaved)) :: in_array_type
+      integer(kind(rocfft_array_type_complex_interleaved)) :: out_array_type
       integer(c_size_t),target,dimension(:) :: in_offsets
       integer(c_size_t),target,dimension(:) :: out_offsets
-      integer(c_size_t),value :: in_strides_size
+      integer(c_size_t) :: in_strides_size
       integer(c_size_t),target,dimension(:) :: in_strides
-      integer(c_size_t),value :: in_distance
-      integer(c_size_t),value :: out_strides_size
+      integer(c_size_t) :: in_distance
+      integer(c_size_t) :: out_strides_size
       integer(c_size_t),target,dimension(:) :: out_strides
-      integer(c_size_t),value :: out_distance
+      integer(c_size_t) :: out_distance
       !
       rocfft_plan_description_set_data_layout_rank_1 = rocfft_plan_description_set_data_layout_raw(description,in_array_type,out_array_type,c_loc(in_offsets),c_loc(out_offsets),in_strides_size,c_loc(in_strides),in_distance,out_strides_size,c_loc(out_strides),out_distance)
     end function

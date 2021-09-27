@@ -794,16 +794,16 @@ hipfftExecZ2D_rank_1
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftPlanMany_rank_0
       type(c_ptr) :: plan
-      integer(c_int),value :: rank
+      integer(c_int) :: rank
       integer(c_int),target :: n
       integer(c_int),target :: inembed
-      integer(c_int),value :: istride
-      integer(c_int),value :: idist
+      integer(c_int) :: istride
+      integer(c_int) :: idist
       integer(c_int),target :: onembed
-      integer(c_int),value :: ostride
-      integer(c_int),value :: odist
-      integer(kind(HIPFFT_R2C)),value :: myType
-      integer(c_int),value :: batch
+      integer(c_int) :: ostride
+      integer(c_int) :: odist
+      integer(kind(HIPFFT_R2C)) :: myType
+      integer(c_int) :: batch
       !
       hipfftPlanMany_rank_0 = hipfftPlanMany_raw(plan,rank,c_loc(n),c_loc(inembed),istride,idist,c_loc(onembed),ostride,odist,myType,batch)
     end function
@@ -814,16 +814,16 @@ hipfftExecZ2D_rank_1
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftPlanMany_rank_1
       type(c_ptr) :: plan
-      integer(c_int),value :: rank
+      integer(c_int) :: rank
       integer(c_int),target,dimension(:) :: n
       integer(c_int),target,dimension(:) :: inembed
-      integer(c_int),value :: istride
-      integer(c_int),value :: idist
+      integer(c_int) :: istride
+      integer(c_int) :: idist
       integer(c_int),target,dimension(:) :: onembed
-      integer(c_int),value :: ostride
-      integer(c_int),value :: odist
-      integer(kind(HIPFFT_R2C)),value :: myType
-      integer(c_int),value :: batch
+      integer(c_int) :: ostride
+      integer(c_int) :: odist
+      integer(kind(HIPFFT_R2C)) :: myType
+      integer(c_int) :: batch
       !
       hipfftPlanMany_rank_1 = hipfftPlanMany_raw(plan,rank,c_loc(n),c_loc(inembed),istride,idist,c_loc(onembed),ostride,odist,myType,batch)
     end function
@@ -833,10 +833,10 @@ hipfftExecZ2D_rank_1
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlan1d_rank_0
-      type(c_ptr),value :: plan
-      integer(c_int),value :: nx
-      integer(kind(HIPFFT_R2C)),value :: myType
-      integer(c_int),value :: batch
+      type(c_ptr) :: plan
+      integer(c_int) :: nx
+      integer(kind(HIPFFT_R2C)) :: myType
+      integer(c_int) :: batch
       integer(c_size_t),target :: workSize
       !
       hipfftMakePlan1d_rank_0 = hipfftMakePlan1d_raw(plan,nx,myType,batch,c_loc(workSize))
@@ -847,10 +847,10 @@ hipfftExecZ2D_rank_1
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlan1d_rank_1
-      type(c_ptr),value :: plan
-      integer(c_int),value :: nx
-      integer(kind(HIPFFT_R2C)),value :: myType
-      integer(c_int),value :: batch
+      type(c_ptr) :: plan
+      integer(c_int) :: nx
+      integer(kind(HIPFFT_R2C)) :: myType
+      integer(c_int) :: batch
       integer(c_size_t),target,dimension(:) :: workSize
       !
       hipfftMakePlan1d_rank_1 = hipfftMakePlan1d_raw(plan,nx,myType,batch,c_loc(workSize))
@@ -861,10 +861,10 @@ hipfftExecZ2D_rank_1
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlan2d_rank_0
-      type(c_ptr),value :: plan
-      integer(c_int),value :: nx
-      integer(c_int),value :: ny
-      integer(kind(HIPFFT_R2C)),value :: myType
+      type(c_ptr) :: plan
+      integer(c_int) :: nx
+      integer(c_int) :: ny
+      integer(kind(HIPFFT_R2C)) :: myType
       integer(c_size_t),target :: workSize
       !
       hipfftMakePlan2d_rank_0 = hipfftMakePlan2d_raw(plan,nx,ny,myType,c_loc(workSize))
@@ -875,10 +875,10 @@ hipfftExecZ2D_rank_1
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlan2d_rank_1
-      type(c_ptr),value :: plan
-      integer(c_int),value :: nx
-      integer(c_int),value :: ny
-      integer(kind(HIPFFT_R2C)),value :: myType
+      type(c_ptr) :: plan
+      integer(c_int) :: nx
+      integer(c_int) :: ny
+      integer(kind(HIPFFT_R2C)) :: myType
       integer(c_size_t),target,dimension(:) :: workSize
       !
       hipfftMakePlan2d_rank_1 = hipfftMakePlan2d_raw(plan,nx,ny,myType,c_loc(workSize))
@@ -889,11 +889,11 @@ hipfftExecZ2D_rank_1
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlan3d_rank_0
-      type(c_ptr),value :: plan
-      integer(c_int),value :: nx
-      integer(c_int),value :: ny
-      integer(c_int),value :: nz
-      integer(kind(HIPFFT_R2C)),value :: myType
+      type(c_ptr) :: plan
+      integer(c_int) :: nx
+      integer(c_int) :: ny
+      integer(c_int) :: nz
+      integer(kind(HIPFFT_R2C)) :: myType
       integer(c_size_t),target :: workSize
       !
       hipfftMakePlan3d_rank_0 = hipfftMakePlan3d_raw(plan,nx,ny,nz,myType,c_loc(workSize))
@@ -904,11 +904,11 @@ hipfftExecZ2D_rank_1
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlan3d_rank_1
-      type(c_ptr),value :: plan
-      integer(c_int),value :: nx
-      integer(c_int),value :: ny
-      integer(c_int),value :: nz
-      integer(kind(HIPFFT_R2C)),value :: myType
+      type(c_ptr) :: plan
+      integer(c_int) :: nx
+      integer(c_int) :: ny
+      integer(c_int) :: nz
+      integer(kind(HIPFFT_R2C)) :: myType
       integer(c_size_t),target,dimension(:) :: workSize
       !
       hipfftMakePlan3d_rank_1 = hipfftMakePlan3d_raw(plan,nx,ny,nz,myType,c_loc(workSize))
@@ -919,17 +919,17 @@ hipfftExecZ2D_rank_1
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlanMany_rank_0
-      type(c_ptr),value :: plan
-      integer(c_int),value :: rank
+      type(c_ptr) :: plan
+      integer(c_int) :: rank
       integer(c_int),target :: n
       integer(c_int),target :: inembed
-      integer(c_int),value :: istride
-      integer(c_int),value :: idist
+      integer(c_int) :: istride
+      integer(c_int) :: idist
       integer(c_int),target :: onembed
-      integer(c_int),value :: ostride
-      integer(c_int),value :: odist
-      integer(kind(HIPFFT_R2C)),value :: myType
-      integer(c_int),value :: batch
+      integer(c_int) :: ostride
+      integer(c_int) :: odist
+      integer(kind(HIPFFT_R2C)) :: myType
+      integer(c_int) :: batch
       integer(c_size_t),target :: workSize
       !
       hipfftMakePlanMany_rank_0 = hipfftMakePlanMany_raw(plan,rank,c_loc(n),c_loc(inembed),istride,idist,c_loc(onembed),ostride,odist,myType,batch,c_loc(workSize))
@@ -940,17 +940,17 @@ hipfftExecZ2D_rank_1
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlanMany_rank_1
-      type(c_ptr),value :: plan
-      integer(c_int),value :: rank
+      type(c_ptr) :: plan
+      integer(c_int) :: rank
       integer(c_int),target,dimension(:) :: n
       integer(c_int),target,dimension(:) :: inembed
-      integer(c_int),value :: istride
-      integer(c_int),value :: idist
+      integer(c_int) :: istride
+      integer(c_int) :: idist
       integer(c_int),target,dimension(:) :: onembed
-      integer(c_int),value :: ostride
-      integer(c_int),value :: odist
-      integer(kind(HIPFFT_R2C)),value :: myType
-      integer(c_int),value :: batch
+      integer(c_int) :: ostride
+      integer(c_int) :: odist
+      integer(kind(HIPFFT_R2C)) :: myType
+      integer(c_int) :: batch
       integer(c_size_t),target,dimension(:) :: workSize
       !
       hipfftMakePlanMany_rank_1 = hipfftMakePlanMany_raw(plan,rank,c_loc(n),c_loc(inembed),istride,idist,c_loc(onembed),ostride,odist,myType,batch,c_loc(workSize))
@@ -961,17 +961,17 @@ hipfftExecZ2D_rank_1
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlanMany64_rank_0
-      type(c_ptr),value :: plan
-      integer(c_int),value :: rank
+      type(c_ptr) :: plan
+      integer(c_int) :: rank
       integer(c_long_long),target :: n
       integer(c_long_long),target :: inembed
-      integer(c_long_long),value :: istride
-      integer(c_long_long),value :: idist
+      integer(c_long_long) :: istride
+      integer(c_long_long) :: idist
       integer(c_long_long),target :: onembed
-      integer(c_long_long),value :: ostride
-      integer(c_long_long),value :: odist
-      integer(kind(HIPFFT_R2C)),value :: myType
-      integer(c_long_long),value :: batch
+      integer(c_long_long) :: ostride
+      integer(c_long_long) :: odist
+      integer(kind(HIPFFT_R2C)) :: myType
+      integer(c_long_long) :: batch
       integer(c_size_t),target :: workSize
       !
       hipfftMakePlanMany64_rank_0 = hipfftMakePlanMany64_raw(plan,rank,c_loc(n),c_loc(inembed),istride,idist,c_loc(onembed),ostride,odist,myType,batch,c_loc(workSize))
@@ -982,17 +982,17 @@ hipfftExecZ2D_rank_1
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlanMany64_rank_1
-      type(c_ptr),value :: plan
-      integer(c_int),value :: rank
+      type(c_ptr) :: plan
+      integer(c_int) :: rank
       integer(c_long_long),target,dimension(:) :: n
       integer(c_long_long),target,dimension(:) :: inembed
-      integer(c_long_long),value :: istride
-      integer(c_long_long),value :: idist
+      integer(c_long_long) :: istride
+      integer(c_long_long) :: idist
       integer(c_long_long),target,dimension(:) :: onembed
-      integer(c_long_long),value :: ostride
-      integer(c_long_long),value :: odist
-      integer(kind(HIPFFT_R2C)),value :: myType
-      integer(c_long_long),value :: batch
+      integer(c_long_long) :: ostride
+      integer(c_long_long) :: odist
+      integer(kind(HIPFFT_R2C)) :: myType
+      integer(c_long_long) :: batch
       integer(c_size_t),target,dimension(:) :: workSize
       !
       hipfftMakePlanMany64_rank_1 = hipfftMakePlanMany64_raw(plan,rank,c_loc(n),c_loc(inembed),istride,idist,c_loc(onembed),ostride,odist,myType,batch,c_loc(workSize))
@@ -1003,17 +1003,17 @@ hipfftExecZ2D_rank_1
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSizeMany64_rank_0
-      type(c_ptr),value :: plan
-      integer(c_int),value :: rank
+      type(c_ptr) :: plan
+      integer(c_int) :: rank
       integer(c_long_long),target :: n
       integer(c_long_long),target :: inembed
-      integer(c_long_long),value :: istride
-      integer(c_long_long),value :: idist
+      integer(c_long_long) :: istride
+      integer(c_long_long) :: idist
       integer(c_long_long),target :: onembed
-      integer(c_long_long),value :: ostride
-      integer(c_long_long),value :: odist
-      integer(kind(HIPFFT_R2C)),value :: myType
-      integer(c_long_long),value :: batch
+      integer(c_long_long) :: ostride
+      integer(c_long_long) :: odist
+      integer(kind(HIPFFT_R2C)) :: myType
+      integer(c_long_long) :: batch
       integer(c_size_t),target :: workSize
       !
       hipfftGetSizeMany64_rank_0 = hipfftGetSizeMany64_raw(plan,rank,c_loc(n),c_loc(inembed),istride,idist,c_loc(onembed),ostride,odist,myType,batch,c_loc(workSize))
@@ -1024,17 +1024,17 @@ hipfftExecZ2D_rank_1
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSizeMany64_rank_1
-      type(c_ptr),value :: plan
-      integer(c_int),value :: rank
+      type(c_ptr) :: plan
+      integer(c_int) :: rank
       integer(c_long_long),target,dimension(:) :: n
       integer(c_long_long),target,dimension(:) :: inembed
-      integer(c_long_long),value :: istride
-      integer(c_long_long),value :: idist
+      integer(c_long_long) :: istride
+      integer(c_long_long) :: idist
       integer(c_long_long),target,dimension(:) :: onembed
-      integer(c_long_long),value :: ostride
-      integer(c_long_long),value :: odist
-      integer(kind(HIPFFT_R2C)),value :: myType
-      integer(c_long_long),value :: batch
+      integer(c_long_long) :: ostride
+      integer(c_long_long) :: odist
+      integer(kind(HIPFFT_R2C)) :: myType
+      integer(c_long_long) :: batch
       integer(c_size_t),target,dimension(:) :: workSize
       !
       hipfftGetSizeMany64_rank_1 = hipfftGetSizeMany64_raw(plan,rank,c_loc(n),c_loc(inembed),istride,idist,c_loc(onembed),ostride,odist,myType,batch,c_loc(workSize))
@@ -1045,9 +1045,9 @@ hipfftExecZ2D_rank_1
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftEstimate1d_rank_0
-      integer(c_int),value :: nx
-      integer(kind(HIPFFT_R2C)),value :: myType
-      integer(c_int),value :: batch
+      integer(c_int) :: nx
+      integer(kind(HIPFFT_R2C)) :: myType
+      integer(c_int) :: batch
       integer(c_size_t),target :: workSize
       !
       hipfftEstimate1d_rank_0 = hipfftEstimate1d_raw(nx,myType,batch,c_loc(workSize))
@@ -1058,9 +1058,9 @@ hipfftExecZ2D_rank_1
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftEstimate1d_rank_1
-      integer(c_int),value :: nx
-      integer(kind(HIPFFT_R2C)),value :: myType
-      integer(c_int),value :: batch
+      integer(c_int) :: nx
+      integer(kind(HIPFFT_R2C)) :: myType
+      integer(c_int) :: batch
       integer(c_size_t),target,dimension(:) :: workSize
       !
       hipfftEstimate1d_rank_1 = hipfftEstimate1d_raw(nx,myType,batch,c_loc(workSize))
@@ -1071,9 +1071,9 @@ hipfftExecZ2D_rank_1
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftEstimate2d_rank_0
-      integer(c_int),value :: nx
-      integer(c_int),value :: ny
-      integer(kind(HIPFFT_R2C)),value :: myType
+      integer(c_int) :: nx
+      integer(c_int) :: ny
+      integer(kind(HIPFFT_R2C)) :: myType
       integer(c_size_t),target :: workSize
       !
       hipfftEstimate2d_rank_0 = hipfftEstimate2d_raw(nx,ny,myType,c_loc(workSize))
@@ -1084,9 +1084,9 @@ hipfftExecZ2D_rank_1
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftEstimate2d_rank_1
-      integer(c_int),value :: nx
-      integer(c_int),value :: ny
-      integer(kind(HIPFFT_R2C)),value :: myType
+      integer(c_int) :: nx
+      integer(c_int) :: ny
+      integer(kind(HIPFFT_R2C)) :: myType
       integer(c_size_t),target,dimension(:) :: workSize
       !
       hipfftEstimate2d_rank_1 = hipfftEstimate2d_raw(nx,ny,myType,c_loc(workSize))
@@ -1097,10 +1097,10 @@ hipfftExecZ2D_rank_1
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftEstimate3d_rank_0
-      integer(c_int),value :: nx
-      integer(c_int),value :: ny
-      integer(c_int),value :: nz
-      integer(kind(HIPFFT_R2C)),value :: myType
+      integer(c_int) :: nx
+      integer(c_int) :: ny
+      integer(c_int) :: nz
+      integer(kind(HIPFFT_R2C)) :: myType
       integer(c_size_t),target :: workSize
       !
       hipfftEstimate3d_rank_0 = hipfftEstimate3d_raw(nx,ny,nz,myType,c_loc(workSize))
@@ -1111,10 +1111,10 @@ hipfftExecZ2D_rank_1
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftEstimate3d_rank_1
-      integer(c_int),value :: nx
-      integer(c_int),value :: ny
-      integer(c_int),value :: nz
-      integer(kind(HIPFFT_R2C)),value :: myType
+      integer(c_int) :: nx
+      integer(c_int) :: ny
+      integer(c_int) :: nz
+      integer(kind(HIPFFT_R2C)) :: myType
       integer(c_size_t),target,dimension(:) :: workSize
       !
       hipfftEstimate3d_rank_1 = hipfftEstimate3d_raw(nx,ny,nz,myType,c_loc(workSize))
@@ -1125,16 +1125,16 @@ hipfftExecZ2D_rank_1
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftEstimateMany_rank_0
-      integer(c_int),value :: rank
+      integer(c_int) :: rank
       integer(c_int),target :: n
       integer(c_int),target :: inembed
-      integer(c_int),value :: istride
-      integer(c_int),value :: idist
+      integer(c_int) :: istride
+      integer(c_int) :: idist
       integer(c_int),target :: onembed
-      integer(c_int),value :: ostride
-      integer(c_int),value :: odist
-      integer(kind(HIPFFT_R2C)),value :: myType
-      integer(c_int),value :: batch
+      integer(c_int) :: ostride
+      integer(c_int) :: odist
+      integer(kind(HIPFFT_R2C)) :: myType
+      integer(c_int) :: batch
       integer(c_size_t),target :: workSize
       !
       hipfftEstimateMany_rank_0 = hipfftEstimateMany_raw(rank,c_loc(n),c_loc(inembed),istride,idist,c_loc(onembed),ostride,odist,myType,batch,c_loc(workSize))
@@ -1145,16 +1145,16 @@ hipfftExecZ2D_rank_1
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftEstimateMany_rank_1
-      integer(c_int),value :: rank
+      integer(c_int) :: rank
       integer(c_int),target,dimension(:) :: n
       integer(c_int),target,dimension(:) :: inembed
-      integer(c_int),value :: istride
-      integer(c_int),value :: idist
+      integer(c_int) :: istride
+      integer(c_int) :: idist
       integer(c_int),target,dimension(:) :: onembed
-      integer(c_int),value :: ostride
-      integer(c_int),value :: odist
-      integer(kind(HIPFFT_R2C)),value :: myType
-      integer(c_int),value :: batch
+      integer(c_int) :: ostride
+      integer(c_int) :: odist
+      integer(kind(HIPFFT_R2C)) :: myType
+      integer(c_int) :: batch
       integer(c_size_t),target,dimension(:) :: workSize
       !
       hipfftEstimateMany_rank_1 = hipfftEstimateMany_raw(rank,c_loc(n),c_loc(inembed),istride,idist,c_loc(onembed),ostride,odist,myType,batch,c_loc(workSize))
@@ -1165,10 +1165,10 @@ hipfftExecZ2D_rank_1
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSize1d_rank_0
-      type(c_ptr),value :: plan
-      integer(c_int),value :: nx
-      integer(kind(HIPFFT_R2C)),value :: myType
-      integer(c_int),value :: batch
+      type(c_ptr) :: plan
+      integer(c_int) :: nx
+      integer(kind(HIPFFT_R2C)) :: myType
+      integer(c_int) :: batch
       integer(c_size_t),target :: workSize
       !
       hipfftGetSize1d_rank_0 = hipfftGetSize1d_raw(plan,nx,myType,batch,c_loc(workSize))
@@ -1179,10 +1179,10 @@ hipfftExecZ2D_rank_1
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSize1d_rank_1
-      type(c_ptr),value :: plan
-      integer(c_int),value :: nx
-      integer(kind(HIPFFT_R2C)),value :: myType
-      integer(c_int),value :: batch
+      type(c_ptr) :: plan
+      integer(c_int) :: nx
+      integer(kind(HIPFFT_R2C)) :: myType
+      integer(c_int) :: batch
       integer(c_size_t),target,dimension(:) :: workSize
       !
       hipfftGetSize1d_rank_1 = hipfftGetSize1d_raw(plan,nx,myType,batch,c_loc(workSize))
@@ -1193,10 +1193,10 @@ hipfftExecZ2D_rank_1
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSize2d_rank_0
-      type(c_ptr),value :: plan
-      integer(c_int),value :: nx
-      integer(c_int),value :: ny
-      integer(kind(HIPFFT_R2C)),value :: myType
+      type(c_ptr) :: plan
+      integer(c_int) :: nx
+      integer(c_int) :: ny
+      integer(kind(HIPFFT_R2C)) :: myType
       integer(c_size_t),target :: workSize
       !
       hipfftGetSize2d_rank_0 = hipfftGetSize2d_raw(plan,nx,ny,myType,c_loc(workSize))
@@ -1207,10 +1207,10 @@ hipfftExecZ2D_rank_1
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSize2d_rank_1
-      type(c_ptr),value :: plan
-      integer(c_int),value :: nx
-      integer(c_int),value :: ny
-      integer(kind(HIPFFT_R2C)),value :: myType
+      type(c_ptr) :: plan
+      integer(c_int) :: nx
+      integer(c_int) :: ny
+      integer(kind(HIPFFT_R2C)) :: myType
       integer(c_size_t),target,dimension(:) :: workSize
       !
       hipfftGetSize2d_rank_1 = hipfftGetSize2d_raw(plan,nx,ny,myType,c_loc(workSize))
@@ -1221,11 +1221,11 @@ hipfftExecZ2D_rank_1
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSize3d_rank_0
-      type(c_ptr),value :: plan
-      integer(c_int),value :: nx
-      integer(c_int),value :: ny
-      integer(c_int),value :: nz
-      integer(kind(HIPFFT_R2C)),value :: myType
+      type(c_ptr) :: plan
+      integer(c_int) :: nx
+      integer(c_int) :: ny
+      integer(c_int) :: nz
+      integer(kind(HIPFFT_R2C)) :: myType
       integer(c_size_t),target :: workSize
       !
       hipfftGetSize3d_rank_0 = hipfftGetSize3d_raw(plan,nx,ny,nz,myType,c_loc(workSize))
@@ -1236,11 +1236,11 @@ hipfftExecZ2D_rank_1
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSize3d_rank_1
-      type(c_ptr),value :: plan
-      integer(c_int),value :: nx
-      integer(c_int),value :: ny
-      integer(c_int),value :: nz
-      integer(kind(HIPFFT_R2C)),value :: myType
+      type(c_ptr) :: plan
+      integer(c_int) :: nx
+      integer(c_int) :: ny
+      integer(c_int) :: nz
+      integer(kind(HIPFFT_R2C)) :: myType
       integer(c_size_t),target,dimension(:) :: workSize
       !
       hipfftGetSize3d_rank_1 = hipfftGetSize3d_raw(plan,nx,ny,nz,myType,c_loc(workSize))
@@ -1251,17 +1251,17 @@ hipfftExecZ2D_rank_1
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSizeMany_rank_0
-      type(c_ptr),value :: plan
-      integer(c_int),value :: rank
+      type(c_ptr) :: plan
+      integer(c_int) :: rank
       integer(c_int),target :: n
       integer(c_int),target :: inembed
-      integer(c_int),value :: istride
-      integer(c_int),value :: idist
+      integer(c_int) :: istride
+      integer(c_int) :: idist
       integer(c_int),target :: onembed
-      integer(c_int),value :: ostride
-      integer(c_int),value :: odist
-      integer(kind(HIPFFT_R2C)),value :: myType
-      integer(c_int),value :: batch
+      integer(c_int) :: ostride
+      integer(c_int) :: odist
+      integer(kind(HIPFFT_R2C)) :: myType
+      integer(c_int) :: batch
       integer(c_size_t),target :: workSize
       !
       hipfftGetSizeMany_rank_0 = hipfftGetSizeMany_raw(plan,rank,c_loc(n),c_loc(inembed),istride,idist,c_loc(onembed),ostride,odist,myType,batch,c_loc(workSize))
@@ -1272,17 +1272,17 @@ hipfftExecZ2D_rank_1
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSizeMany_rank_1
-      type(c_ptr),value :: plan
-      integer(c_int),value :: rank
+      type(c_ptr) :: plan
+      integer(c_int) :: rank
       integer(c_int),target,dimension(:) :: n
       integer(c_int),target,dimension(:) :: inembed
-      integer(c_int),value :: istride
-      integer(c_int),value :: idist
+      integer(c_int) :: istride
+      integer(c_int) :: idist
       integer(c_int),target,dimension(:) :: onembed
-      integer(c_int),value :: ostride
-      integer(c_int),value :: odist
-      integer(kind(HIPFFT_R2C)),value :: myType
-      integer(c_int),value :: batch
+      integer(c_int) :: ostride
+      integer(c_int) :: odist
+      integer(kind(HIPFFT_R2C)) :: myType
+      integer(c_int) :: batch
       integer(c_size_t),target,dimension(:) :: workSize
       !
       hipfftGetSizeMany_rank_1 = hipfftGetSizeMany_raw(plan,rank,c_loc(n),c_loc(inembed),istride,idist,c_loc(onembed),ostride,odist,myType,batch,c_loc(workSize))
@@ -1293,7 +1293,7 @@ hipfftExecZ2D_rank_1
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSize_rank_0
-      type(c_ptr),value :: plan
+      type(c_ptr) :: plan
       integer(c_size_t),target :: workSize
       !
       hipfftGetSize_rank_0 = hipfftGetSize_raw(plan,c_loc(workSize))
@@ -1304,7 +1304,7 @@ hipfftExecZ2D_rank_1
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSize_rank_1
-      type(c_ptr),value :: plan
+      type(c_ptr) :: plan
       integer(c_size_t),target,dimension(:) :: workSize
       !
       hipfftGetSize_rank_1 = hipfftGetSize_raw(plan,c_loc(workSize))
@@ -1315,10 +1315,10 @@ hipfftExecZ2D_rank_1
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecC2C_rank_0
-      type(c_ptr),value :: plan
+      type(c_ptr) :: plan
       complex(c_float_complex),target :: idata
       complex(c_float_complex),target :: odata
-      integer(c_int),value :: direction
+      integer(c_int) :: direction
       !
       hipfftExecC2C_rank_0 = hipfftExecC2C_raw(plan,c_loc(idata),c_loc(odata),direction)
     end function
@@ -1328,10 +1328,10 @@ hipfftExecZ2D_rank_1
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecC2C_rank_1
-      type(c_ptr),value :: plan
+      type(c_ptr) :: plan
       complex(c_float_complex),target,dimension(:) :: idata
       complex(c_float_complex),target,dimension(:) :: odata
-      integer(c_int),value :: direction
+      integer(c_int) :: direction
       !
       hipfftExecC2C_rank_1 = hipfftExecC2C_raw(plan,c_loc(idata),c_loc(odata),direction)
     end function
@@ -1341,7 +1341,7 @@ hipfftExecZ2D_rank_1
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecR2C_rank_0
-      type(c_ptr),value :: plan
+      type(c_ptr) :: plan
       real(c_float),target :: idata
       complex(c_float_complex),target :: odata
       !
@@ -1353,7 +1353,7 @@ hipfftExecZ2D_rank_1
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecR2C_rank_1
-      type(c_ptr),value :: plan
+      type(c_ptr) :: plan
       real(c_float),target,dimension(:) :: idata
       complex(c_float_complex),target,dimension(:) :: odata
       !
@@ -1365,7 +1365,7 @@ hipfftExecZ2D_rank_1
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecC2R_rank_0
-      type(c_ptr),value :: plan
+      type(c_ptr) :: plan
       complex(c_float_complex),target :: idata
       real(c_float),target :: odata
       !
@@ -1377,7 +1377,7 @@ hipfftExecZ2D_rank_1
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecC2R_rank_1
-      type(c_ptr),value :: plan
+      type(c_ptr) :: plan
       complex(c_float_complex),target,dimension(:) :: idata
       real(c_float),target,dimension(:) :: odata
       !
@@ -1389,10 +1389,10 @@ hipfftExecZ2D_rank_1
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecZ2Z_rank_0
-      type(c_ptr),value :: plan
+      type(c_ptr) :: plan
       complex(c_double_complex),target :: idata
       complex(c_double_complex),target :: odata
-      integer(c_int),value :: direction
+      integer(c_int) :: direction
       !
       hipfftExecZ2Z_rank_0 = hipfftExecZ2Z_raw(plan,c_loc(idata),c_loc(odata),direction)
     end function
@@ -1402,10 +1402,10 @@ hipfftExecZ2D_rank_1
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecZ2Z_rank_1
-      type(c_ptr),value :: plan
+      type(c_ptr) :: plan
       complex(c_double_complex),target,dimension(:) :: idata
       complex(c_double_complex),target,dimension(:) :: odata
-      integer(c_int),value :: direction
+      integer(c_int) :: direction
       !
       hipfftExecZ2Z_rank_1 = hipfftExecZ2Z_raw(plan,c_loc(idata),c_loc(odata),direction)
     end function
@@ -1415,7 +1415,7 @@ hipfftExecZ2D_rank_1
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecD2Z_rank_0
-      type(c_ptr),value :: plan
+      type(c_ptr) :: plan
       real(c_double),target :: idata
       complex(c_double_complex),target :: odata
       !
@@ -1427,7 +1427,7 @@ hipfftExecZ2D_rank_1
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecD2Z_rank_1
-      type(c_ptr),value :: plan
+      type(c_ptr) :: plan
       real(c_double),target,dimension(:) :: idata
       complex(c_double_complex),target,dimension(:) :: odata
       !
@@ -1439,7 +1439,7 @@ hipfftExecZ2D_rank_1
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecZ2D_rank_0
-      type(c_ptr),value :: plan
+      type(c_ptr) :: plan
       complex(c_double_complex),target :: idata
       real(c_double),target :: odata
       !
@@ -1451,7 +1451,7 @@ hipfftExecZ2D_rank_1
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecZ2D_rank_1
-      type(c_ptr),value :: plan
+      type(c_ptr) :: plan
       complex(c_double_complex),target,dimension(:) :: idata
       real(c_double),target,dimension(:) :: odata
       !

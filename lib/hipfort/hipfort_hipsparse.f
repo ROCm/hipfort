@@ -14576,13 +14576,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSaxpyi_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_float) :: alpha
       real(c_float),target :: xVal
       integer(c_int),target :: xInd
       real(c_float),target :: y
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseSaxpyi_rank_0 = hipsparseSaxpyi_raw(handle,nnz,alpha,c_loc(xVal),c_loc(xInd),c_loc(y),idxBase)
     end function
@@ -14593,13 +14593,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSaxpyi_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_float) :: alpha
       real(c_float),target,dimension(:) :: xVal
       integer(c_int),target,dimension(:) :: xInd
       real(c_float),target,dimension(:) :: y
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseSaxpyi_rank_1 = hipsparseSaxpyi_raw(handle,nnz,alpha,c_loc(xVal),c_loc(xInd),c_loc(y),idxBase)
     end function
@@ -14610,13 +14610,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDaxpyi_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_double) :: alpha
       real(c_double),target :: xVal
       integer(c_int),target :: xInd
       real(c_double),target :: y
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseDaxpyi_rank_0 = hipsparseDaxpyi_raw(handle,nnz,alpha,c_loc(xVal),c_loc(xInd),c_loc(y),idxBase)
     end function
@@ -14627,13 +14627,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDaxpyi_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_double) :: alpha
       real(c_double),target,dimension(:) :: xVal
       integer(c_int),target,dimension(:) :: xInd
       real(c_double),target,dimension(:) :: y
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseDaxpyi_rank_1 = hipsparseDaxpyi_raw(handle,nnz,alpha,c_loc(xVal),c_loc(xInd),c_loc(y),idxBase)
     end function
@@ -14644,13 +14644,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCaxpyi_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
       complex(c_float_complex),target :: xVal
       integer(c_int),target :: xInd
       complex(c_float_complex),target :: y
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseCaxpyi_rank_0 = hipsparseCaxpyi_raw(handle,nnz,alpha,c_loc(xVal),c_loc(xInd),c_loc(y),idxBase)
     end function
@@ -14661,13 +14661,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCaxpyi_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
       complex(c_float_complex),target,dimension(:) :: xVal
       integer(c_int),target,dimension(:) :: xInd
       complex(c_float_complex),target,dimension(:) :: y
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseCaxpyi_rank_1 = hipsparseCaxpyi_raw(handle,nnz,alpha,c_loc(xVal),c_loc(xInd),c_loc(y),idxBase)
     end function
@@ -14678,13 +14678,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZaxpyi_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
       complex(c_double_complex),target :: xVal
       integer(c_int),target :: xInd
       complex(c_double_complex),target :: y
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseZaxpyi_rank_0 = hipsparseZaxpyi_raw(handle,nnz,alpha,c_loc(xVal),c_loc(xInd),c_loc(y),idxBase)
     end function
@@ -14695,13 +14695,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZaxpyi_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
       complex(c_double_complex),target,dimension(:) :: xVal
       integer(c_int),target,dimension(:) :: xInd
       complex(c_double_complex),target,dimension(:) :: y
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseZaxpyi_rank_1 = hipsparseZaxpyi_raw(handle,nnz,alpha,c_loc(xVal),c_loc(xInd),c_loc(y),idxBase)
     end function
@@ -14712,13 +14712,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSdoti_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_float),target :: xVal
       integer(c_int),target :: xInd
       real(c_float),target :: y
       real(c_float),target :: myResult
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseSdoti_rank_0 = hipsparseSdoti_raw(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y),c_loc(myResult),idxBase)
     end function
@@ -14729,13 +14729,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSdoti_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_float),target,dimension(:) :: xVal
       integer(c_int),target,dimension(:) :: xInd
       real(c_float),target,dimension(:) :: y
       real(c_float),target,dimension(:) :: myResult
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseSdoti_rank_1 = hipsparseSdoti_raw(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y),c_loc(myResult),idxBase)
     end function
@@ -14746,13 +14746,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDdoti_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_double),target :: xVal
       integer(c_int),target :: xInd
       real(c_double),target :: y
       real(c_double),target :: myResult
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseDdoti_rank_0 = hipsparseDdoti_raw(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y),c_loc(myResult),idxBase)
     end function
@@ -14763,13 +14763,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDdoti_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_double),target,dimension(:) :: xVal
       integer(c_int),target,dimension(:) :: xInd
       real(c_double),target,dimension(:) :: y
       real(c_double),target,dimension(:) :: myResult
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseDdoti_rank_1 = hipsparseDdoti_raw(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y),c_loc(myResult),idxBase)
     end function
@@ -14780,13 +14780,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCdoti_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_float_complex),target :: xVal
       integer(c_int),target :: xInd
       complex(c_float_complex),target :: y
       complex(c_float_complex),target :: myResult
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseCdoti_rank_0 = hipsparseCdoti_raw(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y),c_loc(myResult),idxBase)
     end function
@@ -14797,13 +14797,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCdoti_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_float_complex),target,dimension(:) :: xVal
       integer(c_int),target,dimension(:) :: xInd
       complex(c_float_complex),target,dimension(:) :: y
       complex(c_float_complex),target,dimension(:) :: myResult
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseCdoti_rank_1 = hipsparseCdoti_raw(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y),c_loc(myResult),idxBase)
     end function
@@ -14814,13 +14814,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZdoti_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_double_complex),target :: xVal
       integer(c_int),target :: xInd
       complex(c_double_complex),target :: y
       complex(c_double_complex),target :: myResult
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseZdoti_rank_0 = hipsparseZdoti_raw(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y),c_loc(myResult),idxBase)
     end function
@@ -14831,13 +14831,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZdoti_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_double_complex),target,dimension(:) :: xVal
       integer(c_int),target,dimension(:) :: xInd
       complex(c_double_complex),target,dimension(:) :: y
       complex(c_double_complex),target,dimension(:) :: myResult
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseZdoti_rank_1 = hipsparseZdoti_raw(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y),c_loc(myResult),idxBase)
     end function
@@ -14848,13 +14848,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCdotci_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_float_complex),target :: xVal
       integer(c_int),target :: xInd
       complex(c_float_complex),target :: y
       complex(c_float_complex),target :: myResult
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseCdotci_rank_0 = hipsparseCdotci_raw(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y),c_loc(myResult),idxBase)
     end function
@@ -14865,13 +14865,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCdotci_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_float_complex),target,dimension(:) :: xVal
       integer(c_int),target,dimension(:) :: xInd
       complex(c_float_complex),target,dimension(:) :: y
       complex(c_float_complex),target,dimension(:) :: myResult
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseCdotci_rank_1 = hipsparseCdotci_raw(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y),c_loc(myResult),idxBase)
     end function
@@ -14882,13 +14882,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZdotci_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_double_complex),target :: xVal
       integer(c_int),target :: xInd
       complex(c_double_complex),target :: y
       complex(c_double_complex),target :: myResult
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseZdotci_rank_0 = hipsparseZdotci_raw(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y),c_loc(myResult),idxBase)
     end function
@@ -14899,13 +14899,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZdotci_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_double_complex),target,dimension(:) :: xVal
       integer(c_int),target,dimension(:) :: xInd
       complex(c_double_complex),target,dimension(:) :: y
       complex(c_double_complex),target,dimension(:) :: myResult
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseZdotci_rank_1 = hipsparseZdotci_raw(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y),c_loc(myResult),idxBase)
     end function
@@ -14916,12 +14916,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgthr_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_float),target :: y
       real(c_float),target :: xVal
       integer(c_int),target :: xInd
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseSgthr_rank_0 = hipsparseSgthr_raw(handle,nnz,c_loc(y),c_loc(xVal),c_loc(xInd),idxBase)
     end function
@@ -14932,12 +14932,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgthr_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_float),target,dimension(:) :: y
       real(c_float),target,dimension(:) :: xVal
       integer(c_int),target,dimension(:) :: xInd
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseSgthr_rank_1 = hipsparseSgthr_raw(handle,nnz,c_loc(y),c_loc(xVal),c_loc(xInd),idxBase)
     end function
@@ -14948,12 +14948,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgthr_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_double),target :: y
       real(c_double),target :: xVal
       integer(c_int),target :: xInd
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseDgthr_rank_0 = hipsparseDgthr_raw(handle,nnz,c_loc(y),c_loc(xVal),c_loc(xInd),idxBase)
     end function
@@ -14964,12 +14964,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgthr_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_double),target,dimension(:) :: y
       real(c_double),target,dimension(:) :: xVal
       integer(c_int),target,dimension(:) :: xInd
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseDgthr_rank_1 = hipsparseDgthr_raw(handle,nnz,c_loc(y),c_loc(xVal),c_loc(xInd),idxBase)
     end function
@@ -14980,12 +14980,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgthr_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_float_complex),target :: y
       complex(c_float_complex),target :: xVal
       integer(c_int),target :: xInd
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseCgthr_rank_0 = hipsparseCgthr_raw(handle,nnz,c_loc(y),c_loc(xVal),c_loc(xInd),idxBase)
     end function
@@ -14996,12 +14996,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgthr_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_float_complex),target,dimension(:) :: y
       complex(c_float_complex),target,dimension(:) :: xVal
       integer(c_int),target,dimension(:) :: xInd
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseCgthr_rank_1 = hipsparseCgthr_raw(handle,nnz,c_loc(y),c_loc(xVal),c_loc(xInd),idxBase)
     end function
@@ -15012,12 +15012,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgthr_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_double_complex),target :: y
       complex(c_double_complex),target :: xVal
       integer(c_int),target :: xInd
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseZgthr_rank_0 = hipsparseZgthr_raw(handle,nnz,c_loc(y),c_loc(xVal),c_loc(xInd),idxBase)
     end function
@@ -15028,12 +15028,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgthr_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_double_complex),target,dimension(:) :: y
       complex(c_double_complex),target,dimension(:) :: xVal
       integer(c_int),target,dimension(:) :: xInd
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseZgthr_rank_1 = hipsparseZgthr_raw(handle,nnz,c_loc(y),c_loc(xVal),c_loc(xInd),idxBase)
     end function
@@ -15044,12 +15044,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgthrz_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_float),target :: y
       real(c_float),target :: xVal
       integer(c_int),target :: xInd
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseSgthrz_rank_0 = hipsparseSgthrz_raw(handle,nnz,c_loc(y),c_loc(xVal),c_loc(xInd),idxBase)
     end function
@@ -15060,12 +15060,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgthrz_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_float),target,dimension(:) :: y
       real(c_float),target,dimension(:) :: xVal
       integer(c_int),target,dimension(:) :: xInd
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseSgthrz_rank_1 = hipsparseSgthrz_raw(handle,nnz,c_loc(y),c_loc(xVal),c_loc(xInd),idxBase)
     end function
@@ -15076,12 +15076,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgthrz_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_double),target :: y
       real(c_double),target :: xVal
       integer(c_int),target :: xInd
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseDgthrz_rank_0 = hipsparseDgthrz_raw(handle,nnz,c_loc(y),c_loc(xVal),c_loc(xInd),idxBase)
     end function
@@ -15092,12 +15092,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgthrz_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_double),target,dimension(:) :: y
       real(c_double),target,dimension(:) :: xVal
       integer(c_int),target,dimension(:) :: xInd
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseDgthrz_rank_1 = hipsparseDgthrz_raw(handle,nnz,c_loc(y),c_loc(xVal),c_loc(xInd),idxBase)
     end function
@@ -15108,12 +15108,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgthrz_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_float_complex),target :: y
       complex(c_float_complex),target :: xVal
       integer(c_int),target :: xInd
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseCgthrz_rank_0 = hipsparseCgthrz_raw(handle,nnz,c_loc(y),c_loc(xVal),c_loc(xInd),idxBase)
     end function
@@ -15124,12 +15124,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgthrz_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_float_complex),target,dimension(:) :: y
       complex(c_float_complex),target,dimension(:) :: xVal
       integer(c_int),target,dimension(:) :: xInd
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseCgthrz_rank_1 = hipsparseCgthrz_raw(handle,nnz,c_loc(y),c_loc(xVal),c_loc(xInd),idxBase)
     end function
@@ -15140,12 +15140,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgthrz_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_double_complex),target :: y
       complex(c_double_complex),target :: xVal
       integer(c_int),target :: xInd
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseZgthrz_rank_0 = hipsparseZgthrz_raw(handle,nnz,c_loc(y),c_loc(xVal),c_loc(xInd),idxBase)
     end function
@@ -15156,12 +15156,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgthrz_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_double_complex),target,dimension(:) :: y
       complex(c_double_complex),target,dimension(:) :: xVal
       integer(c_int),target,dimension(:) :: xInd
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseZgthrz_rank_1 = hipsparseZgthrz_raw(handle,nnz,c_loc(y),c_loc(xVal),c_loc(xInd),idxBase)
     end function
@@ -15172,14 +15172,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSroti_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_float),target :: xVal
       integer(c_int),target :: xInd
       real(c_float),target :: y
       real(c_float) :: c
       real(c_float) :: s
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseSroti_rank_0 = hipsparseSroti_raw(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y),c,s,idxBase)
     end function
@@ -15190,14 +15190,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSroti_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_float),target,dimension(:) :: xVal
       integer(c_int),target,dimension(:) :: xInd
       real(c_float),target,dimension(:) :: y
       real(c_float) :: c
       real(c_float) :: s
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseSroti_rank_1 = hipsparseSroti_raw(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y),c,s,idxBase)
     end function
@@ -15208,14 +15208,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDroti_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_double),target :: xVal
       integer(c_int),target :: xInd
       real(c_double),target :: y
       real(c_double) :: c
       real(c_double) :: s
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseDroti_rank_0 = hipsparseDroti_raw(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y),c,s,idxBase)
     end function
@@ -15226,14 +15226,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDroti_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_double),target,dimension(:) :: xVal
       integer(c_int),target,dimension(:) :: xInd
       real(c_double),target,dimension(:) :: y
       real(c_double) :: c
       real(c_double) :: s
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseDroti_rank_1 = hipsparseDroti_raw(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y),c,s,idxBase)
     end function
@@ -15244,12 +15244,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSsctr_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_float),target :: xVal
       integer(c_int),target :: xInd
       real(c_float),target :: y
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseSsctr_rank_0 = hipsparseSsctr_raw(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y),idxBase)
     end function
@@ -15260,12 +15260,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSsctr_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_float),target,dimension(:) :: xVal
       integer(c_int),target,dimension(:) :: xInd
       real(c_float),target,dimension(:) :: y
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseSsctr_rank_1 = hipsparseSsctr_raw(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y),idxBase)
     end function
@@ -15276,12 +15276,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDsctr_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_double),target :: xVal
       integer(c_int),target :: xInd
       real(c_double),target :: y
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseDsctr_rank_0 = hipsparseDsctr_raw(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y),idxBase)
     end function
@@ -15292,12 +15292,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDsctr_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_double),target,dimension(:) :: xVal
       integer(c_int),target,dimension(:) :: xInd
       real(c_double),target,dimension(:) :: y
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseDsctr_rank_1 = hipsparseDsctr_raw(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y),idxBase)
     end function
@@ -15308,12 +15308,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCsctr_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_float_complex),target :: xVal
       integer(c_int),target :: xInd
       complex(c_float_complex),target :: y
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseCsctr_rank_0 = hipsparseCsctr_raw(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y),idxBase)
     end function
@@ -15324,12 +15324,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCsctr_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_float_complex),target,dimension(:) :: xVal
       integer(c_int),target,dimension(:) :: xInd
       complex(c_float_complex),target,dimension(:) :: y
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseCsctr_rank_1 = hipsparseCsctr_raw(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y),idxBase)
     end function
@@ -15340,12 +15340,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZsctr_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_double_complex),target :: xVal
       integer(c_int),target :: xInd
       complex(c_double_complex),target :: y
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseZsctr_rank_0 = hipsparseZsctr_raw(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y),idxBase)
     end function
@@ -15356,12 +15356,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZsctr_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_double_complex),target,dimension(:) :: xVal
       integer(c_int),target,dimension(:) :: xInd
       complex(c_double_complex),target,dimension(:) :: y
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseZsctr_rank_1 = hipsparseZsctr_raw(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y),idxBase)
     end function
@@ -15372,13 +15372,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrmv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       real(c_float) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_float),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
@@ -15395,13 +15395,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrmv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       real(c_float) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
@@ -15418,13 +15418,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrmv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       real(c_double) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_double),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
@@ -15441,13 +15441,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrmv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       real(c_double) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
@@ -15464,13 +15464,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrmv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
@@ -15487,13 +15487,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrmv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
@@ -15510,13 +15510,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrmv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
@@ -15533,13 +15533,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrmv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
@@ -15556,15 +15556,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsv2_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_float),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseScsrsv2_bufferSize_rank_0 = hipsparseScsrsv2_bufferSize_raw(handle,transA,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSizeInBytes)
@@ -15576,15 +15576,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsv2_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseScsrsv2_bufferSize_rank_1 = hipsparseScsrsv2_bufferSize_raw(handle,transA,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSizeInBytes)
@@ -15596,15 +15596,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsv2_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_double),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseDcsrsv2_bufferSize_rank_0 = hipsparseDcsrsv2_bufferSize_raw(handle,transA,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSizeInBytes)
@@ -15616,15 +15616,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsv2_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseDcsrsv2_bufferSize_rank_1 = hipsparseDcsrsv2_bufferSize_raw(handle,transA,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSizeInBytes)
@@ -15636,15 +15636,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsv2_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseCcsrsv2_bufferSize_rank_0 = hipsparseCcsrsv2_bufferSize_raw(handle,transA,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSizeInBytes)
@@ -15656,15 +15656,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsv2_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseCcsrsv2_bufferSize_rank_1 = hipsparseCcsrsv2_bufferSize_raw(handle,transA,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSizeInBytes)
@@ -15676,15 +15676,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsv2_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseZcsrsv2_bufferSize_rank_0 = hipsparseZcsrsv2_bufferSize_raw(handle,transA,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSizeInBytes)
@@ -15696,15 +15696,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsv2_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseZcsrsv2_bufferSize_rank_1 = hipsparseZcsrsv2_bufferSize_raw(handle,transA,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSizeInBytes)
@@ -15716,15 +15716,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsv2_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_float),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSize
       !
       hipsparseScsrsv2_bufferSizeExt_rank_0 = hipsparseScsrsv2_bufferSizeExt_raw(handle,transA,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSize)
@@ -15736,15 +15736,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsv2_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSize
       !
       hipsparseScsrsv2_bufferSizeExt_rank_1 = hipsparseScsrsv2_bufferSizeExt_raw(handle,transA,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSize)
@@ -15756,15 +15756,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsv2_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_double),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSize
       !
       hipsparseDcsrsv2_bufferSizeExt_rank_0 = hipsparseDcsrsv2_bufferSizeExt_raw(handle,transA,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSize)
@@ -15776,15 +15776,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsv2_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSize
       !
       hipsparseDcsrsv2_bufferSizeExt_rank_1 = hipsparseDcsrsv2_bufferSizeExt_raw(handle,transA,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSize)
@@ -15796,15 +15796,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsv2_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSize
       !
       hipsparseCcsrsv2_bufferSizeExt_rank_0 = hipsparseCcsrsv2_bufferSizeExt_raw(handle,transA,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSize)
@@ -15816,15 +15816,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsv2_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSize
       !
       hipsparseCcsrsv2_bufferSizeExt_rank_1 = hipsparseCcsrsv2_bufferSizeExt_raw(handle,transA,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSize)
@@ -15836,15 +15836,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsv2_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSize
       !
       hipsparseZcsrsv2_bufferSizeExt_rank_0 = hipsparseZcsrsv2_bufferSizeExt_raw(handle,transA,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSize)
@@ -15856,15 +15856,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsv2_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSize
       !
       hipsparseZcsrsv2_bufferSizeExt_rank_1 = hipsparseZcsrsv2_bufferSizeExt_raw(handle,transA,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSize)
@@ -15876,17 +15876,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsv2_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_float),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseScsrsv2_analysis_rank_0 = hipsparseScsrsv2_analysis_raw(handle,transA,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
@@ -15897,17 +15897,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsv2_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseScsrsv2_analysis_rank_1 = hipsparseScsrsv2_analysis_raw(handle,transA,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
@@ -15918,17 +15918,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsv2_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_double),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseDcsrsv2_analysis_rank_0 = hipsparseDcsrsv2_analysis_raw(handle,transA,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
@@ -15939,17 +15939,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsv2_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseDcsrsv2_analysis_rank_1 = hipsparseDcsrsv2_analysis_raw(handle,transA,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
@@ -15960,17 +15960,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsv2_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseCcsrsv2_analysis_rank_0 = hipsparseCcsrsv2_analysis_raw(handle,transA,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
@@ -15981,17 +15981,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsv2_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseCcsrsv2_analysis_rank_1 = hipsparseCcsrsv2_analysis_raw(handle,transA,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
@@ -16002,17 +16002,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsv2_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseZcsrsv2_analysis_rank_0 = hipsparseZcsrsv2_analysis_raw(handle,transA,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
@@ -16023,17 +16023,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsv2_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseZcsrsv2_analysis_rank_1 = hipsparseZcsrsv2_analysis_raw(handle,transA,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
@@ -16044,20 +16044,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsv2_solve_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
       real(c_float) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_float),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       real(c_float),target :: f
       real(c_float),target :: x
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseScsrsv2_solve_rank_0 = hipsparseScsrsv2_solve_raw(handle,transA,m,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,c_loc(f),c_loc(x),policy,pBuffer)
     end function
@@ -16068,20 +16068,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsv2_solve_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
       real(c_float) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       real(c_float),target,dimension(:) :: f
       real(c_float),target,dimension(:) :: x
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseScsrsv2_solve_rank_1 = hipsparseScsrsv2_solve_raw(handle,transA,m,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,c_loc(f),c_loc(x),policy,pBuffer)
     end function
@@ -16092,20 +16092,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsv2_solve_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
       real(c_double) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_double),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       real(c_double),target :: f
       real(c_double),target :: x
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseDcsrsv2_solve_rank_0 = hipsparseDcsrsv2_solve_raw(handle,transA,m,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,c_loc(f),c_loc(x),policy,pBuffer)
     end function
@@ -16116,20 +16116,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsv2_solve_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
       real(c_double) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       real(c_double),target,dimension(:) :: f
       real(c_double),target,dimension(:) :: x
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseDcsrsv2_solve_rank_1 = hipsparseDcsrsv2_solve_raw(handle,transA,m,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,c_loc(f),c_loc(x),policy,pBuffer)
     end function
@@ -16140,20 +16140,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsv2_solve_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       complex(c_float_complex),target :: f
       complex(c_float_complex),target :: x
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseCcsrsv2_solve_rank_0 = hipsparseCcsrsv2_solve_raw(handle,transA,m,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,c_loc(f),c_loc(x),policy,pBuffer)
     end function
@@ -16164,20 +16164,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsv2_solve_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       complex(c_float_complex),target,dimension(:) :: f
       complex(c_float_complex),target,dimension(:) :: x
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseCcsrsv2_solve_rank_1 = hipsparseCcsrsv2_solve_raw(handle,transA,m,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,c_loc(f),c_loc(x),policy,pBuffer)
     end function
@@ -16188,20 +16188,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsv2_solve_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       complex(c_double_complex),target :: f
       complex(c_double_complex),target :: x
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseZcsrsv2_solve_rank_0 = hipsparseZcsrsv2_solve_raw(handle,transA,m,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,c_loc(f),c_loc(x),policy,pBuffer)
     end function
@@ -16212,20 +16212,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsv2_solve_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       complex(c_double_complex),target,dimension(:) :: f
       complex(c_double_complex),target,dimension(:) :: x
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseZcsrsv2_solve_rank_1 = hipsparseZcsrsv2_solve_raw(handle,transA,m,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,c_loc(f),c_loc(x),policy,pBuffer)
     end function
@@ -16236,11 +16236,11 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseShybmv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
       real(c_float) :: alpha
-      type(c_ptr),value :: descrA
-      type(c_ptr),value :: hybA
+      type(c_ptr) :: descrA
+      type(c_ptr) :: hybA
       real(c_float),target :: x
       real(c_float) :: beta
       real(c_float),target :: y
@@ -16254,11 +16254,11 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseShybmv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
       real(c_float) :: alpha
-      type(c_ptr),value :: descrA
-      type(c_ptr),value :: hybA
+      type(c_ptr) :: descrA
+      type(c_ptr) :: hybA
       real(c_float),target,dimension(:) :: x
       real(c_float) :: beta
       real(c_float),target,dimension(:) :: y
@@ -16272,11 +16272,11 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDhybmv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
       real(c_double) :: alpha
-      type(c_ptr),value :: descrA
-      type(c_ptr),value :: hybA
+      type(c_ptr) :: descrA
+      type(c_ptr) :: hybA
       real(c_double),target :: x
       real(c_double) :: beta
       real(c_double),target :: y
@@ -16290,11 +16290,11 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDhybmv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
       real(c_double) :: alpha
-      type(c_ptr),value :: descrA
-      type(c_ptr),value :: hybA
+      type(c_ptr) :: descrA
+      type(c_ptr) :: hybA
       real(c_double),target,dimension(:) :: x
       real(c_double) :: beta
       real(c_double),target,dimension(:) :: y
@@ -16308,11 +16308,11 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseChybmv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descrA
-      type(c_ptr),value :: hybA
+      type(c_ptr) :: descrA
+      type(c_ptr) :: hybA
       complex(c_float_complex),target :: x
       complex(c_float_complex) :: beta
       complex(c_float_complex),target :: y
@@ -16326,11 +16326,11 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseChybmv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descrA
-      type(c_ptr),value :: hybA
+      type(c_ptr) :: descrA
+      type(c_ptr) :: hybA
       complex(c_float_complex),target,dimension(:) :: x
       complex(c_float_complex) :: beta
       complex(c_float_complex),target,dimension(:) :: y
@@ -16344,11 +16344,11 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZhybmv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descrA
-      type(c_ptr),value :: hybA
+      type(c_ptr) :: descrA
+      type(c_ptr) :: hybA
       complex(c_double_complex),target :: x
       complex(c_double_complex) :: beta
       complex(c_double_complex),target :: y
@@ -16362,11 +16362,11 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZhybmv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descrA
-      type(c_ptr),value :: hybA
+      type(c_ptr) :: descrA
+      type(c_ptr) :: hybA
       complex(c_double_complex),target,dimension(:) :: x
       complex(c_double_complex) :: beta
       complex(c_double_complex),target,dimension(:) :: y
@@ -16380,18 +16380,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrmv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       real(c_float) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_float),target :: bsrSortedValA
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
+      integer(c_int) :: blockDim
       real(c_float),target :: x
       real(c_float) :: beta
       real(c_float),target :: y
@@ -16405,18 +16405,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrmv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       real(c_float) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
+      integer(c_int) :: blockDim
       real(c_float),target,dimension(:) :: x
       real(c_float) :: beta
       real(c_float),target,dimension(:) :: y
@@ -16430,18 +16430,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrmv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       real(c_double) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_double),target :: bsrSortedValA
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
+      integer(c_int) :: blockDim
       real(c_double),target :: x
       real(c_double) :: beta
       real(c_double),target :: y
@@ -16455,18 +16455,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrmv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       real(c_double) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
+      integer(c_int) :: blockDim
       real(c_double),target,dimension(:) :: x
       real(c_double) :: beta
       real(c_double),target,dimension(:) :: y
@@ -16480,18 +16480,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrmv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: bsrSortedValA
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
+      integer(c_int) :: blockDim
       complex(c_float_complex),target :: x
       complex(c_float_complex) :: beta
       complex(c_float_complex),target :: y
@@ -16505,18 +16505,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrmv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
+      integer(c_int) :: blockDim
       complex(c_float_complex),target,dimension(:) :: x
       complex(c_float_complex) :: beta
       complex(c_float_complex),target,dimension(:) :: y
@@ -16530,18 +16530,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrmv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: bsrSortedValA
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
+      integer(c_int) :: blockDim
       complex(c_double_complex),target :: x
       complex(c_double_complex) :: beta
       complex(c_double_complex),target :: y
@@ -16555,18 +16555,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrmv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
+      integer(c_int) :: blockDim
       complex(c_double_complex),target,dimension(:) :: x
       complex(c_double_complex) :: beta
       complex(c_double_complex),target,dimension(:) :: y
@@ -16580,21 +16580,21 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrxmv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dir
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: trans
-      integer(c_int),value :: sizeOfMask
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: trans
+      integer(c_int) :: sizeOfMask
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       real(c_float) :: alpha
-      type(c_ptr),value :: descr
-      type(c_ptr),value :: bsrVal
-      type(c_ptr),value :: bsrMaskPtr
-      type(c_ptr),value :: bsrRowPtr
-      type(c_ptr),value :: bsrEndPtr
-      type(c_ptr),value :: bsrColInd
-      integer(c_int),value :: blockDim
+      type(c_ptr) :: descr
+      type(c_ptr) :: bsrVal
+      type(c_ptr) :: bsrMaskPtr
+      type(c_ptr) :: bsrRowPtr
+      type(c_ptr) :: bsrEndPtr
+      type(c_ptr) :: bsrColInd
+      integer(c_int) :: blockDim
       real(c_float),target :: x
       real(c_float) :: beta
       real(c_float),target :: y
@@ -16608,21 +16608,21 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrxmv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dir
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: trans
-      integer(c_int),value :: sizeOfMask
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: trans
+      integer(c_int) :: sizeOfMask
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       real(c_float) :: alpha
-      type(c_ptr),value :: descr
-      type(c_ptr),value :: bsrVal
-      type(c_ptr),value :: bsrMaskPtr
-      type(c_ptr),value :: bsrRowPtr
-      type(c_ptr),value :: bsrEndPtr
-      type(c_ptr),value :: bsrColInd
-      integer(c_int),value :: blockDim
+      type(c_ptr) :: descr
+      type(c_ptr) :: bsrVal
+      type(c_ptr) :: bsrMaskPtr
+      type(c_ptr) :: bsrRowPtr
+      type(c_ptr) :: bsrEndPtr
+      type(c_ptr) :: bsrColInd
+      integer(c_int) :: blockDim
       real(c_float),target,dimension(:) :: x
       real(c_float) :: beta
       real(c_float),target,dimension(:) :: y
@@ -16636,21 +16636,21 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrxmv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dir
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: trans
-      integer(c_int),value :: sizeOfMask
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: trans
+      integer(c_int) :: sizeOfMask
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       real(c_double) :: alpha
-      type(c_ptr),value :: descr
-      type(c_ptr),value :: bsrVal
-      type(c_ptr),value :: bsrMaskPtr
-      type(c_ptr),value :: bsrRowPtr
-      type(c_ptr),value :: bsrEndPtr
-      type(c_ptr),value :: bsrColInd
-      integer(c_int),value :: blockDim
+      type(c_ptr) :: descr
+      type(c_ptr) :: bsrVal
+      type(c_ptr) :: bsrMaskPtr
+      type(c_ptr) :: bsrRowPtr
+      type(c_ptr) :: bsrEndPtr
+      type(c_ptr) :: bsrColInd
+      integer(c_int) :: blockDim
       real(c_double),target :: x
       real(c_double) :: beta
       real(c_double),target :: y
@@ -16664,21 +16664,21 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrxmv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dir
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: trans
-      integer(c_int),value :: sizeOfMask
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: trans
+      integer(c_int) :: sizeOfMask
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       real(c_double) :: alpha
-      type(c_ptr),value :: descr
-      type(c_ptr),value :: bsrVal
-      type(c_ptr),value :: bsrMaskPtr
-      type(c_ptr),value :: bsrRowPtr
-      type(c_ptr),value :: bsrEndPtr
-      type(c_ptr),value :: bsrColInd
-      integer(c_int),value :: blockDim
+      type(c_ptr) :: descr
+      type(c_ptr) :: bsrVal
+      type(c_ptr) :: bsrMaskPtr
+      type(c_ptr) :: bsrRowPtr
+      type(c_ptr) :: bsrEndPtr
+      type(c_ptr) :: bsrColInd
+      integer(c_int) :: blockDim
       real(c_double),target,dimension(:) :: x
       real(c_double) :: beta
       real(c_double),target,dimension(:) :: y
@@ -16692,21 +16692,21 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrxmv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dir
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: trans
-      integer(c_int),value :: sizeOfMask
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: trans
+      integer(c_int) :: sizeOfMask
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr
-      type(c_ptr),value :: bsrVal
-      type(c_ptr),value :: bsrMaskPtr
-      type(c_ptr),value :: bsrRowPtr
-      type(c_ptr),value :: bsrEndPtr
-      type(c_ptr),value :: bsrColInd
-      integer(c_int),value :: blockDim
+      type(c_ptr) :: descr
+      type(c_ptr) :: bsrVal
+      type(c_ptr) :: bsrMaskPtr
+      type(c_ptr) :: bsrRowPtr
+      type(c_ptr) :: bsrEndPtr
+      type(c_ptr) :: bsrColInd
+      integer(c_int) :: blockDim
       complex(c_float_complex),target :: x
       complex(c_float_complex) :: beta
       complex(c_float_complex),target :: y
@@ -16720,21 +16720,21 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrxmv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dir
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: trans
-      integer(c_int),value :: sizeOfMask
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: trans
+      integer(c_int) :: sizeOfMask
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr
-      type(c_ptr),value :: bsrVal
-      type(c_ptr),value :: bsrMaskPtr
-      type(c_ptr),value :: bsrRowPtr
-      type(c_ptr),value :: bsrEndPtr
-      type(c_ptr),value :: bsrColInd
-      integer(c_int),value :: blockDim
+      type(c_ptr) :: descr
+      type(c_ptr) :: bsrVal
+      type(c_ptr) :: bsrMaskPtr
+      type(c_ptr) :: bsrRowPtr
+      type(c_ptr) :: bsrEndPtr
+      type(c_ptr) :: bsrColInd
+      integer(c_int) :: blockDim
       complex(c_float_complex),target,dimension(:) :: x
       complex(c_float_complex) :: beta
       complex(c_float_complex),target,dimension(:) :: y
@@ -16748,21 +16748,21 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrxmv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dir
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: trans
-      integer(c_int),value :: sizeOfMask
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: trans
+      integer(c_int) :: sizeOfMask
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr
-      type(c_ptr),value :: bsrVal
-      type(c_ptr),value :: bsrMaskPtr
-      type(c_ptr),value :: bsrRowPtr
-      type(c_ptr),value :: bsrEndPtr
-      type(c_ptr),value :: bsrColInd
-      integer(c_int),value :: blockDim
+      type(c_ptr) :: descr
+      type(c_ptr) :: bsrVal
+      type(c_ptr) :: bsrMaskPtr
+      type(c_ptr) :: bsrRowPtr
+      type(c_ptr) :: bsrEndPtr
+      type(c_ptr) :: bsrColInd
+      integer(c_int) :: blockDim
       complex(c_double_complex),target :: x
       complex(c_double_complex) :: beta
       complex(c_double_complex),target :: y
@@ -16776,21 +16776,21 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrxmv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dir
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: trans
-      integer(c_int),value :: sizeOfMask
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: trans
+      integer(c_int) :: sizeOfMask
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr
-      type(c_ptr),value :: bsrVal
-      type(c_ptr),value :: bsrMaskPtr
-      type(c_ptr),value :: bsrRowPtr
-      type(c_ptr),value :: bsrEndPtr
-      type(c_ptr),value :: bsrColInd
-      integer(c_int),value :: blockDim
+      type(c_ptr) :: descr
+      type(c_ptr) :: bsrVal
+      type(c_ptr) :: bsrMaskPtr
+      type(c_ptr) :: bsrRowPtr
+      type(c_ptr) :: bsrEndPtr
+      type(c_ptr) :: bsrColInd
+      integer(c_int) :: blockDim
       complex(c_double_complex),target,dimension(:) :: x
       complex(c_double_complex) :: beta
       complex(c_double_complex),target,dimension(:) :: y
@@ -16804,17 +16804,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrsv2_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_float),target :: bsrSortedValA
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseSbsrsv2_bufferSize_rank_0 = hipsparseSbsrsv2_bufferSize_raw(handle,dirA,transA,mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,pBufferSizeInBytes)
@@ -16826,17 +16826,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrsv2_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseSbsrsv2_bufferSize_rank_1 = hipsparseSbsrsv2_bufferSize_raw(handle,dirA,transA,mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,pBufferSizeInBytes)
@@ -16848,17 +16848,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrsv2_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_double),target :: bsrSortedValA
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseDbsrsv2_bufferSize_rank_0 = hipsparseDbsrsv2_bufferSize_raw(handle,dirA,transA,mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,pBufferSizeInBytes)
@@ -16870,17 +16870,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrsv2_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseDbsrsv2_bufferSize_rank_1 = hipsparseDbsrsv2_bufferSize_raw(handle,dirA,transA,mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,pBufferSizeInBytes)
@@ -16892,17 +16892,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrsv2_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: bsrSortedValA
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseCbsrsv2_bufferSize_rank_0 = hipsparseCbsrsv2_bufferSize_raw(handle,dirA,transA,mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,pBufferSizeInBytes)
@@ -16914,17 +16914,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrsv2_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseCbsrsv2_bufferSize_rank_1 = hipsparseCbsrsv2_bufferSize_raw(handle,dirA,transA,mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,pBufferSizeInBytes)
@@ -16936,17 +16936,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrsv2_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: bsrSortedValA
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseZbsrsv2_bufferSize_rank_0 = hipsparseZbsrsv2_bufferSize_raw(handle,dirA,transA,mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,pBufferSizeInBytes)
@@ -16958,17 +16958,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrsv2_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseZbsrsv2_bufferSize_rank_1 = hipsparseZbsrsv2_bufferSize_raw(handle,dirA,transA,mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,pBufferSizeInBytes)
@@ -16980,17 +16980,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrsv2_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_float),target :: bsrSortedValA
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSize
       !
       hipsparseSbsrsv2_bufferSizeExt_rank_0 = hipsparseSbsrsv2_bufferSizeExt_raw(handle,dirA,transA,mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,pBufferSize)
@@ -17002,17 +17002,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrsv2_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSize
       !
       hipsparseSbsrsv2_bufferSizeExt_rank_1 = hipsparseSbsrsv2_bufferSizeExt_raw(handle,dirA,transA,mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,pBufferSize)
@@ -17024,17 +17024,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrsv2_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_double),target :: bsrSortedValA
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSize
       !
       hipsparseDbsrsv2_bufferSizeExt_rank_0 = hipsparseDbsrsv2_bufferSizeExt_raw(handle,dirA,transA,mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,pBufferSize)
@@ -17046,17 +17046,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrsv2_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSize
       !
       hipsparseDbsrsv2_bufferSizeExt_rank_1 = hipsparseDbsrsv2_bufferSizeExt_raw(handle,dirA,transA,mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,pBufferSize)
@@ -17068,17 +17068,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrsv2_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: bsrSortedValA
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSize
       !
       hipsparseCbsrsv2_bufferSizeExt_rank_0 = hipsparseCbsrsv2_bufferSizeExt_raw(handle,dirA,transA,mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,pBufferSize)
@@ -17090,17 +17090,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrsv2_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSize
       !
       hipsparseCbsrsv2_bufferSizeExt_rank_1 = hipsparseCbsrsv2_bufferSizeExt_raw(handle,dirA,transA,mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,pBufferSize)
@@ -17112,17 +17112,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrsv2_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: bsrSortedValA
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSize
       !
       hipsparseZbsrsv2_bufferSizeExt_rank_0 = hipsparseZbsrsv2_bufferSizeExt_raw(handle,dirA,transA,mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,pBufferSize)
@@ -17134,17 +17134,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrsv2_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSize
       !
       hipsparseZbsrsv2_bufferSizeExt_rank_1 = hipsparseZbsrsv2_bufferSizeExt_raw(handle,dirA,transA,mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,pBufferSize)
@@ -17156,19 +17156,19 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrsv2_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_float),target :: bsrSortedValA
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseSbsrsv2_analysis_rank_0 = hipsparseSbsrsv2_analysis_raw(handle,dirA,transA,mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -17179,19 +17179,19 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrsv2_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseSbsrsv2_analysis_rank_1 = hipsparseSbsrsv2_analysis_raw(handle,dirA,transA,mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -17202,19 +17202,19 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrsv2_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_double),target :: bsrSortedValA
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseDbsrsv2_analysis_rank_0 = hipsparseDbsrsv2_analysis_raw(handle,dirA,transA,mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -17225,19 +17225,19 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrsv2_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseDbsrsv2_analysis_rank_1 = hipsparseDbsrsv2_analysis_raw(handle,dirA,transA,mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -17248,19 +17248,19 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrsv2_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: bsrSortedValA
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseCbsrsv2_analysis_rank_0 = hipsparseCbsrsv2_analysis_raw(handle,dirA,transA,mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -17271,19 +17271,19 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrsv2_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseCbsrsv2_analysis_rank_1 = hipsparseCbsrsv2_analysis_raw(handle,dirA,transA,mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -17294,19 +17294,19 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrsv2_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: bsrSortedValA
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseZbsrsv2_analysis_rank_0 = hipsparseZbsrsv2_analysis_raw(handle,dirA,transA,mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -17317,19 +17317,19 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrsv2_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseZbsrsv2_analysis_rank_1 = hipsparseZbsrsv2_analysis_raw(handle,dirA,transA,mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -17340,22 +17340,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrsv2_solve_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
       real(c_float) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_float),target :: bsrSortedValA
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       real(c_float),target :: f
       real(c_float),target :: x
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseSbsrsv2_solve_rank_0 = hipsparseSbsrsv2_solve_raw(handle,dirA,transA,mb,nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(f),c_loc(x),policy,pBuffer)
     end function
@@ -17366,22 +17366,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrsv2_solve_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
       real(c_float) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       real(c_float),target,dimension(:) :: f
       real(c_float),target,dimension(:) :: x
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseSbsrsv2_solve_rank_1 = hipsparseSbsrsv2_solve_raw(handle,dirA,transA,mb,nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(f),c_loc(x),policy,pBuffer)
     end function
@@ -17392,22 +17392,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrsv2_solve_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
       real(c_double) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_double),target :: bsrSortedValA
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       real(c_double),target :: f
       real(c_double),target :: x
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseDbsrsv2_solve_rank_0 = hipsparseDbsrsv2_solve_raw(handle,dirA,transA,mb,nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(f),c_loc(x),policy,pBuffer)
     end function
@@ -17418,22 +17418,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrsv2_solve_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
       real(c_double) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       real(c_double),target,dimension(:) :: f
       real(c_double),target,dimension(:) :: x
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseDbsrsv2_solve_rank_1 = hipsparseDbsrsv2_solve_raw(handle,dirA,transA,mb,nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(f),c_loc(x),policy,pBuffer)
     end function
@@ -17444,22 +17444,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrsv2_solve_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: bsrSortedValA
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       complex(c_float_complex),target :: f
       complex(c_float_complex),target :: x
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseCbsrsv2_solve_rank_0 = hipsparseCbsrsv2_solve_raw(handle,dirA,transA,mb,nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(f),c_loc(x),policy,pBuffer)
     end function
@@ -17470,22 +17470,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrsv2_solve_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       complex(c_float_complex),target,dimension(:) :: f
       complex(c_float_complex),target,dimension(:) :: x
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseCbsrsv2_solve_rank_1 = hipsparseCbsrsv2_solve_raw(handle,dirA,transA,mb,nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(f),c_loc(x),policy,pBuffer)
     end function
@@ -17496,22 +17496,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrsv2_solve_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: bsrSortedValA
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       complex(c_double_complex),target :: f
       complex(c_double_complex),target :: x
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseZbsrsv2_solve_rank_0 = hipsparseZbsrsv2_solve_raw(handle,dirA,transA,mb,nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(f),c_loc(x),policy,pBuffer)
     end function
@@ -17522,22 +17522,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrsv2_solve_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       complex(c_double_complex),target,dimension(:) :: f
       complex(c_double_complex),target,dimension(:) :: x
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseZbsrsv2_solve_rank_1 = hipsparseZbsrsv2_solve_raw(handle,dirA,transA,mb,nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(f),c_loc(x),policy,pBuffer)
     end function
@@ -17548,20 +17548,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgemvi_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float) :: alpha
       real(c_float),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
-      integer(c_int),value :: nnz
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
       real(c_float),target,dimension(:) :: x
       integer(c_int),target,dimension(:) :: xInd
       real(c_float) :: beta
       real(c_float),target,dimension(:) :: y
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
-      type(c_ptr),value :: pBuffer
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr) :: pBuffer
       !
       hipsparseSgemvi_full_rank = hipsparseSgemvi_raw(handle,transA,m,n,alpha,c_loc(A),lda,nnz,c_loc(x),c_loc(xInd),beta,c_loc(y),idxBase,pBuffer)
     end function
@@ -17572,20 +17572,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgemvi_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float) :: alpha
       real(c_float),target :: A
-      integer(c_int),value :: lda
-      integer(c_int),value :: nnz
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
       real(c_float),target :: x
       integer(c_int),target :: xInd
       real(c_float) :: beta
       real(c_float),target :: y
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
-      type(c_ptr),value :: pBuffer
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr) :: pBuffer
       !
       hipsparseSgemvi_rank_0 = hipsparseSgemvi_raw(handle,transA,m,n,alpha,c_loc(A),lda,nnz,c_loc(x),c_loc(xInd),beta,c_loc(y),idxBase,pBuffer)
     end function
@@ -17596,20 +17596,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgemvi_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float) :: alpha
       real(c_float),target,dimension(:) :: A
-      integer(c_int),value :: lda
-      integer(c_int),value :: nnz
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
       real(c_float),target,dimension(:) :: x
       integer(c_int),target,dimension(:) :: xInd
       real(c_float) :: beta
       real(c_float),target,dimension(:) :: y
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
-      type(c_ptr),value :: pBuffer
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr) :: pBuffer
       !
       hipsparseSgemvi_rank_1 = hipsparseSgemvi_raw(handle,transA,m,n,alpha,c_loc(A),lda,nnz,c_loc(x),c_loc(xInd),beta,c_loc(y),idxBase,pBuffer)
     end function
@@ -17620,20 +17620,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgemvi_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double) :: alpha
       real(c_double),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
-      integer(c_int),value :: nnz
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
       real(c_double),target,dimension(:) :: x
       integer(c_int),target,dimension(:) :: xInd
       real(c_double) :: beta
       real(c_double),target,dimension(:) :: y
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
-      type(c_ptr),value :: pBuffer
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr) :: pBuffer
       !
       hipsparseDgemvi_full_rank = hipsparseDgemvi_raw(handle,transA,m,n,alpha,c_loc(A),lda,nnz,c_loc(x),c_loc(xInd),beta,c_loc(y),idxBase,pBuffer)
     end function
@@ -17644,20 +17644,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgemvi_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double) :: alpha
       real(c_double),target :: A
-      integer(c_int),value :: lda
-      integer(c_int),value :: nnz
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
       real(c_double),target :: x
       integer(c_int),target :: xInd
       real(c_double) :: beta
       real(c_double),target :: y
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
-      type(c_ptr),value :: pBuffer
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr) :: pBuffer
       !
       hipsparseDgemvi_rank_0 = hipsparseDgemvi_raw(handle,transA,m,n,alpha,c_loc(A),lda,nnz,c_loc(x),c_loc(xInd),beta,c_loc(y),idxBase,pBuffer)
     end function
@@ -17668,20 +17668,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgemvi_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double) :: alpha
       real(c_double),target,dimension(:) :: A
-      integer(c_int),value :: lda
-      integer(c_int),value :: nnz
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
       real(c_double),target,dimension(:) :: x
       integer(c_int),target,dimension(:) :: xInd
       real(c_double) :: beta
       real(c_double),target,dimension(:) :: y
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
-      type(c_ptr),value :: pBuffer
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr) :: pBuffer
       !
       hipsparseDgemvi_rank_1 = hipsparseDgemvi_raw(handle,transA,m,n,alpha,c_loc(A),lda,nnz,c_loc(x),c_loc(xInd),beta,c_loc(y),idxBase,pBuffer)
     end function
@@ -17692,20 +17692,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgemvi_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_float_complex) :: alpha
       complex(c_float_complex),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
-      integer(c_int),value :: nnz
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int),target,dimension(:) :: xInd
       complex(c_float_complex) :: beta
       complex(c_float_complex),target,dimension(:) :: y
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
-      type(c_ptr),value :: pBuffer
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr) :: pBuffer
       !
       hipsparseCgemvi_full_rank = hipsparseCgemvi_raw(handle,transA,m,n,alpha,c_loc(A),lda,nnz,c_loc(x),c_loc(xInd),beta,c_loc(y),idxBase,pBuffer)
     end function
@@ -17716,20 +17716,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgemvi_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_float_complex) :: alpha
       complex(c_float_complex),target :: A
-      integer(c_int),value :: lda
-      integer(c_int),value :: nnz
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
       complex(c_float_complex),target :: x
       integer(c_int),target :: xInd
       complex(c_float_complex) :: beta
       complex(c_float_complex),target :: y
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
-      type(c_ptr),value :: pBuffer
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr) :: pBuffer
       !
       hipsparseCgemvi_rank_0 = hipsparseCgemvi_raw(handle,transA,m,n,alpha,c_loc(A),lda,nnz,c_loc(x),c_loc(xInd),beta,c_loc(y),idxBase,pBuffer)
     end function
@@ -17740,20 +17740,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgemvi_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_float_complex) :: alpha
       complex(c_float_complex),target,dimension(:) :: A
-      integer(c_int),value :: lda
-      integer(c_int),value :: nnz
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int),target,dimension(:) :: xInd
       complex(c_float_complex) :: beta
       complex(c_float_complex),target,dimension(:) :: y
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
-      type(c_ptr),value :: pBuffer
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr) :: pBuffer
       !
       hipsparseCgemvi_rank_1 = hipsparseCgemvi_raw(handle,transA,m,n,alpha,c_loc(A),lda,nnz,c_loc(x),c_loc(xInd),beta,c_loc(y),idxBase,pBuffer)
     end function
@@ -17764,20 +17764,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgemvi_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_double_complex) :: alpha
       complex(c_double_complex),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
-      integer(c_int),value :: nnz
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int),target,dimension(:) :: xInd
       complex(c_double_complex) :: beta
       complex(c_double_complex),target,dimension(:) :: y
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
-      type(c_ptr),value :: pBuffer
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr) :: pBuffer
       !
       hipsparseZgemvi_full_rank = hipsparseZgemvi_raw(handle,transA,m,n,alpha,c_loc(A),lda,nnz,c_loc(x),c_loc(xInd),beta,c_loc(y),idxBase,pBuffer)
     end function
@@ -17788,20 +17788,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgemvi_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_double_complex) :: alpha
       complex(c_double_complex),target :: A
-      integer(c_int),value :: lda
-      integer(c_int),value :: nnz
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
       complex(c_double_complex),target :: x
       integer(c_int),target :: xInd
       complex(c_double_complex) :: beta
       complex(c_double_complex),target :: y
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
-      type(c_ptr),value :: pBuffer
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr) :: pBuffer
       !
       hipsparseZgemvi_rank_0 = hipsparseZgemvi_raw(handle,transA,m,n,alpha,c_loc(A),lda,nnz,c_loc(x),c_loc(xInd),beta,c_loc(y),idxBase,pBuffer)
     end function
@@ -17812,20 +17812,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgemvi_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_double_complex) :: alpha
       complex(c_double_complex),target,dimension(:) :: A
-      integer(c_int),value :: lda
-      integer(c_int),value :: nnz
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int),target,dimension(:) :: xInd
       complex(c_double_complex) :: beta
       complex(c_double_complex),target,dimension(:) :: y
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
-      type(c_ptr),value :: pBuffer
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr) :: pBuffer
       !
       hipsparseZgemvi_rank_1 = hipsparseZgemvi_raw(handle,transA,m,n,alpha,c_loc(A),lda,nnz,c_loc(x),c_loc(xInd),beta,c_loc(y),idxBase,pBuffer)
     end function
@@ -17836,25 +17836,25 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrmm_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: mb
-      integer(c_int),value :: n
-      integer(c_int),value :: kb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
       real(c_float) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: bsrValA
       integer(c_int),target,dimension(:) :: bsrRowPtrA
       integer(c_int),target,dimension(:) :: bsrColIndA
-      integer(c_int),value :: blockDim
+      integer(c_int) :: blockDim
       real(c_float),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       real(c_float) :: beta
       real(c_float),target,dimension(:,:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseSbsrmm_full_rank = hipsparseSbsrmm_raw(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -17865,25 +17865,25 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrmm_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: mb
-      integer(c_int),value :: n
-      integer(c_int),value :: kb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
       real(c_float) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_float),target :: bsrValA
       integer(c_int),target :: bsrRowPtrA
       integer(c_int),target :: bsrColIndA
-      integer(c_int),value :: blockDim
+      integer(c_int) :: blockDim
       real(c_float),target :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       real(c_float) :: beta
       real(c_float),target :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseSbsrmm_rank_0 = hipsparseSbsrmm_raw(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -17894,25 +17894,25 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrmm_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: mb
-      integer(c_int),value :: n
-      integer(c_int),value :: kb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
       real(c_float) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: bsrValA
       integer(c_int),target,dimension(:) :: bsrRowPtrA
       integer(c_int),target,dimension(:) :: bsrColIndA
-      integer(c_int),value :: blockDim
+      integer(c_int) :: blockDim
       real(c_float),target,dimension(:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       real(c_float) :: beta
       real(c_float),target,dimension(:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseSbsrmm_rank_1 = hipsparseSbsrmm_raw(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -17923,25 +17923,25 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrmm_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: mb
-      integer(c_int),value :: n
-      integer(c_int),value :: kb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
       real(c_double) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: bsrValA
       integer(c_int),target,dimension(:) :: bsrRowPtrA
       integer(c_int),target,dimension(:) :: bsrColIndA
-      integer(c_int),value :: blockDim
+      integer(c_int) :: blockDim
       real(c_double),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       real(c_double) :: beta
       real(c_double),target,dimension(:,:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseDbsrmm_full_rank = hipsparseDbsrmm_raw(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -17952,25 +17952,25 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrmm_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: mb
-      integer(c_int),value :: n
-      integer(c_int),value :: kb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
       real(c_double) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_double),target :: bsrValA
       integer(c_int),target :: bsrRowPtrA
       integer(c_int),target :: bsrColIndA
-      integer(c_int),value :: blockDim
+      integer(c_int) :: blockDim
       real(c_double),target :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       real(c_double) :: beta
       real(c_double),target :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseDbsrmm_rank_0 = hipsparseDbsrmm_raw(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -17981,25 +17981,25 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrmm_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: mb
-      integer(c_int),value :: n
-      integer(c_int),value :: kb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
       real(c_double) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: bsrValA
       integer(c_int),target,dimension(:) :: bsrRowPtrA
       integer(c_int),target,dimension(:) :: bsrColIndA
-      integer(c_int),value :: blockDim
+      integer(c_int) :: blockDim
       real(c_double),target,dimension(:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       real(c_double) :: beta
       real(c_double),target,dimension(:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseDbsrmm_rank_1 = hipsparseDbsrmm_raw(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18010,25 +18010,25 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrmm_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: mb
-      integer(c_int),value :: n
-      integer(c_int),value :: kb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: bsrValA
       integer(c_int),target,dimension(:) :: bsrRowPtrA
       integer(c_int),target,dimension(:) :: bsrColIndA
-      integer(c_int),value :: blockDim
+      integer(c_int) :: blockDim
       complex(c_float_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       complex(c_float_complex) :: beta
       complex(c_float_complex),target,dimension(:,:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseCbsrmm_full_rank = hipsparseCbsrmm_raw(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18039,25 +18039,25 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrmm_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: mb
-      integer(c_int),value :: n
-      integer(c_int),value :: kb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: bsrValA
       integer(c_int),target :: bsrRowPtrA
       integer(c_int),target :: bsrColIndA
-      integer(c_int),value :: blockDim
+      integer(c_int) :: blockDim
       complex(c_float_complex),target :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       complex(c_float_complex) :: beta
       complex(c_float_complex),target :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseCbsrmm_rank_0 = hipsparseCbsrmm_raw(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18068,25 +18068,25 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrmm_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: mb
-      integer(c_int),value :: n
-      integer(c_int),value :: kb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: bsrValA
       integer(c_int),target,dimension(:) :: bsrRowPtrA
       integer(c_int),target,dimension(:) :: bsrColIndA
-      integer(c_int),value :: blockDim
+      integer(c_int) :: blockDim
       complex(c_float_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       complex(c_float_complex) :: beta
       complex(c_float_complex),target,dimension(:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseCbsrmm_rank_1 = hipsparseCbsrmm_raw(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18097,25 +18097,25 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrmm_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: mb
-      integer(c_int),value :: n
-      integer(c_int),value :: kb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: bsrValA
       integer(c_int),target,dimension(:) :: bsrRowPtrA
       integer(c_int),target,dimension(:) :: bsrColIndA
-      integer(c_int),value :: blockDim
+      integer(c_int) :: blockDim
       complex(c_double_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       complex(c_double_complex) :: beta
       complex(c_double_complex),target,dimension(:,:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseZbsrmm_full_rank = hipsparseZbsrmm_raw(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18126,25 +18126,25 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrmm_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: mb
-      integer(c_int),value :: n
-      integer(c_int),value :: kb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: bsrValA
       integer(c_int),target :: bsrRowPtrA
       integer(c_int),target :: bsrColIndA
-      integer(c_int),value :: blockDim
+      integer(c_int) :: blockDim
       complex(c_double_complex),target :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       complex(c_double_complex) :: beta
       complex(c_double_complex),target :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseZbsrmm_rank_0 = hipsparseZbsrmm_raw(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18155,25 +18155,25 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrmm_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: mb
-      integer(c_int),value :: n
-      integer(c_int),value :: kb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: bsrValA
       integer(c_int),target,dimension(:) :: bsrRowPtrA
       integer(c_int),target,dimension(:) :: bsrColIndA
-      integer(c_int),value :: blockDim
+      integer(c_int) :: blockDim
       complex(c_double_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       complex(c_double_complex) :: beta
       complex(c_double_complex),target,dimension(:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseZbsrmm_rank_1 = hipsparseZbsrmm_raw(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18184,22 +18184,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrmm_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       real(c_float) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       real(c_float),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       real(c_float) :: beta
       real(c_float),target,dimension(:,:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseScsrmm_full_rank = hipsparseScsrmm_raw(handle,transA,m,n,k,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18210,22 +18210,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrmm_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       real(c_float) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_float),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
       real(c_float),target :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       real(c_float) :: beta
       real(c_float),target :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseScsrmm_rank_0 = hipsparseScsrmm_raw(handle,transA,m,n,k,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18236,22 +18236,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrmm_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       real(c_float) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       real(c_float),target,dimension(:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       real(c_float) :: beta
       real(c_float),target,dimension(:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseScsrmm_rank_1 = hipsparseScsrmm_raw(handle,transA,m,n,k,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18262,22 +18262,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrmm_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       real(c_double) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       real(c_double),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       real(c_double) :: beta
       real(c_double),target,dimension(:,:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseDcsrmm_full_rank = hipsparseDcsrmm_raw(handle,transA,m,n,k,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18288,22 +18288,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrmm_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       real(c_double) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_double),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
       real(c_double),target :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       real(c_double) :: beta
       real(c_double),target :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseDcsrmm_rank_0 = hipsparseDcsrmm_raw(handle,transA,m,n,k,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18314,22 +18314,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrmm_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       real(c_double) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       real(c_double),target,dimension(:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       real(c_double) :: beta
       real(c_double),target,dimension(:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseDcsrmm_rank_1 = hipsparseDcsrmm_raw(handle,transA,m,n,k,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18340,22 +18340,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrmm_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       complex(c_float_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       complex(c_float_complex) :: beta
       complex(c_float_complex),target,dimension(:,:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseCcsrmm_full_rank = hipsparseCcsrmm_raw(handle,transA,m,n,k,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18366,22 +18366,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrmm_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
       complex(c_float_complex),target :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       complex(c_float_complex) :: beta
       complex(c_float_complex),target :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseCcsrmm_rank_0 = hipsparseCcsrmm_raw(handle,transA,m,n,k,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18392,22 +18392,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrmm_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       complex(c_float_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       complex(c_float_complex) :: beta
       complex(c_float_complex),target,dimension(:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseCcsrmm_rank_1 = hipsparseCcsrmm_raw(handle,transA,m,n,k,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18418,22 +18418,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrmm_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       complex(c_double_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       complex(c_double_complex) :: beta
       complex(c_double_complex),target,dimension(:,:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseZcsrmm_full_rank = hipsparseZcsrmm_raw(handle,transA,m,n,k,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18444,22 +18444,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrmm_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
       complex(c_double_complex),target :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       complex(c_double_complex) :: beta
       complex(c_double_complex),target :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseZcsrmm_rank_0 = hipsparseZcsrmm_raw(handle,transA,m,n,k,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18470,22 +18470,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrmm_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       complex(c_double_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       complex(c_double_complex) :: beta
       complex(c_double_complex),target,dimension(:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseZcsrmm_rank_1 = hipsparseZcsrmm_raw(handle,transA,m,n,k,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18496,23 +18496,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrmm2_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       real(c_float) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       real(c_float),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       real(c_float) :: beta
       real(c_float),target,dimension(:,:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseScsrmm2_full_rank = hipsparseScsrmm2_raw(handle,transA,transB,m,n,k,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18523,23 +18523,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrmm2_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       real(c_float) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_float),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
       real(c_float),target :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       real(c_float) :: beta
       real(c_float),target :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseScsrmm2_rank_0 = hipsparseScsrmm2_raw(handle,transA,transB,m,n,k,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18550,23 +18550,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrmm2_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       real(c_float) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       real(c_float),target,dimension(:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       real(c_float) :: beta
       real(c_float),target,dimension(:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseScsrmm2_rank_1 = hipsparseScsrmm2_raw(handle,transA,transB,m,n,k,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18577,23 +18577,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrmm2_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       real(c_double) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       real(c_double),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       real(c_double) :: beta
       real(c_double),target,dimension(:,:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseDcsrmm2_full_rank = hipsparseDcsrmm2_raw(handle,transA,transB,m,n,k,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18604,23 +18604,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrmm2_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       real(c_double) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_double),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
       real(c_double),target :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       real(c_double) :: beta
       real(c_double),target :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseDcsrmm2_rank_0 = hipsparseDcsrmm2_raw(handle,transA,transB,m,n,k,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18631,23 +18631,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrmm2_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       real(c_double) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       real(c_double),target,dimension(:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       real(c_double) :: beta
       real(c_double),target,dimension(:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseDcsrmm2_rank_1 = hipsparseDcsrmm2_raw(handle,transA,transB,m,n,k,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18658,23 +18658,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrmm2_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       complex(c_float_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       complex(c_float_complex) :: beta
       complex(c_float_complex),target,dimension(:,:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseCcsrmm2_full_rank = hipsparseCcsrmm2_raw(handle,transA,transB,m,n,k,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18685,23 +18685,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrmm2_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
       complex(c_float_complex),target :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       complex(c_float_complex) :: beta
       complex(c_float_complex),target :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseCcsrmm2_rank_0 = hipsparseCcsrmm2_raw(handle,transA,transB,m,n,k,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18712,23 +18712,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrmm2_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       complex(c_float_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       complex(c_float_complex) :: beta
       complex(c_float_complex),target,dimension(:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseCcsrmm2_rank_1 = hipsparseCcsrmm2_raw(handle,transA,transB,m,n,k,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18739,23 +18739,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrmm2_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       complex(c_double_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       complex(c_double_complex) :: beta
       complex(c_double_complex),target,dimension(:,:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseZcsrmm2_full_rank = hipsparseZcsrmm2_raw(handle,transA,transB,m,n,k,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18766,23 +18766,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrmm2_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
       complex(c_double_complex),target :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       complex(c_double_complex) :: beta
       complex(c_double_complex),target :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseZcsrmm2_rank_0 = hipsparseZcsrmm2_raw(handle,transA,transB,m,n,k,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18793,23 +18793,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrmm2_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       complex(c_double_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       complex(c_double_complex) :: beta
       complex(c_double_complex),target,dimension(:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseZcsrmm2_rank_1 = hipsparseZcsrmm2_raw(handle,transA,transB,m,n,k,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18820,19 +18820,19 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrsm2_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transX
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_float),target :: bsrSortedValA
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseSbsrsm2_bufferSize_rank_0 = hipsparseSbsrsm2_bufferSize_raw(handle,dirA,transA,transX,mb,nrhs,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,pBufferSizeInBytes)
@@ -18844,19 +18844,19 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrsm2_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transX
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseSbsrsm2_bufferSize_rank_1 = hipsparseSbsrsm2_bufferSize_raw(handle,dirA,transA,transX,mb,nrhs,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,pBufferSizeInBytes)
@@ -18868,19 +18868,19 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrsm2_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transX
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_double),target :: bsrSortedValA
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseDbsrsm2_bufferSize_rank_0 = hipsparseDbsrsm2_bufferSize_raw(handle,dirA,transA,transX,mb,nrhs,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,pBufferSizeInBytes)
@@ -18892,19 +18892,19 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrsm2_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transX
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseDbsrsm2_bufferSize_rank_1 = hipsparseDbsrsm2_bufferSize_raw(handle,dirA,transA,transX,mb,nrhs,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,pBufferSizeInBytes)
@@ -18916,19 +18916,19 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrsm2_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transX
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: bsrSortedValA
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseCbsrsm2_bufferSize_rank_0 = hipsparseCbsrsm2_bufferSize_raw(handle,dirA,transA,transX,mb,nrhs,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,pBufferSizeInBytes)
@@ -18940,19 +18940,19 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrsm2_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transX
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseCbsrsm2_bufferSize_rank_1 = hipsparseCbsrsm2_bufferSize_raw(handle,dirA,transA,transX,mb,nrhs,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,pBufferSizeInBytes)
@@ -18964,19 +18964,19 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrsm2_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transX
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: bsrSortedValA
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseZbsrsm2_bufferSize_rank_0 = hipsparseZbsrsm2_bufferSize_raw(handle,dirA,transA,transX,mb,nrhs,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,pBufferSizeInBytes)
@@ -18988,19 +18988,19 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrsm2_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transX
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseZbsrsm2_bufferSize_rank_1 = hipsparseZbsrsm2_bufferSize_raw(handle,dirA,transA,transX,mb,nrhs,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,pBufferSizeInBytes)
@@ -19012,21 +19012,21 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrsm2_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transX
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_float),target :: bsrSortedValA
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseSbsrsm2_analysis_rank_0 = hipsparseSbsrsm2_analysis_raw(handle,dirA,transA,transX,mb,nrhs,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -19037,21 +19037,21 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrsm2_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transX
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseSbsrsm2_analysis_rank_1 = hipsparseSbsrsm2_analysis_raw(handle,dirA,transA,transX,mb,nrhs,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -19062,21 +19062,21 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrsm2_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transX
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_double),target :: bsrSortedValA
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseDbsrsm2_analysis_rank_0 = hipsparseDbsrsm2_analysis_raw(handle,dirA,transA,transX,mb,nrhs,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -19087,21 +19087,21 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrsm2_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transX
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseDbsrsm2_analysis_rank_1 = hipsparseDbsrsm2_analysis_raw(handle,dirA,transA,transX,mb,nrhs,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -19112,21 +19112,21 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrsm2_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transX
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: bsrSortedValA
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseCbsrsm2_analysis_rank_0 = hipsparseCbsrsm2_analysis_raw(handle,dirA,transA,transX,mb,nrhs,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -19137,21 +19137,21 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrsm2_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transX
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseCbsrsm2_analysis_rank_1 = hipsparseCbsrsm2_analysis_raw(handle,dirA,transA,transX,mb,nrhs,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -19162,21 +19162,21 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrsm2_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transX
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: bsrSortedValA
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseZbsrsm2_analysis_rank_0 = hipsparseZbsrsm2_analysis_raw(handle,dirA,transA,transX,mb,nrhs,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -19187,21 +19187,21 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrsm2_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transX
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseZbsrsm2_analysis_rank_1 = hipsparseZbsrsm2_analysis_raw(handle,dirA,transA,transX,mb,nrhs,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -19212,26 +19212,26 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrsm2_solve_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transX
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
       real(c_float) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       real(c_float),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: X
-      integer(c_int),value :: ldx
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: X
+      integer(c_int) :: ldx
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseSbsrsm2_solve_full_rank = hipsparseSbsrsm2_solve_raw(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,X,ldx,policy,pBuffer)
     end function
@@ -19242,26 +19242,26 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrsm2_solve_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transX
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
       real(c_float) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_float),target :: bsrSortedValA
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       real(c_float),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: X
-      integer(c_int),value :: ldx
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: X
+      integer(c_int) :: ldx
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseSbsrsm2_solve_rank_0 = hipsparseSbsrsm2_solve_raw(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,X,ldx,policy,pBuffer)
     end function
@@ -19272,26 +19272,26 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrsm2_solve_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transX
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
       real(c_float) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       real(c_float),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: X
-      integer(c_int),value :: ldx
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: X
+      integer(c_int) :: ldx
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseSbsrsm2_solve_rank_1 = hipsparseSbsrsm2_solve_raw(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,X,ldx,policy,pBuffer)
     end function
@@ -19302,26 +19302,26 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrsm2_solve_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transX
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
       real(c_double) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       real(c_double),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: X
-      integer(c_int),value :: ldx
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: X
+      integer(c_int) :: ldx
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseDbsrsm2_solve_full_rank = hipsparseDbsrsm2_solve_raw(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,X,ldx,policy,pBuffer)
     end function
@@ -19332,26 +19332,26 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrsm2_solve_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transX
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
       real(c_double) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_double),target :: bsrSortedValA
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       real(c_double),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: X
-      integer(c_int),value :: ldx
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: X
+      integer(c_int) :: ldx
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseDbsrsm2_solve_rank_0 = hipsparseDbsrsm2_solve_raw(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,X,ldx,policy,pBuffer)
     end function
@@ -19362,26 +19362,26 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrsm2_solve_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transX
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
       real(c_double) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       real(c_double),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: X
-      integer(c_int),value :: ldx
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: X
+      integer(c_int) :: ldx
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseDbsrsm2_solve_rank_1 = hipsparseDbsrsm2_solve_raw(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,X,ldx,policy,pBuffer)
     end function
@@ -19392,26 +19392,26 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrsm2_solve_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transX
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       complex(c_float_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: X
-      integer(c_int),value :: ldx
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: X
+      integer(c_int) :: ldx
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseCbsrsm2_solve_full_rank = hipsparseCbsrsm2_solve_raw(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,X,ldx,policy,pBuffer)
     end function
@@ -19422,26 +19422,26 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrsm2_solve_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transX
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: bsrSortedValA
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       complex(c_float_complex),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: X
-      integer(c_int),value :: ldx
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: X
+      integer(c_int) :: ldx
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseCbsrsm2_solve_rank_0 = hipsparseCbsrsm2_solve_raw(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,X,ldx,policy,pBuffer)
     end function
@@ -19452,26 +19452,26 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrsm2_solve_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transX
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       complex(c_float_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: X
-      integer(c_int),value :: ldx
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: X
+      integer(c_int) :: ldx
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseCbsrsm2_solve_rank_1 = hipsparseCbsrsm2_solve_raw(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,X,ldx,policy,pBuffer)
     end function
@@ -19482,26 +19482,26 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrsm2_solve_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transX
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       complex(c_double_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: X
-      integer(c_int),value :: ldx
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: X
+      integer(c_int) :: ldx
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseZbsrsm2_solve_full_rank = hipsparseZbsrsm2_solve_raw(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,X,ldx,policy,pBuffer)
     end function
@@ -19512,26 +19512,26 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrsm2_solve_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transX
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: bsrSortedValA
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       complex(c_double_complex),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: X
-      integer(c_int),value :: ldx
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: X
+      integer(c_int) :: ldx
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseZbsrsm2_solve_rank_0 = hipsparseZbsrsm2_solve_raw(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,X,ldx,policy,pBuffer)
     end function
@@ -19542,26 +19542,26 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrsm2_solve_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transX
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       complex(c_double_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: X
-      integer(c_int),value :: ldx
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: X
+      integer(c_int) :: ldx
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseZbsrsm2_solve_rank_1 = hipsparseZbsrsm2_solve_raw(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,X,ldx,policy,pBuffer)
     end function
@@ -19572,22 +19572,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsm2_bufferSizeExt_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       real(c_float) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       real(c_float),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
       integer(c_size_t) :: pBufferSize
       !
       hipsparseScsrsm2_bufferSizeExt_full_rank = hipsparseScsrsm2_bufferSizeExt_raw(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBufferSize)
@@ -19599,22 +19599,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsm2_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       real(c_float) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_float),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
       real(c_float),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
       integer(c_size_t) :: pBufferSize
       !
       hipsparseScsrsm2_bufferSizeExt_rank_0 = hipsparseScsrsm2_bufferSizeExt_raw(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBufferSize)
@@ -19626,22 +19626,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsm2_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       real(c_float) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       real(c_float),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
       integer(c_size_t) :: pBufferSize
       !
       hipsparseScsrsm2_bufferSizeExt_rank_1 = hipsparseScsrsm2_bufferSizeExt_raw(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBufferSize)
@@ -19653,22 +19653,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsm2_bufferSizeExt_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       real(c_double) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       real(c_double),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
       integer(c_size_t) :: pBufferSize
       !
       hipsparseDcsrsm2_bufferSizeExt_full_rank = hipsparseDcsrsm2_bufferSizeExt_raw(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBufferSize)
@@ -19680,22 +19680,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsm2_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       real(c_double) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_double),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
       real(c_double),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
       integer(c_size_t) :: pBufferSize
       !
       hipsparseDcsrsm2_bufferSizeExt_rank_0 = hipsparseDcsrsm2_bufferSizeExt_raw(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBufferSize)
@@ -19707,22 +19707,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsm2_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       real(c_double) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       real(c_double),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
       integer(c_size_t) :: pBufferSize
       !
       hipsparseDcsrsm2_bufferSizeExt_rank_1 = hipsparseDcsrsm2_bufferSizeExt_raw(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBufferSize)
@@ -19734,22 +19734,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsm2_bufferSizeExt_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       complex(c_float_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
       integer(c_size_t) :: pBufferSize
       !
       hipsparseCcsrsm2_bufferSizeExt_full_rank = hipsparseCcsrsm2_bufferSizeExt_raw(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBufferSize)
@@ -19761,22 +19761,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsm2_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
       complex(c_float_complex),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
       integer(c_size_t) :: pBufferSize
       !
       hipsparseCcsrsm2_bufferSizeExt_rank_0 = hipsparseCcsrsm2_bufferSizeExt_raw(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBufferSize)
@@ -19788,22 +19788,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsm2_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       complex(c_float_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
       integer(c_size_t) :: pBufferSize
       !
       hipsparseCcsrsm2_bufferSizeExt_rank_1 = hipsparseCcsrsm2_bufferSizeExt_raw(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBufferSize)
@@ -19815,22 +19815,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsm2_bufferSizeExt_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       complex(c_double_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
       integer(c_size_t) :: pBufferSize
       !
       hipsparseZcsrsm2_bufferSizeExt_full_rank = hipsparseZcsrsm2_bufferSizeExt_raw(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBufferSize)
@@ -19842,22 +19842,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsm2_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
       complex(c_double_complex),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
       integer(c_size_t) :: pBufferSize
       !
       hipsparseZcsrsm2_bufferSizeExt_rank_0 = hipsparseZcsrsm2_bufferSizeExt_raw(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBufferSize)
@@ -19869,22 +19869,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsm2_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       complex(c_double_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
       integer(c_size_t) :: pBufferSize
       !
       hipsparseZcsrsm2_bufferSizeExt_rank_1 = hipsparseZcsrsm2_bufferSizeExt_raw(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBufferSize)
@@ -19896,23 +19896,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsm2_analysis_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       real(c_float) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       real(c_float),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseScsrsm2_analysis_full_rank = hipsparseScsrsm2_analysis_raw(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
@@ -19923,23 +19923,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsm2_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       real(c_float) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_float),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
       real(c_float),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseScsrsm2_analysis_rank_0 = hipsparseScsrsm2_analysis_raw(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
@@ -19950,23 +19950,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsm2_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       real(c_float) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       real(c_float),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseScsrsm2_analysis_rank_1 = hipsparseScsrsm2_analysis_raw(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
@@ -19977,23 +19977,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsm2_analysis_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       real(c_double) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       real(c_double),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseDcsrsm2_analysis_full_rank = hipsparseDcsrsm2_analysis_raw(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
@@ -20004,23 +20004,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsm2_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       real(c_double) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_double),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
       real(c_double),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseDcsrsm2_analysis_rank_0 = hipsparseDcsrsm2_analysis_raw(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
@@ -20031,23 +20031,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsm2_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       real(c_double) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       real(c_double),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseDcsrsm2_analysis_rank_1 = hipsparseDcsrsm2_analysis_raw(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
@@ -20058,23 +20058,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsm2_analysis_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       complex(c_float_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseCcsrsm2_analysis_full_rank = hipsparseCcsrsm2_analysis_raw(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
@@ -20085,23 +20085,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsm2_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
       complex(c_float_complex),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseCcsrsm2_analysis_rank_0 = hipsparseCcsrsm2_analysis_raw(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
@@ -20112,23 +20112,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsm2_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       complex(c_float_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseCcsrsm2_analysis_rank_1 = hipsparseCcsrsm2_analysis_raw(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
@@ -20139,23 +20139,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsm2_analysis_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       complex(c_double_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseZcsrsm2_analysis_full_rank = hipsparseZcsrsm2_analysis_raw(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
@@ -20166,23 +20166,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsm2_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
       complex(c_double_complex),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseZcsrsm2_analysis_rank_0 = hipsparseZcsrsm2_analysis_raw(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
@@ -20193,23 +20193,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsm2_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       complex(c_double_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseZcsrsm2_analysis_rank_1 = hipsparseZcsrsm2_analysis_raw(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
@@ -20220,23 +20220,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsm2_solve_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       real(c_float) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       real(c_float),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseScsrsm2_solve_full_rank = hipsparseScsrsm2_solve_raw(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
@@ -20247,23 +20247,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsm2_solve_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       real(c_float) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_float),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
       real(c_float),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseScsrsm2_solve_rank_0 = hipsparseScsrsm2_solve_raw(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
@@ -20274,23 +20274,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsm2_solve_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       real(c_float) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       real(c_float),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseScsrsm2_solve_rank_1 = hipsparseScsrsm2_solve_raw(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
@@ -20301,23 +20301,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsm2_solve_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       real(c_double) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       real(c_double),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseDcsrsm2_solve_full_rank = hipsparseDcsrsm2_solve_raw(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
@@ -20328,23 +20328,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsm2_solve_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       real(c_double) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_double),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
       real(c_double),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseDcsrsm2_solve_rank_0 = hipsparseDcsrsm2_solve_raw(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
@@ -20355,23 +20355,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsm2_solve_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       real(c_double) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       real(c_double),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseDcsrsm2_solve_rank_1 = hipsparseDcsrsm2_solve_raw(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
@@ -20382,23 +20382,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsm2_solve_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       complex(c_float_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseCcsrsm2_solve_full_rank = hipsparseCcsrsm2_solve_raw(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
@@ -20409,23 +20409,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsm2_solve_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
       complex(c_float_complex),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseCcsrsm2_solve_rank_0 = hipsparseCcsrsm2_solve_raw(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
@@ -20436,23 +20436,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsm2_solve_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       complex(c_float_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseCcsrsm2_solve_rank_1 = hipsparseCcsrsm2_solve_raw(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
@@ -20463,23 +20463,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsm2_solve_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       complex(c_double_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseZcsrsm2_solve_full_rank = hipsparseZcsrsm2_solve_raw(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
@@ -20490,23 +20490,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsm2_solve_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
       complex(c_double_complex),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseZcsrsm2_solve_rank_0 = hipsparseZcsrsm2_solve_raw(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
@@ -20517,23 +20517,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsm2_solve_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       complex(c_double_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseZcsrsm2_solve_rank_1 = hipsparseZcsrsm2_solve_raw(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
@@ -20544,20 +20544,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgemmi_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       real(c_float) :: alpha
       real(c_float),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_float),target,dimension(:) :: cscValB
       integer(c_int),target,dimension(:) :: cscColPtrB
       integer(c_int),target,dimension(:) :: cscRowIndB
       real(c_float) :: beta
       real(c_float),target,dimension(:,:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseSgemmi_full_rank = hipsparseSgemmi_raw(handle,m,n,k,nnz,alpha,c_loc(A),lda,c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),beta,c_loc(C),ldc)
     end function
@@ -20568,20 +20568,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgemmi_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       real(c_float) :: alpha
       real(c_float),target :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_float),target :: cscValB
       integer(c_int),target :: cscColPtrB
       integer(c_int),target :: cscRowIndB
       real(c_float) :: beta
       real(c_float),target :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseSgemmi_rank_0 = hipsparseSgemmi_raw(handle,m,n,k,nnz,alpha,c_loc(A),lda,c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),beta,c_loc(C),ldc)
     end function
@@ -20592,20 +20592,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgemmi_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       real(c_float) :: alpha
       real(c_float),target,dimension(:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_float),target,dimension(:) :: cscValB
       integer(c_int),target,dimension(:) :: cscColPtrB
       integer(c_int),target,dimension(:) :: cscRowIndB
       real(c_float) :: beta
       real(c_float),target,dimension(:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseSgemmi_rank_1 = hipsparseSgemmi_raw(handle,m,n,k,nnz,alpha,c_loc(A),lda,c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),beta,c_loc(C),ldc)
     end function
@@ -20616,20 +20616,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgemmi_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       real(c_double) :: alpha
       real(c_double),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_double),target,dimension(:) :: cscValB
       integer(c_int),target,dimension(:) :: cscColPtrB
       integer(c_int),target,dimension(:) :: cscRowIndB
       real(c_double) :: beta
       real(c_double),target,dimension(:,:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseDgemmi_full_rank = hipsparseDgemmi_raw(handle,m,n,k,nnz,alpha,c_loc(A),lda,c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),beta,c_loc(C),ldc)
     end function
@@ -20640,20 +20640,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgemmi_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       real(c_double) :: alpha
       real(c_double),target :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_double),target :: cscValB
       integer(c_int),target :: cscColPtrB
       integer(c_int),target :: cscRowIndB
       real(c_double) :: beta
       real(c_double),target :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseDgemmi_rank_0 = hipsparseDgemmi_raw(handle,m,n,k,nnz,alpha,c_loc(A),lda,c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),beta,c_loc(C),ldc)
     end function
@@ -20664,20 +20664,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgemmi_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       real(c_double) :: alpha
       real(c_double),target,dimension(:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_double),target,dimension(:) :: cscValB
       integer(c_int),target,dimension(:) :: cscColPtrB
       integer(c_int),target,dimension(:) :: cscRowIndB
       real(c_double) :: beta
       real(c_double),target,dimension(:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseDgemmi_rank_1 = hipsparseDgemmi_raw(handle,m,n,k,nnz,alpha,c_loc(A),lda,c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),beta,c_loc(C),ldc)
     end function
@@ -20688,20 +20688,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgemmi_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
       complex(c_float_complex),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:) :: cscValB
       integer(c_int),target,dimension(:) :: cscColPtrB
       integer(c_int),target,dimension(:) :: cscRowIndB
       complex(c_float_complex) :: beta
       complex(c_float_complex),target,dimension(:,:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseCgemmi_full_rank = hipsparseCgemmi_raw(handle,m,n,k,nnz,alpha,c_loc(A),lda,c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),beta,c_loc(C),ldc)
     end function
@@ -20712,20 +20712,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgemmi_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
       complex(c_float_complex),target :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       complex(c_float_complex),target :: cscValB
       integer(c_int),target :: cscColPtrB
       integer(c_int),target :: cscRowIndB
       complex(c_float_complex) :: beta
       complex(c_float_complex),target :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseCgemmi_rank_0 = hipsparseCgemmi_raw(handle,m,n,k,nnz,alpha,c_loc(A),lda,c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),beta,c_loc(C),ldc)
     end function
@@ -20736,20 +20736,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgemmi_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
       complex(c_float_complex),target,dimension(:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:) :: cscValB
       integer(c_int),target,dimension(:) :: cscColPtrB
       integer(c_int),target,dimension(:) :: cscRowIndB
       complex(c_float_complex) :: beta
       complex(c_float_complex),target,dimension(:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseCgemmi_rank_1 = hipsparseCgemmi_raw(handle,m,n,k,nnz,alpha,c_loc(A),lda,c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),beta,c_loc(C),ldc)
     end function
@@ -20760,20 +20760,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgemmi_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
       complex(c_double_complex),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:) :: cscValB
       integer(c_int),target,dimension(:) :: cscColPtrB
       integer(c_int),target,dimension(:) :: cscRowIndB
       complex(c_double_complex) :: beta
       complex(c_double_complex),target,dimension(:,:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseZgemmi_full_rank = hipsparseZgemmi_raw(handle,m,n,k,nnz,alpha,c_loc(A),lda,c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),beta,c_loc(C),ldc)
     end function
@@ -20784,20 +20784,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgemmi_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
       complex(c_double_complex),target :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       complex(c_double_complex),target :: cscValB
       integer(c_int),target :: cscColPtrB
       integer(c_int),target :: cscRowIndB
       complex(c_double_complex) :: beta
       complex(c_double_complex),target :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseZgemmi_rank_0 = hipsparseZgemmi_raw(handle,m,n,k,nnz,alpha,c_loc(A),lda,c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),beta,c_loc(C),ldc)
     end function
@@ -20808,20 +20808,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgemmi_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
       complex(c_double_complex),target,dimension(:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:) :: cscValB
       integer(c_int),target,dimension(:) :: cscColPtrB
       integer(c_int),target,dimension(:) :: cscRowIndB
       complex(c_double_complex) :: beta
       complex(c_double_complex),target,dimension(:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       hipsparseZgemmi_rank_1 = hipsparseZgemmi_raw(handle,m,n,k,nnz,alpha,c_loc(A),lda,c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),beta,c_loc(C),ldc)
     end function
@@ -20832,18 +20832,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsrgeamNnz_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       integer(c_int),target :: csrRowPtrB
       integer(c_int),target :: csrColIndB
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       integer(c_int),target :: csrRowPtrC
       integer(c_int) :: nnzTotalDevHostPtr
       !
@@ -20856,18 +20856,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsrgeamNnz_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       integer(c_int),target,dimension(:) :: csrRowPtrB
       integer(c_int),target,dimension(:) :: csrColIndB
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int) :: nnzTotalDevHostPtr
       !
@@ -20880,22 +20880,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrgeam_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float) :: alpha
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       real(c_float),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
       real(c_float) :: beta
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       real(c_float),target :: csrValB
       integer(c_int),target :: csrRowPtrB
       integer(c_int),target :: csrColIndB
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       real(c_float),target :: csrValC
       integer(c_int),target :: csrRowPtrC
       integer(c_int),target :: csrColIndC
@@ -20909,22 +20909,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrgeam_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float) :: alpha
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       real(c_float),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
       real(c_float) :: beta
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       real(c_float),target,dimension(:) :: csrValB
       integer(c_int),target,dimension(:) :: csrRowPtrB
       integer(c_int),target,dimension(:) :: csrColIndB
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       real(c_float),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int),target,dimension(:) :: csrColIndC
@@ -20938,22 +20938,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrgeam_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double) :: alpha
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       real(c_double),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
       real(c_double) :: beta
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       real(c_double),target :: csrValB
       integer(c_int),target :: csrRowPtrB
       integer(c_int),target :: csrColIndB
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       real(c_double),target :: csrValC
       integer(c_int),target :: csrRowPtrC
       integer(c_int),target :: csrColIndC
@@ -20967,22 +20967,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrgeam_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double) :: alpha
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       real(c_double),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
       real(c_double) :: beta
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       real(c_double),target,dimension(:) :: csrValB
       integer(c_int),target,dimension(:) :: csrRowPtrB
       integer(c_int),target,dimension(:) :: csrColIndB
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       real(c_double),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int),target,dimension(:) :: csrColIndC
@@ -20996,22 +20996,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrgeam_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       complex(c_float_complex),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
       complex(c_float_complex) :: beta
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       complex(c_float_complex),target :: csrValB
       integer(c_int),target :: csrRowPtrB
       integer(c_int),target :: csrColIndB
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       complex(c_float_complex),target :: csrValC
       integer(c_int),target :: csrRowPtrC
       integer(c_int),target :: csrColIndC
@@ -21025,22 +21025,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrgeam_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       complex(c_float_complex),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
       complex(c_float_complex) :: beta
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       complex(c_float_complex),target,dimension(:) :: csrValB
       integer(c_int),target,dimension(:) :: csrRowPtrB
       integer(c_int),target,dimension(:) :: csrColIndB
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       complex(c_float_complex),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int),target,dimension(:) :: csrColIndC
@@ -21054,22 +21054,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrgeam_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       complex(c_double_complex),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
       complex(c_double_complex) :: beta
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       complex(c_double_complex),target :: csrValB
       integer(c_int),target :: csrRowPtrB
       integer(c_int),target :: csrColIndB
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       complex(c_double_complex),target :: csrValC
       integer(c_int),target :: csrRowPtrC
       integer(c_int),target :: csrColIndC
@@ -21083,22 +21083,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrgeam_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       complex(c_double_complex),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
       complex(c_double_complex) :: beta
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       complex(c_double_complex),target,dimension(:) :: csrValB
       integer(c_int),target,dimension(:) :: csrRowPtrB
       integer(c_int),target,dimension(:) :: csrColIndB
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       complex(c_double_complex),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int),target,dimension(:) :: csrColIndC
@@ -21112,22 +21112,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrgeam2_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float) :: alpha
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       real(c_float),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
       real(c_float) :: beta
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       real(c_float),target :: csrSortedValB
       integer(c_int),target :: csrSortedRowPtrB
       integer(c_int),target :: csrSortedColIndB
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       real(c_float),target :: csrSortedValC
       integer(c_int),target :: csrSortedRowPtrC
       integer(c_int),target :: csrSortedColIndC
@@ -21142,22 +21142,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrgeam2_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float) :: alpha
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       real(c_float),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       real(c_float) :: beta
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       real(c_float),target,dimension(:) :: csrSortedValB
       integer(c_int),target,dimension(:) :: csrSortedRowPtrB
       integer(c_int),target,dimension(:) :: csrSortedColIndB
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       real(c_float),target,dimension(:) :: csrSortedValC
       integer(c_int),target,dimension(:) :: csrSortedRowPtrC
       integer(c_int),target,dimension(:) :: csrSortedColIndC
@@ -21172,22 +21172,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrgeam2_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double) :: alpha
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       real(c_double),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
       real(c_double) :: beta
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       real(c_double),target :: csrSortedValB
       integer(c_int),target :: csrSortedRowPtrB
       integer(c_int),target :: csrSortedColIndB
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       real(c_double),target :: csrSortedValC
       integer(c_int),target :: csrSortedRowPtrC
       integer(c_int),target :: csrSortedColIndC
@@ -21202,22 +21202,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrgeam2_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double) :: alpha
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       real(c_double),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       real(c_double) :: beta
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       real(c_double),target,dimension(:) :: csrSortedValB
       integer(c_int),target,dimension(:) :: csrSortedRowPtrB
       integer(c_int),target,dimension(:) :: csrSortedColIndB
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       real(c_double),target,dimension(:) :: csrSortedValC
       integer(c_int),target,dimension(:) :: csrSortedRowPtrC
       integer(c_int),target,dimension(:) :: csrSortedColIndC
@@ -21232,22 +21232,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrgeam2_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       complex(c_float_complex),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
       complex(c_float_complex) :: beta
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       complex(c_float_complex),target :: csrSortedValB
       integer(c_int),target :: csrSortedRowPtrB
       integer(c_int),target :: csrSortedColIndB
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       complex(c_float_complex),target :: csrSortedValC
       integer(c_int),target :: csrSortedRowPtrC
       integer(c_int),target :: csrSortedColIndC
@@ -21262,22 +21262,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrgeam2_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       complex(c_float_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       complex(c_float_complex) :: beta
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       complex(c_float_complex),target,dimension(:) :: csrSortedValB
       integer(c_int),target,dimension(:) :: csrSortedRowPtrB
       integer(c_int),target,dimension(:) :: csrSortedColIndB
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       complex(c_float_complex),target,dimension(:) :: csrSortedValC
       integer(c_int),target,dimension(:) :: csrSortedRowPtrC
       integer(c_int),target,dimension(:) :: csrSortedColIndC
@@ -21292,22 +21292,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrgeam2_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       complex(c_double_complex),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
       complex(c_double_complex) :: beta
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       complex(c_double_complex),target :: csrSortedValB
       integer(c_int),target :: csrSortedRowPtrB
       integer(c_int),target :: csrSortedColIndB
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       complex(c_double_complex),target :: csrSortedValC
       integer(c_int),target :: csrSortedRowPtrC
       integer(c_int),target :: csrSortedColIndC
@@ -21322,22 +21322,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrgeam2_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       complex(c_double_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       complex(c_double_complex) :: beta
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       complex(c_double_complex),target,dimension(:) :: csrSortedValB
       integer(c_int),target,dimension(:) :: csrSortedRowPtrB
       integer(c_int),target,dimension(:) :: csrSortedColIndB
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       complex(c_double_complex),target,dimension(:) :: csrSortedValC
       integer(c_int),target,dimension(:) :: csrSortedRowPtrC
       integer(c_int),target,dimension(:) :: csrSortedColIndC
@@ -21352,21 +21352,21 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsrgeam2Nnz_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       integer(c_int),target :: csrSortedRowPtrB
       integer(c_int),target :: csrSortedColIndB
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       integer(c_int),target :: csrSortedRowPtrC
       integer(c_int) :: nnzTotalDevHostPtr
-      type(c_ptr),value :: workspace
+      type(c_ptr) :: workspace
       !
       hipsparseXcsrgeam2Nnz_rank_0 = hipsparseXcsrgeam2Nnz_raw(handle,m,n,descrA,nnzA,c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),descrB,nnzB,c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB),descrC,c_loc(csrSortedRowPtrC),nnzTotalDevHostPtr,workspace)
     end function
@@ -21377,21 +21377,21 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsrgeam2Nnz_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       integer(c_int),target,dimension(:) :: csrSortedRowPtrB
       integer(c_int),target,dimension(:) :: csrSortedColIndB
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       integer(c_int),target,dimension(:) :: csrSortedRowPtrC
       integer(c_int) :: nnzTotalDevHostPtr
-      type(c_ptr),value :: workspace
+      type(c_ptr) :: workspace
       !
       hipsparseXcsrgeam2Nnz_rank_1 = hipsparseXcsrgeam2Nnz_raw(handle,m,n,descrA,nnzA,c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),descrB,nnzB,c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB),descrC,c_loc(csrSortedRowPtrC),nnzTotalDevHostPtr,workspace)
     end function
@@ -21402,26 +21402,26 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrgeam2_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float) :: alpha
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       real(c_float),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
       real(c_float) :: beta
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       real(c_float),target :: csrSortedValB
       integer(c_int),target :: csrSortedRowPtrB
       integer(c_int),target :: csrSortedColIndB
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       real(c_float),target :: csrSortedValC
       integer(c_int),target :: csrSortedRowPtrC
       integer(c_int),target :: csrSortedColIndC
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: pBuffer
       !
       hipsparseScsrgeam2_rank_0 = hipsparseScsrgeam2_raw(handle,m,n,alpha,descrA,nnzA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),beta,descrB,nnzB,c_loc(csrSortedValB),c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB),descrC,c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),pBuffer)
     end function
@@ -21432,26 +21432,26 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrgeam2_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float) :: alpha
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       real(c_float),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       real(c_float) :: beta
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       real(c_float),target,dimension(:) :: csrSortedValB
       integer(c_int),target,dimension(:) :: csrSortedRowPtrB
       integer(c_int),target,dimension(:) :: csrSortedColIndB
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       real(c_float),target,dimension(:) :: csrSortedValC
       integer(c_int),target,dimension(:) :: csrSortedRowPtrC
       integer(c_int),target,dimension(:) :: csrSortedColIndC
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: pBuffer
       !
       hipsparseScsrgeam2_rank_1 = hipsparseScsrgeam2_raw(handle,m,n,alpha,descrA,nnzA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),beta,descrB,nnzB,c_loc(csrSortedValB),c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB),descrC,c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),pBuffer)
     end function
@@ -21462,26 +21462,26 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrgeam2_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double) :: alpha
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       real(c_double),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
       real(c_double) :: beta
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       real(c_double),target :: csrSortedValB
       integer(c_int),target :: csrSortedRowPtrB
       integer(c_int),target :: csrSortedColIndB
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       real(c_double),target :: csrSortedValC
       integer(c_int),target :: csrSortedRowPtrC
       integer(c_int),target :: csrSortedColIndC
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: pBuffer
       !
       hipsparseDcsrgeam2_rank_0 = hipsparseDcsrgeam2_raw(handle,m,n,alpha,descrA,nnzA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),beta,descrB,nnzB,c_loc(csrSortedValB),c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB),descrC,c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),pBuffer)
     end function
@@ -21492,26 +21492,26 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrgeam2_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double) :: alpha
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       real(c_double),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       real(c_double) :: beta
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       real(c_double),target,dimension(:) :: csrSortedValB
       integer(c_int),target,dimension(:) :: csrSortedRowPtrB
       integer(c_int),target,dimension(:) :: csrSortedColIndB
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       real(c_double),target,dimension(:) :: csrSortedValC
       integer(c_int),target,dimension(:) :: csrSortedRowPtrC
       integer(c_int),target,dimension(:) :: csrSortedColIndC
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: pBuffer
       !
       hipsparseDcsrgeam2_rank_1 = hipsparseDcsrgeam2_raw(handle,m,n,alpha,descrA,nnzA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),beta,descrB,nnzB,c_loc(csrSortedValB),c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB),descrC,c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),pBuffer)
     end function
@@ -21522,26 +21522,26 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrgeam2_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       complex(c_float_complex),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
       complex(c_float_complex) :: beta
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       complex(c_float_complex),target :: csrSortedValB
       integer(c_int),target :: csrSortedRowPtrB
       integer(c_int),target :: csrSortedColIndB
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       complex(c_float_complex),target :: csrSortedValC
       integer(c_int),target :: csrSortedRowPtrC
       integer(c_int),target :: csrSortedColIndC
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: pBuffer
       !
       hipsparseCcsrgeam2_rank_0 = hipsparseCcsrgeam2_raw(handle,m,n,alpha,descrA,nnzA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),beta,descrB,nnzB,c_loc(csrSortedValB),c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB),descrC,c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),pBuffer)
     end function
@@ -21552,26 +21552,26 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrgeam2_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       complex(c_float_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       complex(c_float_complex) :: beta
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       complex(c_float_complex),target,dimension(:) :: csrSortedValB
       integer(c_int),target,dimension(:) :: csrSortedRowPtrB
       integer(c_int),target,dimension(:) :: csrSortedColIndB
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       complex(c_float_complex),target,dimension(:) :: csrSortedValC
       integer(c_int),target,dimension(:) :: csrSortedRowPtrC
       integer(c_int),target,dimension(:) :: csrSortedColIndC
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: pBuffer
       !
       hipsparseCcsrgeam2_rank_1 = hipsparseCcsrgeam2_raw(handle,m,n,alpha,descrA,nnzA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),beta,descrB,nnzB,c_loc(csrSortedValB),c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB),descrC,c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),pBuffer)
     end function
@@ -21582,26 +21582,26 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrgeam2_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       complex(c_double_complex),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
       complex(c_double_complex) :: beta
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       complex(c_double_complex),target :: csrSortedValB
       integer(c_int),target :: csrSortedRowPtrB
       integer(c_int),target :: csrSortedColIndB
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       complex(c_double_complex),target :: csrSortedValC
       integer(c_int),target :: csrSortedRowPtrC
       integer(c_int),target :: csrSortedColIndC
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: pBuffer
       !
       hipsparseZcsrgeam2_rank_0 = hipsparseZcsrgeam2_raw(handle,m,n,alpha,descrA,nnzA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),beta,descrB,nnzB,c_loc(csrSortedValB),c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB),descrC,c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),pBuffer)
     end function
@@ -21612,26 +21612,26 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrgeam2_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       complex(c_double_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
       complex(c_double_complex) :: beta
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       complex(c_double_complex),target,dimension(:) :: csrSortedValB
       integer(c_int),target,dimension(:) :: csrSortedRowPtrB
       integer(c_int),target,dimension(:) :: csrSortedColIndB
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       complex(c_double_complex),target,dimension(:) :: csrSortedValC
       integer(c_int),target,dimension(:) :: csrSortedRowPtrC
       integer(c_int),target,dimension(:) :: csrSortedColIndC
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: pBuffer
       !
       hipsparseZcsrgeam2_rank_1 = hipsparseZcsrgeam2_raw(handle,m,n,alpha,descrA,nnzA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),beta,descrB,nnzB,c_loc(csrSortedValB),c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB),descrC,c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),pBuffer)
     end function
@@ -21642,21 +21642,21 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsrgemmNnz_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       integer(c_int),target :: csrRowPtrB
       integer(c_int),target :: csrColIndB
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       integer(c_int),target :: csrRowPtrC
       integer(c_int) :: nnzTotalDevHostPtr
       !
@@ -21669,21 +21669,21 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsrgemmNnz_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       integer(c_int),target,dimension(:) :: csrRowPtrB
       integer(c_int),target,dimension(:) :: csrColIndB
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int) :: nnzTotalDevHostPtr
       !
@@ -21696,23 +21696,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrgemm_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       real(c_float),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       real(c_float),target :: csrValB
       integer(c_int),target :: csrRowPtrB
       integer(c_int),target :: csrColIndB
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       real(c_float),target :: csrValC
       integer(c_int),target :: csrRowPtrC
       integer(c_int),target :: csrColIndC
@@ -21726,23 +21726,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrgemm_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       real(c_float),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       real(c_float),target,dimension(:) :: csrValB
       integer(c_int),target,dimension(:) :: csrRowPtrB
       integer(c_int),target,dimension(:) :: csrColIndB
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       real(c_float),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int),target,dimension(:) :: csrColIndC
@@ -21756,23 +21756,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrgemm_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       real(c_double),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       real(c_double),target :: csrValB
       integer(c_int),target :: csrRowPtrB
       integer(c_int),target :: csrColIndB
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       real(c_double),target :: csrValC
       integer(c_int),target :: csrRowPtrC
       integer(c_int),target :: csrColIndC
@@ -21786,23 +21786,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrgemm_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       real(c_double),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       real(c_double),target,dimension(:) :: csrValB
       integer(c_int),target,dimension(:) :: csrRowPtrB
       integer(c_int),target,dimension(:) :: csrColIndB
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       real(c_double),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int),target,dimension(:) :: csrColIndC
@@ -21816,23 +21816,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrgemm_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       complex(c_float_complex),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       complex(c_float_complex),target :: csrValB
       integer(c_int),target :: csrRowPtrB
       integer(c_int),target :: csrColIndB
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       complex(c_float_complex),target :: csrValC
       integer(c_int),target :: csrRowPtrC
       integer(c_int),target :: csrColIndC
@@ -21846,23 +21846,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrgemm_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       complex(c_float_complex),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       complex(c_float_complex),target,dimension(:) :: csrValB
       integer(c_int),target,dimension(:) :: csrRowPtrB
       integer(c_int),target,dimension(:) :: csrColIndB
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       complex(c_float_complex),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int),target,dimension(:) :: csrColIndC
@@ -21876,23 +21876,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrgemm_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       complex(c_double_complex),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       complex(c_double_complex),target :: csrValB
       integer(c_int),target :: csrRowPtrB
       integer(c_int),target :: csrColIndB
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       complex(c_double_complex),target :: csrValC
       integer(c_int),target :: csrRowPtrC
       integer(c_int),target :: csrColIndC
@@ -21906,23 +21906,23 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrgemm_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       complex(c_double_complex),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       complex(c_double_complex),target,dimension(:) :: csrValB
       integer(c_int),target,dimension(:) :: csrRowPtrB
       integer(c_int),target,dimension(:) :: csrColIndB
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       complex(c_double_complex),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int),target,dimension(:) :: csrColIndC
@@ -21936,25 +21936,25 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrgemm2_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
       real(c_float) :: alpha
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       integer(c_int),target :: csrRowPtrB
       integer(c_int),target :: csrColIndB
       real(c_float) :: beta
-      type(c_ptr),value :: descrD
-      integer(c_int),value :: nnzD
+      type(c_ptr) :: descrD
+      integer(c_int) :: nnzD
       integer(c_int),target :: csrRowPtrD
       integer(c_int),target :: csrColIndD
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseScsrgemm2_bufferSizeExt_rank_0 = hipsparseScsrgemm2_bufferSizeExt_raw(handle,m,n,k,alpha,descrA,nnzA,c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrRowPtrB),c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrRowPtrD),c_loc(csrColIndD),myInfo,pBufferSizeInBytes)
@@ -21966,25 +21966,25 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrgemm2_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
       real(c_float) :: alpha
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       integer(c_int),target,dimension(:) :: csrRowPtrB
       integer(c_int),target,dimension(:) :: csrColIndB
       real(c_float) :: beta
-      type(c_ptr),value :: descrD
-      integer(c_int),value :: nnzD
+      type(c_ptr) :: descrD
+      integer(c_int) :: nnzD
       integer(c_int),target,dimension(:) :: csrRowPtrD
       integer(c_int),target,dimension(:) :: csrColIndD
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseScsrgemm2_bufferSizeExt_rank_1 = hipsparseScsrgemm2_bufferSizeExt_raw(handle,m,n,k,alpha,descrA,nnzA,c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrRowPtrB),c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrRowPtrD),c_loc(csrColIndD),myInfo,pBufferSizeInBytes)
@@ -21996,25 +21996,25 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrgemm2_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
       real(c_double) :: alpha
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       integer(c_int),target :: csrRowPtrB
       integer(c_int),target :: csrColIndB
       real(c_double) :: beta
-      type(c_ptr),value :: descrD
-      integer(c_int),value :: nnzD
+      type(c_ptr) :: descrD
+      integer(c_int) :: nnzD
       integer(c_int),target :: csrRowPtrD
       integer(c_int),target :: csrColIndD
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDcsrgemm2_bufferSizeExt_rank_0 = hipsparseDcsrgemm2_bufferSizeExt_raw(handle,m,n,k,alpha,descrA,nnzA,c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrRowPtrB),c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrRowPtrD),c_loc(csrColIndD),myInfo,pBufferSizeInBytes)
@@ -22026,25 +22026,25 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrgemm2_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
       real(c_double) :: alpha
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       integer(c_int),target,dimension(:) :: csrRowPtrB
       integer(c_int),target,dimension(:) :: csrColIndB
       real(c_double) :: beta
-      type(c_ptr),value :: descrD
-      integer(c_int),value :: nnzD
+      type(c_ptr) :: descrD
+      integer(c_int) :: nnzD
       integer(c_int),target,dimension(:) :: csrRowPtrD
       integer(c_int),target,dimension(:) :: csrColIndD
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDcsrgemm2_bufferSizeExt_rank_1 = hipsparseDcsrgemm2_bufferSizeExt_raw(handle,m,n,k,alpha,descrA,nnzA,c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrRowPtrB),c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrRowPtrD),c_loc(csrColIndD),myInfo,pBufferSizeInBytes)
@@ -22056,25 +22056,25 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrgemm2_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       integer(c_int),target :: csrRowPtrB
       integer(c_int),target :: csrColIndB
       complex(c_float_complex) :: beta
-      type(c_ptr),value :: descrD
-      integer(c_int),value :: nnzD
+      type(c_ptr) :: descrD
+      integer(c_int) :: nnzD
       integer(c_int),target :: csrRowPtrD
       integer(c_int),target :: csrColIndD
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseCcsrgemm2_bufferSizeExt_rank_0 = hipsparseCcsrgemm2_bufferSizeExt_raw(handle,m,n,k,alpha,descrA,nnzA,c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrRowPtrB),c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrRowPtrD),c_loc(csrColIndD),myInfo,pBufferSizeInBytes)
@@ -22086,25 +22086,25 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrgemm2_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       integer(c_int),target,dimension(:) :: csrRowPtrB
       integer(c_int),target,dimension(:) :: csrColIndB
       complex(c_float_complex) :: beta
-      type(c_ptr),value :: descrD
-      integer(c_int),value :: nnzD
+      type(c_ptr) :: descrD
+      integer(c_int) :: nnzD
       integer(c_int),target,dimension(:) :: csrRowPtrD
       integer(c_int),target,dimension(:) :: csrColIndD
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseCcsrgemm2_bufferSizeExt_rank_1 = hipsparseCcsrgemm2_bufferSizeExt_raw(handle,m,n,k,alpha,descrA,nnzA,c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrRowPtrB),c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrRowPtrD),c_loc(csrColIndD),myInfo,pBufferSizeInBytes)
@@ -22116,25 +22116,25 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrgemm2_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       integer(c_int),target :: csrRowPtrB
       integer(c_int),target :: csrColIndB
       complex(c_double_complex) :: beta
-      type(c_ptr),value :: descrD
-      integer(c_int),value :: nnzD
+      type(c_ptr) :: descrD
+      integer(c_int) :: nnzD
       integer(c_int),target :: csrRowPtrD
       integer(c_int),target :: csrColIndD
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseZcsrgemm2_bufferSizeExt_rank_0 = hipsparseZcsrgemm2_bufferSizeExt_raw(handle,m,n,k,alpha,descrA,nnzA,c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrRowPtrB),c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrRowPtrD),c_loc(csrColIndD),myInfo,pBufferSizeInBytes)
@@ -22146,25 +22146,25 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrgemm2_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       integer(c_int),target,dimension(:) :: csrRowPtrB
       integer(c_int),target,dimension(:) :: csrColIndB
       complex(c_double_complex) :: beta
-      type(c_ptr),value :: descrD
-      integer(c_int),value :: nnzD
+      type(c_ptr) :: descrD
+      integer(c_int) :: nnzD
       integer(c_int),target,dimension(:) :: csrRowPtrD
       integer(c_int),target,dimension(:) :: csrColIndD
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseZcsrgemm2_bufferSizeExt_rank_1 = hipsparseZcsrgemm2_bufferSizeExt_raw(handle,m,n,k,alpha,descrA,nnzA,c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrRowPtrB),c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrRowPtrD),c_loc(csrColIndD),myInfo,pBufferSizeInBytes)
@@ -22176,27 +22176,27 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsrgemm2Nnz_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       integer(c_int),target :: csrRowPtrB
       integer(c_int),target :: csrColIndB
-      type(c_ptr),value :: descrD
-      integer(c_int),value :: nnzD
+      type(c_ptr) :: descrD
+      integer(c_int) :: nnzD
       integer(c_int),target :: csrRowPtrD
       integer(c_int),target :: csrColIndD
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       integer(c_int),target :: csrRowPtrC
       integer(c_int) :: nnzTotalDevHostPtr
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: pBuffer
       !
       hipsparseXcsrgemm2Nnz_rank_0 = hipsparseXcsrgemm2Nnz_raw(handle,m,n,k,descrA,nnzA,c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrRowPtrB),c_loc(csrColIndB),descrD,nnzD,c_loc(csrRowPtrD),c_loc(csrColIndD),descrC,c_loc(csrRowPtrC),nnzTotalDevHostPtr,myInfo,pBuffer)
     end function
@@ -22207,27 +22207,27 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsrgemm2Nnz_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       integer(c_int),target,dimension(:) :: csrRowPtrB
       integer(c_int),target,dimension(:) :: csrColIndB
-      type(c_ptr),value :: descrD
-      integer(c_int),value :: nnzD
+      type(c_ptr) :: descrD
+      integer(c_int) :: nnzD
       integer(c_int),target,dimension(:) :: csrRowPtrD
       integer(c_int),target,dimension(:) :: csrColIndD
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int) :: nnzTotalDevHostPtr
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: pBuffer
       !
       hipsparseXcsrgemm2Nnz_rank_1 = hipsparseXcsrgemm2Nnz_raw(handle,m,n,k,descrA,nnzA,c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrRowPtrB),c_loc(csrColIndB),descrD,nnzD,c_loc(csrRowPtrD),c_loc(csrColIndD),descrC,c_loc(csrRowPtrC),nnzTotalDevHostPtr,myInfo,pBuffer)
     end function
@@ -22238,33 +22238,33 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrgemm2_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
       real(c_float) :: alpha
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       real(c_float),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       real(c_float),target :: csrValB
       integer(c_int),target :: csrRowPtrB
       integer(c_int),target :: csrColIndB
       real(c_float) :: beta
-      type(c_ptr),value :: descrD
-      integer(c_int),value :: nnzD
+      type(c_ptr) :: descrD
+      integer(c_int) :: nnzD
       real(c_float),target :: csrValD
       integer(c_int),target :: csrRowPtrD
       integer(c_int),target :: csrColIndD
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       real(c_float),target :: csrValC
       integer(c_int),target :: csrRowPtrC
       integer(c_int),target :: csrColIndC
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: pBuffer
       !
       hipsparseScsrgemm2_rank_0 = hipsparseScsrgemm2_raw(handle,m,n,k,alpha,descrA,nnzA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrValB),c_loc(csrRowPtrB),c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrValD),c_loc(csrRowPtrD),c_loc(csrColIndD),descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,pBuffer)
     end function
@@ -22275,33 +22275,33 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrgemm2_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
       real(c_float) :: alpha
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       real(c_float),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       real(c_float),target,dimension(:) :: csrValB
       integer(c_int),target,dimension(:) :: csrRowPtrB
       integer(c_int),target,dimension(:) :: csrColIndB
       real(c_float) :: beta
-      type(c_ptr),value :: descrD
-      integer(c_int),value :: nnzD
+      type(c_ptr) :: descrD
+      integer(c_int) :: nnzD
       real(c_float),target,dimension(:) :: csrValD
       integer(c_int),target,dimension(:) :: csrRowPtrD
       integer(c_int),target,dimension(:) :: csrColIndD
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       real(c_float),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int),target,dimension(:) :: csrColIndC
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: pBuffer
       !
       hipsparseScsrgemm2_rank_1 = hipsparseScsrgemm2_raw(handle,m,n,k,alpha,descrA,nnzA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrValB),c_loc(csrRowPtrB),c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrValD),c_loc(csrRowPtrD),c_loc(csrColIndD),descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,pBuffer)
     end function
@@ -22312,33 +22312,33 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrgemm2_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
       real(c_double) :: alpha
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       real(c_double),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       real(c_double),target :: csrValB
       integer(c_int),target :: csrRowPtrB
       integer(c_int),target :: csrColIndB
       real(c_double) :: beta
-      type(c_ptr),value :: descrD
-      integer(c_int),value :: nnzD
+      type(c_ptr) :: descrD
+      integer(c_int) :: nnzD
       real(c_double),target :: csrValD
       integer(c_int),target :: csrRowPtrD
       integer(c_int),target :: csrColIndD
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       real(c_double),target :: csrValC
       integer(c_int),target :: csrRowPtrC
       integer(c_int),target :: csrColIndC
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: pBuffer
       !
       hipsparseDcsrgemm2_rank_0 = hipsparseDcsrgemm2_raw(handle,m,n,k,alpha,descrA,nnzA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrValB),c_loc(csrRowPtrB),c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrValD),c_loc(csrRowPtrD),c_loc(csrColIndD),descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,pBuffer)
     end function
@@ -22349,33 +22349,33 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrgemm2_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
       real(c_double) :: alpha
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       real(c_double),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       real(c_double),target,dimension(:) :: csrValB
       integer(c_int),target,dimension(:) :: csrRowPtrB
       integer(c_int),target,dimension(:) :: csrColIndB
       real(c_double) :: beta
-      type(c_ptr),value :: descrD
-      integer(c_int),value :: nnzD
+      type(c_ptr) :: descrD
+      integer(c_int) :: nnzD
       real(c_double),target,dimension(:) :: csrValD
       integer(c_int),target,dimension(:) :: csrRowPtrD
       integer(c_int),target,dimension(:) :: csrColIndD
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       real(c_double),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int),target,dimension(:) :: csrColIndC
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: pBuffer
       !
       hipsparseDcsrgemm2_rank_1 = hipsparseDcsrgemm2_raw(handle,m,n,k,alpha,descrA,nnzA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrValB),c_loc(csrRowPtrB),c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrValD),c_loc(csrRowPtrD),c_loc(csrColIndD),descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,pBuffer)
     end function
@@ -22386,33 +22386,33 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrgemm2_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       complex(c_float_complex),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       complex(c_float_complex),target :: csrValB
       integer(c_int),target :: csrRowPtrB
       integer(c_int),target :: csrColIndB
       complex(c_float_complex) :: beta
-      type(c_ptr),value :: descrD
-      integer(c_int),value :: nnzD
+      type(c_ptr) :: descrD
+      integer(c_int) :: nnzD
       complex(c_float_complex),target :: csrValD
       integer(c_int),target :: csrRowPtrD
       integer(c_int),target :: csrColIndD
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       complex(c_float_complex),target :: csrValC
       integer(c_int),target :: csrRowPtrC
       integer(c_int),target :: csrColIndC
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: pBuffer
       !
       hipsparseCcsrgemm2_rank_0 = hipsparseCcsrgemm2_raw(handle,m,n,k,alpha,descrA,nnzA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrValB),c_loc(csrRowPtrB),c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrValD),c_loc(csrRowPtrD),c_loc(csrColIndD),descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,pBuffer)
     end function
@@ -22423,33 +22423,33 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrgemm2_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       complex(c_float_complex),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       complex(c_float_complex),target,dimension(:) :: csrValB
       integer(c_int),target,dimension(:) :: csrRowPtrB
       integer(c_int),target,dimension(:) :: csrColIndB
       complex(c_float_complex) :: beta
-      type(c_ptr),value :: descrD
-      integer(c_int),value :: nnzD
+      type(c_ptr) :: descrD
+      integer(c_int) :: nnzD
       complex(c_float_complex),target,dimension(:) :: csrValD
       integer(c_int),target,dimension(:) :: csrRowPtrD
       integer(c_int),target,dimension(:) :: csrColIndD
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       complex(c_float_complex),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int),target,dimension(:) :: csrColIndC
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: pBuffer
       !
       hipsparseCcsrgemm2_rank_1 = hipsparseCcsrgemm2_raw(handle,m,n,k,alpha,descrA,nnzA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrValB),c_loc(csrRowPtrB),c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrValD),c_loc(csrRowPtrD),c_loc(csrColIndD),descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,pBuffer)
     end function
@@ -22460,33 +22460,33 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrgemm2_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       complex(c_double_complex),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       complex(c_double_complex),target :: csrValB
       integer(c_int),target :: csrRowPtrB
       integer(c_int),target :: csrColIndB
       complex(c_double_complex) :: beta
-      type(c_ptr),value :: descrD
-      integer(c_int),value :: nnzD
+      type(c_ptr) :: descrD
+      integer(c_int) :: nnzD
       complex(c_double_complex),target :: csrValD
       integer(c_int),target :: csrRowPtrD
       integer(c_int),target :: csrColIndD
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       complex(c_double_complex),target :: csrValC
       integer(c_int),target :: csrRowPtrC
       integer(c_int),target :: csrColIndC
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: pBuffer
       !
       hipsparseZcsrgemm2_rank_0 = hipsparseZcsrgemm2_raw(handle,m,n,k,alpha,descrA,nnzA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrValB),c_loc(csrRowPtrB),c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrValD),c_loc(csrRowPtrD),c_loc(csrColIndD),descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,pBuffer)
     end function
@@ -22497,33 +22497,33 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrgemm2_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descrA
-      integer(c_int),value :: nnzA
+      type(c_ptr) :: descrA
+      integer(c_int) :: nnzA
       complex(c_double_complex),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      type(c_ptr),value :: descrB
-      integer(c_int),value :: nnzB
+      type(c_ptr) :: descrB
+      integer(c_int) :: nnzB
       complex(c_double_complex),target,dimension(:) :: csrValB
       integer(c_int),target,dimension(:) :: csrRowPtrB
       integer(c_int),target,dimension(:) :: csrColIndB
       complex(c_double_complex) :: beta
-      type(c_ptr),value :: descrD
-      integer(c_int),value :: nnzD
+      type(c_ptr) :: descrD
+      integer(c_int) :: nnzD
       complex(c_double_complex),target,dimension(:) :: csrValD
       integer(c_int),target,dimension(:) :: csrRowPtrD
       integer(c_int),target,dimension(:) :: csrColIndD
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       complex(c_double_complex),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int),target,dimension(:) :: csrColIndC
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: pBuffer
       !
       hipsparseZcsrgemm2_rank_1 = hipsparseZcsrgemm2_raw(handle,m,n,k,alpha,descrA,nnzA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrValB),c_loc(csrRowPtrB),c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrValD),c_loc(csrRowPtrD),c_loc(csrColIndD),descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,pBuffer)
     end function
@@ -22534,16 +22534,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrilu02_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_float),target :: bsrSortedValA
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseSbsrilu02_bufferSize_rank_0 = hipsparseSbsrilu02_bufferSize_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,pBufferSizeInBytes)
@@ -22555,16 +22555,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrilu02_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseSbsrilu02_bufferSize_rank_1 = hipsparseSbsrilu02_bufferSize_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,pBufferSizeInBytes)
@@ -22576,16 +22576,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrilu02_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_double),target :: bsrSortedValA
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseDbsrilu02_bufferSize_rank_0 = hipsparseDbsrilu02_bufferSize_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,pBufferSizeInBytes)
@@ -22597,16 +22597,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrilu02_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseDbsrilu02_bufferSize_rank_1 = hipsparseDbsrilu02_bufferSize_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,pBufferSizeInBytes)
@@ -22618,16 +22618,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrilu02_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: bsrSortedValA
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseCbsrilu02_bufferSize_rank_0 = hipsparseCbsrilu02_bufferSize_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,pBufferSizeInBytes)
@@ -22639,16 +22639,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrilu02_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseCbsrilu02_bufferSize_rank_1 = hipsparseCbsrilu02_bufferSize_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,pBufferSizeInBytes)
@@ -22660,16 +22660,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrilu02_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: bsrSortedValA
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseZbsrilu02_bufferSize_rank_0 = hipsparseZbsrilu02_bufferSize_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,pBufferSizeInBytes)
@@ -22681,16 +22681,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrilu02_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseZbsrilu02_bufferSize_rank_1 = hipsparseZbsrilu02_bufferSize_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,pBufferSizeInBytes)
@@ -22702,18 +22702,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrilu02_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_float),target :: bsrSortedValA
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseSbsrilu02_analysis_rank_0 = hipsparseSbsrilu02_analysis_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -22724,18 +22724,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrilu02_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseSbsrilu02_analysis_rank_1 = hipsparseSbsrilu02_analysis_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -22746,18 +22746,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrilu02_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_double),target :: bsrSortedValA
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseDbsrilu02_analysis_rank_0 = hipsparseDbsrilu02_analysis_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -22768,18 +22768,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrilu02_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseDbsrilu02_analysis_rank_1 = hipsparseDbsrilu02_analysis_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -22790,18 +22790,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrilu02_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: bsrSortedValA
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseCbsrilu02_analysis_rank_0 = hipsparseCbsrilu02_analysis_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -22812,18 +22812,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrilu02_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseCbsrilu02_analysis_rank_1 = hipsparseCbsrilu02_analysis_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -22834,18 +22834,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrilu02_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: bsrSortedValA
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseZbsrilu02_analysis_rank_0 = hipsparseZbsrilu02_analysis_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -22856,18 +22856,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrilu02_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: bsrSortedValA
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseZbsrilu02_analysis_rank_1 = hipsparseZbsrilu02_analysis_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -22878,18 +22878,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrilu02_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_float),target :: bsrSortedValA_valM
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseSbsrilu02_rank_0 = hipsparseSbsrilu02_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrSortedValA_valM),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -22900,18 +22900,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrilu02_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: bsrSortedValA_valM
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseSbsrilu02_rank_1 = hipsparseSbsrilu02_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrSortedValA_valM),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -22922,18 +22922,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrilu02_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_double),target :: bsrSortedValA_valM
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseDbsrilu02_rank_0 = hipsparseDbsrilu02_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrSortedValA_valM),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -22944,18 +22944,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrilu02_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: bsrSortedValA_valM
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseDbsrilu02_rank_1 = hipsparseDbsrilu02_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrSortedValA_valM),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -22966,18 +22966,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrilu02_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: bsrSortedValA_valM
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseCbsrilu02_rank_0 = hipsparseCbsrilu02_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrSortedValA_valM),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -22988,18 +22988,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrilu02_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: bsrSortedValA_valM
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseCbsrilu02_rank_1 = hipsparseCbsrilu02_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrSortedValA_valM),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -23010,18 +23010,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrilu02_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: bsrSortedValA_valM
       integer(c_int),target :: bsrSortedRowPtrA
       integer(c_int),target :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseZbsrilu02_rank_0 = hipsparseZbsrilu02_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrSortedValA_valM),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -23032,18 +23032,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrilu02_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: bsrSortedValA_valM
       integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
       integer(c_int),target,dimension(:) :: bsrSortedColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseZbsrilu02_rank_1 = hipsparseZbsrilu02_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrSortedValA_valM),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -23054,14 +23054,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrilu02_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_float),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseScsrilu02_bufferSize_rank_0 = hipsparseScsrilu02_bufferSize_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSizeInBytes)
@@ -23073,14 +23073,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrilu02_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseScsrilu02_bufferSize_rank_1 = hipsparseScsrilu02_bufferSize_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSizeInBytes)
@@ -23092,14 +23092,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrilu02_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_double),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseDcsrilu02_bufferSize_rank_0 = hipsparseDcsrilu02_bufferSize_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSizeInBytes)
@@ -23111,14 +23111,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrilu02_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseDcsrilu02_bufferSize_rank_1 = hipsparseDcsrilu02_bufferSize_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSizeInBytes)
@@ -23130,14 +23130,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrilu02_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseCcsrilu02_bufferSize_rank_0 = hipsparseCcsrilu02_bufferSize_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSizeInBytes)
@@ -23149,14 +23149,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrilu02_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseCcsrilu02_bufferSize_rank_1 = hipsparseCcsrilu02_bufferSize_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSizeInBytes)
@@ -23168,14 +23168,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrilu02_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseZcsrilu02_bufferSize_rank_0 = hipsparseZcsrilu02_bufferSize_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSizeInBytes)
@@ -23187,14 +23187,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrilu02_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseZcsrilu02_bufferSize_rank_1 = hipsparseZcsrilu02_bufferSize_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSizeInBytes)
@@ -23206,14 +23206,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrilu02_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_float),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSize
       !
       hipsparseScsrilu02_bufferSizeExt_rank_0 = hipsparseScsrilu02_bufferSizeExt_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSize)
@@ -23225,14 +23225,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrilu02_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSize
       !
       hipsparseScsrilu02_bufferSizeExt_rank_1 = hipsparseScsrilu02_bufferSizeExt_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSize)
@@ -23244,14 +23244,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrilu02_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_double),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSize
       !
       hipsparseDcsrilu02_bufferSizeExt_rank_0 = hipsparseDcsrilu02_bufferSizeExt_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSize)
@@ -23263,14 +23263,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrilu02_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSize
       !
       hipsparseDcsrilu02_bufferSizeExt_rank_1 = hipsparseDcsrilu02_bufferSizeExt_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSize)
@@ -23282,14 +23282,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrilu02_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSize
       !
       hipsparseCcsrilu02_bufferSizeExt_rank_0 = hipsparseCcsrilu02_bufferSizeExt_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSize)
@@ -23301,14 +23301,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrilu02_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSize
       !
       hipsparseCcsrilu02_bufferSizeExt_rank_1 = hipsparseCcsrilu02_bufferSizeExt_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSize)
@@ -23320,14 +23320,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrilu02_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSize
       !
       hipsparseZcsrilu02_bufferSizeExt_rank_0 = hipsparseZcsrilu02_bufferSizeExt_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSize)
@@ -23339,14 +23339,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrilu02_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSize
       !
       hipsparseZcsrilu02_bufferSizeExt_rank_1 = hipsparseZcsrilu02_bufferSizeExt_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSize)
@@ -23358,16 +23358,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrilu02_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_float),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseScsrilu02_analysis_rank_0 = hipsparseScsrilu02_analysis_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
@@ -23378,16 +23378,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrilu02_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseScsrilu02_analysis_rank_1 = hipsparseScsrilu02_analysis_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
@@ -23398,16 +23398,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrilu02_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_double),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseDcsrilu02_analysis_rank_0 = hipsparseDcsrilu02_analysis_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
@@ -23418,16 +23418,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrilu02_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseDcsrilu02_analysis_rank_1 = hipsparseDcsrilu02_analysis_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
@@ -23438,16 +23438,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrilu02_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseCcsrilu02_analysis_rank_0 = hipsparseCcsrilu02_analysis_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
@@ -23458,16 +23458,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrilu02_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseCcsrilu02_analysis_rank_1 = hipsparseCcsrilu02_analysis_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
@@ -23478,16 +23478,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrilu02_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseZcsrilu02_analysis_rank_0 = hipsparseZcsrilu02_analysis_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
@@ -23498,16 +23498,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrilu02_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseZcsrilu02_analysis_rank_1 = hipsparseZcsrilu02_analysis_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
@@ -23518,16 +23518,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrilu02_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_float),target :: csrSortedValA_valM
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseScsrilu02_rank_0 = hipsparseScsrilu02_raw(handle,m,nnz,descrA,c_loc(csrSortedValA_valM),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
@@ -23538,16 +23538,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrilu02_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: csrSortedValA_valM
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseScsrilu02_rank_1 = hipsparseScsrilu02_raw(handle,m,nnz,descrA,c_loc(csrSortedValA_valM),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
@@ -23558,16 +23558,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrilu02_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_double),target :: csrSortedValA_valM
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseDcsrilu02_rank_0 = hipsparseDcsrilu02_raw(handle,m,nnz,descrA,c_loc(csrSortedValA_valM),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
@@ -23578,16 +23578,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrilu02_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: csrSortedValA_valM
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseDcsrilu02_rank_1 = hipsparseDcsrilu02_raw(handle,m,nnz,descrA,c_loc(csrSortedValA_valM),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
@@ -23598,16 +23598,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrilu02_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: csrSortedValA_valM
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseCcsrilu02_rank_0 = hipsparseCcsrilu02_raw(handle,m,nnz,descrA,c_loc(csrSortedValA_valM),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
@@ -23618,16 +23618,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrilu02_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: csrSortedValA_valM
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseCcsrilu02_rank_1 = hipsparseCcsrilu02_raw(handle,m,nnz,descrA,c_loc(csrSortedValA_valM),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
@@ -23638,16 +23638,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrilu02_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: csrSortedValA_valM
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseZcsrilu02_rank_0 = hipsparseZcsrilu02_raw(handle,m,nnz,descrA,c_loc(csrSortedValA_valM),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
@@ -23658,16 +23658,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrilu02_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: csrSortedValA_valM
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseZcsrilu02_rank_1 = hipsparseZcsrilu02_raw(handle,m,nnz,descrA,c_loc(csrSortedValA_valM),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
@@ -23678,16 +23678,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsric02_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_float),target :: bsrValA
       integer(c_int),target :: bsrRowPtrA
       integer(c_int),target :: bsrColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseSbsric02_bufferSize_rank_0 = hipsparseSbsric02_bufferSize_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,myInfo,pBufferSizeInBytes)
@@ -23699,16 +23699,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsric02_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: bsrValA
       integer(c_int),target,dimension(:) :: bsrRowPtrA
       integer(c_int),target,dimension(:) :: bsrColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseSbsric02_bufferSize_rank_1 = hipsparseSbsric02_bufferSize_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,myInfo,pBufferSizeInBytes)
@@ -23720,16 +23720,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsric02_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_double),target :: bsrValA
       integer(c_int),target :: bsrRowPtrA
       integer(c_int),target :: bsrColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseDbsric02_bufferSize_rank_0 = hipsparseDbsric02_bufferSize_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,myInfo,pBufferSizeInBytes)
@@ -23741,16 +23741,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsric02_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: bsrValA
       integer(c_int),target,dimension(:) :: bsrRowPtrA
       integer(c_int),target,dimension(:) :: bsrColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseDbsric02_bufferSize_rank_1 = hipsparseDbsric02_bufferSize_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,myInfo,pBufferSizeInBytes)
@@ -23762,16 +23762,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsric02_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: bsrValA
       integer(c_int),target :: bsrRowPtrA
       integer(c_int),target :: bsrColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseCbsric02_bufferSize_rank_0 = hipsparseCbsric02_bufferSize_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,myInfo,pBufferSizeInBytes)
@@ -23783,16 +23783,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsric02_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: bsrValA
       integer(c_int),target,dimension(:) :: bsrRowPtrA
       integer(c_int),target,dimension(:) :: bsrColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseCbsric02_bufferSize_rank_1 = hipsparseCbsric02_bufferSize_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,myInfo,pBufferSizeInBytes)
@@ -23804,16 +23804,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsric02_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: bsrValA
       integer(c_int),target :: bsrRowPtrA
       integer(c_int),target :: bsrColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseZbsric02_bufferSize_rank_0 = hipsparseZbsric02_bufferSize_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,myInfo,pBufferSizeInBytes)
@@ -23825,16 +23825,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsric02_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: bsrValA
       integer(c_int),target,dimension(:) :: bsrRowPtrA
       integer(c_int),target,dimension(:) :: bsrColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseZbsric02_bufferSize_rank_1 = hipsparseZbsric02_bufferSize_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,myInfo,pBufferSizeInBytes)
@@ -23846,18 +23846,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsric02_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_float),target :: bsrValA
       integer(c_int),target :: bsrRowPtrA
       integer(c_int),target :: bsrColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseSbsric02_analysis_rank_0 = hipsparseSbsric02_analysis_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -23868,18 +23868,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsric02_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: bsrValA
       integer(c_int),target,dimension(:) :: bsrRowPtrA
       integer(c_int),target,dimension(:) :: bsrColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseSbsric02_analysis_rank_1 = hipsparseSbsric02_analysis_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -23890,18 +23890,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsric02_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_double),target :: bsrValA
       integer(c_int),target :: bsrRowPtrA
       integer(c_int),target :: bsrColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseDbsric02_analysis_rank_0 = hipsparseDbsric02_analysis_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -23912,18 +23912,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsric02_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: bsrValA
       integer(c_int),target,dimension(:) :: bsrRowPtrA
       integer(c_int),target,dimension(:) :: bsrColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseDbsric02_analysis_rank_1 = hipsparseDbsric02_analysis_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -23934,18 +23934,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsric02_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: bsrValA
       integer(c_int),target :: bsrRowPtrA
       integer(c_int),target :: bsrColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseCbsric02_analysis_rank_0 = hipsparseCbsric02_analysis_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -23956,18 +23956,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsric02_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: bsrValA
       integer(c_int),target,dimension(:) :: bsrRowPtrA
       integer(c_int),target,dimension(:) :: bsrColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseCbsric02_analysis_rank_1 = hipsparseCbsric02_analysis_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -23978,18 +23978,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsric02_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: bsrValA
       integer(c_int),target :: bsrRowPtrA
       integer(c_int),target :: bsrColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseZbsric02_analysis_rank_0 = hipsparseZbsric02_analysis_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -24000,18 +24000,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsric02_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: bsrValA
       integer(c_int),target,dimension(:) :: bsrRowPtrA
       integer(c_int),target,dimension(:) :: bsrColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseZbsric02_analysis_rank_1 = hipsparseZbsric02_analysis_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -24022,18 +24022,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsric02_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_float),target :: bsrValA
       integer(c_int),target :: bsrRowPtrA
       integer(c_int),target :: bsrColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseSbsric02_rank_0 = hipsparseSbsric02_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -24044,18 +24044,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsric02_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: bsrValA
       integer(c_int),target,dimension(:) :: bsrRowPtrA
       integer(c_int),target,dimension(:) :: bsrColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseSbsric02_rank_1 = hipsparseSbsric02_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -24066,18 +24066,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsric02_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_double),target :: bsrValA
       integer(c_int),target :: bsrRowPtrA
       integer(c_int),target :: bsrColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseDbsric02_rank_0 = hipsparseDbsric02_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -24088,18 +24088,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsric02_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: bsrValA
       integer(c_int),target,dimension(:) :: bsrRowPtrA
       integer(c_int),target,dimension(:) :: bsrColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseDbsric02_rank_1 = hipsparseDbsric02_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -24110,18 +24110,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsric02_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: bsrValA
       integer(c_int),target :: bsrRowPtrA
       integer(c_int),target :: bsrColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseCbsric02_rank_0 = hipsparseCbsric02_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -24132,18 +24132,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsric02_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: bsrValA
       integer(c_int),target,dimension(:) :: bsrRowPtrA
       integer(c_int),target,dimension(:) :: bsrColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseCbsric02_rank_1 = hipsparseCbsric02_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -24154,18 +24154,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsric02_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: bsrValA
       integer(c_int),target :: bsrRowPtrA
       integer(c_int),target :: bsrColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseZbsric02_rank_0 = hipsparseZbsric02_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -24176,18 +24176,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsric02_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: bsrValA
       integer(c_int),target,dimension(:) :: bsrRowPtrA
       integer(c_int),target,dimension(:) :: bsrColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: blockDim
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseZbsric02_rank_1 = hipsparseZbsric02_raw(handle,dirA,mb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,myInfo,policy,pBuffer)
     end function
@@ -24198,14 +24198,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsric02_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_float),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseScsric02_bufferSize_rank_0 = hipsparseScsric02_bufferSize_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSizeInBytes)
@@ -24217,14 +24217,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsric02_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseScsric02_bufferSize_rank_1 = hipsparseScsric02_bufferSize_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSizeInBytes)
@@ -24236,14 +24236,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsric02_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_double),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseDcsric02_bufferSize_rank_0 = hipsparseDcsric02_bufferSize_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSizeInBytes)
@@ -24255,14 +24255,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsric02_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseDcsric02_bufferSize_rank_1 = hipsparseDcsric02_bufferSize_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSizeInBytes)
@@ -24274,14 +24274,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsric02_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseCcsric02_bufferSize_rank_0 = hipsparseCcsric02_bufferSize_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSizeInBytes)
@@ -24293,14 +24293,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsric02_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseCcsric02_bufferSize_rank_1 = hipsparseCcsric02_bufferSize_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSizeInBytes)
@@ -24312,14 +24312,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsric02_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseZcsric02_bufferSize_rank_0 = hipsparseZcsric02_bufferSize_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSizeInBytes)
@@ -24331,14 +24331,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsric02_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_int) :: pBufferSizeInBytes
       !
       hipsparseZcsric02_bufferSize_rank_1 = hipsparseZcsric02_bufferSize_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSizeInBytes)
@@ -24350,14 +24350,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsric02_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_float),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSize
       !
       hipsparseScsric02_bufferSizeExt_rank_0 = hipsparseScsric02_bufferSizeExt_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSize)
@@ -24369,14 +24369,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsric02_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSize
       !
       hipsparseScsric02_bufferSizeExt_rank_1 = hipsparseScsric02_bufferSizeExt_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSize)
@@ -24388,14 +24388,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsric02_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_double),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSize
       !
       hipsparseDcsric02_bufferSizeExt_rank_0 = hipsparseDcsric02_bufferSizeExt_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSize)
@@ -24407,14 +24407,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsric02_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSize
       !
       hipsparseDcsric02_bufferSizeExt_rank_1 = hipsparseDcsric02_bufferSizeExt_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSize)
@@ -24426,14 +24426,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsric02_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSize
       !
       hipsparseCcsric02_bufferSizeExt_rank_0 = hipsparseCcsric02_bufferSizeExt_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSize)
@@ -24445,14 +24445,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsric02_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSize
       !
       hipsparseCcsric02_bufferSizeExt_rank_1 = hipsparseCcsric02_bufferSizeExt_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSize)
@@ -24464,14 +24464,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsric02_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSize
       !
       hipsparseZcsric02_bufferSizeExt_rank_0 = hipsparseZcsric02_bufferSizeExt_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSize)
@@ -24483,14 +24483,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsric02_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSize
       !
       hipsparseZcsric02_bufferSizeExt_rank_1 = hipsparseZcsric02_bufferSizeExt_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,pBufferSize)
@@ -24502,16 +24502,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsric02_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_float),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseScsric02_analysis_rank_0 = hipsparseScsric02_analysis_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
@@ -24522,16 +24522,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsric02_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseScsric02_analysis_rank_1 = hipsparseScsric02_analysis_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
@@ -24542,16 +24542,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsric02_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_double),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseDcsric02_analysis_rank_0 = hipsparseDcsric02_analysis_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
@@ -24562,16 +24562,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsric02_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseDcsric02_analysis_rank_1 = hipsparseDcsric02_analysis_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
@@ -24582,16 +24582,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsric02_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseCcsric02_analysis_rank_0 = hipsparseCcsric02_analysis_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
@@ -24602,16 +24602,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsric02_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseCcsric02_analysis_rank_1 = hipsparseCcsric02_analysis_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
@@ -24622,16 +24622,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsric02_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseZcsric02_analysis_rank_0 = hipsparseZcsric02_analysis_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
@@ -24642,16 +24642,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsric02_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseZcsric02_analysis_rank_1 = hipsparseZcsric02_analysis_raw(handle,m,nnz,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
@@ -24662,16 +24662,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsric02_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_float),target :: csrSortedValA_valM
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseScsric02_rank_0 = hipsparseScsric02_raw(handle,m,nnz,descrA,c_loc(csrSortedValA_valM),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
@@ -24682,16 +24682,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsric02_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: csrSortedValA_valM
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseScsric02_rank_1 = hipsparseScsric02_raw(handle,m,nnz,descrA,c_loc(csrSortedValA_valM),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
@@ -24702,16 +24702,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsric02_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_double),target :: csrSortedValA_valM
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseDcsric02_rank_0 = hipsparseDcsric02_raw(handle,m,nnz,descrA,c_loc(csrSortedValA_valM),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
@@ -24722,16 +24722,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsric02_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: csrSortedValA_valM
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseDcsric02_rank_1 = hipsparseDcsric02_raw(handle,m,nnz,descrA,c_loc(csrSortedValA_valM),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
@@ -24742,16 +24742,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsric02_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: csrSortedValA_valM
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseCcsric02_rank_0 = hipsparseCcsric02_raw(handle,m,nnz,descrA,c_loc(csrSortedValA_valM),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
@@ -24762,16 +24762,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsric02_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: csrSortedValA_valM
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseCcsric02_rank_1 = hipsparseCcsric02_raw(handle,m,nnz,descrA,c_loc(csrSortedValA_valM),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
@@ -24782,16 +24782,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsric02_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: csrSortedValA_valM
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseZcsric02_rank_0 = hipsparseZcsric02_raw(handle,m,nnz,descrA,c_loc(csrSortedValA_valM),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
@@ -24802,16 +24802,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsric02_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: csrSortedValA_valM
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr) :: pBuffer
       !
       hipsparseZcsric02_rank_1 = hipsparseZcsric02_raw(handle,m,nnz,descrA,c_loc(csrSortedValA_valM),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo,policy,pBuffer)
     end function
@@ -24822,14 +24822,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2_bufferSizeExt_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseSgtsv2_bufferSizeExt_full_rank = hipsparseSgtsv2_bufferSizeExt_raw(handle,m,n,dl,d,du,c_loc(B),ldb,pBufferSizeInBytes)
@@ -24841,14 +24841,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseSgtsv2_bufferSizeExt_rank_0 = hipsparseSgtsv2_bufferSizeExt_raw(handle,m,n,dl,d,du,c_loc(B),ldb,pBufferSizeInBytes)
@@ -24860,14 +24860,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target,dimension(:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseSgtsv2_bufferSizeExt_rank_1 = hipsparseSgtsv2_bufferSizeExt_raw(handle,m,n,dl,d,du,c_loc(B),ldb,pBufferSizeInBytes)
@@ -24879,14 +24879,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2_bufferSizeExt_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target,dimension(:,:) :: B
-      integer(c_int),value :: db
+      integer(c_int) :: db
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDgtsv2_bufferSizeExt_full_rank = hipsparseDgtsv2_bufferSizeExt_raw(handle,m,n,dl,d,du,c_loc(B),db,pBufferSizeInBytes)
@@ -24898,14 +24898,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target :: B
-      integer(c_int),value :: db
+      integer(c_int) :: db
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDgtsv2_bufferSizeExt_rank_0 = hipsparseDgtsv2_bufferSizeExt_raw(handle,m,n,dl,d,du,c_loc(B),db,pBufferSizeInBytes)
@@ -24917,14 +24917,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target,dimension(:) :: B
-      integer(c_int),value :: db
+      integer(c_int) :: db
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDgtsv2_bufferSizeExt_rank_1 = hipsparseDgtsv2_bufferSizeExt_raw(handle,m,n,dl,d,du,c_loc(B),db,pBufferSizeInBytes)
@@ -24936,14 +24936,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2_bufferSizeExt_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseCgtsv2_bufferSizeExt_full_rank = hipsparseCgtsv2_bufferSizeExt_raw(handle,m,n,dl,d,du,c_loc(B),ldb,pBufferSizeInBytes)
@@ -24955,14 +24955,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseCgtsv2_bufferSizeExt_rank_0 = hipsparseCgtsv2_bufferSizeExt_raw(handle,m,n,dl,d,du,c_loc(B),ldb,pBufferSizeInBytes)
@@ -24974,14 +24974,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseCgtsv2_bufferSizeExt_rank_1 = hipsparseCgtsv2_bufferSizeExt_raw(handle,m,n,dl,d,du,c_loc(B),ldb,pBufferSizeInBytes)
@@ -24993,14 +24993,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2_bufferSizeExt_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseZgtsv2_bufferSizeExt_full_rank = hipsparseZgtsv2_bufferSizeExt_raw(handle,m,n,dl,d,du,c_loc(B),ldb,pBufferSizeInBytes)
@@ -25012,14 +25012,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseZgtsv2_bufferSizeExt_rank_0 = hipsparseZgtsv2_bufferSizeExt_raw(handle,m,n,dl,d,du,c_loc(B),ldb,pBufferSizeInBytes)
@@ -25031,14 +25031,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseZgtsv2_bufferSizeExt_rank_1 = hipsparseZgtsv2_bufferSizeExt_raw(handle,m,n,dl,d,du,c_loc(B),ldb,pBufferSizeInBytes)
@@ -25050,15 +25050,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: pBuffer
       !
       hipsparseSgtsv2_full_rank = hipsparseSgtsv2_raw(handle,m,n,dl,d,du,c_loc(B),ldb,pBuffer)
     end function
@@ -25069,15 +25069,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: pBuffer
       !
       hipsparseSgtsv2_rank_0 = hipsparseSgtsv2_raw(handle,m,n,dl,d,du,c_loc(B),ldb,pBuffer)
     end function
@@ -25088,15 +25088,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: pBuffer
       !
       hipsparseSgtsv2_rank_1 = hipsparseSgtsv2_raw(handle,m,n,dl,d,du,c_loc(B),ldb,pBuffer)
     end function
@@ -25107,15 +25107,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: pBuffer
       !
       hipsparseDgtsv2_full_rank = hipsparseDgtsv2_raw(handle,m,n,dl,d,du,c_loc(B),ldb,pBuffer)
     end function
@@ -25126,15 +25126,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: pBuffer
       !
       hipsparseDgtsv2_rank_0 = hipsparseDgtsv2_raw(handle,m,n,dl,d,du,c_loc(B),ldb,pBuffer)
     end function
@@ -25145,15 +25145,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: pBuffer
       !
       hipsparseDgtsv2_rank_1 = hipsparseDgtsv2_raw(handle,m,n,dl,d,du,c_loc(B),ldb,pBuffer)
     end function
@@ -25164,15 +25164,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: pBuffer
       !
       hipsparseCgtsv2_full_rank = hipsparseCgtsv2_raw(handle,m,n,dl,d,du,c_loc(B),ldb,pBuffer)
     end function
@@ -25183,15 +25183,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: pBuffer
       !
       hipsparseCgtsv2_rank_0 = hipsparseCgtsv2_raw(handle,m,n,dl,d,du,c_loc(B),ldb,pBuffer)
     end function
@@ -25202,15 +25202,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: pBuffer
       !
       hipsparseCgtsv2_rank_1 = hipsparseCgtsv2_raw(handle,m,n,dl,d,du,c_loc(B),ldb,pBuffer)
     end function
@@ -25221,15 +25221,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: pBuffer
       !
       hipsparseZgtsv2_full_rank = hipsparseZgtsv2_raw(handle,m,n,dl,d,du,c_loc(B),ldb,pBuffer)
     end function
@@ -25240,15 +25240,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: pBuffer
       !
       hipsparseZgtsv2_rank_0 = hipsparseZgtsv2_raw(handle,m,n,dl,d,du,c_loc(B),ldb,pBuffer)
     end function
@@ -25259,15 +25259,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: pBuffer
       !
       hipsparseZgtsv2_rank_1 = hipsparseZgtsv2_raw(handle,m,n,dl,d,du,c_loc(B),ldb,pBuffer)
     end function
@@ -25278,14 +25278,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2_nopivot_bufferSizeExt_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseSgtsv2_nopivot_bufferSizeExt_full_rank = hipsparseSgtsv2_nopivot_bufferSizeExt_raw(handle,m,n,dl,d,du,c_loc(B),ldb,pBufferSizeInBytes)
@@ -25297,14 +25297,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2_nopivot_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseSgtsv2_nopivot_bufferSizeExt_rank_0 = hipsparseSgtsv2_nopivot_bufferSizeExt_raw(handle,m,n,dl,d,du,c_loc(B),ldb,pBufferSizeInBytes)
@@ -25316,14 +25316,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2_nopivot_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target,dimension(:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseSgtsv2_nopivot_bufferSizeExt_rank_1 = hipsparseSgtsv2_nopivot_bufferSizeExt_raw(handle,m,n,dl,d,du,c_loc(B),ldb,pBufferSizeInBytes)
@@ -25335,14 +25335,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2_nopivot_bufferSizeExt_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target,dimension(:,:) :: B
-      integer(c_int),value :: db
+      integer(c_int) :: db
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDgtsv2_nopivot_bufferSizeExt_full_rank = hipsparseDgtsv2_nopivot_bufferSizeExt_raw(handle,m,n,dl,d,du,c_loc(B),db,pBufferSizeInBytes)
@@ -25354,14 +25354,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2_nopivot_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target :: B
-      integer(c_int),value :: db
+      integer(c_int) :: db
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDgtsv2_nopivot_bufferSizeExt_rank_0 = hipsparseDgtsv2_nopivot_bufferSizeExt_raw(handle,m,n,dl,d,du,c_loc(B),db,pBufferSizeInBytes)
@@ -25373,14 +25373,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2_nopivot_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target,dimension(:) :: B
-      integer(c_int),value :: db
+      integer(c_int) :: db
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDgtsv2_nopivot_bufferSizeExt_rank_1 = hipsparseDgtsv2_nopivot_bufferSizeExt_raw(handle,m,n,dl,d,du,c_loc(B),db,pBufferSizeInBytes)
@@ -25392,14 +25392,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2_nopivot_bufferSizeExt_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseCgtsv2_nopivot_bufferSizeExt_full_rank = hipsparseCgtsv2_nopivot_bufferSizeExt_raw(handle,m,n,dl,d,du,c_loc(B),ldb,pBufferSizeInBytes)
@@ -25411,14 +25411,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2_nopivot_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseCgtsv2_nopivot_bufferSizeExt_rank_0 = hipsparseCgtsv2_nopivot_bufferSizeExt_raw(handle,m,n,dl,d,du,c_loc(B),ldb,pBufferSizeInBytes)
@@ -25430,14 +25430,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2_nopivot_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseCgtsv2_nopivot_bufferSizeExt_rank_1 = hipsparseCgtsv2_nopivot_bufferSizeExt_raw(handle,m,n,dl,d,du,c_loc(B),ldb,pBufferSizeInBytes)
@@ -25449,14 +25449,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2_nopivot_bufferSizeExt_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseZgtsv2_nopivot_bufferSizeExt_full_rank = hipsparseZgtsv2_nopivot_bufferSizeExt_raw(handle,m,n,dl,d,du,c_loc(B),ldb,pBufferSizeInBytes)
@@ -25468,14 +25468,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2_nopivot_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseZgtsv2_nopivot_bufferSizeExt_rank_0 = hipsparseZgtsv2_nopivot_bufferSizeExt_raw(handle,m,n,dl,d,du,c_loc(B),ldb,pBufferSizeInBytes)
@@ -25487,14 +25487,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2_nopivot_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseZgtsv2_nopivot_bufferSizeExt_rank_1 = hipsparseZgtsv2_nopivot_bufferSizeExt_raw(handle,m,n,dl,d,du,c_loc(B),ldb,pBufferSizeInBytes)
@@ -25506,15 +25506,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2_nopivot_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: pBuffer
       !
       hipsparseSgtsv2_nopivot_full_rank = hipsparseSgtsv2_nopivot_raw(handle,m,n,dl,d,du,c_loc(B),ldb,pBuffer)
     end function
@@ -25525,15 +25525,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2_nopivot_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: pBuffer
       !
       hipsparseSgtsv2_nopivot_rank_0 = hipsparseSgtsv2_nopivot_raw(handle,m,n,dl,d,du,c_loc(B),ldb,pBuffer)
     end function
@@ -25544,15 +25544,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2_nopivot_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: pBuffer
       !
       hipsparseSgtsv2_nopivot_rank_1 = hipsparseSgtsv2_nopivot_raw(handle,m,n,dl,d,du,c_loc(B),ldb,pBuffer)
     end function
@@ -25563,15 +25563,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2_nopivot_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: pBuffer
       !
       hipsparseDgtsv2_nopivot_full_rank = hipsparseDgtsv2_nopivot_raw(handle,m,n,dl,d,du,c_loc(B),ldb,pBuffer)
     end function
@@ -25582,15 +25582,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2_nopivot_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: pBuffer
       !
       hipsparseDgtsv2_nopivot_rank_0 = hipsparseDgtsv2_nopivot_raw(handle,m,n,dl,d,du,c_loc(B),ldb,pBuffer)
     end function
@@ -25601,15 +25601,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2_nopivot_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: pBuffer
       !
       hipsparseDgtsv2_nopivot_rank_1 = hipsparseDgtsv2_nopivot_raw(handle,m,n,dl,d,du,c_loc(B),ldb,pBuffer)
     end function
@@ -25620,15 +25620,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2_nopivot_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: pBuffer
       !
       hipsparseCgtsv2_nopivot_full_rank = hipsparseCgtsv2_nopivot_raw(handle,m,n,dl,d,du,c_loc(B),ldb,pBuffer)
     end function
@@ -25639,15 +25639,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2_nopivot_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: pBuffer
       !
       hipsparseCgtsv2_nopivot_rank_0 = hipsparseCgtsv2_nopivot_raw(handle,m,n,dl,d,du,c_loc(B),ldb,pBuffer)
     end function
@@ -25658,15 +25658,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2_nopivot_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: pBuffer
       !
       hipsparseCgtsv2_nopivot_rank_1 = hipsparseCgtsv2_nopivot_raw(handle,m,n,dl,d,du,c_loc(B),ldb,pBuffer)
     end function
@@ -25677,15 +25677,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2_nopivot_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: pBuffer
       !
       hipsparseZgtsv2_nopivot_full_rank = hipsparseZgtsv2_nopivot_raw(handle,m,n,dl,d,du,c_loc(B),ldb,pBuffer)
     end function
@@ -25696,15 +25696,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2_nopivot_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: pBuffer
       !
       hipsparseZgtsv2_nopivot_rank_0 = hipsparseZgtsv2_nopivot_raw(handle,m,n,dl,d,du,c_loc(B),ldb,pBuffer)
     end function
@@ -25715,15 +25715,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2_nopivot_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: pBuffer
       !
       hipsparseZgtsv2_nopivot_rank_1 = hipsparseZgtsv2_nopivot_raw(handle,m,n,dl,d,du,c_loc(B),ldb,pBuffer)
     end function
@@ -25734,13 +25734,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSnnz_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: nnzPerRowColumn
       integer(c_int) :: nnzTotalDevHostPtr
       !
@@ -25753,13 +25753,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSnnz_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
       real(c_float),target :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       integer(c_int),target :: nnzPerRowColumn
       integer(c_int) :: nnzTotalDevHostPtr
       !
@@ -25772,13 +25772,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSnnz_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: nnzPerRowColumn
       integer(c_int) :: nnzTotalDevHostPtr
       !
@@ -25791,13 +25791,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDnnz_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: nnzPerRowColumn
       integer(c_int) :: nnzTotalDevHostPtr
       !
@@ -25810,13 +25810,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDnnz_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
       real(c_double),target :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       integer(c_int),target :: nnzPerRowColumn
       integer(c_int) :: nnzTotalDevHostPtr
       !
@@ -25829,13 +25829,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDnnz_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: nnzPerRowColumn
       integer(c_int) :: nnzTotalDevHostPtr
       !
@@ -25848,13 +25848,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCnnz_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: nnzPerRowColumn
       integer(c_int) :: nnzTotalDevHostPtr
       !
@@ -25867,13 +25867,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCnnz_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       integer(c_int),target :: nnzPerRowColumn
       integer(c_int) :: nnzTotalDevHostPtr
       !
@@ -25886,13 +25886,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCnnz_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: nnzPerRowColumn
       integer(c_int) :: nnzTotalDevHostPtr
       !
@@ -25905,13 +25905,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZnnz_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: nnzPerRowColumn
       integer(c_int) :: nnzTotalDevHostPtr
       !
@@ -25924,13 +25924,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZnnz_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       integer(c_int),target :: nnzPerRowColumn
       integer(c_int) :: nnzTotalDevHostPtr
       !
@@ -25943,13 +25943,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZnnz_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: nnzPerRowColumn
       integer(c_int) :: nnzTotalDevHostPtr
       !
@@ -25962,12 +25962,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSdense2csr_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_rows
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
@@ -25982,12 +25982,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSdense2csr_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_float),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target :: nnz_per_rows
       real(c_float),target :: csr_val
       integer(c_int),target :: csr_row_ptr
@@ -26002,12 +26002,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSdense2csr_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_rows
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
@@ -26022,12 +26022,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDdense2csr_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_rows
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
@@ -26042,12 +26042,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDdense2csr_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_double),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target :: nnz_per_rows
       real(c_double),target :: csr_val
       integer(c_int),target :: csr_row_ptr
@@ -26062,12 +26062,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDdense2csr_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_rows
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
@@ -26082,12 +26082,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCdense2csr_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_rows
       complex(c_float_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
@@ -26102,12 +26102,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCdense2csr_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target :: nnz_per_rows
       complex(c_float_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
@@ -26122,12 +26122,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCdense2csr_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_rows
       complex(c_float_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
@@ -26142,12 +26142,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZdense2csr_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_rows
       complex(c_double_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
@@ -26162,12 +26162,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZdense2csr_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target :: nnz_per_rows
       complex(c_double_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
@@ -26182,12 +26182,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZdense2csr_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_rows
       complex(c_double_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
@@ -26202,13 +26202,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csr_bufferSize_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_float) :: threshold
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
@@ -26223,13 +26223,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csr_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_float) :: threshold
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target :: csrVal
       integer(c_int),target :: csrRowPtr
       integer(c_int),target :: csrColInd
@@ -26244,13 +26244,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csr_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_float) :: threshold
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
@@ -26265,13 +26265,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csr_bufferSize_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_double) :: threshold
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
@@ -26286,13 +26286,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csr_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_double) :: threshold
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target :: csrVal
       integer(c_int),target :: csrRowPtr
       integer(c_int),target :: csrColInd
@@ -26307,13 +26307,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csr_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_double) :: threshold
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
@@ -26328,13 +26328,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csr_bufferSizeExt_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_float) :: threshold
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
@@ -26349,13 +26349,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csr_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_float) :: threshold
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target :: csrVal
       integer(c_int),target :: csrRowPtr
       integer(c_int),target :: csrColInd
@@ -26370,13 +26370,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csr_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_float) :: threshold
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
@@ -26391,13 +26391,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csr_bufferSizeExt_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_double) :: threshold
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
@@ -26412,13 +26412,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csr_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_double) :: threshold
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target :: csrVal
       integer(c_int),target :: csrRowPtr
       integer(c_int),target :: csrColInd
@@ -26433,13 +26433,13 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csr_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_double) :: threshold
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
@@ -26454,16 +26454,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrNnz_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_float) :: threshold
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int) :: nnzTotalDevHostPtr
-      type(c_ptr),value :: buffer
+      type(c_ptr) :: buffer
       !
       hipsparseSpruneDense2csrNnz_full_rank = hipsparseSpruneDense2csrNnz_raw(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csrRowPtr),nnzTotalDevHostPtr,buffer)
     end function
@@ -26474,16 +26474,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrNnz_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_float) :: threshold
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       integer(c_int),target :: csrRowPtr
       integer(c_int) :: nnzTotalDevHostPtr
-      type(c_ptr),value :: buffer
+      type(c_ptr) :: buffer
       !
       hipsparseSpruneDense2csrNnz_rank_0 = hipsparseSpruneDense2csrNnz_raw(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csrRowPtr),nnzTotalDevHostPtr,buffer)
     end function
@@ -26494,16 +26494,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrNnz_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_float) :: threshold
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int) :: nnzTotalDevHostPtr
-      type(c_ptr),value :: buffer
+      type(c_ptr) :: buffer
       !
       hipsparseSpruneDense2csrNnz_rank_1 = hipsparseSpruneDense2csrNnz_raw(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csrRowPtr),nnzTotalDevHostPtr,buffer)
     end function
@@ -26514,16 +26514,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrNnz_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_double) :: threshold
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int) :: nnzTotalDevHostPtr
-      type(c_ptr),value :: buffer
+      type(c_ptr) :: buffer
       !
       hipsparseDpruneDense2csrNnz_full_rank = hipsparseDpruneDense2csrNnz_raw(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csrRowPtr),nnzTotalDevHostPtr,buffer)
     end function
@@ -26534,16 +26534,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrNnz_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_double) :: threshold
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       integer(c_int),target :: csrRowPtr
       integer(c_int) :: nnzTotalDevHostPtr
-      type(c_ptr),value :: buffer
+      type(c_ptr) :: buffer
       !
       hipsparseDpruneDense2csrNnz_rank_0 = hipsparseDpruneDense2csrNnz_raw(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csrRowPtr),nnzTotalDevHostPtr,buffer)
     end function
@@ -26554,16 +26554,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrNnz_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_double) :: threshold
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int) :: nnzTotalDevHostPtr
-      type(c_ptr),value :: buffer
+      type(c_ptr) :: buffer
       !
       hipsparseDpruneDense2csrNnz_rank_1 = hipsparseDpruneDense2csrNnz_raw(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csrRowPtr),nnzTotalDevHostPtr,buffer)
     end function
@@ -26574,17 +26574,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csr_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_float) :: threshold
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
-      type(c_ptr),value :: buffer
+      type(c_ptr) :: buffer
       !
       hipsparseSpruneDense2csr_full_rank = hipsparseSpruneDense2csr_raw(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),buffer)
     end function
@@ -26595,17 +26595,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csr_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_float) :: threshold
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target :: csrVal
       integer(c_int),target :: csrRowPtr
       integer(c_int),target :: csrColInd
-      type(c_ptr),value :: buffer
+      type(c_ptr) :: buffer
       !
       hipsparseSpruneDense2csr_rank_0 = hipsparseSpruneDense2csr_raw(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),buffer)
     end function
@@ -26616,17 +26616,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csr_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_float) :: threshold
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
-      type(c_ptr),value :: buffer
+      type(c_ptr) :: buffer
       !
       hipsparseSpruneDense2csr_rank_1 = hipsparseSpruneDense2csr_raw(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),buffer)
     end function
@@ -26637,17 +26637,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csr_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_double) :: threshold
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
-      type(c_ptr),value :: buffer
+      type(c_ptr) :: buffer
       !
       hipsparseDpruneDense2csr_full_rank = hipsparseDpruneDense2csr_raw(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),buffer)
     end function
@@ -26658,17 +26658,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csr_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_double) :: threshold
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target :: csrVal
       integer(c_int),target :: csrRowPtr
       integer(c_int),target :: csrColInd
-      type(c_ptr),value :: buffer
+      type(c_ptr) :: buffer
       !
       hipsparseDpruneDense2csr_rank_0 = hipsparseDpruneDense2csr_raw(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),buffer)
     end function
@@ -26679,17 +26679,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csr_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_double) :: threshold
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
-      type(c_ptr),value :: buffer
+      type(c_ptr) :: buffer
       !
       hipsparseDpruneDense2csr_rank_1 = hipsparseDpruneDense2csr_raw(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),buffer)
     end function
@@ -26700,17 +26700,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrByPercentage_bufferSize_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
-      real(c_float),value :: percentage
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      real(c_float) :: percentage
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t),target,dimension(:) :: bufferSize
       !
       hipsparseSpruneDense2csrByPercentage_bufferSize_full_rank = hipsparseSpruneDense2csrByPercentage_bufferSize_raw(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(bufferSize))
@@ -26722,17 +26722,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrByPercentage_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target :: A
-      integer(c_int),value :: lda
-      real(c_float),value :: percentage
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      real(c_float) :: percentage
+      type(c_ptr) :: descr
       real(c_float),target :: csrVal
       integer(c_int),target :: csrRowPtr
       integer(c_int),target :: csrColInd
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t),target :: bufferSize
       !
       hipsparseSpruneDense2csrByPercentage_bufferSize_rank_0 = hipsparseSpruneDense2csrByPercentage_bufferSize_raw(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(bufferSize))
@@ -26744,17 +26744,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrByPercentage_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
-      integer(c_int),value :: lda
-      real(c_float),value :: percentage
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      real(c_float) :: percentage
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t),target,dimension(:) :: bufferSize
       !
       hipsparseSpruneDense2csrByPercentage_bufferSize_rank_1 = hipsparseSpruneDense2csrByPercentage_bufferSize_raw(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(bufferSize))
@@ -26766,17 +26766,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrByPercentage_bufferSize_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
-      real(c_double),value :: percentage
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      real(c_double) :: percentage
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t),target,dimension(:) :: bufferSize
       !
       hipsparseDpruneDense2csrByPercentage_bufferSize_full_rank = hipsparseDpruneDense2csrByPercentage_bufferSize_raw(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(bufferSize))
@@ -26788,17 +26788,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrByPercentage_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target :: A
-      integer(c_int),value :: lda
-      real(c_double),value :: percentage
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      real(c_double) :: percentage
+      type(c_ptr) :: descr
       real(c_double),target :: csrVal
       integer(c_int),target :: csrRowPtr
       integer(c_int),target :: csrColInd
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t),target :: bufferSize
       !
       hipsparseDpruneDense2csrByPercentage_bufferSize_rank_0 = hipsparseDpruneDense2csrByPercentage_bufferSize_raw(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(bufferSize))
@@ -26810,17 +26810,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrByPercentage_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
-      integer(c_int),value :: lda
-      real(c_double),value :: percentage
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      real(c_double) :: percentage
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t),target,dimension(:) :: bufferSize
       !
       hipsparseDpruneDense2csrByPercentage_bufferSize_rank_1 = hipsparseDpruneDense2csrByPercentage_bufferSize_raw(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(bufferSize))
@@ -26832,17 +26832,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrByPercentage_bufferSizeExt_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
-      real(c_float),value :: percentage
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      real(c_float) :: percentage
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t),target,dimension(:) :: bufferSize
       !
       hipsparseSpruneDense2csrByPercentage_bufferSizeExt_full_rank = hipsparseSpruneDense2csrByPercentage_bufferSizeExt_raw(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(bufferSize))
@@ -26854,17 +26854,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrByPercentage_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target :: A
-      integer(c_int),value :: lda
-      real(c_float),value :: percentage
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      real(c_float) :: percentage
+      type(c_ptr) :: descr
       real(c_float),target :: csrVal
       integer(c_int),target :: csrRowPtr
       integer(c_int),target :: csrColInd
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t),target :: bufferSize
       !
       hipsparseSpruneDense2csrByPercentage_bufferSizeExt_rank_0 = hipsparseSpruneDense2csrByPercentage_bufferSizeExt_raw(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(bufferSize))
@@ -26876,17 +26876,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrByPercentage_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
-      integer(c_int),value :: lda
-      real(c_float),value :: percentage
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      real(c_float) :: percentage
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t),target,dimension(:) :: bufferSize
       !
       hipsparseSpruneDense2csrByPercentage_bufferSizeExt_rank_1 = hipsparseSpruneDense2csrByPercentage_bufferSizeExt_raw(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(bufferSize))
@@ -26898,17 +26898,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrByPercentage_bufferSizeExt_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
-      real(c_double),value :: percentage
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      real(c_double) :: percentage
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t),target,dimension(:) :: bufferSize
       !
       hipsparseDpruneDense2csrByPercentage_bufferSizeExt_full_rank = hipsparseDpruneDense2csrByPercentage_bufferSizeExt_raw(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(bufferSize))
@@ -26920,17 +26920,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrByPercentage_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target :: A
-      integer(c_int),value :: lda
-      real(c_double),value :: percentage
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      real(c_double) :: percentage
+      type(c_ptr) :: descr
       real(c_double),target :: csrVal
       integer(c_int),target :: csrRowPtr
       integer(c_int),target :: csrColInd
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t),target :: bufferSize
       !
       hipsparseDpruneDense2csrByPercentage_bufferSizeExt_rank_0 = hipsparseDpruneDense2csrByPercentage_bufferSizeExt_raw(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(bufferSize))
@@ -26942,17 +26942,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrByPercentage_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
-      integer(c_int),value :: lda
-      real(c_double),value :: percentage
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      real(c_double) :: percentage
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t),target,dimension(:) :: bufferSize
       !
       hipsparseDpruneDense2csrByPercentage_bufferSizeExt_rank_1 = hipsparseDpruneDense2csrByPercentage_bufferSizeExt_raw(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(bufferSize))
@@ -26964,17 +26964,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrNnzByPercentage_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
-      real(c_float),value :: percentage
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      real(c_float) :: percentage
+      type(c_ptr) :: descr
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int) :: nnzTotalDevHostPtr
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: buffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: buffer
       !
       hipsparseSpruneDense2csrNnzByPercentage_full_rank = hipsparseSpruneDense2csrNnzByPercentage_raw(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrRowPtr),nnzTotalDevHostPtr,myInfo,buffer)
     end function
@@ -26985,17 +26985,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrNnzByPercentage_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target :: A
-      integer(c_int),value :: lda
-      real(c_float),value :: percentage
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      real(c_float) :: percentage
+      type(c_ptr) :: descr
       integer(c_int),target :: csrRowPtr
       integer(c_int) :: nnzTotalDevHostPtr
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: buffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: buffer
       !
       hipsparseSpruneDense2csrNnzByPercentage_rank_0 = hipsparseSpruneDense2csrNnzByPercentage_raw(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrRowPtr),nnzTotalDevHostPtr,myInfo,buffer)
     end function
@@ -27006,17 +27006,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrNnzByPercentage_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
-      integer(c_int),value :: lda
-      real(c_float),value :: percentage
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      real(c_float) :: percentage
+      type(c_ptr) :: descr
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int) :: nnzTotalDevHostPtr
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: buffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: buffer
       !
       hipsparseSpruneDense2csrNnzByPercentage_rank_1 = hipsparseSpruneDense2csrNnzByPercentage_raw(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrRowPtr),nnzTotalDevHostPtr,myInfo,buffer)
     end function
@@ -27027,17 +27027,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrNnzByPercentage_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
-      real(c_double),value :: percentage
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      real(c_double) :: percentage
+      type(c_ptr) :: descr
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int) :: nnzTotalDevHostPtr
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: buffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: buffer
       !
       hipsparseDpruneDense2csrNnzByPercentage_full_rank = hipsparseDpruneDense2csrNnzByPercentage_raw(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrRowPtr),nnzTotalDevHostPtr,myInfo,buffer)
     end function
@@ -27048,17 +27048,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrNnzByPercentage_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target :: A
-      integer(c_int),value :: lda
-      real(c_double),value :: percentage
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      real(c_double) :: percentage
+      type(c_ptr) :: descr
       integer(c_int),target :: csrRowPtr
       integer(c_int) :: nnzTotalDevHostPtr
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: buffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: buffer
       !
       hipsparseDpruneDense2csrNnzByPercentage_rank_0 = hipsparseDpruneDense2csrNnzByPercentage_raw(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrRowPtr),nnzTotalDevHostPtr,myInfo,buffer)
     end function
@@ -27069,17 +27069,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrNnzByPercentage_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
-      integer(c_int),value :: lda
-      real(c_double),value :: percentage
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      real(c_double) :: percentage
+      type(c_ptr) :: descr
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int) :: nnzTotalDevHostPtr
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: buffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: buffer
       !
       hipsparseDpruneDense2csrNnzByPercentage_rank_1 = hipsparseDpruneDense2csrNnzByPercentage_raw(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrRowPtr),nnzTotalDevHostPtr,myInfo,buffer)
     end function
@@ -27090,18 +27090,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrByPercentage_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
-      real(c_float),value :: percentage
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      real(c_float) :: percentage
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: buffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: buffer
       !
       hipsparseSpruneDense2csrByPercentage_full_rank = hipsparseSpruneDense2csrByPercentage_raw(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,buffer)
     end function
@@ -27112,18 +27112,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrByPercentage_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target :: A
-      integer(c_int),value :: lda
-      real(c_float),value :: percentage
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      real(c_float) :: percentage
+      type(c_ptr) :: descr
       real(c_float),target :: csrVal
       integer(c_int),target :: csrRowPtr
       integer(c_int),target :: csrColInd
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: buffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: buffer
       !
       hipsparseSpruneDense2csrByPercentage_rank_0 = hipsparseSpruneDense2csrByPercentage_raw(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,buffer)
     end function
@@ -27134,18 +27134,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrByPercentage_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
-      integer(c_int),value :: lda
-      real(c_float),value :: percentage
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      real(c_float) :: percentage
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: buffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: buffer
       !
       hipsparseSpruneDense2csrByPercentage_rank_1 = hipsparseSpruneDense2csrByPercentage_raw(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,buffer)
     end function
@@ -27156,18 +27156,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrByPercentage_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
-      real(c_double),value :: percentage
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      real(c_double) :: percentage
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: buffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: buffer
       !
       hipsparseDpruneDense2csrByPercentage_full_rank = hipsparseDpruneDense2csrByPercentage_raw(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,buffer)
     end function
@@ -27178,18 +27178,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrByPercentage_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target :: A
-      integer(c_int),value :: lda
-      real(c_double),value :: percentage
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      real(c_double) :: percentage
+      type(c_ptr) :: descr
       real(c_double),target :: csrVal
       integer(c_int),target :: csrRowPtr
       integer(c_int),target :: csrColInd
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: buffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: buffer
       !
       hipsparseDpruneDense2csrByPercentage_rank_0 = hipsparseDpruneDense2csrByPercentage_raw(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,buffer)
     end function
@@ -27200,18 +27200,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrByPercentage_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
-      integer(c_int),value :: lda
-      real(c_double),value :: percentage
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      real(c_double) :: percentage
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: buffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: buffer
       !
       hipsparseDpruneDense2csrByPercentage_rank_1 = hipsparseDpruneDense2csrByPercentage_raw(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,buffer)
     end function
@@ -27222,12 +27222,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSdense2csc_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_columns
       real(c_float),target,dimension(:) :: csc_val
       integer(c_int),target,dimension(:) :: csc_row_ind
@@ -27242,12 +27242,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSdense2csc_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_float),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target :: nnz_per_columns
       real(c_float),target :: csc_val
       integer(c_int),target :: csc_row_ind
@@ -27262,12 +27262,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSdense2csc_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_columns
       real(c_float),target,dimension(:) :: csc_val
       integer(c_int),target,dimension(:) :: csc_row_ind
@@ -27282,12 +27282,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDdense2csc_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_columns
       real(c_double),target,dimension(:) :: csc_val
       integer(c_int),target,dimension(:) :: csc_row_ind
@@ -27302,12 +27302,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDdense2csc_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_double),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target :: nnz_per_columns
       real(c_double),target :: csc_val
       integer(c_int),target :: csc_row_ind
@@ -27322,12 +27322,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDdense2csc_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_columns
       real(c_double),target,dimension(:) :: csc_val
       integer(c_int),target,dimension(:) :: csc_row_ind
@@ -27342,12 +27342,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCdense2csc_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_columns
       complex(c_float_complex),target,dimension(:) :: csc_val
       integer(c_int),target,dimension(:) :: csc_row_ind
@@ -27362,12 +27362,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCdense2csc_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target :: nnz_per_columns
       complex(c_float_complex),target :: csc_val
       integer(c_int),target :: csc_row_ind
@@ -27382,12 +27382,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCdense2csc_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_columns
       complex(c_float_complex),target,dimension(:) :: csc_val
       integer(c_int),target,dimension(:) :: csc_row_ind
@@ -27402,12 +27402,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZdense2csc_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_columns
       complex(c_double_complex),target,dimension(:) :: csc_val
       integer(c_int),target,dimension(:) :: csc_row_ind
@@ -27422,12 +27422,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZdense2csc_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target :: nnz_per_columns
       complex(c_double_complex),target :: csc_val
       integer(c_int),target :: csc_row_ind
@@ -27442,12 +27442,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZdense2csc_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_columns
       complex(c_double_complex),target,dimension(:) :: csc_val
       integer(c_int),target,dimension(:) :: csc_row_ind
@@ -27462,15 +27462,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2dense_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       real(c_float),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       hipsparseScsr2dense_full_rank = hipsparseScsr2dense_raw(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
     end function
@@ -27481,15 +27481,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2dense_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_float),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
       real(c_float),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       hipsparseScsr2dense_rank_0 = hipsparseScsr2dense_raw(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
     end function
@@ -27500,15 +27500,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2dense_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       real(c_float),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       hipsparseScsr2dense_rank_1 = hipsparseScsr2dense_raw(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
     end function
@@ -27519,15 +27519,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2dense_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       real(c_double),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       hipsparseDcsr2dense_full_rank = hipsparseDcsr2dense_raw(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
     end function
@@ -27538,15 +27538,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2dense_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_double),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
       real(c_double),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       hipsparseDcsr2dense_rank_0 = hipsparseDcsr2dense_raw(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
     end function
@@ -27557,15 +27557,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2dense_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       real(c_double),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       hipsparseDcsr2dense_rank_1 = hipsparseDcsr2dense_raw(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
     end function
@@ -27576,15 +27576,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2dense_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       complex(c_float_complex),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       hipsparseCcsr2dense_full_rank = hipsparseCcsr2dense_raw(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
     end function
@@ -27595,15 +27595,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2dense_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
       complex(c_float_complex),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       hipsparseCcsr2dense_rank_0 = hipsparseCcsr2dense_raw(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
     end function
@@ -27614,15 +27614,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2dense_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       complex(c_float_complex),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       hipsparseCcsr2dense_rank_1 = hipsparseCcsr2dense_raw(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
     end function
@@ -27633,15 +27633,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2dense_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       complex(c_double_complex),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       hipsparseZcsr2dense_full_rank = hipsparseZcsr2dense_raw(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
     end function
@@ -27652,15 +27652,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2dense_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
       complex(c_double_complex),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       hipsparseZcsr2dense_rank_0 = hipsparseZcsr2dense_raw(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
     end function
@@ -27671,15 +27671,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2dense_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       complex(c_double_complex),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       hipsparseZcsr2dense_rank_1 = hipsparseZcsr2dense_raw(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
     end function
@@ -27690,15 +27690,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsc2dense_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csc_val
       integer(c_int),target,dimension(:) :: csc_row_ind
       integer(c_int),target,dimension(:) :: csc_col_ptr
       real(c_float),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       hipsparseScsc2dense_full_rank = hipsparseScsc2dense_raw(handle,m,n,descr,c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr),c_loc(A),ld)
     end function
@@ -27709,15 +27709,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsc2dense_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_float),target :: csc_val
       integer(c_int),target :: csc_row_ind
       integer(c_int),target :: csc_col_ptr
       real(c_float),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       hipsparseScsc2dense_rank_0 = hipsparseScsc2dense_raw(handle,m,n,descr,c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr),c_loc(A),ld)
     end function
@@ -27728,15 +27728,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsc2dense_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csc_val
       integer(c_int),target,dimension(:) :: csc_row_ind
       integer(c_int),target,dimension(:) :: csc_col_ptr
       real(c_float),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       hipsparseScsc2dense_rank_1 = hipsparseScsc2dense_raw(handle,m,n,descr,c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr),c_loc(A),ld)
     end function
@@ -27747,15 +27747,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsc2dense_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csc_val
       integer(c_int),target,dimension(:) :: csc_row_ind
       integer(c_int),target,dimension(:) :: csc_col_ptr
       real(c_double),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       hipsparseDcsc2dense_full_rank = hipsparseDcsc2dense_raw(handle,m,n,descr,c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr),c_loc(A),ld)
     end function
@@ -27766,15 +27766,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsc2dense_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_double),target :: csc_val
       integer(c_int),target :: csc_row_ind
       integer(c_int),target :: csc_col_ptr
       real(c_double),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       hipsparseDcsc2dense_rank_0 = hipsparseDcsc2dense_raw(handle,m,n,descr,c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr),c_loc(A),ld)
     end function
@@ -27785,15 +27785,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsc2dense_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csc_val
       integer(c_int),target,dimension(:) :: csc_row_ind
       integer(c_int),target,dimension(:) :: csc_col_ptr
       real(c_double),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       hipsparseDcsc2dense_rank_1 = hipsparseDcsc2dense_raw(handle,m,n,descr,c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr),c_loc(A),ld)
     end function
@@ -27804,15 +27804,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsc2dense_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: csc_val
       integer(c_int),target,dimension(:) :: csc_row_ind
       integer(c_int),target,dimension(:) :: csc_col_ptr
       complex(c_float_complex),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       hipsparseCcsc2dense_full_rank = hipsparseCcsc2dense_raw(handle,m,n,descr,c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr),c_loc(A),ld)
     end function
@@ -27823,15 +27823,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsc2dense_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: csc_val
       integer(c_int),target :: csc_row_ind
       integer(c_int),target :: csc_col_ptr
       complex(c_float_complex),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       hipsparseCcsc2dense_rank_0 = hipsparseCcsc2dense_raw(handle,m,n,descr,c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr),c_loc(A),ld)
     end function
@@ -27842,15 +27842,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsc2dense_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: csc_val
       integer(c_int),target,dimension(:) :: csc_row_ind
       integer(c_int),target,dimension(:) :: csc_col_ptr
       complex(c_float_complex),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       hipsparseCcsc2dense_rank_1 = hipsparseCcsc2dense_raw(handle,m,n,descr,c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr),c_loc(A),ld)
     end function
@@ -27861,15 +27861,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsc2dense_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: csc_val
       integer(c_int),target,dimension(:) :: csc_row_ind
       integer(c_int),target,dimension(:) :: csc_col_ptr
       complex(c_double_complex),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       hipsparseZcsc2dense_full_rank = hipsparseZcsc2dense_raw(handle,m,n,descr,c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr),c_loc(A),ld)
     end function
@@ -27880,15 +27880,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsc2dense_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: csc_val
       integer(c_int),target :: csc_row_ind
       integer(c_int),target :: csc_col_ptr
       complex(c_double_complex),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       hipsparseZcsc2dense_rank_0 = hipsparseZcsc2dense_raw(handle,m,n,descr,c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr),c_loc(A),ld)
     end function
@@ -27899,15 +27899,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsc2dense_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: csc_val
       integer(c_int),target,dimension(:) :: csc_row_ind
       integer(c_int),target,dimension(:) :: csc_col_ptr
       complex(c_double_complex),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       hipsparseZcsc2dense_rank_1 = hipsparseZcsc2dense_raw(handle,m,n,descr,c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr),c_loc(A),ld)
     end function
@@ -27918,15 +27918,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsr2bsrNnz_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: descrC
+      integer(c_int) :: blockDim
+      type(c_ptr) :: descrC
       integer(c_int),target :: bsrRowPtrC
       integer(c_int),target :: bsrNnzb
       !
@@ -27939,15 +27939,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsr2bsrNnz_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: descrC
+      integer(c_int) :: blockDim
+      type(c_ptr) :: descrC
       integer(c_int),target,dimension(:) :: bsrRowPtrC
       integer(c_int),target,dimension(:) :: bsrNnzb
       !
@@ -27960,14 +27960,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSnnz_compress_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: descrA
       real(c_float),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: nnzPerRow
       integer(c_int),target :: nnzC
-      real(c_float),value :: tol
+      real(c_float) :: tol
       !
       hipsparseSnnz_compress_rank_0 = hipsparseSnnz_compress_raw(handle,m,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(nnzPerRow),c_loc(nnzC),tol)
     end function
@@ -27978,14 +27978,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSnnz_compress_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: nnzPerRow
       integer(c_int),target,dimension(:) :: nnzC
-      real(c_float),value :: tol
+      real(c_float) :: tol
       !
       hipsparseSnnz_compress_rank_1 = hipsparseSnnz_compress_raw(handle,m,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(nnzPerRow),c_loc(nnzC),tol)
     end function
@@ -27996,14 +27996,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDnnz_compress_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: descrA
       real(c_double),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: nnzPerRow
       integer(c_int),target :: nnzC
-      real(c_double),value :: tol
+      real(c_double) :: tol
       !
       hipsparseDnnz_compress_rank_0 = hipsparseDnnz_compress_raw(handle,m,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(nnzPerRow),c_loc(nnzC),tol)
     end function
@@ -28014,14 +28014,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDnnz_compress_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: nnzPerRow
       integer(c_int),target,dimension(:) :: nnzC
-      real(c_double),value :: tol
+      real(c_double) :: tol
       !
       hipsparseDnnz_compress_rank_1 = hipsparseDnnz_compress_raw(handle,m,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(nnzPerRow),c_loc(nnzC),tol)
     end function
@@ -28032,14 +28032,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCnnz_compress_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: nnzPerRow
       integer(c_int),target :: nnzC
-      complex(c_float_complex),value :: tol
+      complex(c_float_complex) :: tol
       !
       hipsparseCnnz_compress_rank_0 = hipsparseCnnz_compress_raw(handle,m,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(nnzPerRow),c_loc(nnzC),tol)
     end function
@@ -28050,14 +28050,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCnnz_compress_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: nnzPerRow
       integer(c_int),target,dimension(:) :: nnzC
-      complex(c_float_complex),value :: tol
+      complex(c_float_complex) :: tol
       !
       hipsparseCnnz_compress_rank_1 = hipsparseCnnz_compress_raw(handle,m,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(nnzPerRow),c_loc(nnzC),tol)
     end function
@@ -28068,14 +28068,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZnnz_compress_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: nnzPerRow
       integer(c_int),target :: nnzC
-      complex(c_double_complex),value :: tol
+      complex(c_double_complex) :: tol
       !
       hipsparseZnnz_compress_rank_0 = hipsparseZnnz_compress_raw(handle,m,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(nnzPerRow),c_loc(nnzC),tol)
     end function
@@ -28086,14 +28086,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZnnz_compress_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: nnzPerRow
       integer(c_int),target,dimension(:) :: nnzC
-      complex(c_double_complex),value :: tol
+      complex(c_double_complex) :: tol
       !
       hipsparseZnnz_compress_rank_1 = hipsparseZnnz_compress_raw(handle,m,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(nnzPerRow),c_loc(nnzC),tol)
     end function
@@ -28104,12 +28104,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsr2coo_rank_0
-      type(c_ptr),value :: handle
+      type(c_ptr) :: handle
       integer(c_int),target :: csrRowPtr
-      integer(c_int),value :: nnz
-      integer(c_int),value :: m
+      integer(c_int) :: nnz
+      integer(c_int) :: m
       integer(c_int),target :: cooRowInd
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseXcsr2coo_rank_0 = hipsparseXcsr2coo_raw(handle,c_loc(csrRowPtr),nnz,m,c_loc(cooRowInd),idxBase)
     end function
@@ -28120,12 +28120,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsr2coo_rank_1
-      type(c_ptr),value :: handle
+      type(c_ptr) :: handle
       integer(c_int),target,dimension(:) :: csrRowPtr
-      integer(c_int),value :: nnz
-      integer(c_int),value :: m
+      integer(c_int) :: nnz
+      integer(c_int) :: m
       integer(c_int),target,dimension(:) :: cooRowInd
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseXcsr2coo_rank_1 = hipsparseXcsr2coo_raw(handle,c_loc(csrRowPtr),nnz,m,c_loc(cooRowInd),idxBase)
     end function
@@ -28136,18 +28136,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2csc_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       real(c_float),target :: csrSortedVal
       integer(c_int),target :: csrSortedRowPtr
       integer(c_int),target :: csrSortedColInd
       real(c_float),target :: cscSortedVal
       integer(c_int),target :: cscSortedRowInd
       integer(c_int),target :: cscSortedColPtr
-      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)),value :: copyValues
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)) :: copyValues
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseScsr2csc_rank_0 = hipsparseScsr2csc_raw(handle,m,n,nnz,c_loc(csrSortedVal),c_loc(csrSortedRowPtr),c_loc(csrSortedColInd),c_loc(cscSortedVal),c_loc(cscSortedRowInd),c_loc(cscSortedColPtr),copyValues,idxBase)
     end function
@@ -28158,18 +28158,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2csc_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       real(c_float),target,dimension(:) :: csrSortedVal
       integer(c_int),target,dimension(:) :: csrSortedRowPtr
       integer(c_int),target,dimension(:) :: csrSortedColInd
       real(c_float),target,dimension(:) :: cscSortedVal
       integer(c_int),target,dimension(:) :: cscSortedRowInd
       integer(c_int),target,dimension(:) :: cscSortedColPtr
-      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)),value :: copyValues
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)) :: copyValues
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseScsr2csc_rank_1 = hipsparseScsr2csc_raw(handle,m,n,nnz,c_loc(csrSortedVal),c_loc(csrSortedRowPtr),c_loc(csrSortedColInd),c_loc(cscSortedVal),c_loc(cscSortedRowInd),c_loc(cscSortedColPtr),copyValues,idxBase)
     end function
@@ -28180,18 +28180,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2csc_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       real(c_double),target :: csrSortedVal
       integer(c_int),target :: csrSortedRowPtr
       integer(c_int),target :: csrSortedColInd
       real(c_double),target :: cscSortedVal
       integer(c_int),target :: cscSortedRowInd
       integer(c_int),target :: cscSortedColPtr
-      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)),value :: copyValues
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)) :: copyValues
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseDcsr2csc_rank_0 = hipsparseDcsr2csc_raw(handle,m,n,nnz,c_loc(csrSortedVal),c_loc(csrSortedRowPtr),c_loc(csrSortedColInd),c_loc(cscSortedVal),c_loc(cscSortedRowInd),c_loc(cscSortedColPtr),copyValues,idxBase)
     end function
@@ -28202,18 +28202,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2csc_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       real(c_double),target,dimension(:) :: csrSortedVal
       integer(c_int),target,dimension(:) :: csrSortedRowPtr
       integer(c_int),target,dimension(:) :: csrSortedColInd
       real(c_double),target,dimension(:) :: cscSortedVal
       integer(c_int),target,dimension(:) :: cscSortedRowInd
       integer(c_int),target,dimension(:) :: cscSortedColPtr
-      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)),value :: copyValues
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)) :: copyValues
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseDcsr2csc_rank_1 = hipsparseDcsr2csc_raw(handle,m,n,nnz,c_loc(csrSortedVal),c_loc(csrSortedRowPtr),c_loc(csrSortedColInd),c_loc(cscSortedVal),c_loc(cscSortedRowInd),c_loc(cscSortedColPtr),copyValues,idxBase)
     end function
@@ -28224,18 +28224,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2csc_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       complex(c_float_complex),target :: csrSortedVal
       integer(c_int),target :: csrSortedRowPtr
       integer(c_int),target :: csrSortedColInd
       complex(c_float_complex),target :: cscSortedVal
       integer(c_int),target :: cscSortedRowInd
       integer(c_int),target :: cscSortedColPtr
-      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)),value :: copyValues
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)) :: copyValues
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseCcsr2csc_rank_0 = hipsparseCcsr2csc_raw(handle,m,n,nnz,c_loc(csrSortedVal),c_loc(csrSortedRowPtr),c_loc(csrSortedColInd),c_loc(cscSortedVal),c_loc(cscSortedRowInd),c_loc(cscSortedColPtr),copyValues,idxBase)
     end function
@@ -28246,18 +28246,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2csc_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       complex(c_float_complex),target,dimension(:) :: csrSortedVal
       integer(c_int),target,dimension(:) :: csrSortedRowPtr
       integer(c_int),target,dimension(:) :: csrSortedColInd
       complex(c_float_complex),target,dimension(:) :: cscSortedVal
       integer(c_int),target,dimension(:) :: cscSortedRowInd
       integer(c_int),target,dimension(:) :: cscSortedColPtr
-      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)),value :: copyValues
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)) :: copyValues
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseCcsr2csc_rank_1 = hipsparseCcsr2csc_raw(handle,m,n,nnz,c_loc(csrSortedVal),c_loc(csrSortedRowPtr),c_loc(csrSortedColInd),c_loc(cscSortedVal),c_loc(cscSortedRowInd),c_loc(cscSortedColPtr),copyValues,idxBase)
     end function
@@ -28268,18 +28268,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2csc_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       complex(c_double_complex),target :: csrSortedVal
       integer(c_int),target :: csrSortedRowPtr
       integer(c_int),target :: csrSortedColInd
       complex(c_double_complex),target :: cscSortedVal
       integer(c_int),target :: cscSortedRowInd
       integer(c_int),target :: cscSortedColPtr
-      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)),value :: copyValues
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)) :: copyValues
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseZcsr2csc_rank_0 = hipsparseZcsr2csc_raw(handle,m,n,nnz,c_loc(csrSortedVal),c_loc(csrSortedRowPtr),c_loc(csrSortedColInd),c_loc(cscSortedVal),c_loc(cscSortedRowInd),c_loc(cscSortedColPtr),copyValues,idxBase)
     end function
@@ -28290,18 +28290,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2csc_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       complex(c_double_complex),target,dimension(:) :: csrSortedVal
       integer(c_int),target,dimension(:) :: csrSortedRowPtr
       integer(c_int),target,dimension(:) :: csrSortedColInd
       complex(c_double_complex),target,dimension(:) :: cscSortedVal
       integer(c_int),target,dimension(:) :: cscSortedRowInd
       integer(c_int),target,dimension(:) :: cscSortedColPtr
-      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)),value :: copyValues
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)) :: copyValues
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseZcsr2csc_rank_1 = hipsparseZcsr2csc_raw(handle,m,n,nnz,c_loc(csrSortedVal),c_loc(csrSortedRowPtr),c_loc(csrSortedColInd),c_loc(cscSortedVal),c_loc(cscSortedRowInd),c_loc(cscSortedColPtr),copyValues,idxBase)
     end function
@@ -28312,16 +28312,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2hyb_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
       real(c_float),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: hybA
-      integer(c_int),value :: userEllWidth
-      integer(kind(HIPSPARSE_HYB_PARTITION_AUTO)),value :: partitionType
+      type(c_ptr) :: hybA
+      integer(c_int) :: userEllWidth
+      integer(kind(HIPSPARSE_HYB_PARTITION_AUTO)) :: partitionType
       !
       hipsparseScsr2hyb_rank_0 = hipsparseScsr2hyb_raw(handle,m,n,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),hybA,userEllWidth,partitionType)
     end function
@@ -28332,16 +28332,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2hyb_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: hybA
-      integer(c_int),value :: userEllWidth
-      integer(kind(HIPSPARSE_HYB_PARTITION_AUTO)),value :: partitionType
+      type(c_ptr) :: hybA
+      integer(c_int) :: userEllWidth
+      integer(kind(HIPSPARSE_HYB_PARTITION_AUTO)) :: partitionType
       !
       hipsparseScsr2hyb_rank_1 = hipsparseScsr2hyb_raw(handle,m,n,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),hybA,userEllWidth,partitionType)
     end function
@@ -28352,16 +28352,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2hyb_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
       real(c_double),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: hybA
-      integer(c_int),value :: userEllWidth
-      integer(kind(HIPSPARSE_HYB_PARTITION_AUTO)),value :: partitionType
+      type(c_ptr) :: hybA
+      integer(c_int) :: userEllWidth
+      integer(kind(HIPSPARSE_HYB_PARTITION_AUTO)) :: partitionType
       !
       hipsparseDcsr2hyb_rank_0 = hipsparseDcsr2hyb_raw(handle,m,n,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),hybA,userEllWidth,partitionType)
     end function
@@ -28372,16 +28372,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2hyb_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: hybA
-      integer(c_int),value :: userEllWidth
-      integer(kind(HIPSPARSE_HYB_PARTITION_AUTO)),value :: partitionType
+      type(c_ptr) :: hybA
+      integer(c_int) :: userEllWidth
+      integer(kind(HIPSPARSE_HYB_PARTITION_AUTO)) :: partitionType
       !
       hipsparseDcsr2hyb_rank_1 = hipsparseDcsr2hyb_raw(handle,m,n,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),hybA,userEllWidth,partitionType)
     end function
@@ -28392,16 +28392,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2hyb_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: hybA
-      integer(c_int),value :: userEllWidth
-      integer(kind(HIPSPARSE_HYB_PARTITION_AUTO)),value :: partitionType
+      type(c_ptr) :: hybA
+      integer(c_int) :: userEllWidth
+      integer(kind(HIPSPARSE_HYB_PARTITION_AUTO)) :: partitionType
       !
       hipsparseCcsr2hyb_rank_0 = hipsparseCcsr2hyb_raw(handle,m,n,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),hybA,userEllWidth,partitionType)
     end function
@@ -28412,16 +28412,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2hyb_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: hybA
-      integer(c_int),value :: userEllWidth
-      integer(kind(HIPSPARSE_HYB_PARTITION_AUTO)),value :: partitionType
+      type(c_ptr) :: hybA
+      integer(c_int) :: userEllWidth
+      integer(kind(HIPSPARSE_HYB_PARTITION_AUTO)) :: partitionType
       !
       hipsparseCcsr2hyb_rank_1 = hipsparseCcsr2hyb_raw(handle,m,n,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),hybA,userEllWidth,partitionType)
     end function
@@ -28432,16 +28432,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2hyb_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
-      type(c_ptr),value :: hybA
-      integer(c_int),value :: userEllWidth
-      integer(kind(HIPSPARSE_HYB_PARTITION_AUTO)),value :: partitionType
+      type(c_ptr) :: hybA
+      integer(c_int) :: userEllWidth
+      integer(kind(HIPSPARSE_HYB_PARTITION_AUTO)) :: partitionType
       !
       hipsparseZcsr2hyb_rank_0 = hipsparseZcsr2hyb_raw(handle,m,n,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),hybA,userEllWidth,partitionType)
     end function
@@ -28452,16 +28452,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2hyb_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
-      type(c_ptr),value :: hybA
-      integer(c_int),value :: userEllWidth
-      integer(kind(HIPSPARSE_HYB_PARTITION_AUTO)),value :: partitionType
+      type(c_ptr) :: hybA
+      integer(c_int) :: userEllWidth
+      integer(kind(HIPSPARSE_HYB_PARTITION_AUTO)) :: partitionType
       !
       hipsparseZcsr2hyb_rank_1 = hipsparseZcsr2hyb_raw(handle,m,n,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),hybA,userEllWidth,partitionType)
     end function
@@ -28472,17 +28472,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2gebsr_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       real(c_float),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer_size
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: p_buffer_size
       !
       hipsparseScsr2gebsr_bufferSize_rank_0 = hipsparseScsr2gebsr_bufferSize_raw(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
     end function
@@ -28493,17 +28493,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2gebsr_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer_size
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: p_buffer_size
       !
       hipsparseScsr2gebsr_bufferSize_rank_1 = hipsparseScsr2gebsr_bufferSize_raw(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
     end function
@@ -28514,17 +28514,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2gebsr_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       real(c_double),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer_size
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: p_buffer_size
       !
       hipsparseDcsr2gebsr_bufferSize_rank_0 = hipsparseDcsr2gebsr_bufferSize_raw(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
     end function
@@ -28535,17 +28535,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2gebsr_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer_size
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: p_buffer_size
       !
       hipsparseDcsr2gebsr_bufferSize_rank_1 = hipsparseDcsr2gebsr_bufferSize_raw(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
     end function
@@ -28556,17 +28556,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2gebsr_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       complex(c_float_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer_size
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: p_buffer_size
       !
       hipsparseCcsr2gebsr_bufferSize_rank_0 = hipsparseCcsr2gebsr_bufferSize_raw(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
     end function
@@ -28577,17 +28577,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2gebsr_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       complex(c_float_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer_size
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: p_buffer_size
       !
       hipsparseCcsr2gebsr_bufferSize_rank_1 = hipsparseCcsr2gebsr_bufferSize_raw(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
     end function
@@ -28598,17 +28598,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2gebsr_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       complex(c_double_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer_size
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: p_buffer_size
       !
       hipsparseZcsr2gebsr_bufferSize_rank_0 = hipsparseZcsr2gebsr_bufferSize_raw(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
     end function
@@ -28619,17 +28619,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2gebsr_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       complex(c_double_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer_size
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: p_buffer_size
       !
       hipsparseZcsr2gebsr_bufferSize_rank_1 = hipsparseZcsr2gebsr_bufferSize_raw(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
     end function
@@ -28640,19 +28640,19 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsr2gebsrNnz_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: bsr_descr
-      type(c_ptr),value :: bsr_row_ptr
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: bsr_nnz_devhost
-      type(c_ptr),value :: p_buffer
+      type(c_ptr) :: bsr_descr
+      type(c_ptr) :: bsr_row_ptr
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: bsr_nnz_devhost
+      type(c_ptr) :: p_buffer
       !
       hipsparseXcsr2gebsrNnz_rank_0 = hipsparseXcsr2gebsrNnz_raw(handle,dir,m,n,csr_descr,c_loc(csr_row_ptr),c_loc(csr_col_ind),bsr_descr,bsr_row_ptr,row_block_dim,col_block_dim,bsr_nnz_devhost,p_buffer)
     end function
@@ -28663,19 +28663,19 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsr2gebsrNnz_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: bsr_descr
-      type(c_ptr),value :: bsr_row_ptr
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: bsr_nnz_devhost
-      type(c_ptr),value :: p_buffer
+      type(c_ptr) :: bsr_descr
+      type(c_ptr) :: bsr_row_ptr
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: bsr_nnz_devhost
+      type(c_ptr) :: p_buffer
       !
       hipsparseXcsr2gebsrNnz_rank_1 = hipsparseXcsr2gebsrNnz_raw(handle,dir,m,n,csr_descr,c_loc(csr_row_ptr),c_loc(csr_col_ind),bsr_descr,bsr_row_ptr,row_block_dim,col_block_dim,bsr_nnz_devhost,p_buffer)
     end function
@@ -28686,21 +28686,21 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2gebsr_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       real(c_float),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: bsr_descr
-      type(c_ptr),value :: bsr_val
-      type(c_ptr),value :: bsr_row_ptr
-      type(c_ptr),value :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer
+      type(c_ptr) :: bsr_descr
+      type(c_ptr) :: bsr_val
+      type(c_ptr) :: bsr_row_ptr
+      type(c_ptr) :: bsr_col_ind
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: p_buffer
       !
       hipsparseScsr2gebsr_rank_0 = hipsparseScsr2gebsr_raw(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer)
     end function
@@ -28711,21 +28711,21 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2gebsr_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: bsr_descr
-      type(c_ptr),value :: bsr_val
-      type(c_ptr),value :: bsr_row_ptr
-      type(c_ptr),value :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer
+      type(c_ptr) :: bsr_descr
+      type(c_ptr) :: bsr_val
+      type(c_ptr) :: bsr_row_ptr
+      type(c_ptr) :: bsr_col_ind
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: p_buffer
       !
       hipsparseScsr2gebsr_rank_1 = hipsparseScsr2gebsr_raw(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer)
     end function
@@ -28736,21 +28736,21 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2gebsr_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       real(c_double),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: bsr_descr
-      type(c_ptr),value :: bsr_val
-      type(c_ptr),value :: bsr_row_ptr
-      type(c_ptr),value :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer
+      type(c_ptr) :: bsr_descr
+      type(c_ptr) :: bsr_val
+      type(c_ptr) :: bsr_row_ptr
+      type(c_ptr) :: bsr_col_ind
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: p_buffer
       !
       hipsparseDcsr2gebsr_rank_0 = hipsparseDcsr2gebsr_raw(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer)
     end function
@@ -28761,21 +28761,21 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2gebsr_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: bsr_descr
-      type(c_ptr),value :: bsr_val
-      type(c_ptr),value :: bsr_row_ptr
-      type(c_ptr),value :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer
+      type(c_ptr) :: bsr_descr
+      type(c_ptr) :: bsr_val
+      type(c_ptr) :: bsr_row_ptr
+      type(c_ptr) :: bsr_col_ind
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: p_buffer
       !
       hipsparseDcsr2gebsr_rank_1 = hipsparseDcsr2gebsr_raw(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer)
     end function
@@ -28786,21 +28786,21 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2gebsr_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       complex(c_float_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: bsr_descr
-      type(c_ptr),value :: bsr_val
-      type(c_ptr),value :: bsr_row_ptr
-      type(c_ptr),value :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer
+      type(c_ptr) :: bsr_descr
+      type(c_ptr) :: bsr_val
+      type(c_ptr) :: bsr_row_ptr
+      type(c_ptr) :: bsr_col_ind
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: p_buffer
       !
       hipsparseCcsr2gebsr_rank_0 = hipsparseCcsr2gebsr_raw(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer)
     end function
@@ -28811,21 +28811,21 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2gebsr_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       complex(c_float_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: bsr_descr
-      type(c_ptr),value :: bsr_val
-      type(c_ptr),value :: bsr_row_ptr
-      type(c_ptr),value :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer
+      type(c_ptr) :: bsr_descr
+      type(c_ptr) :: bsr_val
+      type(c_ptr) :: bsr_row_ptr
+      type(c_ptr) :: bsr_col_ind
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: p_buffer
       !
       hipsparseCcsr2gebsr_rank_1 = hipsparseCcsr2gebsr_raw(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer)
     end function
@@ -28836,21 +28836,21 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2gebsr_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       complex(c_double_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: bsr_descr
-      type(c_ptr),value :: bsr_val
-      type(c_ptr),value :: bsr_row_ptr
-      type(c_ptr),value :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer
+      type(c_ptr) :: bsr_descr
+      type(c_ptr) :: bsr_val
+      type(c_ptr) :: bsr_row_ptr
+      type(c_ptr) :: bsr_col_ind
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: p_buffer
       !
       hipsparseZcsr2gebsr_rank_0 = hipsparseZcsr2gebsr_raw(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer)
     end function
@@ -28861,21 +28861,21 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2gebsr_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       complex(c_double_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: bsr_descr
-      type(c_ptr),value :: bsr_val
-      type(c_ptr),value :: bsr_row_ptr
-      type(c_ptr),value :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer
+      type(c_ptr) :: bsr_descr
+      type(c_ptr) :: bsr_val
+      type(c_ptr) :: bsr_row_ptr
+      type(c_ptr) :: bsr_col_ind
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: p_buffer
       !
       hipsparseZcsr2gebsr_rank_1 = hipsparseZcsr2gebsr_raw(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer)
     end function
@@ -28886,16 +28886,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2bsr_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
       real(c_float),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: descrC
+      integer(c_int) :: blockDim
+      type(c_ptr) :: descrC
       real(c_float),target :: bsrValC
       integer(c_int),target :: bsrRowPtrC
       integer(c_int),target :: bsrColIndC
@@ -28909,16 +28909,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2bsr_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: descrC
+      integer(c_int) :: blockDim
+      type(c_ptr) :: descrC
       real(c_float),target,dimension(:) :: bsrValC
       integer(c_int),target,dimension(:) :: bsrRowPtrC
       integer(c_int),target,dimension(:) :: bsrColIndC
@@ -28932,16 +28932,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2bsr_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
       real(c_double),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: descrC
+      integer(c_int) :: blockDim
+      type(c_ptr) :: descrC
       real(c_double),target :: bsrValC
       integer(c_int),target :: bsrRowPtrC
       integer(c_int),target :: bsrColIndC
@@ -28955,16 +28955,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2bsr_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: descrC
+      integer(c_int) :: blockDim
+      type(c_ptr) :: descrC
       real(c_double),target,dimension(:) :: bsrValC
       integer(c_int),target,dimension(:) :: bsrRowPtrC
       integer(c_int),target,dimension(:) :: bsrColIndC
@@ -28978,16 +28978,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2bsr_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: descrC
+      integer(c_int) :: blockDim
+      type(c_ptr) :: descrC
       complex(c_float_complex),target :: bsrValC
       integer(c_int),target :: bsrRowPtrC
       integer(c_int),target :: bsrColIndC
@@ -29001,16 +29001,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2bsr_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: descrC
+      integer(c_int) :: blockDim
+      type(c_ptr) :: descrC
       complex(c_float_complex),target,dimension(:) :: bsrValC
       integer(c_int),target,dimension(:) :: bsrRowPtrC
       integer(c_int),target,dimension(:) :: bsrColIndC
@@ -29024,16 +29024,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2bsr_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: descrC
+      integer(c_int) :: blockDim
+      type(c_ptr) :: descrC
       complex(c_double_complex),target :: bsrValC
       integer(c_int),target :: bsrRowPtrC
       integer(c_int),target :: bsrColIndC
@@ -29047,16 +29047,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2bsr_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: descrC
+      integer(c_int) :: blockDim
+      type(c_ptr) :: descrC
       complex(c_double_complex),target,dimension(:) :: bsrValC
       integer(c_int),target,dimension(:) :: bsrRowPtrC
       integer(c_int),target,dimension(:) :: bsrColIndC
@@ -29070,16 +29070,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsr2csr_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      type(c_ptr) :: descrA
       real(c_float),target :: bsrValA
       integer(c_int),target :: bsrRowPtrA
       integer(c_int),target :: bsrColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: descrC
+      integer(c_int) :: blockDim
+      type(c_ptr) :: descrC
       real(c_float),target :: csrValC
       integer(c_int),target :: csrRowPtrC
       integer(c_int),target :: csrColIndC
@@ -29093,16 +29093,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsr2csr_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: bsrValA
       integer(c_int),target,dimension(:) :: bsrRowPtrA
       integer(c_int),target,dimension(:) :: bsrColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: descrC
+      integer(c_int) :: blockDim
+      type(c_ptr) :: descrC
       real(c_float),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int),target,dimension(:) :: csrColIndC
@@ -29116,16 +29116,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsr2csr_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      type(c_ptr) :: descrA
       real(c_double),target :: bsrValA
       integer(c_int),target :: bsrRowPtrA
       integer(c_int),target :: bsrColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: descrC
+      integer(c_int) :: blockDim
+      type(c_ptr) :: descrC
       real(c_double),target :: csrValC
       integer(c_int),target :: csrRowPtrC
       integer(c_int),target :: csrColIndC
@@ -29139,16 +29139,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsr2csr_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: bsrValA
       integer(c_int),target,dimension(:) :: bsrRowPtrA
       integer(c_int),target,dimension(:) :: bsrColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: descrC
+      integer(c_int) :: blockDim
+      type(c_ptr) :: descrC
       real(c_double),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int),target,dimension(:) :: csrColIndC
@@ -29162,16 +29162,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsr2csr_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: bsrValA
       integer(c_int),target :: bsrRowPtrA
       integer(c_int),target :: bsrColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: descrC
+      integer(c_int) :: blockDim
+      type(c_ptr) :: descrC
       complex(c_float_complex),target :: csrValC
       integer(c_int),target :: csrRowPtrC
       integer(c_int),target :: csrColIndC
@@ -29185,16 +29185,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsr2csr_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: bsrValA
       integer(c_int),target,dimension(:) :: bsrRowPtrA
       integer(c_int),target,dimension(:) :: bsrColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: descrC
+      integer(c_int) :: blockDim
+      type(c_ptr) :: descrC
       complex(c_float_complex),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int),target,dimension(:) :: csrColIndC
@@ -29208,16 +29208,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsr2csr_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: bsrValA
       integer(c_int),target :: bsrRowPtrA
       integer(c_int),target :: bsrColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: descrC
+      integer(c_int) :: blockDim
+      type(c_ptr) :: descrC
       complex(c_double_complex),target :: csrValC
       integer(c_int),target :: csrRowPtrC
       integer(c_int),target :: csrColIndC
@@ -29231,16 +29231,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsr2csr_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: bsrValA
       integer(c_int),target,dimension(:) :: bsrRowPtrA
       integer(c_int),target,dimension(:) :: bsrColIndA
-      integer(c_int),value :: blockDim
-      type(c_ptr),value :: descrC
+      integer(c_int) :: blockDim
+      type(c_ptr) :: descrC
       complex(c_double_complex),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int),target,dimension(:) :: csrColIndC
@@ -29254,17 +29254,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgebsr2csr_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      type(c_ptr) :: descrA
       real(c_float),target :: bsrValA
       integer(c_int),target :: bsrRowPtrA
       integer(c_int),target :: bsrColIndA
-      integer(c_int),value :: rowBlockDim
-      integer(c_int),value :: colBlockDim
-      type(c_ptr),value :: descrC
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      type(c_ptr) :: descrC
       real(c_float),target :: csrValC
       integer(c_int),target :: csrRowPtrC
       integer(c_int),target :: csrColIndC
@@ -29278,17 +29278,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgebsr2csr_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: bsrValA
       integer(c_int),target,dimension(:) :: bsrRowPtrA
       integer(c_int),target,dimension(:) :: bsrColIndA
-      integer(c_int),value :: rowBlockDim
-      integer(c_int),value :: colBlockDim
-      type(c_ptr),value :: descrC
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      type(c_ptr) :: descrC
       real(c_float),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int),target,dimension(:) :: csrColIndC
@@ -29302,17 +29302,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgebsr2csr_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      type(c_ptr) :: descrA
       real(c_double),target :: bsrValA
       integer(c_int),target :: bsrRowPtrA
       integer(c_int),target :: bsrColIndA
-      integer(c_int),value :: rowBlockDim
-      integer(c_int),value :: colBlockDim
-      type(c_ptr),value :: descrC
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      type(c_ptr) :: descrC
       real(c_double),target :: csrValC
       integer(c_int),target :: csrRowPtrC
       integer(c_int),target :: csrColIndC
@@ -29326,17 +29326,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgebsr2csr_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: bsrValA
       integer(c_int),target,dimension(:) :: bsrRowPtrA
       integer(c_int),target,dimension(:) :: bsrColIndA
-      integer(c_int),value :: rowBlockDim
-      integer(c_int),value :: colBlockDim
-      type(c_ptr),value :: descrC
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      type(c_ptr) :: descrC
       real(c_double),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int),target,dimension(:) :: csrColIndC
@@ -29350,17 +29350,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgebsr2csr_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: bsrValA
       integer(c_int),target :: bsrRowPtrA
       integer(c_int),target :: bsrColIndA
-      integer(c_int),value :: rowBlockDim
-      integer(c_int),value :: colBlockDim
-      type(c_ptr),value :: descrC
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      type(c_ptr) :: descrC
       complex(c_float_complex),target :: csrValC
       integer(c_int),target :: csrRowPtrC
       integer(c_int),target :: csrColIndC
@@ -29374,17 +29374,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgebsr2csr_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: bsrValA
       integer(c_int),target,dimension(:) :: bsrRowPtrA
       integer(c_int),target,dimension(:) :: bsrColIndA
-      integer(c_int),value :: rowBlockDim
-      integer(c_int),value :: colBlockDim
-      type(c_ptr),value :: descrC
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      type(c_ptr) :: descrC
       complex(c_float_complex),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int),target,dimension(:) :: csrColIndC
@@ -29398,17 +29398,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgebsr2csr_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: bsrValA
       integer(c_int),target :: bsrRowPtrA
       integer(c_int),target :: bsrColIndA
-      integer(c_int),value :: rowBlockDim
-      integer(c_int),value :: colBlockDim
-      type(c_ptr),value :: descrC
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      type(c_ptr) :: descrC
       complex(c_double_complex),target :: csrValC
       integer(c_int),target :: csrRowPtrC
       integer(c_int),target :: csrColIndC
@@ -29422,17 +29422,17 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgebsr2csr_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: bsrValA
       integer(c_int),target,dimension(:) :: bsrRowPtrA
       integer(c_int),target,dimension(:) :: bsrColIndA
-      integer(c_int),value :: rowBlockDim
-      integer(c_int),value :: colBlockDim
-      type(c_ptr),value :: descrC
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      type(c_ptr) :: descrC
       complex(c_double_complex),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int),target,dimension(:) :: csrColIndC
@@ -29446,19 +29446,19 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2csr_compress_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
       real(c_float),target :: csrValA
       integer(c_int),target :: csrColIndA
       integer(c_int),target :: csrRowPtrA
-      integer(c_int),value :: nnzA
+      integer(c_int) :: nnzA
       integer(c_int),target :: nnzPerRow
       real(c_float),target :: csrValC
       integer(c_int),target :: csrColIndC
       integer(c_int),target :: csrRowPtrC
-      real(c_float),value :: tol
+      real(c_float) :: tol
       !
       hipsparseScsr2csr_compress_rank_0 = hipsparseScsr2csr_compress_raw(handle,m,n,descrA,c_loc(csrValA),c_loc(csrColIndA),c_loc(csrRowPtrA),nnzA,c_loc(nnzPerRow),c_loc(csrValC),c_loc(csrColIndC),c_loc(csrRowPtrC),tol)
     end function
@@ -29469,19 +29469,19 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2csr_compress_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrColIndA
       integer(c_int),target,dimension(:) :: csrRowPtrA
-      integer(c_int),value :: nnzA
+      integer(c_int) :: nnzA
       integer(c_int),target,dimension(:) :: nnzPerRow
       real(c_float),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrColIndC
       integer(c_int),target,dimension(:) :: csrRowPtrC
-      real(c_float),value :: tol
+      real(c_float) :: tol
       !
       hipsparseScsr2csr_compress_rank_1 = hipsparseScsr2csr_compress_raw(handle,m,n,descrA,c_loc(csrValA),c_loc(csrColIndA),c_loc(csrRowPtrA),nnzA,c_loc(nnzPerRow),c_loc(csrValC),c_loc(csrColIndC),c_loc(csrRowPtrC),tol)
     end function
@@ -29492,19 +29492,19 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2csr_compress_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
       real(c_double),target :: csrValA
       integer(c_int),target :: csrColIndA
       integer(c_int),target :: csrRowPtrA
-      integer(c_int),value :: nnzA
+      integer(c_int) :: nnzA
       integer(c_int),target :: nnzPerRow
       real(c_double),target :: csrValC
       integer(c_int),target :: csrColIndC
       integer(c_int),target :: csrRowPtrC
-      real(c_double),value :: tol
+      real(c_double) :: tol
       !
       hipsparseDcsr2csr_compress_rank_0 = hipsparseDcsr2csr_compress_raw(handle,m,n,descrA,c_loc(csrValA),c_loc(csrColIndA),c_loc(csrRowPtrA),nnzA,c_loc(nnzPerRow),c_loc(csrValC),c_loc(csrColIndC),c_loc(csrRowPtrC),tol)
     end function
@@ -29515,19 +29515,19 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2csr_compress_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrColIndA
       integer(c_int),target,dimension(:) :: csrRowPtrA
-      integer(c_int),value :: nnzA
+      integer(c_int) :: nnzA
       integer(c_int),target,dimension(:) :: nnzPerRow
       real(c_double),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrColIndC
       integer(c_int),target,dimension(:) :: csrRowPtrC
-      real(c_double),value :: tol
+      real(c_double) :: tol
       !
       hipsparseDcsr2csr_compress_rank_1 = hipsparseDcsr2csr_compress_raw(handle,m,n,descrA,c_loc(csrValA),c_loc(csrColIndA),c_loc(csrRowPtrA),nnzA,c_loc(nnzPerRow),c_loc(csrValC),c_loc(csrColIndC),c_loc(csrRowPtrC),tol)
     end function
@@ -29538,19 +29538,19 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2csr_compress_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: csrValA
       integer(c_int),target :: csrColIndA
       integer(c_int),target :: csrRowPtrA
-      integer(c_int),value :: nnzA
+      integer(c_int) :: nnzA
       integer(c_int),target :: nnzPerRow
       complex(c_float_complex),target :: csrValC
       integer(c_int),target :: csrColIndC
       integer(c_int),target :: csrRowPtrC
-      complex(c_float_complex),value :: tol
+      complex(c_float_complex) :: tol
       !
       hipsparseCcsr2csr_compress_rank_0 = hipsparseCcsr2csr_compress_raw(handle,m,n,descrA,c_loc(csrValA),c_loc(csrColIndA),c_loc(csrRowPtrA),nnzA,c_loc(nnzPerRow),c_loc(csrValC),c_loc(csrColIndC),c_loc(csrRowPtrC),tol)
     end function
@@ -29561,19 +29561,19 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2csr_compress_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrColIndA
       integer(c_int),target,dimension(:) :: csrRowPtrA
-      integer(c_int),value :: nnzA
+      integer(c_int) :: nnzA
       integer(c_int),target,dimension(:) :: nnzPerRow
       complex(c_float_complex),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrColIndC
       integer(c_int),target,dimension(:) :: csrRowPtrC
-      complex(c_float_complex),value :: tol
+      complex(c_float_complex) :: tol
       !
       hipsparseCcsr2csr_compress_rank_1 = hipsparseCcsr2csr_compress_raw(handle,m,n,descrA,c_loc(csrValA),c_loc(csrColIndA),c_loc(csrRowPtrA),nnzA,c_loc(nnzPerRow),c_loc(csrValC),c_loc(csrColIndC),c_loc(csrRowPtrC),tol)
     end function
@@ -29584,19 +29584,19 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2csr_compress_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: csrValA
       integer(c_int),target :: csrColIndA
       integer(c_int),target :: csrRowPtrA
-      integer(c_int),value :: nnzA
+      integer(c_int) :: nnzA
       integer(c_int),target :: nnzPerRow
       complex(c_double_complex),target :: csrValC
       integer(c_int),target :: csrColIndC
       integer(c_int),target :: csrRowPtrC
-      complex(c_double_complex),value :: tol
+      complex(c_double_complex) :: tol
       !
       hipsparseZcsr2csr_compress_rank_0 = hipsparseZcsr2csr_compress_raw(handle,m,n,descrA,c_loc(csrValA),c_loc(csrColIndA),c_loc(csrRowPtrA),nnzA,c_loc(nnzPerRow),c_loc(csrValC),c_loc(csrColIndC),c_loc(csrRowPtrC),tol)
     end function
@@ -29607,19 +29607,19 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2csr_compress_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrColIndA
       integer(c_int),target,dimension(:) :: csrRowPtrA
-      integer(c_int),value :: nnzA
+      integer(c_int) :: nnzA
       integer(c_int),target,dimension(:) :: nnzPerRow
       complex(c_double_complex),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrColIndC
       integer(c_int),target,dimension(:) :: csrRowPtrC
-      complex(c_double_complex),value :: tol
+      complex(c_double_complex) :: tol
       !
       hipsparseZcsr2csr_compress_rank_1 = hipsparseZcsr2csr_compress_raw(handle,m,n,descrA,c_loc(csrValA),c_loc(csrColIndA),c_loc(csrRowPtrA),nnzA,c_loc(nnzPerRow),c_loc(csrValC),c_loc(csrColIndC),c_loc(csrRowPtrC),tol)
     end function
@@ -29630,16 +29630,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csr_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnzA
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
       real(c_float),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
       real(c_float) :: threshold
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       real(c_float),target :: csrValC
       integer(c_int),target :: csrRowPtrC
       integer(c_int),target :: csrColIndC
@@ -29654,16 +29654,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csr_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnzA
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
       real(c_float) :: threshold
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       real(c_float),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int),target,dimension(:) :: csrColIndC
@@ -29678,16 +29678,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csr_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnzA
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
       real(c_double),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
       real(c_double) :: threshold
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       real(c_double),target :: csrValC
       integer(c_int),target :: csrRowPtrC
       integer(c_int),target :: csrColIndC
@@ -29702,16 +29702,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csr_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnzA
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
       real(c_double) :: threshold
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       real(c_double),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int),target,dimension(:) :: csrColIndC
@@ -29726,16 +29726,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csr_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnzA
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
       real(c_float),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
       real(c_float) :: threshold
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       real(c_float),target :: csrValC
       integer(c_int),target :: csrRowPtrC
       integer(c_int),target :: csrColIndC
@@ -29750,16 +29750,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csr_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnzA
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
       real(c_float) :: threshold
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       real(c_float),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int),target,dimension(:) :: csrColIndC
@@ -29774,16 +29774,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csr_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnzA
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
       real(c_double),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
       real(c_double) :: threshold
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       real(c_double),target :: csrValC
       integer(c_int),target :: csrRowPtrC
       integer(c_int),target :: csrColIndC
@@ -29798,16 +29798,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csr_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnzA
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
       real(c_double) :: threshold
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       real(c_double),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int),target,dimension(:) :: csrColIndC
@@ -29822,19 +29822,19 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csrNnz_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnzA
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
       real(c_float),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
       real(c_float) :: threshold
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       integer(c_int),target :: csrRowPtrC
       integer(c_int) :: nnzTotalDevHostPtr
-      type(c_ptr),value :: buffer
+      type(c_ptr) :: buffer
       !
       hipsparseSpruneCsr2csrNnz_rank_0 = hipsparseSpruneCsr2csrNnz_raw(handle,m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),threshold,descrC,c_loc(csrRowPtrC),nnzTotalDevHostPtr,buffer)
     end function
@@ -29845,19 +29845,19 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csrNnz_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnzA
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
       real(c_float) :: threshold
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int) :: nnzTotalDevHostPtr
-      type(c_ptr),value :: buffer
+      type(c_ptr) :: buffer
       !
       hipsparseSpruneCsr2csrNnz_rank_1 = hipsparseSpruneCsr2csrNnz_raw(handle,m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),threshold,descrC,c_loc(csrRowPtrC),nnzTotalDevHostPtr,buffer)
     end function
@@ -29868,19 +29868,19 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csrNnz_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnzA
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
       real(c_double),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
       real(c_double) :: threshold
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       integer(c_int),target :: csrRowPtrC
       integer(c_int) :: nnzTotalDevHostPtr
-      type(c_ptr),value :: buffer
+      type(c_ptr) :: buffer
       !
       hipsparseDpruneCsr2csrNnz_rank_0 = hipsparseDpruneCsr2csrNnz_raw(handle,m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),threshold,descrC,c_loc(csrRowPtrC),nnzTotalDevHostPtr,buffer)
     end function
@@ -29891,19 +29891,19 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csrNnz_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnzA
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
       real(c_double) :: threshold
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int) :: nnzTotalDevHostPtr
-      type(c_ptr),value :: buffer
+      type(c_ptr) :: buffer
       !
       hipsparseDpruneCsr2csrNnz_rank_1 = hipsparseDpruneCsr2csrNnz_raw(handle,m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),threshold,descrC,c_loc(csrRowPtrC),nnzTotalDevHostPtr,buffer)
     end function
@@ -29914,20 +29914,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csr_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnzA
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
       real(c_float),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
       real(c_float) :: threshold
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       real(c_float),target :: csrValC
       integer(c_int),target :: csrRowPtrC
       integer(c_int),target :: csrColIndC
-      type(c_ptr),value :: buffer
+      type(c_ptr) :: buffer
       !
       hipsparseSpruneCsr2csr_rank_0 = hipsparseSpruneCsr2csr_raw(handle,m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),threshold,descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),buffer)
     end function
@@ -29938,20 +29938,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csr_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnzA
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
       real(c_float) :: threshold
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       real(c_float),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int),target,dimension(:) :: csrColIndC
-      type(c_ptr),value :: buffer
+      type(c_ptr) :: buffer
       !
       hipsparseSpruneCsr2csr_rank_1 = hipsparseSpruneCsr2csr_raw(handle,m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),threshold,descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),buffer)
     end function
@@ -29962,20 +29962,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csr_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnzA
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
       real(c_double),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
       real(c_double) :: threshold
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       real(c_double),target :: csrValC
       integer(c_int),target :: csrRowPtrC
       integer(c_int),target :: csrColIndC
-      type(c_ptr),value :: buffer
+      type(c_ptr) :: buffer
       !
       hipsparseDpruneCsr2csr_rank_0 = hipsparseDpruneCsr2csr_raw(handle,m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),threshold,descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),buffer)
     end function
@@ -29986,20 +29986,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csr_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnzA
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
       real(c_double) :: threshold
-      type(c_ptr),value :: descrC
+      type(c_ptr) :: descrC
       real(c_double),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int),target,dimension(:) :: csrColIndC
-      type(c_ptr),value :: buffer
+      type(c_ptr) :: buffer
       !
       hipsparseDpruneCsr2csr_rank_1 = hipsparseDpruneCsr2csr_raw(handle,m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),threshold,descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),buffer)
     end function
@@ -30010,20 +30010,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csrByPercentage_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnzA
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
       real(c_float),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
-      real(c_float),value :: percentage
-      type(c_ptr),value :: descrC
+      real(c_float) :: percentage
+      type(c_ptr) :: descrC
       real(c_float),target :: csrValC
       integer(c_int),target :: csrRowPtrC
       integer(c_int),target :: csrColIndC
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t),target :: bufferSize
       !
       hipsparseSpruneCsr2csrByPercentage_bufferSize_rank_0 = hipsparseSpruneCsr2csrByPercentage_bufferSize_raw(handle,m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),percentage,descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,c_loc(bufferSize))
@@ -30035,20 +30035,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csrByPercentage_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnzA
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      real(c_float),value :: percentage
-      type(c_ptr),value :: descrC
+      real(c_float) :: percentage
+      type(c_ptr) :: descrC
       real(c_float),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int),target,dimension(:) :: csrColIndC
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t),target,dimension(:) :: bufferSize
       !
       hipsparseSpruneCsr2csrByPercentage_bufferSize_rank_1 = hipsparseSpruneCsr2csrByPercentage_bufferSize_raw(handle,m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),percentage,descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,c_loc(bufferSize))
@@ -30060,20 +30060,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csrByPercentage_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnzA
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
       real(c_double),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
-      real(c_double),value :: percentage
-      type(c_ptr),value :: descrC
+      real(c_double) :: percentage
+      type(c_ptr) :: descrC
       real(c_double),target :: csrValC
       integer(c_int),target :: csrRowPtrC
       integer(c_int),target :: csrColIndC
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t),target :: bufferSize
       !
       hipsparseDpruneCsr2csrByPercentage_bufferSize_rank_0 = hipsparseDpruneCsr2csrByPercentage_bufferSize_raw(handle,m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),percentage,descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,c_loc(bufferSize))
@@ -30085,20 +30085,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csrByPercentage_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnzA
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      real(c_double),value :: percentage
-      type(c_ptr),value :: descrC
+      real(c_double) :: percentage
+      type(c_ptr) :: descrC
       real(c_double),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int),target,dimension(:) :: csrColIndC
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t),target,dimension(:) :: bufferSize
       !
       hipsparseDpruneCsr2csrByPercentage_bufferSize_rank_1 = hipsparseDpruneCsr2csrByPercentage_bufferSize_raw(handle,m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),percentage,descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,c_loc(bufferSize))
@@ -30110,20 +30110,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csrByPercentage_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnzA
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
       real(c_float),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
-      real(c_float),value :: percentage
-      type(c_ptr),value :: descrC
+      real(c_float) :: percentage
+      type(c_ptr) :: descrC
       real(c_float),target :: csrValC
       integer(c_int),target :: csrRowPtrC
       integer(c_int),target :: csrColIndC
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t),target :: bufferSize
       !
       hipsparseSpruneCsr2csrByPercentage_bufferSizeExt_rank_0 = hipsparseSpruneCsr2csrByPercentage_bufferSizeExt_raw(handle,m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),percentage,descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,c_loc(bufferSize))
@@ -30135,20 +30135,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csrByPercentage_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnzA
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      real(c_float),value :: percentage
-      type(c_ptr),value :: descrC
+      real(c_float) :: percentage
+      type(c_ptr) :: descrC
       real(c_float),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int),target,dimension(:) :: csrColIndC
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t),target,dimension(:) :: bufferSize
       !
       hipsparseSpruneCsr2csrByPercentage_bufferSizeExt_rank_1 = hipsparseSpruneCsr2csrByPercentage_bufferSizeExt_raw(handle,m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),percentage,descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,c_loc(bufferSize))
@@ -30160,20 +30160,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csrByPercentage_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnzA
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
       real(c_double),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
-      real(c_double),value :: percentage
-      type(c_ptr),value :: descrC
+      real(c_double) :: percentage
+      type(c_ptr) :: descrC
       real(c_double),target :: csrValC
       integer(c_int),target :: csrRowPtrC
       integer(c_int),target :: csrColIndC
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t),target :: bufferSize
       !
       hipsparseDpruneCsr2csrByPercentage_bufferSizeExt_rank_0 = hipsparseDpruneCsr2csrByPercentage_bufferSizeExt_raw(handle,m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),percentage,descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,c_loc(bufferSize))
@@ -30185,20 +30185,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csrByPercentage_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnzA
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      real(c_double),value :: percentage
-      type(c_ptr),value :: descrC
+      real(c_double) :: percentage
+      type(c_ptr) :: descrC
       real(c_double),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int),target,dimension(:) :: csrColIndC
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t),target,dimension(:) :: bufferSize
       !
       hipsparseDpruneCsr2csrByPercentage_bufferSizeExt_rank_1 = hipsparseDpruneCsr2csrByPercentage_bufferSizeExt_raw(handle,m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),percentage,descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,c_loc(bufferSize))
@@ -30210,20 +30210,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csrNnzByPercentage_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnzA
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
       real(c_float),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
-      real(c_float),value :: percentage
-      type(c_ptr),value :: descrC
+      real(c_float) :: percentage
+      type(c_ptr) :: descrC
       integer(c_int),target :: csrRowPtrC
       integer(c_int) :: nnzTotalDevHostPtr
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: buffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: buffer
       !
       hipsparseSpruneCsr2csrNnzByPercentage_rank_0 = hipsparseSpruneCsr2csrNnzByPercentage_raw(handle,m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),percentage,descrC,c_loc(csrRowPtrC),nnzTotalDevHostPtr,myInfo,buffer)
     end function
@@ -30234,20 +30234,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csrNnzByPercentage_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnzA
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      real(c_float),value :: percentage
-      type(c_ptr),value :: descrC
+      real(c_float) :: percentage
+      type(c_ptr) :: descrC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int) :: nnzTotalDevHostPtr
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: buffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: buffer
       !
       hipsparseSpruneCsr2csrNnzByPercentage_rank_1 = hipsparseSpruneCsr2csrNnzByPercentage_raw(handle,m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),percentage,descrC,c_loc(csrRowPtrC),nnzTotalDevHostPtr,myInfo,buffer)
     end function
@@ -30258,20 +30258,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csrNnzByPercentage_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnzA
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
       real(c_double),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
-      real(c_double),value :: percentage
-      type(c_ptr),value :: descrC
+      real(c_double) :: percentage
+      type(c_ptr) :: descrC
       integer(c_int),target :: csrRowPtrC
       integer(c_int) :: nnzTotalDevHostPtr
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: buffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: buffer
       !
       hipsparseDpruneCsr2csrNnzByPercentage_rank_0 = hipsparseDpruneCsr2csrNnzByPercentage_raw(handle,m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),percentage,descrC,c_loc(csrRowPtrC),nnzTotalDevHostPtr,myInfo,buffer)
     end function
@@ -30282,20 +30282,20 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csrNnzByPercentage_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnzA
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      real(c_double),value :: percentage
-      type(c_ptr),value :: descrC
+      real(c_double) :: percentage
+      type(c_ptr) :: descrC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int) :: nnzTotalDevHostPtr
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: buffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: buffer
       !
       hipsparseDpruneCsr2csrNnzByPercentage_rank_1 = hipsparseDpruneCsr2csrNnzByPercentage_raw(handle,m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),percentage,descrC,c_loc(csrRowPtrC),nnzTotalDevHostPtr,myInfo,buffer)
     end function
@@ -30306,21 +30306,21 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csrByPercentage_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnzA
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
       real(c_float),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
-      real(c_float),value :: percentage
-      type(c_ptr),value :: descrC
+      real(c_float) :: percentage
+      type(c_ptr) :: descrC
       real(c_float),target :: csrValC
       integer(c_int),target :: csrRowPtrC
       integer(c_int),target :: csrColIndC
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: buffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: buffer
       !
       hipsparseSpruneCsr2csrByPercentage_rank_0 = hipsparseSpruneCsr2csrByPercentage_raw(handle,m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),percentage,descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,buffer)
     end function
@@ -30331,21 +30331,21 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csrByPercentage_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnzA
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      real(c_float),value :: percentage
-      type(c_ptr),value :: descrC
+      real(c_float) :: percentage
+      type(c_ptr) :: descrC
       real(c_float),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int),target,dimension(:) :: csrColIndC
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: buffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: buffer
       !
       hipsparseSpruneCsr2csrByPercentage_rank_1 = hipsparseSpruneCsr2csrByPercentage_raw(handle,m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),percentage,descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,buffer)
     end function
@@ -30356,21 +30356,21 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csrByPercentage_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnzA
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
       real(c_double),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
-      real(c_double),value :: percentage
-      type(c_ptr),value :: descrC
+      real(c_double) :: percentage
+      type(c_ptr) :: descrC
       real(c_double),target :: csrValC
       integer(c_int),target :: csrRowPtrC
       integer(c_int),target :: csrColIndC
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: buffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: buffer
       !
       hipsparseDpruneCsr2csrByPercentage_rank_0 = hipsparseDpruneCsr2csrByPercentage_raw(handle,m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),percentage,descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,buffer)
     end function
@@ -30381,21 +30381,21 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csrByPercentage_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnzA
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      real(c_double),value :: percentage
-      type(c_ptr),value :: descrC
+      real(c_double) :: percentage
+      type(c_ptr) :: descrC
       real(c_double),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrRowPtrC
       integer(c_int),target,dimension(:) :: csrColIndC
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: buffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: buffer
       !
       hipsparseDpruneCsr2csrByPercentage_rank_1 = hipsparseDpruneCsr2csrByPercentage_raw(handle,m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),percentage,descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,buffer)
     end function
@@ -30406,9 +30406,9 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseShyb2csr_rank_0
-      type(c_ptr),value :: handle
-      type(c_ptr),value :: descrA
-      type(c_ptr),value :: hybA
+      type(c_ptr) :: handle
+      type(c_ptr) :: descrA
+      type(c_ptr) :: hybA
       real(c_float),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
@@ -30422,9 +30422,9 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseShyb2csr_rank_1
-      type(c_ptr),value :: handle
-      type(c_ptr),value :: descrA
-      type(c_ptr),value :: hybA
+      type(c_ptr) :: handle
+      type(c_ptr) :: descrA
+      type(c_ptr) :: hybA
       real(c_float),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
@@ -30438,9 +30438,9 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDhyb2csr_rank_0
-      type(c_ptr),value :: handle
-      type(c_ptr),value :: descrA
-      type(c_ptr),value :: hybA
+      type(c_ptr) :: handle
+      type(c_ptr) :: descrA
+      type(c_ptr) :: hybA
       real(c_double),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
@@ -30454,9 +30454,9 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDhyb2csr_rank_1
-      type(c_ptr),value :: handle
-      type(c_ptr),value :: descrA
-      type(c_ptr),value :: hybA
+      type(c_ptr) :: handle
+      type(c_ptr) :: descrA
+      type(c_ptr) :: hybA
       real(c_double),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
@@ -30470,9 +30470,9 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseChyb2csr_rank_0
-      type(c_ptr),value :: handle
-      type(c_ptr),value :: descrA
-      type(c_ptr),value :: hybA
+      type(c_ptr) :: handle
+      type(c_ptr) :: descrA
+      type(c_ptr) :: hybA
       complex(c_float_complex),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
@@ -30486,9 +30486,9 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseChyb2csr_rank_1
-      type(c_ptr),value :: handle
-      type(c_ptr),value :: descrA
-      type(c_ptr),value :: hybA
+      type(c_ptr) :: handle
+      type(c_ptr) :: descrA
+      type(c_ptr) :: hybA
       complex(c_float_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
@@ -30502,9 +30502,9 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZhyb2csr_rank_0
-      type(c_ptr),value :: handle
-      type(c_ptr),value :: descrA
-      type(c_ptr),value :: hybA
+      type(c_ptr) :: handle
+      type(c_ptr) :: descrA
+      type(c_ptr) :: hybA
       complex(c_double_complex),target :: csrSortedValA
       integer(c_int),target :: csrSortedRowPtrA
       integer(c_int),target :: csrSortedColIndA
@@ -30518,9 +30518,9 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZhyb2csr_rank_1
-      type(c_ptr),value :: handle
-      type(c_ptr),value :: descrA
-      type(c_ptr),value :: hybA
+      type(c_ptr) :: handle
+      type(c_ptr) :: descrA
+      type(c_ptr) :: hybA
       complex(c_double_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
       integer(c_int),target,dimension(:) :: csrSortedColIndA
@@ -30534,12 +30534,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcoo2csr_rank_0
-      type(c_ptr),value :: handle
+      type(c_ptr) :: handle
       integer(c_int),target :: cooRowInd
-      integer(c_int),value :: nnz
-      integer(c_int),value :: m
+      integer(c_int) :: nnz
+      integer(c_int) :: m
       integer(c_int),target :: csrRowPtr
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseXcoo2csr_rank_0 = hipsparseXcoo2csr_raw(handle,c_loc(cooRowInd),nnz,m,c_loc(csrRowPtr),idxBase)
     end function
@@ -30550,12 +30550,12 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcoo2csr_rank_1
-      type(c_ptr),value :: handle
+      type(c_ptr) :: handle
       integer(c_int),target,dimension(:) :: cooRowInd
-      integer(c_int),value :: nnz
-      integer(c_int),value :: m
+      integer(c_int) :: nnz
+      integer(c_int) :: m
       integer(c_int),target,dimension(:) :: csrRowPtr
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseXcoo2csr_rank_1 = hipsparseXcoo2csr_raw(handle,c_loc(cooRowInd),nnz,m,c_loc(csrRowPtr),idxBase)
     end function
@@ -30566,8 +30566,8 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateIdentityPermutation_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: n
       integer(c_int),target :: p
       !
       hipsparseCreateIdentityPermutation_rank_0 = hipsparseCreateIdentityPermutation_raw(handle,n,c_loc(p))
@@ -30579,8 +30579,8 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateIdentityPermutation_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: n
       integer(c_int),target,dimension(:) :: p
       !
       hipsparseCreateIdentityPermutation_rank_1 = hipsparseCreateIdentityPermutation_raw(handle,n,c_loc(p))
@@ -30592,10 +30592,10 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsrsort_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       integer(c_int),target :: csrRowPtr
       integer(c_int),target :: csrColInd
       integer(c_size_t) :: pBufferSizeInBytes
@@ -30609,10 +30609,10 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsrsort_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
       integer(c_size_t) :: pBufferSizeInBytes
@@ -30626,15 +30626,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsrsort_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
       integer(c_int),target,dimension(:,:) :: P
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: pBuffer
       !
       hipsparseXcsrsort_full_rank = hipsparseXcsrsort_raw(handle,m,n,nnz,descrA,c_loc(csrRowPtr),c_loc(csrColInd),c_loc(P),pBuffer)
     end function
@@ -30645,15 +30645,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsrsort_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       integer(c_int),target :: csrRowPtr
       integer(c_int),target :: csrColInd
       integer(c_int),target :: P
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: pBuffer
       !
       hipsparseXcsrsort_rank_0 = hipsparseXcsrsort_raw(handle,m,n,nnz,descrA,c_loc(csrRowPtr),c_loc(csrColInd),c_loc(P),pBuffer)
     end function
@@ -30664,15 +30664,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsrsort_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
       integer(c_int),target,dimension(:) :: P
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: pBuffer
       !
       hipsparseXcsrsort_rank_1 = hipsparseXcsrsort_raw(handle,m,n,nnz,descrA,c_loc(csrRowPtr),c_loc(csrColInd),c_loc(P),pBuffer)
     end function
@@ -30683,10 +30683,10 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcscsort_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       integer(c_int),target :: cscColPtr
       integer(c_int),target :: cscRowInd
       integer(c_size_t) :: pBufferSizeInBytes
@@ -30700,10 +30700,10 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcscsort_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       integer(c_int),target,dimension(:) :: cscColPtr
       integer(c_int),target,dimension(:) :: cscRowInd
       integer(c_size_t) :: pBufferSizeInBytes
@@ -30717,15 +30717,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcscsort_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       integer(c_int),target,dimension(:) :: cscColPtr
       integer(c_int),target,dimension(:) :: cscRowInd
       integer(c_int),target,dimension(:,:) :: P
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: pBuffer
       !
       hipsparseXcscsort_full_rank = hipsparseXcscsort_raw(handle,m,n,nnz,descrA,c_loc(cscColPtr),c_loc(cscRowInd),c_loc(P),pBuffer)
     end function
@@ -30736,15 +30736,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcscsort_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       integer(c_int),target :: cscColPtr
       integer(c_int),target :: cscRowInd
       integer(c_int),target :: P
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: pBuffer
       !
       hipsparseXcscsort_rank_0 = hipsparseXcscsort_raw(handle,m,n,nnz,descrA,c_loc(cscColPtr),c_loc(cscRowInd),c_loc(P),pBuffer)
     end function
@@ -30755,15 +30755,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcscsort_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       integer(c_int),target,dimension(:) :: cscColPtr
       integer(c_int),target,dimension(:) :: cscRowInd
       integer(c_int),target,dimension(:) :: P
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: pBuffer
       !
       hipsparseXcscsort_rank_1 = hipsparseXcscsort_raw(handle,m,n,nnz,descrA,c_loc(cscColPtr),c_loc(cscRowInd),c_loc(P),pBuffer)
     end function
@@ -30774,10 +30774,10 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcoosort_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       integer(c_int),target :: cooRows
       integer(c_int),target :: cooCols
       integer(c_size_t) :: pBufferSizeInBytes
@@ -30791,10 +30791,10 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcoosort_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       integer(c_int),target,dimension(:) :: cooRows
       integer(c_int),target,dimension(:) :: cooCols
       integer(c_size_t) :: pBufferSizeInBytes
@@ -30808,14 +30808,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcoosortByRow_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       integer(c_int),target,dimension(:) :: cooRows
       integer(c_int),target,dimension(:) :: cooCols
       integer(c_int),target,dimension(:,:) :: P
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: pBuffer
       !
       hipsparseXcoosortByRow_full_rank = hipsparseXcoosortByRow_raw(handle,m,n,nnz,c_loc(cooRows),c_loc(cooCols),c_loc(P),pBuffer)
     end function
@@ -30826,14 +30826,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcoosortByRow_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       integer(c_int),target :: cooRows
       integer(c_int),target :: cooCols
       integer(c_int),target :: P
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: pBuffer
       !
       hipsparseXcoosortByRow_rank_0 = hipsparseXcoosortByRow_raw(handle,m,n,nnz,c_loc(cooRows),c_loc(cooCols),c_loc(P),pBuffer)
     end function
@@ -30844,14 +30844,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcoosortByRow_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       integer(c_int),target,dimension(:) :: cooRows
       integer(c_int),target,dimension(:) :: cooCols
       integer(c_int),target,dimension(:) :: P
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: pBuffer
       !
       hipsparseXcoosortByRow_rank_1 = hipsparseXcoosortByRow_raw(handle,m,n,nnz,c_loc(cooRows),c_loc(cooCols),c_loc(P),pBuffer)
     end function
@@ -30862,14 +30862,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcoosortByColumn_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       integer(c_int),target,dimension(:) :: cooRows
       integer(c_int),target,dimension(:) :: cooCols
       integer(c_int),target,dimension(:,:) :: P
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: pBuffer
       !
       hipsparseXcoosortByColumn_full_rank = hipsparseXcoosortByColumn_raw(handle,m,n,nnz,c_loc(cooRows),c_loc(cooCols),c_loc(P),pBuffer)
     end function
@@ -30880,14 +30880,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcoosortByColumn_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       integer(c_int),target :: cooRows
       integer(c_int),target :: cooCols
       integer(c_int),target :: P
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: pBuffer
       !
       hipsparseXcoosortByColumn_rank_0 = hipsparseXcoosortByColumn_raw(handle,m,n,nnz,c_loc(cooRows),c_loc(cooCols),c_loc(P),pBuffer)
     end function
@@ -30898,14 +30898,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcoosortByColumn_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       integer(c_int),target,dimension(:) :: cooRows
       integer(c_int),target,dimension(:) :: cooCols
       integer(c_int),target,dimension(:) :: P
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: pBuffer
       !
       hipsparseXcoosortByColumn_rank_1 = hipsparseXcoosortByColumn_raw(handle,m,n,nnz,c_loc(cooRows),c_loc(cooCols),c_loc(P),pBuffer)
     end function
@@ -30916,19 +30916,19 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgebsr2gebsr_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_float),target :: bsrValA
       integer(c_int),target :: bsrRowPtrA
       integer(c_int),target :: bsrColIndA
-      integer(c_int),value :: rowBlockDimA
-      integer(c_int),value :: colBlockDimA
-      integer(c_int),value :: rowBlockDimC
-      integer(c_int),value :: colBlockDimC
+      integer(c_int) :: rowBlockDimA
+      integer(c_int) :: colBlockDimA
+      integer(c_int) :: rowBlockDimC
+      integer(c_int) :: colBlockDimC
       integer(c_int),target :: bufferSize
       !
       hipsparseSgebsr2gebsr_bufferSize_rank_0 = hipsparseSgebsr2gebsr_bufferSize_raw(handle,dirA,mb,nb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDimA,colBlockDimA,rowBlockDimC,colBlockDimC,c_loc(bufferSize))
@@ -30940,19 +30940,19 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgebsr2gebsr_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: bsrValA
       integer(c_int),target,dimension(:) :: bsrRowPtrA
       integer(c_int),target,dimension(:) :: bsrColIndA
-      integer(c_int),value :: rowBlockDimA
-      integer(c_int),value :: colBlockDimA
-      integer(c_int),value :: rowBlockDimC
-      integer(c_int),value :: colBlockDimC
+      integer(c_int) :: rowBlockDimA
+      integer(c_int) :: colBlockDimA
+      integer(c_int) :: rowBlockDimC
+      integer(c_int) :: colBlockDimC
       integer(c_int),target,dimension(:) :: bufferSize
       !
       hipsparseSgebsr2gebsr_bufferSize_rank_1 = hipsparseSgebsr2gebsr_bufferSize_raw(handle,dirA,mb,nb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDimA,colBlockDimA,rowBlockDimC,colBlockDimC,c_loc(bufferSize))
@@ -30964,19 +30964,19 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgebsr2gebsr_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_double),target :: bsrValA
       integer(c_int),target :: bsrRowPtrA
       integer(c_int),target :: bsrColIndA
-      integer(c_int),value :: rowBlockDimA
-      integer(c_int),value :: colBlockDimA
-      integer(c_int),value :: rowBlockDimC
-      integer(c_int),value :: colBlockDimC
+      integer(c_int) :: rowBlockDimA
+      integer(c_int) :: colBlockDimA
+      integer(c_int) :: rowBlockDimC
+      integer(c_int) :: colBlockDimC
       integer(c_int),target :: bufferSize
       !
       hipsparseDgebsr2gebsr_bufferSize_rank_0 = hipsparseDgebsr2gebsr_bufferSize_raw(handle,dirA,mb,nb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDimA,colBlockDimA,rowBlockDimC,colBlockDimC,c_loc(bufferSize))
@@ -30988,19 +30988,19 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgebsr2gebsr_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: bsrValA
       integer(c_int),target,dimension(:) :: bsrRowPtrA
       integer(c_int),target,dimension(:) :: bsrColIndA
-      integer(c_int),value :: rowBlockDimA
-      integer(c_int),value :: colBlockDimA
-      integer(c_int),value :: rowBlockDimC
-      integer(c_int),value :: colBlockDimC
+      integer(c_int) :: rowBlockDimA
+      integer(c_int) :: colBlockDimA
+      integer(c_int) :: rowBlockDimC
+      integer(c_int) :: colBlockDimC
       integer(c_int),target,dimension(:) :: bufferSize
       !
       hipsparseDgebsr2gebsr_bufferSize_rank_1 = hipsparseDgebsr2gebsr_bufferSize_raw(handle,dirA,mb,nb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDimA,colBlockDimA,rowBlockDimC,colBlockDimC,c_loc(bufferSize))
@@ -31012,19 +31012,19 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgebsr2gebsr_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: bsrValA
       integer(c_int),target :: bsrRowPtrA
       integer(c_int),target :: bsrColIndA
-      integer(c_int),value :: rowBlockDimA
-      integer(c_int),value :: colBlockDimA
-      integer(c_int),value :: rowBlockDimC
-      integer(c_int),value :: colBlockDimC
+      integer(c_int) :: rowBlockDimA
+      integer(c_int) :: colBlockDimA
+      integer(c_int) :: rowBlockDimC
+      integer(c_int) :: colBlockDimC
       integer(c_int),target :: bufferSize
       !
       hipsparseCgebsr2gebsr_bufferSize_rank_0 = hipsparseCgebsr2gebsr_bufferSize_raw(handle,dirA,mb,nb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDimA,colBlockDimA,rowBlockDimC,colBlockDimC,c_loc(bufferSize))
@@ -31036,19 +31036,19 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgebsr2gebsr_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: bsrValA
       integer(c_int),target,dimension(:) :: bsrRowPtrA
       integer(c_int),target,dimension(:) :: bsrColIndA
-      integer(c_int),value :: rowBlockDimA
-      integer(c_int),value :: colBlockDimA
-      integer(c_int),value :: rowBlockDimC
-      integer(c_int),value :: colBlockDimC
+      integer(c_int) :: rowBlockDimA
+      integer(c_int) :: colBlockDimA
+      integer(c_int) :: rowBlockDimC
+      integer(c_int) :: colBlockDimC
       integer(c_int),target,dimension(:) :: bufferSize
       !
       hipsparseCgebsr2gebsr_bufferSize_rank_1 = hipsparseCgebsr2gebsr_bufferSize_raw(handle,dirA,mb,nb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDimA,colBlockDimA,rowBlockDimC,colBlockDimC,c_loc(bufferSize))
@@ -31060,19 +31060,19 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgebsr2gebsr_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: bsrValA
       integer(c_int),target :: bsrRowPtrA
       integer(c_int),target :: bsrColIndA
-      integer(c_int),value :: rowBlockDimA
-      integer(c_int),value :: colBlockDimA
-      integer(c_int),value :: rowBlockDimC
-      integer(c_int),value :: colBlockDimC
+      integer(c_int) :: rowBlockDimA
+      integer(c_int) :: colBlockDimA
+      integer(c_int) :: rowBlockDimC
+      integer(c_int) :: colBlockDimC
       integer(c_int),target :: bufferSize
       !
       hipsparseZgebsr2gebsr_bufferSize_rank_0 = hipsparseZgebsr2gebsr_bufferSize_raw(handle,dirA,mb,nb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDimA,colBlockDimA,rowBlockDimC,colBlockDimC,c_loc(bufferSize))
@@ -31084,19 +31084,19 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgebsr2gebsr_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: bsrValA
       integer(c_int),target,dimension(:) :: bsrRowPtrA
       integer(c_int),target,dimension(:) :: bsrColIndA
-      integer(c_int),value :: rowBlockDimA
-      integer(c_int),value :: colBlockDimA
-      integer(c_int),value :: rowBlockDimC
-      integer(c_int),value :: colBlockDimC
+      integer(c_int) :: rowBlockDimA
+      integer(c_int) :: colBlockDimA
+      integer(c_int) :: rowBlockDimC
+      integer(c_int) :: colBlockDimC
       integer(c_int),target,dimension(:) :: bufferSize
       !
       hipsparseZgebsr2gebsr_bufferSize_rank_1 = hipsparseZgebsr2gebsr_bufferSize_raw(handle,dirA,mb,nb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDimA,colBlockDimA,rowBlockDimC,colBlockDimC,c_loc(bufferSize))
@@ -31108,22 +31108,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXgebsr2gebsrNnz_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       integer(c_int),target :: bsrRowPtrA
       integer(c_int),target :: bsrColIndA
-      integer(c_int),value :: rowBlockDimA
-      integer(c_int),value :: colBlockDimA
-      type(c_ptr),value :: descrC
+      integer(c_int) :: rowBlockDimA
+      integer(c_int) :: colBlockDimA
+      type(c_ptr) :: descrC
       integer(c_int),target :: bsrRowPtrC
-      integer(c_int),value :: rowBlockDimC
-      integer(c_int),value :: colBlockDimC
+      integer(c_int) :: rowBlockDimC
+      integer(c_int) :: colBlockDimC
       integer(c_int) :: nnzTotalDevHostPtr
-      type(c_ptr),value :: buffer
+      type(c_ptr) :: buffer
       !
       hipsparseXgebsr2gebsrNnz_rank_0 = hipsparseXgebsr2gebsrNnz_raw(handle,dirA,mb,nb,nnzb,descrA,c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDimA,colBlockDimA,descrC,c_loc(bsrRowPtrC),rowBlockDimC,colBlockDimC,nnzTotalDevHostPtr,buffer)
     end function
@@ -31134,22 +31134,22 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXgebsr2gebsrNnz_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       integer(c_int),target,dimension(:) :: bsrRowPtrA
       integer(c_int),target,dimension(:) :: bsrColIndA
-      integer(c_int),value :: rowBlockDimA
-      integer(c_int),value :: colBlockDimA
-      type(c_ptr),value :: descrC
+      integer(c_int) :: rowBlockDimA
+      integer(c_int) :: colBlockDimA
+      type(c_ptr) :: descrC
       integer(c_int),target,dimension(:) :: bsrRowPtrC
-      integer(c_int),value :: rowBlockDimC
-      integer(c_int),value :: colBlockDimC
+      integer(c_int) :: rowBlockDimC
+      integer(c_int) :: colBlockDimC
       integer(c_int) :: nnzTotalDevHostPtr
-      type(c_ptr),value :: buffer
+      type(c_ptr) :: buffer
       !
       hipsparseXgebsr2gebsrNnz_rank_1 = hipsparseXgebsr2gebsrNnz_raw(handle,dirA,mb,nb,nnzb,descrA,c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDimA,colBlockDimA,descrC,c_loc(bsrRowPtrC),rowBlockDimC,colBlockDimC,nnzTotalDevHostPtr,buffer)
     end function
@@ -31160,24 +31160,24 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgebsr2gebsr_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_float),target :: bsrValA
       integer(c_int),target :: bsrRowPtrA
       integer(c_int),target :: bsrColIndA
-      integer(c_int),value :: rowBlockDimA
-      integer(c_int),value :: colBlockDimA
-      type(c_ptr),value :: descrC
+      integer(c_int) :: rowBlockDimA
+      integer(c_int) :: colBlockDimA
+      type(c_ptr) :: descrC
       real(c_float),target :: bsrValC
       integer(c_int),target :: bsrRowPtrC
       integer(c_int),target :: bsrColIndC
-      integer(c_int),value :: rowBlockDimC
-      integer(c_int),value :: colBlockDimC
-      type(c_ptr),value :: buffer
+      integer(c_int) :: rowBlockDimC
+      integer(c_int) :: colBlockDimC
+      type(c_ptr) :: buffer
       !
       hipsparseSgebsr2gebsr_rank_0 = hipsparseSgebsr2gebsr_raw(handle,dirA,mb,nb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDimA,colBlockDimA,descrC,c_loc(bsrValC),c_loc(bsrRowPtrC),c_loc(bsrColIndC),rowBlockDimC,colBlockDimC,buffer)
     end function
@@ -31188,24 +31188,24 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgebsr2gebsr_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: bsrValA
       integer(c_int),target,dimension(:) :: bsrRowPtrA
       integer(c_int),target,dimension(:) :: bsrColIndA
-      integer(c_int),value :: rowBlockDimA
-      integer(c_int),value :: colBlockDimA
-      type(c_ptr),value :: descrC
+      integer(c_int) :: rowBlockDimA
+      integer(c_int) :: colBlockDimA
+      type(c_ptr) :: descrC
       real(c_float),target,dimension(:) :: bsrValC
       integer(c_int),target,dimension(:) :: bsrRowPtrC
       integer(c_int),target,dimension(:) :: bsrColIndC
-      integer(c_int),value :: rowBlockDimC
-      integer(c_int),value :: colBlockDimC
-      type(c_ptr),value :: buffer
+      integer(c_int) :: rowBlockDimC
+      integer(c_int) :: colBlockDimC
+      type(c_ptr) :: buffer
       !
       hipsparseSgebsr2gebsr_rank_1 = hipsparseSgebsr2gebsr_raw(handle,dirA,mb,nb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDimA,colBlockDimA,descrC,c_loc(bsrValC),c_loc(bsrRowPtrC),c_loc(bsrColIndC),rowBlockDimC,colBlockDimC,buffer)
     end function
@@ -31216,24 +31216,24 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgebsr2gebsr_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_double),target :: bsrValA
       integer(c_int),target :: bsrRowPtrA
       integer(c_int),target :: bsrColIndA
-      integer(c_int),value :: rowBlockDimA
-      integer(c_int),value :: colBlockDimA
-      type(c_ptr),value :: descrC
+      integer(c_int) :: rowBlockDimA
+      integer(c_int) :: colBlockDimA
+      type(c_ptr) :: descrC
       real(c_double),target :: bsrValC
       integer(c_int),target :: bsrRowPtrC
       integer(c_int),target :: bsrColIndC
-      integer(c_int),value :: rowBlockDimC
-      integer(c_int),value :: colBlockDimC
-      type(c_ptr),value :: buffer
+      integer(c_int) :: rowBlockDimC
+      integer(c_int) :: colBlockDimC
+      type(c_ptr) :: buffer
       !
       hipsparseDgebsr2gebsr_rank_0 = hipsparseDgebsr2gebsr_raw(handle,dirA,mb,nb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDimA,colBlockDimA,descrC,c_loc(bsrValC),c_loc(bsrRowPtrC),c_loc(bsrColIndC),rowBlockDimC,colBlockDimC,buffer)
     end function
@@ -31244,24 +31244,24 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgebsr2gebsr_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: bsrValA
       integer(c_int),target,dimension(:) :: bsrRowPtrA
       integer(c_int),target,dimension(:) :: bsrColIndA
-      integer(c_int),value :: rowBlockDimA
-      integer(c_int),value :: colBlockDimA
-      type(c_ptr),value :: descrC
+      integer(c_int) :: rowBlockDimA
+      integer(c_int) :: colBlockDimA
+      type(c_ptr) :: descrC
       real(c_double),target,dimension(:) :: bsrValC
       integer(c_int),target,dimension(:) :: bsrRowPtrC
       integer(c_int),target,dimension(:) :: bsrColIndC
-      integer(c_int),value :: rowBlockDimC
-      integer(c_int),value :: colBlockDimC
-      type(c_ptr),value :: buffer
+      integer(c_int) :: rowBlockDimC
+      integer(c_int) :: colBlockDimC
+      type(c_ptr) :: buffer
       !
       hipsparseDgebsr2gebsr_rank_1 = hipsparseDgebsr2gebsr_raw(handle,dirA,mb,nb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDimA,colBlockDimA,descrC,c_loc(bsrValC),c_loc(bsrRowPtrC),c_loc(bsrColIndC),rowBlockDimC,colBlockDimC,buffer)
     end function
@@ -31272,24 +31272,24 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgebsr2gebsr_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: bsrValA
       integer(c_int),target :: bsrRowPtrA
       integer(c_int),target :: bsrColIndA
-      integer(c_int),value :: rowBlockDimA
-      integer(c_int),value :: colBlockDimA
-      type(c_ptr),value :: descrC
+      integer(c_int) :: rowBlockDimA
+      integer(c_int) :: colBlockDimA
+      type(c_ptr) :: descrC
       complex(c_float_complex),target :: bsrValC
       integer(c_int),target :: bsrRowPtrC
       integer(c_int),target :: bsrColIndC
-      integer(c_int),value :: rowBlockDimC
-      integer(c_int),value :: colBlockDimC
-      type(c_ptr),value :: buffer
+      integer(c_int) :: rowBlockDimC
+      integer(c_int) :: colBlockDimC
+      type(c_ptr) :: buffer
       !
       hipsparseCgebsr2gebsr_rank_0 = hipsparseCgebsr2gebsr_raw(handle,dirA,mb,nb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDimA,colBlockDimA,descrC,c_loc(bsrValC),c_loc(bsrRowPtrC),c_loc(bsrColIndC),rowBlockDimC,colBlockDimC,buffer)
     end function
@@ -31300,24 +31300,24 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgebsr2gebsr_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: bsrValA
       integer(c_int),target,dimension(:) :: bsrRowPtrA
       integer(c_int),target,dimension(:) :: bsrColIndA
-      integer(c_int),value :: rowBlockDimA
-      integer(c_int),value :: colBlockDimA
-      type(c_ptr),value :: descrC
+      integer(c_int) :: rowBlockDimA
+      integer(c_int) :: colBlockDimA
+      type(c_ptr) :: descrC
       complex(c_float_complex),target,dimension(:) :: bsrValC
       integer(c_int),target,dimension(:) :: bsrRowPtrC
       integer(c_int),target,dimension(:) :: bsrColIndC
-      integer(c_int),value :: rowBlockDimC
-      integer(c_int),value :: colBlockDimC
-      type(c_ptr),value :: buffer
+      integer(c_int) :: rowBlockDimC
+      integer(c_int) :: colBlockDimC
+      type(c_ptr) :: buffer
       !
       hipsparseCgebsr2gebsr_rank_1 = hipsparseCgebsr2gebsr_raw(handle,dirA,mb,nb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDimA,colBlockDimA,descrC,c_loc(bsrValC),c_loc(bsrRowPtrC),c_loc(bsrColIndC),rowBlockDimC,colBlockDimC,buffer)
     end function
@@ -31328,24 +31328,24 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgebsr2gebsr_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: bsrValA
       integer(c_int),target :: bsrRowPtrA
       integer(c_int),target :: bsrColIndA
-      integer(c_int),value :: rowBlockDimA
-      integer(c_int),value :: colBlockDimA
-      type(c_ptr),value :: descrC
+      integer(c_int) :: rowBlockDimA
+      integer(c_int) :: colBlockDimA
+      type(c_ptr) :: descrC
       complex(c_double_complex),target :: bsrValC
       integer(c_int),target :: bsrRowPtrC
       integer(c_int),target :: bsrColIndC
-      integer(c_int),value :: rowBlockDimC
-      integer(c_int),value :: colBlockDimC
-      type(c_ptr),value :: buffer
+      integer(c_int) :: rowBlockDimC
+      integer(c_int) :: colBlockDimC
+      type(c_ptr) :: buffer
       !
       hipsparseZgebsr2gebsr_rank_0 = hipsparseZgebsr2gebsr_raw(handle,dirA,mb,nb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDimA,colBlockDimA,descrC,c_loc(bsrValC),c_loc(bsrRowPtrC),c_loc(bsrColIndC),rowBlockDimC,colBlockDimC,buffer)
     end function
@@ -31356,24 +31356,24 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgebsr2gebsr_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: bsrValA
       integer(c_int),target,dimension(:) :: bsrRowPtrA
       integer(c_int),target,dimension(:) :: bsrColIndA
-      integer(c_int),value :: rowBlockDimA
-      integer(c_int),value :: colBlockDimA
-      type(c_ptr),value :: descrC
+      integer(c_int) :: rowBlockDimA
+      integer(c_int) :: colBlockDimA
+      type(c_ptr) :: descrC
       complex(c_double_complex),target,dimension(:) :: bsrValC
       integer(c_int),target,dimension(:) :: bsrRowPtrC
       integer(c_int),target,dimension(:) :: bsrColIndC
-      integer(c_int),value :: rowBlockDimC
-      integer(c_int),value :: colBlockDimC
-      type(c_ptr),value :: buffer
+      integer(c_int) :: rowBlockDimC
+      integer(c_int) :: colBlockDimC
+      type(c_ptr) :: buffer
       !
       hipsparseZgebsr2gebsr_rank_1 = hipsparseZgebsr2gebsr_raw(handle,dirA,mb,nb,nnzb,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDimA,colBlockDimA,descrC,c_loc(bsrValC),c_loc(bsrRowPtrC),c_loc(bsrColIndC),rowBlockDimC,colBlockDimC,buffer)
     end function
@@ -31384,14 +31384,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsru2csr_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       real(c_float),target :: csrVal
       integer(c_int),target :: csrRowPtr
       integer(c_int),target :: csrColInd
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseScsru2csr_bufferSizeExt_rank_0 = hipsparseScsru2csr_bufferSizeExt_raw(handle,m,n,nnz,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBufferSizeInBytes)
@@ -31403,14 +31403,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsru2csr_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       real(c_float),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseScsru2csr_bufferSizeExt_rank_1 = hipsparseScsru2csr_bufferSizeExt_raw(handle,m,n,nnz,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBufferSizeInBytes)
@@ -31422,14 +31422,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsru2csr_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       real(c_double),target :: csrVal
       integer(c_int),target :: csrRowPtr
       integer(c_int),target :: csrColInd
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDcsru2csr_bufferSizeExt_rank_0 = hipsparseDcsru2csr_bufferSizeExt_raw(handle,m,n,nnz,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBufferSizeInBytes)
@@ -31441,14 +31441,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsru2csr_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       real(c_double),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDcsru2csr_bufferSizeExt_rank_1 = hipsparseDcsru2csr_bufferSizeExt_raw(handle,m,n,nnz,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBufferSizeInBytes)
@@ -31460,14 +31460,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsru2csr_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       complex(c_float_complex),target :: csrVal
       integer(c_int),target :: csrRowPtr
       integer(c_int),target :: csrColInd
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseCcsru2csr_bufferSizeExt_rank_0 = hipsparseCcsru2csr_bufferSizeExt_raw(handle,m,n,nnz,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBufferSizeInBytes)
@@ -31479,14 +31479,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsru2csr_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       complex(c_float_complex),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseCcsru2csr_bufferSizeExt_rank_1 = hipsparseCcsru2csr_bufferSizeExt_raw(handle,m,n,nnz,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBufferSizeInBytes)
@@ -31498,14 +31498,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsru2csr_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       complex(c_double_complex),target :: csrVal
       integer(c_int),target :: csrRowPtr
       integer(c_int),target :: csrColInd
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseZcsru2csr_bufferSizeExt_rank_0 = hipsparseZcsru2csr_bufferSizeExt_raw(handle,m,n,nnz,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBufferSizeInBytes)
@@ -31517,14 +31517,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsru2csr_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       complex(c_double_complex),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseZcsru2csr_bufferSizeExt_rank_1 = hipsparseZcsru2csr_bufferSizeExt_raw(handle,m,n,nnz,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBufferSizeInBytes)
@@ -31536,16 +31536,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsru2csr_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_float),target :: csrVal
       integer(c_int),target :: csrRowPtr
       integer(c_int),target :: csrColInd
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: pBuffer
       !
       hipsparseScsru2csr_rank_0 = hipsparseScsru2csr_raw(handle,m,n,nnz,descrA,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBuffer)
     end function
@@ -31556,16 +31556,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsru2csr_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: pBuffer
       !
       hipsparseScsru2csr_rank_1 = hipsparseScsru2csr_raw(handle,m,n,nnz,descrA,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBuffer)
     end function
@@ -31576,16 +31576,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsru2csr_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_double),target :: csrVal
       integer(c_int),target :: csrRowPtr
       integer(c_int),target :: csrColInd
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: pBuffer
       !
       hipsparseDcsru2csr_rank_0 = hipsparseDcsru2csr_raw(handle,m,n,nnz,descrA,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBuffer)
     end function
@@ -31596,16 +31596,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsru2csr_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: pBuffer
       !
       hipsparseDcsru2csr_rank_1 = hipsparseDcsru2csr_raw(handle,m,n,nnz,descrA,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBuffer)
     end function
@@ -31616,16 +31616,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsru2csr_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: csrVal
       integer(c_int),target :: csrRowPtr
       integer(c_int),target :: csrColInd
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: pBuffer
       !
       hipsparseCcsru2csr_rank_0 = hipsparseCcsru2csr_raw(handle,m,n,nnz,descrA,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBuffer)
     end function
@@ -31636,16 +31636,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsru2csr_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: pBuffer
       !
       hipsparseCcsru2csr_rank_1 = hipsparseCcsru2csr_raw(handle,m,n,nnz,descrA,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBuffer)
     end function
@@ -31656,16 +31656,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsru2csr_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: csrVal
       integer(c_int),target :: csrRowPtr
       integer(c_int),target :: csrColInd
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: pBuffer
       !
       hipsparseZcsru2csr_rank_0 = hipsparseZcsru2csr_raw(handle,m,n,nnz,descrA,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBuffer)
     end function
@@ -31676,16 +31676,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsru2csr_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: pBuffer
       !
       hipsparseZcsru2csr_rank_1 = hipsparseZcsru2csr_raw(handle,m,n,nnz,descrA,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBuffer)
     end function
@@ -31696,16 +31696,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2csru_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_float),target :: csrVal
       integer(c_int),target :: csrRowPtr
       integer(c_int),target :: csrColInd
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: pBuffer
       !
       hipsparseScsr2csru_rank_0 = hipsparseScsr2csru_raw(handle,m,n,nnz,descrA,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBuffer)
     end function
@@ -31716,16 +31716,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2csru_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: pBuffer
       !
       hipsparseScsr2csru_rank_1 = hipsparseScsr2csru_raw(handle,m,n,nnz,descrA,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBuffer)
     end function
@@ -31736,16 +31736,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2csru_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_double),target :: csrVal
       integer(c_int),target :: csrRowPtr
       integer(c_int),target :: csrColInd
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: pBuffer
       !
       hipsparseDcsr2csru_rank_0 = hipsparseDcsr2csru_raw(handle,m,n,nnz,descrA,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBuffer)
     end function
@@ -31756,16 +31756,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2csru_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: pBuffer
       !
       hipsparseDcsr2csru_rank_1 = hipsparseDcsr2csru_raw(handle,m,n,nnz,descrA,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBuffer)
     end function
@@ -31776,16 +31776,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2csru_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: csrVal
       integer(c_int),target :: csrRowPtr
       integer(c_int),target :: csrColInd
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: pBuffer
       !
       hipsparseCcsr2csru_rank_0 = hipsparseCcsr2csru_raw(handle,m,n,nnz,descrA,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBuffer)
     end function
@@ -31796,16 +31796,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2csru_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: pBuffer
       !
       hipsparseCcsr2csru_rank_1 = hipsparseCcsr2csru_raw(handle,m,n,nnz,descrA,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBuffer)
     end function
@@ -31816,16 +31816,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2csru_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: csrVal
       integer(c_int),target :: csrRowPtr
       integer(c_int),target :: csrColInd
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: pBuffer
       !
       hipsparseZcsr2csru_rank_0 = hipsparseZcsr2csru_raw(handle,m,n,nnz,descrA,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBuffer)
     end function
@@ -31836,16 +31836,16 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2csru_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: pBuffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: pBuffer
       !
       hipsparseZcsr2csru_rank_1 = hipsparseZcsr2csru_raw(handle,m,n,nnz,descrA,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,pBuffer)
     end function
@@ -31856,18 +31856,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrcolor_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_float),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
-      type(c_ptr),value :: fractionToColor
+      type(c_ptr) :: fractionToColor
       integer(c_int) :: ncolors
       integer(c_int) :: coloring
       integer(c_int) :: reordering
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       !
       hipsparseScsrcolor_rank_0 = hipsparseScsrcolor_raw(handle,m,nnz,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),fractionToColor,ncolors,coloring,reordering,myInfo)
     end function
@@ -31878,18 +31878,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrcolor_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_float),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      type(c_ptr),value :: fractionToColor
+      type(c_ptr) :: fractionToColor
       integer(c_int) :: ncolors
       integer(c_int) :: coloring
       integer(c_int) :: reordering
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       !
       hipsparseScsrcolor_rank_1 = hipsparseScsrcolor_raw(handle,m,nnz,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),fractionToColor,ncolors,coloring,reordering,myInfo)
     end function
@@ -31900,18 +31900,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrcolor_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_double),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
-      type(c_ptr),value :: fractionToColor
+      type(c_ptr) :: fractionToColor
       integer(c_int) :: ncolors
       integer(c_int) :: coloring
       integer(c_int) :: reordering
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       !
       hipsparseDcsrcolor_rank_0 = hipsparseDcsrcolor_raw(handle,m,nnz,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),fractionToColor,ncolors,coloring,reordering,myInfo)
     end function
@@ -31922,18 +31922,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrcolor_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       real(c_double),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      type(c_ptr),value :: fractionToColor
+      type(c_ptr) :: fractionToColor
       integer(c_int) :: ncolors
       integer(c_int) :: coloring
       integer(c_int) :: reordering
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       !
       hipsparseDcsrcolor_rank_1 = hipsparseDcsrcolor_raw(handle,m,nnz,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),fractionToColor,ncolors,coloring,reordering,myInfo)
     end function
@@ -31944,18 +31944,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrcolor_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_float_complex),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
-      type(c_ptr),value :: fractionToColor
+      type(c_ptr) :: fractionToColor
       integer(c_int) :: ncolors
       integer(c_int) :: coloring
       integer(c_int) :: reordering
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       !
       hipsparseCcsrcolor_rank_0 = hipsparseCcsrcolor_raw(handle,m,nnz,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),fractionToColor,ncolors,coloring,reordering,myInfo)
     end function
@@ -31966,18 +31966,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrcolor_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_float_complex),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      type(c_ptr),value :: fractionToColor
+      type(c_ptr) :: fractionToColor
       integer(c_int) :: ncolors
       integer(c_int) :: coloring
       integer(c_int) :: reordering
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       !
       hipsparseCcsrcolor_rank_1 = hipsparseCcsrcolor_raw(handle,m,nnz,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),fractionToColor,ncolors,coloring,reordering,myInfo)
     end function
@@ -31988,18 +31988,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrcolor_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_double_complex),target :: csrValA
       integer(c_int),target :: csrRowPtrA
       integer(c_int),target :: csrColIndA
-      type(c_ptr),value :: fractionToColor
+      type(c_ptr) :: fractionToColor
       integer(c_int) :: ncolors
       integer(c_int) :: coloring
       integer(c_int) :: reordering
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       !
       hipsparseZcsrcolor_rank_0 = hipsparseZcsrcolor_raw(handle,m,nnz,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),fractionToColor,ncolors,coloring,reordering,myInfo)
     end function
@@ -32010,18 +32010,18 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrcolor_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descrA
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descrA
       complex(c_double_complex),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      type(c_ptr),value :: fractionToColor
+      type(c_ptr) :: fractionToColor
       integer(c_int) :: ncolors
       integer(c_int) :: coloring
       integer(c_int) :: reordering
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       !
       hipsparseZcsrcolor_rank_1 = hipsparseZcsrcolor_raw(handle,m,nnz,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),fractionToColor,ncolors,coloring,reordering,myInfo)
     end function
@@ -32032,10 +32032,10 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSparseToDense_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      type(c_ptr),value :: matA
-      type(c_ptr),value :: matB
-      integer(kind(HIPSPARSE_SPARSETODENSE_ALG_DEFAULT)),value :: alg
+      type(c_ptr) :: handle
+      type(c_ptr) :: matA
+      type(c_ptr) :: matB
+      integer(kind(HIPSPARSE_SPARSETODENSE_ALG_DEFAULT)) :: alg
       integer(c_size_t),target :: bufferSize
       !
       hipsparseSparseToDense_bufferSize_rank_0 = hipsparseSparseToDense_bufferSize_raw(handle,matA,matB,alg,c_loc(bufferSize))
@@ -32047,10 +32047,10 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSparseToDense_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      type(c_ptr),value :: matA
-      type(c_ptr),value :: matB
-      integer(kind(HIPSPARSE_SPARSETODENSE_ALG_DEFAULT)),value :: alg
+      type(c_ptr) :: handle
+      type(c_ptr) :: matA
+      type(c_ptr) :: matB
+      integer(kind(HIPSPARSE_SPARSETODENSE_ALG_DEFAULT)) :: alg
       integer(c_size_t),target,dimension(:) :: bufferSize
       !
       hipsparseSparseToDense_bufferSize_rank_1 = hipsparseSparseToDense_bufferSize_raw(handle,matA,matB,alg,c_loc(bufferSize))
@@ -32062,10 +32062,10 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDenseToSparse_bufferSize_rank_0
-      type(c_ptr),value :: handle
-      type(c_ptr),value :: matA
-      type(c_ptr),value :: matB
-      integer(kind(HIPSPARSE_DENSETOSPARSE_ALG_DEFAULT)),value :: alg
+      type(c_ptr) :: handle
+      type(c_ptr) :: matA
+      type(c_ptr) :: matB
+      integer(kind(HIPSPARSE_DENSETOSPARSE_ALG_DEFAULT)) :: alg
       integer(c_size_t),target :: bufferSize
       !
       hipsparseDenseToSparse_bufferSize_rank_0 = hipsparseDenseToSparse_bufferSize_raw(handle,matA,matB,alg,c_loc(bufferSize))
@@ -32077,10 +32077,10 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDenseToSparse_bufferSize_rank_1
-      type(c_ptr),value :: handle
-      type(c_ptr),value :: matA
-      type(c_ptr),value :: matB
-      integer(kind(HIPSPARSE_DENSETOSPARSE_ALG_DEFAULT)),value :: alg
+      type(c_ptr) :: handle
+      type(c_ptr) :: matA
+      type(c_ptr) :: matB
+      integer(kind(HIPSPARSE_DENSETOSPARSE_ALG_DEFAULT)) :: alg
       integer(c_size_t),target,dimension(:) :: bufferSize
       !
       hipsparseDenseToSparse_bufferSize_rank_1 = hipsparseDenseToSparse_bufferSize_raw(handle,matA,matB,alg,c_loc(bufferSize))
@@ -32092,14 +32092,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2StridedBatch_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target :: x
-      integer(c_int),value :: batchCount
-      integer(c_int),value :: batchStride
+      integer(c_int) :: batchCount
+      integer(c_int) :: batchStride
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseSgtsv2StridedBatch_bufferSizeExt_rank_0 = hipsparseSgtsv2StridedBatch_bufferSizeExt_raw(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBufferSizeInBytes)
@@ -32111,14 +32111,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2StridedBatch_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target,dimension(:) :: x
-      integer(c_int),value :: batchCount
-      integer(c_int),value :: batchStride
+      integer(c_int) :: batchCount
+      integer(c_int) :: batchStride
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseSgtsv2StridedBatch_bufferSizeExt_rank_1 = hipsparseSgtsv2StridedBatch_bufferSizeExt_raw(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBufferSizeInBytes)
@@ -32130,14 +32130,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2StridedBatch_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target :: x
-      integer(c_int),value :: batchCount
-      integer(c_int),value :: batchStride
+      integer(c_int) :: batchCount
+      integer(c_int) :: batchStride
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDgtsv2StridedBatch_bufferSizeExt_rank_0 = hipsparseDgtsv2StridedBatch_bufferSizeExt_raw(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBufferSizeInBytes)
@@ -32149,14 +32149,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2StridedBatch_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target,dimension(:) :: x
-      integer(c_int),value :: batchCount
-      integer(c_int),value :: batchStride
+      integer(c_int) :: batchCount
+      integer(c_int) :: batchStride
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseDgtsv2StridedBatch_bufferSizeExt_rank_1 = hipsparseDgtsv2StridedBatch_bufferSizeExt_raw(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBufferSizeInBytes)
@@ -32168,14 +32168,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2StridedBatch_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target :: x
-      integer(c_int),value :: batchCount
-      integer(c_int),value :: batchStride
+      integer(c_int) :: batchCount
+      integer(c_int) :: batchStride
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseCgtsv2StridedBatch_bufferSizeExt_rank_0 = hipsparseCgtsv2StridedBatch_bufferSizeExt_raw(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBufferSizeInBytes)
@@ -32187,14 +32187,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2StridedBatch_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target,dimension(:) :: x
-      integer(c_int),value :: batchCount
-      integer(c_int),value :: batchStride
+      integer(c_int) :: batchCount
+      integer(c_int) :: batchStride
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseCgtsv2StridedBatch_bufferSizeExt_rank_1 = hipsparseCgtsv2StridedBatch_bufferSizeExt_raw(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBufferSizeInBytes)
@@ -32206,14 +32206,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2StridedBatch_bufferSizeExt_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target :: x
-      integer(c_int),value :: batchCount
-      integer(c_int),value :: batchStride
+      integer(c_int) :: batchCount
+      integer(c_int) :: batchStride
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseZgtsv2StridedBatch_bufferSizeExt_rank_0 = hipsparseZgtsv2StridedBatch_bufferSizeExt_raw(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBufferSizeInBytes)
@@ -32225,14 +32225,14 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2StridedBatch_bufferSizeExt_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target,dimension(:) :: x
-      integer(c_int),value :: batchCount
-      integer(c_int),value :: batchStride
+      integer(c_int) :: batchCount
+      integer(c_int) :: batchStride
       integer(c_size_t) :: pBufferSizeInBytes
       !
       hipsparseZgtsv2StridedBatch_bufferSizeExt_rank_1 = hipsparseZgtsv2StridedBatch_bufferSizeExt_raw(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBufferSizeInBytes)
@@ -32244,15 +32244,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2StridedBatch_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target :: x
-      integer(c_int),value :: batchCount
-      integer(c_int),value :: batchStride
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: batchCount
+      integer(c_int) :: batchStride
+      type(c_ptr) :: pBuffer
       !
       hipsparseSgtsv2StridedBatch_rank_0 = hipsparseSgtsv2StridedBatch_raw(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBuffer)
     end function
@@ -32263,15 +32263,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2StridedBatch_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target,dimension(:) :: x
-      integer(c_int),value :: batchCount
-      integer(c_int),value :: batchStride
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: batchCount
+      integer(c_int) :: batchStride
+      type(c_ptr) :: pBuffer
       !
       hipsparseSgtsv2StridedBatch_rank_1 = hipsparseSgtsv2StridedBatch_raw(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBuffer)
     end function
@@ -32282,15 +32282,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2StridedBatch_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target :: x
-      integer(c_int),value :: batchCount
-      integer(c_int),value :: batchStride
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: batchCount
+      integer(c_int) :: batchStride
+      type(c_ptr) :: pBuffer
       !
       hipsparseDgtsv2StridedBatch_rank_0 = hipsparseDgtsv2StridedBatch_raw(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBuffer)
     end function
@@ -32301,15 +32301,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2StridedBatch_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target,dimension(:) :: x
-      integer(c_int),value :: batchCount
-      integer(c_int),value :: batchStride
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: batchCount
+      integer(c_int) :: batchStride
+      type(c_ptr) :: pBuffer
       !
       hipsparseDgtsv2StridedBatch_rank_1 = hipsparseDgtsv2StridedBatch_raw(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBuffer)
     end function
@@ -32320,15 +32320,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2StridedBatch_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target :: x
-      integer(c_int),value :: batchCount
-      integer(c_int),value :: batchStride
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: batchCount
+      integer(c_int) :: batchStride
+      type(c_ptr) :: pBuffer
       !
       hipsparseCgtsv2StridedBatch_rank_0 = hipsparseCgtsv2StridedBatch_raw(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBuffer)
     end function
@@ -32339,15 +32339,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2StridedBatch_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target,dimension(:) :: x
-      integer(c_int),value :: batchCount
-      integer(c_int),value :: batchStride
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: batchCount
+      integer(c_int) :: batchStride
+      type(c_ptr) :: pBuffer
       !
       hipsparseCgtsv2StridedBatch_rank_1 = hipsparseCgtsv2StridedBatch_raw(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBuffer)
     end function
@@ -32358,15 +32358,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2StridedBatch_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target :: x
-      integer(c_int),value :: batchCount
-      integer(c_int),value :: batchStride
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: batchCount
+      integer(c_int) :: batchStride
+      type(c_ptr) :: pBuffer
       !
       hipsparseZgtsv2StridedBatch_rank_0 = hipsparseZgtsv2StridedBatch_raw(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBuffer)
     end function
@@ -32377,15 +32377,15 @@ hipsparseZgtsv2StridedBatch_rank_1
       use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2StridedBatch_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target,dimension(:) :: x
-      integer(c_int),value :: batchCount
-      integer(c_int),value :: batchStride
-      type(c_ptr),value :: pBuffer
+      integer(c_int) :: batchCount
+      integer(c_int) :: batchStride
+      type(c_ptr) :: pBuffer
       !
       hipsparseZgtsv2StridedBatch_rank_1 = hipsparseZgtsv2StridedBatch_raw(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBuffer)
     end function
