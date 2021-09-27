@@ -1,52 +1,52 @@
 API Name | Specializations
 ---------------|---------
-[rocfft_setup_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__setup__raw.html "Interface documentation") | 
-[rocfft_setup](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__setup.html "Interface documentation") | 
-[rocfft_cleanup_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__cleanup__raw.html "Interface documentation") | 
-[rocfft_cleanup](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__cleanup.html "Interface documentation") | 
-[rocfft_plan_create_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__plan__create__raw.html "Interface documentation") | 
-[rocfft_plan_create](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__plan__create.html "Interface documentation") | Binary file hipfort/rocm-4.4.0/hipfort_rocfft.o matches, rank_0, rank_1
-[rocfft_execute_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__execute__raw.html "Interface documentation") | 
-[rocfft_execute](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__execute.html "Interface documentation") | 
-[rocfft_plan_destroy_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__plan__destroy__raw.html "Interface documentation") | 
-[rocfft_plan_destroy](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__plan__destroy.html "Interface documentation") | 
-[rocfft_plan_description_set_scale_float_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__plan__description__set__scale__float__raw.html "Interface documentation") | 
-[rocfft_plan_description_set_scale_float](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__plan__description__set__scale__float.html "Interface documentation") | 
-[rocfft_plan_description_set_scale_double_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__plan__description__set__scale__double__raw.html "Interface documentation") | 
-[rocfft_plan_description_set_scale_double](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__plan__description__set__scale__double.html "Interface documentation") | 
-[rocfft_plan_description_set_data_layout_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__plan__description__set__data__layout__raw.html "Interface documentation") | 
-[rocfft_plan_description_set_data_layout](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__plan__description__set__data__layout.html "Interface documentation") | Binary file hipfort/rocm-4.4.0/hipfort_rocfft.o matches, rank_0, rank_1
-[rocfft_get_version_string_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__get__version__string__raw.html "Interface documentation") | 
-[rocfft_get_version_string](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__get__version__string.html "Interface documentation") | 
-[rocfft_plan_description_set_devices_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__plan__description__set__devices__raw.html "Interface documentation") | 
-[rocfft_plan_description_set_devices](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__plan__description__set__devices.html "Interface documentation") | 
-[rocfft_plan_get_work_buffer_size_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__plan__get__work__buffer__size__raw.html "Interface documentation") | 
-[rocfft_plan_get_work_buffer_size](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__plan__get__work__buffer__size.html "Interface documentation") | 
-[rocfft_plan_get_print_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__plan__get__print__raw.html "Interface documentation") | 
-[rocfft_plan_get_print](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__plan__get__print.html "Interface documentation") | 
-[rocfft_plan_description_create_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__plan__description__create__raw.html "Interface documentation") | 
-[rocfft_plan_description_create](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__plan__description__create.html "Interface documentation") | 
-[rocfft_plan_description_destroy_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__plan__description__destroy__raw.html "Interface documentation") | 
-[rocfft_plan_description_destroy](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__plan__description__destroy.html "Interface documentation") | 
-[rocfft_execution_info_create_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__execution__info__create__raw.html "Interface documentation") | 
-[rocfft_execution_info_create](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__execution__info__create.html "Interface documentation") | 
-[rocfft_execution_info_destroy_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__execution__info__destroy__raw.html "Interface documentation") | 
-[rocfft_execution_info_destroy](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__execution__info__destroy.html "Interface documentation") | 
-[rocfft_execution_info_set_work_buffer_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__execution__info__set__work__buffer__raw.html "Interface documentation") | 
-[rocfft_execution_info_set_work_buffer](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__execution__info__set__work__buffer.html "Interface documentation") | 
-[rocfft_execution_info_set_mode_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__execution__info__set__mode__raw.html "Interface documentation") | 
-[rocfft_execution_info_set_mode](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__execution__info__set__mode.html "Interface documentation") | 
-[rocfft_execution_info_set_stream_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__execution__info__set__stream__raw.html "Interface documentation") | 
-[rocfft_execution_info_set_stream](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__execution__info__set__stream.html "Interface documentation") | 
-[rocfft_execution_info_set_load_callback_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__execution__info__set__load__callback__raw.html "Interface documentation") | 
-[rocfft_execution_info_set_load_callback](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__execution__info__set__load__callback.html "Interface documentation") | 
-[rocfft_execution_info_set_store_callback_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__execution__info__set__store__callback__raw.html "Interface documentation") | 
-[rocfft_execution_info_set_store_callback](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__execution__info__set__store__callback.html "Interface documentation") | 
-[rocfft_execution_info_get_events_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__execution__info__get__events__raw.html "Interface documentation") | 
-[rocfft_execution_info_get_events](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__execution__info__get__events.html "Interface documentation") | 
-[rocfft_cache_serialize_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__cache__serialize__raw.html "Interface documentation") | 
-[rocfft_cache_serialize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__cache__serialize.html "Interface documentation") | 
-[rocfft_cache_buffer_free_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__cache__buffer__free__raw.html "Interface documentation") | 
-[rocfft_cache_buffer_free](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__cache__buffer__free.html "Interface documentation") | 
-[rocfft_cache_deserialize_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__cache__deserialize__raw.html "Interface documentation") | 
-[rocfft_cache_deserialize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__cache__deserialize.html "Interface documentation") | 
+[rocfft_setup](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__setup.html "Interface documentation") | raw
+[rocfft_setup](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__setup.html "Interface documentation") | raw
+[rocfft_cleanup](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__cleanup.html "Interface documentation") | raw
+[rocfft_cleanup](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__cleanup.html "Interface documentation") | raw
+[rocfft_plan_create](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__plan__create.html "Interface documentation") | Binary file hipfort/rocm-4.4.0/hipfort_rocfft.o matches, rank_0, rank_1, raw
+[rocfft_plan_create](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__plan__create.html "Interface documentation") | Binary file hipfort/rocm-4.4.0/hipfort_rocfft.o matches, rank_0, rank_1, raw
+[rocfft_execute](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__execute.html "Interface documentation") | raw
+[rocfft_execute](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__execute.html "Interface documentation") | raw
+[rocfft_plan_destroy](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__plan__destroy.html "Interface documentation") | raw
+[rocfft_plan_destroy](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__plan__destroy.html "Interface documentation") | raw
+[rocfft_plan_description_set_scale_float](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__plan__description__set__scale__float.html "Interface documentation") | raw
+[rocfft_plan_description_set_scale_float](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__plan__description__set__scale__float.html "Interface documentation") | raw
+[rocfft_plan_description_set_scale_double](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__plan__description__set__scale__double.html "Interface documentation") | raw
+[rocfft_plan_description_set_scale_double](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__plan__description__set__scale__double.html "Interface documentation") | raw
+[rocfft_plan_description_set_data_layout](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__plan__description__set__data__layout.html "Interface documentation") | Binary file hipfort/rocm-4.4.0/hipfort_rocfft.o matches, rank_0, rank_1, raw
+[rocfft_plan_description_set_data_layout](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__plan__description__set__data__layout.html "Interface documentation") | Binary file hipfort/rocm-4.4.0/hipfort_rocfft.o matches, rank_0, rank_1, raw
+[rocfft_get_version_string](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__get__version__string.html "Interface documentation") | raw
+[rocfft_get_version_string](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__get__version__string.html "Interface documentation") | raw
+[rocfft_plan_description_set_devices](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__plan__description__set__devices.html "Interface documentation") | raw
+[rocfft_plan_description_set_devices](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__plan__description__set__devices.html "Interface documentation") | raw
+[rocfft_plan_get_work_buffer_size](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__plan__get__work__buffer__size.html "Interface documentation") | raw
+[rocfft_plan_get_work_buffer_size](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__plan__get__work__buffer__size.html "Interface documentation") | raw
+[rocfft_plan_get_print](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__plan__get__print.html "Interface documentation") | raw
+[rocfft_plan_get_print](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__plan__get__print.html "Interface documentation") | raw
+[rocfft_plan_description_create](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__plan__description__create.html "Interface documentation") | raw
+[rocfft_plan_description_create](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__plan__description__create.html "Interface documentation") | raw
+[rocfft_plan_description_destroy](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__plan__description__destroy.html "Interface documentation") | raw
+[rocfft_plan_description_destroy](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__plan__description__destroy.html "Interface documentation") | raw
+[rocfft_execution_info_create](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__execution__info__create.html "Interface documentation") | raw
+[rocfft_execution_info_create](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__execution__info__create.html "Interface documentation") | raw
+[rocfft_execution_info_destroy](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__execution__info__destroy.html "Interface documentation") | raw
+[rocfft_execution_info_destroy](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__execution__info__destroy.html "Interface documentation") | raw
+[rocfft_execution_info_set_work_buffer](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__execution__info__set__work__buffer.html "Interface documentation") | raw
+[rocfft_execution_info_set_work_buffer](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__execution__info__set__work__buffer.html "Interface documentation") | raw
+[rocfft_execution_info_set_mode](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__execution__info__set__mode.html "Interface documentation") | raw
+[rocfft_execution_info_set_mode](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__execution__info__set__mode.html "Interface documentation") | raw
+[rocfft_execution_info_set_stream](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__execution__info__set__stream.html "Interface documentation") | raw
+[rocfft_execution_info_set_stream](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__execution__info__set__stream.html "Interface documentation") | raw
+[rocfft_execution_info_set_load_callback](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__execution__info__set__load__callback.html "Interface documentation") | raw
+[rocfft_execution_info_set_load_callback](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__execution__info__set__load__callback.html "Interface documentation") | raw
+[rocfft_execution_info_set_store_callback](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__execution__info__set__store__callback.html "Interface documentation") | raw
+[rocfft_execution_info_set_store_callback](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__execution__info__set__store__callback.html "Interface documentation") | raw
+[rocfft_execution_info_get_events](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__execution__info__get__events.html "Interface documentation") | raw
+[rocfft_execution_info_get_events](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__execution__info__get__events.html "Interface documentation") | raw
+[rocfft_cache_serialize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__cache__serialize.html "Interface documentation") | raw
+[rocfft_cache_serialize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__cache__serialize.html "Interface documentation") | raw
+[rocfft_cache_buffer_free](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__cache__buffer__free.html "Interface documentation") | raw
+[rocfft_cache_buffer_free](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__cache__buffer__free.html "Interface documentation") | raw
+[rocfft_cache_deserialize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__cache__deserialize.html "Interface documentation") | raw
+[rocfft_cache_deserialize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__cache__deserialize.html "Interface documentation") | raw
