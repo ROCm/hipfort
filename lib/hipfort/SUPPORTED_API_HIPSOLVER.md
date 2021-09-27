@@ -1,118 +1,118 @@
-API Name | Specializations
----------------|---------
-[hipsolverCreate](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercreate.html "Interface documentation") | raw
-[hipsolverDestroy](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdestroy.html "Interface documentation") | raw
-[hipsolverSetStream](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolversetstream.html "Interface documentation") | raw
-[hipsolverGetStream](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvergetstream.html "Interface documentation") | raw
-[hipsolverSorgbr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolversorgbr__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverDorgbr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdorgbr__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverCungbr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercungbr__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverZungbr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzungbr__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverSorgbr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolversorgbr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverDorgbr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdorgbr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverCungbr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercungbr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverZungbr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzungbr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverSorgqr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolversorgqr__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverDorgqr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdorgqr__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverCungqr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercungqr__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverZungqr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzungqr__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverSorgqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolversorgqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverDorgqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdorgqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverCungqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercungqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverZungqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzungqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverSorgtr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolversorgtr__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverDorgtr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdorgtr__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverCungtr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercungtr__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverZungtr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzungtr__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverSorgtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolversorgtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverDorgtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdorgtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverCungtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercungtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverZungtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzungtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverSormqr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolversormqr__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverDormqr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdormqr__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverCunmqr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercunmqr__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverZunmqr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzunmqr__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverSormqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolversormqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverDormqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdormqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverCunmqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercunmqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverZunmqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzunmqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverSormtr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolversormtr__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverDormtr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdormtr__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverCunmtr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercunmtr__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverZunmtr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzunmtr__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverSormtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolversormtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverDormtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdormtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverCunmtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercunmtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverZunmtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzunmtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverSgebrd_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolversgebrd__buffersize.html "Interface documentation") | raw
-[hipsolverDgebrd_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdgebrd__buffersize.html "Interface documentation") | raw
-[hipsolverCgebrd_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercgebrd__buffersize.html "Interface documentation") | raw
-[hipsolverZgebrd_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzgebrd__buffersize.html "Interface documentation") | raw
-[hipsolverSgebrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolversgebrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverDgebrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdgebrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverCgebrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercgebrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverZgebrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzgebrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverSgeqrf_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolversgeqrf__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverDgeqrf_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdgeqrf__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverCgeqrf_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercgeqrf__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverZgeqrf_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzgeqrf__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverSgeqrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolversgeqrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverDgeqrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdgeqrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverCgeqrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercgeqrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverZgeqrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzgeqrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverSgetrf_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolversgetrf__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverDgetrf_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdgetrf__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverCgetrf_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercgetrf__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverZgetrf_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzgetrf__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverSgetrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolversgetrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverDgetrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdgetrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverCgetrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercgetrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverZgetrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzgetrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverSgetrs_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolversgetrs__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverDgetrs_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdgetrs__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverCgetrs_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercgetrs__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverZgetrs_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzgetrs__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverSgetrs](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolversgetrs.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverDgetrs](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdgetrs.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverCgetrs](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercgetrs.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverZgetrs](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzgetrs.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverSpotrf_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverspotrf__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverDpotrf_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdpotrf__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverCpotrf_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercpotrf__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverZpotrf_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzpotrf__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverSpotrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverspotrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverDpotrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdpotrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverCpotrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercpotrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverZpotrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzpotrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverSpotrfBatched_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverspotrfbatched__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverDpotrfBatched_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdpotrfbatched__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverCpotrfBatched_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercpotrfbatched__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverZpotrfBatched_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzpotrfbatched__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverSpotrfBatched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverspotrfbatched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverDpotrfBatched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdpotrfbatched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverCpotrfBatched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercpotrfbatched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverZpotrfBatched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzpotrfbatched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverSsyevd_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverssyevd__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverDsyevd_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdsyevd__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverCheevd_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercheevd__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverZheevd_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzheevd__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverSsyevd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverssyevd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverDsyevd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdsyevd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverCheevd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercheevd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverZheevd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzheevd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverSsygvd_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverssygvd__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverDsygvd_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdsygvd__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverChegvd_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverchegvd__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverZhegvd_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzhegvd__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverSsygvd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverssygvd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverDsygvd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdsygvd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverChegvd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverchegvd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverZhegvd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzhegvd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverSsytrd_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverssytrd__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverDsytrd_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdsytrd__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverChetrd_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverchetrd__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverZhetrd_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzhetrd__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverSsytrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverssytrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverDsytrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdsytrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverChetrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverchetrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[hipsolverZhetrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzhetrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+# | API Name | Specializations
+----|---------------|---------
+0 | [hipsolverCreate](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercreate.html "Interface documentation") | raw
+1 | [hipsolverDestroy](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdestroy.html "Interface documentation") | raw
+2 | [hipsolverSetStream](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolversetstream.html "Interface documentation") | raw
+3 | [hipsolverGetStream](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvergetstream.html "Interface documentation") | raw
+4 | [hipsolverSorgbr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolversorgbr__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+5 | [hipsolverDorgbr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdorgbr__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+6 | [hipsolverCungbr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercungbr__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+7 | [hipsolverZungbr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzungbr__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+8 | [hipsolverSorgbr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolversorgbr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+9 | [hipsolverDorgbr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdorgbr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+10 | [hipsolverCungbr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercungbr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+11 | [hipsolverZungbr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzungbr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+12 | [hipsolverSorgqr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolversorgqr__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+13 | [hipsolverDorgqr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdorgqr__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+14 | [hipsolverCungqr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercungqr__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+15 | [hipsolverZungqr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzungqr__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+16 | [hipsolverSorgqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolversorgqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+17 | [hipsolverDorgqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdorgqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+18 | [hipsolverCungqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercungqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+19 | [hipsolverZungqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzungqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+20 | [hipsolverSorgtr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolversorgtr__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+21 | [hipsolverDorgtr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdorgtr__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+22 | [hipsolverCungtr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercungtr__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+23 | [hipsolverZungtr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzungtr__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+24 | [hipsolverSorgtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolversorgtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+25 | [hipsolverDorgtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdorgtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+26 | [hipsolverCungtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercungtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+27 | [hipsolverZungtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzungtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+28 | [hipsolverSormqr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolversormqr__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+29 | [hipsolverDormqr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdormqr__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+30 | [hipsolverCunmqr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercunmqr__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+31 | [hipsolverZunmqr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzunmqr__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+32 | [hipsolverSormqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolversormqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+33 | [hipsolverDormqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdormqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+34 | [hipsolverCunmqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercunmqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+35 | [hipsolverZunmqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzunmqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+36 | [hipsolverSormtr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolversormtr__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+37 | [hipsolverDormtr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdormtr__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+38 | [hipsolverCunmtr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercunmtr__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+39 | [hipsolverZunmtr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzunmtr__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+40 | [hipsolverSormtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolversormtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+41 | [hipsolverDormtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdormtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+42 | [hipsolverCunmtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercunmtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+43 | [hipsolverZunmtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzunmtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+44 | [hipsolverSgebrd_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolversgebrd__buffersize.html "Interface documentation") | raw
+45 | [hipsolverDgebrd_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdgebrd__buffersize.html "Interface documentation") | raw
+46 | [hipsolverCgebrd_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercgebrd__buffersize.html "Interface documentation") | raw
+47 | [hipsolverZgebrd_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzgebrd__buffersize.html "Interface documentation") | raw
+48 | [hipsolverSgebrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolversgebrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+49 | [hipsolverDgebrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdgebrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+50 | [hipsolverCgebrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercgebrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+51 | [hipsolverZgebrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzgebrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+52 | [hipsolverSgeqrf_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolversgeqrf__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+53 | [hipsolverDgeqrf_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdgeqrf__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+54 | [hipsolverCgeqrf_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercgeqrf__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+55 | [hipsolverZgeqrf_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzgeqrf__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+56 | [hipsolverSgeqrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolversgeqrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+57 | [hipsolverDgeqrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdgeqrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+58 | [hipsolverCgeqrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercgeqrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+59 | [hipsolverZgeqrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzgeqrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+60 | [hipsolverSgetrf_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolversgetrf__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+61 | [hipsolverDgetrf_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdgetrf__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+62 | [hipsolverCgetrf_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercgetrf__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+63 | [hipsolverZgetrf_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzgetrf__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+64 | [hipsolverSgetrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolversgetrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+65 | [hipsolverDgetrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdgetrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+66 | [hipsolverCgetrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercgetrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+67 | [hipsolverZgetrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzgetrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+68 | [hipsolverSgetrs_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolversgetrs__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+69 | [hipsolverDgetrs_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdgetrs__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+70 | [hipsolverCgetrs_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercgetrs__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+71 | [hipsolverZgetrs_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzgetrs__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+72 | [hipsolverSgetrs](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolversgetrs.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+73 | [hipsolverDgetrs](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdgetrs.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+74 | [hipsolverCgetrs](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercgetrs.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+75 | [hipsolverZgetrs](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzgetrs.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+76 | [hipsolverSpotrf_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverspotrf__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+77 | [hipsolverDpotrf_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdpotrf__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+78 | [hipsolverCpotrf_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercpotrf__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+79 | [hipsolverZpotrf_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzpotrf__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+80 | [hipsolverSpotrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverspotrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+81 | [hipsolverDpotrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdpotrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+82 | [hipsolverCpotrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercpotrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+83 | [hipsolverZpotrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzpotrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+84 | [hipsolverSpotrfBatched_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverspotrfbatched__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+85 | [hipsolverDpotrfBatched_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdpotrfbatched__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+86 | [hipsolverCpotrfBatched_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercpotrfbatched__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+87 | [hipsolverZpotrfBatched_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzpotrfbatched__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+88 | [hipsolverSpotrfBatched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverspotrfbatched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+89 | [hipsolverDpotrfBatched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdpotrfbatched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+90 | [hipsolverCpotrfBatched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercpotrfbatched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+91 | [hipsolverZpotrfBatched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzpotrfbatched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+92 | [hipsolverSsyevd_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverssyevd__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+93 | [hipsolverDsyevd_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdsyevd__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+94 | [hipsolverCheevd_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercheevd__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+95 | [hipsolverZheevd_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzheevd__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+96 | [hipsolverSsyevd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverssyevd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+97 | [hipsolverDsyevd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdsyevd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+98 | [hipsolverCheevd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercheevd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+99 | [hipsolverZheevd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzheevd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+100 | [hipsolverSsygvd_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverssygvd__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+101 | [hipsolverDsygvd_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdsygvd__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+102 | [hipsolverChegvd_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverchegvd__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+103 | [hipsolverZhegvd_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzhegvd__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+104 | [hipsolverSsygvd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverssygvd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+105 | [hipsolverDsygvd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdsygvd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+106 | [hipsolverChegvd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverchegvd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+107 | [hipsolverZhegvd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzhegvd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+108 | [hipsolverSsytrd_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverssytrd__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+109 | [hipsolverDsytrd_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdsytrd__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+110 | [hipsolverChetrd_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverchetrd__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+111 | [hipsolverZhetrd_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzhetrd__buffersize.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+112 | [hipsolverSsytrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverssytrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+113 | [hipsolverDsytrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdsytrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+114 | [hipsolverChetrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverchetrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+115 | [hipsolverZhetrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzhetrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw

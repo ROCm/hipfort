@@ -1,906 +1,906 @@
-API Name | Specializations
----------------|---------
-[rocsolver_get_version_string](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__get__version__string.html "Interface documentation") | raw
-[rocsolver_get_version_string](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__get__version__string.html "Interface documentation") | raw
-[rocsolver_log_begin](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__log__begin.html "Interface documentation") | raw
-[rocsolver_log_begin](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__log__begin.html "Interface documentation") | raw
-[rocsolver_log_end](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__log__end.html "Interface documentation") | raw
-[rocsolver_log_end](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__log__end.html "Interface documentation") | raw
-[rocsolver_log_set_layer_mode](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__log__set__layer__mode.html "Interface documentation") | raw
-[rocsolver_log_set_layer_mode](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__log__set__layer__mode.html "Interface documentation") | raw
-[rocsolver_log_set_max_levels](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__log__set__max__levels.html "Interface documentation") | raw
-[rocsolver_log_set_max_levels](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__log__set__max__levels.html "Interface documentation") | raw
-[rocsolver_log_restore_defaults](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__log__restore__defaults.html "Interface documentation") | raw
-[rocsolver_log_restore_defaults](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__log__restore__defaults.html "Interface documentation") | raw
-[rocsolver_log_write_profile](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__log__write__profile.html "Interface documentation") | raw
-[rocsolver_log_write_profile](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__log__write__profile.html "Interface documentation") | raw
-[rocsolver_log_flush_profile](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__log__flush__profile.html "Interface documentation") | raw
-[rocsolver_log_flush_profile](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__log__flush__profile.html "Interface documentation") | raw
-[rocsolver_clacgv](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__clacgv.html "Interface documentation") | rank_0, rank_1, raw
-[rocsolver_clacgv](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__clacgv.html "Interface documentation") | rank_0, rank_1, raw
-[rocsolver_zlacgv](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zlacgv.html "Interface documentation") | rank_0, rank_1, raw
-[rocsolver_zlacgv](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zlacgv.html "Interface documentation") | rank_0, rank_1, raw
-[rocsolver_slaswp](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__slaswp.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_slaswp](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__slaswp.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dlaswp](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dlaswp.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dlaswp](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dlaswp.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_claswp](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__claswp.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_claswp](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__claswp.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zlaswp](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zlaswp.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zlaswp](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zlaswp.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_slarfg](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__slarfg.html "Interface documentation") | rank_0, rank_1, raw
-[rocsolver_slarfg](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__slarfg.html "Interface documentation") | rank_0, rank_1, raw
-[rocsolver_dlarfg](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dlarfg.html "Interface documentation") | rank_0, rank_1, raw
-[rocsolver_dlarfg](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dlarfg.html "Interface documentation") | rank_0, rank_1, raw
-[rocsolver_clarfg](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__clarfg.html "Interface documentation") | rank_0, rank_1, raw
-[rocsolver_clarfg](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__clarfg.html "Interface documentation") | rank_0, rank_1, raw
-[rocsolver_zlarfg](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zlarfg.html "Interface documentation") | rank_0, rank_1, raw
-[rocsolver_zlarfg](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zlarfg.html "Interface documentation") | rank_0, rank_1, raw
-[rocsolver_slarft](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__slarft.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_slarft](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__slarft.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dlarft](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dlarft.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dlarft](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dlarft.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_clarft](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__clarft.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_clarft](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__clarft.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zlarft](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zlarft.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zlarft](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zlarft.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_slarf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__slarf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_slarf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__slarf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dlarf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dlarf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dlarf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dlarf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_clarf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__clarf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_clarf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__clarf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zlarf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zlarf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zlarf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zlarf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_slarfb](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__slarfb.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_slarfb](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__slarfb.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dlarfb](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dlarfb.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dlarfb](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dlarfb.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_clarfb](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__clarfb.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_clarfb](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__clarfb.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zlarfb](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zlarfb.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zlarfb](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zlarfb.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_slabrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__slabrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_slabrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__slabrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dlabrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dlabrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dlabrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dlabrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_clabrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__clabrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_clabrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__clabrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zlabrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zlabrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zlabrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zlabrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_slatrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__slatrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_slatrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__slatrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dlatrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dlatrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dlatrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dlatrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_clatrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__clatrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_clatrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__clatrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zlatrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zlatrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zlatrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zlatrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sorg2r](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorg2r.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sorg2r](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorg2r.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dorg2r](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorg2r.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dorg2r](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorg2r.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cung2r](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cung2r.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cung2r](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cung2r.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zung2r](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zung2r.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zung2r](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zung2r.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sorgqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorgqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sorgqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorgqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dorgqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorgqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dorgqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorgqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cungqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cungqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cungqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cungqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zungqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zungqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zungqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zungqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sorgl2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorgl2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sorgl2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorgl2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dorgl2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorgl2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dorgl2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorgl2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cungl2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cungl2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cungl2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cungl2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zungl2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zungl2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zungl2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zungl2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sorglq](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorglq.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sorglq](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorglq.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dorglq](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorglq.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dorglq](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorglq.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cunglq](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cunglq.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cunglq](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cunglq.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zunglq](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zunglq.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zunglq](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zunglq.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sorg2l](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorg2l.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sorg2l](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorg2l.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dorg2l](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorg2l.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dorg2l](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorg2l.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cung2l](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cung2l.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cung2l](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cung2l.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zung2l](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zung2l.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zung2l](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zung2l.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sorgql](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorgql.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sorgql](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorgql.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dorgql](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorgql.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dorgql](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorgql.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cungql](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cungql.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cungql](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cungql.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zungql](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zungql.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zungql](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zungql.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sorgbr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorgbr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sorgbr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorgbr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dorgbr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorgbr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dorgbr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorgbr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cungbr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cungbr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cungbr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cungbr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zungbr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zungbr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zungbr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zungbr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sorgtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorgtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sorgtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorgtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dorgtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorgtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dorgtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorgtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cungtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cungtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cungtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cungtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zungtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zungtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zungtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zungtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sorm2r](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorm2r.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sorm2r](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorm2r.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dorm2r](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorm2r.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dorm2r](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorm2r.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cunm2r](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cunm2r.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cunm2r](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cunm2r.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zunm2r](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zunm2r.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zunm2r](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zunm2r.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sormqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sormqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sormqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sormqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dormqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dormqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dormqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dormqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cunmqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cunmqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cunmqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cunmqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zunmqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zunmqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zunmqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zunmqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sorml2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorml2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sorml2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorml2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dorml2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorml2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dorml2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorml2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cunml2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cunml2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cunml2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cunml2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zunml2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zunml2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zunml2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zunml2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sormlq](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sormlq.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sormlq](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sormlq.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dormlq](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dormlq.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dormlq](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dormlq.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cunmlq](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cunmlq.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cunmlq](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cunmlq.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zunmlq](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zunmlq.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zunmlq](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zunmlq.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sorm2l](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorm2l.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sorm2l](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorm2l.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dorm2l](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorm2l.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dorm2l](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorm2l.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cunm2l](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cunm2l.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cunm2l](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cunm2l.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zunm2l](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zunm2l.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zunm2l](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zunm2l.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sormql](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sormql.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sormql](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sormql.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dormql](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dormql.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dormql](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dormql.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cunmql](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cunmql.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cunmql](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cunmql.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zunmql](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zunmql.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zunmql](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zunmql.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sormbr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sormbr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sormbr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sormbr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dormbr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dormbr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dormbr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dormbr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cunmbr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cunmbr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cunmbr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cunmbr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zunmbr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zunmbr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zunmbr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zunmbr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sormtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sormtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sormtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sormtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dormtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dormtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dormtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dormtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cunmtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cunmtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cunmtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cunmtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zunmtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zunmtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zunmtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zunmtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sbdsqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sbdsqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sbdsqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sbdsqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dbdsqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dbdsqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dbdsqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dbdsqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cbdsqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cbdsqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cbdsqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cbdsqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zbdsqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zbdsqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zbdsqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zbdsqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssterf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssterf.html "Interface documentation") | rank_0, rank_1, raw
-[rocsolver_ssterf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssterf.html "Interface documentation") | rank_0, rank_1, raw
-[rocsolver_dsterf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsterf.html "Interface documentation") | rank_0, rank_1, raw
-[rocsolver_dsterf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsterf.html "Interface documentation") | rank_0, rank_1, raw
-[rocsolver_ssteqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssteqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssteqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssteqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsteqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsteqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsteqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsteqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_csteqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__csteqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_csteqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__csteqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zsteqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zsteqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zsteqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zsteqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sstedc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sstedc.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sstedc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sstedc.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dstedc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dstedc.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dstedc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dstedc.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cstedc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cstedc.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cstedc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cstedc.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zstedc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zstedc.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zstedc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zstedc.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgetf2_npvt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetf2__npvt.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgetf2_npvt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetf2__npvt.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgetf2_npvt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetf2__npvt.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgetf2_npvt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetf2__npvt.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgetf2_npvt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetf2__npvt.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgetf2_npvt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetf2__npvt.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgetf2_npvt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetf2__npvt.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgetf2_npvt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetf2__npvt.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgetf2_npvt_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetf2__npvt__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgetf2_npvt_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetf2__npvt__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgetf2_npvt_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetf2__npvt__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgetf2_npvt_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetf2__npvt__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgetf2_npvt_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetf2__npvt__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgetf2_npvt_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetf2__npvt__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgetf2_npvt_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetf2__npvt__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgetf2_npvt_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetf2__npvt__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgetf2_npvt_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetf2__npvt__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgetf2_npvt_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetf2__npvt__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgetf2_npvt_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetf2__npvt__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgetf2_npvt_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetf2__npvt__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgetf2_npvt_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetf2__npvt__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgetf2_npvt_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetf2__npvt__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgetf2_npvt_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetf2__npvt__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgetf2_npvt_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetf2__npvt__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgetrf_npvt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetrf__npvt.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgetrf_npvt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetrf__npvt.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgetrf_npvt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetrf__npvt.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgetrf_npvt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetrf__npvt.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgetrf_npvt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetrf__npvt.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgetrf_npvt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetrf__npvt.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgetrf_npvt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetrf__npvt.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgetrf_npvt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetrf__npvt.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgetrf_npvt_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetrf__npvt__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgetrf_npvt_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetrf__npvt__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgetrf_npvt_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetrf__npvt__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgetrf_npvt_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetrf__npvt__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgetrf_npvt_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetrf__npvt__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgetrf_npvt_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetrf__npvt__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgetrf_npvt_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetrf__npvt__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgetrf_npvt_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetrf__npvt__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgetrf_npvt_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetrf__npvt__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgetrf_npvt_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetrf__npvt__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgetrf_npvt_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetrf__npvt__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgetrf_npvt_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetrf__npvt__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgetrf_npvt_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetrf__npvt__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgetrf_npvt_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetrf__npvt__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgetrf_npvt_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetrf__npvt__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgetrf_npvt_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetrf__npvt__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgetf2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetf2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgetf2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetf2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgetf2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetf2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgetf2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetf2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgetf2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetf2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgetf2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetf2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgetf2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetf2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgetf2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetf2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgetf2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetf2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgetf2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetf2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgetf2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetf2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgetf2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetf2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgetf2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetf2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgetf2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetf2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgetf2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetf2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgetf2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetf2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgetf2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetf2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgetf2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetf2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgetf2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetf2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgetf2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetf2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgetf2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetf2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgetf2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetf2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgetf2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetf2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgetf2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetf2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgetrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgetrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgetrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgetrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgetrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgetrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgetrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgetrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgetrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgetrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgetrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgetrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgetrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgetrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgetrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgetrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgetrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgetrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgetrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgetrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgetrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgetrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgetrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgetrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgeqr2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeqr2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgeqr2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeqr2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgeqr2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeqr2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgeqr2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeqr2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgeqr2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeqr2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgeqr2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeqr2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgeqr2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeqr2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgeqr2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeqr2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgeqr2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeqr2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgeqr2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeqr2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgeqr2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeqr2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgeqr2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeqr2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgeqr2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeqr2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgeqr2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeqr2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgeqr2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeqr2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgeqr2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeqr2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgeqr2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeqr2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgeqr2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeqr2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgeqr2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeqr2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgeqr2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeqr2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgeqr2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeqr2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgeqr2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeqr2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgeqr2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeqr2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgeqr2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeqr2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgeql2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeql2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgeql2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeql2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgeql2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeql2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgeql2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeql2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgeql2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeql2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgeql2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeql2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgeql2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeql2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgeql2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeql2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgeql2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeql2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgeql2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeql2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgeql2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeql2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgeql2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeql2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgeql2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeql2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgeql2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeql2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgeql2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeql2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgeql2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeql2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgeql2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeql2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgeql2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeql2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgeql2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeql2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgeql2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeql2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgeql2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeql2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgeql2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeql2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgeql2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeql2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgeql2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeql2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgelq2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgelq2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgelq2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgelq2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgelq2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgelq2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgelq2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgelq2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgelq2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgelq2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgelq2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgelq2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgelq2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgelq2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgelq2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgelq2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgelq2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgelq2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgelq2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgelq2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgelq2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgelq2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgelq2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgelq2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgelq2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgelq2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgelq2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgelq2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgelq2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgelq2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgelq2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgelq2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgelq2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgelq2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgelq2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgelq2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgelq2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgelq2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgelq2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgelq2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgelq2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgelq2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgelq2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgelq2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgelq2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgelq2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgelq2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgelq2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgeqrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeqrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgeqrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeqrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgeqrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeqrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgeqrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeqrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgeqrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeqrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgeqrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeqrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgeqrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeqrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgeqrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeqrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgeqrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeqrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgeqrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeqrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgeqrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeqrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgeqrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeqrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgeqrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeqrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgeqrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeqrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgeqrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeqrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgeqrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeqrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgeqrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeqrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgeqrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeqrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgeqrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeqrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgeqrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeqrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgeqrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeqrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgeqrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeqrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgeqrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeqrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgeqrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeqrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgeqlf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeqlf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgeqlf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeqlf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgeqlf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeqlf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgeqlf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeqlf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgeqlf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeqlf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgeqlf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeqlf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgeqlf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeqlf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgeqlf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeqlf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgeqlf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeqlf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgeqlf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeqlf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgeqlf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeqlf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgeqlf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeqlf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgeqlf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeqlf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgeqlf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeqlf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgeqlf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeqlf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgeqlf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeqlf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgeqlf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeqlf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgeqlf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeqlf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgeqlf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeqlf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgeqlf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeqlf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgeqlf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeqlf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgeqlf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeqlf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgeqlf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeqlf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgeqlf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeqlf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgelqf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgelqf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgelqf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgelqf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgelqf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgelqf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgelqf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgelqf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgelqf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgelqf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgelqf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgelqf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgelqf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgelqf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgelqf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgelqf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgelqf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgelqf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgelqf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgelqf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgelqf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgelqf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgelqf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgelqf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgelqf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgelqf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgelqf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgelqf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgelqf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgelqf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgelqf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgelqf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgelqf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgelqf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgelqf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgelqf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgelqf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgelqf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgelqf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgelqf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgelqf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgelqf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgelqf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgelqf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgelqf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgelqf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgelqf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgelqf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgebd2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgebd2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgebd2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgebd2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgebd2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgebd2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgebd2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgebd2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgebd2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgebd2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgebd2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgebd2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgebd2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgebd2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgebd2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgebd2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgebd2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgebd2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgebd2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgebd2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgebd2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgebd2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgebd2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgebd2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgebd2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgebd2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgebd2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgebd2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgebd2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgebd2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgebd2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgebd2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgebd2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgebd2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgebd2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgebd2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgebd2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgebd2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgebd2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgebd2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgebd2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgebd2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgebd2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgebd2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgebd2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgebd2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgebd2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgebd2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgebrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgebrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgebrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgebrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgebrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgebrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgebrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgebrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgebrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgebrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgebrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgebrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgebrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgebrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgebrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgebrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgebrd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgebrd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgebrd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgebrd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgebrd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgebrd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgebrd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgebrd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgebrd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgebrd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgebrd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgebrd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgebrd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgebrd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgebrd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgebrd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgebrd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgebrd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgebrd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgebrd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgebrd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgebrd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgebrd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgebrd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgebrd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgebrd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgebrd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgebrd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgebrd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgebrd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgebrd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgebrd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgetrs](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetrs.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgetrs](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetrs.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgetrs](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetrs.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgetrs](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetrs.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgetrs](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetrs.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgetrs](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetrs.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgetrs](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetrs.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgetrs](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetrs.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgetrs_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetrs__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgetrs_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetrs__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgetrs_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetrs__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgetrs_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetrs__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgetrs_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetrs__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgetrs_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetrs__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgetrs_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetrs__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgetrs_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetrs__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgetrs_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetrs__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgetrs_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetrs__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgetrs_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetrs__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgetrs_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetrs__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgetrs_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetrs__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgetrs_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetrs__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgetrs_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetrs__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgetrs_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetrs__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgetri](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetri.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgetri](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetri.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgetri](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetri.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgetri](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetri.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgetri](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetri.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgetri](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetri.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgetri](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetri.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgetri](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetri.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgetri_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetri__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgetri_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetri__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgetri_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetri__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgetri_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetri__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgetri_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetri__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgetri_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetri__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgetri_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetri__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgetri_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetri__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgetri_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetri__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgetri_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetri__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgetri_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetri__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgetri_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetri__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgetri_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetri__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgetri_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetri__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgetri_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetri__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgetri_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetri__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgels](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgels.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgels](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgels.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgels](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgels.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgels](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgels.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgels](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgels.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgels](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgels.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgels](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgels.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgels](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgels.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgels_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgels__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgels_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgels__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgels_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgels__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgels_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgels__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgels_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgels__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgels_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgels__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgels_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgels__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgels_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgels__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgels_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgels__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgels_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgels__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgels_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgels__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgels_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgels__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgels_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgels__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgels_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgels__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgels_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgels__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgels_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgels__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_spotf2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__spotf2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_spotf2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__spotf2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dpotf2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dpotf2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dpotf2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dpotf2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cpotf2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cpotf2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cpotf2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cpotf2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zpotf2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zpotf2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zpotf2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zpotf2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_spotf2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__spotf2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_spotf2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__spotf2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dpotf2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dpotf2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dpotf2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dpotf2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cpotf2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cpotf2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cpotf2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cpotf2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zpotf2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zpotf2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zpotf2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zpotf2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_spotf2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__spotf2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_spotf2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__spotf2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dpotf2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dpotf2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dpotf2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dpotf2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cpotf2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cpotf2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cpotf2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cpotf2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zpotf2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zpotf2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zpotf2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zpotf2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_spotrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__spotrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_spotrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__spotrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dpotrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dpotrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dpotrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dpotrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cpotrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cpotrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cpotrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cpotrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zpotrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zpotrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zpotrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zpotrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_spotrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__spotrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_spotrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__spotrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dpotrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dpotrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dpotrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dpotrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cpotrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cpotrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cpotrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cpotrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zpotrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zpotrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zpotrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zpotrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_spotrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__spotrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_spotrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__spotrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dpotrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dpotrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dpotrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dpotrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cpotrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cpotrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cpotrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cpotrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zpotrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zpotrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zpotrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zpotrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgesvd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgesvd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgesvd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgesvd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgesvd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgesvd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgesvd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgesvd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgesvd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgesvd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgesvd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgesvd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgesvd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgesvd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgesvd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgesvd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgesvd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgesvd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgesvd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgesvd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgesvd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgesvd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgesvd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgesvd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgesvd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgesvd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgesvd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgesvd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgesvd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgesvd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgesvd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgesvd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgesvd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgesvd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgesvd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgesvd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgesvd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgesvd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgesvd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgesvd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgesvd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgesvd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgesvd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgesvd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgesvd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgesvd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgesvd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgesvd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssytd2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssytd2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssytd2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssytd2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsytd2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsytd2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsytd2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsytd2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_chetd2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chetd2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_chetd2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chetd2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zhetd2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhetd2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zhetd2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhetd2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssytd2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssytd2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssytd2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssytd2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsytd2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsytd2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsytd2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsytd2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_chetd2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chetd2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_chetd2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chetd2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zhetd2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhetd2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zhetd2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhetd2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssytd2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssytd2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssytd2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssytd2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsytd2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsytd2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsytd2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsytd2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_chetd2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chetd2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_chetd2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chetd2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zhetd2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhetd2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zhetd2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhetd2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssytrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssytrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssytrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssytrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsytrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsytrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsytrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsytrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_chetrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chetrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_chetrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chetrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zhetrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhetrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zhetrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhetrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssytrd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssytrd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssytrd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssytrd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsytrd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsytrd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsytrd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsytrd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_chetrd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chetrd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_chetrd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chetrd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zhetrd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhetrd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zhetrd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhetrd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssytrd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssytrd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssytrd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssytrd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsytrd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsytrd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsytrd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsytrd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_chetrd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chetrd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_chetrd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chetrd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zhetrd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhetrd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zhetrd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhetrd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssygs2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygs2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssygs2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygs2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsygs2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygs2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsygs2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygs2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_chegs2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegs2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_chegs2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegs2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zhegs2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegs2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zhegs2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegs2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssygs2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygs2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssygs2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygs2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsygs2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygs2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsygs2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygs2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_chegs2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegs2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_chegs2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegs2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zhegs2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegs2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zhegs2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegs2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssygs2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygs2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssygs2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygs2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsygs2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygs2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsygs2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygs2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_chegs2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegs2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_chegs2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegs2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zhegs2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegs2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zhegs2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegs2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssygst](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygst.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssygst](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygst.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsygst](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygst.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsygst](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygst.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_chegst](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegst.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_chegst](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegst.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zhegst](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegst.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zhegst](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegst.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssygst_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygst__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssygst_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygst__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsygst_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygst__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsygst_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygst__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_chegst_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegst__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_chegst_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegst__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zhegst_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegst__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zhegst_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegst__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssygst_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygst__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssygst_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygst__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsygst_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygst__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsygst_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygst__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_chegst_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegst__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_chegst_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegst__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zhegst_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegst__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zhegst_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegst__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssyev](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssyev.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssyev](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssyev.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsyev](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsyev.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsyev](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsyev.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cheev](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cheev.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cheev](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cheev.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zheev](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zheev.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zheev](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zheev.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssyev_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssyev__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssyev_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssyev__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsyev_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsyev__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsyev_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsyev__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cheev_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cheev__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cheev_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cheev__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zheev_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zheev__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zheev_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zheev__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssyev_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssyev__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssyev_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssyev__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsyev_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsyev__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsyev_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsyev__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cheev_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cheev__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cheev_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cheev__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zheev_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zheev__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zheev_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zheev__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssyevd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssyevd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssyevd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssyevd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsyevd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsyevd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsyevd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsyevd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cheevd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cheevd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cheevd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cheevd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zheevd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zheevd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zheevd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zheevd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssyevd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssyevd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssyevd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssyevd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsyevd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsyevd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsyevd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsyevd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cheevd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cheevd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cheevd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cheevd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zheevd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zheevd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zheevd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zheevd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssyevd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssyevd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssyevd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssyevd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsyevd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsyevd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsyevd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsyevd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cheevd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cheevd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cheevd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cheevd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zheevd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zheevd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zheevd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zheevd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssygv](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygv.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssygv](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygv.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsygv](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygv.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsygv](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygv.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_chegv](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegv.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_chegv](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegv.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zhegv](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegv.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zhegv](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegv.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssygv_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygv__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssygv_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygv__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsygv_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygv__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsygv_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygv__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_chegv_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegv__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_chegv_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegv__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zhegv_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegv__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zhegv_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegv__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssygv_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygv__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssygv_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygv__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsygv_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygv__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsygv_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygv__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_chegv_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegv__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_chegv_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegv__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zhegv_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegv__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zhegv_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegv__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssygvd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygvd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssygvd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygvd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsygvd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygvd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsygvd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygvd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_chegvd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegvd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_chegvd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegvd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zhegvd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegvd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zhegvd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegvd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssygvd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygvd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssygvd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygvd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsygvd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygvd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsygvd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygvd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_chegvd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegvd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_chegvd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegvd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zhegvd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegvd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zhegvd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegvd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssygvd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygvd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ssygvd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygvd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsygvd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygvd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dsygvd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygvd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_chegvd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegvd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_chegvd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegvd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zhegvd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegvd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zhegvd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegvd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgetri_outofplace](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetri__outofplace.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgetri_outofplace](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetri__outofplace.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgetri_outofplace](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetri__outofplace.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgetri_outofplace](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetri__outofplace.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgetri_outofplace](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetri__outofplace.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgetri_outofplace](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetri__outofplace.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgetri_outofplace](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetri__outofplace.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgetri_outofplace](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetri__outofplace.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgetri_outofplace_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetri__outofplace__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgetri_outofplace_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetri__outofplace__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgetri_outofplace_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetri__outofplace__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgetri_outofplace_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetri__outofplace__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgetri_outofplace_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetri__outofplace__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgetri_outofplace_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetri__outofplace__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgetri_outofplace_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetri__outofplace__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgetri_outofplace_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetri__outofplace__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgetri_outofplace_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetri__outofplace__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_sgetri_outofplace_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetri__outofplace__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgetri_outofplace_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetri__outofplace__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dgetri_outofplace_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetri__outofplace__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgetri_outofplace_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetri__outofplace__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_cgetri_outofplace_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetri__outofplace__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgetri_outofplace_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetri__outofplace__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_zgetri_outofplace_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetri__outofplace__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_strtri](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__strtri.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_strtri](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__strtri.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dtrtri](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dtrtri.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dtrtri](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dtrtri.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ctrtri](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ctrtri.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ctrtri](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ctrtri.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ztrtri](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ztrtri.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ztrtri](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ztrtri.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_strtri_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__strtri__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_strtri_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__strtri__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dtrtri_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dtrtri__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dtrtri_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dtrtri__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ctrtri_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ctrtri__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ctrtri_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ctrtri__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ztrtri_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ztrtri__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ztrtri_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ztrtri__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_strtri_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__strtri__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_strtri_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__strtri__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dtrtri_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dtrtri__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_dtrtri_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dtrtri__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ctrtri_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ctrtri__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ctrtri_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ctrtri__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ztrtri_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ztrtri__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
-[rocsolver_ztrtri_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ztrtri__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+# | API Name | Specializations
+----|---------------|---------
+0 | [rocsolver_get_version_string](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__get__version__string.html "Interface documentation") | raw
+1 | [rocsolver_get_version_string](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__get__version__string.html "Interface documentation") | raw
+2 | [rocsolver_log_begin](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__log__begin.html "Interface documentation") | raw
+3 | [rocsolver_log_begin](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__log__begin.html "Interface documentation") | raw
+4 | [rocsolver_log_end](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__log__end.html "Interface documentation") | raw
+5 | [rocsolver_log_end](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__log__end.html "Interface documentation") | raw
+6 | [rocsolver_log_set_layer_mode](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__log__set__layer__mode.html "Interface documentation") | raw
+7 | [rocsolver_log_set_layer_mode](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__log__set__layer__mode.html "Interface documentation") | raw
+8 | [rocsolver_log_set_max_levels](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__log__set__max__levels.html "Interface documentation") | raw
+9 | [rocsolver_log_set_max_levels](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__log__set__max__levels.html "Interface documentation") | raw
+10 | [rocsolver_log_restore_defaults](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__log__restore__defaults.html "Interface documentation") | raw
+11 | [rocsolver_log_restore_defaults](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__log__restore__defaults.html "Interface documentation") | raw
+12 | [rocsolver_log_write_profile](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__log__write__profile.html "Interface documentation") | raw
+13 | [rocsolver_log_write_profile](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__log__write__profile.html "Interface documentation") | raw
+14 | [rocsolver_log_flush_profile](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__log__flush__profile.html "Interface documentation") | raw
+15 | [rocsolver_log_flush_profile](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__log__flush__profile.html "Interface documentation") | raw
+16 | [rocsolver_clacgv](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__clacgv.html "Interface documentation") | rank_0, rank_1, raw
+17 | [rocsolver_clacgv](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__clacgv.html "Interface documentation") | rank_0, rank_1, raw
+18 | [rocsolver_zlacgv](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zlacgv.html "Interface documentation") | rank_0, rank_1, raw
+19 | [rocsolver_zlacgv](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zlacgv.html "Interface documentation") | rank_0, rank_1, raw
+20 | [rocsolver_slaswp](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__slaswp.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+21 | [rocsolver_slaswp](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__slaswp.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+22 | [rocsolver_dlaswp](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dlaswp.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+23 | [rocsolver_dlaswp](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dlaswp.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+24 | [rocsolver_claswp](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__claswp.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+25 | [rocsolver_claswp](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__claswp.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+26 | [rocsolver_zlaswp](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zlaswp.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+27 | [rocsolver_zlaswp](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zlaswp.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+28 | [rocsolver_slarfg](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__slarfg.html "Interface documentation") | rank_0, rank_1, raw
+29 | [rocsolver_slarfg](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__slarfg.html "Interface documentation") | rank_0, rank_1, raw
+30 | [rocsolver_dlarfg](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dlarfg.html "Interface documentation") | rank_0, rank_1, raw
+31 | [rocsolver_dlarfg](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dlarfg.html "Interface documentation") | rank_0, rank_1, raw
+32 | [rocsolver_clarfg](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__clarfg.html "Interface documentation") | rank_0, rank_1, raw
+33 | [rocsolver_clarfg](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__clarfg.html "Interface documentation") | rank_0, rank_1, raw
+34 | [rocsolver_zlarfg](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zlarfg.html "Interface documentation") | rank_0, rank_1, raw
+35 | [rocsolver_zlarfg](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zlarfg.html "Interface documentation") | rank_0, rank_1, raw
+36 | [rocsolver_slarft](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__slarft.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+37 | [rocsolver_slarft](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__slarft.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+38 | [rocsolver_dlarft](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dlarft.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+39 | [rocsolver_dlarft](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dlarft.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+40 | [rocsolver_clarft](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__clarft.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+41 | [rocsolver_clarft](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__clarft.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+42 | [rocsolver_zlarft](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zlarft.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+43 | [rocsolver_zlarft](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zlarft.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+44 | [rocsolver_slarf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__slarf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+45 | [rocsolver_slarf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__slarf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+46 | [rocsolver_dlarf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dlarf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+47 | [rocsolver_dlarf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dlarf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+48 | [rocsolver_clarf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__clarf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+49 | [rocsolver_clarf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__clarf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+50 | [rocsolver_zlarf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zlarf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+51 | [rocsolver_zlarf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zlarf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+52 | [rocsolver_slarfb](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__slarfb.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+53 | [rocsolver_slarfb](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__slarfb.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+54 | [rocsolver_dlarfb](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dlarfb.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+55 | [rocsolver_dlarfb](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dlarfb.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+56 | [rocsolver_clarfb](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__clarfb.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+57 | [rocsolver_clarfb](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__clarfb.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+58 | [rocsolver_zlarfb](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zlarfb.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+59 | [rocsolver_zlarfb](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zlarfb.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+60 | [rocsolver_slabrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__slabrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+61 | [rocsolver_slabrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__slabrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+62 | [rocsolver_dlabrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dlabrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+63 | [rocsolver_dlabrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dlabrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+64 | [rocsolver_clabrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__clabrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+65 | [rocsolver_clabrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__clabrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+66 | [rocsolver_zlabrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zlabrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+67 | [rocsolver_zlabrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zlabrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+68 | [rocsolver_slatrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__slatrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+69 | [rocsolver_slatrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__slatrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+70 | [rocsolver_dlatrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dlatrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+71 | [rocsolver_dlatrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dlatrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+72 | [rocsolver_clatrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__clatrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+73 | [rocsolver_clatrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__clatrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+74 | [rocsolver_zlatrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zlatrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+75 | [rocsolver_zlatrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zlatrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+76 | [rocsolver_sorg2r](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorg2r.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+77 | [rocsolver_sorg2r](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorg2r.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+78 | [rocsolver_dorg2r](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorg2r.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+79 | [rocsolver_dorg2r](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorg2r.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+80 | [rocsolver_cung2r](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cung2r.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+81 | [rocsolver_cung2r](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cung2r.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+82 | [rocsolver_zung2r](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zung2r.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+83 | [rocsolver_zung2r](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zung2r.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+84 | [rocsolver_sorgqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorgqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+85 | [rocsolver_sorgqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorgqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+86 | [rocsolver_dorgqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorgqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+87 | [rocsolver_dorgqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorgqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+88 | [rocsolver_cungqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cungqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+89 | [rocsolver_cungqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cungqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+90 | [rocsolver_zungqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zungqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+91 | [rocsolver_zungqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zungqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+92 | [rocsolver_sorgl2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorgl2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+93 | [rocsolver_sorgl2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorgl2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+94 | [rocsolver_dorgl2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorgl2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+95 | [rocsolver_dorgl2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorgl2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+96 | [rocsolver_cungl2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cungl2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+97 | [rocsolver_cungl2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cungl2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+98 | [rocsolver_zungl2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zungl2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+99 | [rocsolver_zungl2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zungl2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+100 | [rocsolver_sorglq](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorglq.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+101 | [rocsolver_sorglq](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorglq.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+102 | [rocsolver_dorglq](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorglq.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+103 | [rocsolver_dorglq](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorglq.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+104 | [rocsolver_cunglq](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cunglq.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+105 | [rocsolver_cunglq](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cunglq.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+106 | [rocsolver_zunglq](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zunglq.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+107 | [rocsolver_zunglq](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zunglq.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+108 | [rocsolver_sorg2l](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorg2l.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+109 | [rocsolver_sorg2l](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorg2l.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+110 | [rocsolver_dorg2l](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorg2l.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+111 | [rocsolver_dorg2l](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorg2l.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+112 | [rocsolver_cung2l](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cung2l.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+113 | [rocsolver_cung2l](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cung2l.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+114 | [rocsolver_zung2l](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zung2l.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+115 | [rocsolver_zung2l](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zung2l.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+116 | [rocsolver_sorgql](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorgql.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+117 | [rocsolver_sorgql](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorgql.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+118 | [rocsolver_dorgql](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorgql.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+119 | [rocsolver_dorgql](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorgql.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+120 | [rocsolver_cungql](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cungql.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+121 | [rocsolver_cungql](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cungql.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+122 | [rocsolver_zungql](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zungql.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+123 | [rocsolver_zungql](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zungql.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+124 | [rocsolver_sorgbr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorgbr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+125 | [rocsolver_sorgbr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorgbr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+126 | [rocsolver_dorgbr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorgbr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+127 | [rocsolver_dorgbr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorgbr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+128 | [rocsolver_cungbr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cungbr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+129 | [rocsolver_cungbr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cungbr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+130 | [rocsolver_zungbr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zungbr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+131 | [rocsolver_zungbr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zungbr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+132 | [rocsolver_sorgtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorgtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+133 | [rocsolver_sorgtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorgtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+134 | [rocsolver_dorgtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorgtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+135 | [rocsolver_dorgtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorgtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+136 | [rocsolver_cungtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cungtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+137 | [rocsolver_cungtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cungtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+138 | [rocsolver_zungtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zungtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+139 | [rocsolver_zungtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zungtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+140 | [rocsolver_sorm2r](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorm2r.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+141 | [rocsolver_sorm2r](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorm2r.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+142 | [rocsolver_dorm2r](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorm2r.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+143 | [rocsolver_dorm2r](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorm2r.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+144 | [rocsolver_cunm2r](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cunm2r.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+145 | [rocsolver_cunm2r](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cunm2r.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+146 | [rocsolver_zunm2r](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zunm2r.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+147 | [rocsolver_zunm2r](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zunm2r.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+148 | [rocsolver_sormqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sormqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+149 | [rocsolver_sormqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sormqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+150 | [rocsolver_dormqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dormqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+151 | [rocsolver_dormqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dormqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+152 | [rocsolver_cunmqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cunmqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+153 | [rocsolver_cunmqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cunmqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+154 | [rocsolver_zunmqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zunmqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+155 | [rocsolver_zunmqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zunmqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+156 | [rocsolver_sorml2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorml2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+157 | [rocsolver_sorml2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorml2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+158 | [rocsolver_dorml2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorml2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+159 | [rocsolver_dorml2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorml2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+160 | [rocsolver_cunml2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cunml2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+161 | [rocsolver_cunml2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cunml2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+162 | [rocsolver_zunml2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zunml2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+163 | [rocsolver_zunml2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zunml2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+164 | [rocsolver_sormlq](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sormlq.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+165 | [rocsolver_sormlq](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sormlq.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+166 | [rocsolver_dormlq](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dormlq.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+167 | [rocsolver_dormlq](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dormlq.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+168 | [rocsolver_cunmlq](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cunmlq.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+169 | [rocsolver_cunmlq](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cunmlq.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+170 | [rocsolver_zunmlq](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zunmlq.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+171 | [rocsolver_zunmlq](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zunmlq.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+172 | [rocsolver_sorm2l](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorm2l.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+173 | [rocsolver_sorm2l](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sorm2l.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+174 | [rocsolver_dorm2l](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorm2l.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+175 | [rocsolver_dorm2l](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dorm2l.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+176 | [rocsolver_cunm2l](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cunm2l.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+177 | [rocsolver_cunm2l](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cunm2l.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+178 | [rocsolver_zunm2l](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zunm2l.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+179 | [rocsolver_zunm2l](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zunm2l.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+180 | [rocsolver_sormql](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sormql.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+181 | [rocsolver_sormql](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sormql.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+182 | [rocsolver_dormql](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dormql.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+183 | [rocsolver_dormql](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dormql.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+184 | [rocsolver_cunmql](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cunmql.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+185 | [rocsolver_cunmql](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cunmql.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+186 | [rocsolver_zunmql](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zunmql.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+187 | [rocsolver_zunmql](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zunmql.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+188 | [rocsolver_sormbr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sormbr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+189 | [rocsolver_sormbr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sormbr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+190 | [rocsolver_dormbr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dormbr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+191 | [rocsolver_dormbr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dormbr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+192 | [rocsolver_cunmbr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cunmbr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+193 | [rocsolver_cunmbr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cunmbr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+194 | [rocsolver_zunmbr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zunmbr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+195 | [rocsolver_zunmbr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zunmbr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+196 | [rocsolver_sormtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sormtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+197 | [rocsolver_sormtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sormtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+198 | [rocsolver_dormtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dormtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+199 | [rocsolver_dormtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dormtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+200 | [rocsolver_cunmtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cunmtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+201 | [rocsolver_cunmtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cunmtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+202 | [rocsolver_zunmtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zunmtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+203 | [rocsolver_zunmtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zunmtr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+204 | [rocsolver_sbdsqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sbdsqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+205 | [rocsolver_sbdsqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sbdsqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+206 | [rocsolver_dbdsqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dbdsqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+207 | [rocsolver_dbdsqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dbdsqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+208 | [rocsolver_cbdsqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cbdsqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+209 | [rocsolver_cbdsqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cbdsqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+210 | [rocsolver_zbdsqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zbdsqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+211 | [rocsolver_zbdsqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zbdsqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+212 | [rocsolver_ssterf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssterf.html "Interface documentation") | rank_0, rank_1, raw
+213 | [rocsolver_ssterf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssterf.html "Interface documentation") | rank_0, rank_1, raw
+214 | [rocsolver_dsterf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsterf.html "Interface documentation") | rank_0, rank_1, raw
+215 | [rocsolver_dsterf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsterf.html "Interface documentation") | rank_0, rank_1, raw
+216 | [rocsolver_ssteqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssteqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+217 | [rocsolver_ssteqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssteqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+218 | [rocsolver_dsteqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsteqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+219 | [rocsolver_dsteqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsteqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+220 | [rocsolver_csteqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__csteqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+221 | [rocsolver_csteqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__csteqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+222 | [rocsolver_zsteqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zsteqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+223 | [rocsolver_zsteqr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zsteqr.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+224 | [rocsolver_sstedc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sstedc.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+225 | [rocsolver_sstedc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sstedc.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+226 | [rocsolver_dstedc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dstedc.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+227 | [rocsolver_dstedc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dstedc.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+228 | [rocsolver_cstedc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cstedc.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+229 | [rocsolver_cstedc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cstedc.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+230 | [rocsolver_zstedc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zstedc.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+231 | [rocsolver_zstedc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zstedc.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+232 | [rocsolver_sgetf2_npvt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetf2__npvt.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+233 | [rocsolver_sgetf2_npvt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetf2__npvt.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+234 | [rocsolver_dgetf2_npvt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetf2__npvt.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+235 | [rocsolver_dgetf2_npvt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetf2__npvt.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+236 | [rocsolver_cgetf2_npvt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetf2__npvt.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+237 | [rocsolver_cgetf2_npvt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetf2__npvt.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+238 | [rocsolver_zgetf2_npvt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetf2__npvt.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+239 | [rocsolver_zgetf2_npvt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetf2__npvt.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+240 | [rocsolver_sgetf2_npvt_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetf2__npvt__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+241 | [rocsolver_sgetf2_npvt_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetf2__npvt__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+242 | [rocsolver_dgetf2_npvt_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetf2__npvt__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+243 | [rocsolver_dgetf2_npvt_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetf2__npvt__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+244 | [rocsolver_cgetf2_npvt_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetf2__npvt__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+245 | [rocsolver_cgetf2_npvt_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetf2__npvt__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+246 | [rocsolver_zgetf2_npvt_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetf2__npvt__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+247 | [rocsolver_zgetf2_npvt_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetf2__npvt__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+248 | [rocsolver_sgetf2_npvt_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetf2__npvt__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+249 | [rocsolver_sgetf2_npvt_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetf2__npvt__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+250 | [rocsolver_dgetf2_npvt_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetf2__npvt__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+251 | [rocsolver_dgetf2_npvt_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetf2__npvt__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+252 | [rocsolver_cgetf2_npvt_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetf2__npvt__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+253 | [rocsolver_cgetf2_npvt_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetf2__npvt__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+254 | [rocsolver_zgetf2_npvt_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetf2__npvt__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+255 | [rocsolver_zgetf2_npvt_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetf2__npvt__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+256 | [rocsolver_sgetrf_npvt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetrf__npvt.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+257 | [rocsolver_sgetrf_npvt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetrf__npvt.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+258 | [rocsolver_dgetrf_npvt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetrf__npvt.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+259 | [rocsolver_dgetrf_npvt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetrf__npvt.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+260 | [rocsolver_cgetrf_npvt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetrf__npvt.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+261 | [rocsolver_cgetrf_npvt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetrf__npvt.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+262 | [rocsolver_zgetrf_npvt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetrf__npvt.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+263 | [rocsolver_zgetrf_npvt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetrf__npvt.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+264 | [rocsolver_sgetrf_npvt_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetrf__npvt__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+265 | [rocsolver_sgetrf_npvt_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetrf__npvt__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+266 | [rocsolver_dgetrf_npvt_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetrf__npvt__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+267 | [rocsolver_dgetrf_npvt_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetrf__npvt__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+268 | [rocsolver_cgetrf_npvt_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetrf__npvt__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+269 | [rocsolver_cgetrf_npvt_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetrf__npvt__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+270 | [rocsolver_zgetrf_npvt_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetrf__npvt__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+271 | [rocsolver_zgetrf_npvt_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetrf__npvt__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+272 | [rocsolver_sgetrf_npvt_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetrf__npvt__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+273 | [rocsolver_sgetrf_npvt_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetrf__npvt__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+274 | [rocsolver_dgetrf_npvt_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetrf__npvt__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+275 | [rocsolver_dgetrf_npvt_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetrf__npvt__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+276 | [rocsolver_cgetrf_npvt_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetrf__npvt__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+277 | [rocsolver_cgetrf_npvt_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetrf__npvt__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+278 | [rocsolver_zgetrf_npvt_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetrf__npvt__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+279 | [rocsolver_zgetrf_npvt_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetrf__npvt__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+280 | [rocsolver_sgetf2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetf2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+281 | [rocsolver_sgetf2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetf2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+282 | [rocsolver_dgetf2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetf2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+283 | [rocsolver_dgetf2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetf2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+284 | [rocsolver_cgetf2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetf2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+285 | [rocsolver_cgetf2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetf2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+286 | [rocsolver_zgetf2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetf2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+287 | [rocsolver_zgetf2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetf2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+288 | [rocsolver_sgetf2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetf2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+289 | [rocsolver_sgetf2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetf2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+290 | [rocsolver_dgetf2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetf2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+291 | [rocsolver_dgetf2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetf2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+292 | [rocsolver_cgetf2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetf2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+293 | [rocsolver_cgetf2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetf2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+294 | [rocsolver_zgetf2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetf2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+295 | [rocsolver_zgetf2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetf2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+296 | [rocsolver_sgetf2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetf2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+297 | [rocsolver_sgetf2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetf2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+298 | [rocsolver_dgetf2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetf2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+299 | [rocsolver_dgetf2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetf2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+300 | [rocsolver_cgetf2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetf2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+301 | [rocsolver_cgetf2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetf2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+302 | [rocsolver_zgetf2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetf2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+303 | [rocsolver_zgetf2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetf2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+304 | [rocsolver_sgetrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+305 | [rocsolver_sgetrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+306 | [rocsolver_dgetrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+307 | [rocsolver_dgetrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+308 | [rocsolver_cgetrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+309 | [rocsolver_cgetrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+310 | [rocsolver_zgetrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+311 | [rocsolver_zgetrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+312 | [rocsolver_sgetrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+313 | [rocsolver_sgetrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+314 | [rocsolver_dgetrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+315 | [rocsolver_dgetrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+316 | [rocsolver_cgetrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+317 | [rocsolver_cgetrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+318 | [rocsolver_zgetrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+319 | [rocsolver_zgetrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+320 | [rocsolver_sgetrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+321 | [rocsolver_sgetrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+322 | [rocsolver_dgetrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+323 | [rocsolver_dgetrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+324 | [rocsolver_cgetrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+325 | [rocsolver_cgetrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+326 | [rocsolver_zgetrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+327 | [rocsolver_zgetrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+328 | [rocsolver_sgeqr2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeqr2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+329 | [rocsolver_sgeqr2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeqr2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+330 | [rocsolver_dgeqr2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeqr2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+331 | [rocsolver_dgeqr2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeqr2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+332 | [rocsolver_cgeqr2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeqr2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+333 | [rocsolver_cgeqr2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeqr2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+334 | [rocsolver_zgeqr2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeqr2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+335 | [rocsolver_zgeqr2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeqr2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+336 | [rocsolver_sgeqr2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeqr2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+337 | [rocsolver_sgeqr2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeqr2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+338 | [rocsolver_dgeqr2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeqr2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+339 | [rocsolver_dgeqr2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeqr2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+340 | [rocsolver_cgeqr2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeqr2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+341 | [rocsolver_cgeqr2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeqr2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+342 | [rocsolver_zgeqr2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeqr2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+343 | [rocsolver_zgeqr2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeqr2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+344 | [rocsolver_sgeqr2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeqr2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+345 | [rocsolver_sgeqr2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeqr2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+346 | [rocsolver_dgeqr2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeqr2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+347 | [rocsolver_dgeqr2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeqr2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+348 | [rocsolver_cgeqr2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeqr2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+349 | [rocsolver_cgeqr2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeqr2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+350 | [rocsolver_zgeqr2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeqr2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+351 | [rocsolver_zgeqr2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeqr2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+352 | [rocsolver_sgeql2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeql2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+353 | [rocsolver_sgeql2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeql2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+354 | [rocsolver_dgeql2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeql2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+355 | [rocsolver_dgeql2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeql2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+356 | [rocsolver_cgeql2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeql2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+357 | [rocsolver_cgeql2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeql2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+358 | [rocsolver_zgeql2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeql2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+359 | [rocsolver_zgeql2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeql2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+360 | [rocsolver_sgeql2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeql2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+361 | [rocsolver_sgeql2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeql2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+362 | [rocsolver_dgeql2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeql2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+363 | [rocsolver_dgeql2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeql2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+364 | [rocsolver_cgeql2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeql2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+365 | [rocsolver_cgeql2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeql2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+366 | [rocsolver_zgeql2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeql2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+367 | [rocsolver_zgeql2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeql2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+368 | [rocsolver_sgeql2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeql2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+369 | [rocsolver_sgeql2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeql2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+370 | [rocsolver_dgeql2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeql2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+371 | [rocsolver_dgeql2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeql2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+372 | [rocsolver_cgeql2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeql2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+373 | [rocsolver_cgeql2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeql2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+374 | [rocsolver_zgeql2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeql2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+375 | [rocsolver_zgeql2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeql2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+376 | [rocsolver_sgelq2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgelq2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+377 | [rocsolver_sgelq2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgelq2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+378 | [rocsolver_dgelq2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgelq2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+379 | [rocsolver_dgelq2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgelq2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+380 | [rocsolver_cgelq2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgelq2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+381 | [rocsolver_cgelq2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgelq2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+382 | [rocsolver_zgelq2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgelq2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+383 | [rocsolver_zgelq2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgelq2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+384 | [rocsolver_sgelq2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgelq2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+385 | [rocsolver_sgelq2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgelq2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+386 | [rocsolver_dgelq2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgelq2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+387 | [rocsolver_dgelq2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgelq2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+388 | [rocsolver_cgelq2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgelq2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+389 | [rocsolver_cgelq2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgelq2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+390 | [rocsolver_zgelq2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgelq2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+391 | [rocsolver_zgelq2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgelq2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+392 | [rocsolver_sgelq2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgelq2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+393 | [rocsolver_sgelq2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgelq2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+394 | [rocsolver_dgelq2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgelq2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+395 | [rocsolver_dgelq2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgelq2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+396 | [rocsolver_cgelq2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgelq2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+397 | [rocsolver_cgelq2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgelq2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+398 | [rocsolver_zgelq2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgelq2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+399 | [rocsolver_zgelq2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgelq2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+400 | [rocsolver_sgeqrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeqrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+401 | [rocsolver_sgeqrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeqrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+402 | [rocsolver_dgeqrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeqrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+403 | [rocsolver_dgeqrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeqrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+404 | [rocsolver_cgeqrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeqrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+405 | [rocsolver_cgeqrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeqrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+406 | [rocsolver_zgeqrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeqrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+407 | [rocsolver_zgeqrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeqrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+408 | [rocsolver_sgeqrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeqrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+409 | [rocsolver_sgeqrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeqrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+410 | [rocsolver_dgeqrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeqrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+411 | [rocsolver_dgeqrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeqrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+412 | [rocsolver_cgeqrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeqrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+413 | [rocsolver_cgeqrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeqrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+414 | [rocsolver_zgeqrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeqrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+415 | [rocsolver_zgeqrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeqrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+416 | [rocsolver_sgeqrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeqrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+417 | [rocsolver_sgeqrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeqrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+418 | [rocsolver_dgeqrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeqrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+419 | [rocsolver_dgeqrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeqrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+420 | [rocsolver_cgeqrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeqrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+421 | [rocsolver_cgeqrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeqrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+422 | [rocsolver_zgeqrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeqrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+423 | [rocsolver_zgeqrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeqrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+424 | [rocsolver_sgeqlf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeqlf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+425 | [rocsolver_sgeqlf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeqlf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+426 | [rocsolver_dgeqlf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeqlf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+427 | [rocsolver_dgeqlf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeqlf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+428 | [rocsolver_cgeqlf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeqlf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+429 | [rocsolver_cgeqlf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeqlf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+430 | [rocsolver_zgeqlf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeqlf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+431 | [rocsolver_zgeqlf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeqlf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+432 | [rocsolver_sgeqlf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeqlf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+433 | [rocsolver_sgeqlf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeqlf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+434 | [rocsolver_dgeqlf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeqlf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+435 | [rocsolver_dgeqlf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeqlf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+436 | [rocsolver_cgeqlf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeqlf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+437 | [rocsolver_cgeqlf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeqlf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+438 | [rocsolver_zgeqlf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeqlf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+439 | [rocsolver_zgeqlf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeqlf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+440 | [rocsolver_sgeqlf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeqlf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+441 | [rocsolver_sgeqlf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgeqlf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+442 | [rocsolver_dgeqlf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeqlf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+443 | [rocsolver_dgeqlf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgeqlf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+444 | [rocsolver_cgeqlf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeqlf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+445 | [rocsolver_cgeqlf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgeqlf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+446 | [rocsolver_zgeqlf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeqlf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+447 | [rocsolver_zgeqlf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgeqlf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+448 | [rocsolver_sgelqf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgelqf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+449 | [rocsolver_sgelqf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgelqf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+450 | [rocsolver_dgelqf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgelqf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+451 | [rocsolver_dgelqf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgelqf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+452 | [rocsolver_cgelqf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgelqf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+453 | [rocsolver_cgelqf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgelqf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+454 | [rocsolver_zgelqf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgelqf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+455 | [rocsolver_zgelqf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgelqf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+456 | [rocsolver_sgelqf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgelqf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+457 | [rocsolver_sgelqf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgelqf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+458 | [rocsolver_dgelqf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgelqf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+459 | [rocsolver_dgelqf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgelqf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+460 | [rocsolver_cgelqf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgelqf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+461 | [rocsolver_cgelqf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgelqf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+462 | [rocsolver_zgelqf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgelqf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+463 | [rocsolver_zgelqf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgelqf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+464 | [rocsolver_sgelqf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgelqf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+465 | [rocsolver_sgelqf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgelqf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+466 | [rocsolver_dgelqf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgelqf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+467 | [rocsolver_dgelqf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgelqf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+468 | [rocsolver_cgelqf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgelqf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+469 | [rocsolver_cgelqf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgelqf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+470 | [rocsolver_zgelqf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgelqf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+471 | [rocsolver_zgelqf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgelqf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+472 | [rocsolver_sgebd2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgebd2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+473 | [rocsolver_sgebd2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgebd2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+474 | [rocsolver_dgebd2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgebd2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+475 | [rocsolver_dgebd2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgebd2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+476 | [rocsolver_cgebd2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgebd2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+477 | [rocsolver_cgebd2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgebd2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+478 | [rocsolver_zgebd2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgebd2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+479 | [rocsolver_zgebd2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgebd2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+480 | [rocsolver_sgebd2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgebd2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+481 | [rocsolver_sgebd2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgebd2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+482 | [rocsolver_dgebd2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgebd2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+483 | [rocsolver_dgebd2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgebd2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+484 | [rocsolver_cgebd2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgebd2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+485 | [rocsolver_cgebd2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgebd2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+486 | [rocsolver_zgebd2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgebd2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+487 | [rocsolver_zgebd2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgebd2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+488 | [rocsolver_sgebd2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgebd2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+489 | [rocsolver_sgebd2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgebd2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+490 | [rocsolver_dgebd2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgebd2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+491 | [rocsolver_dgebd2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgebd2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+492 | [rocsolver_cgebd2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgebd2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+493 | [rocsolver_cgebd2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgebd2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+494 | [rocsolver_zgebd2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgebd2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+495 | [rocsolver_zgebd2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgebd2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+496 | [rocsolver_sgebrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgebrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+497 | [rocsolver_sgebrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgebrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+498 | [rocsolver_dgebrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgebrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+499 | [rocsolver_dgebrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgebrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+500 | [rocsolver_cgebrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgebrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+501 | [rocsolver_cgebrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgebrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+502 | [rocsolver_zgebrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgebrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+503 | [rocsolver_zgebrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgebrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+504 | [rocsolver_sgebrd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgebrd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+505 | [rocsolver_sgebrd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgebrd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+506 | [rocsolver_dgebrd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgebrd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+507 | [rocsolver_dgebrd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgebrd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+508 | [rocsolver_cgebrd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgebrd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+509 | [rocsolver_cgebrd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgebrd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+510 | [rocsolver_zgebrd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgebrd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+511 | [rocsolver_zgebrd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgebrd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+512 | [rocsolver_sgebrd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgebrd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+513 | [rocsolver_sgebrd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgebrd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+514 | [rocsolver_dgebrd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgebrd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+515 | [rocsolver_dgebrd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgebrd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+516 | [rocsolver_cgebrd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgebrd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+517 | [rocsolver_cgebrd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgebrd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+518 | [rocsolver_zgebrd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgebrd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+519 | [rocsolver_zgebrd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgebrd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+520 | [rocsolver_sgetrs](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetrs.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+521 | [rocsolver_sgetrs](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetrs.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+522 | [rocsolver_dgetrs](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetrs.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+523 | [rocsolver_dgetrs](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetrs.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+524 | [rocsolver_cgetrs](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetrs.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+525 | [rocsolver_cgetrs](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetrs.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+526 | [rocsolver_zgetrs](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetrs.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+527 | [rocsolver_zgetrs](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetrs.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+528 | [rocsolver_sgetrs_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetrs__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+529 | [rocsolver_sgetrs_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetrs__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+530 | [rocsolver_dgetrs_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetrs__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+531 | [rocsolver_dgetrs_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetrs__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+532 | [rocsolver_cgetrs_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetrs__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+533 | [rocsolver_cgetrs_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetrs__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+534 | [rocsolver_zgetrs_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetrs__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+535 | [rocsolver_zgetrs_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetrs__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+536 | [rocsolver_sgetrs_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetrs__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+537 | [rocsolver_sgetrs_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetrs__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+538 | [rocsolver_dgetrs_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetrs__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+539 | [rocsolver_dgetrs_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetrs__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+540 | [rocsolver_cgetrs_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetrs__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+541 | [rocsolver_cgetrs_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetrs__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+542 | [rocsolver_zgetrs_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetrs__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+543 | [rocsolver_zgetrs_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetrs__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+544 | [rocsolver_sgetri](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetri.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+545 | [rocsolver_sgetri](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetri.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+546 | [rocsolver_dgetri](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetri.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+547 | [rocsolver_dgetri](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetri.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+548 | [rocsolver_cgetri](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetri.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+549 | [rocsolver_cgetri](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetri.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+550 | [rocsolver_zgetri](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetri.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+551 | [rocsolver_zgetri](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetri.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+552 | [rocsolver_sgetri_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetri__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+553 | [rocsolver_sgetri_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetri__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+554 | [rocsolver_dgetri_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetri__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+555 | [rocsolver_dgetri_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetri__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+556 | [rocsolver_cgetri_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetri__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+557 | [rocsolver_cgetri_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetri__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+558 | [rocsolver_zgetri_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetri__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+559 | [rocsolver_zgetri_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetri__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+560 | [rocsolver_sgetri_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetri__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+561 | [rocsolver_sgetri_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetri__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+562 | [rocsolver_dgetri_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetri__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+563 | [rocsolver_dgetri_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetri__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+564 | [rocsolver_cgetri_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetri__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+565 | [rocsolver_cgetri_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetri__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+566 | [rocsolver_zgetri_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetri__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+567 | [rocsolver_zgetri_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetri__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+568 | [rocsolver_sgels](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgels.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+569 | [rocsolver_sgels](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgels.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+570 | [rocsolver_dgels](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgels.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+571 | [rocsolver_dgels](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgels.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+572 | [rocsolver_cgels](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgels.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+573 | [rocsolver_cgels](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgels.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+574 | [rocsolver_zgels](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgels.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+575 | [rocsolver_zgels](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgels.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+576 | [rocsolver_sgels_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgels__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+577 | [rocsolver_sgels_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgels__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+578 | [rocsolver_dgels_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgels__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+579 | [rocsolver_dgels_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgels__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+580 | [rocsolver_cgels_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgels__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+581 | [rocsolver_cgels_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgels__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+582 | [rocsolver_zgels_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgels__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+583 | [rocsolver_zgels_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgels__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+584 | [rocsolver_sgels_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgels__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+585 | [rocsolver_sgels_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgels__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+586 | [rocsolver_dgels_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgels__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+587 | [rocsolver_dgels_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgels__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+588 | [rocsolver_cgels_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgels__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+589 | [rocsolver_cgels_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgels__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+590 | [rocsolver_zgels_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgels__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+591 | [rocsolver_zgels_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgels__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+592 | [rocsolver_spotf2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__spotf2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+593 | [rocsolver_spotf2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__spotf2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+594 | [rocsolver_dpotf2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dpotf2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+595 | [rocsolver_dpotf2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dpotf2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+596 | [rocsolver_cpotf2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cpotf2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+597 | [rocsolver_cpotf2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cpotf2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+598 | [rocsolver_zpotf2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zpotf2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+599 | [rocsolver_zpotf2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zpotf2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+600 | [rocsolver_spotf2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__spotf2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+601 | [rocsolver_spotf2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__spotf2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+602 | [rocsolver_dpotf2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dpotf2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+603 | [rocsolver_dpotf2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dpotf2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+604 | [rocsolver_cpotf2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cpotf2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+605 | [rocsolver_cpotf2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cpotf2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+606 | [rocsolver_zpotf2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zpotf2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+607 | [rocsolver_zpotf2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zpotf2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+608 | [rocsolver_spotf2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__spotf2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+609 | [rocsolver_spotf2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__spotf2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+610 | [rocsolver_dpotf2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dpotf2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+611 | [rocsolver_dpotf2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dpotf2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+612 | [rocsolver_cpotf2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cpotf2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+613 | [rocsolver_cpotf2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cpotf2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+614 | [rocsolver_zpotf2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zpotf2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+615 | [rocsolver_zpotf2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zpotf2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+616 | [rocsolver_spotrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__spotrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+617 | [rocsolver_spotrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__spotrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+618 | [rocsolver_dpotrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dpotrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+619 | [rocsolver_dpotrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dpotrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+620 | [rocsolver_cpotrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cpotrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+621 | [rocsolver_cpotrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cpotrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+622 | [rocsolver_zpotrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zpotrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+623 | [rocsolver_zpotrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zpotrf.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+624 | [rocsolver_spotrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__spotrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+625 | [rocsolver_spotrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__spotrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+626 | [rocsolver_dpotrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dpotrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+627 | [rocsolver_dpotrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dpotrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+628 | [rocsolver_cpotrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cpotrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+629 | [rocsolver_cpotrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cpotrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+630 | [rocsolver_zpotrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zpotrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+631 | [rocsolver_zpotrf_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zpotrf__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+632 | [rocsolver_spotrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__spotrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+633 | [rocsolver_spotrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__spotrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+634 | [rocsolver_dpotrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dpotrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+635 | [rocsolver_dpotrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dpotrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+636 | [rocsolver_cpotrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cpotrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+637 | [rocsolver_cpotrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cpotrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+638 | [rocsolver_zpotrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zpotrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+639 | [rocsolver_zpotrf_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zpotrf__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+640 | [rocsolver_sgesvd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgesvd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+641 | [rocsolver_sgesvd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgesvd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+642 | [rocsolver_dgesvd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgesvd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+643 | [rocsolver_dgesvd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgesvd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+644 | [rocsolver_cgesvd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgesvd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+645 | [rocsolver_cgesvd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgesvd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+646 | [rocsolver_zgesvd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgesvd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+647 | [rocsolver_zgesvd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgesvd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+648 | [rocsolver_sgesvd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgesvd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+649 | [rocsolver_sgesvd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgesvd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+650 | [rocsolver_dgesvd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgesvd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+651 | [rocsolver_dgesvd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgesvd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+652 | [rocsolver_cgesvd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgesvd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+653 | [rocsolver_cgesvd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgesvd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+654 | [rocsolver_zgesvd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgesvd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+655 | [rocsolver_zgesvd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgesvd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+656 | [rocsolver_sgesvd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgesvd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+657 | [rocsolver_sgesvd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgesvd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+658 | [rocsolver_dgesvd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgesvd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+659 | [rocsolver_dgesvd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgesvd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+660 | [rocsolver_cgesvd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgesvd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+661 | [rocsolver_cgesvd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgesvd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+662 | [rocsolver_zgesvd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgesvd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+663 | [rocsolver_zgesvd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgesvd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+664 | [rocsolver_ssytd2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssytd2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+665 | [rocsolver_ssytd2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssytd2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+666 | [rocsolver_dsytd2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsytd2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+667 | [rocsolver_dsytd2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsytd2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+668 | [rocsolver_chetd2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chetd2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+669 | [rocsolver_chetd2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chetd2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+670 | [rocsolver_zhetd2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhetd2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+671 | [rocsolver_zhetd2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhetd2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+672 | [rocsolver_ssytd2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssytd2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+673 | [rocsolver_ssytd2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssytd2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+674 | [rocsolver_dsytd2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsytd2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+675 | [rocsolver_dsytd2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsytd2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+676 | [rocsolver_chetd2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chetd2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+677 | [rocsolver_chetd2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chetd2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+678 | [rocsolver_zhetd2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhetd2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+679 | [rocsolver_zhetd2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhetd2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+680 | [rocsolver_ssytd2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssytd2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+681 | [rocsolver_ssytd2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssytd2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+682 | [rocsolver_dsytd2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsytd2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+683 | [rocsolver_dsytd2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsytd2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+684 | [rocsolver_chetd2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chetd2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+685 | [rocsolver_chetd2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chetd2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+686 | [rocsolver_zhetd2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhetd2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+687 | [rocsolver_zhetd2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhetd2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+688 | [rocsolver_ssytrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssytrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+689 | [rocsolver_ssytrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssytrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+690 | [rocsolver_dsytrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsytrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+691 | [rocsolver_dsytrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsytrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+692 | [rocsolver_chetrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chetrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+693 | [rocsolver_chetrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chetrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+694 | [rocsolver_zhetrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhetrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+695 | [rocsolver_zhetrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhetrd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+696 | [rocsolver_ssytrd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssytrd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+697 | [rocsolver_ssytrd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssytrd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+698 | [rocsolver_dsytrd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsytrd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+699 | [rocsolver_dsytrd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsytrd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+700 | [rocsolver_chetrd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chetrd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+701 | [rocsolver_chetrd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chetrd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+702 | [rocsolver_zhetrd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhetrd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+703 | [rocsolver_zhetrd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhetrd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+704 | [rocsolver_ssytrd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssytrd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+705 | [rocsolver_ssytrd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssytrd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+706 | [rocsolver_dsytrd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsytrd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+707 | [rocsolver_dsytrd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsytrd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+708 | [rocsolver_chetrd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chetrd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+709 | [rocsolver_chetrd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chetrd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+710 | [rocsolver_zhetrd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhetrd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+711 | [rocsolver_zhetrd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhetrd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+712 | [rocsolver_ssygs2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygs2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+713 | [rocsolver_ssygs2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygs2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+714 | [rocsolver_dsygs2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygs2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+715 | [rocsolver_dsygs2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygs2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+716 | [rocsolver_chegs2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegs2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+717 | [rocsolver_chegs2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegs2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+718 | [rocsolver_zhegs2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegs2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+719 | [rocsolver_zhegs2](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegs2.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+720 | [rocsolver_ssygs2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygs2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+721 | [rocsolver_ssygs2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygs2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+722 | [rocsolver_dsygs2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygs2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+723 | [rocsolver_dsygs2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygs2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+724 | [rocsolver_chegs2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegs2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+725 | [rocsolver_chegs2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegs2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+726 | [rocsolver_zhegs2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegs2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+727 | [rocsolver_zhegs2_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegs2__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+728 | [rocsolver_ssygs2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygs2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+729 | [rocsolver_ssygs2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygs2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+730 | [rocsolver_dsygs2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygs2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+731 | [rocsolver_dsygs2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygs2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+732 | [rocsolver_chegs2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegs2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+733 | [rocsolver_chegs2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegs2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+734 | [rocsolver_zhegs2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegs2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+735 | [rocsolver_zhegs2_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegs2__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+736 | [rocsolver_ssygst](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygst.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+737 | [rocsolver_ssygst](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygst.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+738 | [rocsolver_dsygst](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygst.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+739 | [rocsolver_dsygst](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygst.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+740 | [rocsolver_chegst](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegst.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+741 | [rocsolver_chegst](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegst.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+742 | [rocsolver_zhegst](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegst.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+743 | [rocsolver_zhegst](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegst.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+744 | [rocsolver_ssygst_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygst__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+745 | [rocsolver_ssygst_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygst__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+746 | [rocsolver_dsygst_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygst__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+747 | [rocsolver_dsygst_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygst__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+748 | [rocsolver_chegst_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegst__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+749 | [rocsolver_chegst_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegst__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+750 | [rocsolver_zhegst_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegst__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+751 | [rocsolver_zhegst_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegst__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+752 | [rocsolver_ssygst_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygst__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+753 | [rocsolver_ssygst_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygst__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+754 | [rocsolver_dsygst_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygst__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+755 | [rocsolver_dsygst_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygst__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+756 | [rocsolver_chegst_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegst__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+757 | [rocsolver_chegst_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegst__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+758 | [rocsolver_zhegst_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegst__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+759 | [rocsolver_zhegst_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegst__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+760 | [rocsolver_ssyev](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssyev.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+761 | [rocsolver_ssyev](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssyev.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+762 | [rocsolver_dsyev](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsyev.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+763 | [rocsolver_dsyev](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsyev.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+764 | [rocsolver_cheev](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cheev.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+765 | [rocsolver_cheev](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cheev.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+766 | [rocsolver_zheev](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zheev.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+767 | [rocsolver_zheev](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zheev.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+768 | [rocsolver_ssyev_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssyev__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+769 | [rocsolver_ssyev_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssyev__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+770 | [rocsolver_dsyev_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsyev__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+771 | [rocsolver_dsyev_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsyev__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+772 | [rocsolver_cheev_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cheev__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+773 | [rocsolver_cheev_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cheev__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+774 | [rocsolver_zheev_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zheev__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+775 | [rocsolver_zheev_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zheev__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+776 | [rocsolver_ssyev_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssyev__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+777 | [rocsolver_ssyev_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssyev__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+778 | [rocsolver_dsyev_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsyev__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+779 | [rocsolver_dsyev_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsyev__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+780 | [rocsolver_cheev_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cheev__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+781 | [rocsolver_cheev_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cheev__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+782 | [rocsolver_zheev_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zheev__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+783 | [rocsolver_zheev_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zheev__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+784 | [rocsolver_ssyevd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssyevd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+785 | [rocsolver_ssyevd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssyevd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+786 | [rocsolver_dsyevd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsyevd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+787 | [rocsolver_dsyevd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsyevd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+788 | [rocsolver_cheevd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cheevd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+789 | [rocsolver_cheevd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cheevd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+790 | [rocsolver_zheevd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zheevd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+791 | [rocsolver_zheevd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zheevd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+792 | [rocsolver_ssyevd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssyevd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+793 | [rocsolver_ssyevd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssyevd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+794 | [rocsolver_dsyevd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsyevd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+795 | [rocsolver_dsyevd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsyevd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+796 | [rocsolver_cheevd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cheevd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+797 | [rocsolver_cheevd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cheevd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+798 | [rocsolver_zheevd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zheevd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+799 | [rocsolver_zheevd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zheevd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+800 | [rocsolver_ssyevd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssyevd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+801 | [rocsolver_ssyevd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssyevd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+802 | [rocsolver_dsyevd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsyevd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+803 | [rocsolver_dsyevd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsyevd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+804 | [rocsolver_cheevd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cheevd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+805 | [rocsolver_cheevd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cheevd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+806 | [rocsolver_zheevd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zheevd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+807 | [rocsolver_zheevd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zheevd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+808 | [rocsolver_ssygv](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygv.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+809 | [rocsolver_ssygv](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygv.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+810 | [rocsolver_dsygv](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygv.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+811 | [rocsolver_dsygv](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygv.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+812 | [rocsolver_chegv](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegv.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+813 | [rocsolver_chegv](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegv.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+814 | [rocsolver_zhegv](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegv.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+815 | [rocsolver_zhegv](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegv.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+816 | [rocsolver_ssygv_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygv__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+817 | [rocsolver_ssygv_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygv__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+818 | [rocsolver_dsygv_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygv__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+819 | [rocsolver_dsygv_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygv__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+820 | [rocsolver_chegv_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegv__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+821 | [rocsolver_chegv_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegv__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+822 | [rocsolver_zhegv_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegv__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+823 | [rocsolver_zhegv_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegv__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+824 | [rocsolver_ssygv_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygv__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+825 | [rocsolver_ssygv_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygv__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+826 | [rocsolver_dsygv_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygv__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+827 | [rocsolver_dsygv_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygv__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+828 | [rocsolver_chegv_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegv__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+829 | [rocsolver_chegv_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegv__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+830 | [rocsolver_zhegv_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegv__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+831 | [rocsolver_zhegv_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegv__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+832 | [rocsolver_ssygvd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygvd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+833 | [rocsolver_ssygvd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygvd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+834 | [rocsolver_dsygvd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygvd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+835 | [rocsolver_dsygvd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygvd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+836 | [rocsolver_chegvd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegvd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+837 | [rocsolver_chegvd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegvd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+838 | [rocsolver_zhegvd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegvd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+839 | [rocsolver_zhegvd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegvd.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+840 | [rocsolver_ssygvd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygvd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+841 | [rocsolver_ssygvd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygvd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+842 | [rocsolver_dsygvd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygvd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+843 | [rocsolver_dsygvd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygvd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+844 | [rocsolver_chegvd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegvd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+845 | [rocsolver_chegvd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegvd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+846 | [rocsolver_zhegvd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegvd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+847 | [rocsolver_zhegvd_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegvd__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+848 | [rocsolver_ssygvd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygvd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+849 | [rocsolver_ssygvd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ssygvd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+850 | [rocsolver_dsygvd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygvd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+851 | [rocsolver_dsygvd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dsygvd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+852 | [rocsolver_chegvd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegvd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+853 | [rocsolver_chegvd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__chegvd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+854 | [rocsolver_zhegvd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegvd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+855 | [rocsolver_zhegvd_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zhegvd__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+856 | [rocsolver_sgetri_outofplace](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetri__outofplace.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+857 | [rocsolver_sgetri_outofplace](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetri__outofplace.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+858 | [rocsolver_dgetri_outofplace](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetri__outofplace.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+859 | [rocsolver_dgetri_outofplace](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetri__outofplace.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+860 | [rocsolver_cgetri_outofplace](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetri__outofplace.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+861 | [rocsolver_cgetri_outofplace](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetri__outofplace.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+862 | [rocsolver_zgetri_outofplace](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetri__outofplace.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+863 | [rocsolver_zgetri_outofplace](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetri__outofplace.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+864 | [rocsolver_sgetri_outofplace_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetri__outofplace__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+865 | [rocsolver_sgetri_outofplace_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetri__outofplace__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+866 | [rocsolver_dgetri_outofplace_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetri__outofplace__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+867 | [rocsolver_dgetri_outofplace_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetri__outofplace__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+868 | [rocsolver_cgetri_outofplace_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetri__outofplace__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+869 | [rocsolver_cgetri_outofplace_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetri__outofplace__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+870 | [rocsolver_zgetri_outofplace_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetri__outofplace__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+871 | [rocsolver_zgetri_outofplace_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetri__outofplace__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+872 | [rocsolver_sgetri_outofplace_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetri__outofplace__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+873 | [rocsolver_sgetri_outofplace_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__sgetri__outofplace__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+874 | [rocsolver_dgetri_outofplace_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetri__outofplace__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+875 | [rocsolver_dgetri_outofplace_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dgetri__outofplace__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+876 | [rocsolver_cgetri_outofplace_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetri__outofplace__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+877 | [rocsolver_cgetri_outofplace_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__cgetri__outofplace__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+878 | [rocsolver_zgetri_outofplace_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetri__outofplace__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+879 | [rocsolver_zgetri_outofplace_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__zgetri__outofplace__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+880 | [rocsolver_strtri](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__strtri.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+881 | [rocsolver_strtri](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__strtri.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+882 | [rocsolver_dtrtri](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dtrtri.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+883 | [rocsolver_dtrtri](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dtrtri.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+884 | [rocsolver_ctrtri](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ctrtri.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+885 | [rocsolver_ctrtri](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ctrtri.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+886 | [rocsolver_ztrtri](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ztrtri.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+887 | [rocsolver_ztrtri](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ztrtri.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+888 | [rocsolver_strtri_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__strtri__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+889 | [rocsolver_strtri_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__strtri__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+890 | [rocsolver_dtrtri_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dtrtri__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+891 | [rocsolver_dtrtri_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dtrtri__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+892 | [rocsolver_ctrtri_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ctrtri__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+893 | [rocsolver_ctrtri_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ctrtri__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+894 | [rocsolver_ztrtri_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ztrtri__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+895 | [rocsolver_ztrtri_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ztrtri__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+896 | [rocsolver_strtri_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__strtri__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+897 | [rocsolver_strtri_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__strtri__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+898 | [rocsolver_dtrtri_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dtrtri__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+899 | [rocsolver_dtrtri_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__dtrtri__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+900 | [rocsolver_ctrtri_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ctrtri__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+901 | [rocsolver_ctrtri_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ctrtri__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+902 | [rocsolver_ztrtri_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ztrtri__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
+903 | [rocsolver_ztrtri_strided_batched](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__ztrtri__strided__batched.html "Interface documentation") | full_rank, rank_0, rank_1, raw
