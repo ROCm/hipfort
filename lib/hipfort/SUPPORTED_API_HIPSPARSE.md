@@ -1,4 +1,4 @@
-# | API Name | Specializations
+\# | API Name | Specializations
 ----|---------------|---------
 0 | [hipsparseCreate](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecreate.html "Interface documentation") | raw
 1 | [hipsparseDestroy](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedestroy.html "Interface documentation") | raw

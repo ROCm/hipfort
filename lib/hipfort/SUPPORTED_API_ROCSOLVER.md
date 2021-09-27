@@ -1,4 +1,4 @@
-# | API Name | Specializations
+\# | API Name | Specializations
 ----|---------------|---------
 0 | [rocsolver_get_version_string](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__get__version__string.html "Interface documentation") | raw
 1 | [rocsolver_get_version_string](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__get__version__string.html "Interface documentation") | raw
