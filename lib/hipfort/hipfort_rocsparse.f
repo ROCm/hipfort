@@ -14028,13 +14028,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_saxpyi_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_float) :: alpha
       real(c_float),target :: x_val
       integer(c_int),target :: x_ind
       real(c_float),target :: y
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_saxpyi_rank_0 = rocsparse_saxpyi_raw(handle,nnz,alpha,c_loc(x_val),c_loc(x_ind),c_loc(y),idx_base)
     end function
@@ -14044,13 +14044,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_saxpyi_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_float) :: alpha
       real(c_float),target,dimension(:) :: x_val
       integer(c_int),target,dimension(:) :: x_ind
       real(c_float),target,dimension(:) :: y
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_saxpyi_rank_1 = rocsparse_saxpyi_raw(handle,nnz,alpha,c_loc(x_val),c_loc(x_ind),c_loc(y),idx_base)
     end function
@@ -14060,13 +14060,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_daxpyi_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_double) :: alpha
       real(c_double),target :: x_val
       integer(c_int),target :: x_ind
       real(c_double),target :: y
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_daxpyi_rank_0 = rocsparse_daxpyi_raw(handle,nnz,alpha,c_loc(x_val),c_loc(x_ind),c_loc(y),idx_base)
     end function
@@ -14076,13 +14076,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_daxpyi_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_double) :: alpha
       real(c_double),target,dimension(:) :: x_val
       integer(c_int),target,dimension(:) :: x_ind
       real(c_double),target,dimension(:) :: y
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_daxpyi_rank_1 = rocsparse_daxpyi_raw(handle,nnz,alpha,c_loc(x_val),c_loc(x_ind),c_loc(y),idx_base)
     end function
@@ -14092,13 +14092,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_caxpyi_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
       complex(c_float_complex),target :: x_val
       integer(c_int),target :: x_ind
       complex(c_float_complex),target :: y
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_caxpyi_rank_0 = rocsparse_caxpyi_raw(handle,nnz,alpha,c_loc(x_val),c_loc(x_ind),c_loc(y),idx_base)
     end function
@@ -14108,13 +14108,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_caxpyi_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
       complex(c_float_complex),target,dimension(:) :: x_val
       integer(c_int),target,dimension(:) :: x_ind
       complex(c_float_complex),target,dimension(:) :: y
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_caxpyi_rank_1 = rocsparse_caxpyi_raw(handle,nnz,alpha,c_loc(x_val),c_loc(x_ind),c_loc(y),idx_base)
     end function
@@ -14124,13 +14124,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zaxpyi_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
       complex(c_double_complex),target :: x_val
       integer(c_int),target :: x_ind
       complex(c_double_complex),target :: y
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_zaxpyi_rank_0 = rocsparse_zaxpyi_raw(handle,nnz,alpha,c_loc(x_val),c_loc(x_ind),c_loc(y),idx_base)
     end function
@@ -14140,13 +14140,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zaxpyi_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
       complex(c_double_complex),target,dimension(:) :: x_val
       integer(c_int),target,dimension(:) :: x_ind
       complex(c_double_complex),target,dimension(:) :: y
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_zaxpyi_rank_1 = rocsparse_zaxpyi_raw(handle,nnz,alpha,c_loc(x_val),c_loc(x_ind),c_loc(y),idx_base)
     end function
@@ -14156,13 +14156,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sdoti_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_float),target :: x_val
       integer(c_int),target :: x_ind
       real(c_float),target :: y
       real(c_float),target :: myResult
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_sdoti_rank_0 = rocsparse_sdoti_raw(handle,nnz,c_loc(x_val),c_loc(x_ind),c_loc(y),c_loc(myResult),idx_base)
     end function
@@ -14172,13 +14172,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sdoti_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_float),target,dimension(:) :: x_val
       integer(c_int),target,dimension(:) :: x_ind
       real(c_float),target,dimension(:) :: y
       real(c_float),target,dimension(:) :: myResult
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_sdoti_rank_1 = rocsparse_sdoti_raw(handle,nnz,c_loc(x_val),c_loc(x_ind),c_loc(y),c_loc(myResult),idx_base)
     end function
@@ -14188,13 +14188,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ddoti_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_double),target :: x_val
       integer(c_int),target :: x_ind
       real(c_double),target :: y
       real(c_double),target :: myResult
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_ddoti_rank_0 = rocsparse_ddoti_raw(handle,nnz,c_loc(x_val),c_loc(x_ind),c_loc(y),c_loc(myResult),idx_base)
     end function
@@ -14204,13 +14204,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ddoti_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_double),target,dimension(:) :: x_val
       integer(c_int),target,dimension(:) :: x_ind
       real(c_double),target,dimension(:) :: y
       real(c_double),target,dimension(:) :: myResult
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_ddoti_rank_1 = rocsparse_ddoti_raw(handle,nnz,c_loc(x_val),c_loc(x_ind),c_loc(y),c_loc(myResult),idx_base)
     end function
@@ -14220,13 +14220,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cdoti_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_float_complex),target :: x_val
       integer(c_int),target :: x_ind
       complex(c_float_complex),target :: y
       complex(c_float_complex),target :: myResult
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_cdoti_rank_0 = rocsparse_cdoti_raw(handle,nnz,c_loc(x_val),c_loc(x_ind),c_loc(y),c_loc(myResult),idx_base)
     end function
@@ -14236,13 +14236,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cdoti_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_float_complex),target,dimension(:) :: x_val
       integer(c_int),target,dimension(:) :: x_ind
       complex(c_float_complex),target,dimension(:) :: y
       complex(c_float_complex),target,dimension(:) :: myResult
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_cdoti_rank_1 = rocsparse_cdoti_raw(handle,nnz,c_loc(x_val),c_loc(x_ind),c_loc(y),c_loc(myResult),idx_base)
     end function
@@ -14252,13 +14252,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zdoti_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_double_complex),target :: x_val
       integer(c_int),target :: x_ind
       complex(c_double_complex),target :: y
       complex(c_double_complex),target :: myResult
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_zdoti_rank_0 = rocsparse_zdoti_raw(handle,nnz,c_loc(x_val),c_loc(x_ind),c_loc(y),c_loc(myResult),idx_base)
     end function
@@ -14268,13 +14268,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zdoti_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_double_complex),target,dimension(:) :: x_val
       integer(c_int),target,dimension(:) :: x_ind
       complex(c_double_complex),target,dimension(:) :: y
       complex(c_double_complex),target,dimension(:) :: myResult
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_zdoti_rank_1 = rocsparse_zdoti_raw(handle,nnz,c_loc(x_val),c_loc(x_ind),c_loc(y),c_loc(myResult),idx_base)
     end function
@@ -14284,13 +14284,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cdotci_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_float_complex),target :: x_val
       integer(c_int),target :: x_ind
       complex(c_float_complex),target :: y
       complex(c_float_complex),target :: myResult
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_cdotci_rank_0 = rocsparse_cdotci_raw(handle,nnz,c_loc(x_val),c_loc(x_ind),c_loc(y),c_loc(myResult),idx_base)
     end function
@@ -14300,13 +14300,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cdotci_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_float_complex),target,dimension(:) :: x_val
       integer(c_int),target,dimension(:) :: x_ind
       complex(c_float_complex),target,dimension(:) :: y
       complex(c_float_complex),target,dimension(:) :: myResult
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_cdotci_rank_1 = rocsparse_cdotci_raw(handle,nnz,c_loc(x_val),c_loc(x_ind),c_loc(y),c_loc(myResult),idx_base)
     end function
@@ -14316,13 +14316,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zdotci_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_double_complex),target :: x_val
       integer(c_int),target :: x_ind
       complex(c_double_complex),target :: y
       complex(c_double_complex),target :: myResult
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_zdotci_rank_0 = rocsparse_zdotci_raw(handle,nnz,c_loc(x_val),c_loc(x_ind),c_loc(y),c_loc(myResult),idx_base)
     end function
@@ -14332,13 +14332,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zdotci_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_double_complex),target,dimension(:) :: x_val
       integer(c_int),target,dimension(:) :: x_ind
       complex(c_double_complex),target,dimension(:) :: y
       complex(c_double_complex),target,dimension(:) :: myResult
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_zdotci_rank_1 = rocsparse_zdotci_raw(handle,nnz,c_loc(x_val),c_loc(x_ind),c_loc(y),c_loc(myResult),idx_base)
     end function
@@ -14348,12 +14348,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sgthr_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_float),target :: y
       real(c_float),target :: x_val
       integer(c_int),target :: x_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_sgthr_rank_0 = rocsparse_sgthr_raw(handle,nnz,c_loc(y),c_loc(x_val),c_loc(x_ind),idx_base)
     end function
@@ -14363,12 +14363,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sgthr_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_float),target,dimension(:) :: y
       real(c_float),target,dimension(:) :: x_val
       integer(c_int),target,dimension(:) :: x_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_sgthr_rank_1 = rocsparse_sgthr_raw(handle,nnz,c_loc(y),c_loc(x_val),c_loc(x_ind),idx_base)
     end function
@@ -14378,12 +14378,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dgthr_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_double),target :: y
       real(c_double),target :: x_val
       integer(c_int),target :: x_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_dgthr_rank_0 = rocsparse_dgthr_raw(handle,nnz,c_loc(y),c_loc(x_val),c_loc(x_ind),idx_base)
     end function
@@ -14393,12 +14393,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dgthr_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_double),target,dimension(:) :: y
       real(c_double),target,dimension(:) :: x_val
       integer(c_int),target,dimension(:) :: x_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_dgthr_rank_1 = rocsparse_dgthr_raw(handle,nnz,c_loc(y),c_loc(x_val),c_loc(x_ind),idx_base)
     end function
@@ -14408,12 +14408,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cgthr_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_float_complex),target :: y
       complex(c_float_complex),target :: x_val
       integer(c_int),target :: x_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_cgthr_rank_0 = rocsparse_cgthr_raw(handle,nnz,c_loc(y),c_loc(x_val),c_loc(x_ind),idx_base)
     end function
@@ -14423,12 +14423,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cgthr_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_float_complex),target,dimension(:) :: y
       complex(c_float_complex),target,dimension(:) :: x_val
       integer(c_int),target,dimension(:) :: x_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_cgthr_rank_1 = rocsparse_cgthr_raw(handle,nnz,c_loc(y),c_loc(x_val),c_loc(x_ind),idx_base)
     end function
@@ -14438,12 +14438,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zgthr_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_double_complex),target :: y
       complex(c_double_complex),target :: x_val
       integer(c_int),target :: x_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_zgthr_rank_0 = rocsparse_zgthr_raw(handle,nnz,c_loc(y),c_loc(x_val),c_loc(x_ind),idx_base)
     end function
@@ -14453,12 +14453,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zgthr_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_double_complex),target,dimension(:) :: y
       complex(c_double_complex),target,dimension(:) :: x_val
       integer(c_int),target,dimension(:) :: x_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_zgthr_rank_1 = rocsparse_zgthr_raw(handle,nnz,c_loc(y),c_loc(x_val),c_loc(x_ind),idx_base)
     end function
@@ -14468,12 +14468,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sgthrz_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_float),target :: y
       real(c_float),target :: x_val
       integer(c_int),target :: x_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_sgthrz_rank_0 = rocsparse_sgthrz_raw(handle,nnz,c_loc(y),c_loc(x_val),c_loc(x_ind),idx_base)
     end function
@@ -14483,12 +14483,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sgthrz_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_float),target,dimension(:) :: y
       real(c_float),target,dimension(:) :: x_val
       integer(c_int),target,dimension(:) :: x_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_sgthrz_rank_1 = rocsparse_sgthrz_raw(handle,nnz,c_loc(y),c_loc(x_val),c_loc(x_ind),idx_base)
     end function
@@ -14498,12 +14498,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dgthrz_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_double),target :: y
       real(c_double),target :: x_val
       integer(c_int),target :: x_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_dgthrz_rank_0 = rocsparse_dgthrz_raw(handle,nnz,c_loc(y),c_loc(x_val),c_loc(x_ind),idx_base)
     end function
@@ -14513,12 +14513,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dgthrz_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_double),target,dimension(:) :: y
       real(c_double),target,dimension(:) :: x_val
       integer(c_int),target,dimension(:) :: x_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_dgthrz_rank_1 = rocsparse_dgthrz_raw(handle,nnz,c_loc(y),c_loc(x_val),c_loc(x_ind),idx_base)
     end function
@@ -14528,12 +14528,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cgthrz_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_float_complex),target :: y
       complex(c_float_complex),target :: x_val
       integer(c_int),target :: x_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_cgthrz_rank_0 = rocsparse_cgthrz_raw(handle,nnz,c_loc(y),c_loc(x_val),c_loc(x_ind),idx_base)
     end function
@@ -14543,12 +14543,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cgthrz_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_float_complex),target,dimension(:) :: y
       complex(c_float_complex),target,dimension(:) :: x_val
       integer(c_int),target,dimension(:) :: x_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_cgthrz_rank_1 = rocsparse_cgthrz_raw(handle,nnz,c_loc(y),c_loc(x_val),c_loc(x_ind),idx_base)
     end function
@@ -14558,12 +14558,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zgthrz_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_double_complex),target :: y
       complex(c_double_complex),target :: x_val
       integer(c_int),target :: x_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_zgthrz_rank_0 = rocsparse_zgthrz_raw(handle,nnz,c_loc(y),c_loc(x_val),c_loc(x_ind),idx_base)
     end function
@@ -14573,12 +14573,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zgthrz_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_double_complex),target,dimension(:) :: y
       complex(c_double_complex),target,dimension(:) :: x_val
       integer(c_int),target,dimension(:) :: x_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_zgthrz_rank_1 = rocsparse_zgthrz_raw(handle,nnz,c_loc(y),c_loc(x_val),c_loc(x_ind),idx_base)
     end function
@@ -14588,14 +14588,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sroti_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_float),target :: x_val
       integer(c_int),target :: x_ind
       real(c_float),target :: y
       real(c_float) :: c
       real(c_float) :: s
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_sroti_rank_0 = rocsparse_sroti_raw(handle,nnz,c_loc(x_val),c_loc(x_ind),c_loc(y),c,s,idx_base)
     end function
@@ -14605,14 +14605,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sroti_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_float),target,dimension(:) :: x_val
       integer(c_int),target,dimension(:) :: x_ind
       real(c_float),target,dimension(:) :: y
       real(c_float) :: c
       real(c_float) :: s
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_sroti_rank_1 = rocsparse_sroti_raw(handle,nnz,c_loc(x_val),c_loc(x_ind),c_loc(y),c,s,idx_base)
     end function
@@ -14622,14 +14622,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_droti_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_double),target :: x_val
       integer(c_int),target :: x_ind
       real(c_double),target :: y
       real(c_double) :: c
       real(c_double) :: s
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_droti_rank_0 = rocsparse_droti_raw(handle,nnz,c_loc(x_val),c_loc(x_ind),c_loc(y),c,s,idx_base)
     end function
@@ -14639,14 +14639,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_droti_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_double),target,dimension(:) :: x_val
       integer(c_int),target,dimension(:) :: x_ind
       real(c_double),target,dimension(:) :: y
       real(c_double) :: c
       real(c_double) :: s
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_droti_rank_1 = rocsparse_droti_raw(handle,nnz,c_loc(x_val),c_loc(x_ind),c_loc(y),c,s,idx_base)
     end function
@@ -14656,12 +14656,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ssctr_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_float),target :: x_val
       integer(c_int),target :: x_ind
       real(c_float),target :: y
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_ssctr_rank_0 = rocsparse_ssctr_raw(handle,nnz,c_loc(x_val),c_loc(x_ind),c_loc(y),idx_base)
     end function
@@ -14671,12 +14671,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ssctr_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_float),target,dimension(:) :: x_val
       integer(c_int),target,dimension(:) :: x_ind
       real(c_float),target,dimension(:) :: y
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_ssctr_rank_1 = rocsparse_ssctr_raw(handle,nnz,c_loc(x_val),c_loc(x_ind),c_loc(y),idx_base)
     end function
@@ -14686,12 +14686,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dsctr_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_double),target :: x_val
       integer(c_int),target :: x_ind
       real(c_double),target :: y
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_dsctr_rank_0 = rocsparse_dsctr_raw(handle,nnz,c_loc(x_val),c_loc(x_ind),c_loc(y),idx_base)
     end function
@@ -14701,12 +14701,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dsctr_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       real(c_double),target,dimension(:) :: x_val
       integer(c_int),target,dimension(:) :: x_ind
       real(c_double),target,dimension(:) :: y
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_dsctr_rank_1 = rocsparse_dsctr_raw(handle,nnz,c_loc(x_val),c_loc(x_ind),c_loc(y),idx_base)
     end function
@@ -14716,12 +14716,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_csctr_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_float_complex),target :: x_val
       integer(c_int),target :: x_ind
       complex(c_float_complex),target :: y
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_csctr_rank_0 = rocsparse_csctr_raw(handle,nnz,c_loc(x_val),c_loc(x_ind),c_loc(y),idx_base)
     end function
@@ -14731,12 +14731,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_csctr_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_float_complex),target,dimension(:) :: x_val
       integer(c_int),target,dimension(:) :: x_ind
       complex(c_float_complex),target,dimension(:) :: y
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_csctr_rank_1 = rocsparse_csctr_raw(handle,nnz,c_loc(x_val),c_loc(x_ind),c_loc(y),idx_base)
     end function
@@ -14746,12 +14746,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zsctr_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_double_complex),target :: x_val
       integer(c_int),target :: x_ind
       complex(c_double_complex),target :: y
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_zsctr_rank_0 = rocsparse_zsctr_raw(handle,nnz,c_loc(x_val),c_loc(x_ind),c_loc(y),idx_base)
     end function
@@ -14761,12 +14761,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zsctr_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
       complex(c_double_complex),target,dimension(:) :: x_val
       integer(c_int),target,dimension(:) :: x_ind
       complex(c_double_complex),target,dimension(:) :: y
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_zsctr_rank_1 = rocsparse_zsctr_raw(handle,nnz,c_loc(x_val),c_loc(x_ind),c_loc(y),idx_base)
     end function
@@ -14776,18 +14776,18 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sbsrmv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       real(c_float) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
+      integer(c_int) :: block_dim
       real(c_float),target :: x
       real(c_float) :: beta
       real(c_float),target :: y
@@ -14800,18 +14800,18 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sbsrmv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       real(c_float) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
+      integer(c_int) :: block_dim
       real(c_float),target,dimension(:) :: x
       real(c_float) :: beta
       real(c_float),target,dimension(:) :: y
@@ -14824,18 +14824,18 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dbsrmv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       real(c_double) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
+      integer(c_int) :: block_dim
       real(c_double),target :: x
       real(c_double) :: beta
       real(c_double),target :: y
@@ -14848,18 +14848,18 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dbsrmv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       real(c_double) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
+      integer(c_int) :: block_dim
       real(c_double),target,dimension(:) :: x
       real(c_double) :: beta
       real(c_double),target,dimension(:) :: y
@@ -14872,18 +14872,18 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cbsrmv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
+      integer(c_int) :: block_dim
       complex(c_float_complex),target :: x
       complex(c_float_complex) :: beta
       complex(c_float_complex),target :: y
@@ -14896,18 +14896,18 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cbsrmv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
+      integer(c_int) :: block_dim
       complex(c_float_complex),target,dimension(:) :: x
       complex(c_float_complex) :: beta
       complex(c_float_complex),target,dimension(:) :: y
@@ -14920,18 +14920,18 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zbsrmv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
+      integer(c_int) :: block_dim
       complex(c_double_complex),target :: x
       complex(c_double_complex) :: beta
       complex(c_double_complex),target :: y
@@ -14944,18 +14944,18 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zbsrmv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
+      integer(c_int) :: block_dim
       complex(c_double_complex),target,dimension(:) :: x
       complex(c_double_complex) :: beta
       complex(c_double_complex),target,dimension(:) :: y
@@ -14968,21 +14968,21 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sbsrxmv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: size_of_mask
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: size_of_mask
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       real(c_float) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target :: bsr_val
-      type(c_ptr),value :: bsr_mask_ptr
+      type(c_ptr) :: bsr_mask_ptr
       integer(c_int),target :: bsr_row_ptr
-      type(c_ptr),value :: bsr_end_ptr
+      type(c_ptr) :: bsr_end_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
+      integer(c_int) :: block_dim
       real(c_float),target :: x
       real(c_float) :: beta
       real(c_float),target :: y
@@ -14995,21 +14995,21 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sbsrxmv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: size_of_mask
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: size_of_mask
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       real(c_float) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: bsr_val
-      type(c_ptr),value :: bsr_mask_ptr
+      type(c_ptr) :: bsr_mask_ptr
       integer(c_int),target,dimension(:) :: bsr_row_ptr
-      type(c_ptr),value :: bsr_end_ptr
+      type(c_ptr) :: bsr_end_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
+      integer(c_int) :: block_dim
       real(c_float),target,dimension(:) :: x
       real(c_float) :: beta
       real(c_float),target,dimension(:) :: y
@@ -15022,21 +15022,21 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dbsrxmv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: size_of_mask
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: size_of_mask
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       real(c_double) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target :: bsr_val
-      type(c_ptr),value :: bsr_mask_ptr
+      type(c_ptr) :: bsr_mask_ptr
       integer(c_int),target :: bsr_row_ptr
-      type(c_ptr),value :: bsr_end_ptr
+      type(c_ptr) :: bsr_end_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
+      integer(c_int) :: block_dim
       real(c_double),target :: x
       real(c_double) :: beta
       real(c_double),target :: y
@@ -15049,21 +15049,21 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dbsrxmv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: size_of_mask
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: size_of_mask
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       real(c_double) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: bsr_val
-      type(c_ptr),value :: bsr_mask_ptr
+      type(c_ptr) :: bsr_mask_ptr
       integer(c_int),target,dimension(:) :: bsr_row_ptr
-      type(c_ptr),value :: bsr_end_ptr
+      type(c_ptr) :: bsr_end_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
+      integer(c_int) :: block_dim
       real(c_double),target,dimension(:) :: x
       real(c_double) :: beta
       real(c_double),target,dimension(:) :: y
@@ -15076,21 +15076,21 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cbsrxmv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: size_of_mask
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: size_of_mask
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: bsr_val
-      type(c_ptr),value :: bsr_mask_ptr
+      type(c_ptr) :: bsr_mask_ptr
       integer(c_int),target :: bsr_row_ptr
-      type(c_ptr),value :: bsr_end_ptr
+      type(c_ptr) :: bsr_end_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
+      integer(c_int) :: block_dim
       complex(c_float_complex),target :: x
       complex(c_float_complex) :: beta
       complex(c_float_complex),target :: y
@@ -15103,21 +15103,21 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cbsrxmv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: size_of_mask
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: size_of_mask
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: bsr_val
-      type(c_ptr),value :: bsr_mask_ptr
+      type(c_ptr) :: bsr_mask_ptr
       integer(c_int),target,dimension(:) :: bsr_row_ptr
-      type(c_ptr),value :: bsr_end_ptr
+      type(c_ptr) :: bsr_end_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
+      integer(c_int) :: block_dim
       complex(c_float_complex),target,dimension(:) :: x
       complex(c_float_complex) :: beta
       complex(c_float_complex),target,dimension(:) :: y
@@ -15130,21 +15130,21 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zbsrxmv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: size_of_mask
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: size_of_mask
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: bsr_val
-      type(c_ptr),value :: bsr_mask_ptr
+      type(c_ptr) :: bsr_mask_ptr
       integer(c_int),target :: bsr_row_ptr
-      type(c_ptr),value :: bsr_end_ptr
+      type(c_ptr) :: bsr_end_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
+      integer(c_int) :: block_dim
       complex(c_double_complex),target :: x
       complex(c_double_complex) :: beta
       complex(c_double_complex),target :: y
@@ -15157,21 +15157,21 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zbsrxmv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: size_of_mask
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: size_of_mask
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: bsr_val
-      type(c_ptr),value :: bsr_mask_ptr
+      type(c_ptr) :: bsr_mask_ptr
       integer(c_int),target,dimension(:) :: bsr_row_ptr
-      type(c_ptr),value :: bsr_end_ptr
+      type(c_ptr) :: bsr_end_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
+      integer(c_int) :: block_dim
       complex(c_double_complex),target,dimension(:) :: x
       complex(c_double_complex) :: beta
       complex(c_double_complex),target,dimension(:) :: y
@@ -15184,17 +15184,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sbsrsv_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       real(c_float),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_sbsrsv_buffer_size_rank_0 = rocsparse_sbsrsv_buffer_size_raw(handle,dir,trans,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,buffer_size)
@@ -15205,17 +15205,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sbsrsv_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_sbsrsv_buffer_size_rank_1 = rocsparse_sbsrsv_buffer_size_raw(handle,dir,trans,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,buffer_size)
@@ -15226,17 +15226,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dbsrsv_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       real(c_double),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_dbsrsv_buffer_size_rank_0 = rocsparse_dbsrsv_buffer_size_raw(handle,dir,trans,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,buffer_size)
@@ -15247,17 +15247,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dbsrsv_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_dbsrsv_buffer_size_rank_1 = rocsparse_dbsrsv_buffer_size_raw(handle,dir,trans,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,buffer_size)
@@ -15268,17 +15268,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cbsrsv_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_cbsrsv_buffer_size_rank_0 = rocsparse_cbsrsv_buffer_size_raw(handle,dir,trans,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,buffer_size)
@@ -15289,17 +15289,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cbsrsv_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_cbsrsv_buffer_size_rank_1 = rocsparse_cbsrsv_buffer_size_raw(handle,dir,trans,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,buffer_size)
@@ -15310,17 +15310,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zbsrsv_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_zbsrsv_buffer_size_rank_0 = rocsparse_zbsrsv_buffer_size_raw(handle,dir,trans,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,buffer_size)
@@ -15331,17 +15331,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zbsrsv_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_zbsrsv_buffer_size_rank_1 = rocsparse_zbsrsv_buffer_size_raw(handle,dir,trans,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,buffer_size)
@@ -15352,20 +15352,20 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sbsrsv_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       real(c_float),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sbsrsv_analysis_rank_0 = rocsparse_sbsrsv_analysis_raw(handle,dir,trans,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,analysis,solve,temp_buffer)
     end function
@@ -15375,20 +15375,20 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sbsrsv_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sbsrsv_analysis_rank_1 = rocsparse_sbsrsv_analysis_raw(handle,dir,trans,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,analysis,solve,temp_buffer)
     end function
@@ -15398,20 +15398,20 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dbsrsv_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       real(c_double),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dbsrsv_analysis_rank_0 = rocsparse_dbsrsv_analysis_raw(handle,dir,trans,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,analysis,solve,temp_buffer)
     end function
@@ -15421,20 +15421,20 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dbsrsv_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dbsrsv_analysis_rank_1 = rocsparse_dbsrsv_analysis_raw(handle,dir,trans,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,analysis,solve,temp_buffer)
     end function
@@ -15444,20 +15444,20 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cbsrsv_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_cbsrsv_analysis_rank_0 = rocsparse_cbsrsv_analysis_raw(handle,dir,trans,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,analysis,solve,temp_buffer)
     end function
@@ -15467,20 +15467,20 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cbsrsv_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_cbsrsv_analysis_rank_1 = rocsparse_cbsrsv_analysis_raw(handle,dir,trans,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,analysis,solve,temp_buffer)
     end function
@@ -15490,20 +15490,20 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zbsrsv_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zbsrsv_analysis_rank_0 = rocsparse_zbsrsv_analysis_raw(handle,dir,trans,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,analysis,solve,temp_buffer)
     end function
@@ -15513,20 +15513,20 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zbsrsv_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zbsrsv_analysis_rank_1 = rocsparse_zbsrsv_analysis_raw(handle,dir,trans,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,analysis,solve,temp_buffer)
     end function
@@ -15536,22 +15536,22 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sbsrsv_solve_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
       real(c_float) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       real(c_float),target :: x
       real(c_float),target :: y
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sbsrsv_solve_rank_0 = rocsparse_sbsrsv_solve_raw(handle,dir,trans,mb,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,c_loc(x),c_loc(y),policy,temp_buffer)
     end function
@@ -15561,22 +15561,22 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sbsrsv_solve_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
       real(c_float) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       real(c_float),target,dimension(:) :: x
       real(c_float),target,dimension(:) :: y
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sbsrsv_solve_rank_1 = rocsparse_sbsrsv_solve_raw(handle,dir,trans,mb,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,c_loc(x),c_loc(y),policy,temp_buffer)
     end function
@@ -15586,22 +15586,22 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dbsrsv_solve_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
       real(c_double) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       real(c_double),target :: x
       real(c_double),target :: y
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dbsrsv_solve_rank_0 = rocsparse_dbsrsv_solve_raw(handle,dir,trans,mb,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,c_loc(x),c_loc(y),policy,temp_buffer)
     end function
@@ -15611,22 +15611,22 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dbsrsv_solve_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
       real(c_double) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       real(c_double),target,dimension(:) :: x
       real(c_double),target,dimension(:) :: y
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dbsrsv_solve_rank_1 = rocsparse_dbsrsv_solve_raw(handle,dir,trans,mb,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,c_loc(x),c_loc(y),policy,temp_buffer)
     end function
@@ -15636,22 +15636,22 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cbsrsv_solve_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       complex(c_float_complex),target :: x
       complex(c_float_complex),target :: y
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_cbsrsv_solve_rank_0 = rocsparse_cbsrsv_solve_raw(handle,dir,trans,mb,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,c_loc(x),c_loc(y),policy,temp_buffer)
     end function
@@ -15661,22 +15661,22 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cbsrsv_solve_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       complex(c_float_complex),target,dimension(:) :: x
       complex(c_float_complex),target,dimension(:) :: y
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_cbsrsv_solve_rank_1 = rocsparse_cbsrsv_solve_raw(handle,dir,trans,mb,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,c_loc(x),c_loc(y),policy,temp_buffer)
     end function
@@ -15686,22 +15686,22 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zbsrsv_solve_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       complex(c_double_complex),target :: x
       complex(c_double_complex),target :: y
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zbsrsv_solve_rank_0 = rocsparse_zbsrsv_solve_raw(handle,dir,trans,mb,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,c_loc(x),c_loc(y),policy,temp_buffer)
     end function
@@ -15711,22 +15711,22 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zbsrsv_solve_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       complex(c_double_complex),target,dimension(:) :: x
       complex(c_double_complex),target,dimension(:) :: y
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zbsrsv_solve_rank_1 = rocsparse_zbsrsv_solve_raw(handle,dir,trans,mb,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,c_loc(x),c_loc(y),policy,temp_buffer)
     end function
@@ -15736,13 +15736,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scoomv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       real(c_float) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target :: coo_val
       integer(c_int),target :: coo_row_ind
       integer(c_int),target :: coo_col_ind
@@ -15758,13 +15758,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scoomv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       real(c_float) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: coo_val
       integer(c_int),target,dimension(:) :: coo_row_ind
       integer(c_int),target,dimension(:) :: coo_col_ind
@@ -15780,13 +15780,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcoomv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       real(c_double) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target :: coo_val
       integer(c_int),target :: coo_row_ind
       integer(c_int),target :: coo_col_ind
@@ -15802,13 +15802,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcoomv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       real(c_double) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: coo_val
       integer(c_int),target,dimension(:) :: coo_row_ind
       integer(c_int),target,dimension(:) :: coo_col_ind
@@ -15824,13 +15824,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccoomv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: coo_val
       integer(c_int),target :: coo_row_ind
       integer(c_int),target :: coo_col_ind
@@ -15846,13 +15846,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccoomv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: coo_val
       integer(c_int),target,dimension(:) :: coo_row_ind
       integer(c_int),target,dimension(:) :: coo_col_ind
@@ -15868,13 +15868,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcoomv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: coo_val
       integer(c_int),target :: coo_row_ind
       integer(c_int),target :: coo_col_ind
@@ -15890,13 +15890,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcoomv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: coo_val
       integer(c_int),target,dimension(:) :: coo_row_ind
       integer(c_int),target,dimension(:) :: coo_col_ind
@@ -15912,16 +15912,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsrmv_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_float),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       !
       rocsparse_scsrmv_analysis_rank_0 = rocsparse_scsrmv_analysis_raw(handle,trans,m,n,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo)
     end function
@@ -15931,16 +15931,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsrmv_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       !
       rocsparse_scsrmv_analysis_rank_1 = rocsparse_scsrmv_analysis_raw(handle,trans,m,n,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo)
     end function
@@ -15950,16 +15950,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsrmv_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_double),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       !
       rocsparse_dcsrmv_analysis_rank_0 = rocsparse_dcsrmv_analysis_raw(handle,trans,m,n,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo)
     end function
@@ -15969,16 +15969,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsrmv_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       !
       rocsparse_dcsrmv_analysis_rank_1 = rocsparse_dcsrmv_analysis_raw(handle,trans,m,n,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo)
     end function
@@ -15988,16 +15988,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsrmv_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       !
       rocsparse_ccsrmv_analysis_rank_0 = rocsparse_ccsrmv_analysis_raw(handle,trans,m,n,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo)
     end function
@@ -16007,16 +16007,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsrmv_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       !
       rocsparse_ccsrmv_analysis_rank_1 = rocsparse_ccsrmv_analysis_raw(handle,trans,m,n,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo)
     end function
@@ -16026,16 +16026,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsrmv_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       !
       rocsparse_zcsrmv_analysis_rank_0 = rocsparse_zcsrmv_analysis_raw(handle,trans,m,n,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo)
     end function
@@ -16045,16 +16045,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsrmv_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       !
       rocsparse_zcsrmv_analysis_rank_1 = rocsparse_zcsrmv_analysis_raw(handle,trans,m,n,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo)
     end function
@@ -16064,17 +16064,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsrmv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       real(c_float) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       real(c_float),target :: x
       real(c_float) :: beta
       real(c_float),target :: y
@@ -16087,17 +16087,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsrmv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       real(c_float) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       real(c_float),target,dimension(:) :: x
       real(c_float) :: beta
       real(c_float),target,dimension(:) :: y
@@ -16110,17 +16110,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsrmv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       real(c_double) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       real(c_double),target :: x
       real(c_double) :: beta
       real(c_double),target :: y
@@ -16133,17 +16133,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsrmv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       real(c_double) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       real(c_double),target,dimension(:) :: x
       real(c_double) :: beta
       real(c_double),target,dimension(:) :: y
@@ -16156,17 +16156,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsrmv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       complex(c_float_complex),target :: x
       complex(c_float_complex) :: beta
       complex(c_float_complex),target :: y
@@ -16179,17 +16179,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsrmv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       complex(c_float_complex),target,dimension(:) :: x
       complex(c_float_complex) :: beta
       complex(c_float_complex),target,dimension(:) :: y
@@ -16202,17 +16202,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsrmv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       complex(c_double_complex),target :: x
       complex(c_double_complex) :: beta
       complex(c_double_complex),target :: y
@@ -16225,17 +16225,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsrmv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       complex(c_double_complex),target,dimension(:) :: x
       complex(c_double_complex) :: beta
       complex(c_double_complex),target,dimension(:) :: y
@@ -16248,15 +16248,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsrsv_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_float),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_scsrsv_buffer_size_rank_0 = rocsparse_scsrsv_buffer_size_raw(handle,trans,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,buffer_size)
@@ -16267,15 +16267,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsrsv_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_scsrsv_buffer_size_rank_1 = rocsparse_scsrsv_buffer_size_raw(handle,trans,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,buffer_size)
@@ -16286,15 +16286,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsrsv_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_double),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_dcsrsv_buffer_size_rank_0 = rocsparse_dcsrsv_buffer_size_raw(handle,trans,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,buffer_size)
@@ -16305,15 +16305,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsrsv_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_dcsrsv_buffer_size_rank_1 = rocsparse_dcsrsv_buffer_size_raw(handle,trans,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,buffer_size)
@@ -16324,15 +16324,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsrsv_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_ccsrsv_buffer_size_rank_0 = rocsparse_ccsrsv_buffer_size_raw(handle,trans,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,buffer_size)
@@ -16343,15 +16343,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsrsv_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_ccsrsv_buffer_size_rank_1 = rocsparse_ccsrsv_buffer_size_raw(handle,trans,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,buffer_size)
@@ -16362,15 +16362,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsrsv_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_zcsrsv_buffer_size_rank_0 = rocsparse_zcsrsv_buffer_size_raw(handle,trans,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,buffer_size)
@@ -16381,15 +16381,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsrsv_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_zcsrsv_buffer_size_rank_1 = rocsparse_zcsrsv_buffer_size_raw(handle,trans,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,buffer_size)
@@ -16400,18 +16400,18 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsrsv_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_float),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_scsrsv_analysis_rank_0 = rocsparse_scsrsv_analysis_raw(handle,trans,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,analysis,solve,temp_buffer)
     end function
@@ -16421,18 +16421,18 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsrsv_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_scsrsv_analysis_rank_1 = rocsparse_scsrsv_analysis_raw(handle,trans,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,analysis,solve,temp_buffer)
     end function
@@ -16442,18 +16442,18 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsrsv_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_double),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dcsrsv_analysis_rank_0 = rocsparse_dcsrsv_analysis_raw(handle,trans,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,analysis,solve,temp_buffer)
     end function
@@ -16463,18 +16463,18 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsrsv_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dcsrsv_analysis_rank_1 = rocsparse_dcsrsv_analysis_raw(handle,trans,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,analysis,solve,temp_buffer)
     end function
@@ -16484,18 +16484,18 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsrsv_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_ccsrsv_analysis_rank_0 = rocsparse_ccsrsv_analysis_raw(handle,trans,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,analysis,solve,temp_buffer)
     end function
@@ -16505,18 +16505,18 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsrsv_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_ccsrsv_analysis_rank_1 = rocsparse_ccsrsv_analysis_raw(handle,trans,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,analysis,solve,temp_buffer)
     end function
@@ -16526,18 +16526,18 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsrsv_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zcsrsv_analysis_rank_0 = rocsparse_zcsrsv_analysis_raw(handle,trans,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,analysis,solve,temp_buffer)
     end function
@@ -16547,18 +16547,18 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsrsv_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zcsrsv_analysis_rank_1 = rocsparse_zcsrsv_analysis_raw(handle,trans,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,analysis,solve,temp_buffer)
     end function
@@ -16568,20 +16568,20 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsrsv_solve_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: nnz
       real(c_float) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       real(c_float),target :: x
       real(c_float),target :: y
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_scsrsv_solve_rank_0 = rocsparse_scsrsv_solve_raw(handle,trans,m,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,c_loc(x),c_loc(y),policy,temp_buffer)
     end function
@@ -16591,20 +16591,20 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsrsv_solve_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: nnz
       real(c_float) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       real(c_float),target,dimension(:) :: x
       real(c_float),target,dimension(:) :: y
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_scsrsv_solve_rank_1 = rocsparse_scsrsv_solve_raw(handle,trans,m,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,c_loc(x),c_loc(y),policy,temp_buffer)
     end function
@@ -16614,20 +16614,20 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsrsv_solve_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: nnz
       real(c_double) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       real(c_double),target :: x
       real(c_double),target :: y
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dcsrsv_solve_rank_0 = rocsparse_dcsrsv_solve_raw(handle,trans,m,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,c_loc(x),c_loc(y),policy,temp_buffer)
     end function
@@ -16637,20 +16637,20 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsrsv_solve_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: nnz
       real(c_double) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       real(c_double),target,dimension(:) :: x
       real(c_double),target,dimension(:) :: y
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dcsrsv_solve_rank_1 = rocsparse_dcsrsv_solve_raw(handle,trans,m,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,c_loc(x),c_loc(y),policy,temp_buffer)
     end function
@@ -16660,20 +16660,20 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsrsv_solve_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       complex(c_float_complex),target :: x
       complex(c_float_complex),target :: y
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_ccsrsv_solve_rank_0 = rocsparse_ccsrsv_solve_raw(handle,trans,m,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,c_loc(x),c_loc(y),policy,temp_buffer)
     end function
@@ -16683,20 +16683,20 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsrsv_solve_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       complex(c_float_complex),target,dimension(:) :: x
       complex(c_float_complex),target,dimension(:) :: y
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_ccsrsv_solve_rank_1 = rocsparse_ccsrsv_solve_raw(handle,trans,m,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,c_loc(x),c_loc(y),policy,temp_buffer)
     end function
@@ -16706,20 +16706,20 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsrsv_solve_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       complex(c_double_complex),target :: x
       complex(c_double_complex),target :: y
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zcsrsv_solve_rank_0 = rocsparse_zcsrsv_solve_raw(handle,trans,m,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,c_loc(x),c_loc(y),policy,temp_buffer)
     end function
@@ -16729,20 +16729,20 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsrsv_solve_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       complex(c_double_complex),target,dimension(:) :: x
       complex(c_double_complex),target,dimension(:) :: y
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zcsrsv_solve_rank_1 = rocsparse_zcsrsv_solve_raw(handle,trans,m,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,c_loc(x),c_loc(y),policy,temp_buffer)
     end function
@@ -16752,15 +16752,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sellmv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target :: ell_val
       integer(c_int),target :: ell_col_ind
-      integer(c_int),value :: ell_width
+      integer(c_int) :: ell_width
       real(c_float),target :: x
       real(c_float) :: beta
       real(c_float),target :: y
@@ -16773,15 +16773,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sellmv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: ell_val
       integer(c_int),target,dimension(:) :: ell_col_ind
-      integer(c_int),value :: ell_width
+      integer(c_int) :: ell_width
       real(c_float),target,dimension(:) :: x
       real(c_float) :: beta
       real(c_float),target,dimension(:) :: y
@@ -16794,15 +16794,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dellmv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target :: ell_val
       integer(c_int),target :: ell_col_ind
-      integer(c_int),value :: ell_width
+      integer(c_int) :: ell_width
       real(c_double),target :: x
       real(c_double) :: beta
       real(c_double),target :: y
@@ -16815,15 +16815,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dellmv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: ell_val
       integer(c_int),target,dimension(:) :: ell_col_ind
-      integer(c_int),value :: ell_width
+      integer(c_int) :: ell_width
       real(c_double),target,dimension(:) :: x
       real(c_double) :: beta
       real(c_double),target,dimension(:) :: y
@@ -16836,15 +16836,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cellmv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: ell_val
       integer(c_int),target :: ell_col_ind
-      integer(c_int),value :: ell_width
+      integer(c_int) :: ell_width
       complex(c_float_complex),target :: x
       complex(c_float_complex) :: beta
       complex(c_float_complex),target :: y
@@ -16857,15 +16857,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cellmv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: ell_val
       integer(c_int),target,dimension(:) :: ell_col_ind
-      integer(c_int),value :: ell_width
+      integer(c_int) :: ell_width
       complex(c_float_complex),target,dimension(:) :: x
       complex(c_float_complex) :: beta
       complex(c_float_complex),target,dimension(:) :: y
@@ -16878,15 +16878,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zellmv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: ell_val
       integer(c_int),target :: ell_col_ind
-      integer(c_int),value :: ell_width
+      integer(c_int) :: ell_width
       complex(c_double_complex),target :: x
       complex(c_double_complex) :: beta
       complex(c_double_complex),target :: y
@@ -16899,15 +16899,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zellmv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: ell_val
       integer(c_int),target,dimension(:) :: ell_col_ind
-      integer(c_int),value :: ell_width
+      integer(c_int) :: ell_width
       complex(c_double_complex),target,dimension(:) :: x
       complex(c_double_complex) :: beta
       complex(c_double_complex),target,dimension(:) :: y
@@ -16920,11 +16920,11 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_shybmv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
       real(c_float) :: alpha
-      type(c_ptr),value :: descr
-      type(c_ptr),value :: hyb
+      type(c_ptr) :: descr
+      type(c_ptr) :: hyb
       real(c_float),target :: x
       real(c_float) :: beta
       real(c_float),target :: y
@@ -16937,11 +16937,11 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_shybmv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
       real(c_float) :: alpha
-      type(c_ptr),value :: descr
-      type(c_ptr),value :: hyb
+      type(c_ptr) :: descr
+      type(c_ptr) :: hyb
       real(c_float),target,dimension(:) :: x
       real(c_float) :: beta
       real(c_float),target,dimension(:) :: y
@@ -16954,11 +16954,11 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dhybmv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
       real(c_double) :: alpha
-      type(c_ptr),value :: descr
-      type(c_ptr),value :: hyb
+      type(c_ptr) :: descr
+      type(c_ptr) :: hyb
       real(c_double),target :: x
       real(c_double) :: beta
       real(c_double),target :: y
@@ -16971,11 +16971,11 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dhybmv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
       real(c_double) :: alpha
-      type(c_ptr),value :: descr
-      type(c_ptr),value :: hyb
+      type(c_ptr) :: descr
+      type(c_ptr) :: hyb
       real(c_double),target,dimension(:) :: x
       real(c_double) :: beta
       real(c_double),target,dimension(:) :: y
@@ -16988,11 +16988,11 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_chybmv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr
-      type(c_ptr),value :: hyb
+      type(c_ptr) :: descr
+      type(c_ptr) :: hyb
       complex(c_float_complex),target :: x
       complex(c_float_complex) :: beta
       complex(c_float_complex),target :: y
@@ -17005,11 +17005,11 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_chybmv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr
-      type(c_ptr),value :: hyb
+      type(c_ptr) :: descr
+      type(c_ptr) :: hyb
       complex(c_float_complex),target,dimension(:) :: x
       complex(c_float_complex) :: beta
       complex(c_float_complex),target,dimension(:) :: y
@@ -17022,11 +17022,11 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zhybmv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr
-      type(c_ptr),value :: hyb
+      type(c_ptr) :: descr
+      type(c_ptr) :: hyb
       complex(c_double_complex),target :: x
       complex(c_double_complex) :: beta
       complex(c_double_complex),target :: y
@@ -17039,11 +17039,11 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zhybmv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr
-      type(c_ptr),value :: hyb
+      type(c_ptr) :: descr
+      type(c_ptr) :: hyb
       complex(c_double_complex),target,dimension(:) :: x
       complex(c_double_complex) :: beta
       complex(c_double_complex),target,dimension(:) :: y
@@ -17056,19 +17056,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sgebsrmv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       real(c_float) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
       real(c_float),target :: x
       real(c_float) :: beta
       real(c_float),target :: y
@@ -17081,19 +17081,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sgebsrmv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       real(c_float) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
       real(c_float),target,dimension(:) :: x
       real(c_float) :: beta
       real(c_float),target,dimension(:) :: y
@@ -17106,19 +17106,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dgebsrmv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       real(c_double) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
       real(c_double),target :: x
       real(c_double) :: beta
       real(c_double),target :: y
@@ -17131,19 +17131,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dgebsrmv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       real(c_double) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
       real(c_double),target,dimension(:) :: x
       real(c_double) :: beta
       real(c_double),target,dimension(:) :: y
@@ -17156,19 +17156,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cgebsrmv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
       complex(c_float_complex),target :: x
       complex(c_float_complex) :: beta
       complex(c_float_complex),target :: y
@@ -17181,19 +17181,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cgebsrmv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
       complex(c_float_complex),target,dimension(:) :: x
       complex(c_float_complex) :: beta
       complex(c_float_complex),target,dimension(:) :: y
@@ -17206,19 +17206,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zgebsrmv_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
       complex(c_double_complex),target :: x
       complex(c_double_complex) :: beta
       complex(c_double_complex),target :: y
@@ -17231,19 +17231,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zgebsrmv_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
       complex(c_double_complex),target,dimension(:) :: x
       complex(c_double_complex) :: beta
       complex(c_double_complex),target,dimension(:) :: y
@@ -17256,20 +17256,20 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sgemvi_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float) :: alpha
       real(c_float),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
-      integer(c_int),value :: nnz
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
       real(c_float),target,dimension(:) :: x_val
       integer(c_int),target,dimension(:) :: x_ind
       real(c_float) :: beta
       real(c_float),target,dimension(:) :: y
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      type(c_ptr),value :: temp_buffer
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sgemvi_full_rank = rocsparse_sgemvi_raw(handle,trans,m,n,alpha,c_loc(A),lda,nnz,c_loc(x_val),c_loc(x_ind),beta,c_loc(y),idx_base,temp_buffer)
     end function
@@ -17279,20 +17279,20 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sgemvi_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float) :: alpha
       real(c_float),target :: A
-      integer(c_int),value :: lda
-      integer(c_int),value :: nnz
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
       real(c_float),target :: x_val
       integer(c_int),target :: x_ind
       real(c_float) :: beta
       real(c_float),target :: y
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      type(c_ptr),value :: temp_buffer
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sgemvi_rank_0 = rocsparse_sgemvi_raw(handle,trans,m,n,alpha,c_loc(A),lda,nnz,c_loc(x_val),c_loc(x_ind),beta,c_loc(y),idx_base,temp_buffer)
     end function
@@ -17302,20 +17302,20 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sgemvi_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float) :: alpha
       real(c_float),target,dimension(:) :: A
-      integer(c_int),value :: lda
-      integer(c_int),value :: nnz
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
       real(c_float),target,dimension(:) :: x_val
       integer(c_int),target,dimension(:) :: x_ind
       real(c_float) :: beta
       real(c_float),target,dimension(:) :: y
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      type(c_ptr),value :: temp_buffer
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sgemvi_rank_1 = rocsparse_sgemvi_raw(handle,trans,m,n,alpha,c_loc(A),lda,nnz,c_loc(x_val),c_loc(x_ind),beta,c_loc(y),idx_base,temp_buffer)
     end function
@@ -17325,20 +17325,20 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dgemvi_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double) :: alpha
       real(c_double),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
-      integer(c_int),value :: nnz
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
       real(c_double),target,dimension(:) :: x_val
       integer(c_int),target,dimension(:) :: x_ind
       real(c_double) :: beta
       real(c_double),target,dimension(:) :: y
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      type(c_ptr),value :: temp_buffer
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dgemvi_full_rank = rocsparse_dgemvi_raw(handle,trans,m,n,alpha,c_loc(A),lda,nnz,c_loc(x_val),c_loc(x_ind),beta,c_loc(y),idx_base,temp_buffer)
     end function
@@ -17348,20 +17348,20 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dgemvi_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double) :: alpha
       real(c_double),target :: A
-      integer(c_int),value :: lda
-      integer(c_int),value :: nnz
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
       real(c_double),target :: x_val
       integer(c_int),target :: x_ind
       real(c_double) :: beta
       real(c_double),target :: y
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      type(c_ptr),value :: temp_buffer
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dgemvi_rank_0 = rocsparse_dgemvi_raw(handle,trans,m,n,alpha,c_loc(A),lda,nnz,c_loc(x_val),c_loc(x_ind),beta,c_loc(y),idx_base,temp_buffer)
     end function
@@ -17371,20 +17371,20 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dgemvi_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double) :: alpha
       real(c_double),target,dimension(:) :: A
-      integer(c_int),value :: lda
-      integer(c_int),value :: nnz
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
       real(c_double),target,dimension(:) :: x_val
       integer(c_int),target,dimension(:) :: x_ind
       real(c_double) :: beta
       real(c_double),target,dimension(:) :: y
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      type(c_ptr),value :: temp_buffer
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dgemvi_rank_1 = rocsparse_dgemvi_raw(handle,trans,m,n,alpha,c_loc(A),lda,nnz,c_loc(x_val),c_loc(x_ind),beta,c_loc(y),idx_base,temp_buffer)
     end function
@@ -17394,20 +17394,20 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cgemvi_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_float_complex) :: alpha
       complex(c_float_complex),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
-      integer(c_int),value :: nnz
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
       complex(c_float_complex),target,dimension(:) :: x_val
       integer(c_int),target,dimension(:) :: x_ind
       complex(c_float_complex) :: beta
       complex(c_float_complex),target,dimension(:) :: y
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      type(c_ptr),value :: temp_buffer
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_cgemvi_full_rank = rocsparse_cgemvi_raw(handle,trans,m,n,alpha,c_loc(A),lda,nnz,c_loc(x_val),c_loc(x_ind),beta,c_loc(y),idx_base,temp_buffer)
     end function
@@ -17417,20 +17417,20 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cgemvi_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_float_complex) :: alpha
       complex(c_float_complex),target :: A
-      integer(c_int),value :: lda
-      integer(c_int),value :: nnz
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
       complex(c_float_complex),target :: x_val
       integer(c_int),target :: x_ind
       complex(c_float_complex) :: beta
       complex(c_float_complex),target :: y
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      type(c_ptr),value :: temp_buffer
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_cgemvi_rank_0 = rocsparse_cgemvi_raw(handle,trans,m,n,alpha,c_loc(A),lda,nnz,c_loc(x_val),c_loc(x_ind),beta,c_loc(y),idx_base,temp_buffer)
     end function
@@ -17440,20 +17440,20 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cgemvi_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_float_complex) :: alpha
       complex(c_float_complex),target,dimension(:) :: A
-      integer(c_int),value :: lda
-      integer(c_int),value :: nnz
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
       complex(c_float_complex),target,dimension(:) :: x_val
       integer(c_int),target,dimension(:) :: x_ind
       complex(c_float_complex) :: beta
       complex(c_float_complex),target,dimension(:) :: y
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      type(c_ptr),value :: temp_buffer
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_cgemvi_rank_1 = rocsparse_cgemvi_raw(handle,trans,m,n,alpha,c_loc(A),lda,nnz,c_loc(x_val),c_loc(x_ind),beta,c_loc(y),idx_base,temp_buffer)
     end function
@@ -17463,20 +17463,20 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zgemvi_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_double_complex) :: alpha
       complex(c_double_complex),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
-      integer(c_int),value :: nnz
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
       complex(c_double_complex),target,dimension(:) :: x_val
       integer(c_int),target,dimension(:) :: x_ind
       complex(c_double_complex) :: beta
       complex(c_double_complex),target,dimension(:) :: y
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      type(c_ptr),value :: temp_buffer
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zgemvi_full_rank = rocsparse_zgemvi_raw(handle,trans,m,n,alpha,c_loc(A),lda,nnz,c_loc(x_val),c_loc(x_ind),beta,c_loc(y),idx_base,temp_buffer)
     end function
@@ -17486,20 +17486,20 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zgemvi_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_double_complex) :: alpha
       complex(c_double_complex),target :: A
-      integer(c_int),value :: lda
-      integer(c_int),value :: nnz
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
       complex(c_double_complex),target :: x_val
       integer(c_int),target :: x_ind
       complex(c_double_complex) :: beta
       complex(c_double_complex),target :: y
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      type(c_ptr),value :: temp_buffer
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zgemvi_rank_0 = rocsparse_zgemvi_raw(handle,trans,m,n,alpha,c_loc(A),lda,nnz,c_loc(x_val),c_loc(x_ind),beta,c_loc(y),idx_base,temp_buffer)
     end function
@@ -17509,20 +17509,20 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zgemvi_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_double_complex) :: alpha
       complex(c_double_complex),target,dimension(:) :: A
-      integer(c_int),value :: lda
-      integer(c_int),value :: nnz
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
       complex(c_double_complex),target,dimension(:) :: x_val
       integer(c_int),target,dimension(:) :: x_ind
       complex(c_double_complex) :: beta
       complex(c_double_complex),target,dimension(:) :: y
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      type(c_ptr),value :: temp_buffer
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zgemvi_rank_1 = rocsparse_zgemvi_raw(handle,trans,m,n,alpha,c_loc(A),lda,nnz,c_loc(x_val),c_loc(x_ind),beta,c_loc(y),idx_base,temp_buffer)
     end function
@@ -17532,25 +17532,25 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sbsrmm_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: mb
-      integer(c_int),value :: n
-      integer(c_int),value :: kb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
       real(c_float) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
+      integer(c_int) :: block_dim
       real(c_float),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       real(c_float) :: beta
       real(c_float),target,dimension(:,:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_sbsrmm_full_rank = rocsparse_sbsrmm_raw(handle,dir,trans_A,trans_B,mb,n,kb,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -17560,25 +17560,25 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sbsrmm_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: mb
-      integer(c_int),value :: n
-      integer(c_int),value :: kb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
       real(c_float) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
+      integer(c_int) :: block_dim
       real(c_float),target :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       real(c_float) :: beta
       real(c_float),target :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_sbsrmm_rank_0 = rocsparse_sbsrmm_raw(handle,dir,trans_A,trans_B,mb,n,kb,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -17588,25 +17588,25 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sbsrmm_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: mb
-      integer(c_int),value :: n
-      integer(c_int),value :: kb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
       real(c_float) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
+      integer(c_int) :: block_dim
       real(c_float),target,dimension(:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       real(c_float) :: beta
       real(c_float),target,dimension(:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_sbsrmm_rank_1 = rocsparse_sbsrmm_raw(handle,dir,trans_A,trans_B,mb,n,kb,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -17616,25 +17616,25 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dbsrmm_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: mb
-      integer(c_int),value :: n
-      integer(c_int),value :: kb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
       real(c_double) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
+      integer(c_int) :: block_dim
       real(c_double),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       real(c_double) :: beta
       real(c_double),target,dimension(:,:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_dbsrmm_full_rank = rocsparse_dbsrmm_raw(handle,dir,trans_A,trans_B,mb,n,kb,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -17644,25 +17644,25 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dbsrmm_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: mb
-      integer(c_int),value :: n
-      integer(c_int),value :: kb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
       real(c_double) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
+      integer(c_int) :: block_dim
       real(c_double),target :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       real(c_double) :: beta
       real(c_double),target :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_dbsrmm_rank_0 = rocsparse_dbsrmm_raw(handle,dir,trans_A,trans_B,mb,n,kb,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -17672,25 +17672,25 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dbsrmm_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: mb
-      integer(c_int),value :: n
-      integer(c_int),value :: kb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
       real(c_double) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
+      integer(c_int) :: block_dim
       real(c_double),target,dimension(:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       real(c_double) :: beta
       real(c_double),target,dimension(:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_dbsrmm_rank_1 = rocsparse_dbsrmm_raw(handle,dir,trans_A,trans_B,mb,n,kb,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -17700,25 +17700,25 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cbsrmm_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: mb
-      integer(c_int),value :: n
-      integer(c_int),value :: kb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
+      integer(c_int) :: block_dim
       complex(c_float_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       complex(c_float_complex) :: beta
       complex(c_float_complex),target,dimension(:,:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_cbsrmm_full_rank = rocsparse_cbsrmm_raw(handle,dir,trans_A,trans_B,mb,n,kb,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -17728,25 +17728,25 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cbsrmm_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: mb
-      integer(c_int),value :: n
-      integer(c_int),value :: kb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
+      integer(c_int) :: block_dim
       complex(c_float_complex),target :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       complex(c_float_complex) :: beta
       complex(c_float_complex),target :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_cbsrmm_rank_0 = rocsparse_cbsrmm_raw(handle,dir,trans_A,trans_B,mb,n,kb,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -17756,25 +17756,25 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cbsrmm_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: mb
-      integer(c_int),value :: n
-      integer(c_int),value :: kb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
+      integer(c_int) :: block_dim
       complex(c_float_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       complex(c_float_complex) :: beta
       complex(c_float_complex),target,dimension(:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_cbsrmm_rank_1 = rocsparse_cbsrmm_raw(handle,dir,trans_A,trans_B,mb,n,kb,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -17784,25 +17784,25 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zbsrmm_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: mb
-      integer(c_int),value :: n
-      integer(c_int),value :: kb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
+      integer(c_int) :: block_dim
       complex(c_double_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       complex(c_double_complex) :: beta
       complex(c_double_complex),target,dimension(:,:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_zbsrmm_full_rank = rocsparse_zbsrmm_raw(handle,dir,trans_A,trans_B,mb,n,kb,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -17812,25 +17812,25 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zbsrmm_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: mb
-      integer(c_int),value :: n
-      integer(c_int),value :: kb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
+      integer(c_int) :: block_dim
       complex(c_double_complex),target :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       complex(c_double_complex) :: beta
       complex(c_double_complex),target :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_zbsrmm_rank_0 = rocsparse_zbsrmm_raw(handle,dir,trans_A,trans_B,mb,n,kb,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -17840,25 +17840,25 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zbsrmm_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: mb
-      integer(c_int),value :: n
-      integer(c_int),value :: kb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
+      integer(c_int) :: block_dim
       complex(c_double_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       complex(c_double_complex) :: beta
       complex(c_double_complex),target,dimension(:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_zbsrmm_rank_1 = rocsparse_zbsrmm_raw(handle,dir,trans_A,trans_B,mb,n,kb,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -17868,26 +17868,26 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sgebsrmm_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: mb
-      integer(c_int),value :: n
-      integer(c_int),value :: kb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
       real(c_float) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
       real(c_float),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       real(c_float) :: beta
       real(c_float),target,dimension(:,:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_sgebsrmm_full_rank = rocsparse_sgebsrmm_raw(handle,dir,trans_A,trans_B,mb,n,kb,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -17897,26 +17897,26 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sgebsrmm_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: mb
-      integer(c_int),value :: n
-      integer(c_int),value :: kb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
       real(c_float) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
       real(c_float),target :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       real(c_float) :: beta
       real(c_float),target :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_sgebsrmm_rank_0 = rocsparse_sgebsrmm_raw(handle,dir,trans_A,trans_B,mb,n,kb,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -17926,26 +17926,26 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sgebsrmm_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: mb
-      integer(c_int),value :: n
-      integer(c_int),value :: kb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
       real(c_float) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
       real(c_float),target,dimension(:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       real(c_float) :: beta
       real(c_float),target,dimension(:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_sgebsrmm_rank_1 = rocsparse_sgebsrmm_raw(handle,dir,trans_A,trans_B,mb,n,kb,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -17955,26 +17955,26 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dgebsrmm_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: mb
-      integer(c_int),value :: n
-      integer(c_int),value :: kb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
       real(c_double) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
       real(c_double),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       real(c_double) :: beta
       real(c_double),target,dimension(:,:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_dgebsrmm_full_rank = rocsparse_dgebsrmm_raw(handle,dir,trans_A,trans_B,mb,n,kb,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -17984,26 +17984,26 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dgebsrmm_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: mb
-      integer(c_int),value :: n
-      integer(c_int),value :: kb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
       real(c_double) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
       real(c_double),target :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       real(c_double) :: beta
       real(c_double),target :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_dgebsrmm_rank_0 = rocsparse_dgebsrmm_raw(handle,dir,trans_A,trans_B,mb,n,kb,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18013,26 +18013,26 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dgebsrmm_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: mb
-      integer(c_int),value :: n
-      integer(c_int),value :: kb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
       real(c_double) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
       real(c_double),target,dimension(:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       real(c_double) :: beta
       real(c_double),target,dimension(:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_dgebsrmm_rank_1 = rocsparse_dgebsrmm_raw(handle,dir,trans_A,trans_B,mb,n,kb,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18042,26 +18042,26 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cgebsrmm_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: mb
-      integer(c_int),value :: n
-      integer(c_int),value :: kb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
       complex(c_float_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       complex(c_float_complex) :: beta
       complex(c_float_complex),target,dimension(:,:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_cgebsrmm_full_rank = rocsparse_cgebsrmm_raw(handle,dir,trans_A,trans_B,mb,n,kb,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18071,26 +18071,26 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cgebsrmm_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: mb
-      integer(c_int),value :: n
-      integer(c_int),value :: kb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
       complex(c_float_complex),target :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       complex(c_float_complex) :: beta
       complex(c_float_complex),target :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_cgebsrmm_rank_0 = rocsparse_cgebsrmm_raw(handle,dir,trans_A,trans_B,mb,n,kb,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18100,26 +18100,26 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cgebsrmm_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: mb
-      integer(c_int),value :: n
-      integer(c_int),value :: kb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
       complex(c_float_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       complex(c_float_complex) :: beta
       complex(c_float_complex),target,dimension(:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_cgebsrmm_rank_1 = rocsparse_cgebsrmm_raw(handle,dir,trans_A,trans_B,mb,n,kb,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18129,26 +18129,26 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zgebsrmm_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: mb
-      integer(c_int),value :: n
-      integer(c_int),value :: kb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
       complex(c_double_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       complex(c_double_complex) :: beta
       complex(c_double_complex),target,dimension(:,:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_zgebsrmm_full_rank = rocsparse_zgebsrmm_raw(handle,dir,trans_A,trans_B,mb,n,kb,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18158,26 +18158,26 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zgebsrmm_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: mb
-      integer(c_int),value :: n
-      integer(c_int),value :: kb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
       complex(c_double_complex),target :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       complex(c_double_complex) :: beta
       complex(c_double_complex),target :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_zgebsrmm_rank_0 = rocsparse_zgebsrmm_raw(handle,dir,trans_A,trans_B,mb,n,kb,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18187,26 +18187,26 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zgebsrmm_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: mb
-      integer(c_int),value :: n
-      integer(c_int),value :: kb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
       complex(c_double_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       complex(c_double_complex) :: beta
       complex(c_double_complex),target,dimension(:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_zgebsrmm_rank_1 = rocsparse_zgebsrmm_raw(handle,dir,trans_A,trans_B,mb,n,kb,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18216,23 +18216,23 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsrmm_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       real(c_float) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       real(c_float),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       real(c_float) :: beta
       real(c_float),target,dimension(:,:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_scsrmm_full_rank = rocsparse_scsrmm_raw(handle,trans_A,trans_B,m,n,k,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18242,23 +18242,23 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsrmm_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       real(c_float) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
       real(c_float),target :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       real(c_float) :: beta
       real(c_float),target :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_scsrmm_rank_0 = rocsparse_scsrmm_raw(handle,trans_A,trans_B,m,n,k,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18268,23 +18268,23 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsrmm_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       real(c_float) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       real(c_float),target,dimension(:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       real(c_float) :: beta
       real(c_float),target,dimension(:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_scsrmm_rank_1 = rocsparse_scsrmm_raw(handle,trans_A,trans_B,m,n,k,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18294,23 +18294,23 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsrmm_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       real(c_double) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       real(c_double),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       real(c_double) :: beta
       real(c_double),target,dimension(:,:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_dcsrmm_full_rank = rocsparse_dcsrmm_raw(handle,trans_A,trans_B,m,n,k,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18320,23 +18320,23 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsrmm_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       real(c_double) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
       real(c_double),target :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       real(c_double) :: beta
       real(c_double),target :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_dcsrmm_rank_0 = rocsparse_dcsrmm_raw(handle,trans_A,trans_B,m,n,k,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18346,23 +18346,23 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsrmm_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       real(c_double) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       real(c_double),target,dimension(:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       real(c_double) :: beta
       real(c_double),target,dimension(:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_dcsrmm_rank_1 = rocsparse_dcsrmm_raw(handle,trans_A,trans_B,m,n,k,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18372,23 +18372,23 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsrmm_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       complex(c_float_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       complex(c_float_complex) :: beta
       complex(c_float_complex),target,dimension(:,:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_ccsrmm_full_rank = rocsparse_ccsrmm_raw(handle,trans_A,trans_B,m,n,k,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18398,23 +18398,23 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsrmm_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
       complex(c_float_complex),target :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       complex(c_float_complex) :: beta
       complex(c_float_complex),target :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_ccsrmm_rank_0 = rocsparse_ccsrmm_raw(handle,trans_A,trans_B,m,n,k,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18424,23 +18424,23 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsrmm_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       complex(c_float_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       complex(c_float_complex) :: beta
       complex(c_float_complex),target,dimension(:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_ccsrmm_rank_1 = rocsparse_ccsrmm_raw(handle,trans_A,trans_B,m,n,k,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18450,23 +18450,23 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsrmm_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       complex(c_double_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       complex(c_double_complex) :: beta
       complex(c_double_complex),target,dimension(:,:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_zcsrmm_full_rank = rocsparse_zcsrmm_raw(handle,trans_A,trans_B,m,n,k,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18476,23 +18476,23 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsrmm_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
       complex(c_double_complex),target :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       complex(c_double_complex) :: beta
       complex(c_double_complex),target :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_zcsrmm_rank_0 = rocsparse_zcsrmm_raw(handle,trans_A,trans_B,m,n,k,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18502,23 +18502,23 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsrmm_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       complex(c_double_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       complex(c_double_complex) :: beta
       complex(c_double_complex),target,dimension(:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_zcsrmm_rank_1 = rocsparse_zcsrmm_raw(handle,trans_A,trans_B,m,n,k,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,beta,c_loc(C),ldc)
     end function
@@ -18528,21 +18528,21 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsrsm_buffer_size_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       real(c_float) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       real(c_float),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
       integer(c_size_t) :: buffer_size
       !
       rocsparse_scsrsm_buffer_size_full_rank = rocsparse_scsrsm_buffer_size_raw(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,myInfo,policy,buffer_size)
@@ -18553,21 +18553,21 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsrsm_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       real(c_float) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
       real(c_float),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
       integer(c_size_t) :: buffer_size
       !
       rocsparse_scsrsm_buffer_size_rank_0 = rocsparse_scsrsm_buffer_size_raw(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,myInfo,policy,buffer_size)
@@ -18578,21 +18578,21 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsrsm_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       real(c_float) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       real(c_float),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
       integer(c_size_t) :: buffer_size
       !
       rocsparse_scsrsm_buffer_size_rank_1 = rocsparse_scsrsm_buffer_size_raw(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,myInfo,policy,buffer_size)
@@ -18603,21 +18603,21 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsrsm_buffer_size_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       real(c_double) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       real(c_double),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
       integer(c_size_t) :: buffer_size
       !
       rocsparse_dcsrsm_buffer_size_full_rank = rocsparse_dcsrsm_buffer_size_raw(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,myInfo,policy,buffer_size)
@@ -18628,21 +18628,21 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsrsm_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       real(c_double) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
       real(c_double),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
       integer(c_size_t) :: buffer_size
       !
       rocsparse_dcsrsm_buffer_size_rank_0 = rocsparse_dcsrsm_buffer_size_raw(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,myInfo,policy,buffer_size)
@@ -18653,21 +18653,21 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsrsm_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       real(c_double) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       real(c_double),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
       integer(c_size_t) :: buffer_size
       !
       rocsparse_dcsrsm_buffer_size_rank_1 = rocsparse_dcsrsm_buffer_size_raw(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,myInfo,policy,buffer_size)
@@ -18678,21 +18678,21 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsrsm_buffer_size_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       complex(c_float_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
       integer(c_size_t) :: buffer_size
       !
       rocsparse_ccsrsm_buffer_size_full_rank = rocsparse_ccsrsm_buffer_size_raw(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,myInfo,policy,buffer_size)
@@ -18703,21 +18703,21 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsrsm_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
       complex(c_float_complex),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
       integer(c_size_t) :: buffer_size
       !
       rocsparse_ccsrsm_buffer_size_rank_0 = rocsparse_ccsrsm_buffer_size_raw(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,myInfo,policy,buffer_size)
@@ -18728,21 +18728,21 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsrsm_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       complex(c_float_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
       integer(c_size_t) :: buffer_size
       !
       rocsparse_ccsrsm_buffer_size_rank_1 = rocsparse_ccsrsm_buffer_size_raw(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,myInfo,policy,buffer_size)
@@ -18753,21 +18753,21 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsrsm_buffer_size_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       complex(c_double_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
       integer(c_size_t) :: buffer_size
       !
       rocsparse_zcsrsm_buffer_size_full_rank = rocsparse_zcsrsm_buffer_size_raw(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,myInfo,policy,buffer_size)
@@ -18778,21 +18778,21 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsrsm_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
       complex(c_double_complex),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
       integer(c_size_t) :: buffer_size
       !
       rocsparse_zcsrsm_buffer_size_rank_0 = rocsparse_zcsrsm_buffer_size_raw(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,myInfo,policy,buffer_size)
@@ -18803,21 +18803,21 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsrsm_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       complex(c_double_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
       integer(c_size_t) :: buffer_size
       !
       rocsparse_zcsrsm_buffer_size_rank_1 = rocsparse_zcsrsm_buffer_size_raw(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,myInfo,policy,buffer_size)
@@ -18828,23 +18828,23 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsrsm_analysis_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       real(c_float) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       real(c_float),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_scsrsm_analysis_full_rank = rocsparse_scsrsm_analysis_raw(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,myInfo,analysis,solve,temp_buffer)
     end function
@@ -18854,23 +18854,23 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsrsm_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       real(c_float) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
       real(c_float),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_scsrsm_analysis_rank_0 = rocsparse_scsrsm_analysis_raw(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,myInfo,analysis,solve,temp_buffer)
     end function
@@ -18880,23 +18880,23 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsrsm_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       real(c_float) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       real(c_float),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_scsrsm_analysis_rank_1 = rocsparse_scsrsm_analysis_raw(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,myInfo,analysis,solve,temp_buffer)
     end function
@@ -18906,23 +18906,23 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsrsm_analysis_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       real(c_double) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       real(c_double),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dcsrsm_analysis_full_rank = rocsparse_dcsrsm_analysis_raw(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,myInfo,analysis,solve,temp_buffer)
     end function
@@ -18932,23 +18932,23 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsrsm_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       real(c_double) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
       real(c_double),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dcsrsm_analysis_rank_0 = rocsparse_dcsrsm_analysis_raw(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,myInfo,analysis,solve,temp_buffer)
     end function
@@ -18958,23 +18958,23 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsrsm_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       real(c_double) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       real(c_double),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dcsrsm_analysis_rank_1 = rocsparse_dcsrsm_analysis_raw(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,myInfo,analysis,solve,temp_buffer)
     end function
@@ -18984,23 +18984,23 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsrsm_analysis_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       complex(c_float_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_ccsrsm_analysis_full_rank = rocsparse_ccsrsm_analysis_raw(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,myInfo,analysis,solve,temp_buffer)
     end function
@@ -19010,23 +19010,23 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsrsm_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
       complex(c_float_complex),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_ccsrsm_analysis_rank_0 = rocsparse_ccsrsm_analysis_raw(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,myInfo,analysis,solve,temp_buffer)
     end function
@@ -19036,23 +19036,23 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsrsm_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       complex(c_float_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_ccsrsm_analysis_rank_1 = rocsparse_ccsrsm_analysis_raw(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,myInfo,analysis,solve,temp_buffer)
     end function
@@ -19062,23 +19062,23 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsrsm_analysis_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       complex(c_double_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zcsrsm_analysis_full_rank = rocsparse_zcsrsm_analysis_raw(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,myInfo,analysis,solve,temp_buffer)
     end function
@@ -19088,23 +19088,23 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsrsm_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
       complex(c_double_complex),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zcsrsm_analysis_rank_0 = rocsparse_zcsrsm_analysis_raw(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,myInfo,analysis,solve,temp_buffer)
     end function
@@ -19114,23 +19114,23 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsrsm_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       complex(c_double_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zcsrsm_analysis_rank_1 = rocsparse_zcsrsm_analysis_raw(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,myInfo,analysis,solve,temp_buffer)
     end function
@@ -19140,22 +19140,22 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsrsm_solve_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       real(c_float) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       real(c_float),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_scsrsm_solve_full_rank = rocsparse_scsrsm_solve_raw(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,myInfo,policy,temp_buffer)
     end function
@@ -19165,22 +19165,22 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsrsm_solve_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       real(c_float) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
       real(c_float),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_scsrsm_solve_rank_0 = rocsparse_scsrsm_solve_raw(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,myInfo,policy,temp_buffer)
     end function
@@ -19190,22 +19190,22 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsrsm_solve_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       real(c_float) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       real(c_float),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_scsrsm_solve_rank_1 = rocsparse_scsrsm_solve_raw(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,myInfo,policy,temp_buffer)
     end function
@@ -19215,22 +19215,22 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsrsm_solve_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       real(c_double) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       real(c_double),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dcsrsm_solve_full_rank = rocsparse_dcsrsm_solve_raw(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,myInfo,policy,temp_buffer)
     end function
@@ -19240,22 +19240,22 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsrsm_solve_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       real(c_double) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
       real(c_double),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dcsrsm_solve_rank_0 = rocsparse_dcsrsm_solve_raw(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,myInfo,policy,temp_buffer)
     end function
@@ -19265,22 +19265,22 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsrsm_solve_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       real(c_double) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       real(c_double),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dcsrsm_solve_rank_1 = rocsparse_dcsrsm_solve_raw(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,myInfo,policy,temp_buffer)
     end function
@@ -19290,22 +19290,22 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsrsm_solve_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       complex(c_float_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_ccsrsm_solve_full_rank = rocsparse_ccsrsm_solve_raw(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,myInfo,policy,temp_buffer)
     end function
@@ -19315,22 +19315,22 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsrsm_solve_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
       complex(c_float_complex),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_ccsrsm_solve_rank_0 = rocsparse_ccsrsm_solve_raw(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,myInfo,policy,temp_buffer)
     end function
@@ -19340,22 +19340,22 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsrsm_solve_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       complex(c_float_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_ccsrsm_solve_rank_1 = rocsparse_ccsrsm_solve_raw(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,myInfo,policy,temp_buffer)
     end function
@@ -19365,22 +19365,22 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsrsm_solve_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       complex(c_double_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zcsrsm_solve_full_rank = rocsparse_zcsrsm_solve_raw(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,myInfo,policy,temp_buffer)
     end function
@@ -19390,22 +19390,22 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsrsm_solve_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
       complex(c_double_complex),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zcsrsm_solve_rank_0 = rocsparse_zcsrsm_solve_raw(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,myInfo,policy,temp_buffer)
     end function
@@ -19415,22 +19415,22 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsrsm_solve_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       complex(c_double_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zcsrsm_solve_rank_1 = rocsparse_zcsrsm_solve_raw(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(B),ldb,myInfo,policy,temp_buffer)
     end function
@@ -19440,19 +19440,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sbsrsm_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_X
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_X
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       real(c_float),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_sbsrsm_buffer_size_rank_0 = rocsparse_sbsrsm_buffer_size_raw(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,buffer_size)
@@ -19463,19 +19463,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sbsrsm_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_X
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_X
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_sbsrsm_buffer_size_rank_1 = rocsparse_sbsrsm_buffer_size_raw(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,buffer_size)
@@ -19486,19 +19486,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dbsrsm_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_X
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_X
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       real(c_double),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_dbsrsm_buffer_size_rank_0 = rocsparse_dbsrsm_buffer_size_raw(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,buffer_size)
@@ -19509,19 +19509,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dbsrsm_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_X
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_X
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_dbsrsm_buffer_size_rank_1 = rocsparse_dbsrsm_buffer_size_raw(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,buffer_size)
@@ -19532,19 +19532,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cbsrsm_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_X
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_X
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_cbsrsm_buffer_size_rank_0 = rocsparse_cbsrsm_buffer_size_raw(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,buffer_size)
@@ -19555,19 +19555,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cbsrsm_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_X
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_X
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_cbsrsm_buffer_size_rank_1 = rocsparse_cbsrsm_buffer_size_raw(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,buffer_size)
@@ -19578,19 +19578,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zbsrsm_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_X
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_X
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_zbsrsm_buffer_size_rank_0 = rocsparse_zbsrsm_buffer_size_raw(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,buffer_size)
@@ -19601,19 +19601,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zbsrsm_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_X
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_X
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_zbsrsm_buffer_size_rank_1 = rocsparse_zbsrsm_buffer_size_raw(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,buffer_size)
@@ -19624,22 +19624,22 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sbsrsm_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_X
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_X
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       real(c_float),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sbsrsm_analysis_rank_0 = rocsparse_sbsrsm_analysis_raw(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,analysis,solve,temp_buffer)
     end function
@@ -19649,22 +19649,22 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sbsrsm_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_X
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_X
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sbsrsm_analysis_rank_1 = rocsparse_sbsrsm_analysis_raw(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,analysis,solve,temp_buffer)
     end function
@@ -19674,22 +19674,22 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dbsrsm_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_X
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_X
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       real(c_double),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dbsrsm_analysis_rank_0 = rocsparse_dbsrsm_analysis_raw(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,analysis,solve,temp_buffer)
     end function
@@ -19699,22 +19699,22 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dbsrsm_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_X
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_X
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dbsrsm_analysis_rank_1 = rocsparse_dbsrsm_analysis_raw(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,analysis,solve,temp_buffer)
     end function
@@ -19724,22 +19724,22 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cbsrsm_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_X
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_X
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_cbsrsm_analysis_rank_0 = rocsparse_cbsrsm_analysis_raw(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,analysis,solve,temp_buffer)
     end function
@@ -19749,22 +19749,22 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cbsrsm_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_X
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_X
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_cbsrsm_analysis_rank_1 = rocsparse_cbsrsm_analysis_raw(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,analysis,solve,temp_buffer)
     end function
@@ -19774,22 +19774,22 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zbsrsm_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_X
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_X
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zbsrsm_analysis_rank_0 = rocsparse_zbsrsm_analysis_raw(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,analysis,solve,temp_buffer)
     end function
@@ -19799,22 +19799,22 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zbsrsm_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_X
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_X
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zbsrsm_analysis_rank_1 = rocsparse_zbsrsm_analysis_raw(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,analysis,solve,temp_buffer)
     end function
@@ -19824,26 +19824,26 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sbsrsm_solve_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_X
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_X
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
       real(c_float) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       real(c_float),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: X
-      integer(c_int),value :: ldx
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: X
+      integer(c_int) :: ldx
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sbsrsm_solve_full_rank = rocsparse_sbsrsm_solve_raw(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,c_loc(B),ldb,X,ldx,policy,temp_buffer)
     end function
@@ -19853,26 +19853,26 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sbsrsm_solve_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_X
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_X
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
       real(c_float) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       real(c_float),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: X
-      integer(c_int),value :: ldx
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: X
+      integer(c_int) :: ldx
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sbsrsm_solve_rank_0 = rocsparse_sbsrsm_solve_raw(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,c_loc(B),ldb,X,ldx,policy,temp_buffer)
     end function
@@ -19882,26 +19882,26 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sbsrsm_solve_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_X
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_X
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
       real(c_float) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       real(c_float),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: X
-      integer(c_int),value :: ldx
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: X
+      integer(c_int) :: ldx
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sbsrsm_solve_rank_1 = rocsparse_sbsrsm_solve_raw(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,c_loc(B),ldb,X,ldx,policy,temp_buffer)
     end function
@@ -19911,26 +19911,26 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dbsrsm_solve_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_X
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_X
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
       real(c_double) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       real(c_double),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: X
-      integer(c_int),value :: ldx
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: X
+      integer(c_int) :: ldx
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dbsrsm_solve_full_rank = rocsparse_dbsrsm_solve_raw(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,c_loc(B),ldb,X,ldx,policy,temp_buffer)
     end function
@@ -19940,26 +19940,26 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dbsrsm_solve_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_X
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_X
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
       real(c_double) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       real(c_double),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: X
-      integer(c_int),value :: ldx
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: X
+      integer(c_int) :: ldx
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dbsrsm_solve_rank_0 = rocsparse_dbsrsm_solve_raw(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,c_loc(B),ldb,X,ldx,policy,temp_buffer)
     end function
@@ -19969,26 +19969,26 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dbsrsm_solve_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_X
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_X
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
       real(c_double) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       real(c_double),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: X
-      integer(c_int),value :: ldx
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: X
+      integer(c_int) :: ldx
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dbsrsm_solve_rank_1 = rocsparse_dbsrsm_solve_raw(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,c_loc(B),ldb,X,ldx,policy,temp_buffer)
     end function
@@ -19998,26 +19998,26 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cbsrsm_solve_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_X
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_X
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       complex(c_float_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: X
-      integer(c_int),value :: ldx
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: X
+      integer(c_int) :: ldx
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_cbsrsm_solve_full_rank = rocsparse_cbsrsm_solve_raw(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,c_loc(B),ldb,X,ldx,policy,temp_buffer)
     end function
@@ -20027,26 +20027,26 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cbsrsm_solve_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_X
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_X
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       complex(c_float_complex),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: X
-      integer(c_int),value :: ldx
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: X
+      integer(c_int) :: ldx
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_cbsrsm_solve_rank_0 = rocsparse_cbsrsm_solve_raw(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,c_loc(B),ldb,X,ldx,policy,temp_buffer)
     end function
@@ -20056,26 +20056,26 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cbsrsm_solve_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_X
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_X
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       complex(c_float_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: X
-      integer(c_int),value :: ldx
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: X
+      integer(c_int) :: ldx
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_cbsrsm_solve_rank_1 = rocsparse_cbsrsm_solve_raw(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,c_loc(B),ldb,X,ldx,policy,temp_buffer)
     end function
@@ -20085,26 +20085,26 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zbsrsm_solve_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_X
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_X
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       complex(c_double_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: X
-      integer(c_int),value :: ldx
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: X
+      integer(c_int) :: ldx
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zbsrsm_solve_full_rank = rocsparse_zbsrsm_solve_raw(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,c_loc(B),ldb,X,ldx,policy,temp_buffer)
     end function
@@ -20114,26 +20114,26 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zbsrsm_solve_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_X
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_X
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       complex(c_double_complex),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: X
-      integer(c_int),value :: ldx
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: X
+      integer(c_int) :: ldx
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zbsrsm_solve_rank_0 = rocsparse_zbsrsm_solve_raw(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,c_loc(B),ldb,X,ldx,policy,temp_buffer)
     end function
@@ -20143,26 +20143,26 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zbsrsm_solve_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_X
-      integer(c_int),value :: mb
-      integer(c_int),value :: nrhs
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_X
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       complex(c_double_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: X
-      integer(c_int),value :: ldx
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: X
+      integer(c_int) :: ldx
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zbsrsm_solve_rank_1 = rocsparse_zbsrsm_solve_raw(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,alpha,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,c_loc(B),ldb,X,ldx,policy,temp_buffer)
     end function
@@ -20172,23 +20172,23 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sgemmi_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       real(c_float) :: alpha
       real(c_float),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       real(c_float) :: beta
       real(c_float),target,dimension(:,:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_sgemmi_full_rank = rocsparse_sgemmi_raw(handle,trans_A,trans_B,m,n,k,nnz,alpha,c_loc(A),lda,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),beta,c_loc(C),ldc)
     end function
@@ -20198,23 +20198,23 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sgemmi_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       real(c_float) :: alpha
       real(c_float),target :: A
-      integer(c_int),value :: lda
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      type(c_ptr) :: descr
       real(c_float),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
       real(c_float) :: beta
       real(c_float),target :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_sgemmi_rank_0 = rocsparse_sgemmi_raw(handle,trans_A,trans_B,m,n,k,nnz,alpha,c_loc(A),lda,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),beta,c_loc(C),ldc)
     end function
@@ -20224,23 +20224,23 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sgemmi_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       real(c_float) :: alpha
       real(c_float),target,dimension(:) :: A
-      integer(c_int),value :: lda
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       real(c_float) :: beta
       real(c_float),target,dimension(:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_sgemmi_rank_1 = rocsparse_sgemmi_raw(handle,trans_A,trans_B,m,n,k,nnz,alpha,c_loc(A),lda,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),beta,c_loc(C),ldc)
     end function
@@ -20250,23 +20250,23 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dgemmi_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       real(c_double) :: alpha
       real(c_double),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       real(c_double) :: beta
       real(c_double),target,dimension(:,:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_dgemmi_full_rank = rocsparse_dgemmi_raw(handle,trans_A,trans_B,m,n,k,nnz,alpha,c_loc(A),lda,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),beta,c_loc(C),ldc)
     end function
@@ -20276,23 +20276,23 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dgemmi_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       real(c_double) :: alpha
       real(c_double),target :: A
-      integer(c_int),value :: lda
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      type(c_ptr) :: descr
       real(c_double),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
       real(c_double) :: beta
       real(c_double),target :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_dgemmi_rank_0 = rocsparse_dgemmi_raw(handle,trans_A,trans_B,m,n,k,nnz,alpha,c_loc(A),lda,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),beta,c_loc(C),ldc)
     end function
@@ -20302,23 +20302,23 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dgemmi_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       real(c_double) :: alpha
       real(c_double),target,dimension(:) :: A
-      integer(c_int),value :: lda
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       real(c_double) :: beta
       real(c_double),target,dimension(:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_dgemmi_rank_1 = rocsparse_dgemmi_raw(handle,trans_A,trans_B,m,n,k,nnz,alpha,c_loc(A),lda,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),beta,c_loc(C),ldc)
     end function
@@ -20328,23 +20328,23 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cgemmi_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
       complex(c_float_complex),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       complex(c_float_complex) :: beta
       complex(c_float_complex),target,dimension(:,:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_cgemmi_full_rank = rocsparse_cgemmi_raw(handle,trans_A,trans_B,m,n,k,nnz,alpha,c_loc(A),lda,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),beta,c_loc(C),ldc)
     end function
@@ -20354,23 +20354,23 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cgemmi_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
       complex(c_float_complex),target :: A
-      integer(c_int),value :: lda
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
       complex(c_float_complex) :: beta
       complex(c_float_complex),target :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_cgemmi_rank_0 = rocsparse_cgemmi_raw(handle,trans_A,trans_B,m,n,k,nnz,alpha,c_loc(A),lda,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),beta,c_loc(C),ldc)
     end function
@@ -20380,23 +20380,23 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cgemmi_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       complex(c_float_complex) :: alpha
       complex(c_float_complex),target,dimension(:) :: A
-      integer(c_int),value :: lda
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       complex(c_float_complex) :: beta
       complex(c_float_complex),target,dimension(:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_cgemmi_rank_1 = rocsparse_cgemmi_raw(handle,trans_A,trans_B,m,n,k,nnz,alpha,c_loc(A),lda,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),beta,c_loc(C),ldc)
     end function
@@ -20406,23 +20406,23 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zgemmi_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
       complex(c_double_complex),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       complex(c_double_complex) :: beta
       complex(c_double_complex),target,dimension(:,:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_zgemmi_full_rank = rocsparse_zgemmi_raw(handle,trans_A,trans_B,m,n,k,nnz,alpha,c_loc(A),lda,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),beta,c_loc(C),ldc)
     end function
@@ -20432,23 +20432,23 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zgemmi_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
       complex(c_double_complex),target :: A
-      integer(c_int),value :: lda
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
       complex(c_double_complex) :: beta
       complex(c_double_complex),target :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_zgemmi_rank_0 = rocsparse_zgemmi_raw(handle,trans_A,trans_B,m,n,k,nnz,alpha,c_loc(A),lda,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),beta,c_loc(C),ldc)
     end function
@@ -20458,23 +20458,23 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zgemmi_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
       complex(c_double_complex) :: alpha
       complex(c_double_complex),target,dimension(:) :: A
-      integer(c_int),value :: lda
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       complex(c_double_complex) :: beta
       complex(c_double_complex),target,dimension(:) :: C
-      integer(c_int),value :: ldc
+      integer(c_int) :: ldc
       !
       rocsparse_zgemmi_rank_1 = rocsparse_zgemmi_raw(handle,trans_A,trans_B,m,n,k,nnz,alpha,c_loc(A),lda,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),beta,c_loc(C),ldc)
     end function
@@ -20484,18 +20484,18 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_csrgeam_nnz_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr_A
-      integer(c_int),value :: nnz_A
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr_A
+      integer(c_int) :: nnz_A
       integer(c_int),target :: csr_row_ptr_A
       integer(c_int),target :: csr_col_ind_A
-      type(c_ptr),value :: descr_B
-      integer(c_int),value :: nnz_B
+      type(c_ptr) :: descr_B
+      integer(c_int) :: nnz_B
       integer(c_int),target :: csr_row_ptr_B
       integer(c_int),target :: csr_col_ind_B
-      type(c_ptr),value :: descr_C
+      type(c_ptr) :: descr_C
       integer(c_int),target :: csr_row_ptr_C
       integer(c_int),target :: nnz_C
       !
@@ -20507,18 +20507,18 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_csrgeam_nnz_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr_A
-      integer(c_int),value :: nnz_A
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr_A
+      integer(c_int) :: nnz_A
       integer(c_int),target,dimension(:) :: csr_row_ptr_A
       integer(c_int),target,dimension(:) :: csr_col_ind_A
-      type(c_ptr),value :: descr_B
-      integer(c_int),value :: nnz_B
+      type(c_ptr) :: descr_B
+      integer(c_int) :: nnz_B
       integer(c_int),target,dimension(:) :: csr_row_ptr_B
       integer(c_int),target,dimension(:) :: csr_col_ind_B
-      type(c_ptr),value :: descr_C
+      type(c_ptr) :: descr_C
       integer(c_int),target,dimension(:) :: csr_row_ptr_C
       integer(c_int),target,dimension(:) :: nnz_C
       !
@@ -20530,22 +20530,22 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsrgeam_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float) :: alpha
-      type(c_ptr),value :: descr_A
-      integer(c_int),value :: nnz_A
+      type(c_ptr) :: descr_A
+      integer(c_int) :: nnz_A
       real(c_float),target :: csr_val_A
       integer(c_int),target :: csr_row_ptr_A
       integer(c_int),target :: csr_col_ind_A
       real(c_float) :: beta
-      type(c_ptr),value :: descr_B
-      integer(c_int),value :: nnz_B
+      type(c_ptr) :: descr_B
+      integer(c_int) :: nnz_B
       real(c_float),target :: csr_val_B
       integer(c_int),target :: csr_row_ptr_B
       integer(c_int),target :: csr_col_ind_B
-      type(c_ptr),value :: descr_C
+      type(c_ptr) :: descr_C
       real(c_float),target :: csr_val_C
       integer(c_int),target :: csr_row_ptr_C
       integer(c_int),target :: csr_col_ind_C
@@ -20558,22 +20558,22 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsrgeam_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float) :: alpha
-      type(c_ptr),value :: descr_A
-      integer(c_int),value :: nnz_A
+      type(c_ptr) :: descr_A
+      integer(c_int) :: nnz_A
       real(c_float),target,dimension(:) :: csr_val_A
       integer(c_int),target,dimension(:) :: csr_row_ptr_A
       integer(c_int),target,dimension(:) :: csr_col_ind_A
       real(c_float) :: beta
-      type(c_ptr),value :: descr_B
-      integer(c_int),value :: nnz_B
+      type(c_ptr) :: descr_B
+      integer(c_int) :: nnz_B
       real(c_float),target,dimension(:) :: csr_val_B
       integer(c_int),target,dimension(:) :: csr_row_ptr_B
       integer(c_int),target,dimension(:) :: csr_col_ind_B
-      type(c_ptr),value :: descr_C
+      type(c_ptr) :: descr_C
       real(c_float),target,dimension(:) :: csr_val_C
       integer(c_int),target,dimension(:) :: csr_row_ptr_C
       integer(c_int),target,dimension(:) :: csr_col_ind_C
@@ -20586,22 +20586,22 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsrgeam_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double) :: alpha
-      type(c_ptr),value :: descr_A
-      integer(c_int),value :: nnz_A
+      type(c_ptr) :: descr_A
+      integer(c_int) :: nnz_A
       real(c_double),target :: csr_val_A
       integer(c_int),target :: csr_row_ptr_A
       integer(c_int),target :: csr_col_ind_A
       real(c_double) :: beta
-      type(c_ptr),value :: descr_B
-      integer(c_int),value :: nnz_B
+      type(c_ptr) :: descr_B
+      integer(c_int) :: nnz_B
       real(c_double),target :: csr_val_B
       integer(c_int),target :: csr_row_ptr_B
       integer(c_int),target :: csr_col_ind_B
-      type(c_ptr),value :: descr_C
+      type(c_ptr) :: descr_C
       real(c_double),target :: csr_val_C
       integer(c_int),target :: csr_row_ptr_C
       integer(c_int),target :: csr_col_ind_C
@@ -20614,22 +20614,22 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsrgeam_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double) :: alpha
-      type(c_ptr),value :: descr_A
-      integer(c_int),value :: nnz_A
+      type(c_ptr) :: descr_A
+      integer(c_int) :: nnz_A
       real(c_double),target,dimension(:) :: csr_val_A
       integer(c_int),target,dimension(:) :: csr_row_ptr_A
       integer(c_int),target,dimension(:) :: csr_col_ind_A
       real(c_double) :: beta
-      type(c_ptr),value :: descr_B
-      integer(c_int),value :: nnz_B
+      type(c_ptr) :: descr_B
+      integer(c_int) :: nnz_B
       real(c_double),target,dimension(:) :: csr_val_B
       integer(c_int),target,dimension(:) :: csr_row_ptr_B
       integer(c_int),target,dimension(:) :: csr_col_ind_B
-      type(c_ptr),value :: descr_C
+      type(c_ptr) :: descr_C
       real(c_double),target,dimension(:) :: csr_val_C
       integer(c_int),target,dimension(:) :: csr_row_ptr_C
       integer(c_int),target,dimension(:) :: csr_col_ind_C
@@ -20642,22 +20642,22 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsrgeam_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr_A
-      integer(c_int),value :: nnz_A
+      type(c_ptr) :: descr_A
+      integer(c_int) :: nnz_A
       complex(c_float_complex),target :: csr_val_A
       integer(c_int),target :: csr_row_ptr_A
       integer(c_int),target :: csr_col_ind_A
       complex(c_float_complex) :: beta
-      type(c_ptr),value :: descr_B
-      integer(c_int),value :: nnz_B
+      type(c_ptr) :: descr_B
+      integer(c_int) :: nnz_B
       complex(c_float_complex),target :: csr_val_B
       integer(c_int),target :: csr_row_ptr_B
       integer(c_int),target :: csr_col_ind_B
-      type(c_ptr),value :: descr_C
+      type(c_ptr) :: descr_C
       complex(c_float_complex),target :: csr_val_C
       integer(c_int),target :: csr_row_ptr_C
       integer(c_int),target :: csr_col_ind_C
@@ -20670,22 +20670,22 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsrgeam_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr_A
-      integer(c_int),value :: nnz_A
+      type(c_ptr) :: descr_A
+      integer(c_int) :: nnz_A
       complex(c_float_complex),target,dimension(:) :: csr_val_A
       integer(c_int),target,dimension(:) :: csr_row_ptr_A
       integer(c_int),target,dimension(:) :: csr_col_ind_A
       complex(c_float_complex) :: beta
-      type(c_ptr),value :: descr_B
-      integer(c_int),value :: nnz_B
+      type(c_ptr) :: descr_B
+      integer(c_int) :: nnz_B
       complex(c_float_complex),target,dimension(:) :: csr_val_B
       integer(c_int),target,dimension(:) :: csr_row_ptr_B
       integer(c_int),target,dimension(:) :: csr_col_ind_B
-      type(c_ptr),value :: descr_C
+      type(c_ptr) :: descr_C
       complex(c_float_complex),target,dimension(:) :: csr_val_C
       integer(c_int),target,dimension(:) :: csr_row_ptr_C
       integer(c_int),target,dimension(:) :: csr_col_ind_C
@@ -20698,22 +20698,22 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsrgeam_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr_A
-      integer(c_int),value :: nnz_A
+      type(c_ptr) :: descr_A
+      integer(c_int) :: nnz_A
       complex(c_double_complex),target :: csr_val_A
       integer(c_int),target :: csr_row_ptr_A
       integer(c_int),target :: csr_col_ind_A
       complex(c_double_complex) :: beta
-      type(c_ptr),value :: descr_B
-      integer(c_int),value :: nnz_B
+      type(c_ptr) :: descr_B
+      integer(c_int) :: nnz_B
       complex(c_double_complex),target :: csr_val_B
       integer(c_int),target :: csr_row_ptr_B
       integer(c_int),target :: csr_col_ind_B
-      type(c_ptr),value :: descr_C
+      type(c_ptr) :: descr_C
       complex(c_double_complex),target :: csr_val_C
       integer(c_int),target :: csr_row_ptr_C
       integer(c_int),target :: csr_col_ind_C
@@ -20726,22 +20726,22 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsrgeam_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr_A
-      integer(c_int),value :: nnz_A
+      type(c_ptr) :: descr_A
+      integer(c_int) :: nnz_A
       complex(c_double_complex),target,dimension(:) :: csr_val_A
       integer(c_int),target,dimension(:) :: csr_row_ptr_A
       integer(c_int),target,dimension(:) :: csr_col_ind_A
       complex(c_double_complex) :: beta
-      type(c_ptr),value :: descr_B
-      integer(c_int),value :: nnz_B
+      type(c_ptr) :: descr_B
+      integer(c_int) :: nnz_B
       complex(c_double_complex),target,dimension(:) :: csr_val_B
       integer(c_int),target,dimension(:) :: csr_row_ptr_B
       integer(c_int),target,dimension(:) :: csr_col_ind_B
-      type(c_ptr),value :: descr_C
+      type(c_ptr) :: descr_C
       complex(c_double_complex),target,dimension(:) :: csr_val_C
       integer(c_int),target,dimension(:) :: csr_row_ptr_C
       integer(c_int),target,dimension(:) :: csr_col_ind_C
@@ -20754,27 +20754,27 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsrgemm_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
       real(c_float) :: alpha
-      type(c_ptr),value :: descr_A
-      integer(c_int),value :: nnz_A
+      type(c_ptr) :: descr_A
+      integer(c_int) :: nnz_A
       integer(c_int),target :: csr_row_ptr_A
       integer(c_int),target :: csr_col_ind_A
-      type(c_ptr),value :: descr_B
-      integer(c_int),value :: nnz_B
+      type(c_ptr) :: descr_B
+      integer(c_int) :: nnz_B
       integer(c_int),target :: csr_row_ptr_B
       integer(c_int),target :: csr_col_ind_B
       real(c_float) :: beta
-      type(c_ptr),value :: descr_D
-      integer(c_int),value :: nnz_D
+      type(c_ptr) :: descr_D
+      integer(c_int) :: nnz_D
       integer(c_int),target :: csr_row_ptr_D
       integer(c_int),target :: csr_col_ind_D
-      type(c_ptr),value :: info_C
+      type(c_ptr) :: info_C
       integer(c_size_t) :: buffer_size
       !
       rocsparse_scsrgemm_buffer_size_rank_0 = rocsparse_scsrgemm_buffer_size_raw(handle,trans_A,trans_B,m,n,k,alpha,descr_A,nnz_A,c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),descr_B,nnz_B,c_loc(csr_row_ptr_B),c_loc(csr_col_ind_B),beta,descr_D,nnz_D,c_loc(csr_row_ptr_D),c_loc(csr_col_ind_D),info_C,buffer_size)
@@ -20785,27 +20785,27 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsrgemm_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
       real(c_float) :: alpha
-      type(c_ptr),value :: descr_A
-      integer(c_int),value :: nnz_A
+      type(c_ptr) :: descr_A
+      integer(c_int) :: nnz_A
       integer(c_int),target,dimension(:) :: csr_row_ptr_A
       integer(c_int),target,dimension(:) :: csr_col_ind_A
-      type(c_ptr),value :: descr_B
-      integer(c_int),value :: nnz_B
+      type(c_ptr) :: descr_B
+      integer(c_int) :: nnz_B
       integer(c_int),target,dimension(:) :: csr_row_ptr_B
       integer(c_int),target,dimension(:) :: csr_col_ind_B
       real(c_float) :: beta
-      type(c_ptr),value :: descr_D
-      integer(c_int),value :: nnz_D
+      type(c_ptr) :: descr_D
+      integer(c_int) :: nnz_D
       integer(c_int),target,dimension(:) :: csr_row_ptr_D
       integer(c_int),target,dimension(:) :: csr_col_ind_D
-      type(c_ptr),value :: info_C
+      type(c_ptr) :: info_C
       integer(c_size_t) :: buffer_size
       !
       rocsparse_scsrgemm_buffer_size_rank_1 = rocsparse_scsrgemm_buffer_size_raw(handle,trans_A,trans_B,m,n,k,alpha,descr_A,nnz_A,c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),descr_B,nnz_B,c_loc(csr_row_ptr_B),c_loc(csr_col_ind_B),beta,descr_D,nnz_D,c_loc(csr_row_ptr_D),c_loc(csr_col_ind_D),info_C,buffer_size)
@@ -20816,27 +20816,27 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsrgemm_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
       real(c_double) :: alpha
-      type(c_ptr),value :: descr_A
-      integer(c_int),value :: nnz_A
+      type(c_ptr) :: descr_A
+      integer(c_int) :: nnz_A
       integer(c_int),target :: csr_row_ptr_A
       integer(c_int),target :: csr_col_ind_A
-      type(c_ptr),value :: descr_B
-      integer(c_int),value :: nnz_B
+      type(c_ptr) :: descr_B
+      integer(c_int) :: nnz_B
       integer(c_int),target :: csr_row_ptr_B
       integer(c_int),target :: csr_col_ind_B
       real(c_double) :: beta
-      type(c_ptr),value :: descr_D
-      integer(c_int),value :: nnz_D
+      type(c_ptr) :: descr_D
+      integer(c_int) :: nnz_D
       integer(c_int),target :: csr_row_ptr_D
       integer(c_int),target :: csr_col_ind_D
-      type(c_ptr),value :: info_C
+      type(c_ptr) :: info_C
       integer(c_size_t) :: buffer_size
       !
       rocsparse_dcsrgemm_buffer_size_rank_0 = rocsparse_dcsrgemm_buffer_size_raw(handle,trans_A,trans_B,m,n,k,alpha,descr_A,nnz_A,c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),descr_B,nnz_B,c_loc(csr_row_ptr_B),c_loc(csr_col_ind_B),beta,descr_D,nnz_D,c_loc(csr_row_ptr_D),c_loc(csr_col_ind_D),info_C,buffer_size)
@@ -20847,27 +20847,27 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsrgemm_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
       real(c_double) :: alpha
-      type(c_ptr),value :: descr_A
-      integer(c_int),value :: nnz_A
+      type(c_ptr) :: descr_A
+      integer(c_int) :: nnz_A
       integer(c_int),target,dimension(:) :: csr_row_ptr_A
       integer(c_int),target,dimension(:) :: csr_col_ind_A
-      type(c_ptr),value :: descr_B
-      integer(c_int),value :: nnz_B
+      type(c_ptr) :: descr_B
+      integer(c_int) :: nnz_B
       integer(c_int),target,dimension(:) :: csr_row_ptr_B
       integer(c_int),target,dimension(:) :: csr_col_ind_B
       real(c_double) :: beta
-      type(c_ptr),value :: descr_D
-      integer(c_int),value :: nnz_D
+      type(c_ptr) :: descr_D
+      integer(c_int) :: nnz_D
       integer(c_int),target,dimension(:) :: csr_row_ptr_D
       integer(c_int),target,dimension(:) :: csr_col_ind_D
-      type(c_ptr),value :: info_C
+      type(c_ptr) :: info_C
       integer(c_size_t) :: buffer_size
       !
       rocsparse_dcsrgemm_buffer_size_rank_1 = rocsparse_dcsrgemm_buffer_size_raw(handle,trans_A,trans_B,m,n,k,alpha,descr_A,nnz_A,c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),descr_B,nnz_B,c_loc(csr_row_ptr_B),c_loc(csr_col_ind_B),beta,descr_D,nnz_D,c_loc(csr_row_ptr_D),c_loc(csr_col_ind_D),info_C,buffer_size)
@@ -20878,27 +20878,27 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsrgemm_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr_A
-      integer(c_int),value :: nnz_A
+      type(c_ptr) :: descr_A
+      integer(c_int) :: nnz_A
       integer(c_int),target :: csr_row_ptr_A
       integer(c_int),target :: csr_col_ind_A
-      type(c_ptr),value :: descr_B
-      integer(c_int),value :: nnz_B
+      type(c_ptr) :: descr_B
+      integer(c_int) :: nnz_B
       integer(c_int),target :: csr_row_ptr_B
       integer(c_int),target :: csr_col_ind_B
       complex(c_float_complex) :: beta
-      type(c_ptr),value :: descr_D
-      integer(c_int),value :: nnz_D
+      type(c_ptr) :: descr_D
+      integer(c_int) :: nnz_D
       integer(c_int),target :: csr_row_ptr_D
       integer(c_int),target :: csr_col_ind_D
-      type(c_ptr),value :: info_C
+      type(c_ptr) :: info_C
       integer(c_size_t) :: buffer_size
       !
       rocsparse_ccsrgemm_buffer_size_rank_0 = rocsparse_ccsrgemm_buffer_size_raw(handle,trans_A,trans_B,m,n,k,alpha,descr_A,nnz_A,c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),descr_B,nnz_B,c_loc(csr_row_ptr_B),c_loc(csr_col_ind_B),beta,descr_D,nnz_D,c_loc(csr_row_ptr_D),c_loc(csr_col_ind_D),info_C,buffer_size)
@@ -20909,27 +20909,27 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsrgemm_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr_A
-      integer(c_int),value :: nnz_A
+      type(c_ptr) :: descr_A
+      integer(c_int) :: nnz_A
       integer(c_int),target,dimension(:) :: csr_row_ptr_A
       integer(c_int),target,dimension(:) :: csr_col_ind_A
-      type(c_ptr),value :: descr_B
-      integer(c_int),value :: nnz_B
+      type(c_ptr) :: descr_B
+      integer(c_int) :: nnz_B
       integer(c_int),target,dimension(:) :: csr_row_ptr_B
       integer(c_int),target,dimension(:) :: csr_col_ind_B
       complex(c_float_complex) :: beta
-      type(c_ptr),value :: descr_D
-      integer(c_int),value :: nnz_D
+      type(c_ptr) :: descr_D
+      integer(c_int) :: nnz_D
       integer(c_int),target,dimension(:) :: csr_row_ptr_D
       integer(c_int),target,dimension(:) :: csr_col_ind_D
-      type(c_ptr),value :: info_C
+      type(c_ptr) :: info_C
       integer(c_size_t) :: buffer_size
       !
       rocsparse_ccsrgemm_buffer_size_rank_1 = rocsparse_ccsrgemm_buffer_size_raw(handle,trans_A,trans_B,m,n,k,alpha,descr_A,nnz_A,c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),descr_B,nnz_B,c_loc(csr_row_ptr_B),c_loc(csr_col_ind_B),beta,descr_D,nnz_D,c_loc(csr_row_ptr_D),c_loc(csr_col_ind_D),info_C,buffer_size)
@@ -20940,27 +20940,27 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsrgemm_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr_A
-      integer(c_int),value :: nnz_A
+      type(c_ptr) :: descr_A
+      integer(c_int) :: nnz_A
       integer(c_int),target :: csr_row_ptr_A
       integer(c_int),target :: csr_col_ind_A
-      type(c_ptr),value :: descr_B
-      integer(c_int),value :: nnz_B
+      type(c_ptr) :: descr_B
+      integer(c_int) :: nnz_B
       integer(c_int),target :: csr_row_ptr_B
       integer(c_int),target :: csr_col_ind_B
       complex(c_double_complex) :: beta
-      type(c_ptr),value :: descr_D
-      integer(c_int),value :: nnz_D
+      type(c_ptr) :: descr_D
+      integer(c_int) :: nnz_D
       integer(c_int),target :: csr_row_ptr_D
       integer(c_int),target :: csr_col_ind_D
-      type(c_ptr),value :: info_C
+      type(c_ptr) :: info_C
       integer(c_size_t) :: buffer_size
       !
       rocsparse_zcsrgemm_buffer_size_rank_0 = rocsparse_zcsrgemm_buffer_size_raw(handle,trans_A,trans_B,m,n,k,alpha,descr_A,nnz_A,c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),descr_B,nnz_B,c_loc(csr_row_ptr_B),c_loc(csr_col_ind_B),beta,descr_D,nnz_D,c_loc(csr_row_ptr_D),c_loc(csr_col_ind_D),info_C,buffer_size)
@@ -20971,27 +20971,27 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsrgemm_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr_A
-      integer(c_int),value :: nnz_A
+      type(c_ptr) :: descr_A
+      integer(c_int) :: nnz_A
       integer(c_int),target,dimension(:) :: csr_row_ptr_A
       integer(c_int),target,dimension(:) :: csr_col_ind_A
-      type(c_ptr),value :: descr_B
-      integer(c_int),value :: nnz_B
+      type(c_ptr) :: descr_B
+      integer(c_int) :: nnz_B
       integer(c_int),target,dimension(:) :: csr_row_ptr_B
       integer(c_int),target,dimension(:) :: csr_col_ind_B
       complex(c_double_complex) :: beta
-      type(c_ptr),value :: descr_D
-      integer(c_int),value :: nnz_D
+      type(c_ptr) :: descr_D
+      integer(c_int) :: nnz_D
       integer(c_int),target,dimension(:) :: csr_row_ptr_D
       integer(c_int),target,dimension(:) :: csr_col_ind_D
-      type(c_ptr),value :: info_C
+      type(c_ptr) :: info_C
       integer(c_size_t) :: buffer_size
       !
       rocsparse_zcsrgemm_buffer_size_rank_1 = rocsparse_zcsrgemm_buffer_size_raw(handle,trans_A,trans_B,m,n,k,alpha,descr_A,nnz_A,c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),descr_B,nnz_B,c_loc(csr_row_ptr_B),c_loc(csr_col_ind_B),beta,descr_D,nnz_D,c_loc(csr_row_ptr_D),c_loc(csr_col_ind_D),info_C,buffer_size)
@@ -21002,29 +21002,29 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_csrgemm_nnz_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      type(c_ptr),value :: descr_A
-      integer(c_int),value :: nnz_A
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr) :: descr_A
+      integer(c_int) :: nnz_A
       integer(c_int),target :: csr_row_ptr_A
       integer(c_int),target :: csr_col_ind_A
-      type(c_ptr),value :: descr_B
-      integer(c_int),value :: nnz_B
+      type(c_ptr) :: descr_B
+      integer(c_int) :: nnz_B
       integer(c_int),target :: csr_row_ptr_B
       integer(c_int),target :: csr_col_ind_B
-      type(c_ptr),value :: descr_D
-      integer(c_int),value :: nnz_D
+      type(c_ptr) :: descr_D
+      integer(c_int) :: nnz_D
       integer(c_int),target :: csr_row_ptr_D
       integer(c_int),target :: csr_col_ind_D
-      type(c_ptr),value :: descr_C
+      type(c_ptr) :: descr_C
       integer(c_int),target :: csr_row_ptr_C
       integer(c_int),target :: nnz_C
-      type(c_ptr),value :: info_C
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: info_C
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_csrgemm_nnz_rank_0 = rocsparse_csrgemm_nnz_raw(handle,trans_A,trans_B,m,n,k,descr_A,nnz_A,c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),descr_B,nnz_B,c_loc(csr_row_ptr_B),c_loc(csr_col_ind_B),descr_D,nnz_D,c_loc(csr_row_ptr_D),c_loc(csr_col_ind_D),descr_C,c_loc(csr_row_ptr_C),c_loc(nnz_C),info_C,temp_buffer)
     end function
@@ -21034,29 +21034,29 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_csrgemm_nnz_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
-      type(c_ptr),value :: descr_A
-      integer(c_int),value :: nnz_A
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr) :: descr_A
+      integer(c_int) :: nnz_A
       integer(c_int),target,dimension(:) :: csr_row_ptr_A
       integer(c_int),target,dimension(:) :: csr_col_ind_A
-      type(c_ptr),value :: descr_B
-      integer(c_int),value :: nnz_B
+      type(c_ptr) :: descr_B
+      integer(c_int) :: nnz_B
       integer(c_int),target,dimension(:) :: csr_row_ptr_B
       integer(c_int),target,dimension(:) :: csr_col_ind_B
-      type(c_ptr),value :: descr_D
-      integer(c_int),value :: nnz_D
+      type(c_ptr) :: descr_D
+      integer(c_int) :: nnz_D
       integer(c_int),target,dimension(:) :: csr_row_ptr_D
       integer(c_int),target,dimension(:) :: csr_col_ind_D
-      type(c_ptr),value :: descr_C
+      type(c_ptr) :: descr_C
       integer(c_int),target,dimension(:) :: csr_row_ptr_C
       integer(c_int),target,dimension(:) :: nnz_C
-      type(c_ptr),value :: info_C
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: info_C
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_csrgemm_nnz_rank_1 = rocsparse_csrgemm_nnz_raw(handle,trans_A,trans_B,m,n,k,descr_A,nnz_A,c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),descr_B,nnz_B,c_loc(csr_row_ptr_B),c_loc(csr_col_ind_B),descr_D,nnz_D,c_loc(csr_row_ptr_D),c_loc(csr_col_ind_D),descr_C,c_loc(csr_row_ptr_C),c_loc(nnz_C),info_C,temp_buffer)
     end function
@@ -21066,35 +21066,35 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsrgemm_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
       real(c_float) :: alpha
-      type(c_ptr),value :: descr_A
-      integer(c_int),value :: nnz_A
+      type(c_ptr) :: descr_A
+      integer(c_int) :: nnz_A
       real(c_float),target :: csr_val_A
       integer(c_int),target :: csr_row_ptr_A
       integer(c_int),target :: csr_col_ind_A
-      type(c_ptr),value :: descr_B
-      integer(c_int),value :: nnz_B
+      type(c_ptr) :: descr_B
+      integer(c_int) :: nnz_B
       real(c_float),target :: csr_val_B
       integer(c_int),target :: csr_row_ptr_B
       integer(c_int),target :: csr_col_ind_B
       real(c_float) :: beta
-      type(c_ptr),value :: descr_D
-      integer(c_int),value :: nnz_D
+      type(c_ptr) :: descr_D
+      integer(c_int) :: nnz_D
       real(c_float),target :: csr_val_D
       integer(c_int),target :: csr_row_ptr_D
       integer(c_int),target :: csr_col_ind_D
-      type(c_ptr),value :: descr_C
+      type(c_ptr) :: descr_C
       real(c_float),target :: csr_val_C
       integer(c_int),target :: csr_row_ptr_C
       integer(c_int),target :: csr_col_ind_C
-      type(c_ptr),value :: info_C
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: info_C
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_scsrgemm_rank_0 = rocsparse_scsrgemm_raw(handle,trans_A,trans_B,m,n,k,alpha,descr_A,nnz_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),descr_B,nnz_B,c_loc(csr_val_B),c_loc(csr_row_ptr_B),c_loc(csr_col_ind_B),beta,descr_D,nnz_D,c_loc(csr_val_D),c_loc(csr_row_ptr_D),c_loc(csr_col_ind_D),descr_C,c_loc(csr_val_C),c_loc(csr_row_ptr_C),c_loc(csr_col_ind_C),info_C,temp_buffer)
     end function
@@ -21104,35 +21104,35 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsrgemm_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
       real(c_float) :: alpha
-      type(c_ptr),value :: descr_A
-      integer(c_int),value :: nnz_A
+      type(c_ptr) :: descr_A
+      integer(c_int) :: nnz_A
       real(c_float),target,dimension(:) :: csr_val_A
       integer(c_int),target,dimension(:) :: csr_row_ptr_A
       integer(c_int),target,dimension(:) :: csr_col_ind_A
-      type(c_ptr),value :: descr_B
-      integer(c_int),value :: nnz_B
+      type(c_ptr) :: descr_B
+      integer(c_int) :: nnz_B
       real(c_float),target,dimension(:) :: csr_val_B
       integer(c_int),target,dimension(:) :: csr_row_ptr_B
       integer(c_int),target,dimension(:) :: csr_col_ind_B
       real(c_float) :: beta
-      type(c_ptr),value :: descr_D
-      integer(c_int),value :: nnz_D
+      type(c_ptr) :: descr_D
+      integer(c_int) :: nnz_D
       real(c_float),target,dimension(:) :: csr_val_D
       integer(c_int),target,dimension(:) :: csr_row_ptr_D
       integer(c_int),target,dimension(:) :: csr_col_ind_D
-      type(c_ptr),value :: descr_C
+      type(c_ptr) :: descr_C
       real(c_float),target,dimension(:) :: csr_val_C
       integer(c_int),target,dimension(:) :: csr_row_ptr_C
       integer(c_int),target,dimension(:) :: csr_col_ind_C
-      type(c_ptr),value :: info_C
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: info_C
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_scsrgemm_rank_1 = rocsparse_scsrgemm_raw(handle,trans_A,trans_B,m,n,k,alpha,descr_A,nnz_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),descr_B,nnz_B,c_loc(csr_val_B),c_loc(csr_row_ptr_B),c_loc(csr_col_ind_B),beta,descr_D,nnz_D,c_loc(csr_val_D),c_loc(csr_row_ptr_D),c_loc(csr_col_ind_D),descr_C,c_loc(csr_val_C),c_loc(csr_row_ptr_C),c_loc(csr_col_ind_C),info_C,temp_buffer)
     end function
@@ -21142,35 +21142,35 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsrgemm_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
       real(c_double) :: alpha
-      type(c_ptr),value :: descr_A
-      integer(c_int),value :: nnz_A
+      type(c_ptr) :: descr_A
+      integer(c_int) :: nnz_A
       real(c_double),target :: csr_val_A
       integer(c_int),target :: csr_row_ptr_A
       integer(c_int),target :: csr_col_ind_A
-      type(c_ptr),value :: descr_B
-      integer(c_int),value :: nnz_B
+      type(c_ptr) :: descr_B
+      integer(c_int) :: nnz_B
       real(c_double),target :: csr_val_B
       integer(c_int),target :: csr_row_ptr_B
       integer(c_int),target :: csr_col_ind_B
       real(c_double) :: beta
-      type(c_ptr),value :: descr_D
-      integer(c_int),value :: nnz_D
+      type(c_ptr) :: descr_D
+      integer(c_int) :: nnz_D
       real(c_double),target :: csr_val_D
       integer(c_int),target :: csr_row_ptr_D
       integer(c_int),target :: csr_col_ind_D
-      type(c_ptr),value :: descr_C
+      type(c_ptr) :: descr_C
       real(c_double),target :: csr_val_C
       integer(c_int),target :: csr_row_ptr_C
       integer(c_int),target :: csr_col_ind_C
-      type(c_ptr),value :: info_C
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: info_C
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dcsrgemm_rank_0 = rocsparse_dcsrgemm_raw(handle,trans_A,trans_B,m,n,k,alpha,descr_A,nnz_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),descr_B,nnz_B,c_loc(csr_val_B),c_loc(csr_row_ptr_B),c_loc(csr_col_ind_B),beta,descr_D,nnz_D,c_loc(csr_val_D),c_loc(csr_row_ptr_D),c_loc(csr_col_ind_D),descr_C,c_loc(csr_val_C),c_loc(csr_row_ptr_C),c_loc(csr_col_ind_C),info_C,temp_buffer)
     end function
@@ -21180,35 +21180,35 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsrgemm_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
       real(c_double) :: alpha
-      type(c_ptr),value :: descr_A
-      integer(c_int),value :: nnz_A
+      type(c_ptr) :: descr_A
+      integer(c_int) :: nnz_A
       real(c_double),target,dimension(:) :: csr_val_A
       integer(c_int),target,dimension(:) :: csr_row_ptr_A
       integer(c_int),target,dimension(:) :: csr_col_ind_A
-      type(c_ptr),value :: descr_B
-      integer(c_int),value :: nnz_B
+      type(c_ptr) :: descr_B
+      integer(c_int) :: nnz_B
       real(c_double),target,dimension(:) :: csr_val_B
       integer(c_int),target,dimension(:) :: csr_row_ptr_B
       integer(c_int),target,dimension(:) :: csr_col_ind_B
       real(c_double) :: beta
-      type(c_ptr),value :: descr_D
-      integer(c_int),value :: nnz_D
+      type(c_ptr) :: descr_D
+      integer(c_int) :: nnz_D
       real(c_double),target,dimension(:) :: csr_val_D
       integer(c_int),target,dimension(:) :: csr_row_ptr_D
       integer(c_int),target,dimension(:) :: csr_col_ind_D
-      type(c_ptr),value :: descr_C
+      type(c_ptr) :: descr_C
       real(c_double),target,dimension(:) :: csr_val_C
       integer(c_int),target,dimension(:) :: csr_row_ptr_C
       integer(c_int),target,dimension(:) :: csr_col_ind_C
-      type(c_ptr),value :: info_C
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: info_C
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dcsrgemm_rank_1 = rocsparse_dcsrgemm_raw(handle,trans_A,trans_B,m,n,k,alpha,descr_A,nnz_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),descr_B,nnz_B,c_loc(csr_val_B),c_loc(csr_row_ptr_B),c_loc(csr_col_ind_B),beta,descr_D,nnz_D,c_loc(csr_val_D),c_loc(csr_row_ptr_D),c_loc(csr_col_ind_D),descr_C,c_loc(csr_val_C),c_loc(csr_row_ptr_C),c_loc(csr_col_ind_C),info_C,temp_buffer)
     end function
@@ -21218,35 +21218,35 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsrgemm_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr_A
-      integer(c_int),value :: nnz_A
+      type(c_ptr) :: descr_A
+      integer(c_int) :: nnz_A
       complex(c_float_complex),target :: csr_val_A
       integer(c_int),target :: csr_row_ptr_A
       integer(c_int),target :: csr_col_ind_A
-      type(c_ptr),value :: descr_B
-      integer(c_int),value :: nnz_B
+      type(c_ptr) :: descr_B
+      integer(c_int) :: nnz_B
       complex(c_float_complex),target :: csr_val_B
       integer(c_int),target :: csr_row_ptr_B
       integer(c_int),target :: csr_col_ind_B
       complex(c_float_complex) :: beta
-      type(c_ptr),value :: descr_D
-      integer(c_int),value :: nnz_D
+      type(c_ptr) :: descr_D
+      integer(c_int) :: nnz_D
       complex(c_float_complex),target :: csr_val_D
       integer(c_int),target :: csr_row_ptr_D
       integer(c_int),target :: csr_col_ind_D
-      type(c_ptr),value :: descr_C
+      type(c_ptr) :: descr_C
       complex(c_float_complex),target :: csr_val_C
       integer(c_int),target :: csr_row_ptr_C
       integer(c_int),target :: csr_col_ind_C
-      type(c_ptr),value :: info_C
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: info_C
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_ccsrgemm_rank_0 = rocsparse_ccsrgemm_raw(handle,trans_A,trans_B,m,n,k,alpha,descr_A,nnz_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),descr_B,nnz_B,c_loc(csr_val_B),c_loc(csr_row_ptr_B),c_loc(csr_col_ind_B),beta,descr_D,nnz_D,c_loc(csr_val_D),c_loc(csr_row_ptr_D),c_loc(csr_col_ind_D),descr_C,c_loc(csr_val_C),c_loc(csr_row_ptr_C),c_loc(csr_col_ind_C),info_C,temp_buffer)
     end function
@@ -21256,35 +21256,35 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsrgemm_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
       complex(c_float_complex) :: alpha
-      type(c_ptr),value :: descr_A
-      integer(c_int),value :: nnz_A
+      type(c_ptr) :: descr_A
+      integer(c_int) :: nnz_A
       complex(c_float_complex),target,dimension(:) :: csr_val_A
       integer(c_int),target,dimension(:) :: csr_row_ptr_A
       integer(c_int),target,dimension(:) :: csr_col_ind_A
-      type(c_ptr),value :: descr_B
-      integer(c_int),value :: nnz_B
+      type(c_ptr) :: descr_B
+      integer(c_int) :: nnz_B
       complex(c_float_complex),target,dimension(:) :: csr_val_B
       integer(c_int),target,dimension(:) :: csr_row_ptr_B
       integer(c_int),target,dimension(:) :: csr_col_ind_B
       complex(c_float_complex) :: beta
-      type(c_ptr),value :: descr_D
-      integer(c_int),value :: nnz_D
+      type(c_ptr) :: descr_D
+      integer(c_int) :: nnz_D
       complex(c_float_complex),target,dimension(:) :: csr_val_D
       integer(c_int),target,dimension(:) :: csr_row_ptr_D
       integer(c_int),target,dimension(:) :: csr_col_ind_D
-      type(c_ptr),value :: descr_C
+      type(c_ptr) :: descr_C
       complex(c_float_complex),target,dimension(:) :: csr_val_C
       integer(c_int),target,dimension(:) :: csr_row_ptr_C
       integer(c_int),target,dimension(:) :: csr_col_ind_C
-      type(c_ptr),value :: info_C
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: info_C
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_ccsrgemm_rank_1 = rocsparse_ccsrgemm_raw(handle,trans_A,trans_B,m,n,k,alpha,descr_A,nnz_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),descr_B,nnz_B,c_loc(csr_val_B),c_loc(csr_row_ptr_B),c_loc(csr_col_ind_B),beta,descr_D,nnz_D,c_loc(csr_val_D),c_loc(csr_row_ptr_D),c_loc(csr_col_ind_D),descr_C,c_loc(csr_val_C),c_loc(csr_row_ptr_C),c_loc(csr_col_ind_C),info_C,temp_buffer)
     end function
@@ -21294,35 +21294,35 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsrgemm_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr_A
-      integer(c_int),value :: nnz_A
+      type(c_ptr) :: descr_A
+      integer(c_int) :: nnz_A
       complex(c_double_complex),target :: csr_val_A
       integer(c_int),target :: csr_row_ptr_A
       integer(c_int),target :: csr_col_ind_A
-      type(c_ptr),value :: descr_B
-      integer(c_int),value :: nnz_B
+      type(c_ptr) :: descr_B
+      integer(c_int) :: nnz_B
       complex(c_double_complex),target :: csr_val_B
       integer(c_int),target :: csr_row_ptr_B
       integer(c_int),target :: csr_col_ind_B
       complex(c_double_complex) :: beta
-      type(c_ptr),value :: descr_D
-      integer(c_int),value :: nnz_D
+      type(c_ptr) :: descr_D
+      integer(c_int) :: nnz_D
       complex(c_double_complex),target :: csr_val_D
       integer(c_int),target :: csr_row_ptr_D
       integer(c_int),target :: csr_col_ind_D
-      type(c_ptr),value :: descr_C
+      type(c_ptr) :: descr_C
       complex(c_double_complex),target :: csr_val_C
       integer(c_int),target :: csr_row_ptr_C
       integer(c_int),target :: csr_col_ind_C
-      type(c_ptr),value :: info_C
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: info_C
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zcsrgemm_rank_0 = rocsparse_zcsrgemm_raw(handle,trans_A,trans_B,m,n,k,alpha,descr_A,nnz_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),descr_B,nnz_B,c_loc(csr_val_B),c_loc(csr_row_ptr_B),c_loc(csr_col_ind_B),beta,descr_D,nnz_D,c_loc(csr_val_D),c_loc(csr_row_ptr_D),c_loc(csr_col_ind_D),descr_C,c_loc(csr_val_C),c_loc(csr_row_ptr_C),c_loc(csr_col_ind_C),info_C,temp_buffer)
     end function
@@ -21332,35 +21332,35 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsrgemm_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: k
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
       complex(c_double_complex) :: alpha
-      type(c_ptr),value :: descr_A
-      integer(c_int),value :: nnz_A
+      type(c_ptr) :: descr_A
+      integer(c_int) :: nnz_A
       complex(c_double_complex),target,dimension(:) :: csr_val_A
       integer(c_int),target,dimension(:) :: csr_row_ptr_A
       integer(c_int),target,dimension(:) :: csr_col_ind_A
-      type(c_ptr),value :: descr_B
-      integer(c_int),value :: nnz_B
+      type(c_ptr) :: descr_B
+      integer(c_int) :: nnz_B
       complex(c_double_complex),target,dimension(:) :: csr_val_B
       integer(c_int),target,dimension(:) :: csr_row_ptr_B
       integer(c_int),target,dimension(:) :: csr_col_ind_B
       complex(c_double_complex) :: beta
-      type(c_ptr),value :: descr_D
-      integer(c_int),value :: nnz_D
+      type(c_ptr) :: descr_D
+      integer(c_int) :: nnz_D
       complex(c_double_complex),target,dimension(:) :: csr_val_D
       integer(c_int),target,dimension(:) :: csr_row_ptr_D
       integer(c_int),target,dimension(:) :: csr_col_ind_D
-      type(c_ptr),value :: descr_C
+      type(c_ptr) :: descr_C
       complex(c_double_complex),target,dimension(:) :: csr_val_C
       integer(c_int),target,dimension(:) :: csr_row_ptr_C
       integer(c_int),target,dimension(:) :: csr_col_ind_C
-      type(c_ptr),value :: info_C
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: info_C
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zcsrgemm_rank_1 = rocsparse_zcsrgemm_raw(handle,trans_A,trans_B,m,n,k,alpha,descr_A,nnz_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),descr_B,nnz_B,c_loc(csr_val_B),c_loc(csr_row_ptr_B),c_loc(csr_col_ind_B),beta,descr_D,nnz_D,c_loc(csr_val_D),c_loc(csr_row_ptr_D),c_loc(csr_col_ind_D),descr_C,c_loc(csr_val_C),c_loc(csr_row_ptr_C),c_loc(csr_col_ind_C),info_C,temp_buffer)
     end function
@@ -21370,16 +21370,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sbsric0_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       real(c_float),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_sbsric0_buffer_size_rank_0 = rocsparse_sbsric0_buffer_size_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,buffer_size)
@@ -21390,16 +21390,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sbsric0_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_sbsric0_buffer_size_rank_1 = rocsparse_sbsric0_buffer_size_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,buffer_size)
@@ -21410,16 +21410,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dbsric0_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       real(c_double),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_dbsric0_buffer_size_rank_0 = rocsparse_dbsric0_buffer_size_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,buffer_size)
@@ -21430,16 +21430,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dbsric0_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_dbsric0_buffer_size_rank_1 = rocsparse_dbsric0_buffer_size_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,buffer_size)
@@ -21450,16 +21450,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cbsric0_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_cbsric0_buffer_size_rank_0 = rocsparse_cbsric0_buffer_size_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,buffer_size)
@@ -21470,16 +21470,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cbsric0_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_cbsric0_buffer_size_rank_1 = rocsparse_cbsric0_buffer_size_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,buffer_size)
@@ -21490,16 +21490,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zbsric0_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_zbsric0_buffer_size_rank_0 = rocsparse_zbsric0_buffer_size_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,buffer_size)
@@ -21510,16 +21510,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zbsric0_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_zbsric0_buffer_size_rank_1 = rocsparse_zbsric0_buffer_size_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,buffer_size)
@@ -21530,19 +21530,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sbsric0_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       real(c_float),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sbsric0_analysis_rank_0 = rocsparse_sbsric0_analysis_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,analysis,solve,temp_buffer)
     end function
@@ -21552,19 +21552,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sbsric0_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sbsric0_analysis_rank_1 = rocsparse_sbsric0_analysis_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,analysis,solve,temp_buffer)
     end function
@@ -21574,19 +21574,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dbsric0_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       real(c_double),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dbsric0_analysis_rank_0 = rocsparse_dbsric0_analysis_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,analysis,solve,temp_buffer)
     end function
@@ -21596,19 +21596,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dbsric0_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dbsric0_analysis_rank_1 = rocsparse_dbsric0_analysis_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,analysis,solve,temp_buffer)
     end function
@@ -21618,19 +21618,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cbsric0_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_cbsric0_analysis_rank_0 = rocsparse_cbsric0_analysis_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,analysis,solve,temp_buffer)
     end function
@@ -21640,19 +21640,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cbsric0_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_cbsric0_analysis_rank_1 = rocsparse_cbsric0_analysis_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,analysis,solve,temp_buffer)
     end function
@@ -21662,19 +21662,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zbsric0_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zbsric0_analysis_rank_0 = rocsparse_zbsric0_analysis_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,analysis,solve,temp_buffer)
     end function
@@ -21684,19 +21684,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zbsric0_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zbsric0_analysis_rank_1 = rocsparse_zbsric0_analysis_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,analysis,solve,temp_buffer)
     end function
@@ -21706,18 +21706,18 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sbsric0_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       real(c_float),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sbsric0_rank_0 = rocsparse_sbsric0_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,policy,temp_buffer)
     end function
@@ -21727,18 +21727,18 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sbsric0_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sbsric0_rank_1 = rocsparse_sbsric0_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,policy,temp_buffer)
     end function
@@ -21748,18 +21748,18 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dbsric0_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       real(c_double),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dbsric0_rank_0 = rocsparse_dbsric0_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,policy,temp_buffer)
     end function
@@ -21769,18 +21769,18 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dbsric0_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dbsric0_rank_1 = rocsparse_dbsric0_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,policy,temp_buffer)
     end function
@@ -21790,18 +21790,18 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cbsric0_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_cbsric0_rank_0 = rocsparse_cbsric0_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,policy,temp_buffer)
     end function
@@ -21811,18 +21811,18 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cbsric0_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_cbsric0_rank_1 = rocsparse_cbsric0_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,policy,temp_buffer)
     end function
@@ -21832,18 +21832,18 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zbsric0_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zbsric0_rank_0 = rocsparse_zbsric0_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,policy,temp_buffer)
     end function
@@ -21853,18 +21853,18 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zbsric0_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zbsric0_rank_1 = rocsparse_zbsric0_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,policy,temp_buffer)
     end function
@@ -21874,16 +21874,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sbsrilu0_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       real(c_float),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_sbsrilu0_buffer_size_rank_0 = rocsparse_sbsrilu0_buffer_size_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,buffer_size)
@@ -21894,16 +21894,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sbsrilu0_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_sbsrilu0_buffer_size_rank_1 = rocsparse_sbsrilu0_buffer_size_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,buffer_size)
@@ -21914,16 +21914,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dbsrilu0_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       real(c_double),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_dbsrilu0_buffer_size_rank_0 = rocsparse_dbsrilu0_buffer_size_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,buffer_size)
@@ -21934,16 +21934,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dbsrilu0_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_dbsrilu0_buffer_size_rank_1 = rocsparse_dbsrilu0_buffer_size_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,buffer_size)
@@ -21954,16 +21954,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cbsrilu0_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_cbsrilu0_buffer_size_rank_0 = rocsparse_cbsrilu0_buffer_size_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,buffer_size)
@@ -21974,16 +21974,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cbsrilu0_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_cbsrilu0_buffer_size_rank_1 = rocsparse_cbsrilu0_buffer_size_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,buffer_size)
@@ -21994,16 +21994,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zbsrilu0_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_zbsrilu0_buffer_size_rank_0 = rocsparse_zbsrilu0_buffer_size_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,buffer_size)
@@ -22014,16 +22014,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zbsrilu0_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_zbsrilu0_buffer_size_rank_1 = rocsparse_zbsrilu0_buffer_size_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,buffer_size)
@@ -22034,19 +22034,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sbsrilu0_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       real(c_float),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sbsrilu0_analysis_rank_0 = rocsparse_sbsrilu0_analysis_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,analysis,solve,temp_buffer)
     end function
@@ -22056,19 +22056,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sbsrilu0_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sbsrilu0_analysis_rank_1 = rocsparse_sbsrilu0_analysis_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,analysis,solve,temp_buffer)
     end function
@@ -22078,19 +22078,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dbsrilu0_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       real(c_double),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dbsrilu0_analysis_rank_0 = rocsparse_dbsrilu0_analysis_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,analysis,solve,temp_buffer)
     end function
@@ -22100,19 +22100,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dbsrilu0_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dbsrilu0_analysis_rank_1 = rocsparse_dbsrilu0_analysis_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,analysis,solve,temp_buffer)
     end function
@@ -22122,19 +22122,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cbsrilu0_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_cbsrilu0_analysis_rank_0 = rocsparse_cbsrilu0_analysis_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,analysis,solve,temp_buffer)
     end function
@@ -22144,19 +22144,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cbsrilu0_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_cbsrilu0_analysis_rank_1 = rocsparse_cbsrilu0_analysis_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,analysis,solve,temp_buffer)
     end function
@@ -22166,19 +22166,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zbsrilu0_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zbsrilu0_analysis_rank_0 = rocsparse_zbsrilu0_analysis_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,analysis,solve,temp_buffer)
     end function
@@ -22188,19 +22188,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zbsrilu0_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zbsrilu0_analysis_rank_1 = rocsparse_zbsrilu0_analysis_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,analysis,solve,temp_buffer)
     end function
@@ -22210,18 +22210,18 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sbsrilu0_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       real(c_float),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sbsrilu0_rank_0 = rocsparse_sbsrilu0_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,policy,temp_buffer)
     end function
@@ -22231,18 +22231,18 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sbsrilu0_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sbsrilu0_rank_1 = rocsparse_sbsrilu0_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,policy,temp_buffer)
     end function
@@ -22252,18 +22252,18 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dbsrilu0_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       real(c_double),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dbsrilu0_rank_0 = rocsparse_dbsrilu0_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,policy,temp_buffer)
     end function
@@ -22273,18 +22273,18 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dbsrilu0_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dbsrilu0_rank_1 = rocsparse_dbsrilu0_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,policy,temp_buffer)
     end function
@@ -22294,18 +22294,18 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cbsrilu0_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_cbsrilu0_rank_0 = rocsparse_cbsrilu0_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,policy,temp_buffer)
     end function
@@ -22315,18 +22315,18 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cbsrilu0_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_cbsrilu0_rank_1 = rocsparse_cbsrilu0_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,policy,temp_buffer)
     end function
@@ -22336,18 +22336,18 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zbsrilu0_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zbsrilu0_rank_0 = rocsparse_zbsrilu0_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,policy,temp_buffer)
     end function
@@ -22357,18 +22357,18 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zbsrilu0_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nnzb
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: block_dim
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zbsrilu0_rank_1 = rocsparse_zbsrilu0_raw(handle,dir,mb,nnzb,descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),block_dim,myInfo,policy,temp_buffer)
     end function
@@ -22378,14 +22378,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsric0_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_float),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_scsric0_buffer_size_rank_0 = rocsparse_scsric0_buffer_size_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,buffer_size)
@@ -22396,14 +22396,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsric0_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_scsric0_buffer_size_rank_1 = rocsparse_scsric0_buffer_size_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,buffer_size)
@@ -22414,14 +22414,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsric0_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_double),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_dcsric0_buffer_size_rank_0 = rocsparse_dcsric0_buffer_size_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,buffer_size)
@@ -22432,14 +22432,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsric0_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_dcsric0_buffer_size_rank_1 = rocsparse_dcsric0_buffer_size_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,buffer_size)
@@ -22450,14 +22450,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsric0_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_ccsric0_buffer_size_rank_0 = rocsparse_ccsric0_buffer_size_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,buffer_size)
@@ -22468,14 +22468,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsric0_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_ccsric0_buffer_size_rank_1 = rocsparse_ccsric0_buffer_size_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,buffer_size)
@@ -22486,14 +22486,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsric0_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_zcsric0_buffer_size_rank_0 = rocsparse_zcsric0_buffer_size_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,buffer_size)
@@ -22504,14 +22504,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsric0_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_zcsric0_buffer_size_rank_1 = rocsparse_zcsric0_buffer_size_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,buffer_size)
@@ -22522,17 +22522,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsric0_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_float),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_scsric0_analysis_rank_0 = rocsparse_scsric0_analysis_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,analysis,solve,temp_buffer)
     end function
@@ -22542,17 +22542,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsric0_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_scsric0_analysis_rank_1 = rocsparse_scsric0_analysis_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,analysis,solve,temp_buffer)
     end function
@@ -22562,17 +22562,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsric0_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_double),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dcsric0_analysis_rank_0 = rocsparse_dcsric0_analysis_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,analysis,solve,temp_buffer)
     end function
@@ -22582,17 +22582,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsric0_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dcsric0_analysis_rank_1 = rocsparse_dcsric0_analysis_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,analysis,solve,temp_buffer)
     end function
@@ -22602,17 +22602,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsric0_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_ccsric0_analysis_rank_0 = rocsparse_ccsric0_analysis_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,analysis,solve,temp_buffer)
     end function
@@ -22622,17 +22622,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsric0_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_ccsric0_analysis_rank_1 = rocsparse_ccsric0_analysis_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,analysis,solve,temp_buffer)
     end function
@@ -22642,17 +22642,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsric0_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zcsric0_analysis_rank_0 = rocsparse_zcsric0_analysis_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,analysis,solve,temp_buffer)
     end function
@@ -22662,17 +22662,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsric0_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zcsric0_analysis_rank_1 = rocsparse_zcsric0_analysis_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,analysis,solve,temp_buffer)
     end function
@@ -22682,16 +22682,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsric0_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_float),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_scsric0_rank_0 = rocsparse_scsric0_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,policy,temp_buffer)
     end function
@@ -22701,16 +22701,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsric0_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_scsric0_rank_1 = rocsparse_scsric0_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,policy,temp_buffer)
     end function
@@ -22720,16 +22720,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsric0_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_double),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dcsric0_rank_0 = rocsparse_dcsric0_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,policy,temp_buffer)
     end function
@@ -22739,16 +22739,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsric0_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dcsric0_rank_1 = rocsparse_dcsric0_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,policy,temp_buffer)
     end function
@@ -22758,16 +22758,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsric0_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_ccsric0_rank_0 = rocsparse_ccsric0_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,policy,temp_buffer)
     end function
@@ -22777,16 +22777,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsric0_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_ccsric0_rank_1 = rocsparse_ccsric0_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,policy,temp_buffer)
     end function
@@ -22796,16 +22796,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsric0_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zcsric0_rank_0 = rocsparse_zcsric0_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,policy,temp_buffer)
     end function
@@ -22815,16 +22815,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsric0_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zcsric0_rank_1 = rocsparse_zcsric0_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,policy,temp_buffer)
     end function
@@ -22834,14 +22834,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsrilu0_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_float),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_scsrilu0_buffer_size_rank_0 = rocsparse_scsrilu0_buffer_size_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,buffer_size)
@@ -22852,14 +22852,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsrilu0_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_scsrilu0_buffer_size_rank_1 = rocsparse_scsrilu0_buffer_size_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,buffer_size)
@@ -22870,14 +22870,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsrilu0_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_double),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_dcsrilu0_buffer_size_rank_0 = rocsparse_dcsrilu0_buffer_size_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,buffer_size)
@@ -22888,14 +22888,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsrilu0_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_dcsrilu0_buffer_size_rank_1 = rocsparse_dcsrilu0_buffer_size_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,buffer_size)
@@ -22906,14 +22906,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsrilu0_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_ccsrilu0_buffer_size_rank_0 = rocsparse_ccsrilu0_buffer_size_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,buffer_size)
@@ -22924,14 +22924,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsrilu0_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_ccsrilu0_buffer_size_rank_1 = rocsparse_ccsrilu0_buffer_size_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,buffer_size)
@@ -22942,14 +22942,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsrilu0_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_zcsrilu0_buffer_size_rank_0 = rocsparse_zcsrilu0_buffer_size_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,buffer_size)
@@ -22960,14 +22960,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsrilu0_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_zcsrilu0_buffer_size_rank_1 = rocsparse_zcsrilu0_buffer_size_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,buffer_size)
@@ -22978,17 +22978,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsrilu0_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_float),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_scsrilu0_analysis_rank_0 = rocsparse_scsrilu0_analysis_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,analysis,solve,temp_buffer)
     end function
@@ -22998,17 +22998,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsrilu0_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_scsrilu0_analysis_rank_1 = rocsparse_scsrilu0_analysis_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,analysis,solve,temp_buffer)
     end function
@@ -23018,17 +23018,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsrilu0_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_double),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dcsrilu0_analysis_rank_0 = rocsparse_dcsrilu0_analysis_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,analysis,solve,temp_buffer)
     end function
@@ -23038,17 +23038,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsrilu0_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dcsrilu0_analysis_rank_1 = rocsparse_dcsrilu0_analysis_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,analysis,solve,temp_buffer)
     end function
@@ -23058,17 +23058,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsrilu0_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_ccsrilu0_analysis_rank_0 = rocsparse_ccsrilu0_analysis_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,analysis,solve,temp_buffer)
     end function
@@ -23078,17 +23078,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsrilu0_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_ccsrilu0_analysis_rank_1 = rocsparse_ccsrilu0_analysis_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,analysis,solve,temp_buffer)
     end function
@@ -23098,17 +23098,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsrilu0_analysis_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zcsrilu0_analysis_rank_0 = rocsparse_zcsrilu0_analysis_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,analysis,solve,temp_buffer)
     end function
@@ -23118,17 +23118,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsrilu0_analysis_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_analysis_policy_reuse)) :: analysis
+      integer(kind(rocsparse_solve_policy_auto)) :: solve
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zcsrilu0_analysis_rank_1 = rocsparse_zcsrilu0_analysis_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,analysis,solve,temp_buffer)
     end function
@@ -23138,16 +23138,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsrilu0_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_float),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_scsrilu0_rank_0 = rocsparse_scsrilu0_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,policy,temp_buffer)
     end function
@@ -23157,16 +23157,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsrilu0_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_scsrilu0_rank_1 = rocsparse_scsrilu0_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,policy,temp_buffer)
     end function
@@ -23176,16 +23176,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsrilu0_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_double),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dcsrilu0_rank_0 = rocsparse_dcsrilu0_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,policy,temp_buffer)
     end function
@@ -23195,16 +23195,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsrilu0_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dcsrilu0_rank_1 = rocsparse_dcsrilu0_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,policy,temp_buffer)
     end function
@@ -23214,16 +23214,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsrilu0_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_ccsrilu0_rank_0 = rocsparse_ccsrilu0_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,policy,temp_buffer)
     end function
@@ -23233,16 +23233,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsrilu0_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_ccsrilu0_rank_1 = rocsparse_ccsrilu0_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,policy,temp_buffer)
     end function
@@ -23252,16 +23252,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsrilu0_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zcsrilu0_rank_0 = rocsparse_zcsrilu0_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,policy,temp_buffer)
     end function
@@ -23271,16 +23271,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsrilu0_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      integer(kind(rocsparse_solve_policy_auto)) :: policy
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zcsrilu0_rank_1 = rocsparse_zcsrilu0_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,policy,temp_buffer)
     end function
@@ -23290,14 +23290,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sgtsv_buffer_size_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
       rocsparse_sgtsv_buffer_size_full_rank = rocsparse_sgtsv_buffer_size_raw(handle,m,n,dl,d,du,c_loc(B),ldb,buffer_size)
@@ -23308,14 +23308,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sgtsv_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
       rocsparse_sgtsv_buffer_size_rank_0 = rocsparse_sgtsv_buffer_size_raw(handle,m,n,dl,d,du,c_loc(B),ldb,buffer_size)
@@ -23326,14 +23326,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sgtsv_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target,dimension(:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
       rocsparse_sgtsv_buffer_size_rank_1 = rocsparse_sgtsv_buffer_size_raw(handle,m,n,dl,d,du,c_loc(B),ldb,buffer_size)
@@ -23344,14 +23344,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dgtsv_buffer_size_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
       rocsparse_dgtsv_buffer_size_full_rank = rocsparse_dgtsv_buffer_size_raw(handle,m,n,dl,d,du,c_loc(B),ldb,buffer_size)
@@ -23362,14 +23362,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dgtsv_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
       rocsparse_dgtsv_buffer_size_rank_0 = rocsparse_dgtsv_buffer_size_raw(handle,m,n,dl,d,du,c_loc(B),ldb,buffer_size)
@@ -23380,14 +23380,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dgtsv_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target,dimension(:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
       rocsparse_dgtsv_buffer_size_rank_1 = rocsparse_dgtsv_buffer_size_raw(handle,m,n,dl,d,du,c_loc(B),ldb,buffer_size)
@@ -23398,14 +23398,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cgtsv_buffer_size_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
       rocsparse_cgtsv_buffer_size_full_rank = rocsparse_cgtsv_buffer_size_raw(handle,m,n,dl,d,du,c_loc(B),ldb,buffer_size)
@@ -23416,14 +23416,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cgtsv_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
       rocsparse_cgtsv_buffer_size_rank_0 = rocsparse_cgtsv_buffer_size_raw(handle,m,n,dl,d,du,c_loc(B),ldb,buffer_size)
@@ -23434,14 +23434,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cgtsv_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
       rocsparse_cgtsv_buffer_size_rank_1 = rocsparse_cgtsv_buffer_size_raw(handle,m,n,dl,d,du,c_loc(B),ldb,buffer_size)
@@ -23452,14 +23452,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zgtsv_buffer_size_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
       rocsparse_zgtsv_buffer_size_full_rank = rocsparse_zgtsv_buffer_size_raw(handle,m,n,dl,d,du,c_loc(B),ldb,buffer_size)
@@ -23470,14 +23470,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zgtsv_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
       rocsparse_zgtsv_buffer_size_rank_0 = rocsparse_zgtsv_buffer_size_raw(handle,m,n,dl,d,du,c_loc(B),ldb,buffer_size)
@@ -23488,14 +23488,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zgtsv_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
       rocsparse_zgtsv_buffer_size_rank_1 = rocsparse_zgtsv_buffer_size_raw(handle,m,n,dl,d,du,c_loc(B),ldb,buffer_size)
@@ -23506,15 +23506,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sgtsv_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sgtsv_full_rank = rocsparse_sgtsv_raw(handle,m,n,dl,d,du,c_loc(B),ldb,temp_buffer)
     end function
@@ -23524,15 +23524,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sgtsv_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sgtsv_rank_0 = rocsparse_sgtsv_raw(handle,m,n,dl,d,du,c_loc(B),ldb,temp_buffer)
     end function
@@ -23542,15 +23542,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sgtsv_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sgtsv_rank_1 = rocsparse_sgtsv_raw(handle,m,n,dl,d,du,c_loc(B),ldb,temp_buffer)
     end function
@@ -23560,15 +23560,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dgtsv_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dgtsv_full_rank = rocsparse_dgtsv_raw(handle,m,n,dl,d,du,c_loc(B),ldb,temp_buffer)
     end function
@@ -23578,15 +23578,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dgtsv_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dgtsv_rank_0 = rocsparse_dgtsv_raw(handle,m,n,dl,d,du,c_loc(B),ldb,temp_buffer)
     end function
@@ -23596,15 +23596,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dgtsv_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dgtsv_rank_1 = rocsparse_dgtsv_raw(handle,m,n,dl,d,du,c_loc(B),ldb,temp_buffer)
     end function
@@ -23614,15 +23614,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cgtsv_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_cgtsv_full_rank = rocsparse_cgtsv_raw(handle,m,n,dl,d,du,c_loc(B),ldb,temp_buffer)
     end function
@@ -23632,15 +23632,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cgtsv_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_cgtsv_rank_0 = rocsparse_cgtsv_raw(handle,m,n,dl,d,du,c_loc(B),ldb,temp_buffer)
     end function
@@ -23650,15 +23650,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cgtsv_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_cgtsv_rank_1 = rocsparse_cgtsv_raw(handle,m,n,dl,d,du,c_loc(B),ldb,temp_buffer)
     end function
@@ -23668,15 +23668,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zgtsv_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zgtsv_full_rank = rocsparse_zgtsv_raw(handle,m,n,dl,d,du,c_loc(B),ldb,temp_buffer)
     end function
@@ -23686,15 +23686,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zgtsv_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zgtsv_rank_0 = rocsparse_zgtsv_raw(handle,m,n,dl,d,du,c_loc(B),ldb,temp_buffer)
     end function
@@ -23704,15 +23704,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zgtsv_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zgtsv_rank_1 = rocsparse_zgtsv_raw(handle,m,n,dl,d,du,c_loc(B),ldb,temp_buffer)
     end function
@@ -23722,14 +23722,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sgtsv_no_pivot_buffer_size_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
       rocsparse_sgtsv_no_pivot_buffer_size_full_rank = rocsparse_sgtsv_no_pivot_buffer_size_raw(handle,m,n,dl,d,du,c_loc(B),ldb,buffer_size)
@@ -23740,14 +23740,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sgtsv_no_pivot_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
       rocsparse_sgtsv_no_pivot_buffer_size_rank_0 = rocsparse_sgtsv_no_pivot_buffer_size_raw(handle,m,n,dl,d,du,c_loc(B),ldb,buffer_size)
@@ -23758,14 +23758,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sgtsv_no_pivot_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target,dimension(:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
       rocsparse_sgtsv_no_pivot_buffer_size_rank_1 = rocsparse_sgtsv_no_pivot_buffer_size_raw(handle,m,n,dl,d,du,c_loc(B),ldb,buffer_size)
@@ -23776,14 +23776,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dgtsv_no_pivot_buffer_size_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
       rocsparse_dgtsv_no_pivot_buffer_size_full_rank = rocsparse_dgtsv_no_pivot_buffer_size_raw(handle,m,n,dl,d,du,c_loc(B),ldb,buffer_size)
@@ -23794,14 +23794,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dgtsv_no_pivot_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
       rocsparse_dgtsv_no_pivot_buffer_size_rank_0 = rocsparse_dgtsv_no_pivot_buffer_size_raw(handle,m,n,dl,d,du,c_loc(B),ldb,buffer_size)
@@ -23812,14 +23812,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dgtsv_no_pivot_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target,dimension(:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
       rocsparse_dgtsv_no_pivot_buffer_size_rank_1 = rocsparse_dgtsv_no_pivot_buffer_size_raw(handle,m,n,dl,d,du,c_loc(B),ldb,buffer_size)
@@ -23830,14 +23830,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cgtsv_no_pivot_buffer_size_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
       rocsparse_cgtsv_no_pivot_buffer_size_full_rank = rocsparse_cgtsv_no_pivot_buffer_size_raw(handle,m,n,dl,d,du,c_loc(B),ldb,buffer_size)
@@ -23848,14 +23848,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cgtsv_no_pivot_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
       rocsparse_cgtsv_no_pivot_buffer_size_rank_0 = rocsparse_cgtsv_no_pivot_buffer_size_raw(handle,m,n,dl,d,du,c_loc(B),ldb,buffer_size)
@@ -23866,14 +23866,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cgtsv_no_pivot_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
       rocsparse_cgtsv_no_pivot_buffer_size_rank_1 = rocsparse_cgtsv_no_pivot_buffer_size_raw(handle,m,n,dl,d,du,c_loc(B),ldb,buffer_size)
@@ -23884,14 +23884,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zgtsv_no_pivot_buffer_size_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
       rocsparse_zgtsv_no_pivot_buffer_size_full_rank = rocsparse_zgtsv_no_pivot_buffer_size_raw(handle,m,n,dl,d,du,c_loc(B),ldb,buffer_size)
@@ -23902,14 +23902,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zgtsv_no_pivot_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
       rocsparse_zgtsv_no_pivot_buffer_size_rank_0 = rocsparse_zgtsv_no_pivot_buffer_size_raw(handle,m,n,dl,d,du,c_loc(B),ldb,buffer_size)
@@ -23920,14 +23920,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zgtsv_no_pivot_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
+      integer(c_int) :: ldb
       integer(c_size_t) :: buffer_size
       !
       rocsparse_zgtsv_no_pivot_buffer_size_rank_1 = rocsparse_zgtsv_no_pivot_buffer_size_raw(handle,m,n,dl,d,du,c_loc(B),ldb,buffer_size)
@@ -23938,15 +23938,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sgtsv_no_pivot_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sgtsv_no_pivot_full_rank = rocsparse_sgtsv_no_pivot_raw(handle,m,n,dl,d,du,c_loc(B),ldb,temp_buffer)
     end function
@@ -23956,15 +23956,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sgtsv_no_pivot_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sgtsv_no_pivot_rank_0 = rocsparse_sgtsv_no_pivot_raw(handle,m,n,dl,d,du,c_loc(B),ldb,temp_buffer)
     end function
@@ -23974,15 +23974,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sgtsv_no_pivot_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sgtsv_no_pivot_rank_1 = rocsparse_sgtsv_no_pivot_raw(handle,m,n,dl,d,du,c_loc(B),ldb,temp_buffer)
     end function
@@ -23992,15 +23992,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dgtsv_no_pivot_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dgtsv_no_pivot_full_rank = rocsparse_dgtsv_no_pivot_raw(handle,m,n,dl,d,du,c_loc(B),ldb,temp_buffer)
     end function
@@ -24010,15 +24010,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dgtsv_no_pivot_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dgtsv_no_pivot_rank_0 = rocsparse_dgtsv_no_pivot_raw(handle,m,n,dl,d,du,c_loc(B),ldb,temp_buffer)
     end function
@@ -24028,15 +24028,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dgtsv_no_pivot_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dgtsv_no_pivot_rank_1 = rocsparse_dgtsv_no_pivot_raw(handle,m,n,dl,d,du,c_loc(B),ldb,temp_buffer)
     end function
@@ -24046,15 +24046,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cgtsv_no_pivot_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_cgtsv_no_pivot_full_rank = rocsparse_cgtsv_no_pivot_raw(handle,m,n,dl,d,du,c_loc(B),ldb,temp_buffer)
     end function
@@ -24064,15 +24064,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cgtsv_no_pivot_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_cgtsv_no_pivot_rank_0 = rocsparse_cgtsv_no_pivot_raw(handle,m,n,dl,d,du,c_loc(B),ldb,temp_buffer)
     end function
@@ -24082,15 +24082,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cgtsv_no_pivot_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_cgtsv_no_pivot_rank_1 = rocsparse_cgtsv_no_pivot_raw(handle,m,n,dl,d,du,c_loc(B),ldb,temp_buffer)
     end function
@@ -24100,15 +24100,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zgtsv_no_pivot_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target,dimension(:,:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zgtsv_no_pivot_full_rank = rocsparse_zgtsv_no_pivot_raw(handle,m,n,dl,d,du,c_loc(B),ldb,temp_buffer)
     end function
@@ -24118,15 +24118,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zgtsv_no_pivot_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zgtsv_no_pivot_rank_0 = rocsparse_zgtsv_no_pivot_raw(handle,m,n,dl,d,du,c_loc(B),ldb,temp_buffer)
     end function
@@ -24136,15 +24136,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zgtsv_no_pivot_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target,dimension(:) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: ldb
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zgtsv_no_pivot_rank_1 = rocsparse_zgtsv_no_pivot_raw(handle,m,n,dl,d,du,c_loc(B),ldb,temp_buffer)
     end function
@@ -24154,14 +24154,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sgtsv_no_pivot_strided_batch_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target :: x
-      integer(c_int),value :: batch_count
-      integer(c_int),value :: batch_stride
+      integer(c_int) :: batch_count
+      integer(c_int) :: batch_stride
       integer(c_size_t) :: buffer_size
       !
       rocsparse_sgtsv_no_pivot_strided_batch_buffer_size_rank_0 = rocsparse_sgtsv_no_pivot_strided_batch_buffer_size_raw(handle,m,dl,d,du,c_loc(x),batch_count,batch_stride,buffer_size)
@@ -24172,14 +24172,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sgtsv_no_pivot_strided_batch_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target,dimension(:) :: x
-      integer(c_int),value :: batch_count
-      integer(c_int),value :: batch_stride
+      integer(c_int) :: batch_count
+      integer(c_int) :: batch_stride
       integer(c_size_t) :: buffer_size
       !
       rocsparse_sgtsv_no_pivot_strided_batch_buffer_size_rank_1 = rocsparse_sgtsv_no_pivot_strided_batch_buffer_size_raw(handle,m,dl,d,du,c_loc(x),batch_count,batch_stride,buffer_size)
@@ -24190,14 +24190,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dgtsv_no_pivot_strided_batch_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target :: x
-      integer(c_int),value :: batch_count
-      integer(c_int),value :: batch_stride
+      integer(c_int) :: batch_count
+      integer(c_int) :: batch_stride
       integer(c_size_t) :: buffer_size
       !
       rocsparse_dgtsv_no_pivot_strided_batch_buffer_size_rank_0 = rocsparse_dgtsv_no_pivot_strided_batch_buffer_size_raw(handle,m,dl,d,du,c_loc(x),batch_count,batch_stride,buffer_size)
@@ -24208,14 +24208,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dgtsv_no_pivot_strided_batch_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target,dimension(:) :: x
-      integer(c_int),value :: batch_count
-      integer(c_int),value :: batch_stride
+      integer(c_int) :: batch_count
+      integer(c_int) :: batch_stride
       integer(c_size_t) :: buffer_size
       !
       rocsparse_dgtsv_no_pivot_strided_batch_buffer_size_rank_1 = rocsparse_dgtsv_no_pivot_strided_batch_buffer_size_raw(handle,m,dl,d,du,c_loc(x),batch_count,batch_stride,buffer_size)
@@ -24226,14 +24226,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cgtsv_no_pivot_strided_batch_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target :: x
-      integer(c_int),value :: batch_count
-      integer(c_int),value :: batch_stride
+      integer(c_int) :: batch_count
+      integer(c_int) :: batch_stride
       integer(c_size_t) :: buffer_size
       !
       rocsparse_cgtsv_no_pivot_strided_batch_buffer_size_rank_0 = rocsparse_cgtsv_no_pivot_strided_batch_buffer_size_raw(handle,m,dl,d,du,c_loc(x),batch_count,batch_stride,buffer_size)
@@ -24244,14 +24244,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cgtsv_no_pivot_strided_batch_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target,dimension(:) :: x
-      integer(c_int),value :: batch_count
-      integer(c_int),value :: batch_stride
+      integer(c_int) :: batch_count
+      integer(c_int) :: batch_stride
       integer(c_size_t) :: buffer_size
       !
       rocsparse_cgtsv_no_pivot_strided_batch_buffer_size_rank_1 = rocsparse_cgtsv_no_pivot_strided_batch_buffer_size_raw(handle,m,dl,d,du,c_loc(x),batch_count,batch_stride,buffer_size)
@@ -24262,14 +24262,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zgtsv_no_pivot_strided_batch_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target :: x
-      integer(c_int),value :: batch_count
-      integer(c_int),value :: batch_stride
+      integer(c_int) :: batch_count
+      integer(c_int) :: batch_stride
       integer(c_size_t) :: buffer_size
       !
       rocsparse_zgtsv_no_pivot_strided_batch_buffer_size_rank_0 = rocsparse_zgtsv_no_pivot_strided_batch_buffer_size_raw(handle,m,dl,d,du,c_loc(x),batch_count,batch_stride,buffer_size)
@@ -24280,14 +24280,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zgtsv_no_pivot_strided_batch_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target,dimension(:) :: x
-      integer(c_int),value :: batch_count
-      integer(c_int),value :: batch_stride
+      integer(c_int) :: batch_count
+      integer(c_int) :: batch_stride
       integer(c_size_t) :: buffer_size
       !
       rocsparse_zgtsv_no_pivot_strided_batch_buffer_size_rank_1 = rocsparse_zgtsv_no_pivot_strided_batch_buffer_size_raw(handle,m,dl,d,du,c_loc(x),batch_count,batch_stride,buffer_size)
@@ -24298,15 +24298,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sgtsv_no_pivot_strided_batch_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target :: x
-      integer(c_int),value :: batch_count
-      integer(c_int),value :: batch_stride
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: batch_count
+      integer(c_int) :: batch_stride
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sgtsv_no_pivot_strided_batch_rank_0 = rocsparse_sgtsv_no_pivot_strided_batch_raw(handle,m,dl,d,du,c_loc(x),batch_count,batch_stride,temp_buffer)
     end function
@@ -24316,15 +24316,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sgtsv_no_pivot_strided_batch_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_float),target,dimension(:) :: x
-      integer(c_int),value :: batch_count
-      integer(c_int),value :: batch_stride
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: batch_count
+      integer(c_int) :: batch_stride
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sgtsv_no_pivot_strided_batch_rank_1 = rocsparse_sgtsv_no_pivot_strided_batch_raw(handle,m,dl,d,du,c_loc(x),batch_count,batch_stride,temp_buffer)
     end function
@@ -24334,15 +24334,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dgtsv_no_pivot_strided_batch_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target :: x
-      integer(c_int),value :: batch_count
-      integer(c_int),value :: batch_stride
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: batch_count
+      integer(c_int) :: batch_stride
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dgtsv_no_pivot_strided_batch_rank_0 = rocsparse_dgtsv_no_pivot_strided_batch_raw(handle,m,dl,d,du,c_loc(x),batch_count,batch_stride,temp_buffer)
     end function
@@ -24352,15 +24352,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dgtsv_no_pivot_strided_batch_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       real(c_double),target,dimension(:) :: x
-      integer(c_int),value :: batch_count
-      integer(c_int),value :: batch_stride
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: batch_count
+      integer(c_int) :: batch_stride
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dgtsv_no_pivot_strided_batch_rank_1 = rocsparse_dgtsv_no_pivot_strided_batch_raw(handle,m,dl,d,du,c_loc(x),batch_count,batch_stride,temp_buffer)
     end function
@@ -24370,15 +24370,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cgtsv_no_pivot_strided_batch_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target :: x
-      integer(c_int),value :: batch_count
-      integer(c_int),value :: batch_stride
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: batch_count
+      integer(c_int) :: batch_stride
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_cgtsv_no_pivot_strided_batch_rank_0 = rocsparse_cgtsv_no_pivot_strided_batch_raw(handle,m,dl,d,du,c_loc(x),batch_count,batch_stride,temp_buffer)
     end function
@@ -24388,15 +24388,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cgtsv_no_pivot_strided_batch_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_float_complex),target,dimension(:) :: x
-      integer(c_int),value :: batch_count
-      integer(c_int),value :: batch_stride
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: batch_count
+      integer(c_int) :: batch_stride
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_cgtsv_no_pivot_strided_batch_rank_1 = rocsparse_cgtsv_no_pivot_strided_batch_raw(handle,m,dl,d,du,c_loc(x),batch_count,batch_stride,temp_buffer)
     end function
@@ -24406,15 +24406,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zgtsv_no_pivot_strided_batch_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target :: x
-      integer(c_int),value :: batch_count
-      integer(c_int),value :: batch_stride
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: batch_count
+      integer(c_int) :: batch_stride
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zgtsv_no_pivot_strided_batch_rank_0 = rocsparse_zgtsv_no_pivot_strided_batch_raw(handle,m,dl,d,du,c_loc(x),batch_count,batch_stride,temp_buffer)
     end function
@@ -24424,15 +24424,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zgtsv_no_pivot_strided_batch_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
       complex(c_double_complex),target,dimension(:) :: x
-      integer(c_int),value :: batch_count
-      integer(c_int),value :: batch_stride
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: batch_count
+      integer(c_int) :: batch_stride
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zgtsv_no_pivot_strided_batch_rank_1 = rocsparse_zgtsv_no_pivot_strided_batch_raw(handle,m,dl,d,du,c_loc(x),batch_count,batch_stride,temp_buffer)
     end function
@@ -24442,13 +24442,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_snnz_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_row_columns
       integer(c_int) :: nnz_total_dev_host_ptr
       !
@@ -24460,13 +24460,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_snnz_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_float),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target :: nnz_per_row_columns
       integer(c_int) :: nnz_total_dev_host_ptr
       !
@@ -24478,13 +24478,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_snnz_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_row_columns
       integer(c_int) :: nnz_total_dev_host_ptr
       !
@@ -24496,13 +24496,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dnnz_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_row_columns
       integer(c_int) :: nnz_total_dev_host_ptr
       !
@@ -24514,13 +24514,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dnnz_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_double),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target :: nnz_per_row_columns
       integer(c_int) :: nnz_total_dev_host_ptr
       !
@@ -24532,13 +24532,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dnnz_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_row_columns
       integer(c_int) :: nnz_total_dev_host_ptr
       !
@@ -24550,13 +24550,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cnnz_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_row_columns
       integer(c_int) :: nnz_total_dev_host_ptr
       !
@@ -24568,13 +24568,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cnnz_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target :: nnz_per_row_columns
       integer(c_int) :: nnz_total_dev_host_ptr
       !
@@ -24586,13 +24586,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cnnz_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_row_columns
       integer(c_int) :: nnz_total_dev_host_ptr
       !
@@ -24604,13 +24604,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_znnz_full_rank
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_row_columns
       integer(c_int) :: nnz_total_dev_host_ptr
       !
@@ -24622,13 +24622,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_znnz_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target :: nnz_per_row_columns
       integer(c_int) :: nnz_total_dev_host_ptr
       !
@@ -24640,13 +24640,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_znnz_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_row_columns
       integer(c_int) :: nnz_total_dev_host_ptr
       !
@@ -24658,12 +24658,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sdense2csr_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_rows
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
@@ -24677,12 +24677,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sdense2csr_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_float),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target :: nnz_per_rows
       real(c_float),target :: csr_val
       integer(c_int),target :: csr_row_ptr
@@ -24696,12 +24696,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sdense2csr_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_rows
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
@@ -24715,12 +24715,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ddense2csr_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_rows
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
@@ -24734,12 +24734,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ddense2csr_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_double),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target :: nnz_per_rows
       real(c_double),target :: csr_val
       integer(c_int),target :: csr_row_ptr
@@ -24753,12 +24753,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ddense2csr_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_rows
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
@@ -24772,12 +24772,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cdense2csr_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_rows
       complex(c_float_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
@@ -24791,12 +24791,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cdense2csr_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target :: nnz_per_rows
       complex(c_float_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
@@ -24810,12 +24810,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cdense2csr_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_rows
       complex(c_float_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
@@ -24829,12 +24829,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zdense2csr_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_rows
       complex(c_double_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
@@ -24848,12 +24848,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zdense2csr_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target :: nnz_per_rows
       complex(c_double_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
@@ -24867,12 +24867,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zdense2csr_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_rows
       complex(c_double_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
@@ -24886,13 +24886,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sprune_dense2csr_buffer_size_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_float) :: threshold
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
@@ -24906,13 +24906,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sprune_dense2csr_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_float) :: threshold
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
@@ -24926,13 +24926,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sprune_dense2csr_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_float) :: threshold
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
@@ -24946,13 +24946,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dprune_dense2csr_buffer_size_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_double) :: threshold
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
@@ -24966,13 +24966,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dprune_dense2csr_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_double) :: threshold
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
@@ -24986,13 +24986,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dprune_dense2csr_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_double) :: threshold
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
@@ -25006,16 +25006,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sprune_dense2csr_nnz_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_float) :: threshold
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int) :: nnz_total_dev_host_ptr
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sprune_dense2csr_nnz_full_rank = rocsparse_sprune_dense2csr_nnz_raw(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csr_row_ptr),nnz_total_dev_host_ptr,temp_buffer)
     end function
@@ -25025,16 +25025,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sprune_dense2csr_nnz_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_float) :: threshold
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       integer(c_int),target :: csr_row_ptr
       integer(c_int) :: nnz_total_dev_host_ptr
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sprune_dense2csr_nnz_rank_0 = rocsparse_sprune_dense2csr_nnz_raw(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csr_row_ptr),nnz_total_dev_host_ptr,temp_buffer)
     end function
@@ -25044,16 +25044,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sprune_dense2csr_nnz_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_float) :: threshold
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int) :: nnz_total_dev_host_ptr
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sprune_dense2csr_nnz_rank_1 = rocsparse_sprune_dense2csr_nnz_raw(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csr_row_ptr),nnz_total_dev_host_ptr,temp_buffer)
     end function
@@ -25063,16 +25063,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dprune_dense2csr_nnz_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_double) :: threshold
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int) :: nnz_total_dev_host_ptr
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dprune_dense2csr_nnz_full_rank = rocsparse_dprune_dense2csr_nnz_raw(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csr_row_ptr),nnz_total_dev_host_ptr,temp_buffer)
     end function
@@ -25082,16 +25082,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dprune_dense2csr_nnz_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_double) :: threshold
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       integer(c_int),target :: csr_row_ptr
       integer(c_int) :: nnz_total_dev_host_ptr
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dprune_dense2csr_nnz_rank_0 = rocsparse_dprune_dense2csr_nnz_raw(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csr_row_ptr),nnz_total_dev_host_ptr,temp_buffer)
     end function
@@ -25101,16 +25101,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dprune_dense2csr_nnz_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_double) :: threshold
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int) :: nnz_total_dev_host_ptr
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dprune_dense2csr_nnz_rank_1 = rocsparse_dprune_dense2csr_nnz_raw(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csr_row_ptr),nnz_total_dev_host_ptr,temp_buffer)
     end function
@@ -25120,17 +25120,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sprune_dense2csr_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_float) :: threshold
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sprune_dense2csr_full_rank = rocsparse_sprune_dense2csr_raw(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),temp_buffer)
     end function
@@ -25140,17 +25140,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sprune_dense2csr_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_float) :: threshold
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sprune_dense2csr_rank_0 = rocsparse_sprune_dense2csr_raw(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),temp_buffer)
     end function
@@ -25160,17 +25160,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sprune_dense2csr_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_float) :: threshold
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sprune_dense2csr_rank_1 = rocsparse_sprune_dense2csr_raw(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),temp_buffer)
     end function
@@ -25180,17 +25180,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dprune_dense2csr_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_double) :: threshold
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dprune_dense2csr_full_rank = rocsparse_dprune_dense2csr_raw(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),temp_buffer)
     end function
@@ -25200,17 +25200,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dprune_dense2csr_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_double) :: threshold
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dprune_dense2csr_rank_0 = rocsparse_dprune_dense2csr_raw(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),temp_buffer)
     end function
@@ -25220,17 +25220,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dprune_dense2csr_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
-      integer(c_int),value :: lda
+      integer(c_int) :: lda
       real(c_double) :: threshold
-      type(c_ptr),value :: descr
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dprune_dense2csr_rank_1 = rocsparse_dprune_dense2csr_raw(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),temp_buffer)
     end function
@@ -25240,17 +25240,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sprune_dense2csr_by_percentage_buffer_size_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
-      real(c_float),value :: percentage
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      real(c_float) :: percentage
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_sprune_dense2csr_by_percentage_buffer_size_full_rank = rocsparse_sprune_dense2csr_by_percentage_buffer_size_raw(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,buffer_size)
@@ -25261,17 +25261,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sprune_dense2csr_by_percentage_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target :: A
-      integer(c_int),value :: lda
-      real(c_float),value :: percentage
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      real(c_float) :: percentage
+      type(c_ptr) :: descr
       real(c_float),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_sprune_dense2csr_by_percentage_buffer_size_rank_0 = rocsparse_sprune_dense2csr_by_percentage_buffer_size_raw(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,buffer_size)
@@ -25282,17 +25282,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sprune_dense2csr_by_percentage_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
-      integer(c_int),value :: lda
-      real(c_float),value :: percentage
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      real(c_float) :: percentage
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_sprune_dense2csr_by_percentage_buffer_size_rank_1 = rocsparse_sprune_dense2csr_by_percentage_buffer_size_raw(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,buffer_size)
@@ -25303,17 +25303,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dprune_dense2csr_by_percentage_buffer_size_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
-      real(c_double),value :: percentage
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      real(c_double) :: percentage
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_dprune_dense2csr_by_percentage_buffer_size_full_rank = rocsparse_dprune_dense2csr_by_percentage_buffer_size_raw(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,buffer_size)
@@ -25324,17 +25324,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dprune_dense2csr_by_percentage_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target :: A
-      integer(c_int),value :: lda
-      real(c_double),value :: percentage
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      real(c_double) :: percentage
+      type(c_ptr) :: descr
       real(c_double),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_dprune_dense2csr_by_percentage_buffer_size_rank_0 = rocsparse_dprune_dense2csr_by_percentage_buffer_size_raw(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,buffer_size)
@@ -25345,17 +25345,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dprune_dense2csr_by_percentage_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
-      integer(c_int),value :: lda
-      real(c_double),value :: percentage
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      real(c_double) :: percentage
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_dprune_dense2csr_by_percentage_buffer_size_rank_1 = rocsparse_dprune_dense2csr_by_percentage_buffer_size_raw(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,buffer_size)
@@ -25366,17 +25366,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sprune_dense2csr_nnz_by_percentage_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
-      real(c_float),value :: percentage
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      real(c_float) :: percentage
+      type(c_ptr) :: descr
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int) :: nnz_total_dev_host_ptr
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sprune_dense2csr_nnz_by_percentage_full_rank = rocsparse_sprune_dense2csr_nnz_by_percentage_raw(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csr_row_ptr),nnz_total_dev_host_ptr,myInfo,temp_buffer)
     end function
@@ -25386,17 +25386,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sprune_dense2csr_nnz_by_percentage_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target :: A
-      integer(c_int),value :: lda
-      real(c_float),value :: percentage
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      real(c_float) :: percentage
+      type(c_ptr) :: descr
       integer(c_int),target :: csr_row_ptr
       integer(c_int) :: nnz_total_dev_host_ptr
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sprune_dense2csr_nnz_by_percentage_rank_0 = rocsparse_sprune_dense2csr_nnz_by_percentage_raw(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csr_row_ptr),nnz_total_dev_host_ptr,myInfo,temp_buffer)
     end function
@@ -25406,17 +25406,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sprune_dense2csr_nnz_by_percentage_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
-      integer(c_int),value :: lda
-      real(c_float),value :: percentage
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      real(c_float) :: percentage
+      type(c_ptr) :: descr
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int) :: nnz_total_dev_host_ptr
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sprune_dense2csr_nnz_by_percentage_rank_1 = rocsparse_sprune_dense2csr_nnz_by_percentage_raw(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csr_row_ptr),nnz_total_dev_host_ptr,myInfo,temp_buffer)
     end function
@@ -25426,17 +25426,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dprune_dense2csr_nnz_by_percentage_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
-      real(c_double),value :: percentage
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      real(c_double) :: percentage
+      type(c_ptr) :: descr
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int) :: nnz_total_dev_host_ptr
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dprune_dense2csr_nnz_by_percentage_full_rank = rocsparse_dprune_dense2csr_nnz_by_percentage_raw(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csr_row_ptr),nnz_total_dev_host_ptr,myInfo,temp_buffer)
     end function
@@ -25446,17 +25446,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dprune_dense2csr_nnz_by_percentage_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target :: A
-      integer(c_int),value :: lda
-      real(c_double),value :: percentage
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      real(c_double) :: percentage
+      type(c_ptr) :: descr
       integer(c_int),target :: csr_row_ptr
       integer(c_int) :: nnz_total_dev_host_ptr
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dprune_dense2csr_nnz_by_percentage_rank_0 = rocsparse_dprune_dense2csr_nnz_by_percentage_raw(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csr_row_ptr),nnz_total_dev_host_ptr,myInfo,temp_buffer)
     end function
@@ -25466,17 +25466,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dprune_dense2csr_nnz_by_percentage_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
-      integer(c_int),value :: lda
-      real(c_double),value :: percentage
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      real(c_double) :: percentage
+      type(c_ptr) :: descr
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int) :: nnz_total_dev_host_ptr
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dprune_dense2csr_nnz_by_percentage_rank_1 = rocsparse_dprune_dense2csr_nnz_by_percentage_raw(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csr_row_ptr),nnz_total_dev_host_ptr,myInfo,temp_buffer)
     end function
@@ -25486,18 +25486,18 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sprune_dense2csr_by_percentage_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
-      real(c_float),value :: percentage
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      real(c_float) :: percentage
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sprune_dense2csr_by_percentage_full_rank = rocsparse_sprune_dense2csr_by_percentage_raw(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,temp_buffer)
     end function
@@ -25507,18 +25507,18 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sprune_dense2csr_by_percentage_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target :: A
-      integer(c_int),value :: lda
-      real(c_float),value :: percentage
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      real(c_float) :: percentage
+      type(c_ptr) :: descr
       real(c_float),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sprune_dense2csr_by_percentage_rank_0 = rocsparse_sprune_dense2csr_by_percentage_raw(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,temp_buffer)
     end function
@@ -25528,18 +25528,18 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sprune_dense2csr_by_percentage_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
-      integer(c_int),value :: lda
-      real(c_float),value :: percentage
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      real(c_float) :: percentage
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sprune_dense2csr_by_percentage_rank_1 = rocsparse_sprune_dense2csr_by_percentage_raw(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,temp_buffer)
     end function
@@ -25549,18 +25549,18 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dprune_dense2csr_by_percentage_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
-      integer(c_int),value :: lda
-      real(c_double),value :: percentage
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      real(c_double) :: percentage
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dprune_dense2csr_by_percentage_full_rank = rocsparse_dprune_dense2csr_by_percentage_raw(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,temp_buffer)
     end function
@@ -25570,18 +25570,18 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dprune_dense2csr_by_percentage_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target :: A
-      integer(c_int),value :: lda
-      real(c_double),value :: percentage
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      real(c_double) :: percentage
+      type(c_ptr) :: descr
       real(c_double),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dprune_dense2csr_by_percentage_rank_0 = rocsparse_dprune_dense2csr_by_percentage_raw(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,temp_buffer)
     end function
@@ -25591,18 +25591,18 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dprune_dense2csr_by_percentage_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
-      integer(c_int),value :: lda
-      real(c_double),value :: percentage
-      type(c_ptr),value :: descr
+      integer(c_int) :: lda
+      real(c_double) :: percentage
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dprune_dense2csr_by_percentage_rank_1 = rocsparse_dprune_dense2csr_by_percentage_raw(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,temp_buffer)
     end function
@@ -25612,12 +25612,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sdense2csc_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_columns
       real(c_float),target,dimension(:) :: csc_val
       integer(c_int),target,dimension(:) :: csc_col_ptr
@@ -25631,12 +25631,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sdense2csc_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_float),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target :: nnz_per_columns
       real(c_float),target :: csc_val
       integer(c_int),target :: csc_col_ptr
@@ -25650,12 +25650,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sdense2csc_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_columns
       real(c_float),target,dimension(:) :: csc_val
       integer(c_int),target,dimension(:) :: csc_col_ptr
@@ -25669,12 +25669,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ddense2csc_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_columns
       real(c_double),target,dimension(:) :: csc_val
       integer(c_int),target,dimension(:) :: csc_col_ptr
@@ -25688,12 +25688,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ddense2csc_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_double),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target :: nnz_per_columns
       real(c_double),target :: csc_val
       integer(c_int),target :: csc_col_ptr
@@ -25707,12 +25707,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ddense2csc_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_columns
       real(c_double),target,dimension(:) :: csc_val
       integer(c_int),target,dimension(:) :: csc_col_ptr
@@ -25726,12 +25726,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cdense2csc_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_columns
       complex(c_float_complex),target,dimension(:) :: csc_val
       integer(c_int),target,dimension(:) :: csc_col_ptr
@@ -25745,12 +25745,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cdense2csc_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target :: nnz_per_columns
       complex(c_float_complex),target :: csc_val
       integer(c_int),target :: csc_col_ptr
@@ -25764,12 +25764,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cdense2csc_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_columns
       complex(c_float_complex),target,dimension(:) :: csc_val
       integer(c_int),target,dimension(:) :: csc_col_ptr
@@ -25783,12 +25783,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zdense2csc_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_columns
       complex(c_double_complex),target,dimension(:) :: csc_val
       integer(c_int),target,dimension(:) :: csc_col_ptr
@@ -25802,12 +25802,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zdense2csc_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target :: nnz_per_columns
       complex(c_double_complex),target :: csc_val
       integer(c_int),target :: csc_col_ptr
@@ -25821,12 +25821,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zdense2csc_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_columns
       complex(c_double_complex),target,dimension(:) :: csc_val
       integer(c_int),target,dimension(:) :: csc_col_ptr
@@ -25840,12 +25840,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sdense2coo_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_rows
       real(c_float),target,dimension(:) :: coo_val
       integer(c_int),target,dimension(:) :: coo_row_ind
@@ -25859,12 +25859,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sdense2coo_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_float),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target :: nnz_per_rows
       real(c_float),target :: coo_val
       integer(c_int),target :: coo_row_ind
@@ -25878,12 +25878,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sdense2coo_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_rows
       real(c_float),target,dimension(:) :: coo_val
       integer(c_int),target,dimension(:) :: coo_row_ind
@@ -25897,12 +25897,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ddense2coo_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_rows
       real(c_double),target,dimension(:) :: coo_val
       integer(c_int),target,dimension(:) :: coo_row_ind
@@ -25916,12 +25916,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ddense2coo_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_double),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target :: nnz_per_rows
       real(c_double),target :: coo_val
       integer(c_int),target :: coo_row_ind
@@ -25935,12 +25935,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ddense2coo_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_rows
       real(c_double),target,dimension(:) :: coo_val
       integer(c_int),target,dimension(:) :: coo_row_ind
@@ -25954,12 +25954,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cdense2coo_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_rows
       complex(c_float_complex),target,dimension(:) :: coo_val
       integer(c_int),target,dimension(:) :: coo_row_ind
@@ -25973,12 +25973,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cdense2coo_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target :: nnz_per_rows
       complex(c_float_complex),target :: coo_val
       integer(c_int),target :: coo_row_ind
@@ -25992,12 +25992,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cdense2coo_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_rows
       complex(c_float_complex),target,dimension(:) :: coo_val
       integer(c_int),target,dimension(:) :: coo_row_ind
@@ -26011,12 +26011,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zdense2coo_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_rows
       complex(c_double_complex),target,dimension(:) :: coo_val
       integer(c_int),target,dimension(:) :: coo_row_ind
@@ -26030,12 +26030,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zdense2coo_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target :: nnz_per_rows
       complex(c_double_complex),target :: coo_val
       integer(c_int),target :: coo_row_ind
@@ -26049,12 +26049,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zdense2coo_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       integer(c_int),target,dimension(:) :: nnz_per_rows
       complex(c_double_complex),target,dimension(:) :: coo_val
       integer(c_int),target,dimension(:) :: coo_row_ind
@@ -26068,15 +26068,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsr2dense_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       real(c_float),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       rocsparse_scsr2dense_full_rank = rocsparse_scsr2dense_raw(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
     end function
@@ -26086,15 +26086,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsr2dense_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_float),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
       real(c_float),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       rocsparse_scsr2dense_rank_0 = rocsparse_scsr2dense_raw(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
     end function
@@ -26104,15 +26104,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsr2dense_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       real(c_float),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       rocsparse_scsr2dense_rank_1 = rocsparse_scsr2dense_raw(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
     end function
@@ -26122,15 +26122,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsr2dense_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       real(c_double),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       rocsparse_dcsr2dense_full_rank = rocsparse_dcsr2dense_raw(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
     end function
@@ -26140,15 +26140,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsr2dense_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_double),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
       real(c_double),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       rocsparse_dcsr2dense_rank_0 = rocsparse_dcsr2dense_raw(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
     end function
@@ -26158,15 +26158,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsr2dense_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       real(c_double),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       rocsparse_dcsr2dense_rank_1 = rocsparse_dcsr2dense_raw(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
     end function
@@ -26176,15 +26176,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsr2dense_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       complex(c_float_complex),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       rocsparse_ccsr2dense_full_rank = rocsparse_ccsr2dense_raw(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
     end function
@@ -26194,15 +26194,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsr2dense_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
       complex(c_float_complex),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       rocsparse_ccsr2dense_rank_0 = rocsparse_ccsr2dense_raw(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
     end function
@@ -26212,15 +26212,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsr2dense_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       complex(c_float_complex),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       rocsparse_ccsr2dense_rank_1 = rocsparse_ccsr2dense_raw(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
     end function
@@ -26230,15 +26230,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsr2dense_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       complex(c_double_complex),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       rocsparse_zcsr2dense_full_rank = rocsparse_zcsr2dense_raw(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
     end function
@@ -26248,15 +26248,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsr2dense_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
       complex(c_double_complex),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       rocsparse_zcsr2dense_rank_0 = rocsparse_zcsr2dense_raw(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
     end function
@@ -26266,15 +26266,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsr2dense_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       complex(c_double_complex),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       rocsparse_zcsr2dense_rank_1 = rocsparse_zcsr2dense_raw(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
     end function
@@ -26284,15 +26284,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsc2dense_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csc_val
       integer(c_int),target,dimension(:) :: csc_col_ptr
       integer(c_int),target,dimension(:) :: csc_row_ind
       real(c_float),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       rocsparse_scsc2dense_full_rank = rocsparse_scsc2dense_raw(handle,m,n,descr,c_loc(csc_val),c_loc(csc_col_ptr),c_loc(csc_row_ind),c_loc(A),ld)
     end function
@@ -26302,15 +26302,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsc2dense_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_float),target :: csc_val
       integer(c_int),target :: csc_col_ptr
       integer(c_int),target :: csc_row_ind
       real(c_float),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       rocsparse_scsc2dense_rank_0 = rocsparse_scsc2dense_raw(handle,m,n,descr,c_loc(csc_val),c_loc(csc_col_ptr),c_loc(csc_row_ind),c_loc(A),ld)
     end function
@@ -26320,15 +26320,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsc2dense_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csc_val
       integer(c_int),target,dimension(:) :: csc_col_ptr
       integer(c_int),target,dimension(:) :: csc_row_ind
       real(c_float),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       rocsparse_scsc2dense_rank_1 = rocsparse_scsc2dense_raw(handle,m,n,descr,c_loc(csc_val),c_loc(csc_col_ptr),c_loc(csc_row_ind),c_loc(A),ld)
     end function
@@ -26338,15 +26338,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsc2dense_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csc_val
       integer(c_int),target,dimension(:) :: csc_col_ptr
       integer(c_int),target,dimension(:) :: csc_row_ind
       real(c_double),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       rocsparse_dcsc2dense_full_rank = rocsparse_dcsc2dense_raw(handle,m,n,descr,c_loc(csc_val),c_loc(csc_col_ptr),c_loc(csc_row_ind),c_loc(A),ld)
     end function
@@ -26356,15 +26356,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsc2dense_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_double),target :: csc_val
       integer(c_int),target :: csc_col_ptr
       integer(c_int),target :: csc_row_ind
       real(c_double),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       rocsparse_dcsc2dense_rank_0 = rocsparse_dcsc2dense_raw(handle,m,n,descr,c_loc(csc_val),c_loc(csc_col_ptr),c_loc(csc_row_ind),c_loc(A),ld)
     end function
@@ -26374,15 +26374,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsc2dense_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csc_val
       integer(c_int),target,dimension(:) :: csc_col_ptr
       integer(c_int),target,dimension(:) :: csc_row_ind
       real(c_double),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       rocsparse_dcsc2dense_rank_1 = rocsparse_dcsc2dense_raw(handle,m,n,descr,c_loc(csc_val),c_loc(csc_col_ptr),c_loc(csc_row_ind),c_loc(A),ld)
     end function
@@ -26392,15 +26392,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsc2dense_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: csc_val
       integer(c_int),target,dimension(:) :: csc_col_ptr
       integer(c_int),target,dimension(:) :: csc_row_ind
       complex(c_float_complex),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       rocsparse_ccsc2dense_full_rank = rocsparse_ccsc2dense_raw(handle,m,n,descr,c_loc(csc_val),c_loc(csc_col_ptr),c_loc(csc_row_ind),c_loc(A),ld)
     end function
@@ -26410,15 +26410,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsc2dense_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: csc_val
       integer(c_int),target :: csc_col_ptr
       integer(c_int),target :: csc_row_ind
       complex(c_float_complex),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       rocsparse_ccsc2dense_rank_0 = rocsparse_ccsc2dense_raw(handle,m,n,descr,c_loc(csc_val),c_loc(csc_col_ptr),c_loc(csc_row_ind),c_loc(A),ld)
     end function
@@ -26428,15 +26428,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsc2dense_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: csc_val
       integer(c_int),target,dimension(:) :: csc_col_ptr
       integer(c_int),target,dimension(:) :: csc_row_ind
       complex(c_float_complex),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       rocsparse_ccsc2dense_rank_1 = rocsparse_ccsc2dense_raw(handle,m,n,descr,c_loc(csc_val),c_loc(csc_col_ptr),c_loc(csc_row_ind),c_loc(A),ld)
     end function
@@ -26446,15 +26446,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsc2dense_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: csc_val
       integer(c_int),target,dimension(:) :: csc_col_ptr
       integer(c_int),target,dimension(:) :: csc_row_ind
       complex(c_double_complex),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       rocsparse_zcsc2dense_full_rank = rocsparse_zcsc2dense_raw(handle,m,n,descr,c_loc(csc_val),c_loc(csc_col_ptr),c_loc(csc_row_ind),c_loc(A),ld)
     end function
@@ -26464,15 +26464,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsc2dense_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: csc_val
       integer(c_int),target :: csc_col_ptr
       integer(c_int),target :: csc_row_ind
       complex(c_double_complex),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       rocsparse_zcsc2dense_rank_0 = rocsparse_zcsc2dense_raw(handle,m,n,descr,c_loc(csc_val),c_loc(csc_col_ptr),c_loc(csc_row_ind),c_loc(A),ld)
     end function
@@ -26482,15 +26482,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsc2dense_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: csc_val
       integer(c_int),target,dimension(:) :: csc_col_ptr
       integer(c_int),target,dimension(:) :: csc_row_ind
       complex(c_double_complex),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       rocsparse_zcsc2dense_rank_1 = rocsparse_zcsc2dense_raw(handle,m,n,descr,c_loc(csc_val),c_loc(csc_col_ptr),c_loc(csc_row_ind),c_loc(A),ld)
     end function
@@ -26500,16 +26500,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scoo2dense_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: coo_val
       integer(c_int),target,dimension(:) :: coo_row_ind
       integer(c_int),target,dimension(:) :: coo_col_ind
       real(c_float),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       rocsparse_scoo2dense_full_rank = rocsparse_scoo2dense_raw(handle,m,n,nnz,descr,c_loc(coo_val),c_loc(coo_row_ind),c_loc(coo_col_ind),c_loc(A),ld)
     end function
@@ -26519,16 +26519,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scoo2dense_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_float),target :: coo_val
       integer(c_int),target :: coo_row_ind
       integer(c_int),target :: coo_col_ind
       real(c_float),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       rocsparse_scoo2dense_rank_0 = rocsparse_scoo2dense_raw(handle,m,n,nnz,descr,c_loc(coo_val),c_loc(coo_row_ind),c_loc(coo_col_ind),c_loc(A),ld)
     end function
@@ -26538,16 +26538,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scoo2dense_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: coo_val
       integer(c_int),target,dimension(:) :: coo_row_ind
       integer(c_int),target,dimension(:) :: coo_col_ind
       real(c_float),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       rocsparse_scoo2dense_rank_1 = rocsparse_scoo2dense_raw(handle,m,n,nnz,descr,c_loc(coo_val),c_loc(coo_row_ind),c_loc(coo_col_ind),c_loc(A),ld)
     end function
@@ -26557,16 +26557,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcoo2dense_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: coo_val
       integer(c_int),target,dimension(:) :: coo_row_ind
       integer(c_int),target,dimension(:) :: coo_col_ind
       real(c_double),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       rocsparse_dcoo2dense_full_rank = rocsparse_dcoo2dense_raw(handle,m,n,nnz,descr,c_loc(coo_val),c_loc(coo_row_ind),c_loc(coo_col_ind),c_loc(A),ld)
     end function
@@ -26576,16 +26576,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcoo2dense_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_double),target :: coo_val
       integer(c_int),target :: coo_row_ind
       integer(c_int),target :: coo_col_ind
       real(c_double),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       rocsparse_dcoo2dense_rank_0 = rocsparse_dcoo2dense_raw(handle,m,n,nnz,descr,c_loc(coo_val),c_loc(coo_row_ind),c_loc(coo_col_ind),c_loc(A),ld)
     end function
@@ -26595,16 +26595,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcoo2dense_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: coo_val
       integer(c_int),target,dimension(:) :: coo_row_ind
       integer(c_int),target,dimension(:) :: coo_col_ind
       real(c_double),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       rocsparse_dcoo2dense_rank_1 = rocsparse_dcoo2dense_raw(handle,m,n,nnz,descr,c_loc(coo_val),c_loc(coo_row_ind),c_loc(coo_col_ind),c_loc(A),ld)
     end function
@@ -26614,16 +26614,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccoo2dense_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: coo_val
       integer(c_int),target,dimension(:) :: coo_row_ind
       integer(c_int),target,dimension(:) :: coo_col_ind
       complex(c_float_complex),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       rocsparse_ccoo2dense_full_rank = rocsparse_ccoo2dense_raw(handle,m,n,nnz,descr,c_loc(coo_val),c_loc(coo_row_ind),c_loc(coo_col_ind),c_loc(A),ld)
     end function
@@ -26633,16 +26633,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccoo2dense_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: coo_val
       integer(c_int),target :: coo_row_ind
       integer(c_int),target :: coo_col_ind
       complex(c_float_complex),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       rocsparse_ccoo2dense_rank_0 = rocsparse_ccoo2dense_raw(handle,m,n,nnz,descr,c_loc(coo_val),c_loc(coo_row_ind),c_loc(coo_col_ind),c_loc(A),ld)
     end function
@@ -26652,16 +26652,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccoo2dense_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: coo_val
       integer(c_int),target,dimension(:) :: coo_row_ind
       integer(c_int),target,dimension(:) :: coo_col_ind
       complex(c_float_complex),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       rocsparse_ccoo2dense_rank_1 = rocsparse_ccoo2dense_raw(handle,m,n,nnz,descr,c_loc(coo_val),c_loc(coo_row_ind),c_loc(coo_col_ind),c_loc(A),ld)
     end function
@@ -26671,16 +26671,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcoo2dense_full_rank
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: coo_val
       integer(c_int),target,dimension(:) :: coo_row_ind
       integer(c_int),target,dimension(:) :: coo_col_ind
       complex(c_double_complex),target,dimension(:,:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       rocsparse_zcoo2dense_full_rank = rocsparse_zcoo2dense_raw(handle,m,n,nnz,descr,c_loc(coo_val),c_loc(coo_row_ind),c_loc(coo_col_ind),c_loc(A),ld)
     end function
@@ -26690,16 +26690,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcoo2dense_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: coo_val
       integer(c_int),target :: coo_row_ind
       integer(c_int),target :: coo_col_ind
       complex(c_double_complex),target :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       rocsparse_zcoo2dense_rank_0 = rocsparse_zcoo2dense_raw(handle,m,n,nnz,descr,c_loc(coo_val),c_loc(coo_row_ind),c_loc(coo_col_ind),c_loc(A),ld)
     end function
@@ -26709,16 +26709,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcoo2dense_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: coo_val
       integer(c_int),target,dimension(:) :: coo_row_ind
       integer(c_int),target,dimension(:) :: coo_col_ind
       complex(c_double_complex),target,dimension(:) :: A
-      integer(c_int),value :: ld
+      integer(c_int) :: ld
       !
       rocsparse_zcoo2dense_rank_1 = rocsparse_zcoo2dense_raw(handle,m,n,nnz,descr,c_loc(coo_val),c_loc(coo_row_ind),c_loc(coo_col_ind),c_loc(A),ld)
     end function
@@ -26728,14 +26728,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_snnz_compress_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: descr_A
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: descr_A
       real(c_float),target :: csr_val_A
       integer(c_int),target :: csr_row_ptr_A
       integer(c_int),target :: nnz_per_row
       integer(c_int),target :: nnz_C
-      real(c_float),value :: tol
+      real(c_float) :: tol
       !
       rocsparse_snnz_compress_rank_0 = rocsparse_snnz_compress_raw(handle,m,descr_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(nnz_per_row),c_loc(nnz_C),tol)
     end function
@@ -26745,14 +26745,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_snnz_compress_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: descr_A
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: descr_A
       real(c_float),target,dimension(:) :: csr_val_A
       integer(c_int),target,dimension(:) :: csr_row_ptr_A
       integer(c_int),target,dimension(:) :: nnz_per_row
       integer(c_int),target,dimension(:) :: nnz_C
-      real(c_float),value :: tol
+      real(c_float) :: tol
       !
       rocsparse_snnz_compress_rank_1 = rocsparse_snnz_compress_raw(handle,m,descr_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(nnz_per_row),c_loc(nnz_C),tol)
     end function
@@ -26762,14 +26762,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dnnz_compress_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: descr_A
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: descr_A
       real(c_double),target :: csr_val_A
       integer(c_int),target :: csr_row_ptr_A
       integer(c_int),target :: nnz_per_row
       integer(c_int),target :: nnz_C
-      real(c_double),value :: tol
+      real(c_double) :: tol
       !
       rocsparse_dnnz_compress_rank_0 = rocsparse_dnnz_compress_raw(handle,m,descr_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(nnz_per_row),c_loc(nnz_C),tol)
     end function
@@ -26779,14 +26779,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dnnz_compress_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: descr_A
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: descr_A
       real(c_double),target,dimension(:) :: csr_val_A
       integer(c_int),target,dimension(:) :: csr_row_ptr_A
       integer(c_int),target,dimension(:) :: nnz_per_row
       integer(c_int),target,dimension(:) :: nnz_C
-      real(c_double),value :: tol
+      real(c_double) :: tol
       !
       rocsparse_dnnz_compress_rank_1 = rocsparse_dnnz_compress_raw(handle,m,descr_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(nnz_per_row),c_loc(nnz_C),tol)
     end function
@@ -26796,14 +26796,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cnnz_compress_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: descr_A
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: descr_A
       complex(c_float_complex),target :: csr_val_A
       integer(c_int),target :: csr_row_ptr_A
       integer(c_int),target :: nnz_per_row
       integer(c_int),target :: nnz_C
-      complex(c_float_complex),value :: tol
+      complex(c_float_complex) :: tol
       !
       rocsparse_cnnz_compress_rank_0 = rocsparse_cnnz_compress_raw(handle,m,descr_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(nnz_per_row),c_loc(nnz_C),tol)
     end function
@@ -26813,14 +26813,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cnnz_compress_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: descr_A
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: descr_A
       complex(c_float_complex),target,dimension(:) :: csr_val_A
       integer(c_int),target,dimension(:) :: csr_row_ptr_A
       integer(c_int),target,dimension(:) :: nnz_per_row
       integer(c_int),target,dimension(:) :: nnz_C
-      complex(c_float_complex),value :: tol
+      complex(c_float_complex) :: tol
       !
       rocsparse_cnnz_compress_rank_1 = rocsparse_cnnz_compress_raw(handle,m,descr_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(nnz_per_row),c_loc(nnz_C),tol)
     end function
@@ -26830,14 +26830,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_znnz_compress_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: descr_A
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: descr_A
       complex(c_double_complex),target :: csr_val_A
       integer(c_int),target :: csr_row_ptr_A
       integer(c_int),target :: nnz_per_row
       integer(c_int),target :: nnz_C
-      complex(c_double_complex),value :: tol
+      complex(c_double_complex) :: tol
       !
       rocsparse_znnz_compress_rank_0 = rocsparse_znnz_compress_raw(handle,m,descr_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(nnz_per_row),c_loc(nnz_C),tol)
     end function
@@ -26847,14 +26847,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_znnz_compress_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: descr_A
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: descr_A
       complex(c_double_complex),target,dimension(:) :: csr_val_A
       integer(c_int),target,dimension(:) :: csr_row_ptr_A
       integer(c_int),target,dimension(:) :: nnz_per_row
       integer(c_int),target,dimension(:) :: nnz_C
-      complex(c_double_complex),value :: tol
+      complex(c_double_complex) :: tol
       !
       rocsparse_znnz_compress_rank_1 = rocsparse_znnz_compress_raw(handle,m,descr_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(nnz_per_row),c_loc(nnz_C),tol)
     end function
@@ -26864,12 +26864,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_csr2coo_rank_0
-      type(c_ptr),value :: handle
+      type(c_ptr) :: handle
       integer(c_int),target :: csr_row_ptr
-      integer(c_int),value :: nnz
-      integer(c_int),value :: m
+      integer(c_int) :: nnz
+      integer(c_int) :: m
       integer(c_int),target :: coo_row_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_csr2coo_rank_0 = rocsparse_csr2coo_raw(handle,c_loc(csr_row_ptr),nnz,m,c_loc(coo_row_ind),idx_base)
     end function
@@ -26879,12 +26879,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_csr2coo_rank_1
-      type(c_ptr),value :: handle
+      type(c_ptr) :: handle
       integer(c_int),target,dimension(:) :: csr_row_ptr
-      integer(c_int),value :: nnz
-      integer(c_int),value :: m
+      integer(c_int) :: nnz
+      integer(c_int) :: m
       integer(c_int),target,dimension(:) :: coo_row_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_csr2coo_rank_1 = rocsparse_csr2coo_raw(handle,c_loc(csr_row_ptr),nnz,m,c_loc(coo_row_ind),idx_base)
     end function
@@ -26894,13 +26894,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_csr2csc_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      integer(kind(rocsparse_action_symbolic)),value :: copy_values
+      integer(kind(rocsparse_action_symbolic)) :: copy_values
       integer(c_size_t) :: buffer_size
       !
       rocsparse_csr2csc_buffer_size_rank_0 = rocsparse_csr2csc_buffer_size_raw(handle,m,n,nnz,c_loc(csr_row_ptr),c_loc(csr_col_ind),copy_values,buffer_size)
@@ -26911,13 +26911,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_csr2csc_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      integer(kind(rocsparse_action_symbolic)),value :: copy_values
+      integer(kind(rocsparse_action_symbolic)) :: copy_values
       integer(c_size_t) :: buffer_size
       !
       rocsparse_csr2csc_buffer_size_rank_1 = rocsparse_csr2csc_buffer_size_raw(handle,m,n,nnz,c_loc(csr_row_ptr),c_loc(csr_col_ind),copy_values,buffer_size)
@@ -26928,19 +26928,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsr2csc_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       real(c_float),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
       real(c_float),target :: csc_val
       integer(c_int),target :: csc_row_ind
       integer(c_int),target :: csc_col_ptr
-      integer(kind(rocsparse_action_symbolic)),value :: copy_values
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      type(c_ptr),value :: temp_buffer
+      integer(kind(rocsparse_action_symbolic)) :: copy_values
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_scsr2csc_rank_0 = rocsparse_scsr2csc_raw(handle,m,n,nnz,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr),copy_values,idx_base,temp_buffer)
     end function
@@ -26950,19 +26950,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsr2csc_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       real(c_float),target,dimension(:) :: csc_val
       integer(c_int),target,dimension(:) :: csc_row_ind
       integer(c_int),target,dimension(:) :: csc_col_ptr
-      integer(kind(rocsparse_action_symbolic)),value :: copy_values
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      type(c_ptr),value :: temp_buffer
+      integer(kind(rocsparse_action_symbolic)) :: copy_values
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_scsr2csc_rank_1 = rocsparse_scsr2csc_raw(handle,m,n,nnz,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr),copy_values,idx_base,temp_buffer)
     end function
@@ -26972,19 +26972,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsr2csc_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       real(c_double),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
       real(c_double),target :: csc_val
       integer(c_int),target :: csc_row_ind
       integer(c_int),target :: csc_col_ptr
-      integer(kind(rocsparse_action_symbolic)),value :: copy_values
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      type(c_ptr),value :: temp_buffer
+      integer(kind(rocsparse_action_symbolic)) :: copy_values
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dcsr2csc_rank_0 = rocsparse_dcsr2csc_raw(handle,m,n,nnz,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr),copy_values,idx_base,temp_buffer)
     end function
@@ -26994,19 +26994,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsr2csc_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       real(c_double),target,dimension(:) :: csc_val
       integer(c_int),target,dimension(:) :: csc_row_ind
       integer(c_int),target,dimension(:) :: csc_col_ptr
-      integer(kind(rocsparse_action_symbolic)),value :: copy_values
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      type(c_ptr),value :: temp_buffer
+      integer(kind(rocsparse_action_symbolic)) :: copy_values
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dcsr2csc_rank_1 = rocsparse_dcsr2csc_raw(handle,m,n,nnz,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr),copy_values,idx_base,temp_buffer)
     end function
@@ -27016,19 +27016,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsr2csc_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       complex(c_float_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
       complex(c_float_complex),target :: csc_val
       integer(c_int),target :: csc_row_ind
       integer(c_int),target :: csc_col_ptr
-      integer(kind(rocsparse_action_symbolic)),value :: copy_values
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      type(c_ptr),value :: temp_buffer
+      integer(kind(rocsparse_action_symbolic)) :: copy_values
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_ccsr2csc_rank_0 = rocsparse_ccsr2csc_raw(handle,m,n,nnz,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr),copy_values,idx_base,temp_buffer)
     end function
@@ -27038,19 +27038,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsr2csc_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       complex(c_float_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       complex(c_float_complex),target,dimension(:) :: csc_val
       integer(c_int),target,dimension(:) :: csc_row_ind
       integer(c_int),target,dimension(:) :: csc_col_ptr
-      integer(kind(rocsparse_action_symbolic)),value :: copy_values
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      type(c_ptr),value :: temp_buffer
+      integer(kind(rocsparse_action_symbolic)) :: copy_values
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_ccsr2csc_rank_1 = rocsparse_ccsr2csc_raw(handle,m,n,nnz,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr),copy_values,idx_base,temp_buffer)
     end function
@@ -27060,19 +27060,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsr2csc_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       complex(c_double_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
       complex(c_double_complex),target :: csc_val
       integer(c_int),target :: csc_row_ind
       integer(c_int),target :: csc_col_ptr
-      integer(kind(rocsparse_action_symbolic)),value :: copy_values
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      type(c_ptr),value :: temp_buffer
+      integer(kind(rocsparse_action_symbolic)) :: copy_values
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zcsr2csc_rank_0 = rocsparse_zcsr2csc_raw(handle,m,n,nnz,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr),copy_values,idx_base,temp_buffer)
     end function
@@ -27082,19 +27082,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsr2csc_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       complex(c_double_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       complex(c_double_complex),target,dimension(:) :: csc_val
       integer(c_int),target,dimension(:) :: csc_row_ind
       integer(c_int),target,dimension(:) :: csc_col_ptr
-      integer(kind(rocsparse_action_symbolic)),value :: copy_values
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      type(c_ptr),value :: temp_buffer
+      integer(kind(rocsparse_action_symbolic)) :: copy_values
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zcsr2csc_rank_1 = rocsparse_zcsr2csc_raw(handle,m,n,nnz,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr),copy_values,idx_base,temp_buffer)
     end function
@@ -27104,16 +27104,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sgebsr2gebsc_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       real(c_float),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer_size
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: p_buffer_size
       !
       rocsparse_sgebsr2gebsc_buffer_size_rank_0 = rocsparse_sgebsr2gebsc_buffer_size_raw(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
     end function
@@ -27123,16 +27123,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sgebsr2gebsc_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       real(c_float),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer_size
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: p_buffer_size
       !
       rocsparse_sgebsr2gebsc_buffer_size_rank_1 = rocsparse_sgebsr2gebsc_buffer_size_raw(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
     end function
@@ -27142,16 +27142,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dgebsr2gebsc_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       real(c_double),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer_size
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: p_buffer_size
       !
       rocsparse_dgebsr2gebsc_buffer_size_rank_0 = rocsparse_dgebsr2gebsc_buffer_size_raw(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
     end function
@@ -27161,16 +27161,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dgebsr2gebsc_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       real(c_double),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer_size
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: p_buffer_size
       !
       rocsparse_dgebsr2gebsc_buffer_size_rank_1 = rocsparse_dgebsr2gebsc_buffer_size_raw(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
     end function
@@ -27180,16 +27180,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cgebsr2gebsc_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       complex(c_float_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer_size
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: p_buffer_size
       !
       rocsparse_cgebsr2gebsc_buffer_size_rank_0 = rocsparse_cgebsr2gebsc_buffer_size_raw(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
     end function
@@ -27199,16 +27199,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cgebsr2gebsc_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       complex(c_float_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer_size
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: p_buffer_size
       !
       rocsparse_cgebsr2gebsc_buffer_size_rank_1 = rocsparse_cgebsr2gebsc_buffer_size_raw(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
     end function
@@ -27218,16 +27218,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zgebsr2gebsc_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       complex(c_double_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer_size
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: p_buffer_size
       !
       rocsparse_zgebsr2gebsc_buffer_size_rank_0 = rocsparse_zgebsr2gebsc_buffer_size_raw(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
     end function
@@ -27237,16 +27237,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zgebsr2gebsc_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       complex(c_double_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer_size
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: p_buffer_size
       !
       rocsparse_zgebsr2gebsc_buffer_size_rank_1 = rocsparse_zgebsr2gebsc_buffer_size_raw(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
     end function
@@ -27256,21 +27256,21 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sgebsr2gebsc_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       real(c_float),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: bsc_val
-      type(c_ptr),value :: bsc_row_ind
-      type(c_ptr),value :: bsc_col_ptr
-      integer(kind(rocsparse_action_symbolic)),value :: copy_values
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: bsc_val
+      type(c_ptr) :: bsc_row_ind
+      type(c_ptr) :: bsc_col_ptr
+      integer(kind(rocsparse_action_symbolic)) :: copy_values
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sgebsr2gebsc_rank_0 = rocsparse_sgebsr2gebsc_raw(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,bsc_val,bsc_row_ind,bsc_col_ptr,copy_values,idx_base,temp_buffer)
     end function
@@ -27280,21 +27280,21 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sgebsr2gebsc_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       real(c_float),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: bsc_val
-      type(c_ptr),value :: bsc_row_ind
-      type(c_ptr),value :: bsc_col_ptr
-      integer(kind(rocsparse_action_symbolic)),value :: copy_values
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: bsc_val
+      type(c_ptr) :: bsc_row_ind
+      type(c_ptr) :: bsc_col_ptr
+      integer(kind(rocsparse_action_symbolic)) :: copy_values
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sgebsr2gebsc_rank_1 = rocsparse_sgebsr2gebsc_raw(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,bsc_val,bsc_row_ind,bsc_col_ptr,copy_values,idx_base,temp_buffer)
     end function
@@ -27304,21 +27304,21 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dgebsr2gebsc_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       real(c_double),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: bsc_val
-      type(c_ptr),value :: bsc_row_ind
-      type(c_ptr),value :: bsc_col_ptr
-      integer(kind(rocsparse_action_symbolic)),value :: copy_values
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: bsc_val
+      type(c_ptr) :: bsc_row_ind
+      type(c_ptr) :: bsc_col_ptr
+      integer(kind(rocsparse_action_symbolic)) :: copy_values
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dgebsr2gebsc_rank_0 = rocsparse_dgebsr2gebsc_raw(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,bsc_val,bsc_row_ind,bsc_col_ptr,copy_values,idx_base,temp_buffer)
     end function
@@ -27328,21 +27328,21 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dgebsr2gebsc_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       real(c_double),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: bsc_val
-      type(c_ptr),value :: bsc_row_ind
-      type(c_ptr),value :: bsc_col_ptr
-      integer(kind(rocsparse_action_symbolic)),value :: copy_values
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: bsc_val
+      type(c_ptr) :: bsc_row_ind
+      type(c_ptr) :: bsc_col_ptr
+      integer(kind(rocsparse_action_symbolic)) :: copy_values
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dgebsr2gebsc_rank_1 = rocsparse_dgebsr2gebsc_raw(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,bsc_val,bsc_row_ind,bsc_col_ptr,copy_values,idx_base,temp_buffer)
     end function
@@ -27352,21 +27352,21 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cgebsr2gebsc_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       complex(c_float_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: bsc_val
-      type(c_ptr),value :: bsc_row_ind
-      type(c_ptr),value :: bsc_col_ptr
-      integer(kind(rocsparse_action_symbolic)),value :: copy_values
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: bsc_val
+      type(c_ptr) :: bsc_row_ind
+      type(c_ptr) :: bsc_col_ptr
+      integer(kind(rocsparse_action_symbolic)) :: copy_values
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_cgebsr2gebsc_rank_0 = rocsparse_cgebsr2gebsc_raw(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,bsc_val,bsc_row_ind,bsc_col_ptr,copy_values,idx_base,temp_buffer)
     end function
@@ -27376,21 +27376,21 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cgebsr2gebsc_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       complex(c_float_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: bsc_val
-      type(c_ptr),value :: bsc_row_ind
-      type(c_ptr),value :: bsc_col_ptr
-      integer(kind(rocsparse_action_symbolic)),value :: copy_values
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: bsc_val
+      type(c_ptr) :: bsc_row_ind
+      type(c_ptr) :: bsc_col_ptr
+      integer(kind(rocsparse_action_symbolic)) :: copy_values
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_cgebsr2gebsc_rank_1 = rocsparse_cgebsr2gebsc_raw(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,bsc_val,bsc_row_ind,bsc_col_ptr,copy_values,idx_base,temp_buffer)
     end function
@@ -27400,21 +27400,21 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zgebsr2gebsc_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       complex(c_double_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: bsc_val
-      type(c_ptr),value :: bsc_row_ind
-      type(c_ptr),value :: bsc_col_ptr
-      integer(kind(rocsparse_action_symbolic)),value :: copy_values
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: bsc_val
+      type(c_ptr) :: bsc_row_ind
+      type(c_ptr) :: bsc_col_ptr
+      integer(kind(rocsparse_action_symbolic)) :: copy_values
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zgebsr2gebsc_rank_0 = rocsparse_zgebsr2gebsc_raw(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,bsc_val,bsc_row_ind,bsc_col_ptr,copy_values,idx_base,temp_buffer)
     end function
@@ -27424,21 +27424,21 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zgebsr2gebsc_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      integer(c_int),value :: nnzb
+      type(c_ptr) :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
       complex(c_double_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: bsc_val
-      type(c_ptr),value :: bsc_row_ind
-      type(c_ptr),value :: bsc_col_ptr
-      integer(kind(rocsparse_action_symbolic)),value :: copy_values
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      type(c_ptr),value :: temp_buffer
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: bsc_val
+      type(c_ptr) :: bsc_row_ind
+      type(c_ptr) :: bsc_col_ptr
+      integer(kind(rocsparse_action_symbolic)) :: copy_values
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zgebsr2gebsc_rank_1 = rocsparse_zgebsr2gebsc_raw(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,bsc_val,bsc_row_ind,bsc_col_ptr,copy_values,idx_base,temp_buffer)
     end function
@@ -27448,11 +27448,11 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_csr2ell_width_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: csr_descr
       integer(c_int),target :: csr_row_ptr
-      type(c_ptr),value :: ell_descr
+      type(c_ptr) :: ell_descr
       integer(c_int),target :: ell_width
       !
       rocsparse_csr2ell_width_rank_0 = rocsparse_csr2ell_width_raw(handle,m,csr_descr,c_loc(csr_row_ptr),ell_descr,c_loc(ell_width))
@@ -27463,11 +27463,11 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_csr2ell_width_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: csr_descr
       integer(c_int),target,dimension(:) :: csr_row_ptr
-      type(c_ptr),value :: ell_descr
+      type(c_ptr) :: ell_descr
       integer(c_int),target,dimension(:) :: ell_width
       !
       rocsparse_csr2ell_width_rank_1 = rocsparse_csr2ell_width_raw(handle,m,csr_descr,c_loc(csr_row_ptr),ell_descr,c_loc(ell_width))
@@ -27478,14 +27478,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsr2ell_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: csr_descr
       real(c_float),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: ell_descr
-      integer(c_int),value :: ell_width
+      type(c_ptr) :: ell_descr
+      integer(c_int) :: ell_width
       real(c_float),target :: ell_val
       integer(c_int),target :: ell_col_ind
       !
@@ -27497,14 +27497,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsr2ell_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: csr_descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: ell_descr
-      integer(c_int),value :: ell_width
+      type(c_ptr) :: ell_descr
+      integer(c_int) :: ell_width
       real(c_float),target,dimension(:) :: ell_val
       integer(c_int),target,dimension(:) :: ell_col_ind
       !
@@ -27516,14 +27516,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsr2ell_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: csr_descr
       real(c_double),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: ell_descr
-      integer(c_int),value :: ell_width
+      type(c_ptr) :: ell_descr
+      integer(c_int) :: ell_width
       real(c_double),target :: ell_val
       integer(c_int),target :: ell_col_ind
       !
@@ -27535,14 +27535,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsr2ell_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: csr_descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: ell_descr
-      integer(c_int),value :: ell_width
+      type(c_ptr) :: ell_descr
+      integer(c_int) :: ell_width
       real(c_double),target,dimension(:) :: ell_val
       integer(c_int),target,dimension(:) :: ell_col_ind
       !
@@ -27554,14 +27554,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsr2ell_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: csr_descr
       complex(c_float_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: ell_descr
-      integer(c_int),value :: ell_width
+      type(c_ptr) :: ell_descr
+      integer(c_int) :: ell_width
       complex(c_float_complex),target :: ell_val
       integer(c_int),target :: ell_col_ind
       !
@@ -27573,14 +27573,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsr2ell_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: csr_descr
       complex(c_float_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: ell_descr
-      integer(c_int),value :: ell_width
+      type(c_ptr) :: ell_descr
+      integer(c_int) :: ell_width
       complex(c_float_complex),target,dimension(:) :: ell_val
       integer(c_int),target,dimension(:) :: ell_col_ind
       !
@@ -27592,14 +27592,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsr2ell_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: csr_descr
       complex(c_double_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: ell_descr
-      integer(c_int),value :: ell_width
+      type(c_ptr) :: ell_descr
+      integer(c_int) :: ell_width
       complex(c_double_complex),target :: ell_val
       integer(c_int),target :: ell_col_ind
       !
@@ -27611,14 +27611,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsr2ell_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: csr_descr
       complex(c_double_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: ell_descr
-      integer(c_int),value :: ell_width
+      type(c_ptr) :: ell_descr
+      integer(c_int) :: ell_width
       complex(c_double_complex),target,dimension(:) :: ell_val
       integer(c_int),target,dimension(:) :: ell_col_ind
       !
@@ -27630,16 +27630,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsr2hyb_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_float),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: hyb
-      integer(c_int),value :: user_ell_width
-      integer(kind(rocsparse_hyb_partition_auto)),value :: partition_type
+      type(c_ptr) :: hyb
+      integer(c_int) :: user_ell_width
+      integer(kind(rocsparse_hyb_partition_auto)) :: partition_type
       !
       rocsparse_scsr2hyb_rank_0 = rocsparse_scsr2hyb_raw(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),hyb,user_ell_width,partition_type)
     end function
@@ -27649,16 +27649,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsr2hyb_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: hyb
-      integer(c_int),value :: user_ell_width
-      integer(kind(rocsparse_hyb_partition_auto)),value :: partition_type
+      type(c_ptr) :: hyb
+      integer(c_int) :: user_ell_width
+      integer(kind(rocsparse_hyb_partition_auto)) :: partition_type
       !
       rocsparse_scsr2hyb_rank_1 = rocsparse_scsr2hyb_raw(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),hyb,user_ell_width,partition_type)
     end function
@@ -27668,16 +27668,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsr2hyb_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_double),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: hyb
-      integer(c_int),value :: user_ell_width
-      integer(kind(rocsparse_hyb_partition_auto)),value :: partition_type
+      type(c_ptr) :: hyb
+      integer(c_int) :: user_ell_width
+      integer(kind(rocsparse_hyb_partition_auto)) :: partition_type
       !
       rocsparse_dcsr2hyb_rank_0 = rocsparse_dcsr2hyb_raw(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),hyb,user_ell_width,partition_type)
     end function
@@ -27687,16 +27687,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsr2hyb_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: hyb
-      integer(c_int),value :: user_ell_width
-      integer(kind(rocsparse_hyb_partition_auto)),value :: partition_type
+      type(c_ptr) :: hyb
+      integer(c_int) :: user_ell_width
+      integer(kind(rocsparse_hyb_partition_auto)) :: partition_type
       !
       rocsparse_dcsr2hyb_rank_1 = rocsparse_dcsr2hyb_raw(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),hyb,user_ell_width,partition_type)
     end function
@@ -27706,16 +27706,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsr2hyb_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: hyb
-      integer(c_int),value :: user_ell_width
-      integer(kind(rocsparse_hyb_partition_auto)),value :: partition_type
+      type(c_ptr) :: hyb
+      integer(c_int) :: user_ell_width
+      integer(kind(rocsparse_hyb_partition_auto)) :: partition_type
       !
       rocsparse_ccsr2hyb_rank_0 = rocsparse_ccsr2hyb_raw(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),hyb,user_ell_width,partition_type)
     end function
@@ -27725,16 +27725,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsr2hyb_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: hyb
-      integer(c_int),value :: user_ell_width
-      integer(kind(rocsparse_hyb_partition_auto)),value :: partition_type
+      type(c_ptr) :: hyb
+      integer(c_int) :: user_ell_width
+      integer(kind(rocsparse_hyb_partition_auto)) :: partition_type
       !
       rocsparse_ccsr2hyb_rank_1 = rocsparse_ccsr2hyb_raw(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),hyb,user_ell_width,partition_type)
     end function
@@ -27744,16 +27744,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsr2hyb_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: hyb
-      integer(c_int),value :: user_ell_width
-      integer(kind(rocsparse_hyb_partition_auto)),value :: partition_type
+      type(c_ptr) :: hyb
+      integer(c_int) :: user_ell_width
+      integer(kind(rocsparse_hyb_partition_auto)) :: partition_type
       !
       rocsparse_zcsr2hyb_rank_0 = rocsparse_zcsr2hyb_raw(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),hyb,user_ell_width,partition_type)
     end function
@@ -27763,16 +27763,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsr2hyb_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: hyb
-      integer(c_int),value :: user_ell_width
-      integer(kind(rocsparse_hyb_partition_auto)),value :: partition_type
+      type(c_ptr) :: hyb
+      integer(c_int) :: user_ell_width
+      integer(kind(rocsparse_hyb_partition_auto)) :: partition_type
       !
       rocsparse_zcsr2hyb_rank_1 = rocsparse_zcsr2hyb_raw(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),hyb,user_ell_width,partition_type)
     end function
@@ -27782,15 +27782,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_csr2bsr_nnz_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: bsr_descr
+      integer(c_int) :: block_dim
+      type(c_ptr) :: bsr_descr
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_nnz
       !
@@ -27802,15 +27802,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_csr2bsr_nnz_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: bsr_descr
+      integer(c_int) :: block_dim
+      type(c_ptr) :: bsr_descr
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_nnz
       !
@@ -27822,16 +27822,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsr2bsr_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       real(c_float),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: bsr_descr
+      integer(c_int) :: block_dim
+      type(c_ptr) :: bsr_descr
       real(c_float),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
@@ -27844,16 +27844,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsr2bsr_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: bsr_descr
+      integer(c_int) :: block_dim
+      type(c_ptr) :: bsr_descr
       real(c_float),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
@@ -27866,16 +27866,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsr2bsr_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       real(c_double),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: bsr_descr
+      integer(c_int) :: block_dim
+      type(c_ptr) :: bsr_descr
       real(c_double),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
@@ -27888,16 +27888,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsr2bsr_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: bsr_descr
+      integer(c_int) :: block_dim
+      type(c_ptr) :: bsr_descr
       real(c_double),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
@@ -27910,16 +27910,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsr2bsr_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       complex(c_float_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: bsr_descr
+      integer(c_int) :: block_dim
+      type(c_ptr) :: bsr_descr
       complex(c_float_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
@@ -27932,16 +27932,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsr2bsr_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       complex(c_float_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: bsr_descr
+      integer(c_int) :: block_dim
+      type(c_ptr) :: bsr_descr
       complex(c_float_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
@@ -27954,16 +27954,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsr2bsr_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       complex(c_double_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: bsr_descr
+      integer(c_int) :: block_dim
+      type(c_ptr) :: bsr_descr
       complex(c_double_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
@@ -27976,16 +27976,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsr2bsr_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       complex(c_double_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: bsr_descr
+      integer(c_int) :: block_dim
+      type(c_ptr) :: bsr_descr
       complex(c_double_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
@@ -27998,17 +27998,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsr2gebsr_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       real(c_float),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer_size
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: p_buffer_size
       !
       rocsparse_scsr2gebsr_buffer_size_rank_0 = rocsparse_scsr2gebsr_buffer_size_raw(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
     end function
@@ -28018,17 +28018,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsr2gebsr_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer_size
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: p_buffer_size
       !
       rocsparse_scsr2gebsr_buffer_size_rank_1 = rocsparse_scsr2gebsr_buffer_size_raw(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
     end function
@@ -28038,17 +28038,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsr2gebsr_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       real(c_double),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer_size
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: p_buffer_size
       !
       rocsparse_dcsr2gebsr_buffer_size_rank_0 = rocsparse_dcsr2gebsr_buffer_size_raw(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
     end function
@@ -28058,17 +28058,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsr2gebsr_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer_size
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: p_buffer_size
       !
       rocsparse_dcsr2gebsr_buffer_size_rank_1 = rocsparse_dcsr2gebsr_buffer_size_raw(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
     end function
@@ -28078,17 +28078,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsr2gebsr_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       complex(c_float_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer_size
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: p_buffer_size
       !
       rocsparse_ccsr2gebsr_buffer_size_rank_0 = rocsparse_ccsr2gebsr_buffer_size_raw(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
     end function
@@ -28098,17 +28098,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsr2gebsr_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       complex(c_float_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer_size
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: p_buffer_size
       !
       rocsparse_ccsr2gebsr_buffer_size_rank_1 = rocsparse_ccsr2gebsr_buffer_size_raw(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
     end function
@@ -28118,17 +28118,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsr2gebsr_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       complex(c_double_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer_size
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: p_buffer_size
       !
       rocsparse_zcsr2gebsr_buffer_size_rank_0 = rocsparse_zcsr2gebsr_buffer_size_raw(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
     end function
@@ -28138,17 +28138,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsr2gebsr_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       complex(c_double_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer_size
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: p_buffer_size
       !
       rocsparse_zcsr2gebsr_buffer_size_rank_1 = rocsparse_zcsr2gebsr_buffer_size_raw(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
     end function
@@ -28158,19 +28158,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_csr2gebsr_nnz_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: bsr_descr
+      type(c_ptr) :: bsr_descr
       integer(c_int),target :: bsr_row_ptr
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: bsr_nnz_devhost
-      type(c_ptr),value :: p_buffer
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: bsr_nnz_devhost
+      type(c_ptr) :: p_buffer
       !
       rocsparse_csr2gebsr_nnz_rank_0 = rocsparse_csr2gebsr_nnz_raw(handle,dir,m,n,csr_descr,c_loc(csr_row_ptr),c_loc(csr_col_ind),bsr_descr,c_loc(bsr_row_ptr),row_block_dim,col_block_dim,bsr_nnz_devhost,p_buffer)
     end function
@@ -28180,19 +28180,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_csr2gebsr_nnz_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: bsr_descr
+      type(c_ptr) :: bsr_descr
       integer(c_int),target,dimension(:) :: bsr_row_ptr
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: bsr_nnz_devhost
-      type(c_ptr),value :: p_buffer
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: bsr_nnz_devhost
+      type(c_ptr) :: p_buffer
       !
       rocsparse_csr2gebsr_nnz_rank_1 = rocsparse_csr2gebsr_nnz_raw(handle,dir,m,n,csr_descr,c_loc(csr_row_ptr),c_loc(csr_col_ind),bsr_descr,c_loc(bsr_row_ptr),row_block_dim,col_block_dim,bsr_nnz_devhost,p_buffer)
     end function
@@ -28202,21 +28202,21 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsr2gebsr_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       real(c_float),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: bsr_descr
+      type(c_ptr) :: bsr_descr
       real(c_float),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: p_buffer
       !
       rocsparse_scsr2gebsr_rank_0 = rocsparse_scsr2gebsr_raw(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),bsr_descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,p_buffer)
     end function
@@ -28226,21 +28226,21 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsr2gebsr_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: bsr_descr
+      type(c_ptr) :: bsr_descr
       real(c_float),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: p_buffer
       !
       rocsparse_scsr2gebsr_rank_1 = rocsparse_scsr2gebsr_raw(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),bsr_descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,p_buffer)
     end function
@@ -28250,21 +28250,21 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsr2gebsr_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       real(c_double),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: bsr_descr
+      type(c_ptr) :: bsr_descr
       real(c_double),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: p_buffer
       !
       rocsparse_dcsr2gebsr_rank_0 = rocsparse_dcsr2gebsr_raw(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),bsr_descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,p_buffer)
     end function
@@ -28274,21 +28274,21 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsr2gebsr_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: bsr_descr
+      type(c_ptr) :: bsr_descr
       real(c_double),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: p_buffer
       !
       rocsparse_dcsr2gebsr_rank_1 = rocsparse_dcsr2gebsr_raw(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),bsr_descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,p_buffer)
     end function
@@ -28298,21 +28298,21 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsr2gebsr_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       complex(c_float_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: bsr_descr
+      type(c_ptr) :: bsr_descr
       complex(c_float_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: p_buffer
       !
       rocsparse_ccsr2gebsr_rank_0 = rocsparse_ccsr2gebsr_raw(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),bsr_descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,p_buffer)
     end function
@@ -28322,21 +28322,21 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsr2gebsr_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       complex(c_float_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: bsr_descr
+      type(c_ptr) :: bsr_descr
       complex(c_float_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: p_buffer
       !
       rocsparse_ccsr2gebsr_rank_1 = rocsparse_ccsr2gebsr_raw(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),bsr_descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,p_buffer)
     end function
@@ -28346,21 +28346,21 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsr2gebsr_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       complex(c_double_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: bsr_descr
+      type(c_ptr) :: bsr_descr
       complex(c_double_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: p_buffer
       !
       rocsparse_zcsr2gebsr_rank_0 = rocsparse_zcsr2gebsr_raw(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),bsr_descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,p_buffer)
     end function
@@ -28370,21 +28370,21 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsr2gebsr_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
       complex(c_double_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: bsr_descr
+      type(c_ptr) :: bsr_descr
       complex(c_double_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: p_buffer
       !
       rocsparse_zcsr2gebsr_rank_1 = rocsparse_zcsr2gebsr_raw(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),bsr_descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,p_buffer)
     end function
@@ -28394,19 +28394,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsr2csr_compress_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr_A
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr_A
       real(c_float),target :: csr_val_A
       integer(c_int),target :: csr_row_ptr_A
       integer(c_int),target :: csr_col_ind_A
-      integer(c_int),value :: nnz_A
+      integer(c_int) :: nnz_A
       integer(c_int),target :: nnz_per_row
       real(c_float),target :: csr_val_C
       integer(c_int),target :: csr_row_ptr_C
       integer(c_int),target :: csr_col_ind_C
-      real(c_float),value :: tol
+      real(c_float) :: tol
       !
       rocsparse_scsr2csr_compress_rank_0 = rocsparse_scsr2csr_compress_raw(handle,m,n,descr_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),nnz_A,c_loc(nnz_per_row),c_loc(csr_val_C),c_loc(csr_row_ptr_C),c_loc(csr_col_ind_C),tol)
     end function
@@ -28416,19 +28416,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsr2csr_compress_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr_A
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr_A
       real(c_float),target,dimension(:) :: csr_val_A
       integer(c_int),target,dimension(:) :: csr_row_ptr_A
       integer(c_int),target,dimension(:) :: csr_col_ind_A
-      integer(c_int),value :: nnz_A
+      integer(c_int) :: nnz_A
       integer(c_int),target,dimension(:) :: nnz_per_row
       real(c_float),target,dimension(:) :: csr_val_C
       integer(c_int),target,dimension(:) :: csr_row_ptr_C
       integer(c_int),target,dimension(:) :: csr_col_ind_C
-      real(c_float),value :: tol
+      real(c_float) :: tol
       !
       rocsparse_scsr2csr_compress_rank_1 = rocsparse_scsr2csr_compress_raw(handle,m,n,descr_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),nnz_A,c_loc(nnz_per_row),c_loc(csr_val_C),c_loc(csr_row_ptr_C),c_loc(csr_col_ind_C),tol)
     end function
@@ -28438,19 +28438,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsr2csr_compress_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr_A
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr_A
       real(c_double),target :: csr_val_A
       integer(c_int),target :: csr_row_ptr_A
       integer(c_int),target :: csr_col_ind_A
-      integer(c_int),value :: nnz_A
+      integer(c_int) :: nnz_A
       integer(c_int),target :: nnz_per_row
       real(c_double),target :: csr_val_C
       integer(c_int),target :: csr_row_ptr_C
       integer(c_int),target :: csr_col_ind_C
-      real(c_double),value :: tol
+      real(c_double) :: tol
       !
       rocsparse_dcsr2csr_compress_rank_0 = rocsparse_dcsr2csr_compress_raw(handle,m,n,descr_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),nnz_A,c_loc(nnz_per_row),c_loc(csr_val_C),c_loc(csr_row_ptr_C),c_loc(csr_col_ind_C),tol)
     end function
@@ -28460,19 +28460,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsr2csr_compress_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr_A
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr_A
       real(c_double),target,dimension(:) :: csr_val_A
       integer(c_int),target,dimension(:) :: csr_row_ptr_A
       integer(c_int),target,dimension(:) :: csr_col_ind_A
-      integer(c_int),value :: nnz_A
+      integer(c_int) :: nnz_A
       integer(c_int),target,dimension(:) :: nnz_per_row
       real(c_double),target,dimension(:) :: csr_val_C
       integer(c_int),target,dimension(:) :: csr_row_ptr_C
       integer(c_int),target,dimension(:) :: csr_col_ind_C
-      real(c_double),value :: tol
+      real(c_double) :: tol
       !
       rocsparse_dcsr2csr_compress_rank_1 = rocsparse_dcsr2csr_compress_raw(handle,m,n,descr_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),nnz_A,c_loc(nnz_per_row),c_loc(csr_val_C),c_loc(csr_row_ptr_C),c_loc(csr_col_ind_C),tol)
     end function
@@ -28482,19 +28482,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsr2csr_compress_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr_A
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr_A
       complex(c_float_complex),target :: csr_val_A
       integer(c_int),target :: csr_row_ptr_A
       integer(c_int),target :: csr_col_ind_A
-      integer(c_int),value :: nnz_A
+      integer(c_int) :: nnz_A
       integer(c_int),target :: nnz_per_row
       complex(c_float_complex),target :: csr_val_C
       integer(c_int),target :: csr_row_ptr_C
       integer(c_int),target :: csr_col_ind_C
-      complex(c_float_complex),value :: tol
+      complex(c_float_complex) :: tol
       !
       rocsparse_ccsr2csr_compress_rank_0 = rocsparse_ccsr2csr_compress_raw(handle,m,n,descr_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),nnz_A,c_loc(nnz_per_row),c_loc(csr_val_C),c_loc(csr_row_ptr_C),c_loc(csr_col_ind_C),tol)
     end function
@@ -28504,19 +28504,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsr2csr_compress_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr_A
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr_A
       complex(c_float_complex),target,dimension(:) :: csr_val_A
       integer(c_int),target,dimension(:) :: csr_row_ptr_A
       integer(c_int),target,dimension(:) :: csr_col_ind_A
-      integer(c_int),value :: nnz_A
+      integer(c_int) :: nnz_A
       integer(c_int),target,dimension(:) :: nnz_per_row
       complex(c_float_complex),target,dimension(:) :: csr_val_C
       integer(c_int),target,dimension(:) :: csr_row_ptr_C
       integer(c_int),target,dimension(:) :: csr_col_ind_C
-      complex(c_float_complex),value :: tol
+      complex(c_float_complex) :: tol
       !
       rocsparse_ccsr2csr_compress_rank_1 = rocsparse_ccsr2csr_compress_raw(handle,m,n,descr_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),nnz_A,c_loc(nnz_per_row),c_loc(csr_val_C),c_loc(csr_row_ptr_C),c_loc(csr_col_ind_C),tol)
     end function
@@ -28526,19 +28526,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsr2csr_compress_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr_A
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr_A
       complex(c_double_complex),target :: csr_val_A
       integer(c_int),target :: csr_row_ptr_A
       integer(c_int),target :: csr_col_ind_A
-      integer(c_int),value :: nnz_A
+      integer(c_int) :: nnz_A
       integer(c_int),target :: nnz_per_row
       complex(c_double_complex),target :: csr_val_C
       integer(c_int),target :: csr_row_ptr_C
       integer(c_int),target :: csr_col_ind_C
-      complex(c_double_complex),value :: tol
+      complex(c_double_complex) :: tol
       !
       rocsparse_zcsr2csr_compress_rank_0 = rocsparse_zcsr2csr_compress_raw(handle,m,n,descr_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),nnz_A,c_loc(nnz_per_row),c_loc(csr_val_C),c_loc(csr_row_ptr_C),c_loc(csr_col_ind_C),tol)
     end function
@@ -28548,19 +28548,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsr2csr_compress_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: descr_A
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr_A
       complex(c_double_complex),target,dimension(:) :: csr_val_A
       integer(c_int),target,dimension(:) :: csr_row_ptr_A
       integer(c_int),target,dimension(:) :: csr_col_ind_A
-      integer(c_int),value :: nnz_A
+      integer(c_int) :: nnz_A
       integer(c_int),target,dimension(:) :: nnz_per_row
       complex(c_double_complex),target,dimension(:) :: csr_val_C
       integer(c_int),target,dimension(:) :: csr_row_ptr_C
       integer(c_int),target,dimension(:) :: csr_col_ind_C
-      complex(c_double_complex),value :: tol
+      complex(c_double_complex) :: tol
       !
       rocsparse_zcsr2csr_compress_rank_1 = rocsparse_zcsr2csr_compress_raw(handle,m,n,descr_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),nnz_A,c_loc(nnz_per_row),c_loc(csr_val_C),c_loc(csr_row_ptr_C),c_loc(csr_col_ind_C),tol)
     end function
@@ -28570,16 +28570,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sprune_csr2csr_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz_A
-      type(c_ptr),value :: csr_descr_A
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz_A
+      type(c_ptr) :: csr_descr_A
       real(c_float),target :: csr_val_A
       integer(c_int),target :: csr_row_ptr_A
       integer(c_int),target :: csr_col_ind_A
       real(c_float) :: threshold
-      type(c_ptr),value :: csr_descr_C
+      type(c_ptr) :: csr_descr_C
       real(c_float),target :: csr_val_C
       integer(c_int),target :: csr_row_ptr_C
       integer(c_int),target :: csr_col_ind_C
@@ -28593,16 +28593,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sprune_csr2csr_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz_A
-      type(c_ptr),value :: csr_descr_A
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz_A
+      type(c_ptr) :: csr_descr_A
       real(c_float),target,dimension(:) :: csr_val_A
       integer(c_int),target,dimension(:) :: csr_row_ptr_A
       integer(c_int),target,dimension(:) :: csr_col_ind_A
       real(c_float) :: threshold
-      type(c_ptr),value :: csr_descr_C
+      type(c_ptr) :: csr_descr_C
       real(c_float),target,dimension(:) :: csr_val_C
       integer(c_int),target,dimension(:) :: csr_row_ptr_C
       integer(c_int),target,dimension(:) :: csr_col_ind_C
@@ -28616,16 +28616,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dprune_csr2csr_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz_A
-      type(c_ptr),value :: csr_descr_A
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz_A
+      type(c_ptr) :: csr_descr_A
       real(c_double),target :: csr_val_A
       integer(c_int),target :: csr_row_ptr_A
       integer(c_int),target :: csr_col_ind_A
       real(c_double) :: threshold
-      type(c_ptr),value :: csr_descr_C
+      type(c_ptr) :: csr_descr_C
       real(c_double),target :: csr_val_C
       integer(c_int),target :: csr_row_ptr_C
       integer(c_int),target :: csr_col_ind_C
@@ -28639,16 +28639,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dprune_csr2csr_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz_A
-      type(c_ptr),value :: csr_descr_A
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz_A
+      type(c_ptr) :: csr_descr_A
       real(c_double),target,dimension(:) :: csr_val_A
       integer(c_int),target,dimension(:) :: csr_row_ptr_A
       integer(c_int),target,dimension(:) :: csr_col_ind_A
       real(c_double) :: threshold
-      type(c_ptr),value :: csr_descr_C
+      type(c_ptr) :: csr_descr_C
       real(c_double),target,dimension(:) :: csr_val_C
       integer(c_int),target,dimension(:) :: csr_row_ptr_C
       integer(c_int),target,dimension(:) :: csr_col_ind_C
@@ -28662,19 +28662,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sprune_csr2csr_nnz_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz_A
-      type(c_ptr),value :: csr_descr_A
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz_A
+      type(c_ptr) :: csr_descr_A
       real(c_float),target :: csr_val_A
       integer(c_int),target :: csr_row_ptr_A
       integer(c_int),target :: csr_col_ind_A
       real(c_float) :: threshold
-      type(c_ptr),value :: csr_descr_C
+      type(c_ptr) :: csr_descr_C
       integer(c_int),target :: csr_row_ptr_C
       integer(c_int) :: nnz_total_dev_host_ptr
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sprune_csr2csr_nnz_rank_0 = rocsparse_sprune_csr2csr_nnz_raw(handle,m,n,nnz_A,csr_descr_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),threshold,csr_descr_C,c_loc(csr_row_ptr_C),nnz_total_dev_host_ptr,temp_buffer)
     end function
@@ -28684,19 +28684,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sprune_csr2csr_nnz_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz_A
-      type(c_ptr),value :: csr_descr_A
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz_A
+      type(c_ptr) :: csr_descr_A
       real(c_float),target,dimension(:) :: csr_val_A
       integer(c_int),target,dimension(:) :: csr_row_ptr_A
       integer(c_int),target,dimension(:) :: csr_col_ind_A
       real(c_float) :: threshold
-      type(c_ptr),value :: csr_descr_C
+      type(c_ptr) :: csr_descr_C
       integer(c_int),target,dimension(:) :: csr_row_ptr_C
       integer(c_int) :: nnz_total_dev_host_ptr
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sprune_csr2csr_nnz_rank_1 = rocsparse_sprune_csr2csr_nnz_raw(handle,m,n,nnz_A,csr_descr_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),threshold,csr_descr_C,c_loc(csr_row_ptr_C),nnz_total_dev_host_ptr,temp_buffer)
     end function
@@ -28706,19 +28706,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dprune_csr2csr_nnz_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz_A
-      type(c_ptr),value :: csr_descr_A
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz_A
+      type(c_ptr) :: csr_descr_A
       real(c_double),target :: csr_val_A
       integer(c_int),target :: csr_row_ptr_A
       integer(c_int),target :: csr_col_ind_A
       real(c_double) :: threshold
-      type(c_ptr),value :: csr_descr_C
+      type(c_ptr) :: csr_descr_C
       integer(c_int),target :: csr_row_ptr_C
       integer(c_int) :: nnz_total_dev_host_ptr
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dprune_csr2csr_nnz_rank_0 = rocsparse_dprune_csr2csr_nnz_raw(handle,m,n,nnz_A,csr_descr_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),threshold,csr_descr_C,c_loc(csr_row_ptr_C),nnz_total_dev_host_ptr,temp_buffer)
     end function
@@ -28728,19 +28728,19 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dprune_csr2csr_nnz_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz_A
-      type(c_ptr),value :: csr_descr_A
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz_A
+      type(c_ptr) :: csr_descr_A
       real(c_double),target,dimension(:) :: csr_val_A
       integer(c_int),target,dimension(:) :: csr_row_ptr_A
       integer(c_int),target,dimension(:) :: csr_col_ind_A
       real(c_double) :: threshold
-      type(c_ptr),value :: csr_descr_C
+      type(c_ptr) :: csr_descr_C
       integer(c_int),target,dimension(:) :: csr_row_ptr_C
       integer(c_int) :: nnz_total_dev_host_ptr
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dprune_csr2csr_nnz_rank_1 = rocsparse_dprune_csr2csr_nnz_raw(handle,m,n,nnz_A,csr_descr_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),threshold,csr_descr_C,c_loc(csr_row_ptr_C),nnz_total_dev_host_ptr,temp_buffer)
     end function
@@ -28750,20 +28750,20 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sprune_csr2csr_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz_A
-      type(c_ptr),value :: csr_descr_A
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz_A
+      type(c_ptr) :: csr_descr_A
       real(c_float),target :: csr_val_A
       integer(c_int),target :: csr_row_ptr_A
       integer(c_int),target :: csr_col_ind_A
       real(c_float) :: threshold
-      type(c_ptr),value :: csr_descr_C
+      type(c_ptr) :: csr_descr_C
       real(c_float),target :: csr_val_C
       integer(c_int),target :: csr_row_ptr_C
       integer(c_int),target :: csr_col_ind_C
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sprune_csr2csr_rank_0 = rocsparse_sprune_csr2csr_raw(handle,m,n,nnz_A,csr_descr_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),threshold,csr_descr_C,c_loc(csr_val_C),c_loc(csr_row_ptr_C),c_loc(csr_col_ind_C),temp_buffer)
     end function
@@ -28773,20 +28773,20 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sprune_csr2csr_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz_A
-      type(c_ptr),value :: csr_descr_A
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz_A
+      type(c_ptr) :: csr_descr_A
       real(c_float),target,dimension(:) :: csr_val_A
       integer(c_int),target,dimension(:) :: csr_row_ptr_A
       integer(c_int),target,dimension(:) :: csr_col_ind_A
       real(c_float) :: threshold
-      type(c_ptr),value :: csr_descr_C
+      type(c_ptr) :: csr_descr_C
       real(c_float),target,dimension(:) :: csr_val_C
       integer(c_int),target,dimension(:) :: csr_row_ptr_C
       integer(c_int),target,dimension(:) :: csr_col_ind_C
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sprune_csr2csr_rank_1 = rocsparse_sprune_csr2csr_raw(handle,m,n,nnz_A,csr_descr_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),threshold,csr_descr_C,c_loc(csr_val_C),c_loc(csr_row_ptr_C),c_loc(csr_col_ind_C),temp_buffer)
     end function
@@ -28796,20 +28796,20 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dprune_csr2csr_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz_A
-      type(c_ptr),value :: csr_descr_A
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz_A
+      type(c_ptr) :: csr_descr_A
       real(c_double),target :: csr_val_A
       integer(c_int),target :: csr_row_ptr_A
       integer(c_int),target :: csr_col_ind_A
       real(c_double) :: threshold
-      type(c_ptr),value :: csr_descr_C
+      type(c_ptr) :: csr_descr_C
       real(c_double),target :: csr_val_C
       integer(c_int),target :: csr_row_ptr_C
       integer(c_int),target :: csr_col_ind_C
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dprune_csr2csr_rank_0 = rocsparse_dprune_csr2csr_raw(handle,m,n,nnz_A,csr_descr_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),threshold,csr_descr_C,c_loc(csr_val_C),c_loc(csr_row_ptr_C),c_loc(csr_col_ind_C),temp_buffer)
     end function
@@ -28819,20 +28819,20 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dprune_csr2csr_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz_A
-      type(c_ptr),value :: csr_descr_A
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz_A
+      type(c_ptr) :: csr_descr_A
       real(c_double),target,dimension(:) :: csr_val_A
       integer(c_int),target,dimension(:) :: csr_row_ptr_A
       integer(c_int),target,dimension(:) :: csr_col_ind_A
       real(c_double) :: threshold
-      type(c_ptr),value :: csr_descr_C
+      type(c_ptr) :: csr_descr_C
       real(c_double),target,dimension(:) :: csr_val_C
       integer(c_int),target,dimension(:) :: csr_row_ptr_C
       integer(c_int),target,dimension(:) :: csr_col_ind_C
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dprune_csr2csr_rank_1 = rocsparse_dprune_csr2csr_raw(handle,m,n,nnz_A,csr_descr_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),threshold,csr_descr_C,c_loc(csr_val_C),c_loc(csr_row_ptr_C),c_loc(csr_col_ind_C),temp_buffer)
     end function
@@ -28842,20 +28842,20 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sprune_csr2csr_by_percentage_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz_A
-      type(c_ptr),value :: csr_descr_A
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz_A
+      type(c_ptr) :: csr_descr_A
       real(c_float),target :: csr_val_A
       integer(c_int),target :: csr_row_ptr_A
       integer(c_int),target :: csr_col_ind_A
-      real(c_float),value :: percentage
-      type(c_ptr),value :: csr_descr_C
+      real(c_float) :: percentage
+      type(c_ptr) :: csr_descr_C
       real(c_float),target :: csr_val_C
       integer(c_int),target :: csr_row_ptr_C
       integer(c_int),target :: csr_col_ind_C
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_sprune_csr2csr_by_percentage_buffer_size_rank_0 = rocsparse_sprune_csr2csr_by_percentage_buffer_size_raw(handle,m,n,nnz_A,csr_descr_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),percentage,csr_descr_C,c_loc(csr_val_C),c_loc(csr_row_ptr_C),c_loc(csr_col_ind_C),myInfo,buffer_size)
@@ -28866,20 +28866,20 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sprune_csr2csr_by_percentage_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz_A
-      type(c_ptr),value :: csr_descr_A
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz_A
+      type(c_ptr) :: csr_descr_A
       real(c_float),target,dimension(:) :: csr_val_A
       integer(c_int),target,dimension(:) :: csr_row_ptr_A
       integer(c_int),target,dimension(:) :: csr_col_ind_A
-      real(c_float),value :: percentage
-      type(c_ptr),value :: csr_descr_C
+      real(c_float) :: percentage
+      type(c_ptr) :: csr_descr_C
       real(c_float),target,dimension(:) :: csr_val_C
       integer(c_int),target,dimension(:) :: csr_row_ptr_C
       integer(c_int),target,dimension(:) :: csr_col_ind_C
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_sprune_csr2csr_by_percentage_buffer_size_rank_1 = rocsparse_sprune_csr2csr_by_percentage_buffer_size_raw(handle,m,n,nnz_A,csr_descr_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),percentage,csr_descr_C,c_loc(csr_val_C),c_loc(csr_row_ptr_C),c_loc(csr_col_ind_C),myInfo,buffer_size)
@@ -28890,20 +28890,20 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dprune_csr2csr_by_percentage_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz_A
-      type(c_ptr),value :: csr_descr_A
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz_A
+      type(c_ptr) :: csr_descr_A
       real(c_double),target :: csr_val_A
       integer(c_int),target :: csr_row_ptr_A
       integer(c_int),target :: csr_col_ind_A
-      real(c_double),value :: percentage
-      type(c_ptr),value :: csr_descr_C
+      real(c_double) :: percentage
+      type(c_ptr) :: csr_descr_C
       real(c_double),target :: csr_val_C
       integer(c_int),target :: csr_row_ptr_C
       integer(c_int),target :: csr_col_ind_C
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_dprune_csr2csr_by_percentage_buffer_size_rank_0 = rocsparse_dprune_csr2csr_by_percentage_buffer_size_raw(handle,m,n,nnz_A,csr_descr_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),percentage,csr_descr_C,c_loc(csr_val_C),c_loc(csr_row_ptr_C),c_loc(csr_col_ind_C),myInfo,buffer_size)
@@ -28914,20 +28914,20 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dprune_csr2csr_by_percentage_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz_A
-      type(c_ptr),value :: csr_descr_A
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz_A
+      type(c_ptr) :: csr_descr_A
       real(c_double),target,dimension(:) :: csr_val_A
       integer(c_int),target,dimension(:) :: csr_row_ptr_A
       integer(c_int),target,dimension(:) :: csr_col_ind_A
-      real(c_double),value :: percentage
-      type(c_ptr),value :: csr_descr_C
+      real(c_double) :: percentage
+      type(c_ptr) :: csr_descr_C
       real(c_double),target,dimension(:) :: csr_val_C
       integer(c_int),target,dimension(:) :: csr_row_ptr_C
       integer(c_int),target,dimension(:) :: csr_col_ind_C
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       integer(c_size_t) :: buffer_size
       !
       rocsparse_dprune_csr2csr_by_percentage_buffer_size_rank_1 = rocsparse_dprune_csr2csr_by_percentage_buffer_size_raw(handle,m,n,nnz_A,csr_descr_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),percentage,csr_descr_C,c_loc(csr_val_C),c_loc(csr_row_ptr_C),c_loc(csr_col_ind_C),myInfo,buffer_size)
@@ -28938,20 +28938,20 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sprune_csr2csr_nnz_by_percentage_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz_A
-      type(c_ptr),value :: csr_descr_A
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz_A
+      type(c_ptr) :: csr_descr_A
       real(c_float),target :: csr_val_A
       integer(c_int),target :: csr_row_ptr_A
       integer(c_int),target :: csr_col_ind_A
-      real(c_float),value :: percentage
-      type(c_ptr),value :: csr_descr_C
+      real(c_float) :: percentage
+      type(c_ptr) :: csr_descr_C
       integer(c_int),target :: csr_row_ptr_C
       integer(c_int) :: nnz_total_dev_host_ptr
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sprune_csr2csr_nnz_by_percentage_rank_0 = rocsparse_sprune_csr2csr_nnz_by_percentage_raw(handle,m,n,nnz_A,csr_descr_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),percentage,csr_descr_C,c_loc(csr_row_ptr_C),nnz_total_dev_host_ptr,myInfo,temp_buffer)
     end function
@@ -28961,20 +28961,20 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sprune_csr2csr_nnz_by_percentage_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz_A
-      type(c_ptr),value :: csr_descr_A
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz_A
+      type(c_ptr) :: csr_descr_A
       real(c_float),target,dimension(:) :: csr_val_A
       integer(c_int),target,dimension(:) :: csr_row_ptr_A
       integer(c_int),target,dimension(:) :: csr_col_ind_A
-      real(c_float),value :: percentage
-      type(c_ptr),value :: csr_descr_C
+      real(c_float) :: percentage
+      type(c_ptr) :: csr_descr_C
       integer(c_int),target,dimension(:) :: csr_row_ptr_C
       integer(c_int) :: nnz_total_dev_host_ptr
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sprune_csr2csr_nnz_by_percentage_rank_1 = rocsparse_sprune_csr2csr_nnz_by_percentage_raw(handle,m,n,nnz_A,csr_descr_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),percentage,csr_descr_C,c_loc(csr_row_ptr_C),nnz_total_dev_host_ptr,myInfo,temp_buffer)
     end function
@@ -28984,20 +28984,20 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dprune_csr2csr_nnz_by_percentage_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz_A
-      type(c_ptr),value :: csr_descr_A
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz_A
+      type(c_ptr) :: csr_descr_A
       real(c_double),target :: csr_val_A
       integer(c_int),target :: csr_row_ptr_A
       integer(c_int),target :: csr_col_ind_A
-      real(c_double),value :: percentage
-      type(c_ptr),value :: csr_descr_C
+      real(c_double) :: percentage
+      type(c_ptr) :: csr_descr_C
       integer(c_int),target :: csr_row_ptr_C
       integer(c_int) :: nnz_total_dev_host_ptr
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dprune_csr2csr_nnz_by_percentage_rank_0 = rocsparse_dprune_csr2csr_nnz_by_percentage_raw(handle,m,n,nnz_A,csr_descr_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),percentage,csr_descr_C,c_loc(csr_row_ptr_C),nnz_total_dev_host_ptr,myInfo,temp_buffer)
     end function
@@ -29007,20 +29007,20 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dprune_csr2csr_nnz_by_percentage_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz_A
-      type(c_ptr),value :: csr_descr_A
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz_A
+      type(c_ptr) :: csr_descr_A
       real(c_double),target,dimension(:) :: csr_val_A
       integer(c_int),target,dimension(:) :: csr_row_ptr_A
       integer(c_int),target,dimension(:) :: csr_col_ind_A
-      real(c_double),value :: percentage
-      type(c_ptr),value :: csr_descr_C
+      real(c_double) :: percentage
+      type(c_ptr) :: csr_descr_C
       integer(c_int),target,dimension(:) :: csr_row_ptr_C
       integer(c_int) :: nnz_total_dev_host_ptr
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dprune_csr2csr_nnz_by_percentage_rank_1 = rocsparse_dprune_csr2csr_nnz_by_percentage_raw(handle,m,n,nnz_A,csr_descr_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),percentage,csr_descr_C,c_loc(csr_row_ptr_C),nnz_total_dev_host_ptr,myInfo,temp_buffer)
     end function
@@ -29030,21 +29030,21 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sprune_csr2csr_by_percentage_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz_A
-      type(c_ptr),value :: csr_descr_A
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz_A
+      type(c_ptr) :: csr_descr_A
       real(c_float),target :: csr_val_A
       integer(c_int),target :: csr_row_ptr_A
       integer(c_int),target :: csr_col_ind_A
-      real(c_float),value :: percentage
-      type(c_ptr),value :: csr_descr_C
+      real(c_float) :: percentage
+      type(c_ptr) :: csr_descr_C
       real(c_float),target :: csr_val_C
       integer(c_int),target :: csr_row_ptr_C
       integer(c_int),target :: csr_col_ind_C
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sprune_csr2csr_by_percentage_rank_0 = rocsparse_sprune_csr2csr_by_percentage_raw(handle,m,n,nnz_A,csr_descr_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),percentage,csr_descr_C,c_loc(csr_val_C),c_loc(csr_row_ptr_C),c_loc(csr_col_ind_C),myInfo,temp_buffer)
     end function
@@ -29054,21 +29054,21 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sprune_csr2csr_by_percentage_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz_A
-      type(c_ptr),value :: csr_descr_A
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz_A
+      type(c_ptr) :: csr_descr_A
       real(c_float),target,dimension(:) :: csr_val_A
       integer(c_int),target,dimension(:) :: csr_row_ptr_A
       integer(c_int),target,dimension(:) :: csr_col_ind_A
-      real(c_float),value :: percentage
-      type(c_ptr),value :: csr_descr_C
+      real(c_float) :: percentage
+      type(c_ptr) :: csr_descr_C
       real(c_float),target,dimension(:) :: csr_val_C
       integer(c_int),target,dimension(:) :: csr_row_ptr_C
       integer(c_int),target,dimension(:) :: csr_col_ind_C
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_sprune_csr2csr_by_percentage_rank_1 = rocsparse_sprune_csr2csr_by_percentage_raw(handle,m,n,nnz_A,csr_descr_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),percentage,csr_descr_C,c_loc(csr_val_C),c_loc(csr_row_ptr_C),c_loc(csr_col_ind_C),myInfo,temp_buffer)
     end function
@@ -29078,21 +29078,21 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dprune_csr2csr_by_percentage_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz_A
-      type(c_ptr),value :: csr_descr_A
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz_A
+      type(c_ptr) :: csr_descr_A
       real(c_double),target :: csr_val_A
       integer(c_int),target :: csr_row_ptr_A
       integer(c_int),target :: csr_col_ind_A
-      real(c_double),value :: percentage
-      type(c_ptr),value :: csr_descr_C
+      real(c_double) :: percentage
+      type(c_ptr) :: csr_descr_C
       real(c_double),target :: csr_val_C
       integer(c_int),target :: csr_row_ptr_C
       integer(c_int),target :: csr_col_ind_C
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dprune_csr2csr_by_percentage_rank_0 = rocsparse_dprune_csr2csr_by_percentage_raw(handle,m,n,nnz_A,csr_descr_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),percentage,csr_descr_C,c_loc(csr_val_C),c_loc(csr_row_ptr_C),c_loc(csr_col_ind_C),myInfo,temp_buffer)
     end function
@@ -29102,21 +29102,21 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dprune_csr2csr_by_percentage_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz_A
-      type(c_ptr),value :: csr_descr_A
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz_A
+      type(c_ptr) :: csr_descr_A
       real(c_double),target,dimension(:) :: csr_val_A
       integer(c_int),target,dimension(:) :: csr_row_ptr_A
       integer(c_int),target,dimension(:) :: csr_col_ind_A
-      real(c_double),value :: percentage
-      type(c_ptr),value :: csr_descr_C
+      real(c_double) :: percentage
+      type(c_ptr) :: csr_descr_C
       real(c_double),target,dimension(:) :: csr_val_C
       integer(c_int),target,dimension(:) :: csr_row_ptr_C
       integer(c_int),target,dimension(:) :: csr_col_ind_C
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: myInfo
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dprune_csr2csr_by_percentage_rank_1 = rocsparse_dprune_csr2csr_by_percentage_raw(handle,m,n,nnz_A,csr_descr_A,c_loc(csr_val_A),c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),percentage,csr_descr_C,c_loc(csr_val_C),c_loc(csr_row_ptr_C),c_loc(csr_col_ind_C),myInfo,temp_buffer)
     end function
@@ -29126,12 +29126,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_coo2csr_rank_0
-      type(c_ptr),value :: handle
+      type(c_ptr) :: handle
       integer(c_int),target :: coo_row_ind
-      integer(c_int),value :: nnz
-      integer(c_int),value :: m
+      integer(c_int) :: nnz
+      integer(c_int) :: m
       integer(c_int),target :: csr_row_ptr
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_coo2csr_rank_0 = rocsparse_coo2csr_raw(handle,c_loc(coo_row_ind),nnz,m,c_loc(csr_row_ptr),idx_base)
     end function
@@ -29141,12 +29141,12 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_coo2csr_rank_1
-      type(c_ptr),value :: handle
+      type(c_ptr) :: handle
       integer(c_int),target,dimension(:) :: coo_row_ind
-      integer(c_int),value :: nnz
-      integer(c_int),value :: m
+      integer(c_int) :: nnz
+      integer(c_int) :: m
       integer(c_int),target,dimension(:) :: csr_row_ptr
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_coo2csr_rank_1 = rocsparse_coo2csr_raw(handle,c_loc(coo_row_ind),nnz,m,c_loc(csr_row_ptr),idx_base)
     end function
@@ -29156,13 +29156,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ell2csr_nnz_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: ell_descr
-      integer(c_int),value :: ell_width
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: ell_descr
+      integer(c_int) :: ell_width
       integer(c_int),target :: ell_col_ind
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: csr_descr
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_nnz
       !
@@ -29174,13 +29174,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ell2csr_nnz_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: ell_descr
-      integer(c_int),value :: ell_width
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: ell_descr
+      integer(c_int) :: ell_width
       integer(c_int),target,dimension(:) :: ell_col_ind
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: csr_descr
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_nnz
       !
@@ -29192,14 +29192,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sell2csr_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: ell_descr
-      integer(c_int),value :: ell_width
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: ell_descr
+      integer(c_int) :: ell_width
       real(c_float),target :: ell_val
       integer(c_int),target :: ell_col_ind
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: csr_descr
       real(c_float),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
@@ -29212,14 +29212,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sell2csr_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: ell_descr
-      integer(c_int),value :: ell_width
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: ell_descr
+      integer(c_int) :: ell_width
       real(c_float),target,dimension(:) :: ell_val
       integer(c_int),target,dimension(:) :: ell_col_ind
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: csr_descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
@@ -29232,14 +29232,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dell2csr_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: ell_descr
-      integer(c_int),value :: ell_width
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: ell_descr
+      integer(c_int) :: ell_width
       real(c_double),target :: ell_val
       integer(c_int),target :: ell_col_ind
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: csr_descr
       real(c_double),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
@@ -29252,14 +29252,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dell2csr_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: ell_descr
-      integer(c_int),value :: ell_width
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: ell_descr
+      integer(c_int) :: ell_width
       real(c_double),target,dimension(:) :: ell_val
       integer(c_int),target,dimension(:) :: ell_col_ind
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: csr_descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
@@ -29272,14 +29272,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cell2csr_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: ell_descr
-      integer(c_int),value :: ell_width
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: ell_descr
+      integer(c_int) :: ell_width
       complex(c_float_complex),target :: ell_val
       integer(c_int),target :: ell_col_ind
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: csr_descr
       complex(c_float_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
@@ -29292,14 +29292,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cell2csr_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: ell_descr
-      integer(c_int),value :: ell_width
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: ell_descr
+      integer(c_int) :: ell_width
       complex(c_float_complex),target,dimension(:) :: ell_val
       integer(c_int),target,dimension(:) :: ell_col_ind
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: csr_descr
       complex(c_float_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
@@ -29312,14 +29312,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zell2csr_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: ell_descr
-      integer(c_int),value :: ell_width
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: ell_descr
+      integer(c_int) :: ell_width
       complex(c_double_complex),target :: ell_val
       integer(c_int),target :: ell_col_ind
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: csr_descr
       complex(c_double_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
@@ -29332,14 +29332,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zell2csr_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      type(c_ptr),value :: ell_descr
-      integer(c_int),value :: ell_width
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: ell_descr
+      integer(c_int) :: ell_width
       complex(c_double_complex),target,dimension(:) :: ell_val
       integer(c_int),target,dimension(:) :: ell_col_ind
-      type(c_ptr),value :: csr_descr
+      type(c_ptr) :: csr_descr
       complex(c_double_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
@@ -29352,9 +29352,9 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_hyb2csr_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      type(c_ptr),value :: descr
-      type(c_ptr),value :: hyb
+      type(c_ptr) :: handle
+      type(c_ptr) :: descr
+      type(c_ptr) :: hyb
       integer(c_int),target :: csr_row_ptr
       integer(c_size_t) :: buffer_size
       !
@@ -29366,9 +29366,9 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_hyb2csr_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      type(c_ptr),value :: descr
-      type(c_ptr),value :: hyb
+      type(c_ptr) :: handle
+      type(c_ptr) :: descr
+      type(c_ptr) :: hyb
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_size_t) :: buffer_size
       !
@@ -29380,13 +29380,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_shyb2csr_rank_0
-      type(c_ptr),value :: handle
-      type(c_ptr),value :: descr
-      type(c_ptr),value :: hyb
+      type(c_ptr) :: handle
+      type(c_ptr) :: descr
+      type(c_ptr) :: hyb
       real(c_float),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_shyb2csr_rank_0 = rocsparse_shyb2csr_raw(handle,descr,hyb,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),temp_buffer)
     end function
@@ -29396,13 +29396,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_shyb2csr_rank_1
-      type(c_ptr),value :: handle
-      type(c_ptr),value :: descr
-      type(c_ptr),value :: hyb
+      type(c_ptr) :: handle
+      type(c_ptr) :: descr
+      type(c_ptr) :: hyb
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_shyb2csr_rank_1 = rocsparse_shyb2csr_raw(handle,descr,hyb,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),temp_buffer)
     end function
@@ -29412,13 +29412,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dhyb2csr_rank_0
-      type(c_ptr),value :: handle
-      type(c_ptr),value :: descr
-      type(c_ptr),value :: hyb
+      type(c_ptr) :: handle
+      type(c_ptr) :: descr
+      type(c_ptr) :: hyb
       real(c_double),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dhyb2csr_rank_0 = rocsparse_dhyb2csr_raw(handle,descr,hyb,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),temp_buffer)
     end function
@@ -29428,13 +29428,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dhyb2csr_rank_1
-      type(c_ptr),value :: handle
-      type(c_ptr),value :: descr
-      type(c_ptr),value :: hyb
+      type(c_ptr) :: handle
+      type(c_ptr) :: descr
+      type(c_ptr) :: hyb
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_dhyb2csr_rank_1 = rocsparse_dhyb2csr_raw(handle,descr,hyb,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),temp_buffer)
     end function
@@ -29444,13 +29444,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_chyb2csr_rank_0
-      type(c_ptr),value :: handle
-      type(c_ptr),value :: descr
-      type(c_ptr),value :: hyb
+      type(c_ptr) :: handle
+      type(c_ptr) :: descr
+      type(c_ptr) :: hyb
       complex(c_float_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_chyb2csr_rank_0 = rocsparse_chyb2csr_raw(handle,descr,hyb,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),temp_buffer)
     end function
@@ -29460,13 +29460,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_chyb2csr_rank_1
-      type(c_ptr),value :: handle
-      type(c_ptr),value :: descr
-      type(c_ptr),value :: hyb
+      type(c_ptr) :: handle
+      type(c_ptr) :: descr
+      type(c_ptr) :: hyb
       complex(c_float_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_chyb2csr_rank_1 = rocsparse_chyb2csr_raw(handle,descr,hyb,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),temp_buffer)
     end function
@@ -29476,13 +29476,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zhyb2csr_rank_0
-      type(c_ptr),value :: handle
-      type(c_ptr),value :: descr
-      type(c_ptr),value :: hyb
+      type(c_ptr) :: handle
+      type(c_ptr) :: descr
+      type(c_ptr) :: hyb
       complex(c_double_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zhyb2csr_rank_0 = rocsparse_zhyb2csr_raw(handle,descr,hyb,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),temp_buffer)
     end function
@@ -29492,13 +29492,13 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zhyb2csr_rank_1
-      type(c_ptr),value :: handle
-      type(c_ptr),value :: descr
-      type(c_ptr),value :: hyb
+      type(c_ptr) :: handle
+      type(c_ptr) :: descr
+      type(c_ptr) :: hyb
       complex(c_double_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_zhyb2csr_rank_1 = rocsparse_zhyb2csr_raw(handle,descr,hyb,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),temp_buffer)
     end function
@@ -29508,8 +29508,8 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_create_identity_permutation_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: n
       integer(c_int),target :: p
       !
       rocsparse_create_identity_permutation_rank_0 = rocsparse_create_identity_permutation_raw(handle,n,c_loc(p))
@@ -29520,8 +29520,8 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_create_identity_permutation_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: n
+      type(c_ptr) :: handle
+      integer(c_int) :: n
       integer(c_int),target,dimension(:) :: p
       !
       rocsparse_create_identity_permutation_rank_1 = rocsparse_create_identity_permutation_raw(handle,n,c_loc(p))
@@ -29532,10 +29532,10 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_csrsort_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
       integer(c_size_t) :: buffer_size
@@ -29548,10 +29548,10 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_csrsort_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       integer(c_size_t) :: buffer_size
@@ -29564,15 +29564,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_csrsort_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
       integer(c_int),target :: perm
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_csrsort_rank_0 = rocsparse_csrsort_raw(handle,m,n,nnz,descr,c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(perm),temp_buffer)
     end function
@@ -29582,15 +29582,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_csrsort_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
       integer(c_int),target,dimension(:) :: perm
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_csrsort_rank_1 = rocsparse_csrsort_raw(handle,m,n,nnz,descr,c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(perm),temp_buffer)
     end function
@@ -29600,10 +29600,10 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cscsort_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       integer(c_int),target :: csc_col_ptr
       integer(c_int),target :: csc_row_ind
       integer(c_size_t) :: buffer_size
@@ -29616,10 +29616,10 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cscsort_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       integer(c_int),target,dimension(:) :: csc_col_ptr
       integer(c_int),target,dimension(:) :: csc_row_ind
       integer(c_size_t) :: buffer_size
@@ -29632,15 +29632,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cscsort_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       integer(c_int),target :: csc_col_ptr
       integer(c_int),target :: csc_row_ind
       integer(c_int),target :: perm
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_cscsort_rank_0 = rocsparse_cscsort_raw(handle,m,n,nnz,descr,c_loc(csc_col_ptr),c_loc(csc_row_ind),c_loc(perm),temp_buffer)
     end function
@@ -29650,15 +29650,15 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cscsort_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       integer(c_int),target,dimension(:) :: csc_col_ptr
       integer(c_int),target,dimension(:) :: csc_row_ind
       integer(c_int),target,dimension(:) :: perm
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_cscsort_rank_1 = rocsparse_cscsort_raw(handle,m,n,nnz,descr,c_loc(csc_col_ptr),c_loc(csc_row_ind),c_loc(perm),temp_buffer)
     end function
@@ -29668,10 +29668,10 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_coosort_buffer_size_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       integer(c_int),target :: coo_row_ind
       integer(c_int),target :: coo_col_ind
       integer(c_size_t) :: buffer_size
@@ -29684,10 +29684,10 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_coosort_buffer_size_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       integer(c_int),target,dimension(:) :: coo_row_ind
       integer(c_int),target,dimension(:) :: coo_col_ind
       integer(c_size_t) :: buffer_size
@@ -29700,14 +29700,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_coosort_by_row_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       integer(c_int),target :: coo_row_ind
       integer(c_int),target :: coo_col_ind
       integer(c_int),target :: perm
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_coosort_by_row_rank_0 = rocsparse_coosort_by_row_raw(handle,m,n,nnz,c_loc(coo_row_ind),c_loc(coo_col_ind),c_loc(perm),temp_buffer)
     end function
@@ -29717,14 +29717,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_coosort_by_row_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       integer(c_int),target,dimension(:) :: coo_row_ind
       integer(c_int),target,dimension(:) :: coo_col_ind
       integer(c_int),target,dimension(:) :: perm
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_coosort_by_row_rank_1 = rocsparse_coosort_by_row_raw(handle,m,n,nnz,c_loc(coo_row_ind),c_loc(coo_col_ind),c_loc(perm),temp_buffer)
     end function
@@ -29734,14 +29734,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_coosort_by_column_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       integer(c_int),target :: coo_row_ind
       integer(c_int),target :: coo_col_ind
       integer(c_int),target :: perm
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_coosort_by_column_rank_0 = rocsparse_coosort_by_column_raw(handle,m,n,nnz,c_loc(coo_row_ind),c_loc(coo_col_ind),c_loc(perm),temp_buffer)
     end function
@@ -29751,14 +29751,14 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_coosort_by_column_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: n
-      integer(c_int),value :: nnz
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
       integer(c_int),target,dimension(:) :: coo_row_ind
       integer(c_int),target,dimension(:) :: coo_col_ind
       integer(c_int),target,dimension(:) :: perm
-      type(c_ptr),value :: temp_buffer
+      type(c_ptr) :: temp_buffer
       !
       rocsparse_coosort_by_column_rank_1 = rocsparse_coosort_by_column_raw(handle,m,n,nnz,c_loc(coo_row_ind),c_loc(coo_col_ind),c_loc(perm),temp_buffer)
     end function
@@ -29768,16 +29768,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sbsr2csr_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      type(c_ptr),value :: bsr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      type(c_ptr) :: bsr_descr
       real(c_float),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: csr_descr
+      integer(c_int) :: block_dim
+      type(c_ptr) :: csr_descr
       real(c_float),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
@@ -29790,16 +29790,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sbsr2csr_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      type(c_ptr),value :: bsr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      type(c_ptr) :: bsr_descr
       real(c_float),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: csr_descr
+      integer(c_int) :: block_dim
+      type(c_ptr) :: csr_descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
@@ -29812,16 +29812,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dbsr2csr_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      type(c_ptr),value :: bsr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      type(c_ptr) :: bsr_descr
       real(c_double),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: csr_descr
+      integer(c_int) :: block_dim
+      type(c_ptr) :: csr_descr
       real(c_double),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
@@ -29834,16 +29834,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dbsr2csr_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      type(c_ptr),value :: bsr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      type(c_ptr) :: bsr_descr
       real(c_double),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: csr_descr
+      integer(c_int) :: block_dim
+      type(c_ptr) :: csr_descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
@@ -29856,16 +29856,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cbsr2csr_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      type(c_ptr),value :: bsr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      type(c_ptr) :: bsr_descr
       complex(c_float_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: csr_descr
+      integer(c_int) :: block_dim
+      type(c_ptr) :: csr_descr
       complex(c_float_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
@@ -29878,16 +29878,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cbsr2csr_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      type(c_ptr),value :: bsr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      type(c_ptr) :: bsr_descr
       complex(c_float_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: csr_descr
+      integer(c_int) :: block_dim
+      type(c_ptr) :: csr_descr
       complex(c_float_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
@@ -29900,16 +29900,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zbsr2csr_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      type(c_ptr),value :: bsr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      type(c_ptr) :: bsr_descr
       complex(c_double_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: csr_descr
+      integer(c_int) :: block_dim
+      type(c_ptr) :: csr_descr
       complex(c_double_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
@@ -29922,16 +29922,16 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zbsr2csr_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      type(c_ptr),value :: bsr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      type(c_ptr) :: bsr_descr
       complex(c_double_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: block_dim
-      type(c_ptr),value :: csr_descr
+      integer(c_int) :: block_dim
+      type(c_ptr) :: csr_descr
       complex(c_double_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
@@ -29944,17 +29944,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sgebsr2csr_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      type(c_ptr),value :: bsr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      type(c_ptr) :: bsr_descr
       real(c_float),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: csr_descr
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: csr_descr
       real(c_float),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
@@ -29967,17 +29967,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_sgebsr2csr_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      type(c_ptr),value :: bsr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      type(c_ptr) :: bsr_descr
       real(c_float),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: csr_descr
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: csr_descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
@@ -29990,17 +29990,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dgebsr2csr_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      type(c_ptr),value :: bsr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      type(c_ptr) :: bsr_descr
       real(c_double),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: csr_descr
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: csr_descr
       real(c_double),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
@@ -30013,17 +30013,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dgebsr2csr_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      type(c_ptr),value :: bsr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      type(c_ptr) :: bsr_descr
       real(c_double),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: csr_descr
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: csr_descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
@@ -30036,17 +30036,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cgebsr2csr_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      type(c_ptr),value :: bsr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      type(c_ptr) :: bsr_descr
       complex(c_float_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: csr_descr
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: csr_descr
       complex(c_float_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
@@ -30059,17 +30059,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_cgebsr2csr_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      type(c_ptr),value :: bsr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      type(c_ptr) :: bsr_descr
       complex(c_float_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: csr_descr
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: csr_descr
       complex(c_float_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
@@ -30082,17 +30082,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zgebsr2csr_rank_0
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      type(c_ptr),value :: bsr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      type(c_ptr) :: bsr_descr
       complex(c_double_complex),target :: bsr_val
       integer(c_int),target :: bsr_row_ptr
       integer(c_int),target :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: csr_descr
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: csr_descr
       complex(c_double_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
@@ -30105,17 +30105,17 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zgebsr2csr_rank_1
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(c_int),value :: mb
-      integer(c_int),value :: nb
-      type(c_ptr),value :: bsr_descr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      type(c_ptr) :: bsr_descr
       complex(c_double_complex),target,dimension(:) :: bsr_val
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int),target,dimension(:) :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: csr_descr
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr) :: csr_descr
       complex(c_double_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
@@ -30128,10 +30128,10 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsrcolor_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_float),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
@@ -30139,7 +30139,7 @@ rocsparse_zcsrcolor_rank_1
       integer(c_int) :: ncolors
       integer(c_int) :: coloring
       integer(c_int) :: reordering
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       !
       rocsparse_scsrcolor_rank_0 = rocsparse_scsrcolor_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),fraction_to_color,ncolors,coloring,reordering,myInfo)
     end function
@@ -30149,10 +30149,10 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_scsrcolor_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
@@ -30160,7 +30160,7 @@ rocsparse_zcsrcolor_rank_1
       integer(c_int) :: ncolors
       integer(c_int) :: coloring
       integer(c_int) :: reordering
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       !
       rocsparse_scsrcolor_rank_1 = rocsparse_scsrcolor_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),fraction_to_color,ncolors,coloring,reordering,myInfo)
     end function
@@ -30170,10 +30170,10 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsrcolor_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_double),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
@@ -30181,7 +30181,7 @@ rocsparse_zcsrcolor_rank_1
       integer(c_int) :: ncolors
       integer(c_int) :: coloring
       integer(c_int) :: reordering
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       !
       rocsparse_dcsrcolor_rank_0 = rocsparse_dcsrcolor_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),fraction_to_color,ncolors,coloring,reordering,myInfo)
     end function
@@ -30191,10 +30191,10 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_dcsrcolor_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
@@ -30202,7 +30202,7 @@ rocsparse_zcsrcolor_rank_1
       integer(c_int) :: ncolors
       integer(c_int) :: coloring
       integer(c_int) :: reordering
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       !
       rocsparse_dcsrcolor_rank_1 = rocsparse_dcsrcolor_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),fraction_to_color,ncolors,coloring,reordering,myInfo)
     end function
@@ -30212,10 +30212,10 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsrcolor_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_float_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
@@ -30223,7 +30223,7 @@ rocsparse_zcsrcolor_rank_1
       integer(c_int) :: ncolors
       integer(c_int) :: coloring
       integer(c_int) :: reordering
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       !
       rocsparse_ccsrcolor_rank_0 = rocsparse_ccsrcolor_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),fraction_to_color,ncolors,coloring,reordering,myInfo)
     end function
@@ -30233,10 +30233,10 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_ccsrcolor_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
@@ -30244,7 +30244,7 @@ rocsparse_zcsrcolor_rank_1
       integer(c_int) :: ncolors
       integer(c_int) :: coloring
       integer(c_int) :: reordering
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       !
       rocsparse_ccsrcolor_rank_1 = rocsparse_ccsrcolor_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),fraction_to_color,ncolors,coloring,reordering,myInfo)
     end function
@@ -30254,10 +30254,10 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsrcolor_rank_0
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_double_complex),target :: csr_val
       integer(c_int),target :: csr_row_ptr
       integer(c_int),target :: csr_col_ind
@@ -30265,7 +30265,7 @@ rocsparse_zcsrcolor_rank_1
       integer(c_int) :: ncolors
       integer(c_int) :: coloring
       integer(c_int) :: reordering
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       !
       rocsparse_zcsrcolor_rank_0 = rocsparse_zcsrcolor_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),fraction_to_color,ncolors,coloring,reordering,myInfo)
     end function
@@ -30275,10 +30275,10 @@ rocsparse_zcsrcolor_rank_1
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_zcsrcolor_rank_1
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      integer(c_int),value :: nnz
-      type(c_ptr),value :: descr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: csr_val
       integer(c_int),target,dimension(:) :: csr_row_ptr
       integer(c_int),target,dimension(:) :: csr_col_ind
@@ -30286,7 +30286,7 @@ rocsparse_zcsrcolor_rank_1
       integer(c_int) :: ncolors
       integer(c_int) :: coloring
       integer(c_int) :: reordering
-      type(c_ptr),value :: myInfo
+      type(c_ptr) :: myInfo
       !
       rocsparse_zcsrcolor_rank_1 = rocsparse_zcsrcolor_raw(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),fraction_to_color,ncolors,coloring,reordering,myInfo)
     end function
