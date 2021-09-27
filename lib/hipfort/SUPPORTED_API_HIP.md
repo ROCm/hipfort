@@ -1,237 +1,236 @@
 API Name | Specializations
 ---------------|---------
-[hipMalloc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipmalloc_1_1hipmalloc.html "Interface documentation") | b
-[hipMallocManaged](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipmalloc_1_1hipmallocmanaged.html "Interface documentation") | b
-[hipHostMalloc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipmalloc_1_1hiphostmalloc.html "Interface documentation") | b
-[hipFree](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipmalloc_1_1hipfree.html "Interface documentation") | b
-[hipHostFree](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipmalloc_1_1hiphostfree.html "Interface documentation") | b, #
-[hipMemcpy](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipmemcpy_1_1hipmemcpy.html "Interface documentation") | b
-[hipMemcpyAsync](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipmemcpy_1_1hipmemcpyasync.html "Interface documentation") | b
-[hipMemcpy2D](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipmemcpy_1_1hipmemcpy2d.html "Interface documentation") | b
-[hipMemcpy2DAsync](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipmemcpy_1_1hipmemcpy2dasync.html "Interface documentation") | b, #
-[hipInit](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipinit.html "Interface documentation") | orig
-[hipDriverGetVersion](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdrivergetversion.html "Interface documentation") | orig
-[hipRuntimeGetVersion](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipruntimegetversion.html "Interface documentation") | orig
-[hipDeviceGet](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdeviceget.html "Interface documentation") | orig
-[hipDeviceComputeCapability](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdevicecomputecapability.html "Interface documentation") | orig
-[hipDeviceGetName](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdevicegetname.html "Interface documentation") | orig
-[hipDeviceGetP2PAttribute](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdevicegetp2pattribute.html "Interface documentation") | orig
-[hipDeviceGetPCIBusId](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdevicegetpcibusid.html "Interface documentation") | orig
-[hipDeviceGetByPCIBusId](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdevicegetbypcibusid.html "Interface documentation") | orig
-[hipDeviceTotalMem](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdevicetotalmem.html "Interface documentation") | orig
-[hipDeviceSynchronize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdevicesynchronize.html "Interface documentation") | orig
-[hipDeviceReset](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdevicereset.html "Interface documentation") | orig
-[hipSetDevice](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipsetdevice.html "Interface documentation") | orig
-[hipGetDevice](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipgetdevice.html "Interface documentation") | orig
-[hipGetDeviceCount](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipgetdevicecount.html "Interface documentation") | orig
-[hipDeviceGetAttribute](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdevicegetattribute.html "Interface documentation") | orig
-[hipGetDeviceProperties](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipgetdeviceproperties.html "Interface documentation") | orig
-[hipDeviceSetCacheConfig](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdevicesetcacheconfig.html "Interface documentation") | orig
-[hipDeviceGetCacheConfig](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdevicegetcacheconfig.html "Interface documentation") | orig
-[hipDeviceGetLimit](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdevicegetlimit.html "Interface documentation") | orig
-[hipDeviceGetSharedMemConfig](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdevicegetsharedmemconfig.html "Interface documentation") | orig
-[hipGetDeviceFlags](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipgetdeviceflags.html "Interface documentation") | orig
-[hipDeviceSetSharedMemConfig](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdevicesetsharedmemconfig.html "Interface documentation") | orig
-[hipSetDeviceFlags](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipsetdeviceflags.html "Interface documentation") | orig
-[hipChooseDevice](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipchoosedevice.html "Interface documentation") | orig
-[hipExtGetLinkTypeAndHopCount](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipextgetlinktypeandhopcount.html "Interface documentation") | orig
-[hipIpcGetMemHandle](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipipcgetmemhandle.html "Interface documentation") | orig
-[hipIpcOpenMemHandle](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipipcopenmemhandle.html "Interface documentation") | orig
-[hipIpcCloseMemHandle](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipipcclosememhandle.html "Interface documentation") | orig
-[hipIpcGetEventHandle](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipipcgeteventhandle.html "Interface documentation") | orig
-[hipIpcOpenEventHandle](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipipcopeneventhandle.html "Interface documentation") | orig
-[hipFuncSetAttribute](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipfuncsetattribute.html "Interface documentation") | orig
-[hipFuncSetCacheConfig](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipfuncsetcacheconfig.html "Interface documentation") | orig
-[hipFuncSetSharedMemConfig](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipfuncsetsharedmemconfig.html "Interface documentation") | orig
-[hipGetLastError](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipgetlasterror.html "Interface documentation") | orig
-[hipPeekAtLastError](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hippeekatlasterror.html "Interface documentation") | orig
-[hipStreamCreate](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipstreamcreate.html "Interface documentation") | orig
-[hipStreamCreateWithFlags](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipstreamcreatewithflags.html "Interface documentation") | orig
-[hipStreamCreateWithPriority](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipstreamcreatewithpriority.html "Interface documentation") | orig
-[hipDeviceGetStreamPriorityRange](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdevicegetstreampriorityrange.html "Interface documentation") | orig
-[hipStreamDestroy](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipstreamdestroy.html "Interface documentation") | orig
-[hipStreamQuery](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipstreamquery.html "Interface documentation") | orig
-[hipStreamSynchronize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipstreamsynchronize.html "Interface documentation") | orig
-[hipStreamWaitEvent](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipstreamwaitevent.html "Interface documentation") | orig
-[hipStreamGetFlags](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipstreamgetflags.html "Interface documentation") | orig
-[hipStreamGetPriority](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipstreamgetpriority.html "Interface documentation") | orig
-[hipExtStreamCreateWithCUMask](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipextstreamcreatewithcumask.html "Interface documentation") | orig
-[hipExtStreamGetCUMask](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipextstreamgetcumask.html "Interface documentation") | orig
-[hipStreamAddCallback](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipstreamaddcallback.html "Interface documentation") | orig
-[hipStreamWriteValue32](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipstreamwritevalue32.html "Interface documentation") | orig
-[hipStreamWriteValue64](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipstreamwritevalue64.html "Interface documentation") | orig
-[hipEventCreateWithFlags](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipeventcreatewithflags.html "Interface documentation") | orig
-[hipEventCreate](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipeventcreate.html "Interface documentation") | orig
-[hipEventRecord](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipeventrecord.html "Interface documentation") | orig
-[hipEventDestroy](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipeventdestroy.html "Interface documentation") | orig
-[hipEventSynchronize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipeventsynchronize.html "Interface documentation") | orig
-[hipEventElapsedTime](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipeventelapsedtime.html "Interface documentation") | orig
-[hipEventQuery](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipeventquery.html "Interface documentation") | orig
-[hipPointerGetAttributes](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hippointergetattributes.html "Interface documentation") | orig
-[hipExternalMemoryGetMappedBuffer](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipexternalmemorygetmappedbuffer.html "Interface documentation") | orig
-[hipDestroyExternalMemory](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdestroyexternalmemory.html "Interface documentation") | orig
-[hipExtMallocWithFlags](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipextmallocwithflags.html "Interface documentation") | orig
-[hipMallocHost](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmallochost.html "Interface documentation") | orig
-[hipMemAllocHost](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemallochost.html "Interface documentation") | orig
-[hipMemPrefetchAsync](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemprefetchasync.html "Interface documentation") | orig
-[hipMemAdvise](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemadvise.html "Interface documentation") | orig
-[hipMemRangeGetAttribute](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemrangegetattribute.html "Interface documentation") | orig
-[hipMemRangeGetAttributes](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemrangegetattributes.html "Interface documentation") | orig
-[hipStreamAttachMemAsync](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipstreamattachmemasync.html "Interface documentation") | orig
-[hipHostAlloc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiphostalloc.html "Interface documentation") | orig
-[hipHostGetFlags](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiphostgetflags.html "Interface documentation") | orig
-[hipMallocPitch](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmallocpitch.html "Interface documentation") | orig
-[hipMemAllocPitch](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemallocpitch.html "Interface documentation") | orig
-[hipFreeHost](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipfreehost.html "Interface documentation") | orig
-[hipMemcpyWithStream](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpywithstream.html "Interface documentation") | orig
-[hipMemcpyHtoD](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpyhtod.html "Interface documentation") | orig
-[hipMemcpyDtoH](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpydtoh.html "Interface documentation") | orig
-[hipMemcpyDtoD](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpydtod.html "Interface documentation") | orig
-[hipMemcpyHtoDAsync](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpyhtodasync.html "Interface documentation") | orig
-[hipMemcpyDtoHAsync](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpydtohasync.html "Interface documentation") | orig
-[hipMemcpyDtoDAsync](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpydtodasync.html "Interface documentation") | orig
-[hipModuleGetGlobal](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmodulegetglobal.html "Interface documentation") | orig
-[hipGetSymbolAddress](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipgetsymboladdress.html "Interface documentation") | orig
-[hipGetSymbolSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipgetsymbolsize.html "Interface documentation") | orig
-[hipMemcpyToSymbol](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpytosymbol.html "Interface documentation") | orig
-[hipMemcpyToSymbolAsync](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpytosymbolasync.html "Interface documentation") | orig
-[hipMemcpyFromSymbol](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpyfromsymbol.html "Interface documentation") | orig
-[hipMemcpyFromSymbolAsync](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpyfromsymbolasync.html "Interface documentation") | orig
-[hipMemset](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemset.html "Interface documentation") | orig
-[hipMemsetD8](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemsetd8.html "Interface documentation") | orig
-[hipMemsetD8Async](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemsetd8async.html "Interface documentation") | orig
-[hipMemsetD16](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemsetd16.html "Interface documentation") | orig
-[hipMemsetD16Async](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemsetd16async.html "Interface documentation") | orig
-[hipMemsetD32](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemsetd32.html "Interface documentation") | orig
-[hipMemsetAsync](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemsetasync.html "Interface documentation") | orig
-[hipMemsetD32Async](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemsetd32async.html "Interface documentation") | orig
-[hipMemset2D](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemset2d.html "Interface documentation") | orig
-[hipMemset2DAsync](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemset2dasync.html "Interface documentation") | orig
-[hipMemset3D](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemset3d.html "Interface documentation") | orig
-[hipMemset3DAsync](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemset3dasync.html "Interface documentation") | orig
-[hipMemGetInfo](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemgetinfo.html "Interface documentation") | orig
-[hipMemPtrGetInfo](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemptrgetinfo.html "Interface documentation") | orig
-[hipMallocArray](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmallocarray.html "Interface documentation") | orig
-[hipArrayCreate](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiparraycreate.html "Interface documentation") | orig
-[hipArrayDestroy](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiparraydestroy.html "Interface documentation") | orig
-[hipArray3DCreate](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiparray3dcreate.html "Interface documentation") | orig
-[hipMalloc3D](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmalloc3d.html "Interface documentation") | orig
-[hipFreeArray](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipfreearray.html "Interface documentation") | orig
-[hipFreeMipmappedArray](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipfreemipmappedarray.html "Interface documentation") | orig
-[hipMalloc3DArray](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmalloc3darray.html "Interface documentation") | orig
-[hipMallocMipmappedArray](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmallocmipmappedarray.html "Interface documentation") | orig
-[hipGetMipmappedArrayLevel](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipgetmipmappedarraylevel.html "Interface documentation") | orig
-[hipMemcpyParam2D](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpyparam2d.html "Interface documentation") | orig
-[hipMemcpyParam2DAsync](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpyparam2dasync.html "Interface documentation") | orig
-[hipMemcpy2DToArray](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpy2dtoarray.html "Interface documentation") | orig
-[hipMemcpy2DToArrayAsync](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpy2dtoarrayasync.html "Interface documentation") | orig
-[hipMemcpyToArray](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpytoarray.html "Interface documentation") | orig
-[hipMemcpyFromArray](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpyfromarray.html "Interface documentation") | orig
-[hipMemcpy2DFromArray](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpy2dfromarray.html "Interface documentation") | orig
-[hipMemcpy2DFromArrayAsync](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpy2dfromarrayasync.html "Interface documentation") | orig
-[hipMemcpyAtoH](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpyatoh.html "Interface documentation") | orig
-[hipMemcpyHtoA](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpyhtoa.html "Interface documentation") | orig
-[hipMemcpy3D](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpy3d.html "Interface documentation") | orig
-[hipMemcpy3DAsync](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpy3dasync.html "Interface documentation") | orig
-[hipDrvMemcpy3D](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdrvmemcpy3d.html "Interface documentation") | orig
-[hipDrvMemcpy3DAsync](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdrvmemcpy3dasync.html "Interface documentation") | orig
-[hipDeviceCanAccessPeer](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdevicecanaccesspeer.html "Interface documentation") | orig
-[hipDeviceEnablePeerAccess](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdeviceenablepeeraccess.html "Interface documentation") | orig
-[hipDeviceDisablePeerAccess](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdevicedisablepeeraccess.html "Interface documentation") | orig
-[hipMemGetAddressRange](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemgetaddressrange.html "Interface documentation") | orig
-[hipMemcpyPeer](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpypeer.html "Interface documentation") | orig
-[hipMemcpyPeerAsync](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpypeerasync.html "Interface documentation") | orig
-[hipCtxCreate](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipctxcreate.html "Interface documentation") | orig
-[hipCtxDestroy](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipctxdestroy.html "Interface documentation") | orig
-[hipCtxPopCurrent](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipctxpopcurrent.html "Interface documentation") | orig
-[hipCtxPushCurrent](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipctxpushcurrent.html "Interface documentation") | orig
-[hipCtxSetCurrent](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipctxsetcurrent.html "Interface documentation") | orig
-[hipCtxGetCurrent](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipctxgetcurrent.html "Interface documentation") | orig
-[hipCtxGetDevice](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipctxgetdevice.html "Interface documentation") | orig
-[hipCtxGetApiVersion](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipctxgetapiversion.html "Interface documentation") | orig
-[hipCtxGetCacheConfig](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipctxgetcacheconfig.html "Interface documentation") | orig
-[hipCtxSetCacheConfig](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipctxsetcacheconfig.html "Interface documentation") | orig
-[hipCtxSetSharedMemConfig](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipctxsetsharedmemconfig.html "Interface documentation") | orig
-[hipCtxGetSharedMemConfig](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipctxgetsharedmemconfig.html "Interface documentation") | orig
-[hipCtxSynchronize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipctxsynchronize.html "Interface documentation") | orig
-[hipCtxGetFlags](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipctxgetflags.html "Interface documentation") | orig
-[hipCtxEnablePeerAccess](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipctxenablepeeraccess.html "Interface documentation") | orig
-[hipCtxDisablePeerAccess](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipctxdisablepeeraccess.html "Interface documentation") | orig
-[hipDevicePrimaryCtxGetState](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdeviceprimaryctxgetstate.html "Interface documentation") | orig
-[hipDevicePrimaryCtxRelease](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdeviceprimaryctxrelease.html "Interface documentation") | orig
-[hipDevicePrimaryCtxRetain](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdeviceprimaryctxretain.html "Interface documentation") | orig
-[hipDevicePrimaryCtxReset](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdeviceprimaryctxreset.html "Interface documentation") | orig
-[hipDevicePrimaryCtxSetFlags](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdeviceprimaryctxsetflags.html "Interface documentation") | orig
-[hipModuleLoad](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmoduleload.html "Interface documentation") | orig
-[hipModuleUnload](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmoduleunload.html "Interface documentation") | orig
-[hipModuleGetFunction](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmodulegetfunction.html "Interface documentation") | orig
-[hipFuncGetAttributes](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipfuncgetattributes.html "Interface documentation") | orig
-[hipFuncGetAttribute](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipfuncgetattribute.html "Interface documentation") | orig
-[hipModuleGetTexRef](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmodulegettexref.html "Interface documentation") | orig
-[hipModuleLoadData](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmoduleloaddata.html "Interface documentation") | orig
-[hipModuleLoadDataEx](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmoduleloaddataex.html "Interface documentation") | orig
-[hipModuleLaunchKernel](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmodulelaunchkernel.html "Interface documentation") | orig
-[hipLaunchCooperativeKernel](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiplaunchcooperativekernel.html "Interface documentation") | orig
-[hipLaunchCooperativeKernelMultiDevice](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiplaunchcooperativekernelmultidevice.html "Interface documentation") | orig
-[hipExtLaunchMultiKernelMultiDevice](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipextlaunchmultikernelmultidevice.html "Interface documentation") | orig
-[hipModuleOccupancyMaxPotentialBlockSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmoduleoccupancymaxpotentialblocksize.html "Interface documentation") | orig
-[hipModuleOccupancyMaxPotentialBlockSizeWithFlags](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmoduleoccupancymaxpotentialblocksizewithflags.html "Interface documentation") | orig
-[hipModuleOccupancyMaxActiveBlocksPerMultiprocessor](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmoduleoccupancymaxactiveblockspermultiprocessor.html "Interface documentation") | orig
-[hipOccupancyMaxActiveBlocksPerMultiprocessor](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipoccupancymaxactiveblockspermultiprocessor.html "Interface documentation") | orig
-[hipOccupancyMaxActiveBlocksPerMultiprocessorWithFlags](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipoccupancymaxactiveblockspermultiprocessorwithflags.html "Interface documentation") | orig
-[hipOccupancyMaxPotentialBlockSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipoccupancymaxpotentialblocksize.html "Interface documentation") | orig
-[hipProfilerStart](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipprofilerstart.html "Interface documentation") | orig
-[hipProfilerStop](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipprofilerstop.html "Interface documentation") | orig
-[hipConfigureCall](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipconfigurecall.html "Interface documentation") | orig
-[hipSetupArgument](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipsetupargument.html "Interface documentation") | orig
-[hipLaunchByPtr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiplaunchbyptr.html "Interface documentation") | orig
-[hipLaunchKernel](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiplaunchkernel.html "Interface documentation") | orig
-[hipDrvMemcpy2DUnaligned](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdrvmemcpy2dunaligned.html "Interface documentation") | orig
-[hipExtLaunchKernel](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipextlaunchkernel.html "Interface documentation") | orig
-[hipBindTexture](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipbindtexture.html "Interface documentation") | orig
-[hipBindTexture2D](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipbindtexture2d.html "Interface documentation") | orig
-[hipBindTextureToArray](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipbindtexturetoarray.html "Interface documentation") | orig
-[hipGetTextureAlignmentOffset](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipgettexturealignmentoffset.html "Interface documentation") | orig
-[hipUnbindTexture](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipunbindtexture.html "Interface documentation") | orig
-[hipBindTextureToMipmappedArray](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipbindtexturetomipmappedarray.html "Interface documentation") | orig
-[hipCreateTextureObject](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipcreatetextureobject.html "Interface documentation") | orig
-[hipDestroyTextureObject](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdestroytextureobject.html "Interface documentation") | orig
-[hipGetChannelDesc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipgetchanneldesc.html "Interface documentation") | orig
-[hipGetTextureObjectResourceDesc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipgettextureobjectresourcedesc.html "Interface documentation") | orig
-[hipGetTextureObjectResourceViewDesc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipgettextureobjectresourceviewdesc.html "Interface documentation") | orig
-[hipGetTextureObjectTextureDesc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipgettextureobjecttexturedesc.html "Interface documentation") | orig
-[hipTexRefGetAddress](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefgetaddress.html "Interface documentation") | orig
-[hipTexRefGetAddressMode](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefgetaddressmode.html "Interface documentation") | orig
-[hipTexRefGetFilterMode](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefgetfiltermode.html "Interface documentation") | orig
-[hipTexRefGetFlags](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefgetflags.html "Interface documentation") | orig
-[hipTexRefGetFormat](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefgetformat.html "Interface documentation") | orig
-[hipTexRefGetMaxAnisotropy](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefgetmaxanisotropy.html "Interface documentation") | orig
-[hipTexRefGetMipmapFilterMode](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefgetmipmapfiltermode.html "Interface documentation") | orig
-[hipTexRefGetMipmapLevelBias](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefgetmipmaplevelbias.html "Interface documentation") | orig
-[hipTexRefGetMipmapLevelClamp](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefgetmipmaplevelclamp.html "Interface documentation") | orig
-[hipTexRefGetMipMappedArray](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefgetmipmappedarray.html "Interface documentation") | orig
-[hipTexRefSetAddress](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefsetaddress.html "Interface documentation") | orig
-[hipTexRefSetAddress2D](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefsetaddress2d.html "Interface documentation") | orig
-[hipTexRefSetAddressMode](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefsetaddressmode.html "Interface documentation") | orig
-[hipTexRefSetArray](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefsetarray.html "Interface documentation") | orig
-[hipTexRefSetFilterMode](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefsetfiltermode.html "Interface documentation") | orig
-[hipTexRefSetFlags](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefsetflags.html "Interface documentation") | orig
-[hipTexRefSetFormat](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefsetformat.html "Interface documentation") | orig
-[hipTexRefSetMaxAnisotropy](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefsetmaxanisotropy.html "Interface documentation") | orig
-[hipTexObjectCreate](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexobjectcreate.html "Interface documentation") | orig
-[hipTexObjectDestroy](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexobjectdestroy.html "Interface documentation") | orig
-[hipTexObjectGetResourceDesc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexobjectgetresourcedesc.html "Interface documentation") | orig
-[hipTexObjectGetResourceViewDesc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexobjectgetresourceviewdesc.html "Interface documentation") | orig
-[hipTexObjectGetTextureDesc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexobjectgettexturedesc.html "Interface documentation") | orig
-[hipTexRefSetBorderColor](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefsetbordercolor.html "Interface documentation") | orig
-[hipTexRefSetMipmapFilterMode](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefsetmipmapfiltermode.html "Interface documentation") | orig
-[hipTexRefSetMipmapLevelBias](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefsetmipmaplevelbias.html "Interface documentation") | orig
-[hipTexRefSetMipmapLevelClamp](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefsetmipmaplevelclamp.html "Interface documentation") | orig
-[hipTexRefSetMipmappedArray](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefsetmipmappedarray.html "Interface documentation") | orig
-[hipMipmappedArrayCreate](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmipmappedarraycreate.html "Interface documentation") | orig
-[hipMipmappedArrayDestroy](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmipmappedarraydestroy.html "Interface documentation") | orig
-[hipMipmappedArrayGetLevel](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmipmappedarraygetlevel.html "Interface documentation") | orig
-[hipRegisterApiCallback](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipregisterapicallback.html "Interface documentation") | orig
-[hipRemoveApiCallback](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipremoveapicallback.html "Interface documentation") | orig
-[hipRegisterActivityCallback](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipregisteractivitycallback.html "Interface documentation") | orig
-[hipRemoveActivityCallback](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipremoveactivitycallback.html "Interface documentation") | orig, #
+[hipMalloc_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipmalloc_1_1hipmalloc__raw.html "Interface documentation") | 
+[hipMallocManaged_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipmalloc_1_1hipmallocmanaged__raw.html "Interface documentation") | 
+[hipHostMalloc_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipmalloc_1_1hiphostmalloc__raw.html "Interface documentation") | 
+[hipFree_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipmalloc_1_1hipfree__raw.html "Interface documentation") | 
+[hipHostFree_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipmalloc_1_1hiphostfree__raw.html "Interface documentation") | 
+[hipMemcpy_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipmemcpy_1_1hipmemcpy__raw.html "Interface documentation") | 
+[hipMemcpyAsync_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipmemcpy_1_1hipmemcpyasync__raw.html "Interface documentation") | 
+[hipMemcpy2D_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipmemcpy_1_1hipmemcpy2d__raw.html "Interface documentation") | 
+[hipMemcpy2DAsync_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipmemcpy_1_1hipmemcpy2dasync__raw.html "Interface documentation") | 
+[hipGetDeviceProperties_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__auxiliary_1_1hipgetdeviceproperties__raw.html "Interface documentation") | 
+[hipInit_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipinit__raw.html "Interface documentation") | 
+[hipDriverGetVersion_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdrivergetversion__raw.html "Interface documentation") | 
+[hipRuntimeGetVersion_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipruntimegetversion__raw.html "Interface documentation") | 
+[hipDeviceGet_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdeviceget__raw.html "Interface documentation") | 
+[hipDeviceComputeCapability_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdevicecomputecapability__raw.html "Interface documentation") | 
+[hipDeviceGetName_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdevicegetname__raw.html "Interface documentation") | 
+[hipDeviceGetP2PAttribute_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdevicegetp2pattribute__raw.html "Interface documentation") | 
+[hipDeviceGetPCIBusId_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdevicegetpcibusid__raw.html "Interface documentation") | 
+[hipDeviceGetByPCIBusId_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdevicegetbypcibusid__raw.html "Interface documentation") | 
+[hipDeviceTotalMem_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdevicetotalmem__raw.html "Interface documentation") | 
+[hipDeviceSynchronize_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdevicesynchronize__raw.html "Interface documentation") | 
+[hipDeviceReset_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdevicereset__raw.html "Interface documentation") | 
+[hipSetDevice_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipsetdevice__raw.html "Interface documentation") | 
+[hipGetDevice_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipgetdevice__raw.html "Interface documentation") | 
+[hipGetDeviceCount_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipgetdevicecount__raw.html "Interface documentation") | 
+[hipDeviceGetAttribute_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdevicegetattribute__raw.html "Interface documentation") | 
+[hipDeviceSetCacheConfig_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdevicesetcacheconfig__raw.html "Interface documentation") | 
+[hipDeviceGetCacheConfig_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdevicegetcacheconfig__raw.html "Interface documentation") | 
+[hipDeviceGetLimit_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdevicegetlimit__raw.html "Interface documentation") | 
+[hipDeviceGetSharedMemConfig_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdevicegetsharedmemconfig__raw.html "Interface documentation") | 
+[hipGetDeviceFlags_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipgetdeviceflags__raw.html "Interface documentation") | 
+[hipDeviceSetSharedMemConfig_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdevicesetsharedmemconfig__raw.html "Interface documentation") | 
+[hipSetDeviceFlags_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipsetdeviceflags__raw.html "Interface documentation") | 
+[hipChooseDevice_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipchoosedevice__raw.html "Interface documentation") | 
+[hipExtGetLinkTypeAndHopCount_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipextgetlinktypeandhopcount__raw.html "Interface documentation") | 
+[hipIpcGetMemHandle_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipipcgetmemhandle__raw.html "Interface documentation") | 
+[hipIpcOpenMemHandle_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipipcopenmemhandle__raw.html "Interface documentation") | 
+[hipIpcCloseMemHandle_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipipcclosememhandle__raw.html "Interface documentation") | 
+[hipIpcGetEventHandle_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipipcgeteventhandle__raw.html "Interface documentation") | 
+[hipIpcOpenEventHandle_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipipcopeneventhandle__raw.html "Interface documentation") | 
+[hipFuncSetAttribute_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipfuncsetattribute__raw.html "Interface documentation") | 
+[hipFuncSetCacheConfig_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipfuncsetcacheconfig__raw.html "Interface documentation") | 
+[hipFuncSetSharedMemConfig_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipfuncsetsharedmemconfig__raw.html "Interface documentation") | 
+[hipGetLastError_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipgetlasterror__raw.html "Interface documentation") | 
+[hipPeekAtLastError_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hippeekatlasterror__raw.html "Interface documentation") | 
+[hipStreamCreate_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipstreamcreate__raw.html "Interface documentation") | 
+[hipStreamCreateWithFlags_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipstreamcreatewithflags__raw.html "Interface documentation") | 
+[hipStreamCreateWithPriority_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipstreamcreatewithpriority__raw.html "Interface documentation") | 
+[hipDeviceGetStreamPriorityRange_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdevicegetstreampriorityrange__raw.html "Interface documentation") | 
+[hipStreamDestroy_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipstreamdestroy__raw.html "Interface documentation") | 
+[hipStreamQuery_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipstreamquery__raw.html "Interface documentation") | 
+[hipStreamSynchronize_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipstreamsynchronize__raw.html "Interface documentation") | 
+[hipStreamWaitEvent_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipstreamwaitevent__raw.html "Interface documentation") | 
+[hipStreamGetFlags_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipstreamgetflags__raw.html "Interface documentation") | 
+[hipStreamGetPriority_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipstreamgetpriority__raw.html "Interface documentation") | 
+[hipExtStreamCreateWithCUMask_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipextstreamcreatewithcumask__raw.html "Interface documentation") | 
+[hipExtStreamGetCUMask_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipextstreamgetcumask__raw.html "Interface documentation") | 
+[hipStreamAddCallback_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipstreamaddcallback__raw.html "Interface documentation") | 
+[hipStreamWriteValue32_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipstreamwritevalue32__raw.html "Interface documentation") | 
+[hipStreamWriteValue64_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipstreamwritevalue64__raw.html "Interface documentation") | 
+[hipEventCreateWithFlags_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipeventcreatewithflags__raw.html "Interface documentation") | 
+[hipEventCreate_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipeventcreate__raw.html "Interface documentation") | 
+[hipEventRecord_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipeventrecord__raw.html "Interface documentation") | 
+[hipEventDestroy_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipeventdestroy__raw.html "Interface documentation") | 
+[hipEventSynchronize_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipeventsynchronize__raw.html "Interface documentation") | 
+[hipEventElapsedTime_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipeventelapsedtime__raw.html "Interface documentation") | 
+[hipEventQuery_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipeventquery__raw.html "Interface documentation") | 
+[hipPointerGetAttributes_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hippointergetattributes__raw.html "Interface documentation") | 
+[hipExternalMemoryGetMappedBuffer_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipexternalmemorygetmappedbuffer__raw.html "Interface documentation") | 
+[hipDestroyExternalMemory_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdestroyexternalmemory__raw.html "Interface documentation") | 
+[hipExtMallocWithFlags_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipextmallocwithflags__raw.html "Interface documentation") | 
+[hipMallocHost_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmallochost__raw.html "Interface documentation") | 
+[hipMemAllocHost_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemallochost__raw.html "Interface documentation") | 
+[hipMemPrefetchAsync_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemprefetchasync__raw.html "Interface documentation") | 
+[hipMemAdvise_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemadvise__raw.html "Interface documentation") | 
+[hipMemRangeGetAttribute_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemrangegetattribute__raw.html "Interface documentation") | 
+[hipMemRangeGetAttributes_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemrangegetattributes__raw.html "Interface documentation") | 
+[hipStreamAttachMemAsync_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipstreamattachmemasync__raw.html "Interface documentation") | 
+[hipHostAlloc_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiphostalloc__raw.html "Interface documentation") | 
+[hipMallocPitch_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmallocpitch__raw.html "Interface documentation") | 
+[hipMemAllocPitch_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemallocpitch__raw.html "Interface documentation") | 
+[hipFreeHost_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipfreehost__raw.html "Interface documentation") | 
+[hipMemcpyWithStream_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpywithstream__raw.html "Interface documentation") | 
+[hipMemcpyHtoD_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpyhtod__raw.html "Interface documentation") | 
+[hipMemcpyDtoH_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpydtoh__raw.html "Interface documentation") | 
+[hipMemcpyDtoD_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpydtod__raw.html "Interface documentation") | 
+[hipMemcpyHtoDAsync_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpyhtodasync__raw.html "Interface documentation") | 
+[hipMemcpyDtoHAsync_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpydtohasync__raw.html "Interface documentation") | 
+[hipMemcpyDtoDAsync_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpydtodasync__raw.html "Interface documentation") | 
+[hipModuleGetGlobal_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmodulegetglobal__raw.html "Interface documentation") | 
+[hipGetSymbolAddress_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipgetsymboladdress__raw.html "Interface documentation") | 
+[hipGetSymbolSize_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipgetsymbolsize__raw.html "Interface documentation") | 
+[hipMemcpyToSymbol_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpytosymbol__raw.html "Interface documentation") | 
+[hipMemcpyToSymbolAsync_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpytosymbolasync__raw.html "Interface documentation") | 
+[hipMemcpyFromSymbol_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpyfromsymbol__raw.html "Interface documentation") | 
+[hipMemcpyFromSymbolAsync_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpyfromsymbolasync__raw.html "Interface documentation") | 
+[hipMemset_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemset__raw.html "Interface documentation") | 
+[hipMemsetD8_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemsetd8__raw.html "Interface documentation") | 
+[hipMemsetD8Async_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemsetd8async__raw.html "Interface documentation") | 
+[hipMemsetD16_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemsetd16__raw.html "Interface documentation") | 
+[hipMemsetD16Async_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemsetd16async__raw.html "Interface documentation") | 
+[hipMemsetD32_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemsetd32__raw.html "Interface documentation") | 
+[hipMemsetAsync_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemsetasync__raw.html "Interface documentation") | 
+[hipMemsetD32Async_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemsetd32async__raw.html "Interface documentation") | 
+[hipMemset2D_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemset2d__raw.html "Interface documentation") | 
+[hipMemset2DAsync_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemset2dasync__raw.html "Interface documentation") | 
+[hipMemset3D_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemset3d__raw.html "Interface documentation") | 
+[hipMemset3DAsync_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemset3dasync__raw.html "Interface documentation") | 
+[hipMemGetInfo_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemgetinfo__raw.html "Interface documentation") | 
+[hipMemPtrGetInfo_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemptrgetinfo__raw.html "Interface documentation") | 
+[hipMallocArray_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmallocarray__raw.html "Interface documentation") | 
+[hipArrayCreate_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiparraycreate__raw.html "Interface documentation") | 
+[hipArrayDestroy_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiparraydestroy__raw.html "Interface documentation") | 
+[hipArray3DCreate_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiparray3dcreate__raw.html "Interface documentation") | 
+[hipMalloc3D_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmalloc3d__raw.html "Interface documentation") | 
+[hipFreeArray_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipfreearray__raw.html "Interface documentation") | 
+[hipFreeMipmappedArray_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipfreemipmappedarray__raw.html "Interface documentation") | 
+[hipMalloc3DArray_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmalloc3darray__raw.html "Interface documentation") | 
+[hipMallocMipmappedArray_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmallocmipmappedarray__raw.html "Interface documentation") | 
+[hipGetMipmappedArrayLevel_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipgetmipmappedarraylevel__raw.html "Interface documentation") | 
+[hipMemcpyParam2D_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpyparam2d__raw.html "Interface documentation") | 
+[hipMemcpyParam2DAsync_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpyparam2dasync__raw.html "Interface documentation") | 
+[hipMemcpy2DToArray_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpy2dtoarray__raw.html "Interface documentation") | 
+[hipMemcpy2DToArrayAsync_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpy2dtoarrayasync__raw.html "Interface documentation") | 
+[hipMemcpyToArray_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpytoarray__raw.html "Interface documentation") | 
+[hipMemcpyFromArray_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpyfromarray__raw.html "Interface documentation") | 
+[hipMemcpy2DFromArray_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpy2dfromarray__raw.html "Interface documentation") | 
+[hipMemcpy2DFromArrayAsync_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpy2dfromarrayasync__raw.html "Interface documentation") | 
+[hipMemcpyAtoH_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpyatoh__raw.html "Interface documentation") | 
+[hipMemcpyHtoA_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpyhtoa__raw.html "Interface documentation") | 
+[hipMemcpy3D_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpy3d__raw.html "Interface documentation") | 
+[hipMemcpy3DAsync_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpy3dasync__raw.html "Interface documentation") | 
+[hipDrvMemcpy3D_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdrvmemcpy3d__raw.html "Interface documentation") | 
+[hipDrvMemcpy3DAsync_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdrvmemcpy3dasync__raw.html "Interface documentation") | 
+[hipDeviceCanAccessPeer_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdevicecanaccesspeer__raw.html "Interface documentation") | 
+[hipDeviceEnablePeerAccess_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdeviceenablepeeraccess__raw.html "Interface documentation") | 
+[hipDeviceDisablePeerAccess_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdevicedisablepeeraccess__raw.html "Interface documentation") | 
+[hipMemGetAddressRange_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemgetaddressrange__raw.html "Interface documentation") | 
+[hipMemcpyPeer_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpypeer__raw.html "Interface documentation") | 
+[hipMemcpyPeerAsync_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmemcpypeerasync__raw.html "Interface documentation") | 
+[hipCtxCreate_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipctxcreate__raw.html "Interface documentation") | 
+[hipCtxDestroy_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipctxdestroy__raw.html "Interface documentation") | 
+[hipCtxPopCurrent_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipctxpopcurrent__raw.html "Interface documentation") | 
+[hipCtxPushCurrent_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipctxpushcurrent__raw.html "Interface documentation") | 
+[hipCtxSetCurrent_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipctxsetcurrent__raw.html "Interface documentation") | 
+[hipCtxGetCurrent_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipctxgetcurrent__raw.html "Interface documentation") | 
+[hipCtxGetDevice_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipctxgetdevice__raw.html "Interface documentation") | 
+[hipCtxGetApiVersion_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipctxgetapiversion__raw.html "Interface documentation") | 
+[hipCtxGetCacheConfig_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipctxgetcacheconfig__raw.html "Interface documentation") | 
+[hipCtxSetCacheConfig_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipctxsetcacheconfig__raw.html "Interface documentation") | 
+[hipCtxSetSharedMemConfig_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipctxsetsharedmemconfig__raw.html "Interface documentation") | 
+[hipCtxGetSharedMemConfig_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipctxgetsharedmemconfig__raw.html "Interface documentation") | 
+[hipCtxSynchronize_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipctxsynchronize__raw.html "Interface documentation") | 
+[hipCtxGetFlags_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipctxgetflags__raw.html "Interface documentation") | 
+[hipCtxEnablePeerAccess_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipctxenablepeeraccess__raw.html "Interface documentation") | 
+[hipCtxDisablePeerAccess_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipctxdisablepeeraccess__raw.html "Interface documentation") | 
+[hipDevicePrimaryCtxGetState_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdeviceprimaryctxgetstate__raw.html "Interface documentation") | 
+[hipDevicePrimaryCtxRelease_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdeviceprimaryctxrelease__raw.html "Interface documentation") | 
+[hipDevicePrimaryCtxRetain_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdeviceprimaryctxretain__raw.html "Interface documentation") | 
+[hipDevicePrimaryCtxReset_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdeviceprimaryctxreset__raw.html "Interface documentation") | 
+[hipDevicePrimaryCtxSetFlags_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdeviceprimaryctxsetflags__raw.html "Interface documentation") | 
+[hipModuleLoad_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmoduleload__raw.html "Interface documentation") | 
+[hipModuleUnload_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmoduleunload__raw.html "Interface documentation") | 
+[hipModuleGetFunction_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmodulegetfunction__raw.html "Interface documentation") | 
+[hipFuncGetAttributes_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipfuncgetattributes__raw.html "Interface documentation") | 
+[hipFuncGetAttribute_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipfuncgetattribute__raw.html "Interface documentation") | 
+[hipModuleGetTexRef_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmodulegettexref__raw.html "Interface documentation") | 
+[hipModuleLoadData_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmoduleloaddata__raw.html "Interface documentation") | 
+[hipModuleLoadDataEx_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmoduleloaddataex__raw.html "Interface documentation") | 
+[hipModuleLaunchKernel_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmodulelaunchkernel__raw.html "Interface documentation") | 
+[hipLaunchCooperativeKernel_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiplaunchcooperativekernel__raw.html "Interface documentation") | 
+[hipLaunchCooperativeKernelMultiDevice_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiplaunchcooperativekernelmultidevice__raw.html "Interface documentation") | 
+[hipExtLaunchMultiKernelMultiDevice_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipextlaunchmultikernelmultidevice__raw.html "Interface documentation") | 
+[hipModuleOccupancyMaxPotentialBlockSize_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmoduleoccupancymaxpotentialblocksize__raw.html "Interface documentation") | 
+[hipModuleOccupancyMaxPotentialBlockSizeWithFlags_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmoduleoccupancymaxpotentialblocksizewithflags__raw.html "Interface documentation") | 
+[hipModuleOccupancyMaxActiveBlocksPerMultiprocessor_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmoduleoccupancymaxactiveblockspermultiprocessor__raw.html "Interface documentation") | 
+[hipOccupancyMaxActiveBlocksPerMultiprocessor_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipoccupancymaxactiveblockspermultiprocessor__raw.html "Interface documentation") | 
+[hipOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipoccupancymaxactiveblockspermultiprocessorwithflags__raw.html "Interface documentation") | 
+[hipOccupancyMaxPotentialBlockSize_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipoccupancymaxpotentialblocksize__raw.html "Interface documentation") | 
+[hipProfilerStart_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipprofilerstart__raw.html "Interface documentation") | 
+[hipProfilerStop_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipprofilerstop__raw.html "Interface documentation") | 
+[hipConfigureCall_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipconfigurecall__raw.html "Interface documentation") | 
+[hipSetupArgument_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipsetupargument__raw.html "Interface documentation") | 
+[hipLaunchByPtr_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiplaunchbyptr__raw.html "Interface documentation") | 
+[hipLaunchKernel_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiplaunchkernel__raw.html "Interface documentation") | 
+[hipDrvMemcpy2DUnaligned_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdrvmemcpy2dunaligned__raw.html "Interface documentation") | 
+[hipExtLaunchKernel_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipextlaunchkernel__raw.html "Interface documentation") | 
+[hipBindTexture_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipbindtexture__raw.html "Interface documentation") | 
+[hipBindTexture2D_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipbindtexture2d__raw.html "Interface documentation") | 
+[hipBindTextureToArray_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipbindtexturetoarray__raw.html "Interface documentation") | 
+[hipGetTextureAlignmentOffset_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipgettexturealignmentoffset__raw.html "Interface documentation") | 
+[hipUnbindTexture_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipunbindtexture__raw.html "Interface documentation") | 
+[hipBindTextureToMipmappedArray_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipbindtexturetomipmappedarray__raw.html "Interface documentation") | 
+[hipCreateTextureObject_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipcreatetextureobject__raw.html "Interface documentation") | 
+[hipDestroyTextureObject_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipdestroytextureobject__raw.html "Interface documentation") | 
+[hipGetChannelDesc_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipgetchanneldesc__raw.html "Interface documentation") | 
+[hipGetTextureObjectResourceDesc_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipgettextureobjectresourcedesc__raw.html "Interface documentation") | 
+[hipGetTextureObjectResourceViewDesc_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipgettextureobjectresourceviewdesc__raw.html "Interface documentation") | 
+[hipGetTextureObjectTextureDesc_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipgettextureobjecttexturedesc__raw.html "Interface documentation") | 
+[hipTexRefGetAddress_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefgetaddress__raw.html "Interface documentation") | 
+[hipTexRefGetAddressMode_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefgetaddressmode__raw.html "Interface documentation") | 
+[hipTexRefGetFilterMode_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefgetfiltermode__raw.html "Interface documentation") | 
+[hipTexRefGetFlags_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefgetflags__raw.html "Interface documentation") | 
+[hipTexRefGetFormat_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefgetformat__raw.html "Interface documentation") | 
+[hipTexRefGetMaxAnisotropy_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefgetmaxanisotropy__raw.html "Interface documentation") | 
+[hipTexRefGetMipmapFilterMode_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefgetmipmapfiltermode__raw.html "Interface documentation") | 
+[hipTexRefGetMipmapLevelBias_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefgetmipmaplevelbias__raw.html "Interface documentation") | 
+[hipTexRefGetMipmapLevelClamp_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefgetmipmaplevelclamp__raw.html "Interface documentation") | 
+[hipTexRefGetMipMappedArray_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefgetmipmappedarray__raw.html "Interface documentation") | 
+[hipTexRefSetAddress_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefsetaddress__raw.html "Interface documentation") | 
+[hipTexRefSetAddress2D_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefsetaddress2d__raw.html "Interface documentation") | 
+[hipTexRefSetAddressMode_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefsetaddressmode__raw.html "Interface documentation") | 
+[hipTexRefSetArray_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefsetarray__raw.html "Interface documentation") | 
+[hipTexRefSetFilterMode_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefsetfiltermode__raw.html "Interface documentation") | 
+[hipTexRefSetFlags_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefsetflags__raw.html "Interface documentation") | 
+[hipTexRefSetFormat_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefsetformat__raw.html "Interface documentation") | 
+[hipTexRefSetMaxAnisotropy_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefsetmaxanisotropy__raw.html "Interface documentation") | 
+[hipTexObjectCreate_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexobjectcreate__raw.html "Interface documentation") | 
+[hipTexObjectDestroy_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexobjectdestroy__raw.html "Interface documentation") | 
+[hipTexObjectGetResourceDesc_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexobjectgetresourcedesc__raw.html "Interface documentation") | 
+[hipTexObjectGetResourceViewDesc_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexobjectgetresourceviewdesc__raw.html "Interface documentation") | 
+[hipTexObjectGetTextureDesc_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexobjectgettexturedesc__raw.html "Interface documentation") | 
+[hipTexRefSetBorderColor_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefsetbordercolor__raw.html "Interface documentation") | 
+[hipTexRefSetMipmapFilterMode_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefsetmipmapfiltermode__raw.html "Interface documentation") | 
+[hipTexRefSetMipmapLevelBias_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefsetmipmaplevelbias__raw.html "Interface documentation") | 
+[hipTexRefSetMipmapLevelClamp_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefsetmipmaplevelclamp__raw.html "Interface documentation") | 
+[hipTexRefSetMipmappedArray_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hiptexrefsetmipmappedarray__raw.html "Interface documentation") | 
+[hipMipmappedArrayCreate_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmipmappedarraycreate__raw.html "Interface documentation") | 
+[hipMipmappedArrayDestroy_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmipmappedarraydestroy__raw.html "Interface documentation") | 
+[hipMipmappedArrayGetLevel_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipmipmappedarraygetlevel__raw.html "Interface documentation") | 
+[hipRegisterApiCallback_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipregisterapicallback__raw.html "Interface documentation") | 
+[hipRemoveApiCallback_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipremoveapicallback__raw.html "Interface documentation") | 
+[hipRegisterActivityCallback_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipregisteractivitycallback__raw.html "Interface documentation") | 
+[hipRemoveActivityCallback_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort_1_1hipremoveactivitycallback__raw.html "Interface documentation") | 
