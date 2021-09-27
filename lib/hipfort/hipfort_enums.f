@@ -55,6 +55,7 @@ module hipfort_enums
     enumerator :: hipErrorProfilerAlreadyStarted = 7
     enumerator :: hipErrorProfilerAlreadyStopped = 8
     enumerator :: hipErrorInvalidConfiguration = 9
+    enumerator :: hipErrorInvalidPitchValue = 12
     enumerator :: hipErrorInvalidSymbol = 13
     enumerator :: hipErrorInvalidDevicePointer = 17
     enumerator :: hipErrorInvalidMemcpyDirection = 21
@@ -98,12 +99,22 @@ module hipfort_enums
     enumerator :: hipErrorPeerAccessAlreadyEnabled = 704
     enumerator :: hipErrorPeerAccessNotEnabled = 705
     enumerator :: hipErrorSetOnActiveProcess = 708
+    enumerator :: hipErrorContextIsDestroyed = 709
     enumerator :: hipErrorAssert = 710
     enumerator :: hipErrorHostMemoryAlreadyRegistered = 712
     enumerator :: hipErrorHostMemoryNotRegistered = 713
     enumerator :: hipErrorLaunchFailure = 719
     enumerator :: hipErrorCooperativeLaunchTooLarge = 720
     enumerator :: hipErrorNotSupported = 801
+    enumerator :: hipErrorStreamCaptureUnsupported = 900
+    enumerator :: hipErrorStreamCaptureInvalidated = 901
+    enumerator :: hipErrorStreamCaptureMerge = 902
+    enumerator :: hipErrorStreamCaptureUnmatched = 903
+    enumerator :: hipErrorStreamCaptureUnjoined = 904
+    enumerator :: hipErrorStreamCaptureIsolation = 905
+    enumerator :: hipErrorStreamCaptureImplicit = 906
+    enumerator :: hipErrorCapturedEvent = 907
+    enumerator :: hipErrorStreamCaptureWrongThread = 908
     enumerator :: hipErrorUnknown = 999
     enumerator :: hipErrorRuntimeMemory = 1052
     enumerator :: hipErrorRuntimeOther = 1053
@@ -163,6 +174,7 @@ module hipfort_enums
     enumerator :: hipDeviceAttributeConcurrentManagedAccess
     enumerator :: hipDeviceAttributePageableMemoryAccess
     enumerator :: hipDeviceAttributePageableMemoryAccessUsesHostPageTables
+    enumerator :: hipDeviceAttributeCanUseStreamWaitValue
   end enum
 
   enum, bind(c)
@@ -237,6 +249,16 @@ module hipfort_enums
     enumerator :: hipSharedMemBankSizeDefault
     enumerator :: hipSharedMemBankSizeFourByte
     enumerator :: hipSharedMemBankSizeEightByte
+  end enum
+
+  enum, bind(c)
+    enumerator :: hipExternalMemoryHandleTypeOpaqueFd = 1
+    enumerator :: hipExternalMemoryHandleTypeOpaqueWin32 = 2
+    enumerator :: hipExternalMemoryHandleTypeOpaqueWin32Kmt = 3
+    enumerator :: hipExternalMemoryHandleTypeD3D12Heap = 4
+    enumerator :: hipExternalMemoryHandleTypeD3D12Resource = 5
+    enumerator :: hipExternalMemoryHandleTypeD3D11Resource = 6
+    enumerator :: hipExternalMemoryHandleTypeD3D11ResourceKmt = 7
   end enum
 
   enum, bind(c)
@@ -396,6 +418,21 @@ module hipfort_enums
   enum, bind(c)
     enumerator :: hipReadModeElementType = 0
     enumerator :: hipReadModeNormalizedFloat = 1
+  end enum
+
+  enum, bind(c)
+    enumerator :: HIP_R_16F = 2
+    enumerator :: HIP_R_32F = 0
+    enumerator :: HIP_R_64F = 1
+    enumerator :: HIP_C_16F = 6
+    enumerator :: HIP_C_32F = 4
+    enumerator :: HIP_C_64F = 5
+  end enum
+
+  enum, bind(c)
+    enumerator :: HIP_LIBRARY_MAJOR_VERSION
+    enumerator :: HIP_LIBRARY_MINOR_VERSION
+    enumerator :: HIP_LIBRARY_PATCH_LEVEL
   end enum
 
  

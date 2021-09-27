@@ -37,6 +37,7 @@ module hipfort_rocfft_enums
     enumerator :: rocfft_status_invalid_strides
     enumerator :: rocfft_status_invalid_distance
     enumerator :: rocfft_status_invalid_offset
+    enumerator :: rocfft_status_invalid_work_buffer
   end enum
 
   enum, bind(c)
@@ -69,13 +70,6 @@ module hipfort_rocfft_enums
     enumerator :: rocfft_exec_mode_nonblocking
     enumerator :: rocfft_exec_mode_nonblocking_with_flush
     enumerator :: rocfft_exec_mode_blocking
-  end enum
-
-  enum, bind(c)
-    enumerator :: rocfft_layer_mode_none = 0
-    enumerator :: rocfft_layer_mode_log_trace = 1
-    enumerator :: rocfft_layer_mode_log_bench = 2
-    enumerator :: rocfft_layer_mode_log_profile = 4
   end enum
 
  

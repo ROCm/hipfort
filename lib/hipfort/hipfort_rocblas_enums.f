@@ -65,6 +65,7 @@ module hipfort_rocblas_enums
     enumerator :: rocblas_status_size_unchanged = 10
     enumerator :: rocblas_status_invalid_value = 11
     enumerator :: rocblas_status_continue = 12
+    enumerator :: rocblas_status_check_numerics_fail = 13
   end enum
 
   enum, bind(c)
@@ -97,6 +98,12 @@ module hipfort_rocblas_enums
   end enum
 
   enum, bind(c)
+    enumerator :: rocblas_default_performance_metric = 0
+    enumerator :: rocblas_device_efficiency_performance_metric = 1
+    enumerator :: rocblas_cu_efficiency_performance_metric = 2
+  end enum
+
+  enum, bind(c)
     enumerator :: rocblas_layer_mode_none = 0
     enumerator :: rocblas_layer_mode_log_trace = 1
     enumerator :: rocblas_layer_mode_log_bench = 2
@@ -109,6 +116,15 @@ module hipfort_rocblas_enums
 
   enum, bind(c)
     enumerator :: rocblas_gemm_flags_none = 0
+    enumerator :: rocblas_gemm_flags_pack_int8x4 = 1
+    enumerator :: rocblas_gemm_flags_use_cu_efficiency = 2
+  end enum
+
+  enum, bind(c)
+    enumerator :: rocblas_check_numerics_mode_no_check = 0
+    enumerator :: rocblas_check_numerics_mode_info = 1
+    enumerator :: rocblas_check_numerics_mode_warn = 2
+    enumerator :: rocblas_check_numerics_mode_fail = 4
   end enum
 
  

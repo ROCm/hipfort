@@ -103,6 +103,72 @@ module hipfort_rocsparse_enums
     enumerator :: rocsparse_status_invalid_value = 7
     enumerator :: rocsparse_status_arch_mismatch = 8
     enumerator :: rocsparse_status_zero_pivot = 9
+    enumerator :: rocsparse_status_not_initialized = 10
+    enumerator :: rocsparse_status_type_mismatch = 11
+  end enum
+
+  enum, bind(c)
+    enumerator :: rocsparse_indextype_u16 = 1
+    enumerator :: rocsparse_indextype_i32 = 2
+    enumerator :: rocsparse_indextype_i64 = 3
+  end enum
+
+  enum, bind(c)
+    enumerator :: rocsparse_datatype_f32_r = 151
+    enumerator :: rocsparse_datatype_f64_r = 152
+    enumerator :: rocsparse_datatype_f32_c = 154
+    enumerator :: rocsparse_datatype_f64_c = 155
+  end enum
+
+  enum, bind(c)
+    enumerator :: rocsparse_format_coo = 0
+    enumerator :: rocsparse_format_coo_aos = 1
+    enumerator :: rocsparse_format_csr = 2
+    enumerator :: rocsparse_format_csc = 3
+    enumerator :: rocsparse_format_ell = 4
+  end enum
+
+  enum, bind(c)
+    enumerator :: rocsparse_order_row = 0
+    enumerator :: rocsparse_order_column = 1
+  end enum
+
+  enum, bind(c)
+    enumerator :: rocsparse_spmv_alg_default = 0
+    enumerator :: rocsparse_spmv_alg_coo = 1
+    enumerator :: rocsparse_spmv_alg_csr_adaptive = 2
+    enumerator :: rocsparse_spmv_alg_csr_stream = 3
+    enumerator :: rocsparse_spmv_alg_ell = 4
+  end enum
+
+  enum, bind(c)
+    enumerator :: rocsparse_spmm_alg_default = 0
+    enumerator :: rocsparse_spmm_alg_csr = 1
+    enumerator :: rocsparse_spmm_alg_coo_segmented = 2
+    enumerator :: rocsparse_spmm_alg_coo_atomic = 3
+  end enum
+
+  enum, bind(c)
+    enumerator :: rocsparse_sddmm_alg_default = 0
+  end enum
+
+  enum, bind(c)
+    enumerator :: rocsparse_sparse_to_dense_alg_default = 0
+  end enum
+
+  enum, bind(c)
+    enumerator :: rocsparse_dense_to_sparse_alg_default = 0
+  end enum
+
+  enum, bind(c)
+    enumerator :: rocsparse_spgemm_stage_auto = 0
+    enumerator :: rocsparse_spgemm_stage_buffer_size = 1
+    enumerator :: rocsparse_spgemm_stage_nnz = 2
+    enumerator :: rocsparse_spgemm_stage_compute = 3
+  end enum
+
+  enum, bind(c)
+    enumerator :: rocsparse_spgemm_alg_default = 0
   end enum
 
  
