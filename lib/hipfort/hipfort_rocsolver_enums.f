@@ -50,6 +50,18 @@ module hipfort_rocsolver_enums
     enumerator :: rocblas_inplace = 202
   end enum
 
+  enum, bind(c)
+    enumerator :: rocblas_evect_original = 211
+    enumerator :: rocblas_evect_tridiagonal = 212
+    enumerator :: rocblas_evect_none = 213
+  end enum
+
+  enum, bind(c)
+    enumerator :: rocblas_eform_ax = 221
+    enumerator :: rocblas_eform_abx = 222
+    enumerator :: rocblas_eform_bax = 223
+  end enum
+
  
 
 #ifdef USE_FPOINTER_INTERFACES
