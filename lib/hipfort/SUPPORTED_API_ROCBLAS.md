@@ -1,4 +1,4 @@
-# | API Name | Specializations
+\# | API Name | Specializations
 ----|---------------|---------
 0 | [rocblas_set_vector](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocblas_auxiliary_1_1rocblas__set__vector.html "Interface documentation") | raw
 1 | [rocblas_set_vector](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocblas_auxiliary_1_1rocblas__set__vector.html "Interface documentation") | raw

@@ -1,4 +1,4 @@
-# | API Name | Specializations
+\# | API Name | Specializations
 ----|---------------|---------
 0 | [rocfft_setup](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__setup.html "Interface documentation") | raw
 1 | [rocfft_setup](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocfft_1_1rocfft__setup.html "Interface documentation") | raw
