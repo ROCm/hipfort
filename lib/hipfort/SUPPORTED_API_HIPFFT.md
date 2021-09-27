@@ -1,34 +1,34 @@
 API Name | Specializations
 ---------------|---------
-[hipfftPlan1d_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftplan1d__raw.html "Interface documentation") | 
-[hipfftPlan2d_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftplan2d__raw.html "Interface documentation") | 
-[hipfftPlan3d_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftplan3d__raw.html "Interface documentation") | 
-[hipfftPlanMany_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftplanmany__raw.html "Interface documentation") | 
-[hipfftMakePlan1d_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftmakeplan1d__raw.html "Interface documentation") | 
-[hipfftMakePlan2d_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftmakeplan2d__raw.html "Interface documentation") | 
-[hipfftMakePlan3d_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftmakeplan3d__raw.html "Interface documentation") | 
-[hipfftMakePlanMany_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftmakeplanmany__raw.html "Interface documentation") | 
-[hipfftMakePlanMany64_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftmakeplanmany64__raw.html "Interface documentation") | 
-[hipfftGetSizeMany64_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftgetsizemany64__raw.html "Interface documentation") | 
-[hipfftEstimate1d_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftestimate1d__raw.html "Interface documentation") | 
-[hipfftEstimate2d_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftestimate2d__raw.html "Interface documentation") | 
-[hipfftEstimate3d_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftestimate3d__raw.html "Interface documentation") | 
-[hipfftEstimateMany_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftestimatemany__raw.html "Interface documentation") | 
-[hipfftCreate_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftcreate__raw.html "Interface documentation") | 
-[hipfftGetSize1d_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftgetsize1d__raw.html "Interface documentation") | 
-[hipfftGetSize2d_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftgetsize2d__raw.html "Interface documentation") | 
-[hipfftGetSize3d_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftgetsize3d__raw.html "Interface documentation") | 
-[hipfftGetSizeMany_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftgetsizemany__raw.html "Interface documentation") | 
-[hipfftGetSize_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftgetsize__raw.html "Interface documentation") | 
-[hipfftSetWorkArea_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftsetworkarea__raw.html "Interface documentation") | 
-[hipfftSetAutoAllocation_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftsetautoallocation__raw.html "Interface documentation") | 
-[hipfftExecC2C_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftexecc2c__raw.html "Interface documentation") | 
-[hipfftExecR2C_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftexecr2c__raw.html "Interface documentation") | 
-[hipfftExecC2R_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftexecc2r__raw.html "Interface documentation") | 
-[hipfftExecZ2Z_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftexecz2z__raw.html "Interface documentation") | 
-[hipfftExecD2Z_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftexecd2z__raw.html "Interface documentation") | 
-[hipfftExecZ2D_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftexecz2d__raw.html "Interface documentation") | 
-[hipfftSetStream_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftsetstream__raw.html "Interface documentation") | 
-[hipfftDestroy_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftdestroy__raw.html "Interface documentation") | 
-[hipfftGetVersion_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftgetversion__raw.html "Interface documentation") | 
-[hipfftGetProperty_raw](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftgetproperty__raw.html "Interface documentation") | 
+[hipfftPlan1d](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftplan1d.html "Interface documentation") | raw
+[hipfftPlan2d](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftplan2d.html "Interface documentation") | raw
+[hipfftPlan3d](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftplan3d.html "Interface documentation") | raw
+[hipfftPlanMany](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftplanmany.html "Interface documentation") | rank_0, rank_1, raw
+[hipfftMakePlan1d](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftmakeplan1d.html "Interface documentation") | rank_0, rank_1, raw
+[hipfftMakePlan2d](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftmakeplan2d.html "Interface documentation") | rank_0, rank_1, raw
+[hipfftMakePlan3d](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftmakeplan3d.html "Interface documentation") | rank_0, rank_1, raw
+[hipfftMakePlanMany](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftmakeplanmany.html "Interface documentation") | rank_0, rank_1, raw
+[hipfftMakePlanMany64](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftmakeplanmany64.html "Interface documentation") | rank_0, rank_1, raw
+[hipfftGetSizeMany64](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftgetsizemany64.html "Interface documentation") | rank_0, rank_1, raw
+[hipfftEstimate1d](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftestimate1d.html "Interface documentation") | rank_0, rank_1, raw
+[hipfftEstimate2d](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftestimate2d.html "Interface documentation") | rank_0, rank_1, raw
+[hipfftEstimate3d](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftestimate3d.html "Interface documentation") | rank_0, rank_1, raw
+[hipfftEstimateMany](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftestimatemany.html "Interface documentation") | rank_0, rank_1, raw
+[hipfftCreate](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftcreate.html "Interface documentation") | raw
+[hipfftGetSize1d](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftgetsize1d.html "Interface documentation") | rank_0, rank_1, raw
+[hipfftGetSize2d](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftgetsize2d.html "Interface documentation") | rank_0, rank_1, raw
+[hipfftGetSize3d](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftgetsize3d.html "Interface documentation") | rank_0, rank_1, raw
+[hipfftGetSizeMany](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftgetsizemany.html "Interface documentation") | rank_0, rank_1, raw
+[hipfftGetSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftgetsize.html "Interface documentation") | rank_0, rank_1, raw
+[hipfftSetWorkArea](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftsetworkarea.html "Interface documentation") | raw
+[hipfftSetAutoAllocation](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftsetautoallocation.html "Interface documentation") | raw
+[hipfftExecC2C](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftexecc2c.html "Interface documentation") | rank_0, rank_1, raw
+[hipfftExecR2C](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftexecr2c.html "Interface documentation") | rank_0, rank_1, raw
+[hipfftExecC2R](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftexecc2r.html "Interface documentation") | rank_0, rank_1, raw
+[hipfftExecZ2Z](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftexecz2z.html "Interface documentation") | rank_0, rank_1, raw
+[hipfftExecD2Z](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftexecd2z.html "Interface documentation") | rank_0, rank_1, raw
+[hipfftExecZ2D](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftexecz2d.html "Interface documentation") | rank_0, rank_1, raw
+[hipfftSetStream](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftsetstream.html "Interface documentation") | raw
+[hipfftDestroy](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftdestroy.html "Interface documentation") | raw
+[hipfftGetVersion](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftgetversion.html "Interface documentation") | raw
+[hipfftGetProperty](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftgetproperty.html "Interface documentation") | raw
