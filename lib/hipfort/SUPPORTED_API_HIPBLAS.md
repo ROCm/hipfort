@@ -1,4 +1,4 @@
-# | API Name | Specializations
+\# | API Name | Specializations
 ----|---------------|---------
 0 | [hipblasSetVector](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipblas_auxiliary_1_1hipblassetvector.html "Interface documentation") | raw
 1 | [hipblasGetVector](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipblas_auxiliary_1_1hipblasgetvector.html "Interface documentation") | raw

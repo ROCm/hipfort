@@ -1,4 +1,4 @@
-# | API Name | Specializations
+\# | API Name | Specializations
 ----|---------------|---------
 0 | [hipfftPlan1d](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftplan1d.html "Interface documentation") | raw
 1 | [hipfftPlan2d](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftplan2d.html "Interface documentation") | raw

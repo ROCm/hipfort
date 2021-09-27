@@ -1,4 +1,4 @@
-# | API Name | Specializations
+\# | API Name | Specializations
 ----|---------------|---------
 0 | [hipMalloc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipmalloc_1_1hipmalloc.html "Interface documentation") | raw
 1 | [hipMallocManaged](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipmalloc_1_1hipmallocmanaged.html "Interface documentation") | raw

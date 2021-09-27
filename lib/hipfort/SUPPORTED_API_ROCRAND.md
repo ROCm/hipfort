@@ -1,2 +1,2 @@
-# | API Name | Specializations
+\# | API Name | Specializations
 ----|---------------|---------
