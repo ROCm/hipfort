@@ -26,8 +26,17 @@ program fortran_hip
   type(dim3) :: block = dim3(256,1,1) 
   
   integer :: i
-
-  write(*,"(a)",advance="no") "-- Running test 'vecadd' (Fortran 2008 interfaces) - "
+  type(hipDeviceProp_t),target :: props
+  !
+  call hipCheck(hipGetDeviceProperties(props,0))  
+  write(*,"(a)",advance="no") "-- Running test 'vecadd' (Fortran 2008 interfaces)"
+  write(*,"(a)",advance="no") "- device: "
+  i=1
+  do while ( iachar(props%name(i)) .ne. 0 ) ! print till end char
+    write(*,"(a)",advance="no") props%name(i)
+    i = i+1
+  end do 
+  write(*,"(a)",advance="no") " - "
 
   ! Allocate host memory
   allocate(a(N),b(N),out(N))
