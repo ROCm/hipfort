@@ -35,14 +35,14 @@ program rocfft_example
   hx(:)%y = -1
 
   call hipCheck(hipMalloc(dx,Nbytes))
-  call hipCheck(hipMemcpy(dx,c_loc(hx),Nbytes,hipMemcpyHostToDevice))
+  call hipCheck(hipMemcpy(dx,c_loc(hx(1)),Nbytes,hipMemcpyHostToDevice))
 
   call rocfftCheck(rocfft_plan_create(plan,&
                                       rocfft_placement_inplace,&
                                       rocfft_transform_type_complex_forward,&
                                       rocfft_precision_double,&
                                       one,&
-                                      c_loc(lengths),&
+                                      c_loc(lengths(1)),&
                                       one,&
                                       c_null_ptr))
 
@@ -52,7 +52,7 @@ program rocfft_example
 
   call rocfftCheck(rocfft_plan_destroy(plan))
 
-  call hipCheck(hipMemcpy(c_loc(hx),dx,Nbytes,hipMemcpyDeviceToHost))
+  call hipCheck(hipMemcpy(c_loc(hx(1)),dx,Nbytes,hipMemcpyDeviceToHost))
   call hipCheck(hipFree(dx))
 
   ! Using the C++ version of this as the "gold".

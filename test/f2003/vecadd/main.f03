@@ -46,15 +46,15 @@ program fortran_hip
   call hipCheck(hipMalloc(dout,Nbytes))
 
   ! Transfer data from host to device memory
-  call hipCheck(hipMemcpy(da, c_loc(a), Nbytes, hipMemcpyHostToDevice))
-  call hipCheck(hipMemcpy(db, c_loc(b), Nbytes, hipMemcpyHostToDevice))
+  call hipCheck(hipMemcpy(da, c_loc(a(1)), Nbytes, hipMemcpyHostToDevice))
+  call hipCheck(hipMemcpy(db, c_loc(b(1)), Nbytes, hipMemcpyHostToDevice))
 
   call launch(dout,da,db,N)
 
   call hipCheck(hipDeviceSynchronize())
 
   ! Transfer data back to host memory
-  call hipCheck(hipMemcpy(c_loc(out), dout, Nbytes, hipMemcpyDeviceToHost))
+  call hipCheck(hipMemcpy(c_loc(out(1)), dout, Nbytes, hipMemcpyDeviceToHost))
 
   ! Verification
   do i = 1,N

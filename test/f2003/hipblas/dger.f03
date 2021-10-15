@@ -38,16 +38,16 @@ program hip_dger
   call hipCheck(hipMalloc(dA,Nbytes*n))
 
   !Transfer from host to device
-  call hipCheck(hipMemcpy(dx, c_loc(hx), Nbytes, hipMemcpyHostToDevice))
-  call hipCheck(hipMemcpy(dy, c_loc(hy), Nbytes, hipMemcpyHostToDevice))
-  call hipCheck(hipMemcpy(dA, c_loc(hA), Nbytes*n, hipMemcpyHostToDevice))
+  call hipCheck(hipMemcpy(dx, c_loc(hx(1)), Nbytes, hipMemcpyHostToDevice))
+  call hipCheck(hipMemcpy(dy, c_loc(hy(1)), Nbytes, hipMemcpyHostToDevice))
+  call hipCheck(hipMemcpy(dA, c_loc(hA(1)), Nbytes*n, hipMemcpyHostToDevice))
 
   call hipblasCheck(hipblasDger(handle,m,n,alpha,dx,1,dy,1,dA,m))
 
   call hipCheck(hipDeviceSynchronize())
 
   ! Transfer data back to host memory
-  call hipCheck(hipMemcpy(c_loc(hA), dA, Nbytes*n, hipMemcpyDeviceToHost))
+  call hipCheck(hipMemcpy(c_loc(hA(1)), dA, Nbytes*n, hipMemcpyDeviceToHost))
 
   do i = 1,m*n
      error = abs(2.1d0 - hA(i))

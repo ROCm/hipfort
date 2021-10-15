@@ -73,8 +73,8 @@ program rocblas_saxpy_test
     end do
     
     ! Transfer data from host to deivce memory
-    call hipCheck(hipMemcpy(dx, c_loc(hx), Nbytes, hipMemcpyHostToDevice))
-    call hipCheck(hipmemcpy(dy, c_loc(hy), Nbytes, hipMemcpyHostToDevice))
+    call hipCheck(hipMemcpy(dx, c_loc(hx(1)), Nbytes, hipMemcpyHostToDevice))
+    call hipCheck(hipmemcpy(dy, c_loc(hy(1)), Nbytes, hipMemcpyHostToDevice))
 
     ! Call rocblas function
     call rocblasCheck(rocblas_set_pointer_mode(rocblas_handle, 0))
@@ -82,7 +82,7 @@ program rocblas_saxpy_test
     call hipCheck(hipDeviceSynchronize())
 
     ! Transfer data back to host memory
-    call hipcheck(hipMemcpy(c_loc(hy), dy, Nbytes, hipMemcpyDeviceToHost))
+    call hipcheck(hipMemcpy(c_loc(hy(1)), dy, Nbytes, hipMemcpyDeviceToHost))
 
     ! Verification
     do i = 1, N

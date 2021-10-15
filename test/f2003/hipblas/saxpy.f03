@@ -45,14 +45,14 @@ program hip_saxpy
   call hipCheck(hipMalloc(dx,Nxbytes))
   call hipCheck(hipMalloc(dy,Nybytes))
 
-  call hipCheck(hipMemcpy(dx, c_loc(x), Nxbytes, hipMemcpyHostToDevice))
-  call hipCheck(hipMemcpy(dy, c_loc(y), Nybytes, hipMemcpyHostToDevice))
+  call hipCheck(hipMemcpy(dx, c_loc(x(1)), Nxbytes, hipMemcpyHostToDevice))
+  call hipCheck(hipMemcpy(dy, c_loc(y(1)), Nybytes, hipMemcpyHostToDevice))
 
   call hipblasCheck(hipblasSaxpy(handle,n,alpha,dx,1,dy,1))
 
   call hipCheck(hipDeviceSynchronize())
 
-  call hipCheck(hipMemcpy(c_loc(y), dy, Nybytes, hipMemcpyDeviceToHost))
+  call hipCheck(hipMemcpy(c_loc(y(1)), dy, Nybytes, hipMemcpyDeviceToHost))
 
   do j = 1,n
     error = abs((y_exact(j) - y(j))/y_exact(j))
