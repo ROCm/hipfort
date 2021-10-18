@@ -170,14 +170,14 @@ function code2gpu(){
 function getmycodename()
 {
 thisdir=$(getdname $0)
-if [ -L "$thisdir/mymcpu" ] ; then
-   linkfile=`readlink "$thisdir/mymcpu"`
+if [ -L "$thisdir/mymcpu.hipfort" ] ; then
+   linkfile=`readlink "$thisdir/mymcpu.hipfort"`
    if [ "${linkfile%%/*}" == ".." ] ; then
       linkfile=$thisdir/$linkfile
    fi
    thisdir=$(getdname $linkfile)
 fi
-GPUTABLE_FILE=${GPUTABLE_FILE:-$thisdir/gputable.txt}
+GPUTABLE_FILE=${GPUTABLE_FILE:-$thisdir/gputable.txt.hipfort}
 local _found=0
 if [ -f $GPUTABLE_FILE ] ; then
    # Look for amd cards first
