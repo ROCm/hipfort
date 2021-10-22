@@ -24,7 +24,7 @@ HIPFORT_COMPILER ?= gfortran
 CUDA_PATH=${CUDA_PATH:-/usr/local/cuda}
 ROCM_PATH=${ROCM_PATH:-/opt/rocm}
 DEVICE_LIB_PATH  ?= $(ROCM_PATH)/lib
-HIP_CLANG_PATH   ?= $(ROCM_PATH)/bin/llvm
+HIP_CLANG_PATH   ?= $(ROCM_PATH)/llvm/bin
 HIP_PLATFORM=${HIP_PLATFORM:-amd}
 
 MOD_DIR  = $(HIPFORT_HOME)/include/$(ARCH)
