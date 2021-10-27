@@ -476,7 +476,8 @@ if [ "$__HIPCC_INPUTS" != "" ] ; then
       echo "        Please install hip"
       exit $DEADRC
    fi
-   runcmd "$HIPCC_ENV $ROCM_PATH/bin/hipcc $HIPCC_OPTS $PASSTHRUARGS $__HIPCC_INPUTS $__HIPCC_LINKOPTS -o $__HIPCC_OUTFILE"
+   export $HIPCC_ENV
+   runcmd "$ROCM_PATH/bin/hipcc $HIPCC_OPTS $PASSTHRUARGS $__HIPCC_INPUTS $__HIPCC_LINKOPTS -o $__HIPCC_OUTFILE"
 fi
 
 if [ "$__INPUTS" != "" ] ; then
