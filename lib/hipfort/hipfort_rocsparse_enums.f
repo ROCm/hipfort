@@ -126,11 +126,17 @@ module hipfort_rocsparse_enums
     enumerator :: rocsparse_format_csr = 2
     enumerator :: rocsparse_format_csc = 3
     enumerator :: rocsparse_format_ell = 4
+    enumerator :: rocsparse_format_bell = 5
   end enum
 
   enum, bind(c)
     enumerator :: rocsparse_order_row = 0
     enumerator :: rocsparse_order_column = 1
+  end enum
+
+  enum, bind(c)
+    enumerator :: rocsparse_spmat_fill_mode = 0
+    enumerator :: rocsparse_spmat_diag_type = 1
   end enum
 
   enum, bind(c)
@@ -142,10 +148,36 @@ module hipfort_rocsparse_enums
   end enum
 
   enum, bind(c)
+    enumerator :: rocsparse_spsv_alg_default = 0
+  end enum
+
+  enum, bind(c)
+    enumerator :: rocsparse_spsv_stage_auto = 0
+    enumerator :: rocsparse_spsv_stage_buffer_size = 1
+    enumerator :: rocsparse_spsv_stage_preprocess = 2
+    enumerator :: rocsparse_spsv_stage_compute = 3
+  end enum
+
+  enum, bind(c)
+    enumerator :: rocsparse_spsm_alg_default = 0
+  end enum
+
+  enum, bind(c)
+    enumerator :: rocsparse_spsm_stage_auto = 0
+    enumerator :: rocsparse_spsm_stage_buffer_size = 1
+    enumerator :: rocsparse_spsm_stage_preprocess = 2
+    enumerator :: rocsparse_spsm_stage_compute = 3
+  end enum
+
+  enum, bind(c)
     enumerator :: rocsparse_spmm_alg_default = 0
-    enumerator :: rocsparse_spmm_alg_csr = 1
-    enumerator :: rocsparse_spmm_alg_coo_segmented = 2
-    enumerator :: rocsparse_spmm_alg_coo_atomic = 3
+    enumerator :: rocsparse_spmm_alg_csr
+    enumerator :: rocsparse_spmm_alg_coo_segmented
+    enumerator :: rocsparse_spmm_alg_coo_atomic
+    enumerator :: rocsparse_spmm_alg_csr_row_split
+    enumerator :: rocsparse_spmm_alg_csr_merge
+    enumerator :: rocsparse_spmm_alg_coo_segmented_atomic
+    enumerator :: rocsparse_spmm_alg_bell
   end enum
 
   enum, bind(c)
@@ -158,6 +190,13 @@ module hipfort_rocsparse_enums
 
   enum, bind(c)
     enumerator :: rocsparse_dense_to_sparse_alg_default = 0
+  end enum
+
+  enum, bind(c)
+    enumerator :: rocsparse_spmm_stage_auto = 0
+    enumerator :: rocsparse_spmm_stage_buffer_size = 1
+    enumerator :: rocsparse_spmm_stage_preprocess = 2
+    enumerator :: rocsparse_spmm_stage_compute = 3
   end enum
 
   enum, bind(c)

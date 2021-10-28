@@ -424,57 +424,71 @@
 422 | [hipsparseCreateCooAoS](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecreatecooaos.html "Interface documentation") | raw
 423 | [hipsparseCreateCsr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecreatecsr.html "Interface documentation") | raw
 424 | [hipsparseCreateCsc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecreatecsc.html "Interface documentation") | raw
-425 | [hipsparseDestroySpMat](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedestroyspmat.html "Interface documentation") | raw
-426 | [hipsparseCooGet](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecooget.html "Interface documentation") | raw
-427 | [hipsparseCooAoSGet](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecooaosget.html "Interface documentation") | raw
-428 | [hipsparseCsrGet](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecsrget.html "Interface documentation") | raw
-429 | [hipsparseCsrSetPointers](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecsrsetpointers.html "Interface documentation") | raw
-430 | [hipsparseCscSetPointers](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecscsetpointers.html "Interface documentation") | raw
-431 | [hipsparseCooSetPointers](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecoosetpointers.html "Interface documentation") | raw
-432 | [hipsparseSpMatGetSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmatgetsize.html "Interface documentation") | raw
-433 | [hipsparseSpMatGetFormat](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmatgetformat.html "Interface documentation") | raw
-434 | [hipsparseSpMatGetIndexBase](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmatgetindexbase.html "Interface documentation") | raw
-435 | [hipsparseSpMatGetValues](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmatgetvalues.html "Interface documentation") | raw
-436 | [hipsparseSpMatSetValues](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmatsetvalues.html "Interface documentation") | raw
-437 | [hipsparseCreateDnVec](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecreatednvec.html "Interface documentation") | raw
-438 | [hipsparseDestroyDnVec](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedestroydnvec.html "Interface documentation") | raw
-439 | [hipsparseDnVecGet](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsednvecget.html "Interface documentation") | raw
-440 | [hipsparseDnVecGetValues](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsednvecgetvalues.html "Interface documentation") | raw
-441 | [hipsparseDnVecSetValues](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsednvecsetvalues.html "Interface documentation") | raw
-442 | [hipsparseCreateDnMat](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecreatednmat.html "Interface documentation") | raw
-443 | [hipsparseDestroyDnMat](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedestroydnmat.html "Interface documentation") | raw
-444 | [hipsparseDnMatGet](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsednmatget.html "Interface documentation") | raw
-445 | [hipsparseDnMatGetValues](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsednmatgetvalues.html "Interface documentation") | raw
-446 | [hipsparseDnMatSetValues](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsednmatsetvalues.html "Interface documentation") | raw
-447 | [hipsparseAxpby](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparseaxpby.html "Interface documentation") | raw
-448 | [hipsparseGather](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsegather.html "Interface documentation") | raw
-449 | [hipsparseScatter](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsescatter.html "Interface documentation") | raw
-450 | [hipsparseRot](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparserot.html "Interface documentation") | raw
-451 | [hipsparseSparseToDense_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesparsetodense__buffersize.html "Interface documentation") | rank_0, rank_1, raw
-452 | [hipsparseSparseToDense](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesparsetodense.html "Interface documentation") | raw
-453 | [hipsparseDenseToSparse_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedensetosparse__buffersize.html "Interface documentation") | rank_0, rank_1, raw
-454 | [hipsparseDenseToSparse_analysis](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedensetosparse__analysis.html "Interface documentation") | raw
-455 | [hipsparseDenseToSparse_convert](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedensetosparse__convert.html "Interface documentation") | raw
-456 | [hipsparseSpVV_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespvv__buffersize.html "Interface documentation") | raw
-457 | [hipsparseSpVV](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespvv.html "Interface documentation") | raw
-458 | [hipsparseSpMV_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmv__buffersize.html "Interface documentation") | raw
-459 | [hipsparseSpMV](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmv.html "Interface documentation") | raw
-460 | [hipsparseSpMM_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmm__buffersize.html "Interface documentation") | raw
-461 | [hipsparseSpMM_preprocess](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmm__preprocess.html "Interface documentation") | raw
-462 | [hipsparseSpMM](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmm.html "Interface documentation") | raw
-463 | [hipsparseSpGEMM_createDescr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespgemm__createdescr.html "Interface documentation") | raw
-464 | [hipsparseSpGEMM_destroyDescr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespgemm__destroydescr.html "Interface documentation") | raw
-465 | [hipsparseSpGEMM_workEstimation](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespgemm__workestimation.html "Interface documentation") | raw
-466 | [hipsparseSpGEMM_compute](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespgemm__compute.html "Interface documentation") | raw
-467 | [hipsparseSpGEMM_copy](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespgemm__copy.html "Interface documentation") | raw
-468 | [hipsparseSDDMM](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesddmm.html "Interface documentation") | raw
-469 | [hipsparseSDDMM_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesddmm__buffersize.html "Interface documentation") | raw
-470 | [hipsparseSDDMM_preprocess](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesddmm__preprocess.html "Interface documentation") | raw
-471 | [hipsparseSgtsv2StridedBatch_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesgtsv2stridedbatch__buffersizeext.html "Interface documentation") | rank_0, rank_1, raw
-472 | [hipsparseDgtsv2StridedBatch_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedgtsv2stridedbatch__buffersizeext.html "Interface documentation") | rank_0, rank_1, raw
-473 | [hipsparseCgtsv2StridedBatch_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecgtsv2stridedbatch__buffersizeext.html "Interface documentation") | rank_0, rank_1, raw
-474 | [hipsparseZgtsv2StridedBatch_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezgtsv2stridedbatch__buffersizeext.html "Interface documentation") | rank_0, rank_1, raw
-475 | [hipsparseSgtsv2StridedBatch](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesgtsv2stridedbatch.html "Interface documentation") | rank_0, rank_1, raw
-476 | [hipsparseDgtsv2StridedBatch](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedgtsv2stridedbatch.html "Interface documentation") | rank_0, rank_1, raw
-477 | [hipsparseCgtsv2StridedBatch](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecgtsv2stridedbatch.html "Interface documentation") | rank_0, rank_1, raw
-478 | [hipsparseZgtsv2StridedBatch](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezgtsv2stridedbatch.html "Interface documentation") | rank_0, rank_1, raw
+425 | [hipsparseCreateBlockedEll](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecreateblockedell.html "Interface documentation") | raw
+426 | [hipsparseDestroySpMat](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedestroyspmat.html "Interface documentation") | raw
+427 | [hipsparseCooGet](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecooget.html "Interface documentation") | raw
+428 | [hipsparseCooAoSGet](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecooaosget.html "Interface documentation") | raw
+429 | [hipsparseCsrGet](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecsrget.html "Interface documentation") | raw
+430 | [hipsparseBlockedEllGet](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparseblockedellget.html "Interface documentation") | raw
+431 | [hipsparseCsrSetPointers](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecsrsetpointers.html "Interface documentation") | raw
+432 | [hipsparseCscSetPointers](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecscsetpointers.html "Interface documentation") | raw
+433 | [hipsparseCooSetPointers](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecoosetpointers.html "Interface documentation") | raw
+434 | [hipsparseSpMatGetSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmatgetsize.html "Interface documentation") | raw
+435 | [hipsparseSpMatGetFormat](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmatgetformat.html "Interface documentation") | raw
+436 | [hipsparseSpMatGetIndexBase](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmatgetindexbase.html "Interface documentation") | raw
+437 | [hipsparseSpMatGetValues](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmatgetvalues.html "Interface documentation") | raw
+438 | [hipsparseSpMatSetValues](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmatsetvalues.html "Interface documentation") | raw
+439 | [hipsparseCreateDnVec](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecreatednvec.html "Interface documentation") | raw
+440 | [hipsparseDestroyDnVec](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedestroydnvec.html "Interface documentation") | raw
+441 | [hipsparseDnVecGet](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsednvecget.html "Interface documentation") | raw
+442 | [hipsparseDnVecGetValues](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsednvecgetvalues.html "Interface documentation") | raw
+443 | [hipsparseDnVecSetValues](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsednvecsetvalues.html "Interface documentation") | raw
+444 | [hipsparseCreateDnMat](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecreatednmat.html "Interface documentation") | raw
+445 | [hipsparseDestroyDnMat](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedestroydnmat.html "Interface documentation") | raw
+446 | [hipsparseDnMatGet](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsednmatget.html "Interface documentation") | raw
+447 | [hipsparseDnMatGetValues](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsednmatgetvalues.html "Interface documentation") | raw
+448 | [hipsparseDnMatSetValues](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsednmatsetvalues.html "Interface documentation") | raw
+449 | [hipsparseSpMatGetAttribute](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmatgetattribute.html "Interface documentation") | raw
+450 | [hipsparseSpMatSetAttribute](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmatsetattribute.html "Interface documentation") | raw
+451 | [hipsparseAxpby](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparseaxpby.html "Interface documentation") | raw
+452 | [hipsparseGather](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsegather.html "Interface documentation") | raw
+453 | [hipsparseScatter](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsescatter.html "Interface documentation") | raw
+454 | [hipsparseRot](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparserot.html "Interface documentation") | raw
+455 | [hipsparseSparseToDense_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesparsetodense__buffersize.html "Interface documentation") | rank_0, rank_1, raw
+456 | [hipsparseSparseToDense](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesparsetodense.html "Interface documentation") | raw
+457 | [hipsparseDenseToSparse_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedensetosparse__buffersize.html "Interface documentation") | rank_0, rank_1, raw
+458 | [hipsparseDenseToSparse_analysis](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedensetosparse__analysis.html "Interface documentation") | raw
+459 | [hipsparseDenseToSparse_convert](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedensetosparse__convert.html "Interface documentation") | raw
+460 | [hipsparseSpVV_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespvv__buffersize.html "Interface documentation") | raw
+461 | [hipsparseSpVV](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespvv.html "Interface documentation") | raw
+462 | [hipsparseSpMV_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmv__buffersize.html "Interface documentation") | raw
+463 | [hipsparseSpMV](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmv.html "Interface documentation") | raw
+464 | [hipsparseSpMM_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmm__buffersize.html "Interface documentation") | raw
+465 | [hipsparseSpMM_preprocess](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmm__preprocess.html "Interface documentation") | raw
+466 | [hipsparseSpMM](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmm.html "Interface documentation") | raw
+467 | [hipsparseSpGEMM_createDescr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespgemm__createdescr.html "Interface documentation") | raw
+468 | [hipsparseSpGEMM_destroyDescr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespgemm__destroydescr.html "Interface documentation") | raw
+469 | [hipsparseSpGEMM_workEstimation](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespgemm__workestimation.html "Interface documentation") | raw
+470 | [hipsparseSpGEMM_compute](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespgemm__compute.html "Interface documentation") | raw
+471 | [hipsparseSpGEMM_copy](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespgemm__copy.html "Interface documentation") | raw
+472 | [hipsparseSDDMM](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesddmm.html "Interface documentation") | raw
+473 | [hipsparseSDDMM_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesddmm__buffersize.html "Interface documentation") | raw
+474 | [hipsparseSDDMM_preprocess](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesddmm__preprocess.html "Interface documentation") | raw
+475 | [hipsparseSpSV_createDescr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespsv__createdescr.html "Interface documentation") | raw
+476 | [hipsparseSpSV_destroyDescr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespsv__destroydescr.html "Interface documentation") | raw
+477 | [hipsparseSpSV_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespsv__buffersize.html "Interface documentation") | raw
+478 | [hipsparseSpSV_analysis](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespsv__analysis.html "Interface documentation") | raw
+479 | [hipsparseSpSV_solve](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespsv__solve.html "Interface documentation") | raw
+480 | [hipsparseSpSM_createDescr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespsm__createdescr.html "Interface documentation") | raw
+481 | [hipsparseSpSM_destroyDescr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespsm__destroydescr.html "Interface documentation") | raw
+482 | [hipsparseSpSM_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespsm__buffersize.html "Interface documentation") | raw
+483 | [hipsparseSpSM_analysis](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespsm__analysis.html "Interface documentation") | raw
+484 | [hipsparseSpSM_solve](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespsm__solve.html "Interface documentation") | raw
+485 | [hipsparseSgtsv2StridedBatch_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesgtsv2stridedbatch__buffersizeext.html "Interface documentation") | rank_0, rank_1, raw
+486 | [hipsparseDgtsv2StridedBatch_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedgtsv2stridedbatch__buffersizeext.html "Interface documentation") | rank_0, rank_1, raw
+487 | [hipsparseCgtsv2StridedBatch_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecgtsv2stridedbatch__buffersizeext.html "Interface documentation") | rank_0, rank_1, raw
+488 | [hipsparseZgtsv2StridedBatch_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezgtsv2stridedbatch__buffersizeext.html "Interface documentation") | rank_0, rank_1, raw
+489 | [hipsparseSgtsv2StridedBatch](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesgtsv2stridedbatch.html "Interface documentation") | rank_0, rank_1, raw
+490 | [hipsparseDgtsv2StridedBatch](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedgtsv2stridedbatch.html "Interface documentation") | rank_0, rank_1, raw
+491 | [hipsparseCgtsv2StridedBatch](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecgtsv2stridedbatch.html "Interface documentation") | rank_0, rank_1, raw
+492 | [hipsparseZgtsv2StridedBatch](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezgtsv2stridedbatch.html "Interface documentation") | rank_0, rank_1, raw

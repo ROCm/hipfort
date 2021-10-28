@@ -484,10 +484,10 @@ rocfft_plan_description_set_data_layout_rank_1
 
 
   end interface
-  !> ! @brief Set a load callback for a plan execution
+  !> ! @brief Set a load callback for a plan execution (experimental)
   !>    @details This function specifies a user-defined callback function
   !>    that is run to load input from global memory at the start of the
-  !>    transform.
+  !>    transform.  Callbacks are an experimental feature in rocFFT.
   !>  
   !>    Callback function pointersdata are given as arrays, with one
   !>    functiondata pointer per device executing this plan.  Currently,
@@ -533,10 +533,10 @@ rocfft_plan_description_set_data_layout_rank_1
 
 
   end interface
-  !> ! @brief Set a store callback for a plan execution
+  !> ! @brief Set a store callback for a plan execution (experimental)
   !>    @details This function specifies a user-defined callback function
   !>    that is run to store output to global memory at the end of the
-  !>    transform.
+  !>    transform.  Callbacks are an experimental feature in rocFFT.
   !>  
   !>    Callback function pointersdata are given as arrays, with one
   !>    functiondata pointer per device executing this plan.  Currently,
