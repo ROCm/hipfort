@@ -13313,6 +13313,32 @@ hipsparseZcsrcolor_rank_1
 
   end interface
   
+  interface hipsparseCreateBlockedEll
+#ifdef USE_CUDA_NAMES
+    function hipsparseCreateBlockedEll_raw(spMatDescr,rows,cols,ellBlockSize,ellCols,ellColInd,ellValue,ellIdxType,idxBase,valueType) bind(c, name="cusparseCreateBlockedEll")
+#else
+    function hipsparseCreateBlockedEll_raw(spMatDescr,rows,cols,ellBlockSize,ellCols,ellColInd,ellValue,ellIdxType,idxBase,valueType) bind(c, name="hipsparseCreateBlockedEll")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateBlockedEll_raw
+      type(c_ptr) :: spMatDescr
+      integer(c_int64_t),value :: rows
+      integer(c_int64_t),value :: cols
+      integer(c_int64_t),value :: ellBlockSize
+      integer(c_int64_t),value :: ellCols
+      type(c_ptr),value :: ellColInd
+      type(c_ptr),value :: ellValue
+      integer(kind(HIPSPARSE_INDEX_16U)),value :: ellIdxType
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIP_R_16F)),value :: valueType
+    end function
+
+
+  end interface
+  
   interface hipsparseDestroySpMat
 #ifdef USE_CUDA_NAMES
     function hipsparseDestroySpMat_raw(spMatDescr) bind(c, name="cusparseDestroySpMat")
@@ -13401,6 +13427,32 @@ hipsparseZcsrcolor_rank_1
       type(c_ptr) :: csrValues
       type(c_ptr),value :: csrRowOffsetsType
       type(c_ptr),value :: csrColIndType
+      type(c_ptr),value :: idxBase
+      type(c_ptr),value :: valueType
+    end function
+
+
+  end interface
+  
+  interface hipsparseBlockedEllGet
+#ifdef USE_CUDA_NAMES
+    function hipsparseBlockedEllGet_raw(spMatDescr,rows,cols,ellBlockSize,ellCols,ellColInd,ellValue,ellIdxType,idxBase,valueType) bind(c, name="cusparseBlockedEllGet")
+#else
+    function hipsparseBlockedEllGet_raw(spMatDescr,rows,cols,ellBlockSize,ellCols,ellColInd,ellValue,ellIdxType,idxBase,valueType) bind(c, name="hipsparseBlockedEllGet")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseBlockedEllGet_raw
+      type(c_ptr),value :: spMatDescr
+      type(c_ptr),value :: rows
+      type(c_ptr),value :: cols
+      type(c_ptr),value :: ellBlockSize
+      type(c_ptr),value :: ellCols
+      type(c_ptr) :: ellColInd
+      type(c_ptr) :: ellValue
+      type(c_ptr),value :: ellIdxType
       type(c_ptr),value :: idxBase
       type(c_ptr),value :: valueType
     end function
@@ -13752,6 +13804,46 @@ hipsparseZcsrcolor_rank_1
 
   end interface
   
+  interface hipsparseSpMatGetAttribute
+#ifdef USE_CUDA_NAMES
+    function hipsparseSpMatGetAttribute_raw(spMatDescr,attribute,myData,dataSize) bind(c, name="cusparseSpMatGetAttribute")
+#else
+    function hipsparseSpMatGetAttribute_raw(spMatDescr,attribute,myData,dataSize) bind(c, name="hipsparseSpMatGetAttribute")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpMatGetAttribute_raw
+      type(c_ptr),value :: spMatDescr
+      integer(kind(HIPSPARSE_SPMAT_FILL_MODE)),value :: attribute
+      type(c_ptr),value :: myData
+      integer(c_size_t),value :: dataSize
+    end function
+
+
+  end interface
+  
+  interface hipsparseSpMatSetAttribute
+#ifdef USE_CUDA_NAMES
+    function hipsparseSpMatSetAttribute_raw(spMatDescr,attribute,myData,dataSize) bind(c, name="cusparseSpMatSetAttribute")
+#else
+    function hipsparseSpMatSetAttribute_raw(spMatDescr,attribute,myData,dataSize) bind(c, name="hipsparseSpMatSetAttribute")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpMatSetAttribute_raw
+      type(c_ptr),value :: spMatDescr
+      integer(kind(HIPSPARSE_SPMAT_FILL_MODE)),value :: attribute
+      type(c_ptr),value :: myData
+      integer(c_size_t),value :: dataSize
+    end function
+
+
+  end interface
+  
   interface hipsparseAxpby
 #ifdef USE_CUDA_NAMES
     function hipsparseAxpby_raw(handle,alpha,vecX,beta,vecY) bind(c, name="cusparseAxpby")
@@ -14072,7 +14164,6 @@ hipsparseDenseToSparse_bufferSize_rank_1
 
   end interface
   !>  Description: Preprocess step of the sparse matrix multiplication with a dense matrix.
-  !>    Note: The HCC implementation is doing nothing else than a bad argument check.
   !>  
   interface hipsparseSpMM_preprocess
 #ifdef USE_CUDA_NAMES
@@ -14100,7 +14191,7 @@ hipsparseDenseToSparse_bufferSize_rank_1
 
 
   end interface
-  
+  !>  Description: Compute the sparse matrix multiplication with a dense matrix 
   interface hipsparseSpMM
 #ifdef USE_CUDA_NAMES
     function hipsparseSpMM_raw(handle,opA,opB,alpha,matA,matB,beta,matC,computeType,alg,externalBuffer) bind(c, name="cusparseSpMM")
@@ -14323,6 +14414,237 @@ hipsparseDenseToSparse_bufferSize_rank_1
       integer(kind(HIP_R_16F)),value :: computeType
       integer(kind(HIPSPARSE_SDDMM_ALG_DEFAULT)),value :: alg
       type(c_ptr),value :: tempBuffer
+    end function
+
+
+  end interface
+  
+  interface hipsparseSpSV_createDescr
+#ifdef USE_CUDA_NAMES
+    function hipsparseSpSV_createDescr_raw(descr) bind(c, name="cusparseSpSV_createDescr")
+#else
+    function hipsparseSpSV_createDescr_raw(descr) bind(c, name="hipsparseSpSV_createDescr")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpSV_createDescr_raw
+      type(c_ptr) :: descr
+    end function
+
+
+  end interface
+  
+  interface hipsparseSpSV_destroyDescr
+#ifdef USE_CUDA_NAMES
+    function hipsparseSpSV_destroyDescr_raw(descr) bind(c, name="cusparseSpSV_destroyDescr")
+#else
+    function hipsparseSpSV_destroyDescr_raw(descr) bind(c, name="hipsparseSpSV_destroyDescr")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpSV_destroyDescr_raw
+      type(c_ptr),value :: descr
+    end function
+
+
+  end interface
+  
+  interface hipsparseSpSV_bufferSize
+#ifdef USE_CUDA_NAMES
+    function hipsparseSpSV_bufferSize_raw(handle,opA,alpha,matA,x,y,computeType,alg,spsvDescr,bufferSize) bind(c, name="cusparseSpSV_bufferSize")
+#else
+    function hipsparseSpSV_bufferSize_raw(handle,opA,alpha,matA,x,y,computeType,alg,spsvDescr,bufferSize) bind(c, name="hipsparseSpSV_bufferSize")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpSV_bufferSize_raw
+      type(c_ptr),value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opA
+      type(c_ptr),value :: alpha
+      type(c_ptr),value :: matA
+      type(c_ptr),value :: x
+      type(c_ptr),value :: y
+      integer(kind(HIP_R_16F)),value :: computeType
+      integer(kind(HIPSPARSE_SPSV_ALG_DEFAULT)),value :: alg
+      type(c_ptr),value :: spsvDescr
+      type(c_ptr),value :: bufferSize
+    end function
+
+
+  end interface
+  !>  Description: Analysis step of solution of triangular linear system op(A)  Y = alpha  X,
+  !> where A is a sparse matrix in CSR storage format, x and Y are dense vectors. 
+  interface hipsparseSpSV_analysis
+#ifdef USE_CUDA_NAMES
+    function hipsparseSpSV_analysis_raw(handle,opA,alpha,matA,x,y,computeType,alg,spsvDescr,externalBuffer) bind(c, name="cusparseSpSV_analysis")
+#else
+    function hipsparseSpSV_analysis_raw(handle,opA,alpha,matA,x,y,computeType,alg,spsvDescr,externalBuffer) bind(c, name="hipsparseSpSV_analysis")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpSV_analysis_raw
+      type(c_ptr),value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opA
+      type(c_ptr),value :: alpha
+      type(c_ptr),value :: matA
+      type(c_ptr),value :: x
+      type(c_ptr),value :: y
+      integer(kind(HIP_R_16F)),value :: computeType
+      integer(kind(HIPSPARSE_SPSV_ALG_DEFAULT)),value :: alg
+      type(c_ptr),value :: spsvDescr
+      type(c_ptr),value :: externalBuffer
+    end function
+
+
+  end interface
+  !>  Description: Solve step of solution of triangular linear system op(A)  Y = alpha  X,
+  !> where A is a sparse matrix in CSR storage format, x and Y are dense vectors. 
+  interface hipsparseSpSV_solve
+#ifdef USE_CUDA_NAMES
+    function hipsparseSpSV_solve_raw(handle,opA,alpha,matA,x,y,computeType,alg,spsvDescr,externalBuffer) bind(c, name="cusparseSpSV_solve")
+#else
+    function hipsparseSpSV_solve_raw(handle,opA,alpha,matA,x,y,computeType,alg,spsvDescr,externalBuffer) bind(c, name="hipsparseSpSV_solve")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpSV_solve_raw
+      type(c_ptr),value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opA
+      type(c_ptr),value :: alpha
+      type(c_ptr),value :: matA
+      type(c_ptr),value :: x
+      type(c_ptr),value :: y
+      integer(kind(HIP_R_16F)),value :: computeType
+      integer(kind(HIPSPARSE_SPSV_ALG_DEFAULT)),value :: alg
+      type(c_ptr),value :: spsvDescr
+      type(c_ptr),value :: externalBuffer
+    end function
+
+
+  end interface
+  
+  interface hipsparseSpSM_createDescr
+#ifdef USE_CUDA_NAMES
+    function hipsparseSpSM_createDescr_raw(descr) bind(c, name="cusparseSpSM_createDescr")
+#else
+    function hipsparseSpSM_createDescr_raw(descr) bind(c, name="hipsparseSpSM_createDescr")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpSM_createDescr_raw
+      type(c_ptr) :: descr
+    end function
+
+
+  end interface
+  
+  interface hipsparseSpSM_destroyDescr
+#ifdef USE_CUDA_NAMES
+    function hipsparseSpSM_destroyDescr_raw(descr) bind(c, name="cusparseSpSM_destroyDescr")
+#else
+    function hipsparseSpSM_destroyDescr_raw(descr) bind(c, name="hipsparseSpSM_destroyDescr")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpSM_destroyDescr_raw
+      type(c_ptr),value :: descr
+    end function
+
+
+  end interface
+  
+  interface hipsparseSpSM_bufferSize
+#ifdef USE_CUDA_NAMES
+    function hipsparseSpSM_bufferSize_raw(handle,opA,opB,alpha,matA,matB,matC,computeType,alg,spsmDescr,bufferSize) bind(c, name="cusparseSpSM_bufferSize")
+#else
+    function hipsparseSpSM_bufferSize_raw(handle,opA,opB,alpha,matA,matB,matC,computeType,alg,spsmDescr,bufferSize) bind(c, name="hipsparseSpSM_bufferSize")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpSM_bufferSize_raw
+      type(c_ptr),value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opB
+      type(c_ptr),value :: alpha
+      type(c_ptr),value :: matA
+      type(c_ptr),value :: matB
+      type(c_ptr),value :: matC
+      integer(kind(HIP_R_16F)),value :: computeType
+      integer(kind(HIPSPARSE_SPSM_ALG_DEFAULT)),value :: alg
+      type(c_ptr),value :: spsmDescr
+      type(c_ptr),value :: bufferSize
+    end function
+
+
+  end interface
+  !>  Description: Analysis step of solution of triangular linear system op(A)  C = alpha  op(B),
+  !> where A is a sparse matrix in CSR storage format, B and C are dense vectors. 
+  interface hipsparseSpSM_analysis
+#ifdef USE_CUDA_NAMES
+    function hipsparseSpSM_analysis_raw(handle,opA,opB,alpha,matA,matB,matC,computeType,alg,spsmDescr,externalBuffer) bind(c, name="cusparseSpSM_analysis")
+#else
+    function hipsparseSpSM_analysis_raw(handle,opA,opB,alpha,matA,matB,matC,computeType,alg,spsmDescr,externalBuffer) bind(c, name="hipsparseSpSM_analysis")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpSM_analysis_raw
+      type(c_ptr),value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opB
+      type(c_ptr),value :: alpha
+      type(c_ptr),value :: matA
+      type(c_ptr),value :: matB
+      type(c_ptr),value :: matC
+      integer(kind(HIP_R_16F)),value :: computeType
+      integer(kind(HIPSPARSE_SPSM_ALG_DEFAULT)),value :: alg
+      type(c_ptr),value :: spsmDescr
+      type(c_ptr),value :: externalBuffer
+    end function
+
+
+  end interface
+  !>  Description: Solve step of solution of triangular linear system op(A)  C = alpha  op(B),
+  !> where A is a sparse matrix in CSR storage format, B and C are dense vectors. 
+  interface hipsparseSpSM_solve
+#ifdef USE_CUDA_NAMES
+    function hipsparseSpSM_solve_raw(handle,opA,opB,alpha,matA,matB,matC,computeType,alg,spsmDescr,externalBuffer) bind(c, name="cusparseSpSM_solve")
+#else
+    function hipsparseSpSM_solve_raw(handle,opA,opB,alpha,matA,matB,matC,computeType,alg,spsmDescr,externalBuffer) bind(c, name="hipsparseSpSM_solve")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpSM_solve_raw
+      type(c_ptr),value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opB
+      type(c_ptr),value :: alpha
+      type(c_ptr),value :: matA
+      type(c_ptr),value :: matB
+      type(c_ptr),value :: matC
+      integer(kind(HIP_R_16F)),value :: computeType
+      integer(kind(HIPSPARSE_SPSM_ALG_DEFAULT)),value :: alg
+      type(c_ptr),value :: spsmDescr
+      type(c_ptr),value :: externalBuffer
     end function
 
 

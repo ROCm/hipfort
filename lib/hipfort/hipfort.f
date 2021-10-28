@@ -680,7 +680,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipDeviceGetLimit_raw
 #endif
       integer(c_size_t) :: pValue
-      integer(kind(hipLimitMallocHeapSize)),value :: limit
+      integer(kind(hipLimitPrintfFifoSize)),value :: limit
     end function
 
 
@@ -1051,7 +1051,20 @@ module hipfort
 
 
   end interface
-  
+  !> 
+  !>   @brief Gets an opaque interprocess handle for an event.
+  !>  
+  !>   This opaque handle may be copied into other processes and opened with cudaIpcOpenEventHandle.
+  !>   Then cudaEventRecord, cudaEventSynchronize, cudaStreamWaitEvent and cudaEventQuery may be used in
+  !>   either process. Operations on the imported event after the exported event has been freed with hipEventDestroy
+  !>   will result in undefined behavior.
+  !>  
+  !>   @param[out]  handle Pointer to cudaIpcEventHandle to return the opaque event handle
+  !>   @param[in]   event  Event allocated with cudaEventInterprocess and cudaEventDisableTiming flags
+  !>  
+  !>   @returns #hipSuccess, #hipErrorInvalidConfiguration, #hipErrorInvalidValue
+  !>  
+  !>  
   interface hipIpcGetEventHandle
 #ifdef USE_CUDA_NAMES
     function hipIpcGetEventHandle_raw(handle,event) bind(c, name="cudaIpcGetEventHandle")
@@ -1076,7 +1089,21 @@ module hipfort
 
 
   end interface
-  
+  !> 
+  !>   @brief Opens an interprocess event handles.
+  !>  
+  !>   Opens an interprocess event handle exported from another process with cudaIpcGetEventHandle. The returned
+  !>   hipEvent_t behaves like a locally created event with the hipEventDisableTiming flag specified. This event
+  !>   need be freed with hipEventDestroy. Operations on the imported event after the exported event has been freed
+  !>   with hipEventDestroy will result in undefined behavior. If the function is called within the same process where
+  !>   handle is returned by hipIpcGetEventHandle, it will return hipErrorInvalidContext.
+  !>  
+  !>   @param[out]  event  Pointer to hipEvent_t to return the event
+  !>   @param[in]   handle The opaque interprocess handle to open
+  !>  
+  !>   @returns #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidContext
+  !>  
+  !>  
   interface hipIpcOpenEventHandle
 #ifdef USE_CUDA_NAMES
     function hipIpcOpenEventHandle_raw(event,handle) bind(c, name="cudaIpcOpenEventHandle")
@@ -1755,7 +1782,7 @@ module hipfort
   !> 
   !>   @brief Adds a callback to be called on the host after all currently enqueued
   !>   items in the stream have completed.  For each
-  !>   cudaStreamAddCallback call, a callback will be executed exactly once.
+  !>   hipStreamAddCallback call, a callback will be executed exactly once.
   !>   The callback will block later work in the stream until it is finished.
   !>   @param[in] stream   - Stream to add callback to
   !>   @param[in] callback - The function to call once preceding stream operations are complete
@@ -1794,7 +1821,7 @@ module hipfort
 
   end interface
   !> 
-  !>   @brief Enqueues a write command to the stream.
+  !>   @brief Enqueues a write command to the stream.[BETA]
   !>  
   !>   @param [in] stream - Stream identifier
   !>   @param [in] ptr    - Pointer to a GPU accessible memory object
@@ -1805,6 +1832,9 @@ module hipfort
   !>  
   !>   Enqueues a write command to the stream, write operation is performed after all earlier commands
   !>   on this stream have completed the execution.
+  !>  
+  !>   @warning This API is marked as beta, meaning, while this is feature complete,
+  !>   it is still open to changes and may have outstanding issues.
   !>  
   !>   @see hipExtMallocWithFlags, hipFree, hipStreamWriteValue32, hipStreamWaitValue32,
   !>   hipStreamWaitValue64
@@ -1829,14 +1859,14 @@ module hipfort
 #endif
       type(c_ptr),value :: stream
       type(c_ptr),value :: ptr
-      integer(c_int32_t),value :: myValue
+      integer(kind=4),value :: myValue
       integer(kind=4),value :: flags
     end function
 
 
   end interface
   !> 
-  !>   @brief Enqueues a write command to the stream.
+  !>   @brief Enqueues a write command to the stream.[BETA]
   !>  
   !>   @param [in] stream - Stream identifier
   !>   @param [in] ptr    - Pointer to a GPU accessible memory object
@@ -1847,6 +1877,9 @@ module hipfort
   !>  
   !>   Enqueues a write command to the stream, write operation is performed after all earlier commands
   !>   on this stream have completed the execution.
+  !>  
+  !>   @warning This API is marked as beta, meaning, while this is feature complete,
+  !>   it is still open to changes and may have outstanding issues.
   !>  
   !>   @see hipExtMallocWithFlags, hipFree, hipStreamWriteValue32, hipStreamWaitValue32,
   !>   hipStreamWaitValue64
@@ -1871,7 +1904,7 @@ module hipfort
 #endif
       type(c_ptr),value :: stream
       type(c_ptr),value :: ptr
-      integer(c_int64_t),value :: myValue
+      integer(kind=8),value :: myValue
       integer(kind=4),value :: flags
     end function
 
@@ -1883,7 +1916,6 @@ module hipfort
   !>   @param[in,out] event Returns the newly created event.
   !>   @param[in] flags     Flags to control event behavior.  Valid values are #hipEventDefault,
   !>  #hipEventBlockingSync, #hipEventDisableTiming, #hipEventInterprocess
-  !> 
   !>   #hipEventDefault : Default flag.  The event will use active synchronization and will support
   !>  timing.  Blocking synchronization provides lowest possible latency at the expense of dedicating a
   !>  CPU to poll on the event.
@@ -1892,7 +1924,6 @@ module hipfort
   !>  for the synchroniation but can result in lower power and more resources for other CPU threads.
   !>   #hipEventDisableTiming : Disable recording of timing information. Events created with this flag
   !>  would not record profiling data and provide best performance if used for synchronization.
-  !> 
   !>   @warning On AMD platform, hipEventInterprocess support is under development.  Use of this flag
   !>  will return an error.
   !>  
@@ -2222,6 +2253,114 @@ module hipfort
 
   end interface
   !> 
+  !>    @brief Signals a set of external semaphore objects.
+  !>  
+  !>    @param[in] extSem_out  External semaphores to be waited on
+  !>    @param[in] paramsArray Array of semaphore parameters
+  !>    @param[in] numExtSems Number of semaphores to wait on
+  !>    @param[in] stream Stream to enqueue the wait operations in
+  !>  
+  !>    @return #hipSuccess, #hipErrorInvalidDevice, #hipErrorInvalidValue
+  !>  
+  !>    @see
+  !>  
+  interface hipSignalExternalSemaphoresAsync
+#ifdef USE_CUDA_NAMES
+    function hipSignalExternalSemaphoresAsync_raw(extSemArray,paramsArray,numExtSems,stream) bind(c, name="cudaSignalExternalSemaphoresAsync")
+#else
+    function hipSignalExternalSemaphoresAsync_raw(extSemArray,paramsArray,numExtSems,stream) bind(c, name="hipSignalExternalSemaphoresAsync")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipSignalExternalSemaphoresAsync_raw
+#else
+      integer(kind(hipSuccess)) :: hipSignalExternalSemaphoresAsync_raw
+#endif
+      type(c_ptr) :: extSemArray
+      type(c_ptr),value :: paramsArray
+      integer(kind=4),value :: numExtSems
+      type(c_ptr),value :: stream
+    end function
+
+
+  end interface
+  !> 
+  !>    @brief Waits on a set of external semaphore objects
+  !>  
+  !>    @param[in] extSem_out  External semaphores to be waited on
+  !>    @param[in] paramsArray Array of semaphore parameters
+  !>    @param[in] numExtSems Number of semaphores to wait on
+  !>    @param[in] stream Stream to enqueue the wait operations in
+  !>  
+  !>    @return #hipSuccess, #hipErrorInvalidDevice, #hipErrorInvalidValue
+  !>  
+  !>    @see
+  !>  
+  interface hipWaitExternalSemaphoresAsync
+#ifdef USE_CUDA_NAMES
+    function hipWaitExternalSemaphoresAsync_raw(extSemArray,paramsArray,numExtSems,stream) bind(c, name="cudaWaitExternalSemaphoresAsync")
+#else
+    function hipWaitExternalSemaphoresAsync_raw(extSemArray,paramsArray,numExtSems,stream) bind(c, name="hipWaitExternalSemaphoresAsync")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipWaitExternalSemaphoresAsync_raw
+#else
+      integer(kind(hipSuccess)) :: hipWaitExternalSemaphoresAsync_raw
+#endif
+      type(c_ptr) :: extSemArray
+      type(c_ptr),value :: paramsArray
+      integer(kind=4),value :: numExtSems
+      type(c_ptr),value :: stream
+    end function
+
+
+  end interface
+  !> 
+  !>    @brief Destroys an external semaphore object and releases any references to the underlying resource. Any outstanding signals or waits must have completed before the semaphore is destroyed.
+  !>  
+  !>    @param[in] extSem handle to an external memory object
+  !>  
+  !>    @return #hipSuccess, #hipErrorInvalidDevice, #hipErrorInvalidValue
+  !>  
+  !>    @see
+  !>  
+  interface hipDestroyExternalSemaphore
+#ifdef USE_CUDA_NAMES
+    function hipDestroyExternalSemaphore_raw(extSem) bind(c, name="cudaDestroyExternalSemaphore")
+#else
+    function hipDestroyExternalSemaphore_raw(extSem) bind(c, name="hipDestroyExternalSemaphore")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipDestroyExternalSemaphore_raw
+#else
+      integer(kind(hipSuccess)) :: hipDestroyExternalSemaphore_raw
+#endif
+      type(c_ptr),value :: extSem
+    end function
+
+
+  end interface
+  !> 
   !>   @brief Maps a buffer onto an imported memory object.
   !> 
   !>   @param[out] devPtr Returned device pointer to buffer
@@ -2379,7 +2518,7 @@ module hipfort
 
   end interface
   !> 
-  !>   @brief Prefetches memory to the specified destination device using AMD HMM.
+  !>   @brief Prefetches memory to the specified destination device using HIP.
   !>  
   !>   @param [in] dev_ptr  pointer to be prefetched
   !>   @param [in] count    size in bytes for prefetching
@@ -2415,7 +2554,7 @@ module hipfort
 
   end interface
   !> 
-  !>   @brief Advise about the usage of a given memory range to AMD HMM.
+  !>   @brief Advise about the usage of a given memory range to HIP.
   !>  
   !>   @param [in] dev_ptr  pointer to memory to set the advice for
   !>   @param [in] count    size in bytes of the memory range
@@ -2451,7 +2590,7 @@ module hipfort
 
   end interface
   !> 
-  !>   @brief Query an attribute of a given memory range in AMD HMM.
+  !>   @brief Query an attribute of a given memory range in HIP.
   !>  
   !>   @param [inout] data   a pointer to a memory location where the result of each
   !>                          attribute query will be written to
@@ -2490,7 +2629,7 @@ module hipfort
 
   end interface
   !> 
-  !>   @brief Query attributes of a given memory range in AMD HMM.
+  !>   @brief Query attributes of a given memory range in HIP.
   !>  
   !>   @param [inout] data     a two-dimensional array containing pointers to memory locations
   !>                            where the result of each attribute query will be written to
@@ -2532,14 +2671,14 @@ module hipfort
 
   end interface
   !> 
-  !>   @brief Attach memory to a stream asynchronously in AMD HMM.
+  !>   @brief Attach memory to a stream asynchronously in HIP.
   !>  
   !>   @param [in] stream     - stream in which to enqueue the attach operation
   !>   @param [in] dev_ptr    - pointer to memory (must be a pointer to managed memory or
   !>                            to a valid host-accessible region of system-allocated memory)
   !>   @param [in] length     - length of memory (defaults to zero)
-  !>   @param [in] flags      - must be one of cudaMemAttachGlobal, cudaMemAttachHost or
-  !>                            cudaMemAttachSingle (defaults to cudaMemAttachSingle)
+  !>   @param [in] flags      - must be one of hipMemAttachGlobal, hipMemAttachHost or
+  !>                            hipMemAttachSingle (defaults to hipMemAttachSingle)
   !>  
   !>   @returns #hipSuccess, #hipErrorInvalidValue
   !>  
@@ -2562,7 +2701,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipStreamAttachMemAsync_raw
 #endif
       type(c_ptr),value :: stream
-      type(c_ptr) :: dev_ptr
+      type(c_ptr),value :: dev_ptr
       integer(c_size_t),value :: length
       integer(kind=4),value :: flags
     end function
@@ -2994,7 +3133,20 @@ module hipfort
 
 
   end interface
-  
+  !> 
+  !>    @brief Returns a global pointer from a module.
+  !>    Returns in dptr and bytes the pointer and size of the global of name name located in module hmod.
+  !>    If no variable of that name exists, it returns hipErrorNotFound. Both parameters dptr and bytes are optional.
+  !>    If one of them is NULL, it is ignored and hipSuccess is returned.
+  !>  
+  !>    @param[out]  dptr  Returned global device pointer
+  !>    @param[out]  bytes Returned global size in bytes
+  !>    @param[in]   hmod  Module to retrieve global from
+  !>    @param[in]   name  Name of global to retrieve
+  !>  
+  !>    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorNotFound, #hipErrorInvalidContext
+  !>  
+  !>  
   interface hipModuleGetGlobal
 #ifdef USE_CUDA_NAMES
     function hipModuleGetGlobal_raw(dptr,bytes,hmod,name) bind(c, name="cudaModuleGetGlobal")
@@ -7416,6 +7568,790 @@ module hipfort
       integer(kind(hipSuccess)) :: hipRemoveActivityCallback_raw
 #endif
       integer(kind=4),value :: id
+    end function
+
+
+  end interface
+  !> 
+  !>   @brief Begins graph capture on a stream.
+  !>  
+  !>   @param [in] stream - Stream to initiate capture.
+  !>   @param [in] mode - Controls the interaction of this capture sequence with other API calls that
+  !>   are not safe.
+  !>  
+  !>   @returns #hipSuccess, #hipErrorInvalidValue
+  !>  
+  !>   @warning : This API is marked as beta, meaning, while this is feature complete,
+  !>   it is still open to changes and may have outstanding issues.
+  !>  
+  !>  
+  interface hipStreamBeginCapture
+#ifdef USE_CUDA_NAMES
+    function hipStreamBeginCapture_raw(stream,mode) bind(c, name="cudaStreamBeginCapture")
+#else
+    function hipStreamBeginCapture_raw(stream,mode) bind(c, name="hipStreamBeginCapture")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipStreamBeginCapture_raw
+#else
+      integer(kind(hipSuccess)) :: hipStreamBeginCapture_raw
+#endif
+      type(c_ptr),value :: stream
+      integer(kind(hipStreamCaptureModeGlobal)),value :: mode
+    end function
+
+
+  end interface
+  !> 
+  !>   @brief Ends capture on a stream, returning the captured graph.
+  !>  
+  !>   @param [in] stream - Stream to end capture.
+  !>   @param [out] pGraph - returns the graph captured.
+  !>  
+  !>   @returns #hipSuccess, #hipErrorInvalidValue
+  !>  
+  !>   @warning : This API is marked as beta, meaning, while this is feature complete,
+  !>   it is still open to changes and may have outstanding issues.
+  !>  
+  !>  
+  interface hipStreamEndCapture
+#ifdef USE_CUDA_NAMES
+    function hipStreamEndCapture_raw(stream,pGraph) bind(c, name="cudaStreamEndCapture")
+#else
+    function hipStreamEndCapture_raw(stream,pGraph) bind(c, name="hipStreamEndCapture")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipStreamEndCapture_raw
+#else
+      integer(kind(hipSuccess)) :: hipStreamEndCapture_raw
+#endif
+      type(c_ptr),value :: stream
+      type(c_ptr) :: pGraph
+    end function
+
+
+  end interface
+  !> 
+  !>   @brief Creates a graph
+  !>  
+  !>   @param [out] pGraph - pointer to graph to create.
+  !>   @param [in] flags - flags for graph creation, must be 0.
+  !>  
+  !>   @returns #hipSuccess.
+  !>   @warning : This API is marked as beta, meaning, while this is feature complete,
+  !>   it is still open to changes and may have outstanding issues.
+  !>  
+  interface hipGraphCreate
+#ifdef USE_CUDA_NAMES
+    function hipGraphCreate_raw(pGraph,flags) bind(c, name="cudaGraphCreate")
+#else
+    function hipGraphCreate_raw(pGraph,flags) bind(c, name="hipGraphCreate")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipGraphCreate_raw
+#else
+      integer(kind(hipSuccess)) :: hipGraphCreate_raw
+#endif
+      type(c_ptr) :: pGraph
+      integer(kind=4),value :: flags
+    end function
+
+
+  end interface
+  !> 
+  !>   @brief Destroys a graph
+  !>  
+  !>   @param [in] graph - instance of graph to destroy.
+  !>  
+  !>   @returns #hipSuccess.
+  !>   @warning : This API is marked as beta, meaning, while this is feature complete,
+  !>   it is still open to changes and may have outstanding issues.
+  !>  
+  interface hipGraphDestroy
+#ifdef USE_CUDA_NAMES
+    function hipGraphDestroy_raw(graph) bind(c, name="cudaGraphDestroy")
+#else
+    function hipGraphDestroy_raw(graph) bind(c, name="hipGraphDestroy")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipGraphDestroy_raw
+#else
+      integer(kind(hipSuccess)) :: hipGraphDestroy_raw
+#endif
+      type(c_ptr),value :: graph
+    end function
+
+
+  end interface
+  !> 
+  !>   @brief Destroys an executable graph
+  !>  
+  !>   @param [in] pGraphExec - instance of executable graph to destry.
+  !>  
+  !>   @returns #hipSuccess.
+  !>   @warning : This API is marked as beta, meaning, while this is feature complete,
+  !>   it is still open to changes and may have outstanding issues.
+  !>  
+  interface hipGraphExecDestroy
+#ifdef USE_CUDA_NAMES
+    function hipGraphExecDestroy_raw(pGraphExec) bind(c, name="cudaGraphExecDestroy")
+#else
+    function hipGraphExecDestroy_raw(pGraphExec) bind(c, name="hipGraphExecDestroy")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipGraphExecDestroy_raw
+#else
+      integer(kind(hipSuccess)) :: hipGraphExecDestroy_raw
+#endif
+      type(c_ptr),value :: pGraphExec
+    end function
+
+
+  end interface
+  !> 
+  !>   @brief Creates an executable graph from a graph
+  !>  
+  !>   @param [out] pGraphExec - pointer to instantiated executable graph to create.
+  !>   @param [in] graph - instance of graph to instantiate.
+  !>   @param [out] pErrorNode - pointer to error node in case error occured in graph instantiation,
+  !>    it could modify the correponding node.
+  !>   @param [out] pLogBuffer - pointer to log buffer.
+  !>   @param [in] bufferSize - the size of log buffer.
+  !>  
+  !>   @returns #hipSuccess, #hipErrorOutOfMemory.
+  !>   @warning : This API is marked as beta, meaning, while this is feature complete,
+  !>   it is still open to changes and may have outstanding issues.
+  !>  
+  interface hipGraphInstantiate
+#ifdef USE_CUDA_NAMES
+    function hipGraphInstantiate_raw(pGraphExec,graph,pErrorNode,pLogBuffer,bufferSize) bind(c, name="cudaGraphInstantiate")
+#else
+    function hipGraphInstantiate_raw(pGraphExec,graph,pErrorNode,pLogBuffer,bufferSize) bind(c, name="hipGraphInstantiate")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipGraphInstantiate_raw
+#else
+      integer(kind(hipSuccess)) :: hipGraphInstantiate_raw
+#endif
+      type(c_ptr) :: pGraphExec
+      type(c_ptr),value :: graph
+      type(c_ptr) :: pErrorNode
+      type(c_ptr),value :: pLogBuffer
+      integer(c_size_t),value :: bufferSize
+    end function
+
+
+  end interface
+  !> 
+  !>   @brief launches an executable graph in a stream
+  !>  
+  !>   @param [in] graphExec - instance of executable graph to launch.
+  !>   @param [in] stream - instance of stream in which to launch executable graph.
+  !>   @returns #hipSuccess, #hipErrorOutOfMemory, #hipErrorInvalidHandle, #hipErrorInvalidValue
+  !>   @warning : This API is marked as beta, meaning, while this is feature complete,
+  !>   it is still open to changes and may have outstanding issues.
+  !>  
+  interface hipGraphLaunch
+#ifdef USE_CUDA_NAMES
+    function hipGraphLaunch_raw(graphExec,stream) bind(c, name="cudaGraphLaunch")
+#else
+    function hipGraphLaunch_raw(graphExec,stream) bind(c, name="hipGraphLaunch")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipGraphLaunch_raw
+#else
+      integer(kind(hipSuccess)) :: hipGraphLaunch_raw
+#endif
+      type(c_ptr),value :: graphExec
+      type(c_ptr),value :: stream
+    end function
+
+
+  end interface
+  !> 
+  !>   @brief Creates a kernel execution node and adds it to a graph.
+  !>  
+  !>   @param [out] pGraphNode - pointer to graph node to create.
+  !>   @param [in,out] graph - instance of graph to add the created node.
+  !>   @param [in] pDependencies - pointer to the dependencies on the kernel execution node.
+  !>   @param [in] numDependencies - the number of the dependencies.
+  !>   @param [in] pNodeParams - pointer to the parameters to the kernel execution node on the GPU.
+  !>   @returns #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidDeviceFunction
+  !>   @warning : This API is marked as beta, meaning, while this is feature complete,
+  !>   it is still open to changes and may have outstanding issues.
+  !>  
+  interface hipGraphAddKernelNode
+#ifdef USE_CUDA_NAMES
+    function hipGraphAddKernelNode_raw(pGraphNode,graph,pDependencies,numDependencies,pNodeParams) bind(c, name="cudaGraphAddKernelNode")
+#else
+    function hipGraphAddKernelNode_raw(pGraphNode,graph,pDependencies,numDependencies,pNodeParams) bind(c, name="hipGraphAddKernelNode")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipGraphAddKernelNode_raw
+#else
+      integer(kind(hipSuccess)) :: hipGraphAddKernelNode_raw
+#endif
+      type(c_ptr) :: pGraphNode
+      type(c_ptr),value :: graph
+      type(c_ptr) :: pDependencies
+      integer(c_size_t),value :: numDependencies
+      type(c_ptr) :: pNodeParams
+    end function
+
+
+  end interface
+  !> 
+  !>   @brief Creates a memcpy node and adds it to a graph.
+  !>  
+  !>   @param [out] pGraphNode - pointer to graph node to create.
+  !>   @param [in,out] graph - instance of graph to add the created node.
+  !>   @param [in] pDependencies -  pointer to the dependencies on the kernel execution node.
+  !>   @param [in] numDependencies - the number of the dependencies.
+  !>   @param [in] pCopyParams -  pointer to the parameters for the memory copy.
+  !>   @returns #hipSuccess, #hipErrorInvalidValue
+  !>   @warning : This API is marked as beta, meaning, while this is feature complete,
+  !>   it is still open to changes and may have outstanding issues.
+  !>  
+  interface hipGraphAddMemcpyNode
+#ifdef USE_CUDA_NAMES
+    function hipGraphAddMemcpyNode_raw(pGraphNode,graph,pDependencies,numDependencies,pCopyParams) bind(c, name="cudaGraphAddMemcpyNode")
+#else
+    function hipGraphAddMemcpyNode_raw(pGraphNode,graph,pDependencies,numDependencies,pCopyParams) bind(c, name="hipGraphAddMemcpyNode")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipGraphAddMemcpyNode_raw
+#else
+      integer(kind(hipSuccess)) :: hipGraphAddMemcpyNode_raw
+#endif
+      type(c_ptr) :: pGraphNode
+      type(c_ptr),value :: graph
+      type(c_ptr) :: pDependencies
+      integer(c_size_t),value :: numDependencies
+      type(c_ptr) :: pCopyParams
+    end function
+
+
+  end interface
+  !> 
+  !>   @brief Creates a 1D memcpy node and adds it to a graph.
+  !>  
+  !>   @param [out] pGraphNode - pointer to graph node to create.
+  !>   @param [in,out] graph - instance of the graph to add the created node.
+  !>   @param [in] pDependencies -  pointer to the dependencies on the kernel execution node.
+  !>   @param [in] numDependencies - the number of the dependencies.
+  !>   @param [in] dst - pointer to memory address to the destination.
+  !>   @param [in] src - pointer to memory address to the source.
+  !>   @param [in] count - the size of the memory to copy.
+  !>   @param [in] kind - the type of memory copy.
+  !>   @returns #hipSuccess, #hipErrorInvalidValue
+  !>   @warning : This API is marked as beta, meaning, while this is feature complete,
+  !>   it is still open to changes and may have outstanding issues.
+  !>  
+  interface hipGraphAddMemcpyNode1D
+#ifdef USE_CUDA_NAMES
+    function hipGraphAddMemcpyNode1D_raw(pGraphNode,graph,pDependencies,numDependencies,dst,src,count,myKind) bind(c, name="cudaGraphAddMemcpyNode1D")
+#else
+    function hipGraphAddMemcpyNode1D_raw(pGraphNode,graph,pDependencies,numDependencies,dst,src,count,myKind) bind(c, name="hipGraphAddMemcpyNode1D")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipGraphAddMemcpyNode1D_raw
+#else
+      integer(kind(hipSuccess)) :: hipGraphAddMemcpyNode1D_raw
+#endif
+      type(c_ptr) :: pGraphNode
+      type(c_ptr),value :: graph
+      type(c_ptr) :: pDependencies
+      integer(c_size_t),value :: numDependencies
+      type(c_ptr),value :: dst
+      type(c_ptr),value :: src
+      integer(c_size_t),value :: count
+      integer(kind(hipMemcpyHostToHost)),value :: myKind
+    end function
+
+
+  end interface
+  !> 
+  !>   @brief Creates a memset node and adds it to a graph.
+  !>  
+  !>   @param [out] pGraphNode - pointer to the graph node to create.
+  !>   @param [in,out] graph - instance of the graph to add the created node.
+  !>   @param [in] pDependencies -  pointer to the dependencies on the kernel execution node.
+  !>   @param [in] numDependencies - the number of the dependencies.
+  !>   @param [in] pMemsetParams -  pointer to the parameters for the memory set.
+  !>   @returns #hipSuccess, #hipErrorInvalidValue
+  !>   @warning : This API is marked as beta, meaning, while this is feature complete,
+  !>   it is still open to changes and may have outstanding issues.
+  !>  
+  interface hipGraphAddMemsetNode
+#ifdef USE_CUDA_NAMES
+    function hipGraphAddMemsetNode_raw(pGraphNode,graph,pDependencies,numDependencies,pMemsetParams) bind(c, name="cudaGraphAddMemsetNode")
+#else
+    function hipGraphAddMemsetNode_raw(pGraphNode,graph,pDependencies,numDependencies,pMemsetParams) bind(c, name="hipGraphAddMemsetNode")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipGraphAddMemsetNode_raw
+#else
+      integer(kind(hipSuccess)) :: hipGraphAddMemsetNode_raw
+#endif
+      type(c_ptr) :: pGraphNode
+      type(c_ptr),value :: graph
+      type(c_ptr) :: pDependencies
+      integer(c_size_t),value :: numDependencies
+      type(c_ptr) :: pMemsetParams
+    end function
+
+
+  end interface
+  !> 
+  !>   @brief Returns graph nodes.
+  !>  
+  !>   @param [in] graph - instance of graph to get the nodes.
+  !>   @param [out] nodes - pointer to the graph nodes.
+  !>   @param [out] numNodes - the number of graph nodes.
+  !>   @returns #hipSuccess, #hipErrorInvalidValue
+  !>   @warning : This API is marked as beta, meaning, while this is feature complete,
+  !>   it is still open to changes and may have outstanding issues.
+  !>  
+  interface hipGraphGetNodes
+#ifdef USE_CUDA_NAMES
+    function hipGraphGetNodes_raw(graph,nodes,numNodes) bind(c, name="cudaGraphGetNodes")
+#else
+    function hipGraphGetNodes_raw(graph,nodes,numNodes) bind(c, name="hipGraphGetNodes")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipGraphGetNodes_raw
+#else
+      integer(kind(hipSuccess)) :: hipGraphGetNodes_raw
+#endif
+      type(c_ptr),value :: graph
+      type(c_ptr) :: nodes
+      type(c_ptr),value :: numNodes
+    end function
+
+
+  end interface
+  !> 
+  !>   @brief Returns graph's root nodes.
+  !>  
+  !>   @param [in] graph - instance of the graph to get the nodes.
+  !>   @param [out] pRootNodes - pointer to the graph's root nodes.
+  !>   @param [out] pNumRootNodes - the number of graph's root nodes.
+  !>   @returns #hipSuccess, #hipErrorInvalidValue
+  !>   @warning : This API is marked as beta, meaning, while this is feature complete,
+  !>   it is still open to changes and may have outstanding issues.
+  !>  
+  interface hipGraphGetRootNodes
+#ifdef USE_CUDA_NAMES
+    function hipGraphGetRootNodes_raw(graph,pRootNodes,pNumRootNodes) bind(c, name="cudaGraphGetRootNodes")
+#else
+    function hipGraphGetRootNodes_raw(graph,pRootNodes,pNumRootNodes) bind(c, name="hipGraphGetRootNodes")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipGraphGetRootNodes_raw
+#else
+      integer(kind(hipSuccess)) :: hipGraphGetRootNodes_raw
+#endif
+      type(c_ptr),value :: graph
+      type(c_ptr) :: pRootNodes
+      type(c_ptr),value :: pNumRootNodes
+    end function
+
+
+  end interface
+  !> 
+  !>   @brief Gets kernel node's parameters.
+  !>  
+  !>   @param [in] node - instance of the node to get parameters from.
+  !>   @param [out] pNodeParams - pointer to the parameters
+  !>   @returns #hipSuccess, #hipErrorInvalidValue
+  !>   @warning : This API is marked as beta, meaning, while this is feature complete,
+  !>   it is still open to changes and may have outstanding issues.
+  !>  
+  interface hipGraphKernelNodeGetParams
+#ifdef USE_CUDA_NAMES
+    function hipGraphKernelNodeGetParams_raw(node,pNodeParams) bind(c, name="cudaGraphKernelNodeGetParams")
+#else
+    function hipGraphKernelNodeGetParams_raw(node,pNodeParams) bind(c, name="hipGraphKernelNodeGetParams")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipGraphKernelNodeGetParams_raw
+#else
+      integer(kind(hipSuccess)) :: hipGraphKernelNodeGetParams_raw
+#endif
+      type(c_ptr),value :: node
+      type(c_ptr) :: pNodeParams
+    end function
+
+
+  end interface
+  !> 
+  !>   @brief Sets a kernel node's parameters.
+  !>  
+  !>   @param [in] node - instance of the node to set parameters to.
+  !>   @param [in] pNodeParams -  pointer to the parameters.
+  !>   @returns #hipSuccess, #hipErrorInvalidValue
+  !>   @warning : This API is marked as beta, meaning, while this is feature complete,
+  !>   it is still open to changes and may have outstanding issues.
+  !>  
+  interface hipGraphKernelNodeSetParams
+#ifdef USE_CUDA_NAMES
+    function hipGraphKernelNodeSetParams_raw(node,pNodeParams) bind(c, name="cudaGraphKernelNodeSetParams")
+#else
+    function hipGraphKernelNodeSetParams_raw(node,pNodeParams) bind(c, name="hipGraphKernelNodeSetParams")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipGraphKernelNodeSetParams_raw
+#else
+      integer(kind(hipSuccess)) :: hipGraphKernelNodeSetParams_raw
+#endif
+      type(c_ptr),value :: node
+      type(c_ptr) :: pNodeParams
+    end function
+
+
+  end interface
+  !> 
+  !>   @brief Gets a memcpy node's parameters.
+  !>  
+  !>   @param [in] node - instance of the node to get parameters from.
+  !>   @param [out] pNodeParams - pointer to the parameters.
+  !>   @returns #hipSuccess, #hipErrorInvalidValue
+  !>   @warning : This API is marked as beta, meaning, while this is feature complete,
+  !>   it is still open to changes and may have outstanding issues.
+  !>  
+  interface hipGraphMemcpyNodeGetParams
+#ifdef USE_CUDA_NAMES
+    function hipGraphMemcpyNodeGetParams_raw(node,pNodeParams) bind(c, name="cudaGraphMemcpyNodeGetParams")
+#else
+    function hipGraphMemcpyNodeGetParams_raw(node,pNodeParams) bind(c, name="hipGraphMemcpyNodeGetParams")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipGraphMemcpyNodeGetParams_raw
+#else
+      integer(kind(hipSuccess)) :: hipGraphMemcpyNodeGetParams_raw
+#endif
+      type(c_ptr),value :: node
+      type(c_ptr) :: pNodeParams
+    end function
+
+
+  end interface
+  !> 
+  !>   @brief Sets a memcpy node's parameters.
+  !>  
+  !>   @param [in] node - instance of the node to set parameters to.
+  !>   @param [in] pNodeParams -  pointer to the parameters.
+  !>   @returns #hipSuccess, #hipErrorInvalidValue
+  !>   @warning : This API is marked as beta, meaning, while this is feature complete,
+  !>   it is still open to changes and may have outstanding issues.
+  !>  
+  interface hipGraphMemcpyNodeSetParams
+#ifdef USE_CUDA_NAMES
+    function hipGraphMemcpyNodeSetParams_raw(node,pNodeParams) bind(c, name="cudaGraphMemcpyNodeSetParams")
+#else
+    function hipGraphMemcpyNodeSetParams_raw(node,pNodeParams) bind(c, name="hipGraphMemcpyNodeSetParams")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipGraphMemcpyNodeSetParams_raw
+#else
+      integer(kind(hipSuccess)) :: hipGraphMemcpyNodeSetParams_raw
+#endif
+      type(c_ptr),value :: node
+      type(c_ptr) :: pNodeParams
+    end function
+
+
+  end interface
+  !> 
+  !>   @brief Gets a memset node's parameters.
+  !>  
+  !>   @param [in] node - instane of the node to get parameters from.
+  !>   @param [out] pNodeParams - pointer to the parameters.
+  !>   @returns #hipSuccess, #hipErrorInvalidValue
+  !>   @warning : This API is marked as beta, meaning, while this is feature complete,
+  !>   it is still open to changes and may have outstanding issues.
+  !>  
+  interface hipGraphMemsetNodeGetParams
+#ifdef USE_CUDA_NAMES
+    function hipGraphMemsetNodeGetParams_raw(node,pNodeParams) bind(c, name="cudaGraphMemsetNodeGetParams")
+#else
+    function hipGraphMemsetNodeGetParams_raw(node,pNodeParams) bind(c, name="hipGraphMemsetNodeGetParams")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipGraphMemsetNodeGetParams_raw
+#else
+      integer(kind(hipSuccess)) :: hipGraphMemsetNodeGetParams_raw
+#endif
+      type(c_ptr),value :: node
+      type(c_ptr) :: pNodeParams
+    end function
+
+
+  end interface
+  !> 
+  !>   @brief Sets a memset node's parameters.
+  !>  
+  !>   @param [in] node - instance of the node to set parameters to.
+  !>   @param [out] pNodeParams - pointer to the parameters.
+  !>   @returns #hipSuccess, #hipErrorInvalidValue
+  !>   @warning : This API is marked as beta, meaning, while this is feature complete,
+  !>   it is still open to changes and may have outstanding issues.
+  !>  
+  interface hipGraphMemsetNodeSetParams
+#ifdef USE_CUDA_NAMES
+    function hipGraphMemsetNodeSetParams_raw(node,pNodeParams) bind(c, name="cudaGraphMemsetNodeSetParams")
+#else
+    function hipGraphMemsetNodeSetParams_raw(node,pNodeParams) bind(c, name="hipGraphMemsetNodeSetParams")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipGraphMemsetNodeSetParams_raw
+#else
+      integer(kind(hipSuccess)) :: hipGraphMemsetNodeSetParams_raw
+#endif
+      type(c_ptr),value :: node
+      type(c_ptr) :: pNodeParams
+    end function
+
+
+  end interface
+  !> 
+  !>   @brief Sets the parameters for a kernel node in the given graphExec.
+  !>  
+  !>   @param [in] hGraphExec - instance of the executable graph with the node.
+  !>   @param [in] node - instance of the node to set parameters to.
+  !>   @param [in] pNodeParams -  pointer to the kernel node parameters.
+  !>   @returns #hipSuccess, #hipErrorInvalidValue
+  !>   @warning : This API is marked as beta, meaning, while this is feature complete,
+  !>   it is still open to changes and may have outstanding issues.
+  !>  
+  interface hipGraphExecKernelNodeSetParams
+#ifdef USE_CUDA_NAMES
+    function hipGraphExecKernelNodeSetParams_raw(hGraphExec,node,pNodeParams) bind(c, name="cudaGraphExecKernelNodeSetParams")
+#else
+    function hipGraphExecKernelNodeSetParams_raw(hGraphExec,node,pNodeParams) bind(c, name="hipGraphExecKernelNodeSetParams")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipGraphExecKernelNodeSetParams_raw
+#else
+      integer(kind(hipSuccess)) :: hipGraphExecKernelNodeSetParams_raw
+#endif
+      type(c_ptr),value :: hGraphExec
+      type(c_ptr),value :: node
+      type(c_ptr) :: pNodeParams
+    end function
+
+
+  end interface
+  !> 
+  !>   @brief Adds dependency edges to a graph.
+  !>  
+  !>   @param [in] graph - instance of the graph to add dependencies.
+  !>   @param [in] from - pointer to the graph nodes with dependenties to add from.
+  !>   @param [in] to - pointer to the graph nodes to add dependenties to.
+  !>   @param [in] numDependencies - the number of dependencies to add.
+  !>   @returns #hipSuccess, #hipErrorInvalidValue
+  !>   @warning : This API is marked as beta, meaning, while this is feature complete,
+  !>   it is still open to changes and may have outstanding issues.
+  !>  
+  interface hipGraphAddDependencies
+#ifdef USE_CUDA_NAMES
+    function hipGraphAddDependencies_raw(graph,from,to,numDependencies) bind(c, name="cudaGraphAddDependencies")
+#else
+    function hipGraphAddDependencies_raw(graph,from,to,numDependencies) bind(c, name="hipGraphAddDependencies")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipGraphAddDependencies_raw
+#else
+      integer(kind(hipSuccess)) :: hipGraphAddDependencies_raw
+#endif
+      type(c_ptr),value :: graph
+      type(c_ptr) :: from
+      type(c_ptr) :: to
+      integer(c_size_t),value :: numDependencies
+    end function
+
+
+  end interface
+  !> 
+  !>   @brief Creates an empty node and adds it to a graph.
+  !>  
+  !>   @param [out] pGraphNode - pointer to the graph node to create and add to the graph.
+  !>   @param [in,out] graph - instane of the graph the node is add to.
+  !>   @param [in] pDependencies -  pointer to the node dependenties.
+  !>   @param [in] numDependencies - the number of dependencies.
+  !>   @returns #hipSuccess, #hipErrorInvalidValue
+  !>   @warning : This API is marked as beta, meaning, while this is feature complete,
+  !>   it is still open to changes and may have outstanding issues.
+  !>  
+  interface hipGraphAddEmptyNode
+#ifdef USE_CUDA_NAMES
+    function hipGraphAddEmptyNode_raw(pGraphNode,graph,pDependencies,numDependencies) bind(c, name="cudaGraphAddEmptyNode")
+#else
+    function hipGraphAddEmptyNode_raw(pGraphNode,graph,pDependencies,numDependencies) bind(c, name="hipGraphAddEmptyNode")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipGraphAddEmptyNode_raw
+#else
+      integer(kind(hipSuccess)) :: hipGraphAddEmptyNode_raw
+#endif
+      type(c_ptr) :: pGraphNode
+      type(c_ptr),value :: graph
+      type(c_ptr) :: pDependencies
+      integer(c_size_t),value :: numDependencies
     end function
 
 

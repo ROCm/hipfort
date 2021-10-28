@@ -804,6 +804,28 @@ module hipfort_rocsparse
 
   end interface
   
+  interface rocsparse_create_bell_descr
+    function rocsparse_create_bell_descr_raw(descr,rows,cols,ell_block_dir,ell_block_dim,ell_cols,ell_col_ind,ell_val,idx_type,idx_base,data_type) bind(c, name="rocsparse_create_bell_descr")
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_create_bell_descr_raw
+      type(c_ptr) :: descr
+      integer(c_int64_t),value :: rows
+      integer(c_int64_t),value :: cols
+      integer(kind(rocsparse_direction_row)),value :: ell_block_dir
+      integer(c_int64_t),value :: ell_block_dim
+      integer(c_int64_t),value :: ell_cols
+      type(c_ptr),value :: ell_col_ind
+      type(c_ptr),value :: ell_val
+      integer(kind(rocsparse_indextype_u16)),value :: idx_type
+      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(kind(rocsparse_datatype_f32_r)),value :: data_type
+    end function
+
+
+  end interface
+  
   interface rocsparse_destroy_spmat_descr
     function rocsparse_destroy_spmat_descr_raw(descr) bind(c, name="rocsparse_destroy_spmat_descr")
       use iso_c_binding
@@ -891,6 +913,28 @@ module hipfort_rocsparse
       type(c_ptr) :: ell_col_ind
       type(c_ptr) :: ell_val
       type(c_ptr),value :: ell_width
+      type(c_ptr),value :: idx_type
+      type(c_ptr),value :: idx_base
+      type(c_ptr),value :: data_type
+    end function
+
+
+  end interface
+  
+  interface rocsparse_bell_get
+    function rocsparse_bell_get_raw(descr,rows,cols,ell_block_dir,ell_block_dim,ell_cols,ell_col_ind,ell_val,idx_type,idx_base,data_type) bind(c, name="rocsparse_bell_get")
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_bell_get_raw
+      type(c_ptr),value :: descr
+      type(c_ptr),value :: rows
+      type(c_ptr),value :: cols
+      type(c_ptr),value :: ell_block_dir
+      type(c_ptr),value :: ell_block_dim
+      type(c_ptr),value :: ell_cols
+      type(c_ptr) :: ell_col_ind
+      type(c_ptr) :: ell_val
       type(c_ptr),value :: idx_type
       type(c_ptr),value :: idx_base
       type(c_ptr),value :: data_type
@@ -1034,6 +1078,36 @@ module hipfort_rocsparse
       integer(kind(rocsparse_status_success)) :: rocsparse_spmat_set_values_raw
       type(c_ptr),value :: descr
       type(c_ptr),value :: values
+    end function
+
+
+  end interface
+  
+  interface rocsparse_spmat_get_attribute
+    function rocsparse_spmat_get_attribute_raw(descr,attribute,myData,data_size) bind(c, name="rocsparse_spmat_get_attribute")
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_spmat_get_attribute_raw
+      type(c_ptr),value :: descr
+      integer(kind(rocsparse_spmat_fill_mode)),value :: attribute
+      type(c_ptr),value :: myData
+      integer(c_size_t),value :: data_size
+    end function
+
+
+  end interface
+  
+  interface rocsparse_spmat_set_attribute
+    function rocsparse_spmat_set_attribute_raw(descr,attribute,myData,data_size) bind(c, name="rocsparse_spmat_set_attribute")
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_spmat_set_attribute_raw
+      type(c_ptr),value :: descr
+      integer(kind(rocsparse_spmat_fill_mode)),value :: attribute
+      type(c_ptr),value :: myData
+      integer(c_size_t),value :: data_size
     end function
 
 
@@ -1719,6 +1793,28 @@ rocsparse_csctr_rank_1
     module procedure rocsparse_zsctr_rank_0,&
       
 rocsparse_zsctr_rank_1
+#endif
+
+  end interface
+  
+  interface rocsparse_isctr
+    function rocsparse_isctr_raw(handle,nnz,x_val,x_ind,y,idx_base) bind(c, name="rocsparse_isctr")
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_isctr_raw
+      type(c_ptr),value :: handle
+      integer(c_int),value :: nnz
+      type(c_ptr),value :: x_val
+      type(c_ptr),value :: x_ind
+      type(c_ptr),value :: y
+      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+    end function
+
+#ifdef USE_FPOINTER_INTERFACES
+    module procedure rocsparse_isctr_rank_0,&
+      
+rocsparse_isctr_rank_1
 #endif
 
   end interface
@@ -6546,6 +6642,38 @@ rocsparse_zbsric0_rank_1
 
 
   end interface
+  
+  interface rocsparse_dsbsrilu0_numeric_boost
+    function rocsparse_dsbsrilu0_numeric_boost_raw(handle,myInfo,enable_boost,boost_tol,boost_val) bind(c, name="rocsparse_dsbsrilu0_numeric_boost")
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_dsbsrilu0_numeric_boost_raw
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: enable_boost
+      real(c_double) :: boost_tol
+      real(c_float) :: boost_val
+    end function
+
+
+  end interface
+  
+  interface rocsparse_dcbsrilu0_numeric_boost
+    function rocsparse_dcbsrilu0_numeric_boost_raw(handle,myInfo,enable_boost,boost_tol,boost_val) bind(c, name="rocsparse_dcbsrilu0_numeric_boost")
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_dcbsrilu0_numeric_boost_raw
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: enable_boost
+      real(c_double) :: boost_tol
+      complex(c_float_complex) :: boost_val
+    end function
+
+
+  end interface
   !> @{
   interface rocsparse_sbsrilu0_buffer_size
     function rocsparse_sbsrilu0_buffer_size_raw(handle,dir,mb,nnzb,descr,bsr_val,bsr_row_ptr,bsr_col_ind,block_dim,myInfo,buffer_size) bind(c, name="rocsparse_sbsrilu0_buffer_size")
@@ -7419,6 +7547,38 @@ rocsparse_zcsric0_rank_1
       integer(c_int),value :: enable_boost
       real(c_double) :: boost_tol
       complex(c_double_complex) :: boost_val
+    end function
+
+
+  end interface
+  
+  interface rocsparse_dscsrilu0_numeric_boost
+    function rocsparse_dscsrilu0_numeric_boost_raw(handle,myInfo,enable_boost,boost_tol,boost_val) bind(c, name="rocsparse_dscsrilu0_numeric_boost")
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_dscsrilu0_numeric_boost_raw
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: enable_boost
+      real(c_double) :: boost_tol
+      real(c_float) :: boost_val
+    end function
+
+
+  end interface
+  
+  interface rocsparse_dccsrilu0_numeric_boost
+    function rocsparse_dccsrilu0_numeric_boost_raw(handle,myInfo,enable_boost,boost_tol,boost_val) bind(c, name="rocsparse_dccsrilu0_numeric_boost")
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_dccsrilu0_numeric_boost_raw
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: myInfo
+      integer(c_int),value :: enable_boost
+      real(c_double) :: boost_tol
+      complex(c_float_complex) :: boost_val
     end function
 
 
@@ -13457,10 +13617,329 @@ rocsparse_zgebsr2csr_rank_1
 
   end interface
   !> ! \ingroup generic_module
+  !>   \brief Sparse triangular solve
+  !> 
+  !>   \details
+  !>   \p rocsparse_spsv_solve solves a sparse triangular linear system of a sparse
+  !>   \f$m \times m\f$ matrix, defined in CSR or COO storage format, a dense solution vector
+  !>   \f$y\f$ and the right-hand side \f$x\f$ that is multiplied by \f$\alpha\f$, such that
+  !>   \f[
+  !>     op(A) \cdot y = \alpha \cdot x,
+  !>   \f]
+  !>   with
+  !>   \f[
+  !>     op(A) = \left\{
+  !>     \begin{array}{ll}
+  !>         A,   & \text{if trans == rocsparse_operation_none} \\
+  !>         A^T, & \text{if trans == rocsparse_operation_transpose} \\
+  !>         A^H, & \text{if trans == rocsparse_operation_conjugate_transpose}
+  !>     \end{array}
+  !>     \right.
+  !>   \f]
+  !> 
+  !>   \note SpSV requires three stages to complete. The first stage
+  !>   \ref rocsparse_spsv_stage_buffer_size will return the size of the temporary storage buffer
+  !>   that is required for subsequent calls. The second stage
+  !>   \ref rocsparse_spsv_stage_preprocess will preprocess data that would be saved in the temporary storage buffer.
+  !>   In the final stage \ref rocsparse_spsv_stage_compute, the actual computation is performed.
+  !>   \note If \ref rocsparse_spsv_stage_auto is selected, rocSPARSE will automatically detect
+  !>   which stage is required based on the following indicators:
+  !>   If \p temp_buffer is equal to \p nullptr, the required buffer size will be returned.
+  !>   If \p buffer_size is equal to \p nullptr, analysis will be performed.
+  !>   Otherwise, the SpSV preprocess and the SpSV algorithm will be executed.
+  !> 
+  !>   \note
+  !>   This function is non blocking and executed asynchronously with respect to the host.
+  !>   It may return before the actual computation has finished.
+  !> 
+  !>   \note
+  !>   Currently, only \p trans == \ref rocsparse_operation_none and \p trans == \ref rocsparse_operation_transpose is supported.
+  !> 
+  !>   @param[in]
+  !>   handle       handle to the rocsparse library context queue.
+  !>   @param[in]
+  !>   trans        matrix operation type.
+  !>   @param[in]
+  !>   alpha        scalar \f$\alpha\f$.
+  !>   @param[in]
+  !>   mat          matrix descriptor.
+  !>   @param[in]
+  !>   x            vector descriptor.
+  !>   @param[inout]
+  !>   y            vector descriptor.
+  !>   @param[in]
+  !>   compute_type floating point precision for the SpSV computation.
+  !>   @param[in]
+  !>   alg          SpSV algorithm for the SpSV computation.
+  !>   @param[in]
+  !>   stage        SpSV stage for the SpSV computation.
+  !>   @param[out]
+  !>   buffer_size  number of bytes of the temporary storage buffer.
+  !>   @param[in]
+  !>   temp_buffer  temporary storage buffer allocated by the user. When a nullptr is passed,
+  !>                the required allocation size (in bytes) is written to \p buffer_size and
+  !>                function returns without performing the SpSV operation.
+  !> 
+  !>   \retval      rocsparse_status_success the operation completed successfully.
+  !>   \retval      rocsparse_status_invalid_handle the library context was not initialized.
+  !>   \retval      rocsparse_status_invalid_pointer \p alpha, \p mat, \p x, \p y, \p descr or
+  !>                \p buffer_size pointer is invalid.
+  !>   \retval      rocsparse_status_not_implemented \p trans, \p compute_type, \p stage or \p alg is
+  !>                currently not supported.
+  !> 
+  interface rocsparse_spsv
+    function rocsparse_spsv_raw(handle,trans,alpha,mat,x,y,compute_type,alg,stage,buffer_size,temp_buffer) bind(c, name="rocsparse_spsv")
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_spsv_raw
+      type(c_ptr),value :: handle
+      integer(kind(rocsparse_operation_none)),value :: trans
+      type(c_ptr),value :: alpha
+      type(c_ptr),value :: mat
+      type(c_ptr),value :: x
+      type(c_ptr),value :: y
+      integer(kind(rocsparse_datatype_f32_r)),value :: compute_type
+      integer(kind(rocsparse_spsv_alg_default)),value :: alg
+      integer(kind(rocsparse_spsv_stage_auto)),value :: stage
+      integer(c_size_t) :: buffer_size
+      type(c_ptr),value :: temp_buffer
+    end function
+
+
+  end interface
+  !> ! \ingroup generic_module
+  !>   \brief Sparse triangular system solve
+  !> 
+  !>   \details
+  !>   \p rocsparse_spsm_solve solves a sparse triangular linear system of a sparse
+  !>   \f$m \times m\f$ matrix, defined in CSR or COO storage format, a dense solution matrix
+  !>   \f$C\f$ and the right-hand side \f$B\f$ that is multiplied by \f$\alpha\f$, such that
+  !>   \f[
+  !>     op(A) \cdot C = \alpha \cdot op(B),
+  !>   \f]
+  !>   with
+  !>   \f[
+  !>     op(A) = \left\{
+  !>     \begin{array}{ll}
+  !>         A,   & \text{if trans == rocsparse_operation_none} \\
+  !>         A^T, & \text{if trans == rocsparse_operation_transpose} \\
+  !>         A^H, & \text{if trans == rocsparse_operation_conjugate_transpose}
+  !>     \end{array}
+  !>     \right.
+  !>   \f]
+  !>   and
+  !>   \f[
+  !>     op(B) = \left\{
+  !>     \begin{array}{ll}
+  !>         B,   & \text{if trans_B == rocsparse_operation_none} \\
+  !>         B^T, & \text{if trans_B == rocsparse_operation_transpose} \\
+  !>         B^H, & \text{if trans_B == rocsparse_operation_conjugate_transpose}
+  !>     \end{array}
+  !>     \right.
+  !>   \f]
+  !> 
+  !>   \note SpSM requires three stages to complete. The first stage
+  !>   \ref rocsparse_spsm_stage_buffer_size will return the size of the temporary storage buffer
+  !>   that is required for subsequent calls. The second stage
+  !>   \ref rocsparse_spsm_stage_preprocess will preprocess data that would be saved in the temporary storage buffer.
+  !>   In the final stage \ref rocsparse_spsm_stage_compute, the actual computation is performed.
+  !>   \note If \ref rocsparse_spsm_stage_auto is selected, rocSPARSE will automatically detect
+  !>   which stage is required based on the following indicators:
+  !>   If \p temp_buffer is equal to \p nullptr, the required buffer size will be returned.
+  !>   If \p buffer_size is equal to \p nullptr, analysis will be performed.
+  !>   Otherwise, the SpSM preprocess and the SpSM algorithm will be executed.
+  !> 
+  !>   \note
+  !>   This function is non blocking and executed asynchronously with respect to the host.
+  !>   It may return before the actual computation has finished.
+  !> 
+  !>   \note
+  !>   Currently, only \p trans_A == \ref rocsparse_operation_none and \p trans_A == \ref rocsparse_operation_transpose is supported.
+  !>   Currently, only \p trans_B == \ref rocsparse_operation_none and \p trans_B == \ref rocsparse_operation_transpose is supported.
+  !> 
+  !>   @param[in]
+  !>   handle       handle to the rocsparse library context queue.
+  !>   @param[in]
+  !>   trans_A      matrix operation type for the sparse matrix A.
+  !>   @param[in]
+  !>   trans_B      matrix operation type for the dense matrix B.
+  !>   @param[in]
+  !>   alpha        scalar \f$\alpha\f$.
+  !>   @param[in]
+  !>   matA          sparse matrix descriptor.
+  !>   @param[in]
+  !>   matB          dense matrix descriptor.
+  !>   @param[inout]
+  !>   matC          dense matrix descriptor.
+  !>   @param[in]
+  !>   compute_type floating point precision for the SpSM computation.
+  !>   @param[in]
+  !>   alg          SpSM algorithm for the SpSM computation.
+  !>   @param[in]
+  !>   stage        SpSM stage for the SpSM computation.
+  !>   @param[out]
+  !>   buffer_size  number of bytes of the temporary storage buffer.
+  !>   @param[in]
+  !>   temp_buffer  temporary storage buffer allocated by the user. When a nullptr is passed,
+  !>                the required allocation size (in bytes) is written to \p buffer_size and
+  !>                function returns without performing the SpSM operation.
+  !> 
+  !>   \retval      rocsparse_status_success the operation completed successfully.
+  !>   \retval      rocsparse_status_invalid_handle the library context was not initialized.
+  !>   \retval      rocsparse_status_invalid_pointer \p alpha, \p matA, \p matB, \p matC, \p descr or
+  !>                \p buffer_size pointer is invalid.
+  !>   \retval      rocsparse_status_not_implemented \p trans_A, \p trans_B, \p compute_type, \p stage or \p alg is
+  !>                currently not supported.
+  !> 
+  interface rocsparse_spsm
+    function rocsparse_spsm_raw(handle,trans_A,trans_B,alpha,matA,matB,matC,compute_type,alg,stage,buffer_size,temp_buffer) bind(c, name="rocsparse_spsm")
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_spsm_raw
+      type(c_ptr),value :: handle
+      integer(kind(rocsparse_operation_none)),value :: trans_A
+      integer(kind(rocsparse_operation_none)),value :: trans_B
+      type(c_ptr),value :: alpha
+      type(c_ptr),value :: matA
+      type(c_ptr),value :: matB
+      type(c_ptr),value :: matC
+      integer(kind(rocsparse_datatype_f32_r)),value :: compute_type
+      integer(kind(rocsparse_spsm_alg_default)),value :: alg
+      integer(kind(rocsparse_spsm_stage_auto)),value :: stage
+      integer(c_size_t) :: buffer_size
+      type(c_ptr),value :: temp_buffer
+    end function
+
+
+  end interface
+  !> ! \ingroup generic_module
   !>   \brief Sparse matrix dense matrix multiplication
   !> 
   !>   \details
   !>   \p rocsparse_spmm multiplies the scalar \f$\alpha\f$ with a sparse \f$m \times k\f$
+  !>   matrix \f$A\f$, defined in CSR, COO or Blocked ELL storage format, and the dense \f$k \times n\f$
+  !>   matrix \f$B\f$ and adds the result to the dense \f$m \times n\f$ matrix \f$C\f$ that
+  !>   is multiplied by the scalar \f$\beta\f$, such that
+  !>   \f[
+  !>     C := \alpha \cdot op(A) \cdot op(B) + \beta \cdot C,
+  !>   \f]
+  !>   with
+  !>   \f[
+  !>     op(A) = \left\{
+  !>     \begin{array}{ll}
+  !>         A,   & \text{if trans_A == rocsparse_operation_none} \\
+  !>         A^T, & \text{if trans_A == rocsparse_operation_transpose} \\
+  !>         A^H, & \text{if trans_A == rocsparse_operation_conjugate_transpose}
+  !>     \end{array}
+  !>     \right.
+  !>   \f]
+  !>   and
+  !>   \f[
+  !>     op(B) = \left\{
+  !>     \begin{array}{ll}
+  !>         B,   & \text{if trans_B == rocsparse_operation_none} \\
+  !>         B^T, & \text{if trans_B == rocsparse_operation_transpose} \\
+  !>         B^H, & \text{if trans_B == rocsparse_operation_conjugate_transpose}
+  !>     \end{array}
+  !>     \right.
+  !>   \f]
+  !> 
+  !>   \note
+  !>   This function is non blocking and executed asynchronously with respect to the host.
+  !>   It may return before the actual computation has finished.
+  !> 
+  !>   \note
+  !>   Currently, only \p trans_A == \ref rocsparse_operation_none is supported.
+  !> 
+  !>   \note
+  !>   Currently, only CSR, COO and Blocked ELL sparse formats are supported.
+  !> 
+  !>   \note
+  !>   Different algorithms are available which can provide better performance for different matrices.
+  !>   Currently, the available algorithms are rocsparse_spmm_alg_csr, rocsparse_spmm_alg_csr_row_split
+  !>   or rocsparse_spmm_alg_csr_merge for CSR matrices, rocsparse_spmm_alg_bell for Blocked ELL matrices and
+  !>   rocsparse_spmm_alg_coo_segmented or rocsparse_spmm_alg_coo_atomic for COO matrices. Additionally,
+  !>   one can specify the algorithm to be rocsparse_spmm_alg_default. In the case of CSR matrices this will
+  !>   set the algorithm to be rocsparse_spmm_alg_csr, in the case of Blocked ELL matrices this will set the algorithm to be rocsparse_spmm_alg_bell and for COO matrices it will set the algorithm to be rocsparse_spmm_alg_coo_atomic.
+  !> 
+  !>   \note
+  !>   This function writes the required allocation size (in bytes) to \p buffer_size and
+  !>   returns without performing the SpMM operation, when a nullptr is passed for
+  !>   \p temp_buffer.
+  !> 
+  !>   \note
+  !>   This function is non blocking and executed asynchronously with respect to the host.
+  !>   It may return before the actual computation has finished.
+  !> 
+  !>   @param[in]
+  !>   handle       handle to the rocsparse library context queue.
+  !>   @param[in]
+  !>   trans_A      matrix operation type.
+  !>   @param[in]
+  !>   trans_B      matrix operation type.
+  !>   @param[in]
+  !>   alpha        scalar \f$\alpha\f$.
+  !>   @param[in]
+  !>   mat_A        matrix descriptor.
+  !>   @param[in]
+  !>   mat_B        matrix descriptor.
+  !>   @param[in]
+  !>   beta         scalar \f$\beta\f$.
+  !>   @param[in]
+  !>   mat_C        matrix descriptor.
+  !>   @param[in]
+  !>   compute_type floating point precision for the SpMM computation.
+  !>   @param[in]
+  !>   alg          SpMM algorithm for the SpMM computation.
+  !>   @param[out]
+  !>   buffer_size  number of bytes of the temporary storage buffer. When \p buffer_size is not nullptr
+  !>                and \p temp_buffer is nullptr, \p buffer_size will be set and the function returns
+  !>                without performing the SpMM operation. Currently only rocsparse_spmm_alg_csr_merge
+  !>                requires a user allocated buffer. Attempting to get the buffer size with any other
+  !>                algorithm will return a buffer size of 4 bytes and is not required.
+  !>   @param[in]
+  !>   temp_buffer  temporary storage buffer allocated by the user. When \p temp_buffer is not nullptr
+  !>                and \p buffer_size is nullptr, \p temp_buffer will be filled with any analysis data
+  !>                and the function returns without performing the SpMM operation. Currently only
+  !>                rocsparse_spmm_alg_csr_merge requires analysis data. Attempting to perform analysis
+  !>                with any other algorithm does nothing and is not necessary.
+  !> 
+  !>   \retval      rocsparse_status_success the operation completed successfully.
+  !>   \retval      rocsparse_status_invalid_handle the library context was not initialized.
+  !>   \retval      rocsparse_status_invalid_pointer \p alpha, \p mat_A, \p mat_B, \p mat_C, \p beta, or
+  !>                \p buffer_size pointer is invalid.
+  !>   \retval      rocsparse_status_not_implemented \p trans_A, \p trans_B, \p compute_type or \p alg is
+  !>                currently not supported.
+  !> 
+  interface rocsparse_spmm
+    function rocsparse_spmm_raw(handle,trans_A,trans_B,alpha,mat_A,mat_B,beta,mat_C,compute_type,alg,buffer_size,temp_buffer) bind(c, name="rocsparse_spmm")
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_spmm_raw
+      type(c_ptr),value :: handle
+      integer(kind(rocsparse_operation_none)),value :: trans_A
+      integer(kind(rocsparse_operation_none)),value :: trans_B
+      type(c_ptr),value :: alpha
+      type(c_ptr),value :: mat_A
+      type(c_ptr),value :: mat_B
+      type(c_ptr),value :: beta
+      type(c_ptr),value :: mat_C
+      integer(kind(rocsparse_datatype_f32_r)),value :: compute_type
+      integer(kind(rocsparse_spmm_alg_default)),value :: alg
+      integer(c_size_t) :: buffer_size
+      type(c_ptr),value :: temp_buffer
+    end function
+
+
+  end interface
+  !> ! \ingroup generic_module
+  !>   \brief Sparse matrix dense matrix multiplication, extension routine.
+  !> 
+  !>   \details
+  !>   \p rocsparse_spmm_ex multiplies the scalar \f$\alpha\f$ with a sparse \f$m \times k\f$
   !>   matrix \f$A\f$, defined in CSR or COO storage format, and the dense \f$k \times n\f$
   !>   matrix \f$B\f$ and adds the result to the dense \f$m \times n\f$ matrix \f$C\f$ that
   !>   is multiplied by the scalar \f$\beta\f$, such that
@@ -13515,6 +13994,16 @@ rocsparse_zgebsr2csr_rank_1
   !>   This function is non blocking and executed asynchronously with respect to the host.
   !>   It may return before the actual computation has finished.
   !> 
+  !>   \note SpMM requires three stages to complete. The first stage
+  !>   \ref rocsparse_spmm_stage_buffer_size will return the size of the temporary storage buffer
+  !>   that is required for subsequent calls to \ref rocsparse_spmm_ex. The second stage
+  !>   \ref rocsparse_spmm_stage_preprocess will preprocess data that would be saved in the temporary storage buffer.
+  !>   In the final stage \ref rocsparse_spmm_stage_compute, the actual computation is performed.
+  !>   \note If \ref rocsparse_spgemm_stage_auto is selected, rocSPARSE will automatically detect
+  !>   which stage is required based on the following indicators:
+  !>   If \p temp_buffer is equal to \p nullptr, the required buffer size will be returned.
+  !>   Else, the SpMM preprocess and the SpMM algorithm will be executed.
+  !> 
   !>   @param[in]
   !>   handle       handle to the rocsparse library context queue.
   !>   @param[in]
@@ -13535,6 +14024,8 @@ rocsparse_zgebsr2csr_rank_1
   !>   compute_type floating point precision for the SpMM computation.
   !>   @param[in]
   !>   alg          SpMM algorithm for the SpMM computation.
+  !>   @param[in]
+  !>   stage        SpMM stage for the SpMM computation.
   !>   @param[out]
   !>   buffer_size  number of bytes of the temporary storage buffer. buffer_size is set when
   !>                \p temp_buffer is nullptr.
@@ -13550,12 +14041,12 @@ rocsparse_zgebsr2csr_rank_1
   !>   \retval      rocsparse_status_not_implemented \p trans_A, \p trans_B, \p compute_type or \p alg is
   !>                currently not supported.
   !> 
-  interface rocsparse_spmm
-    function rocsparse_spmm_raw(handle,trans_A,trans_B,alpha,mat_A,mat_B,beta,mat_C,compute_type,alg,buffer_size,temp_buffer) bind(c, name="rocsparse_spmm")
+  interface rocsparse_spmm_ex
+    function rocsparse_spmm_ex_raw(handle,trans_A,trans_B,alpha,mat_A,mat_B,beta,mat_C,compute_type,alg,stage,buffer_size,temp_buffer) bind(c, name="rocsparse_spmm_ex")
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spmm_raw
+      integer(kind(rocsparse_status_success)) :: rocsparse_spmm_ex_raw
       type(c_ptr),value :: handle
       integer(kind(rocsparse_operation_none)),value :: trans_A
       integer(kind(rocsparse_operation_none)),value :: trans_B
@@ -13566,6 +14057,7 @@ rocsparse_zgebsr2csr_rank_1
       type(c_ptr),value :: mat_C
       integer(kind(rocsparse_datatype_f32_r)),value :: compute_type
       integer(kind(rocsparse_spmm_alg_default)),value :: alg
+      integer(kind(rocsparse_spmm_stage_auto)),value :: stage
       integer(c_size_t) :: buffer_size
       type(c_ptr),value :: temp_buffer
     end function
@@ -14769,6 +15261,36 @@ rocsparse_zcsrcolor_rank_1
       integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_zsctr_rank_1 = rocsparse_zsctr_raw(handle,nnz,c_loc(x_val),c_loc(x_ind),c_loc(y),idx_base)
+    end function
+
+    function rocsparse_isctr_rank_0(handle,nnz,x_val,x_ind,y,idx_base)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_isctr_rank_0
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
+      integer(c_int),target :: x_val
+      integer(c_int),target :: x_ind
+      integer(c_int),target :: y
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      !
+      rocsparse_isctr_rank_0 = rocsparse_isctr_raw(handle,nnz,c_loc(x_val),c_loc(x_ind),c_loc(y),idx_base)
+    end function
+
+    function rocsparse_isctr_rank_1(handle,nnz,x_val,x_ind,y,idx_base)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_isctr_rank_1
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
+      integer(c_int),target,dimension(:) :: x_val
+      integer(c_int),target,dimension(:) :: x_ind
+      integer(c_int),target,dimension(:) :: y
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      !
+      rocsparse_isctr_rank_1 = rocsparse_isctr_raw(handle,nnz,c_loc(x_val),c_loc(x_ind),c_loc(y),idx_base)
     end function
 
     function rocsparse_sbsrmv_rank_0(handle,dir,trans,mb,nb,nnzb,alpha,descr,bsr_val,bsr_row_ptr,bsr_col_ind,block_dim,x,beta,y)

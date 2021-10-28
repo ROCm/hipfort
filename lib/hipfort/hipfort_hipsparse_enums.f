@@ -106,6 +106,7 @@ module hipfort_hipsparse_enums
     enumerator :: HIPSPARSE_FORMAT_CSR = 1
     enumerator :: HIPSPARSE_FORMAT_COO = 3
     enumerator :: HIPSPARSE_FORMAT_COO_AOS = 4
+    enumerator :: HIPSPARSE_FORMAT_BLOCKED_ELL = 5
   end enum
 
   enum, bind(c)
@@ -124,6 +125,11 @@ module hipfort_hipsparse_enums
     enumerator :: HIPSPARSE_COOMV_ALG = 1
     enumerator :: HIPSPARSE_CSRMV_ALG1 = 2
     enumerator :: HIPSPARSE_CSRMV_ALG2 = 3
+    enumerator :: HIPSPARSE_SPMV_ALG_DEFAULT = 4
+    enumerator :: HIPSPARSE_SPMV_COO_ALG1 = 5
+    enumerator :: HIPSPARSE_SPMV_COO_ALG2 = 6
+    enumerator :: HIPSPARSE_SPMV_CSR_ALG1 = 7
+    enumerator :: HIPSPARSE_SPMV_CSR_ALG2 = 8
   end enum
 
   enum, bind(c)
@@ -139,6 +145,8 @@ module hipfort_hipsparse_enums
     enumerator :: HIPSPARSE_SPMM_COO_ALG4 = 9
     enumerator :: HIPSPARSE_SPMM_CSR_ALG1 = 10
     enumerator :: HIPSPARSE_SPMM_CSR_ALG2 = 11
+    enumerator :: HIPSPARSE_SPMM_BLOCKED_ELL_ALG1 = 12
+    enumerator :: HIPSPARSE_SPMM_CSR_ALG3 = 13
   end enum
 
   enum, bind(c)
@@ -151,6 +159,19 @@ module hipfort_hipsparse_enums
 
   enum, bind(c)
     enumerator :: HIPSPARSE_SDDMM_ALG_DEFAULT = 0
+  end enum
+
+  enum, bind(c)
+    enumerator :: HIPSPARSE_SPSV_ALG_DEFAULT = 0
+  end enum
+
+  enum, bind(c)
+    enumerator :: HIPSPARSE_SPSM_ALG_DEFAULT = 0
+  end enum
+
+  enum, bind(c)
+    enumerator :: HIPSPARSE_SPMAT_FILL_MODE = 0
+    enumerator :: HIPSPARSE_SPMAT_DIAG_TYPE = 1
   end enum
 
   enum, bind(c)

@@ -52,5 +52,4 @@ program hipfft_example
   call hipfftcheck( hipfftDestroy(plan))
 
   write(*,*) "PASSED!"
-
 end program hipfft_example
