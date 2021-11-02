@@ -48,6 +48,7 @@ function usage(){
     -lrocfft    Link to rocfft library
     -lrocrand   Link to rocrand library
     -lhipblas   Link to hipblas library
+    -lhipfft    Link to hipfft library
     -lhiprand   Link to hiprand library
     -lcusolver  Link to cusolver library
     -lcusparse  Link to cusparse library
@@ -197,6 +198,7 @@ while [ $# -gt 0 ] ; do
       -lrocfft)         ROCM_LIBS+=" rocfft" ;;
       -lhipsparse)      ROCM_LIBS+=" hipsparse" ;;
       -lhipblas)        ROCM_LIBS+=" hipblas" ;;
+      -lhipfft)         ROCM_LIBS+=" hipfft" ;;
       -lhiprand)        ROCM_LIBS+=" hiprand" ;;
       -lcusolver)       CUDA_LIBS+=" cusolver" ;;
       -lcusparse)       CUDA_LIBS+=" cusparse" ;;
@@ -204,8 +206,8 @@ while [ $# -gt 0 ] ; do
       -lcublas)         CUDA_LIBS+=" cublas" ;;
       -lcurand)         CUDA_LIBS+=" curand" ;;
       -triple)          TARGET_TRIPLE=$2; shift ;;
-      -cuda-path)        CUDA_PATH=$2; shift ;;
-      -rocm-path)        ROCM_PATH=$2; shift ;;
+      -cuda-path)       CUDA_PATH=$2; shift ;;
+      -rocm-path)       ROCM_PATH=$2; shift ;;
       -hipfort)         HIPFORT=$2; shift ;;
       -hipfort-compiler) HIPFORT_COMPILER=$2; shift ;;
       -h) 	        usage ;;
