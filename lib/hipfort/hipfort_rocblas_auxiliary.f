@@ -27,7 +27,7 @@
 module hipfort_rocblas_auxiliary
 
   interface rocblas_set_vector
-    function rocblas_set_vector_raw(n,elem_size,x,incx,y,incy) bind(c, name="rocblas_set_vector") result(ret)
+    function rocblas_set_vector_(n,elem_size,x,incx,y,incy) bind(c, name="rocblas_set_vector") result(ret)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -52,7 +52,7 @@ module hipfort_rocblas_auxiliary
   end interface
 
   interface rocblas_get_vector
-    function rocblas_get_vector_raw(n,elem_size,x,incx,y,incy) bind(c, name="rocblas_get_vector") result(ret)
+    function rocblas_get_vector_(n,elem_size,x,incx,y,incy) bind(c, name="rocblas_get_vector") result(ret)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -77,7 +77,7 @@ module hipfort_rocblas_auxiliary
   end interface
 
   interface rocblas_set_matrix
-    function rocblas_set_matrix_raw(rows,cols,elem_size,A,lda,B,ldb) bind(c, name="rocblas_set_matrix") result(ret)
+    function rocblas_set_matrix_(rows,cols,elem_size,A,lda,B,ldb) bind(c, name="rocblas_set_matrix") result(ret)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -103,7 +103,7 @@ module hipfort_rocblas_auxiliary
   end interface
 
   interface rocblas_get_matrix
-    function rocblas_get_matrix_raw(rows,cols,elem_size,A,lda,B,ldb) bind(c, name="rocblas_get_matrix") result(ret)
+    function rocblas_get_matrix_(rows,cols,elem_size,A,lda,B,ldb) bind(c, name="rocblas_get_matrix") result(ret)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -129,7 +129,7 @@ module hipfort_rocblas_auxiliary
   end interface
 
   interface rocblas_set_vector_async
-    function rocblas_set_vector_async_raw(n,elem_size,x,incx,y,incy,stream) bind(c, name="rocblas_set_vector_async") result(ret)
+    function rocblas_set_vector_async_(n,elem_size,x,incx,y,incy,stream) bind(c, name="rocblas_set_vector_async") result(ret)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -155,7 +155,7 @@ module hipfort_rocblas_auxiliary
   end interface
 
   interface rocblas_get_vector_async
-    function rocblas_get_vector_async_raw(n,elem_size,x,incx,y,incy,stream) bind(c, name="rocblas_get_vector_async") result(ret)
+    function rocblas_get_vector_async_(n,elem_size,x,incx,y,incy,stream) bind(c, name="rocblas_get_vector_async") result(ret)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -181,7 +181,7 @@ module hipfort_rocblas_auxiliary
   end interface
 
   interface rocblas_set_matrix_async
-    function rocblas_set_matrix_async_raw(rows,cols,elem_size,A,lda,B,ldb,stream) bind(c, name="rocblas_set_matrix_async") result(ret)
+    function rocblas_set_matrix_async_(rows,cols,elem_size,A,lda,B,ldb,stream) bind(c, name="rocblas_set_matrix_async") result(ret)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -208,7 +208,7 @@ module hipfort_rocblas_auxiliary
   end interface
 
   interface rocblas_get_matrix_async
-    function rocblas_get_matrix_async_raw(rows,cols,elem_size,A,lda,B,ldb,stream) bind(c, name="rocblas_get_matrix_async") result(ret)
+    function rocblas_get_matrix_async_(rows,cols,elem_size,A,lda,B,ldb,stream) bind(c, name="rocblas_get_matrix_async") result(ret)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -248,7 +248,7 @@ contains
       logical,target :: y
       integer(c_int),value :: incy
       !
-      ret = rocblas_set_vector_raw(n,1,c_loc(x),incx,c_loc(y),incy)
+      ret = rocblas_set_vector_(n,1,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function rocblas_set_vector_l_full_rank(n,x,incx,y,incy) result(ret)
@@ -262,7 +262,7 @@ contains
       logical,target,dimension(:) :: y
       integer(c_int),value :: incy
       !
-      ret = rocblas_set_vector_raw(n,1,c_loc(x),incx,c_loc(y),incy)
+      ret = rocblas_set_vector_(n,1,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function rocblas_get_vector_l_rank_0(n,x,incx,y,incy) result(ret)
@@ -276,7 +276,7 @@ contains
       logical,target :: y
       integer(c_int),value :: incy
       !
-      ret = rocblas_get_vector_raw(n,1,c_loc(x),incx,c_loc(y),incy)
+      ret = rocblas_get_vector_(n,1,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function rocblas_get_vector_l_full_rank(n,x,incx,y,incy) result(ret)
@@ -290,7 +290,7 @@ contains
       logical,target,dimension(:) :: y
       integer(c_int),value :: incy
       !
-      ret = rocblas_get_vector_raw(n,1,c_loc(x),incx,c_loc(y),incy)
+      ret = rocblas_get_vector_(n,1,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function rocblas_set_matrix_l_full_rank(rows,cols,A,B) result(ret)
@@ -303,7 +303,7 @@ contains
       logical,target,dimension(:,:) :: A
       logical,target,dimension(:,:) :: B
       !
-      ret = rocblas_set_matrix_raw(rows,cols,1,c_loc(A),size(A,1),c_loc(B),size(B,1))
+      ret = rocblas_set_matrix_(rows,cols,1,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
 
     function rocblas_set_matrix_l_rank_0(rows,cols,A,lda,B,ldb) result(ret)
@@ -318,7 +318,7 @@ contains
       logical,target :: B
       integer(c_int),value :: ldb
       !
-      ret = rocblas_set_matrix_raw(rows,cols,1,c_loc(A),lda,c_loc(B),ldb)
+      ret = rocblas_set_matrix_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function rocblas_set_matrix_l_rank_1(rows,cols,A,lda,B,ldb) result(ret)
@@ -333,7 +333,7 @@ contains
       logical,target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
-      ret = rocblas_set_matrix_raw(rows,cols,1,c_loc(A),lda,c_loc(B),ldb)
+      ret = rocblas_set_matrix_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function rocblas_get_matrix_l_full_rank(rows,cols,A,B) result(ret)
@@ -346,7 +346,7 @@ contains
       logical,target,dimension(:,:) :: A
       logical,target,dimension(:,:) :: B
       !
-      ret = rocblas_get_matrix_raw(rows,cols,1,c_loc(A),size(A,1),c_loc(B),size(B,1))
+      ret = rocblas_get_matrix_(rows,cols,1,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
 
     function rocblas_get_matrix_l_rank_0(rows,cols,A,lda,B,ldb) result(ret)
@@ -361,7 +361,7 @@ contains
       logical,target :: B
       integer(c_int),value :: ldb
       !
-      ret = rocblas_get_matrix_raw(rows,cols,1,c_loc(A),lda,c_loc(B),ldb)
+      ret = rocblas_get_matrix_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function rocblas_get_matrix_l_rank_1(rows,cols,A,lda,B,ldb) result(ret)
@@ -376,7 +376,7 @@ contains
       logical,target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
-      ret = rocblas_get_matrix_raw(rows,cols,1,c_loc(A),lda,c_loc(B),ldb)
+      ret = rocblas_get_matrix_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function rocblas_set_vector_async_l_rank_0(n,x,incx,y,incy,stream) result(ret)
@@ -391,7 +391,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = rocblas_set_vector_async_raw(n,1,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = rocblas_set_vector_async_(n,1,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function rocblas_set_vector_async_l_full_rank(n,x,incx,y,incy,stream) result(ret)
@@ -406,7 +406,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = rocblas_set_vector_async_raw(n,1,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = rocblas_set_vector_async_(n,1,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function rocblas_get_vector_async_l_rank_0(n,x,incx,y,incy,stream) result(ret)
@@ -421,7 +421,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = rocblas_get_vector_async_raw(n,1,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = rocblas_get_vector_async_(n,1,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function rocblas_get_vector_async_l_full_rank(n,x,incx,y,incy,stream) result(ret)
@@ -436,7 +436,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = rocblas_get_vector_async_raw(n,1,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = rocblas_get_vector_async_(n,1,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function rocblas_set_matrix_async_l_full_rank(rows,cols,A,B,stream) result(ret)
@@ -450,7 +450,7 @@ contains
       logical,target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
-      ret = rocblas_set_matrix_async_raw(rows,cols,1,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
+      ret = rocblas_set_matrix_async_(rows,cols,1,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
     end function
 
     function rocblas_set_matrix_async_l_rank_0(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -466,7 +466,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = rocblas_set_matrix_async_raw(rows,cols,1,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = rocblas_set_matrix_async_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
     function rocblas_set_matrix_async_l_rank_1(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -482,7 +482,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = rocblas_set_matrix_async_raw(rows,cols,1,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = rocblas_set_matrix_async_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
     function rocblas_get_matrix_async_l_full_rank(rows,cols,A,B,stream) result(ret)
@@ -496,7 +496,7 @@ contains
       logical,target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
-      ret = rocblas_get_matrix_async_raw(rows,cols,1,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
+      ret = rocblas_get_matrix_async_(rows,cols,1,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
     end function
 
     function rocblas_get_matrix_async_l_rank_0(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -512,7 +512,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = rocblas_get_matrix_async_raw(rows,cols,1,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = rocblas_get_matrix_async_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
     function rocblas_get_matrix_async_l_rank_1(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -528,7 +528,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = rocblas_get_matrix_async_raw(rows,cols,1,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = rocblas_get_matrix_async_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
     function rocblas_set_vector_i4_rank_0(n,x,incx,y,incy) result(ret)
       use iso_c_binding
@@ -541,7 +541,7 @@ contains
       integer(4),target :: y
       integer(c_int),value :: incy
       !
-      ret = rocblas_set_vector_raw(n,4,c_loc(x),incx,c_loc(y),incy)
+      ret = rocblas_set_vector_(n,4,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function rocblas_set_vector_i4_full_rank(n,x,incx,y,incy) result(ret)
@@ -555,7 +555,7 @@ contains
       integer(4),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
-      ret = rocblas_set_vector_raw(n,4,c_loc(x),incx,c_loc(y),incy)
+      ret = rocblas_set_vector_(n,4,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function rocblas_get_vector_i4_rank_0(n,x,incx,y,incy) result(ret)
@@ -569,7 +569,7 @@ contains
       integer(4),target :: y
       integer(c_int),value :: incy
       !
-      ret = rocblas_get_vector_raw(n,4,c_loc(x),incx,c_loc(y),incy)
+      ret = rocblas_get_vector_(n,4,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function rocblas_get_vector_i4_full_rank(n,x,incx,y,incy) result(ret)
@@ -583,7 +583,7 @@ contains
       integer(4),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
-      ret = rocblas_get_vector_raw(n,4,c_loc(x),incx,c_loc(y),incy)
+      ret = rocblas_get_vector_(n,4,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function rocblas_set_matrix_i4_full_rank(rows,cols,A,B) result(ret)
@@ -596,7 +596,7 @@ contains
       integer(4),target,dimension(:,:) :: A
       integer(4),target,dimension(:,:) :: B
       !
-      ret = rocblas_set_matrix_raw(rows,cols,4,c_loc(A),size(A,1),c_loc(B),size(B,1))
+      ret = rocblas_set_matrix_(rows,cols,4,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
 
     function rocblas_set_matrix_i4_rank_0(rows,cols,A,lda,B,ldb) result(ret)
@@ -611,7 +611,7 @@ contains
       integer(4),target :: B
       integer(c_int),value :: ldb
       !
-      ret = rocblas_set_matrix_raw(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
+      ret = rocblas_set_matrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function rocblas_set_matrix_i4_rank_1(rows,cols,A,lda,B,ldb) result(ret)
@@ -626,7 +626,7 @@ contains
       integer(4),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
-      ret = rocblas_set_matrix_raw(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
+      ret = rocblas_set_matrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function rocblas_get_matrix_i4_full_rank(rows,cols,A,B) result(ret)
@@ -639,7 +639,7 @@ contains
       integer(4),target,dimension(:,:) :: A
       integer(4),target,dimension(:,:) :: B
       !
-      ret = rocblas_get_matrix_raw(rows,cols,4,c_loc(A),size(A,1),c_loc(B),size(B,1))
+      ret = rocblas_get_matrix_(rows,cols,4,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
 
     function rocblas_get_matrix_i4_rank_0(rows,cols,A,lda,B,ldb) result(ret)
@@ -654,7 +654,7 @@ contains
       integer(4),target :: B
       integer(c_int),value :: ldb
       !
-      ret = rocblas_get_matrix_raw(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
+      ret = rocblas_get_matrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function rocblas_get_matrix_i4_rank_1(rows,cols,A,lda,B,ldb) result(ret)
@@ -669,7 +669,7 @@ contains
       integer(4),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
-      ret = rocblas_get_matrix_raw(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
+      ret = rocblas_get_matrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function rocblas_set_vector_async_i4_rank_0(n,x,incx,y,incy,stream) result(ret)
@@ -684,7 +684,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = rocblas_set_vector_async_raw(n,4,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = rocblas_set_vector_async_(n,4,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function rocblas_set_vector_async_i4_full_rank(n,x,incx,y,incy,stream) result(ret)
@@ -699,7 +699,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = rocblas_set_vector_async_raw(n,4,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = rocblas_set_vector_async_(n,4,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function rocblas_get_vector_async_i4_rank_0(n,x,incx,y,incy,stream) result(ret)
@@ -714,7 +714,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = rocblas_get_vector_async_raw(n,4,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = rocblas_get_vector_async_(n,4,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function rocblas_get_vector_async_i4_full_rank(n,x,incx,y,incy,stream) result(ret)
@@ -729,7 +729,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = rocblas_get_vector_async_raw(n,4,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = rocblas_get_vector_async_(n,4,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function rocblas_set_matrix_async_i4_full_rank(rows,cols,A,B,stream) result(ret)
@@ -743,7 +743,7 @@ contains
       integer(4),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
-      ret = rocblas_set_matrix_async_raw(rows,cols,4,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
+      ret = rocblas_set_matrix_async_(rows,cols,4,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
     end function
 
     function rocblas_set_matrix_async_i4_rank_0(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -759,7 +759,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = rocblas_set_matrix_async_raw(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = rocblas_set_matrix_async_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
     function rocblas_set_matrix_async_i4_rank_1(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -775,7 +775,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = rocblas_set_matrix_async_raw(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = rocblas_set_matrix_async_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
     function rocblas_get_matrix_async_i4_full_rank(rows,cols,A,B,stream) result(ret)
@@ -789,7 +789,7 @@ contains
       integer(4),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
-      ret = rocblas_get_matrix_async_raw(rows,cols,4,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
+      ret = rocblas_get_matrix_async_(rows,cols,4,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
     end function
 
     function rocblas_get_matrix_async_i4_rank_0(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -805,7 +805,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = rocblas_get_matrix_async_raw(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = rocblas_get_matrix_async_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
     function rocblas_get_matrix_async_i4_rank_1(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -821,7 +821,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = rocblas_get_matrix_async_raw(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = rocblas_get_matrix_async_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
     function rocblas_set_vector_i8_rank_0(n,x,incx,y,incy) result(ret)
       use iso_c_binding
@@ -834,7 +834,7 @@ contains
       integer(8),target :: y
       integer(c_int),value :: incy
       !
-      ret = rocblas_set_vector_raw(n,8,c_loc(x),incx,c_loc(y),incy)
+      ret = rocblas_set_vector_(n,8,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function rocblas_set_vector_i8_full_rank(n,x,incx,y,incy) result(ret)
@@ -848,7 +848,7 @@ contains
       integer(8),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
-      ret = rocblas_set_vector_raw(n,8,c_loc(x),incx,c_loc(y),incy)
+      ret = rocblas_set_vector_(n,8,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function rocblas_get_vector_i8_rank_0(n,x,incx,y,incy) result(ret)
@@ -862,7 +862,7 @@ contains
       integer(8),target :: y
       integer(c_int),value :: incy
       !
-      ret = rocblas_get_vector_raw(n,8,c_loc(x),incx,c_loc(y),incy)
+      ret = rocblas_get_vector_(n,8,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function rocblas_get_vector_i8_full_rank(n,x,incx,y,incy) result(ret)
@@ -876,7 +876,7 @@ contains
       integer(8),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
-      ret = rocblas_get_vector_raw(n,8,c_loc(x),incx,c_loc(y),incy)
+      ret = rocblas_get_vector_(n,8,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function rocblas_set_matrix_i8_full_rank(rows,cols,A,B) result(ret)
@@ -889,7 +889,7 @@ contains
       integer(8),target,dimension(:,:) :: A
       integer(8),target,dimension(:,:) :: B
       !
-      ret = rocblas_set_matrix_raw(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1))
+      ret = rocblas_set_matrix_(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
 
     function rocblas_set_matrix_i8_rank_0(rows,cols,A,lda,B,ldb) result(ret)
@@ -904,7 +904,7 @@ contains
       integer(8),target :: B
       integer(c_int),value :: ldb
       !
-      ret = rocblas_set_matrix_raw(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
+      ret = rocblas_set_matrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function rocblas_set_matrix_i8_rank_1(rows,cols,A,lda,B,ldb) result(ret)
@@ -919,7 +919,7 @@ contains
       integer(8),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
-      ret = rocblas_set_matrix_raw(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
+      ret = rocblas_set_matrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function rocblas_get_matrix_i8_full_rank(rows,cols,A,B) result(ret)
@@ -932,7 +932,7 @@ contains
       integer(8),target,dimension(:,:) :: A
       integer(8),target,dimension(:,:) :: B
       !
-      ret = rocblas_get_matrix_raw(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1))
+      ret = rocblas_get_matrix_(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
 
     function rocblas_get_matrix_i8_rank_0(rows,cols,A,lda,B,ldb) result(ret)
@@ -947,7 +947,7 @@ contains
       integer(8),target :: B
       integer(c_int),value :: ldb
       !
-      ret = rocblas_get_matrix_raw(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
+      ret = rocblas_get_matrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function rocblas_get_matrix_i8_rank_1(rows,cols,A,lda,B,ldb) result(ret)
@@ -962,7 +962,7 @@ contains
       integer(8),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
-      ret = rocblas_get_matrix_raw(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
+      ret = rocblas_get_matrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function rocblas_set_vector_async_i8_rank_0(n,x,incx,y,incy,stream) result(ret)
@@ -977,7 +977,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = rocblas_set_vector_async_raw(n,8,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = rocblas_set_vector_async_(n,8,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function rocblas_set_vector_async_i8_full_rank(n,x,incx,y,incy,stream) result(ret)
@@ -992,7 +992,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = rocblas_set_vector_async_raw(n,8,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = rocblas_set_vector_async_(n,8,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function rocblas_get_vector_async_i8_rank_0(n,x,incx,y,incy,stream) result(ret)
@@ -1007,7 +1007,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = rocblas_get_vector_async_raw(n,8,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = rocblas_get_vector_async_(n,8,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function rocblas_get_vector_async_i8_full_rank(n,x,incx,y,incy,stream) result(ret)
@@ -1022,7 +1022,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = rocblas_get_vector_async_raw(n,8,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = rocblas_get_vector_async_(n,8,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function rocblas_set_matrix_async_i8_full_rank(rows,cols,A,B,stream) result(ret)
@@ -1036,7 +1036,7 @@ contains
       integer(8),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
-      ret = rocblas_set_matrix_async_raw(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
+      ret = rocblas_set_matrix_async_(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
     end function
 
     function rocblas_set_matrix_async_i8_rank_0(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -1052,7 +1052,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = rocblas_set_matrix_async_raw(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = rocblas_set_matrix_async_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
     function rocblas_set_matrix_async_i8_rank_1(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -1068,7 +1068,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = rocblas_set_matrix_async_raw(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = rocblas_set_matrix_async_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
     function rocblas_get_matrix_async_i8_full_rank(rows,cols,A,B,stream) result(ret)
@@ -1082,7 +1082,7 @@ contains
       integer(8),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
-      ret = rocblas_get_matrix_async_raw(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
+      ret = rocblas_get_matrix_async_(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
     end function
 
     function rocblas_get_matrix_async_i8_rank_0(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -1098,7 +1098,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = rocblas_get_matrix_async_raw(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = rocblas_get_matrix_async_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
     function rocblas_get_matrix_async_i8_rank_1(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -1114,7 +1114,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = rocblas_get_matrix_async_raw(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = rocblas_get_matrix_async_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
     function rocblas_set_vector_r4_rank_0(n,x,incx,y,incy) result(ret)
       use iso_c_binding
@@ -1127,7 +1127,7 @@ contains
       real(4),target :: y
       integer(c_int),value :: incy
       !
-      ret = rocblas_set_vector_raw(n,4,c_loc(x),incx,c_loc(y),incy)
+      ret = rocblas_set_vector_(n,4,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function rocblas_set_vector_r4_full_rank(n,x,incx,y,incy) result(ret)
@@ -1141,7 +1141,7 @@ contains
       real(4),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
-      ret = rocblas_set_vector_raw(n,4,c_loc(x),incx,c_loc(y),incy)
+      ret = rocblas_set_vector_(n,4,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function rocblas_get_vector_r4_rank_0(n,x,incx,y,incy) result(ret)
@@ -1155,7 +1155,7 @@ contains
       real(4),target :: y
       integer(c_int),value :: incy
       !
-      ret = rocblas_get_vector_raw(n,4,c_loc(x),incx,c_loc(y),incy)
+      ret = rocblas_get_vector_(n,4,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function rocblas_get_vector_r4_full_rank(n,x,incx,y,incy) result(ret)
@@ -1169,7 +1169,7 @@ contains
       real(4),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
-      ret = rocblas_get_vector_raw(n,4,c_loc(x),incx,c_loc(y),incy)
+      ret = rocblas_get_vector_(n,4,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function rocblas_set_matrix_r4_full_rank(rows,cols,A,B) result(ret)
@@ -1182,7 +1182,7 @@ contains
       real(4),target,dimension(:,:) :: A
       real(4),target,dimension(:,:) :: B
       !
-      ret = rocblas_set_matrix_raw(rows,cols,4,c_loc(A),size(A,1),c_loc(B),size(B,1))
+      ret = rocblas_set_matrix_(rows,cols,4,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
 
     function rocblas_set_matrix_r4_rank_0(rows,cols,A,lda,B,ldb) result(ret)
@@ -1197,7 +1197,7 @@ contains
       real(4),target :: B
       integer(c_int),value :: ldb
       !
-      ret = rocblas_set_matrix_raw(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
+      ret = rocblas_set_matrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function rocblas_set_matrix_r4_rank_1(rows,cols,A,lda,B,ldb) result(ret)
@@ -1212,7 +1212,7 @@ contains
       real(4),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
-      ret = rocblas_set_matrix_raw(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
+      ret = rocblas_set_matrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function rocblas_get_matrix_r4_full_rank(rows,cols,A,B) result(ret)
@@ -1225,7 +1225,7 @@ contains
       real(4),target,dimension(:,:) :: A
       real(4),target,dimension(:,:) :: B
       !
-      ret = rocblas_get_matrix_raw(rows,cols,4,c_loc(A),size(A,1),c_loc(B),size(B,1))
+      ret = rocblas_get_matrix_(rows,cols,4,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
 
     function rocblas_get_matrix_r4_rank_0(rows,cols,A,lda,B,ldb) result(ret)
@@ -1240,7 +1240,7 @@ contains
       real(4),target :: B
       integer(c_int),value :: ldb
       !
-      ret = rocblas_get_matrix_raw(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
+      ret = rocblas_get_matrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function rocblas_get_matrix_r4_rank_1(rows,cols,A,lda,B,ldb) result(ret)
@@ -1255,7 +1255,7 @@ contains
       real(4),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
-      ret = rocblas_get_matrix_raw(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
+      ret = rocblas_get_matrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function rocblas_set_vector_async_r4_rank_0(n,x,incx,y,incy,stream) result(ret)
@@ -1270,7 +1270,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = rocblas_set_vector_async_raw(n,4,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = rocblas_set_vector_async_(n,4,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function rocblas_set_vector_async_r4_full_rank(n,x,incx,y,incy,stream) result(ret)
@@ -1285,7 +1285,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = rocblas_set_vector_async_raw(n,4,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = rocblas_set_vector_async_(n,4,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function rocblas_get_vector_async_r4_rank_0(n,x,incx,y,incy,stream) result(ret)
@@ -1300,7 +1300,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = rocblas_get_vector_async_raw(n,4,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = rocblas_get_vector_async_(n,4,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function rocblas_get_vector_async_r4_full_rank(n,x,incx,y,incy,stream) result(ret)
@@ -1315,7 +1315,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = rocblas_get_vector_async_raw(n,4,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = rocblas_get_vector_async_(n,4,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function rocblas_set_matrix_async_r4_full_rank(rows,cols,A,B,stream) result(ret)
@@ -1329,7 +1329,7 @@ contains
       real(4),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
-      ret = rocblas_set_matrix_async_raw(rows,cols,4,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
+      ret = rocblas_set_matrix_async_(rows,cols,4,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
     end function
 
     function rocblas_set_matrix_async_r4_rank_0(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -1345,7 +1345,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = rocblas_set_matrix_async_raw(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = rocblas_set_matrix_async_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
     function rocblas_set_matrix_async_r4_rank_1(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -1361,7 +1361,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = rocblas_set_matrix_async_raw(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = rocblas_set_matrix_async_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
     function rocblas_get_matrix_async_r4_full_rank(rows,cols,A,B,stream) result(ret)
@@ -1375,7 +1375,7 @@ contains
       real(4),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
-      ret = rocblas_get_matrix_async_raw(rows,cols,4,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
+      ret = rocblas_get_matrix_async_(rows,cols,4,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
     end function
 
     function rocblas_get_matrix_async_r4_rank_0(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -1391,7 +1391,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = rocblas_get_matrix_async_raw(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = rocblas_get_matrix_async_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
     function rocblas_get_matrix_async_r4_rank_1(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -1407,7 +1407,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = rocblas_get_matrix_async_raw(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = rocblas_get_matrix_async_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
     function rocblas_set_vector_r8_rank_0(n,x,incx,y,incy) result(ret)
       use iso_c_binding
@@ -1420,7 +1420,7 @@ contains
       real(8),target :: y
       integer(c_int),value :: incy
       !
-      ret = rocblas_set_vector_raw(n,8,c_loc(x),incx,c_loc(y),incy)
+      ret = rocblas_set_vector_(n,8,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function rocblas_set_vector_r8_full_rank(n,x,incx,y,incy) result(ret)
@@ -1434,7 +1434,7 @@ contains
       real(8),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
-      ret = rocblas_set_vector_raw(n,8,c_loc(x),incx,c_loc(y),incy)
+      ret = rocblas_set_vector_(n,8,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function rocblas_get_vector_r8_rank_0(n,x,incx,y,incy) result(ret)
@@ -1448,7 +1448,7 @@ contains
       real(8),target :: y
       integer(c_int),value :: incy
       !
-      ret = rocblas_get_vector_raw(n,8,c_loc(x),incx,c_loc(y),incy)
+      ret = rocblas_get_vector_(n,8,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function rocblas_get_vector_r8_full_rank(n,x,incx,y,incy) result(ret)
@@ -1462,7 +1462,7 @@ contains
       real(8),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
-      ret = rocblas_get_vector_raw(n,8,c_loc(x),incx,c_loc(y),incy)
+      ret = rocblas_get_vector_(n,8,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function rocblas_set_matrix_r8_full_rank(rows,cols,A,B) result(ret)
@@ -1475,7 +1475,7 @@ contains
       real(8),target,dimension(:,:) :: A
       real(8),target,dimension(:,:) :: B
       !
-      ret = rocblas_set_matrix_raw(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1))
+      ret = rocblas_set_matrix_(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
 
     function rocblas_set_matrix_r8_rank_0(rows,cols,A,lda,B,ldb) result(ret)
@@ -1490,7 +1490,7 @@ contains
       real(8),target :: B
       integer(c_int),value :: ldb
       !
-      ret = rocblas_set_matrix_raw(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
+      ret = rocblas_set_matrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function rocblas_set_matrix_r8_rank_1(rows,cols,A,lda,B,ldb) result(ret)
@@ -1505,7 +1505,7 @@ contains
       real(8),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
-      ret = rocblas_set_matrix_raw(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
+      ret = rocblas_set_matrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function rocblas_get_matrix_r8_full_rank(rows,cols,A,B) result(ret)
@@ -1518,7 +1518,7 @@ contains
       real(8),target,dimension(:,:) :: A
       real(8),target,dimension(:,:) :: B
       !
-      ret = rocblas_get_matrix_raw(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1))
+      ret = rocblas_get_matrix_(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
 
     function rocblas_get_matrix_r8_rank_0(rows,cols,A,lda,B,ldb) result(ret)
@@ -1533,7 +1533,7 @@ contains
       real(8),target :: B
       integer(c_int),value :: ldb
       !
-      ret = rocblas_get_matrix_raw(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
+      ret = rocblas_get_matrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function rocblas_get_matrix_r8_rank_1(rows,cols,A,lda,B,ldb) result(ret)
@@ -1548,7 +1548,7 @@ contains
       real(8),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
-      ret = rocblas_get_matrix_raw(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
+      ret = rocblas_get_matrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function rocblas_set_vector_async_r8_rank_0(n,x,incx,y,incy,stream) result(ret)
@@ -1563,7 +1563,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = rocblas_set_vector_async_raw(n,8,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = rocblas_set_vector_async_(n,8,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function rocblas_set_vector_async_r8_full_rank(n,x,incx,y,incy,stream) result(ret)
@@ -1578,7 +1578,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = rocblas_set_vector_async_raw(n,8,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = rocblas_set_vector_async_(n,8,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function rocblas_get_vector_async_r8_rank_0(n,x,incx,y,incy,stream) result(ret)
@@ -1593,7 +1593,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = rocblas_get_vector_async_raw(n,8,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = rocblas_get_vector_async_(n,8,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function rocblas_get_vector_async_r8_full_rank(n,x,incx,y,incy,stream) result(ret)
@@ -1608,7 +1608,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = rocblas_get_vector_async_raw(n,8,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = rocblas_get_vector_async_(n,8,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function rocblas_set_matrix_async_r8_full_rank(rows,cols,A,B,stream) result(ret)
@@ -1622,7 +1622,7 @@ contains
       real(8),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
-      ret = rocblas_set_matrix_async_raw(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
+      ret = rocblas_set_matrix_async_(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
     end function
 
     function rocblas_set_matrix_async_r8_rank_0(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -1638,7 +1638,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = rocblas_set_matrix_async_raw(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = rocblas_set_matrix_async_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
     function rocblas_set_matrix_async_r8_rank_1(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -1654,7 +1654,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = rocblas_set_matrix_async_raw(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = rocblas_set_matrix_async_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
     function rocblas_get_matrix_async_r8_full_rank(rows,cols,A,B,stream) result(ret)
@@ -1668,7 +1668,7 @@ contains
       real(8),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
-      ret = rocblas_get_matrix_async_raw(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
+      ret = rocblas_get_matrix_async_(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
     end function
 
     function rocblas_get_matrix_async_r8_rank_0(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -1684,7 +1684,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = rocblas_get_matrix_async_raw(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = rocblas_get_matrix_async_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
     function rocblas_get_matrix_async_r8_rank_1(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -1700,7 +1700,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = rocblas_get_matrix_async_raw(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = rocblas_get_matrix_async_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
     function rocblas_set_vector_c4_rank_0(n,x,incx,y,incy) result(ret)
       use iso_c_binding
@@ -1713,7 +1713,7 @@ contains
       complex(4),target :: y
       integer(c_int),value :: incy
       !
-      ret = rocblas_set_vector_raw(n,2*4,c_loc(x),incx,c_loc(y),incy)
+      ret = rocblas_set_vector_(n,2*4,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function rocblas_set_vector_c4_full_rank(n,x,incx,y,incy) result(ret)
@@ -1727,7 +1727,7 @@ contains
       complex(4),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
-      ret = rocblas_set_vector_raw(n,2*4,c_loc(x),incx,c_loc(y),incy)
+      ret = rocblas_set_vector_(n,2*4,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function rocblas_get_vector_c4_rank_0(n,x,incx,y,incy) result(ret)
@@ -1741,7 +1741,7 @@ contains
       complex(4),target :: y
       integer(c_int),value :: incy
       !
-      ret = rocblas_get_vector_raw(n,2*4,c_loc(x),incx,c_loc(y),incy)
+      ret = rocblas_get_vector_(n,2*4,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function rocblas_get_vector_c4_full_rank(n,x,incx,y,incy) result(ret)
@@ -1755,7 +1755,7 @@ contains
       complex(4),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
-      ret = rocblas_get_vector_raw(n,2*4,c_loc(x),incx,c_loc(y),incy)
+      ret = rocblas_get_vector_(n,2*4,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function rocblas_set_matrix_c4_full_rank(rows,cols,A,B) result(ret)
@@ -1768,7 +1768,7 @@ contains
       complex(4),target,dimension(:,:) :: A
       complex(4),target,dimension(:,:) :: B
       !
-      ret = rocblas_set_matrix_raw(rows,cols,2*4,c_loc(A),size(A,1),c_loc(B),size(B,1))
+      ret = rocblas_set_matrix_(rows,cols,2*4,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
 
     function rocblas_set_matrix_c4_rank_0(rows,cols,A,lda,B,ldb) result(ret)
@@ -1783,7 +1783,7 @@ contains
       complex(4),target :: B
       integer(c_int),value :: ldb
       !
-      ret = rocblas_set_matrix_raw(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb)
+      ret = rocblas_set_matrix_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function rocblas_set_matrix_c4_rank_1(rows,cols,A,lda,B,ldb) result(ret)
@@ -1798,7 +1798,7 @@ contains
       complex(4),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
-      ret = rocblas_set_matrix_raw(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb)
+      ret = rocblas_set_matrix_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function rocblas_get_matrix_c4_full_rank(rows,cols,A,B) result(ret)
@@ -1811,7 +1811,7 @@ contains
       complex(4),target,dimension(:,:) :: A
       complex(4),target,dimension(:,:) :: B
       !
-      ret = rocblas_get_matrix_raw(rows,cols,2*4,c_loc(A),size(A,1),c_loc(B),size(B,1))
+      ret = rocblas_get_matrix_(rows,cols,2*4,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
 
     function rocblas_get_matrix_c4_rank_0(rows,cols,A,lda,B,ldb) result(ret)
@@ -1826,7 +1826,7 @@ contains
       complex(4),target :: B
       integer(c_int),value :: ldb
       !
-      ret = rocblas_get_matrix_raw(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb)
+      ret = rocblas_get_matrix_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function rocblas_get_matrix_c4_rank_1(rows,cols,A,lda,B,ldb) result(ret)
@@ -1841,7 +1841,7 @@ contains
       complex(4),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
-      ret = rocblas_get_matrix_raw(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb)
+      ret = rocblas_get_matrix_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function rocblas_set_vector_async_c4_rank_0(n,x,incx,y,incy,stream) result(ret)
@@ -1856,7 +1856,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = rocblas_set_vector_async_raw(n,2*4,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = rocblas_set_vector_async_(n,2*4,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function rocblas_set_vector_async_c4_full_rank(n,x,incx,y,incy,stream) result(ret)
@@ -1871,7 +1871,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = rocblas_set_vector_async_raw(n,2*4,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = rocblas_set_vector_async_(n,2*4,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function rocblas_get_vector_async_c4_rank_0(n,x,incx,y,incy,stream) result(ret)
@@ -1886,7 +1886,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = rocblas_get_vector_async_raw(n,2*4,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = rocblas_get_vector_async_(n,2*4,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function rocblas_get_vector_async_c4_full_rank(n,x,incx,y,incy,stream) result(ret)
@@ -1901,7 +1901,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = rocblas_get_vector_async_raw(n,2*4,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = rocblas_get_vector_async_(n,2*4,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function rocblas_set_matrix_async_c4_full_rank(rows,cols,A,B,stream) result(ret)
@@ -1915,7 +1915,7 @@ contains
       complex(4),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
-      ret = rocblas_set_matrix_async_raw(rows,cols,2*4,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
+      ret = rocblas_set_matrix_async_(rows,cols,2*4,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
     end function
 
     function rocblas_set_matrix_async_c4_rank_0(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -1931,7 +1931,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = rocblas_set_matrix_async_raw(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = rocblas_set_matrix_async_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
     function rocblas_set_matrix_async_c4_rank_1(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -1947,7 +1947,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = rocblas_set_matrix_async_raw(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = rocblas_set_matrix_async_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
     function rocblas_get_matrix_async_c4_full_rank(rows,cols,A,B,stream) result(ret)
@@ -1961,7 +1961,7 @@ contains
       complex(4),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
-      ret = rocblas_get_matrix_async_raw(rows,cols,2*4,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
+      ret = rocblas_get_matrix_async_(rows,cols,2*4,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
     end function
 
     function rocblas_get_matrix_async_c4_rank_0(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -1977,7 +1977,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = rocblas_get_matrix_async_raw(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = rocblas_get_matrix_async_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
     function rocblas_get_matrix_async_c4_rank_1(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -1993,7 +1993,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = rocblas_get_matrix_async_raw(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = rocblas_get_matrix_async_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
     function rocblas_set_vector_c8_rank_0(n,x,incx,y,incy) result(ret)
       use iso_c_binding
@@ -2006,7 +2006,7 @@ contains
       complex(8),target :: y
       integer(c_int),value :: incy
       !
-      ret = rocblas_set_vector_raw(n,2*8,c_loc(x),incx,c_loc(y),incy)
+      ret = rocblas_set_vector_(n,2*8,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function rocblas_set_vector_c8_full_rank(n,x,incx,y,incy) result(ret)
@@ -2020,7 +2020,7 @@ contains
       complex(8),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
-      ret = rocblas_set_vector_raw(n,2*8,c_loc(x),incx,c_loc(y),incy)
+      ret = rocblas_set_vector_(n,2*8,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function rocblas_get_vector_c8_rank_0(n,x,incx,y,incy) result(ret)
@@ -2034,7 +2034,7 @@ contains
       complex(8),target :: y
       integer(c_int),value :: incy
       !
-      ret = rocblas_get_vector_raw(n,2*8,c_loc(x),incx,c_loc(y),incy)
+      ret = rocblas_get_vector_(n,2*8,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function rocblas_get_vector_c8_full_rank(n,x,incx,y,incy) result(ret)
@@ -2048,7 +2048,7 @@ contains
       complex(8),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
-      ret = rocblas_get_vector_raw(n,2*8,c_loc(x),incx,c_loc(y),incy)
+      ret = rocblas_get_vector_(n,2*8,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function rocblas_set_matrix_c8_full_rank(rows,cols,A,B) result(ret)
@@ -2061,7 +2061,7 @@ contains
       complex(8),target,dimension(:,:) :: A
       complex(8),target,dimension(:,:) :: B
       !
-      ret = rocblas_set_matrix_raw(rows,cols,2*8,c_loc(A),size(A,1),c_loc(B),size(B,1))
+      ret = rocblas_set_matrix_(rows,cols,2*8,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
 
     function rocblas_set_matrix_c8_rank_0(rows,cols,A,lda,B,ldb) result(ret)
@@ -2076,7 +2076,7 @@ contains
       complex(8),target :: B
       integer(c_int),value :: ldb
       !
-      ret = rocblas_set_matrix_raw(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb)
+      ret = rocblas_set_matrix_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function rocblas_set_matrix_c8_rank_1(rows,cols,A,lda,B,ldb) result(ret)
@@ -2091,7 +2091,7 @@ contains
       complex(8),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
-      ret = rocblas_set_matrix_raw(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb)
+      ret = rocblas_set_matrix_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function rocblas_get_matrix_c8_full_rank(rows,cols,A,B) result(ret)
@@ -2104,7 +2104,7 @@ contains
       complex(8),target,dimension(:,:) :: A
       complex(8),target,dimension(:,:) :: B
       !
-      ret = rocblas_get_matrix_raw(rows,cols,2*8,c_loc(A),size(A,1),c_loc(B),size(B,1))
+      ret = rocblas_get_matrix_(rows,cols,2*8,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
 
     function rocblas_get_matrix_c8_rank_0(rows,cols,A,lda,B,ldb) result(ret)
@@ -2119,7 +2119,7 @@ contains
       complex(8),target :: B
       integer(c_int),value :: ldb
       !
-      ret = rocblas_get_matrix_raw(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb)
+      ret = rocblas_get_matrix_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function rocblas_get_matrix_c8_rank_1(rows,cols,A,lda,B,ldb) result(ret)
@@ -2134,7 +2134,7 @@ contains
       complex(8),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
-      ret = rocblas_get_matrix_raw(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb)
+      ret = rocblas_get_matrix_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function rocblas_set_vector_async_c8_rank_0(n,x,incx,y,incy,stream) result(ret)
@@ -2149,7 +2149,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = rocblas_set_vector_async_raw(n,2*8,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = rocblas_set_vector_async_(n,2*8,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function rocblas_set_vector_async_c8_full_rank(n,x,incx,y,incy,stream) result(ret)
@@ -2164,7 +2164,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = rocblas_set_vector_async_raw(n,2*8,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = rocblas_set_vector_async_(n,2*8,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function rocblas_get_vector_async_c8_rank_0(n,x,incx,y,incy,stream) result(ret)
@@ -2179,7 +2179,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = rocblas_get_vector_async_raw(n,2*8,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = rocblas_get_vector_async_(n,2*8,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function rocblas_get_vector_async_c8_full_rank(n,x,incx,y,incy,stream) result(ret)
@@ -2194,7 +2194,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = rocblas_get_vector_async_raw(n,2*8,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = rocblas_get_vector_async_(n,2*8,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function rocblas_set_matrix_async_c8_full_rank(rows,cols,A,B,stream) result(ret)
@@ -2208,7 +2208,7 @@ contains
       complex(8),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
-      ret = rocblas_set_matrix_async_raw(rows,cols,2*8,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
+      ret = rocblas_set_matrix_async_(rows,cols,2*8,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
     end function
 
     function rocblas_set_matrix_async_c8_rank_0(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -2224,7 +2224,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = rocblas_set_matrix_async_raw(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = rocblas_set_matrix_async_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
     function rocblas_set_matrix_async_c8_rank_1(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -2240,7 +2240,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = rocblas_set_matrix_async_raw(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = rocblas_set_matrix_async_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
     function rocblas_get_matrix_async_c8_full_rank(rows,cols,A,B,stream) result(ret)
@@ -2254,7 +2254,7 @@ contains
       complex(8),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
-      ret = rocblas_get_matrix_async_raw(rows,cols,2*8,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
+      ret = rocblas_get_matrix_async_(rows,cols,2*8,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
     end function
 
     function rocblas_get_matrix_async_c8_rank_0(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -2270,7 +2270,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = rocblas_get_matrix_async_raw(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = rocblas_get_matrix_async_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
     function rocblas_get_matrix_async_c8_rank_1(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -2286,7 +2286,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = rocblas_get_matrix_async_raw(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = rocblas_get_matrix_async_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
  
 

@@ -28,9 +28,9 @@ module hipfort_hipblas_auxiliary
 
   interface hipblasSetVector
 #ifdef USE_CUDA_NAMES
-    function hipblasSetVector_raw(n,elem_size,x,incx,y,incy) bind(c, name="cublasSetVector") result(ret)
+    function hipblasSetVector_(n,elem_size,x,incx,y,incy) bind(c, name="cublasSetVector") result(ret)
 #else
-    function hipblasSetVector_raw(n,elem_size,x,incx,y,incy) bind(c, name="hipblasSetVector") result(ret)
+    function hipblasSetVector_(n,elem_size,x,incx,y,incy) bind(c, name="hipblasSetVector") result(ret)
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -57,9 +57,9 @@ module hipfort_hipblas_auxiliary
 
   interface hipblasGetVector
 #ifdef USE_CUDA_NAMES
-    function hipblasGetVector_raw(n,elem_size,x,incx,y,incy) bind(c, name="cublasGetVector") result(ret)
+    function hipblasGetVector_(n,elem_size,x,incx,y,incy) bind(c, name="cublasGetVector") result(ret)
 #else
-    function hipblasGetVector_raw(n,elem_size,x,incx,y,incy) bind(c, name="hipblasGetVector") result(ret)
+    function hipblasGetVector_(n,elem_size,x,incx,y,incy) bind(c, name="hipblasGetVector") result(ret)
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -86,9 +86,9 @@ module hipfort_hipblas_auxiliary
 
   interface hipblasSetMatrix
 #ifdef USE_CUDA_NAMES
-    function hipblasSetMatrix_raw(rows,cols,elem_size,A,lda,B,ldb) bind(c, name="cublasSetMatrix") result(ret)
+    function hipblasSetMatrix_(rows,cols,elem_size,A,lda,B,ldb) bind(c, name="cublasSetMatrix") result(ret)
 #else
-    function hipblasSetMatrix_raw(rows,cols,elem_size,A,lda,B,ldb) bind(c, name="hipblasSetMatrix") result(ret)
+    function hipblasSetMatrix_(rows,cols,elem_size,A,lda,B,ldb) bind(c, name="hipblasSetMatrix") result(ret)
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -116,9 +116,9 @@ module hipfort_hipblas_auxiliary
 
   interface hipblasGetMatrix
 #ifdef USE_CUDA_NAMES
-    function hipblasGetMatrix_raw(rows,cols,elem_size,A,lda,B,ldb) bind(c, name="cublasGetMatrix") result(ret)
+    function hipblasGetMatrix_(rows,cols,elem_size,A,lda,B,ldb) bind(c, name="cublasGetMatrix") result(ret)
 #else
-    function hipblasGetMatrix_raw(rows,cols,elem_size,A,lda,B,ldb) bind(c, name="hipblasGetMatrix") result(ret)
+    function hipblasGetMatrix_(rows,cols,elem_size,A,lda,B,ldb) bind(c, name="hipblasGetMatrix") result(ret)
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -146,9 +146,9 @@ module hipfort_hipblas_auxiliary
 
   interface hipblasSetVectorAsync
 #ifdef USE_CUDA_NAMES
-    function hipblasSetVectorAsync_raw(n,elem_size,x,incx,y,incy,stream) bind(c, name="cublasSetVectorAsync") result(ret)
+    function hipblasSetVectorAsync_(n,elem_size,x,incx,y,incy,stream) bind(c, name="cublasSetVectorAsync") result(ret)
 #else
-    function hipblasSetVectorAsync_raw(n,elem_size,x,incx,y,incy,stream) bind(c, name="hipblasSetVectorAsync") result(ret)
+    function hipblasSetVectorAsync_(n,elem_size,x,incx,y,incy,stream) bind(c, name="hipblasSetVectorAsync") result(ret)
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -176,9 +176,9 @@ module hipfort_hipblas_auxiliary
 
   interface hipblasGetVectorAsync
 #ifdef USE_CUDA_NAMES
-    function hipblasGetVectorAsync_raw(n,elem_size,x,incx,y,incy,stream) bind(c, name="cublasGetVectorAsync") result(ret)
+    function hipblasGetVectorAsync_(n,elem_size,x,incx,y,incy,stream) bind(c, name="cublasGetVectorAsync") result(ret)
 #else
-    function hipblasGetVectorAsync_raw(n,elem_size,x,incx,y,incy,stream) bind(c, name="hipblasGetVectorAsync") result(ret)
+    function hipblasGetVectorAsync_(n,elem_size,x,incx,y,incy,stream) bind(c, name="hipblasGetVectorAsync") result(ret)
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -206,9 +206,9 @@ module hipfort_hipblas_auxiliary
 
   interface hipblasSetMatrixAsync
 #ifdef USE_CUDA_NAMES
-    function hipblasSetMatrixAsync_raw(rows,cols,elem_size,A,lda,B,ldb,stream) bind(c, name="cublasSetMatrixAsync") result(ret)
+    function hipblasSetMatrixAsync_(rows,cols,elem_size,A,lda,B,ldb,stream) bind(c, name="cublasSetMatrixAsync") result(ret)
 #else
-    function hipblasSetMatrixAsync_raw(rows,cols,elem_size,A,lda,B,ldb,stream) bind(c, name="hipblasSetMatrixAsync") result(ret)
+    function hipblasSetMatrixAsync_(rows,cols,elem_size,A,lda,B,ldb,stream) bind(c, name="hipblasSetMatrixAsync") result(ret)
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -237,9 +237,9 @@ module hipfort_hipblas_auxiliary
 
   interface hipblasGetMatrixAsync
 #ifdef USE_CUDA_NAMES
-    function hipblasGetMatrixAsync_raw(rows,cols,elem_size,A,lda,B,ldb,stream) bind(c, name="cublasGetMatrixAsync") result(ret)
+    function hipblasGetMatrixAsync_(rows,cols,elem_size,A,lda,B,ldb,stream) bind(c, name="cublasGetMatrixAsync") result(ret)
 #else
-    function hipblasGetMatrixAsync_raw(rows,cols,elem_size,A,lda,B,ldb,stream) bind(c, name="hipblasGetMatrixAsync") result(ret)
+    function hipblasGetMatrixAsync_(rows,cols,elem_size,A,lda,B,ldb,stream) bind(c, name="hipblasGetMatrixAsync") result(ret)
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -280,7 +280,7 @@ contains
       logical,target :: y
       integer(c_int),value :: incy
       !
-      ret = hipblasSetVector_raw(n,1,c_loc(x),incx,c_loc(y),incy)
+      ret = hipblasSetVector_(n,1,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function hipblasSetVector_l_full_rank(n,x,incx,y,incy) result(ret)
@@ -294,7 +294,7 @@ contains
       logical,target,dimension(:) :: y
       integer(c_int),value :: incy
       !
-      ret = hipblasSetVector_raw(n,1,c_loc(x),incx,c_loc(y),incy)
+      ret = hipblasSetVector_(n,1,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function hipblasGetVector_l_rank_0(n,x,incx,y,incy) result(ret)
@@ -308,7 +308,7 @@ contains
       logical,target :: y
       integer(c_int),value :: incy
       !
-      ret = hipblasGetVector_raw(n,1,c_loc(x),incx,c_loc(y),incy)
+      ret = hipblasGetVector_(n,1,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function hipblasGetVector_l_full_rank(n,x,incx,y,incy) result(ret)
@@ -322,7 +322,7 @@ contains
       logical,target,dimension(:) :: y
       integer(c_int),value :: incy
       !
-      ret = hipblasGetVector_raw(n,1,c_loc(x),incx,c_loc(y),incy)
+      ret = hipblasGetVector_(n,1,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function hipblasSetMatrix_l_full_rank(rows,cols,A,B) result(ret)
@@ -335,7 +335,7 @@ contains
       logical,target,dimension(:,:) :: A
       logical,target,dimension(:,:) :: B
       !
-      ret = hipblasSetMatrix_raw(rows,cols,1,c_loc(A),size(A,1),c_loc(B),size(B,1))
+      ret = hipblasSetMatrix_(rows,cols,1,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
 
     function hipblasSetMatrix_l_rank_0(rows,cols,A,lda,B,ldb) result(ret)
@@ -350,7 +350,7 @@ contains
       logical,target :: B
       integer(c_int),value :: ldb
       !
-      ret = hipblasSetMatrix_raw(rows,cols,1,c_loc(A),lda,c_loc(B),ldb)
+      ret = hipblasSetMatrix_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function hipblasSetMatrix_l_rank_1(rows,cols,A,lda,B,ldb) result(ret)
@@ -365,7 +365,7 @@ contains
       logical,target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
-      ret = hipblasSetMatrix_raw(rows,cols,1,c_loc(A),lda,c_loc(B),ldb)
+      ret = hipblasSetMatrix_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function hipblasGetMatrix_l_full_rank(rows,cols,A,B) result(ret)
@@ -378,7 +378,7 @@ contains
       logical,target,dimension(:,:) :: A
       logical,target,dimension(:,:) :: B
       !
-      ret = hipblasGetMatrix_raw(rows,cols,1,c_loc(A),size(A,1),c_loc(B),size(B,1))
+      ret = hipblasGetMatrix_(rows,cols,1,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
 
     function hipblasGetMatrix_l_rank_0(rows,cols,A,lda,B,ldb) result(ret)
@@ -393,7 +393,7 @@ contains
       logical,target :: B
       integer(c_int),value :: ldb
       !
-      ret = hipblasGetMatrix_raw(rows,cols,1,c_loc(A),lda,c_loc(B),ldb)
+      ret = hipblasGetMatrix_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function hipblasGetMatrix_l_rank_1(rows,cols,A,lda,B,ldb) result(ret)
@@ -408,7 +408,7 @@ contains
       logical,target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
-      ret = hipblasGetMatrix_raw(rows,cols,1,c_loc(A),lda,c_loc(B),ldb)
+      ret = hipblasGetMatrix_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function hipblasSetVectorAsync_l_rank_0(n,x,incx,y,incy,stream) result(ret)
@@ -423,7 +423,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = hipblasSetVectorAsync_raw(n,1,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = hipblasSetVectorAsync_(n,1,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function hipblasSetVectorAsync_l_full_rank(n,x,incx,y,incy,stream) result(ret)
@@ -438,7 +438,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = hipblasSetVectorAsync_raw(n,1,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = hipblasSetVectorAsync_(n,1,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function hipblasGetVectorAsync_l_rank_0(n,x,incx,y,incy,stream) result(ret)
@@ -453,7 +453,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = hipblasGetVectorAsync_raw(n,1,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = hipblasGetVectorAsync_(n,1,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function hipblasGetVectorAsync_l_full_rank(n,x,incx,y,incy,stream) result(ret)
@@ -468,7 +468,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = hipblasGetVectorAsync_raw(n,1,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = hipblasGetVectorAsync_(n,1,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function hipblasSetMatrixAsync_l_full_rank(rows,cols,A,B,stream) result(ret)
@@ -482,7 +482,7 @@ contains
       logical,target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
-      ret = hipblasSetMatrixAsync_raw(rows,cols,1,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
+      ret = hipblasSetMatrixAsync_(rows,cols,1,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
     end function
 
     function hipblasSetMatrixAsync_l_rank_0(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -498,7 +498,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = hipblasSetMatrixAsync_raw(rows,cols,1,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = hipblasSetMatrixAsync_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
     function hipblasSetMatrixAsync_l_rank_1(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -514,7 +514,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = hipblasSetMatrixAsync_raw(rows,cols,1,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = hipblasSetMatrixAsync_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
     function hipblasGetMatrixAsync_l_full_rank(rows,cols,A,B,stream) result(ret)
@@ -528,7 +528,7 @@ contains
       logical,target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
-      ret = hipblasGetMatrixAsync_raw(rows,cols,1,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
+      ret = hipblasGetMatrixAsync_(rows,cols,1,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
     end function
 
     function hipblasGetMatrixAsync_l_rank_0(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -544,7 +544,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = hipblasGetMatrixAsync_raw(rows,cols,1,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = hipblasGetMatrixAsync_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
     function hipblasGetMatrixAsync_l_rank_1(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -560,7 +560,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = hipblasGetMatrixAsync_raw(rows,cols,1,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = hipblasGetMatrixAsync_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
     function hipblasSetVector_i4_rank_0(n,x,incx,y,incy) result(ret)
       use iso_c_binding
@@ -573,7 +573,7 @@ contains
       integer(4),target :: y
       integer(c_int),value :: incy
       !
-      ret = hipblasSetVector_raw(n,4,c_loc(x),incx,c_loc(y),incy)
+      ret = hipblasSetVector_(n,4,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function hipblasSetVector_i4_full_rank(n,x,incx,y,incy) result(ret)
@@ -587,7 +587,7 @@ contains
       integer(4),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
-      ret = hipblasSetVector_raw(n,4,c_loc(x),incx,c_loc(y),incy)
+      ret = hipblasSetVector_(n,4,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function hipblasGetVector_i4_rank_0(n,x,incx,y,incy) result(ret)
@@ -601,7 +601,7 @@ contains
       integer(4),target :: y
       integer(c_int),value :: incy
       !
-      ret = hipblasGetVector_raw(n,4,c_loc(x),incx,c_loc(y),incy)
+      ret = hipblasGetVector_(n,4,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function hipblasGetVector_i4_full_rank(n,x,incx,y,incy) result(ret)
@@ -615,7 +615,7 @@ contains
       integer(4),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
-      ret = hipblasGetVector_raw(n,4,c_loc(x),incx,c_loc(y),incy)
+      ret = hipblasGetVector_(n,4,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function hipblasSetMatrix_i4_full_rank(rows,cols,A,B) result(ret)
@@ -628,7 +628,7 @@ contains
       integer(4),target,dimension(:,:) :: A
       integer(4),target,dimension(:,:) :: B
       !
-      ret = hipblasSetMatrix_raw(rows,cols,4,c_loc(A),size(A,1),c_loc(B),size(B,1))
+      ret = hipblasSetMatrix_(rows,cols,4,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
 
     function hipblasSetMatrix_i4_rank_0(rows,cols,A,lda,B,ldb) result(ret)
@@ -643,7 +643,7 @@ contains
       integer(4),target :: B
       integer(c_int),value :: ldb
       !
-      ret = hipblasSetMatrix_raw(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
+      ret = hipblasSetMatrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function hipblasSetMatrix_i4_rank_1(rows,cols,A,lda,B,ldb) result(ret)
@@ -658,7 +658,7 @@ contains
       integer(4),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
-      ret = hipblasSetMatrix_raw(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
+      ret = hipblasSetMatrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function hipblasGetMatrix_i4_full_rank(rows,cols,A,B) result(ret)
@@ -671,7 +671,7 @@ contains
       integer(4),target,dimension(:,:) :: A
       integer(4),target,dimension(:,:) :: B
       !
-      ret = hipblasGetMatrix_raw(rows,cols,4,c_loc(A),size(A,1),c_loc(B),size(B,1))
+      ret = hipblasGetMatrix_(rows,cols,4,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
 
     function hipblasGetMatrix_i4_rank_0(rows,cols,A,lda,B,ldb) result(ret)
@@ -686,7 +686,7 @@ contains
       integer(4),target :: B
       integer(c_int),value :: ldb
       !
-      ret = hipblasGetMatrix_raw(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
+      ret = hipblasGetMatrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function hipblasGetMatrix_i4_rank_1(rows,cols,A,lda,B,ldb) result(ret)
@@ -701,7 +701,7 @@ contains
       integer(4),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
-      ret = hipblasGetMatrix_raw(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
+      ret = hipblasGetMatrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function hipblasSetVectorAsync_i4_rank_0(n,x,incx,y,incy,stream) result(ret)
@@ -716,7 +716,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = hipblasSetVectorAsync_raw(n,4,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = hipblasSetVectorAsync_(n,4,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function hipblasSetVectorAsync_i4_full_rank(n,x,incx,y,incy,stream) result(ret)
@@ -731,7 +731,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = hipblasSetVectorAsync_raw(n,4,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = hipblasSetVectorAsync_(n,4,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function hipblasGetVectorAsync_i4_rank_0(n,x,incx,y,incy,stream) result(ret)
@@ -746,7 +746,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = hipblasGetVectorAsync_raw(n,4,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = hipblasGetVectorAsync_(n,4,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function hipblasGetVectorAsync_i4_full_rank(n,x,incx,y,incy,stream) result(ret)
@@ -761,7 +761,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = hipblasGetVectorAsync_raw(n,4,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = hipblasGetVectorAsync_(n,4,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function hipblasSetMatrixAsync_i4_full_rank(rows,cols,A,B,stream) result(ret)
@@ -775,7 +775,7 @@ contains
       integer(4),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
-      ret = hipblasSetMatrixAsync_raw(rows,cols,4,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
+      ret = hipblasSetMatrixAsync_(rows,cols,4,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
     end function
 
     function hipblasSetMatrixAsync_i4_rank_0(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -791,7 +791,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = hipblasSetMatrixAsync_raw(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = hipblasSetMatrixAsync_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
     function hipblasSetMatrixAsync_i4_rank_1(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -807,7 +807,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = hipblasSetMatrixAsync_raw(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = hipblasSetMatrixAsync_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
     function hipblasGetMatrixAsync_i4_full_rank(rows,cols,A,B,stream) result(ret)
@@ -821,7 +821,7 @@ contains
       integer(4),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
-      ret = hipblasGetMatrixAsync_raw(rows,cols,4,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
+      ret = hipblasGetMatrixAsync_(rows,cols,4,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
     end function
 
     function hipblasGetMatrixAsync_i4_rank_0(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -837,7 +837,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = hipblasGetMatrixAsync_raw(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = hipblasGetMatrixAsync_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
     function hipblasGetMatrixAsync_i4_rank_1(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -853,7 +853,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = hipblasGetMatrixAsync_raw(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = hipblasGetMatrixAsync_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
     function hipblasSetVector_i8_rank_0(n,x,incx,y,incy) result(ret)
       use iso_c_binding
@@ -866,7 +866,7 @@ contains
       integer(8),target :: y
       integer(c_int),value :: incy
       !
-      ret = hipblasSetVector_raw(n,8,c_loc(x),incx,c_loc(y),incy)
+      ret = hipblasSetVector_(n,8,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function hipblasSetVector_i8_full_rank(n,x,incx,y,incy) result(ret)
@@ -880,7 +880,7 @@ contains
       integer(8),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
-      ret = hipblasSetVector_raw(n,8,c_loc(x),incx,c_loc(y),incy)
+      ret = hipblasSetVector_(n,8,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function hipblasGetVector_i8_rank_0(n,x,incx,y,incy) result(ret)
@@ -894,7 +894,7 @@ contains
       integer(8),target :: y
       integer(c_int),value :: incy
       !
-      ret = hipblasGetVector_raw(n,8,c_loc(x),incx,c_loc(y),incy)
+      ret = hipblasGetVector_(n,8,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function hipblasGetVector_i8_full_rank(n,x,incx,y,incy) result(ret)
@@ -908,7 +908,7 @@ contains
       integer(8),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
-      ret = hipblasGetVector_raw(n,8,c_loc(x),incx,c_loc(y),incy)
+      ret = hipblasGetVector_(n,8,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function hipblasSetMatrix_i8_full_rank(rows,cols,A,B) result(ret)
@@ -921,7 +921,7 @@ contains
       integer(8),target,dimension(:,:) :: A
       integer(8),target,dimension(:,:) :: B
       !
-      ret = hipblasSetMatrix_raw(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1))
+      ret = hipblasSetMatrix_(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
 
     function hipblasSetMatrix_i8_rank_0(rows,cols,A,lda,B,ldb) result(ret)
@@ -936,7 +936,7 @@ contains
       integer(8),target :: B
       integer(c_int),value :: ldb
       !
-      ret = hipblasSetMatrix_raw(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
+      ret = hipblasSetMatrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function hipblasSetMatrix_i8_rank_1(rows,cols,A,lda,B,ldb) result(ret)
@@ -951,7 +951,7 @@ contains
       integer(8),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
-      ret = hipblasSetMatrix_raw(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
+      ret = hipblasSetMatrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function hipblasGetMatrix_i8_full_rank(rows,cols,A,B) result(ret)
@@ -964,7 +964,7 @@ contains
       integer(8),target,dimension(:,:) :: A
       integer(8),target,dimension(:,:) :: B
       !
-      ret = hipblasGetMatrix_raw(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1))
+      ret = hipblasGetMatrix_(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
 
     function hipblasGetMatrix_i8_rank_0(rows,cols,A,lda,B,ldb) result(ret)
@@ -979,7 +979,7 @@ contains
       integer(8),target :: B
       integer(c_int),value :: ldb
       !
-      ret = hipblasGetMatrix_raw(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
+      ret = hipblasGetMatrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function hipblasGetMatrix_i8_rank_1(rows,cols,A,lda,B,ldb) result(ret)
@@ -994,7 +994,7 @@ contains
       integer(8),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
-      ret = hipblasGetMatrix_raw(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
+      ret = hipblasGetMatrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function hipblasSetVectorAsync_i8_rank_0(n,x,incx,y,incy,stream) result(ret)
@@ -1009,7 +1009,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = hipblasSetVectorAsync_raw(n,8,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = hipblasSetVectorAsync_(n,8,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function hipblasSetVectorAsync_i8_full_rank(n,x,incx,y,incy,stream) result(ret)
@@ -1024,7 +1024,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = hipblasSetVectorAsync_raw(n,8,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = hipblasSetVectorAsync_(n,8,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function hipblasGetVectorAsync_i8_rank_0(n,x,incx,y,incy,stream) result(ret)
@@ -1039,7 +1039,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = hipblasGetVectorAsync_raw(n,8,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = hipblasGetVectorAsync_(n,8,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function hipblasGetVectorAsync_i8_full_rank(n,x,incx,y,incy,stream) result(ret)
@@ -1054,7 +1054,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = hipblasGetVectorAsync_raw(n,8,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = hipblasGetVectorAsync_(n,8,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function hipblasSetMatrixAsync_i8_full_rank(rows,cols,A,B,stream) result(ret)
@@ -1068,7 +1068,7 @@ contains
       integer(8),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
-      ret = hipblasSetMatrixAsync_raw(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
+      ret = hipblasSetMatrixAsync_(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
     end function
 
     function hipblasSetMatrixAsync_i8_rank_0(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -1084,7 +1084,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = hipblasSetMatrixAsync_raw(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = hipblasSetMatrixAsync_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
     function hipblasSetMatrixAsync_i8_rank_1(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -1100,7 +1100,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = hipblasSetMatrixAsync_raw(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = hipblasSetMatrixAsync_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
     function hipblasGetMatrixAsync_i8_full_rank(rows,cols,A,B,stream) result(ret)
@@ -1114,7 +1114,7 @@ contains
       integer(8),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
-      ret = hipblasGetMatrixAsync_raw(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
+      ret = hipblasGetMatrixAsync_(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
     end function
 
     function hipblasGetMatrixAsync_i8_rank_0(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -1130,7 +1130,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = hipblasGetMatrixAsync_raw(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = hipblasGetMatrixAsync_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
     function hipblasGetMatrixAsync_i8_rank_1(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -1146,7 +1146,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = hipblasGetMatrixAsync_raw(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = hipblasGetMatrixAsync_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
     function hipblasSetVector_r4_rank_0(n,x,incx,y,incy) result(ret)
       use iso_c_binding
@@ -1159,7 +1159,7 @@ contains
       real(4),target :: y
       integer(c_int),value :: incy
       !
-      ret = hipblasSetVector_raw(n,4,c_loc(x),incx,c_loc(y),incy)
+      ret = hipblasSetVector_(n,4,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function hipblasSetVector_r4_full_rank(n,x,incx,y,incy) result(ret)
@@ -1173,7 +1173,7 @@ contains
       real(4),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
-      ret = hipblasSetVector_raw(n,4,c_loc(x),incx,c_loc(y),incy)
+      ret = hipblasSetVector_(n,4,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function hipblasGetVector_r4_rank_0(n,x,incx,y,incy) result(ret)
@@ -1187,7 +1187,7 @@ contains
       real(4),target :: y
       integer(c_int),value :: incy
       !
-      ret = hipblasGetVector_raw(n,4,c_loc(x),incx,c_loc(y),incy)
+      ret = hipblasGetVector_(n,4,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function hipblasGetVector_r4_full_rank(n,x,incx,y,incy) result(ret)
@@ -1201,7 +1201,7 @@ contains
       real(4),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
-      ret = hipblasGetVector_raw(n,4,c_loc(x),incx,c_loc(y),incy)
+      ret = hipblasGetVector_(n,4,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function hipblasSetMatrix_r4_full_rank(rows,cols,A,B) result(ret)
@@ -1214,7 +1214,7 @@ contains
       real(4),target,dimension(:,:) :: A
       real(4),target,dimension(:,:) :: B
       !
-      ret = hipblasSetMatrix_raw(rows,cols,4,c_loc(A),size(A,1),c_loc(B),size(B,1))
+      ret = hipblasSetMatrix_(rows,cols,4,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
 
     function hipblasSetMatrix_r4_rank_0(rows,cols,A,lda,B,ldb) result(ret)
@@ -1229,7 +1229,7 @@ contains
       real(4),target :: B
       integer(c_int),value :: ldb
       !
-      ret = hipblasSetMatrix_raw(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
+      ret = hipblasSetMatrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function hipblasSetMatrix_r4_rank_1(rows,cols,A,lda,B,ldb) result(ret)
@@ -1244,7 +1244,7 @@ contains
       real(4),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
-      ret = hipblasSetMatrix_raw(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
+      ret = hipblasSetMatrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function hipblasGetMatrix_r4_full_rank(rows,cols,A,B) result(ret)
@@ -1257,7 +1257,7 @@ contains
       real(4),target,dimension(:,:) :: A
       real(4),target,dimension(:,:) :: B
       !
-      ret = hipblasGetMatrix_raw(rows,cols,4,c_loc(A),size(A,1),c_loc(B),size(B,1))
+      ret = hipblasGetMatrix_(rows,cols,4,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
 
     function hipblasGetMatrix_r4_rank_0(rows,cols,A,lda,B,ldb) result(ret)
@@ -1272,7 +1272,7 @@ contains
       real(4),target :: B
       integer(c_int),value :: ldb
       !
-      ret = hipblasGetMatrix_raw(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
+      ret = hipblasGetMatrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function hipblasGetMatrix_r4_rank_1(rows,cols,A,lda,B,ldb) result(ret)
@@ -1287,7 +1287,7 @@ contains
       real(4),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
-      ret = hipblasGetMatrix_raw(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
+      ret = hipblasGetMatrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function hipblasSetVectorAsync_r4_rank_0(n,x,incx,y,incy,stream) result(ret)
@@ -1302,7 +1302,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = hipblasSetVectorAsync_raw(n,4,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = hipblasSetVectorAsync_(n,4,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function hipblasSetVectorAsync_r4_full_rank(n,x,incx,y,incy,stream) result(ret)
@@ -1317,7 +1317,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = hipblasSetVectorAsync_raw(n,4,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = hipblasSetVectorAsync_(n,4,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function hipblasGetVectorAsync_r4_rank_0(n,x,incx,y,incy,stream) result(ret)
@@ -1332,7 +1332,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = hipblasGetVectorAsync_raw(n,4,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = hipblasGetVectorAsync_(n,4,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function hipblasGetVectorAsync_r4_full_rank(n,x,incx,y,incy,stream) result(ret)
@@ -1347,7 +1347,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = hipblasGetVectorAsync_raw(n,4,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = hipblasGetVectorAsync_(n,4,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function hipblasSetMatrixAsync_r4_full_rank(rows,cols,A,B,stream) result(ret)
@@ -1361,7 +1361,7 @@ contains
       real(4),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
-      ret = hipblasSetMatrixAsync_raw(rows,cols,4,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
+      ret = hipblasSetMatrixAsync_(rows,cols,4,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
     end function
 
     function hipblasSetMatrixAsync_r4_rank_0(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -1377,7 +1377,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = hipblasSetMatrixAsync_raw(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = hipblasSetMatrixAsync_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
     function hipblasSetMatrixAsync_r4_rank_1(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -1393,7 +1393,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = hipblasSetMatrixAsync_raw(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = hipblasSetMatrixAsync_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
     function hipblasGetMatrixAsync_r4_full_rank(rows,cols,A,B,stream) result(ret)
@@ -1407,7 +1407,7 @@ contains
       real(4),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
-      ret = hipblasGetMatrixAsync_raw(rows,cols,4,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
+      ret = hipblasGetMatrixAsync_(rows,cols,4,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
     end function
 
     function hipblasGetMatrixAsync_r4_rank_0(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -1423,7 +1423,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = hipblasGetMatrixAsync_raw(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = hipblasGetMatrixAsync_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
     function hipblasGetMatrixAsync_r4_rank_1(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -1439,7 +1439,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = hipblasGetMatrixAsync_raw(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = hipblasGetMatrixAsync_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
     function hipblasSetVector_r8_rank_0(n,x,incx,y,incy) result(ret)
       use iso_c_binding
@@ -1452,7 +1452,7 @@ contains
       real(8),target :: y
       integer(c_int),value :: incy
       !
-      ret = hipblasSetVector_raw(n,8,c_loc(x),incx,c_loc(y),incy)
+      ret = hipblasSetVector_(n,8,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function hipblasSetVector_r8_full_rank(n,x,incx,y,incy) result(ret)
@@ -1466,7 +1466,7 @@ contains
       real(8),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
-      ret = hipblasSetVector_raw(n,8,c_loc(x),incx,c_loc(y),incy)
+      ret = hipblasSetVector_(n,8,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function hipblasGetVector_r8_rank_0(n,x,incx,y,incy) result(ret)
@@ -1480,7 +1480,7 @@ contains
       real(8),target :: y
       integer(c_int),value :: incy
       !
-      ret = hipblasGetVector_raw(n,8,c_loc(x),incx,c_loc(y),incy)
+      ret = hipblasGetVector_(n,8,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function hipblasGetVector_r8_full_rank(n,x,incx,y,incy) result(ret)
@@ -1494,7 +1494,7 @@ contains
       real(8),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
-      ret = hipblasGetVector_raw(n,8,c_loc(x),incx,c_loc(y),incy)
+      ret = hipblasGetVector_(n,8,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function hipblasSetMatrix_r8_full_rank(rows,cols,A,B) result(ret)
@@ -1507,7 +1507,7 @@ contains
       real(8),target,dimension(:,:) :: A
       real(8),target,dimension(:,:) :: B
       !
-      ret = hipblasSetMatrix_raw(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1))
+      ret = hipblasSetMatrix_(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
 
     function hipblasSetMatrix_r8_rank_0(rows,cols,A,lda,B,ldb) result(ret)
@@ -1522,7 +1522,7 @@ contains
       real(8),target :: B
       integer(c_int),value :: ldb
       !
-      ret = hipblasSetMatrix_raw(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
+      ret = hipblasSetMatrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function hipblasSetMatrix_r8_rank_1(rows,cols,A,lda,B,ldb) result(ret)
@@ -1537,7 +1537,7 @@ contains
       real(8),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
-      ret = hipblasSetMatrix_raw(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
+      ret = hipblasSetMatrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function hipblasGetMatrix_r8_full_rank(rows,cols,A,B) result(ret)
@@ -1550,7 +1550,7 @@ contains
       real(8),target,dimension(:,:) :: A
       real(8),target,dimension(:,:) :: B
       !
-      ret = hipblasGetMatrix_raw(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1))
+      ret = hipblasGetMatrix_(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
 
     function hipblasGetMatrix_r8_rank_0(rows,cols,A,lda,B,ldb) result(ret)
@@ -1565,7 +1565,7 @@ contains
       real(8),target :: B
       integer(c_int),value :: ldb
       !
-      ret = hipblasGetMatrix_raw(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
+      ret = hipblasGetMatrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function hipblasGetMatrix_r8_rank_1(rows,cols,A,lda,B,ldb) result(ret)
@@ -1580,7 +1580,7 @@ contains
       real(8),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
-      ret = hipblasGetMatrix_raw(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
+      ret = hipblasGetMatrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function hipblasSetVectorAsync_r8_rank_0(n,x,incx,y,incy,stream) result(ret)
@@ -1595,7 +1595,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = hipblasSetVectorAsync_raw(n,8,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = hipblasSetVectorAsync_(n,8,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function hipblasSetVectorAsync_r8_full_rank(n,x,incx,y,incy,stream) result(ret)
@@ -1610,7 +1610,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = hipblasSetVectorAsync_raw(n,8,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = hipblasSetVectorAsync_(n,8,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function hipblasGetVectorAsync_r8_rank_0(n,x,incx,y,incy,stream) result(ret)
@@ -1625,7 +1625,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = hipblasGetVectorAsync_raw(n,8,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = hipblasGetVectorAsync_(n,8,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function hipblasGetVectorAsync_r8_full_rank(n,x,incx,y,incy,stream) result(ret)
@@ -1640,7 +1640,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = hipblasGetVectorAsync_raw(n,8,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = hipblasGetVectorAsync_(n,8,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function hipblasSetMatrixAsync_r8_full_rank(rows,cols,A,B,stream) result(ret)
@@ -1654,7 +1654,7 @@ contains
       real(8),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
-      ret = hipblasSetMatrixAsync_raw(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
+      ret = hipblasSetMatrixAsync_(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
     end function
 
     function hipblasSetMatrixAsync_r8_rank_0(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -1670,7 +1670,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = hipblasSetMatrixAsync_raw(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = hipblasSetMatrixAsync_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
     function hipblasSetMatrixAsync_r8_rank_1(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -1686,7 +1686,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = hipblasSetMatrixAsync_raw(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = hipblasSetMatrixAsync_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
     function hipblasGetMatrixAsync_r8_full_rank(rows,cols,A,B,stream) result(ret)
@@ -1700,7 +1700,7 @@ contains
       real(8),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
-      ret = hipblasGetMatrixAsync_raw(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
+      ret = hipblasGetMatrixAsync_(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
     end function
 
     function hipblasGetMatrixAsync_r8_rank_0(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -1716,7 +1716,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = hipblasGetMatrixAsync_raw(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = hipblasGetMatrixAsync_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
     function hipblasGetMatrixAsync_r8_rank_1(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -1732,7 +1732,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = hipblasGetMatrixAsync_raw(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = hipblasGetMatrixAsync_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
     function hipblasSetVector_c4_rank_0(n,x,incx,y,incy) result(ret)
       use iso_c_binding
@@ -1745,7 +1745,7 @@ contains
       complex(4),target :: y
       integer(c_int),value :: incy
       !
-      ret = hipblasSetVector_raw(n,2*4,c_loc(x),incx,c_loc(y),incy)
+      ret = hipblasSetVector_(n,2*4,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function hipblasSetVector_c4_full_rank(n,x,incx,y,incy) result(ret)
@@ -1759,7 +1759,7 @@ contains
       complex(4),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
-      ret = hipblasSetVector_raw(n,2*4,c_loc(x),incx,c_loc(y),incy)
+      ret = hipblasSetVector_(n,2*4,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function hipblasGetVector_c4_rank_0(n,x,incx,y,incy) result(ret)
@@ -1773,7 +1773,7 @@ contains
       complex(4),target :: y
       integer(c_int),value :: incy
       !
-      ret = hipblasGetVector_raw(n,2*4,c_loc(x),incx,c_loc(y),incy)
+      ret = hipblasGetVector_(n,2*4,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function hipblasGetVector_c4_full_rank(n,x,incx,y,incy) result(ret)
@@ -1787,7 +1787,7 @@ contains
       complex(4),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
-      ret = hipblasGetVector_raw(n,2*4,c_loc(x),incx,c_loc(y),incy)
+      ret = hipblasGetVector_(n,2*4,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function hipblasSetMatrix_c4_full_rank(rows,cols,A,B) result(ret)
@@ -1800,7 +1800,7 @@ contains
       complex(4),target,dimension(:,:) :: A
       complex(4),target,dimension(:,:) :: B
       !
-      ret = hipblasSetMatrix_raw(rows,cols,2*4,c_loc(A),size(A,1),c_loc(B),size(B,1))
+      ret = hipblasSetMatrix_(rows,cols,2*4,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
 
     function hipblasSetMatrix_c4_rank_0(rows,cols,A,lda,B,ldb) result(ret)
@@ -1815,7 +1815,7 @@ contains
       complex(4),target :: B
       integer(c_int),value :: ldb
       !
-      ret = hipblasSetMatrix_raw(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb)
+      ret = hipblasSetMatrix_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function hipblasSetMatrix_c4_rank_1(rows,cols,A,lda,B,ldb) result(ret)
@@ -1830,7 +1830,7 @@ contains
       complex(4),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
-      ret = hipblasSetMatrix_raw(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb)
+      ret = hipblasSetMatrix_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function hipblasGetMatrix_c4_full_rank(rows,cols,A,B) result(ret)
@@ -1843,7 +1843,7 @@ contains
       complex(4),target,dimension(:,:) :: A
       complex(4),target,dimension(:,:) :: B
       !
-      ret = hipblasGetMatrix_raw(rows,cols,2*4,c_loc(A),size(A,1),c_loc(B),size(B,1))
+      ret = hipblasGetMatrix_(rows,cols,2*4,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
 
     function hipblasGetMatrix_c4_rank_0(rows,cols,A,lda,B,ldb) result(ret)
@@ -1858,7 +1858,7 @@ contains
       complex(4),target :: B
       integer(c_int),value :: ldb
       !
-      ret = hipblasGetMatrix_raw(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb)
+      ret = hipblasGetMatrix_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function hipblasGetMatrix_c4_rank_1(rows,cols,A,lda,B,ldb) result(ret)
@@ -1873,7 +1873,7 @@ contains
       complex(4),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
-      ret = hipblasGetMatrix_raw(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb)
+      ret = hipblasGetMatrix_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function hipblasSetVectorAsync_c4_rank_0(n,x,incx,y,incy,stream) result(ret)
@@ -1888,7 +1888,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = hipblasSetVectorAsync_raw(n,2*4,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = hipblasSetVectorAsync_(n,2*4,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function hipblasSetVectorAsync_c4_full_rank(n,x,incx,y,incy,stream) result(ret)
@@ -1903,7 +1903,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = hipblasSetVectorAsync_raw(n,2*4,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = hipblasSetVectorAsync_(n,2*4,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function hipblasGetVectorAsync_c4_rank_0(n,x,incx,y,incy,stream) result(ret)
@@ -1918,7 +1918,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = hipblasGetVectorAsync_raw(n,2*4,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = hipblasGetVectorAsync_(n,2*4,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function hipblasGetVectorAsync_c4_full_rank(n,x,incx,y,incy,stream) result(ret)
@@ -1933,7 +1933,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = hipblasGetVectorAsync_raw(n,2*4,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = hipblasGetVectorAsync_(n,2*4,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function hipblasSetMatrixAsync_c4_full_rank(rows,cols,A,B,stream) result(ret)
@@ -1947,7 +1947,7 @@ contains
       complex(4),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
-      ret = hipblasSetMatrixAsync_raw(rows,cols,2*4,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
+      ret = hipblasSetMatrixAsync_(rows,cols,2*4,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
     end function
 
     function hipblasSetMatrixAsync_c4_rank_0(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -1963,7 +1963,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = hipblasSetMatrixAsync_raw(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = hipblasSetMatrixAsync_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
     function hipblasSetMatrixAsync_c4_rank_1(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -1979,7 +1979,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = hipblasSetMatrixAsync_raw(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = hipblasSetMatrixAsync_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
     function hipblasGetMatrixAsync_c4_full_rank(rows,cols,A,B,stream) result(ret)
@@ -1993,7 +1993,7 @@ contains
       complex(4),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
-      ret = hipblasGetMatrixAsync_raw(rows,cols,2*4,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
+      ret = hipblasGetMatrixAsync_(rows,cols,2*4,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
     end function
 
     function hipblasGetMatrixAsync_c4_rank_0(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -2009,7 +2009,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = hipblasGetMatrixAsync_raw(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = hipblasGetMatrixAsync_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
     function hipblasGetMatrixAsync_c4_rank_1(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -2025,7 +2025,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = hipblasGetMatrixAsync_raw(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = hipblasGetMatrixAsync_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
     function hipblasSetVector_c8_rank_0(n,x,incx,y,incy) result(ret)
       use iso_c_binding
@@ -2038,7 +2038,7 @@ contains
       complex(8),target :: y
       integer(c_int),value :: incy
       !
-      ret = hipblasSetVector_raw(n,2*8,c_loc(x),incx,c_loc(y),incy)
+      ret = hipblasSetVector_(n,2*8,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function hipblasSetVector_c8_full_rank(n,x,incx,y,incy) result(ret)
@@ -2052,7 +2052,7 @@ contains
       complex(8),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
-      ret = hipblasSetVector_raw(n,2*8,c_loc(x),incx,c_loc(y),incy)
+      ret = hipblasSetVector_(n,2*8,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function hipblasGetVector_c8_rank_0(n,x,incx,y,incy) result(ret)
@@ -2066,7 +2066,7 @@ contains
       complex(8),target :: y
       integer(c_int),value :: incy
       !
-      ret = hipblasGetVector_raw(n,2*8,c_loc(x),incx,c_loc(y),incy)
+      ret = hipblasGetVector_(n,2*8,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function hipblasGetVector_c8_full_rank(n,x,incx,y,incy) result(ret)
@@ -2080,7 +2080,7 @@ contains
       complex(8),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
-      ret = hipblasGetVector_raw(n,2*8,c_loc(x),incx,c_loc(y),incy)
+      ret = hipblasGetVector_(n,2*8,c_loc(x),incx,c_loc(y),incy)
     end function
 
     function hipblasSetMatrix_c8_full_rank(rows,cols,A,B) result(ret)
@@ -2093,7 +2093,7 @@ contains
       complex(8),target,dimension(:,:) :: A
       complex(8),target,dimension(:,:) :: B
       !
-      ret = hipblasSetMatrix_raw(rows,cols,2*8,c_loc(A),size(A,1),c_loc(B),size(B,1))
+      ret = hipblasSetMatrix_(rows,cols,2*8,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
 
     function hipblasSetMatrix_c8_rank_0(rows,cols,A,lda,B,ldb) result(ret)
@@ -2108,7 +2108,7 @@ contains
       complex(8),target :: B
       integer(c_int),value :: ldb
       !
-      ret = hipblasSetMatrix_raw(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb)
+      ret = hipblasSetMatrix_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function hipblasSetMatrix_c8_rank_1(rows,cols,A,lda,B,ldb) result(ret)
@@ -2123,7 +2123,7 @@ contains
       complex(8),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
-      ret = hipblasSetMatrix_raw(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb)
+      ret = hipblasSetMatrix_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function hipblasGetMatrix_c8_full_rank(rows,cols,A,B) result(ret)
@@ -2136,7 +2136,7 @@ contains
       complex(8),target,dimension(:,:) :: A
       complex(8),target,dimension(:,:) :: B
       !
-      ret = hipblasGetMatrix_raw(rows,cols,2*8,c_loc(A),size(A,1),c_loc(B),size(B,1))
+      ret = hipblasGetMatrix_(rows,cols,2*8,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
 
     function hipblasGetMatrix_c8_rank_0(rows,cols,A,lda,B,ldb) result(ret)
@@ -2151,7 +2151,7 @@ contains
       complex(8),target :: B
       integer(c_int),value :: ldb
       !
-      ret = hipblasGetMatrix_raw(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb)
+      ret = hipblasGetMatrix_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function hipblasGetMatrix_c8_rank_1(rows,cols,A,lda,B,ldb) result(ret)
@@ -2166,7 +2166,7 @@ contains
       complex(8),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
-      ret = hipblasGetMatrix_raw(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb)
+      ret = hipblasGetMatrix_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb)
     end function
 
     function hipblasSetVectorAsync_c8_rank_0(n,x,incx,y,incy,stream) result(ret)
@@ -2181,7 +2181,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = hipblasSetVectorAsync_raw(n,2*8,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = hipblasSetVectorAsync_(n,2*8,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function hipblasSetVectorAsync_c8_full_rank(n,x,incx,y,incy,stream) result(ret)
@@ -2196,7 +2196,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = hipblasSetVectorAsync_raw(n,2*8,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = hipblasSetVectorAsync_(n,2*8,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function hipblasGetVectorAsync_c8_rank_0(n,x,incx,y,incy,stream) result(ret)
@@ -2211,7 +2211,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = hipblasGetVectorAsync_raw(n,2*8,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = hipblasGetVectorAsync_(n,2*8,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function hipblasGetVectorAsync_c8_full_rank(n,x,incx,y,incy,stream) result(ret)
@@ -2226,7 +2226,7 @@ contains
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
-      ret = hipblasGetVectorAsync_raw(n,2*8,c_loc(x),incx,c_loc(y),incy,stream)
+      ret = hipblasGetVectorAsync_(n,2*8,c_loc(x),incx,c_loc(y),incy,stream)
     end function
 
     function hipblasSetMatrixAsync_c8_full_rank(rows,cols,A,B,stream) result(ret)
@@ -2240,7 +2240,7 @@ contains
       complex(8),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
-      ret = hipblasSetMatrixAsync_raw(rows,cols,2*8,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
+      ret = hipblasSetMatrixAsync_(rows,cols,2*8,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
     end function
 
     function hipblasSetMatrixAsync_c8_rank_0(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -2256,7 +2256,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = hipblasSetMatrixAsync_raw(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = hipblasSetMatrixAsync_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
     function hipblasSetMatrixAsync_c8_rank_1(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -2272,7 +2272,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = hipblasSetMatrixAsync_raw(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = hipblasSetMatrixAsync_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
     function hipblasGetMatrixAsync_c8_full_rank(rows,cols,A,B,stream) result(ret)
@@ -2286,7 +2286,7 @@ contains
       complex(8),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
-      ret = hipblasGetMatrixAsync_raw(rows,cols,2*8,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
+      ret = hipblasGetMatrixAsync_(rows,cols,2*8,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
     end function
 
     function hipblasGetMatrixAsync_c8_rank_0(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -2302,7 +2302,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = hipblasGetMatrixAsync_raw(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = hipblasGetMatrixAsync_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
     function hipblasGetMatrixAsync_c8_rank_1(rows,cols,A,lda,B,ldb,stream) result(ret)
@@ -2318,7 +2318,7 @@ contains
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
-      ret = hipblasGetMatrixAsync_raw(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb,stream)
+      ret = hipblasGetMatrixAsync_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
  
 
