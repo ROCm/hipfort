@@ -14,9 +14,9 @@ module hipfort_auxiliary
   !>
   interface hipGetDeviceProperties
 #ifdef USE_CUDA_NAMES
-    function hipGetDeviceProperties_raw(prop,deviceId) bind(c, name="cudaGetDeviceProperties")
+    function hipGetDeviceProperties_(prop,deviceId) bind(c, name="cudaGetDeviceProperties")
 #else
-    function hipGetDeviceProperties_raw(prop,deviceId) bind(c, name="hipGetDeviceProperties")
+    function hipGetDeviceProperties_(prop,deviceId) bind(c, name="hipGetDeviceProperties")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -26,9 +26,9 @@ module hipfort_auxiliary
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipGetDeviceProperties_raw
+      integer(kind(cudaSuccess)) :: hipGetDeviceProperties_
 #else
-      integer(kind(hipSuccess)) :: hipGetDeviceProperties_raw
+      integer(kind(hipSuccess)) :: hipGetDeviceProperties_
 #endif
       type(hipDeviceProp_t),intent(out) :: prop
       integer(c_int),value :: deviceId

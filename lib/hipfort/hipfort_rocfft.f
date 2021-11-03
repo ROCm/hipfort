@@ -33,11 +33,11 @@ module hipfort_rocfft
   !> ! @brief Library setup function, called once in program before start of
   !>   library use 
   interface rocfft_setup
-    function rocfft_setup_raw() bind(c, name="rocfft_setup")
+    function rocfft_setup_() bind(c, name="rocfft_setup")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_setup_raw
+      integer(kind(rocfft_status_success)) :: rocfft_setup_
     end function
 
 
@@ -45,11 +45,11 @@ module hipfort_rocfft
   !> ! @brief Library cleanup function, called once in program after end of library
   !>   use 
   interface rocfft_cleanup
-    function rocfft_cleanup_raw() bind(c, name="rocfft_cleanup")
+    function rocfft_cleanup_() bind(c, name="rocfft_cleanup")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_cleanup_raw
+      integer(kind(rocfft_status_success)) :: rocfft_cleanup_
     end function
 
 
@@ -88,11 +88,11 @@ module hipfort_rocfft
   !>    NULL for simple transforms
   !>    
   interface rocfft_plan_create
-    function rocfft_plan_create_raw(plan,placement,transform_type,myPrecision,dimensions,lengths,number_of_transforms,description) bind(c, name="rocfft_plan_create")
+    function rocfft_plan_create_(plan,placement,transform_type,myPrecision,dimensions,lengths,number_of_transforms,description) bind(c, name="rocfft_plan_create")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_plan_create_raw
+      integer(kind(rocfft_status_success)) :: rocfft_plan_create_
       type(c_ptr) :: plan
       integer(kind(rocfft_placement_inplace)),value :: placement
       integer(kind(rocfft_transform_type_complex_forward)),value :: transform_type
@@ -140,11 +140,11 @@ rocfft_plan_create_rank_1
   !>   rocfft_execution_info_create
   !>    
   interface rocfft_execute
-    function rocfft_execute_raw(plan,in_buffer,out_buffer,myInfo) bind(c, name="rocfft_execute")
+    function rocfft_execute_(plan,in_buffer,out_buffer,myInfo) bind(c, name="rocfft_execute")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_execute_raw
+      integer(kind(rocfft_status_success)) :: rocfft_execute_
       type(c_ptr),value :: plan
       type(c_ptr) :: in_buffer
       type(c_ptr) :: out_buffer
@@ -158,11 +158,11 @@ rocfft_plan_create_rank_1
   !>    @param[in] plan plan handle
   !>    
   interface rocfft_plan_destroy
-    function rocfft_plan_destroy_raw(plan) bind(c, name="rocfft_plan_destroy")
+    function rocfft_plan_destroy_(plan) bind(c, name="rocfft_plan_destroy")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_plan_destroy_raw
+      integer(kind(rocfft_status_success)) :: rocfft_plan_destroy_
       type(c_ptr),value :: plan
     end function
 
@@ -174,11 +174,11 @@ rocfft_plan_create_rank_1
   !>    @param[in] scale scaling factor
   !>    
   interface rocfft_plan_description_set_scale_float
-    function rocfft_plan_description_set_scale_float_raw(description,scale) bind(c, name="rocfft_plan_description_set_scale_float")
+    function rocfft_plan_description_set_scale_float_(description,scale) bind(c, name="rocfft_plan_description_set_scale_float")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_scale_float_raw
+      integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_scale_float_
       type(c_ptr),value :: description
       real(c_float),value :: scale
     end function
@@ -191,11 +191,11 @@ rocfft_plan_create_rank_1
   !>    @param[in] scale scaling factor
   !>    
   interface rocfft_plan_description_set_scale_double
-    function rocfft_plan_description_set_scale_double_raw(description,scale) bind(c, name="rocfft_plan_description_set_scale_double")
+    function rocfft_plan_description_set_scale_double_(description,scale) bind(c, name="rocfft_plan_description_set_scale_double")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_scale_double_raw
+      integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_scale_double_
       type(c_ptr),value :: description
       real(c_double),value :: scale
     end function
@@ -242,11 +242,11 @@ rocfft_plan_create_rank_1
   !>    @param[in] out_distance distance between start of each data instance in output buffer
   !>  
   interface rocfft_plan_description_set_data_layout
-    function rocfft_plan_description_set_data_layout_raw(description,in_array_type,out_array_type,in_offsets,out_offsets,in_strides_size,in_strides,in_distance,out_strides_size,out_strides,out_distance) bind(c, name="rocfft_plan_description_set_data_layout")
+    function rocfft_plan_description_set_data_layout_(description,in_array_type,out_array_type,in_offsets,out_offsets,in_strides_size,in_strides,in_distance,out_strides_size,out_strides,out_distance) bind(c, name="rocfft_plan_description_set_data_layout")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_data_layout_raw
+      integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_data_layout_
       type(c_ptr),value :: description
       integer(kind(rocfft_array_type_complex_interleaved)),value :: in_array_type
       integer(kind(rocfft_array_type_complex_interleaved)),value :: out_array_type
@@ -273,11 +273,11 @@ rocfft_plan_description_set_data_layout_rank_1
   !>   @param[in] len length of buf, minimum 30 characters
   !>  
   interface rocfft_get_version_string
-    function rocfft_get_version_string_raw(buf,len) bind(c, name="rocfft_get_version_string")
+    function rocfft_get_version_string_(buf,len) bind(c, name="rocfft_get_version_string")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_get_version_string_raw
+      integer(kind(rocfft_status_success)) :: rocfft_get_version_string_
       type(c_ptr),value :: buf
       integer(c_size_t),value :: len
     end function
@@ -291,11 +291,11 @@ rocfft_plan_description_set_data_layout_rank_1
   !>    @param[in] number_of_devices number of devices (size of devices array)
   !>    
   interface rocfft_plan_description_set_devices
-    function rocfft_plan_description_set_devices_raw(description,devices,number_of_devices) bind(c, name="rocfft_plan_description_set_devices")
+    function rocfft_plan_description_set_devices_(description,devices,number_of_devices) bind(c, name="rocfft_plan_description_set_devices")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_devices_raw
+      integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_devices_
       type(c_ptr),value :: description
       type(c_ptr),value :: devices
       integer(c_size_t),value :: number_of_devices
@@ -309,11 +309,11 @@ rocfft_plan_description_set_data_layout_rank_1
   !>    @param[out] size_in_bytes size of needed work buffer in bytes
   !>    
   interface rocfft_plan_get_work_buffer_size
-    function rocfft_plan_get_work_buffer_size_raw(plan,size_in_bytes) bind(c, name="rocfft_plan_get_work_buffer_size")
+    function rocfft_plan_get_work_buffer_size_(plan,size_in_bytes) bind(c, name="rocfft_plan_get_work_buffer_size")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_plan_get_work_buffer_size_raw
+      integer(kind(rocfft_status_success)) :: rocfft_plan_get_work_buffer_size_
       type(c_ptr),value :: plan
       integer(c_size_t) :: size_in_bytes
     end function
@@ -325,11 +325,11 @@ rocfft_plan_description_set_data_layout_rank_1
   !>    @param[in] plan plan handle
   !>    
   interface rocfft_plan_get_print
-    function rocfft_plan_get_print_raw(plan) bind(c, name="rocfft_plan_get_print")
+    function rocfft_plan_get_print_(plan) bind(c, name="rocfft_plan_get_print")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_plan_get_print_raw
+      integer(kind(rocfft_status_success)) :: rocfft_plan_get_print_
       type(c_ptr),value :: plan
     end function
 
@@ -341,11 +341,11 @@ rocfft_plan_description_set_data_layout_rank_1
   !>   with a call to ::rocfft_plan_description_destroy.
   !>    @param[out] description plan description handle 
   interface rocfft_plan_description_create
-    function rocfft_plan_description_create_raw(description) bind(c, name="rocfft_plan_description_create")
+    function rocfft_plan_description_create_(description) bind(c, name="rocfft_plan_description_create")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_plan_description_create_raw
+      integer(kind(rocfft_status_success)) :: rocfft_plan_description_create_
       type(c_ptr) :: description
     end function
 
@@ -357,11 +357,11 @@ rocfft_plan_description_set_data_layout_rank_1
   !>    @param[in] description plan description handle
   !>    
   interface rocfft_plan_description_destroy
-    function rocfft_plan_description_destroy_raw(description) bind(c, name="rocfft_plan_description_destroy")
+    function rocfft_plan_description_destroy_(description) bind(c, name="rocfft_plan_description_destroy")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_plan_description_destroy_raw
+      integer(kind(rocfft_status_success)) :: rocfft_plan_description_destroy_
       type(c_ptr),value :: description
     end function
 
@@ -374,11 +374,11 @@ rocfft_plan_description_set_data_layout_rank_1
   !>    @param[out] info execution info handle
   !>    
   interface rocfft_execution_info_create
-    function rocfft_execution_info_create_raw(myInfo) bind(c, name="rocfft_execution_info_create")
+    function rocfft_execution_info_create_(myInfo) bind(c, name="rocfft_execution_info_create")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_execution_info_create_raw
+      integer(kind(rocfft_status_success)) :: rocfft_execution_info_create_
       type(c_ptr) :: myInfo
     end function
 
@@ -391,11 +391,11 @@ rocfft_plan_description_set_data_layout_rank_1
   !>    @param[in] info execution info handle
   !>    
   interface rocfft_execution_info_destroy
-    function rocfft_execution_info_destroy_raw(myInfo) bind(c, name="rocfft_execution_info_destroy")
+    function rocfft_execution_info_destroy_(myInfo) bind(c, name="rocfft_execution_info_destroy")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_execution_info_destroy_raw
+      integer(kind(rocfft_status_success)) :: rocfft_execution_info_destroy_
       type(c_ptr),value :: myInfo
     end function
 
@@ -428,11 +428,11 @@ rocfft_plan_description_set_data_layout_rank_1
   !>    @param[in] size_in_bytes size of work buffer in bytes
   !>    
   interface rocfft_execution_info_set_work_buffer
-    function rocfft_execution_info_set_work_buffer_raw(myInfo,work_buffer,size_in_bytes) bind(c, name="rocfft_execution_info_set_work_buffer")
+    function rocfft_execution_info_set_work_buffer_(myInfo,work_buffer,size_in_bytes) bind(c, name="rocfft_execution_info_set_work_buffer")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_execution_info_set_work_buffer_raw
+      integer(kind(rocfft_status_success)) :: rocfft_execution_info_set_work_buffer_
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: work_buffer
       integer(c_size_t),value :: size_in_bytes
@@ -448,11 +448,11 @@ rocfft_plan_description_set_data_layout_rank_1
   !>    @param[in] mode execution mode
   !>    
   interface rocfft_execution_info_set_mode
-    function rocfft_execution_info_set_mode_raw(myInfo,mode) bind(c, name="rocfft_execution_info_set_mode")
+    function rocfft_execution_info_set_mode_(myInfo,mode) bind(c, name="rocfft_execution_info_set_mode")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_execution_info_set_mode_raw
+      integer(kind(rocfft_status_success)) :: rocfft_execution_info_set_mode_
       type(c_ptr),value :: myInfo
       integer(kind(rocfft_exec_mode_nonblocking)),value :: mode
     end function
@@ -473,11 +473,11 @@ rocfft_plan_description_set_data_layout_rank_1
   !>    @param[in] stream underlying compute stream
   !>    
   interface rocfft_execution_info_set_stream
-    function rocfft_execution_info_set_stream_raw(myInfo,stream) bind(c, name="rocfft_execution_info_set_stream")
+    function rocfft_execution_info_set_stream_(myInfo,stream) bind(c, name="rocfft_execution_info_set_stream")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_execution_info_set_stream_raw
+      integer(kind(rocfft_status_success)) :: rocfft_execution_info_set_stream_
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: stream
     end function
@@ -520,11 +520,11 @@ rocfft_plan_description_set_data_layout_rank_1
   !>    @param[in] cbdata callback function data, passed to the function pointer when it is called
   !>    @param[in] shared_mem_size amount of shared memory to allocate for the callback function to use 
   interface rocfft_execution_info_set_load_callback
-    function rocfft_execution_info_set_load_callback_raw(myInfo,cb_functions,cb_data,shared_mem_bytes) bind(c, name="rocfft_execution_info_set_load_callback")
+    function rocfft_execution_info_set_load_callback_(myInfo,cb_functions,cb_data,shared_mem_bytes) bind(c, name="rocfft_execution_info_set_load_callback")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_execution_info_set_load_callback_raw
+      integer(kind(rocfft_status_success)) :: rocfft_execution_info_set_load_callback_
       type(c_ptr),value :: myInfo
       type(c_ptr) :: cb_functions
       type(c_ptr) :: cb_data
@@ -570,11 +570,11 @@ rocfft_plan_description_set_data_layout_rank_1
   !>    @param[in] shared_mem_size amount of shared memory to allocate for the callback function to use
   !>    
   interface rocfft_execution_info_set_store_callback
-    function rocfft_execution_info_set_store_callback_raw(desc,cb_functions,cb_data,shared_mem_size) bind(c, name="rocfft_execution_info_set_store_callback")
+    function rocfft_execution_info_set_store_callback_(desc,cb_functions,cb_data,shared_mem_size) bind(c, name="rocfft_execution_info_set_store_callback")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_execution_info_set_store_callback_raw
+      integer(kind(rocfft_status_success)) :: rocfft_execution_info_set_store_callback_
       type(c_ptr),value :: desc
       type(c_ptr) :: cb_functions
       type(c_ptr) :: cb_data
@@ -592,11 +592,11 @@ rocfft_plan_description_set_data_layout_rank_1
   !>    @param[out] number_of_events number of events (size of events array)
   !>    
   interface rocfft_execution_info_get_events
-    function rocfft_execution_info_get_events_raw(myInfo,events,number_of_events) bind(c, name="rocfft_execution_info_get_events")
+    function rocfft_execution_info_get_events_(myInfo,events,number_of_events) bind(c, name="rocfft_execution_info_get_events")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_execution_info_get_events_raw
+      integer(kind(rocfft_status_success)) :: rocfft_execution_info_get_events_
       type(c_ptr),value :: myInfo
       type(c_ptr) :: events
       integer(c_size_t) :: number_of_events
@@ -611,11 +611,11 @@ rocfft_plan_description_set_data_layout_rank_1
   !>    with a call to ::rocfft_cache_buffer_free.  The length of the
   !>    buffer in bytes is written to 'buffer_len_bytes'. 
   interface rocfft_cache_serialize
-    function rocfft_cache_serialize_raw(buffer,buffer_len_bytes) bind(c, name="rocfft_cache_serialize")
+    function rocfft_cache_serialize_(buffer,buffer_len_bytes) bind(c, name="rocfft_cache_serialize")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_cache_serialize_raw
+      integer(kind(rocfft_status_success)) :: rocfft_cache_serialize_
       type(c_ptr) :: buffer
       type(c_ptr),value :: buffer_len_bytes
     end function
@@ -626,11 +626,11 @@ rocfft_plan_description_set_data_layout_rank_1
   !> 
   !>    @details Deallocate a buffer allocated by ::rocfft_cache_serialize.  
   interface rocfft_cache_buffer_free
-    function rocfft_cache_buffer_free_raw(buffer) bind(c, name="rocfft_cache_buffer_free")
+    function rocfft_cache_buffer_free_(buffer) bind(c, name="rocfft_cache_buffer_free")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_cache_buffer_free_raw
+      integer(kind(rocfft_status_success)) :: rocfft_cache_buffer_free_
       type(c_ptr),value :: buffer
     end function
 
@@ -644,11 +644,11 @@ rocfft_plan_description_set_data_layout_rank_1
   !>    this operation.  The cache is unmodified if either a null buffer
   !>    pointer or a zero length is passed. 
   interface rocfft_cache_deserialize
-    function rocfft_cache_deserialize_raw(buffer,buffer_len_bytes) bind(c, name="rocfft_cache_deserialize")
+    function rocfft_cache_deserialize_(buffer,buffer_len_bytes) bind(c, name="rocfft_cache_deserialize")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_cache_deserialize_raw
+      integer(kind(rocfft_status_success)) :: rocfft_cache_deserialize_
       type(c_ptr),value :: buffer
       integer(c_size_t),value :: buffer_len_bytes
     end function
@@ -672,7 +672,7 @@ rocfft_plan_description_set_data_layout_rank_1
       integer(c_size_t) :: number_of_transforms
       type(c_ptr) :: description
       !
-      rocfft_plan_create_rank_0 = rocfft_plan_create_raw(plan,placement,transform_type,myPrecision,dimensions,c_loc(lengths),number_of_transforms,description)
+      rocfft_plan_create_rank_0 = rocfft_plan_create_(plan,placement,transform_type,myPrecision,dimensions,c_loc(lengths),number_of_transforms,description)
     end function
 
     function rocfft_plan_create_rank_1(plan,placement,transform_type,myPrecision,dimensions,lengths,number_of_transforms,description)
@@ -689,7 +689,7 @@ rocfft_plan_description_set_data_layout_rank_1
       integer(c_size_t) :: number_of_transforms
       type(c_ptr) :: description
       !
-      rocfft_plan_create_rank_1 = rocfft_plan_create_raw(plan,placement,transform_type,myPrecision,dimensions,c_loc(lengths),number_of_transforms,description)
+      rocfft_plan_create_rank_1 = rocfft_plan_create_(plan,placement,transform_type,myPrecision,dimensions,c_loc(lengths),number_of_transforms,description)
     end function
 
     function rocfft_plan_description_set_data_layout_rank_0(description,in_array_type,out_array_type,in_offsets,out_offsets,in_strides_size,in_strides,in_distance,out_strides_size,out_strides,out_distance)
@@ -709,7 +709,7 @@ rocfft_plan_description_set_data_layout_rank_1
       integer(c_size_t),target :: out_strides
       integer(c_size_t) :: out_distance
       !
-      rocfft_plan_description_set_data_layout_rank_0 = rocfft_plan_description_set_data_layout_raw(description,in_array_type,out_array_type,c_loc(in_offsets),c_loc(out_offsets),in_strides_size,c_loc(in_strides),in_distance,out_strides_size,c_loc(out_strides),out_distance)
+      rocfft_plan_description_set_data_layout_rank_0 = rocfft_plan_description_set_data_layout_(description,in_array_type,out_array_type,c_loc(in_offsets),c_loc(out_offsets),in_strides_size,c_loc(in_strides),in_distance,out_strides_size,c_loc(out_strides),out_distance)
     end function
 
     function rocfft_plan_description_set_data_layout_rank_1(description,in_array_type,out_array_type,in_offsets,out_offsets,in_strides_size,in_strides,in_distance,out_strides_size,out_strides,out_distance)
@@ -729,7 +729,7 @@ rocfft_plan_description_set_data_layout_rank_1
       integer(c_size_t),target,dimension(:) :: out_strides
       integer(c_size_t) :: out_distance
       !
-      rocfft_plan_description_set_data_layout_rank_1 = rocfft_plan_description_set_data_layout_raw(description,in_array_type,out_array_type,c_loc(in_offsets),c_loc(out_offsets),in_strides_size,c_loc(in_strides),in_distance,out_strides_size,c_loc(out_strides),out_distance)
+      rocfft_plan_description_set_data_layout_rank_1 = rocfft_plan_description_set_data_layout_(description,in_array_type,out_array_type,c_loc(in_offsets),c_loc(out_offsets),in_strides_size,c_loc(in_strides),in_distance,out_strides_size,c_loc(out_strides),out_distance)
     end function
 
   
