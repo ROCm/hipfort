@@ -60,9 +60,9 @@ program hip_dgemm
   call hipCheck(hipMalloc(dc,Ncbytes))
 
   !Transfer from host to device
-  call hipCheck(hipMemcpy(da, c_loc(ha), Nabytes, hipMemcpyHostToDevice))
-  call hipCheck(hipMemcpy(db, c_loc(hb), Nbbytes, hipMemcpyHostToDevice))
-  call hipCheck(hipMemcpy(dc, c_loc(hc), Ncbytes, hipMemcpyHostToDevice))
+  call hipCheck(hipMemcpy(da, c_loc(ha(1)), Nabytes, hipMemcpyHostToDevice))
+  call hipCheck(hipMemcpy(db, c_loc(hb(1)), Nbbytes, hipMemcpyHostToDevice))
+  call hipCheck(hipMemcpy(dc, c_loc(hc(1)), Ncbytes, hipMemcpyHostToDevice))
 
 
   call hipblasCheck(hipblasDgemm(handle,transa,transb,m,n,k,alpha,da,lda,db,ldb,beta,dc,ldc))
@@ -70,7 +70,7 @@ program hip_dgemm
   call hipCheck(hipDeviceSynchronize())
 
   ! Transfer data back to host memory
-  call hipCheck(hipMemcpy(c_loc(hc), dc, Ncbytes, hipMemcpyDeviceToHost))
+  call hipCheck(hipMemcpy(c_loc(hc(1)), dc, Ncbytes, hipMemcpyDeviceToHost))
 
 
   do i = 1,size_c

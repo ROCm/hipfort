@@ -35,7 +35,7 @@ program hipfft_example
   hx(:)%y = -1
 
   call hipCheck(hipMalloc(dx, Nbytes))
-  call hipCheck(hipMemcpy(dx, c_loc(hx), Nbytes, hipMemcpyHostToDevice))
+  call hipCheck(hipMemcpy(dx, c_loc(hx(1)), Nbytes, hipMemcpyHostToDevice))
 
   call hipfftCheck(hipfftPlan1d(plan, int(N, 4), HIPFFT_Z2Z, 1))
 
@@ -45,7 +45,7 @@ program hipfft_example
   call hipCheck(hipDeviceSynchronize())
 
 
-  call hipCheck(hipMemcpy(c_loc(hx),dx,Nbytes,hipMemcpyDeviceToHost))
+  call hipCheck(hipMemcpy(c_loc(hx(1)),dx,Nbytes,hipMemcpyDeviceToHost))
   call hipCheck(hipFree(dx))
 
   ! Using the C++ version of this as the "gold".

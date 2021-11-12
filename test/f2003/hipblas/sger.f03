@@ -60,16 +60,16 @@ program hip_sger
   !call hipCheck(hipblasSetVector(m,bytes_per_element,x,1,dx,1))
   !call hipCheck(hipblasSetVector(n,bytes_per_element,y,1,dy,1))
   
-  call hipCheck(hipMemcpy(da, c_loc(a), Nabytes, hipMemcpyHostToDevice))
-  call hipCheck(hipMemcpy(dx, c_loc(x), Nxbytes, hipMemcpyHostToDevice))
-  call hipCheck(hipMemcpy(dy, c_loc(y), Nybytes, hipMemcpyHostToDevice)) 
+  call hipCheck(hipMemcpy(da, c_loc(a(1,1)), Nabytes, hipMemcpyHostToDevice))
+  call hipCheck(hipMemcpy(dx, c_loc(x(1)), Nxbytes, hipMemcpyHostToDevice))
+  call hipCheck(hipMemcpy(dy, c_loc(y(1)), Nybytes, hipMemcpyHostToDevice)) 
 
   call hipCheck(hipblasSger(handle,m,n,alpha,dx,1,dy,1,da,m))
   
   !call hipCheck(hipblasGetMatrix(m,n,bytes_per_element,da,m,a,m));
   call hipCheck(hipDeviceSynchronize())
 
-  call hipCheck(hipMemcpy(c_loc(a), da, Nabytes, hipMemcpyDeviceToHost))
+  call hipCheck(hipMemcpy(c_loc(a(1,1)), da, Nabytes, hipMemcpyDeviceToHost))
 
   !do i=1,m
   !  do j = 1,n

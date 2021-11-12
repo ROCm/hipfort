@@ -38,14 +38,14 @@ program hip_dscal
   call hipCheck(hipMalloc(dx,Nbytes))
 
    ! Transfer data from host to device memory
-  call hipCheck(hipMemcpy(dx, c_loc(hx), Nbytes, hipMemcpyHostToDevice))
+  call hipCheck(hipMemcpy(dx, c_loc(hx(1)), Nbytes, hipMemcpyHostToDevice))
 
   call hipblasCheck(hipblasDscal(hip_blas_handle, N, alpha, dx, 1))
 
   call hipCheck(hipDeviceSynchronize())
 
   ! Transfer data back to host memory
-  call hipCheck(hipMemcpy(c_loc(hx), dx, Nbytes, hipMemcpyDeviceToHost))
+  call hipCheck(hipMemcpy(c_loc(hx(1)), dx, Nbytes, hipMemcpyDeviceToHost))
 
   call hipCheck(hipFree(dx))
 

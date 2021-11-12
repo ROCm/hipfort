@@ -45,13 +45,13 @@ program hip_sgemv
   call hipCheck(hipMalloc(dy,Nybytes))
   call hipCheck(hipMalloc(da,Nabytes))
 
-  call hipCheck(hipMemcpy(da, c_loc(a), Nabytes, hipMemcpyHostToDevice))
-  call hipCheck(hipMemcpy(dx, c_loc(x), Nxbytes, hipMemcpyHostToDevice))
-  call hipCheck(hipMemcpy(dy, c_loc(y), Nybytes, hipMemcpyHostToDevice))
+  call hipCheck(hipMemcpy(da, c_loc(a(1)), Nabytes, hipMemcpyHostToDevice))
+  call hipCheck(hipMemcpy(dx, c_loc(x(1)), Nxbytes, hipMemcpyHostToDevice))
+  call hipCheck(hipMemcpy(dy, c_loc(y(1)), Nybytes, hipMemcpyHostToDevice))
 
   call hipCheck(hipblasSgemv(handle,HIPBLAS_OP_N,m,n,alpha,da,m,dx,1,beta,dy,1))
 
-  call hipCheck(hipMemcpy(c_loc(y), dy, Nybytes, hipMemcpyDeviceToHost))
+  call hipCheck(hipMemcpy(c_loc(y(1)), dy, Nybytes, hipMemcpyDeviceToHost))
 
   do i = 1,m
     error = abs(5.0 - y(i))
@@ -74,4 +74,3 @@ program hip_sgemv
   write(*,*) "PASSED!"
 
 end program hip_sgemv
-

@@ -45,14 +45,14 @@ program dgeqrf
   call hipCheck(rocblas_create_handle(handle))
 
   ! Copy memory from host to device
-  call hipCheck(hipMemcpy(dA, c_loc(hA), size_A * 8, hipMemcpyHostToDevice))
+  call hipCheck(hipMemcpy(dA, c_loc(hA(1,1)), size_A * 8, hipMemcpyHostToDevice))
 
   ! Compute the QR factorization on the devi ce
   call hipCheck(rocsolver_dgeqrf(handle, M, N, dA, lda, dIpiv))
 
   ! Copy result from device to host
-  call hipCheck(hipMemcpy(c_loc(hA), dA, size_A * 8, hipMemcpyDeviceToHost))
-  call hipCheck(hipMemcpy(c_loc(hIpiv), dIpiv, size_Ipiv * 8, hipMemcpyDeviceToHost))
+  call hipCheck(hipMemcpy(c_loc(hA(1,1)), dA, size_A * 8, hipMemcpyDeviceToHost))
+  call hipCheck(hipMemcpy(c_loc(hIpiv(1)), dIpiv, size_Ipiv * 8, hipMemcpyDeviceToHost))
 
   ! Output results
   do j = 1,size(hA,2)
