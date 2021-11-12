@@ -5,14 +5,14 @@ program fortran_hip
 
   implicit none
 
-  interface
-     subroutine launch(out,a,b,N) bind(c)
-       use iso_c_binding
-       implicit none
-       type(c_ptr) :: a, b, out
-       integer, value :: N
-     end subroutine
-  end interface
+  !interface
+  !   subroutine launch(out,a,b,N) bind(c)
+  !     use iso_c_binding
+  !     implicit none
+  !     type(c_ptr) :: a, b, out
+  !     integer, value :: N
+  !   end subroutine
+  !end interface
 
   type(c_ptr) :: da = c_null_ptr
   type(c_ptr) :: db = c_null_ptr
