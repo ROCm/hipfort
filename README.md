@@ -39,10 +39,15 @@ that supports the Fortran 2003 standard (`f2003`).
 These interfaces typically require to pass `type(c_ptr)` variables and the number of bytes to memory
 management (e.g. `hipMalloc`) and math library routines (e.g. `hipblasDGEMM`).
 
-If your compiler understands Fortran 2008 code (`f2008`), additional interfaces are compiled into the `hipfort`
-modules and libraries. These directly take Fortran (array) variables and the number of
-elements instead of `type(c_ptr)` variables and the number of bytes, respectively. This reduces the chance to introduce compile-time and runtime errors
+If your compiler understands the Fortran 2008 (`f2008`) code constructs that occur in `hipfort`'s source and test files, 
+additional interfaces are compiled into the `hipfort` modules and libraries. 
+These directly take Fortran (array) variables and the number of
+elements instead of `type(c_ptr)` variables and the number of bytes, respectively. 
+Therefore, they reduces the chance to introduce compile-time and runtime errors
 into your code and makes it easier to read too.
+
+> **NOTE**: If you plan to use the `f2008` interfaces, we recommend `gfortran` version `7.5.0` or newer
+as we have observed problems with older versions.
 
 ### Example
 
@@ -118,9 +123,9 @@ There are further subcategories per `hip*` or `roc*` library that is tested.
 
 ### Building a single test
 
-> **NOTE** Only the `hip*` tests can be compiled for CUDA devices. The `roc*` tests cannot.
+> **NOTE**: Only the `hip*` tests can be compiled for CUDA devices. The `roc*` tests cannot.
 
-> **NOTE** The make targets append the linker flags for AMD devices to the `CFLAGS` variable per default.
+> **NOTE**: The make targets append the linker flags for AMD devices to the `CFLAGS` variable per default.
 
 To compile for AMD devices you can simply call `make` in the test directories.
 
