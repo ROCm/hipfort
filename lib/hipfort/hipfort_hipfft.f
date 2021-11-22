@@ -1458,6 +1458,154 @@ hipfftExecZ2D_rank_1
       hipfftExecZ2D_rank_1 = hipfftExecZ2D_(plan,c_loc(idata),c_loc(odata))
     end function
 
-  
+    ! 2D    
+    function hipfftExecC2C_rank_2(plan,idata,odata,direction)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftExecC2C_rank_2
+      type(c_ptr),value :: plan
+      complex(c_float_complex),target,dimension(:,:) :: idata
+      complex(c_float_complex),target,dimension(:,:) :: odata
+      integer(c_int),value :: direction
+      !
+      hipfftExecC2C_rank_2 = hipfftExecC2C_(plan,c_loc(idata),c_loc(odata),direction)
+    end function
+
+    function hipfftExecR2C_rank_2(plan,idata,odata)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftExecR2C_rank_2
+      type(c_ptr),value :: plan
+      real(c_float),target,dimension(:,:) :: idata
+      complex(c_float_complex),target,dimension(:,:) :: odata
+      !
+      hipfftExecR2C_rank_2 = hipfftExecR2C_(plan,c_loc(idata),c_loc(odata))
+    end function
+
+    function hipfftExecC2R_rank_2(plan,idata,odata)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftExecC2R_rank_2
+      type(c_ptr),value :: plan
+      complex(c_float_complex),target,dimension(:,:) :: idata
+      real(c_float),target,dimension(:,:) :: odata
+      !
+      hipfftExecC2R_rank_2 = hipfftExecC2R_(plan,c_loc(idata),c_loc(odata))
+    end function
+
+    function hipfftExecZ2Z_rank_2(plan,idata,odata,direction)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftExecZ2Z_rank_2
+      type(c_ptr),value :: plan
+      complex(c_double_complex),target,dimension(:,:) :: idata
+      complex(c_double_complex),target,dimension(:,:) :: odata
+      integer(c_int),value :: direction
+      !
+      hipfftExecZ2Z_rank_2 = hipfftExecZ2Z_(plan,c_loc(idata),c_loc(odata),direction)
+    end function
+
+    function hipfftExecD2Z_rank_2(plan,idata,odata)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftExecD2Z_rank_2
+      type(c_ptr),value :: plan
+      real(c_double),target,dimension(:,:) :: idata
+      complex(c_double_complex),target,dimension(:,:) :: odata
+      !
+      hipfftExecD2Z_rank_2 = hipfftExecD2Z_(plan,c_loc(idata),c_loc(odata))
+    end function
+
+    function hipfftExecZ2D_rank_2(plan,idata,odata)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftExecZ2D_rank_2
+      type(c_ptr),value :: plan
+      complex(c_double_complex),target,dimension(:,:) :: idata
+      real(c_double),target,dimension(:,:) :: odata
+      !
+      hipfftExecZ2D_rank_2 = hipfftExecZ2D_(plan,c_loc(idata),c_loc(odata))
+    end function
+
+    ! 3D
+    function hipfftExecC2C_rank_3(plan,idata,odata,direction)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftExecC2C_rank_3
+      type(c_ptr),value :: plan
+      complex(c_float_complex),target,dimension(:,:,:) :: idata
+      complex(c_float_complex),target,dimension(:,:,:) :: odata
+      integer(c_int),value :: direction
+      !
+      hipfftExecC2C_rank_3 = hipfftExecC2C_(plan,c_loc(idata),c_loc(odata),direction)
+    end function
+
+    function hipfftExecR2C_rank_3(plan,idata,odata)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftExecR2C_rank_3
+      type(c_ptr),value :: plan
+      real(c_float),target,dimension(:,:,:) :: idata
+      complex(c_float_complex),target,dimension(:,:,:) :: odata
+      !
+      hipfftExecR2C_rank_3 = hipfftExecR2C_(plan,c_loc(idata),c_loc(odata))
+    end function
+
+    function hipfftExecC2R_rank_3(plan,idata,odata)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftExecC2R_rank_3
+      type(c_ptr),value :: plan
+      complex(c_float_complex),target,dimension(:,:,:) :: idata
+      real(c_float),target,dimension(:,:,:) :: odata
+      !
+      hipfftExecC2R_rank_3 = hipfftExecC2R_(plan,c_loc(idata),c_loc(odata))
+    end function
+
+    function hipfftExecZ2Z_rank_3(plan,idata,odata,direction)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftExecZ2Z_rank_3
+      type(c_ptr),value :: plan
+      complex(c_double_complex),target,dimension(:,:,:) :: idata
+      complex(c_double_complex),target,dimension(:,:,:) :: odata
+      integer(c_int),value :: direction
+      !
+      hipfftExecZ2Z_rank_3 = hipfftExecZ2Z_(plan,c_loc(idata),c_loc(odata),direction)
+    end function
+
+    function hipfftExecD2Z_rank_3(plan,idata,odata)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftExecD2Z_rank_3
+      type(c_ptr),value :: plan
+      real(c_double),target,dimension(:,:,:) :: idata
+      complex(c_double_complex),target,dimension(:,:,:) :: odata
+      !
+      hipfftExecD2Z_rank_3 = hipfftExecD2Z_(plan,c_loc(idata),c_loc(odata))
+    end function
+
+    function hipfftExecZ2D_rank_3(plan,idata,odata)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftExecZ2D_rank_3
+      type(c_ptr),value :: plan
+      complex(c_double_complex),target,dimension(:,:,:) :: idata
+      real(c_double),target,dimension(:,:,:) :: odata
+      !
+      hipfftExecZ2D_rank_3 = hipfftExecZ2D_(plan,c_loc(idata),c_loc(odata))
+    end function
 #endif
 end module hipfort_hipfft
