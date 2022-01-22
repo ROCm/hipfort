@@ -1,11 +1,17 @@
 module hipfort_types
   use iso_c_binding
   implicit none
-  
+
+  !> Derived type that can be mapped directly to a CUDA/HIP C++ dim3.  
   type,bind(c) :: dim3
-     integer(c_int) :: x,y,z 
+     integer(c_int) :: x=1,y=1,z=1
   end type dim3
 
+  !> Constructors for dim3.
+  interface dim3
+     module procedure dim3_c_int_1, dim3_c_int_2, dim3_c_int_3,&
+                      dim3_c_long_1, dim3_c_long_2, dim3_c_long_3
+  end interface  
 
   ! runtime api parameters
 
@@ -72,4 +78,60 @@ module hipfort_types
   integer, parameter :: hipCooperativeLaunchMultiDeviceNoPreSync =  1
   integer, parameter :: hipCooperativeLaunchMultiDeviceNoPostSync =  2
 
+contains
+  function dim3_c_int_1(x) result(retval)
+    use iso_c_binding
+    integer(c_int),intent(in) :: x
+    !
+    type(dim3) :: retval
+    !
+    retval%x = x
+  end function
+  function dim3_c_int_2(x,y) result(retval)
+    use iso_c_binding
+    integer(c_int),intent(in) :: x,y
+    !
+    type(dim3) :: retval
+    !
+    retval%x = x
+    retval%y = y
+  end function
+  function dim3_c_int_3(x,y,z) result(retval)
+    use iso_c_binding
+    integer(c_int),intent(in) :: x,y,z
+    !
+    type(dim3) :: retval
+    !
+    retval%x = x
+    retval%y = y
+    retval%z = z
+  end function
+  !
+  function dim3_c_long_1(x) result(retval)
+    use iso_c_binding
+    integer(c_long),intent(in) :: x
+    !
+    type(dim3) :: retval
+    !
+    retval%x = int(x,c_int)
+  end function
+  function dim3_c_long_2(x,y) result(retval)
+    use iso_c_binding
+    integer(c_long),intent(in) :: x,y
+    !
+    type(dim3) :: retval
+    !
+    retval%x = int(x,c_int)
+    retval%y = int(y,c_int)
+  end function
+  function dim3_c_long_3(x,y,z) result(retval)
+    use iso_c_binding
+    integer(c_long),intent(in) :: x,y,z
+    !
+    type(dim3) :: retval
+    !
+    retval%x = int(x,c_int)
+    retval%y = int(y,c_int)
+    retval%z = int(z,c_int)
+  end function
 end module hipfort_types
