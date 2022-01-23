@@ -39,6 +39,8 @@ module hipfort_hipblas_enums
     enumerator :: HIPBLAS_STATUS_NOT_SUPPORTED = 7
     enumerator :: HIPBLAS_STATUS_ARCH_MISMATCH = 8
     enumerator :: HIPBLAS_STATUS_HANDLE_IS_NULLPTR = 9
+    enumerator :: HIPBLAS_STATUS_INVALID_ENUM = 10
+    enumerator :: HIPBLAS_STATUS_UNKNOWN = 11
   end enum
 
   enum, bind(c)

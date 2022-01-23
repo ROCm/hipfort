@@ -55,15 +55,14 @@ module hipfort_rocrand
   !>  
   !>  
   interface rocrand_create_generator
-    function rocrand_create_generator_orig(generator,rng_type) bind(c, name="rocrand_create_generator")
+    function rocrand_create_generator_(generator,rng_type) bind(c, name="rocrand_create_generator")
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_create_generator_orig
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_create_generator_
       type(c_ptr) :: generator
       integer(kind(ROCRAND_RNG_PSEUDO_DEFAULT)),value :: rng_type
     end function
-
 
   end interface
   !> 
@@ -78,14 +77,13 @@ module hipfort_rocrand
   !>   - ROCRAND_STATUS_SUCCESS if generator was destroyed successfully \n
   !>  
   interface rocrand_destroy_generator
-    function rocrand_destroy_generator_orig(generator) bind(c, name="rocrand_destroy_generator")
+    function rocrand_destroy_generator_(generator) bind(c, name="rocrand_destroy_generator")
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_destroy_generator_orig
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_destroy_generator_
       type(c_ptr),value :: generator
     end function
-
 
   end interface
   !> 
@@ -109,16 +107,15 @@ module hipfort_rocrand
   !>   - ROCRAND_STATUS_SUCCESS if random numbers were successfully generated \n
   !>  
   interface rocrand_generate
-    function rocrand_generate_orig(generator,output_data,n) bind(c, name="rocrand_generate")
+    function rocrand_generate_(generator,output_data,n) bind(c, name="rocrand_generate")
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_orig
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
     end function
-
 
   end interface
   !> 
@@ -142,16 +139,15 @@ module hipfort_rocrand
   !>  - ROCRAND_STATUS_SUCCESS if random numbers were successfully generated \n
   !> 
   interface rocrand_generate_char
-    function rocrand_generate_char_orig(generator,output_data,n) bind(c, name="rocrand_generate_char")
+    function rocrand_generate_char_(generator,output_data,n) bind(c, name="rocrand_generate_char")
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_char_orig
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_char_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
     end function
-
 
   end interface
   !> 
@@ -175,16 +171,15 @@ module hipfort_rocrand
   !>  - ROCRAND_STATUS_SUCCESS if random numbers were successfully generated \n
   !> 
   interface rocrand_generate_short
-    function rocrand_generate_short_orig(generator,output_data,n) bind(c, name="rocrand_generate_short")
+    function rocrand_generate_short_(generator,output_data,n) bind(c, name="rocrand_generate_short")
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_short_orig
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_short_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
     end function
-
 
   end interface
   !> 
@@ -208,16 +203,15 @@ module hipfort_rocrand
   !>   - ROCRAND_STATUS_SUCCESS if random numbers were successfully generated \n
   !>  
   interface rocrand_generate_uniform
-    function rocrand_generate_uniform_orig(generator,output_data,n) bind(c, name="rocrand_generate_uniform")
+    function rocrand_generate_uniform_(generator,output_data,n) bind(c, name="rocrand_generate_uniform")
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_uniform_orig
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_uniform_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
     end function
-
 
   end interface
   !> 
@@ -241,16 +235,15 @@ module hipfort_rocrand
   !>   - ROCRAND_STATUS_SUCCESS if random numbers were successfully generated \n
   !>  
   interface rocrand_generate_uniform_double
-    function rocrand_generate_uniform_double_orig(generator,output_data,n) bind(c, name="rocrand_generate_uniform_double")
+    function rocrand_generate_uniform_double_(generator,output_data,n) bind(c, name="rocrand_generate_uniform_double")
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_uniform_double_orig
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_uniform_double_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
     end function
-
 
   end interface
   !> 
@@ -273,18 +266,17 @@ module hipfort_rocrand
   !>   - ROCRAND_STATUS_SUCCESS if random numbers were successfully generated \n
   !>  
   interface rocrand_generate_normal
-    function rocrand_generate_normal_orig(generator,output_data,n,mean,stddev) bind(c, name="rocrand_generate_normal")
+    function rocrand_generate_normal_(generator,output_data,n,mean,stddev) bind(c, name="rocrand_generate_normal")
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_normal_orig
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_normal_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
       real(c_float),value :: mean
       real(c_float),value :: stddev
     end function
-
 
   end interface
   !> 
@@ -307,18 +299,17 @@ module hipfort_rocrand
   !>   - ROCRAND_STATUS_SUCCESS if random numbers were successfully generated \n
   !>  
   interface rocrand_generate_normal_double
-    function rocrand_generate_normal_double_orig(generator,output_data,n,mean,stddev) bind(c, name="rocrand_generate_normal_double")
+    function rocrand_generate_normal_double_(generator,output_data,n,mean,stddev) bind(c, name="rocrand_generate_normal_double")
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_normal_double_orig
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_normal_double_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
       real(c_double),value :: mean
       real(c_double),value :: stddev
     end function
-
 
   end interface
   !> 
@@ -341,18 +332,17 @@ module hipfort_rocrand
   !>   - ROCRAND_STATUS_SUCCESS if random numbers were successfully generated \n
   !>  
   interface rocrand_generate_log_normal
-    function rocrand_generate_log_normal_orig(generator,output_data,n,mean,stddev) bind(c, name="rocrand_generate_log_normal")
+    function rocrand_generate_log_normal_(generator,output_data,n,mean,stddev) bind(c, name="rocrand_generate_log_normal")
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_log_normal_orig
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_log_normal_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
       real(c_float),value :: mean
       real(c_float),value :: stddev
     end function
-
 
   end interface
   !> 
@@ -375,18 +365,17 @@ module hipfort_rocrand
   !>   - ROCRAND_STATUS_SUCCESS if random numbers were successfully generated \n
   !>  
   interface rocrand_generate_log_normal_double
-    function rocrand_generate_log_normal_double_orig(generator,output_data,n,mean,stddev) bind(c, name="rocrand_generate_log_normal_double")
+    function rocrand_generate_log_normal_double_(generator,output_data,n,mean,stddev) bind(c, name="rocrand_generate_log_normal_double")
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_log_normal_double_orig
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_log_normal_double_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
       real(c_double),value :: mean
       real(c_double),value :: stddev
     end function
-
 
   end interface
   !> 
@@ -409,17 +398,16 @@ module hipfort_rocrand
   !>   - ROCRAND_STATUS_SUCCESS if random numbers were successfully generated \n
   !>  
   interface rocrand_generate_poisson
-    function rocrand_generate_poisson_orig(generator,output_data,n,lambda) bind(c, name="rocrand_generate_poisson")
+    function rocrand_generate_poisson_(generator,output_data,n,lambda) bind(c, name="rocrand_generate_poisson")
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_poisson_orig
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_poisson_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
       real(c_double),value :: lambda
     end function
-
 
   end interface
   !> 
@@ -440,14 +428,13 @@ module hipfort_rocrand
   !>   - ROCRAND_STATUS_SUCCESS if the seeds were generated successfully \n
   !>  
   interface rocrand_initialize_generator
-    function rocrand_initialize_generator_orig(generator) bind(c, name="rocrand_initialize_generator")
+    function rocrand_initialize_generator_(generator) bind(c, name="rocrand_initialize_generator")
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_initialize_generator_orig
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_initialize_generator_
       type(c_ptr),value :: generator
     end function
-
 
   end interface
   !> 
@@ -464,15 +451,14 @@ module hipfort_rocrand
   !>   - ROCRAND_STATUS_SUCCESS if stream was set successfully \n
   !>  
   interface rocrand_set_stream
-    function rocrand_set_stream_orig(generator,stream) bind(c, name="rocrand_set_stream")
+    function rocrand_set_stream_(generator,stream) bind(c, name="rocrand_set_stream")
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_set_stream_orig
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_set_stream_
       type(c_ptr),value :: generator
       type(c_ptr),value :: stream
     end function
-
 
   end interface
   !> 
@@ -496,15 +482,14 @@ module hipfort_rocrand
   !>   - ROCRAND_STATUS_SUCCESS if seed was set successfully \n
   !>  
   interface rocrand_set_seed
-    function rocrand_set_seed_orig(generator,seed) bind(c, name="rocrand_set_seed")
+    function rocrand_set_seed_(generator,seed) bind(c, name="rocrand_set_seed")
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_set_seed_orig
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_set_seed_
       type(c_ptr),value :: generator
       integer(c_long_long),value :: seed
     end function
-
 
   end interface
   !> 
@@ -526,15 +511,14 @@ module hipfort_rocrand
   !>   - ROCRAND_STATUS_TYPE_ERROR if generator's type is ROCRAND_RNG_PSEUDO_MTGP32
   !>  
   interface rocrand_set_offset
-    function rocrand_set_offset_orig(generator,offset) bind(c, name="rocrand_set_offset")
+    function rocrand_set_offset_(generator,offset) bind(c, name="rocrand_set_offset")
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_set_offset_orig
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_set_offset_
       type(c_ptr),value :: generator
       integer(c_long_long),value :: offset
     end function
-
 
   end interface
   !> 
@@ -556,15 +540,14 @@ module hipfort_rocrand
   !>   - ROCRAND_STATUS_SUCCESS if the number of dimensions was set successfully \n
   !>  
   interface rocrand_set_quasi_random_generator_dimensions
-    function rocrand_set_quasi_random_generator_dimensions_orig(generator,dimensions) bind(c, name="rocrand_set_quasi_random_generator_dimensions")
+    function rocrand_set_quasi_random_generator_dimensions_(generator,dimensions) bind(c, name="rocrand_set_quasi_random_generator_dimensions")
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_set_quasi_random_generator_dimensions_orig
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_set_quasi_random_generator_dimensions_
       type(c_ptr),value :: generator
       integer(kind=4),value :: dimensions
     end function
-
 
   end interface
   !> 
@@ -580,14 +563,13 @@ module hipfort_rocrand
   !>   - ROCRAND_STATUS_SUCCESS if the version number was successfully returned \n
   !>  
   interface rocrand_get_version
-    function rocrand_get_version_orig(version) bind(c, name="rocrand_get_version")
+    function rocrand_get_version_(version) bind(c, name="rocrand_get_version")
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_get_version_orig
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_get_version_
       type(c_ptr),value :: version
     end function
-
 
   end interface
   !> 
@@ -605,15 +587,14 @@ module hipfort_rocrand
   !>   - ROCRAND_STATUS_SUCCESS if the histogram was ructed successfully \n
   !>  
   interface rocrand_create_poisson_distribution
-    function rocrand_create_poisson_distribution_orig(lambda,discrete_distribution) bind(c, name="rocrand_create_poisson_distribution")
+    function rocrand_create_poisson_distribution_(lambda,discrete_distribution) bind(c, name="rocrand_create_poisson_distribution")
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_create_poisson_distribution_orig
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_create_poisson_distribution_
       real(c_double),value :: lambda
       type(c_ptr) :: discrete_distribution
     end function
-
 
   end interface
   !> 
@@ -635,17 +616,16 @@ module hipfort_rocrand
   !>   - ROCRAND_STATUS_SUCCESS if the histogram was ructed successfully \n
   !>  
   interface rocrand_create_discrete_distribution
-    function rocrand_create_discrete_distribution_orig(probabilities,mySize,offset,discrete_distribution) bind(c, name="rocrand_create_discrete_distribution")
+    function rocrand_create_discrete_distribution_(probabilities,mySize,offset,discrete_distribution) bind(c, name="rocrand_create_discrete_distribution")
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_create_discrete_distribution_orig
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_create_discrete_distribution_
       type(c_ptr),value :: probabilities
       integer(kind=4),value :: mySize
       integer(kind=4),value :: offset
       type(c_ptr) :: discrete_distribution
     end function
-
 
   end interface
   !> 
@@ -661,14 +641,13 @@ module hipfort_rocrand
   !>   - ROCRAND_STATUS_SUCCESS if the histogram was destroyed successfully \n
   !>  
   interface rocrand_destroy_discrete_distribution
-    function rocrand_destroy_discrete_distribution_orig(discrete_distribution) bind(c, name="rocrand_destroy_discrete_distribution")
+    function rocrand_destroy_discrete_distribution_(discrete_distribution) bind(c, name="rocrand_destroy_discrete_distribution")
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_destroy_discrete_distribution_orig
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_destroy_discrete_distribution_
       type(c_ptr),value :: discrete_distribution
     end function
-
 
   end interface
 

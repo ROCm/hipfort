@@ -55,6 +55,7 @@ module hipfort_enums
     enumerator :: hipErrorProfilerAlreadyStarted = 7
     enumerator :: hipErrorProfilerAlreadyStopped = 8
     enumerator :: hipErrorInvalidConfiguration = 9
+    enumerator :: hipErrorInvalidPitchValue = 12
     enumerator :: hipErrorInvalidSymbol = 13
     enumerator :: hipErrorInvalidDevicePointer = 17
     enumerator :: hipErrorInvalidMemcpyDirection = 21
@@ -98,12 +99,22 @@ module hipfort_enums
     enumerator :: hipErrorPeerAccessAlreadyEnabled = 704
     enumerator :: hipErrorPeerAccessNotEnabled = 705
     enumerator :: hipErrorSetOnActiveProcess = 708
+    enumerator :: hipErrorContextIsDestroyed = 709
     enumerator :: hipErrorAssert = 710
     enumerator :: hipErrorHostMemoryAlreadyRegistered = 712
     enumerator :: hipErrorHostMemoryNotRegistered = 713
     enumerator :: hipErrorLaunchFailure = 719
     enumerator :: hipErrorCooperativeLaunchTooLarge = 720
     enumerator :: hipErrorNotSupported = 801
+    enumerator :: hipErrorStreamCaptureUnsupported = 900
+    enumerator :: hipErrorStreamCaptureInvalidated = 901
+    enumerator :: hipErrorStreamCaptureMerge = 902
+    enumerator :: hipErrorStreamCaptureUnmatched = 903
+    enumerator :: hipErrorStreamCaptureUnjoined = 904
+    enumerator :: hipErrorStreamCaptureIsolation = 905
+    enumerator :: hipErrorStreamCaptureImplicit = 906
+    enumerator :: hipErrorCapturedEvent = 907
+    enumerator :: hipErrorStreamCaptureWrongThread = 908
     enumerator :: hipErrorUnknown = 999
     enumerator :: hipErrorRuntimeMemory = 1052
     enumerator :: hipErrorRuntimeOther = 1053
@@ -163,6 +174,7 @@ module hipfort_enums
     enumerator :: hipDeviceAttributeConcurrentManagedAccess
     enumerator :: hipDeviceAttributePageableMemoryAccess
     enumerator :: hipDeviceAttributePageableMemoryAccessUsesHostPageTables
+    enumerator :: hipDeviceAttributeCanUseStreamWaitValue
   end enum
 
   enum, bind(c)
@@ -180,6 +192,7 @@ module hipfort_enums
   end enum
 
   enum, bind(c)
+    enumerator :: hipLimitPrintfFifoSize = 1
     enumerator :: hipLimitMallocHeapSize = 2
   end enum
 
@@ -190,6 +203,14 @@ module hipfort_enums
     enumerator :: hipMemAdviseUnsetPreferredLocation = 4
     enumerator :: hipMemAdviseSetAccessedBy = 5
     enumerator :: hipMemAdviseUnsetAccessedBy = 6
+    enumerator :: hipMemAdviseSetCoarseGrain = 100
+    enumerator :: hipMemAdviseUnsetCoarseGrain = 101
+  end enum
+
+  enum, bind(c)
+    enumerator :: hipMemRangeCoherencyModeFineGrain = 0
+    enumerator :: hipMemRangeCoherencyModeCoarseGrain = 1
+    enumerator :: hipMemRangeCoherencyModeIndeterminate = 2
   end enum
 
   enum, bind(c)
@@ -197,6 +218,7 @@ module hipfort_enums
     enumerator :: hipMemRangeAttributePreferredLocation = 2
     enumerator :: hipMemRangeAttributeAccessedBy = 3
     enumerator :: hipMemRangeAttributeLastPrefetchLocation = 4
+    enumerator :: hipMemRangeAttributeCoherencyMode = 100
   end enum
 
   enum, bind(c)
@@ -237,6 +259,75 @@ module hipfort_enums
     enumerator :: hipSharedMemBankSizeDefault
     enumerator :: hipSharedMemBankSizeFourByte
     enumerator :: hipSharedMemBankSizeEightByte
+  end enum
+
+  enum, bind(c)
+    enumerator :: hipExternalMemoryHandleTypeOpaqueFd = 1
+    enumerator :: hipExternalMemoryHandleTypeOpaqueWin32 = 2
+    enumerator :: hipExternalMemoryHandleTypeOpaqueWin32Kmt = 3
+    enumerator :: hipExternalMemoryHandleTypeD3D12Heap = 4
+    enumerator :: hipExternalMemoryHandleTypeD3D12Resource = 5
+    enumerator :: hipExternalMemoryHandleTypeD3D11Resource = 6
+    enumerator :: hipExternalMemoryHandleTypeD3D11ResourceKmt = 7
+  end enum
+
+  enum, bind(c)
+    enumerator :: hipExternalSemaphoreHandleTypeOpaqueFd = 1
+    enumerator :: hipExternalSemaphoreHandleTypeOpaqueWin32 = 2
+    enumerator :: hipExternalSemaphoreHandleTypeOpaqueWin32Kmt = 3
+    enumerator :: hipExternalSemaphoreHandleTypeD3D12Fence = 4
+  end enum
+
+  enum, bind(c)
+    enumerator :: hipGLDeviceListAll = 1
+    enumerator :: hipGLDeviceListCurrentFrame = 2
+    enumerator :: hipGLDeviceListNextFrame = 3
+  end enum
+
+  enum, bind(c)
+    enumerator :: hipGraphicsRegisterFlagsNone = 0
+    enumerator :: hipGraphicsRegisterFlagsReadOnly = 1
+    enumerator :: hipGraphicsRegisterFlagsWriteDiscard = 2
+    enumerator :: hipGraphicsRegisterFlagsSurfaceLoadStore = 4
+    enumerator :: hipGraphicsRegisterFlagsTextureGather = 8
+  end enum
+
+  enum, bind(c)
+    enumerator :: hipGraphNodeTypeKernel = 1
+    enumerator :: hipGraphNodeTypeMemcpy = 2
+    enumerator :: hipGraphNodeTypeMemset = 3
+    enumerator :: hipGraphNodeTypeHost = 4
+    enumerator :: hipGraphNodeTypeGraph = 5
+    enumerator :: hipGraphNodeTypeEmpty = 6
+    enumerator :: hipGraphNodeTypeWaitEvent = 7
+    enumerator :: hipGraphNodeTypeEventRecord = 8
+    enumerator :: hipGraphNodeTypeMemcpy1D = 9
+    enumerator :: hipGraphNodeTypeMemcpyFromSymbol = 10
+    enumerator :: hipGraphNodeTypeMemcpyToSymbol = 11
+    enumerator :: hipGraphNodeTypeCount
+  end enum
+
+  enum, bind(c)
+    enumerator :: hipGraphExecUpdateSuccess = 0
+    enumerator :: hipGraphExecUpdateError = 1
+    enumerator :: hipGraphExecUpdateErrorTopologyChanged = 2
+    enumerator :: hipGraphExecUpdateErrorNodeTypeChanged = 3
+    enumerator :: hipGraphExecUpdateErrorFunctionChanged = 4
+    enumerator :: hipGraphExecUpdateErrorParametersChanged = 5
+    enumerator :: hipGraphExecUpdateErrorNotSupported = 6
+    enumerator :: hipGraphExecUpdateErrorUnsupportedFunctionChange = 7
+  end enum
+
+  enum, bind(c)
+    enumerator :: hipStreamCaptureModeGlobal = 0
+    enumerator :: hipStreamCaptureModeThreadLocal
+    enumerator :: hipStreamCaptureModeRelaxed
+  end enum
+
+  enum, bind(c)
+    enumerator :: hipStreamCaptureStatusNone = 0
+    enumerator :: hipStreamCaptureStatusActive
+    enumerator :: hipStreamCaptureStatusInvalidated
   end enum
 
   enum, bind(c)
@@ -396,6 +487,21 @@ module hipfort_enums
   enum, bind(c)
     enumerator :: hipReadModeElementType = 0
     enumerator :: hipReadModeNormalizedFloat = 1
+  end enum
+
+  enum, bind(c)
+    enumerator :: HIP_R_16F = 2
+    enumerator :: HIP_R_32F = 0
+    enumerator :: HIP_R_64F = 1
+    enumerator :: HIP_C_16F = 6
+    enumerator :: HIP_C_32F = 4
+    enumerator :: HIP_C_64F = 5
+  end enum
+
+  enum, bind(c)
+    enumerator :: HIP_LIBRARY_MAJOR_VERSION
+    enumerator :: HIP_LIBRARY_MINOR_VERSION
+    enumerator :: HIP_LIBRARY_PATCH_LEVEL
   end enum
 
  

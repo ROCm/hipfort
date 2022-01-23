@@ -65,18 +65,17 @@ module hipfort_hiprand
   !>  
   interface hiprandCreateGenerator
 #ifdef USE_CUDA_NAMES
-    function hiprandCreateGenerator_orig(generator,rng_type) bind(c, name="curandCreateGenerator")
+    function hiprandCreateGenerator_(generator,rng_type) bind(c, name="curandCreateGenerator")
 #else
-    function hiprandCreateGenerator_orig(generator,rng_type) bind(c, name="hiprandCreateGenerator")
+    function hiprandCreateGenerator_(generator,rng_type) bind(c, name="hiprandCreateGenerator")
 #endif
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandCreateGenerator_orig
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandCreateGenerator_
       type(c_ptr) :: generator
       integer(kind(HIPRAND_RNG_TEST)),value :: rng_type
     end function
-
 
   end interface
   !> 
@@ -112,18 +111,17 @@ module hipfort_hiprand
   !>  
   interface hiprandCreateGeneratorHost
 #ifdef USE_CUDA_NAMES
-    function hiprandCreateGeneratorHost_orig(generator,rng_type) bind(c, name="curandCreateGeneratorHost")
+    function hiprandCreateGeneratorHost_(generator,rng_type) bind(c, name="curandCreateGeneratorHost")
 #else
-    function hiprandCreateGeneratorHost_orig(generator,rng_type) bind(c, name="hiprandCreateGeneratorHost")
+    function hiprandCreateGeneratorHost_(generator,rng_type) bind(c, name="hiprandCreateGeneratorHost")
 #endif
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandCreateGeneratorHost_orig
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandCreateGeneratorHost_
       type(c_ptr) :: generator
       integer(kind(HIPRAND_RNG_TEST)),value :: rng_type
     end function
-
 
   end interface
   !> 
@@ -139,17 +137,16 @@ module hipfort_hiprand
   !>  
   interface hiprandDestroyGenerator
 #ifdef USE_CUDA_NAMES
-    function hiprandDestroyGenerator_orig(generator) bind(c, name="curandDestroyGenerator")
+    function hiprandDestroyGenerator_(generator) bind(c, name="curandDestroyGenerator")
 #else
-    function hiprandDestroyGenerator_orig(generator) bind(c, name="hiprandDestroyGenerator")
+    function hiprandDestroyGenerator_(generator) bind(c, name="hiprandDestroyGenerator")
 #endif
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandDestroyGenerator_orig
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandDestroyGenerator_
       type(c_ptr),value :: generator
     end function
-
 
   end interface
   !> 
@@ -172,19 +169,18 @@ module hipfort_hiprand
   !>  
   interface hiprandGenerate
 #ifdef USE_CUDA_NAMES
-    function hiprandGenerate_orig(generator,output_data,n) bind(c, name="curandGenerate")
+    function hiprandGenerate_(generator,output_data,n) bind(c, name="curandGenerate")
 #else
-    function hiprandGenerate_orig(generator,output_data,n) bind(c, name="hiprandGenerate")
+    function hiprandGenerate_(generator,output_data,n) bind(c, name="hiprandGenerate")
 #endif
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerate_orig
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerate_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
     end function
-
 
   end interface
   !> 
@@ -207,19 +203,18 @@ module hipfort_hiprand
   !>  
   interface hiprandGenerateChar
 #ifdef USE_CUDA_NAMES
-    function hiprandGenerateChar_orig(generator,output_data,n) bind(c, name="curandGenerateChar")
+    function hiprandGenerateChar_(generator,output_data,n) bind(c, name="curandGenerateChar")
 #else
-    function hiprandGenerateChar_orig(generator,output_data,n) bind(c, name="hiprandGenerateChar")
+    function hiprandGenerateChar_(generator,output_data,n) bind(c, name="hiprandGenerateChar")
 #endif
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateChar_orig
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateChar_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
     end function
-
 
   end interface
   !> 
@@ -242,19 +237,18 @@ module hipfort_hiprand
   !>  
   interface hiprandGenerateShort
 #ifdef USE_CUDA_NAMES
-    function hiprandGenerateShort_orig(generator,output_data,n) bind(c, name="curandGenerateShort")
+    function hiprandGenerateShort_(generator,output_data,n) bind(c, name="curandGenerateShort")
 #else
-    function hiprandGenerateShort_orig(generator,output_data,n) bind(c, name="hiprandGenerateShort")
+    function hiprandGenerateShort_(generator,output_data,n) bind(c, name="hiprandGenerateShort")
 #endif
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateShort_orig
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateShort_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
     end function
-
 
   end interface
   !> 
@@ -279,19 +273,18 @@ module hipfort_hiprand
   !>  
   interface hiprandGenerateUniform
 #ifdef USE_CUDA_NAMES
-    function hiprandGenerateUniform_orig(generator,output_data,n) bind(c, name="curandGenerateUniform")
+    function hiprandGenerateUniform_(generator,output_data,n) bind(c, name="curandGenerateUniform")
 #else
-    function hiprandGenerateUniform_orig(generator,output_data,n) bind(c, name="hiprandGenerateUniform")
+    function hiprandGenerateUniform_(generator,output_data,n) bind(c, name="hiprandGenerateUniform")
 #endif
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateUniform_orig
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateUniform_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
     end function
-
 
   end interface
   !> 
@@ -321,19 +314,18 @@ module hipfort_hiprand
   !>  
   interface hiprandGenerateUniformDouble
 #ifdef USE_CUDA_NAMES
-    function hiprandGenerateUniformDouble_orig(generator,output_data,n) bind(c, name="curandGenerateUniformDouble")
+    function hiprandGenerateUniformDouble_(generator,output_data,n) bind(c, name="curandGenerateUniformDouble")
 #else
-    function hiprandGenerateUniformDouble_orig(generator,output_data,n) bind(c, name="hiprandGenerateUniformDouble")
+    function hiprandGenerateUniformDouble_(generator,output_data,n) bind(c, name="hiprandGenerateUniformDouble")
 #endif
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateUniformDouble_orig
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateUniformDouble_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
     end function
-
 
   end interface
   !> 
@@ -358,21 +350,20 @@ module hipfort_hiprand
   !>  
   interface hiprandGenerateNormal
 #ifdef USE_CUDA_NAMES
-    function hiprandGenerateNormal_orig(generator,output_data,n,mean,stddev) bind(c, name="curandGenerateNormal")
+    function hiprandGenerateNormal_(generator,output_data,n,mean,stddev) bind(c, name="curandGenerateNormal")
 #else
-    function hiprandGenerateNormal_orig(generator,output_data,n,mean,stddev) bind(c, name="hiprandGenerateNormal")
+    function hiprandGenerateNormal_(generator,output_data,n,mean,stddev) bind(c, name="hiprandGenerateNormal")
 #endif
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateNormal_orig
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateNormal_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
       real(c_float),value :: mean
       real(c_float),value :: stddev
     end function
-
 
   end interface
   !> 
@@ -397,21 +388,20 @@ module hipfort_hiprand
   !>  
   interface hiprandGenerateNormalDouble
 #ifdef USE_CUDA_NAMES
-    function hiprandGenerateNormalDouble_orig(generator,output_data,n,mean,stddev) bind(c, name="curandGenerateNormalDouble")
+    function hiprandGenerateNormalDouble_(generator,output_data,n,mean,stddev) bind(c, name="curandGenerateNormalDouble")
 #else
-    function hiprandGenerateNormalDouble_orig(generator,output_data,n,mean,stddev) bind(c, name="hiprandGenerateNormalDouble")
+    function hiprandGenerateNormalDouble_(generator,output_data,n,mean,stddev) bind(c, name="hiprandGenerateNormalDouble")
 #endif
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateNormalDouble_orig
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateNormalDouble_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
       real(c_double),value :: mean
       real(c_double),value :: stddev
     end function
-
 
   end interface
   !> 
@@ -436,21 +426,20 @@ module hipfort_hiprand
   !>  
   interface hiprandGenerateLogNormal
 #ifdef USE_CUDA_NAMES
-    function hiprandGenerateLogNormal_orig(generator,output_data,n,mean,stddev) bind(c, name="curandGenerateLogNormal")
+    function hiprandGenerateLogNormal_(generator,output_data,n,mean,stddev) bind(c, name="curandGenerateLogNormal")
 #else
-    function hiprandGenerateLogNormal_orig(generator,output_data,n,mean,stddev) bind(c, name="hiprandGenerateLogNormal")
+    function hiprandGenerateLogNormal_(generator,output_data,n,mean,stddev) bind(c, name="hiprandGenerateLogNormal")
 #endif
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLogNormal_orig
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLogNormal_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
       real(c_float),value :: mean
       real(c_float),value :: stddev
     end function
-
 
   end interface
   !> 
@@ -475,21 +464,20 @@ module hipfort_hiprand
   !>  
   interface hiprandGenerateLogNormalDouble
 #ifdef USE_CUDA_NAMES
-    function hiprandGenerateLogNormalDouble_orig(generator,output_data,n,mean,stddev) bind(c, name="curandGenerateLogNormalDouble")
+    function hiprandGenerateLogNormalDouble_(generator,output_data,n,mean,stddev) bind(c, name="curandGenerateLogNormalDouble")
 #else
-    function hiprandGenerateLogNormalDouble_orig(generator,output_data,n,mean,stddev) bind(c, name="hiprandGenerateLogNormalDouble")
+    function hiprandGenerateLogNormalDouble_(generator,output_data,n,mean,stddev) bind(c, name="hiprandGenerateLogNormalDouble")
 #endif
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLogNormalDouble_orig
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLogNormalDouble_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
       real(c_double),value :: mean
       real(c_double),value :: stddev
     end function
-
 
   end interface
   !> 
@@ -513,20 +501,19 @@ module hipfort_hiprand
   !>  
   interface hiprandGeneratePoisson
 #ifdef USE_CUDA_NAMES
-    function hiprandGeneratePoisson_orig(generator,output_data,n,lambda) bind(c, name="curandGeneratePoisson")
+    function hiprandGeneratePoisson_(generator,output_data,n,lambda) bind(c, name="curandGeneratePoisson")
 #else
-    function hiprandGeneratePoisson_orig(generator,output_data,n,lambda) bind(c, name="hiprandGeneratePoisson")
+    function hiprandGeneratePoisson_(generator,output_data,n,lambda) bind(c, name="hiprandGeneratePoisson")
 #endif
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGeneratePoisson_orig
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGeneratePoisson_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
       real(c_double),value :: lambda
     end function
-
 
   end interface
   !> 
@@ -549,17 +536,16 @@ module hipfort_hiprand
   !>  
   interface hiprandGenerateSeeds
 #ifdef USE_CUDA_NAMES
-    function hiprandGenerateSeeds_orig(generator) bind(c, name="curandGenerateSeeds")
+    function hiprandGenerateSeeds_(generator) bind(c, name="curandGenerateSeeds")
 #else
-    function hiprandGenerateSeeds_orig(generator) bind(c, name="hiprandGenerateSeeds")
+    function hiprandGenerateSeeds_(generator) bind(c, name="hiprandGenerateSeeds")
 #endif
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateSeeds_orig
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateSeeds_
       type(c_ptr),value :: generator
     end function
-
 
   end interface
   !> 
@@ -577,18 +563,17 @@ module hipfort_hiprand
   !>  
   interface hiprandSetStream
 #ifdef USE_CUDA_NAMES
-    function hiprandSetStream_orig(generator,stream) bind(c, name="curandSetStream")
+    function hiprandSetStream_(generator,stream) bind(c, name="curandSetStream")
 #else
-    function hiprandSetStream_orig(generator,stream) bind(c, name="hiprandSetStream")
+    function hiprandSetStream_(generator,stream) bind(c, name="hiprandSetStream")
 #endif
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandSetStream_orig
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandSetStream_
       type(c_ptr),value :: generator
       type(c_ptr),value :: stream
     end function
-
 
   end interface
   !> 
@@ -609,18 +594,17 @@ module hipfort_hiprand
   !>  
   interface hiprandSetPseudoRandomGeneratorSeed
 #ifdef USE_CUDA_NAMES
-    function hiprandSetPseudoRandomGeneratorSeed_orig(generator,seed) bind(c, name="curandSetPseudoRandomGeneratorSeed")
+    function hiprandSetPseudoRandomGeneratorSeed_(generator,seed) bind(c, name="curandSetPseudoRandomGeneratorSeed")
 #else
-    function hiprandSetPseudoRandomGeneratorSeed_orig(generator,seed) bind(c, name="hiprandSetPseudoRandomGeneratorSeed")
+    function hiprandSetPseudoRandomGeneratorSeed_(generator,seed) bind(c, name="hiprandSetPseudoRandomGeneratorSeed")
 #endif
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandSetPseudoRandomGeneratorSeed_orig
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandSetPseudoRandomGeneratorSeed_
       type(c_ptr),value :: generator
       integer(c_long_long),value :: seed
     end function
-
 
   end interface
   !> 
@@ -645,18 +629,17 @@ module hipfort_hiprand
   !>  
   interface hiprandSetGeneratorOffset
 #ifdef USE_CUDA_NAMES
-    function hiprandSetGeneratorOffset_orig(generator,offset) bind(c, name="curandSetGeneratorOffset")
+    function hiprandSetGeneratorOffset_(generator,offset) bind(c, name="curandSetGeneratorOffset")
 #else
-    function hiprandSetGeneratorOffset_orig(generator,offset) bind(c, name="hiprandSetGeneratorOffset")
+    function hiprandSetGeneratorOffset_(generator,offset) bind(c, name="hiprandSetGeneratorOffset")
 #endif
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandSetGeneratorOffset_orig
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandSetGeneratorOffset_
       type(c_ptr),value :: generator
       integer(c_long_long),value :: offset
     end function
-
 
   end interface
   !> 
@@ -679,18 +662,17 @@ module hipfort_hiprand
   !>  
   interface hiprandSetQuasiRandomGeneratorDimensions
 #ifdef USE_CUDA_NAMES
-    function hiprandSetQuasiRandomGeneratorDimensions_orig(generator,dimensions) bind(c, name="curandSetQuasiRandomGeneratorDimensions")
+    function hiprandSetQuasiRandomGeneratorDimensions_(generator,dimensions) bind(c, name="curandSetQuasiRandomGeneratorDimensions")
 #else
-    function hiprandSetQuasiRandomGeneratorDimensions_orig(generator,dimensions) bind(c, name="hiprandSetQuasiRandomGeneratorDimensions")
+    function hiprandSetQuasiRandomGeneratorDimensions_(generator,dimensions) bind(c, name="hiprandSetQuasiRandomGeneratorDimensions")
 #endif
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandSetQuasiRandomGeneratorDimensions_orig
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandSetQuasiRandomGeneratorDimensions_
       type(c_ptr),value :: generator
       integer(kind=4),value :: dimensions
     end function
-
 
   end interface
   !> 
@@ -707,17 +689,16 @@ module hipfort_hiprand
   !>  
   interface hiprandGetVersion
 #ifdef USE_CUDA_NAMES
-    function hiprandGetVersion_orig(version) bind(c, name="curandGetVersion")
+    function hiprandGetVersion_(version) bind(c, name="curandGetVersion")
 #else
-    function hiprandGetVersion_orig(version) bind(c, name="hiprandGetVersion")
+    function hiprandGetVersion_(version) bind(c, name="hiprandGetVersion")
 #endif
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGetVersion_orig
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGetVersion_
       type(c_ptr),value :: version
     end function
-
 
   end interface
   !> 
@@ -736,18 +717,17 @@ module hipfort_hiprand
   !>  
   interface hiprandCreatePoissonDistribution
 #ifdef USE_CUDA_NAMES
-    function hiprandCreatePoissonDistribution_orig(lambda,discrete_distribution) bind(c, name="curandCreatePoissonDistribution")
+    function hiprandCreatePoissonDistribution_(lambda,discrete_distribution) bind(c, name="curandCreatePoissonDistribution")
 #else
-    function hiprandCreatePoissonDistribution_orig(lambda,discrete_distribution) bind(c, name="hiprandCreatePoissonDistribution")
+    function hiprandCreatePoissonDistribution_(lambda,discrete_distribution) bind(c, name="hiprandCreatePoissonDistribution")
 #endif
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandCreatePoissonDistribution_orig
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandCreatePoissonDistribution_
       real(c_double),value :: lambda
       type(c_ptr) :: discrete_distribution
     end function
-
 
   end interface
   !> 
@@ -764,17 +744,16 @@ module hipfort_hiprand
   !>  
   interface hiprandDestroyDistribution
 #ifdef USE_CUDA_NAMES
-    function hiprandDestroyDistribution_orig(discrete_distribution) bind(c, name="curandDestroyDistribution")
+    function hiprandDestroyDistribution_(discrete_distribution) bind(c, name="curandDestroyDistribution")
 #else
-    function hiprandDestroyDistribution_orig(discrete_distribution) bind(c, name="hiprandDestroyDistribution")
+    function hiprandDestroyDistribution_(discrete_distribution) bind(c, name="hiprandDestroyDistribution")
 #endif
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandDestroyDistribution_orig
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandDestroyDistribution_
       type(c_ptr),value :: discrete_distribution
     end function
-
 
   end interface
 
