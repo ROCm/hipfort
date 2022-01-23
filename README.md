@@ -53,29 +53,6 @@ into your code and makes it easier to read too.
 > **NOTE**: If you plan to use the `f2008` interfaces, we recommend `gfortran` version `7.5.0` or newer
 as we have observed problems with older versions.
 
-### Supported API
-
-The current batch of HIPFORT interfaces is derived from ROCm 4.5.0.
-The following tables list the supported API:
-
-* [HIP](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_HIP.md)
-* [hipBLAS](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_HIPBLAS.md)
-* [hipFFT](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_HIPFFT.md)
-* [hipRAND](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_HIPRAND.md)
-* [hipSOLVER](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_HIPSOLVER.md)
-* [hipSPARSE](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_HIPSPARSE.md)
-* [rocBLAS](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_ROCBLAS.md)
-* [rocFFT](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_ROCFFT.md)
-* [rocRAND](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_ROCRAND.md)
-* [rocSOLVER](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_ROCSOLVER.md)
-* [rocSPARSE](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_ROCSPARSE.md)
-
-Often, it is further convenient to use the search function on
-HIPFORT's docu page to get information on the arguments of 
-an interface (variant):
-
-https://rocmsoftwareplatform.github.io/hipfort/index.html
-
 ### Example
 
 While you could write the following using the `f2003` interfaces:
@@ -118,11 +95,28 @@ ierr = hipMalloc(a_d,source=a_h)       ! take shape (incl. bounds) of a_h and pe
 
 In addition to `source`, there is also `dsource` in case the source is a device array.
 
-### Documentation
+### Supported HIP and ROCm API
 
-Documentation for the interfaces is hosted here:
+The current batch of HIPFORT interfaces is derived from ROCm 4.5.0.
+The following tables list the supported API:
 
-https://rocmsoftwareplatform.github.io/hipfort/
+* [HIP](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_HIP.md)
+* [hipBLAS](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_HIPBLAS.md)
+* [hipFFT](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_HIPFFT.md)
+* [hipRAND](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_HIPRAND.md)
+* [hipSOLVER](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_HIPSOLVER.md)
+* [hipSPARSE](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_HIPSPARSE.md)
+* [rocBLAS](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_ROCBLAS.md)
+* [rocFFT](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_ROCFFT.md)
+* [rocRAND](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_ROCRAND.md)
+* [rocSOLVER](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_ROCSOLVER.md)
+* [rocSPARSE](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_ROCSPARSE.md)
+
+Often, it is further convenient to use the search function on
+HIPFORT's docu page to get information on the arguments of 
+an interface (variant):
+
+https://rocmsoftwareplatform.github.io/hipfort/index.html
 
 ## hipfc wrapper compiler and Makefile.hipfort
 
