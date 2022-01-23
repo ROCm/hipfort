@@ -48,6 +48,8 @@ function usage(){
     -lrocfft    Link to rocfft library
     -lrocrand   Link to rocrand library
     -lhipblas   Link to hipblas library
+    -lhipsparse Link to hipsparse library
+    -lhipsolver Link to hipsolver library
     -lhipfft    Link to hipfft library
     -lhiprand   Link to hiprand library
     -lcusolver  Link to cusolver library
@@ -198,6 +200,7 @@ while [ $# -gt 0 ] ; do
       -lrocfft)         ROCM_LIBS+=" rocfft" ;;
       -lhipsparse)      ROCM_LIBS+=" hipsparse" ;;
       -lhipblas)        ROCM_LIBS+=" hipblas" ;;
+      -lhipsolver)      ROCM_LIBS+=" hipsolver" ;;
       -lhipfft)         ROCM_LIBS+=" hipfft" ;;
       -lhiprand)        ROCM_LIBS+=" hiprand" ;;
       -lcusolver)       CUDA_LIBS+=" cusolver" ;;

@@ -44,7 +44,6 @@ module hipfort_hipsolver
       type(c_ptr) :: handle
     end function
 
-
   end interface
   
   interface hipsolverDestroy
@@ -59,7 +58,6 @@ module hipfort_hipsolver
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDestroy_
       type(c_ptr),value :: handle
     end function
-
 
   end interface
   
@@ -77,7 +75,6 @@ module hipfort_hipsolver
       type(c_ptr),value :: streamId
     end function
 
-
   end interface
   
   interface hipsolverGetStream
@@ -93,7 +90,6 @@ module hipfort_hipsolver
       type(c_ptr),value :: handle
       type(c_ptr) :: streamId
     end function
-
 
   end interface
   
@@ -115,17 +111,15 @@ module hipfort_hipsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       real(c_float) :: tau
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverSorgbr_bufferSize_full_rank,&
-      
-hipsolverSorgbr_bufferSize_rank_0,&
-      
-hipsolverSorgbr_bufferSize_rank_1
+    module procedure &
+      hipsolverSorgbr_bufferSize_full_rank,&
+      hipsolverSorgbr_bufferSize_rank_0,&
+      hipsolverSorgbr_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverDorgbr_bufferSize
@@ -146,17 +140,15 @@ hipsolverSorgbr_bufferSize_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       real(c_double) :: tau
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverDorgbr_bufferSize_full_rank,&
-      
-hipsolverDorgbr_bufferSize_rank_0,&
-      
-hipsolverDorgbr_bufferSize_rank_1
+    module procedure &
+      hipsolverDorgbr_bufferSize_full_rank,&
+      hipsolverDorgbr_bufferSize_rank_0,&
+      hipsolverDorgbr_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverCungbr_bufferSize
@@ -177,17 +169,15 @@ hipsolverDorgbr_bufferSize_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       complex(c_float_complex) :: tau
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverCungbr_bufferSize_full_rank,&
-      
-hipsolverCungbr_bufferSize_rank_0,&
-      
-hipsolverCungbr_bufferSize_rank_1
+    module procedure &
+      hipsolverCungbr_bufferSize_full_rank,&
+      hipsolverCungbr_bufferSize_rank_0,&
+      hipsolverCungbr_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverZungbr_bufferSize
@@ -208,17 +198,15 @@ hipsolverCungbr_bufferSize_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       complex(c_double_complex) :: tau
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverZungbr_bufferSize_full_rank,&
-      
-hipsolverZungbr_bufferSize_rank_0,&
-      
-hipsolverZungbr_bufferSize_rank_1
+    module procedure &
+      hipsolverZungbr_bufferSize_full_rank,&
+      hipsolverZungbr_bufferSize_rank_0,&
+      hipsolverZungbr_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverSorgbr
@@ -241,17 +229,15 @@ hipsolverZungbr_bufferSize_rank_1
       real(c_float) :: tau
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverSorgbr_full_rank,&
-      
-hipsolverSorgbr_rank_0,&
-      
-hipsolverSorgbr_rank_1
+    module procedure &
+      hipsolverSorgbr_full_rank,&
+      hipsolverSorgbr_rank_0,&
+      hipsolverSorgbr_rank_1
 #endif
-
   end interface
   
   interface hipsolverDorgbr
@@ -274,17 +260,15 @@ hipsolverSorgbr_rank_1
       real(c_double) :: tau
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverDorgbr_full_rank,&
-      
-hipsolverDorgbr_rank_0,&
-      
-hipsolverDorgbr_rank_1
+    module procedure &
+      hipsolverDorgbr_full_rank,&
+      hipsolverDorgbr_rank_0,&
+      hipsolverDorgbr_rank_1
 #endif
-
   end interface
   
   interface hipsolverCungbr
@@ -307,17 +291,15 @@ hipsolverDorgbr_rank_1
       complex(c_float_complex) :: tau
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverCungbr_full_rank,&
-      
-hipsolverCungbr_rank_0,&
-      
-hipsolverCungbr_rank_1
+    module procedure &
+      hipsolverCungbr_full_rank,&
+      hipsolverCungbr_rank_0,&
+      hipsolverCungbr_rank_1
 #endif
-
   end interface
   
   interface hipsolverZungbr
@@ -340,17 +322,15 @@ hipsolverCungbr_rank_1
       complex(c_double_complex) :: tau
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverZungbr_full_rank,&
-      
-hipsolverZungbr_rank_0,&
-      
-hipsolverZungbr_rank_1
+    module procedure &
+      hipsolverZungbr_full_rank,&
+      hipsolverZungbr_rank_0,&
+      hipsolverZungbr_rank_1
 #endif
-
   end interface
   
   interface hipsolverSorgqr_bufferSize
@@ -370,17 +350,15 @@ hipsolverZungbr_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       real(c_float) :: tau
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverSorgqr_bufferSize_full_rank,&
-      
-hipsolverSorgqr_bufferSize_rank_0,&
-      
-hipsolverSorgqr_bufferSize_rank_1
+    module procedure &
+      hipsolverSorgqr_bufferSize_full_rank,&
+      hipsolverSorgqr_bufferSize_rank_0,&
+      hipsolverSorgqr_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverDorgqr_bufferSize
@@ -400,17 +378,15 @@ hipsolverSorgqr_bufferSize_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       real(c_double) :: tau
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverDorgqr_bufferSize_full_rank,&
-      
-hipsolverDorgqr_bufferSize_rank_0,&
-      
-hipsolverDorgqr_bufferSize_rank_1
+    module procedure &
+      hipsolverDorgqr_bufferSize_full_rank,&
+      hipsolverDorgqr_bufferSize_rank_0,&
+      hipsolverDorgqr_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverCungqr_bufferSize
@@ -430,17 +406,15 @@ hipsolverDorgqr_bufferSize_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       complex(c_float_complex) :: tau
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverCungqr_bufferSize_full_rank,&
-      
-hipsolverCungqr_bufferSize_rank_0,&
-      
-hipsolverCungqr_bufferSize_rank_1
+    module procedure &
+      hipsolverCungqr_bufferSize_full_rank,&
+      hipsolverCungqr_bufferSize_rank_0,&
+      hipsolverCungqr_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverZungqr_bufferSize
@@ -460,17 +434,15 @@ hipsolverCungqr_bufferSize_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       complex(c_double_complex) :: tau
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverZungqr_bufferSize_full_rank,&
-      
-hipsolverZungqr_bufferSize_rank_0,&
-      
-hipsolverZungqr_bufferSize_rank_1
+    module procedure &
+      hipsolverZungqr_bufferSize_full_rank,&
+      hipsolverZungqr_bufferSize_rank_0,&
+      hipsolverZungqr_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverSorgqr
@@ -492,17 +464,15 @@ hipsolverZungqr_bufferSize_rank_1
       real(c_float) :: tau
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverSorgqr_full_rank,&
-      
-hipsolverSorgqr_rank_0,&
-      
-hipsolverSorgqr_rank_1
+    module procedure &
+      hipsolverSorgqr_full_rank,&
+      hipsolverSorgqr_rank_0,&
+      hipsolverSorgqr_rank_1
 #endif
-
   end interface
   
   interface hipsolverDorgqr
@@ -524,17 +494,15 @@ hipsolverSorgqr_rank_1
       real(c_double) :: tau
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverDorgqr_full_rank,&
-      
-hipsolverDorgqr_rank_0,&
-      
-hipsolverDorgqr_rank_1
+    module procedure &
+      hipsolverDorgqr_full_rank,&
+      hipsolverDorgqr_rank_0,&
+      hipsolverDorgqr_rank_1
 #endif
-
   end interface
   
   interface hipsolverCungqr
@@ -556,17 +524,15 @@ hipsolverDorgqr_rank_1
       complex(c_float_complex) :: tau
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverCungqr_full_rank,&
-      
-hipsolverCungqr_rank_0,&
-      
-hipsolverCungqr_rank_1
+    module procedure &
+      hipsolverCungqr_full_rank,&
+      hipsolverCungqr_rank_0,&
+      hipsolverCungqr_rank_1
 #endif
-
   end interface
   
   interface hipsolverZungqr
@@ -588,17 +554,15 @@ hipsolverCungqr_rank_1
       complex(c_double_complex) :: tau
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverZungqr_full_rank,&
-      
-hipsolverZungqr_rank_0,&
-      
-hipsolverZungqr_rank_1
+    module procedure &
+      hipsolverZungqr_full_rank,&
+      hipsolverZungqr_rank_0,&
+      hipsolverZungqr_rank_1
 #endif
-
   end interface
   
   interface hipsolverSorgtr_bufferSize
@@ -617,17 +581,15 @@ hipsolverZungqr_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       real(c_float) :: tau
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverSorgtr_bufferSize_full_rank,&
-      
-hipsolverSorgtr_bufferSize_rank_0,&
-      
-hipsolverSorgtr_bufferSize_rank_1
+    module procedure &
+      hipsolverSorgtr_bufferSize_full_rank,&
+      hipsolverSorgtr_bufferSize_rank_0,&
+      hipsolverSorgtr_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverDorgtr_bufferSize
@@ -646,17 +608,15 @@ hipsolverSorgtr_bufferSize_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       real(c_double) :: tau
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverDorgtr_bufferSize_full_rank,&
-      
-hipsolverDorgtr_bufferSize_rank_0,&
-      
-hipsolverDorgtr_bufferSize_rank_1
+    module procedure &
+      hipsolverDorgtr_bufferSize_full_rank,&
+      hipsolverDorgtr_bufferSize_rank_0,&
+      hipsolverDorgtr_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverCungtr_bufferSize
@@ -675,17 +635,15 @@ hipsolverDorgtr_bufferSize_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       complex(c_float_complex) :: tau
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverCungtr_bufferSize_full_rank,&
-      
-hipsolverCungtr_bufferSize_rank_0,&
-      
-hipsolverCungtr_bufferSize_rank_1
+    module procedure &
+      hipsolverCungtr_bufferSize_full_rank,&
+      hipsolverCungtr_bufferSize_rank_0,&
+      hipsolverCungtr_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverZungtr_bufferSize
@@ -704,17 +662,15 @@ hipsolverCungtr_bufferSize_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       complex(c_double_complex) :: tau
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverZungtr_bufferSize_full_rank,&
-      
-hipsolverZungtr_bufferSize_rank_0,&
-      
-hipsolverZungtr_bufferSize_rank_1
+    module procedure &
+      hipsolverZungtr_bufferSize_full_rank,&
+      hipsolverZungtr_bufferSize_rank_0,&
+      hipsolverZungtr_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverSorgtr
@@ -735,17 +691,15 @@ hipsolverZungtr_bufferSize_rank_1
       real(c_float) :: tau
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverSorgtr_full_rank,&
-      
-hipsolverSorgtr_rank_0,&
-      
-hipsolverSorgtr_rank_1
+    module procedure &
+      hipsolverSorgtr_full_rank,&
+      hipsolverSorgtr_rank_0,&
+      hipsolverSorgtr_rank_1
 #endif
-
   end interface
   
   interface hipsolverDorgtr
@@ -766,17 +720,15 @@ hipsolverSorgtr_rank_1
       real(c_double) :: tau
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverDorgtr_full_rank,&
-      
-hipsolverDorgtr_rank_0,&
-      
-hipsolverDorgtr_rank_1
+    module procedure &
+      hipsolverDorgtr_full_rank,&
+      hipsolverDorgtr_rank_0,&
+      hipsolverDorgtr_rank_1
 #endif
-
   end interface
   
   interface hipsolverCungtr
@@ -797,17 +749,15 @@ hipsolverDorgtr_rank_1
       complex(c_float_complex) :: tau
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverCungtr_full_rank,&
-      
-hipsolverCungtr_rank_0,&
-      
-hipsolverCungtr_rank_1
+    module procedure &
+      hipsolverCungtr_full_rank,&
+      hipsolverCungtr_rank_0,&
+      hipsolverCungtr_rank_1
 #endif
-
   end interface
   
   interface hipsolverZungtr
@@ -828,17 +778,15 @@ hipsolverCungtr_rank_1
       complex(c_double_complex) :: tau
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverZungtr_full_rank,&
-      
-hipsolverZungtr_rank_0,&
-      
-hipsolverZungtr_rank_1
+    module procedure &
+      hipsolverZungtr_full_rank,&
+      hipsolverZungtr_rank_0,&
+      hipsolverZungtr_rank_1
 #endif
-
   end interface
   
   interface hipsolverSormqr_bufferSize
@@ -862,17 +810,15 @@ hipsolverZungtr_rank_1
       real(c_float) :: tau
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverSormqr_bufferSize_full_rank,&
-      
-hipsolverSormqr_bufferSize_rank_0,&
-      
-hipsolverSormqr_bufferSize_rank_1
+    module procedure &
+      hipsolverSormqr_bufferSize_full_rank,&
+      hipsolverSormqr_bufferSize_rank_0,&
+      hipsolverSormqr_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverDormqr_bufferSize
@@ -896,17 +842,15 @@ hipsolverSormqr_bufferSize_rank_1
       real(c_double) :: tau
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverDormqr_bufferSize_full_rank,&
-      
-hipsolverDormqr_bufferSize_rank_0,&
-      
-hipsolverDormqr_bufferSize_rank_1
+    module procedure &
+      hipsolverDormqr_bufferSize_full_rank,&
+      hipsolverDormqr_bufferSize_rank_0,&
+      hipsolverDormqr_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverCunmqr_bufferSize
@@ -930,17 +874,15 @@ hipsolverDormqr_bufferSize_rank_1
       complex(c_float_complex) :: tau
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverCunmqr_bufferSize_full_rank,&
-      
-hipsolverCunmqr_bufferSize_rank_0,&
-      
-hipsolverCunmqr_bufferSize_rank_1
+    module procedure &
+      hipsolverCunmqr_bufferSize_full_rank,&
+      hipsolverCunmqr_bufferSize_rank_0,&
+      hipsolverCunmqr_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverZunmqr_bufferSize
@@ -964,17 +906,15 @@ hipsolverCunmqr_bufferSize_rank_1
       complex(c_double_complex) :: tau
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverZunmqr_bufferSize_full_rank,&
-      
-hipsolverZunmqr_bufferSize_rank_0,&
-      
-hipsolverZunmqr_bufferSize_rank_1
+    module procedure &
+      hipsolverZunmqr_bufferSize_full_rank,&
+      hipsolverZunmqr_bufferSize_rank_0,&
+      hipsolverZunmqr_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverSormqr
@@ -1000,17 +940,15 @@ hipsolverZunmqr_bufferSize_rank_1
       integer(c_int),value :: ldc
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverSormqr_full_rank,&
-      
-hipsolverSormqr_rank_0,&
-      
-hipsolverSormqr_rank_1
+    module procedure &
+      hipsolverSormqr_full_rank,&
+      hipsolverSormqr_rank_0,&
+      hipsolverSormqr_rank_1
 #endif
-
   end interface
   
   interface hipsolverDormqr
@@ -1036,17 +974,15 @@ hipsolverSormqr_rank_1
       integer(c_int),value :: ldc
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverDormqr_full_rank,&
-      
-hipsolverDormqr_rank_0,&
-      
-hipsolverDormqr_rank_1
+    module procedure &
+      hipsolverDormqr_full_rank,&
+      hipsolverDormqr_rank_0,&
+      hipsolverDormqr_rank_1
 #endif
-
   end interface
   
   interface hipsolverCunmqr
@@ -1072,17 +1008,15 @@ hipsolverDormqr_rank_1
       integer(c_int),value :: ldc
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverCunmqr_full_rank,&
-      
-hipsolverCunmqr_rank_0,&
-      
-hipsolverCunmqr_rank_1
+    module procedure &
+      hipsolverCunmqr_full_rank,&
+      hipsolverCunmqr_rank_0,&
+      hipsolverCunmqr_rank_1
 #endif
-
   end interface
   
   interface hipsolverZunmqr
@@ -1108,17 +1042,15 @@ hipsolverCunmqr_rank_1
       integer(c_int),value :: ldc
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverZunmqr_full_rank,&
-      
-hipsolverZunmqr_rank_0,&
-      
-hipsolverZunmqr_rank_1
+    module procedure &
+      hipsolverZunmqr_full_rank,&
+      hipsolverZunmqr_rank_0,&
+      hipsolverZunmqr_rank_1
 #endif
-
   end interface
   
   interface hipsolverSormtr_bufferSize
@@ -1142,17 +1074,15 @@ hipsolverZunmqr_rank_1
       real(c_float) :: tau
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverSormtr_bufferSize_full_rank,&
-      
-hipsolverSormtr_bufferSize_rank_0,&
-      
-hipsolverSormtr_bufferSize_rank_1
+    module procedure &
+      hipsolverSormtr_bufferSize_full_rank,&
+      hipsolverSormtr_bufferSize_rank_0,&
+      hipsolverSormtr_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverDormtr_bufferSize
@@ -1176,17 +1106,15 @@ hipsolverSormtr_bufferSize_rank_1
       real(c_double) :: tau
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverDormtr_bufferSize_full_rank,&
-      
-hipsolverDormtr_bufferSize_rank_0,&
-      
-hipsolverDormtr_bufferSize_rank_1
+    module procedure &
+      hipsolverDormtr_bufferSize_full_rank,&
+      hipsolverDormtr_bufferSize_rank_0,&
+      hipsolverDormtr_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverCunmtr_bufferSize
@@ -1210,17 +1138,15 @@ hipsolverDormtr_bufferSize_rank_1
       complex(c_float_complex) :: tau
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverCunmtr_bufferSize_full_rank,&
-      
-hipsolverCunmtr_bufferSize_rank_0,&
-      
-hipsolverCunmtr_bufferSize_rank_1
+    module procedure &
+      hipsolverCunmtr_bufferSize_full_rank,&
+      hipsolverCunmtr_bufferSize_rank_0,&
+      hipsolverCunmtr_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverZunmtr_bufferSize
@@ -1244,17 +1170,15 @@ hipsolverCunmtr_bufferSize_rank_1
       complex(c_double_complex) :: tau
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverZunmtr_bufferSize_full_rank,&
-      
-hipsolverZunmtr_bufferSize_rank_0,&
-      
-hipsolverZunmtr_bufferSize_rank_1
+    module procedure &
+      hipsolverZunmtr_bufferSize_full_rank,&
+      hipsolverZunmtr_bufferSize_rank_0,&
+      hipsolverZunmtr_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverSormtr
@@ -1280,17 +1204,15 @@ hipsolverZunmtr_bufferSize_rank_1
       integer(c_int),value :: ldc
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverSormtr_full_rank,&
-      
-hipsolverSormtr_rank_0,&
-      
-hipsolverSormtr_rank_1
+    module procedure &
+      hipsolverSormtr_full_rank,&
+      hipsolverSormtr_rank_0,&
+      hipsolverSormtr_rank_1
 #endif
-
   end interface
   
   interface hipsolverDormtr
@@ -1316,17 +1238,15 @@ hipsolverSormtr_rank_1
       integer(c_int),value :: ldc
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverDormtr_full_rank,&
-      
-hipsolverDormtr_rank_0,&
-      
-hipsolverDormtr_rank_1
+    module procedure &
+      hipsolverDormtr_full_rank,&
+      hipsolverDormtr_rank_0,&
+      hipsolverDormtr_rank_1
 #endif
-
   end interface
   
   interface hipsolverCunmtr
@@ -1352,17 +1272,15 @@ hipsolverDormtr_rank_1
       integer(c_int),value :: ldc
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverCunmtr_full_rank,&
-      
-hipsolverCunmtr_rank_0,&
-      
-hipsolverCunmtr_rank_1
+    module procedure &
+      hipsolverCunmtr_full_rank,&
+      hipsolverCunmtr_rank_0,&
+      hipsolverCunmtr_rank_1
 #endif
-
   end interface
   
   interface hipsolverZunmtr
@@ -1388,17 +1306,15 @@ hipsolverCunmtr_rank_1
       integer(c_int),value :: ldc
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverZunmtr_full_rank,&
-      
-hipsolverZunmtr_rank_0,&
-      
-hipsolverZunmtr_rank_1
+    module procedure &
+      hipsolverZunmtr_full_rank,&
+      hipsolverZunmtr_rank_0,&
+      hipsolverZunmtr_rank_1
 #endif
-
   end interface
   
   interface hipsolverSgebrd_bufferSize
@@ -1414,9 +1330,8 @@ hipsolverZunmtr_rank_1
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
-
 
   end interface
   
@@ -1433,9 +1348,8 @@ hipsolverZunmtr_rank_1
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
-
 
   end interface
   
@@ -1452,9 +1366,8 @@ hipsolverZunmtr_rank_1
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
-
 
   end interface
   
@@ -1471,9 +1384,8 @@ hipsolverZunmtr_rank_1
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
-
 
   end interface
   
@@ -1498,17 +1410,15 @@ hipsolverZunmtr_rank_1
       type(c_ptr),value :: taup
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverSgebrd_full_rank,&
-      
-hipsolverSgebrd_rank_0,&
-      
-hipsolverSgebrd_rank_1
+    module procedure &
+      hipsolverSgebrd_full_rank,&
+      hipsolverSgebrd_rank_0,&
+      hipsolverSgebrd_rank_1
 #endif
-
   end interface
   
   interface hipsolverDgebrd
@@ -1532,17 +1442,15 @@ hipsolverSgebrd_rank_1
       type(c_ptr),value :: taup
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverDgebrd_full_rank,&
-      
-hipsolverDgebrd_rank_0,&
-      
-hipsolverDgebrd_rank_1
+    module procedure &
+      hipsolverDgebrd_full_rank,&
+      hipsolverDgebrd_rank_0,&
+      hipsolverDgebrd_rank_1
 #endif
-
   end interface
   
   interface hipsolverCgebrd
@@ -1566,17 +1474,15 @@ hipsolverDgebrd_rank_1
       type(c_ptr),value :: taup
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverCgebrd_full_rank,&
-      
-hipsolverCgebrd_rank_0,&
-      
-hipsolverCgebrd_rank_1
+    module procedure &
+      hipsolverCgebrd_full_rank,&
+      hipsolverCgebrd_rank_0,&
+      hipsolverCgebrd_rank_1
 #endif
-
   end interface
   
   interface hipsolverZgebrd
@@ -1600,17 +1506,15 @@ hipsolverCgebrd_rank_1
       type(c_ptr),value :: taup
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverZgebrd_full_rank,&
-      
-hipsolverZgebrd_rank_0,&
-      
-hipsolverZgebrd_rank_1
+    module procedure &
+      hipsolverZgebrd_full_rank,&
+      hipsolverZgebrd_rank_0,&
+      hipsolverZgebrd_rank_1
 #endif
-
   end interface
   
   interface hipsolverSgeqrf_bufferSize
@@ -1628,17 +1532,15 @@ hipsolverZgebrd_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverSgeqrf_bufferSize_full_rank,&
-      
-hipsolverSgeqrf_bufferSize_rank_0,&
-      
-hipsolverSgeqrf_bufferSize_rank_1
+    module procedure &
+      hipsolverSgeqrf_bufferSize_full_rank,&
+      hipsolverSgeqrf_bufferSize_rank_0,&
+      hipsolverSgeqrf_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverDgeqrf_bufferSize
@@ -1656,17 +1558,15 @@ hipsolverSgeqrf_bufferSize_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverDgeqrf_bufferSize_full_rank,&
-      
-hipsolverDgeqrf_bufferSize_rank_0,&
-      
-hipsolverDgeqrf_bufferSize_rank_1
+    module procedure &
+      hipsolverDgeqrf_bufferSize_full_rank,&
+      hipsolverDgeqrf_bufferSize_rank_0,&
+      hipsolverDgeqrf_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverCgeqrf_bufferSize
@@ -1684,17 +1584,15 @@ hipsolverDgeqrf_bufferSize_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverCgeqrf_bufferSize_full_rank,&
-      
-hipsolverCgeqrf_bufferSize_rank_0,&
-      
-hipsolverCgeqrf_bufferSize_rank_1
+    module procedure &
+      hipsolverCgeqrf_bufferSize_full_rank,&
+      hipsolverCgeqrf_bufferSize_rank_0,&
+      hipsolverCgeqrf_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverZgeqrf_bufferSize
@@ -1712,17 +1610,15 @@ hipsolverCgeqrf_bufferSize_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverZgeqrf_bufferSize_full_rank,&
-      
-hipsolverZgeqrf_bufferSize_rank_0,&
-      
-hipsolverZgeqrf_bufferSize_rank_1
+    module procedure &
+      hipsolverZgeqrf_bufferSize_full_rank,&
+      hipsolverZgeqrf_bufferSize_rank_0,&
+      hipsolverZgeqrf_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverSgeqrf
@@ -1743,17 +1639,15 @@ hipsolverZgeqrf_bufferSize_rank_1
       real(c_float) :: tau
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverSgeqrf_full_rank,&
-      
-hipsolverSgeqrf_rank_0,&
-      
-hipsolverSgeqrf_rank_1
+    module procedure &
+      hipsolverSgeqrf_full_rank,&
+      hipsolverSgeqrf_rank_0,&
+      hipsolverSgeqrf_rank_1
 #endif
-
   end interface
   
   interface hipsolverDgeqrf
@@ -1774,17 +1668,15 @@ hipsolverSgeqrf_rank_1
       real(c_double) :: tau
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverDgeqrf_full_rank,&
-      
-hipsolverDgeqrf_rank_0,&
-      
-hipsolverDgeqrf_rank_1
+    module procedure &
+      hipsolverDgeqrf_full_rank,&
+      hipsolverDgeqrf_rank_0,&
+      hipsolverDgeqrf_rank_1
 #endif
-
   end interface
   
   interface hipsolverCgeqrf
@@ -1805,17 +1697,15 @@ hipsolverDgeqrf_rank_1
       complex(c_float_complex) :: tau
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverCgeqrf_full_rank,&
-      
-hipsolverCgeqrf_rank_0,&
-      
-hipsolverCgeqrf_rank_1
+    module procedure &
+      hipsolverCgeqrf_full_rank,&
+      hipsolverCgeqrf_rank_0,&
+      hipsolverCgeqrf_rank_1
 #endif
-
   end interface
   
   interface hipsolverZgeqrf
@@ -1836,17 +1726,15 @@ hipsolverCgeqrf_rank_1
       complex(c_double_complex) :: tau
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverZgeqrf_full_rank,&
-      
-hipsolverZgeqrf_rank_0,&
-      
-hipsolverZgeqrf_rank_1
+    module procedure &
+      hipsolverZgeqrf_full_rank,&
+      hipsolverZgeqrf_rank_0,&
+      hipsolverZgeqrf_rank_1
 #endif
-
   end interface
   
   interface hipsolverSSgesv_bufferSize
@@ -1869,17 +1757,15 @@ hipsolverZgeqrf_rank_1
       integer(c_int),value :: ldb
       type(c_ptr),value :: X
       integer(c_int),value :: ldx
-      type(c_ptr),value :: lwork
+      integer(c_size_t) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverSSgesv_bufferSize_full_rank,&
-      
-hipsolverSSgesv_bufferSize_rank_0,&
-      
-hipsolverSSgesv_bufferSize_rank_1
+    module procedure &
+      hipsolverSSgesv_bufferSize_full_rank,&
+      hipsolverSSgesv_bufferSize_rank_0,&
+      hipsolverSSgesv_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverDDgesv_bufferSize
@@ -1902,17 +1788,15 @@ hipsolverSSgesv_bufferSize_rank_1
       integer(c_int),value :: ldb
       type(c_ptr),value :: X
       integer(c_int),value :: ldx
-      type(c_ptr),value :: lwork
+      integer(c_size_t) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverDDgesv_bufferSize_full_rank,&
-      
-hipsolverDDgesv_bufferSize_rank_0,&
-      
-hipsolverDDgesv_bufferSize_rank_1
+    module procedure &
+      hipsolverDDgesv_bufferSize_full_rank,&
+      hipsolverDDgesv_bufferSize_rank_0,&
+      hipsolverDDgesv_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverCCgesv_bufferSize
@@ -1935,17 +1819,15 @@ hipsolverDDgesv_bufferSize_rank_1
       integer(c_int),value :: ldb
       type(c_ptr),value :: X
       integer(c_int),value :: ldx
-      type(c_ptr),value :: lwork
+      integer(c_size_t) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverCCgesv_bufferSize_full_rank,&
-      
-hipsolverCCgesv_bufferSize_rank_0,&
-      
-hipsolverCCgesv_bufferSize_rank_1
+    module procedure &
+      hipsolverCCgesv_bufferSize_full_rank,&
+      hipsolverCCgesv_bufferSize_rank_0,&
+      hipsolverCCgesv_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverZZgesv_bufferSize
@@ -1968,17 +1850,15 @@ hipsolverCCgesv_bufferSize_rank_1
       integer(c_int),value :: ldb
       type(c_ptr),value :: X
       integer(c_int),value :: ldx
-      type(c_ptr),value :: lwork
+      integer(c_size_t) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverZZgesv_bufferSize_full_rank,&
-      
-hipsolverZZgesv_bufferSize_rank_0,&
-      
-hipsolverZZgesv_bufferSize_rank_1
+    module procedure &
+      hipsolverZZgesv_bufferSize_full_rank,&
+      hipsolverZZgesv_bufferSize_rank_0,&
+      hipsolverZZgesv_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverSSgesv
@@ -2004,17 +1884,15 @@ hipsolverZZgesv_bufferSize_rank_1
       type(c_ptr),value :: work
       integer(c_size_t),value :: lwork
       type(c_ptr),value :: niters
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverSSgesv_full_rank,&
-      
-hipsolverSSgesv_rank_0,&
-      
-hipsolverSSgesv_rank_1
+    module procedure &
+      hipsolverSSgesv_full_rank,&
+      hipsolverSSgesv_rank_0,&
+      hipsolverSSgesv_rank_1
 #endif
-
   end interface
   
   interface hipsolverDDgesv
@@ -2040,17 +1918,15 @@ hipsolverSSgesv_rank_1
       type(c_ptr),value :: work
       integer(c_size_t),value :: lwork
       type(c_ptr),value :: niters
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverDDgesv_full_rank,&
-      
-hipsolverDDgesv_rank_0,&
-      
-hipsolverDDgesv_rank_1
+    module procedure &
+      hipsolverDDgesv_full_rank,&
+      hipsolverDDgesv_rank_0,&
+      hipsolverDDgesv_rank_1
 #endif
-
   end interface
   
   interface hipsolverCCgesv
@@ -2076,17 +1952,15 @@ hipsolverDDgesv_rank_1
       type(c_ptr),value :: work
       integer(c_size_t),value :: lwork
       type(c_ptr),value :: niters
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverCCgesv_full_rank,&
-      
-hipsolverCCgesv_rank_0,&
-      
-hipsolverCCgesv_rank_1
+    module procedure &
+      hipsolverCCgesv_full_rank,&
+      hipsolverCCgesv_rank_0,&
+      hipsolverCCgesv_rank_1
 #endif
-
   end interface
   
   interface hipsolverZZgesv
@@ -2112,17 +1986,15 @@ hipsolverCCgesv_rank_1
       type(c_ptr),value :: work
       integer(c_size_t),value :: lwork
       type(c_ptr),value :: niters
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverZZgesv_full_rank,&
-      
-hipsolverZZgesv_rank_0,&
-      
-hipsolverZZgesv_rank_1
+    module procedure &
+      hipsolverZZgesv_full_rank,&
+      hipsolverZZgesv_rank_0,&
+      hipsolverZZgesv_rank_1
 #endif
-
   end interface
   
   interface hipsolverSgetrf_bufferSize
@@ -2140,17 +2012,15 @@ hipsolverZZgesv_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverSgetrf_bufferSize_full_rank,&
-      
-hipsolverSgetrf_bufferSize_rank_0,&
-      
-hipsolverSgetrf_bufferSize_rank_1
+    module procedure &
+      hipsolverSgetrf_bufferSize_full_rank,&
+      hipsolverSgetrf_bufferSize_rank_0,&
+      hipsolverSgetrf_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverDgetrf_bufferSize
@@ -2168,17 +2038,15 @@ hipsolverSgetrf_bufferSize_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverDgetrf_bufferSize_full_rank,&
-      
-hipsolverDgetrf_bufferSize_rank_0,&
-      
-hipsolverDgetrf_bufferSize_rank_1
+    module procedure &
+      hipsolverDgetrf_bufferSize_full_rank,&
+      hipsolverDgetrf_bufferSize_rank_0,&
+      hipsolverDgetrf_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverCgetrf_bufferSize
@@ -2196,17 +2064,15 @@ hipsolverDgetrf_bufferSize_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverCgetrf_bufferSize_full_rank,&
-      
-hipsolverCgetrf_bufferSize_rank_0,&
-      
-hipsolverCgetrf_bufferSize_rank_1
+    module procedure &
+      hipsolverCgetrf_bufferSize_full_rank,&
+      hipsolverCgetrf_bufferSize_rank_0,&
+      hipsolverCgetrf_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverZgetrf_bufferSize
@@ -2224,17 +2090,15 @@ hipsolverCgetrf_bufferSize_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverZgetrf_bufferSize_full_rank,&
-      
-hipsolverZgetrf_bufferSize_rank_0,&
-      
-hipsolverZgetrf_bufferSize_rank_1
+    module procedure &
+      hipsolverZgetrf_bufferSize_full_rank,&
+      hipsolverZgetrf_bufferSize_rank_0,&
+      hipsolverZgetrf_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverSgetrf
@@ -2255,17 +2119,15 @@ hipsolverZgetrf_bufferSize_rank_1
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
       type(c_ptr),value :: devIpiv
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverSgetrf_full_rank,&
-      
-hipsolverSgetrf_rank_0,&
-      
-hipsolverSgetrf_rank_1
+    module procedure &
+      hipsolverSgetrf_full_rank,&
+      hipsolverSgetrf_rank_0,&
+      hipsolverSgetrf_rank_1
 #endif
-
   end interface
   
   interface hipsolverDgetrf
@@ -2286,17 +2148,15 @@ hipsolverSgetrf_rank_1
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
       type(c_ptr),value :: devIpiv
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverDgetrf_full_rank,&
-      
-hipsolverDgetrf_rank_0,&
-      
-hipsolverDgetrf_rank_1
+    module procedure &
+      hipsolverDgetrf_full_rank,&
+      hipsolverDgetrf_rank_0,&
+      hipsolverDgetrf_rank_1
 #endif
-
   end interface
   
   interface hipsolverCgetrf
@@ -2317,17 +2177,15 @@ hipsolverDgetrf_rank_1
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
       type(c_ptr),value :: devIpiv
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverCgetrf_full_rank,&
-      
-hipsolverCgetrf_rank_0,&
-      
-hipsolverCgetrf_rank_1
+    module procedure &
+      hipsolverCgetrf_full_rank,&
+      hipsolverCgetrf_rank_0,&
+      hipsolverCgetrf_rank_1
 #endif
-
   end interface
   
   interface hipsolverZgetrf
@@ -2348,17 +2206,15 @@ hipsolverCgetrf_rank_1
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
       type(c_ptr),value :: devIpiv
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverZgetrf_full_rank,&
-      
-hipsolverZgetrf_rank_0,&
-      
-hipsolverZgetrf_rank_1
+    module procedure &
+      hipsolverZgetrf_full_rank,&
+      hipsolverZgetrf_rank_0,&
+      hipsolverZgetrf_rank_1
 #endif
-
   end interface
   
   interface hipsolverSgetrs_bufferSize
@@ -2380,17 +2236,15 @@ hipsolverZgetrf_rank_1
       type(c_ptr),value :: devIpiv
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverSgetrs_bufferSize_full_rank,&
-      
-hipsolverSgetrs_bufferSize_rank_0,&
-      
-hipsolverSgetrs_bufferSize_rank_1
+    module procedure &
+      hipsolverSgetrs_bufferSize_full_rank,&
+      hipsolverSgetrs_bufferSize_rank_0,&
+      hipsolverSgetrs_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverDgetrs_bufferSize
@@ -2412,17 +2266,15 @@ hipsolverSgetrs_bufferSize_rank_1
       type(c_ptr),value :: devIpiv
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverDgetrs_bufferSize_full_rank,&
-      
-hipsolverDgetrs_bufferSize_rank_0,&
-      
-hipsolverDgetrs_bufferSize_rank_1
+    module procedure &
+      hipsolverDgetrs_bufferSize_full_rank,&
+      hipsolverDgetrs_bufferSize_rank_0,&
+      hipsolverDgetrs_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverCgetrs_bufferSize
@@ -2444,17 +2296,15 @@ hipsolverDgetrs_bufferSize_rank_1
       type(c_ptr),value :: devIpiv
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverCgetrs_bufferSize_full_rank,&
-      
-hipsolverCgetrs_bufferSize_rank_0,&
-      
-hipsolverCgetrs_bufferSize_rank_1
+    module procedure &
+      hipsolverCgetrs_bufferSize_full_rank,&
+      hipsolverCgetrs_bufferSize_rank_0,&
+      hipsolverCgetrs_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverZgetrs_bufferSize
@@ -2476,17 +2326,15 @@ hipsolverCgetrs_bufferSize_rank_1
       type(c_ptr),value :: devIpiv
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverZgetrs_bufferSize_full_rank,&
-      
-hipsolverZgetrs_bufferSize_rank_0,&
-      
-hipsolverZgetrs_bufferSize_rank_1
+    module procedure &
+      hipsolverZgetrs_bufferSize_full_rank,&
+      hipsolverZgetrs_bufferSize_rank_0,&
+      hipsolverZgetrs_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverSgetrs
@@ -2510,17 +2358,15 @@ hipsolverZgetrs_bufferSize_rank_1
       integer(c_int),value :: ldb
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverSgetrs_full_rank,&
-      
-hipsolverSgetrs_rank_0,&
-      
-hipsolverSgetrs_rank_1
+    module procedure &
+      hipsolverSgetrs_full_rank,&
+      hipsolverSgetrs_rank_0,&
+      hipsolverSgetrs_rank_1
 #endif
-
   end interface
   
   interface hipsolverDgetrs
@@ -2544,17 +2390,15 @@ hipsolverSgetrs_rank_1
       integer(c_int),value :: ldb
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverDgetrs_full_rank,&
-      
-hipsolverDgetrs_rank_0,&
-      
-hipsolverDgetrs_rank_1
+    module procedure &
+      hipsolverDgetrs_full_rank,&
+      hipsolverDgetrs_rank_0,&
+      hipsolverDgetrs_rank_1
 #endif
-
   end interface
   
   interface hipsolverCgetrs
@@ -2578,17 +2422,15 @@ hipsolverDgetrs_rank_1
       integer(c_int),value :: ldb
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverCgetrs_full_rank,&
-      
-hipsolverCgetrs_rank_0,&
-      
-hipsolverCgetrs_rank_1
+    module procedure &
+      hipsolverCgetrs_full_rank,&
+      hipsolverCgetrs_rank_0,&
+      hipsolverCgetrs_rank_1
 #endif
-
   end interface
   
   interface hipsolverZgetrs
@@ -2612,17 +2454,15 @@ hipsolverCgetrs_rank_1
       integer(c_int),value :: ldb
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverZgetrs_full_rank,&
-      
-hipsolverZgetrs_rank_0,&
-      
-hipsolverZgetrs_rank_1
+    module procedure &
+      hipsolverZgetrs_full_rank,&
+      hipsolverZgetrs_rank_0,&
+      hipsolverZgetrs_rank_1
 #endif
-
   end interface
   
   interface hipsolverSpotrf_bufferSize
@@ -2640,17 +2480,15 @@ hipsolverZgetrs_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverSpotrf_bufferSize_full_rank,&
-      
-hipsolverSpotrf_bufferSize_rank_0,&
-      
-hipsolverSpotrf_bufferSize_rank_1
+    module procedure &
+      hipsolverSpotrf_bufferSize_full_rank,&
+      hipsolverSpotrf_bufferSize_rank_0,&
+      hipsolverSpotrf_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverDpotrf_bufferSize
@@ -2668,17 +2506,15 @@ hipsolverSpotrf_bufferSize_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverDpotrf_bufferSize_full_rank,&
-      
-hipsolverDpotrf_bufferSize_rank_0,&
-      
-hipsolverDpotrf_bufferSize_rank_1
+    module procedure &
+      hipsolverDpotrf_bufferSize_full_rank,&
+      hipsolverDpotrf_bufferSize_rank_0,&
+      hipsolverDpotrf_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverCpotrf_bufferSize
@@ -2696,17 +2532,15 @@ hipsolverDpotrf_bufferSize_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverCpotrf_bufferSize_full_rank,&
-      
-hipsolverCpotrf_bufferSize_rank_0,&
-      
-hipsolverCpotrf_bufferSize_rank_1
+    module procedure &
+      hipsolverCpotrf_bufferSize_full_rank,&
+      hipsolverCpotrf_bufferSize_rank_0,&
+      hipsolverCpotrf_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverZpotrf_bufferSize
@@ -2724,17 +2558,15 @@ hipsolverCpotrf_bufferSize_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverZpotrf_bufferSize_full_rank,&
-      
-hipsolverZpotrf_bufferSize_rank_0,&
-      
-hipsolverZpotrf_bufferSize_rank_1
+    module procedure &
+      hipsolverZpotrf_bufferSize_full_rank,&
+      hipsolverZpotrf_bufferSize_rank_0,&
+      hipsolverZpotrf_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverSpotrf
@@ -2754,17 +2586,15 @@ hipsolverZpotrf_bufferSize_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverSpotrf_full_rank,&
-      
-hipsolverSpotrf_rank_0,&
-      
-hipsolverSpotrf_rank_1
+    module procedure &
+      hipsolverSpotrf_full_rank,&
+      hipsolverSpotrf_rank_0,&
+      hipsolverSpotrf_rank_1
 #endif
-
   end interface
   
   interface hipsolverDpotrf
@@ -2784,17 +2614,15 @@ hipsolverSpotrf_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverDpotrf_full_rank,&
-      
-hipsolverDpotrf_rank_0,&
-      
-hipsolverDpotrf_rank_1
+    module procedure &
+      hipsolverDpotrf_full_rank,&
+      hipsolverDpotrf_rank_0,&
+      hipsolverDpotrf_rank_1
 #endif
-
   end interface
   
   interface hipsolverCpotrf
@@ -2814,17 +2642,15 @@ hipsolverDpotrf_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverCpotrf_full_rank,&
-      
-hipsolverCpotrf_rank_0,&
-      
-hipsolverCpotrf_rank_1
+    module procedure &
+      hipsolverCpotrf_full_rank,&
+      hipsolverCpotrf_rank_0,&
+      hipsolverCpotrf_rank_1
 #endif
-
   end interface
   
   interface hipsolverZpotrf
@@ -2844,17 +2670,15 @@ hipsolverCpotrf_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverZpotrf_full_rank,&
-      
-hipsolverZpotrf_rank_0,&
-      
-hipsolverZpotrf_rank_1
+    module procedure &
+      hipsolverZpotrf_full_rank,&
+      hipsolverZpotrf_rank_0,&
+      hipsolverZpotrf_rank_1
 #endif
-
   end interface
   
   interface hipsolverSpotrfBatched_bufferSize
@@ -2872,18 +2696,16 @@ hipsolverZpotrf_rank_1
       integer(c_int),value :: n
       type(c_ptr) :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverSpotrfBatched_bufferSize_full_rank,&
-      
-hipsolverSpotrfBatched_bufferSize_rank_0,&
-      
-hipsolverSpotrfBatched_bufferSize_rank_1
+    module procedure &
+      hipsolverSpotrfBatched_bufferSize_full_rank,&
+      hipsolverSpotrfBatched_bufferSize_rank_0,&
+      hipsolverSpotrfBatched_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverDpotrfBatched_bufferSize
@@ -2901,18 +2723,16 @@ hipsolverSpotrfBatched_bufferSize_rank_1
       integer(c_int),value :: n
       type(c_ptr) :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverDpotrfBatched_bufferSize_full_rank,&
-      
-hipsolverDpotrfBatched_bufferSize_rank_0,&
-      
-hipsolverDpotrfBatched_bufferSize_rank_1
+    module procedure &
+      hipsolverDpotrfBatched_bufferSize_full_rank,&
+      hipsolverDpotrfBatched_bufferSize_rank_0,&
+      hipsolverDpotrfBatched_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverCpotrfBatched_bufferSize
@@ -2930,18 +2750,16 @@ hipsolverDpotrfBatched_bufferSize_rank_1
       integer(c_int),value :: n
       type(c_ptr) :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverCpotrfBatched_bufferSize_full_rank,&
-      
-hipsolverCpotrfBatched_bufferSize_rank_0,&
-      
-hipsolverCpotrfBatched_bufferSize_rank_1
+    module procedure &
+      hipsolverCpotrfBatched_bufferSize_full_rank,&
+      hipsolverCpotrfBatched_bufferSize_rank_0,&
+      hipsolverCpotrfBatched_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverZpotrfBatched_bufferSize
@@ -2959,18 +2777,16 @@ hipsolverCpotrfBatched_bufferSize_rank_1
       integer(c_int),value :: n
       type(c_ptr) :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverZpotrfBatched_bufferSize_full_rank,&
-      
-hipsolverZpotrfBatched_bufferSize_rank_0,&
-      
-hipsolverZpotrfBatched_bufferSize_rank_1
+    module procedure &
+      hipsolverZpotrfBatched_bufferSize_full_rank,&
+      hipsolverZpotrfBatched_bufferSize_rank_0,&
+      hipsolverZpotrfBatched_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverSpotrfBatched
@@ -2990,18 +2806,16 @@ hipsolverZpotrfBatched_bufferSize_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverSpotrfBatched_full_rank,&
-      
-hipsolverSpotrfBatched_rank_0,&
-      
-hipsolverSpotrfBatched_rank_1
+    module procedure &
+      hipsolverSpotrfBatched_full_rank,&
+      hipsolverSpotrfBatched_rank_0,&
+      hipsolverSpotrfBatched_rank_1
 #endif
-
   end interface
   
   interface hipsolverDpotrfBatched
@@ -3021,18 +2835,16 @@ hipsolverSpotrfBatched_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverDpotrfBatched_full_rank,&
-      
-hipsolverDpotrfBatched_rank_0,&
-      
-hipsolverDpotrfBatched_rank_1
+    module procedure &
+      hipsolverDpotrfBatched_full_rank,&
+      hipsolverDpotrfBatched_rank_0,&
+      hipsolverDpotrfBatched_rank_1
 #endif
-
   end interface
   
   interface hipsolverCpotrfBatched
@@ -3052,18 +2864,16 @@ hipsolverDpotrfBatched_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverCpotrfBatched_full_rank,&
-      
-hipsolverCpotrfBatched_rank_0,&
-      
-hipsolverCpotrfBatched_rank_1
+    module procedure &
+      hipsolverCpotrfBatched_full_rank,&
+      hipsolverCpotrfBatched_rank_0,&
+      hipsolverCpotrfBatched_rank_1
 #endif
-
   end interface
   
   interface hipsolverZpotrfBatched
@@ -3083,18 +2893,16 @@ hipsolverCpotrfBatched_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverZpotrfBatched_full_rank,&
-      
-hipsolverZpotrfBatched_rank_0,&
-      
-hipsolverZpotrfBatched_rank_1
+    module procedure &
+      hipsolverZpotrfBatched_full_rank,&
+      hipsolverZpotrfBatched_rank_0,&
+      hipsolverZpotrfBatched_rank_1
 #endif
-
   end interface
   
   interface hipsolverSpotri_bufferSize
@@ -3112,17 +2920,15 @@ hipsolverZpotrfBatched_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverSpotri_bufferSize_full_rank,&
-      
-hipsolverSpotri_bufferSize_rank_0,&
-      
-hipsolverSpotri_bufferSize_rank_1
+    module procedure &
+      hipsolverSpotri_bufferSize_full_rank,&
+      hipsolverSpotri_bufferSize_rank_0,&
+      hipsolverSpotri_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverDpotri_bufferSize
@@ -3140,17 +2946,15 @@ hipsolverSpotri_bufferSize_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverDpotri_bufferSize_full_rank,&
-      
-hipsolverDpotri_bufferSize_rank_0,&
-      
-hipsolverDpotri_bufferSize_rank_1
+    module procedure &
+      hipsolverDpotri_bufferSize_full_rank,&
+      hipsolverDpotri_bufferSize_rank_0,&
+      hipsolverDpotri_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverCpotri_bufferSize
@@ -3168,17 +2972,15 @@ hipsolverDpotri_bufferSize_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverCpotri_bufferSize_full_rank,&
-      
-hipsolverCpotri_bufferSize_rank_0,&
-      
-hipsolverCpotri_bufferSize_rank_1
+    module procedure &
+      hipsolverCpotri_bufferSize_full_rank,&
+      hipsolverCpotri_bufferSize_rank_0,&
+      hipsolverCpotri_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverZpotri_bufferSize
@@ -3196,17 +2998,15 @@ hipsolverCpotri_bufferSize_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverZpotri_bufferSize_full_rank,&
-      
-hipsolverZpotri_bufferSize_rank_0,&
-      
-hipsolverZpotri_bufferSize_rank_1
+    module procedure &
+      hipsolverZpotri_bufferSize_full_rank,&
+      hipsolverZpotri_bufferSize_rank_0,&
+      hipsolverZpotri_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverSpotri
@@ -3226,17 +3026,15 @@ hipsolverZpotri_bufferSize_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverSpotri_full_rank,&
-      
-hipsolverSpotri_rank_0,&
-      
-hipsolverSpotri_rank_1
+    module procedure &
+      hipsolverSpotri_full_rank,&
+      hipsolverSpotri_rank_0,&
+      hipsolverSpotri_rank_1
 #endif
-
   end interface
   
   interface hipsolverDpotri
@@ -3256,17 +3054,15 @@ hipsolverSpotri_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverDpotri_full_rank,&
-      
-hipsolverDpotri_rank_0,&
-      
-hipsolverDpotri_rank_1
+    module procedure &
+      hipsolverDpotri_full_rank,&
+      hipsolverDpotri_rank_0,&
+      hipsolverDpotri_rank_1
 #endif
-
   end interface
   
   interface hipsolverCpotri
@@ -3286,17 +3082,15 @@ hipsolverDpotri_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverCpotri_full_rank,&
-      
-hipsolverCpotri_rank_0,&
-      
-hipsolverCpotri_rank_1
+    module procedure &
+      hipsolverCpotri_full_rank,&
+      hipsolverCpotri_rank_0,&
+      hipsolverCpotri_rank_1
 #endif
-
   end interface
   
   interface hipsolverZpotri
@@ -3316,17 +3110,15 @@ hipsolverCpotri_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverZpotri_full_rank,&
-      
-hipsolverZpotri_rank_0,&
-      
-hipsolverZpotri_rank_1
+    module procedure &
+      hipsolverZpotri_full_rank,&
+      hipsolverZpotri_rank_0,&
+      hipsolverZpotri_rank_1
 #endif
-
   end interface
   
   interface hipsolverSpotrs_bufferSize
@@ -3347,17 +3139,15 @@ hipsolverZpotri_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverSpotrs_bufferSize_full_rank,&
-      
-hipsolverSpotrs_bufferSize_rank_0,&
-      
-hipsolverSpotrs_bufferSize_rank_1
+    module procedure &
+      hipsolverSpotrs_bufferSize_full_rank,&
+      hipsolverSpotrs_bufferSize_rank_0,&
+      hipsolverSpotrs_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverDpotrs_bufferSize
@@ -3378,17 +3168,15 @@ hipsolverSpotrs_bufferSize_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverDpotrs_bufferSize_full_rank,&
-      
-hipsolverDpotrs_bufferSize_rank_0,&
-      
-hipsolverDpotrs_bufferSize_rank_1
+    module procedure &
+      hipsolverDpotrs_bufferSize_full_rank,&
+      hipsolverDpotrs_bufferSize_rank_0,&
+      hipsolverDpotrs_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverCpotrs_bufferSize
@@ -3409,17 +3197,15 @@ hipsolverDpotrs_bufferSize_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverCpotrs_bufferSize_full_rank,&
-      
-hipsolverCpotrs_bufferSize_rank_0,&
-      
-hipsolverCpotrs_bufferSize_rank_1
+    module procedure &
+      hipsolverCpotrs_bufferSize_full_rank,&
+      hipsolverCpotrs_bufferSize_rank_0,&
+      hipsolverCpotrs_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverZpotrs_bufferSize
@@ -3440,17 +3226,15 @@ hipsolverCpotrs_bufferSize_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverZpotrs_bufferSize_full_rank,&
-      
-hipsolverZpotrs_bufferSize_rank_0,&
-      
-hipsolverZpotrs_bufferSize_rank_1
+    module procedure &
+      hipsolverZpotrs_bufferSize_full_rank,&
+      hipsolverZpotrs_bufferSize_rank_0,&
+      hipsolverZpotrs_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverSpotrs
@@ -3473,17 +3257,15 @@ hipsolverZpotrs_bufferSize_rank_1
       integer(c_int),value :: ldb
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverSpotrs_full_rank,&
-      
-hipsolverSpotrs_rank_0,&
-      
-hipsolverSpotrs_rank_1
+    module procedure &
+      hipsolverSpotrs_full_rank,&
+      hipsolverSpotrs_rank_0,&
+      hipsolverSpotrs_rank_1
 #endif
-
   end interface
   
   interface hipsolverDpotrs
@@ -3506,17 +3288,15 @@ hipsolverSpotrs_rank_1
       integer(c_int),value :: ldb
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverDpotrs_full_rank,&
-      
-hipsolverDpotrs_rank_0,&
-      
-hipsolverDpotrs_rank_1
+    module procedure &
+      hipsolverDpotrs_full_rank,&
+      hipsolverDpotrs_rank_0,&
+      hipsolverDpotrs_rank_1
 #endif
-
   end interface
   
   interface hipsolverCpotrs
@@ -3539,17 +3319,15 @@ hipsolverDpotrs_rank_1
       integer(c_int),value :: ldb
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverCpotrs_full_rank,&
-      
-hipsolverCpotrs_rank_0,&
-      
-hipsolverCpotrs_rank_1
+    module procedure &
+      hipsolverCpotrs_full_rank,&
+      hipsolverCpotrs_rank_0,&
+      hipsolverCpotrs_rank_1
 #endif
-
   end interface
   
   interface hipsolverZpotrs
@@ -3572,17 +3350,15 @@ hipsolverCpotrs_rank_1
       integer(c_int),value :: ldb
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverZpotrs_full_rank,&
-      
-hipsolverZpotrs_rank_0,&
-      
-hipsolverZpotrs_rank_1
+    module procedure &
+      hipsolverZpotrs_full_rank,&
+      hipsolverZpotrs_rank_0,&
+      hipsolverZpotrs_rank_1
 #endif
-
   end interface
   
   interface hipsolverSpotrsBatched_bufferSize
@@ -3603,18 +3379,16 @@ hipsolverZpotrs_rank_1
       integer(c_int),value :: lda
       type(c_ptr) :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverSpotrsBatched_bufferSize_full_rank,&
-      
-hipsolverSpotrsBatched_bufferSize_rank_0,&
-      
-hipsolverSpotrsBatched_bufferSize_rank_1
+    module procedure &
+      hipsolverSpotrsBatched_bufferSize_full_rank,&
+      hipsolverSpotrsBatched_bufferSize_rank_0,&
+      hipsolverSpotrsBatched_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverDpotrsBatched_bufferSize
@@ -3635,18 +3409,16 @@ hipsolverSpotrsBatched_bufferSize_rank_1
       integer(c_int),value :: lda
       type(c_ptr) :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverDpotrsBatched_bufferSize_full_rank,&
-      
-hipsolverDpotrsBatched_bufferSize_rank_0,&
-      
-hipsolverDpotrsBatched_bufferSize_rank_1
+    module procedure &
+      hipsolverDpotrsBatched_bufferSize_full_rank,&
+      hipsolverDpotrsBatched_bufferSize_rank_0,&
+      hipsolverDpotrsBatched_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverCpotrsBatched_bufferSize
@@ -3667,18 +3439,16 @@ hipsolverDpotrsBatched_bufferSize_rank_1
       integer(c_int),value :: lda
       type(c_ptr) :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverCpotrsBatched_bufferSize_full_rank,&
-      
-hipsolverCpotrsBatched_bufferSize_rank_0,&
-      
-hipsolverCpotrsBatched_bufferSize_rank_1
+    module procedure &
+      hipsolverCpotrsBatched_bufferSize_full_rank,&
+      hipsolverCpotrsBatched_bufferSize_rank_0,&
+      hipsolverCpotrsBatched_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverZpotrsBatched_bufferSize
@@ -3699,18 +3469,16 @@ hipsolverCpotrsBatched_bufferSize_rank_1
       integer(c_int),value :: lda
       type(c_ptr) :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverZpotrsBatched_bufferSize_full_rank,&
-      
-hipsolverZpotrsBatched_bufferSize_rank_0,&
-      
-hipsolverZpotrsBatched_bufferSize_rank_1
+    module procedure &
+      hipsolverZpotrsBatched_bufferSize_full_rank,&
+      hipsolverZpotrsBatched_bufferSize_rank_0,&
+      hipsolverZpotrsBatched_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverSpotrsBatched
@@ -3733,18 +3501,16 @@ hipsolverZpotrsBatched_bufferSize_rank_1
       integer(c_int),value :: ldb
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverSpotrsBatched_full_rank,&
-      
-hipsolverSpotrsBatched_rank_0,&
-      
-hipsolverSpotrsBatched_rank_1
+    module procedure &
+      hipsolverSpotrsBatched_full_rank,&
+      hipsolverSpotrsBatched_rank_0,&
+      hipsolverSpotrsBatched_rank_1
 #endif
-
   end interface
   
   interface hipsolverDpotrsBatched
@@ -3767,18 +3533,16 @@ hipsolverSpotrsBatched_rank_1
       integer(c_int),value :: ldb
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverDpotrsBatched_full_rank,&
-      
-hipsolverDpotrsBatched_rank_0,&
-      
-hipsolverDpotrsBatched_rank_1
+    module procedure &
+      hipsolverDpotrsBatched_full_rank,&
+      hipsolverDpotrsBatched_rank_0,&
+      hipsolverDpotrsBatched_rank_1
 #endif
-
   end interface
   
   interface hipsolverCpotrsBatched
@@ -3801,18 +3565,16 @@ hipsolverDpotrsBatched_rank_1
       integer(c_int),value :: ldb
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverCpotrsBatched_full_rank,&
-      
-hipsolverCpotrsBatched_rank_0,&
-      
-hipsolverCpotrsBatched_rank_1
+    module procedure &
+      hipsolverCpotrsBatched_full_rank,&
+      hipsolverCpotrsBatched_rank_0,&
+      hipsolverCpotrsBatched_rank_1
 #endif
-
   end interface
   
   interface hipsolverZpotrsBatched
@@ -3835,18 +3597,16 @@ hipsolverCpotrsBatched_rank_1
       integer(c_int),value :: ldb
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverZpotrsBatched_full_rank,&
-      
-hipsolverZpotrsBatched_rank_0,&
-      
-hipsolverZpotrsBatched_rank_1
+    module procedure &
+      hipsolverZpotrsBatched_full_rank,&
+      hipsolverZpotrsBatched_rank_0,&
+      hipsolverZpotrsBatched_rank_1
 #endif
-
   end interface
   
   interface hipsolverSsyevd_bufferSize
@@ -3866,17 +3626,15 @@ hipsolverZpotrsBatched_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: D
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverSsyevd_bufferSize_full_rank,&
-      
-hipsolverSsyevd_bufferSize_rank_0,&
-      
-hipsolverSsyevd_bufferSize_rank_1
+    module procedure &
+      hipsolverSsyevd_bufferSize_full_rank,&
+      hipsolverSsyevd_bufferSize_rank_0,&
+      hipsolverSsyevd_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverDsyevd_bufferSize
@@ -3896,17 +3654,15 @@ hipsolverSsyevd_bufferSize_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: D
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverDsyevd_bufferSize_full_rank,&
-      
-hipsolverDsyevd_bufferSize_rank_0,&
-      
-hipsolverDsyevd_bufferSize_rank_1
+    module procedure &
+      hipsolverDsyevd_bufferSize_full_rank,&
+      hipsolverDsyevd_bufferSize_rank_0,&
+      hipsolverDsyevd_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverCheevd_bufferSize
@@ -3926,17 +3682,15 @@ hipsolverDsyevd_bufferSize_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: D
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverCheevd_bufferSize_full_rank,&
-      
-hipsolverCheevd_bufferSize_rank_0,&
-      
-hipsolverCheevd_bufferSize_rank_1
+    module procedure &
+      hipsolverCheevd_bufferSize_full_rank,&
+      hipsolverCheevd_bufferSize_rank_0,&
+      hipsolverCheevd_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverZheevd_bufferSize
@@ -3956,17 +3710,15 @@ hipsolverCheevd_bufferSize_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: D
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverZheevd_bufferSize_full_rank,&
-      
-hipsolverZheevd_bufferSize_rank_0,&
-      
-hipsolverZheevd_bufferSize_rank_1
+    module procedure &
+      hipsolverZheevd_bufferSize_full_rank,&
+      hipsolverZheevd_bufferSize_rank_0,&
+      hipsolverZheevd_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverSsyevd
@@ -3988,17 +3740,15 @@ hipsolverZheevd_bufferSize_rank_1
       type(c_ptr),value :: D
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverSsyevd_full_rank,&
-      
-hipsolverSsyevd_rank_0,&
-      
-hipsolverSsyevd_rank_1
+    module procedure &
+      hipsolverSsyevd_full_rank,&
+      hipsolverSsyevd_rank_0,&
+      hipsolverSsyevd_rank_1
 #endif
-
   end interface
   
   interface hipsolverDsyevd
@@ -4020,17 +3770,15 @@ hipsolverSsyevd_rank_1
       type(c_ptr),value :: D
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverDsyevd_full_rank,&
-      
-hipsolverDsyevd_rank_0,&
-      
-hipsolverDsyevd_rank_1
+    module procedure &
+      hipsolverDsyevd_full_rank,&
+      hipsolverDsyevd_rank_0,&
+      hipsolverDsyevd_rank_1
 #endif
-
   end interface
   
   interface hipsolverCheevd
@@ -4052,17 +3800,15 @@ hipsolverDsyevd_rank_1
       type(c_ptr),value :: D
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverCheevd_full_rank,&
-      
-hipsolverCheevd_rank_0,&
-      
-hipsolverCheevd_rank_1
+    module procedure &
+      hipsolverCheevd_full_rank,&
+      hipsolverCheevd_rank_0,&
+      hipsolverCheevd_rank_1
 #endif
-
   end interface
   
   interface hipsolverZheevd
@@ -4084,17 +3830,15 @@ hipsolverCheevd_rank_1
       type(c_ptr),value :: D
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverZheevd_full_rank,&
-      
-hipsolverZheevd_rank_0,&
-      
-hipsolverZheevd_rank_1
+    module procedure &
+      hipsolverZheevd_full_rank,&
+      hipsolverZheevd_rank_0,&
+      hipsolverZheevd_rank_1
 #endif
-
   end interface
   
   interface hipsolverSsygvd_bufferSize
@@ -4117,17 +3861,15 @@ hipsolverZheevd_rank_1
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: D
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverSsygvd_bufferSize_full_rank,&
-      
-hipsolverSsygvd_bufferSize_rank_0,&
-      
-hipsolverSsygvd_bufferSize_rank_1
+    module procedure &
+      hipsolverSsygvd_bufferSize_full_rank,&
+      hipsolverSsygvd_bufferSize_rank_0,&
+      hipsolverSsygvd_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverDsygvd_bufferSize
@@ -4150,17 +3892,15 @@ hipsolverSsygvd_bufferSize_rank_1
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: D
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverDsygvd_bufferSize_full_rank,&
-      
-hipsolverDsygvd_bufferSize_rank_0,&
-      
-hipsolverDsygvd_bufferSize_rank_1
+    module procedure &
+      hipsolverDsygvd_bufferSize_full_rank,&
+      hipsolverDsygvd_bufferSize_rank_0,&
+      hipsolverDsygvd_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverChegvd_bufferSize
@@ -4183,17 +3923,15 @@ hipsolverDsygvd_bufferSize_rank_1
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: D
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverChegvd_bufferSize_full_rank,&
-      
-hipsolverChegvd_bufferSize_rank_0,&
-      
-hipsolverChegvd_bufferSize_rank_1
+    module procedure &
+      hipsolverChegvd_bufferSize_full_rank,&
+      hipsolverChegvd_bufferSize_rank_0,&
+      hipsolverChegvd_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverZhegvd_bufferSize
@@ -4216,17 +3954,15 @@ hipsolverChegvd_bufferSize_rank_1
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: D
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverZhegvd_bufferSize_full_rank,&
-      
-hipsolverZhegvd_bufferSize_rank_0,&
-      
-hipsolverZhegvd_bufferSize_rank_1
+    module procedure &
+      hipsolverZhegvd_bufferSize_full_rank,&
+      hipsolverZhegvd_bufferSize_rank_0,&
+      hipsolverZhegvd_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverSsygvd
@@ -4251,17 +3987,15 @@ hipsolverZhegvd_bufferSize_rank_1
       type(c_ptr),value :: D
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverSsygvd_full_rank,&
-      
-hipsolverSsygvd_rank_0,&
-      
-hipsolverSsygvd_rank_1
+    module procedure &
+      hipsolverSsygvd_full_rank,&
+      hipsolverSsygvd_rank_0,&
+      hipsolverSsygvd_rank_1
 #endif
-
   end interface
   
   interface hipsolverDsygvd
@@ -4286,17 +4020,15 @@ hipsolverSsygvd_rank_1
       type(c_ptr),value :: D
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverDsygvd_full_rank,&
-      
-hipsolverDsygvd_rank_0,&
-      
-hipsolverDsygvd_rank_1
+    module procedure &
+      hipsolverDsygvd_full_rank,&
+      hipsolverDsygvd_rank_0,&
+      hipsolverDsygvd_rank_1
 #endif
-
   end interface
   
   interface hipsolverChegvd
@@ -4321,17 +4053,15 @@ hipsolverDsygvd_rank_1
       type(c_ptr),value :: D
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverChegvd_full_rank,&
-      
-hipsolverChegvd_rank_0,&
-      
-hipsolverChegvd_rank_1
+    module procedure &
+      hipsolverChegvd_full_rank,&
+      hipsolverChegvd_rank_0,&
+      hipsolverChegvd_rank_1
 #endif
-
   end interface
   
   interface hipsolverZhegvd
@@ -4356,17 +4086,15 @@ hipsolverChegvd_rank_1
       type(c_ptr),value :: D
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverZhegvd_full_rank,&
-      
-hipsolverZhegvd_rank_0,&
-      
-hipsolverZhegvd_rank_1
+    module procedure &
+      hipsolverZhegvd_full_rank,&
+      hipsolverZhegvd_rank_0,&
+      hipsolverZhegvd_rank_1
 #endif
-
   end interface
   
   interface hipsolverSsytrd_bufferSize
@@ -4387,17 +4115,15 @@ hipsolverZhegvd_rank_1
       type(c_ptr),value :: D
       type(c_ptr),value :: E
       real(c_float) :: tau
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverSsytrd_bufferSize_full_rank,&
-      
-hipsolverSsytrd_bufferSize_rank_0,&
-      
-hipsolverSsytrd_bufferSize_rank_1
+    module procedure &
+      hipsolverSsytrd_bufferSize_full_rank,&
+      hipsolverSsytrd_bufferSize_rank_0,&
+      hipsolverSsytrd_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverDsytrd_bufferSize
@@ -4418,17 +4144,15 @@ hipsolverSsytrd_bufferSize_rank_1
       type(c_ptr),value :: D
       type(c_ptr),value :: E
       real(c_double) :: tau
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverDsytrd_bufferSize_full_rank,&
-      
-hipsolverDsytrd_bufferSize_rank_0,&
-      
-hipsolverDsytrd_bufferSize_rank_1
+    module procedure &
+      hipsolverDsytrd_bufferSize_full_rank,&
+      hipsolverDsytrd_bufferSize_rank_0,&
+      hipsolverDsytrd_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverChetrd_bufferSize
@@ -4449,17 +4173,15 @@ hipsolverDsytrd_bufferSize_rank_1
       type(c_ptr),value :: D
       type(c_ptr),value :: E
       complex(c_float_complex) :: tau
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverChetrd_bufferSize_full_rank,&
-      
-hipsolverChetrd_bufferSize_rank_0,&
-      
-hipsolverChetrd_bufferSize_rank_1
+    module procedure &
+      hipsolverChetrd_bufferSize_full_rank,&
+      hipsolverChetrd_bufferSize_rank_0,&
+      hipsolverChetrd_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverZhetrd_bufferSize
@@ -4480,17 +4202,15 @@ hipsolverChetrd_bufferSize_rank_1
       type(c_ptr),value :: D
       type(c_ptr),value :: E
       complex(c_double_complex) :: tau
-      type(c_ptr),value :: lwork
+      integer(c_int) :: lwork
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverZhetrd_bufferSize_full_rank,&
-      
-hipsolverZhetrd_bufferSize_rank_0,&
-      
-hipsolverZhetrd_bufferSize_rank_1
+    module procedure &
+      hipsolverZhetrd_bufferSize_full_rank,&
+      hipsolverZhetrd_bufferSize_rank_0,&
+      hipsolverZhetrd_bufferSize_rank_1
 #endif
-
   end interface
   
   interface hipsolverSsytrd
@@ -4513,17 +4233,15 @@ hipsolverZhetrd_bufferSize_rank_1
       real(c_float) :: tau
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverSsytrd_full_rank,&
-      
-hipsolverSsytrd_rank_0,&
-      
-hipsolverSsytrd_rank_1
+    module procedure &
+      hipsolverSsytrd_full_rank,&
+      hipsolverSsytrd_rank_0,&
+      hipsolverSsytrd_rank_1
 #endif
-
   end interface
   
   interface hipsolverDsytrd
@@ -4546,17 +4264,15 @@ hipsolverSsytrd_rank_1
       real(c_double) :: tau
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverDsytrd_full_rank,&
-      
-hipsolverDsytrd_rank_0,&
-      
-hipsolverDsytrd_rank_1
+    module procedure &
+      hipsolverDsytrd_full_rank,&
+      hipsolverDsytrd_rank_0,&
+      hipsolverDsytrd_rank_1
 #endif
-
   end interface
   
   interface hipsolverChetrd
@@ -4579,17 +4295,15 @@ hipsolverDsytrd_rank_1
       complex(c_float_complex) :: tau
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverChetrd_full_rank,&
-      
-hipsolverChetrd_rank_0,&
-      
-hipsolverChetrd_rank_1
+    module procedure &
+      hipsolverChetrd_full_rank,&
+      hipsolverChetrd_rank_0,&
+      hipsolverChetrd_rank_1
 #endif
-
   end interface
   
   interface hipsolverZhetrd
@@ -4612,17 +4326,15 @@ hipsolverChetrd_rank_1
       complex(c_double_complex) :: tau
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
-      type(c_ptr),value :: devInfo
+      integer(c_int) :: devInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipsolverZhetrd_full_rank,&
-      
-hipsolverZhetrd_rank_0,&
-      
-hipsolverZhetrd_rank_1
+    module procedure &
+      hipsolverZhetrd_full_rank,&
+      hipsolverZhetrd_rank_0,&
+      hipsolverZhetrd_rank_1
 #endif
-
   end interface
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -4640,7 +4352,7 @@ hipsolverZhetrd_rank_1
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
       real(c_float) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverSorgbr_bufferSize_full_rank = hipsolverSorgbr_bufferSize_(handle,side,m,n,k,c_loc(A),lda,tau,lwork)
     end function
@@ -4658,7 +4370,7 @@ hipsolverZhetrd_rank_1
       real(c_float),target :: A
       integer(c_int) :: lda
       real(c_float) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverSorgbr_bufferSize_rank_0 = hipsolverSorgbr_bufferSize_(handle,side,m,n,k,c_loc(A),lda,tau,lwork)
     end function
@@ -4676,7 +4388,7 @@ hipsolverZhetrd_rank_1
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_float) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverSorgbr_bufferSize_rank_1 = hipsolverSorgbr_bufferSize_(handle,side,m,n,k,c_loc(A),lda,tau,lwork)
     end function
@@ -4694,7 +4406,7 @@ hipsolverZhetrd_rank_1
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
       real(c_double) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverDorgbr_bufferSize_full_rank = hipsolverDorgbr_bufferSize_(handle,side,m,n,k,c_loc(A),lda,tau,lwork)
     end function
@@ -4712,7 +4424,7 @@ hipsolverZhetrd_rank_1
       real(c_double),target :: A
       integer(c_int) :: lda
       real(c_double) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverDorgbr_bufferSize_rank_0 = hipsolverDorgbr_bufferSize_(handle,side,m,n,k,c_loc(A),lda,tau,lwork)
     end function
@@ -4730,7 +4442,7 @@ hipsolverZhetrd_rank_1
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_double) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverDorgbr_bufferSize_rank_1 = hipsolverDorgbr_bufferSize_(handle,side,m,n,k,c_loc(A),lda,tau,lwork)
     end function
@@ -4748,7 +4460,7 @@ hipsolverZhetrd_rank_1
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       complex(c_float_complex) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverCungbr_bufferSize_full_rank = hipsolverCungbr_bufferSize_(handle,side,m,n,k,c_loc(A),lda,tau,lwork)
     end function
@@ -4766,7 +4478,7 @@ hipsolverZhetrd_rank_1
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
       complex(c_float_complex) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverCungbr_bufferSize_rank_0 = hipsolverCungbr_bufferSize_(handle,side,m,n,k,c_loc(A),lda,tau,lwork)
     end function
@@ -4784,7 +4496,7 @@ hipsolverZhetrd_rank_1
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       complex(c_float_complex) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverCungbr_bufferSize_rank_1 = hipsolverCungbr_bufferSize_(handle,side,m,n,k,c_loc(A),lda,tau,lwork)
     end function
@@ -4802,7 +4514,7 @@ hipsolverZhetrd_rank_1
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       complex(c_double_complex) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverZungbr_bufferSize_full_rank = hipsolverZungbr_bufferSize_(handle,side,m,n,k,c_loc(A),lda,tau,lwork)
     end function
@@ -4820,7 +4532,7 @@ hipsolverZhetrd_rank_1
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
       complex(c_double_complex) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverZungbr_bufferSize_rank_0 = hipsolverZungbr_bufferSize_(handle,side,m,n,k,c_loc(A),lda,tau,lwork)
     end function
@@ -4838,7 +4550,7 @@ hipsolverZhetrd_rank_1
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       complex(c_double_complex) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverZungbr_bufferSize_rank_1 = hipsolverZungbr_bufferSize_(handle,side,m,n,k,c_loc(A),lda,tau,lwork)
     end function
@@ -4858,7 +4570,7 @@ hipsolverZhetrd_rank_1
       real(c_float) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSorgbr_full_rank = hipsolverSorgbr_(handle,side,m,n,k,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -4878,7 +4590,7 @@ hipsolverZhetrd_rank_1
       real(c_float) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSorgbr_rank_0 = hipsolverSorgbr_(handle,side,m,n,k,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -4898,7 +4610,7 @@ hipsolverZhetrd_rank_1
       real(c_float) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSorgbr_rank_1 = hipsolverSorgbr_(handle,side,m,n,k,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -4918,7 +4630,7 @@ hipsolverZhetrd_rank_1
       real(c_double) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDorgbr_full_rank = hipsolverDorgbr_(handle,side,m,n,k,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -4938,7 +4650,7 @@ hipsolverZhetrd_rank_1
       real(c_double) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDorgbr_rank_0 = hipsolverDorgbr_(handle,side,m,n,k,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -4958,7 +4670,7 @@ hipsolverZhetrd_rank_1
       real(c_double) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDorgbr_rank_1 = hipsolverDorgbr_(handle,side,m,n,k,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -4978,7 +4690,7 @@ hipsolverZhetrd_rank_1
       complex(c_float_complex) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverCungbr_full_rank = hipsolverCungbr_(handle,side,m,n,k,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -4998,7 +4710,7 @@ hipsolverZhetrd_rank_1
       complex(c_float_complex) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverCungbr_rank_0 = hipsolverCungbr_(handle,side,m,n,k,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -5018,7 +4730,7 @@ hipsolverZhetrd_rank_1
       complex(c_float_complex) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverCungbr_rank_1 = hipsolverCungbr_(handle,side,m,n,k,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -5038,7 +4750,7 @@ hipsolverZhetrd_rank_1
       complex(c_double_complex) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZungbr_full_rank = hipsolverZungbr_(handle,side,m,n,k,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -5058,7 +4770,7 @@ hipsolverZhetrd_rank_1
       complex(c_double_complex) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZungbr_rank_0 = hipsolverZungbr_(handle,side,m,n,k,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -5078,7 +4790,7 @@ hipsolverZhetrd_rank_1
       complex(c_double_complex) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZungbr_rank_1 = hipsolverZungbr_(handle,side,m,n,k,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -5095,7 +4807,7 @@ hipsolverZhetrd_rank_1
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
       real(c_float) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverSorgqr_bufferSize_full_rank = hipsolverSorgqr_bufferSize_(handle,m,n,k,c_loc(A),lda,tau,lwork)
     end function
@@ -5112,7 +4824,7 @@ hipsolverZhetrd_rank_1
       real(c_float),target :: A
       integer(c_int) :: lda
       real(c_float) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverSorgqr_bufferSize_rank_0 = hipsolverSorgqr_bufferSize_(handle,m,n,k,c_loc(A),lda,tau,lwork)
     end function
@@ -5129,7 +4841,7 @@ hipsolverZhetrd_rank_1
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_float) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverSorgqr_bufferSize_rank_1 = hipsolverSorgqr_bufferSize_(handle,m,n,k,c_loc(A),lda,tau,lwork)
     end function
@@ -5146,7 +4858,7 @@ hipsolverZhetrd_rank_1
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
       real(c_double) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverDorgqr_bufferSize_full_rank = hipsolverDorgqr_bufferSize_(handle,m,n,k,c_loc(A),lda,tau,lwork)
     end function
@@ -5163,7 +4875,7 @@ hipsolverZhetrd_rank_1
       real(c_double),target :: A
       integer(c_int) :: lda
       real(c_double) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverDorgqr_bufferSize_rank_0 = hipsolverDorgqr_bufferSize_(handle,m,n,k,c_loc(A),lda,tau,lwork)
     end function
@@ -5180,7 +4892,7 @@ hipsolverZhetrd_rank_1
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_double) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverDorgqr_bufferSize_rank_1 = hipsolverDorgqr_bufferSize_(handle,m,n,k,c_loc(A),lda,tau,lwork)
     end function
@@ -5197,7 +4909,7 @@ hipsolverZhetrd_rank_1
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       complex(c_float_complex) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverCungqr_bufferSize_full_rank = hipsolverCungqr_bufferSize_(handle,m,n,k,c_loc(A),lda,tau,lwork)
     end function
@@ -5214,7 +4926,7 @@ hipsolverZhetrd_rank_1
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
       complex(c_float_complex) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverCungqr_bufferSize_rank_0 = hipsolverCungqr_bufferSize_(handle,m,n,k,c_loc(A),lda,tau,lwork)
     end function
@@ -5231,7 +4943,7 @@ hipsolverZhetrd_rank_1
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       complex(c_float_complex) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverCungqr_bufferSize_rank_1 = hipsolverCungqr_bufferSize_(handle,m,n,k,c_loc(A),lda,tau,lwork)
     end function
@@ -5248,7 +4960,7 @@ hipsolverZhetrd_rank_1
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       complex(c_double_complex) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverZungqr_bufferSize_full_rank = hipsolverZungqr_bufferSize_(handle,m,n,k,c_loc(A),lda,tau,lwork)
     end function
@@ -5265,7 +4977,7 @@ hipsolverZhetrd_rank_1
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
       complex(c_double_complex) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverZungqr_bufferSize_rank_0 = hipsolverZungqr_bufferSize_(handle,m,n,k,c_loc(A),lda,tau,lwork)
     end function
@@ -5282,7 +4994,7 @@ hipsolverZhetrd_rank_1
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       complex(c_double_complex) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverZungqr_bufferSize_rank_1 = hipsolverZungqr_bufferSize_(handle,m,n,k,c_loc(A),lda,tau,lwork)
     end function
@@ -5301,7 +5013,7 @@ hipsolverZhetrd_rank_1
       real(c_float) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSorgqr_full_rank = hipsolverSorgqr_(handle,m,n,k,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -5320,7 +5032,7 @@ hipsolverZhetrd_rank_1
       real(c_float) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSorgqr_rank_0 = hipsolverSorgqr_(handle,m,n,k,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -5339,7 +5051,7 @@ hipsolverZhetrd_rank_1
       real(c_float) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSorgqr_rank_1 = hipsolverSorgqr_(handle,m,n,k,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -5358,7 +5070,7 @@ hipsolverZhetrd_rank_1
       real(c_double) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDorgqr_full_rank = hipsolverDorgqr_(handle,m,n,k,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -5377,7 +5089,7 @@ hipsolverZhetrd_rank_1
       real(c_double) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDorgqr_rank_0 = hipsolverDorgqr_(handle,m,n,k,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -5396,7 +5108,7 @@ hipsolverZhetrd_rank_1
       real(c_double) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDorgqr_rank_1 = hipsolverDorgqr_(handle,m,n,k,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -5415,7 +5127,7 @@ hipsolverZhetrd_rank_1
       complex(c_float_complex) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverCungqr_full_rank = hipsolverCungqr_(handle,m,n,k,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -5434,7 +5146,7 @@ hipsolverZhetrd_rank_1
       complex(c_float_complex) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverCungqr_rank_0 = hipsolverCungqr_(handle,m,n,k,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -5453,7 +5165,7 @@ hipsolverZhetrd_rank_1
       complex(c_float_complex) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverCungqr_rank_1 = hipsolverCungqr_(handle,m,n,k,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -5472,7 +5184,7 @@ hipsolverZhetrd_rank_1
       complex(c_double_complex) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZungqr_full_rank = hipsolverZungqr_(handle,m,n,k,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -5491,7 +5203,7 @@ hipsolverZhetrd_rank_1
       complex(c_double_complex) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZungqr_rank_0 = hipsolverZungqr_(handle,m,n,k,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -5510,7 +5222,7 @@ hipsolverZhetrd_rank_1
       complex(c_double_complex) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZungqr_rank_1 = hipsolverZungqr_(handle,m,n,k,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -5526,7 +5238,7 @@ hipsolverZhetrd_rank_1
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
       real(c_float) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverSorgtr_bufferSize_full_rank = hipsolverSorgtr_bufferSize_(handle,uplo,n,c_loc(A),lda,tau,lwork)
     end function
@@ -5542,7 +5254,7 @@ hipsolverZhetrd_rank_1
       real(c_float),target :: A
       integer(c_int) :: lda
       real(c_float) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverSorgtr_bufferSize_rank_0 = hipsolverSorgtr_bufferSize_(handle,uplo,n,c_loc(A),lda,tau,lwork)
     end function
@@ -5558,7 +5270,7 @@ hipsolverZhetrd_rank_1
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_float) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverSorgtr_bufferSize_rank_1 = hipsolverSorgtr_bufferSize_(handle,uplo,n,c_loc(A),lda,tau,lwork)
     end function
@@ -5574,7 +5286,7 @@ hipsolverZhetrd_rank_1
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
       real(c_double) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverDorgtr_bufferSize_full_rank = hipsolverDorgtr_bufferSize_(handle,uplo,n,c_loc(A),lda,tau,lwork)
     end function
@@ -5590,7 +5302,7 @@ hipsolverZhetrd_rank_1
       real(c_double),target :: A
       integer(c_int) :: lda
       real(c_double) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverDorgtr_bufferSize_rank_0 = hipsolverDorgtr_bufferSize_(handle,uplo,n,c_loc(A),lda,tau,lwork)
     end function
@@ -5606,7 +5318,7 @@ hipsolverZhetrd_rank_1
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_double) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverDorgtr_bufferSize_rank_1 = hipsolverDorgtr_bufferSize_(handle,uplo,n,c_loc(A),lda,tau,lwork)
     end function
@@ -5622,7 +5334,7 @@ hipsolverZhetrd_rank_1
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       complex(c_float_complex) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverCungtr_bufferSize_full_rank = hipsolverCungtr_bufferSize_(handle,uplo,n,c_loc(A),lda,tau,lwork)
     end function
@@ -5638,7 +5350,7 @@ hipsolverZhetrd_rank_1
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
       complex(c_float_complex) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverCungtr_bufferSize_rank_0 = hipsolverCungtr_bufferSize_(handle,uplo,n,c_loc(A),lda,tau,lwork)
     end function
@@ -5654,7 +5366,7 @@ hipsolverZhetrd_rank_1
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       complex(c_float_complex) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverCungtr_bufferSize_rank_1 = hipsolverCungtr_bufferSize_(handle,uplo,n,c_loc(A),lda,tau,lwork)
     end function
@@ -5670,7 +5382,7 @@ hipsolverZhetrd_rank_1
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       complex(c_double_complex) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverZungtr_bufferSize_full_rank = hipsolverZungtr_bufferSize_(handle,uplo,n,c_loc(A),lda,tau,lwork)
     end function
@@ -5686,7 +5398,7 @@ hipsolverZhetrd_rank_1
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
       complex(c_double_complex) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverZungtr_bufferSize_rank_0 = hipsolverZungtr_bufferSize_(handle,uplo,n,c_loc(A),lda,tau,lwork)
     end function
@@ -5702,7 +5414,7 @@ hipsolverZhetrd_rank_1
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       complex(c_double_complex) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverZungtr_bufferSize_rank_1 = hipsolverZungtr_bufferSize_(handle,uplo,n,c_loc(A),lda,tau,lwork)
     end function
@@ -5720,7 +5432,7 @@ hipsolverZhetrd_rank_1
       real(c_float) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSorgtr_full_rank = hipsolverSorgtr_(handle,uplo,n,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -5738,7 +5450,7 @@ hipsolverZhetrd_rank_1
       real(c_float) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSorgtr_rank_0 = hipsolverSorgtr_(handle,uplo,n,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -5756,7 +5468,7 @@ hipsolverZhetrd_rank_1
       real(c_float) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSorgtr_rank_1 = hipsolverSorgtr_(handle,uplo,n,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -5774,7 +5486,7 @@ hipsolverZhetrd_rank_1
       real(c_double) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDorgtr_full_rank = hipsolverDorgtr_(handle,uplo,n,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -5792,7 +5504,7 @@ hipsolverZhetrd_rank_1
       real(c_double) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDorgtr_rank_0 = hipsolverDorgtr_(handle,uplo,n,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -5810,7 +5522,7 @@ hipsolverZhetrd_rank_1
       real(c_double) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDorgtr_rank_1 = hipsolverDorgtr_(handle,uplo,n,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -5828,7 +5540,7 @@ hipsolverZhetrd_rank_1
       complex(c_float_complex) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverCungtr_full_rank = hipsolverCungtr_(handle,uplo,n,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -5846,7 +5558,7 @@ hipsolverZhetrd_rank_1
       complex(c_float_complex) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverCungtr_rank_0 = hipsolverCungtr_(handle,uplo,n,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -5864,7 +5576,7 @@ hipsolverZhetrd_rank_1
       complex(c_float_complex) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverCungtr_rank_1 = hipsolverCungtr_(handle,uplo,n,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -5882,7 +5594,7 @@ hipsolverZhetrd_rank_1
       complex(c_double_complex) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZungtr_full_rank = hipsolverZungtr_(handle,uplo,n,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -5900,7 +5612,7 @@ hipsolverZhetrd_rank_1
       complex(c_double_complex) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZungtr_rank_0 = hipsolverZungtr_(handle,uplo,n,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -5918,7 +5630,7 @@ hipsolverZhetrd_rank_1
       complex(c_double_complex) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZungtr_rank_1 = hipsolverZungtr_(handle,uplo,n,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -5939,7 +5651,7 @@ hipsolverZhetrd_rank_1
       real(c_float) :: tau
       real(c_float),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverSormqr_bufferSize_full_rank = hipsolverSormqr_bufferSize_(handle,side,trans,m,n,k,c_loc(A),lda,tau,c_loc(C),ldc,lwork)
     end function
@@ -5960,7 +5672,7 @@ hipsolverZhetrd_rank_1
       real(c_float) :: tau
       real(c_float),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverSormqr_bufferSize_rank_0 = hipsolverSormqr_bufferSize_(handle,side,trans,m,n,k,c_loc(A),lda,tau,c_loc(C),ldc,lwork)
     end function
@@ -5981,7 +5693,7 @@ hipsolverZhetrd_rank_1
       real(c_float) :: tau
       real(c_float),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverSormqr_bufferSize_rank_1 = hipsolverSormqr_bufferSize_(handle,side,trans,m,n,k,c_loc(A),lda,tau,c_loc(C),ldc,lwork)
     end function
@@ -6002,7 +5714,7 @@ hipsolverZhetrd_rank_1
       real(c_double) :: tau
       real(c_double),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverDormqr_bufferSize_full_rank = hipsolverDormqr_bufferSize_(handle,side,trans,m,n,k,c_loc(A),lda,tau,c_loc(C),ldc,lwork)
     end function
@@ -6023,7 +5735,7 @@ hipsolverZhetrd_rank_1
       real(c_double) :: tau
       real(c_double),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverDormqr_bufferSize_rank_0 = hipsolverDormqr_bufferSize_(handle,side,trans,m,n,k,c_loc(A),lda,tau,c_loc(C),ldc,lwork)
     end function
@@ -6044,7 +5756,7 @@ hipsolverZhetrd_rank_1
       real(c_double) :: tau
       real(c_double),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverDormqr_bufferSize_rank_1 = hipsolverDormqr_bufferSize_(handle,side,trans,m,n,k,c_loc(A),lda,tau,c_loc(C),ldc,lwork)
     end function
@@ -6065,7 +5777,7 @@ hipsolverZhetrd_rank_1
       complex(c_float_complex) :: tau
       complex(c_float_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverCunmqr_bufferSize_full_rank = hipsolverCunmqr_bufferSize_(handle,side,trans,m,n,k,c_loc(A),lda,tau,c_loc(C),ldc,lwork)
     end function
@@ -6086,7 +5798,7 @@ hipsolverZhetrd_rank_1
       complex(c_float_complex) :: tau
       complex(c_float_complex),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverCunmqr_bufferSize_rank_0 = hipsolverCunmqr_bufferSize_(handle,side,trans,m,n,k,c_loc(A),lda,tau,c_loc(C),ldc,lwork)
     end function
@@ -6107,7 +5819,7 @@ hipsolverZhetrd_rank_1
       complex(c_float_complex) :: tau
       complex(c_float_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverCunmqr_bufferSize_rank_1 = hipsolverCunmqr_bufferSize_(handle,side,trans,m,n,k,c_loc(A),lda,tau,c_loc(C),ldc,lwork)
     end function
@@ -6128,7 +5840,7 @@ hipsolverZhetrd_rank_1
       complex(c_double_complex) :: tau
       complex(c_double_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverZunmqr_bufferSize_full_rank = hipsolverZunmqr_bufferSize_(handle,side,trans,m,n,k,c_loc(A),lda,tau,c_loc(C),ldc,lwork)
     end function
@@ -6149,7 +5861,7 @@ hipsolverZhetrd_rank_1
       complex(c_double_complex) :: tau
       complex(c_double_complex),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverZunmqr_bufferSize_rank_0 = hipsolverZunmqr_bufferSize_(handle,side,trans,m,n,k,c_loc(A),lda,tau,c_loc(C),ldc,lwork)
     end function
@@ -6170,7 +5882,7 @@ hipsolverZhetrd_rank_1
       complex(c_double_complex) :: tau
       complex(c_double_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverZunmqr_bufferSize_rank_1 = hipsolverZunmqr_bufferSize_(handle,side,trans,m,n,k,c_loc(A),lda,tau,c_loc(C),ldc,lwork)
     end function
@@ -6193,7 +5905,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldc
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSormqr_full_rank = hipsolverSormqr_(handle,side,trans,m,n,k,c_loc(A),lda,tau,c_loc(C),ldc,work,lwork,devInfo)
     end function
@@ -6216,7 +5928,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldc
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSormqr_rank_0 = hipsolverSormqr_(handle,side,trans,m,n,k,c_loc(A),lda,tau,c_loc(C),ldc,work,lwork,devInfo)
     end function
@@ -6239,7 +5951,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldc
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSormqr_rank_1 = hipsolverSormqr_(handle,side,trans,m,n,k,c_loc(A),lda,tau,c_loc(C),ldc,work,lwork,devInfo)
     end function
@@ -6262,7 +5974,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldc
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDormqr_full_rank = hipsolverDormqr_(handle,side,trans,m,n,k,c_loc(A),lda,tau,c_loc(C),ldc,work,lwork,devInfo)
     end function
@@ -6285,7 +5997,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldc
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDormqr_rank_0 = hipsolverDormqr_(handle,side,trans,m,n,k,c_loc(A),lda,tau,c_loc(C),ldc,work,lwork,devInfo)
     end function
@@ -6308,7 +6020,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldc
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDormqr_rank_1 = hipsolverDormqr_(handle,side,trans,m,n,k,c_loc(A),lda,tau,c_loc(C),ldc,work,lwork,devInfo)
     end function
@@ -6331,7 +6043,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldc
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverCunmqr_full_rank = hipsolverCunmqr_(handle,side,trans,m,n,k,c_loc(A),lda,tau,c_loc(C),ldc,work,lwork,devInfo)
     end function
@@ -6354,7 +6066,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldc
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverCunmqr_rank_0 = hipsolverCunmqr_(handle,side,trans,m,n,k,c_loc(A),lda,tau,c_loc(C),ldc,work,lwork,devInfo)
     end function
@@ -6377,7 +6089,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldc
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverCunmqr_rank_1 = hipsolverCunmqr_(handle,side,trans,m,n,k,c_loc(A),lda,tau,c_loc(C),ldc,work,lwork,devInfo)
     end function
@@ -6400,7 +6112,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldc
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZunmqr_full_rank = hipsolverZunmqr_(handle,side,trans,m,n,k,c_loc(A),lda,tau,c_loc(C),ldc,work,lwork,devInfo)
     end function
@@ -6423,7 +6135,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldc
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZunmqr_rank_0 = hipsolverZunmqr_(handle,side,trans,m,n,k,c_loc(A),lda,tau,c_loc(C),ldc,work,lwork,devInfo)
     end function
@@ -6446,7 +6158,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldc
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZunmqr_rank_1 = hipsolverZunmqr_(handle,side,trans,m,n,k,c_loc(A),lda,tau,c_loc(C),ldc,work,lwork,devInfo)
     end function
@@ -6467,7 +6179,7 @@ hipsolverZhetrd_rank_1
       real(c_float) :: tau
       real(c_float),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverSormtr_bufferSize_full_rank = hipsolverSormtr_bufferSize_(handle,side,uplo,trans,m,n,c_loc(A),lda,tau,c_loc(C),ldc,lwork)
     end function
@@ -6488,7 +6200,7 @@ hipsolverZhetrd_rank_1
       real(c_float) :: tau
       real(c_float),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverSormtr_bufferSize_rank_0 = hipsolverSormtr_bufferSize_(handle,side,uplo,trans,m,n,c_loc(A),lda,tau,c_loc(C),ldc,lwork)
     end function
@@ -6509,7 +6221,7 @@ hipsolverZhetrd_rank_1
       real(c_float) :: tau
       real(c_float),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverSormtr_bufferSize_rank_1 = hipsolverSormtr_bufferSize_(handle,side,uplo,trans,m,n,c_loc(A),lda,tau,c_loc(C),ldc,lwork)
     end function
@@ -6530,7 +6242,7 @@ hipsolverZhetrd_rank_1
       real(c_double) :: tau
       real(c_double),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverDormtr_bufferSize_full_rank = hipsolverDormtr_bufferSize_(handle,side,uplo,trans,m,n,c_loc(A),lda,tau,c_loc(C),ldc,lwork)
     end function
@@ -6551,7 +6263,7 @@ hipsolverZhetrd_rank_1
       real(c_double) :: tau
       real(c_double),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverDormtr_bufferSize_rank_0 = hipsolverDormtr_bufferSize_(handle,side,uplo,trans,m,n,c_loc(A),lda,tau,c_loc(C),ldc,lwork)
     end function
@@ -6572,7 +6284,7 @@ hipsolverZhetrd_rank_1
       real(c_double) :: tau
       real(c_double),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverDormtr_bufferSize_rank_1 = hipsolverDormtr_bufferSize_(handle,side,uplo,trans,m,n,c_loc(A),lda,tau,c_loc(C),ldc,lwork)
     end function
@@ -6593,7 +6305,7 @@ hipsolverZhetrd_rank_1
       complex(c_float_complex) :: tau
       complex(c_float_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverCunmtr_bufferSize_full_rank = hipsolverCunmtr_bufferSize_(handle,side,uplo,trans,m,n,c_loc(A),lda,tau,c_loc(C),ldc,lwork)
     end function
@@ -6614,7 +6326,7 @@ hipsolverZhetrd_rank_1
       complex(c_float_complex) :: tau
       complex(c_float_complex),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverCunmtr_bufferSize_rank_0 = hipsolverCunmtr_bufferSize_(handle,side,uplo,trans,m,n,c_loc(A),lda,tau,c_loc(C),ldc,lwork)
     end function
@@ -6635,7 +6347,7 @@ hipsolverZhetrd_rank_1
       complex(c_float_complex) :: tau
       complex(c_float_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverCunmtr_bufferSize_rank_1 = hipsolverCunmtr_bufferSize_(handle,side,uplo,trans,m,n,c_loc(A),lda,tau,c_loc(C),ldc,lwork)
     end function
@@ -6656,7 +6368,7 @@ hipsolverZhetrd_rank_1
       complex(c_double_complex) :: tau
       complex(c_double_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverZunmtr_bufferSize_full_rank = hipsolverZunmtr_bufferSize_(handle,side,uplo,trans,m,n,c_loc(A),lda,tau,c_loc(C),ldc,lwork)
     end function
@@ -6677,7 +6389,7 @@ hipsolverZhetrd_rank_1
       complex(c_double_complex) :: tau
       complex(c_double_complex),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverZunmtr_bufferSize_rank_0 = hipsolverZunmtr_bufferSize_(handle,side,uplo,trans,m,n,c_loc(A),lda,tau,c_loc(C),ldc,lwork)
     end function
@@ -6698,7 +6410,7 @@ hipsolverZhetrd_rank_1
       complex(c_double_complex) :: tau
       complex(c_double_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverZunmtr_bufferSize_rank_1 = hipsolverZunmtr_bufferSize_(handle,side,uplo,trans,m,n,c_loc(A),lda,tau,c_loc(C),ldc,lwork)
     end function
@@ -6721,7 +6433,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldc
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSormtr_full_rank = hipsolverSormtr_(handle,side,uplo,trans,m,n,c_loc(A),lda,tau,c_loc(C),ldc,work,lwork,devInfo)
     end function
@@ -6744,7 +6456,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldc
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSormtr_rank_0 = hipsolverSormtr_(handle,side,uplo,trans,m,n,c_loc(A),lda,tau,c_loc(C),ldc,work,lwork,devInfo)
     end function
@@ -6767,7 +6479,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldc
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSormtr_rank_1 = hipsolverSormtr_(handle,side,uplo,trans,m,n,c_loc(A),lda,tau,c_loc(C),ldc,work,lwork,devInfo)
     end function
@@ -6790,7 +6502,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldc
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDormtr_full_rank = hipsolverDormtr_(handle,side,uplo,trans,m,n,c_loc(A),lda,tau,c_loc(C),ldc,work,lwork,devInfo)
     end function
@@ -6813,7 +6525,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldc
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDormtr_rank_0 = hipsolverDormtr_(handle,side,uplo,trans,m,n,c_loc(A),lda,tau,c_loc(C),ldc,work,lwork,devInfo)
     end function
@@ -6836,7 +6548,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldc
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDormtr_rank_1 = hipsolverDormtr_(handle,side,uplo,trans,m,n,c_loc(A),lda,tau,c_loc(C),ldc,work,lwork,devInfo)
     end function
@@ -6859,7 +6571,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldc
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverCunmtr_full_rank = hipsolverCunmtr_(handle,side,uplo,trans,m,n,c_loc(A),lda,tau,c_loc(C),ldc,work,lwork,devInfo)
     end function
@@ -6882,7 +6594,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldc
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverCunmtr_rank_0 = hipsolverCunmtr_(handle,side,uplo,trans,m,n,c_loc(A),lda,tau,c_loc(C),ldc,work,lwork,devInfo)
     end function
@@ -6905,7 +6617,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldc
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverCunmtr_rank_1 = hipsolverCunmtr_(handle,side,uplo,trans,m,n,c_loc(A),lda,tau,c_loc(C),ldc,work,lwork,devInfo)
     end function
@@ -6928,7 +6640,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldc
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZunmtr_full_rank = hipsolverZunmtr_(handle,side,uplo,trans,m,n,c_loc(A),lda,tau,c_loc(C),ldc,work,lwork,devInfo)
     end function
@@ -6951,7 +6663,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldc
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZunmtr_rank_0 = hipsolverZunmtr_(handle,side,uplo,trans,m,n,c_loc(A),lda,tau,c_loc(C),ldc,work,lwork,devInfo)
     end function
@@ -6974,7 +6686,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldc
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZunmtr_rank_1 = hipsolverZunmtr_(handle,side,uplo,trans,m,n,c_loc(A),lda,tau,c_loc(C),ldc,work,lwork,devInfo)
     end function
@@ -6995,7 +6707,7 @@ hipsolverZhetrd_rank_1
       real(c_float),target,dimension(:) :: taup
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSgebrd_full_rank = hipsolverSgebrd_(handle,m,n,c_loc(A),lda,c_loc(D),c_loc(E),c_loc(tauq),c_loc(taup),work,lwork,devInfo)
     end function
@@ -7016,7 +6728,7 @@ hipsolverZhetrd_rank_1
       real(c_float),target :: taup
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSgebrd_rank_0 = hipsolverSgebrd_(handle,m,n,c_loc(A),lda,c_loc(D),c_loc(E),c_loc(tauq),c_loc(taup),work,lwork,devInfo)
     end function
@@ -7037,7 +6749,7 @@ hipsolverZhetrd_rank_1
       real(c_float),target,dimension(:) :: taup
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSgebrd_rank_1 = hipsolverSgebrd_(handle,m,n,c_loc(A),lda,c_loc(D),c_loc(E),c_loc(tauq),c_loc(taup),work,lwork,devInfo)
     end function
@@ -7058,7 +6770,7 @@ hipsolverZhetrd_rank_1
       real(c_double),target,dimension(:) :: taup
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDgebrd_full_rank = hipsolverDgebrd_(handle,m,n,c_loc(A),lda,c_loc(D),c_loc(E),c_loc(tauq),c_loc(taup),work,lwork,devInfo)
     end function
@@ -7079,7 +6791,7 @@ hipsolverZhetrd_rank_1
       real(c_double),target :: taup
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDgebrd_rank_0 = hipsolverDgebrd_(handle,m,n,c_loc(A),lda,c_loc(D),c_loc(E),c_loc(tauq),c_loc(taup),work,lwork,devInfo)
     end function
@@ -7100,7 +6812,7 @@ hipsolverZhetrd_rank_1
       real(c_double),target,dimension(:) :: taup
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDgebrd_rank_1 = hipsolverDgebrd_(handle,m,n,c_loc(A),lda,c_loc(D),c_loc(E),c_loc(tauq),c_loc(taup),work,lwork,devInfo)
     end function
@@ -7121,7 +6833,7 @@ hipsolverZhetrd_rank_1
       complex(c_float_complex),target,dimension(:) :: taup
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverCgebrd_full_rank = hipsolverCgebrd_(handle,m,n,c_loc(A),lda,c_loc(D),c_loc(E),c_loc(tauq),c_loc(taup),work,lwork,devInfo)
     end function
@@ -7142,7 +6854,7 @@ hipsolverZhetrd_rank_1
       complex(c_float_complex),target :: taup
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverCgebrd_rank_0 = hipsolverCgebrd_(handle,m,n,c_loc(A),lda,c_loc(D),c_loc(E),c_loc(tauq),c_loc(taup),work,lwork,devInfo)
     end function
@@ -7163,7 +6875,7 @@ hipsolverZhetrd_rank_1
       complex(c_float_complex),target,dimension(:) :: taup
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverCgebrd_rank_1 = hipsolverCgebrd_(handle,m,n,c_loc(A),lda,c_loc(D),c_loc(E),c_loc(tauq),c_loc(taup),work,lwork,devInfo)
     end function
@@ -7184,7 +6896,7 @@ hipsolverZhetrd_rank_1
       complex(c_double_complex),target,dimension(:) :: taup
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZgebrd_full_rank = hipsolverZgebrd_(handle,m,n,c_loc(A),lda,c_loc(D),c_loc(E),c_loc(tauq),c_loc(taup),work,lwork,devInfo)
     end function
@@ -7205,7 +6917,7 @@ hipsolverZhetrd_rank_1
       complex(c_double_complex),target :: taup
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZgebrd_rank_0 = hipsolverZgebrd_(handle,m,n,c_loc(A),lda,c_loc(D),c_loc(E),c_loc(tauq),c_loc(taup),work,lwork,devInfo)
     end function
@@ -7226,7 +6938,7 @@ hipsolverZhetrd_rank_1
       complex(c_double_complex),target,dimension(:) :: taup
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZgebrd_rank_1 = hipsolverZgebrd_(handle,m,n,c_loc(A),lda,c_loc(D),c_loc(E),c_loc(tauq),c_loc(taup),work,lwork,devInfo)
     end function
@@ -7241,7 +6953,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverSgeqrf_bufferSize_full_rank = hipsolverSgeqrf_bufferSize_(handle,m,n,c_loc(A),lda,lwork)
     end function
@@ -7256,7 +6968,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverSgeqrf_bufferSize_rank_0 = hipsolverSgeqrf_bufferSize_(handle,m,n,c_loc(A),lda,lwork)
     end function
@@ -7271,7 +6983,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverSgeqrf_bufferSize_rank_1 = hipsolverSgeqrf_bufferSize_(handle,m,n,c_loc(A),lda,lwork)
     end function
@@ -7286,7 +6998,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverDgeqrf_bufferSize_full_rank = hipsolverDgeqrf_bufferSize_(handle,m,n,c_loc(A),lda,lwork)
     end function
@@ -7301,7 +7013,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverDgeqrf_bufferSize_rank_0 = hipsolverDgeqrf_bufferSize_(handle,m,n,c_loc(A),lda,lwork)
     end function
@@ -7316,7 +7028,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverDgeqrf_bufferSize_rank_1 = hipsolverDgeqrf_bufferSize_(handle,m,n,c_loc(A),lda,lwork)
     end function
@@ -7331,7 +7043,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverCgeqrf_bufferSize_full_rank = hipsolverCgeqrf_bufferSize_(handle,m,n,c_loc(A),lda,lwork)
     end function
@@ -7346,7 +7058,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverCgeqrf_bufferSize_rank_0 = hipsolverCgeqrf_bufferSize_(handle,m,n,c_loc(A),lda,lwork)
     end function
@@ -7361,7 +7073,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverCgeqrf_bufferSize_rank_1 = hipsolverCgeqrf_bufferSize_(handle,m,n,c_loc(A),lda,lwork)
     end function
@@ -7376,7 +7088,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverZgeqrf_bufferSize_full_rank = hipsolverZgeqrf_bufferSize_(handle,m,n,c_loc(A),lda,lwork)
     end function
@@ -7391,7 +7103,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverZgeqrf_bufferSize_rank_0 = hipsolverZgeqrf_bufferSize_(handle,m,n,c_loc(A),lda,lwork)
     end function
@@ -7406,7 +7118,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverZgeqrf_bufferSize_rank_1 = hipsolverZgeqrf_bufferSize_(handle,m,n,c_loc(A),lda,lwork)
     end function
@@ -7424,7 +7136,7 @@ hipsolverZhetrd_rank_1
       real(c_float) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSgeqrf_full_rank = hipsolverSgeqrf_(handle,m,n,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -7442,7 +7154,7 @@ hipsolverZhetrd_rank_1
       real(c_float) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSgeqrf_rank_0 = hipsolverSgeqrf_(handle,m,n,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -7460,7 +7172,7 @@ hipsolverZhetrd_rank_1
       real(c_float) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSgeqrf_rank_1 = hipsolverSgeqrf_(handle,m,n,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -7478,7 +7190,7 @@ hipsolverZhetrd_rank_1
       real(c_double) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDgeqrf_full_rank = hipsolverDgeqrf_(handle,m,n,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -7496,7 +7208,7 @@ hipsolverZhetrd_rank_1
       real(c_double) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDgeqrf_rank_0 = hipsolverDgeqrf_(handle,m,n,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -7514,7 +7226,7 @@ hipsolverZhetrd_rank_1
       real(c_double) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDgeqrf_rank_1 = hipsolverDgeqrf_(handle,m,n,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -7532,7 +7244,7 @@ hipsolverZhetrd_rank_1
       complex(c_float_complex) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverCgeqrf_full_rank = hipsolverCgeqrf_(handle,m,n,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -7550,7 +7262,7 @@ hipsolverZhetrd_rank_1
       complex(c_float_complex) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverCgeqrf_rank_0 = hipsolverCgeqrf_(handle,m,n,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -7568,7 +7280,7 @@ hipsolverZhetrd_rank_1
       complex(c_float_complex) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverCgeqrf_rank_1 = hipsolverCgeqrf_(handle,m,n,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -7586,7 +7298,7 @@ hipsolverZhetrd_rank_1
       complex(c_double_complex) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZgeqrf_full_rank = hipsolverZgeqrf_(handle,m,n,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -7604,7 +7316,7 @@ hipsolverZhetrd_rank_1
       complex(c_double_complex) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZgeqrf_rank_0 = hipsolverZgeqrf_(handle,m,n,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -7622,7 +7334,7 @@ hipsolverZhetrd_rank_1
       complex(c_double_complex) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZgeqrf_rank_1 = hipsolverZgeqrf_(handle,m,n,c_loc(A),lda,tau,work,lwork,devInfo)
     end function
@@ -7642,7 +7354,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       real(c_float),target,dimension(:,:) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: lwork
+      integer(c_size_t) :: lwork
       !
       hipsolverSSgesv_bufferSize_full_rank = hipsolverSSgesv_bufferSize_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,c_loc(X),ldx,lwork)
     end function
@@ -7662,7 +7374,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       real(c_float),target :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: lwork
+      integer(c_size_t) :: lwork
       !
       hipsolverSSgesv_bufferSize_rank_0 = hipsolverSSgesv_bufferSize_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,c_loc(X),ldx,lwork)
     end function
@@ -7682,7 +7394,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       real(c_float),target,dimension(:) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: lwork
+      integer(c_size_t) :: lwork
       !
       hipsolverSSgesv_bufferSize_rank_1 = hipsolverSSgesv_bufferSize_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,c_loc(X),ldx,lwork)
     end function
@@ -7702,7 +7414,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       real(c_double),target,dimension(:,:) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: lwork
+      integer(c_size_t) :: lwork
       !
       hipsolverDDgesv_bufferSize_full_rank = hipsolverDDgesv_bufferSize_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,c_loc(X),ldx,lwork)
     end function
@@ -7722,7 +7434,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       real(c_double),target :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: lwork
+      integer(c_size_t) :: lwork
       !
       hipsolverDDgesv_bufferSize_rank_0 = hipsolverDDgesv_bufferSize_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,c_loc(X),ldx,lwork)
     end function
@@ -7742,7 +7454,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       real(c_double),target,dimension(:) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: lwork
+      integer(c_size_t) :: lwork
       !
       hipsolverDDgesv_bufferSize_rank_1 = hipsolverDDgesv_bufferSize_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,c_loc(X),ldx,lwork)
     end function
@@ -7762,7 +7474,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       complex(c_float_complex),target,dimension(:,:) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: lwork
+      integer(c_size_t) :: lwork
       !
       hipsolverCCgesv_bufferSize_full_rank = hipsolverCCgesv_bufferSize_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,c_loc(X),ldx,lwork)
     end function
@@ -7782,7 +7494,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       complex(c_float_complex),target :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: lwork
+      integer(c_size_t) :: lwork
       !
       hipsolverCCgesv_bufferSize_rank_0 = hipsolverCCgesv_bufferSize_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,c_loc(X),ldx,lwork)
     end function
@@ -7802,7 +7514,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       complex(c_float_complex),target,dimension(:) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: lwork
+      integer(c_size_t) :: lwork
       !
       hipsolverCCgesv_bufferSize_rank_1 = hipsolverCCgesv_bufferSize_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,c_loc(X),ldx,lwork)
     end function
@@ -7822,7 +7534,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       complex(c_double_complex),target,dimension(:,:) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: lwork
+      integer(c_size_t) :: lwork
       !
       hipsolverZZgesv_bufferSize_full_rank = hipsolverZZgesv_bufferSize_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,c_loc(X),ldx,lwork)
     end function
@@ -7842,7 +7554,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       complex(c_double_complex),target :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: lwork
+      integer(c_size_t) :: lwork
       !
       hipsolverZZgesv_bufferSize_rank_0 = hipsolverZZgesv_bufferSize_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,c_loc(X),ldx,lwork)
     end function
@@ -7862,7 +7574,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       complex(c_double_complex),target,dimension(:) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: lwork
+      integer(c_size_t) :: lwork
       !
       hipsolverZZgesv_bufferSize_rank_1 = hipsolverZZgesv_bufferSize_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,c_loc(X),ldx,lwork)
     end function
@@ -7885,7 +7597,7 @@ hipsolverZhetrd_rank_1
       type(c_ptr) :: work
       integer(c_size_t) :: lwork
       type(c_ptr) :: niters
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSSgesv_full_rank = hipsolverSSgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,c_loc(X),ldx,work,lwork,niters,devInfo)
     end function
@@ -7908,7 +7620,7 @@ hipsolverZhetrd_rank_1
       type(c_ptr) :: work
       integer(c_size_t) :: lwork
       type(c_ptr) :: niters
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSSgesv_rank_0 = hipsolverSSgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,c_loc(X),ldx,work,lwork,niters,devInfo)
     end function
@@ -7931,7 +7643,7 @@ hipsolverZhetrd_rank_1
       type(c_ptr) :: work
       integer(c_size_t) :: lwork
       type(c_ptr) :: niters
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSSgesv_rank_1 = hipsolverSSgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,c_loc(X),ldx,work,lwork,niters,devInfo)
     end function
@@ -7954,7 +7666,7 @@ hipsolverZhetrd_rank_1
       type(c_ptr) :: work
       integer(c_size_t) :: lwork
       type(c_ptr) :: niters
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDDgesv_full_rank = hipsolverDDgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,c_loc(X),ldx,work,lwork,niters,devInfo)
     end function
@@ -7977,7 +7689,7 @@ hipsolverZhetrd_rank_1
       type(c_ptr) :: work
       integer(c_size_t) :: lwork
       type(c_ptr) :: niters
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDDgesv_rank_0 = hipsolverDDgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,c_loc(X),ldx,work,lwork,niters,devInfo)
     end function
@@ -8000,7 +7712,7 @@ hipsolverZhetrd_rank_1
       type(c_ptr) :: work
       integer(c_size_t) :: lwork
       type(c_ptr) :: niters
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDDgesv_rank_1 = hipsolverDDgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,c_loc(X),ldx,work,lwork,niters,devInfo)
     end function
@@ -8023,7 +7735,7 @@ hipsolverZhetrd_rank_1
       type(c_ptr) :: work
       integer(c_size_t) :: lwork
       type(c_ptr) :: niters
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverCCgesv_full_rank = hipsolverCCgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,c_loc(X),ldx,work,lwork,niters,devInfo)
     end function
@@ -8046,7 +7758,7 @@ hipsolverZhetrd_rank_1
       type(c_ptr) :: work
       integer(c_size_t) :: lwork
       type(c_ptr) :: niters
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverCCgesv_rank_0 = hipsolverCCgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,c_loc(X),ldx,work,lwork,niters,devInfo)
     end function
@@ -8069,7 +7781,7 @@ hipsolverZhetrd_rank_1
       type(c_ptr) :: work
       integer(c_size_t) :: lwork
       type(c_ptr) :: niters
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverCCgesv_rank_1 = hipsolverCCgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,c_loc(X),ldx,work,lwork,niters,devInfo)
     end function
@@ -8092,7 +7804,7 @@ hipsolverZhetrd_rank_1
       type(c_ptr) :: work
       integer(c_size_t) :: lwork
       type(c_ptr) :: niters
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZZgesv_full_rank = hipsolverZZgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,c_loc(X),ldx,work,lwork,niters,devInfo)
     end function
@@ -8115,7 +7827,7 @@ hipsolverZhetrd_rank_1
       type(c_ptr) :: work
       integer(c_size_t) :: lwork
       type(c_ptr) :: niters
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZZgesv_rank_0 = hipsolverZZgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,c_loc(X),ldx,work,lwork,niters,devInfo)
     end function
@@ -8138,7 +7850,7 @@ hipsolverZhetrd_rank_1
       type(c_ptr) :: work
       integer(c_size_t) :: lwork
       type(c_ptr) :: niters
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZZgesv_rank_1 = hipsolverZZgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,c_loc(X),ldx,work,lwork,niters,devInfo)
     end function
@@ -8153,7 +7865,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverSgetrf_bufferSize_full_rank = hipsolverSgetrf_bufferSize_(handle,m,n,c_loc(A),lda,lwork)
     end function
@@ -8168,7 +7880,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverSgetrf_bufferSize_rank_0 = hipsolverSgetrf_bufferSize_(handle,m,n,c_loc(A),lda,lwork)
     end function
@@ -8183,7 +7895,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverSgetrf_bufferSize_rank_1 = hipsolverSgetrf_bufferSize_(handle,m,n,c_loc(A),lda,lwork)
     end function
@@ -8198,7 +7910,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverDgetrf_bufferSize_full_rank = hipsolverDgetrf_bufferSize_(handle,m,n,c_loc(A),lda,lwork)
     end function
@@ -8213,7 +7925,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverDgetrf_bufferSize_rank_0 = hipsolverDgetrf_bufferSize_(handle,m,n,c_loc(A),lda,lwork)
     end function
@@ -8228,7 +7940,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverDgetrf_bufferSize_rank_1 = hipsolverDgetrf_bufferSize_(handle,m,n,c_loc(A),lda,lwork)
     end function
@@ -8243,7 +7955,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverCgetrf_bufferSize_full_rank = hipsolverCgetrf_bufferSize_(handle,m,n,c_loc(A),lda,lwork)
     end function
@@ -8258,7 +7970,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverCgetrf_bufferSize_rank_0 = hipsolverCgetrf_bufferSize_(handle,m,n,c_loc(A),lda,lwork)
     end function
@@ -8273,7 +7985,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverCgetrf_bufferSize_rank_1 = hipsolverCgetrf_bufferSize_(handle,m,n,c_loc(A),lda,lwork)
     end function
@@ -8288,7 +8000,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverZgetrf_bufferSize_full_rank = hipsolverZgetrf_bufferSize_(handle,m,n,c_loc(A),lda,lwork)
     end function
@@ -8303,7 +8015,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverZgetrf_bufferSize_rank_0 = hipsolverZgetrf_bufferSize_(handle,m,n,c_loc(A),lda,lwork)
     end function
@@ -8318,7 +8030,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverZgetrf_bufferSize_rank_1 = hipsolverZgetrf_bufferSize_(handle,m,n,c_loc(A),lda,lwork)
     end function
@@ -8336,7 +8048,7 @@ hipsolverZhetrd_rank_1
       type(c_ptr) :: work
       integer(c_int) :: lwork
       integer(c_int),target,dimension(:) :: devIpiv
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSgetrf_full_rank = hipsolverSgetrf_(handle,m,n,c_loc(A),lda,work,lwork,c_loc(devIpiv),devInfo)
     end function
@@ -8354,7 +8066,7 @@ hipsolverZhetrd_rank_1
       type(c_ptr) :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devIpiv
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSgetrf_rank_0 = hipsolverSgetrf_(handle,m,n,c_loc(A),lda,work,lwork,c_loc(devIpiv),devInfo)
     end function
@@ -8372,7 +8084,7 @@ hipsolverZhetrd_rank_1
       type(c_ptr) :: work
       integer(c_int) :: lwork
       integer(c_int),target,dimension(:) :: devIpiv
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSgetrf_rank_1 = hipsolverSgetrf_(handle,m,n,c_loc(A),lda,work,lwork,c_loc(devIpiv),devInfo)
     end function
@@ -8390,7 +8102,7 @@ hipsolverZhetrd_rank_1
       type(c_ptr) :: work
       integer(c_int) :: lwork
       integer(c_int),target,dimension(:) :: devIpiv
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDgetrf_full_rank = hipsolverDgetrf_(handle,m,n,c_loc(A),lda,work,lwork,c_loc(devIpiv),devInfo)
     end function
@@ -8408,7 +8120,7 @@ hipsolverZhetrd_rank_1
       type(c_ptr) :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devIpiv
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDgetrf_rank_0 = hipsolverDgetrf_(handle,m,n,c_loc(A),lda,work,lwork,c_loc(devIpiv),devInfo)
     end function
@@ -8426,7 +8138,7 @@ hipsolverZhetrd_rank_1
       type(c_ptr) :: work
       integer(c_int) :: lwork
       integer(c_int),target,dimension(:) :: devIpiv
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDgetrf_rank_1 = hipsolverDgetrf_(handle,m,n,c_loc(A),lda,work,lwork,c_loc(devIpiv),devInfo)
     end function
@@ -8444,7 +8156,7 @@ hipsolverZhetrd_rank_1
       type(c_ptr) :: work
       integer(c_int) :: lwork
       integer(c_int),target,dimension(:) :: devIpiv
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverCgetrf_full_rank = hipsolverCgetrf_(handle,m,n,c_loc(A),lda,work,lwork,c_loc(devIpiv),devInfo)
     end function
@@ -8462,7 +8174,7 @@ hipsolverZhetrd_rank_1
       type(c_ptr) :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devIpiv
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverCgetrf_rank_0 = hipsolverCgetrf_(handle,m,n,c_loc(A),lda,work,lwork,c_loc(devIpiv),devInfo)
     end function
@@ -8480,7 +8192,7 @@ hipsolverZhetrd_rank_1
       type(c_ptr) :: work
       integer(c_int) :: lwork
       integer(c_int),target,dimension(:) :: devIpiv
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverCgetrf_rank_1 = hipsolverCgetrf_(handle,m,n,c_loc(A),lda,work,lwork,c_loc(devIpiv),devInfo)
     end function
@@ -8498,7 +8210,7 @@ hipsolverZhetrd_rank_1
       type(c_ptr) :: work
       integer(c_int) :: lwork
       integer(c_int),target,dimension(:) :: devIpiv
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZgetrf_full_rank = hipsolverZgetrf_(handle,m,n,c_loc(A),lda,work,lwork,c_loc(devIpiv),devInfo)
     end function
@@ -8516,7 +8228,7 @@ hipsolverZhetrd_rank_1
       type(c_ptr) :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devIpiv
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZgetrf_rank_0 = hipsolverZgetrf_(handle,m,n,c_loc(A),lda,work,lwork,c_loc(devIpiv),devInfo)
     end function
@@ -8534,7 +8246,7 @@ hipsolverZhetrd_rank_1
       type(c_ptr) :: work
       integer(c_int) :: lwork
       integer(c_int),target,dimension(:) :: devIpiv
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZgetrf_rank_1 = hipsolverZgetrf_(handle,m,n,c_loc(A),lda,work,lwork,c_loc(devIpiv),devInfo)
     end function
@@ -8553,7 +8265,7 @@ hipsolverZhetrd_rank_1
       integer(c_int),target,dimension(:) :: devIpiv
       real(c_float),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverSgetrs_bufferSize_full_rank = hipsolverSgetrs_bufferSize_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,lwork)
     end function
@@ -8572,7 +8284,7 @@ hipsolverZhetrd_rank_1
       integer(c_int),target :: devIpiv
       real(c_float),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverSgetrs_bufferSize_rank_0 = hipsolverSgetrs_bufferSize_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,lwork)
     end function
@@ -8591,7 +8303,7 @@ hipsolverZhetrd_rank_1
       integer(c_int),target,dimension(:) :: devIpiv
       real(c_float),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverSgetrs_bufferSize_rank_1 = hipsolverSgetrs_bufferSize_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,lwork)
     end function
@@ -8610,7 +8322,7 @@ hipsolverZhetrd_rank_1
       integer(c_int),target,dimension(:) :: devIpiv
       real(c_double),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverDgetrs_bufferSize_full_rank = hipsolverDgetrs_bufferSize_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,lwork)
     end function
@@ -8629,7 +8341,7 @@ hipsolverZhetrd_rank_1
       integer(c_int),target :: devIpiv
       real(c_double),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverDgetrs_bufferSize_rank_0 = hipsolverDgetrs_bufferSize_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,lwork)
     end function
@@ -8648,7 +8360,7 @@ hipsolverZhetrd_rank_1
       integer(c_int),target,dimension(:) :: devIpiv
       real(c_double),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverDgetrs_bufferSize_rank_1 = hipsolverDgetrs_bufferSize_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,lwork)
     end function
@@ -8667,7 +8379,7 @@ hipsolverZhetrd_rank_1
       integer(c_int),target,dimension(:) :: devIpiv
       complex(c_float_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverCgetrs_bufferSize_full_rank = hipsolverCgetrs_bufferSize_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,lwork)
     end function
@@ -8686,7 +8398,7 @@ hipsolverZhetrd_rank_1
       integer(c_int),target :: devIpiv
       complex(c_float_complex),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverCgetrs_bufferSize_rank_0 = hipsolverCgetrs_bufferSize_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,lwork)
     end function
@@ -8705,7 +8417,7 @@ hipsolverZhetrd_rank_1
       integer(c_int),target,dimension(:) :: devIpiv
       complex(c_float_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverCgetrs_bufferSize_rank_1 = hipsolverCgetrs_bufferSize_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,lwork)
     end function
@@ -8724,7 +8436,7 @@ hipsolverZhetrd_rank_1
       integer(c_int),target,dimension(:) :: devIpiv
       complex(c_double_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverZgetrs_bufferSize_full_rank = hipsolverZgetrs_bufferSize_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,lwork)
     end function
@@ -8743,7 +8455,7 @@ hipsolverZhetrd_rank_1
       integer(c_int),target :: devIpiv
       complex(c_double_complex),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverZgetrs_bufferSize_rank_0 = hipsolverZgetrs_bufferSize_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,lwork)
     end function
@@ -8762,7 +8474,7 @@ hipsolverZhetrd_rank_1
       integer(c_int),target,dimension(:) :: devIpiv
       complex(c_double_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverZgetrs_bufferSize_rank_1 = hipsolverZgetrs_bufferSize_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,lwork)
     end function
@@ -8783,7 +8495,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSgetrs_full_rank = hipsolverSgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,work,lwork,devInfo)
     end function
@@ -8804,7 +8516,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSgetrs_rank_0 = hipsolverSgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,work,lwork,devInfo)
     end function
@@ -8825,7 +8537,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSgetrs_rank_1 = hipsolverSgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,work,lwork,devInfo)
     end function
@@ -8846,7 +8558,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDgetrs_full_rank = hipsolverDgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,work,lwork,devInfo)
     end function
@@ -8867,7 +8579,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDgetrs_rank_0 = hipsolverDgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,work,lwork,devInfo)
     end function
@@ -8888,7 +8600,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDgetrs_rank_1 = hipsolverDgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,work,lwork,devInfo)
     end function
@@ -8909,7 +8621,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverCgetrs_full_rank = hipsolverCgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,work,lwork,devInfo)
     end function
@@ -8930,7 +8642,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverCgetrs_rank_0 = hipsolverCgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,work,lwork,devInfo)
     end function
@@ -8951,7 +8663,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverCgetrs_rank_1 = hipsolverCgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,work,lwork,devInfo)
     end function
@@ -8972,7 +8684,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZgetrs_full_rank = hipsolverZgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,work,lwork,devInfo)
     end function
@@ -8993,7 +8705,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZgetrs_rank_0 = hipsolverZgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,work,lwork,devInfo)
     end function
@@ -9014,7 +8726,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZgetrs_rank_1 = hipsolverZgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(devIpiv),c_loc(B),ldb,work,lwork,devInfo)
     end function
@@ -9029,7 +8741,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverSpotrf_bufferSize_full_rank = hipsolverSpotrf_bufferSize_(handle,uplo,n,c_loc(A),lda,lwork)
     end function
@@ -9044,7 +8756,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverSpotrf_bufferSize_rank_0 = hipsolverSpotrf_bufferSize_(handle,uplo,n,c_loc(A),lda,lwork)
     end function
@@ -9059,7 +8771,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverSpotrf_bufferSize_rank_1 = hipsolverSpotrf_bufferSize_(handle,uplo,n,c_loc(A),lda,lwork)
     end function
@@ -9074,7 +8786,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverDpotrf_bufferSize_full_rank = hipsolverDpotrf_bufferSize_(handle,uplo,n,c_loc(A),lda,lwork)
     end function
@@ -9089,7 +8801,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverDpotrf_bufferSize_rank_0 = hipsolverDpotrf_bufferSize_(handle,uplo,n,c_loc(A),lda,lwork)
     end function
@@ -9104,7 +8816,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverDpotrf_bufferSize_rank_1 = hipsolverDpotrf_bufferSize_(handle,uplo,n,c_loc(A),lda,lwork)
     end function
@@ -9119,7 +8831,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverCpotrf_bufferSize_full_rank = hipsolverCpotrf_bufferSize_(handle,uplo,n,c_loc(A),lda,lwork)
     end function
@@ -9134,7 +8846,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverCpotrf_bufferSize_rank_0 = hipsolverCpotrf_bufferSize_(handle,uplo,n,c_loc(A),lda,lwork)
     end function
@@ -9149,7 +8861,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverCpotrf_bufferSize_rank_1 = hipsolverCpotrf_bufferSize_(handle,uplo,n,c_loc(A),lda,lwork)
     end function
@@ -9164,7 +8876,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverZpotrf_bufferSize_full_rank = hipsolverZpotrf_bufferSize_(handle,uplo,n,c_loc(A),lda,lwork)
     end function
@@ -9179,7 +8891,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverZpotrf_bufferSize_rank_0 = hipsolverZpotrf_bufferSize_(handle,uplo,n,c_loc(A),lda,lwork)
     end function
@@ -9194,7 +8906,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverZpotrf_bufferSize_rank_1 = hipsolverZpotrf_bufferSize_(handle,uplo,n,c_loc(A),lda,lwork)
     end function
@@ -9211,7 +8923,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSpotrf_full_rank = hipsolverSpotrf_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo)
     end function
@@ -9228,7 +8940,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSpotrf_rank_0 = hipsolverSpotrf_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo)
     end function
@@ -9245,7 +8957,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSpotrf_rank_1 = hipsolverSpotrf_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo)
     end function
@@ -9262,7 +8974,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDpotrf_full_rank = hipsolverDpotrf_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo)
     end function
@@ -9279,7 +8991,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDpotrf_rank_0 = hipsolverDpotrf_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo)
     end function
@@ -9296,7 +9008,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDpotrf_rank_1 = hipsolverDpotrf_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo)
     end function
@@ -9313,7 +9025,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverCpotrf_full_rank = hipsolverCpotrf_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo)
     end function
@@ -9330,7 +9042,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverCpotrf_rank_0 = hipsolverCpotrf_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo)
     end function
@@ -9347,7 +9059,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverCpotrf_rank_1 = hipsolverCpotrf_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo)
     end function
@@ -9364,7 +9076,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZpotrf_full_rank = hipsolverZpotrf_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo)
     end function
@@ -9381,7 +9093,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZpotrf_rank_0 = hipsolverZpotrf_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo)
     end function
@@ -9398,7 +9110,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZpotrf_rank_1 = hipsolverZpotrf_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo)
     end function
@@ -9413,7 +9125,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       real(c_float),target,dimension(:,:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: batch_count
       !
       hipsolverSpotrfBatched_bufferSize_full_rank = hipsolverSpotrfBatched_bufferSize_(handle,uplo,n,c_loc(A),lda,lwork,batch_count)
@@ -9429,7 +9141,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: batch_count
       !
       hipsolverSpotrfBatched_bufferSize_rank_0 = hipsolverSpotrfBatched_bufferSize_(handle,uplo,n,c_loc(A),lda,lwork,batch_count)
@@ -9445,7 +9157,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: batch_count
       !
       hipsolverSpotrfBatched_bufferSize_rank_1 = hipsolverSpotrfBatched_bufferSize_(handle,uplo,n,c_loc(A),lda,lwork,batch_count)
@@ -9461,7 +9173,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       real(c_double),target,dimension(:,:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: batch_count
       !
       hipsolverDpotrfBatched_bufferSize_full_rank = hipsolverDpotrfBatched_bufferSize_(handle,uplo,n,c_loc(A),lda,lwork,batch_count)
@@ -9477,7 +9189,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: batch_count
       !
       hipsolverDpotrfBatched_bufferSize_rank_0 = hipsolverDpotrfBatched_bufferSize_(handle,uplo,n,c_loc(A),lda,lwork,batch_count)
@@ -9493,7 +9205,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: batch_count
       !
       hipsolverDpotrfBatched_bufferSize_rank_1 = hipsolverDpotrfBatched_bufferSize_(handle,uplo,n,c_loc(A),lda,lwork,batch_count)
@@ -9509,7 +9221,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: batch_count
       !
       hipsolverCpotrfBatched_bufferSize_full_rank = hipsolverCpotrfBatched_bufferSize_(handle,uplo,n,c_loc(A),lda,lwork,batch_count)
@@ -9525,7 +9237,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: batch_count
       !
       hipsolverCpotrfBatched_bufferSize_rank_0 = hipsolverCpotrfBatched_bufferSize_(handle,uplo,n,c_loc(A),lda,lwork,batch_count)
@@ -9541,7 +9253,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: batch_count
       !
       hipsolverCpotrfBatched_bufferSize_rank_1 = hipsolverCpotrfBatched_bufferSize_(handle,uplo,n,c_loc(A),lda,lwork,batch_count)
@@ -9557,7 +9269,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: batch_count
       !
       hipsolverZpotrfBatched_bufferSize_full_rank = hipsolverZpotrfBatched_bufferSize_(handle,uplo,n,c_loc(A),lda,lwork,batch_count)
@@ -9573,7 +9285,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: batch_count
       !
       hipsolverZpotrfBatched_bufferSize_rank_0 = hipsolverZpotrfBatched_bufferSize_(handle,uplo,n,c_loc(A),lda,lwork,batch_count)
@@ -9589,7 +9301,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: batch_count
       !
       hipsolverZpotrfBatched_bufferSize_rank_1 = hipsolverZpotrfBatched_bufferSize_(handle,uplo,n,c_loc(A),lda,lwork,batch_count)
@@ -9607,7 +9319,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverSpotrfBatched_full_rank = hipsolverSpotrfBatched_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo,batch_count)
@@ -9625,7 +9337,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverSpotrfBatched_rank_0 = hipsolverSpotrfBatched_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo,batch_count)
@@ -9643,7 +9355,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverSpotrfBatched_rank_1 = hipsolverSpotrfBatched_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo,batch_count)
@@ -9661,7 +9373,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverDpotrfBatched_full_rank = hipsolverDpotrfBatched_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo,batch_count)
@@ -9679,7 +9391,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverDpotrfBatched_rank_0 = hipsolverDpotrfBatched_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo,batch_count)
@@ -9697,7 +9409,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverDpotrfBatched_rank_1 = hipsolverDpotrfBatched_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo,batch_count)
@@ -9715,7 +9427,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverCpotrfBatched_full_rank = hipsolverCpotrfBatched_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo,batch_count)
@@ -9733,7 +9445,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverCpotrfBatched_rank_0 = hipsolverCpotrfBatched_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo,batch_count)
@@ -9751,7 +9463,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverCpotrfBatched_rank_1 = hipsolverCpotrfBatched_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo,batch_count)
@@ -9769,7 +9481,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverZpotrfBatched_full_rank = hipsolverZpotrfBatched_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo,batch_count)
@@ -9787,7 +9499,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverZpotrfBatched_rank_0 = hipsolverZpotrfBatched_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo,batch_count)
@@ -9805,7 +9517,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverZpotrfBatched_rank_1 = hipsolverZpotrfBatched_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo,batch_count)
@@ -9821,7 +9533,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverSpotri_bufferSize_full_rank = hipsolverSpotri_bufferSize_(handle,uplo,n,c_loc(A),lda,lwork)
     end function
@@ -9836,7 +9548,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverSpotri_bufferSize_rank_0 = hipsolverSpotri_bufferSize_(handle,uplo,n,c_loc(A),lda,lwork)
     end function
@@ -9851,7 +9563,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverSpotri_bufferSize_rank_1 = hipsolverSpotri_bufferSize_(handle,uplo,n,c_loc(A),lda,lwork)
     end function
@@ -9866,7 +9578,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverDpotri_bufferSize_full_rank = hipsolverDpotri_bufferSize_(handle,uplo,n,c_loc(A),lda,lwork)
     end function
@@ -9881,7 +9593,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverDpotri_bufferSize_rank_0 = hipsolverDpotri_bufferSize_(handle,uplo,n,c_loc(A),lda,lwork)
     end function
@@ -9896,7 +9608,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverDpotri_bufferSize_rank_1 = hipsolverDpotri_bufferSize_(handle,uplo,n,c_loc(A),lda,lwork)
     end function
@@ -9911,7 +9623,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverCpotri_bufferSize_full_rank = hipsolverCpotri_bufferSize_(handle,uplo,n,c_loc(A),lda,lwork)
     end function
@@ -9926,7 +9638,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverCpotri_bufferSize_rank_0 = hipsolverCpotri_bufferSize_(handle,uplo,n,c_loc(A),lda,lwork)
     end function
@@ -9941,7 +9653,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverCpotri_bufferSize_rank_1 = hipsolverCpotri_bufferSize_(handle,uplo,n,c_loc(A),lda,lwork)
     end function
@@ -9956,7 +9668,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverZpotri_bufferSize_full_rank = hipsolverZpotri_bufferSize_(handle,uplo,n,c_loc(A),lda,lwork)
     end function
@@ -9971,7 +9683,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverZpotri_bufferSize_rank_0 = hipsolverZpotri_bufferSize_(handle,uplo,n,c_loc(A),lda,lwork)
     end function
@@ -9986,7 +9698,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverZpotri_bufferSize_rank_1 = hipsolverZpotri_bufferSize_(handle,uplo,n,c_loc(A),lda,lwork)
     end function
@@ -10003,7 +9715,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSpotri_full_rank = hipsolverSpotri_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo)
     end function
@@ -10020,7 +9732,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSpotri_rank_0 = hipsolverSpotri_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo)
     end function
@@ -10037,7 +9749,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSpotri_rank_1 = hipsolverSpotri_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo)
     end function
@@ -10054,7 +9766,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDpotri_full_rank = hipsolverDpotri_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo)
     end function
@@ -10071,7 +9783,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDpotri_rank_0 = hipsolverDpotri_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo)
     end function
@@ -10088,7 +9800,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDpotri_rank_1 = hipsolverDpotri_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo)
     end function
@@ -10105,7 +9817,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverCpotri_full_rank = hipsolverCpotri_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo)
     end function
@@ -10122,7 +9834,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverCpotri_rank_0 = hipsolverCpotri_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo)
     end function
@@ -10139,7 +9851,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverCpotri_rank_1 = hipsolverCpotri_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo)
     end function
@@ -10156,7 +9868,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZpotri_full_rank = hipsolverZpotri_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo)
     end function
@@ -10173,7 +9885,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZpotri_rank_0 = hipsolverZpotri_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo)
     end function
@@ -10190,7 +9902,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZpotri_rank_1 = hipsolverZpotri_(handle,uplo,n,c_loc(A),lda,work,lwork,devInfo)
     end function
@@ -10208,7 +9920,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       real(c_float),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverSpotrs_bufferSize_full_rank = hipsolverSpotrs_bufferSize_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,lwork)
     end function
@@ -10226,7 +9938,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       real(c_float),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverSpotrs_bufferSize_rank_0 = hipsolverSpotrs_bufferSize_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,lwork)
     end function
@@ -10244,7 +9956,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverSpotrs_bufferSize_rank_1 = hipsolverSpotrs_bufferSize_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,lwork)
     end function
@@ -10262,7 +9974,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       real(c_double),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverDpotrs_bufferSize_full_rank = hipsolverDpotrs_bufferSize_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,lwork)
     end function
@@ -10280,7 +9992,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       real(c_double),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverDpotrs_bufferSize_rank_0 = hipsolverDpotrs_bufferSize_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,lwork)
     end function
@@ -10298,7 +10010,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverDpotrs_bufferSize_rank_1 = hipsolverDpotrs_bufferSize_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,lwork)
     end function
@@ -10316,7 +10028,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverCpotrs_bufferSize_full_rank = hipsolverCpotrs_bufferSize_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,lwork)
     end function
@@ -10334,7 +10046,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       complex(c_float_complex),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverCpotrs_bufferSize_rank_0 = hipsolverCpotrs_bufferSize_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,lwork)
     end function
@@ -10352,7 +10064,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverCpotrs_bufferSize_rank_1 = hipsolverCpotrs_bufferSize_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,lwork)
     end function
@@ -10370,7 +10082,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverZpotrs_bufferSize_full_rank = hipsolverZpotrs_bufferSize_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,lwork)
     end function
@@ -10388,7 +10100,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       complex(c_double_complex),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverZpotrs_bufferSize_rank_0 = hipsolverZpotrs_bufferSize_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,lwork)
     end function
@@ -10406,7 +10118,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverZpotrs_bufferSize_rank_1 = hipsolverZpotrs_bufferSize_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,lwork)
     end function
@@ -10426,7 +10138,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSpotrs_full_rank = hipsolverSpotrs_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,work,lwork,devInfo)
     end function
@@ -10446,7 +10158,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSpotrs_rank_0 = hipsolverSpotrs_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,work,lwork,devInfo)
     end function
@@ -10466,7 +10178,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSpotrs_rank_1 = hipsolverSpotrs_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,work,lwork,devInfo)
     end function
@@ -10486,7 +10198,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDpotrs_full_rank = hipsolverDpotrs_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,work,lwork,devInfo)
     end function
@@ -10506,7 +10218,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDpotrs_rank_0 = hipsolverDpotrs_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,work,lwork,devInfo)
     end function
@@ -10526,7 +10238,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDpotrs_rank_1 = hipsolverDpotrs_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,work,lwork,devInfo)
     end function
@@ -10546,7 +10258,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverCpotrs_full_rank = hipsolverCpotrs_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,work,lwork,devInfo)
     end function
@@ -10566,7 +10278,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverCpotrs_rank_0 = hipsolverCpotrs_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,work,lwork,devInfo)
     end function
@@ -10586,7 +10298,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverCpotrs_rank_1 = hipsolverCpotrs_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,work,lwork,devInfo)
     end function
@@ -10606,7 +10318,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZpotrs_full_rank = hipsolverZpotrs_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,work,lwork,devInfo)
     end function
@@ -10626,7 +10338,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZpotrs_rank_0 = hipsolverZpotrs_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,work,lwork,devInfo)
     end function
@@ -10646,7 +10358,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZpotrs_rank_1 = hipsolverZpotrs_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,work,lwork,devInfo)
     end function
@@ -10664,7 +10376,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       real(c_float),target,dimension(:,:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: batch_count
       !
       hipsolverSpotrsBatched_bufferSize_full_rank = hipsolverSpotrsBatched_bufferSize_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,lwork,batch_count)
@@ -10683,7 +10395,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       real(c_float),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: batch_count
       !
       hipsolverSpotrsBatched_bufferSize_rank_0 = hipsolverSpotrsBatched_bufferSize_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,lwork,batch_count)
@@ -10702,7 +10414,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: batch_count
       !
       hipsolverSpotrsBatched_bufferSize_rank_1 = hipsolverSpotrsBatched_bufferSize_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,lwork,batch_count)
@@ -10721,7 +10433,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       real(c_double),target,dimension(:,:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: batch_count
       !
       hipsolverDpotrsBatched_bufferSize_full_rank = hipsolverDpotrsBatched_bufferSize_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,lwork,batch_count)
@@ -10740,7 +10452,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       real(c_double),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: batch_count
       !
       hipsolverDpotrsBatched_bufferSize_rank_0 = hipsolverDpotrsBatched_bufferSize_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,lwork,batch_count)
@@ -10759,7 +10471,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: batch_count
       !
       hipsolverDpotrsBatched_bufferSize_rank_1 = hipsolverDpotrsBatched_bufferSize_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,lwork,batch_count)
@@ -10778,7 +10490,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:,:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: batch_count
       !
       hipsolverCpotrsBatched_bufferSize_full_rank = hipsolverCpotrsBatched_bufferSize_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,lwork,batch_count)
@@ -10797,7 +10509,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       complex(c_float_complex),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: batch_count
       !
       hipsolverCpotrsBatched_bufferSize_rank_0 = hipsolverCpotrsBatched_bufferSize_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,lwork,batch_count)
@@ -10816,7 +10528,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: batch_count
       !
       hipsolverCpotrsBatched_bufferSize_rank_1 = hipsolverCpotrsBatched_bufferSize_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,lwork,batch_count)
@@ -10835,7 +10547,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:,:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: batch_count
       !
       hipsolverZpotrsBatched_bufferSize_full_rank = hipsolverZpotrsBatched_bufferSize_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,lwork,batch_count)
@@ -10854,7 +10566,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       complex(c_double_complex),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: batch_count
       !
       hipsolverZpotrsBatched_bufferSize_rank_0 = hipsolverZpotrsBatched_bufferSize_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,lwork,batch_count)
@@ -10873,7 +10585,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: batch_count
       !
       hipsolverZpotrsBatched_bufferSize_rank_1 = hipsolverZpotrsBatched_bufferSize_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,lwork,batch_count)
@@ -10894,7 +10606,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverSpotrsBatched_full_rank = hipsolverSpotrsBatched_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,work,lwork,devInfo,batch_count)
@@ -10915,7 +10627,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverSpotrsBatched_rank_0 = hipsolverSpotrsBatched_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,work,lwork,devInfo,batch_count)
@@ -10936,7 +10648,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverSpotrsBatched_rank_1 = hipsolverSpotrsBatched_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,work,lwork,devInfo,batch_count)
@@ -10957,7 +10669,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverDpotrsBatched_full_rank = hipsolverDpotrsBatched_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,work,lwork,devInfo,batch_count)
@@ -10978,7 +10690,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverDpotrsBatched_rank_0 = hipsolverDpotrsBatched_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,work,lwork,devInfo,batch_count)
@@ -10999,7 +10711,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverDpotrsBatched_rank_1 = hipsolverDpotrsBatched_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,work,lwork,devInfo,batch_count)
@@ -11020,7 +10732,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverCpotrsBatched_full_rank = hipsolverCpotrsBatched_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,work,lwork,devInfo,batch_count)
@@ -11041,7 +10753,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverCpotrsBatched_rank_0 = hipsolverCpotrsBatched_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,work,lwork,devInfo,batch_count)
@@ -11062,7 +10774,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverCpotrsBatched_rank_1 = hipsolverCpotrsBatched_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,work,lwork,devInfo,batch_count)
@@ -11083,7 +10795,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverZpotrsBatched_full_rank = hipsolverZpotrsBatched_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,work,lwork,devInfo,batch_count)
@@ -11104,7 +10816,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverZpotrsBatched_rank_0 = hipsolverZpotrsBatched_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,work,lwork,devInfo,batch_count)
@@ -11125,7 +10837,7 @@ hipsolverZhetrd_rank_1
       integer(c_int) :: ldb
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverZpotrsBatched_rank_1 = hipsolverZpotrsBatched_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,work,lwork,devInfo,batch_count)
@@ -11143,7 +10855,7 @@ hipsolverZhetrd_rank_1
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: D
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverSsyevd_bufferSize_full_rank = hipsolverSsyevd_bufferSize_(handle,jobz,uplo,n,c_loc(A),lda,c_loc(D),lwork)
     end function
@@ -11160,7 +10872,7 @@ hipsolverZhetrd_rank_1
       real(c_float),target :: A
       integer(c_int) :: lda
       real(c_float),target :: D
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverSsyevd_bufferSize_rank_0 = hipsolverSsyevd_bufferSize_(handle,jobz,uplo,n,c_loc(A),lda,c_loc(D),lwork)
     end function
@@ -11177,7 +10889,7 @@ hipsolverZhetrd_rank_1
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: D
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverSsyevd_bufferSize_rank_1 = hipsolverSsyevd_bufferSize_(handle,jobz,uplo,n,c_loc(A),lda,c_loc(D),lwork)
     end function
@@ -11194,7 +10906,7 @@ hipsolverZhetrd_rank_1
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: D
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverDsyevd_bufferSize_full_rank = hipsolverDsyevd_bufferSize_(handle,jobz,uplo,n,c_loc(A),lda,c_loc(D),lwork)
     end function
@@ -11211,7 +10923,7 @@ hipsolverZhetrd_rank_1
       real(c_double),target :: A
       integer(c_int) :: lda
       real(c_double),target :: D
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverDsyevd_bufferSize_rank_0 = hipsolverDsyevd_bufferSize_(handle,jobz,uplo,n,c_loc(A),lda,c_loc(D),lwork)
     end function
@@ -11228,7 +10940,7 @@ hipsolverZhetrd_rank_1
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: D
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverDsyevd_bufferSize_rank_1 = hipsolverDsyevd_bufferSize_(handle,jobz,uplo,n,c_loc(A),lda,c_loc(D),lwork)
     end function
@@ -11245,7 +10957,7 @@ hipsolverZhetrd_rank_1
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: D
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverCheevd_bufferSize_full_rank = hipsolverCheevd_bufferSize_(handle,jobz,uplo,n,c_loc(A),lda,c_loc(D),lwork)
     end function
@@ -11262,7 +10974,7 @@ hipsolverZhetrd_rank_1
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
       real(c_float),target :: D
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverCheevd_bufferSize_rank_0 = hipsolverCheevd_bufferSize_(handle,jobz,uplo,n,c_loc(A),lda,c_loc(D),lwork)
     end function
@@ -11279,7 +10991,7 @@ hipsolverZhetrd_rank_1
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: D
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverCheevd_bufferSize_rank_1 = hipsolverCheevd_bufferSize_(handle,jobz,uplo,n,c_loc(A),lda,c_loc(D),lwork)
     end function
@@ -11296,7 +11008,7 @@ hipsolverZhetrd_rank_1
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: D
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverZheevd_bufferSize_full_rank = hipsolverZheevd_bufferSize_(handle,jobz,uplo,n,c_loc(A),lda,c_loc(D),lwork)
     end function
@@ -11313,7 +11025,7 @@ hipsolverZhetrd_rank_1
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
       real(c_double),target :: D
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverZheevd_bufferSize_rank_0 = hipsolverZheevd_bufferSize_(handle,jobz,uplo,n,c_loc(A),lda,c_loc(D),lwork)
     end function
@@ -11330,7 +11042,7 @@ hipsolverZhetrd_rank_1
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: D
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverZheevd_bufferSize_rank_1 = hipsolverZheevd_bufferSize_(handle,jobz,uplo,n,c_loc(A),lda,c_loc(D),lwork)
     end function
@@ -11349,7 +11061,7 @@ hipsolverZhetrd_rank_1
       real(c_float),target,dimension(:) :: D
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSsyevd_full_rank = hipsolverSsyevd_(handle,jobz,uplo,n,c_loc(A),lda,c_loc(D),work,lwork,devInfo)
     end function
@@ -11368,7 +11080,7 @@ hipsolverZhetrd_rank_1
       real(c_float),target :: D
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSsyevd_rank_0 = hipsolverSsyevd_(handle,jobz,uplo,n,c_loc(A),lda,c_loc(D),work,lwork,devInfo)
     end function
@@ -11387,7 +11099,7 @@ hipsolverZhetrd_rank_1
       real(c_float),target,dimension(:) :: D
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSsyevd_rank_1 = hipsolverSsyevd_(handle,jobz,uplo,n,c_loc(A),lda,c_loc(D),work,lwork,devInfo)
     end function
@@ -11406,7 +11118,7 @@ hipsolverZhetrd_rank_1
       real(c_double),target,dimension(:) :: D
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDsyevd_full_rank = hipsolverDsyevd_(handle,jobz,uplo,n,c_loc(A),lda,c_loc(D),work,lwork,devInfo)
     end function
@@ -11425,7 +11137,7 @@ hipsolverZhetrd_rank_1
       real(c_double),target :: D
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDsyevd_rank_0 = hipsolverDsyevd_(handle,jobz,uplo,n,c_loc(A),lda,c_loc(D),work,lwork,devInfo)
     end function
@@ -11444,7 +11156,7 @@ hipsolverZhetrd_rank_1
       real(c_double),target,dimension(:) :: D
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDsyevd_rank_1 = hipsolverDsyevd_(handle,jobz,uplo,n,c_loc(A),lda,c_loc(D),work,lwork,devInfo)
     end function
@@ -11463,7 +11175,7 @@ hipsolverZhetrd_rank_1
       real(c_float),target,dimension(:) :: D
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverCheevd_full_rank = hipsolverCheevd_(handle,jobz,uplo,n,c_loc(A),lda,c_loc(D),work,lwork,devInfo)
     end function
@@ -11482,7 +11194,7 @@ hipsolverZhetrd_rank_1
       real(c_float),target :: D
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverCheevd_rank_0 = hipsolverCheevd_(handle,jobz,uplo,n,c_loc(A),lda,c_loc(D),work,lwork,devInfo)
     end function
@@ -11501,7 +11213,7 @@ hipsolverZhetrd_rank_1
       real(c_float),target,dimension(:) :: D
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverCheevd_rank_1 = hipsolverCheevd_(handle,jobz,uplo,n,c_loc(A),lda,c_loc(D),work,lwork,devInfo)
     end function
@@ -11520,7 +11232,7 @@ hipsolverZhetrd_rank_1
       real(c_double),target,dimension(:) :: D
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZheevd_full_rank = hipsolverZheevd_(handle,jobz,uplo,n,c_loc(A),lda,c_loc(D),work,lwork,devInfo)
     end function
@@ -11539,7 +11251,7 @@ hipsolverZhetrd_rank_1
       real(c_double),target :: D
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZheevd_rank_0 = hipsolverZheevd_(handle,jobz,uplo,n,c_loc(A),lda,c_loc(D),work,lwork,devInfo)
     end function
@@ -11558,7 +11270,7 @@ hipsolverZhetrd_rank_1
       real(c_double),target,dimension(:) :: D
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZheevd_rank_1 = hipsolverZheevd_(handle,jobz,uplo,n,c_loc(A),lda,c_loc(D),work,lwork,devInfo)
     end function
@@ -11578,7 +11290,7 @@ hipsolverZhetrd_rank_1
       real(c_float),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       real(c_float),target,dimension(:) :: D
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverSsygvd_bufferSize_full_rank = hipsolverSsygvd_bufferSize_(handle,itype,jobz,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),lwork)
     end function
@@ -11598,7 +11310,7 @@ hipsolverZhetrd_rank_1
       real(c_float),target :: B
       integer(c_int) :: ldb
       real(c_float),target :: D
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverSsygvd_bufferSize_rank_0 = hipsolverSsygvd_bufferSize_(handle,itype,jobz,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),lwork)
     end function
@@ -11618,7 +11330,7 @@ hipsolverZhetrd_rank_1
       real(c_float),target,dimension(:) :: B
       integer(c_int) :: ldb
       real(c_float),target,dimension(:) :: D
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverSsygvd_bufferSize_rank_1 = hipsolverSsygvd_bufferSize_(handle,itype,jobz,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),lwork)
     end function
@@ -11638,7 +11350,7 @@ hipsolverZhetrd_rank_1
       real(c_double),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       real(c_double),target,dimension(:) :: D
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverDsygvd_bufferSize_full_rank = hipsolverDsygvd_bufferSize_(handle,itype,jobz,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),lwork)
     end function
@@ -11658,7 +11370,7 @@ hipsolverZhetrd_rank_1
       real(c_double),target :: B
       integer(c_int) :: ldb
       real(c_double),target :: D
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverDsygvd_bufferSize_rank_0 = hipsolverDsygvd_bufferSize_(handle,itype,jobz,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),lwork)
     end function
@@ -11678,7 +11390,7 @@ hipsolverZhetrd_rank_1
       real(c_double),target,dimension(:) :: B
       integer(c_int) :: ldb
       real(c_double),target,dimension(:) :: D
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverDsygvd_bufferSize_rank_1 = hipsolverDsygvd_bufferSize_(handle,itype,jobz,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),lwork)
     end function
@@ -11698,7 +11410,7 @@ hipsolverZhetrd_rank_1
       complex(c_float_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       real(c_float),target,dimension(:) :: D
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverChegvd_bufferSize_full_rank = hipsolverChegvd_bufferSize_(handle,itype,jobz,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),lwork)
     end function
@@ -11718,7 +11430,7 @@ hipsolverZhetrd_rank_1
       complex(c_float_complex),target :: B
       integer(c_int) :: ldb
       real(c_float),target :: D
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverChegvd_bufferSize_rank_0 = hipsolverChegvd_bufferSize_(handle,itype,jobz,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),lwork)
     end function
@@ -11738,7 +11450,7 @@ hipsolverZhetrd_rank_1
       complex(c_float_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
       real(c_float),target,dimension(:) :: D
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverChegvd_bufferSize_rank_1 = hipsolverChegvd_bufferSize_(handle,itype,jobz,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),lwork)
     end function
@@ -11758,7 +11470,7 @@ hipsolverZhetrd_rank_1
       complex(c_double_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       real(c_double),target,dimension(:) :: D
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverZhegvd_bufferSize_full_rank = hipsolverZhegvd_bufferSize_(handle,itype,jobz,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),lwork)
     end function
@@ -11778,7 +11490,7 @@ hipsolverZhetrd_rank_1
       complex(c_double_complex),target :: B
       integer(c_int) :: ldb
       real(c_double),target :: D
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverZhegvd_bufferSize_rank_0 = hipsolverZhegvd_bufferSize_(handle,itype,jobz,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),lwork)
     end function
@@ -11798,7 +11510,7 @@ hipsolverZhetrd_rank_1
       complex(c_double_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
       real(c_double),target,dimension(:) :: D
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverZhegvd_bufferSize_rank_1 = hipsolverZhegvd_bufferSize_(handle,itype,jobz,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),lwork)
     end function
@@ -11820,7 +11532,7 @@ hipsolverZhetrd_rank_1
       real(c_float),target,dimension(:) :: D
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSsygvd_full_rank = hipsolverSsygvd_(handle,itype,jobz,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),work,lwork,devInfo)
     end function
@@ -11842,7 +11554,7 @@ hipsolverZhetrd_rank_1
       real(c_float),target :: D
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSsygvd_rank_0 = hipsolverSsygvd_(handle,itype,jobz,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),work,lwork,devInfo)
     end function
@@ -11864,7 +11576,7 @@ hipsolverZhetrd_rank_1
       real(c_float),target,dimension(:) :: D
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSsygvd_rank_1 = hipsolverSsygvd_(handle,itype,jobz,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),work,lwork,devInfo)
     end function
@@ -11886,7 +11598,7 @@ hipsolverZhetrd_rank_1
       real(c_double),target,dimension(:) :: D
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDsygvd_full_rank = hipsolverDsygvd_(handle,itype,jobz,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),work,lwork,devInfo)
     end function
@@ -11908,7 +11620,7 @@ hipsolverZhetrd_rank_1
       real(c_double),target :: D
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDsygvd_rank_0 = hipsolverDsygvd_(handle,itype,jobz,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),work,lwork,devInfo)
     end function
@@ -11930,7 +11642,7 @@ hipsolverZhetrd_rank_1
       real(c_double),target,dimension(:) :: D
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDsygvd_rank_1 = hipsolverDsygvd_(handle,itype,jobz,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),work,lwork,devInfo)
     end function
@@ -11952,7 +11664,7 @@ hipsolverZhetrd_rank_1
       real(c_float),target,dimension(:) :: D
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverChegvd_full_rank = hipsolverChegvd_(handle,itype,jobz,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),work,lwork,devInfo)
     end function
@@ -11974,7 +11686,7 @@ hipsolverZhetrd_rank_1
       real(c_float),target :: D
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverChegvd_rank_0 = hipsolverChegvd_(handle,itype,jobz,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),work,lwork,devInfo)
     end function
@@ -11996,7 +11708,7 @@ hipsolverZhetrd_rank_1
       real(c_float),target,dimension(:) :: D
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverChegvd_rank_1 = hipsolverChegvd_(handle,itype,jobz,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),work,lwork,devInfo)
     end function
@@ -12018,7 +11730,7 @@ hipsolverZhetrd_rank_1
       real(c_double),target,dimension(:) :: D
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZhegvd_full_rank = hipsolverZhegvd_(handle,itype,jobz,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),work,lwork,devInfo)
     end function
@@ -12040,7 +11752,7 @@ hipsolverZhetrd_rank_1
       real(c_double),target :: D
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZhegvd_rank_0 = hipsolverZhegvd_(handle,itype,jobz,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),work,lwork,devInfo)
     end function
@@ -12062,7 +11774,7 @@ hipsolverZhetrd_rank_1
       real(c_double),target,dimension(:) :: D
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZhegvd_rank_1 = hipsolverZhegvd_(handle,itype,jobz,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),work,lwork,devInfo)
     end function
@@ -12080,7 +11792,7 @@ hipsolverZhetrd_rank_1
       real(c_float),target,dimension(:) :: D
       real(c_float),target,dimension(:) :: E
       real(c_float) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverSsytrd_bufferSize_full_rank = hipsolverSsytrd_bufferSize_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau,lwork)
     end function
@@ -12098,7 +11810,7 @@ hipsolverZhetrd_rank_1
       real(c_float),target :: D
       real(c_float),target :: E
       real(c_float) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverSsytrd_bufferSize_rank_0 = hipsolverSsytrd_bufferSize_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau,lwork)
     end function
@@ -12116,7 +11828,7 @@ hipsolverZhetrd_rank_1
       real(c_float),target,dimension(:) :: D
       real(c_float),target,dimension(:) :: E
       real(c_float) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverSsytrd_bufferSize_rank_1 = hipsolverSsytrd_bufferSize_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau,lwork)
     end function
@@ -12134,7 +11846,7 @@ hipsolverZhetrd_rank_1
       real(c_double),target,dimension(:) :: D
       real(c_double),target,dimension(:) :: E
       real(c_double) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverDsytrd_bufferSize_full_rank = hipsolverDsytrd_bufferSize_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau,lwork)
     end function
@@ -12152,7 +11864,7 @@ hipsolverZhetrd_rank_1
       real(c_double),target :: D
       real(c_double),target :: E
       real(c_double) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverDsytrd_bufferSize_rank_0 = hipsolverDsytrd_bufferSize_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau,lwork)
     end function
@@ -12170,7 +11882,7 @@ hipsolverZhetrd_rank_1
       real(c_double),target,dimension(:) :: D
       real(c_double),target,dimension(:) :: E
       real(c_double) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverDsytrd_bufferSize_rank_1 = hipsolverDsytrd_bufferSize_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau,lwork)
     end function
@@ -12188,7 +11900,7 @@ hipsolverZhetrd_rank_1
       real(c_float),target,dimension(:) :: D
       real(c_float),target,dimension(:) :: E
       complex(c_float_complex) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverChetrd_bufferSize_full_rank = hipsolverChetrd_bufferSize_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau,lwork)
     end function
@@ -12206,7 +11918,7 @@ hipsolverZhetrd_rank_1
       real(c_float),target :: D
       real(c_float),target :: E
       complex(c_float_complex) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverChetrd_bufferSize_rank_0 = hipsolverChetrd_bufferSize_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau,lwork)
     end function
@@ -12224,7 +11936,7 @@ hipsolverZhetrd_rank_1
       real(c_float),target,dimension(:) :: D
       real(c_float),target,dimension(:) :: E
       complex(c_float_complex) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverChetrd_bufferSize_rank_1 = hipsolverChetrd_bufferSize_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau,lwork)
     end function
@@ -12242,7 +11954,7 @@ hipsolverZhetrd_rank_1
       real(c_double),target,dimension(:) :: D
       real(c_double),target,dimension(:) :: E
       complex(c_double_complex) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverZhetrd_bufferSize_full_rank = hipsolverZhetrd_bufferSize_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau,lwork)
     end function
@@ -12260,7 +11972,7 @@ hipsolverZhetrd_rank_1
       real(c_double),target :: D
       real(c_double),target :: E
       complex(c_double_complex) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverZhetrd_bufferSize_rank_0 = hipsolverZhetrd_bufferSize_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau,lwork)
     end function
@@ -12278,7 +11990,7 @@ hipsolverZhetrd_rank_1
       real(c_double),target,dimension(:) :: D
       real(c_double),target,dimension(:) :: E
       complex(c_double_complex) :: tau
-      type(c_ptr) :: lwork
+      integer(c_int) :: lwork
       !
       hipsolverZhetrd_bufferSize_rank_1 = hipsolverZhetrd_bufferSize_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau,lwork)
     end function
@@ -12298,7 +12010,7 @@ hipsolverZhetrd_rank_1
       real(c_float) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSsytrd_full_rank = hipsolverSsytrd_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau,work,lwork,devInfo)
     end function
@@ -12318,7 +12030,7 @@ hipsolverZhetrd_rank_1
       real(c_float) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSsytrd_rank_0 = hipsolverSsytrd_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau,work,lwork,devInfo)
     end function
@@ -12338,7 +12050,7 @@ hipsolverZhetrd_rank_1
       real(c_float) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverSsytrd_rank_1 = hipsolverSsytrd_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau,work,lwork,devInfo)
     end function
@@ -12358,7 +12070,7 @@ hipsolverZhetrd_rank_1
       real(c_double) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDsytrd_full_rank = hipsolverDsytrd_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau,work,lwork,devInfo)
     end function
@@ -12378,7 +12090,7 @@ hipsolverZhetrd_rank_1
       real(c_double) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDsytrd_rank_0 = hipsolverDsytrd_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau,work,lwork,devInfo)
     end function
@@ -12398,7 +12110,7 @@ hipsolverZhetrd_rank_1
       real(c_double) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverDsytrd_rank_1 = hipsolverDsytrd_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau,work,lwork,devInfo)
     end function
@@ -12418,7 +12130,7 @@ hipsolverZhetrd_rank_1
       complex(c_float_complex) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverChetrd_full_rank = hipsolverChetrd_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau,work,lwork,devInfo)
     end function
@@ -12438,7 +12150,7 @@ hipsolverZhetrd_rank_1
       complex(c_float_complex) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverChetrd_rank_0 = hipsolverChetrd_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau,work,lwork,devInfo)
     end function
@@ -12458,7 +12170,7 @@ hipsolverZhetrd_rank_1
       complex(c_float_complex) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverChetrd_rank_1 = hipsolverChetrd_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau,work,lwork,devInfo)
     end function
@@ -12478,7 +12190,7 @@ hipsolverZhetrd_rank_1
       complex(c_double_complex) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZhetrd_full_rank = hipsolverZhetrd_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau,work,lwork,devInfo)
     end function
@@ -12498,7 +12210,7 @@ hipsolverZhetrd_rank_1
       complex(c_double_complex) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZhetrd_rank_0 = hipsolverZhetrd_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau,work,lwork,devInfo)
     end function
@@ -12518,7 +12230,7 @@ hipsolverZhetrd_rank_1
       complex(c_double_complex) :: tau
       type(c_ptr) :: work
       integer(c_int) :: lwork
-      type(c_ptr) :: devInfo
+      integer(c_int) :: devInfo
       !
       hipsolverZhetrd_rank_1 = hipsolverZhetrd_(handle,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),tau,work,lwork,devInfo)
     end function

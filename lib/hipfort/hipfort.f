@@ -59,7 +59,6 @@ module hipfort
       integer(kind=4),value :: flags
     end function
 
-
   end interface
   !> 
   !>   @brief Returns the approximate HIP driver version.
@@ -97,7 +96,6 @@ module hipfort
       type(c_ptr),value :: driverVersion
     end function
 
-
   end interface
   !> 
   !>   @brief Returns the approximate HIP Runtime version.
@@ -132,7 +130,6 @@ module hipfort
       type(c_ptr),value :: runtimeVersion
     end function
 
-
   end interface
   !> 
   !>   @brief Returns a handle to a compute device
@@ -162,7 +159,6 @@ module hipfort
       integer(c_int) :: device
       integer(c_int),value :: ordinal
     end function
-
 
   end interface
   !> 
@@ -196,7 +192,6 @@ module hipfort
       integer(c_int),value :: device
     end function
 
-
   end interface
   !> 
   !>   @brief Returns an identifer string for the device.
@@ -228,7 +223,6 @@ module hipfort
       integer(c_int),value :: len
       integer(c_int),value :: device
     end function
-
 
   end interface
   !> 
@@ -264,7 +258,6 @@ module hipfort
       integer(c_int),value :: dstDevice
     end function
 
-
   end interface
   !> 
   !>   @brief Returns a PCI Bus Id string for the device, overloaded to take int device ID.
@@ -297,7 +290,6 @@ module hipfort
       integer(c_int),value :: device
     end function
 
-
   end interface
   !> 
   !>   @brief Returns a handle to a compute device.
@@ -328,7 +320,6 @@ module hipfort
       type(c_ptr),value :: pciBusId
     end function
 
-
   end interface
   !> 
   !>   @brief Returns the total amount of memory on the device.
@@ -358,7 +349,6 @@ module hipfort
       integer(c_size_t) :: bytes
       integer(c_int),value :: device
     end function
-
 
   end interface
   !> 
@@ -391,7 +381,6 @@ module hipfort
 #endif
     end function
 
-
   end interface
   !> 
   !>   @brief The state of current device is discarded and updated to a fresh state.
@@ -423,7 +412,6 @@ module hipfort
       integer(kind(hipSuccess)) :: hipDeviceReset_
 #endif
     end function
-
 
   end interface
   !> 
@@ -478,7 +466,6 @@ module hipfort
       integer(c_int),value :: deviceId
     end function
 
-
   end interface
   !> 
   !>   @brief Return the default device id for the calling host thread.
@@ -514,7 +501,6 @@ module hipfort
       integer(c_int) :: deviceId
     end function
 
-
   end interface
   !> 
   !>   @brief Return number of compute-capable devices.
@@ -549,7 +535,6 @@ module hipfort
       integer(c_int) :: count
     end function
 
-
   end interface
   !> 
   !>   @brief Query for a specific device attribute.
@@ -583,7 +568,6 @@ module hipfort
       integer(c_int),value :: deviceId
     end function
 
-
   end interface
   !> 
   !>   @brief Set L1Shared cache partition.
@@ -616,7 +600,6 @@ module hipfort
       integer(kind(hipFuncCachePreferNone)),value :: cacheConfig
     end function
 
-
   end interface
   !> 
   !>   @brief Set Cache configuration for a specific function
@@ -648,7 +631,6 @@ module hipfort
 #endif
       type(c_ptr),value :: cacheConfig
     end function
-
 
   end interface
   !> 
@@ -683,7 +665,6 @@ module hipfort
       integer(kind(hipLimitPrintfFifoSize)),value :: limit
     end function
 
-
   end interface
   !> 
   !>   @brief Returns bank width of shared memory for current device
@@ -717,7 +698,6 @@ module hipfort
       type(c_ptr),value :: pConfig
     end function
 
-
   end interface
   !> 
   !>   @brief Gets the flags set for current device
@@ -746,7 +726,6 @@ module hipfort
 #endif
       type(c_ptr),value :: flags
     end function
-
 
   end interface
   !> 
@@ -780,7 +759,6 @@ module hipfort
 #endif
       integer(kind(hipSharedMemBankSizeDefault)),value :: config
     end function
-
 
   end interface
   !> 
@@ -828,7 +806,6 @@ module hipfort
       integer(kind=4),value :: flags
     end function
 
-
   end interface
   !> 
   !>   @brief Device which matches hipDeviceProp_t is returned
@@ -859,7 +836,6 @@ module hipfort
       integer(c_int) :: device
       type(c_ptr) :: prop
     end function
-
 
   end interface
   !> 
@@ -897,7 +873,6 @@ module hipfort
       type(c_ptr),value :: linktype
       type(c_ptr),value :: hopcount
     end function
-
 
   end interface
   !> 
@@ -946,7 +921,6 @@ module hipfort
       type(c_ptr) :: handle
       type(c_ptr),value :: devPtr
     end function
-
 
   end interface
   !> 
@@ -1008,7 +982,6 @@ module hipfort
       integer(kind=4),value :: flags
     end function
 
-
   end interface
   !> 
   !>   @brief Close memory mapped with hipIpcOpenMemHandle
@@ -1049,7 +1022,6 @@ module hipfort
       type(c_ptr),value :: devPtr
     end function
 
-
   end interface
   !> 
   !>   @brief Gets an opaque interprocess handle for an event.
@@ -1086,7 +1058,6 @@ module hipfort
       type(c_ptr) :: handle
       type(c_ptr),value :: event
     end function
-
 
   end interface
   !> 
@@ -1126,7 +1097,6 @@ module hipfort
       type(c_ptr),value :: handle
     end function
 
-
   end interface
   !> 
   !>   @brief Set attribute for a specific function
@@ -1164,7 +1134,6 @@ module hipfort
       integer(c_int),value :: myValue
     end function
 
-
   end interface
   !> 
   !>   @brief Set Cache configuration for a specific function
@@ -1197,7 +1166,6 @@ module hipfort
       type(c_ptr),value :: func
       integer(kind(hipFuncCachePreferNone)),value :: config
     end function
-
 
   end interface
   !> 
@@ -1234,7 +1202,6 @@ module hipfort
       integer(kind(hipSharedMemBankSizeDefault)),value :: config
     end function
 
-
   end interface
   !> 
   !>   @brief Return last error returned by any HIP runtime API call and resets the stored error code to
@@ -1267,7 +1234,6 @@ module hipfort
 #endif
     end function
 
-
   end interface
   !> 
   !>   @brief Return last error returned by any HIP runtime API call.
@@ -1298,7 +1264,6 @@ module hipfort
       integer(kind(hipSuccess)) :: hipPeekAtLastError_
 #endif
     end function
-
 
   end interface
   !> 
@@ -1338,7 +1303,6 @@ module hipfort
       type(c_ptr) :: stream
     end function
 
-
   end interface
   !> 
   !>   @brief Create an asynchronous stream.
@@ -1377,7 +1341,6 @@ module hipfort
       type(c_ptr) :: stream
       integer(kind=4),value :: flags
     end function
-
 
   end interface
   !> 
@@ -1420,7 +1383,6 @@ module hipfort
       integer(c_int),value :: priority
     end function
 
-
   end interface
   !> 
   !>   @brief Returns numerical values that correspond to the least and greatest stream priority.
@@ -1456,7 +1418,6 @@ module hipfort
       type(c_ptr),value :: leastPriority
       type(c_ptr),value :: greatestPriority
     end function
-
 
   end interface
   !> 
@@ -1498,7 +1459,6 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-
   end interface
   !> 
   !>   @brief Return #hipSuccess if all of the operations in the specified @p stream have completed, or
@@ -1535,7 +1495,6 @@ module hipfort
 #endif
       type(c_ptr),value :: stream
     end function
-
 
   end interface
   !> 
@@ -1577,7 +1536,6 @@ module hipfort
 #endif
       type(c_ptr),value :: stream
     end function
-
 
   end interface
   !> 
@@ -1622,7 +1580,6 @@ module hipfort
       integer(kind=4),value :: flags
     end function
 
-
   end interface
   !> 
   !>   @brief Return flags associated with this stream.
@@ -1659,7 +1616,6 @@ module hipfort
       type(c_ptr),value :: flags
     end function
 
-
   end interface
   !> 
   !>   @brief Query the priority of a stream.
@@ -1695,7 +1651,6 @@ module hipfort
       type(c_ptr),value :: stream
       type(c_ptr),value :: priority
     end function
-
 
   end interface
   !> 
@@ -1740,7 +1695,6 @@ module hipfort
       type(c_ptr),value :: cuMask
     end function
 
-
   end interface
   !> 
   !>   @brief Get CU mask associated with an asynchronous stream
@@ -1776,7 +1730,6 @@ module hipfort
       integer(kind=4),value :: cuMaskSize
       type(c_ptr),value :: cuMask
     end function
-
 
   end interface
   !> 
@@ -1817,7 +1770,6 @@ module hipfort
       type(c_ptr),value :: userData
       integer(kind=4),value :: flags
     end function
-
 
   end interface
   !> 
@@ -1863,7 +1815,6 @@ module hipfort
       integer(kind=4),value :: flags
     end function
 
-
   end interface
   !> 
   !>   @brief Enqueues a write command to the stream.[BETA]
@@ -1907,7 +1858,6 @@ module hipfort
       integer(kind=8),value :: myValue
       integer(kind=4),value :: flags
     end function
-
 
   end interface
   !> 
@@ -1954,7 +1904,6 @@ module hipfort
       integer(kind=4),value :: flags
     end function
 
-
   end interface
   !> 
   !>    Create an event
@@ -1987,7 +1936,6 @@ module hipfort
 #endif
       type(c_ptr) :: event
     end function
-
 
   end interface
   !> 
@@ -2039,7 +1987,6 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-
   end interface
   !> 
   !>    @brief Destroy the specified event.
@@ -2077,7 +2024,6 @@ module hipfort
 #endif
       type(c_ptr),value :: event
     end function
-
 
   end interface
   !> 
@@ -2117,7 +2063,6 @@ module hipfort
 #endif
       type(c_ptr),value :: event
     end function
-
 
   end interface
   !> 
@@ -2178,7 +2123,6 @@ module hipfort
       type(c_ptr),value :: myStop
     end function
 
-
   end interface
   !> 
   !>   @brief Query event status
@@ -2216,7 +2160,6 @@ module hipfort
       type(c_ptr),value :: event
     end function
 
-
   end interface
   !> 
   !>    @brief Return attributes for the specified pointer
@@ -2249,7 +2192,6 @@ module hipfort
       type(c_ptr) :: attributes
       type(c_ptr),value :: ptr
     end function
-
 
   end interface
   !> 
@@ -2288,7 +2230,6 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-
   end interface
   !> 
   !>    @brief Waits on a set of external semaphore objects
@@ -2326,7 +2267,6 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-
   end interface
   !> 
   !>    @brief Destroys an external semaphore object and releases any references to the underlying resource. Any outstanding signals or waits must have completed before the semaphore is destroyed.
@@ -2357,7 +2297,6 @@ module hipfort
 #endif
       type(c_ptr),value :: extSem
     end function
-
 
   end interface
   !> 
@@ -2394,7 +2333,6 @@ module hipfort
       type(c_ptr),value :: bufferDesc
     end function
 
-
   end interface
   !> 
   !>   @brief Destroys an external memory object.
@@ -2425,7 +2363,6 @@ module hipfort
 #endif
       type(c_ptr),value :: extMem
     end function
-
 
   end interface
   !> 
@@ -2465,7 +2402,6 @@ module hipfort
       integer(kind=4),value :: flags
     end function
 
-
   end interface
   
   interface hipMallocHost
@@ -2490,7 +2426,6 @@ module hipfort
       integer(c_size_t),value :: mySize
     end function
 
-
   end interface
   
   interface hipMemAllocHost
@@ -2514,7 +2449,6 @@ module hipfort
       type(c_ptr) :: ptr
       integer(c_size_t),value :: mySize
     end function
-
 
   end interface
   !> 
@@ -2551,7 +2485,6 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-
   end interface
   !> 
   !>   @brief Advise about the usage of a given memory range to HIP.
@@ -2586,7 +2519,6 @@ module hipfort
       integer(kind(hipMemAdviseSetReadMostly)),value :: advice
       integer(c_int),value :: device
     end function
-
 
   end interface
   !> 
@@ -2625,7 +2557,6 @@ module hipfort
       type(c_ptr),value :: dev_ptr
       integer(c_size_t),value :: count
     end function
-
 
   end interface
   !> 
@@ -2668,7 +2599,6 @@ module hipfort
       integer(c_size_t),value :: count
     end function
 
-
   end interface
   !> 
   !>   @brief Attach memory to a stream asynchronously in HIP.
@@ -2706,7 +2636,6 @@ module hipfort
       integer(kind=4),value :: flags
     end function
 
-
   end interface
   
   interface hipHostAlloc
@@ -2731,7 +2660,6 @@ module hipfort
       integer(c_size_t),value :: mySize
       integer(kind=4),value :: flags
     end function
-
 
   end interface
   !> 
@@ -2775,7 +2703,6 @@ module hipfort
       integer(c_size_t),value :: width
       integer(c_size_t),value :: height
     end function
-
 
   end interface
   !> 
@@ -2824,7 +2751,6 @@ module hipfort
       integer(kind=4),value :: elementSizeBytes
     end function
 
-
   end interface
   
   interface hipFreeHost
@@ -2847,7 +2773,6 @@ module hipfort
 #endif
       type(c_ptr),value :: ptr
     end function
-
 
   end interface
   
@@ -2875,7 +2800,6 @@ module hipfort
       integer(kind(hipMemcpyHostToHost)),value :: myKind
       type(c_ptr),value :: stream
     end function
-
 
   end interface
   !> 
@@ -2918,7 +2842,6 @@ module hipfort
       integer(c_size_t),value :: sizeBytes
     end function
 
-
   end interface
   !> 
   !>    @brief Copy data from Device to Host
@@ -2960,7 +2883,6 @@ module hipfort
       integer(c_size_t),value :: sizeBytes
     end function
 
-
   end interface
   !> 
   !>    @brief Copy data from Device to Device
@@ -3001,7 +2923,6 @@ module hipfort
       type(c_ptr),value :: src
       integer(c_size_t),value :: sizeBytes
     end function
-
 
   end interface
   !> 
@@ -3045,7 +2966,6 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-
   end interface
   !> 
   !>    @brief Copy data from Device to Host asynchronously
@@ -3087,7 +3007,6 @@ module hipfort
       integer(c_size_t),value :: sizeBytes
       type(c_ptr),value :: stream
     end function
-
 
   end interface
   !> 
@@ -3131,7 +3050,6 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-
   end interface
   !> 
   !>    @brief Returns a global pointer from a module.
@@ -3171,7 +3089,6 @@ module hipfort
       type(c_ptr),value :: name
     end function
 
-
   end interface
   
   interface hipGetSymbolAddress
@@ -3196,7 +3113,6 @@ module hipfort
       type(c_ptr),value :: symbol
     end function
 
-
   end interface
   
   interface hipGetSymbolSize
@@ -3220,7 +3136,6 @@ module hipfort
       integer(c_size_t) :: mySize
       type(c_ptr),value :: symbol
     end function
-
 
   end interface
   
@@ -3248,7 +3163,6 @@ module hipfort
       integer(c_size_t),value :: offset
       integer(kind(hipMemcpyHostToHost)),value :: myKind
     end function
-
 
   end interface
   
@@ -3278,7 +3192,6 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-
   end interface
   
   interface hipMemcpyFromSymbol
@@ -3305,7 +3218,6 @@ module hipfort
       integer(c_size_t),value :: offset
       integer(kind(hipMemcpyHostToHost)),value :: myKind
     end function
-
 
   end interface
   
@@ -3334,7 +3246,6 @@ module hipfort
       integer(kind(hipMemcpyHostToHost)),value :: myKind
       type(c_ptr),value :: stream
     end function
-
 
   end interface
   !> 
@@ -3369,7 +3280,6 @@ module hipfort
       integer(c_size_t),value :: sizeBytes
     end function
 
-
   end interface
   !> 
   !>    @brief Fills the first sizeBytes bytes of the memory area pointed to by dest with the ant
@@ -3402,7 +3312,6 @@ module hipfort
       integer(kind=1),value :: myValue
       integer(c_size_t),value :: count
     end function
-
 
   end interface
   !> 
@@ -3444,7 +3353,6 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-
   end interface
   !> 
   !>    @brief Fills the first sizeBytes bytes of the memory area pointed to by dest with the ant
@@ -3477,7 +3385,6 @@ module hipfort
       integer(kind=2),value :: myValue
       integer(c_size_t),value :: count
     end function
-
 
   end interface
   !> 
@@ -3519,7 +3426,6 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-
   end interface
   !> 
   !>    @brief Fills the memory area pointed to by dest with the ant integer
@@ -3552,7 +3458,6 @@ module hipfort
       integer(c_int),value :: myValue
       integer(c_size_t),value :: count
     end function
-
 
   end interface
   !> 
@@ -3594,7 +3499,6 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-
   end interface
   !> 
   !>    @brief Fills the memory area pointed to by dev with the ant integer
@@ -3635,7 +3539,6 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-
   end interface
   !> 
   !>    @brief Fills the memory area pointed to by dst with the ant value.
@@ -3671,7 +3574,6 @@ module hipfort
       integer(c_size_t),value :: width
       integer(c_size_t),value :: height
     end function
-
 
   end interface
   !> 
@@ -3711,7 +3613,6 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-
   end interface
   !> 
   !>    @brief Fills synchronously the memory area pointed to by pitchedDevPtr with the ant value.
@@ -3743,7 +3644,6 @@ module hipfort
       integer(c_int),value :: myValue
       type(c_ptr),value :: extent
     end function
-
 
   end interface
   !> 
@@ -3779,7 +3679,6 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-
   end interface
   !> 
   !>   @brief Query memory info.
@@ -3812,7 +3711,6 @@ module hipfort
       integer(c_size_t) :: total
     end function
 
-
   end interface
   
   interface hipMemPtrGetInfo
@@ -3836,7 +3734,6 @@ module hipfort
       type(c_ptr),value :: ptr
       integer(c_size_t) :: mySize
     end function
-
 
   end interface
   !> 
@@ -3876,7 +3773,6 @@ module hipfort
       integer(kind=4),value :: flags
     end function
 
-
   end interface
   
   interface hipArrayCreate
@@ -3901,7 +3797,6 @@ module hipfort
       type(c_ptr) :: pAllocateArray
     end function
 
-
   end interface
   
   interface hipArrayDestroy
@@ -3924,7 +3819,6 @@ module hipfort
 #endif
       type(c_ptr) :: array
     end function
-
 
   end interface
   
@@ -3950,7 +3844,6 @@ module hipfort
       type(c_ptr) :: pAllocateArray
     end function
 
-
   end interface
   
   interface hipMalloc3D
@@ -3974,7 +3867,6 @@ module hipfort
       type(c_ptr) :: pitchedDevPtr
       type(c_ptr),value :: extent
     end function
-
 
   end interface
   !> 
@@ -4006,7 +3898,6 @@ module hipfort
       type(c_ptr) :: array
     end function
 
-
   end interface
   !> 
   !>   @brief Frees a mipmapped array on the device
@@ -4035,7 +3926,6 @@ module hipfort
 #endif
       type(c_ptr),value :: mipmappedArray
     end function
-
 
   end interface
   !> 
@@ -4072,7 +3962,6 @@ module hipfort
       type(c_ptr),value :: extent
       integer(kind=4),value :: flags
     end function
-
 
   end interface
   !> 
@@ -4111,7 +4000,6 @@ module hipfort
       integer(kind=4),value :: flags
     end function
 
-
   end interface
   !> 
   !>   @brief Gets a mipmap level of a HIP mipmapped array
@@ -4145,7 +4033,6 @@ module hipfort
       integer(kind=4),value :: level
     end function
 
-
   end interface
   !> 
   !>    @brief Copies memory for 2D arrays.
@@ -4176,7 +4063,6 @@ module hipfort
 #endif
       type(c_ptr) :: pCopy
     end function
-
 
   end interface
   !> 
@@ -4210,7 +4096,6 @@ module hipfort
       type(c_ptr) :: pCopy
       type(c_ptr),value :: stream
     end function
-
 
   end interface
   !> 
@@ -4257,7 +4142,6 @@ module hipfort
       integer(c_size_t),value :: height
       integer(kind(hipMemcpyHostToHost)),value :: myKind
     end function
-
 
   end interface
   !> 
@@ -4307,7 +4191,6 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-
   end interface
   
   interface hipMemcpyToArray
@@ -4336,7 +4219,6 @@ module hipfort
       integer(kind(hipMemcpyHostToHost)),value :: myKind
     end function
 
-
   end interface
   
   interface hipMemcpyFromArray
@@ -4364,7 +4246,6 @@ module hipfort
       integer(c_size_t),value :: count
       integer(kind(hipMemcpyHostToHost)),value :: myKind
     end function
-
 
   end interface
   !> 
@@ -4411,7 +4292,6 @@ module hipfort
       integer(c_size_t),value :: height
       integer(kind(hipMemcpyHostToHost)),value :: myKind
     end function
-
 
   end interface
   !> 
@@ -4461,7 +4341,6 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-
   end interface
   !> 
   !>    @brief Copies data between host and device.
@@ -4499,7 +4378,6 @@ module hipfort
       integer(c_size_t),value :: srcOffset
       integer(c_size_t),value :: count
     end function
-
 
   end interface
   !> 
@@ -4539,7 +4417,6 @@ module hipfort
       integer(c_size_t),value :: count
     end function
 
-
   end interface
   !> 
   !>    @brief Copies data between host and device.
@@ -4571,7 +4448,6 @@ module hipfort
 #endif
       type(c_ptr) :: p
     end function
-
 
   end interface
   !> 
@@ -4607,7 +4483,6 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-
   end interface
   !> 
   !>    @brief Copies data between host and device.
@@ -4639,7 +4514,6 @@ module hipfort
 #endif
       type(c_ptr) :: pCopy
     end function
-
 
   end interface
   !> 
@@ -4674,7 +4548,6 @@ module hipfort
       type(c_ptr) :: pCopy
       type(c_ptr),value :: stream
     end function
-
 
   end interface
   !> 
@@ -4716,7 +4589,6 @@ module hipfort
       integer(c_int),value :: peerDeviceId
     end function
 
-
   end interface
   !> 
   !>   @brief Enable direct access from current device's virtual address space to memory allocations
@@ -4756,7 +4628,6 @@ module hipfort
       integer(kind=4),value :: flags
     end function
 
-
   end interface
   !> 
   !>   @brief Disable direct access from current device's virtual address space to memory allocations
@@ -4789,7 +4660,6 @@ module hipfort
 #endif
       integer(c_int),value :: peerDeviceId
     end function
-
 
   end interface
   !> 
@@ -4827,7 +4697,6 @@ module hipfort
       type(c_ptr),value :: dptr
     end function
 
-
   end interface
   !> 
   !>   @brief Copies memory from one device to memory on another device.
@@ -4864,7 +4733,6 @@ module hipfort
       integer(c_int),value :: srcDeviceId
       integer(c_size_t),value :: sizeBytes
     end function
-
 
   end interface
   !> 
@@ -4905,7 +4773,6 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-
   end interface
   
   interface hipCtxCreate
@@ -4931,7 +4798,6 @@ module hipfort
       integer(c_int),value :: device
     end function
 
-
   end interface
   
   interface hipCtxDestroy
@@ -4954,7 +4820,6 @@ module hipfort
 #endif
       type(c_ptr),value :: ctx
     end function
-
 
   end interface
   
@@ -4979,7 +4844,6 @@ module hipfort
       type(c_ptr) :: ctx
     end function
 
-
   end interface
   
   interface hipCtxPushCurrent
@@ -5002,7 +4866,6 @@ module hipfort
 #endif
       type(c_ptr),value :: ctx
     end function
-
 
   end interface
   
@@ -5027,7 +4890,6 @@ module hipfort
       type(c_ptr),value :: ctx
     end function
 
-
   end interface
   
   interface hipCtxGetCurrent
@@ -5051,7 +4913,6 @@ module hipfort
       type(c_ptr) :: ctx
     end function
 
-
   end interface
   
   interface hipCtxGetDevice
@@ -5074,7 +4935,6 @@ module hipfort
 #endif
       integer(c_int) :: device
     end function
-
 
   end interface
   
@@ -5100,7 +4960,6 @@ module hipfort
       type(c_ptr),value :: apiVersion
     end function
 
-
   end interface
   
   interface hipCtxGetCacheConfig
@@ -5123,7 +4982,6 @@ module hipfort
 #endif
       type(c_ptr),value :: cacheConfig
     end function
-
 
   end interface
   
@@ -5148,7 +5006,6 @@ module hipfort
       integer(kind(hipFuncCachePreferNone)),value :: cacheConfig
     end function
 
-
   end interface
   
   interface hipCtxSetSharedMemConfig
@@ -5171,7 +5028,6 @@ module hipfort
 #endif
       integer(kind(hipSharedMemBankSizeDefault)),value :: config
     end function
-
 
   end interface
   
@@ -5196,7 +5052,6 @@ module hipfort
       type(c_ptr),value :: pConfig
     end function
 
-
   end interface
   
   interface hipCtxSynchronize
@@ -5218,7 +5073,6 @@ module hipfort
       integer(kind(hipSuccess)) :: hipCtxSynchronize_
 #endif
     end function
-
 
   end interface
   
@@ -5242,7 +5096,6 @@ module hipfort
 #endif
       type(c_ptr),value :: flags
     end function
-
 
   end interface
   
@@ -5268,7 +5121,6 @@ module hipfort
       integer(kind=4),value :: flags
     end function
 
-
   end interface
   
   interface hipCtxDisablePeerAccess
@@ -5291,7 +5143,6 @@ module hipfort
 #endif
       type(c_ptr),value :: peerCtx
     end function
-
 
   end interface
   !> 
@@ -5329,7 +5180,6 @@ module hipfort
       type(c_ptr),value :: active
     end function
 
-
   end interface
   !> 
   !>   @brief Release the primary context on the GPU.
@@ -5363,7 +5213,6 @@ module hipfort
 #endif
       integer(c_int),value :: dev
     end function
-
 
   end interface
   !> 
@@ -5399,7 +5248,6 @@ module hipfort
       integer(c_int),value :: dev
     end function
 
-
   end interface
   !> 
   !>   @brief Resets the primary context on the GPU.
@@ -5431,7 +5279,6 @@ module hipfort
 #endif
       integer(c_int),value :: dev
     end function
-
 
   end interface
   !> 
@@ -5467,7 +5314,6 @@ module hipfort
       integer(kind=4),value :: flags
     end function
 
-
   end interface
   !> 
   !>   @brief Loads code object from file into a hipModule_t
@@ -5502,7 +5348,6 @@ module hipfort
       type(c_ptr),value :: fname
     end function
 
-
   end interface
   !> 
   !>   @brief Frees the module
@@ -5533,7 +5378,6 @@ module hipfort
 #endif
       type(c_ptr),value :: myModule
     end function
-
 
   end interface
   !> 
@@ -5569,7 +5413,6 @@ module hipfort
       type(c_ptr),value :: kname
     end function
 
-
   end interface
   !> 
   !>   @brief Find out attributes for a given function.
@@ -5600,7 +5443,6 @@ module hipfort
       type(c_ptr) :: attr
       type(c_ptr),value :: func
     end function
-
 
   end interface
   !> 
@@ -5635,7 +5477,6 @@ module hipfort
       type(c_ptr),value :: hfunc
     end function
 
-
   end interface
   !> 
   !>   @brief returns the handle of the texture reference with the name from the module.
@@ -5669,7 +5510,6 @@ module hipfort
       type(c_ptr),value :: name
     end function
 
-
   end interface
   !> 
   !>   @brief builds module from code object which resides in host memory. Image is pointer to that
@@ -5701,7 +5541,6 @@ module hipfort
       type(c_ptr) :: myModule
       type(c_ptr),value :: image
     end function
-
 
   end interface
   !> 
@@ -5740,7 +5579,6 @@ module hipfort
       type(c_ptr),value :: options
       type(c_ptr) :: optionValues
     end function
-
 
   end interface
   !> 
@@ -5798,7 +5636,6 @@ module hipfort
       type(c_ptr) :: extra
     end function
 
-
   end interface
   !> 
   !>   @brief launches kernel f with launch parameters and shared memory on stream with arguments passed
@@ -5841,7 +5678,6 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-
   end interface
   !> 
   !>   @brief Launches kernels on multiple devices where thread blocks can cooperate and
@@ -5875,7 +5711,6 @@ module hipfort
       integer(c_int),value :: numDevices
       integer(kind=4),value :: flags
     end function
-
 
   end interface
   !> 
@@ -5912,7 +5747,6 @@ module hipfort
       integer(kind=4),value :: flags
     end function
 
-
   end interface
   
   interface hipModuleOccupancyMaxPotentialBlockSize
@@ -5939,7 +5773,6 @@ module hipfort
       integer(c_size_t),value :: dynSharedMemPerBlk
       integer(c_int),value :: blockSizeLimit
     end function
-
 
   end interface
   
@@ -5968,7 +5801,6 @@ module hipfort
       integer(c_int),value :: blockSizeLimit
       integer(kind=4),value :: flags
     end function
-
 
   end interface
   !> 
@@ -6003,7 +5835,6 @@ module hipfort
       integer(c_size_t),value :: dynSharedMemPerBlk
     end function
 
-
   end interface
   !> 
   !>   @brief Returns occupancy for a device function.
@@ -6036,7 +5867,6 @@ module hipfort
       integer(c_int),value :: blockSize
       integer(c_size_t),value :: dynSharedMemPerBlk
     end function
-
 
   end interface
   !> 
@@ -6072,7 +5902,6 @@ module hipfort
       integer(c_size_t),value :: dynSharedMemPerBlk
       integer(kind=4),value :: flags
     end function
-
 
   end interface
   !> 
@@ -6111,7 +5940,6 @@ module hipfort
       integer(c_int),value :: blockSizeLimit
     end function
 
-
   end interface
   
   interface hipProfilerStart
@@ -6134,7 +5962,6 @@ module hipfort
 #endif
     end function
 
-
   end interface
   
   interface hipProfilerStop
@@ -6156,7 +5983,6 @@ module hipfort
       integer(kind(hipSuccess)) :: hipProfilerStop_
 #endif
     end function
-
 
   end interface
   !> 
@@ -6196,7 +6022,6 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-
   end interface
   !> 
   !>   @brief Set a kernel argument.
@@ -6231,7 +6056,6 @@ module hipfort
       integer(c_size_t),value :: offset
     end function
 
-
   end interface
   !> 
   !>   @brief Launch a kernel.
@@ -6261,7 +6085,6 @@ module hipfort
 #endif
       type(c_ptr),value :: func
     end function
-
 
   end interface
   !> 
@@ -6305,7 +6128,6 @@ module hipfort
       type(c_ptr),value :: stream
     end function
 
-
   end interface
   !> 
   !>   Copies memory for 2D arrays.
@@ -6334,7 +6156,6 @@ module hipfort
 #endif
       type(c_ptr) :: pCopy
     end function
-
 
   end interface
   
@@ -6367,7 +6188,6 @@ module hipfort
       integer(c_int),value :: flags
     end function
 
-
   end interface
   
   interface hipBindTexture
@@ -6394,7 +6214,6 @@ module hipfort
       type(c_ptr) :: desc
       integer(c_size_t),value :: mySize
     end function
-
 
   end interface
   
@@ -6425,7 +6244,6 @@ module hipfort
       integer(c_size_t),value :: pitch
     end function
 
-
   end interface
   
   interface hipBindTextureToArray
@@ -6451,7 +6269,6 @@ module hipfort
       type(c_ptr) :: desc
     end function
 
-
   end interface
   
   interface hipGetTextureAlignmentOffset
@@ -6476,7 +6293,6 @@ module hipfort
       type(c_ptr) :: texref
     end function
 
-
   end interface
   
   interface hipUnbindTexture
@@ -6499,7 +6315,6 @@ module hipfort
 #endif
       type(c_ptr) :: tex
     end function
-
 
   end interface
   !> 
@@ -6528,7 +6343,6 @@ module hipfort
       type(c_ptr) :: desc
     end function
 
-
   end interface
   
   interface hipCreateTextureObject
@@ -6555,7 +6369,6 @@ module hipfort
       type(c_ptr),value :: pResViewDesc
     end function
 
-
   end interface
   
   interface hipDestroyTextureObject
@@ -6578,7 +6391,6 @@ module hipfort
 #endif
       type(c_ptr),value :: textureObject
     end function
-
 
   end interface
   
@@ -6604,7 +6416,6 @@ module hipfort
       type(c_ptr),value :: array
     end function
 
-
   end interface
   
   interface hipGetTextureObjectResourceDesc
@@ -6628,7 +6439,6 @@ module hipfort
       type(c_ptr) :: pResDesc
       type(c_ptr),value :: textureObject
     end function
-
 
   end interface
   
@@ -6654,7 +6464,6 @@ module hipfort
       type(c_ptr),value :: textureObject
     end function
 
-
   end interface
   
   interface hipGetTextureObjectTextureDesc
@@ -6679,7 +6488,6 @@ module hipfort
       type(c_ptr),value :: textureObject
     end function
 
-
   end interface
   
   interface hipTexRefGetAddress
@@ -6703,7 +6511,6 @@ module hipfort
       type(c_ptr) :: dev_ptr
       type(c_ptr) :: texRef
     end function
-
 
   end interface
   
@@ -6730,7 +6537,6 @@ module hipfort
       integer(c_int),value :: dim
     end function
 
-
   end interface
   
   interface hipTexRefGetFilterMode
@@ -6755,7 +6561,6 @@ module hipfort
       type(c_ptr) :: texRef
     end function
 
-
   end interface
   
   interface hipTexRefGetFlags
@@ -6779,7 +6584,6 @@ module hipfort
       type(c_ptr),value :: pFlags
       type(c_ptr) :: texRef
     end function
-
 
   end interface
   
@@ -6806,7 +6610,6 @@ module hipfort
       type(c_ptr) :: texRef
     end function
 
-
   end interface
   
   interface hipTexRefGetMaxAnisotropy
@@ -6830,7 +6633,6 @@ module hipfort
       type(c_ptr),value :: pmaxAnsio
       type(c_ptr) :: texRef
     end function
-
 
   end interface
   
@@ -6856,7 +6658,6 @@ module hipfort
       type(c_ptr) :: texRef
     end function
 
-
   end interface
   
   interface hipTexRefGetMipmapLevelBias
@@ -6880,7 +6681,6 @@ module hipfort
       type(c_ptr),value :: pbias
       type(c_ptr) :: texRef
     end function
-
 
   end interface
   
@@ -6907,7 +6707,6 @@ module hipfort
       type(c_ptr) :: texRef
     end function
 
-
   end interface
   
   interface hipTexRefGetMipMappedArray
@@ -6931,7 +6730,6 @@ module hipfort
       type(c_ptr) :: pArray
       type(c_ptr) :: texRef
     end function
-
 
   end interface
   
@@ -6959,7 +6757,6 @@ module hipfort
       integer(c_size_t),value :: bytes
     end function
 
-
   end interface
   
   interface hipTexRefSetAddress2D
@@ -6986,7 +6783,6 @@ module hipfort
       integer(c_size_t),value :: Pitch
     end function
 
-
   end interface
   
   interface hipTexRefSetAddressMode
@@ -7011,7 +6807,6 @@ module hipfort
       integer(c_int),value :: dim
       integer(kind(hipAddressModeWrap)),value :: am
     end function
-
 
   end interface
   
@@ -7038,7 +6833,6 @@ module hipfort
       integer(kind=4),value :: flags
     end function
 
-
   end interface
   
   interface hipTexRefSetFilterMode
@@ -7063,7 +6857,6 @@ module hipfort
       integer(kind(hipFilterModePoint)),value :: fm
     end function
 
-
   end interface
   
   interface hipTexRefSetFlags
@@ -7087,7 +6880,6 @@ module hipfort
       type(c_ptr) :: texRef
       integer(kind=4),value :: Flags
     end function
-
 
   end interface
   
@@ -7114,7 +6906,6 @@ module hipfort
       integer(c_int),value :: NumPackedComponents
     end function
 
-
   end interface
   
   interface hipTexRefSetMaxAnisotropy
@@ -7138,7 +6929,6 @@ module hipfort
       type(c_ptr) :: texRef
       integer(kind=4),value :: maxAniso
     end function
-
 
   end interface
   
@@ -7166,7 +6956,6 @@ module hipfort
       type(c_ptr),value :: pResViewDesc
     end function
 
-
   end interface
   
   interface hipTexObjectDestroy
@@ -7189,7 +6978,6 @@ module hipfort
 #endif
       type(c_ptr),value :: texObject
     end function
-
 
   end interface
   
@@ -7215,7 +7003,6 @@ module hipfort
       type(c_ptr),value :: texObject
     end function
 
-
   end interface
   
   interface hipTexObjectGetResourceViewDesc
@@ -7239,7 +7026,6 @@ module hipfort
       type(c_ptr),value :: pResViewDesc
       type(c_ptr),value :: texObject
     end function
-
 
   end interface
   
@@ -7265,7 +7051,6 @@ module hipfort
       type(c_ptr),value :: texObject
     end function
 
-
   end interface
   
   interface hipTexRefSetBorderColor
@@ -7289,7 +7074,6 @@ module hipfort
       type(c_ptr) :: texRef
       type(c_ptr),value :: pBorderColor
     end function
-
 
   end interface
   
@@ -7315,7 +7099,6 @@ module hipfort
       integer(kind(hipFilterModePoint)),value :: fm
     end function
 
-
   end interface
   
   interface hipTexRefSetMipmapLevelBias
@@ -7339,7 +7122,6 @@ module hipfort
       type(c_ptr) :: texRef
       real(c_float),value :: bias
     end function
-
 
   end interface
   
@@ -7366,7 +7148,6 @@ module hipfort
       real(c_float),value :: maxMipMapLevelClamp
     end function
 
-
   end interface
   
   interface hipTexRefSetMipmappedArray
@@ -7391,7 +7172,6 @@ module hipfort
       type(c_ptr) :: mipmappedArray
       integer(kind=4),value :: Flags
     end function
-
 
   end interface
   
@@ -7418,7 +7198,6 @@ module hipfort
       integer(kind=4),value :: numMipmapLevels
     end function
 
-
   end interface
   
   interface hipMipmappedArrayDestroy
@@ -7441,7 +7220,6 @@ module hipfort
 #endif
       type(c_ptr),value :: hMipmappedArray
     end function
-
 
   end interface
   
@@ -7467,7 +7245,6 @@ module hipfort
       type(c_ptr),value :: hMipMappedArray
       integer(kind=4),value :: level
     end function
-
 
   end interface
   !> 
@@ -7496,7 +7273,6 @@ module hipfort
       type(c_ptr),value :: arg
     end function
 
-
   end interface
   
   interface hipRemoveApiCallback
@@ -7519,7 +7295,6 @@ module hipfort
 #endif
       integer(kind=4),value :: id
     end function
-
 
   end interface
   
@@ -7546,7 +7321,6 @@ module hipfort
       type(c_ptr),value :: arg
     end function
 
-
   end interface
   
   interface hipRemoveActivityCallback
@@ -7569,7 +7343,6 @@ module hipfort
 #endif
       integer(kind=4),value :: id
     end function
-
 
   end interface
   !> 
@@ -7607,7 +7380,6 @@ module hipfort
       integer(kind(hipStreamCaptureModeGlobal)),value :: mode
     end function
 
-
   end interface
   !> 
   !>   @brief Ends capture on a stream, returning the captured graph.
@@ -7643,7 +7415,6 @@ module hipfort
       type(c_ptr) :: pGraph
     end function
 
-
   end interface
   !> 
   !>   @brief Creates a graph
@@ -7677,7 +7448,6 @@ module hipfort
       integer(kind=4),value :: flags
     end function
 
-
   end interface
   !> 
   !>   @brief Destroys a graph
@@ -7709,7 +7479,6 @@ module hipfort
       type(c_ptr),value :: graph
     end function
 
-
   end interface
   !> 
   !>   @brief Destroys an executable graph
@@ -7740,7 +7509,6 @@ module hipfort
 #endif
       type(c_ptr),value :: pGraphExec
     end function
-
 
   end interface
   !> 
@@ -7782,7 +7550,6 @@ module hipfort
       integer(c_size_t),value :: bufferSize
     end function
 
-
   end interface
   !> 
   !>   @brief launches an executable graph in a stream
@@ -7814,7 +7581,6 @@ module hipfort
       type(c_ptr),value :: graphExec
       type(c_ptr),value :: stream
     end function
-
 
   end interface
   !> 
@@ -7854,7 +7620,6 @@ module hipfort
       type(c_ptr) :: pNodeParams
     end function
 
-
   end interface
   !> 
   !>   @brief Creates a memcpy node and adds it to a graph.
@@ -7892,7 +7657,6 @@ module hipfort
       integer(c_size_t),value :: numDependencies
       type(c_ptr) :: pCopyParams
     end function
-
 
   end interface
   !> 
@@ -7938,7 +7702,6 @@ module hipfort
       integer(kind(hipMemcpyHostToHost)),value :: myKind
     end function
 
-
   end interface
   !> 
   !>   @brief Creates a memset node and adds it to a graph.
@@ -7977,7 +7740,6 @@ module hipfort
       type(c_ptr) :: pMemsetParams
     end function
 
-
   end interface
   !> 
   !>   @brief Returns graph nodes.
@@ -8011,7 +7773,6 @@ module hipfort
       type(c_ptr) :: nodes
       type(c_ptr),value :: numNodes
     end function
-
 
   end interface
   !> 
@@ -8047,7 +7808,6 @@ module hipfort
       type(c_ptr),value :: pNumRootNodes
     end function
 
-
   end interface
   !> 
   !>   @brief Gets kernel node's parameters.
@@ -8079,7 +7839,6 @@ module hipfort
       type(c_ptr),value :: node
       type(c_ptr) :: pNodeParams
     end function
-
 
   end interface
   !> 
@@ -8113,7 +7872,6 @@ module hipfort
       type(c_ptr) :: pNodeParams
     end function
 
-
   end interface
   !> 
   !>   @brief Gets a memcpy node's parameters.
@@ -8145,7 +7903,6 @@ module hipfort
       type(c_ptr),value :: node
       type(c_ptr) :: pNodeParams
     end function
-
 
   end interface
   !> 
@@ -8179,7 +7936,6 @@ module hipfort
       type(c_ptr) :: pNodeParams
     end function
 
-
   end interface
   !> 
   !>   @brief Gets a memset node's parameters.
@@ -8212,7 +7968,6 @@ module hipfort
       type(c_ptr) :: pNodeParams
     end function
 
-
   end interface
   !> 
   !>   @brief Sets a memset node's parameters.
@@ -8244,7 +7999,6 @@ module hipfort
       type(c_ptr),value :: node
       type(c_ptr) :: pNodeParams
     end function
-
 
   end interface
   !> 
@@ -8279,7 +8033,6 @@ module hipfort
       type(c_ptr),value :: node
       type(c_ptr) :: pNodeParams
     end function
-
 
   end interface
   !> 
@@ -8317,7 +8070,6 @@ module hipfort
       integer(c_size_t),value :: numDependencies
     end function
 
-
   end interface
   !> 
   !>   @brief Creates an empty node and adds it to a graph.
@@ -8353,7 +8105,6 @@ module hipfort
       type(c_ptr) :: pDependencies
       integer(c_size_t),value :: numDependencies
     end function
-
 
   end interface
 

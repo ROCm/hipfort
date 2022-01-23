@@ -41,7 +41,6 @@ module hipfort_rocsolver
       type(c_ptr) :: handle
     end function
 
-
   end interface
   
   interface rocsolver_destroy_handle
@@ -53,7 +52,6 @@ module hipfort_rocsolver
       integer(kind(rocblas_status_success)) :: rocsolver_destroy_handle_
       type(c_ptr),value :: handle
     end function
-
 
   end interface
   
@@ -68,7 +66,6 @@ module hipfort_rocsolver
       type(c_ptr),value :: stream
     end function
 
-
   end interface
   
   interface rocsolver_get_stream
@@ -81,7 +78,6 @@ module hipfort_rocsolver
       type(c_ptr),value :: handle
       type(c_ptr) :: stream
     end function
-
 
   end interface
   
@@ -101,7 +97,6 @@ module hipfort_rocsolver
       integer(c_int),value :: ldb
     end function
 
-
   end interface
   
   interface rocsolver_get_matrix
@@ -119,7 +114,6 @@ module hipfort_rocsolver
       type(c_ptr),value :: b
       integer(c_int),value :: ldb
     end function
-
 
   end interface
   !> ! \brief GET_VERSION_STRING Queries the library version.
@@ -141,7 +135,6 @@ module hipfort_rocsolver
       type(c_ptr),value :: buf
       integer(c_size_t),value :: len
     end function
-
 
   end interface
   !> ! \brief LOG_BEGIN begins a rocSOLVER multi-level logging session.
@@ -165,7 +158,6 @@ module hipfort_rocsolver
       integer(kind(rocblas_status_success)) :: rocsolver_log_begin_
     end function
 
-
   end interface
   !> ! \brief LOG_END ends the multi-level rocSOLVER logging session.
   !> 
@@ -181,7 +173,6 @@ module hipfort_rocsolver
       implicit none
       integer(kind(rocblas_status_success)) :: rocsolver_log_end_
     end function
-
 
   end interface
   !> ! \brief LOG_SET_LAYER_MODE sets the logging mode for the rocSOLVER multi-level
@@ -201,7 +192,6 @@ module hipfort_rocsolver
       integer(kind(rocblas_status_success)) :: rocsolver_log_set_layer_mode_
       integer(4),value :: layer_mode
     end function
-
 
   end interface
   !> ! \brief LOG_SET_MAX_LEVELS sets the maximum trace log depth for the rocSOLVER
@@ -223,7 +213,6 @@ module hipfort_rocsolver
       integer(c_int),value :: max_levels
     end function
 
-
   end interface
   !> ! \brief LOG_RESTORE_DEFAULTS restores the default values of the rocSOLVER
   !>     multi-level logging environment.
@@ -241,7 +230,6 @@ module hipfort_rocsolver
       integer(kind(rocblas_status_success)) :: rocsolver_log_restore_defaults_
     end function
 
-
   end interface
   !> ! \brief LOG_WRITE_PROFILE prints the profile logging results.
   !>  
@@ -253,7 +241,6 @@ module hipfort_rocsolver
       implicit none
       integer(kind(rocblas_status_success)) :: rocsolver_log_write_profile_
     end function
-
 
   end interface
   !> ! \brief LOG_FLUSH_PROFILE prints the profile logging results and clears the
@@ -267,7 +254,6 @@ module hipfort_rocsolver
       implicit none
       integer(kind(rocblas_status_success)) :: rocsolver_log_flush_profile_
     end function
-
 
   end interface
   !> ! @{
@@ -305,11 +291,10 @@ module hipfort_rocsolver
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_clacgv_rank_0,&
-      
-rocsolver_clacgv_rank_1
+    module procedure &
+      rocsolver_clacgv_rank_0,&
+      rocsolver_clacgv_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zlacgv
@@ -326,11 +311,10 @@ rocsolver_clacgv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zlacgv_rank_0,&
-      
-rocsolver_zlacgv_rank_1
+    module procedure &
+      rocsolver_zlacgv_rank_0,&
+      rocsolver_zlacgv_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief LASWP performs a series of row interchanges on the matrix A.
@@ -387,13 +371,11 @@ rocsolver_zlacgv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_slaswp_full_rank,&
-      
-rocsolver_slaswp_rank_0,&
-      
-rocsolver_slaswp_rank_1
+    module procedure &
+      rocsolver_slaswp_full_rank,&
+      rocsolver_slaswp_rank_0,&
+      rocsolver_slaswp_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dlaswp
@@ -414,13 +396,11 @@ rocsolver_slaswp_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dlaswp_full_rank,&
-      
-rocsolver_dlaswp_rank_0,&
-      
-rocsolver_dlaswp_rank_1
+    module procedure &
+      rocsolver_dlaswp_full_rank,&
+      rocsolver_dlaswp_rank_0,&
+      rocsolver_dlaswp_rank_1
 #endif
-
   end interface
   
   interface rocsolver_claswp
@@ -441,13 +421,11 @@ rocsolver_dlaswp_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_claswp_full_rank,&
-      
-rocsolver_claswp_rank_0,&
-      
-rocsolver_claswp_rank_1
+    module procedure &
+      rocsolver_claswp_full_rank,&
+      rocsolver_claswp_rank_0,&
+      rocsolver_claswp_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zlaswp
@@ -468,13 +446,11 @@ rocsolver_claswp_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zlaswp_full_rank,&
-      
-rocsolver_zlaswp_rank_0,&
-      
-rocsolver_zlaswp_rank_1
+    module procedure &
+      rocsolver_zlaswp_full_rank,&
+      rocsolver_zlaswp_rank_0,&
+      rocsolver_zlaswp_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief LARFG generates a Householder reflector H of order n.
@@ -556,11 +532,10 @@ rocsolver_zlaswp_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_slarfg_rank_0,&
-      
-rocsolver_slarfg_rank_1
+    module procedure &
+      rocsolver_slarfg_rank_0,&
+      rocsolver_slarfg_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dlarfg
@@ -579,11 +554,10 @@ rocsolver_slarfg_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dlarfg_rank_0,&
-      
-rocsolver_dlarfg_rank_1
+    module procedure &
+      rocsolver_dlarfg_rank_0,&
+      rocsolver_dlarfg_rank_1
 #endif
-
   end interface
   
   interface rocsolver_clarfg
@@ -602,11 +576,10 @@ rocsolver_dlarfg_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_clarfg_rank_0,&
-      
-rocsolver_clarfg_rank_1
+    module procedure &
+      rocsolver_clarfg_rank_0,&
+      rocsolver_clarfg_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zlarfg
@@ -625,11 +598,10 @@ rocsolver_clarfg_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zlarfg_rank_0,&
-      
-rocsolver_zlarfg_rank_1
+    module procedure &
+      rocsolver_zlarfg_rank_0,&
+      rocsolver_zlarfg_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief LARFT generates the triangular factor T of a block reflector H of
@@ -712,13 +684,11 @@ rocsolver_zlarfg_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_slarft_full_rank,&
-      
-rocsolver_slarft_rank_0,&
-      
-rocsolver_slarft_rank_1
+    module procedure &
+      rocsolver_slarft_full_rank,&
+      rocsolver_slarft_rank_0,&
+      rocsolver_slarft_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dlarft
@@ -741,13 +711,11 @@ rocsolver_slarft_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dlarft_full_rank,&
-      
-rocsolver_dlarft_rank_0,&
-      
-rocsolver_dlarft_rank_1
+    module procedure &
+      rocsolver_dlarft_full_rank,&
+      rocsolver_dlarft_rank_0,&
+      rocsolver_dlarft_rank_1
 #endif
-
   end interface
   
   interface rocsolver_clarft
@@ -770,13 +738,11 @@ rocsolver_dlarft_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_clarft_full_rank,&
-      
-rocsolver_clarft_rank_0,&
-      
-rocsolver_clarft_rank_1
+    module procedure &
+      rocsolver_clarft_full_rank,&
+      rocsolver_clarft_rank_0,&
+      rocsolver_clarft_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zlarft
@@ -799,13 +765,11 @@ rocsolver_clarft_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zlarft_full_rank,&
-      
-rocsolver_zlarft_rank_0,&
-      
-rocsolver_zlarft_rank_1
+    module procedure &
+      rocsolver_zlarft_full_rank,&
+      rocsolver_zlarft_rank_0,&
+      rocsolver_zlarft_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief LARF applies a Householder reflector H to a general matrix A.
@@ -871,13 +835,11 @@ rocsolver_zlarft_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_slarf_full_rank,&
-      
-rocsolver_slarf_rank_0,&
-      
-rocsolver_slarf_rank_1
+    module procedure &
+      rocsolver_slarf_full_rank,&
+      rocsolver_slarf_rank_0,&
+      rocsolver_slarf_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dlarf
@@ -899,13 +861,11 @@ rocsolver_slarf_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dlarf_full_rank,&
-      
-rocsolver_dlarf_rank_0,&
-      
-rocsolver_dlarf_rank_1
+    module procedure &
+      rocsolver_dlarf_full_rank,&
+      rocsolver_dlarf_rank_0,&
+      rocsolver_dlarf_rank_1
 #endif
-
   end interface
   
   interface rocsolver_clarf
@@ -927,13 +887,11 @@ rocsolver_dlarf_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_clarf_full_rank,&
-      
-rocsolver_clarf_rank_0,&
-      
-rocsolver_clarf_rank_1
+    module procedure &
+      rocsolver_clarf_full_rank,&
+      rocsolver_clarf_rank_0,&
+      rocsolver_clarf_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zlarf
@@ -955,13 +913,11 @@ rocsolver_clarf_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zlarf_full_rank,&
-      
-rocsolver_zlarf_rank_0,&
-      
-rocsolver_zlarf_rank_1
+    module procedure &
+      rocsolver_zlarf_full_rank,&
+      rocsolver_zlarf_rank_0,&
+      rocsolver_zlarf_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief LARFB applies a block reflector H to a general m-by-n matrix A.
@@ -1073,13 +1029,11 @@ rocsolver_zlarf_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_slarfb_full_rank,&
-      
-rocsolver_slarfb_rank_0,&
-      
-rocsolver_slarfb_rank_1
+    module procedure &
+      rocsolver_slarfb_full_rank,&
+      rocsolver_slarfb_rank_0,&
+      rocsolver_slarfb_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dlarfb
@@ -1106,13 +1060,11 @@ rocsolver_slarfb_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dlarfb_full_rank,&
-      
-rocsolver_dlarfb_rank_0,&
-      
-rocsolver_dlarfb_rank_1
+    module procedure &
+      rocsolver_dlarfb_full_rank,&
+      rocsolver_dlarfb_rank_0,&
+      rocsolver_dlarfb_rank_1
 #endif
-
   end interface
   
   interface rocsolver_clarfb
@@ -1139,13 +1091,11 @@ rocsolver_dlarfb_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_clarfb_full_rank,&
-      
-rocsolver_clarfb_rank_0,&
-      
-rocsolver_clarfb_rank_1
+    module procedure &
+      rocsolver_clarfb_full_rank,&
+      rocsolver_clarfb_rank_0,&
+      rocsolver_clarfb_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zlarfb
@@ -1172,13 +1122,11 @@ rocsolver_clarfb_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zlarfb_full_rank,&
-      
-rocsolver_zlarfb_rank_0,&
-      
-rocsolver_zlarfb_rank_1
+    module procedure &
+      rocsolver_zlarfb_full_rank,&
+      rocsolver_zlarfb_rank_0,&
+      rocsolver_zlarfb_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief LABRD computes the bidiagonal form of the first k rows and columns of
@@ -1299,13 +1247,11 @@ rocsolver_zlarfb_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_slabrd_full_rank,&
-      
-rocsolver_slabrd_rank_0,&
-      
-rocsolver_slabrd_rank_1
+    module procedure &
+      rocsolver_slabrd_full_rank,&
+      rocsolver_slabrd_rank_0,&
+      rocsolver_slabrd_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dlabrd
@@ -1332,13 +1278,11 @@ rocsolver_slabrd_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dlabrd_full_rank,&
-      
-rocsolver_dlabrd_rank_0,&
-      
-rocsolver_dlabrd_rank_1
+    module procedure &
+      rocsolver_dlabrd_full_rank,&
+      rocsolver_dlabrd_rank_0,&
+      rocsolver_dlabrd_rank_1
 #endif
-
   end interface
   
   interface rocsolver_clabrd
@@ -1365,13 +1309,11 @@ rocsolver_dlabrd_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_clabrd_full_rank,&
-      
-rocsolver_clabrd_rank_0,&
-      
-rocsolver_clabrd_rank_1
+    module procedure &
+      rocsolver_clabrd_full_rank,&
+      rocsolver_clabrd_rank_0,&
+      rocsolver_clabrd_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zlabrd
@@ -1398,13 +1340,11 @@ rocsolver_clabrd_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zlabrd_full_rank,&
-      
-rocsolver_zlabrd_rank_0,&
-      
-rocsolver_zlabrd_rank_1
+    module procedure &
+      rocsolver_zlabrd_full_rank,&
+      rocsolver_zlabrd_rank_0,&
+      rocsolver_zlabrd_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief LATRD computes the tridiagonal form of k rows and columns of
@@ -1506,13 +1446,11 @@ rocsolver_zlabrd_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_slatrd_full_rank,&
-      
-rocsolver_slatrd_rank_0,&
-      
-rocsolver_slatrd_rank_1
+    module procedure &
+      rocsolver_slatrd_full_rank,&
+      rocsolver_slatrd_rank_0,&
+      rocsolver_slatrd_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dlatrd
@@ -1535,13 +1473,11 @@ rocsolver_slatrd_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dlatrd_full_rank,&
-      
-rocsolver_dlatrd_rank_0,&
-      
-rocsolver_dlatrd_rank_1
+    module procedure &
+      rocsolver_dlatrd_full_rank,&
+      rocsolver_dlatrd_rank_0,&
+      rocsolver_dlatrd_rank_1
 #endif
-
   end interface
   
   interface rocsolver_clatrd
@@ -1564,13 +1500,11 @@ rocsolver_dlatrd_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_clatrd_full_rank,&
-      
-rocsolver_clatrd_rank_0,&
-      
-rocsolver_clatrd_rank_1
+    module procedure &
+      rocsolver_clatrd_full_rank,&
+      rocsolver_clatrd_rank_0,&
+      rocsolver_clatrd_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zlatrd
@@ -1593,13 +1527,11 @@ rocsolver_clatrd_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zlatrd_full_rank,&
-      
-rocsolver_zlatrd_rank_0,&
-      
-rocsolver_zlatrd_rank_1
+    module procedure &
+      rocsolver_zlatrd_full_rank,&
+      rocsolver_zlatrd_rank_0,&
+      rocsolver_zlatrd_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief ORG2R generates an m-by-n Matrix Q with orthonormal columns.
@@ -1656,13 +1588,11 @@ rocsolver_zlatrd_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sorg2r_full_rank,&
-      
-rocsolver_sorg2r_rank_0,&
-      
-rocsolver_sorg2r_rank_1
+    module procedure &
+      rocsolver_sorg2r_full_rank,&
+      rocsolver_sorg2r_rank_0,&
+      rocsolver_sorg2r_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dorg2r
@@ -1682,13 +1612,11 @@ rocsolver_sorg2r_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dorg2r_full_rank,&
-      
-rocsolver_dorg2r_rank_0,&
-      
-rocsolver_dorg2r_rank_1
+    module procedure &
+      rocsolver_dorg2r_full_rank,&
+      rocsolver_dorg2r_rank_0,&
+      rocsolver_dorg2r_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief UNG2R generates an m-by-n complex Matrix Q with orthonormal columns.
@@ -1745,13 +1673,11 @@ rocsolver_dorg2r_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cung2r_full_rank,&
-      
-rocsolver_cung2r_rank_0,&
-      
-rocsolver_cung2r_rank_1
+    module procedure &
+      rocsolver_cung2r_full_rank,&
+      rocsolver_cung2r_rank_0,&
+      rocsolver_cung2r_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zung2r
@@ -1771,13 +1697,11 @@ rocsolver_cung2r_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zung2r_full_rank,&
-      
-rocsolver_zung2r_rank_0,&
-      
-rocsolver_zung2r_rank_1
+    module procedure &
+      rocsolver_zung2r_full_rank,&
+      rocsolver_zung2r_rank_0,&
+      rocsolver_zung2r_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief ORGQR generates an m-by-n Matrix Q with orthonormal columns.
@@ -1834,13 +1758,11 @@ rocsolver_zung2r_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sorgqr_full_rank,&
-      
-rocsolver_sorgqr_rank_0,&
-      
-rocsolver_sorgqr_rank_1
+    module procedure &
+      rocsolver_sorgqr_full_rank,&
+      rocsolver_sorgqr_rank_0,&
+      rocsolver_sorgqr_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dorgqr
@@ -1860,13 +1782,11 @@ rocsolver_sorgqr_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dorgqr_full_rank,&
-      
-rocsolver_dorgqr_rank_0,&
-      
-rocsolver_dorgqr_rank_1
+    module procedure &
+      rocsolver_dorgqr_full_rank,&
+      rocsolver_dorgqr_rank_0,&
+      rocsolver_dorgqr_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief UNGQR generates an m-by-n complex Matrix Q with orthonormal columns.
@@ -1923,13 +1843,11 @@ rocsolver_dorgqr_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cungqr_full_rank,&
-      
-rocsolver_cungqr_rank_0,&
-      
-rocsolver_cungqr_rank_1
+    module procedure &
+      rocsolver_cungqr_full_rank,&
+      rocsolver_cungqr_rank_0,&
+      rocsolver_cungqr_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zungqr
@@ -1949,13 +1867,11 @@ rocsolver_cungqr_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zungqr_full_rank,&
-      
-rocsolver_zungqr_rank_0,&
-      
-rocsolver_zungqr_rank_1
+    module procedure &
+      rocsolver_zungqr_full_rank,&
+      rocsolver_zungqr_rank_0,&
+      rocsolver_zungqr_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief ORGL2 generates an m-by-n Matrix Q with orthonormal rows.
@@ -2012,13 +1928,11 @@ rocsolver_zungqr_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sorgl2_full_rank,&
-      
-rocsolver_sorgl2_rank_0,&
-      
-rocsolver_sorgl2_rank_1
+    module procedure &
+      rocsolver_sorgl2_full_rank,&
+      rocsolver_sorgl2_rank_0,&
+      rocsolver_sorgl2_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dorgl2
@@ -2038,13 +1952,11 @@ rocsolver_sorgl2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dorgl2_full_rank,&
-      
-rocsolver_dorgl2_rank_0,&
-      
-rocsolver_dorgl2_rank_1
+    module procedure &
+      rocsolver_dorgl2_full_rank,&
+      rocsolver_dorgl2_rank_0,&
+      rocsolver_dorgl2_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief UNGL2 generates an m-by-n complex Matrix Q with orthonormal rows.
@@ -2101,13 +2013,11 @@ rocsolver_dorgl2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cungl2_full_rank,&
-      
-rocsolver_cungl2_rank_0,&
-      
-rocsolver_cungl2_rank_1
+    module procedure &
+      rocsolver_cungl2_full_rank,&
+      rocsolver_cungl2_rank_0,&
+      rocsolver_cungl2_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zungl2
@@ -2127,13 +2037,11 @@ rocsolver_cungl2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zungl2_full_rank,&
-      
-rocsolver_zungl2_rank_0,&
-      
-rocsolver_zungl2_rank_1
+    module procedure &
+      rocsolver_zungl2_full_rank,&
+      rocsolver_zungl2_rank_0,&
+      rocsolver_zungl2_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief ORGLQ generates an m-by-n Matrix Q with orthonormal rows.
@@ -2190,13 +2098,11 @@ rocsolver_zungl2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sorglq_full_rank,&
-      
-rocsolver_sorglq_rank_0,&
-      
-rocsolver_sorglq_rank_1
+    module procedure &
+      rocsolver_sorglq_full_rank,&
+      rocsolver_sorglq_rank_0,&
+      rocsolver_sorglq_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dorglq
@@ -2216,13 +2122,11 @@ rocsolver_sorglq_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dorglq_full_rank,&
-      
-rocsolver_dorglq_rank_0,&
-      
-rocsolver_dorglq_rank_1
+    module procedure &
+      rocsolver_dorglq_full_rank,&
+      rocsolver_dorglq_rank_0,&
+      rocsolver_dorglq_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief UNGLQ generates an m-by-n complex Matrix Q with orthonormal rows.
@@ -2279,13 +2183,11 @@ rocsolver_dorglq_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cunglq_full_rank,&
-      
-rocsolver_cunglq_rank_0,&
-      
-rocsolver_cunglq_rank_1
+    module procedure &
+      rocsolver_cunglq_full_rank,&
+      rocsolver_cunglq_rank_0,&
+      rocsolver_cunglq_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zunglq
@@ -2305,13 +2207,11 @@ rocsolver_cunglq_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zunglq_full_rank,&
-      
-rocsolver_zunglq_rank_0,&
-      
-rocsolver_zunglq_rank_1
+    module procedure &
+      rocsolver_zunglq_full_rank,&
+      rocsolver_zunglq_rank_0,&
+      rocsolver_zunglq_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief ORG2L generates an m-by-n Matrix Q with orthonormal columns.
@@ -2368,13 +2268,11 @@ rocsolver_zunglq_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sorg2l_full_rank,&
-      
-rocsolver_sorg2l_rank_0,&
-      
-rocsolver_sorg2l_rank_1
+    module procedure &
+      rocsolver_sorg2l_full_rank,&
+      rocsolver_sorg2l_rank_0,&
+      rocsolver_sorg2l_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dorg2l
@@ -2394,13 +2292,11 @@ rocsolver_sorg2l_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dorg2l_full_rank,&
-      
-rocsolver_dorg2l_rank_0,&
-      
-rocsolver_dorg2l_rank_1
+    module procedure &
+      rocsolver_dorg2l_full_rank,&
+      rocsolver_dorg2l_rank_0,&
+      rocsolver_dorg2l_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief UNG2L generates an m-by-n complex Matrix Q with orthonormal columns.
@@ -2457,13 +2353,11 @@ rocsolver_dorg2l_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cung2l_full_rank,&
-      
-rocsolver_cung2l_rank_0,&
-      
-rocsolver_cung2l_rank_1
+    module procedure &
+      rocsolver_cung2l_full_rank,&
+      rocsolver_cung2l_rank_0,&
+      rocsolver_cung2l_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zung2l
@@ -2483,13 +2377,11 @@ rocsolver_cung2l_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zung2l_full_rank,&
-      
-rocsolver_zung2l_rank_0,&
-      
-rocsolver_zung2l_rank_1
+    module procedure &
+      rocsolver_zung2l_full_rank,&
+      rocsolver_zung2l_rank_0,&
+      rocsolver_zung2l_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief ORGQL generates an m-by-n Matrix Q with orthonormal columns.
@@ -2546,13 +2438,11 @@ rocsolver_zung2l_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sorgql_full_rank,&
-      
-rocsolver_sorgql_rank_0,&
-      
-rocsolver_sorgql_rank_1
+    module procedure &
+      rocsolver_sorgql_full_rank,&
+      rocsolver_sorgql_rank_0,&
+      rocsolver_sorgql_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dorgql
@@ -2572,13 +2462,11 @@ rocsolver_sorgql_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dorgql_full_rank,&
-      
-rocsolver_dorgql_rank_0,&
-      
-rocsolver_dorgql_rank_1
+    module procedure &
+      rocsolver_dorgql_full_rank,&
+      rocsolver_dorgql_rank_0,&
+      rocsolver_dorgql_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief UNGQL generates an m-by-n complex Matrix Q with orthonormal columns.
@@ -2635,13 +2523,11 @@ rocsolver_dorgql_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cungql_full_rank,&
-      
-rocsolver_cungql_rank_0,&
-      
-rocsolver_cungql_rank_1
+    module procedure &
+      rocsolver_cungql_full_rank,&
+      rocsolver_cungql_rank_0,&
+      rocsolver_cungql_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zungql
@@ -2661,13 +2547,11 @@ rocsolver_cungql_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zungql_full_rank,&
-      
-rocsolver_zungql_rank_0,&
-      
-rocsolver_zungql_rank_1
+    module procedure &
+      rocsolver_zungql_full_rank,&
+      rocsolver_zungql_rank_0,&
+      rocsolver_zungql_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief ORGBR generates an m-by-n Matrix Q with orthonormal rows or columns.
@@ -2748,13 +2632,11 @@ rocsolver_zungql_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sorgbr_full_rank,&
-      
-rocsolver_sorgbr_rank_0,&
-      
-rocsolver_sorgbr_rank_1
+    module procedure &
+      rocsolver_sorgbr_full_rank,&
+      rocsolver_sorgbr_rank_0,&
+      rocsolver_sorgbr_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dorgbr
@@ -2775,13 +2657,11 @@ rocsolver_sorgbr_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dorgbr_full_rank,&
-      
-rocsolver_dorgbr_rank_0,&
-      
-rocsolver_dorgbr_rank_1
+    module procedure &
+      rocsolver_dorgbr_full_rank,&
+      rocsolver_dorgbr_rank_0,&
+      rocsolver_dorgbr_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief UNGBR generates an m-by-n complex Matrix Q with orthonormal rows or
@@ -2863,13 +2743,11 @@ rocsolver_dorgbr_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cungbr_full_rank,&
-      
-rocsolver_cungbr_rank_0,&
-      
-rocsolver_cungbr_rank_1
+    module procedure &
+      rocsolver_cungbr_full_rank,&
+      rocsolver_cungbr_rank_0,&
+      rocsolver_cungbr_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zungbr
@@ -2890,13 +2768,11 @@ rocsolver_cungbr_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zungbr_full_rank,&
-      
-rocsolver_zungbr_rank_0,&
-      
-rocsolver_zungbr_rank_1
+    module procedure &
+      rocsolver_zungbr_full_rank,&
+      rocsolver_zungbr_rank_0,&
+      rocsolver_zungbr_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief ORGTR generates an n-by-n orthogonal Matrix Q.
@@ -2956,13 +2832,11 @@ rocsolver_zungbr_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sorgtr_full_rank,&
-      
-rocsolver_sorgtr_rank_0,&
-      
-rocsolver_sorgtr_rank_1
+    module procedure &
+      rocsolver_sorgtr_full_rank,&
+      rocsolver_sorgtr_rank_0,&
+      rocsolver_sorgtr_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dorgtr
@@ -2981,13 +2855,11 @@ rocsolver_sorgtr_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dorgtr_full_rank,&
-      
-rocsolver_dorgtr_rank_0,&
-      
-rocsolver_dorgtr_rank_1
+    module procedure &
+      rocsolver_dorgtr_full_rank,&
+      rocsolver_dorgtr_rank_0,&
+      rocsolver_dorgtr_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief UNGTR generates an n-by-n unitary Matrix Q.
@@ -3047,13 +2919,11 @@ rocsolver_dorgtr_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cungtr_full_rank,&
-      
-rocsolver_cungtr_rank_0,&
-      
-rocsolver_cungtr_rank_1
+    module procedure &
+      rocsolver_cungtr_full_rank,&
+      rocsolver_cungtr_rank_0,&
+      rocsolver_cungtr_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zungtr
@@ -3072,13 +2942,11 @@ rocsolver_cungtr_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zungtr_full_rank,&
-      
-rocsolver_zungtr_rank_0,&
-      
-rocsolver_zungtr_rank_1
+    module procedure &
+      rocsolver_zungtr_full_rank,&
+      rocsolver_zungtr_rank_0,&
+      rocsolver_zungtr_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief ORM2R multiplies a matrix Q with orthonormal columns by a general m-by-n
@@ -3164,13 +3032,11 @@ rocsolver_zungtr_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sorm2r_full_rank,&
-      
-rocsolver_sorm2r_rank_0,&
-      
-rocsolver_sorm2r_rank_1
+    module procedure &
+      rocsolver_sorm2r_full_rank,&
+      rocsolver_sorm2r_rank_0,&
+      rocsolver_sorm2r_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dorm2r
@@ -3194,13 +3060,11 @@ rocsolver_sorm2r_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dorm2r_full_rank,&
-      
-rocsolver_dorm2r_rank_0,&
-      
-rocsolver_dorm2r_rank_1
+    module procedure &
+      rocsolver_dorm2r_full_rank,&
+      rocsolver_dorm2r_rank_0,&
+      rocsolver_dorm2r_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief UNM2R multiplies a complex matrix Q with orthonormal columns by a
@@ -3287,13 +3151,11 @@ rocsolver_dorm2r_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cunm2r_full_rank,&
-      
-rocsolver_cunm2r_rank_0,&
-      
-rocsolver_cunm2r_rank_1
+    module procedure &
+      rocsolver_cunm2r_full_rank,&
+      rocsolver_cunm2r_rank_0,&
+      rocsolver_cunm2r_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zunm2r
@@ -3317,13 +3179,11 @@ rocsolver_cunm2r_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zunm2r_full_rank,&
-      
-rocsolver_zunm2r_rank_0,&
-      
-rocsolver_zunm2r_rank_1
+    module procedure &
+      rocsolver_zunm2r_full_rank,&
+      rocsolver_zunm2r_rank_0,&
+      rocsolver_zunm2r_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief ORMQR multiplies a matrix Q with orthonormal columns by a general m-by-n
@@ -3409,13 +3269,11 @@ rocsolver_zunm2r_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sormqr_full_rank,&
-      
-rocsolver_sormqr_rank_0,&
-      
-rocsolver_sormqr_rank_1
+    module procedure &
+      rocsolver_sormqr_full_rank,&
+      rocsolver_sormqr_rank_0,&
+      rocsolver_sormqr_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dormqr
@@ -3439,13 +3297,11 @@ rocsolver_sormqr_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dormqr_full_rank,&
-      
-rocsolver_dormqr_rank_0,&
-      
-rocsolver_dormqr_rank_1
+    module procedure &
+      rocsolver_dormqr_full_rank,&
+      rocsolver_dormqr_rank_0,&
+      rocsolver_dormqr_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief UNMQR multiplies a complex matrix Q with orthonormal columns by a
@@ -3531,13 +3387,11 @@ rocsolver_dormqr_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cunmqr_full_rank,&
-      
-rocsolver_cunmqr_rank_0,&
-      
-rocsolver_cunmqr_rank_1
+    module procedure &
+      rocsolver_cunmqr_full_rank,&
+      rocsolver_cunmqr_rank_0,&
+      rocsolver_cunmqr_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zunmqr
@@ -3561,13 +3415,11 @@ rocsolver_cunmqr_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zunmqr_full_rank,&
-      
-rocsolver_zunmqr_rank_0,&
-      
-rocsolver_zunmqr_rank_1
+    module procedure &
+      rocsolver_zunmqr_full_rank,&
+      rocsolver_zunmqr_rank_0,&
+      rocsolver_zunmqr_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief ORML2 multiplies a matrix Q with orthonormal rows by a general m-by-n
@@ -3654,13 +3506,11 @@ rocsolver_zunmqr_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sorml2_full_rank,&
-      
-rocsolver_sorml2_rank_0,&
-      
-rocsolver_sorml2_rank_1
+    module procedure &
+      rocsolver_sorml2_full_rank,&
+      rocsolver_sorml2_rank_0,&
+      rocsolver_sorml2_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dorml2
@@ -3684,13 +3534,11 @@ rocsolver_sorml2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dorml2_full_rank,&
-      
-rocsolver_dorml2_rank_0,&
-      
-rocsolver_dorml2_rank_1
+    module procedure &
+      rocsolver_dorml2_full_rank,&
+      rocsolver_dorml2_rank_0,&
+      rocsolver_dorml2_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief UNML2 multiplies a complex matrix Q with orthonormal rows by a general
@@ -3776,13 +3624,11 @@ rocsolver_dorml2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cunml2_full_rank,&
-      
-rocsolver_cunml2_rank_0,&
-      
-rocsolver_cunml2_rank_1
+    module procedure &
+      rocsolver_cunml2_full_rank,&
+      rocsolver_cunml2_rank_0,&
+      rocsolver_cunml2_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zunml2
@@ -3806,13 +3652,11 @@ rocsolver_cunml2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zunml2_full_rank,&
-      
-rocsolver_zunml2_rank_0,&
-      
-rocsolver_zunml2_rank_1
+    module procedure &
+      rocsolver_zunml2_full_rank,&
+      rocsolver_zunml2_rank_0,&
+      rocsolver_zunml2_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief ORMLQ multiplies a matrix Q with orthonormal rows by a general m-by-n
@@ -3898,13 +3742,11 @@ rocsolver_zunml2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sormlq_full_rank,&
-      
-rocsolver_sormlq_rank_0,&
-      
-rocsolver_sormlq_rank_1
+    module procedure &
+      rocsolver_sormlq_full_rank,&
+      rocsolver_sormlq_rank_0,&
+      rocsolver_sormlq_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dormlq
@@ -3928,13 +3770,11 @@ rocsolver_sormlq_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dormlq_full_rank,&
-      
-rocsolver_dormlq_rank_0,&
-      
-rocsolver_dormlq_rank_1
+    module procedure &
+      rocsolver_dormlq_full_rank,&
+      rocsolver_dormlq_rank_0,&
+      rocsolver_dormlq_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief UNMLQ multiplies a complex matrix Q with orthonormal rows by a general
@@ -4020,13 +3860,11 @@ rocsolver_dormlq_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cunmlq_full_rank,&
-      
-rocsolver_cunmlq_rank_0,&
-      
-rocsolver_cunmlq_rank_1
+    module procedure &
+      rocsolver_cunmlq_full_rank,&
+      rocsolver_cunmlq_rank_0,&
+      rocsolver_cunmlq_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zunmlq
@@ -4050,13 +3888,11 @@ rocsolver_cunmlq_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zunmlq_full_rank,&
-      
-rocsolver_zunmlq_rank_0,&
-      
-rocsolver_zunmlq_rank_1
+    module procedure &
+      rocsolver_zunmlq_full_rank,&
+      rocsolver_zunmlq_rank_0,&
+      rocsolver_zunmlq_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief ORM2L multiplies a matrix Q with orthonormal columns by a general m-by-n
@@ -4145,13 +3981,11 @@ rocsolver_zunmlq_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sorm2l_full_rank,&
-      
-rocsolver_sorm2l_rank_0,&
-      
-rocsolver_sorm2l_rank_1
+    module procedure &
+      rocsolver_sorm2l_full_rank,&
+      rocsolver_sorm2l_rank_0,&
+      rocsolver_sorm2l_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dorm2l
@@ -4175,13 +4009,11 @@ rocsolver_sorm2l_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dorm2l_full_rank,&
-      
-rocsolver_dorm2l_rank_0,&
-      
-rocsolver_dorm2l_rank_1
+    module procedure &
+      rocsolver_dorm2l_full_rank,&
+      rocsolver_dorm2l_rank_0,&
+      rocsolver_dorm2l_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief UNM2L multiplies a complex matrix Q with orthonormal columns by a
@@ -4270,13 +4102,11 @@ rocsolver_dorm2l_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cunm2l_full_rank,&
-      
-rocsolver_cunm2l_rank_0,&
-      
-rocsolver_cunm2l_rank_1
+    module procedure &
+      rocsolver_cunm2l_full_rank,&
+      rocsolver_cunm2l_rank_0,&
+      rocsolver_cunm2l_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zunm2l
@@ -4300,13 +4130,11 @@ rocsolver_cunm2l_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zunm2l_full_rank,&
-      
-rocsolver_zunm2l_rank_0,&
-      
-rocsolver_zunm2l_rank_1
+    module procedure &
+      rocsolver_zunm2l_full_rank,&
+      rocsolver_zunm2l_rank_0,&
+      rocsolver_zunm2l_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief ORMQL multiplies a matrix Q with orthonormal columns by a general m-by-n
@@ -4395,13 +4223,11 @@ rocsolver_zunm2l_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sormql_full_rank,&
-      
-rocsolver_sormql_rank_0,&
-      
-rocsolver_sormql_rank_1
+    module procedure &
+      rocsolver_sormql_full_rank,&
+      rocsolver_sormql_rank_0,&
+      rocsolver_sormql_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dormql
@@ -4425,13 +4251,11 @@ rocsolver_sormql_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dormql_full_rank,&
-      
-rocsolver_dormql_rank_0,&
-      
-rocsolver_dormql_rank_1
+    module procedure &
+      rocsolver_dormql_full_rank,&
+      rocsolver_dormql_rank_0,&
+      rocsolver_dormql_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief UNMQL multiplies a complex matrix Q with orthonormal columns by a
@@ -4520,13 +4344,11 @@ rocsolver_dormql_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cunmql_full_rank,&
-      
-rocsolver_cunmql_rank_0,&
-      
-rocsolver_cunmql_rank_1
+    module procedure &
+      rocsolver_cunmql_full_rank,&
+      rocsolver_cunmql_rank_0,&
+      rocsolver_cunmql_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zunmql
@@ -4550,13 +4372,11 @@ rocsolver_cunmql_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zunmql_full_rank,&
-      
-rocsolver_zunmql_rank_0,&
-      
-rocsolver_zunmql_rank_1
+    module procedure &
+      rocsolver_zunmql_full_rank,&
+      rocsolver_zunmql_rank_0,&
+      rocsolver_zunmql_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief ORMBR multiplies a matrix Q with orthonormal rows or columns by a
@@ -4666,13 +4486,11 @@ rocsolver_zunmql_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sormbr_full_rank,&
-      
-rocsolver_sormbr_rank_0,&
-      
-rocsolver_sormbr_rank_1
+    module procedure &
+      rocsolver_sormbr_full_rank,&
+      rocsolver_sormbr_rank_0,&
+      rocsolver_sormbr_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dormbr
@@ -4697,13 +4515,11 @@ rocsolver_sormbr_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dormbr_full_rank,&
-      
-rocsolver_dormbr_rank_0,&
-      
-rocsolver_dormbr_rank_1
+    module procedure &
+      rocsolver_dormbr_full_rank,&
+      rocsolver_dormbr_rank_0,&
+      rocsolver_dormbr_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief UNMBR multiplies a complex matrix Q with orthonormal rows or columns by
@@ -4813,13 +4629,11 @@ rocsolver_dormbr_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cunmbr_full_rank,&
-      
-rocsolver_cunmbr_rank_0,&
-      
-rocsolver_cunmbr_rank_1
+    module procedure &
+      rocsolver_cunmbr_full_rank,&
+      rocsolver_cunmbr_rank_0,&
+      rocsolver_cunmbr_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zunmbr
@@ -4844,13 +4658,11 @@ rocsolver_cunmbr_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zunmbr_full_rank,&
-      
-rocsolver_zunmbr_rank_0,&
-      
-rocsolver_zunmbr_rank_1
+    module procedure &
+      rocsolver_zunmbr_full_rank,&
+      rocsolver_zunmbr_rank_0,&
+      rocsolver_zunmbr_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief ORMTR multiplies an orthogonal matrix Q by a general m-by-n matrix C.
@@ -4948,13 +4760,11 @@ rocsolver_zunmbr_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sormtr_full_rank,&
-      
-rocsolver_sormtr_rank_0,&
-      
-rocsolver_sormtr_rank_1
+    module procedure &
+      rocsolver_sormtr_full_rank,&
+      rocsolver_sormtr_rank_0,&
+      rocsolver_sormtr_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dormtr
@@ -4978,13 +4788,11 @@ rocsolver_sormtr_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dormtr_full_rank,&
-      
-rocsolver_dormtr_rank_0,&
-      
-rocsolver_dormtr_rank_1
+    module procedure &
+      rocsolver_dormtr_full_rank,&
+      rocsolver_dormtr_rank_0,&
+      rocsolver_dormtr_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief UNMTR multiplies a unitary matrix Q by a general m-by-n matrix C.
@@ -5082,13 +4890,11 @@ rocsolver_dormtr_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cunmtr_full_rank,&
-      
-rocsolver_cunmtr_rank_0,&
-      
-rocsolver_cunmtr_rank_1
+    module procedure &
+      rocsolver_cunmtr_full_rank,&
+      rocsolver_cunmtr_rank_0,&
+      rocsolver_cunmtr_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zunmtr
@@ -5112,13 +4918,11 @@ rocsolver_cunmtr_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zunmtr_full_rank,&
-      
-rocsolver_zunmtr_rank_0,&
-      
-rocsolver_zunmtr_rank_1
+    module procedure &
+      rocsolver_zunmtr_full_rank,&
+      rocsolver_zunmtr_rank_0,&
+      rocsolver_zunmtr_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief BDSQR computes the singular value decomposition (SVD) of an
@@ -5215,17 +5019,15 @@ rocsolver_zunmtr_rank_1
       integer(c_int),value :: ldu
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sbdsqr_full_rank,&
-      
-rocsolver_sbdsqr_rank_0,&
-      
-rocsolver_sbdsqr_rank_1
+    module procedure &
+      rocsolver_sbdsqr_full_rank,&
+      rocsolver_sbdsqr_rank_0,&
+      rocsolver_sbdsqr_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dbdsqr
@@ -5249,17 +5051,15 @@ rocsolver_sbdsqr_rank_1
       integer(c_int),value :: ldu
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dbdsqr_full_rank,&
-      
-rocsolver_dbdsqr_rank_0,&
-      
-rocsolver_dbdsqr_rank_1
+    module procedure &
+      rocsolver_dbdsqr_full_rank,&
+      rocsolver_dbdsqr_rank_0,&
+      rocsolver_dbdsqr_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cbdsqr
@@ -5283,17 +5083,15 @@ rocsolver_dbdsqr_rank_1
       integer(c_int),value :: ldu
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cbdsqr_full_rank,&
-      
-rocsolver_cbdsqr_rank_0,&
-      
-rocsolver_cbdsqr_rank_1
+    module procedure &
+      rocsolver_cbdsqr_full_rank,&
+      rocsolver_cbdsqr_rank_0,&
+      rocsolver_cbdsqr_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zbdsqr
@@ -5317,17 +5115,15 @@ rocsolver_cbdsqr_rank_1
       integer(c_int),value :: ldu
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zbdsqr_full_rank,&
-      
-rocsolver_zbdsqr_rank_0,&
-      
-rocsolver_zbdsqr_rank_1
+    module procedure &
+      rocsolver_zbdsqr_full_rank,&
+      rocsolver_zbdsqr_rank_0,&
+      rocsolver_zbdsqr_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief STERF computes the eigenvalues of a symmetric tridiagonal matrix.
@@ -5377,15 +5173,14 @@ rocsolver_zbdsqr_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: D
       type(c_ptr),value :: E
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_ssterf_rank_0,&
-      
-rocsolver_ssterf_rank_1
+    module procedure &
+      rocsolver_ssterf_rank_0,&
+      rocsolver_ssterf_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dsterf
@@ -5399,15 +5194,14 @@ rocsolver_ssterf_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: D
       type(c_ptr),value :: E
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dsterf_rank_0,&
-      
-rocsolver_dsterf_rank_1
+    module procedure &
+      rocsolver_dsterf_rank_0,&
+      rocsolver_dsterf_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief STEQR computes the eigenvalues and (optionally) eigenvectors of
@@ -5479,17 +5273,15 @@ rocsolver_dsterf_rank_1
       type(c_ptr),value :: E
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_ssteqr_full_rank,&
-      
-rocsolver_ssteqr_rank_0,&
-      
-rocsolver_ssteqr_rank_1
+    module procedure &
+      rocsolver_ssteqr_full_rank,&
+      rocsolver_ssteqr_rank_0,&
+      rocsolver_ssteqr_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dsteqr
@@ -5506,17 +5298,15 @@ rocsolver_ssteqr_rank_1
       type(c_ptr),value :: E
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dsteqr_full_rank,&
-      
-rocsolver_dsteqr_rank_0,&
-      
-rocsolver_dsteqr_rank_1
+    module procedure &
+      rocsolver_dsteqr_full_rank,&
+      rocsolver_dsteqr_rank_0,&
+      rocsolver_dsteqr_rank_1
 #endif
-
   end interface
   
   interface rocsolver_csteqr
@@ -5533,17 +5323,15 @@ rocsolver_dsteqr_rank_1
       type(c_ptr),value :: E
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_csteqr_full_rank,&
-      
-rocsolver_csteqr_rank_0,&
-      
-rocsolver_csteqr_rank_1
+    module procedure &
+      rocsolver_csteqr_full_rank,&
+      rocsolver_csteqr_rank_0,&
+      rocsolver_csteqr_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zsteqr
@@ -5560,17 +5348,15 @@ rocsolver_csteqr_rank_1
       type(c_ptr),value :: E
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zsteqr_full_rank,&
-      
-rocsolver_zsteqr_rank_0,&
-      
-rocsolver_zsteqr_rank_1
+    module procedure &
+      rocsolver_zsteqr_full_rank,&
+      rocsolver_zsteqr_rank_0,&
+      rocsolver_zsteqr_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief STEDC computes the eigenvalues and (optionally) eigenvectors of
@@ -5634,17 +5420,15 @@ rocsolver_zsteqr_rank_1
       type(c_ptr),value :: E
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sstedc_full_rank,&
-      
-rocsolver_sstedc_rank_0,&
-      
-rocsolver_sstedc_rank_1
+    module procedure &
+      rocsolver_sstedc_full_rank,&
+      rocsolver_sstedc_rank_0,&
+      rocsolver_sstedc_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dstedc
@@ -5661,17 +5445,15 @@ rocsolver_sstedc_rank_1
       type(c_ptr),value :: E
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dstedc_full_rank,&
-      
-rocsolver_dstedc_rank_0,&
-      
-rocsolver_dstedc_rank_1
+    module procedure &
+      rocsolver_dstedc_full_rank,&
+      rocsolver_dstedc_rank_0,&
+      rocsolver_dstedc_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cstedc
@@ -5688,17 +5470,15 @@ rocsolver_dstedc_rank_1
       type(c_ptr),value :: E
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cstedc_full_rank,&
-      
-rocsolver_cstedc_rank_0,&
-      
-rocsolver_cstedc_rank_1
+    module procedure &
+      rocsolver_cstedc_full_rank,&
+      rocsolver_cstedc_rank_0,&
+      rocsolver_cstedc_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zstedc
@@ -5715,17 +5495,15 @@ rocsolver_cstedc_rank_1
       type(c_ptr),value :: E
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zstedc_full_rank,&
-      
-rocsolver_zstedc_rank_0,&
-      
-rocsolver_zstedc_rank_1
+    module procedure &
+      rocsolver_zstedc_full_rank,&
+      rocsolver_zstedc_rank_0,&
+      rocsolver_zstedc_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GETF2_NPVT computes the LU factorization of a general m-by-n matrix A
@@ -5783,17 +5561,15 @@ rocsolver_zstedc_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgetf2_npvt_full_rank,&
-      
-rocsolver_sgetf2_npvt_rank_0,&
-      
-rocsolver_sgetf2_npvt_rank_1
+    module procedure &
+      rocsolver_sgetf2_npvt_full_rank,&
+      rocsolver_sgetf2_npvt_rank_0,&
+      rocsolver_sgetf2_npvt_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgetf2_npvt
@@ -5808,17 +5584,15 @@ rocsolver_sgetf2_npvt_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgetf2_npvt_full_rank,&
-      
-rocsolver_dgetf2_npvt_rank_0,&
-      
-rocsolver_dgetf2_npvt_rank_1
+    module procedure &
+      rocsolver_dgetf2_npvt_full_rank,&
+      rocsolver_dgetf2_npvt_rank_0,&
+      rocsolver_dgetf2_npvt_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgetf2_npvt
@@ -5833,17 +5607,15 @@ rocsolver_dgetf2_npvt_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgetf2_npvt_full_rank,&
-      
-rocsolver_cgetf2_npvt_rank_0,&
-      
-rocsolver_cgetf2_npvt_rank_1
+    module procedure &
+      rocsolver_cgetf2_npvt_full_rank,&
+      rocsolver_cgetf2_npvt_rank_0,&
+      rocsolver_cgetf2_npvt_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgetf2_npvt
@@ -5858,17 +5630,15 @@ rocsolver_cgetf2_npvt_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgetf2_npvt_full_rank,&
-      
-rocsolver_zgetf2_npvt_rank_0,&
-      
-rocsolver_zgetf2_npvt_rank_1
+    module procedure &
+      rocsolver_zgetf2_npvt_full_rank,&
+      rocsolver_zgetf2_npvt_rank_0,&
+      rocsolver_zgetf2_npvt_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GETF2_NPVT_BATCHED computes the LU factorization of a batch of
@@ -5929,18 +5699,16 @@ rocsolver_zgetf2_npvt_rank_1
       integer(c_int),value :: n
       type(c_ptr) :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgetf2_npvt_batched_full_rank,&
-      
-rocsolver_sgetf2_npvt_batched_rank_0,&
-      
-rocsolver_sgetf2_npvt_batched_rank_1
+    module procedure &
+      rocsolver_sgetf2_npvt_batched_full_rank,&
+      rocsolver_sgetf2_npvt_batched_rank_0,&
+      rocsolver_sgetf2_npvt_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgetf2_npvt_batched
@@ -5955,18 +5723,16 @@ rocsolver_sgetf2_npvt_batched_rank_1
       integer(c_int),value :: n
       type(c_ptr) :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgetf2_npvt_batched_full_rank,&
-      
-rocsolver_dgetf2_npvt_batched_rank_0,&
-      
-rocsolver_dgetf2_npvt_batched_rank_1
+    module procedure &
+      rocsolver_dgetf2_npvt_batched_full_rank,&
+      rocsolver_dgetf2_npvt_batched_rank_0,&
+      rocsolver_dgetf2_npvt_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgetf2_npvt_batched
@@ -5981,18 +5747,16 @@ rocsolver_dgetf2_npvt_batched_rank_1
       integer(c_int),value :: n
       type(c_ptr) :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgetf2_npvt_batched_full_rank,&
-      
-rocsolver_cgetf2_npvt_batched_rank_0,&
-      
-rocsolver_cgetf2_npvt_batched_rank_1
+    module procedure &
+      rocsolver_cgetf2_npvt_batched_full_rank,&
+      rocsolver_cgetf2_npvt_batched_rank_0,&
+      rocsolver_cgetf2_npvt_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgetf2_npvt_batched
@@ -6007,18 +5771,16 @@ rocsolver_cgetf2_npvt_batched_rank_1
       integer(c_int),value :: n
       type(c_ptr) :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgetf2_npvt_batched_full_rank,&
-      
-rocsolver_zgetf2_npvt_batched_rank_0,&
-      
-rocsolver_zgetf2_npvt_batched_rank_1
+    module procedure &
+      rocsolver_zgetf2_npvt_batched_full_rank,&
+      rocsolver_zgetf2_npvt_batched_rank_0,&
+      rocsolver_zgetf2_npvt_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GETF2_NPVT_STRIDED_BATCHED computes the LU factorization of a batch
@@ -6084,18 +5846,16 @@ rocsolver_zgetf2_npvt_batched_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgetf2_npvt_strided_batched_full_rank,&
-      
-rocsolver_sgetf2_npvt_strided_batched_rank_0,&
-      
-rocsolver_sgetf2_npvt_strided_batched_rank_1
+    module procedure &
+      rocsolver_sgetf2_npvt_strided_batched_full_rank,&
+      rocsolver_sgetf2_npvt_strided_batched_rank_0,&
+      rocsolver_sgetf2_npvt_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgetf2_npvt_strided_batched
@@ -6111,18 +5871,16 @@ rocsolver_sgetf2_npvt_strided_batched_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgetf2_npvt_strided_batched_full_rank,&
-      
-rocsolver_dgetf2_npvt_strided_batched_rank_0,&
-      
-rocsolver_dgetf2_npvt_strided_batched_rank_1
+    module procedure &
+      rocsolver_dgetf2_npvt_strided_batched_full_rank,&
+      rocsolver_dgetf2_npvt_strided_batched_rank_0,&
+      rocsolver_dgetf2_npvt_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgetf2_npvt_strided_batched
@@ -6138,18 +5896,16 @@ rocsolver_dgetf2_npvt_strided_batched_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgetf2_npvt_strided_batched_full_rank,&
-      
-rocsolver_cgetf2_npvt_strided_batched_rank_0,&
-      
-rocsolver_cgetf2_npvt_strided_batched_rank_1
+    module procedure &
+      rocsolver_cgetf2_npvt_strided_batched_full_rank,&
+      rocsolver_cgetf2_npvt_strided_batched_rank_0,&
+      rocsolver_cgetf2_npvt_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgetf2_npvt_strided_batched
@@ -6165,18 +5921,16 @@ rocsolver_cgetf2_npvt_strided_batched_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgetf2_npvt_strided_batched_full_rank,&
-      
-rocsolver_zgetf2_npvt_strided_batched_rank_0,&
-      
-rocsolver_zgetf2_npvt_strided_batched_rank_1
+    module procedure &
+      rocsolver_zgetf2_npvt_strided_batched_full_rank,&
+      rocsolver_zgetf2_npvt_strided_batched_rank_0,&
+      rocsolver_zgetf2_npvt_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GETRF_NPVT computes the LU factorization of a general m-by-n matrix A
@@ -6234,17 +5988,15 @@ rocsolver_zgetf2_npvt_strided_batched_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgetrf_npvt_full_rank,&
-      
-rocsolver_sgetrf_npvt_rank_0,&
-      
-rocsolver_sgetrf_npvt_rank_1
+    module procedure &
+      rocsolver_sgetrf_npvt_full_rank,&
+      rocsolver_sgetrf_npvt_rank_0,&
+      rocsolver_sgetrf_npvt_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgetrf_npvt
@@ -6259,17 +6011,15 @@ rocsolver_sgetrf_npvt_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgetrf_npvt_full_rank,&
-      
-rocsolver_dgetrf_npvt_rank_0,&
-      
-rocsolver_dgetrf_npvt_rank_1
+    module procedure &
+      rocsolver_dgetrf_npvt_full_rank,&
+      rocsolver_dgetrf_npvt_rank_0,&
+      rocsolver_dgetrf_npvt_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgetrf_npvt
@@ -6284,17 +6034,15 @@ rocsolver_dgetrf_npvt_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgetrf_npvt_full_rank,&
-      
-rocsolver_cgetrf_npvt_rank_0,&
-      
-rocsolver_cgetrf_npvt_rank_1
+    module procedure &
+      rocsolver_cgetrf_npvt_full_rank,&
+      rocsolver_cgetrf_npvt_rank_0,&
+      rocsolver_cgetrf_npvt_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgetrf_npvt
@@ -6309,17 +6057,15 @@ rocsolver_cgetrf_npvt_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgetrf_npvt_full_rank,&
-      
-rocsolver_zgetrf_npvt_rank_0,&
-      
-rocsolver_zgetrf_npvt_rank_1
+    module procedure &
+      rocsolver_zgetrf_npvt_full_rank,&
+      rocsolver_zgetrf_npvt_rank_0,&
+      rocsolver_zgetrf_npvt_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GETRF_NPVT_BATCHED computes the LU factorization of a batch of
@@ -6381,18 +6127,16 @@ rocsolver_zgetrf_npvt_rank_1
       integer(c_int),value :: n
       type(c_ptr) :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgetrf_npvt_batched_full_rank,&
-      
-rocsolver_sgetrf_npvt_batched_rank_0,&
-      
-rocsolver_sgetrf_npvt_batched_rank_1
+    module procedure &
+      rocsolver_sgetrf_npvt_batched_full_rank,&
+      rocsolver_sgetrf_npvt_batched_rank_0,&
+      rocsolver_sgetrf_npvt_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgetrf_npvt_batched
@@ -6407,18 +6151,16 @@ rocsolver_sgetrf_npvt_batched_rank_1
       integer(c_int),value :: n
       type(c_ptr) :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgetrf_npvt_batched_full_rank,&
-      
-rocsolver_dgetrf_npvt_batched_rank_0,&
-      
-rocsolver_dgetrf_npvt_batched_rank_1
+    module procedure &
+      rocsolver_dgetrf_npvt_batched_full_rank,&
+      rocsolver_dgetrf_npvt_batched_rank_0,&
+      rocsolver_dgetrf_npvt_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgetrf_npvt_batched
@@ -6433,18 +6175,16 @@ rocsolver_dgetrf_npvt_batched_rank_1
       integer(c_int),value :: n
       type(c_ptr) :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgetrf_npvt_batched_full_rank,&
-      
-rocsolver_cgetrf_npvt_batched_rank_0,&
-      
-rocsolver_cgetrf_npvt_batched_rank_1
+    module procedure &
+      rocsolver_cgetrf_npvt_batched_full_rank,&
+      rocsolver_cgetrf_npvt_batched_rank_0,&
+      rocsolver_cgetrf_npvt_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgetrf_npvt_batched
@@ -6459,18 +6199,16 @@ rocsolver_cgetrf_npvt_batched_rank_1
       integer(c_int),value :: n
       type(c_ptr) :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgetrf_npvt_batched_full_rank,&
-      
-rocsolver_zgetrf_npvt_batched_rank_0,&
-      
-rocsolver_zgetrf_npvt_batched_rank_1
+    module procedure &
+      rocsolver_zgetrf_npvt_batched_full_rank,&
+      rocsolver_zgetrf_npvt_batched_rank_0,&
+      rocsolver_zgetrf_npvt_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GETRF_NPVT_STRIDED_BATCHED computes the LU factorization of a batch
@@ -6537,18 +6275,16 @@ rocsolver_zgetrf_npvt_batched_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgetrf_npvt_strided_batched_full_rank,&
-      
-rocsolver_sgetrf_npvt_strided_batched_rank_0,&
-      
-rocsolver_sgetrf_npvt_strided_batched_rank_1
+    module procedure &
+      rocsolver_sgetrf_npvt_strided_batched_full_rank,&
+      rocsolver_sgetrf_npvt_strided_batched_rank_0,&
+      rocsolver_sgetrf_npvt_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgetrf_npvt_strided_batched
@@ -6564,18 +6300,16 @@ rocsolver_sgetrf_npvt_strided_batched_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgetrf_npvt_strided_batched_full_rank,&
-      
-rocsolver_dgetrf_npvt_strided_batched_rank_0,&
-      
-rocsolver_dgetrf_npvt_strided_batched_rank_1
+    module procedure &
+      rocsolver_dgetrf_npvt_strided_batched_full_rank,&
+      rocsolver_dgetrf_npvt_strided_batched_rank_0,&
+      rocsolver_dgetrf_npvt_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgetrf_npvt_strided_batched
@@ -6591,18 +6325,16 @@ rocsolver_dgetrf_npvt_strided_batched_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgetrf_npvt_strided_batched_full_rank,&
-      
-rocsolver_cgetrf_npvt_strided_batched_rank_0,&
-      
-rocsolver_cgetrf_npvt_strided_batched_rank_1
+    module procedure &
+      rocsolver_cgetrf_npvt_strided_batched_full_rank,&
+      rocsolver_cgetrf_npvt_strided_batched_rank_0,&
+      rocsolver_cgetrf_npvt_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgetrf_npvt_strided_batched
@@ -6618,18 +6350,16 @@ rocsolver_cgetrf_npvt_strided_batched_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgetrf_npvt_strided_batched_full_rank,&
-      
-rocsolver_zgetrf_npvt_strided_batched_rank_0,&
-      
-rocsolver_zgetrf_npvt_strided_batched_rank_1
+    module procedure &
+      rocsolver_zgetrf_npvt_strided_batched_full_rank,&
+      rocsolver_zgetrf_npvt_strided_batched_rank_0,&
+      rocsolver_zgetrf_npvt_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GETF2 computes the LU factorization of a general m-by-n matrix A
@@ -6690,17 +6420,15 @@ rocsolver_zgetrf_npvt_strided_batched_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgetf2_full_rank,&
-      
-rocsolver_sgetf2_rank_0,&
-      
-rocsolver_sgetf2_rank_1
+    module procedure &
+      rocsolver_sgetf2_full_rank,&
+      rocsolver_sgetf2_rank_0,&
+      rocsolver_sgetf2_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgetf2
@@ -6716,17 +6444,15 @@ rocsolver_sgetf2_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgetf2_full_rank,&
-      
-rocsolver_dgetf2_rank_0,&
-      
-rocsolver_dgetf2_rank_1
+    module procedure &
+      rocsolver_dgetf2_full_rank,&
+      rocsolver_dgetf2_rank_0,&
+      rocsolver_dgetf2_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgetf2
@@ -6742,17 +6468,15 @@ rocsolver_dgetf2_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgetf2_full_rank,&
-      
-rocsolver_cgetf2_rank_0,&
-      
-rocsolver_cgetf2_rank_1
+    module procedure &
+      rocsolver_cgetf2_full_rank,&
+      rocsolver_cgetf2_rank_0,&
+      rocsolver_cgetf2_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgetf2
@@ -6768,17 +6492,15 @@ rocsolver_cgetf2_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgetf2_full_rank,&
-      
-rocsolver_zgetf2_rank_0,&
-      
-rocsolver_zgetf2_rank_1
+    module procedure &
+      rocsolver_zgetf2_full_rank,&
+      rocsolver_zgetf2_rank_0,&
+      rocsolver_zgetf2_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GETF2_BATCHED computes the LU factorization of a batch of general
@@ -6849,18 +6571,16 @@ rocsolver_zgetf2_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgetf2_batched_full_rank,&
-      
-rocsolver_sgetf2_batched_rank_0,&
-      
-rocsolver_sgetf2_batched_rank_1
+    module procedure &
+      rocsolver_sgetf2_batched_full_rank,&
+      rocsolver_sgetf2_batched_rank_0,&
+      rocsolver_sgetf2_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgetf2_batched
@@ -6877,18 +6597,16 @@ rocsolver_sgetf2_batched_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgetf2_batched_full_rank,&
-      
-rocsolver_dgetf2_batched_rank_0,&
-      
-rocsolver_dgetf2_batched_rank_1
+    module procedure &
+      rocsolver_dgetf2_batched_full_rank,&
+      rocsolver_dgetf2_batched_rank_0,&
+      rocsolver_dgetf2_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgetf2_batched
@@ -6905,18 +6623,16 @@ rocsolver_dgetf2_batched_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgetf2_batched_full_rank,&
-      
-rocsolver_cgetf2_batched_rank_0,&
-      
-rocsolver_cgetf2_batched_rank_1
+    module procedure &
+      rocsolver_cgetf2_batched_full_rank,&
+      rocsolver_cgetf2_batched_rank_0,&
+      rocsolver_cgetf2_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgetf2_batched
@@ -6933,18 +6649,16 @@ rocsolver_cgetf2_batched_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgetf2_batched_full_rank,&
-      
-rocsolver_zgetf2_batched_rank_0,&
-      
-rocsolver_zgetf2_batched_rank_1
+    module procedure &
+      rocsolver_zgetf2_batched_full_rank,&
+      rocsolver_zgetf2_batched_rank_0,&
+      rocsolver_zgetf2_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GETF2_STRIDED_BATCHED computes the LU factorization of a batch of
@@ -7020,18 +6734,16 @@ rocsolver_zgetf2_batched_rank_1
       integer(c_int64_t),value :: strideA
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgetf2_strided_batched_full_rank,&
-      
-rocsolver_sgetf2_strided_batched_rank_0,&
-      
-rocsolver_sgetf2_strided_batched_rank_1
+    module procedure &
+      rocsolver_sgetf2_strided_batched_full_rank,&
+      rocsolver_sgetf2_strided_batched_rank_0,&
+      rocsolver_sgetf2_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgetf2_strided_batched
@@ -7049,18 +6761,16 @@ rocsolver_sgetf2_strided_batched_rank_1
       integer(c_int64_t),value :: strideA
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgetf2_strided_batched_full_rank,&
-      
-rocsolver_dgetf2_strided_batched_rank_0,&
-      
-rocsolver_dgetf2_strided_batched_rank_1
+    module procedure &
+      rocsolver_dgetf2_strided_batched_full_rank,&
+      rocsolver_dgetf2_strided_batched_rank_0,&
+      rocsolver_dgetf2_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgetf2_strided_batched
@@ -7078,18 +6788,16 @@ rocsolver_dgetf2_strided_batched_rank_1
       integer(c_int64_t),value :: strideA
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgetf2_strided_batched_full_rank,&
-      
-rocsolver_cgetf2_strided_batched_rank_0,&
-      
-rocsolver_cgetf2_strided_batched_rank_1
+    module procedure &
+      rocsolver_cgetf2_strided_batched_full_rank,&
+      rocsolver_cgetf2_strided_batched_rank_0,&
+      rocsolver_cgetf2_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgetf2_strided_batched
@@ -7107,18 +6815,16 @@ rocsolver_cgetf2_strided_batched_rank_1
       integer(c_int64_t),value :: strideA
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgetf2_strided_batched_full_rank,&
-      
-rocsolver_zgetf2_strided_batched_rank_0,&
-      
-rocsolver_zgetf2_strided_batched_rank_1
+    module procedure &
+      rocsolver_zgetf2_strided_batched_full_rank,&
+      rocsolver_zgetf2_strided_batched_rank_0,&
+      rocsolver_zgetf2_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GETRF computes the LU factorization of a general m-by-n matrix A
@@ -7179,17 +6885,15 @@ rocsolver_zgetf2_strided_batched_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgetrf_full_rank,&
-      
-rocsolver_sgetrf_rank_0,&
-      
-rocsolver_sgetrf_rank_1
+    module procedure &
+      rocsolver_sgetrf_full_rank,&
+      rocsolver_sgetrf_rank_0,&
+      rocsolver_sgetrf_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgetrf
@@ -7205,17 +6909,15 @@ rocsolver_sgetrf_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgetrf_full_rank,&
-      
-rocsolver_dgetrf_rank_0,&
-      
-rocsolver_dgetrf_rank_1
+    module procedure &
+      rocsolver_dgetrf_full_rank,&
+      rocsolver_dgetrf_rank_0,&
+      rocsolver_dgetrf_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgetrf
@@ -7231,17 +6933,15 @@ rocsolver_dgetrf_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgetrf_full_rank,&
-      
-rocsolver_cgetrf_rank_0,&
-      
-rocsolver_cgetrf_rank_1
+    module procedure &
+      rocsolver_cgetrf_full_rank,&
+      rocsolver_cgetrf_rank_0,&
+      rocsolver_cgetrf_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgetrf
@@ -7257,17 +6957,15 @@ rocsolver_cgetrf_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgetrf_full_rank,&
-      
-rocsolver_zgetrf_rank_0,&
-      
-rocsolver_zgetrf_rank_1
+    module procedure &
+      rocsolver_zgetrf_full_rank,&
+      rocsolver_zgetrf_rank_0,&
+      rocsolver_zgetrf_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GETRF_BATCHED computes the LU factorization of a batch of general
@@ -7338,18 +7036,16 @@ rocsolver_zgetrf_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgetrf_batched_full_rank,&
-      
-rocsolver_sgetrf_batched_rank_0,&
-      
-rocsolver_sgetrf_batched_rank_1
+    module procedure &
+      rocsolver_sgetrf_batched_full_rank,&
+      rocsolver_sgetrf_batched_rank_0,&
+      rocsolver_sgetrf_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgetrf_batched
@@ -7366,18 +7062,16 @@ rocsolver_sgetrf_batched_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgetrf_batched_full_rank,&
-      
-rocsolver_dgetrf_batched_rank_0,&
-      
-rocsolver_dgetrf_batched_rank_1
+    module procedure &
+      rocsolver_dgetrf_batched_full_rank,&
+      rocsolver_dgetrf_batched_rank_0,&
+      rocsolver_dgetrf_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgetrf_batched
@@ -7394,18 +7088,16 @@ rocsolver_dgetrf_batched_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgetrf_batched_full_rank,&
-      
-rocsolver_cgetrf_batched_rank_0,&
-      
-rocsolver_cgetrf_batched_rank_1
+    module procedure &
+      rocsolver_cgetrf_batched_full_rank,&
+      rocsolver_cgetrf_batched_rank_0,&
+      rocsolver_cgetrf_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgetrf_batched
@@ -7422,18 +7114,16 @@ rocsolver_cgetrf_batched_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgetrf_batched_full_rank,&
-      
-rocsolver_zgetrf_batched_rank_0,&
-      
-rocsolver_zgetrf_batched_rank_1
+    module procedure &
+      rocsolver_zgetrf_batched_full_rank,&
+      rocsolver_zgetrf_batched_rank_0,&
+      rocsolver_zgetrf_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GETRF_STRIDED_BATCHED computes the LU factorization of a batch of
@@ -7509,18 +7199,16 @@ rocsolver_zgetrf_batched_rank_1
       integer(c_int64_t),value :: strideA
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgetrf_strided_batched_full_rank,&
-      
-rocsolver_sgetrf_strided_batched_rank_0,&
-      
-rocsolver_sgetrf_strided_batched_rank_1
+    module procedure &
+      rocsolver_sgetrf_strided_batched_full_rank,&
+      rocsolver_sgetrf_strided_batched_rank_0,&
+      rocsolver_sgetrf_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgetrf_strided_batched
@@ -7538,18 +7226,16 @@ rocsolver_sgetrf_strided_batched_rank_1
       integer(c_int64_t),value :: strideA
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgetrf_strided_batched_full_rank,&
-      
-rocsolver_dgetrf_strided_batched_rank_0,&
-      
-rocsolver_dgetrf_strided_batched_rank_1
+    module procedure &
+      rocsolver_dgetrf_strided_batched_full_rank,&
+      rocsolver_dgetrf_strided_batched_rank_0,&
+      rocsolver_dgetrf_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgetrf_strided_batched
@@ -7567,18 +7253,16 @@ rocsolver_dgetrf_strided_batched_rank_1
       integer(c_int64_t),value :: strideA
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgetrf_strided_batched_full_rank,&
-      
-rocsolver_cgetrf_strided_batched_rank_0,&
-      
-rocsolver_cgetrf_strided_batched_rank_1
+    module procedure &
+      rocsolver_cgetrf_strided_batched_full_rank,&
+      rocsolver_cgetrf_strided_batched_rank_0,&
+      rocsolver_cgetrf_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgetrf_strided_batched
@@ -7596,18 +7280,16 @@ rocsolver_cgetrf_strided_batched_rank_1
       integer(c_int64_t),value :: strideA
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgetrf_strided_batched_full_rank,&
-      
-rocsolver_zgetrf_strided_batched_rank_0,&
-      
-rocsolver_zgetrf_strided_batched_rank_1
+    module procedure &
+      rocsolver_zgetrf_strided_batched_full_rank,&
+      rocsolver_zgetrf_strided_batched_rank_0,&
+      rocsolver_zgetrf_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GEQR2 computes a QR factorization of a general m-by-n matrix A.
@@ -7677,13 +7359,11 @@ rocsolver_zgetrf_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgeqr2_full_rank,&
-      
-rocsolver_sgeqr2_rank_0,&
-      
-rocsolver_sgeqr2_rank_1
+    module procedure &
+      rocsolver_sgeqr2_full_rank,&
+      rocsolver_sgeqr2_rank_0,&
+      rocsolver_sgeqr2_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgeqr2
@@ -7702,13 +7382,11 @@ rocsolver_sgeqr2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgeqr2_full_rank,&
-      
-rocsolver_dgeqr2_rank_0,&
-      
-rocsolver_dgeqr2_rank_1
+    module procedure &
+      rocsolver_dgeqr2_full_rank,&
+      rocsolver_dgeqr2_rank_0,&
+      rocsolver_dgeqr2_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgeqr2
@@ -7727,13 +7405,11 @@ rocsolver_dgeqr2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgeqr2_full_rank,&
-      
-rocsolver_cgeqr2_rank_0,&
-      
-rocsolver_cgeqr2_rank_1
+    module procedure &
+      rocsolver_cgeqr2_full_rank,&
+      rocsolver_cgeqr2_rank_0,&
+      rocsolver_cgeqr2_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgeqr2
@@ -7752,13 +7428,11 @@ rocsolver_cgeqr2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgeqr2_full_rank,&
-      
-rocsolver_zgeqr2_rank_0,&
-      
-rocsolver_zgeqr2_rank_1
+    module procedure &
+      rocsolver_zgeqr2_full_rank,&
+      rocsolver_zgeqr2_rank_0,&
+      rocsolver_zgeqr2_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GEQR2_BATCHED computes the QR factorization of a batch of general
@@ -7839,13 +7513,11 @@ rocsolver_zgeqr2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgeqr2_batched_full_rank,&
-      
-rocsolver_sgeqr2_batched_rank_0,&
-      
-rocsolver_sgeqr2_batched_rank_1
+    module procedure &
+      rocsolver_sgeqr2_batched_full_rank,&
+      rocsolver_sgeqr2_batched_rank_0,&
+      rocsolver_sgeqr2_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgeqr2_batched
@@ -7866,13 +7538,11 @@ rocsolver_sgeqr2_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgeqr2_batched_full_rank,&
-      
-rocsolver_dgeqr2_batched_rank_0,&
-      
-rocsolver_dgeqr2_batched_rank_1
+    module procedure &
+      rocsolver_dgeqr2_batched_full_rank,&
+      rocsolver_dgeqr2_batched_rank_0,&
+      rocsolver_dgeqr2_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgeqr2_batched
@@ -7893,13 +7563,11 @@ rocsolver_dgeqr2_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgeqr2_batched_full_rank,&
-      
-rocsolver_cgeqr2_batched_rank_0,&
-      
-rocsolver_cgeqr2_batched_rank_1
+    module procedure &
+      rocsolver_cgeqr2_batched_full_rank,&
+      rocsolver_cgeqr2_batched_rank_0,&
+      rocsolver_cgeqr2_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgeqr2_batched
@@ -7920,13 +7588,11 @@ rocsolver_cgeqr2_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgeqr2_batched_full_rank,&
-      
-rocsolver_zgeqr2_batched_rank_0,&
-      
-rocsolver_zgeqr2_batched_rank_1
+    module procedure &
+      rocsolver_zgeqr2_batched_full_rank,&
+      rocsolver_zgeqr2_batched_rank_0,&
+      rocsolver_zgeqr2_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GEQR2_STRIDED_BATCHED computes the QR factorization of a batch of
@@ -8012,13 +7678,11 @@ rocsolver_zgeqr2_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgeqr2_strided_batched_full_rank,&
-      
-rocsolver_sgeqr2_strided_batched_rank_0,&
-      
-rocsolver_sgeqr2_strided_batched_rank_1
+    module procedure &
+      rocsolver_sgeqr2_strided_batched_full_rank,&
+      rocsolver_sgeqr2_strided_batched_rank_0,&
+      rocsolver_sgeqr2_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgeqr2_strided_batched
@@ -8040,13 +7704,11 @@ rocsolver_sgeqr2_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgeqr2_strided_batched_full_rank,&
-      
-rocsolver_dgeqr2_strided_batched_rank_0,&
-      
-rocsolver_dgeqr2_strided_batched_rank_1
+    module procedure &
+      rocsolver_dgeqr2_strided_batched_full_rank,&
+      rocsolver_dgeqr2_strided_batched_rank_0,&
+      rocsolver_dgeqr2_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgeqr2_strided_batched
@@ -8068,13 +7730,11 @@ rocsolver_dgeqr2_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgeqr2_strided_batched_full_rank,&
-      
-rocsolver_cgeqr2_strided_batched_rank_0,&
-      
-rocsolver_cgeqr2_strided_batched_rank_1
+    module procedure &
+      rocsolver_cgeqr2_strided_batched_full_rank,&
+      rocsolver_cgeqr2_strided_batched_rank_0,&
+      rocsolver_cgeqr2_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgeqr2_strided_batched
@@ -8096,13 +7756,11 @@ rocsolver_cgeqr2_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgeqr2_strided_batched_full_rank,&
-      
-rocsolver_zgeqr2_strided_batched_rank_0,&
-      
-rocsolver_zgeqr2_strided_batched_rank_1
+    module procedure &
+      rocsolver_zgeqr2_strided_batched_full_rank,&
+      rocsolver_zgeqr2_strided_batched_rank_0,&
+      rocsolver_zgeqr2_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GERQ2 computes a RQ factorization of a general m-by-n matrix A.
@@ -8172,13 +7830,11 @@ rocsolver_zgeqr2_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgerq2_full_rank,&
-      
-rocsolver_sgerq2_rank_0,&
-      
-rocsolver_sgerq2_rank_1
+    module procedure &
+      rocsolver_sgerq2_full_rank,&
+      rocsolver_sgerq2_rank_0,&
+      rocsolver_sgerq2_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgerq2
@@ -8197,13 +7853,11 @@ rocsolver_sgerq2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgerq2_full_rank,&
-      
-rocsolver_dgerq2_rank_0,&
-      
-rocsolver_dgerq2_rank_1
+    module procedure &
+      rocsolver_dgerq2_full_rank,&
+      rocsolver_dgerq2_rank_0,&
+      rocsolver_dgerq2_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgerq2
@@ -8222,13 +7876,11 @@ rocsolver_dgerq2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgerq2_full_rank,&
-      
-rocsolver_cgerq2_rank_0,&
-      
-rocsolver_cgerq2_rank_1
+    module procedure &
+      rocsolver_cgerq2_full_rank,&
+      rocsolver_cgerq2_rank_0,&
+      rocsolver_cgerq2_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgerq2
@@ -8247,13 +7899,11 @@ rocsolver_cgerq2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgerq2_full_rank,&
-      
-rocsolver_zgerq2_rank_0,&
-      
-rocsolver_zgerq2_rank_1
+    module procedure &
+      rocsolver_zgerq2_full_rank,&
+      rocsolver_zgerq2_rank_0,&
+      rocsolver_zgerq2_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GERQ2_BATCHED computes the RQ factorization of a batch of general
@@ -8333,13 +7983,11 @@ rocsolver_zgerq2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgerq2_batched_full_rank,&
-      
-rocsolver_sgerq2_batched_rank_0,&
-      
-rocsolver_sgerq2_batched_rank_1
+    module procedure &
+      rocsolver_sgerq2_batched_full_rank,&
+      rocsolver_sgerq2_batched_rank_0,&
+      rocsolver_sgerq2_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgerq2_batched
@@ -8360,13 +8008,11 @@ rocsolver_sgerq2_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgerq2_batched_full_rank,&
-      
-rocsolver_dgerq2_batched_rank_0,&
-      
-rocsolver_dgerq2_batched_rank_1
+    module procedure &
+      rocsolver_dgerq2_batched_full_rank,&
+      rocsolver_dgerq2_batched_rank_0,&
+      rocsolver_dgerq2_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgerq2_batched
@@ -8387,13 +8033,11 @@ rocsolver_dgerq2_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgerq2_batched_full_rank,&
-      
-rocsolver_cgerq2_batched_rank_0,&
-      
-rocsolver_cgerq2_batched_rank_1
+    module procedure &
+      rocsolver_cgerq2_batched_full_rank,&
+      rocsolver_cgerq2_batched_rank_0,&
+      rocsolver_cgerq2_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgerq2_batched
@@ -8414,13 +8058,11 @@ rocsolver_cgerq2_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgerq2_batched_full_rank,&
-      
-rocsolver_zgerq2_batched_rank_0,&
-      
-rocsolver_zgerq2_batched_rank_1
+    module procedure &
+      rocsolver_zgerq2_batched_full_rank,&
+      rocsolver_zgerq2_batched_rank_0,&
+      rocsolver_zgerq2_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GERQ2_STRIDED_BATCHED computes the RQ factorization of a batch of
@@ -8506,13 +8148,11 @@ rocsolver_zgerq2_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgerq2_strided_batched_full_rank,&
-      
-rocsolver_sgerq2_strided_batched_rank_0,&
-      
-rocsolver_sgerq2_strided_batched_rank_1
+    module procedure &
+      rocsolver_sgerq2_strided_batched_full_rank,&
+      rocsolver_sgerq2_strided_batched_rank_0,&
+      rocsolver_sgerq2_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgerq2_strided_batched
@@ -8534,13 +8174,11 @@ rocsolver_sgerq2_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgerq2_strided_batched_full_rank,&
-      
-rocsolver_dgerq2_strided_batched_rank_0,&
-      
-rocsolver_dgerq2_strided_batched_rank_1
+    module procedure &
+      rocsolver_dgerq2_strided_batched_full_rank,&
+      rocsolver_dgerq2_strided_batched_rank_0,&
+      rocsolver_dgerq2_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgerq2_strided_batched
@@ -8562,13 +8200,11 @@ rocsolver_dgerq2_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgerq2_strided_batched_full_rank,&
-      
-rocsolver_cgerq2_strided_batched_rank_0,&
-      
-rocsolver_cgerq2_strided_batched_rank_1
+    module procedure &
+      rocsolver_cgerq2_strided_batched_full_rank,&
+      rocsolver_cgerq2_strided_batched_rank_0,&
+      rocsolver_cgerq2_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgerq2_strided_batched
@@ -8590,13 +8226,11 @@ rocsolver_cgerq2_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgerq2_strided_batched_full_rank,&
-      
-rocsolver_zgerq2_strided_batched_rank_0,&
-      
-rocsolver_zgerq2_strided_batched_rank_1
+    module procedure &
+      rocsolver_zgerq2_strided_batched_full_rank,&
+      rocsolver_zgerq2_strided_batched_rank_0,&
+      rocsolver_zgerq2_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GEQL2 computes a QL factorization of a general m-by-n matrix A.
@@ -8667,13 +8301,11 @@ rocsolver_zgerq2_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgeql2_full_rank,&
-      
-rocsolver_sgeql2_rank_0,&
-      
-rocsolver_sgeql2_rank_1
+    module procedure &
+      rocsolver_sgeql2_full_rank,&
+      rocsolver_sgeql2_rank_0,&
+      rocsolver_sgeql2_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgeql2
@@ -8692,13 +8324,11 @@ rocsolver_sgeql2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgeql2_full_rank,&
-      
-rocsolver_dgeql2_rank_0,&
-      
-rocsolver_dgeql2_rank_1
+    module procedure &
+      rocsolver_dgeql2_full_rank,&
+      rocsolver_dgeql2_rank_0,&
+      rocsolver_dgeql2_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgeql2
@@ -8717,13 +8347,11 @@ rocsolver_dgeql2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgeql2_full_rank,&
-      
-rocsolver_cgeql2_rank_0,&
-      
-rocsolver_cgeql2_rank_1
+    module procedure &
+      rocsolver_cgeql2_full_rank,&
+      rocsolver_cgeql2_rank_0,&
+      rocsolver_cgeql2_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgeql2
@@ -8742,13 +8370,11 @@ rocsolver_cgeql2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgeql2_full_rank,&
-      
-rocsolver_zgeql2_rank_0,&
-      
-rocsolver_zgeql2_rank_1
+    module procedure &
+      rocsolver_zgeql2_full_rank,&
+      rocsolver_zgeql2_rank_0,&
+      rocsolver_zgeql2_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GEQL2_BATCHED computes the QL factorization of a batch of general
@@ -8830,13 +8456,11 @@ rocsolver_zgeql2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgeql2_batched_full_rank,&
-      
-rocsolver_sgeql2_batched_rank_0,&
-      
-rocsolver_sgeql2_batched_rank_1
+    module procedure &
+      rocsolver_sgeql2_batched_full_rank,&
+      rocsolver_sgeql2_batched_rank_0,&
+      rocsolver_sgeql2_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgeql2_batched
@@ -8857,13 +8481,11 @@ rocsolver_sgeql2_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgeql2_batched_full_rank,&
-      
-rocsolver_dgeql2_batched_rank_0,&
-      
-rocsolver_dgeql2_batched_rank_1
+    module procedure &
+      rocsolver_dgeql2_batched_full_rank,&
+      rocsolver_dgeql2_batched_rank_0,&
+      rocsolver_dgeql2_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgeql2_batched
@@ -8884,13 +8506,11 @@ rocsolver_dgeql2_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgeql2_batched_full_rank,&
-      
-rocsolver_cgeql2_batched_rank_0,&
-      
-rocsolver_cgeql2_batched_rank_1
+    module procedure &
+      rocsolver_cgeql2_batched_full_rank,&
+      rocsolver_cgeql2_batched_rank_0,&
+      rocsolver_cgeql2_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgeql2_batched
@@ -8911,13 +8531,11 @@ rocsolver_cgeql2_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgeql2_batched_full_rank,&
-      
-rocsolver_zgeql2_batched_rank_0,&
-      
-rocsolver_zgeql2_batched_rank_1
+    module procedure &
+      rocsolver_zgeql2_batched_full_rank,&
+      rocsolver_zgeql2_batched_rank_0,&
+      rocsolver_zgeql2_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GEQL2_STRIDED_BATCHED computes the QL factorization of a batch of
@@ -9003,13 +8621,11 @@ rocsolver_zgeql2_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgeql2_strided_batched_full_rank,&
-      
-rocsolver_sgeql2_strided_batched_rank_0,&
-      
-rocsolver_sgeql2_strided_batched_rank_1
+    module procedure &
+      rocsolver_sgeql2_strided_batched_full_rank,&
+      rocsolver_sgeql2_strided_batched_rank_0,&
+      rocsolver_sgeql2_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgeql2_strided_batched
@@ -9031,13 +8647,11 @@ rocsolver_sgeql2_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgeql2_strided_batched_full_rank,&
-      
-rocsolver_dgeql2_strided_batched_rank_0,&
-      
-rocsolver_dgeql2_strided_batched_rank_1
+    module procedure &
+      rocsolver_dgeql2_strided_batched_full_rank,&
+      rocsolver_dgeql2_strided_batched_rank_0,&
+      rocsolver_dgeql2_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgeql2_strided_batched
@@ -9059,13 +8673,11 @@ rocsolver_dgeql2_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgeql2_strided_batched_full_rank,&
-      
-rocsolver_cgeql2_strided_batched_rank_0,&
-      
-rocsolver_cgeql2_strided_batched_rank_1
+    module procedure &
+      rocsolver_cgeql2_strided_batched_full_rank,&
+      rocsolver_cgeql2_strided_batched_rank_0,&
+      rocsolver_cgeql2_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgeql2_strided_batched
@@ -9087,13 +8699,11 @@ rocsolver_cgeql2_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgeql2_strided_batched_full_rank,&
-      
-rocsolver_zgeql2_strided_batched_rank_0,&
-      
-rocsolver_zgeql2_strided_batched_rank_1
+    module procedure &
+      rocsolver_zgeql2_strided_batched_full_rank,&
+      rocsolver_zgeql2_strided_batched_rank_0,&
+      rocsolver_zgeql2_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GELQ2 computes a LQ factorization of a general m-by-n matrix A.
@@ -9162,13 +8772,11 @@ rocsolver_zgeql2_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgelq2_full_rank,&
-      
-rocsolver_sgelq2_rank_0,&
-      
-rocsolver_sgelq2_rank_1
+    module procedure &
+      rocsolver_sgelq2_full_rank,&
+      rocsolver_sgelq2_rank_0,&
+      rocsolver_sgelq2_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgelq2
@@ -9187,13 +8795,11 @@ rocsolver_sgelq2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgelq2_full_rank,&
-      
-rocsolver_dgelq2_rank_0,&
-      
-rocsolver_dgelq2_rank_1
+    module procedure &
+      rocsolver_dgelq2_full_rank,&
+      rocsolver_dgelq2_rank_0,&
+      rocsolver_dgelq2_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgelq2
@@ -9212,13 +8818,11 @@ rocsolver_dgelq2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgelq2_full_rank,&
-      
-rocsolver_cgelq2_rank_0,&
-      
-rocsolver_cgelq2_rank_1
+    module procedure &
+      rocsolver_cgelq2_full_rank,&
+      rocsolver_cgelq2_rank_0,&
+      rocsolver_cgelq2_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgelq2
@@ -9237,13 +8841,11 @@ rocsolver_cgelq2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgelq2_full_rank,&
-      
-rocsolver_zgelq2_rank_0,&
-      
-rocsolver_zgelq2_rank_1
+    module procedure &
+      rocsolver_zgelq2_full_rank,&
+      rocsolver_zgelq2_rank_0,&
+      rocsolver_zgelq2_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GELQ2_BATCHED computes the LQ factorization of a batch of general
@@ -9322,13 +8924,11 @@ rocsolver_zgelq2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgelq2_batched_full_rank,&
-      
-rocsolver_sgelq2_batched_rank_0,&
-      
-rocsolver_sgelq2_batched_rank_1
+    module procedure &
+      rocsolver_sgelq2_batched_full_rank,&
+      rocsolver_sgelq2_batched_rank_0,&
+      rocsolver_sgelq2_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgelq2_batched
@@ -9349,13 +8949,11 @@ rocsolver_sgelq2_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgelq2_batched_full_rank,&
-      
-rocsolver_dgelq2_batched_rank_0,&
-      
-rocsolver_dgelq2_batched_rank_1
+    module procedure &
+      rocsolver_dgelq2_batched_full_rank,&
+      rocsolver_dgelq2_batched_rank_0,&
+      rocsolver_dgelq2_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgelq2_batched
@@ -9376,13 +8974,11 @@ rocsolver_dgelq2_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgelq2_batched_full_rank,&
-      
-rocsolver_cgelq2_batched_rank_0,&
-      
-rocsolver_cgelq2_batched_rank_1
+    module procedure &
+      rocsolver_cgelq2_batched_full_rank,&
+      rocsolver_cgelq2_batched_rank_0,&
+      rocsolver_cgelq2_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgelq2_batched
@@ -9403,13 +8999,11 @@ rocsolver_cgelq2_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgelq2_batched_full_rank,&
-      
-rocsolver_zgelq2_batched_rank_0,&
-      
-rocsolver_zgelq2_batched_rank_1
+    module procedure &
+      rocsolver_zgelq2_batched_full_rank,&
+      rocsolver_zgelq2_batched_rank_0,&
+      rocsolver_zgelq2_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GELQ2_STRIDED_BATCHED computes the LQ factorization of a batch of
@@ -9494,13 +9088,11 @@ rocsolver_zgelq2_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgelq2_strided_batched_full_rank,&
-      
-rocsolver_sgelq2_strided_batched_rank_0,&
-      
-rocsolver_sgelq2_strided_batched_rank_1
+    module procedure &
+      rocsolver_sgelq2_strided_batched_full_rank,&
+      rocsolver_sgelq2_strided_batched_rank_0,&
+      rocsolver_sgelq2_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgelq2_strided_batched
@@ -9522,13 +9114,11 @@ rocsolver_sgelq2_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgelq2_strided_batched_full_rank,&
-      
-rocsolver_dgelq2_strided_batched_rank_0,&
-      
-rocsolver_dgelq2_strided_batched_rank_1
+    module procedure &
+      rocsolver_dgelq2_strided_batched_full_rank,&
+      rocsolver_dgelq2_strided_batched_rank_0,&
+      rocsolver_dgelq2_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgelq2_strided_batched
@@ -9550,13 +9140,11 @@ rocsolver_dgelq2_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgelq2_strided_batched_full_rank,&
-      
-rocsolver_cgelq2_strided_batched_rank_0,&
-      
-rocsolver_cgelq2_strided_batched_rank_1
+    module procedure &
+      rocsolver_cgelq2_strided_batched_full_rank,&
+      rocsolver_cgelq2_strided_batched_rank_0,&
+      rocsolver_cgelq2_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgelq2_strided_batched
@@ -9578,13 +9166,11 @@ rocsolver_cgelq2_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgelq2_strided_batched_full_rank,&
-      
-rocsolver_zgelq2_strided_batched_rank_0,&
-      
-rocsolver_zgelq2_strided_batched_rank_1
+    module procedure &
+      rocsolver_zgelq2_strided_batched_full_rank,&
+      rocsolver_zgelq2_strided_batched_rank_0,&
+      rocsolver_zgelq2_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GEQRF computes a QR factorization of a general m-by-n matrix A.
@@ -9654,13 +9240,11 @@ rocsolver_zgelq2_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgeqrf_full_rank,&
-      
-rocsolver_sgeqrf_rank_0,&
-      
-rocsolver_sgeqrf_rank_1
+    module procedure &
+      rocsolver_sgeqrf_full_rank,&
+      rocsolver_sgeqrf_rank_0,&
+      rocsolver_sgeqrf_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgeqrf
@@ -9679,13 +9263,11 @@ rocsolver_sgeqrf_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgeqrf_full_rank,&
-      
-rocsolver_dgeqrf_rank_0,&
-      
-rocsolver_dgeqrf_rank_1
+    module procedure &
+      rocsolver_dgeqrf_full_rank,&
+      rocsolver_dgeqrf_rank_0,&
+      rocsolver_dgeqrf_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgeqrf
@@ -9704,13 +9286,11 @@ rocsolver_dgeqrf_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgeqrf_full_rank,&
-      
-rocsolver_cgeqrf_rank_0,&
-      
-rocsolver_cgeqrf_rank_1
+    module procedure &
+      rocsolver_cgeqrf_full_rank,&
+      rocsolver_cgeqrf_rank_0,&
+      rocsolver_cgeqrf_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgeqrf
@@ -9729,13 +9309,11 @@ rocsolver_cgeqrf_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgeqrf_full_rank,&
-      
-rocsolver_zgeqrf_rank_0,&
-      
-rocsolver_zgeqrf_rank_1
+    module procedure &
+      rocsolver_zgeqrf_full_rank,&
+      rocsolver_zgeqrf_rank_0,&
+      rocsolver_zgeqrf_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GEQRF_BATCHED computes the QR factorization of a batch of general
@@ -9815,13 +9393,11 @@ rocsolver_zgeqrf_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgeqrf_batched_full_rank,&
-      
-rocsolver_sgeqrf_batched_rank_0,&
-      
-rocsolver_sgeqrf_batched_rank_1
+    module procedure &
+      rocsolver_sgeqrf_batched_full_rank,&
+      rocsolver_sgeqrf_batched_rank_0,&
+      rocsolver_sgeqrf_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgeqrf_batched
@@ -9842,13 +9418,11 @@ rocsolver_sgeqrf_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgeqrf_batched_full_rank,&
-      
-rocsolver_dgeqrf_batched_rank_0,&
-      
-rocsolver_dgeqrf_batched_rank_1
+    module procedure &
+      rocsolver_dgeqrf_batched_full_rank,&
+      rocsolver_dgeqrf_batched_rank_0,&
+      rocsolver_dgeqrf_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgeqrf_batched
@@ -9869,13 +9443,11 @@ rocsolver_dgeqrf_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgeqrf_batched_full_rank,&
-      
-rocsolver_cgeqrf_batched_rank_0,&
-      
-rocsolver_cgeqrf_batched_rank_1
+    module procedure &
+      rocsolver_cgeqrf_batched_full_rank,&
+      rocsolver_cgeqrf_batched_rank_0,&
+      rocsolver_cgeqrf_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgeqrf_batched
@@ -9896,13 +9468,11 @@ rocsolver_cgeqrf_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgeqrf_batched_full_rank,&
-      
-rocsolver_zgeqrf_batched_rank_0,&
-      
-rocsolver_zgeqrf_batched_rank_1
+    module procedure &
+      rocsolver_zgeqrf_batched_full_rank,&
+      rocsolver_zgeqrf_batched_rank_0,&
+      rocsolver_zgeqrf_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GEQRF_STRIDED_BATCHED computes the QR factorization of a batch of
@@ -9987,13 +9557,11 @@ rocsolver_zgeqrf_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgeqrf_strided_batched_full_rank,&
-      
-rocsolver_sgeqrf_strided_batched_rank_0,&
-      
-rocsolver_sgeqrf_strided_batched_rank_1
+    module procedure &
+      rocsolver_sgeqrf_strided_batched_full_rank,&
+      rocsolver_sgeqrf_strided_batched_rank_0,&
+      rocsolver_sgeqrf_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgeqrf_strided_batched
@@ -10015,13 +9583,11 @@ rocsolver_sgeqrf_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgeqrf_strided_batched_full_rank,&
-      
-rocsolver_dgeqrf_strided_batched_rank_0,&
-      
-rocsolver_dgeqrf_strided_batched_rank_1
+    module procedure &
+      rocsolver_dgeqrf_strided_batched_full_rank,&
+      rocsolver_dgeqrf_strided_batched_rank_0,&
+      rocsolver_dgeqrf_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgeqrf_strided_batched
@@ -10043,13 +9609,11 @@ rocsolver_dgeqrf_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgeqrf_strided_batched_full_rank,&
-      
-rocsolver_cgeqrf_strided_batched_rank_0,&
-      
-rocsolver_cgeqrf_strided_batched_rank_1
+    module procedure &
+      rocsolver_cgeqrf_strided_batched_full_rank,&
+      rocsolver_cgeqrf_strided_batched_rank_0,&
+      rocsolver_cgeqrf_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgeqrf_strided_batched
@@ -10071,13 +9635,11 @@ rocsolver_cgeqrf_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgeqrf_strided_batched_full_rank,&
-      
-rocsolver_zgeqrf_strided_batched_rank_0,&
-      
-rocsolver_zgeqrf_strided_batched_rank_1
+    module procedure &
+      rocsolver_zgeqrf_strided_batched_full_rank,&
+      rocsolver_zgeqrf_strided_batched_rank_0,&
+      rocsolver_zgeqrf_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GERQF computes a RQ factorization of a general m-by-n matrix A.
@@ -10147,13 +9709,11 @@ rocsolver_zgeqrf_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgerqf_full_rank,&
-      
-rocsolver_sgerqf_rank_0,&
-      
-rocsolver_sgerqf_rank_1
+    module procedure &
+      rocsolver_sgerqf_full_rank,&
+      rocsolver_sgerqf_rank_0,&
+      rocsolver_sgerqf_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgerqf
@@ -10172,13 +9732,11 @@ rocsolver_sgerqf_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgerqf_full_rank,&
-      
-rocsolver_dgerqf_rank_0,&
-      
-rocsolver_dgerqf_rank_1
+    module procedure &
+      rocsolver_dgerqf_full_rank,&
+      rocsolver_dgerqf_rank_0,&
+      rocsolver_dgerqf_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgerqf
@@ -10197,13 +9755,11 @@ rocsolver_dgerqf_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgerqf_full_rank,&
-      
-rocsolver_cgerqf_rank_0,&
-      
-rocsolver_cgerqf_rank_1
+    module procedure &
+      rocsolver_cgerqf_full_rank,&
+      rocsolver_cgerqf_rank_0,&
+      rocsolver_cgerqf_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgerqf
@@ -10222,13 +9778,11 @@ rocsolver_cgerqf_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgerqf_full_rank,&
-      
-rocsolver_zgerqf_rank_0,&
-      
-rocsolver_zgerqf_rank_1
+    module procedure &
+      rocsolver_zgerqf_full_rank,&
+      rocsolver_zgerqf_rank_0,&
+      rocsolver_zgerqf_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GERQF_BATCHED computes the RQ factorization of a batch of general
@@ -10308,13 +9862,11 @@ rocsolver_zgerqf_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgerqf_batched_full_rank,&
-      
-rocsolver_sgerqf_batched_rank_0,&
-      
-rocsolver_sgerqf_batched_rank_1
+    module procedure &
+      rocsolver_sgerqf_batched_full_rank,&
+      rocsolver_sgerqf_batched_rank_0,&
+      rocsolver_sgerqf_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgerqf_batched
@@ -10335,13 +9887,11 @@ rocsolver_sgerqf_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgerqf_batched_full_rank,&
-      
-rocsolver_dgerqf_batched_rank_0,&
-      
-rocsolver_dgerqf_batched_rank_1
+    module procedure &
+      rocsolver_dgerqf_batched_full_rank,&
+      rocsolver_dgerqf_batched_rank_0,&
+      rocsolver_dgerqf_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgerqf_batched
@@ -10362,13 +9912,11 @@ rocsolver_dgerqf_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgerqf_batched_full_rank,&
-      
-rocsolver_cgerqf_batched_rank_0,&
-      
-rocsolver_cgerqf_batched_rank_1
+    module procedure &
+      rocsolver_cgerqf_batched_full_rank,&
+      rocsolver_cgerqf_batched_rank_0,&
+      rocsolver_cgerqf_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgerqf_batched
@@ -10389,13 +9937,11 @@ rocsolver_cgerqf_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgerqf_batched_full_rank,&
-      
-rocsolver_zgerqf_batched_rank_0,&
-      
-rocsolver_zgerqf_batched_rank_1
+    module procedure &
+      rocsolver_zgerqf_batched_full_rank,&
+      rocsolver_zgerqf_batched_rank_0,&
+      rocsolver_zgerqf_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GERQF_STRIDED_BATCHED computes the RQ factorization of a batch of
@@ -10481,13 +10027,11 @@ rocsolver_zgerqf_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgerqf_strided_batched_full_rank,&
-      
-rocsolver_sgerqf_strided_batched_rank_0,&
-      
-rocsolver_sgerqf_strided_batched_rank_1
+    module procedure &
+      rocsolver_sgerqf_strided_batched_full_rank,&
+      rocsolver_sgerqf_strided_batched_rank_0,&
+      rocsolver_sgerqf_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgerqf_strided_batched
@@ -10509,13 +10053,11 @@ rocsolver_sgerqf_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgerqf_strided_batched_full_rank,&
-      
-rocsolver_dgerqf_strided_batched_rank_0,&
-      
-rocsolver_dgerqf_strided_batched_rank_1
+    module procedure &
+      rocsolver_dgerqf_strided_batched_full_rank,&
+      rocsolver_dgerqf_strided_batched_rank_0,&
+      rocsolver_dgerqf_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgerqf_strided_batched
@@ -10537,13 +10079,11 @@ rocsolver_dgerqf_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgerqf_strided_batched_full_rank,&
-      
-rocsolver_cgerqf_strided_batched_rank_0,&
-      
-rocsolver_cgerqf_strided_batched_rank_1
+    module procedure &
+      rocsolver_cgerqf_strided_batched_full_rank,&
+      rocsolver_cgerqf_strided_batched_rank_0,&
+      rocsolver_cgerqf_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgerqf_strided_batched
@@ -10565,13 +10105,11 @@ rocsolver_cgerqf_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgerqf_strided_batched_full_rank,&
-      
-rocsolver_zgerqf_strided_batched_rank_0,&
-      
-rocsolver_zgerqf_strided_batched_rank_1
+    module procedure &
+      rocsolver_zgerqf_strided_batched_full_rank,&
+      rocsolver_zgerqf_strided_batched_rank_0,&
+      rocsolver_zgerqf_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GEQLF computes a QL factorization of a general m-by-n matrix A.
@@ -10641,13 +10179,11 @@ rocsolver_zgerqf_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgeqlf_full_rank,&
-      
-rocsolver_sgeqlf_rank_0,&
-      
-rocsolver_sgeqlf_rank_1
+    module procedure &
+      rocsolver_sgeqlf_full_rank,&
+      rocsolver_sgeqlf_rank_0,&
+      rocsolver_sgeqlf_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgeqlf
@@ -10666,13 +10202,11 @@ rocsolver_sgeqlf_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgeqlf_full_rank,&
-      
-rocsolver_dgeqlf_rank_0,&
-      
-rocsolver_dgeqlf_rank_1
+    module procedure &
+      rocsolver_dgeqlf_full_rank,&
+      rocsolver_dgeqlf_rank_0,&
+      rocsolver_dgeqlf_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgeqlf
@@ -10691,13 +10225,11 @@ rocsolver_dgeqlf_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgeqlf_full_rank,&
-      
-rocsolver_cgeqlf_rank_0,&
-      
-rocsolver_cgeqlf_rank_1
+    module procedure &
+      rocsolver_cgeqlf_full_rank,&
+      rocsolver_cgeqlf_rank_0,&
+      rocsolver_cgeqlf_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgeqlf
@@ -10716,13 +10248,11 @@ rocsolver_cgeqlf_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgeqlf_full_rank,&
-      
-rocsolver_zgeqlf_rank_0,&
-      
-rocsolver_zgeqlf_rank_1
+    module procedure &
+      rocsolver_zgeqlf_full_rank,&
+      rocsolver_zgeqlf_rank_0,&
+      rocsolver_zgeqlf_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GEQLF_BATCHED computes the QL factorization of a batch of general
@@ -10803,13 +10333,11 @@ rocsolver_zgeqlf_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgeqlf_batched_full_rank,&
-      
-rocsolver_sgeqlf_batched_rank_0,&
-      
-rocsolver_sgeqlf_batched_rank_1
+    module procedure &
+      rocsolver_sgeqlf_batched_full_rank,&
+      rocsolver_sgeqlf_batched_rank_0,&
+      rocsolver_sgeqlf_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgeqlf_batched
@@ -10830,13 +10358,11 @@ rocsolver_sgeqlf_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgeqlf_batched_full_rank,&
-      
-rocsolver_dgeqlf_batched_rank_0,&
-      
-rocsolver_dgeqlf_batched_rank_1
+    module procedure &
+      rocsolver_dgeqlf_batched_full_rank,&
+      rocsolver_dgeqlf_batched_rank_0,&
+      rocsolver_dgeqlf_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgeqlf_batched
@@ -10857,13 +10383,11 @@ rocsolver_dgeqlf_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgeqlf_batched_full_rank,&
-      
-rocsolver_cgeqlf_batched_rank_0,&
-      
-rocsolver_cgeqlf_batched_rank_1
+    module procedure &
+      rocsolver_cgeqlf_batched_full_rank,&
+      rocsolver_cgeqlf_batched_rank_0,&
+      rocsolver_cgeqlf_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgeqlf_batched
@@ -10884,13 +10408,11 @@ rocsolver_cgeqlf_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgeqlf_batched_full_rank,&
-      
-rocsolver_zgeqlf_batched_rank_0,&
-      
-rocsolver_zgeqlf_batched_rank_1
+    module procedure &
+      rocsolver_zgeqlf_batched_full_rank,&
+      rocsolver_zgeqlf_batched_rank_0,&
+      rocsolver_zgeqlf_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GEQLF_STRIDED_BATCHED computes the QL factorization of a batch of
@@ -10976,13 +10498,11 @@ rocsolver_zgeqlf_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgeqlf_strided_batched_full_rank,&
-      
-rocsolver_sgeqlf_strided_batched_rank_0,&
-      
-rocsolver_sgeqlf_strided_batched_rank_1
+    module procedure &
+      rocsolver_sgeqlf_strided_batched_full_rank,&
+      rocsolver_sgeqlf_strided_batched_rank_0,&
+      rocsolver_sgeqlf_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgeqlf_strided_batched
@@ -11004,13 +10524,11 @@ rocsolver_sgeqlf_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgeqlf_strided_batched_full_rank,&
-      
-rocsolver_dgeqlf_strided_batched_rank_0,&
-      
-rocsolver_dgeqlf_strided_batched_rank_1
+    module procedure &
+      rocsolver_dgeqlf_strided_batched_full_rank,&
+      rocsolver_dgeqlf_strided_batched_rank_0,&
+      rocsolver_dgeqlf_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgeqlf_strided_batched
@@ -11032,13 +10550,11 @@ rocsolver_dgeqlf_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgeqlf_strided_batched_full_rank,&
-      
-rocsolver_cgeqlf_strided_batched_rank_0,&
-      
-rocsolver_cgeqlf_strided_batched_rank_1
+    module procedure &
+      rocsolver_cgeqlf_strided_batched_full_rank,&
+      rocsolver_cgeqlf_strided_batched_rank_0,&
+      rocsolver_cgeqlf_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgeqlf_strided_batched
@@ -11060,13 +10576,11 @@ rocsolver_cgeqlf_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgeqlf_strided_batched_full_rank,&
-      
-rocsolver_zgeqlf_strided_batched_rank_0,&
-      
-rocsolver_zgeqlf_strided_batched_rank_1
+    module procedure &
+      rocsolver_zgeqlf_strided_batched_full_rank,&
+      rocsolver_zgeqlf_strided_batched_rank_0,&
+      rocsolver_zgeqlf_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GELQF computes a LQ factorization of a general m-by-n matrix A.
@@ -11135,13 +10649,11 @@ rocsolver_zgeqlf_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgelqf_full_rank,&
-      
-rocsolver_sgelqf_rank_0,&
-      
-rocsolver_sgelqf_rank_1
+    module procedure &
+      rocsolver_sgelqf_full_rank,&
+      rocsolver_sgelqf_rank_0,&
+      rocsolver_sgelqf_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgelqf
@@ -11160,13 +10672,11 @@ rocsolver_sgelqf_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgelqf_full_rank,&
-      
-rocsolver_dgelqf_rank_0,&
-      
-rocsolver_dgelqf_rank_1
+    module procedure &
+      rocsolver_dgelqf_full_rank,&
+      rocsolver_dgelqf_rank_0,&
+      rocsolver_dgelqf_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgelqf
@@ -11185,13 +10695,11 @@ rocsolver_dgelqf_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgelqf_full_rank,&
-      
-rocsolver_cgelqf_rank_0,&
-      
-rocsolver_cgelqf_rank_1
+    module procedure &
+      rocsolver_cgelqf_full_rank,&
+      rocsolver_cgelqf_rank_0,&
+      rocsolver_cgelqf_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgelqf
@@ -11210,13 +10718,11 @@ rocsolver_cgelqf_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgelqf_full_rank,&
-      
-rocsolver_zgelqf_rank_0,&
-      
-rocsolver_zgelqf_rank_1
+    module procedure &
+      rocsolver_zgelqf_full_rank,&
+      rocsolver_zgelqf_rank_0,&
+      rocsolver_zgelqf_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GELQF_BATCHED computes the LQ factorization of a batch of general
@@ -11296,13 +10802,11 @@ rocsolver_zgelqf_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgelqf_batched_full_rank,&
-      
-rocsolver_sgelqf_batched_rank_0,&
-      
-rocsolver_sgelqf_batched_rank_1
+    module procedure &
+      rocsolver_sgelqf_batched_full_rank,&
+      rocsolver_sgelqf_batched_rank_0,&
+      rocsolver_sgelqf_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgelqf_batched
@@ -11323,13 +10827,11 @@ rocsolver_sgelqf_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgelqf_batched_full_rank,&
-      
-rocsolver_dgelqf_batched_rank_0,&
-      
-rocsolver_dgelqf_batched_rank_1
+    module procedure &
+      rocsolver_dgelqf_batched_full_rank,&
+      rocsolver_dgelqf_batched_rank_0,&
+      rocsolver_dgelqf_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgelqf_batched
@@ -11350,13 +10852,11 @@ rocsolver_dgelqf_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgelqf_batched_full_rank,&
-      
-rocsolver_cgelqf_batched_rank_0,&
-      
-rocsolver_cgelqf_batched_rank_1
+    module procedure &
+      rocsolver_cgelqf_batched_full_rank,&
+      rocsolver_cgelqf_batched_rank_0,&
+      rocsolver_cgelqf_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgelqf_batched
@@ -11377,13 +10877,11 @@ rocsolver_cgelqf_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgelqf_batched_full_rank,&
-      
-rocsolver_zgelqf_batched_rank_0,&
-      
-rocsolver_zgelqf_batched_rank_1
+    module procedure &
+      rocsolver_zgelqf_batched_full_rank,&
+      rocsolver_zgelqf_batched_rank_0,&
+      rocsolver_zgelqf_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GELQF_STRIDED_BATCHED computes the LQ factorization of a batch of
@@ -11467,13 +10965,11 @@ rocsolver_zgelqf_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgelqf_strided_batched_full_rank,&
-      
-rocsolver_sgelqf_strided_batched_rank_0,&
-      
-rocsolver_sgelqf_strided_batched_rank_1
+    module procedure &
+      rocsolver_sgelqf_strided_batched_full_rank,&
+      rocsolver_sgelqf_strided_batched_rank_0,&
+      rocsolver_sgelqf_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgelqf_strided_batched
@@ -11495,13 +10991,11 @@ rocsolver_sgelqf_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgelqf_strided_batched_full_rank,&
-      
-rocsolver_dgelqf_strided_batched_rank_0,&
-      
-rocsolver_dgelqf_strided_batched_rank_1
+    module procedure &
+      rocsolver_dgelqf_strided_batched_full_rank,&
+      rocsolver_dgelqf_strided_batched_rank_0,&
+      rocsolver_dgelqf_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgelqf_strided_batched
@@ -11523,13 +11017,11 @@ rocsolver_dgelqf_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgelqf_strided_batched_full_rank,&
-      
-rocsolver_cgelqf_strided_batched_rank_0,&
-      
-rocsolver_cgelqf_strided_batched_rank_1
+    module procedure &
+      rocsolver_cgelqf_strided_batched_full_rank,&
+      rocsolver_cgelqf_strided_batched_rank_0,&
+      rocsolver_cgelqf_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgelqf_strided_batched
@@ -11551,13 +11043,11 @@ rocsolver_cgelqf_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgelqf_strided_batched_full_rank,&
-      
-rocsolver_zgelqf_strided_batched_rank_0,&
-      
-rocsolver_zgelqf_strided_batched_rank_1
+    module procedure &
+      rocsolver_zgelqf_strided_batched_full_rank,&
+      rocsolver_zgelqf_strided_batched_rank_0,&
+      rocsolver_zgelqf_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GEBD2 computes the bidiagonal form of a general m-by-n matrix A.
@@ -11650,13 +11140,11 @@ rocsolver_zgelqf_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgebd2_full_rank,&
-      
-rocsolver_sgebd2_rank_0,&
-      
-rocsolver_sgebd2_rank_1
+    module procedure &
+      rocsolver_sgebd2_full_rank,&
+      rocsolver_sgebd2_rank_0,&
+      rocsolver_sgebd2_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgebd2
@@ -11678,13 +11166,11 @@ rocsolver_sgebd2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgebd2_full_rank,&
-      
-rocsolver_dgebd2_rank_0,&
-      
-rocsolver_dgebd2_rank_1
+    module procedure &
+      rocsolver_dgebd2_full_rank,&
+      rocsolver_dgebd2_rank_0,&
+      rocsolver_dgebd2_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgebd2
@@ -11706,13 +11192,11 @@ rocsolver_dgebd2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgebd2_full_rank,&
-      
-rocsolver_cgebd2_rank_0,&
-      
-rocsolver_cgebd2_rank_1
+    module procedure &
+      rocsolver_cgebd2_full_rank,&
+      rocsolver_cgebd2_rank_0,&
+      rocsolver_cgebd2_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgebd2
@@ -11734,13 +11218,11 @@ rocsolver_cgebd2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgebd2_full_rank,&
-      
-rocsolver_zgebd2_rank_0,&
-      
-rocsolver_zgebd2_rank_1
+    module procedure &
+      rocsolver_zgebd2_full_rank,&
+      rocsolver_zgebd2_rank_0,&
+      rocsolver_zgebd2_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GEBD2_BATCHED computes the bidiagonal form of a batch of general
@@ -11860,13 +11342,11 @@ rocsolver_zgebd2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgebd2_batched_full_rank,&
-      
-rocsolver_sgebd2_batched_rank_0,&
-      
-rocsolver_sgebd2_batched_rank_1
+    module procedure &
+      rocsolver_sgebd2_batched_full_rank,&
+      rocsolver_sgebd2_batched_rank_0,&
+      rocsolver_sgebd2_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgebd2_batched
@@ -11893,13 +11373,11 @@ rocsolver_sgebd2_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgebd2_batched_full_rank,&
-      
-rocsolver_dgebd2_batched_rank_0,&
-      
-rocsolver_dgebd2_batched_rank_1
+    module procedure &
+      rocsolver_dgebd2_batched_full_rank,&
+      rocsolver_dgebd2_batched_rank_0,&
+      rocsolver_dgebd2_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgebd2_batched
@@ -11926,13 +11404,11 @@ rocsolver_dgebd2_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgebd2_batched_full_rank,&
-      
-rocsolver_cgebd2_batched_rank_0,&
-      
-rocsolver_cgebd2_batched_rank_1
+    module procedure &
+      rocsolver_cgebd2_batched_full_rank,&
+      rocsolver_cgebd2_batched_rank_0,&
+      rocsolver_cgebd2_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgebd2_batched
@@ -11959,13 +11435,11 @@ rocsolver_cgebd2_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgebd2_batched_full_rank,&
-      
-rocsolver_zgebd2_batched_rank_0,&
-      
-rocsolver_zgebd2_batched_rank_1
+    module procedure &
+      rocsolver_zgebd2_batched_full_rank,&
+      rocsolver_zgebd2_batched_rank_0,&
+      rocsolver_zgebd2_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GEBD2_STRIDED_BATCHED computes the bidiagonal form of a batch of
@@ -12090,13 +11564,11 @@ rocsolver_zgebd2_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgebd2_strided_batched_full_rank,&
-      
-rocsolver_sgebd2_strided_batched_rank_0,&
-      
-rocsolver_sgebd2_strided_batched_rank_1
+    module procedure &
+      rocsolver_sgebd2_strided_batched_full_rank,&
+      rocsolver_sgebd2_strided_batched_rank_0,&
+      rocsolver_sgebd2_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgebd2_strided_batched
@@ -12124,13 +11596,11 @@ rocsolver_sgebd2_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgebd2_strided_batched_full_rank,&
-      
-rocsolver_dgebd2_strided_batched_rank_0,&
-      
-rocsolver_dgebd2_strided_batched_rank_1
+    module procedure &
+      rocsolver_dgebd2_strided_batched_full_rank,&
+      rocsolver_dgebd2_strided_batched_rank_0,&
+      rocsolver_dgebd2_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgebd2_strided_batched
@@ -12158,13 +11628,11 @@ rocsolver_dgebd2_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgebd2_strided_batched_full_rank,&
-      
-rocsolver_cgebd2_strided_batched_rank_0,&
-      
-rocsolver_cgebd2_strided_batched_rank_1
+    module procedure &
+      rocsolver_cgebd2_strided_batched_full_rank,&
+      rocsolver_cgebd2_strided_batched_rank_0,&
+      rocsolver_cgebd2_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgebd2_strided_batched
@@ -12192,13 +11660,11 @@ rocsolver_cgebd2_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgebd2_strided_batched_full_rank,&
-      
-rocsolver_zgebd2_strided_batched_rank_0,&
-      
-rocsolver_zgebd2_strided_batched_rank_1
+    module procedure &
+      rocsolver_zgebd2_strided_batched_full_rank,&
+      rocsolver_zgebd2_strided_batched_rank_0,&
+      rocsolver_zgebd2_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GEBRD computes the bidiagonal form of a general m-by-n matrix A.
@@ -12291,13 +11757,11 @@ rocsolver_zgebd2_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgebrd_full_rank,&
-      
-rocsolver_sgebrd_rank_0,&
-      
-rocsolver_sgebrd_rank_1
+    module procedure &
+      rocsolver_sgebrd_full_rank,&
+      rocsolver_sgebrd_rank_0,&
+      rocsolver_sgebrd_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgebrd
@@ -12319,13 +11783,11 @@ rocsolver_sgebrd_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgebrd_full_rank,&
-      
-rocsolver_dgebrd_rank_0,&
-      
-rocsolver_dgebrd_rank_1
+    module procedure &
+      rocsolver_dgebrd_full_rank,&
+      rocsolver_dgebrd_rank_0,&
+      rocsolver_dgebrd_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgebrd
@@ -12347,13 +11809,11 @@ rocsolver_dgebrd_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgebrd_full_rank,&
-      
-rocsolver_cgebrd_rank_0,&
-      
-rocsolver_cgebrd_rank_1
+    module procedure &
+      rocsolver_cgebrd_full_rank,&
+      rocsolver_cgebrd_rank_0,&
+      rocsolver_cgebrd_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgebrd
@@ -12375,13 +11835,11 @@ rocsolver_cgebrd_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgebrd_full_rank,&
-      
-rocsolver_zgebrd_rank_0,&
-      
-rocsolver_zgebrd_rank_1
+    module procedure &
+      rocsolver_zgebrd_full_rank,&
+      rocsolver_zgebrd_rank_0,&
+      rocsolver_zgebrd_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GEBRD_BATCHED computes the bidiagonal form of a batch of general
@@ -12501,13 +11959,11 @@ rocsolver_zgebrd_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgebrd_batched_full_rank,&
-      
-rocsolver_sgebrd_batched_rank_0,&
-      
-rocsolver_sgebrd_batched_rank_1
+    module procedure &
+      rocsolver_sgebrd_batched_full_rank,&
+      rocsolver_sgebrd_batched_rank_0,&
+      rocsolver_sgebrd_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgebrd_batched
@@ -12534,13 +11990,11 @@ rocsolver_sgebrd_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgebrd_batched_full_rank,&
-      
-rocsolver_dgebrd_batched_rank_0,&
-      
-rocsolver_dgebrd_batched_rank_1
+    module procedure &
+      rocsolver_dgebrd_batched_full_rank,&
+      rocsolver_dgebrd_batched_rank_0,&
+      rocsolver_dgebrd_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgebrd_batched
@@ -12567,13 +12021,11 @@ rocsolver_dgebrd_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgebrd_batched_full_rank,&
-      
-rocsolver_cgebrd_batched_rank_0,&
-      
-rocsolver_cgebrd_batched_rank_1
+    module procedure &
+      rocsolver_cgebrd_batched_full_rank,&
+      rocsolver_cgebrd_batched_rank_0,&
+      rocsolver_cgebrd_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgebrd_batched
@@ -12600,13 +12052,11 @@ rocsolver_cgebrd_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgebrd_batched_full_rank,&
-      
-rocsolver_zgebrd_batched_rank_0,&
-      
-rocsolver_zgebrd_batched_rank_1
+    module procedure &
+      rocsolver_zgebrd_batched_full_rank,&
+      rocsolver_zgebrd_batched_rank_0,&
+      rocsolver_zgebrd_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GEBRD_STRIDED_BATCHED computes the bidiagonal form of a batch of
@@ -12731,13 +12181,11 @@ rocsolver_zgebrd_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgebrd_strided_batched_full_rank,&
-      
-rocsolver_sgebrd_strided_batched_rank_0,&
-      
-rocsolver_sgebrd_strided_batched_rank_1
+    module procedure &
+      rocsolver_sgebrd_strided_batched_full_rank,&
+      rocsolver_sgebrd_strided_batched_rank_0,&
+      rocsolver_sgebrd_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgebrd_strided_batched
@@ -12765,13 +12213,11 @@ rocsolver_sgebrd_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgebrd_strided_batched_full_rank,&
-      
-rocsolver_dgebrd_strided_batched_rank_0,&
-      
-rocsolver_dgebrd_strided_batched_rank_1
+    module procedure &
+      rocsolver_dgebrd_strided_batched_full_rank,&
+      rocsolver_dgebrd_strided_batched_rank_0,&
+      rocsolver_dgebrd_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgebrd_strided_batched
@@ -12799,13 +12245,11 @@ rocsolver_dgebrd_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgebrd_strided_batched_full_rank,&
-      
-rocsolver_cgebrd_strided_batched_rank_0,&
-      
-rocsolver_cgebrd_strided_batched_rank_1
+    module procedure &
+      rocsolver_cgebrd_strided_batched_full_rank,&
+      rocsolver_cgebrd_strided_batched_rank_0,&
+      rocsolver_cgebrd_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgebrd_strided_batched
@@ -12833,13 +12277,11 @@ rocsolver_cgebrd_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgebrd_strided_batched_full_rank,&
-      
-rocsolver_zgebrd_strided_batched_rank_0,&
-      
-rocsolver_zgebrd_strided_batched_rank_1
+    module procedure &
+      rocsolver_zgebrd_strided_batched_full_rank,&
+      rocsolver_zgebrd_strided_batched_rank_0,&
+      rocsolver_zgebrd_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GETRS solves a system of n linear equations on n variables in its factorized form.
@@ -12906,13 +12348,11 @@ rocsolver_zgebrd_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgetrs_full_rank,&
-      
-rocsolver_sgetrs_rank_0,&
-      
-rocsolver_sgetrs_rank_1
+    module procedure &
+      rocsolver_sgetrs_full_rank,&
+      rocsolver_sgetrs_rank_0,&
+      rocsolver_sgetrs_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgetrs
@@ -12934,13 +12374,11 @@ rocsolver_sgetrs_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgetrs_full_rank,&
-      
-rocsolver_dgetrs_rank_0,&
-      
-rocsolver_dgetrs_rank_1
+    module procedure &
+      rocsolver_dgetrs_full_rank,&
+      rocsolver_dgetrs_rank_0,&
+      rocsolver_dgetrs_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgetrs
@@ -12962,13 +12400,11 @@ rocsolver_dgetrs_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgetrs_full_rank,&
-      
-rocsolver_cgetrs_rank_0,&
-      
-rocsolver_cgetrs_rank_1
+    module procedure &
+      rocsolver_cgetrs_full_rank,&
+      rocsolver_cgetrs_rank_0,&
+      rocsolver_cgetrs_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgetrs
@@ -12990,13 +12426,11 @@ rocsolver_cgetrs_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgetrs_full_rank,&
-      
-rocsolver_zgetrs_rank_0,&
-      
-rocsolver_zgetrs_rank_1
+    module procedure &
+      rocsolver_zgetrs_full_rank,&
+      rocsolver_zgetrs_rank_0,&
+      rocsolver_zgetrs_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GETRS_BATCHED solves a batch of systems of n linear equations on n
@@ -13073,13 +12507,11 @@ rocsolver_zgetrs_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgetrs_batched_full_rank,&
-      
-rocsolver_sgetrs_batched_rank_0,&
-      
-rocsolver_sgetrs_batched_rank_1
+    module procedure &
+      rocsolver_sgetrs_batched_full_rank,&
+      rocsolver_sgetrs_batched_rank_0,&
+      rocsolver_sgetrs_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgetrs_batched
@@ -13103,13 +12535,11 @@ rocsolver_sgetrs_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgetrs_batched_full_rank,&
-      
-rocsolver_dgetrs_batched_rank_0,&
-      
-rocsolver_dgetrs_batched_rank_1
+    module procedure &
+      rocsolver_dgetrs_batched_full_rank,&
+      rocsolver_dgetrs_batched_rank_0,&
+      rocsolver_dgetrs_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgetrs_batched
@@ -13133,13 +12563,11 @@ rocsolver_dgetrs_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgetrs_batched_full_rank,&
-      
-rocsolver_cgetrs_batched_rank_0,&
-      
-rocsolver_cgetrs_batched_rank_1
+    module procedure &
+      rocsolver_cgetrs_batched_full_rank,&
+      rocsolver_cgetrs_batched_rank_0,&
+      rocsolver_cgetrs_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgetrs_batched
@@ -13163,13 +12591,11 @@ rocsolver_cgetrs_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgetrs_batched_full_rank,&
-      
-rocsolver_zgetrs_batched_rank_0,&
-      
-rocsolver_zgetrs_batched_rank_1
+    module procedure &
+      rocsolver_zgetrs_batched_full_rank,&
+      rocsolver_zgetrs_batched_rank_0,&
+      rocsolver_zgetrs_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GETRS_STRIDED_BATCHED solves a batch of systems of n linear equations
@@ -13256,13 +12682,11 @@ rocsolver_zgetrs_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgetrs_strided_batched_full_rank,&
-      
-rocsolver_sgetrs_strided_batched_rank_0,&
-      
-rocsolver_sgetrs_strided_batched_rank_1
+    module procedure &
+      rocsolver_sgetrs_strided_batched_full_rank,&
+      rocsolver_sgetrs_strided_batched_rank_0,&
+      rocsolver_sgetrs_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgetrs_strided_batched
@@ -13288,13 +12712,11 @@ rocsolver_sgetrs_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgetrs_strided_batched_full_rank,&
-      
-rocsolver_dgetrs_strided_batched_rank_0,&
-      
-rocsolver_dgetrs_strided_batched_rank_1
+    module procedure &
+      rocsolver_dgetrs_strided_batched_full_rank,&
+      rocsolver_dgetrs_strided_batched_rank_0,&
+      rocsolver_dgetrs_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgetrs_strided_batched
@@ -13320,13 +12742,11 @@ rocsolver_dgetrs_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgetrs_strided_batched_full_rank,&
-      
-rocsolver_cgetrs_strided_batched_rank_0,&
-      
-rocsolver_cgetrs_strided_batched_rank_1
+    module procedure &
+      rocsolver_cgetrs_strided_batched_full_rank,&
+      rocsolver_cgetrs_strided_batched_rank_0,&
+      rocsolver_cgetrs_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgetrs_strided_batched
@@ -13352,13 +12772,11 @@ rocsolver_cgetrs_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgetrs_strided_batched_full_rank,&
-      
-rocsolver_zgetrs_strided_batched_rank_0,&
-      
-rocsolver_zgetrs_strided_batched_rank_1
+    module procedure &
+      rocsolver_zgetrs_strided_batched_full_rank,&
+      rocsolver_zgetrs_strided_batched_rank_0,&
+      rocsolver_zgetrs_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GESV solves a general system of n linear equations on n variables.
@@ -13422,17 +12840,15 @@ rocsolver_zgetrs_strided_batched_rank_1
       type(c_ptr),value :: ipiv
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgesv_full_rank,&
-      
-rocsolver_sgesv_rank_0,&
-      
-rocsolver_sgesv_rank_1
+    module procedure &
+      rocsolver_sgesv_full_rank,&
+      rocsolver_sgesv_rank_0,&
+      rocsolver_sgesv_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgesv
@@ -13450,17 +12866,15 @@ rocsolver_sgesv_rank_1
       type(c_ptr),value :: ipiv
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgesv_full_rank,&
-      
-rocsolver_dgesv_rank_0,&
-      
-rocsolver_dgesv_rank_1
+    module procedure &
+      rocsolver_dgesv_full_rank,&
+      rocsolver_dgesv_rank_0,&
+      rocsolver_dgesv_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgesv
@@ -13478,17 +12892,15 @@ rocsolver_dgesv_rank_1
       type(c_ptr),value :: ipiv
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgesv_full_rank,&
-      
-rocsolver_cgesv_rank_0,&
-      
-rocsolver_cgesv_rank_1
+    module procedure &
+      rocsolver_cgesv_full_rank,&
+      rocsolver_cgesv_rank_0,&
+      rocsolver_cgesv_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgesv
@@ -13506,17 +12918,15 @@ rocsolver_cgesv_rank_1
       type(c_ptr),value :: ipiv
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgesv_full_rank,&
-      
-rocsolver_zgesv_rank_0,&
-      
-rocsolver_zgesv_rank_1
+    module procedure &
+      rocsolver_zgesv_full_rank,&
+      rocsolver_zgesv_rank_0,&
+      rocsolver_zgesv_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GESV_BATCHED solves a batch of general systems of n linear equations on n
@@ -13589,18 +12999,16 @@ rocsolver_zgesv_rank_1
       integer(c_int64_t),value :: strideP
       type(c_ptr) :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgesv_batched_full_rank,&
-      
-rocsolver_sgesv_batched_rank_0,&
-      
-rocsolver_sgesv_batched_rank_1
+    module procedure &
+      rocsolver_sgesv_batched_full_rank,&
+      rocsolver_sgesv_batched_rank_0,&
+      rocsolver_sgesv_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgesv_batched
@@ -13619,18 +13027,16 @@ rocsolver_sgesv_batched_rank_1
       integer(c_int64_t),value :: strideP
       type(c_ptr) :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgesv_batched_full_rank,&
-      
-rocsolver_dgesv_batched_rank_0,&
-      
-rocsolver_dgesv_batched_rank_1
+    module procedure &
+      rocsolver_dgesv_batched_full_rank,&
+      rocsolver_dgesv_batched_rank_0,&
+      rocsolver_dgesv_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgesv_batched
@@ -13649,18 +13055,16 @@ rocsolver_dgesv_batched_rank_1
       integer(c_int64_t),value :: strideP
       type(c_ptr) :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgesv_batched_full_rank,&
-      
-rocsolver_cgesv_batched_rank_0,&
-      
-rocsolver_cgesv_batched_rank_1
+    module procedure &
+      rocsolver_cgesv_batched_full_rank,&
+      rocsolver_cgesv_batched_rank_0,&
+      rocsolver_cgesv_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgesv_batched
@@ -13679,18 +13083,16 @@ rocsolver_cgesv_batched_rank_1
       integer(c_int64_t),value :: strideP
       type(c_ptr) :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgesv_batched_full_rank,&
-      
-rocsolver_zgesv_batched_rank_0,&
-      
-rocsolver_zgesv_batched_rank_1
+    module procedure &
+      rocsolver_zgesv_batched_full_rank,&
+      rocsolver_zgesv_batched_rank_0,&
+      rocsolver_zgesv_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GESV_STRIDED_BATCHED solves a batch of general systems of n linear equations
@@ -13773,18 +13175,16 @@ rocsolver_zgesv_batched_rank_1
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int64_t),value :: strideB
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgesv_strided_batched_full_rank,&
-      
-rocsolver_sgesv_strided_batched_rank_0,&
-      
-rocsolver_sgesv_strided_batched_rank_1
+    module procedure &
+      rocsolver_sgesv_strided_batched_full_rank,&
+      rocsolver_sgesv_strided_batched_rank_0,&
+      rocsolver_sgesv_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgesv_strided_batched
@@ -13805,18 +13205,16 @@ rocsolver_sgesv_strided_batched_rank_1
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int64_t),value :: strideB
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgesv_strided_batched_full_rank,&
-      
-rocsolver_dgesv_strided_batched_rank_0,&
-      
-rocsolver_dgesv_strided_batched_rank_1
+    module procedure &
+      rocsolver_dgesv_strided_batched_full_rank,&
+      rocsolver_dgesv_strided_batched_rank_0,&
+      rocsolver_dgesv_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgesv_strided_batched
@@ -13837,18 +13235,16 @@ rocsolver_dgesv_strided_batched_rank_1
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int64_t),value :: strideB
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgesv_strided_batched_full_rank,&
-      
-rocsolver_cgesv_strided_batched_rank_0,&
-      
-rocsolver_cgesv_strided_batched_rank_1
+    module procedure &
+      rocsolver_cgesv_strided_batched_full_rank,&
+      rocsolver_cgesv_strided_batched_rank_0,&
+      rocsolver_cgesv_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgesv_strided_batched
@@ -13869,18 +13265,16 @@ rocsolver_cgesv_strided_batched_rank_1
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int64_t),value :: strideB
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgesv_strided_batched_full_rank,&
-      
-rocsolver_zgesv_strided_batched_rank_0,&
-      
-rocsolver_zgesv_strided_batched_rank_1
+    module procedure &
+      rocsolver_zgesv_strided_batched_full_rank,&
+      rocsolver_zgesv_strided_batched_rank_0,&
+      rocsolver_zgesv_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GETRI inverts a general n-by-n matrix A using the LU factorization
@@ -13929,17 +13323,15 @@ rocsolver_zgesv_strided_batched_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgetri_full_rank,&
-      
-rocsolver_sgetri_rank_0,&
-      
-rocsolver_sgetri_rank_1
+    module procedure &
+      rocsolver_sgetri_full_rank,&
+      rocsolver_sgetri_rank_0,&
+      rocsolver_sgetri_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgetri
@@ -13954,17 +13346,15 @@ rocsolver_sgetri_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgetri_full_rank,&
-      
-rocsolver_dgetri_rank_0,&
-      
-rocsolver_dgetri_rank_1
+    module procedure &
+      rocsolver_dgetri_full_rank,&
+      rocsolver_dgetri_rank_0,&
+      rocsolver_dgetri_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgetri
@@ -13979,17 +13369,15 @@ rocsolver_dgetri_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgetri_full_rank,&
-      
-rocsolver_cgetri_rank_0,&
-      
-rocsolver_cgetri_rank_1
+    module procedure &
+      rocsolver_cgetri_full_rank,&
+      rocsolver_cgetri_rank_0,&
+      rocsolver_cgetri_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgetri
@@ -14004,17 +13392,15 @@ rocsolver_cgetri_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgetri_full_rank,&
-      
-rocsolver_zgetri_rank_0,&
-      
-rocsolver_zgetri_rank_1
+    module procedure &
+      rocsolver_zgetri_full_rank,&
+      rocsolver_zgetri_rank_0,&
+      rocsolver_zgetri_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GETRI_BATCHED inverts a batch of general n-by-n matrices using
@@ -14072,18 +13458,16 @@ rocsolver_zgetri_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgetri_batched_full_rank,&
-      
-rocsolver_sgetri_batched_rank_0,&
-      
-rocsolver_sgetri_batched_rank_1
+    module procedure &
+      rocsolver_sgetri_batched_full_rank,&
+      rocsolver_sgetri_batched_rank_0,&
+      rocsolver_sgetri_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgetri_batched
@@ -14099,18 +13483,16 @@ rocsolver_sgetri_batched_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgetri_batched_full_rank,&
-      
-rocsolver_dgetri_batched_rank_0,&
-      
-rocsolver_dgetri_batched_rank_1
+    module procedure &
+      rocsolver_dgetri_batched_full_rank,&
+      rocsolver_dgetri_batched_rank_0,&
+      rocsolver_dgetri_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgetri_batched
@@ -14126,18 +13508,16 @@ rocsolver_dgetri_batched_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgetri_batched_full_rank,&
-      
-rocsolver_cgetri_batched_rank_0,&
-      
-rocsolver_cgetri_batched_rank_1
+    module procedure &
+      rocsolver_cgetri_batched_full_rank,&
+      rocsolver_cgetri_batched_rank_0,&
+      rocsolver_cgetri_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgetri_batched
@@ -14153,18 +13533,16 @@ rocsolver_cgetri_batched_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgetri_batched_full_rank,&
-      
-rocsolver_zgetri_batched_rank_0,&
-      
-rocsolver_zgetri_batched_rank_1
+    module procedure &
+      rocsolver_zgetri_batched_full_rank,&
+      rocsolver_zgetri_batched_rank_0,&
+      rocsolver_zgetri_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GETRI_STRIDED_BATCHED inverts a batch of general n-by-n matrices
@@ -14227,18 +13605,16 @@ rocsolver_zgetri_batched_rank_1
       integer(c_int64_t),value :: strideA
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgetri_strided_batched_full_rank,&
-      
-rocsolver_sgetri_strided_batched_rank_0,&
-      
-rocsolver_sgetri_strided_batched_rank_1
+    module procedure &
+      rocsolver_sgetri_strided_batched_full_rank,&
+      rocsolver_sgetri_strided_batched_rank_0,&
+      rocsolver_sgetri_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgetri_strided_batched
@@ -14255,18 +13631,16 @@ rocsolver_sgetri_strided_batched_rank_1
       integer(c_int64_t),value :: strideA
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgetri_strided_batched_full_rank,&
-      
-rocsolver_dgetri_strided_batched_rank_0,&
-      
-rocsolver_dgetri_strided_batched_rank_1
+    module procedure &
+      rocsolver_dgetri_strided_batched_full_rank,&
+      rocsolver_dgetri_strided_batched_rank_0,&
+      rocsolver_dgetri_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgetri_strided_batched
@@ -14283,18 +13657,16 @@ rocsolver_dgetri_strided_batched_rank_1
       integer(c_int64_t),value :: strideA
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgetri_strided_batched_full_rank,&
-      
-rocsolver_cgetri_strided_batched_rank_0,&
-      
-rocsolver_cgetri_strided_batched_rank_1
+    module procedure &
+      rocsolver_cgetri_strided_batched_full_rank,&
+      rocsolver_cgetri_strided_batched_rank_0,&
+      rocsolver_cgetri_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgetri_strided_batched
@@ -14311,18 +13683,16 @@ rocsolver_cgetri_strided_batched_rank_1
       integer(c_int64_t),value :: strideA
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgetri_strided_batched_full_rank,&
-      
-rocsolver_zgetri_strided_batched_rank_0,&
-      
-rocsolver_zgetri_strided_batched_rank_1
+    module procedure &
+      rocsolver_zgetri_strided_batched_full_rank,&
+      rocsolver_zgetri_strided_batched_rank_0,&
+      rocsolver_zgetri_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GETRI_NPVT inverts a general n-by-n matrix A using the LU factorization
@@ -14367,17 +13737,15 @@ rocsolver_zgetri_strided_batched_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgetri_npvt_full_rank,&
-      
-rocsolver_sgetri_npvt_rank_0,&
-      
-rocsolver_sgetri_npvt_rank_1
+    module procedure &
+      rocsolver_sgetri_npvt_full_rank,&
+      rocsolver_sgetri_npvt_rank_0,&
+      rocsolver_sgetri_npvt_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgetri_npvt
@@ -14391,17 +13759,15 @@ rocsolver_sgetri_npvt_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgetri_npvt_full_rank,&
-      
-rocsolver_dgetri_npvt_rank_0,&
-      
-rocsolver_dgetri_npvt_rank_1
+    module procedure &
+      rocsolver_dgetri_npvt_full_rank,&
+      rocsolver_dgetri_npvt_rank_0,&
+      rocsolver_dgetri_npvt_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgetri_npvt
@@ -14415,17 +13781,15 @@ rocsolver_dgetri_npvt_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgetri_npvt_full_rank,&
-      
-rocsolver_cgetri_npvt_rank_0,&
-      
-rocsolver_cgetri_npvt_rank_1
+    module procedure &
+      rocsolver_cgetri_npvt_full_rank,&
+      rocsolver_cgetri_npvt_rank_0,&
+      rocsolver_cgetri_npvt_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgetri_npvt
@@ -14439,17 +13803,15 @@ rocsolver_cgetri_npvt_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgetri_npvt_full_rank,&
-      
-rocsolver_zgetri_npvt_rank_0,&
-      
-rocsolver_zgetri_npvt_rank_1
+    module procedure &
+      rocsolver_zgetri_npvt_full_rank,&
+      rocsolver_zgetri_npvt_rank_0,&
+      rocsolver_zgetri_npvt_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GETRI_NPVT_BATCHED inverts a batch of general n-by-n matrices using
@@ -14498,18 +13860,16 @@ rocsolver_zgetri_npvt_rank_1
       integer(c_int),value :: n
       type(c_ptr) :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgetri_npvt_batched_full_rank,&
-      
-rocsolver_sgetri_npvt_batched_rank_0,&
-      
-rocsolver_sgetri_npvt_batched_rank_1
+    module procedure &
+      rocsolver_sgetri_npvt_batched_full_rank,&
+      rocsolver_sgetri_npvt_batched_rank_0,&
+      rocsolver_sgetri_npvt_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgetri_npvt_batched
@@ -14523,18 +13883,16 @@ rocsolver_sgetri_npvt_batched_rank_1
       integer(c_int),value :: n
       type(c_ptr) :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgetri_npvt_batched_full_rank,&
-      
-rocsolver_dgetri_npvt_batched_rank_0,&
-      
-rocsolver_dgetri_npvt_batched_rank_1
+    module procedure &
+      rocsolver_dgetri_npvt_batched_full_rank,&
+      rocsolver_dgetri_npvt_batched_rank_0,&
+      rocsolver_dgetri_npvt_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgetri_npvt_batched
@@ -14548,18 +13906,16 @@ rocsolver_dgetri_npvt_batched_rank_1
       integer(c_int),value :: n
       type(c_ptr) :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgetri_npvt_batched_full_rank,&
-      
-rocsolver_cgetri_npvt_batched_rank_0,&
-      
-rocsolver_cgetri_npvt_batched_rank_1
+    module procedure &
+      rocsolver_cgetri_npvt_batched_full_rank,&
+      rocsolver_cgetri_npvt_batched_rank_0,&
+      rocsolver_cgetri_npvt_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgetri_npvt_batched
@@ -14573,18 +13929,16 @@ rocsolver_cgetri_npvt_batched_rank_1
       integer(c_int),value :: n
       type(c_ptr) :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgetri_npvt_batched_full_rank,&
-      
-rocsolver_zgetri_npvt_batched_rank_0,&
-      
-rocsolver_zgetri_npvt_batched_rank_1
+    module procedure &
+      rocsolver_zgetri_npvt_batched_full_rank,&
+      rocsolver_zgetri_npvt_batched_rank_0,&
+      rocsolver_zgetri_npvt_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GETRI_NPVT_STRIDED_BATCHED inverts a batch of general n-by-n matrices
@@ -14638,18 +13992,16 @@ rocsolver_zgetri_npvt_batched_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgetri_npvt_strided_batched_full_rank,&
-      
-rocsolver_sgetri_npvt_strided_batched_rank_0,&
-      
-rocsolver_sgetri_npvt_strided_batched_rank_1
+    module procedure &
+      rocsolver_sgetri_npvt_strided_batched_full_rank,&
+      rocsolver_sgetri_npvt_strided_batched_rank_0,&
+      rocsolver_sgetri_npvt_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgetri_npvt_strided_batched
@@ -14664,18 +14016,16 @@ rocsolver_sgetri_npvt_strided_batched_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgetri_npvt_strided_batched_full_rank,&
-      
-rocsolver_dgetri_npvt_strided_batched_rank_0,&
-      
-rocsolver_dgetri_npvt_strided_batched_rank_1
+    module procedure &
+      rocsolver_dgetri_npvt_strided_batched_full_rank,&
+      rocsolver_dgetri_npvt_strided_batched_rank_0,&
+      rocsolver_dgetri_npvt_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgetri_npvt_strided_batched
@@ -14690,18 +14040,16 @@ rocsolver_dgetri_npvt_strided_batched_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgetri_npvt_strided_batched_full_rank,&
-      
-rocsolver_cgetri_npvt_strided_batched_rank_0,&
-      
-rocsolver_cgetri_npvt_strided_batched_rank_1
+    module procedure &
+      rocsolver_cgetri_npvt_strided_batched_full_rank,&
+      rocsolver_cgetri_npvt_strided_batched_rank_0,&
+      rocsolver_cgetri_npvt_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgetri_npvt_strided_batched
@@ -14716,18 +14064,16 @@ rocsolver_cgetri_npvt_strided_batched_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgetri_npvt_strided_batched_full_rank,&
-      
-rocsolver_zgetri_npvt_strided_batched_rank_0,&
-      
-rocsolver_zgetri_npvt_strided_batched_rank_1
+    module procedure &
+      rocsolver_zgetri_npvt_strided_batched_full_rank,&
+      rocsolver_zgetri_npvt_strided_batched_rank_0,&
+      rocsolver_zgetri_npvt_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GELS solves an overdetermined (or underdetermined) linear system defined by an m-by-n
@@ -14807,17 +14153,15 @@ rocsolver_zgetri_npvt_strided_batched_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgels_full_rank,&
-      
-rocsolver_sgels_rank_0,&
-      
-rocsolver_sgels_rank_1
+    module procedure &
+      rocsolver_sgels_full_rank,&
+      rocsolver_sgels_rank_0,&
+      rocsolver_sgels_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgels
@@ -14836,17 +14180,15 @@ rocsolver_sgels_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgels_full_rank,&
-      
-rocsolver_dgels_rank_0,&
-      
-rocsolver_dgels_rank_1
+    module procedure &
+      rocsolver_dgels_full_rank,&
+      rocsolver_dgels_rank_0,&
+      rocsolver_dgels_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgels
@@ -14865,17 +14207,15 @@ rocsolver_dgels_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgels_full_rank,&
-      
-rocsolver_cgels_rank_0,&
-      
-rocsolver_cgels_rank_1
+    module procedure &
+      rocsolver_cgels_full_rank,&
+      rocsolver_cgels_rank_0,&
+      rocsolver_cgels_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgels
@@ -14894,17 +14234,15 @@ rocsolver_cgels_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgels_full_rank,&
-      
-rocsolver_zgels_rank_0,&
-      
-rocsolver_zgels_rank_1
+    module procedure &
+      rocsolver_zgels_full_rank,&
+      rocsolver_zgels_rank_0,&
+      rocsolver_zgels_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GELS_BATCHED solves a batch of overdetermined (or underdetermined) linear systems
@@ -14987,18 +14325,16 @@ rocsolver_zgels_rank_1
       integer(c_int),value :: lda
       type(c_ptr) :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgels_batched_full_rank,&
-      
-rocsolver_sgels_batched_rank_0,&
-      
-rocsolver_sgels_batched_rank_1
+    module procedure &
+      rocsolver_sgels_batched_full_rank,&
+      rocsolver_sgels_batched_rank_0,&
+      rocsolver_sgels_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgels_batched
@@ -15017,18 +14353,16 @@ rocsolver_sgels_batched_rank_1
       integer(c_int),value :: lda
       type(c_ptr) :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgels_batched_full_rank,&
-      
-rocsolver_dgels_batched_rank_0,&
-      
-rocsolver_dgels_batched_rank_1
+    module procedure &
+      rocsolver_dgels_batched_full_rank,&
+      rocsolver_dgels_batched_rank_0,&
+      rocsolver_dgels_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgels_batched
@@ -15047,18 +14381,16 @@ rocsolver_dgels_batched_rank_1
       integer(c_int),value :: lda
       type(c_ptr) :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgels_batched_full_rank,&
-      
-rocsolver_cgels_batched_rank_0,&
-      
-rocsolver_cgels_batched_rank_1
+    module procedure &
+      rocsolver_cgels_batched_full_rank,&
+      rocsolver_cgels_batched_rank_0,&
+      rocsolver_cgels_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgels_batched
@@ -15077,18 +14409,16 @@ rocsolver_cgels_batched_rank_1
       integer(c_int),value :: lda
       type(c_ptr) :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgels_batched_full_rank,&
-      
-rocsolver_zgels_batched_rank_0,&
-      
-rocsolver_zgels_batched_rank_1
+    module procedure &
+      rocsolver_zgels_batched_full_rank,&
+      rocsolver_zgels_batched_rank_0,&
+      rocsolver_zgels_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GELS_STRIDED_BATCHED solves a batch of overdetermined (or underdetermined) linear
@@ -15183,18 +14513,16 @@ rocsolver_zgels_batched_rank_1
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int64_t),value :: strideB
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgels_strided_batched_full_rank,&
-      
-rocsolver_sgels_strided_batched_rank_0,&
-      
-rocsolver_sgels_strided_batched_rank_1
+    module procedure &
+      rocsolver_sgels_strided_batched_full_rank,&
+      rocsolver_sgels_strided_batched_rank_0,&
+      rocsolver_sgels_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgels_strided_batched
@@ -15215,18 +14543,16 @@ rocsolver_sgels_strided_batched_rank_1
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int64_t),value :: strideB
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgels_strided_batched_full_rank,&
-      
-rocsolver_dgels_strided_batched_rank_0,&
-      
-rocsolver_dgels_strided_batched_rank_1
+    module procedure &
+      rocsolver_dgels_strided_batched_full_rank,&
+      rocsolver_dgels_strided_batched_rank_0,&
+      rocsolver_dgels_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgels_strided_batched
@@ -15247,18 +14573,16 @@ rocsolver_dgels_strided_batched_rank_1
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int64_t),value :: strideB
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgels_strided_batched_full_rank,&
-      
-rocsolver_cgels_strided_batched_rank_0,&
-      
-rocsolver_cgels_strided_batched_rank_1
+    module procedure &
+      rocsolver_cgels_strided_batched_full_rank,&
+      rocsolver_cgels_strided_batched_rank_0,&
+      rocsolver_cgels_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgels_strided_batched
@@ -15279,18 +14603,16 @@ rocsolver_cgels_strided_batched_rank_1
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int64_t),value :: strideB
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgels_strided_batched_full_rank,&
-      
-rocsolver_zgels_strided_batched_rank_0,&
-      
-rocsolver_zgels_strided_batched_rank_1
+    module procedure &
+      rocsolver_zgels_strided_batched_full_rank,&
+      rocsolver_zgels_strided_batched_rank_0,&
+      rocsolver_zgels_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief POTF2 computes the Cholesky factorization of a real symmetric (complex
@@ -15343,17 +14665,15 @@ rocsolver_zgels_strided_batched_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_spotf2_full_rank,&
-      
-rocsolver_spotf2_rank_0,&
-      
-rocsolver_spotf2_rank_1
+    module procedure &
+      rocsolver_spotf2_full_rank,&
+      rocsolver_spotf2_rank_0,&
+      rocsolver_spotf2_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dpotf2
@@ -15368,17 +14688,15 @@ rocsolver_spotf2_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dpotf2_full_rank,&
-      
-rocsolver_dpotf2_rank_0,&
-      
-rocsolver_dpotf2_rank_1
+    module procedure &
+      rocsolver_dpotf2_full_rank,&
+      rocsolver_dpotf2_rank_0,&
+      rocsolver_dpotf2_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cpotf2
@@ -15393,17 +14711,15 @@ rocsolver_dpotf2_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cpotf2_full_rank,&
-      
-rocsolver_cpotf2_rank_0,&
-      
-rocsolver_cpotf2_rank_1
+    module procedure &
+      rocsolver_cpotf2_full_rank,&
+      rocsolver_cpotf2_rank_0,&
+      rocsolver_cpotf2_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zpotf2
@@ -15418,17 +14734,15 @@ rocsolver_cpotf2_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zpotf2_full_rank,&
-      
-rocsolver_zpotf2_rank_0,&
-      
-rocsolver_zpotf2_rank_1
+    module procedure &
+      rocsolver_zpotf2_full_rank,&
+      rocsolver_zpotf2_rank_0,&
+      rocsolver_zpotf2_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief POTF2_BATCHED computes the Cholesky factorization of a
@@ -15484,18 +14798,16 @@ rocsolver_zpotf2_rank_1
       integer(c_int),value :: n
       type(c_ptr) :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_spotf2_batched_full_rank,&
-      
-rocsolver_spotf2_batched_rank_0,&
-      
-rocsolver_spotf2_batched_rank_1
+    module procedure &
+      rocsolver_spotf2_batched_full_rank,&
+      rocsolver_spotf2_batched_rank_0,&
+      rocsolver_spotf2_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dpotf2_batched
@@ -15510,18 +14822,16 @@ rocsolver_spotf2_batched_rank_1
       integer(c_int),value :: n
       type(c_ptr) :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dpotf2_batched_full_rank,&
-      
-rocsolver_dpotf2_batched_rank_0,&
-      
-rocsolver_dpotf2_batched_rank_1
+    module procedure &
+      rocsolver_dpotf2_batched_full_rank,&
+      rocsolver_dpotf2_batched_rank_0,&
+      rocsolver_dpotf2_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cpotf2_batched
@@ -15536,18 +14846,16 @@ rocsolver_dpotf2_batched_rank_1
       integer(c_int),value :: n
       type(c_ptr) :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cpotf2_batched_full_rank,&
-      
-rocsolver_cpotf2_batched_rank_0,&
-      
-rocsolver_cpotf2_batched_rank_1
+    module procedure &
+      rocsolver_cpotf2_batched_full_rank,&
+      rocsolver_cpotf2_batched_rank_0,&
+      rocsolver_cpotf2_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zpotf2_batched
@@ -15562,18 +14870,16 @@ rocsolver_cpotf2_batched_rank_1
       integer(c_int),value :: n
       type(c_ptr) :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zpotf2_batched_full_rank,&
-      
-rocsolver_zpotf2_batched_rank_0,&
-      
-rocsolver_zpotf2_batched_rank_1
+    module procedure &
+      rocsolver_zpotf2_batched_full_rank,&
+      rocsolver_zpotf2_batched_rank_0,&
+      rocsolver_zpotf2_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief POTF2_STRIDED_BATCHED computes the Cholesky factorization of a
@@ -15634,18 +14940,16 @@ rocsolver_zpotf2_batched_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_spotf2_strided_batched_full_rank,&
-      
-rocsolver_spotf2_strided_batched_rank_0,&
-      
-rocsolver_spotf2_strided_batched_rank_1
+    module procedure &
+      rocsolver_spotf2_strided_batched_full_rank,&
+      rocsolver_spotf2_strided_batched_rank_0,&
+      rocsolver_spotf2_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dpotf2_strided_batched
@@ -15661,18 +14965,16 @@ rocsolver_spotf2_strided_batched_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dpotf2_strided_batched_full_rank,&
-      
-rocsolver_dpotf2_strided_batched_rank_0,&
-      
-rocsolver_dpotf2_strided_batched_rank_1
+    module procedure &
+      rocsolver_dpotf2_strided_batched_full_rank,&
+      rocsolver_dpotf2_strided_batched_rank_0,&
+      rocsolver_dpotf2_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cpotf2_strided_batched
@@ -15688,18 +14990,16 @@ rocsolver_dpotf2_strided_batched_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cpotf2_strided_batched_full_rank,&
-      
-rocsolver_cpotf2_strided_batched_rank_0,&
-      
-rocsolver_cpotf2_strided_batched_rank_1
+    module procedure &
+      rocsolver_cpotf2_strided_batched_full_rank,&
+      rocsolver_cpotf2_strided_batched_rank_0,&
+      rocsolver_cpotf2_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zpotf2_strided_batched
@@ -15715,18 +15015,16 @@ rocsolver_cpotf2_strided_batched_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zpotf2_strided_batched_full_rank,&
-      
-rocsolver_zpotf2_strided_batched_rank_0,&
-      
-rocsolver_zpotf2_strided_batched_rank_1
+    module procedure &
+      rocsolver_zpotf2_strided_batched_full_rank,&
+      rocsolver_zpotf2_strided_batched_rank_0,&
+      rocsolver_zpotf2_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief POTRF computes the Cholesky factorization of a real symmetric (complex
@@ -15779,17 +15077,15 @@ rocsolver_zpotf2_strided_batched_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_spotrf_full_rank,&
-      
-rocsolver_spotrf_rank_0,&
-      
-rocsolver_spotrf_rank_1
+    module procedure &
+      rocsolver_spotrf_full_rank,&
+      rocsolver_spotrf_rank_0,&
+      rocsolver_spotrf_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dpotrf
@@ -15804,17 +15100,15 @@ rocsolver_spotrf_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dpotrf_full_rank,&
-      
-rocsolver_dpotrf_rank_0,&
-      
-rocsolver_dpotrf_rank_1
+    module procedure &
+      rocsolver_dpotrf_full_rank,&
+      rocsolver_dpotrf_rank_0,&
+      rocsolver_dpotrf_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cpotrf
@@ -15829,17 +15123,15 @@ rocsolver_dpotrf_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cpotrf_full_rank,&
-      
-rocsolver_cpotrf_rank_0,&
-      
-rocsolver_cpotrf_rank_1
+    module procedure &
+      rocsolver_cpotrf_full_rank,&
+      rocsolver_cpotrf_rank_0,&
+      rocsolver_cpotrf_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zpotrf
@@ -15854,17 +15146,15 @@ rocsolver_cpotrf_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zpotrf_full_rank,&
-      
-rocsolver_zpotrf_rank_0,&
-      
-rocsolver_zpotrf_rank_1
+    module procedure &
+      rocsolver_zpotrf_full_rank,&
+      rocsolver_zpotrf_rank_0,&
+      rocsolver_zpotrf_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief POTRF_BATCHED computes the Cholesky factorization of a
@@ -15920,18 +15210,16 @@ rocsolver_zpotrf_rank_1
       integer(c_int),value :: n
       type(c_ptr) :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_spotrf_batched_full_rank,&
-      
-rocsolver_spotrf_batched_rank_0,&
-      
-rocsolver_spotrf_batched_rank_1
+    module procedure &
+      rocsolver_spotrf_batched_full_rank,&
+      rocsolver_spotrf_batched_rank_0,&
+      rocsolver_spotrf_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dpotrf_batched
@@ -15946,18 +15234,16 @@ rocsolver_spotrf_batched_rank_1
       integer(c_int),value :: n
       type(c_ptr) :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dpotrf_batched_full_rank,&
-      
-rocsolver_dpotrf_batched_rank_0,&
-      
-rocsolver_dpotrf_batched_rank_1
+    module procedure &
+      rocsolver_dpotrf_batched_full_rank,&
+      rocsolver_dpotrf_batched_rank_0,&
+      rocsolver_dpotrf_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cpotrf_batched
@@ -15972,18 +15258,16 @@ rocsolver_dpotrf_batched_rank_1
       integer(c_int),value :: n
       type(c_ptr) :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cpotrf_batched_full_rank,&
-      
-rocsolver_cpotrf_batched_rank_0,&
-      
-rocsolver_cpotrf_batched_rank_1
+    module procedure &
+      rocsolver_cpotrf_batched_full_rank,&
+      rocsolver_cpotrf_batched_rank_0,&
+      rocsolver_cpotrf_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zpotrf_batched
@@ -15998,18 +15282,16 @@ rocsolver_cpotrf_batched_rank_1
       integer(c_int),value :: n
       type(c_ptr) :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zpotrf_batched_full_rank,&
-      
-rocsolver_zpotrf_batched_rank_0,&
-      
-rocsolver_zpotrf_batched_rank_1
+    module procedure &
+      rocsolver_zpotrf_batched_full_rank,&
+      rocsolver_zpotrf_batched_rank_0,&
+      rocsolver_zpotrf_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief POTRF_STRIDED_BATCHED computes the Cholesky factorization of a
@@ -16070,18 +15352,16 @@ rocsolver_zpotrf_batched_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_spotrf_strided_batched_full_rank,&
-      
-rocsolver_spotrf_strided_batched_rank_0,&
-      
-rocsolver_spotrf_strided_batched_rank_1
+    module procedure &
+      rocsolver_spotrf_strided_batched_full_rank,&
+      rocsolver_spotrf_strided_batched_rank_0,&
+      rocsolver_spotrf_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dpotrf_strided_batched
@@ -16097,18 +15377,16 @@ rocsolver_spotrf_strided_batched_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dpotrf_strided_batched_full_rank,&
-      
-rocsolver_dpotrf_strided_batched_rank_0,&
-      
-rocsolver_dpotrf_strided_batched_rank_1
+    module procedure &
+      rocsolver_dpotrf_strided_batched_full_rank,&
+      rocsolver_dpotrf_strided_batched_rank_0,&
+      rocsolver_dpotrf_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cpotrf_strided_batched
@@ -16124,18 +15402,16 @@ rocsolver_dpotrf_strided_batched_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cpotrf_strided_batched_full_rank,&
-      
-rocsolver_cpotrf_strided_batched_rank_0,&
-      
-rocsolver_cpotrf_strided_batched_rank_1
+    module procedure &
+      rocsolver_cpotrf_strided_batched_full_rank,&
+      rocsolver_cpotrf_strided_batched_rank_0,&
+      rocsolver_cpotrf_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zpotrf_strided_batched
@@ -16151,18 +15427,16 @@ rocsolver_cpotrf_strided_batched_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zpotrf_strided_batched_full_rank,&
-      
-rocsolver_zpotrf_strided_batched_rank_0,&
-      
-rocsolver_zpotrf_strided_batched_rank_1
+    module procedure &
+      rocsolver_zpotrf_strided_batched_full_rank,&
+      rocsolver_zpotrf_strided_batched_rank_0,&
+      rocsolver_zpotrf_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief POTRS solves a symmetrichermitian system of n linear equations on n variables in its factorized form.
@@ -16231,13 +15505,11 @@ rocsolver_zpotrf_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_spotrs_full_rank,&
-      
-rocsolver_spotrs_rank_0,&
-      
-rocsolver_spotrs_rank_1
+    module procedure &
+      rocsolver_spotrs_full_rank,&
+      rocsolver_spotrs_rank_0,&
+      rocsolver_spotrs_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dpotrs
@@ -16258,13 +15530,11 @@ rocsolver_spotrs_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dpotrs_full_rank,&
-      
-rocsolver_dpotrs_rank_0,&
-      
-rocsolver_dpotrs_rank_1
+    module procedure &
+      rocsolver_dpotrs_full_rank,&
+      rocsolver_dpotrs_rank_0,&
+      rocsolver_dpotrs_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cpotrs
@@ -16285,13 +15555,11 @@ rocsolver_dpotrs_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cpotrs_full_rank,&
-      
-rocsolver_cpotrs_rank_0,&
-      
-rocsolver_cpotrs_rank_1
+    module procedure &
+      rocsolver_cpotrs_full_rank,&
+      rocsolver_cpotrs_rank_0,&
+      rocsolver_cpotrs_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zpotrs
@@ -16312,13 +15580,11 @@ rocsolver_cpotrs_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zpotrs_full_rank,&
-      
-rocsolver_zpotrs_rank_0,&
-      
-rocsolver_zpotrs_rank_1
+    module procedure &
+      rocsolver_zpotrs_full_rank,&
+      rocsolver_zpotrs_rank_0,&
+      rocsolver_zpotrs_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief POTRS_BATCHED solves a batch of symmetrichermitian systems of n linear equations on n
@@ -16393,13 +15659,11 @@ rocsolver_zpotrs_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_spotrs_batched_full_rank,&
-      
-rocsolver_spotrs_batched_rank_0,&
-      
-rocsolver_spotrs_batched_rank_1
+    module procedure &
+      rocsolver_spotrs_batched_full_rank,&
+      rocsolver_spotrs_batched_rank_0,&
+      rocsolver_spotrs_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dpotrs_batched
@@ -16421,13 +15685,11 @@ rocsolver_spotrs_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dpotrs_batched_full_rank,&
-      
-rocsolver_dpotrs_batched_rank_0,&
-      
-rocsolver_dpotrs_batched_rank_1
+    module procedure &
+      rocsolver_dpotrs_batched_full_rank,&
+      rocsolver_dpotrs_batched_rank_0,&
+      rocsolver_dpotrs_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cpotrs_batched
@@ -16449,13 +15711,11 @@ rocsolver_dpotrs_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cpotrs_batched_full_rank,&
-      
-rocsolver_cpotrs_batched_rank_0,&
-      
-rocsolver_cpotrs_batched_rank_1
+    module procedure &
+      rocsolver_cpotrs_batched_full_rank,&
+      rocsolver_cpotrs_batched_rank_0,&
+      rocsolver_cpotrs_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zpotrs_batched
@@ -16477,13 +15737,11 @@ rocsolver_cpotrs_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zpotrs_batched_full_rank,&
-      
-rocsolver_zpotrs_batched_rank_0,&
-      
-rocsolver_zpotrs_batched_rank_1
+    module procedure &
+      rocsolver_zpotrs_batched_full_rank,&
+      rocsolver_zpotrs_batched_rank_0,&
+      rocsolver_zpotrs_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief POTRS_STRIDED_BATCHED solves a batch of symmetrichermitian systems of n linear equations
@@ -16568,13 +15826,11 @@ rocsolver_zpotrs_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_spotrs_strided_batched_full_rank,&
-      
-rocsolver_spotrs_strided_batched_rank_0,&
-      
-rocsolver_spotrs_strided_batched_rank_1
+    module procedure &
+      rocsolver_spotrs_strided_batched_full_rank,&
+      rocsolver_spotrs_strided_batched_rank_0,&
+      rocsolver_spotrs_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dpotrs_strided_batched
@@ -16598,13 +15854,11 @@ rocsolver_spotrs_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dpotrs_strided_batched_full_rank,&
-      
-rocsolver_dpotrs_strided_batched_rank_0,&
-      
-rocsolver_dpotrs_strided_batched_rank_1
+    module procedure &
+      rocsolver_dpotrs_strided_batched_full_rank,&
+      rocsolver_dpotrs_strided_batched_rank_0,&
+      rocsolver_dpotrs_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cpotrs_strided_batched
@@ -16628,13 +15882,11 @@ rocsolver_dpotrs_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cpotrs_strided_batched_full_rank,&
-      
-rocsolver_cpotrs_strided_batched_rank_0,&
-      
-rocsolver_cpotrs_strided_batched_rank_1
+    module procedure &
+      rocsolver_cpotrs_strided_batched_full_rank,&
+      rocsolver_cpotrs_strided_batched_rank_0,&
+      rocsolver_cpotrs_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zpotrs_strided_batched
@@ -16658,13 +15910,11 @@ rocsolver_cpotrs_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zpotrs_strided_batched_full_rank,&
-      
-rocsolver_zpotrs_strided_batched_rank_0,&
-      
-rocsolver_zpotrs_strided_batched_rank_1
+    module procedure &
+      rocsolver_zpotrs_strided_batched_full_rank,&
+      rocsolver_zpotrs_strided_batched_rank_0,&
+      rocsolver_zpotrs_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief POSV solves a symmetrichermitian system of n linear equations on n variables.
@@ -16730,17 +15980,15 @@ rocsolver_zpotrs_strided_batched_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sposv_full_rank,&
-      
-rocsolver_sposv_rank_0,&
-      
-rocsolver_sposv_rank_1
+    module procedure &
+      rocsolver_sposv_full_rank,&
+      rocsolver_sposv_rank_0,&
+      rocsolver_sposv_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dposv
@@ -16758,17 +16006,15 @@ rocsolver_sposv_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dposv_full_rank,&
-      
-rocsolver_dposv_rank_0,&
-      
-rocsolver_dposv_rank_1
+    module procedure &
+      rocsolver_dposv_full_rank,&
+      rocsolver_dposv_rank_0,&
+      rocsolver_dposv_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cposv
@@ -16786,17 +16032,15 @@ rocsolver_dposv_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cposv_full_rank,&
-      
-rocsolver_cposv_rank_0,&
-      
-rocsolver_cposv_rank_1
+    module procedure &
+      rocsolver_cposv_full_rank,&
+      rocsolver_cposv_rank_0,&
+      rocsolver_cposv_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zposv
@@ -16814,17 +16058,15 @@ rocsolver_cposv_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zposv_full_rank,&
-      
-rocsolver_zposv_rank_0,&
-      
-rocsolver_zposv_rank_1
+    module procedure &
+      rocsolver_zposv_full_rank,&
+      rocsolver_zposv_rank_0,&
+      rocsolver_zposv_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief POSV_BATCHED solves a batch of symmetrichermitian systems of n linear equations on n
@@ -16894,18 +16136,16 @@ rocsolver_zposv_rank_1
       integer(c_int),value :: lda
       type(c_ptr) :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sposv_batched_full_rank,&
-      
-rocsolver_sposv_batched_rank_0,&
-      
-rocsolver_sposv_batched_rank_1
+    module procedure &
+      rocsolver_sposv_batched_full_rank,&
+      rocsolver_sposv_batched_rank_0,&
+      rocsolver_sposv_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dposv_batched
@@ -16923,18 +16163,16 @@ rocsolver_sposv_batched_rank_1
       integer(c_int),value :: lda
       type(c_ptr) :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dposv_batched_full_rank,&
-      
-rocsolver_dposv_batched_rank_0,&
-      
-rocsolver_dposv_batched_rank_1
+    module procedure &
+      rocsolver_dposv_batched_full_rank,&
+      rocsolver_dposv_batched_rank_0,&
+      rocsolver_dposv_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cposv_batched
@@ -16952,18 +16190,16 @@ rocsolver_dposv_batched_rank_1
       integer(c_int),value :: lda
       type(c_ptr) :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cposv_batched_full_rank,&
-      
-rocsolver_cposv_batched_rank_0,&
-      
-rocsolver_cposv_batched_rank_1
+    module procedure &
+      rocsolver_cposv_batched_full_rank,&
+      rocsolver_cposv_batched_rank_0,&
+      rocsolver_cposv_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zposv_batched
@@ -16981,18 +16217,16 @@ rocsolver_cposv_batched_rank_1
       integer(c_int),value :: lda
       type(c_ptr) :: B
       integer(c_int),value :: ldb
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zposv_batched_full_rank,&
-      
-rocsolver_zposv_batched_rank_0,&
-      
-rocsolver_zposv_batched_rank_1
+    module procedure &
+      rocsolver_zposv_batched_full_rank,&
+      rocsolver_zposv_batched_rank_0,&
+      rocsolver_zposv_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief POSV_STRIDED_BATCHED solves a batch of symmetrichermitian systems of n linear equations
@@ -17072,18 +16306,16 @@ rocsolver_zposv_batched_rank_1
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int64_t),value :: strideB
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sposv_strided_batched_full_rank,&
-      
-rocsolver_sposv_strided_batched_rank_0,&
-      
-rocsolver_sposv_strided_batched_rank_1
+    module procedure &
+      rocsolver_sposv_strided_batched_full_rank,&
+      rocsolver_sposv_strided_batched_rank_0,&
+      rocsolver_sposv_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dposv_strided_batched
@@ -17103,18 +16335,16 @@ rocsolver_sposv_strided_batched_rank_1
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int64_t),value :: strideB
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dposv_strided_batched_full_rank,&
-      
-rocsolver_dposv_strided_batched_rank_0,&
-      
-rocsolver_dposv_strided_batched_rank_1
+    module procedure &
+      rocsolver_dposv_strided_batched_full_rank,&
+      rocsolver_dposv_strided_batched_rank_0,&
+      rocsolver_dposv_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cposv_strided_batched
@@ -17134,18 +16364,16 @@ rocsolver_dposv_strided_batched_rank_1
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int64_t),value :: strideB
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cposv_strided_batched_full_rank,&
-      
-rocsolver_cposv_strided_batched_rank_0,&
-      
-rocsolver_cposv_strided_batched_rank_1
+    module procedure &
+      rocsolver_cposv_strided_batched_full_rank,&
+      rocsolver_cposv_strided_batched_rank_0,&
+      rocsolver_cposv_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zposv_strided_batched
@@ -17165,18 +16393,16 @@ rocsolver_cposv_strided_batched_rank_1
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       integer(c_int64_t),value :: strideB
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zposv_strided_batched_full_rank,&
-      
-rocsolver_zposv_strided_batched_rank_0,&
-      
-rocsolver_zposv_strided_batched_rank_1
+    module procedure &
+      rocsolver_zposv_strided_batched_full_rank,&
+      rocsolver_zposv_strided_batched_rank_0,&
+      rocsolver_zposv_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief POTRI inverts a symmetrichermitian positive definite matrix A.
@@ -17228,17 +16454,15 @@ rocsolver_zposv_strided_batched_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_spotri_full_rank,&
-      
-rocsolver_spotri_rank_0,&
-      
-rocsolver_spotri_rank_1
+    module procedure &
+      rocsolver_spotri_full_rank,&
+      rocsolver_spotri_rank_0,&
+      rocsolver_spotri_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dpotri
@@ -17253,17 +16477,15 @@ rocsolver_spotri_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dpotri_full_rank,&
-      
-rocsolver_dpotri_rank_0,&
-      
-rocsolver_dpotri_rank_1
+    module procedure &
+      rocsolver_dpotri_full_rank,&
+      rocsolver_dpotri_rank_0,&
+      rocsolver_dpotri_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cpotri
@@ -17278,17 +16500,15 @@ rocsolver_dpotri_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cpotri_full_rank,&
-      
-rocsolver_cpotri_rank_0,&
-      
-rocsolver_cpotri_rank_1
+    module procedure &
+      rocsolver_cpotri_full_rank,&
+      rocsolver_cpotri_rank_0,&
+      rocsolver_cpotri_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zpotri
@@ -17303,17 +16523,15 @@ rocsolver_cpotri_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zpotri_full_rank,&
-      
-rocsolver_zpotri_rank_0,&
-      
-rocsolver_zpotri_rank_1
+    module procedure &
+      rocsolver_zpotri_full_rank,&
+      rocsolver_zpotri_rank_0,&
+      rocsolver_zpotri_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief POTRI_BATCHED inverts a batch of symmetrichermitian positive definite matrices \f$A_i\f$.
@@ -17368,18 +16586,16 @@ rocsolver_zpotri_rank_1
       integer(c_int),value :: n
       type(c_ptr) :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_spotri_batched_full_rank,&
-      
-rocsolver_spotri_batched_rank_0,&
-      
-rocsolver_spotri_batched_rank_1
+    module procedure &
+      rocsolver_spotri_batched_full_rank,&
+      rocsolver_spotri_batched_rank_0,&
+      rocsolver_spotri_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dpotri_batched
@@ -17394,18 +16610,16 @@ rocsolver_spotri_batched_rank_1
       integer(c_int),value :: n
       type(c_ptr) :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dpotri_batched_full_rank,&
-      
-rocsolver_dpotri_batched_rank_0,&
-      
-rocsolver_dpotri_batched_rank_1
+    module procedure &
+      rocsolver_dpotri_batched_full_rank,&
+      rocsolver_dpotri_batched_rank_0,&
+      rocsolver_dpotri_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cpotri_batched
@@ -17420,18 +16634,16 @@ rocsolver_dpotri_batched_rank_1
       integer(c_int),value :: n
       type(c_ptr) :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cpotri_batched_full_rank,&
-      
-rocsolver_cpotri_batched_rank_0,&
-      
-rocsolver_cpotri_batched_rank_1
+    module procedure &
+      rocsolver_cpotri_batched_full_rank,&
+      rocsolver_cpotri_batched_rank_0,&
+      rocsolver_cpotri_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zpotri_batched
@@ -17446,18 +16658,16 @@ rocsolver_cpotri_batched_rank_1
       integer(c_int),value :: n
       type(c_ptr) :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zpotri_batched_full_rank,&
-      
-rocsolver_zpotri_batched_rank_0,&
-      
-rocsolver_zpotri_batched_rank_1
+    module procedure &
+      rocsolver_zpotri_batched_full_rank,&
+      rocsolver_zpotri_batched_rank_0,&
+      rocsolver_zpotri_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief POTRI_STRIDED_BATCHED inverts a batch of symmetrichermitian positive definite matrices \f$A_i\f$.
@@ -17517,18 +16727,16 @@ rocsolver_zpotri_batched_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_spotri_strided_batched_full_rank,&
-      
-rocsolver_spotri_strided_batched_rank_0,&
-      
-rocsolver_spotri_strided_batched_rank_1
+    module procedure &
+      rocsolver_spotri_strided_batched_full_rank,&
+      rocsolver_spotri_strided_batched_rank_0,&
+      rocsolver_spotri_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dpotri_strided_batched
@@ -17544,18 +16752,16 @@ rocsolver_spotri_strided_batched_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dpotri_strided_batched_full_rank,&
-      
-rocsolver_dpotri_strided_batched_rank_0,&
-      
-rocsolver_dpotri_strided_batched_rank_1
+    module procedure &
+      rocsolver_dpotri_strided_batched_full_rank,&
+      rocsolver_dpotri_strided_batched_rank_0,&
+      rocsolver_dpotri_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cpotri_strided_batched
@@ -17571,18 +16777,16 @@ rocsolver_dpotri_strided_batched_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cpotri_strided_batched_full_rank,&
-      
-rocsolver_cpotri_strided_batched_rank_0,&
-      
-rocsolver_cpotri_strided_batched_rank_1
+    module procedure &
+      rocsolver_cpotri_strided_batched_full_rank,&
+      rocsolver_cpotri_strided_batched_rank_0,&
+      rocsolver_cpotri_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zpotri_strided_batched
@@ -17598,18 +16802,16 @@ rocsolver_cpotri_strided_batched_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zpotri_strided_batched_full_rank,&
-      
-rocsolver_zpotri_strided_batched_rank_0,&
-      
-rocsolver_zpotri_strided_batched_rank_1
+    module procedure &
+      rocsolver_zpotri_strided_batched_full_rank,&
+      rocsolver_zpotri_strided_batched_rank_0,&
+      rocsolver_zpotri_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GESVD computes the singular values and optionally the singular
@@ -17737,17 +16939,15 @@ rocsolver_zpotri_strided_batched_rank_1
       integer(c_int),value :: ldv
       type(c_ptr),value :: E
       integer(kind(rocblas_outofplace)),value :: fast_alg
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgesvd_full_rank,&
-      
-rocsolver_sgesvd_rank_0,&
-      
-rocsolver_sgesvd_rank_1
+    module procedure &
+      rocsolver_sgesvd_full_rank,&
+      rocsolver_sgesvd_rank_0,&
+      rocsolver_sgesvd_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgesvd
@@ -17771,17 +16971,15 @@ rocsolver_sgesvd_rank_1
       integer(c_int),value :: ldv
       type(c_ptr),value :: E
       integer(kind(rocblas_outofplace)),value :: fast_alg
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgesvd_full_rank,&
-      
-rocsolver_dgesvd_rank_0,&
-      
-rocsolver_dgesvd_rank_1
+    module procedure &
+      rocsolver_dgesvd_full_rank,&
+      rocsolver_dgesvd_rank_0,&
+      rocsolver_dgesvd_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgesvd
@@ -17805,17 +17003,15 @@ rocsolver_dgesvd_rank_1
       integer(c_int),value :: ldv
       type(c_ptr),value :: E
       integer(kind(rocblas_outofplace)),value :: fast_alg
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgesvd_full_rank,&
-      
-rocsolver_cgesvd_rank_0,&
-      
-rocsolver_cgesvd_rank_1
+    module procedure &
+      rocsolver_cgesvd_full_rank,&
+      rocsolver_cgesvd_rank_0,&
+      rocsolver_cgesvd_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgesvd
@@ -17839,17 +17035,15 @@ rocsolver_cgesvd_rank_1
       integer(c_int),value :: ldv
       type(c_ptr),value :: E
       integer(kind(rocblas_outofplace)),value :: fast_alg
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgesvd_full_rank,&
-      
-rocsolver_zgesvd_rank_0,&
-      
-rocsolver_zgesvd_rank_1
+    module procedure &
+      rocsolver_zgesvd_full_rank,&
+      rocsolver_zgesvd_rank_0,&
+      rocsolver_zgesvd_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GESVD_BATCHED computes the singular values and optionally the
@@ -18005,18 +17199,16 @@ rocsolver_zgesvd_rank_1
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
       integer(kind(rocblas_outofplace)),value :: fast_alg
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgesvd_batched_full_rank,&
-      
-rocsolver_sgesvd_batched_rank_0,&
-      
-rocsolver_sgesvd_batched_rank_1
+    module procedure &
+      rocsolver_sgesvd_batched_full_rank,&
+      rocsolver_sgesvd_batched_rank_0,&
+      rocsolver_sgesvd_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgesvd_batched
@@ -18044,18 +17236,16 @@ rocsolver_sgesvd_batched_rank_1
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
       integer(kind(rocblas_outofplace)),value :: fast_alg
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgesvd_batched_full_rank,&
-      
-rocsolver_dgesvd_batched_rank_0,&
-      
-rocsolver_dgesvd_batched_rank_1
+    module procedure &
+      rocsolver_dgesvd_batched_full_rank,&
+      rocsolver_dgesvd_batched_rank_0,&
+      rocsolver_dgesvd_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgesvd_batched
@@ -18083,18 +17273,16 @@ rocsolver_dgesvd_batched_rank_1
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
       integer(kind(rocblas_outofplace)),value :: fast_alg
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgesvd_batched_full_rank,&
-      
-rocsolver_cgesvd_batched_rank_0,&
-      
-rocsolver_cgesvd_batched_rank_1
+    module procedure &
+      rocsolver_cgesvd_batched_full_rank,&
+      rocsolver_cgesvd_batched_rank_0,&
+      rocsolver_cgesvd_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgesvd_batched
@@ -18122,18 +17310,16 @@ rocsolver_cgesvd_batched_rank_1
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
       integer(kind(rocblas_outofplace)),value :: fast_alg
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgesvd_batched_full_rank,&
-      
-rocsolver_zgesvd_batched_rank_0,&
-      
-rocsolver_zgesvd_batched_rank_1
+    module procedure &
+      rocsolver_zgesvd_batched_full_rank,&
+      rocsolver_zgesvd_batched_rank_0,&
+      rocsolver_zgesvd_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GESVD_STRIDED_BATCHED computes the singular values and optionally the
@@ -18294,18 +17480,16 @@ rocsolver_zgesvd_batched_rank_1
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
       integer(kind(rocblas_outofplace)),value :: fast_alg
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgesvd_strided_batched_full_rank,&
-      
-rocsolver_sgesvd_strided_batched_rank_0,&
-      
-rocsolver_sgesvd_strided_batched_rank_1
+    module procedure &
+      rocsolver_sgesvd_strided_batched_full_rank,&
+      rocsolver_sgesvd_strided_batched_rank_0,&
+      rocsolver_sgesvd_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgesvd_strided_batched
@@ -18334,18 +17518,16 @@ rocsolver_sgesvd_strided_batched_rank_1
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
       integer(kind(rocblas_outofplace)),value :: fast_alg
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgesvd_strided_batched_full_rank,&
-      
-rocsolver_dgesvd_strided_batched_rank_0,&
-      
-rocsolver_dgesvd_strided_batched_rank_1
+    module procedure &
+      rocsolver_dgesvd_strided_batched_full_rank,&
+      rocsolver_dgesvd_strided_batched_rank_0,&
+      rocsolver_dgesvd_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgesvd_strided_batched
@@ -18374,18 +17556,16 @@ rocsolver_dgesvd_strided_batched_rank_1
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
       integer(kind(rocblas_outofplace)),value :: fast_alg
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgesvd_strided_batched_full_rank,&
-      
-rocsolver_cgesvd_strided_batched_rank_0,&
-      
-rocsolver_cgesvd_strided_batched_rank_1
+    module procedure &
+      rocsolver_cgesvd_strided_batched_full_rank,&
+      rocsolver_cgesvd_strided_batched_rank_0,&
+      rocsolver_cgesvd_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgesvd_strided_batched
@@ -18414,18 +17594,16 @@ rocsolver_cgesvd_strided_batched_rank_1
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
       integer(kind(rocblas_outofplace)),value :: fast_alg
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgesvd_strided_batched_full_rank,&
-      
-rocsolver_zgesvd_strided_batched_rank_0,&
-      
-rocsolver_zgesvd_strided_batched_rank_1
+    module procedure &
+      rocsolver_zgesvd_strided_batched_full_rank,&
+      rocsolver_zgesvd_strided_batched_rank_0,&
+      rocsolver_zgesvd_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief SYTD2 computes the tridiagonal form of a real symmetric matrix A.
@@ -18510,13 +17688,11 @@ rocsolver_zgesvd_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_ssytd2_full_rank,&
-      
-rocsolver_ssytd2_rank_0,&
-      
-rocsolver_ssytd2_rank_1
+    module procedure &
+      rocsolver_ssytd2_full_rank,&
+      rocsolver_ssytd2_rank_0,&
+      rocsolver_ssytd2_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dsytd2
@@ -18537,13 +17713,11 @@ rocsolver_ssytd2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dsytd2_full_rank,&
-      
-rocsolver_dsytd2_rank_0,&
-      
-rocsolver_dsytd2_rank_1
+    module procedure &
+      rocsolver_dsytd2_full_rank,&
+      rocsolver_dsytd2_rank_0,&
+      rocsolver_dsytd2_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief HETD2 computes the tridiagonal form of a complex hermitian matrix A.
@@ -18628,13 +17802,11 @@ rocsolver_dsytd2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_chetd2_full_rank,&
-      
-rocsolver_chetd2_rank_0,&
-      
-rocsolver_chetd2_rank_1
+    module procedure &
+      rocsolver_chetd2_full_rank,&
+      rocsolver_chetd2_rank_0,&
+      rocsolver_chetd2_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zhetd2
@@ -18655,13 +17827,11 @@ rocsolver_chetd2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zhetd2_full_rank,&
-      
-rocsolver_zhetd2_rank_0,&
-      
-rocsolver_zhetd2_rank_1
+    module procedure &
+      rocsolver_zhetd2_full_rank,&
+      rocsolver_zhetd2_rank_0,&
+      rocsolver_zhetd2_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief SYTD2_BATCHED computes the tridiagonal form of a batch of real symmetric matrices A_j.
@@ -18766,13 +17936,11 @@ rocsolver_zhetd2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_ssytd2_batched_full_rank,&
-      
-rocsolver_ssytd2_batched_rank_0,&
-      
-rocsolver_ssytd2_batched_rank_1
+    module procedure &
+      rocsolver_ssytd2_batched_full_rank,&
+      rocsolver_ssytd2_batched_rank_0,&
+      rocsolver_ssytd2_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dsytd2_batched
@@ -18797,13 +17965,11 @@ rocsolver_ssytd2_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dsytd2_batched_full_rank,&
-      
-rocsolver_dsytd2_batched_rank_0,&
-      
-rocsolver_dsytd2_batched_rank_1
+    module procedure &
+      rocsolver_dsytd2_batched_full_rank,&
+      rocsolver_dsytd2_batched_rank_0,&
+      rocsolver_dsytd2_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief HETD2_BATCHED computes the tridiagonal form of a batch of complex hermitian matrices A_j.
@@ -18908,13 +18074,11 @@ rocsolver_dsytd2_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_chetd2_batched_full_rank,&
-      
-rocsolver_chetd2_batched_rank_0,&
-      
-rocsolver_chetd2_batched_rank_1
+    module procedure &
+      rocsolver_chetd2_batched_full_rank,&
+      rocsolver_chetd2_batched_rank_0,&
+      rocsolver_chetd2_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zhetd2_batched
@@ -18939,13 +18103,11 @@ rocsolver_chetd2_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zhetd2_batched_full_rank,&
-      
-rocsolver_zhetd2_batched_rank_0,&
-      
-rocsolver_zhetd2_batched_rank_1
+    module procedure &
+      rocsolver_zhetd2_batched_full_rank,&
+      rocsolver_zhetd2_batched_rank_0,&
+      rocsolver_zhetd2_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief SYTD2_STRIDED_BATCHED computes the tridiagonal form of a batch of real symmetric matrices A_j.
@@ -19055,13 +18217,11 @@ rocsolver_zhetd2_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_ssytd2_strided_batched_full_rank,&
-      
-rocsolver_ssytd2_strided_batched_rank_0,&
-      
-rocsolver_ssytd2_strided_batched_rank_1
+    module procedure &
+      rocsolver_ssytd2_strided_batched_full_rank,&
+      rocsolver_ssytd2_strided_batched_rank_0,&
+      rocsolver_ssytd2_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dsytd2_strided_batched
@@ -19087,13 +18247,11 @@ rocsolver_ssytd2_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dsytd2_strided_batched_full_rank,&
-      
-rocsolver_dsytd2_strided_batched_rank_0,&
-      
-rocsolver_dsytd2_strided_batched_rank_1
+    module procedure &
+      rocsolver_dsytd2_strided_batched_full_rank,&
+      rocsolver_dsytd2_strided_batched_rank_0,&
+      rocsolver_dsytd2_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief HETD2_STRIDED_BATCHED computes the tridiagonal form of a batch of complex hermitian matrices A_j.
@@ -19203,13 +18361,11 @@ rocsolver_dsytd2_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_chetd2_strided_batched_full_rank,&
-      
-rocsolver_chetd2_strided_batched_rank_0,&
-      
-rocsolver_chetd2_strided_batched_rank_1
+    module procedure &
+      rocsolver_chetd2_strided_batched_full_rank,&
+      rocsolver_chetd2_strided_batched_rank_0,&
+      rocsolver_chetd2_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zhetd2_strided_batched
@@ -19235,13 +18391,11 @@ rocsolver_chetd2_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zhetd2_strided_batched_full_rank,&
-      
-rocsolver_zhetd2_strided_batched_rank_0,&
-      
-rocsolver_zhetd2_strided_batched_rank_1
+    module procedure &
+      rocsolver_zhetd2_strided_batched_full_rank,&
+      rocsolver_zhetd2_strided_batched_rank_0,&
+      rocsolver_zhetd2_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief SYTRD computes the tridiagonal form of a real symmetric matrix A.
@@ -19326,13 +18480,11 @@ rocsolver_zhetd2_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_ssytrd_full_rank,&
-      
-rocsolver_ssytrd_rank_0,&
-      
-rocsolver_ssytrd_rank_1
+    module procedure &
+      rocsolver_ssytrd_full_rank,&
+      rocsolver_ssytrd_rank_0,&
+      rocsolver_ssytrd_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dsytrd
@@ -19353,13 +18505,11 @@ rocsolver_ssytrd_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dsytrd_full_rank,&
-      
-rocsolver_dsytrd_rank_0,&
-      
-rocsolver_dsytrd_rank_1
+    module procedure &
+      rocsolver_dsytrd_full_rank,&
+      rocsolver_dsytrd_rank_0,&
+      rocsolver_dsytrd_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief HETRD computes the tridiagonal form of a complex hermitian matrix A.
@@ -19444,13 +18594,11 @@ rocsolver_dsytrd_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_chetrd_full_rank,&
-      
-rocsolver_chetrd_rank_0,&
-      
-rocsolver_chetrd_rank_1
+    module procedure &
+      rocsolver_chetrd_full_rank,&
+      rocsolver_chetrd_rank_0,&
+      rocsolver_chetrd_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zhetrd
@@ -19471,13 +18619,11 @@ rocsolver_chetrd_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zhetrd_full_rank,&
-      
-rocsolver_zhetrd_rank_0,&
-      
-rocsolver_zhetrd_rank_1
+    module procedure &
+      rocsolver_zhetrd_full_rank,&
+      rocsolver_zhetrd_rank_0,&
+      rocsolver_zhetrd_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief SYTRD_BATCHED computes the tridiagonal form of a batch of real symmetric matrices A_j.
@@ -19582,13 +18728,11 @@ rocsolver_zhetrd_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_ssytrd_batched_full_rank,&
-      
-rocsolver_ssytrd_batched_rank_0,&
-      
-rocsolver_ssytrd_batched_rank_1
+    module procedure &
+      rocsolver_ssytrd_batched_full_rank,&
+      rocsolver_ssytrd_batched_rank_0,&
+      rocsolver_ssytrd_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dsytrd_batched
@@ -19613,13 +18757,11 @@ rocsolver_ssytrd_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dsytrd_batched_full_rank,&
-      
-rocsolver_dsytrd_batched_rank_0,&
-      
-rocsolver_dsytrd_batched_rank_1
+    module procedure &
+      rocsolver_dsytrd_batched_full_rank,&
+      rocsolver_dsytrd_batched_rank_0,&
+      rocsolver_dsytrd_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief HETRD_BATCHED computes the tridiagonal form of a batch of complex hermitian matrices A_j.
@@ -19724,13 +18866,11 @@ rocsolver_dsytrd_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_chetrd_batched_full_rank,&
-      
-rocsolver_chetrd_batched_rank_0,&
-      
-rocsolver_chetrd_batched_rank_1
+    module procedure &
+      rocsolver_chetrd_batched_full_rank,&
+      rocsolver_chetrd_batched_rank_0,&
+      rocsolver_chetrd_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zhetrd_batched
@@ -19755,13 +18895,11 @@ rocsolver_chetrd_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zhetrd_batched_full_rank,&
-      
-rocsolver_zhetrd_batched_rank_0,&
-      
-rocsolver_zhetrd_batched_rank_1
+    module procedure &
+      rocsolver_zhetrd_batched_full_rank,&
+      rocsolver_zhetrd_batched_rank_0,&
+      rocsolver_zhetrd_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief SYTRD_STRIDED_BATCHED computes the tridiagonal form of a batch of real symmetric matrices A_j.
@@ -19871,13 +19009,11 @@ rocsolver_zhetrd_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_ssytrd_strided_batched_full_rank,&
-      
-rocsolver_ssytrd_strided_batched_rank_0,&
-      
-rocsolver_ssytrd_strided_batched_rank_1
+    module procedure &
+      rocsolver_ssytrd_strided_batched_full_rank,&
+      rocsolver_ssytrd_strided_batched_rank_0,&
+      rocsolver_ssytrd_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dsytrd_strided_batched
@@ -19903,13 +19039,11 @@ rocsolver_ssytrd_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dsytrd_strided_batched_full_rank,&
-      
-rocsolver_dsytrd_strided_batched_rank_0,&
-      
-rocsolver_dsytrd_strided_batched_rank_1
+    module procedure &
+      rocsolver_dsytrd_strided_batched_full_rank,&
+      rocsolver_dsytrd_strided_batched_rank_0,&
+      rocsolver_dsytrd_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief HETRD_STRIDED_BATCHED computes the tridiagonal form of a batch of complex hermitian matrices A_j.
@@ -20019,13 +19153,11 @@ rocsolver_dsytrd_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_chetrd_strided_batched_full_rank,&
-      
-rocsolver_chetrd_strided_batched_rank_0,&
-      
-rocsolver_chetrd_strided_batched_rank_1
+    module procedure &
+      rocsolver_chetrd_strided_batched_full_rank,&
+      rocsolver_chetrd_strided_batched_rank_0,&
+      rocsolver_chetrd_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zhetrd_strided_batched
@@ -20051,13 +19183,11 @@ rocsolver_chetrd_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zhetrd_strided_batched_full_rank,&
-      
-rocsolver_zhetrd_strided_batched_rank_0,&
-      
-rocsolver_zhetrd_strided_batched_rank_1
+    module procedure &
+      rocsolver_zhetrd_strided_batched_full_rank,&
+      rocsolver_zhetrd_strided_batched_rank_0,&
+      rocsolver_zhetrd_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief SYGS2 reduces a real symmetric-definite generalized eigenproblem to standard
@@ -20148,13 +19278,11 @@ rocsolver_zhetrd_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_ssygs2_full_rank,&
-      
-rocsolver_ssygs2_rank_0,&
-      
-rocsolver_ssygs2_rank_1
+    module procedure &
+      rocsolver_ssygs2_full_rank,&
+      rocsolver_ssygs2_rank_0,&
+      rocsolver_ssygs2_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dsygs2
@@ -20175,13 +19303,11 @@ rocsolver_ssygs2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dsygs2_full_rank,&
-      
-rocsolver_dsygs2_rank_0,&
-      
-rocsolver_dsygs2_rank_1
+    module procedure &
+      rocsolver_dsygs2_full_rank,&
+      rocsolver_dsygs2_rank_0,&
+      rocsolver_dsygs2_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief HEGS2 reduces a hermitian-definite generalized eigenproblem to standard form.
@@ -20271,13 +19397,11 @@ rocsolver_dsygs2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_chegs2_full_rank,&
-      
-rocsolver_chegs2_rank_0,&
-      
-rocsolver_chegs2_rank_1
+    module procedure &
+      rocsolver_chegs2_full_rank,&
+      rocsolver_chegs2_rank_0,&
+      rocsolver_chegs2_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zhegs2
@@ -20298,13 +19422,11 @@ rocsolver_chegs2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zhegs2_full_rank,&
-      
-rocsolver_zhegs2_rank_0,&
-      
-rocsolver_zhegs2_rank_1
+    module procedure &
+      rocsolver_zhegs2_full_rank,&
+      rocsolver_zhegs2_rank_0,&
+      rocsolver_zhegs2_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief SYGS2_BATCHED reduces a batch of real symmetric-definite generalized eigenproblems
@@ -20399,13 +19521,11 @@ rocsolver_zhegs2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_ssygs2_batched_full_rank,&
-      
-rocsolver_ssygs2_batched_rank_0,&
-      
-rocsolver_ssygs2_batched_rank_1
+    module procedure &
+      rocsolver_ssygs2_batched_full_rank,&
+      rocsolver_ssygs2_batched_rank_0,&
+      rocsolver_ssygs2_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dsygs2_batched
@@ -20427,13 +19547,11 @@ rocsolver_ssygs2_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dsygs2_batched_full_rank,&
-      
-rocsolver_dsygs2_batched_rank_0,&
-      
-rocsolver_dsygs2_batched_rank_1
+    module procedure &
+      rocsolver_dsygs2_batched_full_rank,&
+      rocsolver_dsygs2_batched_rank_0,&
+      rocsolver_dsygs2_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief HEGS2_BATCHED reduces a batch of hermitian-definite generalized eigenproblems to
@@ -20528,13 +19646,11 @@ rocsolver_dsygs2_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_chegs2_batched_full_rank,&
-      
-rocsolver_chegs2_batched_rank_0,&
-      
-rocsolver_chegs2_batched_rank_1
+    module procedure &
+      rocsolver_chegs2_batched_full_rank,&
+      rocsolver_chegs2_batched_rank_0,&
+      rocsolver_chegs2_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zhegs2_batched
@@ -20556,13 +19672,11 @@ rocsolver_chegs2_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zhegs2_batched_full_rank,&
-      
-rocsolver_zhegs2_batched_rank_0,&
-      
-rocsolver_zhegs2_batched_rank_1
+    module procedure &
+      rocsolver_zhegs2_batched_full_rank,&
+      rocsolver_zhegs2_batched_rank_0,&
+      rocsolver_zhegs2_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief SYGS2_STRIDED_BATCHED reduces a batch of real symmetric-definite generalized
@@ -20667,13 +19781,11 @@ rocsolver_zhegs2_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_ssygs2_strided_batched_full_rank,&
-      
-rocsolver_ssygs2_strided_batched_rank_0,&
-      
-rocsolver_ssygs2_strided_batched_rank_1
+    module procedure &
+      rocsolver_ssygs2_strided_batched_full_rank,&
+      rocsolver_ssygs2_strided_batched_rank_0,&
+      rocsolver_ssygs2_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dsygs2_strided_batched
@@ -20697,13 +19809,11 @@ rocsolver_ssygs2_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dsygs2_strided_batched_full_rank,&
-      
-rocsolver_dsygs2_strided_batched_rank_0,&
-      
-rocsolver_dsygs2_strided_batched_rank_1
+    module procedure &
+      rocsolver_dsygs2_strided_batched_full_rank,&
+      rocsolver_dsygs2_strided_batched_rank_0,&
+      rocsolver_dsygs2_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief HEGS2_STRIDED_BATCHED reduces a batch of hermitian-definite generalized
@@ -20808,13 +19918,11 @@ rocsolver_dsygs2_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_chegs2_strided_batched_full_rank,&
-      
-rocsolver_chegs2_strided_batched_rank_0,&
-      
-rocsolver_chegs2_strided_batched_rank_1
+    module procedure &
+      rocsolver_chegs2_strided_batched_full_rank,&
+      rocsolver_chegs2_strided_batched_rank_0,&
+      rocsolver_chegs2_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zhegs2_strided_batched
@@ -20838,13 +19946,11 @@ rocsolver_chegs2_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zhegs2_strided_batched_full_rank,&
-      
-rocsolver_zhegs2_strided_batched_rank_0,&
-      
-rocsolver_zhegs2_strided_batched_rank_1
+    module procedure &
+      rocsolver_zhegs2_strided_batched_full_rank,&
+      rocsolver_zhegs2_strided_batched_rank_0,&
+      rocsolver_zhegs2_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief SYGST reduces a real symmetric-definite generalized eigenproblem to standard
@@ -20935,13 +20041,11 @@ rocsolver_zhegs2_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_ssygst_full_rank,&
-      
-rocsolver_ssygst_rank_0,&
-      
-rocsolver_ssygst_rank_1
+    module procedure &
+      rocsolver_ssygst_full_rank,&
+      rocsolver_ssygst_rank_0,&
+      rocsolver_ssygst_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dsygst
@@ -20962,13 +20066,11 @@ rocsolver_ssygst_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dsygst_full_rank,&
-      
-rocsolver_dsygst_rank_0,&
-      
-rocsolver_dsygst_rank_1
+    module procedure &
+      rocsolver_dsygst_full_rank,&
+      rocsolver_dsygst_rank_0,&
+      rocsolver_dsygst_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief HEGST reduces a hermitian-definite generalized eigenproblem to standard form.
@@ -21058,13 +20160,11 @@ rocsolver_dsygst_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_chegst_full_rank,&
-      
-rocsolver_chegst_rank_0,&
-      
-rocsolver_chegst_rank_1
+    module procedure &
+      rocsolver_chegst_full_rank,&
+      rocsolver_chegst_rank_0,&
+      rocsolver_chegst_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zhegst
@@ -21085,13 +20185,11 @@ rocsolver_chegst_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zhegst_full_rank,&
-      
-rocsolver_zhegst_rank_0,&
-      
-rocsolver_zhegst_rank_1
+    module procedure &
+      rocsolver_zhegst_full_rank,&
+      rocsolver_zhegst_rank_0,&
+      rocsolver_zhegst_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief SYGST_BATCHED reduces a batch of real symmetric-definite generalized eigenproblems
@@ -21186,13 +20284,11 @@ rocsolver_zhegst_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_ssygst_batched_full_rank,&
-      
-rocsolver_ssygst_batched_rank_0,&
-      
-rocsolver_ssygst_batched_rank_1
+    module procedure &
+      rocsolver_ssygst_batched_full_rank,&
+      rocsolver_ssygst_batched_rank_0,&
+      rocsolver_ssygst_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dsygst_batched
@@ -21214,13 +20310,11 @@ rocsolver_ssygst_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dsygst_batched_full_rank,&
-      
-rocsolver_dsygst_batched_rank_0,&
-      
-rocsolver_dsygst_batched_rank_1
+    module procedure &
+      rocsolver_dsygst_batched_full_rank,&
+      rocsolver_dsygst_batched_rank_0,&
+      rocsolver_dsygst_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief HEGST_BATCHED reduces a batch of hermitian-definite generalized eigenproblems to
@@ -21315,13 +20409,11 @@ rocsolver_dsygst_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_chegst_batched_full_rank,&
-      
-rocsolver_chegst_batched_rank_0,&
-      
-rocsolver_chegst_batched_rank_1
+    module procedure &
+      rocsolver_chegst_batched_full_rank,&
+      rocsolver_chegst_batched_rank_0,&
+      rocsolver_chegst_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zhegst_batched
@@ -21343,13 +20435,11 @@ rocsolver_chegst_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zhegst_batched_full_rank,&
-      
-rocsolver_zhegst_batched_rank_0,&
-      
-rocsolver_zhegst_batched_rank_1
+    module procedure &
+      rocsolver_zhegst_batched_full_rank,&
+      rocsolver_zhegst_batched_rank_0,&
+      rocsolver_zhegst_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief SYGST_STRIDED_BATCHED reduces a batch of real symmetric-definite generalized
@@ -21454,13 +20544,11 @@ rocsolver_zhegst_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_ssygst_strided_batched_full_rank,&
-      
-rocsolver_ssygst_strided_batched_rank_0,&
-      
-rocsolver_ssygst_strided_batched_rank_1
+    module procedure &
+      rocsolver_ssygst_strided_batched_full_rank,&
+      rocsolver_ssygst_strided_batched_rank_0,&
+      rocsolver_ssygst_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dsygst_strided_batched
@@ -21484,13 +20572,11 @@ rocsolver_ssygst_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dsygst_strided_batched_full_rank,&
-      
-rocsolver_dsygst_strided_batched_rank_0,&
-      
-rocsolver_dsygst_strided_batched_rank_1
+    module procedure &
+      rocsolver_dsygst_strided_batched_full_rank,&
+      rocsolver_dsygst_strided_batched_rank_0,&
+      rocsolver_dsygst_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief HEGST_STRIDED_BATCHED reduces a batch of hermitian-definite generalized
@@ -21595,13 +20681,11 @@ rocsolver_dsygst_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_chegst_strided_batched_full_rank,&
-      
-rocsolver_chegst_strided_batched_rank_0,&
-      
-rocsolver_chegst_strided_batched_rank_1
+    module procedure &
+      rocsolver_chegst_strided_batched_full_rank,&
+      rocsolver_chegst_strided_batched_rank_0,&
+      rocsolver_chegst_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zhegst_strided_batched
@@ -21625,13 +20709,11 @@ rocsolver_chegst_strided_batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zhegst_strided_batched_full_rank,&
-      
-rocsolver_zhegst_strided_batched_rank_0,&
-      
-rocsolver_zhegst_strided_batched_rank_1
+    module procedure &
+      rocsolver_zhegst_strided_batched_full_rank,&
+      rocsolver_zhegst_strided_batched_rank_0,&
+      rocsolver_zhegst_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief SYEV computes the eigenvalues and optionally the eigenvectors of a real symmetric
@@ -21694,17 +20776,15 @@ rocsolver_zhegst_strided_batched_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       type(c_ptr),value :: E
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_ssyev_full_rank,&
-      
-rocsolver_ssyev_rank_0,&
-      
-rocsolver_ssyev_rank_1
+    module procedure &
+      rocsolver_ssyev_full_rank,&
+      rocsolver_ssyev_rank_0,&
+      rocsolver_ssyev_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dsyev
@@ -21722,17 +20802,15 @@ rocsolver_ssyev_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       type(c_ptr),value :: E
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dsyev_full_rank,&
-      
-rocsolver_dsyev_rank_0,&
-      
-rocsolver_dsyev_rank_1
+    module procedure &
+      rocsolver_dsyev_full_rank,&
+      rocsolver_dsyev_rank_0,&
+      rocsolver_dsyev_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief HEEV computes the eigenvalues and optionally the eigenvectors of a Hermitian matrix A.
@@ -21794,17 +20872,15 @@ rocsolver_dsyev_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       type(c_ptr),value :: E
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cheev_full_rank,&
-      
-rocsolver_cheev_rank_0,&
-      
-rocsolver_cheev_rank_1
+    module procedure &
+      rocsolver_cheev_full_rank,&
+      rocsolver_cheev_rank_0,&
+      rocsolver_cheev_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zheev
@@ -21822,17 +20898,15 @@ rocsolver_cheev_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       type(c_ptr),value :: E
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zheev_full_rank,&
-      
-rocsolver_zheev_rank_0,&
-      
-rocsolver_zheev_rank_1
+    module procedure &
+      rocsolver_zheev_full_rank,&
+      rocsolver_zheev_rank_0,&
+      rocsolver_zheev_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief SYEV_BATCHED computes the eigenvalues and optionally the eigenvectors of a batch of
@@ -21908,18 +20982,16 @@ rocsolver_zheev_rank_1
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_ssyev_batched_full_rank,&
-      
-rocsolver_ssyev_batched_rank_0,&
-      
-rocsolver_ssyev_batched_rank_1
+    module procedure &
+      rocsolver_ssyev_batched_full_rank,&
+      rocsolver_ssyev_batched_rank_0,&
+      rocsolver_ssyev_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dsyev_batched
@@ -21939,18 +21011,16 @@ rocsolver_ssyev_batched_rank_1
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dsyev_batched_full_rank,&
-      
-rocsolver_dsyev_batched_rank_0,&
-      
-rocsolver_dsyev_batched_rank_1
+    module procedure &
+      rocsolver_dsyev_batched_full_rank,&
+      rocsolver_dsyev_batched_rank_0,&
+      rocsolver_dsyev_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief HEEV_BATCHED computes the eigenvalues and optionally the eigenvectors of a batch of
@@ -22026,18 +21096,16 @@ rocsolver_dsyev_batched_rank_1
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cheev_batched_full_rank,&
-      
-rocsolver_cheev_batched_rank_0,&
-      
-rocsolver_cheev_batched_rank_1
+    module procedure &
+      rocsolver_cheev_batched_full_rank,&
+      rocsolver_cheev_batched_rank_0,&
+      rocsolver_cheev_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zheev_batched
@@ -22057,18 +21125,16 @@ rocsolver_cheev_batched_rank_1
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zheev_batched_full_rank,&
-      
-rocsolver_zheev_batched_rank_0,&
-      
-rocsolver_zheev_batched_rank_1
+    module procedure &
+      rocsolver_zheev_batched_full_rank,&
+      rocsolver_zheev_batched_rank_0,&
+      rocsolver_zheev_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief SYEV_STRIDED_BATCHED computes the eigenvalues and optionally the eigenvectors of a batch of
@@ -22149,18 +21215,16 @@ rocsolver_zheev_batched_rank_1
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_ssyev_strided_batched_full_rank,&
-      
-rocsolver_ssyev_strided_batched_rank_0,&
-      
-rocsolver_ssyev_strided_batched_rank_1
+    module procedure &
+      rocsolver_ssyev_strided_batched_full_rank,&
+      rocsolver_ssyev_strided_batched_rank_0,&
+      rocsolver_ssyev_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dsyev_strided_batched
@@ -22181,18 +21245,16 @@ rocsolver_ssyev_strided_batched_rank_1
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dsyev_strided_batched_full_rank,&
-      
-rocsolver_dsyev_strided_batched_rank_0,&
-      
-rocsolver_dsyev_strided_batched_rank_1
+    module procedure &
+      rocsolver_dsyev_strided_batched_full_rank,&
+      rocsolver_dsyev_strided_batched_rank_0,&
+      rocsolver_dsyev_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief HEEV_STRIDED_BATCHED computes the eigenvalues and optionally the eigenvectors of a batch of
@@ -22273,18 +21335,16 @@ rocsolver_dsyev_strided_batched_rank_1
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cheev_strided_batched_full_rank,&
-      
-rocsolver_cheev_strided_batched_rank_0,&
-      
-rocsolver_cheev_strided_batched_rank_1
+    module procedure &
+      rocsolver_cheev_strided_batched_full_rank,&
+      rocsolver_cheev_strided_batched_rank_0,&
+      rocsolver_cheev_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zheev_strided_batched
@@ -22305,18 +21365,16 @@ rocsolver_cheev_strided_batched_rank_1
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zheev_strided_batched_full_rank,&
-      
-rocsolver_zheev_strided_batched_rank_0,&
-      
-rocsolver_zheev_strided_batched_rank_1
+    module procedure &
+      rocsolver_zheev_strided_batched_full_rank,&
+      rocsolver_zheev_strided_batched_rank_0,&
+      rocsolver_zheev_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief SYEVD computes the eigenvalues and optionally the eigenvectors of a real symmetric
@@ -22383,17 +21441,15 @@ rocsolver_zheev_strided_batched_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       type(c_ptr),value :: E
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_ssyevd_full_rank,&
-      
-rocsolver_ssyevd_rank_0,&
-      
-rocsolver_ssyevd_rank_1
+    module procedure &
+      rocsolver_ssyevd_full_rank,&
+      rocsolver_ssyevd_rank_0,&
+      rocsolver_ssyevd_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dsyevd
@@ -22411,17 +21467,15 @@ rocsolver_ssyevd_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       type(c_ptr),value :: E
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dsyevd_full_rank,&
-      
-rocsolver_dsyevd_rank_0,&
-      
-rocsolver_dsyevd_rank_1
+    module procedure &
+      rocsolver_dsyevd_full_rank,&
+      rocsolver_dsyevd_rank_0,&
+      rocsolver_dsyevd_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief HEEVD computes the eigenvalues and optionally the eigenvectors of a Hermitian matrix A.
@@ -22487,17 +21541,15 @@ rocsolver_dsyevd_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       type(c_ptr),value :: E
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cheevd_full_rank,&
-      
-rocsolver_cheevd_rank_0,&
-      
-rocsolver_cheevd_rank_1
+    module procedure &
+      rocsolver_cheevd_full_rank,&
+      rocsolver_cheevd_rank_0,&
+      rocsolver_cheevd_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zheevd
@@ -22515,17 +21567,15 @@ rocsolver_cheevd_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: D
       type(c_ptr),value :: E
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zheevd_full_rank,&
-      
-rocsolver_zheevd_rank_0,&
-      
-rocsolver_zheevd_rank_1
+    module procedure &
+      rocsolver_zheevd_full_rank,&
+      rocsolver_zheevd_rank_0,&
+      rocsolver_zheevd_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief SYEVD_BATCHED computes the eigenvalues and optionally the eigenvectors of a batch of
@@ -22605,18 +21655,16 @@ rocsolver_zheevd_rank_1
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_ssyevd_batched_full_rank,&
-      
-rocsolver_ssyevd_batched_rank_0,&
-      
-rocsolver_ssyevd_batched_rank_1
+    module procedure &
+      rocsolver_ssyevd_batched_full_rank,&
+      rocsolver_ssyevd_batched_rank_0,&
+      rocsolver_ssyevd_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dsyevd_batched
@@ -22636,18 +21684,16 @@ rocsolver_ssyevd_batched_rank_1
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dsyevd_batched_full_rank,&
-      
-rocsolver_dsyevd_batched_rank_0,&
-      
-rocsolver_dsyevd_batched_rank_1
+    module procedure &
+      rocsolver_dsyevd_batched_full_rank,&
+      rocsolver_dsyevd_batched_rank_0,&
+      rocsolver_dsyevd_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief HEEVD_BATCHED computes the eigenvalues and optionally the eigenvectors of a batch of
@@ -22727,18 +21773,16 @@ rocsolver_dsyevd_batched_rank_1
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cheevd_batched_full_rank,&
-      
-rocsolver_cheevd_batched_rank_0,&
-      
-rocsolver_cheevd_batched_rank_1
+    module procedure &
+      rocsolver_cheevd_batched_full_rank,&
+      rocsolver_cheevd_batched_rank_0,&
+      rocsolver_cheevd_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zheevd_batched
@@ -22758,18 +21802,16 @@ rocsolver_cheevd_batched_rank_1
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zheevd_batched_full_rank,&
-      
-rocsolver_zheevd_batched_rank_0,&
-      
-rocsolver_zheevd_batched_rank_1
+    module procedure &
+      rocsolver_zheevd_batched_full_rank,&
+      rocsolver_zheevd_batched_rank_0,&
+      rocsolver_zheevd_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief SYEVD_STRIDED_BATCHED computes the eigenvalues and optionally the eigenvectors of a batch of
@@ -22854,18 +21896,16 @@ rocsolver_zheevd_batched_rank_1
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_ssyevd_strided_batched_full_rank,&
-      
-rocsolver_ssyevd_strided_batched_rank_0,&
-      
-rocsolver_ssyevd_strided_batched_rank_1
+    module procedure &
+      rocsolver_ssyevd_strided_batched_full_rank,&
+      rocsolver_ssyevd_strided_batched_rank_0,&
+      rocsolver_ssyevd_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dsyevd_strided_batched
@@ -22886,18 +21926,16 @@ rocsolver_ssyevd_strided_batched_rank_1
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dsyevd_strided_batched_full_rank,&
-      
-rocsolver_dsyevd_strided_batched_rank_0,&
-      
-rocsolver_dsyevd_strided_batched_rank_1
+    module procedure &
+      rocsolver_dsyevd_strided_batched_full_rank,&
+      rocsolver_dsyevd_strided_batched_rank_0,&
+      rocsolver_dsyevd_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief HEEVD_STRIDED_BATCHED computes the eigenvalues and optionally the eigenvectors of a batch of
@@ -22982,18 +22020,16 @@ rocsolver_dsyevd_strided_batched_rank_1
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cheevd_strided_batched_full_rank,&
-      
-rocsolver_cheevd_strided_batched_rank_0,&
-      
-rocsolver_cheevd_strided_batched_rank_1
+    module procedure &
+      rocsolver_cheevd_strided_batched_full_rank,&
+      rocsolver_cheevd_strided_batched_rank_0,&
+      rocsolver_cheevd_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zheevd_strided_batched
@@ -23014,18 +22050,16 @@ rocsolver_cheevd_strided_batched_rank_1
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zheevd_strided_batched_full_rank,&
-      
-rocsolver_zheevd_strided_batched_rank_0,&
-      
-rocsolver_zheevd_strided_batched_rank_1
+    module procedure &
+      rocsolver_zheevd_strided_batched_full_rank,&
+      rocsolver_zheevd_strided_batched_rank_0,&
+      rocsolver_zheevd_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief SYGV computes the eigenvalues and (optionally) eigenvectors of
@@ -23126,17 +22160,15 @@ rocsolver_zheevd_strided_batched_rank_1
       integer(c_int),value :: ldb
       type(c_ptr),value :: D
       type(c_ptr),value :: E
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_ssygv_full_rank,&
-      
-rocsolver_ssygv_rank_0,&
-      
-rocsolver_ssygv_rank_1
+    module procedure &
+      rocsolver_ssygv_full_rank,&
+      rocsolver_ssygv_rank_0,&
+      rocsolver_ssygv_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dsygv
@@ -23157,17 +22189,15 @@ rocsolver_ssygv_rank_1
       integer(c_int),value :: ldb
       type(c_ptr),value :: D
       type(c_ptr),value :: E
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dsygv_full_rank,&
-      
-rocsolver_dsygv_rank_0,&
-      
-rocsolver_dsygv_rank_1
+    module procedure &
+      rocsolver_dsygv_full_rank,&
+      rocsolver_dsygv_rank_0,&
+      rocsolver_dsygv_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief HEGV computes the eigenvalues and (optionally) eigenvectors of
@@ -23268,17 +22298,15 @@ rocsolver_dsygv_rank_1
       integer(c_int),value :: ldb
       type(c_ptr),value :: D
       type(c_ptr),value :: E
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_chegv_full_rank,&
-      
-rocsolver_chegv_rank_0,&
-      
-rocsolver_chegv_rank_1
+    module procedure &
+      rocsolver_chegv_full_rank,&
+      rocsolver_chegv_rank_0,&
+      rocsolver_chegv_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zhegv
@@ -23299,17 +22327,15 @@ rocsolver_chegv_rank_1
       integer(c_int),value :: ldb
       type(c_ptr),value :: D
       type(c_ptr),value :: E
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zhegv_full_rank,&
-      
-rocsolver_zhegv_rank_0,&
-      
-rocsolver_zhegv_rank_1
+    module procedure &
+      rocsolver_zhegv_full_rank,&
+      rocsolver_zhegv_rank_0,&
+      rocsolver_zhegv_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief SYGV_BATCHED computes the eigenvalues and (optionally)
@@ -23423,18 +22449,16 @@ rocsolver_zhegv_rank_1
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_ssygv_batched_full_rank,&
-      
-rocsolver_ssygv_batched_rank_0,&
-      
-rocsolver_ssygv_batched_rank_1
+    module procedure &
+      rocsolver_ssygv_batched_full_rank,&
+      rocsolver_ssygv_batched_rank_0,&
+      rocsolver_ssygv_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dsygv_batched
@@ -23457,18 +22481,16 @@ rocsolver_ssygv_batched_rank_1
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dsygv_batched_full_rank,&
-      
-rocsolver_dsygv_batched_rank_0,&
-      
-rocsolver_dsygv_batched_rank_1
+    module procedure &
+      rocsolver_dsygv_batched_full_rank,&
+      rocsolver_dsygv_batched_rank_0,&
+      rocsolver_dsygv_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief HEGV_BATCHED computes the eigenvalues and (optionally)
@@ -23582,18 +22604,16 @@ rocsolver_dsygv_batched_rank_1
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_chegv_batched_full_rank,&
-      
-rocsolver_chegv_batched_rank_0,&
-      
-rocsolver_chegv_batched_rank_1
+    module procedure &
+      rocsolver_chegv_batched_full_rank,&
+      rocsolver_chegv_batched_rank_0,&
+      rocsolver_chegv_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zhegv_batched
@@ -23616,18 +22636,16 @@ rocsolver_chegv_batched_rank_1
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zhegv_batched_full_rank,&
-      
-rocsolver_zhegv_batched_rank_0,&
-      
-rocsolver_zhegv_batched_rank_1
+    module procedure &
+      rocsolver_zhegv_batched_full_rank,&
+      rocsolver_zhegv_batched_rank_0,&
+      rocsolver_zhegv_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief SYGV_STRIDED_BATCHED computes the eigenvalues and (optionally)
@@ -23751,18 +22769,16 @@ rocsolver_zhegv_batched_rank_1
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_ssygv_strided_batched_full_rank,&
-      
-rocsolver_ssygv_strided_batched_rank_0,&
-      
-rocsolver_ssygv_strided_batched_rank_1
+    module procedure &
+      rocsolver_ssygv_strided_batched_full_rank,&
+      rocsolver_ssygv_strided_batched_rank_0,&
+      rocsolver_ssygv_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dsygv_strided_batched
@@ -23787,18 +22803,16 @@ rocsolver_ssygv_strided_batched_rank_1
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dsygv_strided_batched_full_rank,&
-      
-rocsolver_dsygv_strided_batched_rank_0,&
-      
-rocsolver_dsygv_strided_batched_rank_1
+    module procedure &
+      rocsolver_dsygv_strided_batched_full_rank,&
+      rocsolver_dsygv_strided_batched_rank_0,&
+      rocsolver_dsygv_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief HEGV_STRIDED_BATCHED computes the eigenvalues and (optionally)
@@ -23922,18 +22936,16 @@ rocsolver_dsygv_strided_batched_rank_1
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_chegv_strided_batched_full_rank,&
-      
-rocsolver_chegv_strided_batched_rank_0,&
-      
-rocsolver_chegv_strided_batched_rank_1
+    module procedure &
+      rocsolver_chegv_strided_batched_full_rank,&
+      rocsolver_chegv_strided_batched_rank_0,&
+      rocsolver_chegv_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zhegv_strided_batched
@@ -23958,18 +22970,16 @@ rocsolver_chegv_strided_batched_rank_1
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zhegv_strided_batched_full_rank,&
-      
-rocsolver_zhegv_strided_batched_rank_0,&
-      
-rocsolver_zhegv_strided_batched_rank_1
+    module procedure &
+      rocsolver_zhegv_strided_batched_full_rank,&
+      rocsolver_zhegv_strided_batched_rank_0,&
+      rocsolver_zhegv_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief SYGVD computes the eigenvalues and (optionally) eigenvectors of
@@ -24072,17 +23082,15 @@ rocsolver_zhegv_strided_batched_rank_1
       integer(c_int),value :: ldb
       type(c_ptr),value :: D
       type(c_ptr),value :: E
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_ssygvd_full_rank,&
-      
-rocsolver_ssygvd_rank_0,&
-      
-rocsolver_ssygvd_rank_1
+    module procedure &
+      rocsolver_ssygvd_full_rank,&
+      rocsolver_ssygvd_rank_0,&
+      rocsolver_ssygvd_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dsygvd
@@ -24103,17 +23111,15 @@ rocsolver_ssygvd_rank_1
       integer(c_int),value :: ldb
       type(c_ptr),value :: D
       type(c_ptr),value :: E
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dsygvd_full_rank,&
-      
-rocsolver_dsygvd_rank_0,&
-      
-rocsolver_dsygvd_rank_1
+    module procedure &
+      rocsolver_dsygvd_full_rank,&
+      rocsolver_dsygvd_rank_0,&
+      rocsolver_dsygvd_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief HEGVD computes the eigenvalues and (optionally) eigenvectors of
@@ -24216,17 +23222,15 @@ rocsolver_dsygvd_rank_1
       integer(c_int),value :: ldb
       type(c_ptr),value :: D
       type(c_ptr),value :: E
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_chegvd_full_rank,&
-      
-rocsolver_chegvd_rank_0,&
-      
-rocsolver_chegvd_rank_1
+    module procedure &
+      rocsolver_chegvd_full_rank,&
+      rocsolver_chegvd_rank_0,&
+      rocsolver_chegvd_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zhegvd
@@ -24247,17 +23251,15 @@ rocsolver_chegvd_rank_1
       integer(c_int),value :: ldb
       type(c_ptr),value :: D
       type(c_ptr),value :: E
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zhegvd_full_rank,&
-      
-rocsolver_zhegvd_rank_0,&
-      
-rocsolver_zhegvd_rank_1
+    module procedure &
+      rocsolver_zhegvd_full_rank,&
+      rocsolver_zhegvd_rank_0,&
+      rocsolver_zhegvd_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief SYGVD_BATCHED computes the eigenvalues and (optionally)
@@ -24373,18 +23375,16 @@ rocsolver_zhegvd_rank_1
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_ssygvd_batched_full_rank,&
-      
-rocsolver_ssygvd_batched_rank_0,&
-      
-rocsolver_ssygvd_batched_rank_1
+    module procedure &
+      rocsolver_ssygvd_batched_full_rank,&
+      rocsolver_ssygvd_batched_rank_0,&
+      rocsolver_ssygvd_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dsygvd_batched
@@ -24407,18 +23407,16 @@ rocsolver_ssygvd_batched_rank_1
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dsygvd_batched_full_rank,&
-      
-rocsolver_dsygvd_batched_rank_0,&
-      
-rocsolver_dsygvd_batched_rank_1
+    module procedure &
+      rocsolver_dsygvd_batched_full_rank,&
+      rocsolver_dsygvd_batched_rank_0,&
+      rocsolver_dsygvd_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief HEGVD_BATCHED computes the eigenvalues and (optionally)
@@ -24534,18 +23532,16 @@ rocsolver_dsygvd_batched_rank_1
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_chegvd_batched_full_rank,&
-      
-rocsolver_chegvd_batched_rank_0,&
-      
-rocsolver_chegvd_batched_rank_1
+    module procedure &
+      rocsolver_chegvd_batched_full_rank,&
+      rocsolver_chegvd_batched_rank_0,&
+      rocsolver_chegvd_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zhegvd_batched
@@ -24568,18 +23564,16 @@ rocsolver_chegvd_batched_rank_1
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zhegvd_batched_full_rank,&
-      
-rocsolver_zhegvd_batched_rank_0,&
-      
-rocsolver_zhegvd_batched_rank_1
+    module procedure &
+      rocsolver_zhegvd_batched_full_rank,&
+      rocsolver_zhegvd_batched_rank_0,&
+      rocsolver_zhegvd_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief SYGVD_STRIDED_BATCHED computes the eigenvalues and (optionally)
@@ -24705,18 +23699,16 @@ rocsolver_zhegvd_batched_rank_1
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_ssygvd_strided_batched_full_rank,&
-      
-rocsolver_ssygvd_strided_batched_rank_0,&
-      
-rocsolver_ssygvd_strided_batched_rank_1
+    module procedure &
+      rocsolver_ssygvd_strided_batched_full_rank,&
+      rocsolver_ssygvd_strided_batched_rank_0,&
+      rocsolver_ssygvd_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dsygvd_strided_batched
@@ -24741,18 +23733,16 @@ rocsolver_ssygvd_strided_batched_rank_1
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dsygvd_strided_batched_full_rank,&
-      
-rocsolver_dsygvd_strided_batched_rank_0,&
-      
-rocsolver_dsygvd_strided_batched_rank_1
+    module procedure &
+      rocsolver_dsygvd_strided_batched_full_rank,&
+      rocsolver_dsygvd_strided_batched_rank_0,&
+      rocsolver_dsygvd_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief HEGVD_STRIDED_BATCHED computes the eigenvalues and (optionally)
@@ -24878,18 +23868,16 @@ rocsolver_dsygvd_strided_batched_rank_1
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_chegvd_strided_batched_full_rank,&
-      
-rocsolver_chegvd_strided_batched_rank_0,&
-      
-rocsolver_chegvd_strided_batched_rank_1
+    module procedure &
+      rocsolver_chegvd_strided_batched_full_rank,&
+      rocsolver_chegvd_strided_batched_rank_0,&
+      rocsolver_chegvd_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zhegvd_strided_batched
@@ -24914,18 +23902,16 @@ rocsolver_chegvd_strided_batched_rank_1
       integer(c_int64_t),value :: strideD
       type(c_ptr),value :: E
       integer(c_int64_t),value :: strideE
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zhegvd_strided_batched_full_rank,&
-      
-rocsolver_zhegvd_strided_batched_rank_0,&
-      
-rocsolver_zhegvd_strided_batched_rank_1
+    module procedure &
+      rocsolver_zhegvd_strided_batched_full_rank,&
+      rocsolver_zhegvd_strided_batched_rank_0,&
+      rocsolver_zhegvd_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GETRI_OUTOFPLACE computes the inverse \f$C = A^{-1}\f$ of a general n-by-n matrix A.
@@ -24979,17 +23965,15 @@ rocsolver_zhegvd_strided_batched_rank_1
       type(c_ptr),value :: ipiv
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgetri_outofplace_full_rank,&
-      
-rocsolver_sgetri_outofplace_rank_0,&
-      
-rocsolver_sgetri_outofplace_rank_1
+    module procedure &
+      rocsolver_sgetri_outofplace_full_rank,&
+      rocsolver_sgetri_outofplace_rank_0,&
+      rocsolver_sgetri_outofplace_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgetri_outofplace
@@ -25006,17 +23990,15 @@ rocsolver_sgetri_outofplace_rank_1
       type(c_ptr),value :: ipiv
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgetri_outofplace_full_rank,&
-      
-rocsolver_dgetri_outofplace_rank_0,&
-      
-rocsolver_dgetri_outofplace_rank_1
+    module procedure &
+      rocsolver_dgetri_outofplace_full_rank,&
+      rocsolver_dgetri_outofplace_rank_0,&
+      rocsolver_dgetri_outofplace_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgetri_outofplace
@@ -25033,17 +24015,15 @@ rocsolver_dgetri_outofplace_rank_1
       type(c_ptr),value :: ipiv
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgetri_outofplace_full_rank,&
-      
-rocsolver_cgetri_outofplace_rank_0,&
-      
-rocsolver_cgetri_outofplace_rank_1
+    module procedure &
+      rocsolver_cgetri_outofplace_full_rank,&
+      rocsolver_cgetri_outofplace_rank_0,&
+      rocsolver_cgetri_outofplace_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgetri_outofplace
@@ -25060,17 +24040,15 @@ rocsolver_cgetri_outofplace_rank_1
       type(c_ptr),value :: ipiv
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgetri_outofplace_full_rank,&
-      
-rocsolver_zgetri_outofplace_rank_0,&
-      
-rocsolver_zgetri_outofplace_rank_1
+    module procedure &
+      rocsolver_zgetri_outofplace_full_rank,&
+      rocsolver_zgetri_outofplace_rank_0,&
+      rocsolver_zgetri_outofplace_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GETRI_OUTOFPLACE_BATCHED computes the inverse \f$C_j = A_j^{-1}\f$ of a batch of general n-by-n matrices \f$A_j\f$.
@@ -25132,18 +24110,16 @@ rocsolver_zgetri_outofplace_rank_1
       integer(c_int64_t),value :: strideP
       type(c_ptr) :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgetri_outofplace_batched_full_rank,&
-      
-rocsolver_sgetri_outofplace_batched_rank_0,&
-      
-rocsolver_sgetri_outofplace_batched_rank_1
+    module procedure &
+      rocsolver_sgetri_outofplace_batched_full_rank,&
+      rocsolver_sgetri_outofplace_batched_rank_0,&
+      rocsolver_sgetri_outofplace_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgetri_outofplace_batched
@@ -25161,18 +24137,16 @@ rocsolver_sgetri_outofplace_batched_rank_1
       integer(c_int64_t),value :: strideP
       type(c_ptr) :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgetri_outofplace_batched_full_rank,&
-      
-rocsolver_dgetri_outofplace_batched_rank_0,&
-      
-rocsolver_dgetri_outofplace_batched_rank_1
+    module procedure &
+      rocsolver_dgetri_outofplace_batched_full_rank,&
+      rocsolver_dgetri_outofplace_batched_rank_0,&
+      rocsolver_dgetri_outofplace_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgetri_outofplace_batched
@@ -25190,18 +24164,16 @@ rocsolver_dgetri_outofplace_batched_rank_1
       integer(c_int64_t),value :: strideP
       type(c_ptr) :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgetri_outofplace_batched_full_rank,&
-      
-rocsolver_cgetri_outofplace_batched_rank_0,&
-      
-rocsolver_cgetri_outofplace_batched_rank_1
+    module procedure &
+      rocsolver_cgetri_outofplace_batched_full_rank,&
+      rocsolver_cgetri_outofplace_batched_rank_0,&
+      rocsolver_cgetri_outofplace_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgetri_outofplace_batched
@@ -25219,18 +24191,16 @@ rocsolver_cgetri_outofplace_batched_rank_1
       integer(c_int64_t),value :: strideP
       type(c_ptr) :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgetri_outofplace_batched_full_rank,&
-      
-rocsolver_zgetri_outofplace_batched_rank_0,&
-      
-rocsolver_zgetri_outofplace_batched_rank_1
+    module procedure &
+      rocsolver_zgetri_outofplace_batched_full_rank,&
+      rocsolver_zgetri_outofplace_batched_rank_0,&
+      rocsolver_zgetri_outofplace_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GETRI_OUTOFPLACE_STRIDED_BATCHED computes the inverse \f$C_j = A_j^{-1}\f$ of a batch of general n-by-n matrices \f$A_j\f$.
@@ -25303,18 +24273,16 @@ rocsolver_zgetri_outofplace_batched_rank_1
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int64_t),value :: strideC
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgetri_outofplace_strided_batched_full_rank,&
-      
-rocsolver_sgetri_outofplace_strided_batched_rank_0,&
-      
-rocsolver_sgetri_outofplace_strided_batched_rank_1
+    module procedure &
+      rocsolver_sgetri_outofplace_strided_batched_full_rank,&
+      rocsolver_sgetri_outofplace_strided_batched_rank_0,&
+      rocsolver_sgetri_outofplace_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgetri_outofplace_strided_batched
@@ -25334,18 +24302,16 @@ rocsolver_sgetri_outofplace_strided_batched_rank_1
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int64_t),value :: strideC
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgetri_outofplace_strided_batched_full_rank,&
-      
-rocsolver_dgetri_outofplace_strided_batched_rank_0,&
-      
-rocsolver_dgetri_outofplace_strided_batched_rank_1
+    module procedure &
+      rocsolver_dgetri_outofplace_strided_batched_full_rank,&
+      rocsolver_dgetri_outofplace_strided_batched_rank_0,&
+      rocsolver_dgetri_outofplace_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgetri_outofplace_strided_batched
@@ -25365,18 +24331,16 @@ rocsolver_dgetri_outofplace_strided_batched_rank_1
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int64_t),value :: strideC
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgetri_outofplace_strided_batched_full_rank,&
-      
-rocsolver_cgetri_outofplace_strided_batched_rank_0,&
-      
-rocsolver_cgetri_outofplace_strided_batched_rank_1
+    module procedure &
+      rocsolver_cgetri_outofplace_strided_batched_full_rank,&
+      rocsolver_cgetri_outofplace_strided_batched_rank_0,&
+      rocsolver_cgetri_outofplace_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgetri_outofplace_strided_batched
@@ -25396,18 +24360,16 @@ rocsolver_cgetri_outofplace_strided_batched_rank_1
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int64_t),value :: strideC
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgetri_outofplace_strided_batched_full_rank,&
-      
-rocsolver_zgetri_outofplace_strided_batched_rank_0,&
-      
-rocsolver_zgetri_outofplace_strided_batched_rank_1
+    module procedure &
+      rocsolver_zgetri_outofplace_strided_batched_full_rank,&
+      rocsolver_zgetri_outofplace_strided_batched_rank_0,&
+      rocsolver_zgetri_outofplace_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GETRI_NPVT_OUTOFPLACE computes the inverse \f$C = A^{-1}\f$ of a general n-by-n matrix A without partial pivoting.
@@ -25457,17 +24419,15 @@ rocsolver_zgetri_outofplace_strided_batched_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgetri_npvt_outofplace_full_rank,&
-      
-rocsolver_sgetri_npvt_outofplace_rank_0,&
-      
-rocsolver_sgetri_npvt_outofplace_rank_1
+    module procedure &
+      rocsolver_sgetri_npvt_outofplace_full_rank,&
+      rocsolver_sgetri_npvt_outofplace_rank_0,&
+      rocsolver_sgetri_npvt_outofplace_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgetri_npvt_outofplace
@@ -25483,17 +24443,15 @@ rocsolver_sgetri_npvt_outofplace_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgetri_npvt_outofplace_full_rank,&
-      
-rocsolver_dgetri_npvt_outofplace_rank_0,&
-      
-rocsolver_dgetri_npvt_outofplace_rank_1
+    module procedure &
+      rocsolver_dgetri_npvt_outofplace_full_rank,&
+      rocsolver_dgetri_npvt_outofplace_rank_0,&
+      rocsolver_dgetri_npvt_outofplace_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgetri_npvt_outofplace
@@ -25509,17 +24467,15 @@ rocsolver_dgetri_npvt_outofplace_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgetri_npvt_outofplace_full_rank,&
-      
-rocsolver_cgetri_npvt_outofplace_rank_0,&
-      
-rocsolver_cgetri_npvt_outofplace_rank_1
+    module procedure &
+      rocsolver_cgetri_npvt_outofplace_full_rank,&
+      rocsolver_cgetri_npvt_outofplace_rank_0,&
+      rocsolver_cgetri_npvt_outofplace_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgetri_npvt_outofplace
@@ -25535,17 +24491,15 @@ rocsolver_cgetri_npvt_outofplace_rank_1
       integer(c_int),value :: lda
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgetri_npvt_outofplace_full_rank,&
-      
-rocsolver_zgetri_npvt_outofplace_rank_0,&
-      
-rocsolver_zgetri_npvt_outofplace_rank_1
+    module procedure &
+      rocsolver_zgetri_npvt_outofplace_full_rank,&
+      rocsolver_zgetri_npvt_outofplace_rank_0,&
+      rocsolver_zgetri_npvt_outofplace_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GETRI_NPVT_OUTOFPLACE_BATCHED computes the inverse \f$C_j = A_j^{-1}\f$ of a batch of general n-by-n matrices \f$A_j\f$
@@ -25599,18 +24553,16 @@ rocsolver_zgetri_npvt_outofplace_rank_1
       integer(c_int),value :: lda
       type(c_ptr) :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgetri_npvt_outofplace_batched_full_rank,&
-      
-rocsolver_sgetri_npvt_outofplace_batched_rank_0,&
-      
-rocsolver_sgetri_npvt_outofplace_batched_rank_1
+    module procedure &
+      rocsolver_sgetri_npvt_outofplace_batched_full_rank,&
+      rocsolver_sgetri_npvt_outofplace_batched_rank_0,&
+      rocsolver_sgetri_npvt_outofplace_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgetri_npvt_outofplace_batched
@@ -25626,18 +24578,16 @@ rocsolver_sgetri_npvt_outofplace_batched_rank_1
       integer(c_int),value :: lda
       type(c_ptr) :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgetri_npvt_outofplace_batched_full_rank,&
-      
-rocsolver_dgetri_npvt_outofplace_batched_rank_0,&
-      
-rocsolver_dgetri_npvt_outofplace_batched_rank_1
+    module procedure &
+      rocsolver_dgetri_npvt_outofplace_batched_full_rank,&
+      rocsolver_dgetri_npvt_outofplace_batched_rank_0,&
+      rocsolver_dgetri_npvt_outofplace_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgetri_npvt_outofplace_batched
@@ -25653,18 +24603,16 @@ rocsolver_dgetri_npvt_outofplace_batched_rank_1
       integer(c_int),value :: lda
       type(c_ptr) :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgetri_npvt_outofplace_batched_full_rank,&
-      
-rocsolver_cgetri_npvt_outofplace_batched_rank_0,&
-      
-rocsolver_cgetri_npvt_outofplace_batched_rank_1
+    module procedure &
+      rocsolver_cgetri_npvt_outofplace_batched_full_rank,&
+      rocsolver_cgetri_npvt_outofplace_batched_rank_0,&
+      rocsolver_cgetri_npvt_outofplace_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgetri_npvt_outofplace_batched
@@ -25680,18 +24628,16 @@ rocsolver_cgetri_npvt_outofplace_batched_rank_1
       integer(c_int),value :: lda
       type(c_ptr) :: C
       integer(c_int),value :: ldc
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgetri_npvt_outofplace_batched_full_rank,&
-      
-rocsolver_zgetri_npvt_outofplace_batched_rank_0,&
-      
-rocsolver_zgetri_npvt_outofplace_batched_rank_1
+    module procedure &
+      rocsolver_zgetri_npvt_outofplace_batched_full_rank,&
+      rocsolver_zgetri_npvt_outofplace_batched_rank_0,&
+      rocsolver_zgetri_npvt_outofplace_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief GETRI_NPVT_OUTOFPLACE_STRIDED_BATCHED computes the inverse \f$C_j = A_j^{-1}\f$ of a batch of general n-by-n matrices \f$A_j\f$
@@ -25756,18 +24702,16 @@ rocsolver_zgetri_npvt_outofplace_batched_rank_1
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int64_t),value :: strideC
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_sgetri_npvt_outofplace_strided_batched_full_rank,&
-      
-rocsolver_sgetri_npvt_outofplace_strided_batched_rank_0,&
-      
-rocsolver_sgetri_npvt_outofplace_strided_batched_rank_1
+    module procedure &
+      rocsolver_sgetri_npvt_outofplace_strided_batched_full_rank,&
+      rocsolver_sgetri_npvt_outofplace_strided_batched_rank_0,&
+      rocsolver_sgetri_npvt_outofplace_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dgetri_npvt_outofplace_strided_batched
@@ -25785,18 +24729,16 @@ rocsolver_sgetri_npvt_outofplace_strided_batched_rank_1
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int64_t),value :: strideC
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dgetri_npvt_outofplace_strided_batched_full_rank,&
-      
-rocsolver_dgetri_npvt_outofplace_strided_batched_rank_0,&
-      
-rocsolver_dgetri_npvt_outofplace_strided_batched_rank_1
+    module procedure &
+      rocsolver_dgetri_npvt_outofplace_strided_batched_full_rank,&
+      rocsolver_dgetri_npvt_outofplace_strided_batched_rank_0,&
+      rocsolver_dgetri_npvt_outofplace_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_cgetri_npvt_outofplace_strided_batched
@@ -25814,18 +24756,16 @@ rocsolver_dgetri_npvt_outofplace_strided_batched_rank_1
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int64_t),value :: strideC
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_cgetri_npvt_outofplace_strided_batched_full_rank,&
-      
-rocsolver_cgetri_npvt_outofplace_strided_batched_rank_0,&
-      
-rocsolver_cgetri_npvt_outofplace_strided_batched_rank_1
+    module procedure &
+      rocsolver_cgetri_npvt_outofplace_strided_batched_full_rank,&
+      rocsolver_cgetri_npvt_outofplace_strided_batched_rank_0,&
+      rocsolver_cgetri_npvt_outofplace_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_zgetri_npvt_outofplace_strided_batched
@@ -25843,18 +24783,16 @@ rocsolver_cgetri_npvt_outofplace_strided_batched_rank_1
       type(c_ptr),value :: C
       integer(c_int),value :: ldc
       integer(c_int64_t),value :: strideC
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_zgetri_npvt_outofplace_strided_batched_full_rank,&
-      
-rocsolver_zgetri_npvt_outofplace_strided_batched_rank_0,&
-      
-rocsolver_zgetri_npvt_outofplace_strided_batched_rank_1
+    module procedure &
+      rocsolver_zgetri_npvt_outofplace_strided_batched_full_rank,&
+      rocsolver_zgetri_npvt_outofplace_strided_batched_rank_0,&
+      rocsolver_zgetri_npvt_outofplace_strided_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief TRTRI inverts a triangular n-by-n matrix A.
@@ -25903,17 +24841,15 @@ rocsolver_zgetri_npvt_outofplace_strided_batched_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_strtri_full_rank,&
-      
-rocsolver_strtri_rank_0,&
-      
-rocsolver_strtri_rank_1
+    module procedure &
+      rocsolver_strtri_full_rank,&
+      rocsolver_strtri_rank_0,&
+      rocsolver_strtri_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dtrtri
@@ -25929,17 +24865,15 @@ rocsolver_strtri_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dtrtri_full_rank,&
-      
-rocsolver_dtrtri_rank_0,&
-      
-rocsolver_dtrtri_rank_1
+    module procedure &
+      rocsolver_dtrtri_full_rank,&
+      rocsolver_dtrtri_rank_0,&
+      rocsolver_dtrtri_rank_1
 #endif
-
   end interface
   
   interface rocsolver_ctrtri
@@ -25955,17 +24889,15 @@ rocsolver_dtrtri_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_ctrtri_full_rank,&
-      
-rocsolver_ctrtri_rank_0,&
-      
-rocsolver_ctrtri_rank_1
+    module procedure &
+      rocsolver_ctrtri_full_rank,&
+      rocsolver_ctrtri_rank_0,&
+      rocsolver_ctrtri_rank_1
 #endif
-
   end interface
   
   interface rocsolver_ztrtri
@@ -25981,17 +24913,15 @@ rocsolver_ctrtri_rank_1
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_ztrtri_full_rank,&
-      
-rocsolver_ztrtri_rank_0,&
-      
-rocsolver_ztrtri_rank_1
+    module procedure &
+      rocsolver_ztrtri_full_rank,&
+      rocsolver_ztrtri_rank_0,&
+      rocsolver_ztrtri_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief TRTRI_BATCHED inverts a batch of triangular n-by-n matrices \f$A_j\f$.
@@ -26043,18 +24973,16 @@ rocsolver_ztrtri_rank_1
       integer(c_int),value :: n
       type(c_ptr) :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_strtri_batched_full_rank,&
-      
-rocsolver_strtri_batched_rank_0,&
-      
-rocsolver_strtri_batched_rank_1
+    module procedure &
+      rocsolver_strtri_batched_full_rank,&
+      rocsolver_strtri_batched_rank_0,&
+      rocsolver_strtri_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dtrtri_batched
@@ -26070,18 +24998,16 @@ rocsolver_strtri_batched_rank_1
       integer(c_int),value :: n
       type(c_ptr) :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dtrtri_batched_full_rank,&
-      
-rocsolver_dtrtri_batched_rank_0,&
-      
-rocsolver_dtrtri_batched_rank_1
+    module procedure &
+      rocsolver_dtrtri_batched_full_rank,&
+      rocsolver_dtrtri_batched_rank_0,&
+      rocsolver_dtrtri_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_ctrtri_batched
@@ -26097,18 +25023,16 @@ rocsolver_dtrtri_batched_rank_1
       integer(c_int),value :: n
       type(c_ptr) :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_ctrtri_batched_full_rank,&
-      
-rocsolver_ctrtri_batched_rank_0,&
-      
-rocsolver_ctrtri_batched_rank_1
+    module procedure &
+      rocsolver_ctrtri_batched_full_rank,&
+      rocsolver_ctrtri_batched_rank_0,&
+      rocsolver_ctrtri_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_ztrtri_batched
@@ -26124,18 +25048,16 @@ rocsolver_ctrtri_batched_rank_1
       integer(c_int),value :: n
       type(c_ptr) :: A
       integer(c_int),value :: lda
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_ztrtri_batched_full_rank,&
-      
-rocsolver_ztrtri_batched_rank_0,&
-      
-rocsolver_ztrtri_batched_rank_1
+    module procedure &
+      rocsolver_ztrtri_batched_full_rank,&
+      rocsolver_ztrtri_batched_rank_0,&
+      rocsolver_ztrtri_batched_rank_1
 #endif
-
   end interface
   !> ! @{
   !>     \brief TRTRI_STRIDED_BATCHED inverts a batch of triangular n-by-n matrices \f$A_j\f$.
@@ -26192,18 +25114,16 @@ rocsolver_ztrtri_batched_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_strtri_strided_batched_full_rank,&
-      
-rocsolver_strtri_strided_batched_rank_0,&
-      
-rocsolver_strtri_strided_batched_rank_1
+    module procedure &
+      rocsolver_strtri_strided_batched_full_rank,&
+      rocsolver_strtri_strided_batched_rank_0,&
+      rocsolver_strtri_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_dtrtri_strided_batched
@@ -26220,18 +25140,16 @@ rocsolver_strtri_strided_batched_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_dtrtri_strided_batched_full_rank,&
-      
-rocsolver_dtrtri_strided_batched_rank_0,&
-      
-rocsolver_dtrtri_strided_batched_rank_1
+    module procedure &
+      rocsolver_dtrtri_strided_batched_full_rank,&
+      rocsolver_dtrtri_strided_batched_rank_0,&
+      rocsolver_dtrtri_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_ctrtri_strided_batched
@@ -26248,18 +25166,16 @@ rocsolver_dtrtri_strided_batched_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_ctrtri_strided_batched_full_rank,&
-      
-rocsolver_ctrtri_strided_batched_rank_0,&
-      
-rocsolver_ctrtri_strided_batched_rank_1
+    module procedure &
+      rocsolver_ctrtri_strided_batched_full_rank,&
+      rocsolver_ctrtri_strided_batched_rank_0,&
+      rocsolver_ctrtri_strided_batched_rank_1
 #endif
-
   end interface
   
   interface rocsolver_ztrtri_strided_batched
@@ -26276,18 +25192,16 @@ rocsolver_ctrtri_strided_batched_rank_1
       type(c_ptr),value :: A
       integer(c_int),value :: lda
       integer(c_int64_t),value :: strideA
-      type(c_ptr),value :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int),value :: batch_count
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocsolver_ztrtri_strided_batched_full_rank,&
-      
-rocsolver_ztrtri_strided_batched_rank_0,&
-      
-rocsolver_ztrtri_strided_batched_rank_1
+    module procedure &
+      rocsolver_ztrtri_strided_batched_full_rank,&
+      rocsolver_ztrtri_strided_batched_rank_0,&
+      rocsolver_ztrtri_strided_batched_rank_1
 #endif
-
   end interface
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -31656,7 +30570,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldu
       real(c_float),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_sbdsqr_full_rank = rocsolver_sbdsqr_(handle,uplo,n,nv,nu,nc,c_loc(D),c_loc(E),c_loc(V),ldv,c_loc(U),ldu,c_loc(C),ldc,myInfo)
     end function
@@ -31681,7 +30595,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldu
       real(c_float),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_sbdsqr_rank_0 = rocsolver_sbdsqr_(handle,uplo,n,nv,nu,nc,c_loc(D),c_loc(E),c_loc(V),ldv,c_loc(U),ldu,c_loc(C),ldc,myInfo)
     end function
@@ -31706,7 +30620,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldu
       real(c_float),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_sbdsqr_rank_1 = rocsolver_sbdsqr_(handle,uplo,n,nv,nu,nc,c_loc(D),c_loc(E),c_loc(V),ldv,c_loc(U),ldu,c_loc(C),ldc,myInfo)
     end function
@@ -31731,7 +30645,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldu
       real(c_double),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dbdsqr_full_rank = rocsolver_dbdsqr_(handle,uplo,n,nv,nu,nc,c_loc(D),c_loc(E),c_loc(V),ldv,c_loc(U),ldu,c_loc(C),ldc,myInfo)
     end function
@@ -31756,7 +30670,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldu
       real(c_double),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dbdsqr_rank_0 = rocsolver_dbdsqr_(handle,uplo,n,nv,nu,nc,c_loc(D),c_loc(E),c_loc(V),ldv,c_loc(U),ldu,c_loc(C),ldc,myInfo)
     end function
@@ -31781,7 +30695,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldu
       real(c_double),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dbdsqr_rank_1 = rocsolver_dbdsqr_(handle,uplo,n,nv,nu,nc,c_loc(D),c_loc(E),c_loc(V),ldv,c_loc(U),ldu,c_loc(C),ldc,myInfo)
     end function
@@ -31806,7 +30720,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldu
       complex(c_float_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cbdsqr_full_rank = rocsolver_cbdsqr_(handle,uplo,n,nv,nu,nc,c_loc(D),c_loc(E),c_loc(V),ldv,c_loc(U),ldu,c_loc(C),ldc,myInfo)
     end function
@@ -31831,7 +30745,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldu
       complex(c_float_complex),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cbdsqr_rank_0 = rocsolver_cbdsqr_(handle,uplo,n,nv,nu,nc,c_loc(D),c_loc(E),c_loc(V),ldv,c_loc(U),ldu,c_loc(C),ldc,myInfo)
     end function
@@ -31856,7 +30770,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldu
       complex(c_float_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cbdsqr_rank_1 = rocsolver_cbdsqr_(handle,uplo,n,nv,nu,nc,c_loc(D),c_loc(E),c_loc(V),ldv,c_loc(U),ldu,c_loc(C),ldc,myInfo)
     end function
@@ -31881,7 +30795,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldu
       complex(c_double_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zbdsqr_full_rank = rocsolver_zbdsqr_(handle,uplo,n,nv,nu,nc,c_loc(D),c_loc(E),c_loc(V),ldv,c_loc(U),ldu,c_loc(C),ldc,myInfo)
     end function
@@ -31906,7 +30820,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldu
       complex(c_double_complex),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zbdsqr_rank_0 = rocsolver_zbdsqr_(handle,uplo,n,nv,nu,nc,c_loc(D),c_loc(E),c_loc(V),ldv,c_loc(U),ldu,c_loc(C),ldc,myInfo)
     end function
@@ -31931,7 +30845,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldu
       complex(c_double_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zbdsqr_rank_1 = rocsolver_zbdsqr_(handle,uplo,n,nv,nu,nc,c_loc(D),c_loc(E),c_loc(V),ldv,c_loc(U),ldu,c_loc(C),ldc,myInfo)
     end function
@@ -31946,7 +30860,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target :: D
       real(c_float),target :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_ssterf_rank_0 = rocsolver_ssterf_(handle,n,c_loc(D),c_loc(E),myInfo)
     end function
@@ -31961,7 +30875,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: D
       real(c_float),target,dimension(:) :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_ssterf_rank_1 = rocsolver_ssterf_(handle,n,c_loc(D),c_loc(E),myInfo)
     end function
@@ -31976,7 +30890,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target :: D
       real(c_double),target :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dsterf_rank_0 = rocsolver_dsterf_(handle,n,c_loc(D),c_loc(E),myInfo)
     end function
@@ -31991,7 +30905,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: D
       real(c_double),target,dimension(:) :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dsterf_rank_1 = rocsolver_dsterf_(handle,n,c_loc(D),c_loc(E),myInfo)
     end function
@@ -32009,7 +30923,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:) :: E
       real(c_float),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_ssteqr_full_rank = rocsolver_ssteqr_(handle,evect,n,c_loc(D),c_loc(E),c_loc(C),ldc,myInfo)
     end function
@@ -32027,7 +30941,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target :: E
       real(c_float),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_ssteqr_rank_0 = rocsolver_ssteqr_(handle,evect,n,c_loc(D),c_loc(E),c_loc(C),ldc,myInfo)
     end function
@@ -32045,7 +30959,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:) :: E
       real(c_float),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_ssteqr_rank_1 = rocsolver_ssteqr_(handle,evect,n,c_loc(D),c_loc(E),c_loc(C),ldc,myInfo)
     end function
@@ -32063,7 +30977,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:) :: E
       real(c_double),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dsteqr_full_rank = rocsolver_dsteqr_(handle,evect,n,c_loc(D),c_loc(E),c_loc(C),ldc,myInfo)
     end function
@@ -32081,7 +30995,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target :: E
       real(c_double),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dsteqr_rank_0 = rocsolver_dsteqr_(handle,evect,n,c_loc(D),c_loc(E),c_loc(C),ldc,myInfo)
     end function
@@ -32099,7 +31013,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:) :: E
       real(c_double),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dsteqr_rank_1 = rocsolver_dsteqr_(handle,evect,n,c_loc(D),c_loc(E),c_loc(C),ldc,myInfo)
     end function
@@ -32117,7 +31031,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:) :: E
       complex(c_float_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_csteqr_full_rank = rocsolver_csteqr_(handle,evect,n,c_loc(D),c_loc(E),c_loc(C),ldc,myInfo)
     end function
@@ -32135,7 +31049,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target :: E
       complex(c_float_complex),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_csteqr_rank_0 = rocsolver_csteqr_(handle,evect,n,c_loc(D),c_loc(E),c_loc(C),ldc,myInfo)
     end function
@@ -32153,7 +31067,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:) :: E
       complex(c_float_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_csteqr_rank_1 = rocsolver_csteqr_(handle,evect,n,c_loc(D),c_loc(E),c_loc(C),ldc,myInfo)
     end function
@@ -32171,7 +31085,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:) :: E
       complex(c_double_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zsteqr_full_rank = rocsolver_zsteqr_(handle,evect,n,c_loc(D),c_loc(E),c_loc(C),ldc,myInfo)
     end function
@@ -32189,7 +31103,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target :: E
       complex(c_double_complex),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zsteqr_rank_0 = rocsolver_zsteqr_(handle,evect,n,c_loc(D),c_loc(E),c_loc(C),ldc,myInfo)
     end function
@@ -32207,7 +31121,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:) :: E
       complex(c_double_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zsteqr_rank_1 = rocsolver_zsteqr_(handle,evect,n,c_loc(D),c_loc(E),c_loc(C),ldc,myInfo)
     end function
@@ -32225,7 +31139,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:) :: E
       real(c_float),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_sstedc_full_rank = rocsolver_sstedc_(handle,evect,n,c_loc(D),c_loc(E),c_loc(C),ldc,myInfo)
     end function
@@ -32243,7 +31157,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target :: E
       real(c_float),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_sstedc_rank_0 = rocsolver_sstedc_(handle,evect,n,c_loc(D),c_loc(E),c_loc(C),ldc,myInfo)
     end function
@@ -32261,7 +31175,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:) :: E
       real(c_float),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_sstedc_rank_1 = rocsolver_sstedc_(handle,evect,n,c_loc(D),c_loc(E),c_loc(C),ldc,myInfo)
     end function
@@ -32279,7 +31193,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:) :: E
       real(c_double),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dstedc_full_rank = rocsolver_dstedc_(handle,evect,n,c_loc(D),c_loc(E),c_loc(C),ldc,myInfo)
     end function
@@ -32297,7 +31211,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target :: E
       real(c_double),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dstedc_rank_0 = rocsolver_dstedc_(handle,evect,n,c_loc(D),c_loc(E),c_loc(C),ldc,myInfo)
     end function
@@ -32315,7 +31229,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:) :: E
       real(c_double),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dstedc_rank_1 = rocsolver_dstedc_(handle,evect,n,c_loc(D),c_loc(E),c_loc(C),ldc,myInfo)
     end function
@@ -32333,7 +31247,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:) :: E
       complex(c_float_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cstedc_full_rank = rocsolver_cstedc_(handle,evect,n,c_loc(D),c_loc(E),c_loc(C),ldc,myInfo)
     end function
@@ -32351,7 +31265,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target :: E
       complex(c_float_complex),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cstedc_rank_0 = rocsolver_cstedc_(handle,evect,n,c_loc(D),c_loc(E),c_loc(C),ldc,myInfo)
     end function
@@ -32369,7 +31283,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:) :: E
       complex(c_float_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cstedc_rank_1 = rocsolver_cstedc_(handle,evect,n,c_loc(D),c_loc(E),c_loc(C),ldc,myInfo)
     end function
@@ -32387,7 +31301,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:) :: E
       complex(c_double_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zstedc_full_rank = rocsolver_zstedc_(handle,evect,n,c_loc(D),c_loc(E),c_loc(C),ldc,myInfo)
     end function
@@ -32405,7 +31319,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target :: E
       complex(c_double_complex),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zstedc_rank_0 = rocsolver_zstedc_(handle,evect,n,c_loc(D),c_loc(E),c_loc(C),ldc,myInfo)
     end function
@@ -32423,7 +31337,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:) :: E
       complex(c_double_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zstedc_rank_1 = rocsolver_zstedc_(handle,evect,n,c_loc(D),c_loc(E),c_loc(C),ldc,myInfo)
     end function
@@ -32439,7 +31353,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_sgetf2_npvt_full_rank = rocsolver_sgetf2_npvt_(handle,m,n,c_loc(A),lda,myInfo)
     end function
@@ -32455,7 +31369,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_sgetf2_npvt_rank_0 = rocsolver_sgetf2_npvt_(handle,m,n,c_loc(A),lda,myInfo)
     end function
@@ -32471,7 +31385,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_sgetf2_npvt_rank_1 = rocsolver_sgetf2_npvt_(handle,m,n,c_loc(A),lda,myInfo)
     end function
@@ -32487,7 +31401,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dgetf2_npvt_full_rank = rocsolver_dgetf2_npvt_(handle,m,n,c_loc(A),lda,myInfo)
     end function
@@ -32503,7 +31417,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dgetf2_npvt_rank_0 = rocsolver_dgetf2_npvt_(handle,m,n,c_loc(A),lda,myInfo)
     end function
@@ -32519,7 +31433,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dgetf2_npvt_rank_1 = rocsolver_dgetf2_npvt_(handle,m,n,c_loc(A),lda,myInfo)
     end function
@@ -32535,7 +31449,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cgetf2_npvt_full_rank = rocsolver_cgetf2_npvt_(handle,m,n,c_loc(A),lda,myInfo)
     end function
@@ -32551,7 +31465,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cgetf2_npvt_rank_0 = rocsolver_cgetf2_npvt_(handle,m,n,c_loc(A),lda,myInfo)
     end function
@@ -32567,7 +31481,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cgetf2_npvt_rank_1 = rocsolver_cgetf2_npvt_(handle,m,n,c_loc(A),lda,myInfo)
     end function
@@ -32583,7 +31497,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zgetf2_npvt_full_rank = rocsolver_zgetf2_npvt_(handle,m,n,c_loc(A),lda,myInfo)
     end function
@@ -32599,7 +31513,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zgetf2_npvt_rank_0 = rocsolver_zgetf2_npvt_(handle,m,n,c_loc(A),lda,myInfo)
     end function
@@ -32615,7 +31529,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zgetf2_npvt_rank_1 = rocsolver_zgetf2_npvt_(handle,m,n,c_loc(A),lda,myInfo)
     end function
@@ -32631,7 +31545,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target,dimension(:,:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetf2_npvt_batched_full_rank = rocsolver_sgetf2_npvt_batched_(handle,m,n,c_loc(A),lda,myInfo,batch_count)
@@ -32648,7 +31562,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetf2_npvt_batched_rank_0 = rocsolver_sgetf2_npvt_batched_(handle,m,n,c_loc(A),lda,myInfo,batch_count)
@@ -32665,7 +31579,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetf2_npvt_batched_rank_1 = rocsolver_sgetf2_npvt_batched_(handle,m,n,c_loc(A),lda,myInfo,batch_count)
@@ -32682,7 +31596,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target,dimension(:,:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetf2_npvt_batched_full_rank = rocsolver_dgetf2_npvt_batched_(handle,m,n,c_loc(A),lda,myInfo,batch_count)
@@ -32699,7 +31613,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetf2_npvt_batched_rank_0 = rocsolver_dgetf2_npvt_batched_(handle,m,n,c_loc(A),lda,myInfo,batch_count)
@@ -32716,7 +31630,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetf2_npvt_batched_rank_1 = rocsolver_dgetf2_npvt_batched_(handle,m,n,c_loc(A),lda,myInfo,batch_count)
@@ -32733,7 +31647,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetf2_npvt_batched_full_rank = rocsolver_cgetf2_npvt_batched_(handle,m,n,c_loc(A),lda,myInfo,batch_count)
@@ -32750,7 +31664,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetf2_npvt_batched_rank_0 = rocsolver_cgetf2_npvt_batched_(handle,m,n,c_loc(A),lda,myInfo,batch_count)
@@ -32767,7 +31681,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetf2_npvt_batched_rank_1 = rocsolver_cgetf2_npvt_batched_(handle,m,n,c_loc(A),lda,myInfo,batch_count)
@@ -32784,7 +31698,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetf2_npvt_batched_full_rank = rocsolver_zgetf2_npvt_batched_(handle,m,n,c_loc(A),lda,myInfo,batch_count)
@@ -32801,7 +31715,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetf2_npvt_batched_rank_0 = rocsolver_zgetf2_npvt_batched_(handle,m,n,c_loc(A),lda,myInfo,batch_count)
@@ -32818,7 +31732,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetf2_npvt_batched_rank_1 = rocsolver_zgetf2_npvt_batched_(handle,m,n,c_loc(A),lda,myInfo,batch_count)
@@ -32836,7 +31750,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetf2_npvt_strided_batched_full_rank = rocsolver_sgetf2_npvt_strided_batched_(handle,m,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -32854,7 +31768,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetf2_npvt_strided_batched_rank_0 = rocsolver_sgetf2_npvt_strided_batched_(handle,m,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -32872,7 +31786,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetf2_npvt_strided_batched_rank_1 = rocsolver_sgetf2_npvt_strided_batched_(handle,m,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -32890,7 +31804,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetf2_npvt_strided_batched_full_rank = rocsolver_dgetf2_npvt_strided_batched_(handle,m,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -32908,7 +31822,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetf2_npvt_strided_batched_rank_0 = rocsolver_dgetf2_npvt_strided_batched_(handle,m,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -32926,7 +31840,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetf2_npvt_strided_batched_rank_1 = rocsolver_dgetf2_npvt_strided_batched_(handle,m,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -32944,7 +31858,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetf2_npvt_strided_batched_full_rank = rocsolver_cgetf2_npvt_strided_batched_(handle,m,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -32962,7 +31876,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetf2_npvt_strided_batched_rank_0 = rocsolver_cgetf2_npvt_strided_batched_(handle,m,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -32980,7 +31894,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetf2_npvt_strided_batched_rank_1 = rocsolver_cgetf2_npvt_strided_batched_(handle,m,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -32998,7 +31912,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetf2_npvt_strided_batched_full_rank = rocsolver_zgetf2_npvt_strided_batched_(handle,m,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -33016,7 +31930,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetf2_npvt_strided_batched_rank_0 = rocsolver_zgetf2_npvt_strided_batched_(handle,m,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -33034,7 +31948,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetf2_npvt_strided_batched_rank_1 = rocsolver_zgetf2_npvt_strided_batched_(handle,m,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -33051,7 +31965,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_sgetrf_npvt_full_rank = rocsolver_sgetrf_npvt_(handle,m,n,c_loc(A),lda,myInfo)
     end function
@@ -33067,7 +31981,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_sgetrf_npvt_rank_0 = rocsolver_sgetrf_npvt_(handle,m,n,c_loc(A),lda,myInfo)
     end function
@@ -33083,7 +31997,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_sgetrf_npvt_rank_1 = rocsolver_sgetrf_npvt_(handle,m,n,c_loc(A),lda,myInfo)
     end function
@@ -33099,7 +32013,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dgetrf_npvt_full_rank = rocsolver_dgetrf_npvt_(handle,m,n,c_loc(A),lda,myInfo)
     end function
@@ -33115,7 +32029,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dgetrf_npvt_rank_0 = rocsolver_dgetrf_npvt_(handle,m,n,c_loc(A),lda,myInfo)
     end function
@@ -33131,7 +32045,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dgetrf_npvt_rank_1 = rocsolver_dgetrf_npvt_(handle,m,n,c_loc(A),lda,myInfo)
     end function
@@ -33147,7 +32061,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cgetrf_npvt_full_rank = rocsolver_cgetrf_npvt_(handle,m,n,c_loc(A),lda,myInfo)
     end function
@@ -33163,7 +32077,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cgetrf_npvt_rank_0 = rocsolver_cgetrf_npvt_(handle,m,n,c_loc(A),lda,myInfo)
     end function
@@ -33179,7 +32093,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cgetrf_npvt_rank_1 = rocsolver_cgetrf_npvt_(handle,m,n,c_loc(A),lda,myInfo)
     end function
@@ -33195,7 +32109,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zgetrf_npvt_full_rank = rocsolver_zgetrf_npvt_(handle,m,n,c_loc(A),lda,myInfo)
     end function
@@ -33211,7 +32125,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zgetrf_npvt_rank_0 = rocsolver_zgetrf_npvt_(handle,m,n,c_loc(A),lda,myInfo)
     end function
@@ -33227,7 +32141,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zgetrf_npvt_rank_1 = rocsolver_zgetrf_npvt_(handle,m,n,c_loc(A),lda,myInfo)
     end function
@@ -33243,7 +32157,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target,dimension(:,:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetrf_npvt_batched_full_rank = rocsolver_sgetrf_npvt_batched_(handle,m,n,c_loc(A),lda,myInfo,batch_count)
@@ -33260,7 +32174,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetrf_npvt_batched_rank_0 = rocsolver_sgetrf_npvt_batched_(handle,m,n,c_loc(A),lda,myInfo,batch_count)
@@ -33277,7 +32191,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetrf_npvt_batched_rank_1 = rocsolver_sgetrf_npvt_batched_(handle,m,n,c_loc(A),lda,myInfo,batch_count)
@@ -33294,7 +32208,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target,dimension(:,:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetrf_npvt_batched_full_rank = rocsolver_dgetrf_npvt_batched_(handle,m,n,c_loc(A),lda,myInfo,batch_count)
@@ -33311,7 +32225,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetrf_npvt_batched_rank_0 = rocsolver_dgetrf_npvt_batched_(handle,m,n,c_loc(A),lda,myInfo,batch_count)
@@ -33328,7 +32242,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetrf_npvt_batched_rank_1 = rocsolver_dgetrf_npvt_batched_(handle,m,n,c_loc(A),lda,myInfo,batch_count)
@@ -33345,7 +32259,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetrf_npvt_batched_full_rank = rocsolver_cgetrf_npvt_batched_(handle,m,n,c_loc(A),lda,myInfo,batch_count)
@@ -33362,7 +32276,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetrf_npvt_batched_rank_0 = rocsolver_cgetrf_npvt_batched_(handle,m,n,c_loc(A),lda,myInfo,batch_count)
@@ -33379,7 +32293,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetrf_npvt_batched_rank_1 = rocsolver_cgetrf_npvt_batched_(handle,m,n,c_loc(A),lda,myInfo,batch_count)
@@ -33396,7 +32310,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetrf_npvt_batched_full_rank = rocsolver_zgetrf_npvt_batched_(handle,m,n,c_loc(A),lda,myInfo,batch_count)
@@ -33413,7 +32327,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetrf_npvt_batched_rank_0 = rocsolver_zgetrf_npvt_batched_(handle,m,n,c_loc(A),lda,myInfo,batch_count)
@@ -33430,7 +32344,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetrf_npvt_batched_rank_1 = rocsolver_zgetrf_npvt_batched_(handle,m,n,c_loc(A),lda,myInfo,batch_count)
@@ -33448,7 +32362,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetrf_npvt_strided_batched_full_rank = rocsolver_sgetrf_npvt_strided_batched_(handle,m,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -33466,7 +32380,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetrf_npvt_strided_batched_rank_0 = rocsolver_sgetrf_npvt_strided_batched_(handle,m,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -33484,7 +32398,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetrf_npvt_strided_batched_rank_1 = rocsolver_sgetrf_npvt_strided_batched_(handle,m,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -33502,7 +32416,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetrf_npvt_strided_batched_full_rank = rocsolver_dgetrf_npvt_strided_batched_(handle,m,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -33520,7 +32434,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetrf_npvt_strided_batched_rank_0 = rocsolver_dgetrf_npvt_strided_batched_(handle,m,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -33538,7 +32452,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetrf_npvt_strided_batched_rank_1 = rocsolver_dgetrf_npvt_strided_batched_(handle,m,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -33556,7 +32470,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetrf_npvt_strided_batched_full_rank = rocsolver_cgetrf_npvt_strided_batched_(handle,m,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -33574,7 +32488,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetrf_npvt_strided_batched_rank_0 = rocsolver_cgetrf_npvt_strided_batched_(handle,m,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -33592,7 +32506,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetrf_npvt_strided_batched_rank_1 = rocsolver_cgetrf_npvt_strided_batched_(handle,m,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -33610,7 +32524,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetrf_npvt_strided_batched_full_rank = rocsolver_zgetrf_npvt_strided_batched_(handle,m,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -33628,7 +32542,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetrf_npvt_strided_batched_rank_0 = rocsolver_zgetrf_npvt_strided_batched_(handle,m,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -33646,7 +32560,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetrf_npvt_strided_batched_rank_1 = rocsolver_zgetrf_npvt_strided_batched_(handle,m,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -33664,7 +32578,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_sgetf2_full_rank = rocsolver_sgetf2_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
@@ -33681,7 +32595,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target :: A
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_sgetf2_rank_0 = rocsolver_sgetf2_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
@@ -33698,7 +32612,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_sgetf2_rank_1 = rocsolver_sgetf2_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
@@ -33715,7 +32629,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dgetf2_full_rank = rocsolver_dgetf2_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
@@ -33732,7 +32646,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target :: A
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dgetf2_rank_0 = rocsolver_dgetf2_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
@@ -33749,7 +32663,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dgetf2_rank_1 = rocsolver_dgetf2_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
@@ -33766,7 +32680,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cgetf2_full_rank = rocsolver_cgetf2_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
@@ -33783,7 +32697,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cgetf2_rank_0 = rocsolver_cgetf2_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
@@ -33800,7 +32714,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cgetf2_rank_1 = rocsolver_cgetf2_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
@@ -33817,7 +32731,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zgetf2_full_rank = rocsolver_zgetf2_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
@@ -33834,7 +32748,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zgetf2_rank_0 = rocsolver_zgetf2_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
@@ -33851,7 +32765,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zgetf2_rank_1 = rocsolver_zgetf2_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
@@ -33869,7 +32783,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetf2_batched_full_rank = rocsolver_sgetf2_batched_(handle,m,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -33888,7 +32802,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetf2_batched_rank_0 = rocsolver_sgetf2_batched_(handle,m,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -33907,7 +32821,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetf2_batched_rank_1 = rocsolver_sgetf2_batched_(handle,m,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -33926,7 +32840,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetf2_batched_full_rank = rocsolver_dgetf2_batched_(handle,m,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -33945,7 +32859,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetf2_batched_rank_0 = rocsolver_dgetf2_batched_(handle,m,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -33964,7 +32878,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetf2_batched_rank_1 = rocsolver_dgetf2_batched_(handle,m,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -33983,7 +32897,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetf2_batched_full_rank = rocsolver_cgetf2_batched_(handle,m,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -34002,7 +32916,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetf2_batched_rank_0 = rocsolver_cgetf2_batched_(handle,m,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -34021,7 +32935,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetf2_batched_rank_1 = rocsolver_cgetf2_batched_(handle,m,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -34040,7 +32954,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetf2_batched_full_rank = rocsolver_zgetf2_batched_(handle,m,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -34059,7 +32973,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetf2_batched_rank_0 = rocsolver_zgetf2_batched_(handle,m,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -34078,7 +32992,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetf2_batched_rank_1 = rocsolver_zgetf2_batched_(handle,m,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -34098,7 +33012,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideA
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetf2_strided_batched_full_rank = rocsolver_sgetf2_strided_batched_(handle,m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -34118,7 +33032,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideA
       integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetf2_strided_batched_rank_0 = rocsolver_sgetf2_strided_batched_(handle,m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -34138,7 +33052,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideA
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetf2_strided_batched_rank_1 = rocsolver_sgetf2_strided_batched_(handle,m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -34158,7 +33072,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideA
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetf2_strided_batched_full_rank = rocsolver_dgetf2_strided_batched_(handle,m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -34178,7 +33092,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideA
       integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetf2_strided_batched_rank_0 = rocsolver_dgetf2_strided_batched_(handle,m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -34198,7 +33112,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideA
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetf2_strided_batched_rank_1 = rocsolver_dgetf2_strided_batched_(handle,m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -34218,7 +33132,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideA
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetf2_strided_batched_full_rank = rocsolver_cgetf2_strided_batched_(handle,m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -34238,7 +33152,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideA
       integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetf2_strided_batched_rank_0 = rocsolver_cgetf2_strided_batched_(handle,m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -34258,7 +33172,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideA
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetf2_strided_batched_rank_1 = rocsolver_cgetf2_strided_batched_(handle,m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -34278,7 +33192,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideA
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetf2_strided_batched_full_rank = rocsolver_zgetf2_strided_batched_(handle,m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -34298,7 +33212,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideA
       integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetf2_strided_batched_rank_0 = rocsolver_zgetf2_strided_batched_(handle,m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -34318,7 +33232,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideA
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetf2_strided_batched_rank_1 = rocsolver_zgetf2_strided_batched_(handle,m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -34336,7 +33250,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_sgetrf_full_rank = rocsolver_sgetrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
@@ -34353,7 +33267,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target :: A
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_sgetrf_rank_0 = rocsolver_sgetrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
@@ -34370,7 +33284,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_sgetrf_rank_1 = rocsolver_sgetrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
@@ -34387,7 +33301,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dgetrf_full_rank = rocsolver_dgetrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
@@ -34404,7 +33318,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target :: A
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dgetrf_rank_0 = rocsolver_dgetrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
@@ -34421,7 +33335,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dgetrf_rank_1 = rocsolver_dgetrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
@@ -34438,7 +33352,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cgetrf_full_rank = rocsolver_cgetrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
@@ -34455,7 +33369,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cgetrf_rank_0 = rocsolver_cgetrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
@@ -34472,7 +33386,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cgetrf_rank_1 = rocsolver_cgetrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
@@ -34489,7 +33403,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zgetrf_full_rank = rocsolver_zgetrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
@@ -34506,7 +33420,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zgetrf_rank_0 = rocsolver_zgetrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
@@ -34523,7 +33437,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zgetrf_rank_1 = rocsolver_zgetrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
@@ -34541,7 +33455,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetrf_batched_full_rank = rocsolver_sgetrf_batched_(handle,m,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -34560,7 +33474,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetrf_batched_rank_0 = rocsolver_sgetrf_batched_(handle,m,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -34579,7 +33493,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetrf_batched_rank_1 = rocsolver_sgetrf_batched_(handle,m,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -34598,7 +33512,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetrf_batched_full_rank = rocsolver_dgetrf_batched_(handle,m,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -34617,7 +33531,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetrf_batched_rank_0 = rocsolver_dgetrf_batched_(handle,m,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -34636,7 +33550,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetrf_batched_rank_1 = rocsolver_dgetrf_batched_(handle,m,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -34655,7 +33569,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetrf_batched_full_rank = rocsolver_cgetrf_batched_(handle,m,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -34674,7 +33588,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetrf_batched_rank_0 = rocsolver_cgetrf_batched_(handle,m,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -34693,7 +33607,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetrf_batched_rank_1 = rocsolver_cgetrf_batched_(handle,m,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -34712,7 +33626,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetrf_batched_full_rank = rocsolver_zgetrf_batched_(handle,m,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -34731,7 +33645,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetrf_batched_rank_0 = rocsolver_zgetrf_batched_(handle,m,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -34750,7 +33664,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetrf_batched_rank_1 = rocsolver_zgetrf_batched_(handle,m,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -34770,7 +33684,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideA
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetrf_strided_batched_full_rank = rocsolver_sgetrf_strided_batched_(handle,m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -34790,7 +33704,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideA
       integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetrf_strided_batched_rank_0 = rocsolver_sgetrf_strided_batched_(handle,m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -34810,7 +33724,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideA
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetrf_strided_batched_rank_1 = rocsolver_sgetrf_strided_batched_(handle,m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -34830,7 +33744,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideA
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetrf_strided_batched_full_rank = rocsolver_dgetrf_strided_batched_(handle,m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -34850,7 +33764,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideA
       integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetrf_strided_batched_rank_0 = rocsolver_dgetrf_strided_batched_(handle,m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -34870,7 +33784,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideA
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetrf_strided_batched_rank_1 = rocsolver_dgetrf_strided_batched_(handle,m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -34890,7 +33804,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideA
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetrf_strided_batched_full_rank = rocsolver_cgetrf_strided_batched_(handle,m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -34910,7 +33824,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideA
       integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetrf_strided_batched_rank_0 = rocsolver_cgetrf_strided_batched_(handle,m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -34930,7 +33844,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideA
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetrf_strided_batched_rank_1 = rocsolver_cgetrf_strided_batched_(handle,m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -34950,7 +33864,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideA
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetrf_strided_batched_full_rank = rocsolver_zgetrf_strided_batched_(handle,m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -34970,7 +33884,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideA
       integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetrf_strided_batched_rank_0 = rocsolver_zgetrf_strided_batched_(handle,m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -34990,7 +33904,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideA
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetrf_strided_batched_rank_1 = rocsolver_zgetrf_strided_batched_(handle,m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -42486,7 +41400,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int),target,dimension(:) :: ipiv
       real(c_float),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_sgesv_full_rank = rocsolver_sgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(ipiv),c_loc(B),ldb,myInfo)
     end function
@@ -42505,7 +41419,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int),target :: ipiv
       real(c_float),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_sgesv_rank_0 = rocsolver_sgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(ipiv),c_loc(B),ldb,myInfo)
     end function
@@ -42524,7 +41438,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int),target,dimension(:) :: ipiv
       real(c_float),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_sgesv_rank_1 = rocsolver_sgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(ipiv),c_loc(B),ldb,myInfo)
     end function
@@ -42543,7 +41457,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int),target,dimension(:) :: ipiv
       real(c_double),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dgesv_full_rank = rocsolver_dgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(ipiv),c_loc(B),ldb,myInfo)
     end function
@@ -42562,7 +41476,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int),target :: ipiv
       real(c_double),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dgesv_rank_0 = rocsolver_dgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(ipiv),c_loc(B),ldb,myInfo)
     end function
@@ -42581,7 +41495,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int),target,dimension(:) :: ipiv
       real(c_double),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dgesv_rank_1 = rocsolver_dgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(ipiv),c_loc(B),ldb,myInfo)
     end function
@@ -42600,7 +41514,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int),target,dimension(:) :: ipiv
       complex(c_float_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cgesv_full_rank = rocsolver_cgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(ipiv),c_loc(B),ldb,myInfo)
     end function
@@ -42619,7 +41533,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int),target :: ipiv
       complex(c_float_complex),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cgesv_rank_0 = rocsolver_cgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(ipiv),c_loc(B),ldb,myInfo)
     end function
@@ -42638,7 +41552,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int),target,dimension(:) :: ipiv
       complex(c_float_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cgesv_rank_1 = rocsolver_cgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(ipiv),c_loc(B),ldb,myInfo)
     end function
@@ -42657,7 +41571,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int),target,dimension(:) :: ipiv
       complex(c_double_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zgesv_full_rank = rocsolver_zgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(ipiv),c_loc(B),ldb,myInfo)
     end function
@@ -42676,7 +41590,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int),target :: ipiv
       complex(c_double_complex),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zgesv_rank_0 = rocsolver_zgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(ipiv),c_loc(B),ldb,myInfo)
     end function
@@ -42695,7 +41609,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int),target,dimension(:) :: ipiv
       complex(c_double_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zgesv_rank_1 = rocsolver_zgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(ipiv),c_loc(B),ldb,myInfo)
     end function
@@ -42715,7 +41629,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideP
       real(c_float),target,dimension(:,:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgesv_batched_full_rank = rocsolver_sgesv_batched_(handle,n,nrhs,c_loc(A),lda,c_loc(ipiv),strideP,c_loc(B),ldb,myInfo,batch_count)
@@ -42736,7 +41650,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideP
       real(c_float),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgesv_batched_rank_0 = rocsolver_sgesv_batched_(handle,n,nrhs,c_loc(A),lda,c_loc(ipiv),strideP,c_loc(B),ldb,myInfo,batch_count)
@@ -42757,7 +41671,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideP
       real(c_float),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgesv_batched_rank_1 = rocsolver_sgesv_batched_(handle,n,nrhs,c_loc(A),lda,c_loc(ipiv),strideP,c_loc(B),ldb,myInfo,batch_count)
@@ -42778,7 +41692,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideP
       real(c_double),target,dimension(:,:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgesv_batched_full_rank = rocsolver_dgesv_batched_(handle,n,nrhs,c_loc(A),lda,c_loc(ipiv),strideP,c_loc(B),ldb,myInfo,batch_count)
@@ -42799,7 +41713,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideP
       real(c_double),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgesv_batched_rank_0 = rocsolver_dgesv_batched_(handle,n,nrhs,c_loc(A),lda,c_loc(ipiv),strideP,c_loc(B),ldb,myInfo,batch_count)
@@ -42820,7 +41734,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideP
       real(c_double),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgesv_batched_rank_1 = rocsolver_dgesv_batched_(handle,n,nrhs,c_loc(A),lda,c_loc(ipiv),strideP,c_loc(B),ldb,myInfo,batch_count)
@@ -42841,7 +41755,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideP
       complex(c_float_complex),target,dimension(:,:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgesv_batched_full_rank = rocsolver_cgesv_batched_(handle,n,nrhs,c_loc(A),lda,c_loc(ipiv),strideP,c_loc(B),ldb,myInfo,batch_count)
@@ -42862,7 +41776,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideP
       complex(c_float_complex),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgesv_batched_rank_0 = rocsolver_cgesv_batched_(handle,n,nrhs,c_loc(A),lda,c_loc(ipiv),strideP,c_loc(B),ldb,myInfo,batch_count)
@@ -42883,7 +41797,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideP
       complex(c_float_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgesv_batched_rank_1 = rocsolver_cgesv_batched_(handle,n,nrhs,c_loc(A),lda,c_loc(ipiv),strideP,c_loc(B),ldb,myInfo,batch_count)
@@ -42904,7 +41818,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideP
       complex(c_double_complex),target,dimension(:,:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgesv_batched_full_rank = rocsolver_zgesv_batched_(handle,n,nrhs,c_loc(A),lda,c_loc(ipiv),strideP,c_loc(B),ldb,myInfo,batch_count)
@@ -42925,7 +41839,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideP
       complex(c_double_complex),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgesv_batched_rank_0 = rocsolver_zgesv_batched_(handle,n,nrhs,c_loc(A),lda,c_loc(ipiv),strideP,c_loc(B),ldb,myInfo,batch_count)
@@ -42946,7 +41860,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideP
       complex(c_double_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgesv_batched_rank_1 = rocsolver_zgesv_batched_(handle,n,nrhs,c_loc(A),lda,c_loc(ipiv),strideP,c_loc(B),ldb,myInfo,batch_count)
@@ -42969,7 +41883,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgesv_strided_batched_full_rank = rocsolver_sgesv_strided_batched_(handle,n,nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batch_count)
@@ -42992,7 +41906,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgesv_strided_batched_rank_0 = rocsolver_sgesv_strided_batched_(handle,n,nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batch_count)
@@ -43015,7 +41929,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgesv_strided_batched_rank_1 = rocsolver_sgesv_strided_batched_(handle,n,nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batch_count)
@@ -43038,7 +41952,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgesv_strided_batched_full_rank = rocsolver_dgesv_strided_batched_(handle,n,nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batch_count)
@@ -43061,7 +41975,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgesv_strided_batched_rank_0 = rocsolver_dgesv_strided_batched_(handle,n,nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batch_count)
@@ -43084,7 +41998,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgesv_strided_batched_rank_1 = rocsolver_dgesv_strided_batched_(handle,n,nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batch_count)
@@ -43107,7 +42021,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgesv_strided_batched_full_rank = rocsolver_cgesv_strided_batched_(handle,n,nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batch_count)
@@ -43130,7 +42044,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgesv_strided_batched_rank_0 = rocsolver_cgesv_strided_batched_(handle,n,nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batch_count)
@@ -43153,7 +42067,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgesv_strided_batched_rank_1 = rocsolver_cgesv_strided_batched_(handle,n,nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batch_count)
@@ -43176,7 +42090,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgesv_strided_batched_full_rank = rocsolver_zgesv_strided_batched_(handle,n,nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batch_count)
@@ -43199,7 +42113,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgesv_strided_batched_rank_0 = rocsolver_zgesv_strided_batched_(handle,n,nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batch_count)
@@ -43222,7 +42136,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgesv_strided_batched_rank_1 = rocsolver_zgesv_strided_batched_(handle,n,nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batch_count)
@@ -43239,7 +42153,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_sgetri_full_rank = rocsolver_sgetri_(handle,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
@@ -43255,7 +42169,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target :: A
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_sgetri_rank_0 = rocsolver_sgetri_(handle,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
@@ -43271,7 +42185,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_sgetri_rank_1 = rocsolver_sgetri_(handle,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
@@ -43287,7 +42201,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dgetri_full_rank = rocsolver_dgetri_(handle,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
@@ -43303,7 +42217,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target :: A
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dgetri_rank_0 = rocsolver_dgetri_(handle,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
@@ -43319,7 +42233,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dgetri_rank_1 = rocsolver_dgetri_(handle,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
@@ -43335,7 +42249,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cgetri_full_rank = rocsolver_cgetri_(handle,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
@@ -43351,7 +42265,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cgetri_rank_0 = rocsolver_cgetri_(handle,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
@@ -43367,7 +42281,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cgetri_rank_1 = rocsolver_cgetri_(handle,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
@@ -43383,7 +42297,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zgetri_full_rank = rocsolver_zgetri_(handle,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
@@ -43399,7 +42313,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zgetri_rank_0 = rocsolver_zgetri_(handle,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
@@ -43415,7 +42329,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zgetri_rank_1 = rocsolver_zgetri_(handle,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
@@ -43432,7 +42346,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetri_batched_full_rank = rocsolver_sgetri_batched_(handle,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -43450,7 +42364,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetri_batched_rank_0 = rocsolver_sgetri_batched_(handle,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -43468,7 +42382,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetri_batched_rank_1 = rocsolver_sgetri_batched_(handle,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -43486,7 +42400,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetri_batched_full_rank = rocsolver_dgetri_batched_(handle,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -43504,7 +42418,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetri_batched_rank_0 = rocsolver_dgetri_batched_(handle,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -43522,7 +42436,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetri_batched_rank_1 = rocsolver_dgetri_batched_(handle,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -43540,7 +42454,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetri_batched_full_rank = rocsolver_cgetri_batched_(handle,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -43558,7 +42472,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetri_batched_rank_0 = rocsolver_cgetri_batched_(handle,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -43576,7 +42490,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetri_batched_rank_1 = rocsolver_cgetri_batched_(handle,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -43594,7 +42508,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetri_batched_full_rank = rocsolver_zgetri_batched_(handle,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -43612,7 +42526,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetri_batched_rank_0 = rocsolver_zgetri_batched_(handle,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -43630,7 +42544,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetri_batched_rank_1 = rocsolver_zgetri_batched_(handle,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -43649,7 +42563,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideA
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetri_strided_batched_full_rank = rocsolver_sgetri_strided_batched_(handle,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -43668,7 +42582,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideA
       integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetri_strided_batched_rank_0 = rocsolver_sgetri_strided_batched_(handle,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -43687,7 +42601,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideA
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetri_strided_batched_rank_1 = rocsolver_sgetri_strided_batched_(handle,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -43706,7 +42620,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideA
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetri_strided_batched_full_rank = rocsolver_dgetri_strided_batched_(handle,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -43725,7 +42639,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideA
       integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetri_strided_batched_rank_0 = rocsolver_dgetri_strided_batched_(handle,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -43744,7 +42658,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideA
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetri_strided_batched_rank_1 = rocsolver_dgetri_strided_batched_(handle,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -43763,7 +42677,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideA
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetri_strided_batched_full_rank = rocsolver_cgetri_strided_batched_(handle,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -43782,7 +42696,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideA
       integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetri_strided_batched_rank_0 = rocsolver_cgetri_strided_batched_(handle,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -43801,7 +42715,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideA
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetri_strided_batched_rank_1 = rocsolver_cgetri_strided_batched_(handle,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -43820,7 +42734,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideA
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetri_strided_batched_full_rank = rocsolver_zgetri_strided_batched_(handle,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -43839,7 +42753,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideA
       integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetri_strided_batched_rank_0 = rocsolver_zgetri_strided_batched_(handle,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -43858,7 +42772,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideA
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetri_strided_batched_rank_1 = rocsolver_zgetri_strided_batched_(handle,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
@@ -43874,7 +42788,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_sgetri_npvt_full_rank = rocsolver_sgetri_npvt_(handle,n,c_loc(A),lda,myInfo)
     end function
@@ -43889,7 +42803,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_sgetri_npvt_rank_0 = rocsolver_sgetri_npvt_(handle,n,c_loc(A),lda,myInfo)
     end function
@@ -43904,7 +42818,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_sgetri_npvt_rank_1 = rocsolver_sgetri_npvt_(handle,n,c_loc(A),lda,myInfo)
     end function
@@ -43919,7 +42833,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dgetri_npvt_full_rank = rocsolver_dgetri_npvt_(handle,n,c_loc(A),lda,myInfo)
     end function
@@ -43934,7 +42848,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dgetri_npvt_rank_0 = rocsolver_dgetri_npvt_(handle,n,c_loc(A),lda,myInfo)
     end function
@@ -43949,7 +42863,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dgetri_npvt_rank_1 = rocsolver_dgetri_npvt_(handle,n,c_loc(A),lda,myInfo)
     end function
@@ -43964,7 +42878,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cgetri_npvt_full_rank = rocsolver_cgetri_npvt_(handle,n,c_loc(A),lda,myInfo)
     end function
@@ -43979,7 +42893,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cgetri_npvt_rank_0 = rocsolver_cgetri_npvt_(handle,n,c_loc(A),lda,myInfo)
     end function
@@ -43994,7 +42908,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cgetri_npvt_rank_1 = rocsolver_cgetri_npvt_(handle,n,c_loc(A),lda,myInfo)
     end function
@@ -44009,7 +42923,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zgetri_npvt_full_rank = rocsolver_zgetri_npvt_(handle,n,c_loc(A),lda,myInfo)
     end function
@@ -44024,7 +42938,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zgetri_npvt_rank_0 = rocsolver_zgetri_npvt_(handle,n,c_loc(A),lda,myInfo)
     end function
@@ -44039,7 +42953,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zgetri_npvt_rank_1 = rocsolver_zgetri_npvt_(handle,n,c_loc(A),lda,myInfo)
     end function
@@ -44054,7 +42968,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target,dimension(:,:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetri_npvt_batched_full_rank = rocsolver_sgetri_npvt_batched_(handle,n,c_loc(A),lda,myInfo,batch_count)
@@ -44070,7 +42984,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetri_npvt_batched_rank_0 = rocsolver_sgetri_npvt_batched_(handle,n,c_loc(A),lda,myInfo,batch_count)
@@ -44086,7 +43000,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetri_npvt_batched_rank_1 = rocsolver_sgetri_npvt_batched_(handle,n,c_loc(A),lda,myInfo,batch_count)
@@ -44102,7 +43016,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target,dimension(:,:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetri_npvt_batched_full_rank = rocsolver_dgetri_npvt_batched_(handle,n,c_loc(A),lda,myInfo,batch_count)
@@ -44118,7 +43032,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetri_npvt_batched_rank_0 = rocsolver_dgetri_npvt_batched_(handle,n,c_loc(A),lda,myInfo,batch_count)
@@ -44134,7 +43048,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetri_npvt_batched_rank_1 = rocsolver_dgetri_npvt_batched_(handle,n,c_loc(A),lda,myInfo,batch_count)
@@ -44150,7 +43064,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetri_npvt_batched_full_rank = rocsolver_cgetri_npvt_batched_(handle,n,c_loc(A),lda,myInfo,batch_count)
@@ -44166,7 +43080,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetri_npvt_batched_rank_0 = rocsolver_cgetri_npvt_batched_(handle,n,c_loc(A),lda,myInfo,batch_count)
@@ -44182,7 +43096,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetri_npvt_batched_rank_1 = rocsolver_cgetri_npvt_batched_(handle,n,c_loc(A),lda,myInfo,batch_count)
@@ -44198,7 +43112,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetri_npvt_batched_full_rank = rocsolver_zgetri_npvt_batched_(handle,n,c_loc(A),lda,myInfo,batch_count)
@@ -44214,7 +43128,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetri_npvt_batched_rank_0 = rocsolver_zgetri_npvt_batched_(handle,n,c_loc(A),lda,myInfo,batch_count)
@@ -44230,7 +43144,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetri_npvt_batched_rank_1 = rocsolver_zgetri_npvt_batched_(handle,n,c_loc(A),lda,myInfo,batch_count)
@@ -44247,7 +43161,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetri_npvt_strided_batched_full_rank = rocsolver_sgetri_npvt_strided_batched_(handle,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -44264,7 +43178,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetri_npvt_strided_batched_rank_0 = rocsolver_sgetri_npvt_strided_batched_(handle,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -44281,7 +43195,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetri_npvt_strided_batched_rank_1 = rocsolver_sgetri_npvt_strided_batched_(handle,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -44298,7 +43212,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetri_npvt_strided_batched_full_rank = rocsolver_dgetri_npvt_strided_batched_(handle,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -44315,7 +43229,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetri_npvt_strided_batched_rank_0 = rocsolver_dgetri_npvt_strided_batched_(handle,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -44332,7 +43246,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetri_npvt_strided_batched_rank_1 = rocsolver_dgetri_npvt_strided_batched_(handle,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -44349,7 +43263,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetri_npvt_strided_batched_full_rank = rocsolver_cgetri_npvt_strided_batched_(handle,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -44366,7 +43280,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetri_npvt_strided_batched_rank_0 = rocsolver_cgetri_npvt_strided_batched_(handle,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -44383,7 +43297,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetri_npvt_strided_batched_rank_1 = rocsolver_cgetri_npvt_strided_batched_(handle,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -44400,7 +43314,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetri_npvt_strided_batched_full_rank = rocsolver_zgetri_npvt_strided_batched_(handle,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -44417,7 +43331,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetri_npvt_strided_batched_rank_0 = rocsolver_zgetri_npvt_strided_batched_(handle,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -44434,7 +43348,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetri_npvt_strided_batched_rank_1 = rocsolver_zgetri_npvt_strided_batched_(handle,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -44455,7 +43369,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_float),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_sgels_full_rank = rocsolver_sgels_(handle,trans,m,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo)
     end function
@@ -44475,7 +43389,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_float),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_sgels_rank_0 = rocsolver_sgels_(handle,trans,m,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo)
     end function
@@ -44495,7 +43409,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_sgels_rank_1 = rocsolver_sgels_(handle,trans,m,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo)
     end function
@@ -44515,7 +43429,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_double),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dgels_full_rank = rocsolver_dgels_(handle,trans,m,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo)
     end function
@@ -44535,7 +43449,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_double),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dgels_rank_0 = rocsolver_dgels_(handle,trans,m,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo)
     end function
@@ -44555,7 +43469,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dgels_rank_1 = rocsolver_dgels_(handle,trans,m,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo)
     end function
@@ -44575,7 +43489,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cgels_full_rank = rocsolver_cgels_(handle,trans,m,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo)
     end function
@@ -44595,7 +43509,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       complex(c_float_complex),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cgels_rank_0 = rocsolver_cgels_(handle,trans,m,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo)
     end function
@@ -44615,7 +43529,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cgels_rank_1 = rocsolver_cgels_(handle,trans,m,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo)
     end function
@@ -44635,7 +43549,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zgels_full_rank = rocsolver_zgels_(handle,trans,m,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo)
     end function
@@ -44655,7 +43569,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       complex(c_double_complex),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zgels_rank_0 = rocsolver_zgels_(handle,trans,m,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo)
     end function
@@ -44675,7 +43589,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zgels_rank_1 = rocsolver_zgels_(handle,trans,m,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo)
     end function
@@ -44695,7 +43609,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_float),target,dimension(:,:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgels_batched_full_rank = rocsolver_sgels_batched_(handle,trans,m,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo,batch_count)
@@ -44716,7 +43630,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_float),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgels_batched_rank_0 = rocsolver_sgels_batched_(handle,trans,m,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo,batch_count)
@@ -44737,7 +43651,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgels_batched_rank_1 = rocsolver_sgels_batched_(handle,trans,m,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo,batch_count)
@@ -44758,7 +43672,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_double),target,dimension(:,:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgels_batched_full_rank = rocsolver_dgels_batched_(handle,trans,m,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo,batch_count)
@@ -44779,7 +43693,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_double),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgels_batched_rank_0 = rocsolver_dgels_batched_(handle,trans,m,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo,batch_count)
@@ -44800,7 +43714,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgels_batched_rank_1 = rocsolver_dgels_batched_(handle,trans,m,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo,batch_count)
@@ -44821,7 +43735,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:,:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgels_batched_full_rank = rocsolver_cgels_batched_(handle,trans,m,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo,batch_count)
@@ -44842,7 +43756,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       complex(c_float_complex),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgels_batched_rank_0 = rocsolver_cgels_batched_(handle,trans,m,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo,batch_count)
@@ -44863,7 +43777,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgels_batched_rank_1 = rocsolver_cgels_batched_(handle,trans,m,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo,batch_count)
@@ -44884,7 +43798,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:,:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgels_batched_full_rank = rocsolver_zgels_batched_(handle,trans,m,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo,batch_count)
@@ -44905,7 +43819,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       complex(c_double_complex),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgels_batched_rank_0 = rocsolver_zgels_batched_(handle,trans,m,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo,batch_count)
@@ -44926,7 +43840,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgels_batched_rank_1 = rocsolver_zgels_batched_(handle,trans,m,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo,batch_count)
@@ -44949,7 +43863,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgels_strided_batched_full_rank = rocsolver_sgels_strided_batched_(handle,trans,m,n,nrhs,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,myInfo,batch_count)
@@ -44972,7 +43886,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgels_strided_batched_rank_0 = rocsolver_sgels_strided_batched_(handle,trans,m,n,nrhs,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,myInfo,batch_count)
@@ -44995,7 +43909,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgels_strided_batched_rank_1 = rocsolver_sgels_strided_batched_(handle,trans,m,n,nrhs,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,myInfo,batch_count)
@@ -45018,7 +43932,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgels_strided_batched_full_rank = rocsolver_dgels_strided_batched_(handle,trans,m,n,nrhs,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,myInfo,batch_count)
@@ -45041,7 +43955,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgels_strided_batched_rank_0 = rocsolver_dgels_strided_batched_(handle,trans,m,n,nrhs,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,myInfo,batch_count)
@@ -45064,7 +43978,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgels_strided_batched_rank_1 = rocsolver_dgels_strided_batched_(handle,trans,m,n,nrhs,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,myInfo,batch_count)
@@ -45087,7 +44001,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgels_strided_batched_full_rank = rocsolver_cgels_strided_batched_(handle,trans,m,n,nrhs,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,myInfo,batch_count)
@@ -45110,7 +44024,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgels_strided_batched_rank_0 = rocsolver_cgels_strided_batched_(handle,trans,m,n,nrhs,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,myInfo,batch_count)
@@ -45133,7 +44047,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgels_strided_batched_rank_1 = rocsolver_cgels_strided_batched_(handle,trans,m,n,nrhs,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,myInfo,batch_count)
@@ -45156,7 +44070,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgels_strided_batched_full_rank = rocsolver_zgels_strided_batched_(handle,trans,m,n,nrhs,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,myInfo,batch_count)
@@ -45179,7 +44093,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgels_strided_batched_rank_0 = rocsolver_zgels_strided_batched_(handle,trans,m,n,nrhs,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,myInfo,batch_count)
@@ -45202,7 +44116,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgels_strided_batched_rank_1 = rocsolver_zgels_strided_batched_(handle,trans,m,n,nrhs,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,myInfo,batch_count)
@@ -45219,7 +44133,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_spotf2_full_rank = rocsolver_spotf2_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
@@ -45235,7 +44149,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_spotf2_rank_0 = rocsolver_spotf2_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
@@ -45251,7 +44165,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_spotf2_rank_1 = rocsolver_spotf2_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
@@ -45267,7 +44181,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dpotf2_full_rank = rocsolver_dpotf2_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
@@ -45283,7 +44197,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dpotf2_rank_0 = rocsolver_dpotf2_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
@@ -45299,7 +44213,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dpotf2_rank_1 = rocsolver_dpotf2_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
@@ -45315,7 +44229,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cpotf2_full_rank = rocsolver_cpotf2_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
@@ -45331,7 +44245,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cpotf2_rank_0 = rocsolver_cpotf2_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
@@ -45347,7 +44261,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cpotf2_rank_1 = rocsolver_cpotf2_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
@@ -45363,7 +44277,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zpotf2_full_rank = rocsolver_zpotf2_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
@@ -45379,7 +44293,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zpotf2_rank_0 = rocsolver_zpotf2_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
@@ -45395,7 +44309,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zpotf2_rank_1 = rocsolver_zpotf2_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
@@ -45411,7 +44325,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target,dimension(:,:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_spotf2_batched_full_rank = rocsolver_spotf2_batched_(handle,uplo,n,c_loc(A),lda,myInfo,batch_count)
@@ -45428,7 +44342,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_spotf2_batched_rank_0 = rocsolver_spotf2_batched_(handle,uplo,n,c_loc(A),lda,myInfo,batch_count)
@@ -45445,7 +44359,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_spotf2_batched_rank_1 = rocsolver_spotf2_batched_(handle,uplo,n,c_loc(A),lda,myInfo,batch_count)
@@ -45462,7 +44376,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target,dimension(:,:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dpotf2_batched_full_rank = rocsolver_dpotf2_batched_(handle,uplo,n,c_loc(A),lda,myInfo,batch_count)
@@ -45479,7 +44393,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dpotf2_batched_rank_0 = rocsolver_dpotf2_batched_(handle,uplo,n,c_loc(A),lda,myInfo,batch_count)
@@ -45496,7 +44410,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dpotf2_batched_rank_1 = rocsolver_dpotf2_batched_(handle,uplo,n,c_loc(A),lda,myInfo,batch_count)
@@ -45513,7 +44427,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cpotf2_batched_full_rank = rocsolver_cpotf2_batched_(handle,uplo,n,c_loc(A),lda,myInfo,batch_count)
@@ -45530,7 +44444,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cpotf2_batched_rank_0 = rocsolver_cpotf2_batched_(handle,uplo,n,c_loc(A),lda,myInfo,batch_count)
@@ -45547,7 +44461,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cpotf2_batched_rank_1 = rocsolver_cpotf2_batched_(handle,uplo,n,c_loc(A),lda,myInfo,batch_count)
@@ -45564,7 +44478,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zpotf2_batched_full_rank = rocsolver_zpotf2_batched_(handle,uplo,n,c_loc(A),lda,myInfo,batch_count)
@@ -45581,7 +44495,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zpotf2_batched_rank_0 = rocsolver_zpotf2_batched_(handle,uplo,n,c_loc(A),lda,myInfo,batch_count)
@@ -45598,7 +44512,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zpotf2_batched_rank_1 = rocsolver_zpotf2_batched_(handle,uplo,n,c_loc(A),lda,myInfo,batch_count)
@@ -45616,7 +44530,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_spotf2_strided_batched_full_rank = rocsolver_spotf2_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -45634,7 +44548,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_spotf2_strided_batched_rank_0 = rocsolver_spotf2_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -45652,7 +44566,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_spotf2_strided_batched_rank_1 = rocsolver_spotf2_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -45670,7 +44584,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dpotf2_strided_batched_full_rank = rocsolver_dpotf2_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -45688,7 +44602,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dpotf2_strided_batched_rank_0 = rocsolver_dpotf2_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -45706,7 +44620,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dpotf2_strided_batched_rank_1 = rocsolver_dpotf2_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -45724,7 +44638,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cpotf2_strided_batched_full_rank = rocsolver_cpotf2_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -45742,7 +44656,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cpotf2_strided_batched_rank_0 = rocsolver_cpotf2_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -45760,7 +44674,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cpotf2_strided_batched_rank_1 = rocsolver_cpotf2_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -45778,7 +44692,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zpotf2_strided_batched_full_rank = rocsolver_zpotf2_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -45796,7 +44710,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zpotf2_strided_batched_rank_0 = rocsolver_zpotf2_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -45814,7 +44728,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zpotf2_strided_batched_rank_1 = rocsolver_zpotf2_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -45831,7 +44745,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_spotrf_full_rank = rocsolver_spotrf_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
@@ -45847,7 +44761,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_spotrf_rank_0 = rocsolver_spotrf_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
@@ -45863,7 +44777,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_spotrf_rank_1 = rocsolver_spotrf_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
@@ -45879,7 +44793,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dpotrf_full_rank = rocsolver_dpotrf_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
@@ -45895,7 +44809,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dpotrf_rank_0 = rocsolver_dpotrf_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
@@ -45911,7 +44825,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dpotrf_rank_1 = rocsolver_dpotrf_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
@@ -45927,7 +44841,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cpotrf_full_rank = rocsolver_cpotrf_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
@@ -45943,7 +44857,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cpotrf_rank_0 = rocsolver_cpotrf_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
@@ -45959,7 +44873,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cpotrf_rank_1 = rocsolver_cpotrf_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
@@ -45975,7 +44889,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zpotrf_full_rank = rocsolver_zpotrf_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
@@ -45991,7 +44905,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zpotrf_rank_0 = rocsolver_zpotrf_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
@@ -46007,7 +44921,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zpotrf_rank_1 = rocsolver_zpotrf_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
@@ -46023,7 +44937,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target,dimension(:,:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_spotrf_batched_full_rank = rocsolver_spotrf_batched_(handle,uplo,n,c_loc(A),lda,myInfo,batch_count)
@@ -46040,7 +44954,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_spotrf_batched_rank_0 = rocsolver_spotrf_batched_(handle,uplo,n,c_loc(A),lda,myInfo,batch_count)
@@ -46057,7 +44971,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_spotrf_batched_rank_1 = rocsolver_spotrf_batched_(handle,uplo,n,c_loc(A),lda,myInfo,batch_count)
@@ -46074,7 +44988,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target,dimension(:,:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dpotrf_batched_full_rank = rocsolver_dpotrf_batched_(handle,uplo,n,c_loc(A),lda,myInfo,batch_count)
@@ -46091,7 +45005,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dpotrf_batched_rank_0 = rocsolver_dpotrf_batched_(handle,uplo,n,c_loc(A),lda,myInfo,batch_count)
@@ -46108,7 +45022,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dpotrf_batched_rank_1 = rocsolver_dpotrf_batched_(handle,uplo,n,c_loc(A),lda,myInfo,batch_count)
@@ -46125,7 +45039,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cpotrf_batched_full_rank = rocsolver_cpotrf_batched_(handle,uplo,n,c_loc(A),lda,myInfo,batch_count)
@@ -46142,7 +45056,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cpotrf_batched_rank_0 = rocsolver_cpotrf_batched_(handle,uplo,n,c_loc(A),lda,myInfo,batch_count)
@@ -46159,7 +45073,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cpotrf_batched_rank_1 = rocsolver_cpotrf_batched_(handle,uplo,n,c_loc(A),lda,myInfo,batch_count)
@@ -46176,7 +45090,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zpotrf_batched_full_rank = rocsolver_zpotrf_batched_(handle,uplo,n,c_loc(A),lda,myInfo,batch_count)
@@ -46193,7 +45107,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zpotrf_batched_rank_0 = rocsolver_zpotrf_batched_(handle,uplo,n,c_loc(A),lda,myInfo,batch_count)
@@ -46210,7 +45124,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zpotrf_batched_rank_1 = rocsolver_zpotrf_batched_(handle,uplo,n,c_loc(A),lda,myInfo,batch_count)
@@ -46228,7 +45142,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_spotrf_strided_batched_full_rank = rocsolver_spotrf_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -46246,7 +45160,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_spotrf_strided_batched_rank_0 = rocsolver_spotrf_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -46264,7 +45178,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_spotrf_strided_batched_rank_1 = rocsolver_spotrf_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -46282,7 +45196,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dpotrf_strided_batched_full_rank = rocsolver_dpotrf_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -46300,7 +45214,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dpotrf_strided_batched_rank_0 = rocsolver_dpotrf_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -46318,7 +45232,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dpotrf_strided_batched_rank_1 = rocsolver_dpotrf_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -46336,7 +45250,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cpotrf_strided_batched_full_rank = rocsolver_cpotrf_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -46354,7 +45268,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cpotrf_strided_batched_rank_0 = rocsolver_cpotrf_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -46372,7 +45286,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cpotrf_strided_batched_rank_1 = rocsolver_cpotrf_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -46390,7 +45304,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zpotrf_strided_batched_full_rank = rocsolver_zpotrf_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -46408,7 +45322,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zpotrf_strided_batched_rank_0 = rocsolver_zpotrf_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -46426,7 +45340,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zpotrf_strided_batched_rank_1 = rocsolver_zpotrf_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -47142,7 +46056,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_float),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_sposv_full_rank = rocsolver_sposv_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo)
     end function
@@ -47161,7 +46075,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_float),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_sposv_rank_0 = rocsolver_sposv_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo)
     end function
@@ -47180,7 +46094,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_sposv_rank_1 = rocsolver_sposv_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo)
     end function
@@ -47199,7 +46113,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_double),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dposv_full_rank = rocsolver_dposv_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo)
     end function
@@ -47218,7 +46132,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_double),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dposv_rank_0 = rocsolver_dposv_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo)
     end function
@@ -47237,7 +46151,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dposv_rank_1 = rocsolver_dposv_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo)
     end function
@@ -47256,7 +46170,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cposv_full_rank = rocsolver_cposv_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo)
     end function
@@ -47275,7 +46189,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       complex(c_float_complex),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cposv_rank_0 = rocsolver_cposv_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo)
     end function
@@ -47294,7 +46208,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cposv_rank_1 = rocsolver_cposv_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo)
     end function
@@ -47313,7 +46227,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zposv_full_rank = rocsolver_zposv_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo)
     end function
@@ -47332,7 +46246,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       complex(c_double_complex),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zposv_rank_0 = rocsolver_zposv_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo)
     end function
@@ -47351,7 +46265,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zposv_rank_1 = rocsolver_zposv_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo)
     end function
@@ -47370,7 +46284,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_float),target,dimension(:,:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sposv_batched_full_rank = rocsolver_sposv_batched_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo,batch_count)
@@ -47390,7 +46304,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_float),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sposv_batched_rank_0 = rocsolver_sposv_batched_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo,batch_count)
@@ -47410,7 +46324,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sposv_batched_rank_1 = rocsolver_sposv_batched_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo,batch_count)
@@ -47430,7 +46344,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_double),target,dimension(:,:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dposv_batched_full_rank = rocsolver_dposv_batched_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo,batch_count)
@@ -47450,7 +46364,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_double),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dposv_batched_rank_0 = rocsolver_dposv_batched_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo,batch_count)
@@ -47470,7 +46384,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dposv_batched_rank_1 = rocsolver_dposv_batched_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo,batch_count)
@@ -47490,7 +46404,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:,:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cposv_batched_full_rank = rocsolver_cposv_batched_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo,batch_count)
@@ -47510,7 +46424,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       complex(c_float_complex),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cposv_batched_rank_0 = rocsolver_cposv_batched_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo,batch_count)
@@ -47530,7 +46444,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cposv_batched_rank_1 = rocsolver_cposv_batched_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo,batch_count)
@@ -47550,7 +46464,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:,:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zposv_batched_full_rank = rocsolver_zposv_batched_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo,batch_count)
@@ -47570,7 +46484,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       complex(c_double_complex),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zposv_batched_rank_0 = rocsolver_zposv_batched_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo,batch_count)
@@ -47590,7 +46504,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zposv_batched_rank_1 = rocsolver_zposv_batched_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B),ldb,myInfo,batch_count)
@@ -47612,7 +46526,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sposv_strided_batched_full_rank = rocsolver_sposv_strided_batched_(handle,uplo,n,nrhs,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,myInfo,batch_count)
@@ -47634,7 +46548,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sposv_strided_batched_rank_0 = rocsolver_sposv_strided_batched_(handle,uplo,n,nrhs,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,myInfo,batch_count)
@@ -47656,7 +46570,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sposv_strided_batched_rank_1 = rocsolver_sposv_strided_batched_(handle,uplo,n,nrhs,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,myInfo,batch_count)
@@ -47678,7 +46592,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dposv_strided_batched_full_rank = rocsolver_dposv_strided_batched_(handle,uplo,n,nrhs,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,myInfo,batch_count)
@@ -47700,7 +46614,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dposv_strided_batched_rank_0 = rocsolver_dposv_strided_batched_(handle,uplo,n,nrhs,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,myInfo,batch_count)
@@ -47722,7 +46636,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dposv_strided_batched_rank_1 = rocsolver_dposv_strided_batched_(handle,uplo,n,nrhs,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,myInfo,batch_count)
@@ -47744,7 +46658,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cposv_strided_batched_full_rank = rocsolver_cposv_strided_batched_(handle,uplo,n,nrhs,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,myInfo,batch_count)
@@ -47766,7 +46680,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cposv_strided_batched_rank_0 = rocsolver_cposv_strided_batched_(handle,uplo,n,nrhs,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,myInfo,batch_count)
@@ -47788,7 +46702,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cposv_strided_batched_rank_1 = rocsolver_cposv_strided_batched_(handle,uplo,n,nrhs,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,myInfo,batch_count)
@@ -47810,7 +46724,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zposv_strided_batched_full_rank = rocsolver_zposv_strided_batched_(handle,uplo,n,nrhs,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,myInfo,batch_count)
@@ -47832,7 +46746,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zposv_strided_batched_rank_0 = rocsolver_zposv_strided_batched_(handle,uplo,n,nrhs,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,myInfo,batch_count)
@@ -47854,7 +46768,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zposv_strided_batched_rank_1 = rocsolver_zposv_strided_batched_(handle,uplo,n,nrhs,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,myInfo,batch_count)
@@ -47871,7 +46785,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_spotri_full_rank = rocsolver_spotri_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
@@ -47887,7 +46801,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_spotri_rank_0 = rocsolver_spotri_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
@@ -47903,7 +46817,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_spotri_rank_1 = rocsolver_spotri_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
@@ -47919,7 +46833,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dpotri_full_rank = rocsolver_dpotri_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
@@ -47935,7 +46849,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dpotri_rank_0 = rocsolver_dpotri_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
@@ -47951,7 +46865,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dpotri_rank_1 = rocsolver_dpotri_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
@@ -47967,7 +46881,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cpotri_full_rank = rocsolver_cpotri_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
@@ -47983,7 +46897,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cpotri_rank_0 = rocsolver_cpotri_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
@@ -47999,7 +46913,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cpotri_rank_1 = rocsolver_cpotri_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
@@ -48015,7 +46929,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zpotri_full_rank = rocsolver_zpotri_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
@@ -48031,7 +46945,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zpotri_rank_0 = rocsolver_zpotri_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
@@ -48047,7 +46961,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zpotri_rank_1 = rocsolver_zpotri_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
@@ -48063,7 +46977,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target,dimension(:,:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_spotri_batched_full_rank = rocsolver_spotri_batched_(handle,uplo,n,c_loc(A),lda,myInfo,batch_count)
@@ -48080,7 +46994,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_spotri_batched_rank_0 = rocsolver_spotri_batched_(handle,uplo,n,c_loc(A),lda,myInfo,batch_count)
@@ -48097,7 +47011,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_spotri_batched_rank_1 = rocsolver_spotri_batched_(handle,uplo,n,c_loc(A),lda,myInfo,batch_count)
@@ -48114,7 +47028,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target,dimension(:,:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dpotri_batched_full_rank = rocsolver_dpotri_batched_(handle,uplo,n,c_loc(A),lda,myInfo,batch_count)
@@ -48131,7 +47045,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dpotri_batched_rank_0 = rocsolver_dpotri_batched_(handle,uplo,n,c_loc(A),lda,myInfo,batch_count)
@@ -48148,7 +47062,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dpotri_batched_rank_1 = rocsolver_dpotri_batched_(handle,uplo,n,c_loc(A),lda,myInfo,batch_count)
@@ -48165,7 +47079,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cpotri_batched_full_rank = rocsolver_cpotri_batched_(handle,uplo,n,c_loc(A),lda,myInfo,batch_count)
@@ -48182,7 +47096,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cpotri_batched_rank_0 = rocsolver_cpotri_batched_(handle,uplo,n,c_loc(A),lda,myInfo,batch_count)
@@ -48199,7 +47113,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cpotri_batched_rank_1 = rocsolver_cpotri_batched_(handle,uplo,n,c_loc(A),lda,myInfo,batch_count)
@@ -48216,7 +47130,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zpotri_batched_full_rank = rocsolver_zpotri_batched_(handle,uplo,n,c_loc(A),lda,myInfo,batch_count)
@@ -48233,7 +47147,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zpotri_batched_rank_0 = rocsolver_zpotri_batched_(handle,uplo,n,c_loc(A),lda,myInfo,batch_count)
@@ -48250,7 +47164,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zpotri_batched_rank_1 = rocsolver_zpotri_batched_(handle,uplo,n,c_loc(A),lda,myInfo,batch_count)
@@ -48268,7 +47182,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_spotri_strided_batched_full_rank = rocsolver_spotri_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -48286,7 +47200,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_spotri_strided_batched_rank_0 = rocsolver_spotri_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -48304,7 +47218,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_spotri_strided_batched_rank_1 = rocsolver_spotri_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -48322,7 +47236,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dpotri_strided_batched_full_rank = rocsolver_dpotri_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -48340,7 +47254,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dpotri_strided_batched_rank_0 = rocsolver_dpotri_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -48358,7 +47272,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dpotri_strided_batched_rank_1 = rocsolver_dpotri_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -48376,7 +47290,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cpotri_strided_batched_full_rank = rocsolver_cpotri_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -48394,7 +47308,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cpotri_strided_batched_rank_0 = rocsolver_cpotri_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -48412,7 +47326,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cpotri_strided_batched_rank_1 = rocsolver_cpotri_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -48430,7 +47344,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zpotri_strided_batched_full_rank = rocsolver_zpotri_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -48448,7 +47362,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zpotri_strided_batched_rank_0 = rocsolver_zpotri_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -48466,7 +47380,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zpotri_strided_batched_rank_1 = rocsolver_zpotri_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -48492,7 +47406,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldv
       real(c_float),target,dimension(:) :: E
       integer(kind(rocblas_outofplace)) :: fast_alg
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_sgesvd_full_rank = rocsolver_sgesvd_(handle,left_svect,right_svect,m,n,c_loc(A),lda,c_loc(S),c_loc(U),ldu,c_loc(V),ldv,c_loc(E),fast_alg,myInfo)
     end function
@@ -48517,7 +47431,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldv
       real(c_float),target :: E
       integer(kind(rocblas_outofplace)) :: fast_alg
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_sgesvd_rank_0 = rocsolver_sgesvd_(handle,left_svect,right_svect,m,n,c_loc(A),lda,c_loc(S),c_loc(U),ldu,c_loc(V),ldv,c_loc(E),fast_alg,myInfo)
     end function
@@ -48542,7 +47456,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldv
       real(c_float),target,dimension(:) :: E
       integer(kind(rocblas_outofplace)) :: fast_alg
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_sgesvd_rank_1 = rocsolver_sgesvd_(handle,left_svect,right_svect,m,n,c_loc(A),lda,c_loc(S),c_loc(U),ldu,c_loc(V),ldv,c_loc(E),fast_alg,myInfo)
     end function
@@ -48567,7 +47481,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldv
       real(c_double),target,dimension(:) :: E
       integer(kind(rocblas_outofplace)) :: fast_alg
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dgesvd_full_rank = rocsolver_dgesvd_(handle,left_svect,right_svect,m,n,c_loc(A),lda,c_loc(S),c_loc(U),ldu,c_loc(V),ldv,c_loc(E),fast_alg,myInfo)
     end function
@@ -48592,7 +47506,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldv
       real(c_double),target :: E
       integer(kind(rocblas_outofplace)) :: fast_alg
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dgesvd_rank_0 = rocsolver_dgesvd_(handle,left_svect,right_svect,m,n,c_loc(A),lda,c_loc(S),c_loc(U),ldu,c_loc(V),ldv,c_loc(E),fast_alg,myInfo)
     end function
@@ -48617,7 +47531,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldv
       real(c_double),target,dimension(:) :: E
       integer(kind(rocblas_outofplace)) :: fast_alg
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dgesvd_rank_1 = rocsolver_dgesvd_(handle,left_svect,right_svect,m,n,c_loc(A),lda,c_loc(S),c_loc(U),ldu,c_loc(V),ldv,c_loc(E),fast_alg,myInfo)
     end function
@@ -48642,7 +47556,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldv
       real(c_float),target,dimension(:) :: E
       integer(kind(rocblas_outofplace)) :: fast_alg
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cgesvd_full_rank = rocsolver_cgesvd_(handle,left_svect,right_svect,m,n,c_loc(A),lda,c_loc(S),c_loc(U),ldu,c_loc(V),ldv,c_loc(E),fast_alg,myInfo)
     end function
@@ -48667,7 +47581,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldv
       real(c_float),target :: E
       integer(kind(rocblas_outofplace)) :: fast_alg
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cgesvd_rank_0 = rocsolver_cgesvd_(handle,left_svect,right_svect,m,n,c_loc(A),lda,c_loc(S),c_loc(U),ldu,c_loc(V),ldv,c_loc(E),fast_alg,myInfo)
     end function
@@ -48692,7 +47606,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldv
       real(c_float),target,dimension(:) :: E
       integer(kind(rocblas_outofplace)) :: fast_alg
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cgesvd_rank_1 = rocsolver_cgesvd_(handle,left_svect,right_svect,m,n,c_loc(A),lda,c_loc(S),c_loc(U),ldu,c_loc(V),ldv,c_loc(E),fast_alg,myInfo)
     end function
@@ -48717,7 +47631,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldv
       real(c_double),target,dimension(:) :: E
       integer(kind(rocblas_outofplace)) :: fast_alg
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zgesvd_full_rank = rocsolver_zgesvd_(handle,left_svect,right_svect,m,n,c_loc(A),lda,c_loc(S),c_loc(U),ldu,c_loc(V),ldv,c_loc(E),fast_alg,myInfo)
     end function
@@ -48742,7 +47656,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldv
       real(c_double),target :: E
       integer(kind(rocblas_outofplace)) :: fast_alg
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zgesvd_rank_0 = rocsolver_zgesvd_(handle,left_svect,right_svect,m,n,c_loc(A),lda,c_loc(S),c_loc(U),ldu,c_loc(V),ldv,c_loc(E),fast_alg,myInfo)
     end function
@@ -48767,7 +47681,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldv
       real(c_double),target,dimension(:) :: E
       integer(kind(rocblas_outofplace)) :: fast_alg
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zgesvd_rank_1 = rocsolver_zgesvd_(handle,left_svect,right_svect,m,n,c_loc(A),lda,c_loc(S),c_loc(U),ldu,c_loc(V),ldv,c_loc(E),fast_alg,myInfo)
     end function
@@ -48796,7 +47710,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
       integer(kind(rocblas_outofplace)) :: fast_alg
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgesvd_batched_full_rank = rocsolver_sgesvd_batched_(handle,left_svect,right_svect,m,n,c_loc(A),lda,c_loc(S),strideS,c_loc(U),ldu,strideU,c_loc(V),ldv,strideV,c_loc(E),strideE,fast_alg,myInfo,batch_count)
@@ -48826,7 +47740,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target :: E
       integer(c_int64_t) :: strideE
       integer(kind(rocblas_outofplace)) :: fast_alg
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgesvd_batched_rank_0 = rocsolver_sgesvd_batched_(handle,left_svect,right_svect,m,n,c_loc(A),lda,c_loc(S),strideS,c_loc(U),ldu,strideU,c_loc(V),ldv,strideV,c_loc(E),strideE,fast_alg,myInfo,batch_count)
@@ -48856,7 +47770,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
       integer(kind(rocblas_outofplace)) :: fast_alg
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgesvd_batched_rank_1 = rocsolver_sgesvd_batched_(handle,left_svect,right_svect,m,n,c_loc(A),lda,c_loc(S),strideS,c_loc(U),ldu,strideU,c_loc(V),ldv,strideV,c_loc(E),strideE,fast_alg,myInfo,batch_count)
@@ -48886,7 +47800,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
       integer(kind(rocblas_outofplace)) :: fast_alg
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgesvd_batched_full_rank = rocsolver_dgesvd_batched_(handle,left_svect,right_svect,m,n,c_loc(A),lda,c_loc(S),strideS,c_loc(U),ldu,strideU,c_loc(V),ldv,strideV,c_loc(E),strideE,fast_alg,myInfo,batch_count)
@@ -48916,7 +47830,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target :: E
       integer(c_int64_t) :: strideE
       integer(kind(rocblas_outofplace)) :: fast_alg
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgesvd_batched_rank_0 = rocsolver_dgesvd_batched_(handle,left_svect,right_svect,m,n,c_loc(A),lda,c_loc(S),strideS,c_loc(U),ldu,strideU,c_loc(V),ldv,strideV,c_loc(E),strideE,fast_alg,myInfo,batch_count)
@@ -48946,7 +47860,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
       integer(kind(rocblas_outofplace)) :: fast_alg
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgesvd_batched_rank_1 = rocsolver_dgesvd_batched_(handle,left_svect,right_svect,m,n,c_loc(A),lda,c_loc(S),strideS,c_loc(U),ldu,strideU,c_loc(V),ldv,strideV,c_loc(E),strideE,fast_alg,myInfo,batch_count)
@@ -48976,7 +47890,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
       integer(kind(rocblas_outofplace)) :: fast_alg
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgesvd_batched_full_rank = rocsolver_cgesvd_batched_(handle,left_svect,right_svect,m,n,c_loc(A),lda,c_loc(S),strideS,c_loc(U),ldu,strideU,c_loc(V),ldv,strideV,c_loc(E),strideE,fast_alg,myInfo,batch_count)
@@ -49006,7 +47920,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target :: E
       integer(c_int64_t) :: strideE
       integer(kind(rocblas_outofplace)) :: fast_alg
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgesvd_batched_rank_0 = rocsolver_cgesvd_batched_(handle,left_svect,right_svect,m,n,c_loc(A),lda,c_loc(S),strideS,c_loc(U),ldu,strideU,c_loc(V),ldv,strideV,c_loc(E),strideE,fast_alg,myInfo,batch_count)
@@ -49036,7 +47950,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
       integer(kind(rocblas_outofplace)) :: fast_alg
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgesvd_batched_rank_1 = rocsolver_cgesvd_batched_(handle,left_svect,right_svect,m,n,c_loc(A),lda,c_loc(S),strideS,c_loc(U),ldu,strideU,c_loc(V),ldv,strideV,c_loc(E),strideE,fast_alg,myInfo,batch_count)
@@ -49066,7 +47980,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
       integer(kind(rocblas_outofplace)) :: fast_alg
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgesvd_batched_full_rank = rocsolver_zgesvd_batched_(handle,left_svect,right_svect,m,n,c_loc(A),lda,c_loc(S),strideS,c_loc(U),ldu,strideU,c_loc(V),ldv,strideV,c_loc(E),strideE,fast_alg,myInfo,batch_count)
@@ -49096,7 +48010,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target :: E
       integer(c_int64_t) :: strideE
       integer(kind(rocblas_outofplace)) :: fast_alg
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgesvd_batched_rank_0 = rocsolver_zgesvd_batched_(handle,left_svect,right_svect,m,n,c_loc(A),lda,c_loc(S),strideS,c_loc(U),ldu,strideU,c_loc(V),ldv,strideV,c_loc(E),strideE,fast_alg,myInfo,batch_count)
@@ -49126,7 +48040,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
       integer(kind(rocblas_outofplace)) :: fast_alg
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgesvd_batched_rank_1 = rocsolver_zgesvd_batched_(handle,left_svect,right_svect,m,n,c_loc(A),lda,c_loc(S),strideS,c_loc(U),ldu,strideU,c_loc(V),ldv,strideV,c_loc(E),strideE,fast_alg,myInfo,batch_count)
@@ -49157,7 +48071,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
       integer(kind(rocblas_outofplace)) :: fast_alg
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgesvd_strided_batched_full_rank = rocsolver_sgesvd_strided_batched_(handle,left_svect,right_svect,m,n,c_loc(A),lda,strideA,c_loc(S),strideS,c_loc(U),ldu,strideU,c_loc(V),ldv,strideV,c_loc(E),strideE,fast_alg,myInfo,batch_count)
@@ -49188,7 +48102,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target :: E
       integer(c_int64_t) :: strideE
       integer(kind(rocblas_outofplace)) :: fast_alg
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgesvd_strided_batched_rank_0 = rocsolver_sgesvd_strided_batched_(handle,left_svect,right_svect,m,n,c_loc(A),lda,strideA,c_loc(S),strideS,c_loc(U),ldu,strideU,c_loc(V),ldv,strideV,c_loc(E),strideE,fast_alg,myInfo,batch_count)
@@ -49219,7 +48133,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
       integer(kind(rocblas_outofplace)) :: fast_alg
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgesvd_strided_batched_rank_1 = rocsolver_sgesvd_strided_batched_(handle,left_svect,right_svect,m,n,c_loc(A),lda,strideA,c_loc(S),strideS,c_loc(U),ldu,strideU,c_loc(V),ldv,strideV,c_loc(E),strideE,fast_alg,myInfo,batch_count)
@@ -49250,7 +48164,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
       integer(kind(rocblas_outofplace)) :: fast_alg
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgesvd_strided_batched_full_rank = rocsolver_dgesvd_strided_batched_(handle,left_svect,right_svect,m,n,c_loc(A),lda,strideA,c_loc(S),strideS,c_loc(U),ldu,strideU,c_loc(V),ldv,strideV,c_loc(E),strideE,fast_alg,myInfo,batch_count)
@@ -49281,7 +48195,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target :: E
       integer(c_int64_t) :: strideE
       integer(kind(rocblas_outofplace)) :: fast_alg
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgesvd_strided_batched_rank_0 = rocsolver_dgesvd_strided_batched_(handle,left_svect,right_svect,m,n,c_loc(A),lda,strideA,c_loc(S),strideS,c_loc(U),ldu,strideU,c_loc(V),ldv,strideV,c_loc(E),strideE,fast_alg,myInfo,batch_count)
@@ -49312,7 +48226,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
       integer(kind(rocblas_outofplace)) :: fast_alg
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgesvd_strided_batched_rank_1 = rocsolver_dgesvd_strided_batched_(handle,left_svect,right_svect,m,n,c_loc(A),lda,strideA,c_loc(S),strideS,c_loc(U),ldu,strideU,c_loc(V),ldv,strideV,c_loc(E),strideE,fast_alg,myInfo,batch_count)
@@ -49343,7 +48257,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
       integer(kind(rocblas_outofplace)) :: fast_alg
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgesvd_strided_batched_full_rank = rocsolver_cgesvd_strided_batched_(handle,left_svect,right_svect,m,n,c_loc(A),lda,strideA,c_loc(S),strideS,c_loc(U),ldu,strideU,c_loc(V),ldv,strideV,c_loc(E),strideE,fast_alg,myInfo,batch_count)
@@ -49374,7 +48288,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target :: E
       integer(c_int64_t) :: strideE
       integer(kind(rocblas_outofplace)) :: fast_alg
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgesvd_strided_batched_rank_0 = rocsolver_cgesvd_strided_batched_(handle,left_svect,right_svect,m,n,c_loc(A),lda,strideA,c_loc(S),strideS,c_loc(U),ldu,strideU,c_loc(V),ldv,strideV,c_loc(E),strideE,fast_alg,myInfo,batch_count)
@@ -49405,7 +48319,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
       integer(kind(rocblas_outofplace)) :: fast_alg
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgesvd_strided_batched_rank_1 = rocsolver_cgesvd_strided_batched_(handle,left_svect,right_svect,m,n,c_loc(A),lda,strideA,c_loc(S),strideS,c_loc(U),ldu,strideU,c_loc(V),ldv,strideV,c_loc(E),strideE,fast_alg,myInfo,batch_count)
@@ -49436,7 +48350,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
       integer(kind(rocblas_outofplace)) :: fast_alg
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgesvd_strided_batched_full_rank = rocsolver_zgesvd_strided_batched_(handle,left_svect,right_svect,m,n,c_loc(A),lda,strideA,c_loc(S),strideS,c_loc(U),ldu,strideU,c_loc(V),ldv,strideV,c_loc(E),strideE,fast_alg,myInfo,batch_count)
@@ -49467,7 +48381,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target :: E
       integer(c_int64_t) :: strideE
       integer(kind(rocblas_outofplace)) :: fast_alg
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgesvd_strided_batched_rank_0 = rocsolver_zgesvd_strided_batched_(handle,left_svect,right_svect,m,n,c_loc(A),lda,strideA,c_loc(S),strideS,c_loc(U),ldu,strideU,c_loc(V),ldv,strideV,c_loc(E),strideE,fast_alg,myInfo,batch_count)
@@ -49498,7 +48412,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
       integer(kind(rocblas_outofplace)) :: fast_alg
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgesvd_strided_batched_rank_1 = rocsolver_zgesvd_strided_batched_(handle,left_svect,right_svect,m,n,c_loc(A),lda,strideA,c_loc(S),strideS,c_loc(U),ldu,strideU,c_loc(V),ldv,strideV,c_loc(E),strideE,fast_alg,myInfo,batch_count)
@@ -52422,7 +51336,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: D
       real(c_float),target,dimension(:) :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_ssyev_full_rank = rocsolver_ssyev_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),myInfo)
     end function
@@ -52441,7 +51355,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_float),target :: D
       real(c_float),target :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_ssyev_rank_0 = rocsolver_ssyev_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),myInfo)
     end function
@@ -52460,7 +51374,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: D
       real(c_float),target,dimension(:) :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_ssyev_rank_1 = rocsolver_ssyev_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),myInfo)
     end function
@@ -52479,7 +51393,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: D
       real(c_double),target,dimension(:) :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dsyev_full_rank = rocsolver_dsyev_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),myInfo)
     end function
@@ -52498,7 +51412,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_double),target :: D
       real(c_double),target :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dsyev_rank_0 = rocsolver_dsyev_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),myInfo)
     end function
@@ -52517,7 +51431,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: D
       real(c_double),target,dimension(:) :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dsyev_rank_1 = rocsolver_dsyev_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),myInfo)
     end function
@@ -52536,7 +51450,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: D
       real(c_float),target,dimension(:) :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cheev_full_rank = rocsolver_cheev_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),myInfo)
     end function
@@ -52555,7 +51469,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_float),target :: D
       real(c_float),target :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cheev_rank_0 = rocsolver_cheev_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),myInfo)
     end function
@@ -52574,7 +51488,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: D
       real(c_float),target,dimension(:) :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cheev_rank_1 = rocsolver_cheev_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),myInfo)
     end function
@@ -52593,7 +51507,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: D
       real(c_double),target,dimension(:) :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zheev_full_rank = rocsolver_zheev_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),myInfo)
     end function
@@ -52612,7 +51526,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_double),target :: D
       real(c_double),target :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zheev_rank_0 = rocsolver_zheev_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),myInfo)
     end function
@@ -52631,7 +51545,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: D
       real(c_double),target,dimension(:) :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zheev_rank_1 = rocsolver_zheev_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),myInfo)
     end function
@@ -52652,7 +51566,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_ssyev_batched_full_rank = rocsolver_ssyev_batched_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -52674,7 +51588,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_ssyev_batched_rank_0 = rocsolver_ssyev_batched_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -52696,7 +51610,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_ssyev_batched_rank_1 = rocsolver_ssyev_batched_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -52718,7 +51632,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dsyev_batched_full_rank = rocsolver_dsyev_batched_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -52740,7 +51654,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dsyev_batched_rank_0 = rocsolver_dsyev_batched_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -52762,7 +51676,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dsyev_batched_rank_1 = rocsolver_dsyev_batched_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -52784,7 +51698,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cheev_batched_full_rank = rocsolver_cheev_batched_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -52806,7 +51720,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cheev_batched_rank_0 = rocsolver_cheev_batched_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -52828,7 +51742,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cheev_batched_rank_1 = rocsolver_cheev_batched_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -52850,7 +51764,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zheev_batched_full_rank = rocsolver_zheev_batched_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -52872,7 +51786,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zheev_batched_rank_0 = rocsolver_zheev_batched_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -52894,7 +51808,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zheev_batched_rank_1 = rocsolver_zheev_batched_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -52917,7 +51831,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_ssyev_strided_batched_full_rank = rocsolver_ssyev_strided_batched_(handle,evect,uplo,n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -52940,7 +51854,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_ssyev_strided_batched_rank_0 = rocsolver_ssyev_strided_batched_(handle,evect,uplo,n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -52963,7 +51877,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_ssyev_strided_batched_rank_1 = rocsolver_ssyev_strided_batched_(handle,evect,uplo,n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -52986,7 +51900,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dsyev_strided_batched_full_rank = rocsolver_dsyev_strided_batched_(handle,evect,uplo,n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -53009,7 +51923,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dsyev_strided_batched_rank_0 = rocsolver_dsyev_strided_batched_(handle,evect,uplo,n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -53032,7 +51946,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dsyev_strided_batched_rank_1 = rocsolver_dsyev_strided_batched_(handle,evect,uplo,n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -53055,7 +51969,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cheev_strided_batched_full_rank = rocsolver_cheev_strided_batched_(handle,evect,uplo,n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -53078,7 +51992,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cheev_strided_batched_rank_0 = rocsolver_cheev_strided_batched_(handle,evect,uplo,n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -53101,7 +52015,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cheev_strided_batched_rank_1 = rocsolver_cheev_strided_batched_(handle,evect,uplo,n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -53124,7 +52038,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zheev_strided_batched_full_rank = rocsolver_zheev_strided_batched_(handle,evect,uplo,n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -53147,7 +52061,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zheev_strided_batched_rank_0 = rocsolver_zheev_strided_batched_(handle,evect,uplo,n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -53170,7 +52084,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zheev_strided_batched_rank_1 = rocsolver_zheev_strided_batched_(handle,evect,uplo,n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -53190,7 +52104,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: D
       real(c_float),target,dimension(:) :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_ssyevd_full_rank = rocsolver_ssyevd_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),myInfo)
     end function
@@ -53209,7 +52123,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_float),target :: D
       real(c_float),target :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_ssyevd_rank_0 = rocsolver_ssyevd_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),myInfo)
     end function
@@ -53228,7 +52142,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: D
       real(c_float),target,dimension(:) :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_ssyevd_rank_1 = rocsolver_ssyevd_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),myInfo)
     end function
@@ -53247,7 +52161,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: D
       real(c_double),target,dimension(:) :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dsyevd_full_rank = rocsolver_dsyevd_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),myInfo)
     end function
@@ -53266,7 +52180,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_double),target :: D
       real(c_double),target :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dsyevd_rank_0 = rocsolver_dsyevd_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),myInfo)
     end function
@@ -53285,7 +52199,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: D
       real(c_double),target,dimension(:) :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dsyevd_rank_1 = rocsolver_dsyevd_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),myInfo)
     end function
@@ -53304,7 +52218,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: D
       real(c_float),target,dimension(:) :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cheevd_full_rank = rocsolver_cheevd_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),myInfo)
     end function
@@ -53323,7 +52237,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_float),target :: D
       real(c_float),target :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cheevd_rank_0 = rocsolver_cheevd_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),myInfo)
     end function
@@ -53342,7 +52256,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: D
       real(c_float),target,dimension(:) :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cheevd_rank_1 = rocsolver_cheevd_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),myInfo)
     end function
@@ -53361,7 +52275,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: D
       real(c_double),target,dimension(:) :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zheevd_full_rank = rocsolver_zheevd_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),myInfo)
     end function
@@ -53380,7 +52294,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_double),target :: D
       real(c_double),target :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zheevd_rank_0 = rocsolver_zheevd_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),myInfo)
     end function
@@ -53399,7 +52313,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: D
       real(c_double),target,dimension(:) :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zheevd_rank_1 = rocsolver_zheevd_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),c_loc(E),myInfo)
     end function
@@ -53420,7 +52334,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_ssyevd_batched_full_rank = rocsolver_ssyevd_batched_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -53442,7 +52356,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_ssyevd_batched_rank_0 = rocsolver_ssyevd_batched_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -53464,7 +52378,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_ssyevd_batched_rank_1 = rocsolver_ssyevd_batched_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -53486,7 +52400,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dsyevd_batched_full_rank = rocsolver_dsyevd_batched_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -53508,7 +52422,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dsyevd_batched_rank_0 = rocsolver_dsyevd_batched_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -53530,7 +52444,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dsyevd_batched_rank_1 = rocsolver_dsyevd_batched_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -53552,7 +52466,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cheevd_batched_full_rank = rocsolver_cheevd_batched_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -53574,7 +52488,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cheevd_batched_rank_0 = rocsolver_cheevd_batched_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -53596,7 +52510,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cheevd_batched_rank_1 = rocsolver_cheevd_batched_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -53618,7 +52532,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zheevd_batched_full_rank = rocsolver_zheevd_batched_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -53640,7 +52554,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zheevd_batched_rank_0 = rocsolver_zheevd_batched_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -53662,7 +52576,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zheevd_batched_rank_1 = rocsolver_zheevd_batched_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -53685,7 +52599,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_ssyevd_strided_batched_full_rank = rocsolver_ssyevd_strided_batched_(handle,evect,uplo,n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -53708,7 +52622,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_ssyevd_strided_batched_rank_0 = rocsolver_ssyevd_strided_batched_(handle,evect,uplo,n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -53731,7 +52645,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_ssyevd_strided_batched_rank_1 = rocsolver_ssyevd_strided_batched_(handle,evect,uplo,n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -53754,7 +52668,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dsyevd_strided_batched_full_rank = rocsolver_dsyevd_strided_batched_(handle,evect,uplo,n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -53777,7 +52691,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dsyevd_strided_batched_rank_0 = rocsolver_dsyevd_strided_batched_(handle,evect,uplo,n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -53800,7 +52714,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dsyevd_strided_batched_rank_1 = rocsolver_dsyevd_strided_batched_(handle,evect,uplo,n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -53823,7 +52737,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cheevd_strided_batched_full_rank = rocsolver_cheevd_strided_batched_(handle,evect,uplo,n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -53846,7 +52760,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cheevd_strided_batched_rank_0 = rocsolver_cheevd_strided_batched_(handle,evect,uplo,n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -53869,7 +52783,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cheevd_strided_batched_rank_1 = rocsolver_cheevd_strided_batched_(handle,evect,uplo,n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -53892,7 +52806,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zheevd_strided_batched_full_rank = rocsolver_zheevd_strided_batched_(handle,evect,uplo,n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -53915,7 +52829,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zheevd_strided_batched_rank_0 = rocsolver_zheevd_strided_batched_(handle,evect,uplo,n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -53938,7 +52852,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zheevd_strided_batched_rank_1 = rocsolver_zheevd_strided_batched_(handle,evect,uplo,n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -53961,7 +52875,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldb
       real(c_float),target,dimension(:) :: D
       real(c_float),target,dimension(:) :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_ssygv_full_rank = rocsolver_ssygv_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),c_loc(E),myInfo)
     end function
@@ -53983,7 +52897,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldb
       real(c_float),target :: D
       real(c_float),target :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_ssygv_rank_0 = rocsolver_ssygv_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),c_loc(E),myInfo)
     end function
@@ -54005,7 +52919,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldb
       real(c_float),target,dimension(:) :: D
       real(c_float),target,dimension(:) :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_ssygv_rank_1 = rocsolver_ssygv_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),c_loc(E),myInfo)
     end function
@@ -54027,7 +52941,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldb
       real(c_double),target,dimension(:) :: D
       real(c_double),target,dimension(:) :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dsygv_full_rank = rocsolver_dsygv_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),c_loc(E),myInfo)
     end function
@@ -54049,7 +52963,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldb
       real(c_double),target :: D
       real(c_double),target :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dsygv_rank_0 = rocsolver_dsygv_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),c_loc(E),myInfo)
     end function
@@ -54071,7 +52985,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldb
       real(c_double),target,dimension(:) :: D
       real(c_double),target,dimension(:) :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dsygv_rank_1 = rocsolver_dsygv_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),c_loc(E),myInfo)
     end function
@@ -54093,7 +53007,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldb
       real(c_float),target,dimension(:) :: D
       real(c_float),target,dimension(:) :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_chegv_full_rank = rocsolver_chegv_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),c_loc(E),myInfo)
     end function
@@ -54115,7 +53029,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldb
       real(c_float),target :: D
       real(c_float),target :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_chegv_rank_0 = rocsolver_chegv_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),c_loc(E),myInfo)
     end function
@@ -54137,7 +53051,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldb
       real(c_float),target,dimension(:) :: D
       real(c_float),target,dimension(:) :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_chegv_rank_1 = rocsolver_chegv_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),c_loc(E),myInfo)
     end function
@@ -54159,7 +53073,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldb
       real(c_double),target,dimension(:) :: D
       real(c_double),target,dimension(:) :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zhegv_full_rank = rocsolver_zhegv_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),c_loc(E),myInfo)
     end function
@@ -54181,7 +53095,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldb
       real(c_double),target :: D
       real(c_double),target :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zhegv_rank_0 = rocsolver_zhegv_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),c_loc(E),myInfo)
     end function
@@ -54203,7 +53117,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldb
       real(c_double),target,dimension(:) :: D
       real(c_double),target,dimension(:) :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zhegv_rank_1 = rocsolver_zhegv_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),c_loc(E),myInfo)
     end function
@@ -54227,7 +53141,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_ssygv_batched_full_rank = rocsolver_ssygv_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -54252,7 +53166,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_ssygv_batched_rank_0 = rocsolver_ssygv_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -54277,7 +53191,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_ssygv_batched_rank_1 = rocsolver_ssygv_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -54302,7 +53216,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dsygv_batched_full_rank = rocsolver_dsygv_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -54327,7 +53241,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dsygv_batched_rank_0 = rocsolver_dsygv_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -54352,7 +53266,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dsygv_batched_rank_1 = rocsolver_dsygv_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -54377,7 +53291,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_chegv_batched_full_rank = rocsolver_chegv_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -54402,7 +53316,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_chegv_batched_rank_0 = rocsolver_chegv_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -54427,7 +53341,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_chegv_batched_rank_1 = rocsolver_chegv_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -54452,7 +53366,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zhegv_batched_full_rank = rocsolver_zhegv_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -54477,7 +53391,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zhegv_batched_rank_0 = rocsolver_zhegv_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -54502,7 +53416,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zhegv_batched_rank_1 = rocsolver_zhegv_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -54529,7 +53443,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_ssygv_strided_batched_full_rank = rocsolver_ssygv_strided_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -54556,7 +53470,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_ssygv_strided_batched_rank_0 = rocsolver_ssygv_strided_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -54583,7 +53497,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_ssygv_strided_batched_rank_1 = rocsolver_ssygv_strided_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -54610,7 +53524,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dsygv_strided_batched_full_rank = rocsolver_dsygv_strided_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -54637,7 +53551,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dsygv_strided_batched_rank_0 = rocsolver_dsygv_strided_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -54664,7 +53578,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dsygv_strided_batched_rank_1 = rocsolver_dsygv_strided_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -54691,7 +53605,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_chegv_strided_batched_full_rank = rocsolver_chegv_strided_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -54718,7 +53632,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_chegv_strided_batched_rank_0 = rocsolver_chegv_strided_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -54745,7 +53659,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_chegv_strided_batched_rank_1 = rocsolver_chegv_strided_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -54772,7 +53686,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zhegv_strided_batched_full_rank = rocsolver_zhegv_strided_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -54799,7 +53713,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zhegv_strided_batched_rank_0 = rocsolver_zhegv_strided_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -54826,7 +53740,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zhegv_strided_batched_rank_1 = rocsolver_zhegv_strided_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -54849,7 +53763,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldb
       real(c_float),target,dimension(:) :: D
       real(c_float),target,dimension(:) :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_ssygvd_full_rank = rocsolver_ssygvd_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),c_loc(E),myInfo)
     end function
@@ -54871,7 +53785,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldb
       real(c_float),target :: D
       real(c_float),target :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_ssygvd_rank_0 = rocsolver_ssygvd_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),c_loc(E),myInfo)
     end function
@@ -54893,7 +53807,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldb
       real(c_float),target,dimension(:) :: D
       real(c_float),target,dimension(:) :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_ssygvd_rank_1 = rocsolver_ssygvd_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),c_loc(E),myInfo)
     end function
@@ -54915,7 +53829,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldb
       real(c_double),target,dimension(:) :: D
       real(c_double),target,dimension(:) :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dsygvd_full_rank = rocsolver_dsygvd_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),c_loc(E),myInfo)
     end function
@@ -54937,7 +53851,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldb
       real(c_double),target :: D
       real(c_double),target :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dsygvd_rank_0 = rocsolver_dsygvd_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),c_loc(E),myInfo)
     end function
@@ -54959,7 +53873,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldb
       real(c_double),target,dimension(:) :: D
       real(c_double),target,dimension(:) :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dsygvd_rank_1 = rocsolver_dsygvd_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),c_loc(E),myInfo)
     end function
@@ -54981,7 +53895,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldb
       real(c_float),target,dimension(:) :: D
       real(c_float),target,dimension(:) :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_chegvd_full_rank = rocsolver_chegvd_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),c_loc(E),myInfo)
     end function
@@ -55003,7 +53917,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldb
       real(c_float),target :: D
       real(c_float),target :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_chegvd_rank_0 = rocsolver_chegvd_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),c_loc(E),myInfo)
     end function
@@ -55025,7 +53939,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldb
       real(c_float),target,dimension(:) :: D
       real(c_float),target,dimension(:) :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_chegvd_rank_1 = rocsolver_chegvd_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),c_loc(E),myInfo)
     end function
@@ -55047,7 +53961,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldb
       real(c_double),target,dimension(:) :: D
       real(c_double),target,dimension(:) :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zhegvd_full_rank = rocsolver_zhegvd_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),c_loc(E),myInfo)
     end function
@@ -55069,7 +53983,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldb
       real(c_double),target :: D
       real(c_double),target :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zhegvd_rank_0 = rocsolver_zhegvd_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),c_loc(E),myInfo)
     end function
@@ -55091,7 +54005,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: ldb
       real(c_double),target,dimension(:) :: D
       real(c_double),target,dimension(:) :: E
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zhegvd_rank_1 = rocsolver_zhegvd_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),c_loc(E),myInfo)
     end function
@@ -55115,7 +54029,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_ssygvd_batched_full_rank = rocsolver_ssygvd_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -55140,7 +54054,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_ssygvd_batched_rank_0 = rocsolver_ssygvd_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -55165,7 +54079,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_ssygvd_batched_rank_1 = rocsolver_ssygvd_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -55190,7 +54104,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dsygvd_batched_full_rank = rocsolver_dsygvd_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -55215,7 +54129,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dsygvd_batched_rank_0 = rocsolver_dsygvd_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -55240,7 +54154,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dsygvd_batched_rank_1 = rocsolver_dsygvd_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -55265,7 +54179,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_chegvd_batched_full_rank = rocsolver_chegvd_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -55290,7 +54204,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_chegvd_batched_rank_0 = rocsolver_chegvd_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -55315,7 +54229,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_chegvd_batched_rank_1 = rocsolver_chegvd_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -55340,7 +54254,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zhegvd_batched_full_rank = rocsolver_zhegvd_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -55365,7 +54279,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zhegvd_batched_rank_0 = rocsolver_zhegvd_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -55390,7 +54304,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zhegvd_batched_rank_1 = rocsolver_zhegvd_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,c_loc(B),ldb,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -55417,7 +54331,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_ssygvd_strided_batched_full_rank = rocsolver_ssygvd_strided_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -55444,7 +54358,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_ssygvd_strided_batched_rank_0 = rocsolver_ssygvd_strided_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -55471,7 +54385,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_ssygvd_strided_batched_rank_1 = rocsolver_ssygvd_strided_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -55498,7 +54412,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dsygvd_strided_batched_full_rank = rocsolver_dsygvd_strided_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -55525,7 +54439,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dsygvd_strided_batched_rank_0 = rocsolver_dsygvd_strided_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -55552,7 +54466,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dsygvd_strided_batched_rank_1 = rocsolver_dsygvd_strided_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -55579,7 +54493,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_chegvd_strided_batched_full_rank = rocsolver_chegvd_strided_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -55606,7 +54520,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_chegvd_strided_batched_rank_0 = rocsolver_chegvd_strided_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -55633,7 +54547,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_float),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_chegvd_strided_batched_rank_1 = rocsolver_chegvd_strided_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -55660,7 +54574,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zhegvd_strided_batched_full_rank = rocsolver_zhegvd_strided_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -55687,7 +54601,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zhegvd_strided_batched_rank_0 = rocsolver_zhegvd_strided_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -55714,7 +54628,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideD
       real(c_double),target,dimension(:) :: E
       integer(c_int64_t) :: strideE
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zhegvd_strided_batched_rank_1 = rocsolver_zhegvd_strided_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
@@ -55733,7 +54647,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int),target,dimension(:) :: ipiv
       real(c_float),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_sgetri_outofplace_full_rank = rocsolver_sgetri_outofplace_(handle,n,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc,myInfo)
     end function
@@ -55751,7 +54665,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int),target :: ipiv
       real(c_float),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_sgetri_outofplace_rank_0 = rocsolver_sgetri_outofplace_(handle,n,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc,myInfo)
     end function
@@ -55769,7 +54683,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int),target,dimension(:) :: ipiv
       real(c_float),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_sgetri_outofplace_rank_1 = rocsolver_sgetri_outofplace_(handle,n,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc,myInfo)
     end function
@@ -55787,7 +54701,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int),target,dimension(:) :: ipiv
       real(c_double),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dgetri_outofplace_full_rank = rocsolver_dgetri_outofplace_(handle,n,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc,myInfo)
     end function
@@ -55805,7 +54719,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int),target :: ipiv
       real(c_double),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dgetri_outofplace_rank_0 = rocsolver_dgetri_outofplace_(handle,n,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc,myInfo)
     end function
@@ -55823,7 +54737,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int),target,dimension(:) :: ipiv
       real(c_double),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dgetri_outofplace_rank_1 = rocsolver_dgetri_outofplace_(handle,n,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc,myInfo)
     end function
@@ -55841,7 +54755,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int),target,dimension(:) :: ipiv
       complex(c_float_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cgetri_outofplace_full_rank = rocsolver_cgetri_outofplace_(handle,n,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc,myInfo)
     end function
@@ -55859,7 +54773,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int),target :: ipiv
       complex(c_float_complex),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cgetri_outofplace_rank_0 = rocsolver_cgetri_outofplace_(handle,n,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc,myInfo)
     end function
@@ -55877,7 +54791,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int),target,dimension(:) :: ipiv
       complex(c_float_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cgetri_outofplace_rank_1 = rocsolver_cgetri_outofplace_(handle,n,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc,myInfo)
     end function
@@ -55895,7 +54809,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int),target,dimension(:) :: ipiv
       complex(c_double_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zgetri_outofplace_full_rank = rocsolver_zgetri_outofplace_(handle,n,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc,myInfo)
     end function
@@ -55913,7 +54827,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int),target :: ipiv
       complex(c_double_complex),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zgetri_outofplace_rank_0 = rocsolver_zgetri_outofplace_(handle,n,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc,myInfo)
     end function
@@ -55931,7 +54845,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int),target,dimension(:) :: ipiv
       complex(c_double_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zgetri_outofplace_rank_1 = rocsolver_zgetri_outofplace_(handle,n,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc,myInfo)
     end function
@@ -55950,7 +54864,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideP
       real(c_float),target,dimension(:,:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetri_outofplace_batched_full_rank = rocsolver_sgetri_outofplace_batched_(handle,n,c_loc(A),lda,c_loc(ipiv),strideP,c_loc(C),ldc,myInfo,batch_count)
@@ -55970,7 +54884,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideP
       real(c_float),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetri_outofplace_batched_rank_0 = rocsolver_sgetri_outofplace_batched_(handle,n,c_loc(A),lda,c_loc(ipiv),strideP,c_loc(C),ldc,myInfo,batch_count)
@@ -55990,7 +54904,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideP
       real(c_float),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetri_outofplace_batched_rank_1 = rocsolver_sgetri_outofplace_batched_(handle,n,c_loc(A),lda,c_loc(ipiv),strideP,c_loc(C),ldc,myInfo,batch_count)
@@ -56010,7 +54924,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideP
       real(c_double),target,dimension(:,:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetri_outofplace_batched_full_rank = rocsolver_dgetri_outofplace_batched_(handle,n,c_loc(A),lda,c_loc(ipiv),strideP,c_loc(C),ldc,myInfo,batch_count)
@@ -56030,7 +54944,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideP
       real(c_double),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetri_outofplace_batched_rank_0 = rocsolver_dgetri_outofplace_batched_(handle,n,c_loc(A),lda,c_loc(ipiv),strideP,c_loc(C),ldc,myInfo,batch_count)
@@ -56050,7 +54964,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideP
       real(c_double),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetri_outofplace_batched_rank_1 = rocsolver_dgetri_outofplace_batched_(handle,n,c_loc(A),lda,c_loc(ipiv),strideP,c_loc(C),ldc,myInfo,batch_count)
@@ -56070,7 +54984,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideP
       complex(c_float_complex),target,dimension(:,:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetri_outofplace_batched_full_rank = rocsolver_cgetri_outofplace_batched_(handle,n,c_loc(A),lda,c_loc(ipiv),strideP,c_loc(C),ldc,myInfo,batch_count)
@@ -56090,7 +55004,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideP
       complex(c_float_complex),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetri_outofplace_batched_rank_0 = rocsolver_cgetri_outofplace_batched_(handle,n,c_loc(A),lda,c_loc(ipiv),strideP,c_loc(C),ldc,myInfo,batch_count)
@@ -56110,7 +55024,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideP
       complex(c_float_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetri_outofplace_batched_rank_1 = rocsolver_cgetri_outofplace_batched_(handle,n,c_loc(A),lda,c_loc(ipiv),strideP,c_loc(C),ldc,myInfo,batch_count)
@@ -56130,7 +55044,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideP
       complex(c_double_complex),target,dimension(:,:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetri_outofplace_batched_full_rank = rocsolver_zgetri_outofplace_batched_(handle,n,c_loc(A),lda,c_loc(ipiv),strideP,c_loc(C),ldc,myInfo,batch_count)
@@ -56150,7 +55064,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideP
       complex(c_double_complex),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetri_outofplace_batched_rank_0 = rocsolver_zgetri_outofplace_batched_(handle,n,c_loc(A),lda,c_loc(ipiv),strideP,c_loc(C),ldc,myInfo,batch_count)
@@ -56170,7 +55084,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int64_t) :: strideP
       complex(c_double_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetri_outofplace_batched_rank_1 = rocsolver_zgetri_outofplace_batched_(handle,n,c_loc(A),lda,c_loc(ipiv),strideP,c_loc(C),ldc,myInfo,batch_count)
@@ -56192,7 +55106,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetri_outofplace_strided_batched_full_rank = rocsolver_sgetri_outofplace_strided_batched_(handle,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(C),ldc,strideC,myInfo,batch_count)
@@ -56214,7 +55128,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetri_outofplace_strided_batched_rank_0 = rocsolver_sgetri_outofplace_strided_batched_(handle,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(C),ldc,strideC,myInfo,batch_count)
@@ -56236,7 +55150,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetri_outofplace_strided_batched_rank_1 = rocsolver_sgetri_outofplace_strided_batched_(handle,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(C),ldc,strideC,myInfo,batch_count)
@@ -56258,7 +55172,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetri_outofplace_strided_batched_full_rank = rocsolver_dgetri_outofplace_strided_batched_(handle,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(C),ldc,strideC,myInfo,batch_count)
@@ -56280,7 +55194,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetri_outofplace_strided_batched_rank_0 = rocsolver_dgetri_outofplace_strided_batched_(handle,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(C),ldc,strideC,myInfo,batch_count)
@@ -56302,7 +55216,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetri_outofplace_strided_batched_rank_1 = rocsolver_dgetri_outofplace_strided_batched_(handle,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(C),ldc,strideC,myInfo,batch_count)
@@ -56324,7 +55238,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetri_outofplace_strided_batched_full_rank = rocsolver_cgetri_outofplace_strided_batched_(handle,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(C),ldc,strideC,myInfo,batch_count)
@@ -56346,7 +55260,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetri_outofplace_strided_batched_rank_0 = rocsolver_cgetri_outofplace_strided_batched_(handle,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(C),ldc,strideC,myInfo,batch_count)
@@ -56368,7 +55282,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetri_outofplace_strided_batched_rank_1 = rocsolver_cgetri_outofplace_strided_batched_(handle,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(C),ldc,strideC,myInfo,batch_count)
@@ -56390,7 +55304,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetri_outofplace_strided_batched_full_rank = rocsolver_zgetri_outofplace_strided_batched_(handle,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(C),ldc,strideC,myInfo,batch_count)
@@ -56412,7 +55326,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetri_outofplace_strided_batched_rank_0 = rocsolver_zgetri_outofplace_strided_batched_(handle,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(C),ldc,strideC,myInfo,batch_count)
@@ -56434,7 +55348,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetri_outofplace_strided_batched_rank_1 = rocsolver_zgetri_outofplace_strided_batched_(handle,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(C),ldc,strideC,myInfo,batch_count)
@@ -56452,7 +55366,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_float),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_sgetri_npvt_outofplace_full_rank = rocsolver_sgetri_npvt_outofplace_(handle,n,c_loc(A),lda,c_loc(C),ldc,myInfo)
     end function
@@ -56469,7 +55383,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_float),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_sgetri_npvt_outofplace_rank_0 = rocsolver_sgetri_npvt_outofplace_(handle,n,c_loc(A),lda,c_loc(C),ldc,myInfo)
     end function
@@ -56486,7 +55400,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_sgetri_npvt_outofplace_rank_1 = rocsolver_sgetri_npvt_outofplace_(handle,n,c_loc(A),lda,c_loc(C),ldc,myInfo)
     end function
@@ -56503,7 +55417,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_double),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dgetri_npvt_outofplace_full_rank = rocsolver_dgetri_npvt_outofplace_(handle,n,c_loc(A),lda,c_loc(C),ldc,myInfo)
     end function
@@ -56520,7 +55434,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_double),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dgetri_npvt_outofplace_rank_0 = rocsolver_dgetri_npvt_outofplace_(handle,n,c_loc(A),lda,c_loc(C),ldc,myInfo)
     end function
@@ -56537,7 +55451,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dgetri_npvt_outofplace_rank_1 = rocsolver_dgetri_npvt_outofplace_(handle,n,c_loc(A),lda,c_loc(C),ldc,myInfo)
     end function
@@ -56554,7 +55468,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cgetri_npvt_outofplace_full_rank = rocsolver_cgetri_npvt_outofplace_(handle,n,c_loc(A),lda,c_loc(C),ldc,myInfo)
     end function
@@ -56571,7 +55485,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       complex(c_float_complex),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cgetri_npvt_outofplace_rank_0 = rocsolver_cgetri_npvt_outofplace_(handle,n,c_loc(A),lda,c_loc(C),ldc,myInfo)
     end function
@@ -56588,7 +55502,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_cgetri_npvt_outofplace_rank_1 = rocsolver_cgetri_npvt_outofplace_(handle,n,c_loc(A),lda,c_loc(C),ldc,myInfo)
     end function
@@ -56605,7 +55519,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zgetri_npvt_outofplace_full_rank = rocsolver_zgetri_npvt_outofplace_(handle,n,c_loc(A),lda,c_loc(C),ldc,myInfo)
     end function
@@ -56622,7 +55536,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       complex(c_double_complex),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zgetri_npvt_outofplace_rank_0 = rocsolver_zgetri_npvt_outofplace_(handle,n,c_loc(A),lda,c_loc(C),ldc,myInfo)
     end function
@@ -56639,7 +55553,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_zgetri_npvt_outofplace_rank_1 = rocsolver_zgetri_npvt_outofplace_(handle,n,c_loc(A),lda,c_loc(C),ldc,myInfo)
     end function
@@ -56656,7 +55570,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_float),target,dimension(:,:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetri_npvt_outofplace_batched_full_rank = rocsolver_sgetri_npvt_outofplace_batched_(handle,n,c_loc(A),lda,c_loc(C),ldc,myInfo,batch_count)
@@ -56674,7 +55588,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_float),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetri_npvt_outofplace_batched_rank_0 = rocsolver_sgetri_npvt_outofplace_batched_(handle,n,c_loc(A),lda,c_loc(C),ldc,myInfo,batch_count)
@@ -56692,7 +55606,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetri_npvt_outofplace_batched_rank_1 = rocsolver_sgetri_npvt_outofplace_batched_(handle,n,c_loc(A),lda,c_loc(C),ldc,myInfo,batch_count)
@@ -56710,7 +55624,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_double),target,dimension(:,:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetri_npvt_outofplace_batched_full_rank = rocsolver_dgetri_npvt_outofplace_batched_(handle,n,c_loc(A),lda,c_loc(C),ldc,myInfo,batch_count)
@@ -56728,7 +55642,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_double),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetri_npvt_outofplace_batched_rank_0 = rocsolver_dgetri_npvt_outofplace_batched_(handle,n,c_loc(A),lda,c_loc(C),ldc,myInfo,batch_count)
@@ -56746,7 +55660,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetri_npvt_outofplace_batched_rank_1 = rocsolver_dgetri_npvt_outofplace_batched_(handle,n,c_loc(A),lda,c_loc(C),ldc,myInfo,batch_count)
@@ -56764,7 +55678,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:,:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetri_npvt_outofplace_batched_full_rank = rocsolver_cgetri_npvt_outofplace_batched_(handle,n,c_loc(A),lda,c_loc(C),ldc,myInfo,batch_count)
@@ -56782,7 +55696,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       complex(c_float_complex),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetri_npvt_outofplace_batched_rank_0 = rocsolver_cgetri_npvt_outofplace_batched_(handle,n,c_loc(A),lda,c_loc(C),ldc,myInfo,batch_count)
@@ -56800,7 +55714,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetri_npvt_outofplace_batched_rank_1 = rocsolver_cgetri_npvt_outofplace_batched_(handle,n,c_loc(A),lda,c_loc(C),ldc,myInfo,batch_count)
@@ -56818,7 +55732,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:,:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetri_npvt_outofplace_batched_full_rank = rocsolver_zgetri_npvt_outofplace_batched_(handle,n,c_loc(A),lda,c_loc(C),ldc,myInfo,batch_count)
@@ -56836,7 +55750,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       complex(c_double_complex),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetri_npvt_outofplace_batched_rank_0 = rocsolver_zgetri_npvt_outofplace_batched_(handle,n,c_loc(A),lda,c_loc(C),ldc,myInfo,batch_count)
@@ -56854,7 +55768,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetri_npvt_outofplace_batched_rank_1 = rocsolver_zgetri_npvt_outofplace_batched_(handle,n,c_loc(A),lda,c_loc(C),ldc,myInfo,batch_count)
@@ -56874,7 +55788,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetri_npvt_outofplace_strided_batched_full_rank = rocsolver_sgetri_npvt_outofplace_strided_batched_(handle,n,c_loc(A),lda,strideA,c_loc(C),ldc,strideC,myInfo,batch_count)
@@ -56894,7 +55808,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetri_npvt_outofplace_strided_batched_rank_0 = rocsolver_sgetri_npvt_outofplace_strided_batched_(handle,n,c_loc(A),lda,strideA,c_loc(C),ldc,strideC,myInfo,batch_count)
@@ -56914,7 +55828,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_sgetri_npvt_outofplace_strided_batched_rank_1 = rocsolver_sgetri_npvt_outofplace_strided_batched_(handle,n,c_loc(A),lda,strideA,c_loc(C),ldc,strideC,myInfo,batch_count)
@@ -56934,7 +55848,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetri_npvt_outofplace_strided_batched_full_rank = rocsolver_dgetri_npvt_outofplace_strided_batched_(handle,n,c_loc(A),lda,strideA,c_loc(C),ldc,strideC,myInfo,batch_count)
@@ -56954,7 +55868,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetri_npvt_outofplace_strided_batched_rank_0 = rocsolver_dgetri_npvt_outofplace_strided_batched_(handle,n,c_loc(A),lda,strideA,c_loc(C),ldc,strideC,myInfo,batch_count)
@@ -56974,7 +55888,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dgetri_npvt_outofplace_strided_batched_rank_1 = rocsolver_dgetri_npvt_outofplace_strided_batched_(handle,n,c_loc(A),lda,strideA,c_loc(C),ldc,strideC,myInfo,batch_count)
@@ -56994,7 +55908,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetri_npvt_outofplace_strided_batched_full_rank = rocsolver_cgetri_npvt_outofplace_strided_batched_(handle,n,c_loc(A),lda,strideA,c_loc(C),ldc,strideC,myInfo,batch_count)
@@ -57014,7 +55928,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetri_npvt_outofplace_strided_batched_rank_0 = rocsolver_cgetri_npvt_outofplace_strided_batched_(handle,n,c_loc(A),lda,strideA,c_loc(C),ldc,strideC,myInfo,batch_count)
@@ -57034,7 +55948,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_cgetri_npvt_outofplace_strided_batched_rank_1 = rocsolver_cgetri_npvt_outofplace_strided_batched_(handle,n,c_loc(A),lda,strideA,c_loc(C),ldc,strideC,myInfo,batch_count)
@@ -57054,7 +55968,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetri_npvt_outofplace_strided_batched_full_rank = rocsolver_zgetri_npvt_outofplace_strided_batched_(handle,n,c_loc(A),lda,strideA,c_loc(C),ldc,strideC,myInfo,batch_count)
@@ -57074,7 +55988,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetri_npvt_outofplace_strided_batched_rank_0 = rocsolver_zgetri_npvt_outofplace_strided_batched_(handle,n,c_loc(A),lda,strideA,c_loc(C),ldc,strideC,myInfo,batch_count)
@@ -57094,7 +56008,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_zgetri_npvt_outofplace_strided_batched_rank_1 = rocsolver_zgetri_npvt_outofplace_strided_batched_(handle,n,c_loc(A),lda,strideA,c_loc(C),ldc,strideC,myInfo,batch_count)
@@ -57112,7 +56026,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_strtri_full_rank = rocsolver_strtri_(handle,uplo,diag,n,c_loc(A),lda,myInfo)
     end function
@@ -57129,7 +56043,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_strtri_rank_0 = rocsolver_strtri_(handle,uplo,diag,n,c_loc(A),lda,myInfo)
     end function
@@ -57146,7 +56060,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_strtri_rank_1 = rocsolver_strtri_(handle,uplo,diag,n,c_loc(A),lda,myInfo)
     end function
@@ -57163,7 +56077,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dtrtri_full_rank = rocsolver_dtrtri_(handle,uplo,diag,n,c_loc(A),lda,myInfo)
     end function
@@ -57180,7 +56094,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dtrtri_rank_0 = rocsolver_dtrtri_(handle,uplo,diag,n,c_loc(A),lda,myInfo)
     end function
@@ -57197,7 +56111,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_dtrtri_rank_1 = rocsolver_dtrtri_(handle,uplo,diag,n,c_loc(A),lda,myInfo)
     end function
@@ -57214,7 +56128,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_ctrtri_full_rank = rocsolver_ctrtri_(handle,uplo,diag,n,c_loc(A),lda,myInfo)
     end function
@@ -57231,7 +56145,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_ctrtri_rank_0 = rocsolver_ctrtri_(handle,uplo,diag,n,c_loc(A),lda,myInfo)
     end function
@@ -57248,7 +56162,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_ctrtri_rank_1 = rocsolver_ctrtri_(handle,uplo,diag,n,c_loc(A),lda,myInfo)
     end function
@@ -57265,7 +56179,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_ztrtri_full_rank = rocsolver_ztrtri_(handle,uplo,diag,n,c_loc(A),lda,myInfo)
     end function
@@ -57282,7 +56196,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_ztrtri_rank_0 = rocsolver_ztrtri_(handle,uplo,diag,n,c_loc(A),lda,myInfo)
     end function
@@ -57299,7 +56213,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       !
       rocsolver_ztrtri_rank_1 = rocsolver_ztrtri_(handle,uplo,diag,n,c_loc(A),lda,myInfo)
     end function
@@ -57316,7 +56230,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target,dimension(:,:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_strtri_batched_full_rank = rocsolver_strtri_batched_(handle,uplo,diag,n,c_loc(A),lda,myInfo,batch_count)
@@ -57334,7 +56248,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_strtri_batched_rank_0 = rocsolver_strtri_batched_(handle,uplo,diag,n,c_loc(A),lda,myInfo,batch_count)
@@ -57352,7 +56266,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_strtri_batched_rank_1 = rocsolver_strtri_batched_(handle,uplo,diag,n,c_loc(A),lda,myInfo,batch_count)
@@ -57370,7 +56284,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target,dimension(:,:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dtrtri_batched_full_rank = rocsolver_dtrtri_batched_(handle,uplo,diag,n,c_loc(A),lda,myInfo,batch_count)
@@ -57388,7 +56302,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dtrtri_batched_rank_0 = rocsolver_dtrtri_batched_(handle,uplo,diag,n,c_loc(A),lda,myInfo,batch_count)
@@ -57406,7 +56320,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dtrtri_batched_rank_1 = rocsolver_dtrtri_batched_(handle,uplo,diag,n,c_loc(A),lda,myInfo,batch_count)
@@ -57424,7 +56338,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_ctrtri_batched_full_rank = rocsolver_ctrtri_batched_(handle,uplo,diag,n,c_loc(A),lda,myInfo,batch_count)
@@ -57442,7 +56356,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_ctrtri_batched_rank_0 = rocsolver_ctrtri_batched_(handle,uplo,diag,n,c_loc(A),lda,myInfo,batch_count)
@@ -57460,7 +56374,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_ctrtri_batched_rank_1 = rocsolver_ctrtri_batched_(handle,uplo,diag,n,c_loc(A),lda,myInfo,batch_count)
@@ -57478,7 +56392,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_ztrtri_batched_full_rank = rocsolver_ztrtri_batched_(handle,uplo,diag,n,c_loc(A),lda,myInfo,batch_count)
@@ -57496,7 +56410,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_ztrtri_batched_rank_0 = rocsolver_ztrtri_batched_(handle,uplo,diag,n,c_loc(A),lda,myInfo,batch_count)
@@ -57514,7 +56428,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_ztrtri_batched_rank_1 = rocsolver_ztrtri_batched_(handle,uplo,diag,n,c_loc(A),lda,myInfo,batch_count)
@@ -57533,7 +56447,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_strtri_strided_batched_full_rank = rocsolver_strtri_strided_batched_(handle,uplo,diag,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -57552,7 +56466,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_strtri_strided_batched_rank_0 = rocsolver_strtri_strided_batched_(handle,uplo,diag,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -57571,7 +56485,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_strtri_strided_batched_rank_1 = rocsolver_strtri_strided_batched_(handle,uplo,diag,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -57590,7 +56504,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dtrtri_strided_batched_full_rank = rocsolver_dtrtri_strided_batched_(handle,uplo,diag,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -57609,7 +56523,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dtrtri_strided_batched_rank_0 = rocsolver_dtrtri_strided_batched_(handle,uplo,diag,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -57628,7 +56542,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_dtrtri_strided_batched_rank_1 = rocsolver_dtrtri_strided_batched_(handle,uplo,diag,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -57647,7 +56561,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_ctrtri_strided_batched_full_rank = rocsolver_ctrtri_strided_batched_(handle,uplo,diag,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -57666,7 +56580,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_ctrtri_strided_batched_rank_0 = rocsolver_ctrtri_strided_batched_(handle,uplo,diag,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -57685,7 +56599,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_ctrtri_strided_batched_rank_1 = rocsolver_ctrtri_strided_batched_(handle,uplo,diag,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -57704,7 +56618,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_ztrtri_strided_batched_full_rank = rocsolver_ztrtri_strided_batched_(handle,uplo,diag,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -57723,7 +56637,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_ztrtri_strided_batched_rank_0 = rocsolver_ztrtri_strided_batched_(handle,uplo,diag,n,c_loc(A),lda,strideA,myInfo,batch_count)
@@ -57742,7 +56656,7 @@ rocsolver_ztrtri_strided_batched_rank_1
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      type(c_ptr) :: myInfo
+      integer(c_int) :: myInfo
       integer(c_int) :: batch_count
       !
       rocsolver_ztrtri_strided_batched_rank_1 = rocsolver_ztrtri_strided_batched_(handle,uplo,diag,n,c_loc(A),lda,strideA,myInfo,batch_count)

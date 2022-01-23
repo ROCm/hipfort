@@ -45,7 +45,6 @@ module hipfort_hipblas
       type(c_ptr) :: handle
     end function
 
-
   end interface
   
   interface hipblasDestroy
@@ -60,7 +59,6 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDestroy_
       type(c_ptr),value :: handle
     end function
-
 
   end interface
   
@@ -78,7 +76,6 @@ module hipfort_hipblas
       type(c_ptr),value :: streamId
     end function
 
-
   end interface
   
   interface hipblasGetStream
@@ -94,7 +91,6 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       type(c_ptr) :: streamId
     end function
-
 
   end interface
   
@@ -112,7 +108,6 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_POINTER_MODE_HOST)),value :: mode
     end function
 
-
   end interface
   
   interface hipblasGetPointerMode
@@ -128,7 +123,6 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       type(c_ptr),value :: mode
     end function
-
 
   end interface
   
@@ -146,7 +140,6 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_ATOMICS_NOT_ALLOWED)),value :: atomics_mode
     end function
 
-
   end interface
   
   interface hipblasGetAtomicsMode
@@ -162,7 +155,6 @@ module hipfort_hipblas
       type(c_ptr),value :: handle
       type(c_ptr),value :: atomics_mode
     end function
-
 
   end interface
   
@@ -184,11 +176,10 @@ module hipfort_hipblas
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasIsamax_rank_0,&
-      
-hipblasIsamax_rank_1
+    module procedure &
+      hipblasIsamax_rank_0,&
+      hipblasIsamax_rank_1
 #endif
-
   end interface
   
   interface hipblasIdamax
@@ -209,11 +200,10 @@ hipblasIsamax_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasIdamax_rank_0,&
-      
-hipblasIdamax_rank_1
+    module procedure &
+      hipblasIdamax_rank_0,&
+      hipblasIdamax_rank_1
 #endif
-
   end interface
   
   interface hipblasIcamax
@@ -234,11 +224,10 @@ hipblasIdamax_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasIcamax_rank_0,&
-      
-hipblasIcamax_rank_1
+    module procedure &
+      hipblasIcamax_rank_0,&
+      hipblasIcamax_rank_1
 #endif
-
   end interface
   
   interface hipblasIzamax
@@ -259,11 +248,10 @@ hipblasIcamax_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasIzamax_rank_0,&
-      
-hipblasIzamax_rank_1
+    module procedure &
+      hipblasIzamax_rank_0,&
+      hipblasIzamax_rank_1
 #endif
-
   end interface
   
   interface hipblasIsamaxBatched
@@ -285,13 +273,11 @@ hipblasIzamax_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasIsamaxBatched_full_rank,&
-      
-hipblasIsamaxBatched_rank_0,&
-      
-hipblasIsamaxBatched_rank_1
+    module procedure &
+      hipblasIsamaxBatched_full_rank,&
+      hipblasIsamaxBatched_rank_0,&
+      hipblasIsamaxBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasIdamaxBatched
@@ -313,13 +299,11 @@ hipblasIsamaxBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasIdamaxBatched_full_rank,&
-      
-hipblasIdamaxBatched_rank_0,&
-      
-hipblasIdamaxBatched_rank_1
+    module procedure &
+      hipblasIdamaxBatched_full_rank,&
+      hipblasIdamaxBatched_rank_0,&
+      hipblasIdamaxBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasIcamaxBatched
@@ -341,13 +325,11 @@ hipblasIdamaxBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasIcamaxBatched_full_rank,&
-      
-hipblasIcamaxBatched_rank_0,&
-      
-hipblasIcamaxBatched_rank_1
+    module procedure &
+      hipblasIcamaxBatched_full_rank,&
+      hipblasIcamaxBatched_rank_0,&
+      hipblasIcamaxBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasIzamaxBatched
@@ -369,13 +351,11 @@ hipblasIcamaxBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasIzamaxBatched_full_rank,&
-      
-hipblasIzamaxBatched_rank_0,&
-      
-hipblasIzamaxBatched_rank_1
+    module procedure &
+      hipblasIzamaxBatched_full_rank,&
+      hipblasIzamaxBatched_rank_0,&
+      hipblasIzamaxBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasIsamaxStridedBatched
@@ -398,11 +378,10 @@ hipblasIzamaxBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasIsamaxStridedBatched_rank_0,&
-      
-hipblasIsamaxStridedBatched_rank_1
+    module procedure &
+      hipblasIsamaxStridedBatched_rank_0,&
+      hipblasIsamaxStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasIdamaxStridedBatched
@@ -425,11 +404,10 @@ hipblasIsamaxStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasIdamaxStridedBatched_rank_0,&
-      
-hipblasIdamaxStridedBatched_rank_1
+    module procedure &
+      hipblasIdamaxStridedBatched_rank_0,&
+      hipblasIdamaxStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasIcamaxStridedBatched
@@ -452,11 +430,10 @@ hipblasIdamaxStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasIcamaxStridedBatched_rank_0,&
-      
-hipblasIcamaxStridedBatched_rank_1
+    module procedure &
+      hipblasIcamaxStridedBatched_rank_0,&
+      hipblasIcamaxStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasIzamaxStridedBatched
@@ -479,11 +456,10 @@ hipblasIcamaxStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasIzamaxStridedBatched_rank_0,&
-      
-hipblasIzamaxStridedBatched_rank_1
+    module procedure &
+      hipblasIzamaxStridedBatched_rank_0,&
+      hipblasIzamaxStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasIsamin
@@ -504,11 +480,10 @@ hipblasIzamaxStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasIsamin_rank_0,&
-      
-hipblasIsamin_rank_1
+    module procedure &
+      hipblasIsamin_rank_0,&
+      hipblasIsamin_rank_1
 #endif
-
   end interface
   
   interface hipblasIdamin
@@ -529,11 +504,10 @@ hipblasIsamin_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasIdamin_rank_0,&
-      
-hipblasIdamin_rank_1
+    module procedure &
+      hipblasIdamin_rank_0,&
+      hipblasIdamin_rank_1
 #endif
-
   end interface
   
   interface hipblasIcamin
@@ -554,11 +528,10 @@ hipblasIdamin_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasIcamin_rank_0,&
-      
-hipblasIcamin_rank_1
+    module procedure &
+      hipblasIcamin_rank_0,&
+      hipblasIcamin_rank_1
 #endif
-
   end interface
   
   interface hipblasIzamin
@@ -579,11 +552,10 @@ hipblasIcamin_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasIzamin_rank_0,&
-      
-hipblasIzamin_rank_1
+    module procedure &
+      hipblasIzamin_rank_0,&
+      hipblasIzamin_rank_1
 #endif
-
   end interface
   
   interface hipblasIsaminBatched
@@ -605,13 +577,11 @@ hipblasIzamin_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasIsaminBatched_full_rank,&
-      
-hipblasIsaminBatched_rank_0,&
-      
-hipblasIsaminBatched_rank_1
+    module procedure &
+      hipblasIsaminBatched_full_rank,&
+      hipblasIsaminBatched_rank_0,&
+      hipblasIsaminBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasIdaminBatched
@@ -633,13 +603,11 @@ hipblasIsaminBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasIdaminBatched_full_rank,&
-      
-hipblasIdaminBatched_rank_0,&
-      
-hipblasIdaminBatched_rank_1
+    module procedure &
+      hipblasIdaminBatched_full_rank,&
+      hipblasIdaminBatched_rank_0,&
+      hipblasIdaminBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasIcaminBatched
@@ -661,13 +629,11 @@ hipblasIdaminBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasIcaminBatched_full_rank,&
-      
-hipblasIcaminBatched_rank_0,&
-      
-hipblasIcaminBatched_rank_1
+    module procedure &
+      hipblasIcaminBatched_full_rank,&
+      hipblasIcaminBatched_rank_0,&
+      hipblasIcaminBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasIzaminBatched
@@ -689,13 +655,11 @@ hipblasIcaminBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasIzaminBatched_full_rank,&
-      
-hipblasIzaminBatched_rank_0,&
-      
-hipblasIzaminBatched_rank_1
+    module procedure &
+      hipblasIzaminBatched_full_rank,&
+      hipblasIzaminBatched_rank_0,&
+      hipblasIzaminBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasIsaminStridedBatched
@@ -718,11 +682,10 @@ hipblasIzaminBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasIsaminStridedBatched_rank_0,&
-      
-hipblasIsaminStridedBatched_rank_1
+    module procedure &
+      hipblasIsaminStridedBatched_rank_0,&
+      hipblasIsaminStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasIdaminStridedBatched
@@ -745,11 +708,10 @@ hipblasIsaminStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasIdaminStridedBatched_rank_0,&
-      
-hipblasIdaminStridedBatched_rank_1
+    module procedure &
+      hipblasIdaminStridedBatched_rank_0,&
+      hipblasIdaminStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasIcaminStridedBatched
@@ -772,11 +734,10 @@ hipblasIdaminStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasIcaminStridedBatched_rank_0,&
-      
-hipblasIcaminStridedBatched_rank_1
+    module procedure &
+      hipblasIcaminStridedBatched_rank_0,&
+      hipblasIcaminStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasIzaminStridedBatched
@@ -799,11 +760,10 @@ hipblasIcaminStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasIzaminStridedBatched_rank_0,&
-      
-hipblasIzaminStridedBatched_rank_1
+    module procedure &
+      hipblasIzaminStridedBatched_rank_0,&
+      hipblasIzaminStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSasum
@@ -824,11 +784,10 @@ hipblasIzaminStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSasum_rank_0,&
-      
-hipblasSasum_rank_1
+    module procedure &
+      hipblasSasum_rank_0,&
+      hipblasSasum_rank_1
 #endif
-
   end interface
   
   interface hipblasDasum
@@ -849,11 +808,10 @@ hipblasSasum_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDasum_rank_0,&
-      
-hipblasDasum_rank_1
+    module procedure &
+      hipblasDasum_rank_0,&
+      hipblasDasum_rank_1
 #endif
-
   end interface
   
   interface hipblasScasum
@@ -874,11 +832,10 @@ hipblasDasum_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasScasum_rank_0,&
-      
-hipblasScasum_rank_1
+    module procedure &
+      hipblasScasum_rank_0,&
+      hipblasScasum_rank_1
 #endif
-
   end interface
   
   interface hipblasDzasum
@@ -899,11 +856,10 @@ hipblasScasum_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDzasum_rank_0,&
-      
-hipblasDzasum_rank_1
+    module procedure &
+      hipblasDzasum_rank_0,&
+      hipblasDzasum_rank_1
 #endif
-
   end interface
   
   interface hipblasSasumBatched
@@ -925,13 +881,11 @@ hipblasDzasum_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSasumBatched_full_rank,&
-      
-hipblasSasumBatched_rank_0,&
-      
-hipblasSasumBatched_rank_1
+    module procedure &
+      hipblasSasumBatched_full_rank,&
+      hipblasSasumBatched_rank_0,&
+      hipblasSasumBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDasumBatched
@@ -953,13 +907,11 @@ hipblasSasumBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDasumBatched_full_rank,&
-      
-hipblasDasumBatched_rank_0,&
-      
-hipblasDasumBatched_rank_1
+    module procedure &
+      hipblasDasumBatched_full_rank,&
+      hipblasDasumBatched_rank_0,&
+      hipblasDasumBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasScasumBatched
@@ -981,13 +933,11 @@ hipblasDasumBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasScasumBatched_full_rank,&
-      
-hipblasScasumBatched_rank_0,&
-      
-hipblasScasumBatched_rank_1
+    module procedure &
+      hipblasScasumBatched_full_rank,&
+      hipblasScasumBatched_rank_0,&
+      hipblasScasumBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDzasumBatched
@@ -1009,13 +959,11 @@ hipblasScasumBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDzasumBatched_full_rank,&
-      
-hipblasDzasumBatched_rank_0,&
-      
-hipblasDzasumBatched_rank_1
+    module procedure &
+      hipblasDzasumBatched_full_rank,&
+      hipblasDzasumBatched_rank_0,&
+      hipblasDzasumBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSasumStridedBatched
@@ -1038,11 +986,10 @@ hipblasDzasumBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSasumStridedBatched_rank_0,&
-      
-hipblasSasumStridedBatched_rank_1
+    module procedure &
+      hipblasSasumStridedBatched_rank_0,&
+      hipblasSasumStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDasumStridedBatched
@@ -1065,11 +1012,10 @@ hipblasSasumStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDasumStridedBatched_rank_0,&
-      
-hipblasDasumStridedBatched_rank_1
+    module procedure &
+      hipblasDasumStridedBatched_rank_0,&
+      hipblasDasumStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasScasumStridedBatched
@@ -1092,11 +1038,10 @@ hipblasDasumStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasScasumStridedBatched_rank_0,&
-      
-hipblasScasumStridedBatched_rank_1
+    module procedure &
+      hipblasScasumStridedBatched_rank_0,&
+      hipblasScasumStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDzasumStridedBatched
@@ -1119,11 +1064,10 @@ hipblasScasumStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDzasumStridedBatched_rank_0,&
-      
-hipblasDzasumStridedBatched_rank_1
+    module procedure &
+      hipblasDzasumStridedBatched_rank_0,&
+      hipblasDzasumStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSaxpy
@@ -1146,11 +1090,10 @@ hipblasDzasumStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSaxpy_rank_0,&
-      
-hipblasSaxpy_rank_1
+    module procedure &
+      hipblasSaxpy_rank_0,&
+      hipblasSaxpy_rank_1
 #endif
-
   end interface
   
   interface hipblasDaxpy
@@ -1173,11 +1116,10 @@ hipblasSaxpy_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDaxpy_rank_0,&
-      
-hipblasDaxpy_rank_1
+    module procedure &
+      hipblasDaxpy_rank_0,&
+      hipblasDaxpy_rank_1
 #endif
-
   end interface
   
   interface hipblasCaxpy
@@ -1200,11 +1142,10 @@ hipblasDaxpy_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCaxpy_rank_0,&
-      
-hipblasCaxpy_rank_1
+    module procedure &
+      hipblasCaxpy_rank_0,&
+      hipblasCaxpy_rank_1
 #endif
-
   end interface
   
   interface hipblasZaxpy
@@ -1227,11 +1168,10 @@ hipblasCaxpy_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZaxpy_rank_0,&
-      
-hipblasZaxpy_rank_1
+    module procedure &
+      hipblasZaxpy_rank_0,&
+      hipblasZaxpy_rank_1
 #endif
-
   end interface
   
   interface hipblasSaxpyBatched
@@ -1255,13 +1195,11 @@ hipblasZaxpy_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSaxpyBatched_full_rank,&
-      
-hipblasSaxpyBatched_rank_0,&
-      
-hipblasSaxpyBatched_rank_1
+    module procedure &
+      hipblasSaxpyBatched_full_rank,&
+      hipblasSaxpyBatched_rank_0,&
+      hipblasSaxpyBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDaxpyBatched
@@ -1285,13 +1223,11 @@ hipblasSaxpyBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDaxpyBatched_full_rank,&
-      
-hipblasDaxpyBatched_rank_0,&
-      
-hipblasDaxpyBatched_rank_1
+    module procedure &
+      hipblasDaxpyBatched_full_rank,&
+      hipblasDaxpyBatched_rank_0,&
+      hipblasDaxpyBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCaxpyBatched
@@ -1315,13 +1251,11 @@ hipblasDaxpyBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCaxpyBatched_full_rank,&
-      
-hipblasCaxpyBatched_rank_0,&
-      
-hipblasCaxpyBatched_rank_1
+    module procedure &
+      hipblasCaxpyBatched_full_rank,&
+      hipblasCaxpyBatched_rank_0,&
+      hipblasCaxpyBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZaxpyBatched
@@ -1345,13 +1279,11 @@ hipblasCaxpyBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZaxpyBatched_full_rank,&
-      
-hipblasZaxpyBatched_rank_0,&
-      
-hipblasZaxpyBatched_rank_1
+    module procedure &
+      hipblasZaxpyBatched_full_rank,&
+      hipblasZaxpyBatched_rank_0,&
+      hipblasZaxpyBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSaxpyStridedBatched
@@ -1377,11 +1309,10 @@ hipblasZaxpyBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSaxpyStridedBatched_rank_0,&
-      
-hipblasSaxpyStridedBatched_rank_1
+    module procedure &
+      hipblasSaxpyStridedBatched_rank_0,&
+      hipblasSaxpyStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDaxpyStridedBatched
@@ -1407,11 +1338,10 @@ hipblasSaxpyStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDaxpyStridedBatched_rank_0,&
-      
-hipblasDaxpyStridedBatched_rank_1
+    module procedure &
+      hipblasDaxpyStridedBatched_rank_0,&
+      hipblasDaxpyStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCaxpyStridedBatched
@@ -1437,11 +1367,10 @@ hipblasDaxpyStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCaxpyStridedBatched_rank_0,&
-      
-hipblasCaxpyStridedBatched_rank_1
+    module procedure &
+      hipblasCaxpyStridedBatched_rank_0,&
+      hipblasCaxpyStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZaxpyStridedBatched
@@ -1467,11 +1396,10 @@ hipblasCaxpyStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZaxpyStridedBatched_rank_0,&
-      
-hipblasZaxpyStridedBatched_rank_1
+    module procedure &
+      hipblasZaxpyStridedBatched_rank_0,&
+      hipblasZaxpyStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasScopy
@@ -1493,11 +1421,10 @@ hipblasZaxpyStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasScopy_rank_0,&
-      
-hipblasScopy_rank_1
+    module procedure &
+      hipblasScopy_rank_0,&
+      hipblasScopy_rank_1
 #endif
-
   end interface
   
   interface hipblasDcopy
@@ -1519,11 +1446,10 @@ hipblasScopy_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDcopy_rank_0,&
-      
-hipblasDcopy_rank_1
+    module procedure &
+      hipblasDcopy_rank_0,&
+      hipblasDcopy_rank_1
 #endif
-
   end interface
   
   interface hipblasCcopy
@@ -1545,11 +1471,10 @@ hipblasDcopy_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCcopy_rank_0,&
-      
-hipblasCcopy_rank_1
+    module procedure &
+      hipblasCcopy_rank_0,&
+      hipblasCcopy_rank_1
 #endif
-
   end interface
   
   interface hipblasZcopy
@@ -1571,11 +1496,10 @@ hipblasCcopy_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZcopy_rank_0,&
-      
-hipblasZcopy_rank_1
+    module procedure &
+      hipblasZcopy_rank_0,&
+      hipblasZcopy_rank_1
 #endif
-
   end interface
   
   interface hipblasScopyBatched
@@ -1598,13 +1522,11 @@ hipblasZcopy_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasScopyBatched_full_rank,&
-      
-hipblasScopyBatched_rank_0,&
-      
-hipblasScopyBatched_rank_1
+    module procedure &
+      hipblasScopyBatched_full_rank,&
+      hipblasScopyBatched_rank_0,&
+      hipblasScopyBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDcopyBatched
@@ -1627,13 +1549,11 @@ hipblasScopyBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDcopyBatched_full_rank,&
-      
-hipblasDcopyBatched_rank_0,&
-      
-hipblasDcopyBatched_rank_1
+    module procedure &
+      hipblasDcopyBatched_full_rank,&
+      hipblasDcopyBatched_rank_0,&
+      hipblasDcopyBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCcopyBatched
@@ -1656,13 +1576,11 @@ hipblasDcopyBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCcopyBatched_full_rank,&
-      
-hipblasCcopyBatched_rank_0,&
-      
-hipblasCcopyBatched_rank_1
+    module procedure &
+      hipblasCcopyBatched_full_rank,&
+      hipblasCcopyBatched_rank_0,&
+      hipblasCcopyBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZcopyBatched
@@ -1685,13 +1603,11 @@ hipblasCcopyBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZcopyBatched_full_rank,&
-      
-hipblasZcopyBatched_rank_0,&
-      
-hipblasZcopyBatched_rank_1
+    module procedure &
+      hipblasZcopyBatched_full_rank,&
+      hipblasZcopyBatched_rank_0,&
+      hipblasZcopyBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasScopyStridedBatched
@@ -1716,11 +1632,10 @@ hipblasZcopyBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasScopyStridedBatched_rank_0,&
-      
-hipblasScopyStridedBatched_rank_1
+    module procedure &
+      hipblasScopyStridedBatched_rank_0,&
+      hipblasScopyStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDcopyStridedBatched
@@ -1745,11 +1660,10 @@ hipblasScopyStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDcopyStridedBatched_rank_0,&
-      
-hipblasDcopyStridedBatched_rank_1
+    module procedure &
+      hipblasDcopyStridedBatched_rank_0,&
+      hipblasDcopyStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCcopyStridedBatched
@@ -1774,11 +1688,10 @@ hipblasDcopyStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCcopyStridedBatched_rank_0,&
-      
-hipblasCcopyStridedBatched_rank_1
+    module procedure &
+      hipblasCcopyStridedBatched_rank_0,&
+      hipblasCcopyStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZcopyStridedBatched
@@ -1803,11 +1716,10 @@ hipblasCcopyStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZcopyStridedBatched_rank_0,&
-      
-hipblasZcopyStridedBatched_rank_1
+    module procedure &
+      hipblasZcopyStridedBatched_rank_0,&
+      hipblasZcopyStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSdot
@@ -1830,11 +1742,10 @@ hipblasZcopyStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSdot_rank_0,&
-      
-hipblasSdot_rank_1
+    module procedure &
+      hipblasSdot_rank_0,&
+      hipblasSdot_rank_1
 #endif
-
   end interface
   
   interface hipblasDdot
@@ -1857,11 +1768,10 @@ hipblasSdot_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDdot_rank_0,&
-      
-hipblasDdot_rank_1
+    module procedure &
+      hipblasDdot_rank_0,&
+      hipblasDdot_rank_1
 #endif
-
   end interface
   
   interface hipblasCdotc
@@ -1884,11 +1794,10 @@ hipblasDdot_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCdotc_rank_0,&
-      
-hipblasCdotc_rank_1
+    module procedure &
+      hipblasCdotc_rank_0,&
+      hipblasCdotc_rank_1
 #endif
-
   end interface
   
   interface hipblasCdotu
@@ -1911,11 +1820,10 @@ hipblasCdotc_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCdotu_rank_0,&
-      
-hipblasCdotu_rank_1
+    module procedure &
+      hipblasCdotu_rank_0,&
+      hipblasCdotu_rank_1
 #endif
-
   end interface
   
   interface hipblasZdotc
@@ -1938,11 +1846,10 @@ hipblasCdotu_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZdotc_rank_0,&
-      
-hipblasZdotc_rank_1
+    module procedure &
+      hipblasZdotc_rank_0,&
+      hipblasZdotc_rank_1
 #endif
-
   end interface
   
   interface hipblasZdotu
@@ -1965,11 +1872,10 @@ hipblasZdotc_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZdotu_rank_0,&
-      
-hipblasZdotu_rank_1
+    module procedure &
+      hipblasZdotu_rank_0,&
+      hipblasZdotu_rank_1
 #endif
-
   end interface
   
   interface hipblasSdotBatched
@@ -1993,13 +1899,11 @@ hipblasZdotu_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSdotBatched_full_rank,&
-      
-hipblasSdotBatched_rank_0,&
-      
-hipblasSdotBatched_rank_1
+    module procedure &
+      hipblasSdotBatched_full_rank,&
+      hipblasSdotBatched_rank_0,&
+      hipblasSdotBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDdotBatched
@@ -2023,13 +1927,11 @@ hipblasSdotBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDdotBatched_full_rank,&
-      
-hipblasDdotBatched_rank_0,&
-      
-hipblasDdotBatched_rank_1
+    module procedure &
+      hipblasDdotBatched_full_rank,&
+      hipblasDdotBatched_rank_0,&
+      hipblasDdotBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCdotcBatched
@@ -2053,13 +1955,11 @@ hipblasDdotBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCdotcBatched_full_rank,&
-      
-hipblasCdotcBatched_rank_0,&
-      
-hipblasCdotcBatched_rank_1
+    module procedure &
+      hipblasCdotcBatched_full_rank,&
+      hipblasCdotcBatched_rank_0,&
+      hipblasCdotcBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCdotuBatched
@@ -2083,13 +1983,11 @@ hipblasCdotcBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCdotuBatched_full_rank,&
-      
-hipblasCdotuBatched_rank_0,&
-      
-hipblasCdotuBatched_rank_1
+    module procedure &
+      hipblasCdotuBatched_full_rank,&
+      hipblasCdotuBatched_rank_0,&
+      hipblasCdotuBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZdotcBatched
@@ -2113,13 +2011,11 @@ hipblasCdotuBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZdotcBatched_full_rank,&
-      
-hipblasZdotcBatched_rank_0,&
-      
-hipblasZdotcBatched_rank_1
+    module procedure &
+      hipblasZdotcBatched_full_rank,&
+      hipblasZdotcBatched_rank_0,&
+      hipblasZdotcBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZdotuBatched
@@ -2143,13 +2039,11 @@ hipblasZdotcBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZdotuBatched_full_rank,&
-      
-hipblasZdotuBatched_rank_0,&
-      
-hipblasZdotuBatched_rank_1
+    module procedure &
+      hipblasZdotuBatched_full_rank,&
+      hipblasZdotuBatched_rank_0,&
+      hipblasZdotuBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSdotStridedBatched
@@ -2175,11 +2069,10 @@ hipblasZdotuBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSdotStridedBatched_rank_0,&
-      
-hipblasSdotStridedBatched_rank_1
+    module procedure &
+      hipblasSdotStridedBatched_rank_0,&
+      hipblasSdotStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDdotStridedBatched
@@ -2205,11 +2098,10 @@ hipblasSdotStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDdotStridedBatched_rank_0,&
-      
-hipblasDdotStridedBatched_rank_1
+    module procedure &
+      hipblasDdotStridedBatched_rank_0,&
+      hipblasDdotStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCdotcStridedBatched
@@ -2235,11 +2127,10 @@ hipblasDdotStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCdotcStridedBatched_rank_0,&
-      
-hipblasCdotcStridedBatched_rank_1
+    module procedure &
+      hipblasCdotcStridedBatched_rank_0,&
+      hipblasCdotcStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCdotuStridedBatched
@@ -2265,11 +2156,10 @@ hipblasCdotcStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCdotuStridedBatched_rank_0,&
-      
-hipblasCdotuStridedBatched_rank_1
+    module procedure &
+      hipblasCdotuStridedBatched_rank_0,&
+      hipblasCdotuStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZdotcStridedBatched
@@ -2295,11 +2185,10 @@ hipblasCdotuStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZdotcStridedBatched_rank_0,&
-      
-hipblasZdotcStridedBatched_rank_1
+    module procedure &
+      hipblasZdotcStridedBatched_rank_0,&
+      hipblasZdotcStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZdotuStridedBatched
@@ -2325,11 +2214,10 @@ hipblasZdotcStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZdotuStridedBatched_rank_0,&
-      
-hipblasZdotuStridedBatched_rank_1
+    module procedure &
+      hipblasZdotuStridedBatched_rank_0,&
+      hipblasZdotuStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSnrm2
@@ -2350,11 +2238,10 @@ hipblasZdotuStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSnrm2_rank_0,&
-      
-hipblasSnrm2_rank_1
+    module procedure &
+      hipblasSnrm2_rank_0,&
+      hipblasSnrm2_rank_1
 #endif
-
   end interface
   
   interface hipblasDnrm2
@@ -2375,11 +2262,10 @@ hipblasSnrm2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDnrm2_rank_0,&
-      
-hipblasDnrm2_rank_1
+    module procedure &
+      hipblasDnrm2_rank_0,&
+      hipblasDnrm2_rank_1
 #endif
-
   end interface
   
   interface hipblasScnrm2
@@ -2400,11 +2286,10 @@ hipblasDnrm2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasScnrm2_rank_0,&
-      
-hipblasScnrm2_rank_1
+    module procedure &
+      hipblasScnrm2_rank_0,&
+      hipblasScnrm2_rank_1
 #endif
-
   end interface
   
   interface hipblasDznrm2
@@ -2425,11 +2310,10 @@ hipblasScnrm2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDznrm2_rank_0,&
-      
-hipblasDznrm2_rank_1
+    module procedure &
+      hipblasDznrm2_rank_0,&
+      hipblasDznrm2_rank_1
 #endif
-
   end interface
   
   interface hipblasSnrm2Batched
@@ -2451,13 +2335,11 @@ hipblasDznrm2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSnrm2Batched_full_rank,&
-      
-hipblasSnrm2Batched_rank_0,&
-      
-hipblasSnrm2Batched_rank_1
+    module procedure &
+      hipblasSnrm2Batched_full_rank,&
+      hipblasSnrm2Batched_rank_0,&
+      hipblasSnrm2Batched_rank_1
 #endif
-
   end interface
   
   interface hipblasDnrm2Batched
@@ -2479,13 +2361,11 @@ hipblasSnrm2Batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDnrm2Batched_full_rank,&
-      
-hipblasDnrm2Batched_rank_0,&
-      
-hipblasDnrm2Batched_rank_1
+    module procedure &
+      hipblasDnrm2Batched_full_rank,&
+      hipblasDnrm2Batched_rank_0,&
+      hipblasDnrm2Batched_rank_1
 #endif
-
   end interface
   
   interface hipblasScnrm2Batched
@@ -2507,13 +2387,11 @@ hipblasDnrm2Batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasScnrm2Batched_full_rank,&
-      
-hipblasScnrm2Batched_rank_0,&
-      
-hipblasScnrm2Batched_rank_1
+    module procedure &
+      hipblasScnrm2Batched_full_rank,&
+      hipblasScnrm2Batched_rank_0,&
+      hipblasScnrm2Batched_rank_1
 #endif
-
   end interface
   
   interface hipblasDznrm2Batched
@@ -2535,13 +2413,11 @@ hipblasScnrm2Batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDznrm2Batched_full_rank,&
-      
-hipblasDznrm2Batched_rank_0,&
-      
-hipblasDznrm2Batched_rank_1
+    module procedure &
+      hipblasDznrm2Batched_full_rank,&
+      hipblasDznrm2Batched_rank_0,&
+      hipblasDznrm2Batched_rank_1
 #endif
-
   end interface
   
   interface hipblasSnrm2StridedBatched
@@ -2564,11 +2440,10 @@ hipblasDznrm2Batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSnrm2StridedBatched_rank_0,&
-      
-hipblasSnrm2StridedBatched_rank_1
+    module procedure &
+      hipblasSnrm2StridedBatched_rank_0,&
+      hipblasSnrm2StridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDnrm2StridedBatched
@@ -2591,11 +2466,10 @@ hipblasSnrm2StridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDnrm2StridedBatched_rank_0,&
-      
-hipblasDnrm2StridedBatched_rank_1
+    module procedure &
+      hipblasDnrm2StridedBatched_rank_0,&
+      hipblasDnrm2StridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasScnrm2StridedBatched
@@ -2618,11 +2492,10 @@ hipblasDnrm2StridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasScnrm2StridedBatched_rank_0,&
-      
-hipblasScnrm2StridedBatched_rank_1
+    module procedure &
+      hipblasScnrm2StridedBatched_rank_0,&
+      hipblasScnrm2StridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDznrm2StridedBatched
@@ -2645,11 +2518,10 @@ hipblasScnrm2StridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDznrm2StridedBatched_rank_0,&
-      
-hipblasDznrm2StridedBatched_rank_1
+    module procedure &
+      hipblasDznrm2StridedBatched_rank_0,&
+      hipblasDznrm2StridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSrot
@@ -2673,11 +2545,10 @@ hipblasDznrm2StridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSrot_rank_0,&
-      
-hipblasSrot_rank_1
+    module procedure &
+      hipblasSrot_rank_0,&
+      hipblasSrot_rank_1
 #endif
-
   end interface
   
   interface hipblasDrot
@@ -2701,11 +2572,10 @@ hipblasSrot_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDrot_rank_0,&
-      
-hipblasDrot_rank_1
+    module procedure &
+      hipblasDrot_rank_0,&
+      hipblasDrot_rank_1
 #endif
-
   end interface
   
   interface hipblasCrot
@@ -2729,11 +2599,10 @@ hipblasDrot_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCrot_rank_0,&
-      
-hipblasCrot_rank_1
+    module procedure &
+      hipblasCrot_rank_0,&
+      hipblasCrot_rank_1
 #endif
-
   end interface
   
   interface hipblasCsrot
@@ -2757,11 +2626,10 @@ hipblasCrot_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCsrot_rank_0,&
-      
-hipblasCsrot_rank_1
+    module procedure &
+      hipblasCsrot_rank_0,&
+      hipblasCsrot_rank_1
 #endif
-
   end interface
   
   interface hipblasZrot
@@ -2785,11 +2653,10 @@ hipblasCsrot_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZrot_rank_0,&
-      
-hipblasZrot_rank_1
+    module procedure &
+      hipblasZrot_rank_0,&
+      hipblasZrot_rank_1
 #endif
-
   end interface
   
   interface hipblasZdrot
@@ -2813,11 +2680,10 @@ hipblasZrot_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZdrot_rank_0,&
-      
-hipblasZdrot_rank_1
+    module procedure &
+      hipblasZdrot_rank_0,&
+      hipblasZdrot_rank_1
 #endif
-
   end interface
   
   interface hipblasSrotBatched
@@ -2842,13 +2708,11 @@ hipblasZdrot_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSrotBatched_full_rank,&
-      
-hipblasSrotBatched_rank_0,&
-      
-hipblasSrotBatched_rank_1
+    module procedure &
+      hipblasSrotBatched_full_rank,&
+      hipblasSrotBatched_rank_0,&
+      hipblasSrotBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDrotBatched
@@ -2873,13 +2737,11 @@ hipblasSrotBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDrotBatched_full_rank,&
-      
-hipblasDrotBatched_rank_0,&
-      
-hipblasDrotBatched_rank_1
+    module procedure &
+      hipblasDrotBatched_full_rank,&
+      hipblasDrotBatched_rank_0,&
+      hipblasDrotBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCrotBatched
@@ -2904,13 +2766,11 @@ hipblasDrotBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCrotBatched_full_rank,&
-      
-hipblasCrotBatched_rank_0,&
-      
-hipblasCrotBatched_rank_1
+    module procedure &
+      hipblasCrotBatched_full_rank,&
+      hipblasCrotBatched_rank_0,&
+      hipblasCrotBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCsrotBatched
@@ -2935,13 +2795,11 @@ hipblasCrotBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCsrotBatched_full_rank,&
-      
-hipblasCsrotBatched_rank_0,&
-      
-hipblasCsrotBatched_rank_1
+    module procedure &
+      hipblasCsrotBatched_full_rank,&
+      hipblasCsrotBatched_rank_0,&
+      hipblasCsrotBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZrotBatched
@@ -2966,13 +2824,11 @@ hipblasCsrotBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZrotBatched_full_rank,&
-      
-hipblasZrotBatched_rank_0,&
-      
-hipblasZrotBatched_rank_1
+    module procedure &
+      hipblasZrotBatched_full_rank,&
+      hipblasZrotBatched_rank_0,&
+      hipblasZrotBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZdrotBatched
@@ -2997,13 +2853,11 @@ hipblasZrotBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZdrotBatched_full_rank,&
-      
-hipblasZdrotBatched_rank_0,&
-      
-hipblasZdrotBatched_rank_1
+    module procedure &
+      hipblasZdrotBatched_full_rank,&
+      hipblasZdrotBatched_rank_0,&
+      hipblasZdrotBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSrotStridedBatched
@@ -3030,11 +2884,10 @@ hipblasZdrotBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSrotStridedBatched_rank_0,&
-      
-hipblasSrotStridedBatched_rank_1
+    module procedure &
+      hipblasSrotStridedBatched_rank_0,&
+      hipblasSrotStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDrotStridedBatched
@@ -3061,11 +2914,10 @@ hipblasSrotStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDrotStridedBatched_rank_0,&
-      
-hipblasDrotStridedBatched_rank_1
+    module procedure &
+      hipblasDrotStridedBatched_rank_0,&
+      hipblasDrotStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCrotStridedBatched
@@ -3092,11 +2944,10 @@ hipblasDrotStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCrotStridedBatched_rank_0,&
-      
-hipblasCrotStridedBatched_rank_1
+    module procedure &
+      hipblasCrotStridedBatched_rank_0,&
+      hipblasCrotStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCsrotStridedBatched
@@ -3123,11 +2974,10 @@ hipblasCrotStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCsrotStridedBatched_rank_0,&
-      
-hipblasCsrotStridedBatched_rank_1
+    module procedure &
+      hipblasCsrotStridedBatched_rank_0,&
+      hipblasCsrotStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZrotStridedBatched
@@ -3154,11 +3004,10 @@ hipblasCsrotStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZrotStridedBatched_rank_0,&
-      
-hipblasZrotStridedBatched_rank_1
+    module procedure &
+      hipblasZrotStridedBatched_rank_0,&
+      hipblasZrotStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZdrotStridedBatched
@@ -3185,11 +3034,10 @@ hipblasZrotStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZdrotStridedBatched_rank_0,&
-      
-hipblasZdrotStridedBatched_rank_1
+    module procedure &
+      hipblasZdrotStridedBatched_rank_0,&
+      hipblasZdrotStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSrotg
@@ -3208,7 +3056,6 @@ hipblasZdrotStridedBatched_rank_1
       type(c_ptr),value :: c
       type(c_ptr),value :: s
     end function
-
 
   end interface
   
@@ -3229,7 +3076,6 @@ hipblasZdrotStridedBatched_rank_1
       type(c_ptr),value :: s
     end function
 
-
   end interface
   
   interface hipblasCrotg
@@ -3249,7 +3095,6 @@ hipblasZdrotStridedBatched_rank_1
       type(c_ptr),value :: s
     end function
 
-
   end interface
   
   interface hipblasZrotg
@@ -3268,7 +3113,6 @@ hipblasZdrotStridedBatched_rank_1
       type(c_ptr),value :: c
       type(c_ptr),value :: s
     end function
-
 
   end interface
   
@@ -3290,7 +3134,6 @@ hipblasZdrotStridedBatched_rank_1
       integer(c_int),value :: batchCount
     end function
 
-
   end interface
   
   interface hipblasDrotgBatched
@@ -3310,7 +3153,6 @@ hipblasZdrotStridedBatched_rank_1
       type(c_ptr) :: s
       integer(c_int),value :: batchCount
     end function
-
 
   end interface
   
@@ -3332,7 +3174,6 @@ hipblasZdrotStridedBatched_rank_1
       integer(c_int),value :: batchCount
     end function
 
-
   end interface
   
   interface hipblasZrotgBatched
@@ -3352,7 +3193,6 @@ hipblasZdrotStridedBatched_rank_1
       type(c_ptr) :: s
       integer(c_int),value :: batchCount
     end function
-
 
   end interface
   
@@ -3378,7 +3218,6 @@ hipblasZdrotStridedBatched_rank_1
       integer(c_int),value :: batchCount
     end function
 
-
   end interface
   
   interface hipblasDrotgStridedBatched
@@ -3402,7 +3241,6 @@ hipblasZdrotStridedBatched_rank_1
       integer(c_int64_t),value :: stride_s
       integer(c_int),value :: batchCount
     end function
-
 
   end interface
   
@@ -3428,7 +3266,6 @@ hipblasZdrotStridedBatched_rank_1
       integer(c_int),value :: batchCount
     end function
 
-
   end interface
   
   interface hipblasZrotgStridedBatched
@@ -3453,7 +3290,6 @@ hipblasZdrotStridedBatched_rank_1
       integer(c_int),value :: batchCount
     end function
 
-
   end interface
   
   interface hipblasSrotm
@@ -3476,11 +3312,10 @@ hipblasZdrotStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSrotm_rank_0,&
-      
-hipblasSrotm_rank_1
+    module procedure &
+      hipblasSrotm_rank_0,&
+      hipblasSrotm_rank_1
 #endif
-
   end interface
   
   interface hipblasDrotm
@@ -3503,11 +3338,10 @@ hipblasSrotm_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDrotm_rank_0,&
-      
-hipblasDrotm_rank_1
+    module procedure &
+      hipblasDrotm_rank_0,&
+      hipblasDrotm_rank_1
 #endif
-
   end interface
   
   interface hipblasSrotmBatched
@@ -3531,13 +3365,11 @@ hipblasDrotm_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSrotmBatched_full_rank,&
-      
-hipblasSrotmBatched_rank_0,&
-      
-hipblasSrotmBatched_rank_1
+    module procedure &
+      hipblasSrotmBatched_full_rank,&
+      hipblasSrotmBatched_rank_0,&
+      hipblasSrotmBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDrotmBatched
@@ -3561,13 +3393,11 @@ hipblasSrotmBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDrotmBatched_full_rank,&
-      
-hipblasDrotmBatched_rank_0,&
-      
-hipblasDrotmBatched_rank_1
+    module procedure &
+      hipblasDrotmBatched_full_rank,&
+      hipblasDrotmBatched_rank_0,&
+      hipblasDrotmBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSrotmStridedBatched
@@ -3594,11 +3424,10 @@ hipblasDrotmBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSrotmStridedBatched_rank_0,&
-      
-hipblasSrotmStridedBatched_rank_1
+    module procedure &
+      hipblasSrotmStridedBatched_rank_0,&
+      hipblasSrotmStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDrotmStridedBatched
@@ -3625,11 +3454,10 @@ hipblasSrotmStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDrotmStridedBatched_rank_0,&
-      
-hipblasDrotmStridedBatched_rank_1
+    module procedure &
+      hipblasDrotmStridedBatched_rank_0,&
+      hipblasDrotmStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSrotmg
@@ -3650,7 +3478,6 @@ hipblasDrotmStridedBatched_rank_1
       type(c_ptr),value :: param
     end function
 
-
   end interface
   
   interface hipblasDrotmg
@@ -3670,7 +3497,6 @@ hipblasDrotmStridedBatched_rank_1
       type(c_ptr),value :: y1
       type(c_ptr),value :: param
     end function
-
 
   end interface
   
@@ -3693,7 +3519,6 @@ hipblasDrotmStridedBatched_rank_1
       integer(c_int),value :: batchCount
     end function
 
-
   end interface
   
   interface hipblasDrotmgBatched
@@ -3714,7 +3539,6 @@ hipblasDrotmStridedBatched_rank_1
       type(c_ptr) :: param
       integer(c_int),value :: batchCount
     end function
-
 
   end interface
   
@@ -3742,7 +3566,6 @@ hipblasDrotmStridedBatched_rank_1
       integer(c_int),value :: batchCount
     end function
 
-
   end interface
   
   interface hipblasDrotmgStridedBatched
@@ -3769,7 +3592,6 @@ hipblasDrotmStridedBatched_rank_1
       integer(c_int),value :: batchCount
     end function
 
-
   end interface
   
   interface hipblasSscal
@@ -3790,11 +3612,10 @@ hipblasDrotmStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSscal_rank_0,&
-      
-hipblasSscal_rank_1
+    module procedure &
+      hipblasSscal_rank_0,&
+      hipblasSscal_rank_1
 #endif
-
   end interface
   
   interface hipblasDscal
@@ -3815,11 +3636,10 @@ hipblasSscal_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDscal_rank_0,&
-      
-hipblasDscal_rank_1
+    module procedure &
+      hipblasDscal_rank_0,&
+      hipblasDscal_rank_1
 #endif
-
   end interface
   
   interface hipblasCscal
@@ -3840,11 +3660,10 @@ hipblasDscal_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCscal_rank_0,&
-      
-hipblasCscal_rank_1
+    module procedure &
+      hipblasCscal_rank_0,&
+      hipblasCscal_rank_1
 #endif
-
   end interface
   
   interface hipblasCsscal
@@ -3865,11 +3684,10 @@ hipblasCscal_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCsscal_rank_0,&
-      
-hipblasCsscal_rank_1
+    module procedure &
+      hipblasCsscal_rank_0,&
+      hipblasCsscal_rank_1
 #endif
-
   end interface
   
   interface hipblasZscal
@@ -3890,11 +3708,10 @@ hipblasCsscal_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZscal_rank_0,&
-      
-hipblasZscal_rank_1
+    module procedure &
+      hipblasZscal_rank_0,&
+      hipblasZscal_rank_1
 #endif
-
   end interface
   
   interface hipblasZdscal
@@ -3915,11 +3732,10 @@ hipblasZscal_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZdscal_rank_0,&
-      
-hipblasZdscal_rank_1
+    module procedure &
+      hipblasZdscal_rank_0,&
+      hipblasZdscal_rank_1
 #endif
-
   end interface
   
   interface hipblasSscalBatched
@@ -3941,13 +3757,11 @@ hipblasZdscal_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSscalBatched_full_rank,&
-      
-hipblasSscalBatched_rank_0,&
-      
-hipblasSscalBatched_rank_1
+    module procedure &
+      hipblasSscalBatched_full_rank,&
+      hipblasSscalBatched_rank_0,&
+      hipblasSscalBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDscalBatched
@@ -3969,13 +3783,11 @@ hipblasSscalBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDscalBatched_full_rank,&
-      
-hipblasDscalBatched_rank_0,&
-      
-hipblasDscalBatched_rank_1
+    module procedure &
+      hipblasDscalBatched_full_rank,&
+      hipblasDscalBatched_rank_0,&
+      hipblasDscalBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCscalBatched
@@ -3997,13 +3809,11 @@ hipblasDscalBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCscalBatched_full_rank,&
-      
-hipblasCscalBatched_rank_0,&
-      
-hipblasCscalBatched_rank_1
+    module procedure &
+      hipblasCscalBatched_full_rank,&
+      hipblasCscalBatched_rank_0,&
+      hipblasCscalBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZscalBatched
@@ -4025,13 +3835,11 @@ hipblasCscalBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZscalBatched_full_rank,&
-      
-hipblasZscalBatched_rank_0,&
-      
-hipblasZscalBatched_rank_1
+    module procedure &
+      hipblasZscalBatched_full_rank,&
+      hipblasZscalBatched_rank_0,&
+      hipblasZscalBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCsscalBatched
@@ -4053,13 +3861,11 @@ hipblasZscalBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCsscalBatched_full_rank,&
-      
-hipblasCsscalBatched_rank_0,&
-      
-hipblasCsscalBatched_rank_1
+    module procedure &
+      hipblasCsscalBatched_full_rank,&
+      hipblasCsscalBatched_rank_0,&
+      hipblasCsscalBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZdscalBatched
@@ -4081,13 +3887,11 @@ hipblasCsscalBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZdscalBatched_full_rank,&
-      
-hipblasZdscalBatched_rank_0,&
-      
-hipblasZdscalBatched_rank_1
+    module procedure &
+      hipblasZdscalBatched_full_rank,&
+      hipblasZdscalBatched_rank_0,&
+      hipblasZdscalBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSscalStridedBatched
@@ -4110,11 +3914,10 @@ hipblasZdscalBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSscalStridedBatched_rank_0,&
-      
-hipblasSscalStridedBatched_rank_1
+    module procedure &
+      hipblasSscalStridedBatched_rank_0,&
+      hipblasSscalStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDscalStridedBatched
@@ -4137,11 +3940,10 @@ hipblasSscalStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDscalStridedBatched_rank_0,&
-      
-hipblasDscalStridedBatched_rank_1
+    module procedure &
+      hipblasDscalStridedBatched_rank_0,&
+      hipblasDscalStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCscalStridedBatched
@@ -4164,11 +3966,10 @@ hipblasDscalStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCscalStridedBatched_rank_0,&
-      
-hipblasCscalStridedBatched_rank_1
+    module procedure &
+      hipblasCscalStridedBatched_rank_0,&
+      hipblasCscalStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZscalStridedBatched
@@ -4191,11 +3992,10 @@ hipblasCscalStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZscalStridedBatched_rank_0,&
-      
-hipblasZscalStridedBatched_rank_1
+    module procedure &
+      hipblasZscalStridedBatched_rank_0,&
+      hipblasZscalStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCsscalStridedBatched
@@ -4218,11 +4018,10 @@ hipblasZscalStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCsscalStridedBatched_rank_0,&
-      
-hipblasCsscalStridedBatched_rank_1
+    module procedure &
+      hipblasCsscalStridedBatched_rank_0,&
+      hipblasCsscalStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZdscalStridedBatched
@@ -4245,11 +4044,10 @@ hipblasCsscalStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZdscalStridedBatched_rank_0,&
-      
-hipblasZdscalStridedBatched_rank_1
+    module procedure &
+      hipblasZdscalStridedBatched_rank_0,&
+      hipblasZdscalStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSswap
@@ -4271,11 +4069,10 @@ hipblasZdscalStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSswap_rank_0,&
-      
-hipblasSswap_rank_1
+    module procedure &
+      hipblasSswap_rank_0,&
+      hipblasSswap_rank_1
 #endif
-
   end interface
   
   interface hipblasDswap
@@ -4297,11 +4094,10 @@ hipblasSswap_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDswap_rank_0,&
-      
-hipblasDswap_rank_1
+    module procedure &
+      hipblasDswap_rank_0,&
+      hipblasDswap_rank_1
 #endif
-
   end interface
   
   interface hipblasCswap
@@ -4323,11 +4119,10 @@ hipblasDswap_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCswap_rank_0,&
-      
-hipblasCswap_rank_1
+    module procedure &
+      hipblasCswap_rank_0,&
+      hipblasCswap_rank_1
 #endif
-
   end interface
   
   interface hipblasZswap
@@ -4349,11 +4144,10 @@ hipblasCswap_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZswap_rank_0,&
-      
-hipblasZswap_rank_1
+    module procedure &
+      hipblasZswap_rank_0,&
+      hipblasZswap_rank_1
 #endif
-
   end interface
   
   interface hipblasSswapBatched
@@ -4376,13 +4170,11 @@ hipblasZswap_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSswapBatched_full_rank,&
-      
-hipblasSswapBatched_rank_0,&
-      
-hipblasSswapBatched_rank_1
+    module procedure &
+      hipblasSswapBatched_full_rank,&
+      hipblasSswapBatched_rank_0,&
+      hipblasSswapBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDswapBatched
@@ -4405,13 +4197,11 @@ hipblasSswapBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDswapBatched_full_rank,&
-      
-hipblasDswapBatched_rank_0,&
-      
-hipblasDswapBatched_rank_1
+    module procedure &
+      hipblasDswapBatched_full_rank,&
+      hipblasDswapBatched_rank_0,&
+      hipblasDswapBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCswapBatched
@@ -4434,13 +4224,11 @@ hipblasDswapBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCswapBatched_full_rank,&
-      
-hipblasCswapBatched_rank_0,&
-      
-hipblasCswapBatched_rank_1
+    module procedure &
+      hipblasCswapBatched_full_rank,&
+      hipblasCswapBatched_rank_0,&
+      hipblasCswapBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZswapBatched
@@ -4463,13 +4251,11 @@ hipblasCswapBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZswapBatched_full_rank,&
-      
-hipblasZswapBatched_rank_0,&
-      
-hipblasZswapBatched_rank_1
+    module procedure &
+      hipblasZswapBatched_full_rank,&
+      hipblasZswapBatched_rank_0,&
+      hipblasZswapBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSswapStridedBatched
@@ -4494,11 +4280,10 @@ hipblasZswapBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSswapStridedBatched_rank_0,&
-      
-hipblasSswapStridedBatched_rank_1
+    module procedure &
+      hipblasSswapStridedBatched_rank_0,&
+      hipblasSswapStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDswapStridedBatched
@@ -4523,11 +4308,10 @@ hipblasSswapStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDswapStridedBatched_rank_0,&
-      
-hipblasDswapStridedBatched_rank_1
+    module procedure &
+      hipblasDswapStridedBatched_rank_0,&
+      hipblasDswapStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCswapStridedBatched
@@ -4552,11 +4336,10 @@ hipblasDswapStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCswapStridedBatched_rank_0,&
-      
-hipblasCswapStridedBatched_rank_1
+    module procedure &
+      hipblasCswapStridedBatched_rank_0,&
+      hipblasCswapStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZswapStridedBatched
@@ -4581,11 +4364,10 @@ hipblasCswapStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZswapStridedBatched_rank_0,&
-      
-hipblasZswapStridedBatched_rank_1
+    module procedure &
+      hipblasZswapStridedBatched_rank_0,&
+      hipblasZswapStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSgbmv
@@ -4615,13 +4397,11 @@ hipblasZswapStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSgbmv_full_rank,&
-      
-hipblasSgbmv_rank_0,&
-      
-hipblasSgbmv_rank_1
+    module procedure &
+      hipblasSgbmv_full_rank,&
+      hipblasSgbmv_rank_0,&
+      hipblasSgbmv_rank_1
 #endif
-
   end interface
   
   interface hipblasDgbmv
@@ -4651,13 +4431,11 @@ hipblasSgbmv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDgbmv_full_rank,&
-      
-hipblasDgbmv_rank_0,&
-      
-hipblasDgbmv_rank_1
+    module procedure &
+      hipblasDgbmv_full_rank,&
+      hipblasDgbmv_rank_0,&
+      hipblasDgbmv_rank_1
 #endif
-
   end interface
   
   interface hipblasCgbmv
@@ -4687,13 +4465,11 @@ hipblasDgbmv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCgbmv_full_rank,&
-      
-hipblasCgbmv_rank_0,&
-      
-hipblasCgbmv_rank_1
+    module procedure &
+      hipblasCgbmv_full_rank,&
+      hipblasCgbmv_rank_0,&
+      hipblasCgbmv_rank_1
 #endif
-
   end interface
   
   interface hipblasZgbmv
@@ -4723,13 +4499,11 @@ hipblasCgbmv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZgbmv_full_rank,&
-      
-hipblasZgbmv_rank_0,&
-      
-hipblasZgbmv_rank_1
+    module procedure &
+      hipblasZgbmv_full_rank,&
+      hipblasZgbmv_rank_0,&
+      hipblasZgbmv_rank_1
 #endif
-
   end interface
   
   interface hipblasSgbmvBatched
@@ -4760,13 +4534,11 @@ hipblasZgbmv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSgbmvBatched_full_rank,&
-      
-hipblasSgbmvBatched_rank_0,&
-      
-hipblasSgbmvBatched_rank_1
+    module procedure &
+      hipblasSgbmvBatched_full_rank,&
+      hipblasSgbmvBatched_rank_0,&
+      hipblasSgbmvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDgbmvBatched
@@ -4797,13 +4569,11 @@ hipblasSgbmvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDgbmvBatched_full_rank,&
-      
-hipblasDgbmvBatched_rank_0,&
-      
-hipblasDgbmvBatched_rank_1
+    module procedure &
+      hipblasDgbmvBatched_full_rank,&
+      hipblasDgbmvBatched_rank_0,&
+      hipblasDgbmvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCgbmvBatched
@@ -4834,13 +4604,11 @@ hipblasDgbmvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCgbmvBatched_full_rank,&
-      
-hipblasCgbmvBatched_rank_0,&
-      
-hipblasCgbmvBatched_rank_1
+    module procedure &
+      hipblasCgbmvBatched_full_rank,&
+      hipblasCgbmvBatched_rank_0,&
+      hipblasCgbmvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZgbmvBatched
@@ -4871,13 +4639,11 @@ hipblasCgbmvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZgbmvBatched_full_rank,&
-      
-hipblasZgbmvBatched_rank_0,&
-      
-hipblasZgbmvBatched_rank_1
+    module procedure &
+      hipblasZgbmvBatched_full_rank,&
+      hipblasZgbmvBatched_rank_0,&
+      hipblasZgbmvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSgbmvStridedBatched
@@ -4911,13 +4677,11 @@ hipblasZgbmvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSgbmvStridedBatched_full_rank,&
-      
-hipblasSgbmvStridedBatched_rank_0,&
-      
-hipblasSgbmvStridedBatched_rank_1
+    module procedure &
+      hipblasSgbmvStridedBatched_full_rank,&
+      hipblasSgbmvStridedBatched_rank_0,&
+      hipblasSgbmvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDgbmvStridedBatched
@@ -4951,13 +4715,11 @@ hipblasSgbmvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDgbmvStridedBatched_full_rank,&
-      
-hipblasDgbmvStridedBatched_rank_0,&
-      
-hipblasDgbmvStridedBatched_rank_1
+    module procedure &
+      hipblasDgbmvStridedBatched_full_rank,&
+      hipblasDgbmvStridedBatched_rank_0,&
+      hipblasDgbmvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCgbmvStridedBatched
@@ -4991,13 +4753,11 @@ hipblasDgbmvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCgbmvStridedBatched_full_rank,&
-      
-hipblasCgbmvStridedBatched_rank_0,&
-      
-hipblasCgbmvStridedBatched_rank_1
+    module procedure &
+      hipblasCgbmvStridedBatched_full_rank,&
+      hipblasCgbmvStridedBatched_rank_0,&
+      hipblasCgbmvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZgbmvStridedBatched
@@ -5031,13 +4791,11 @@ hipblasCgbmvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZgbmvStridedBatched_full_rank,&
-      
-hipblasZgbmvStridedBatched_rank_0,&
-      
-hipblasZgbmvStridedBatched_rank_1
+    module procedure &
+      hipblasZgbmvStridedBatched_full_rank,&
+      hipblasZgbmvStridedBatched_rank_0,&
+      hipblasZgbmvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSgemv
@@ -5065,13 +4823,11 @@ hipblasZgbmvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSgemv_full_rank,&
-      
-hipblasSgemv_rank_0,&
-      
-hipblasSgemv_rank_1
+    module procedure &
+      hipblasSgemv_full_rank,&
+      hipblasSgemv_rank_0,&
+      hipblasSgemv_rank_1
 #endif
-
   end interface
   
   interface hipblasDgemv
@@ -5099,13 +4855,11 @@ hipblasSgemv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDgemv_full_rank,&
-      
-hipblasDgemv_rank_0,&
-      
-hipblasDgemv_rank_1
+    module procedure &
+      hipblasDgemv_full_rank,&
+      hipblasDgemv_rank_0,&
+      hipblasDgemv_rank_1
 #endif
-
   end interface
   
   interface hipblasCgemv
@@ -5133,13 +4887,11 @@ hipblasDgemv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCgemv_full_rank,&
-      
-hipblasCgemv_rank_0,&
-      
-hipblasCgemv_rank_1
+    module procedure &
+      hipblasCgemv_full_rank,&
+      hipblasCgemv_rank_0,&
+      hipblasCgemv_rank_1
 #endif
-
   end interface
   
   interface hipblasZgemv
@@ -5167,13 +4919,11 @@ hipblasCgemv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZgemv_full_rank,&
-      
-hipblasZgemv_rank_0,&
-      
-hipblasZgemv_rank_1
+    module procedure &
+      hipblasZgemv_full_rank,&
+      hipblasZgemv_rank_0,&
+      hipblasZgemv_rank_1
 #endif
-
   end interface
   
   interface hipblasSgemvBatched
@@ -5202,13 +4952,11 @@ hipblasZgemv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSgemvBatched_full_rank,&
-      
-hipblasSgemvBatched_rank_0,&
-      
-hipblasSgemvBatched_rank_1
+    module procedure &
+      hipblasSgemvBatched_full_rank,&
+      hipblasSgemvBatched_rank_0,&
+      hipblasSgemvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDgemvBatched
@@ -5237,13 +4985,11 @@ hipblasSgemvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDgemvBatched_full_rank,&
-      
-hipblasDgemvBatched_rank_0,&
-      
-hipblasDgemvBatched_rank_1
+    module procedure &
+      hipblasDgemvBatched_full_rank,&
+      hipblasDgemvBatched_rank_0,&
+      hipblasDgemvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCgemvBatched
@@ -5272,13 +5018,11 @@ hipblasDgemvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCgemvBatched_full_rank,&
-      
-hipblasCgemvBatched_rank_0,&
-      
-hipblasCgemvBatched_rank_1
+    module procedure &
+      hipblasCgemvBatched_full_rank,&
+      hipblasCgemvBatched_rank_0,&
+      hipblasCgemvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZgemvBatched
@@ -5307,13 +5051,11 @@ hipblasCgemvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZgemvBatched_full_rank,&
-      
-hipblasZgemvBatched_rank_0,&
-      
-hipblasZgemvBatched_rank_1
+    module procedure &
+      hipblasZgemvBatched_full_rank,&
+      hipblasZgemvBatched_rank_0,&
+      hipblasZgemvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSgemvStridedBatched
@@ -5345,13 +5087,11 @@ hipblasZgemvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSgemvStridedBatched_full_rank,&
-      
-hipblasSgemvStridedBatched_rank_0,&
-      
-hipblasSgemvStridedBatched_rank_1
+    module procedure &
+      hipblasSgemvStridedBatched_full_rank,&
+      hipblasSgemvStridedBatched_rank_0,&
+      hipblasSgemvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDgemvStridedBatched
@@ -5383,13 +5123,11 @@ hipblasSgemvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDgemvStridedBatched_full_rank,&
-      
-hipblasDgemvStridedBatched_rank_0,&
-      
-hipblasDgemvStridedBatched_rank_1
+    module procedure &
+      hipblasDgemvStridedBatched_full_rank,&
+      hipblasDgemvStridedBatched_rank_0,&
+      hipblasDgemvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCgemvStridedBatched
@@ -5421,13 +5159,11 @@ hipblasDgemvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCgemvStridedBatched_full_rank,&
-      
-hipblasCgemvStridedBatched_rank_0,&
-      
-hipblasCgemvStridedBatched_rank_1
+    module procedure &
+      hipblasCgemvStridedBatched_full_rank,&
+      hipblasCgemvStridedBatched_rank_0,&
+      hipblasCgemvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZgemvStridedBatched
@@ -5459,13 +5195,11 @@ hipblasCgemvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZgemvStridedBatched_full_rank,&
-      
-hipblasZgemvStridedBatched_rank_0,&
-      
-hipblasZgemvStridedBatched_rank_1
+    module procedure &
+      hipblasZgemvStridedBatched_full_rank,&
+      hipblasZgemvStridedBatched_rank_0,&
+      hipblasZgemvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSger
@@ -5491,13 +5225,11 @@ hipblasZgemvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSger_full_rank,&
-      
-hipblasSger_rank_0,&
-      
-hipblasSger_rank_1
+    module procedure &
+      hipblasSger_full_rank,&
+      hipblasSger_rank_0,&
+      hipblasSger_rank_1
 #endif
-
   end interface
   
   interface hipblasDger
@@ -5523,13 +5255,11 @@ hipblasSger_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDger_full_rank,&
-      
-hipblasDger_rank_0,&
-      
-hipblasDger_rank_1
+    module procedure &
+      hipblasDger_full_rank,&
+      hipblasDger_rank_0,&
+      hipblasDger_rank_1
 #endif
-
   end interface
   
   interface hipblasCgeru
@@ -5555,13 +5285,11 @@ hipblasDger_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCgeru_full_rank,&
-      
-hipblasCgeru_rank_0,&
-      
-hipblasCgeru_rank_1
+    module procedure &
+      hipblasCgeru_full_rank,&
+      hipblasCgeru_rank_0,&
+      hipblasCgeru_rank_1
 #endif
-
   end interface
   
   interface hipblasCgerc
@@ -5587,13 +5315,11 @@ hipblasCgeru_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCgerc_full_rank,&
-      
-hipblasCgerc_rank_0,&
-      
-hipblasCgerc_rank_1
+    module procedure &
+      hipblasCgerc_full_rank,&
+      hipblasCgerc_rank_0,&
+      hipblasCgerc_rank_1
 #endif
-
   end interface
   
   interface hipblasZgeru
@@ -5619,13 +5345,11 @@ hipblasCgerc_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZgeru_full_rank,&
-      
-hipblasZgeru_rank_0,&
-      
-hipblasZgeru_rank_1
+    module procedure &
+      hipblasZgeru_full_rank,&
+      hipblasZgeru_rank_0,&
+      hipblasZgeru_rank_1
 #endif
-
   end interface
   
   interface hipblasZgerc
@@ -5651,13 +5375,11 @@ hipblasZgeru_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZgerc_full_rank,&
-      
-hipblasZgerc_rank_0,&
-      
-hipblasZgerc_rank_1
+    module procedure &
+      hipblasZgerc_full_rank,&
+      hipblasZgerc_rank_0,&
+      hipblasZgerc_rank_1
 #endif
-
   end interface
   
   interface hipblasSgerBatched
@@ -5684,13 +5406,11 @@ hipblasZgerc_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSgerBatched_full_rank,&
-      
-hipblasSgerBatched_rank_0,&
-      
-hipblasSgerBatched_rank_1
+    module procedure &
+      hipblasSgerBatched_full_rank,&
+      hipblasSgerBatched_rank_0,&
+      hipblasSgerBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDgerBatched
@@ -5717,13 +5437,11 @@ hipblasSgerBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDgerBatched_full_rank,&
-      
-hipblasDgerBatched_rank_0,&
-      
-hipblasDgerBatched_rank_1
+    module procedure &
+      hipblasDgerBatched_full_rank,&
+      hipblasDgerBatched_rank_0,&
+      hipblasDgerBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCgeruBatched
@@ -5750,13 +5468,11 @@ hipblasDgerBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCgeruBatched_full_rank,&
-      
-hipblasCgeruBatched_rank_0,&
-      
-hipblasCgeruBatched_rank_1
+    module procedure &
+      hipblasCgeruBatched_full_rank,&
+      hipblasCgeruBatched_rank_0,&
+      hipblasCgeruBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCgercBatched
@@ -5783,13 +5499,11 @@ hipblasCgeruBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCgercBatched_full_rank,&
-      
-hipblasCgercBatched_rank_0,&
-      
-hipblasCgercBatched_rank_1
+    module procedure &
+      hipblasCgercBatched_full_rank,&
+      hipblasCgercBatched_rank_0,&
+      hipblasCgercBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZgeruBatched
@@ -5816,13 +5530,11 @@ hipblasCgercBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZgeruBatched_full_rank,&
-      
-hipblasZgeruBatched_rank_0,&
-      
-hipblasZgeruBatched_rank_1
+    module procedure &
+      hipblasZgeruBatched_full_rank,&
+      hipblasZgeruBatched_rank_0,&
+      hipblasZgeruBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZgercBatched
@@ -5849,13 +5561,11 @@ hipblasZgeruBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZgercBatched_full_rank,&
-      
-hipblasZgercBatched_rank_0,&
-      
-hipblasZgercBatched_rank_1
+    module procedure &
+      hipblasZgercBatched_full_rank,&
+      hipblasZgercBatched_rank_0,&
+      hipblasZgercBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSgerStridedBatched
@@ -5885,13 +5595,11 @@ hipblasZgercBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSgerStridedBatched_full_rank,&
-      
-hipblasSgerStridedBatched_rank_0,&
-      
-hipblasSgerStridedBatched_rank_1
+    module procedure &
+      hipblasSgerStridedBatched_full_rank,&
+      hipblasSgerStridedBatched_rank_0,&
+      hipblasSgerStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDgerStridedBatched
@@ -5921,13 +5629,11 @@ hipblasSgerStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDgerStridedBatched_full_rank,&
-      
-hipblasDgerStridedBatched_rank_0,&
-      
-hipblasDgerStridedBatched_rank_1
+    module procedure &
+      hipblasDgerStridedBatched_full_rank,&
+      hipblasDgerStridedBatched_rank_0,&
+      hipblasDgerStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCgeruStridedBatched
@@ -5957,13 +5663,11 @@ hipblasDgerStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCgeruStridedBatched_full_rank,&
-      
-hipblasCgeruStridedBatched_rank_0,&
-      
-hipblasCgeruStridedBatched_rank_1
+    module procedure &
+      hipblasCgeruStridedBatched_full_rank,&
+      hipblasCgeruStridedBatched_rank_0,&
+      hipblasCgeruStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCgercStridedBatched
@@ -5993,13 +5697,11 @@ hipblasCgeruStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCgercStridedBatched_full_rank,&
-      
-hipblasCgercStridedBatched_rank_0,&
-      
-hipblasCgercStridedBatched_rank_1
+    module procedure &
+      hipblasCgercStridedBatched_full_rank,&
+      hipblasCgercStridedBatched_rank_0,&
+      hipblasCgercStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZgeruStridedBatched
@@ -6029,13 +5731,11 @@ hipblasCgercStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZgeruStridedBatched_full_rank,&
-      
-hipblasZgeruStridedBatched_rank_0,&
-      
-hipblasZgeruStridedBatched_rank_1
+    module procedure &
+      hipblasZgeruStridedBatched_full_rank,&
+      hipblasZgeruStridedBatched_rank_0,&
+      hipblasZgeruStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZgercStridedBatched
@@ -6065,13 +5765,11 @@ hipblasZgeruStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZgercStridedBatched_full_rank,&
-      
-hipblasZgercStridedBatched_rank_0,&
-      
-hipblasZgercStridedBatched_rank_1
+    module procedure &
+      hipblasZgercStridedBatched_full_rank,&
+      hipblasZgercStridedBatched_rank_0,&
+      hipblasZgercStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasChbmv
@@ -6099,13 +5797,11 @@ hipblasZgercStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasChbmv_full_rank,&
-      
-hipblasChbmv_rank_0,&
-      
-hipblasChbmv_rank_1
+    module procedure &
+      hipblasChbmv_full_rank,&
+      hipblasChbmv_rank_0,&
+      hipblasChbmv_rank_1
 #endif
-
   end interface
   
   interface hipblasZhbmv
@@ -6133,13 +5829,11 @@ hipblasChbmv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZhbmv_full_rank,&
-      
-hipblasZhbmv_rank_0,&
-      
-hipblasZhbmv_rank_1
+    module procedure &
+      hipblasZhbmv_full_rank,&
+      hipblasZhbmv_rank_0,&
+      hipblasZhbmv_rank_1
 #endif
-
   end interface
   
   interface hipblasChbmvBatched
@@ -6168,13 +5862,11 @@ hipblasZhbmv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasChbmvBatched_full_rank,&
-      
-hipblasChbmvBatched_rank_0,&
-      
-hipblasChbmvBatched_rank_1
+    module procedure &
+      hipblasChbmvBatched_full_rank,&
+      hipblasChbmvBatched_rank_0,&
+      hipblasChbmvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZhbmvBatched
@@ -6203,13 +5895,11 @@ hipblasChbmvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZhbmvBatched_full_rank,&
-      
-hipblasZhbmvBatched_rank_0,&
-      
-hipblasZhbmvBatched_rank_1
+    module procedure &
+      hipblasZhbmvBatched_full_rank,&
+      hipblasZhbmvBatched_rank_0,&
+      hipblasZhbmvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasChbmvStridedBatched
@@ -6241,13 +5931,11 @@ hipblasZhbmvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasChbmvStridedBatched_full_rank,&
-      
-hipblasChbmvStridedBatched_rank_0,&
-      
-hipblasChbmvStridedBatched_rank_1
+    module procedure &
+      hipblasChbmvStridedBatched_full_rank,&
+      hipblasChbmvStridedBatched_rank_0,&
+      hipblasChbmvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZhbmvStridedBatched
@@ -6279,13 +5967,11 @@ hipblasChbmvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZhbmvStridedBatched_full_rank,&
-      
-hipblasZhbmvStridedBatched_rank_0,&
-      
-hipblasZhbmvStridedBatched_rank_1
+    module procedure &
+      hipblasZhbmvStridedBatched_full_rank,&
+      hipblasZhbmvStridedBatched_rank_0,&
+      hipblasZhbmvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasChemv
@@ -6312,13 +5998,11 @@ hipblasZhbmvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasChemv_full_rank,&
-      
-hipblasChemv_rank_0,&
-      
-hipblasChemv_rank_1
+    module procedure &
+      hipblasChemv_full_rank,&
+      hipblasChemv_rank_0,&
+      hipblasChemv_rank_1
 #endif
-
   end interface
   
   interface hipblasZhemv
@@ -6345,13 +6029,11 @@ hipblasChemv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZhemv_full_rank,&
-      
-hipblasZhemv_rank_0,&
-      
-hipblasZhemv_rank_1
+    module procedure &
+      hipblasZhemv_full_rank,&
+      hipblasZhemv_rank_0,&
+      hipblasZhemv_rank_1
 #endif
-
   end interface
   
   interface hipblasChemvBatched
@@ -6379,13 +6061,11 @@ hipblasZhemv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasChemvBatched_full_rank,&
-      
-hipblasChemvBatched_rank_0,&
-      
-hipblasChemvBatched_rank_1
+    module procedure &
+      hipblasChemvBatched_full_rank,&
+      hipblasChemvBatched_rank_0,&
+      hipblasChemvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZhemvBatched
@@ -6413,13 +6093,11 @@ hipblasChemvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZhemvBatched_full_rank,&
-      
-hipblasZhemvBatched_rank_0,&
-      
-hipblasZhemvBatched_rank_1
+    module procedure &
+      hipblasZhemvBatched_full_rank,&
+      hipblasZhemvBatched_rank_0,&
+      hipblasZhemvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasChemvStridedBatched
@@ -6450,13 +6128,11 @@ hipblasZhemvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasChemvStridedBatched_full_rank,&
-      
-hipblasChemvStridedBatched_rank_0,&
-      
-hipblasChemvStridedBatched_rank_1
+    module procedure &
+      hipblasChemvStridedBatched_full_rank,&
+      hipblasChemvStridedBatched_rank_0,&
+      hipblasChemvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZhemvStridedBatched
@@ -6487,13 +6163,11 @@ hipblasChemvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZhemvStridedBatched_full_rank,&
-      
-hipblasZhemvStridedBatched_rank_0,&
-      
-hipblasZhemvStridedBatched_rank_1
+    module procedure &
+      hipblasZhemvStridedBatched_full_rank,&
+      hipblasZhemvStridedBatched_rank_0,&
+      hipblasZhemvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCher
@@ -6517,13 +6191,11 @@ hipblasZhemvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCher_full_rank,&
-      
-hipblasCher_rank_0,&
-      
-hipblasCher_rank_1
+    module procedure &
+      hipblasCher_full_rank,&
+      hipblasCher_rank_0,&
+      hipblasCher_rank_1
 #endif
-
   end interface
   
   interface hipblasZher
@@ -6547,13 +6219,11 @@ hipblasCher_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZher_full_rank,&
-      
-hipblasZher_rank_0,&
-      
-hipblasZher_rank_1
+    module procedure &
+      hipblasZher_full_rank,&
+      hipblasZher_rank_0,&
+      hipblasZher_rank_1
 #endif
-
   end interface
   
   interface hipblasCherBatched
@@ -6578,13 +6248,11 @@ hipblasZher_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCherBatched_full_rank,&
-      
-hipblasCherBatched_rank_0,&
-      
-hipblasCherBatched_rank_1
+    module procedure &
+      hipblasCherBatched_full_rank,&
+      hipblasCherBatched_rank_0,&
+      hipblasCherBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZherBatched
@@ -6609,13 +6277,11 @@ hipblasCherBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZherBatched_full_rank,&
-      
-hipblasZherBatched_rank_0,&
-      
-hipblasZherBatched_rank_1
+    module procedure &
+      hipblasZherBatched_full_rank,&
+      hipblasZherBatched_rank_0,&
+      hipblasZherBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCherStridedBatched
@@ -6642,13 +6308,11 @@ hipblasZherBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCherStridedBatched_full_rank,&
-      
-hipblasCherStridedBatched_rank_0,&
-      
-hipblasCherStridedBatched_rank_1
+    module procedure &
+      hipblasCherStridedBatched_full_rank,&
+      hipblasCherStridedBatched_rank_0,&
+      hipblasCherStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZherStridedBatched
@@ -6675,13 +6339,11 @@ hipblasCherStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZherStridedBatched_full_rank,&
-      
-hipblasZherStridedBatched_rank_0,&
-      
-hipblasZherStridedBatched_rank_1
+    module procedure &
+      hipblasZherStridedBatched_full_rank,&
+      hipblasZherStridedBatched_rank_0,&
+      hipblasZherStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCher2
@@ -6707,13 +6369,11 @@ hipblasZherStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCher2_full_rank,&
-      
-hipblasCher2_rank_0,&
-      
-hipblasCher2_rank_1
+    module procedure &
+      hipblasCher2_full_rank,&
+      hipblasCher2_rank_0,&
+      hipblasCher2_rank_1
 #endif
-
   end interface
   
   interface hipblasZher2
@@ -6739,13 +6399,11 @@ hipblasCher2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZher2_full_rank,&
-      
-hipblasZher2_rank_0,&
-      
-hipblasZher2_rank_1
+    module procedure &
+      hipblasZher2_full_rank,&
+      hipblasZher2_rank_0,&
+      hipblasZher2_rank_1
 #endif
-
   end interface
   
   interface hipblasCher2Batched
@@ -6772,13 +6430,11 @@ hipblasZher2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCher2Batched_full_rank,&
-      
-hipblasCher2Batched_rank_0,&
-      
-hipblasCher2Batched_rank_1
+    module procedure &
+      hipblasCher2Batched_full_rank,&
+      hipblasCher2Batched_rank_0,&
+      hipblasCher2Batched_rank_1
 #endif
-
   end interface
   
   interface hipblasZher2Batched
@@ -6805,13 +6461,11 @@ hipblasCher2Batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZher2Batched_full_rank,&
-      
-hipblasZher2Batched_rank_0,&
-      
-hipblasZher2Batched_rank_1
+    module procedure &
+      hipblasZher2Batched_full_rank,&
+      hipblasZher2Batched_rank_0,&
+      hipblasZher2Batched_rank_1
 #endif
-
   end interface
   
   interface hipblasCher2StridedBatched
@@ -6841,13 +6495,11 @@ hipblasZher2Batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCher2StridedBatched_full_rank,&
-      
-hipblasCher2StridedBatched_rank_0,&
-      
-hipblasCher2StridedBatched_rank_1
+    module procedure &
+      hipblasCher2StridedBatched_full_rank,&
+      hipblasCher2StridedBatched_rank_0,&
+      hipblasCher2StridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZher2StridedBatched
@@ -6877,13 +6529,11 @@ hipblasCher2StridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZher2StridedBatched_full_rank,&
-      
-hipblasZher2StridedBatched_rank_0,&
-      
-hipblasZher2StridedBatched_rank_1
+    module procedure &
+      hipblasZher2StridedBatched_full_rank,&
+      hipblasZher2StridedBatched_rank_0,&
+      hipblasZher2StridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasChpmv
@@ -6909,11 +6559,10 @@ hipblasZher2StridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasChpmv_rank_0,&
-      
-hipblasChpmv_rank_1
+    module procedure &
+      hipblasChpmv_rank_0,&
+      hipblasChpmv_rank_1
 #endif
-
   end interface
   
   interface hipblasZhpmv
@@ -6939,11 +6588,10 @@ hipblasChpmv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZhpmv_rank_0,&
-      
-hipblasZhpmv_rank_1
+    module procedure &
+      hipblasZhpmv_rank_0,&
+      hipblasZhpmv_rank_1
 #endif
-
   end interface
   
   interface hipblasChpmvBatched
@@ -6970,13 +6618,11 @@ hipblasZhpmv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasChpmvBatched_full_rank,&
-      
-hipblasChpmvBatched_rank_0,&
-      
-hipblasChpmvBatched_rank_1
+    module procedure &
+      hipblasChpmvBatched_full_rank,&
+      hipblasChpmvBatched_rank_0,&
+      hipblasChpmvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZhpmvBatched
@@ -7003,13 +6649,11 @@ hipblasChpmvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZhpmvBatched_full_rank,&
-      
-hipblasZhpmvBatched_rank_0,&
-      
-hipblasZhpmvBatched_rank_1
+    module procedure &
+      hipblasZhpmvBatched_full_rank,&
+      hipblasZhpmvBatched_rank_0,&
+      hipblasZhpmvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasChpmvStridedBatched
@@ -7039,11 +6683,10 @@ hipblasZhpmvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasChpmvStridedBatched_rank_0,&
-      
-hipblasChpmvStridedBatched_rank_1
+    module procedure &
+      hipblasChpmvStridedBatched_rank_0,&
+      hipblasChpmvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZhpmvStridedBatched
@@ -7073,11 +6716,10 @@ hipblasChpmvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZhpmvStridedBatched_rank_0,&
-      
-hipblasZhpmvStridedBatched_rank_1
+    module procedure &
+      hipblasZhpmvStridedBatched_rank_0,&
+      hipblasZhpmvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasChpr
@@ -7100,11 +6742,10 @@ hipblasZhpmvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasChpr_rank_0,&
-      
-hipblasChpr_rank_1
+    module procedure &
+      hipblasChpr_rank_0,&
+      hipblasChpr_rank_1
 #endif
-
   end interface
   
   interface hipblasZhpr
@@ -7127,11 +6768,10 @@ hipblasChpr_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZhpr_rank_0,&
-      
-hipblasZhpr_rank_1
+    module procedure &
+      hipblasZhpr_rank_0,&
+      hipblasZhpr_rank_1
 #endif
-
   end interface
   
   interface hipblasChprBatched
@@ -7155,13 +6795,11 @@ hipblasZhpr_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasChprBatched_full_rank,&
-      
-hipblasChprBatched_rank_0,&
-      
-hipblasChprBatched_rank_1
+    module procedure &
+      hipblasChprBatched_full_rank,&
+      hipblasChprBatched_rank_0,&
+      hipblasChprBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZhprBatched
@@ -7185,13 +6823,11 @@ hipblasChprBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZhprBatched_full_rank,&
-      
-hipblasZhprBatched_rank_0,&
-      
-hipblasZhprBatched_rank_1
+    module procedure &
+      hipblasZhprBatched_full_rank,&
+      hipblasZhprBatched_rank_0,&
+      hipblasZhprBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasChprStridedBatched
@@ -7217,11 +6853,10 @@ hipblasZhprBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasChprStridedBatched_rank_0,&
-      
-hipblasChprStridedBatched_rank_1
+    module procedure &
+      hipblasChprStridedBatched_rank_0,&
+      hipblasChprStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZhprStridedBatched
@@ -7247,11 +6882,10 @@ hipblasChprStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZhprStridedBatched_rank_0,&
-      
-hipblasZhprStridedBatched_rank_1
+    module procedure &
+      hipblasZhprStridedBatched_rank_0,&
+      hipblasZhprStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasChpr2
@@ -7276,11 +6910,10 @@ hipblasZhprStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasChpr2_rank_0,&
-      
-hipblasChpr2_rank_1
+    module procedure &
+      hipblasChpr2_rank_0,&
+      hipblasChpr2_rank_1
 #endif
-
   end interface
   
   interface hipblasZhpr2
@@ -7305,11 +6938,10 @@ hipblasChpr2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZhpr2_rank_0,&
-      
-hipblasZhpr2_rank_1
+    module procedure &
+      hipblasZhpr2_rank_0,&
+      hipblasZhpr2_rank_1
 #endif
-
   end interface
   
   interface hipblasChpr2Batched
@@ -7335,13 +6967,11 @@ hipblasZhpr2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasChpr2Batched_full_rank,&
-      
-hipblasChpr2Batched_rank_0,&
-      
-hipblasChpr2Batched_rank_1
+    module procedure &
+      hipblasChpr2Batched_full_rank,&
+      hipblasChpr2Batched_rank_0,&
+      hipblasChpr2Batched_rank_1
 #endif
-
   end interface
   
   interface hipblasZhpr2Batched
@@ -7367,13 +6997,11 @@ hipblasChpr2Batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZhpr2Batched_full_rank,&
-      
-hipblasZhpr2Batched_rank_0,&
-      
-hipblasZhpr2Batched_rank_1
+    module procedure &
+      hipblasZhpr2Batched_full_rank,&
+      hipblasZhpr2Batched_rank_0,&
+      hipblasZhpr2Batched_rank_1
 #endif
-
   end interface
   
   interface hipblasChpr2StridedBatched
@@ -7402,11 +7030,10 @@ hipblasZhpr2Batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasChpr2StridedBatched_rank_0,&
-      
-hipblasChpr2StridedBatched_rank_1
+    module procedure &
+      hipblasChpr2StridedBatched_rank_0,&
+      hipblasChpr2StridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZhpr2StridedBatched
@@ -7435,11 +7062,10 @@ hipblasChpr2StridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZhpr2StridedBatched_rank_0,&
-      
-hipblasZhpr2StridedBatched_rank_1
+    module procedure &
+      hipblasZhpr2StridedBatched_rank_0,&
+      hipblasZhpr2StridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSsbmv
@@ -7467,13 +7093,11 @@ hipblasZhpr2StridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSsbmv_full_rank,&
-      
-hipblasSsbmv_rank_0,&
-      
-hipblasSsbmv_rank_1
+    module procedure &
+      hipblasSsbmv_full_rank,&
+      hipblasSsbmv_rank_0,&
+      hipblasSsbmv_rank_1
 #endif
-
   end interface
   
   interface hipblasDsbmv
@@ -7501,13 +7125,11 @@ hipblasSsbmv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDsbmv_full_rank,&
-      
-hipblasDsbmv_rank_0,&
-      
-hipblasDsbmv_rank_1
+    module procedure &
+      hipblasDsbmv_full_rank,&
+      hipblasDsbmv_rank_0,&
+      hipblasDsbmv_rank_1
 #endif
-
   end interface
   
   interface hipblasSsbmvBatched
@@ -7536,13 +7158,11 @@ hipblasDsbmv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSsbmvBatched_full_rank,&
-      
-hipblasSsbmvBatched_rank_0,&
-      
-hipblasSsbmvBatched_rank_1
+    module procedure &
+      hipblasSsbmvBatched_full_rank,&
+      hipblasSsbmvBatched_rank_0,&
+      hipblasSsbmvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDsbmvBatched
@@ -7571,13 +7191,11 @@ hipblasSsbmvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDsbmvBatched_full_rank,&
-      
-hipblasDsbmvBatched_rank_0,&
-      
-hipblasDsbmvBatched_rank_1
+    module procedure &
+      hipblasDsbmvBatched_full_rank,&
+      hipblasDsbmvBatched_rank_0,&
+      hipblasDsbmvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSsbmvStridedBatched
@@ -7609,13 +7227,11 @@ hipblasDsbmvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSsbmvStridedBatched_full_rank,&
-      
-hipblasSsbmvStridedBatched_rank_0,&
-      
-hipblasSsbmvStridedBatched_rank_1
+    module procedure &
+      hipblasSsbmvStridedBatched_full_rank,&
+      hipblasSsbmvStridedBatched_rank_0,&
+      hipblasSsbmvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDsbmvStridedBatched
@@ -7647,13 +7263,11 @@ hipblasSsbmvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDsbmvStridedBatched_full_rank,&
-      
-hipblasDsbmvStridedBatched_rank_0,&
-      
-hipblasDsbmvStridedBatched_rank_1
+    module procedure &
+      hipblasDsbmvStridedBatched_full_rank,&
+      hipblasDsbmvStridedBatched_rank_0,&
+      hipblasDsbmvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSspmv
@@ -7679,11 +7293,10 @@ hipblasDsbmvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSspmv_rank_0,&
-      
-hipblasSspmv_rank_1
+    module procedure &
+      hipblasSspmv_rank_0,&
+      hipblasSspmv_rank_1
 #endif
-
   end interface
   
   interface hipblasDspmv
@@ -7709,11 +7322,10 @@ hipblasSspmv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDspmv_rank_0,&
-      
-hipblasDspmv_rank_1
+    module procedure &
+      hipblasDspmv_rank_0,&
+      hipblasDspmv_rank_1
 #endif
-
   end interface
   
   interface hipblasSspmvBatched
@@ -7740,13 +7352,11 @@ hipblasDspmv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSspmvBatched_full_rank,&
-      
-hipblasSspmvBatched_rank_0,&
-      
-hipblasSspmvBatched_rank_1
+    module procedure &
+      hipblasSspmvBatched_full_rank,&
+      hipblasSspmvBatched_rank_0,&
+      hipblasSspmvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDspmvBatched
@@ -7773,13 +7383,11 @@ hipblasSspmvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDspmvBatched_full_rank,&
-      
-hipblasDspmvBatched_rank_0,&
-      
-hipblasDspmvBatched_rank_1
+    module procedure &
+      hipblasDspmvBatched_full_rank,&
+      hipblasDspmvBatched_rank_0,&
+      hipblasDspmvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSspmvStridedBatched
@@ -7809,11 +7417,10 @@ hipblasDspmvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSspmvStridedBatched_rank_0,&
-      
-hipblasSspmvStridedBatched_rank_1
+    module procedure &
+      hipblasSspmvStridedBatched_rank_0,&
+      hipblasSspmvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDspmvStridedBatched
@@ -7843,11 +7450,10 @@ hipblasSspmvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDspmvStridedBatched_rank_0,&
-      
-hipblasDspmvStridedBatched_rank_1
+    module procedure &
+      hipblasDspmvStridedBatched_rank_0,&
+      hipblasDspmvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSspr
@@ -7870,11 +7476,10 @@ hipblasDspmvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSspr_rank_0,&
-      
-hipblasSspr_rank_1
+    module procedure &
+      hipblasSspr_rank_0,&
+      hipblasSspr_rank_1
 #endif
-
   end interface
   
   interface hipblasDspr
@@ -7897,11 +7502,10 @@ hipblasSspr_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDspr_rank_0,&
-      
-hipblasDspr_rank_1
+    module procedure &
+      hipblasDspr_rank_0,&
+      hipblasDspr_rank_1
 #endif
-
   end interface
   
   interface hipblasCspr
@@ -7924,11 +7528,10 @@ hipblasDspr_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCspr_rank_0,&
-      
-hipblasCspr_rank_1
+    module procedure &
+      hipblasCspr_rank_0,&
+      hipblasCspr_rank_1
 #endif
-
   end interface
   
   interface hipblasZspr
@@ -7951,11 +7554,10 @@ hipblasCspr_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZspr_rank_0,&
-      
-hipblasZspr_rank_1
+    module procedure &
+      hipblasZspr_rank_0,&
+      hipblasZspr_rank_1
 #endif
-
   end interface
   
   interface hipblasSsprBatched
@@ -7979,13 +7581,11 @@ hipblasZspr_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSsprBatched_full_rank,&
-      
-hipblasSsprBatched_rank_0,&
-      
-hipblasSsprBatched_rank_1
+    module procedure &
+      hipblasSsprBatched_full_rank,&
+      hipblasSsprBatched_rank_0,&
+      hipblasSsprBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDsprBatched
@@ -8009,13 +7609,11 @@ hipblasSsprBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDsprBatched_full_rank,&
-      
-hipblasDsprBatched_rank_0,&
-      
-hipblasDsprBatched_rank_1
+    module procedure &
+      hipblasDsprBatched_full_rank,&
+      hipblasDsprBatched_rank_0,&
+      hipblasDsprBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCsprBatched
@@ -8039,13 +7637,11 @@ hipblasDsprBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCsprBatched_full_rank,&
-      
-hipblasCsprBatched_rank_0,&
-      
-hipblasCsprBatched_rank_1
+    module procedure &
+      hipblasCsprBatched_full_rank,&
+      hipblasCsprBatched_rank_0,&
+      hipblasCsprBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZsprBatched
@@ -8069,13 +7665,11 @@ hipblasCsprBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZsprBatched_full_rank,&
-      
-hipblasZsprBatched_rank_0,&
-      
-hipblasZsprBatched_rank_1
+    module procedure &
+      hipblasZsprBatched_full_rank,&
+      hipblasZsprBatched_rank_0,&
+      hipblasZsprBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSsprStridedBatched
@@ -8101,11 +7695,10 @@ hipblasZsprBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSsprStridedBatched_rank_0,&
-      
-hipblasSsprStridedBatched_rank_1
+    module procedure &
+      hipblasSsprStridedBatched_rank_0,&
+      hipblasSsprStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDsprStridedBatched
@@ -8131,11 +7724,10 @@ hipblasSsprStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDsprStridedBatched_rank_0,&
-      
-hipblasDsprStridedBatched_rank_1
+    module procedure &
+      hipblasDsprStridedBatched_rank_0,&
+      hipblasDsprStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCsprStridedBatched
@@ -8161,11 +7753,10 @@ hipblasDsprStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCsprStridedBatched_rank_0,&
-      
-hipblasCsprStridedBatched_rank_1
+    module procedure &
+      hipblasCsprStridedBatched_rank_0,&
+      hipblasCsprStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZsprStridedBatched
@@ -8191,11 +7782,10 @@ hipblasCsprStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZsprStridedBatched_rank_0,&
-      
-hipblasZsprStridedBatched_rank_1
+    module procedure &
+      hipblasZsprStridedBatched_rank_0,&
+      hipblasZsprStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSspr2
@@ -8220,11 +7810,10 @@ hipblasZsprStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSspr2_rank_0,&
-      
-hipblasSspr2_rank_1
+    module procedure &
+      hipblasSspr2_rank_0,&
+      hipblasSspr2_rank_1
 #endif
-
   end interface
   
   interface hipblasDspr2
@@ -8249,11 +7838,10 @@ hipblasSspr2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDspr2_rank_0,&
-      
-hipblasDspr2_rank_1
+    module procedure &
+      hipblasDspr2_rank_0,&
+      hipblasDspr2_rank_1
 #endif
-
   end interface
   
   interface hipblasSspr2Batched
@@ -8279,13 +7867,11 @@ hipblasDspr2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSspr2Batched_full_rank,&
-      
-hipblasSspr2Batched_rank_0,&
-      
-hipblasSspr2Batched_rank_1
+    module procedure &
+      hipblasSspr2Batched_full_rank,&
+      hipblasSspr2Batched_rank_0,&
+      hipblasSspr2Batched_rank_1
 #endif
-
   end interface
   
   interface hipblasDspr2Batched
@@ -8311,13 +7897,11 @@ hipblasSspr2Batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDspr2Batched_full_rank,&
-      
-hipblasDspr2Batched_rank_0,&
-      
-hipblasDspr2Batched_rank_1
+    module procedure &
+      hipblasDspr2Batched_full_rank,&
+      hipblasDspr2Batched_rank_0,&
+      hipblasDspr2Batched_rank_1
 #endif
-
   end interface
   
   interface hipblasSspr2StridedBatched
@@ -8346,11 +7930,10 @@ hipblasDspr2Batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSspr2StridedBatched_rank_0,&
-      
-hipblasSspr2StridedBatched_rank_1
+    module procedure &
+      hipblasSspr2StridedBatched_rank_0,&
+      hipblasSspr2StridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDspr2StridedBatched
@@ -8379,11 +7962,10 @@ hipblasSspr2StridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDspr2StridedBatched_rank_0,&
-      
-hipblasDspr2StridedBatched_rank_1
+    module procedure &
+      hipblasDspr2StridedBatched_rank_0,&
+      hipblasDspr2StridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSsymv
@@ -8410,13 +7992,11 @@ hipblasDspr2StridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSsymv_full_rank,&
-      
-hipblasSsymv_rank_0,&
-      
-hipblasSsymv_rank_1
+    module procedure &
+      hipblasSsymv_full_rank,&
+      hipblasSsymv_rank_0,&
+      hipblasSsymv_rank_1
 #endif
-
   end interface
   
   interface hipblasDsymv
@@ -8443,13 +8023,11 @@ hipblasSsymv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDsymv_full_rank,&
-      
-hipblasDsymv_rank_0,&
-      
-hipblasDsymv_rank_1
+    module procedure &
+      hipblasDsymv_full_rank,&
+      hipblasDsymv_rank_0,&
+      hipblasDsymv_rank_1
 #endif
-
   end interface
   
   interface hipblasCsymv
@@ -8476,13 +8054,11 @@ hipblasDsymv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCsymv_full_rank,&
-      
-hipblasCsymv_rank_0,&
-      
-hipblasCsymv_rank_1
+    module procedure &
+      hipblasCsymv_full_rank,&
+      hipblasCsymv_rank_0,&
+      hipblasCsymv_rank_1
 #endif
-
   end interface
   
   interface hipblasZsymv
@@ -8509,13 +8085,11 @@ hipblasCsymv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZsymv_full_rank,&
-      
-hipblasZsymv_rank_0,&
-      
-hipblasZsymv_rank_1
+    module procedure &
+      hipblasZsymv_full_rank,&
+      hipblasZsymv_rank_0,&
+      hipblasZsymv_rank_1
 #endif
-
   end interface
   
   interface hipblasSsymvBatched
@@ -8543,13 +8117,11 @@ hipblasZsymv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSsymvBatched_full_rank,&
-      
-hipblasSsymvBatched_rank_0,&
-      
-hipblasSsymvBatched_rank_1
+    module procedure &
+      hipblasSsymvBatched_full_rank,&
+      hipblasSsymvBatched_rank_0,&
+      hipblasSsymvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDsymvBatched
@@ -8577,13 +8149,11 @@ hipblasSsymvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDsymvBatched_full_rank,&
-      
-hipblasDsymvBatched_rank_0,&
-      
-hipblasDsymvBatched_rank_1
+    module procedure &
+      hipblasDsymvBatched_full_rank,&
+      hipblasDsymvBatched_rank_0,&
+      hipblasDsymvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCsymvBatched
@@ -8611,13 +8181,11 @@ hipblasDsymvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCsymvBatched_full_rank,&
-      
-hipblasCsymvBatched_rank_0,&
-      
-hipblasCsymvBatched_rank_1
+    module procedure &
+      hipblasCsymvBatched_full_rank,&
+      hipblasCsymvBatched_rank_0,&
+      hipblasCsymvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZsymvBatched
@@ -8645,13 +8213,11 @@ hipblasCsymvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZsymvBatched_full_rank,&
-      
-hipblasZsymvBatched_rank_0,&
-      
-hipblasZsymvBatched_rank_1
+    module procedure &
+      hipblasZsymvBatched_full_rank,&
+      hipblasZsymvBatched_rank_0,&
+      hipblasZsymvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSsymvStridedBatched
@@ -8682,13 +8248,11 @@ hipblasZsymvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSsymvStridedBatched_full_rank,&
-      
-hipblasSsymvStridedBatched_rank_0,&
-      
-hipblasSsymvStridedBatched_rank_1
+    module procedure &
+      hipblasSsymvStridedBatched_full_rank,&
+      hipblasSsymvStridedBatched_rank_0,&
+      hipblasSsymvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDsymvStridedBatched
@@ -8719,13 +8283,11 @@ hipblasSsymvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDsymvStridedBatched_full_rank,&
-      
-hipblasDsymvStridedBatched_rank_0,&
-      
-hipblasDsymvStridedBatched_rank_1
+    module procedure &
+      hipblasDsymvStridedBatched_full_rank,&
+      hipblasDsymvStridedBatched_rank_0,&
+      hipblasDsymvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCsymvStridedBatched
@@ -8756,13 +8318,11 @@ hipblasDsymvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCsymvStridedBatched_full_rank,&
-      
-hipblasCsymvStridedBatched_rank_0,&
-      
-hipblasCsymvStridedBatched_rank_1
+    module procedure &
+      hipblasCsymvStridedBatched_full_rank,&
+      hipblasCsymvStridedBatched_rank_0,&
+      hipblasCsymvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZsymvStridedBatched
@@ -8793,13 +8353,11 @@ hipblasCsymvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZsymvStridedBatched_full_rank,&
-      
-hipblasZsymvStridedBatched_rank_0,&
-      
-hipblasZsymvStridedBatched_rank_1
+    module procedure &
+      hipblasZsymvStridedBatched_full_rank,&
+      hipblasZsymvStridedBatched_rank_0,&
+      hipblasZsymvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSsyr
@@ -8823,13 +8381,11 @@ hipblasZsymvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSsyr_full_rank,&
-      
-hipblasSsyr_rank_0,&
-      
-hipblasSsyr_rank_1
+    module procedure &
+      hipblasSsyr_full_rank,&
+      hipblasSsyr_rank_0,&
+      hipblasSsyr_rank_1
 #endif
-
   end interface
   
   interface hipblasDsyr
@@ -8853,13 +8409,11 @@ hipblasSsyr_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDsyr_full_rank,&
-      
-hipblasDsyr_rank_0,&
-      
-hipblasDsyr_rank_1
+    module procedure &
+      hipblasDsyr_full_rank,&
+      hipblasDsyr_rank_0,&
+      hipblasDsyr_rank_1
 #endif
-
   end interface
   
   interface hipblasCsyr
@@ -8883,13 +8437,11 @@ hipblasDsyr_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCsyr_full_rank,&
-      
-hipblasCsyr_rank_0,&
-      
-hipblasCsyr_rank_1
+    module procedure &
+      hipblasCsyr_full_rank,&
+      hipblasCsyr_rank_0,&
+      hipblasCsyr_rank_1
 #endif
-
   end interface
   
   interface hipblasZsyr
@@ -8913,13 +8465,11 @@ hipblasCsyr_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZsyr_full_rank,&
-      
-hipblasZsyr_rank_0,&
-      
-hipblasZsyr_rank_1
+    module procedure &
+      hipblasZsyr_full_rank,&
+      hipblasZsyr_rank_0,&
+      hipblasZsyr_rank_1
 #endif
-
   end interface
   
   interface hipblasSsyrBatched
@@ -8944,13 +8494,11 @@ hipblasZsyr_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSsyrBatched_full_rank,&
-      
-hipblasSsyrBatched_rank_0,&
-      
-hipblasSsyrBatched_rank_1
+    module procedure &
+      hipblasSsyrBatched_full_rank,&
+      hipblasSsyrBatched_rank_0,&
+      hipblasSsyrBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDsyrBatched
@@ -8975,13 +8523,11 @@ hipblasSsyrBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDsyrBatched_full_rank,&
-      
-hipblasDsyrBatched_rank_0,&
-      
-hipblasDsyrBatched_rank_1
+    module procedure &
+      hipblasDsyrBatched_full_rank,&
+      hipblasDsyrBatched_rank_0,&
+      hipblasDsyrBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCsyrBatched
@@ -9006,13 +8552,11 @@ hipblasDsyrBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCsyrBatched_full_rank,&
-      
-hipblasCsyrBatched_rank_0,&
-      
-hipblasCsyrBatched_rank_1
+    module procedure &
+      hipblasCsyrBatched_full_rank,&
+      hipblasCsyrBatched_rank_0,&
+      hipblasCsyrBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZsyrBatched
@@ -9037,13 +8581,11 @@ hipblasCsyrBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZsyrBatched_full_rank,&
-      
-hipblasZsyrBatched_rank_0,&
-      
-hipblasZsyrBatched_rank_1
+    module procedure &
+      hipblasZsyrBatched_full_rank,&
+      hipblasZsyrBatched_rank_0,&
+      hipblasZsyrBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSsyrStridedBatched
@@ -9070,13 +8612,11 @@ hipblasZsyrBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSsyrStridedBatched_full_rank,&
-      
-hipblasSsyrStridedBatched_rank_0,&
-      
-hipblasSsyrStridedBatched_rank_1
+    module procedure &
+      hipblasSsyrStridedBatched_full_rank,&
+      hipblasSsyrStridedBatched_rank_0,&
+      hipblasSsyrStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDsyrStridedBatched
@@ -9103,13 +8643,11 @@ hipblasSsyrStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDsyrStridedBatched_full_rank,&
-      
-hipblasDsyrStridedBatched_rank_0,&
-      
-hipblasDsyrStridedBatched_rank_1
+    module procedure &
+      hipblasDsyrStridedBatched_full_rank,&
+      hipblasDsyrStridedBatched_rank_0,&
+      hipblasDsyrStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCsyrStridedBatched
@@ -9136,13 +8674,11 @@ hipblasDsyrStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCsyrStridedBatched_full_rank,&
-      
-hipblasCsyrStridedBatched_rank_0,&
-      
-hipblasCsyrStridedBatched_rank_1
+    module procedure &
+      hipblasCsyrStridedBatched_full_rank,&
+      hipblasCsyrStridedBatched_rank_0,&
+      hipblasCsyrStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZsyrStridedBatched
@@ -9169,13 +8705,11 @@ hipblasCsyrStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZsyrStridedBatched_full_rank,&
-      
-hipblasZsyrStridedBatched_rank_0,&
-      
-hipblasZsyrStridedBatched_rank_1
+    module procedure &
+      hipblasZsyrStridedBatched_full_rank,&
+      hipblasZsyrStridedBatched_rank_0,&
+      hipblasZsyrStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSsyr2
@@ -9201,13 +8735,11 @@ hipblasZsyrStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSsyr2_full_rank,&
-      
-hipblasSsyr2_rank_0,&
-      
-hipblasSsyr2_rank_1
+    module procedure &
+      hipblasSsyr2_full_rank,&
+      hipblasSsyr2_rank_0,&
+      hipblasSsyr2_rank_1
 #endif
-
   end interface
   
   interface hipblasDsyr2
@@ -9233,13 +8765,11 @@ hipblasSsyr2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDsyr2_full_rank,&
-      
-hipblasDsyr2_rank_0,&
-      
-hipblasDsyr2_rank_1
+    module procedure &
+      hipblasDsyr2_full_rank,&
+      hipblasDsyr2_rank_0,&
+      hipblasDsyr2_rank_1
 #endif
-
   end interface
   
   interface hipblasCsyr2
@@ -9265,13 +8795,11 @@ hipblasDsyr2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCsyr2_full_rank,&
-      
-hipblasCsyr2_rank_0,&
-      
-hipblasCsyr2_rank_1
+    module procedure &
+      hipblasCsyr2_full_rank,&
+      hipblasCsyr2_rank_0,&
+      hipblasCsyr2_rank_1
 #endif
-
   end interface
   
   interface hipblasZsyr2
@@ -9297,13 +8825,11 @@ hipblasCsyr2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZsyr2_full_rank,&
-      
-hipblasZsyr2_rank_0,&
-      
-hipblasZsyr2_rank_1
+    module procedure &
+      hipblasZsyr2_full_rank,&
+      hipblasZsyr2_rank_0,&
+      hipblasZsyr2_rank_1
 #endif
-
   end interface
   
   interface hipblasSsyr2Batched
@@ -9330,13 +8856,11 @@ hipblasZsyr2_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSsyr2Batched_full_rank,&
-      
-hipblasSsyr2Batched_rank_0,&
-      
-hipblasSsyr2Batched_rank_1
+    module procedure &
+      hipblasSsyr2Batched_full_rank,&
+      hipblasSsyr2Batched_rank_0,&
+      hipblasSsyr2Batched_rank_1
 #endif
-
   end interface
   
   interface hipblasDsyr2Batched
@@ -9363,13 +8887,11 @@ hipblasSsyr2Batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDsyr2Batched_full_rank,&
-      
-hipblasDsyr2Batched_rank_0,&
-      
-hipblasDsyr2Batched_rank_1
+    module procedure &
+      hipblasDsyr2Batched_full_rank,&
+      hipblasDsyr2Batched_rank_0,&
+      hipblasDsyr2Batched_rank_1
 #endif
-
   end interface
   
   interface hipblasCsyr2Batched
@@ -9396,13 +8918,11 @@ hipblasDsyr2Batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCsyr2Batched_full_rank,&
-      
-hipblasCsyr2Batched_rank_0,&
-      
-hipblasCsyr2Batched_rank_1
+    module procedure &
+      hipblasCsyr2Batched_full_rank,&
+      hipblasCsyr2Batched_rank_0,&
+      hipblasCsyr2Batched_rank_1
 #endif
-
   end interface
   
   interface hipblasZsyr2Batched
@@ -9429,13 +8949,11 @@ hipblasCsyr2Batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZsyr2Batched_full_rank,&
-      
-hipblasZsyr2Batched_rank_0,&
-      
-hipblasZsyr2Batched_rank_1
+    module procedure &
+      hipblasZsyr2Batched_full_rank,&
+      hipblasZsyr2Batched_rank_0,&
+      hipblasZsyr2Batched_rank_1
 #endif
-
   end interface
   
   interface hipblasSsyr2StridedBatched
@@ -9465,13 +8983,11 @@ hipblasZsyr2Batched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSsyr2StridedBatched_full_rank,&
-      
-hipblasSsyr2StridedBatched_rank_0,&
-      
-hipblasSsyr2StridedBatched_rank_1
+    module procedure &
+      hipblasSsyr2StridedBatched_full_rank,&
+      hipblasSsyr2StridedBatched_rank_0,&
+      hipblasSsyr2StridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDsyr2StridedBatched
@@ -9501,13 +9017,11 @@ hipblasSsyr2StridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDsyr2StridedBatched_full_rank,&
-      
-hipblasDsyr2StridedBatched_rank_0,&
-      
-hipblasDsyr2StridedBatched_rank_1
+    module procedure &
+      hipblasDsyr2StridedBatched_full_rank,&
+      hipblasDsyr2StridedBatched_rank_0,&
+      hipblasDsyr2StridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCsyr2StridedBatched
@@ -9537,13 +9051,11 @@ hipblasDsyr2StridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCsyr2StridedBatched_full_rank,&
-      
-hipblasCsyr2StridedBatched_rank_0,&
-      
-hipblasCsyr2StridedBatched_rank_1
+    module procedure &
+      hipblasCsyr2StridedBatched_full_rank,&
+      hipblasCsyr2StridedBatched_rank_0,&
+      hipblasCsyr2StridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZsyr2StridedBatched
@@ -9573,13 +9085,11 @@ hipblasCsyr2StridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZsyr2StridedBatched_full_rank,&
-      
-hipblasZsyr2StridedBatched_rank_0,&
-      
-hipblasZsyr2StridedBatched_rank_1
+    module procedure &
+      hipblasZsyr2StridedBatched_full_rank,&
+      hipblasZsyr2StridedBatched_rank_0,&
+      hipblasZsyr2StridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasStbmv
@@ -9605,13 +9115,11 @@ hipblasZsyr2StridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasStbmv_full_rank,&
-      
-hipblasStbmv_rank_0,&
-      
-hipblasStbmv_rank_1
+    module procedure &
+      hipblasStbmv_full_rank,&
+      hipblasStbmv_rank_0,&
+      hipblasStbmv_rank_1
 #endif
-
   end interface
   
   interface hipblasDtbmv
@@ -9637,13 +9145,11 @@ hipblasStbmv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDtbmv_full_rank,&
-      
-hipblasDtbmv_rank_0,&
-      
-hipblasDtbmv_rank_1
+    module procedure &
+      hipblasDtbmv_full_rank,&
+      hipblasDtbmv_rank_0,&
+      hipblasDtbmv_rank_1
 #endif
-
   end interface
   
   interface hipblasCtbmv
@@ -9669,13 +9175,11 @@ hipblasDtbmv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCtbmv_full_rank,&
-      
-hipblasCtbmv_rank_0,&
-      
-hipblasCtbmv_rank_1
+    module procedure &
+      hipblasCtbmv_full_rank,&
+      hipblasCtbmv_rank_0,&
+      hipblasCtbmv_rank_1
 #endif
-
   end interface
   
   interface hipblasZtbmv
@@ -9701,13 +9205,11 @@ hipblasCtbmv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZtbmv_full_rank,&
-      
-hipblasZtbmv_rank_0,&
-      
-hipblasZtbmv_rank_1
+    module procedure &
+      hipblasZtbmv_full_rank,&
+      hipblasZtbmv_rank_0,&
+      hipblasZtbmv_rank_1
 #endif
-
   end interface
   
   interface hipblasStbmvBatched
@@ -9734,13 +9236,11 @@ hipblasZtbmv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasStbmvBatched_full_rank,&
-      
-hipblasStbmvBatched_rank_0,&
-      
-hipblasStbmvBatched_rank_1
+    module procedure &
+      hipblasStbmvBatched_full_rank,&
+      hipblasStbmvBatched_rank_0,&
+      hipblasStbmvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDtbmvBatched
@@ -9767,13 +9267,11 @@ hipblasStbmvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDtbmvBatched_full_rank,&
-      
-hipblasDtbmvBatched_rank_0,&
-      
-hipblasDtbmvBatched_rank_1
+    module procedure &
+      hipblasDtbmvBatched_full_rank,&
+      hipblasDtbmvBatched_rank_0,&
+      hipblasDtbmvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCtbmvBatched
@@ -9800,13 +9298,11 @@ hipblasDtbmvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCtbmvBatched_full_rank,&
-      
-hipblasCtbmvBatched_rank_0,&
-      
-hipblasCtbmvBatched_rank_1
+    module procedure &
+      hipblasCtbmvBatched_full_rank,&
+      hipblasCtbmvBatched_rank_0,&
+      hipblasCtbmvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZtbmvBatched
@@ -9833,13 +9329,11 @@ hipblasCtbmvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZtbmvBatched_full_rank,&
-      
-hipblasZtbmvBatched_rank_0,&
-      
-hipblasZtbmvBatched_rank_1
+    module procedure &
+      hipblasZtbmvBatched_full_rank,&
+      hipblasZtbmvBatched_rank_0,&
+      hipblasZtbmvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasStbmvStridedBatched
@@ -9868,13 +9362,11 @@ hipblasZtbmvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasStbmvStridedBatched_full_rank,&
-      
-hipblasStbmvStridedBatched_rank_0,&
-      
-hipblasStbmvStridedBatched_rank_1
+    module procedure &
+      hipblasStbmvStridedBatched_full_rank,&
+      hipblasStbmvStridedBatched_rank_0,&
+      hipblasStbmvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDtbmvStridedBatched
@@ -9903,13 +9395,11 @@ hipblasStbmvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDtbmvStridedBatched_full_rank,&
-      
-hipblasDtbmvStridedBatched_rank_0,&
-      
-hipblasDtbmvStridedBatched_rank_1
+    module procedure &
+      hipblasDtbmvStridedBatched_full_rank,&
+      hipblasDtbmvStridedBatched_rank_0,&
+      hipblasDtbmvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCtbmvStridedBatched
@@ -9938,13 +9428,11 @@ hipblasDtbmvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCtbmvStridedBatched_full_rank,&
-      
-hipblasCtbmvStridedBatched_rank_0,&
-      
-hipblasCtbmvStridedBatched_rank_1
+    module procedure &
+      hipblasCtbmvStridedBatched_full_rank,&
+      hipblasCtbmvStridedBatched_rank_0,&
+      hipblasCtbmvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZtbmvStridedBatched
@@ -9973,13 +9461,11 @@ hipblasCtbmvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZtbmvStridedBatched_full_rank,&
-      
-hipblasZtbmvStridedBatched_rank_0,&
-      
-hipblasZtbmvStridedBatched_rank_1
+    module procedure &
+      hipblasZtbmvStridedBatched_full_rank,&
+      hipblasZtbmvStridedBatched_rank_0,&
+      hipblasZtbmvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasStbsv
@@ -10005,13 +9491,11 @@ hipblasZtbmvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasStbsv_full_rank,&
-      
-hipblasStbsv_rank_0,&
-      
-hipblasStbsv_rank_1
+    module procedure &
+      hipblasStbsv_full_rank,&
+      hipblasStbsv_rank_0,&
+      hipblasStbsv_rank_1
 #endif
-
   end interface
   
   interface hipblasDtbsv
@@ -10037,13 +9521,11 @@ hipblasStbsv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDtbsv_full_rank,&
-      
-hipblasDtbsv_rank_0,&
-      
-hipblasDtbsv_rank_1
+    module procedure &
+      hipblasDtbsv_full_rank,&
+      hipblasDtbsv_rank_0,&
+      hipblasDtbsv_rank_1
 #endif
-
   end interface
   
   interface hipblasCtbsv
@@ -10069,13 +9551,11 @@ hipblasDtbsv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCtbsv_full_rank,&
-      
-hipblasCtbsv_rank_0,&
-      
-hipblasCtbsv_rank_1
+    module procedure &
+      hipblasCtbsv_full_rank,&
+      hipblasCtbsv_rank_0,&
+      hipblasCtbsv_rank_1
 #endif
-
   end interface
   
   interface hipblasZtbsv
@@ -10101,13 +9581,11 @@ hipblasCtbsv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZtbsv_full_rank,&
-      
-hipblasZtbsv_rank_0,&
-      
-hipblasZtbsv_rank_1
+    module procedure &
+      hipblasZtbsv_full_rank,&
+      hipblasZtbsv_rank_0,&
+      hipblasZtbsv_rank_1
 #endif
-
   end interface
   
   interface hipblasStbsvBatched
@@ -10134,13 +9612,11 @@ hipblasZtbsv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasStbsvBatched_full_rank,&
-      
-hipblasStbsvBatched_rank_0,&
-      
-hipblasStbsvBatched_rank_1
+    module procedure &
+      hipblasStbsvBatched_full_rank,&
+      hipblasStbsvBatched_rank_0,&
+      hipblasStbsvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDtbsvBatched
@@ -10167,13 +9643,11 @@ hipblasStbsvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDtbsvBatched_full_rank,&
-      
-hipblasDtbsvBatched_rank_0,&
-      
-hipblasDtbsvBatched_rank_1
+    module procedure &
+      hipblasDtbsvBatched_full_rank,&
+      hipblasDtbsvBatched_rank_0,&
+      hipblasDtbsvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCtbsvBatched
@@ -10200,13 +9674,11 @@ hipblasDtbsvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCtbsvBatched_full_rank,&
-      
-hipblasCtbsvBatched_rank_0,&
-      
-hipblasCtbsvBatched_rank_1
+    module procedure &
+      hipblasCtbsvBatched_full_rank,&
+      hipblasCtbsvBatched_rank_0,&
+      hipblasCtbsvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZtbsvBatched
@@ -10233,13 +9705,11 @@ hipblasCtbsvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZtbsvBatched_full_rank,&
-      
-hipblasZtbsvBatched_rank_0,&
-      
-hipblasZtbsvBatched_rank_1
+    module procedure &
+      hipblasZtbsvBatched_full_rank,&
+      hipblasZtbsvBatched_rank_0,&
+      hipblasZtbsvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasStbsvStridedBatched
@@ -10268,13 +9738,11 @@ hipblasZtbsvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasStbsvStridedBatched_full_rank,&
-      
-hipblasStbsvStridedBatched_rank_0,&
-      
-hipblasStbsvStridedBatched_rank_1
+    module procedure &
+      hipblasStbsvStridedBatched_full_rank,&
+      hipblasStbsvStridedBatched_rank_0,&
+      hipblasStbsvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDtbsvStridedBatched
@@ -10303,13 +9771,11 @@ hipblasStbsvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDtbsvStridedBatched_full_rank,&
-      
-hipblasDtbsvStridedBatched_rank_0,&
-      
-hipblasDtbsvStridedBatched_rank_1
+    module procedure &
+      hipblasDtbsvStridedBatched_full_rank,&
+      hipblasDtbsvStridedBatched_rank_0,&
+      hipblasDtbsvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCtbsvStridedBatched
@@ -10338,13 +9804,11 @@ hipblasDtbsvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCtbsvStridedBatched_full_rank,&
-      
-hipblasCtbsvStridedBatched_rank_0,&
-      
-hipblasCtbsvStridedBatched_rank_1
+    module procedure &
+      hipblasCtbsvStridedBatched_full_rank,&
+      hipblasCtbsvStridedBatched_rank_0,&
+      hipblasCtbsvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZtbsvStridedBatched
@@ -10373,13 +9837,11 @@ hipblasCtbsvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZtbsvStridedBatched_full_rank,&
-      
-hipblasZtbsvStridedBatched_rank_0,&
-      
-hipblasZtbsvStridedBatched_rank_1
+    module procedure &
+      hipblasZtbsvStridedBatched_full_rank,&
+      hipblasZtbsvStridedBatched_rank_0,&
+      hipblasZtbsvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasStpmv
@@ -10403,11 +9865,10 @@ hipblasZtbsvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasStpmv_rank_0,&
-      
-hipblasStpmv_rank_1
+    module procedure &
+      hipblasStpmv_rank_0,&
+      hipblasStpmv_rank_1
 #endif
-
   end interface
   
   interface hipblasDtpmv
@@ -10431,11 +9892,10 @@ hipblasStpmv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDtpmv_rank_0,&
-      
-hipblasDtpmv_rank_1
+    module procedure &
+      hipblasDtpmv_rank_0,&
+      hipblasDtpmv_rank_1
 #endif
-
   end interface
   
   interface hipblasCtpmv
@@ -10459,11 +9919,10 @@ hipblasDtpmv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCtpmv_rank_0,&
-      
-hipblasCtpmv_rank_1
+    module procedure &
+      hipblasCtpmv_rank_0,&
+      hipblasCtpmv_rank_1
 #endif
-
   end interface
   
   interface hipblasZtpmv
@@ -10487,11 +9946,10 @@ hipblasCtpmv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZtpmv_rank_0,&
-      
-hipblasZtpmv_rank_1
+    module procedure &
+      hipblasZtpmv_rank_0,&
+      hipblasZtpmv_rank_1
 #endif
-
   end interface
   
   interface hipblasStpmvBatched
@@ -10516,13 +9974,11 @@ hipblasZtpmv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasStpmvBatched_full_rank,&
-      
-hipblasStpmvBatched_rank_0,&
-      
-hipblasStpmvBatched_rank_1
+    module procedure &
+      hipblasStpmvBatched_full_rank,&
+      hipblasStpmvBatched_rank_0,&
+      hipblasStpmvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDtpmvBatched
@@ -10547,13 +10003,11 @@ hipblasStpmvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDtpmvBatched_full_rank,&
-      
-hipblasDtpmvBatched_rank_0,&
-      
-hipblasDtpmvBatched_rank_1
+    module procedure &
+      hipblasDtpmvBatched_full_rank,&
+      hipblasDtpmvBatched_rank_0,&
+      hipblasDtpmvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCtpmvBatched
@@ -10578,13 +10032,11 @@ hipblasDtpmvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCtpmvBatched_full_rank,&
-      
-hipblasCtpmvBatched_rank_0,&
-      
-hipblasCtpmvBatched_rank_1
+    module procedure &
+      hipblasCtpmvBatched_full_rank,&
+      hipblasCtpmvBatched_rank_0,&
+      hipblasCtpmvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZtpmvBatched
@@ -10609,13 +10061,11 @@ hipblasCtpmvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZtpmvBatched_full_rank,&
-      
-hipblasZtpmvBatched_rank_0,&
-      
-hipblasZtpmvBatched_rank_1
+    module procedure &
+      hipblasZtpmvBatched_full_rank,&
+      hipblasZtpmvBatched_rank_0,&
+      hipblasZtpmvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasStpmvStridedBatched
@@ -10642,11 +10092,10 @@ hipblasZtpmvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasStpmvStridedBatched_rank_0,&
-      
-hipblasStpmvStridedBatched_rank_1
+    module procedure &
+      hipblasStpmvStridedBatched_rank_0,&
+      hipblasStpmvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDtpmvStridedBatched
@@ -10673,11 +10122,10 @@ hipblasStpmvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDtpmvStridedBatched_rank_0,&
-      
-hipblasDtpmvStridedBatched_rank_1
+    module procedure &
+      hipblasDtpmvStridedBatched_rank_0,&
+      hipblasDtpmvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCtpmvStridedBatched
@@ -10704,11 +10152,10 @@ hipblasDtpmvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCtpmvStridedBatched_rank_0,&
-      
-hipblasCtpmvStridedBatched_rank_1
+    module procedure &
+      hipblasCtpmvStridedBatched_rank_0,&
+      hipblasCtpmvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZtpmvStridedBatched
@@ -10735,11 +10182,10 @@ hipblasCtpmvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZtpmvStridedBatched_rank_0,&
-      
-hipblasZtpmvStridedBatched_rank_1
+    module procedure &
+      hipblasZtpmvStridedBatched_rank_0,&
+      hipblasZtpmvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasStpsv
@@ -10763,11 +10209,10 @@ hipblasZtpmvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasStpsv_rank_0,&
-      
-hipblasStpsv_rank_1
+    module procedure &
+      hipblasStpsv_rank_0,&
+      hipblasStpsv_rank_1
 #endif
-
   end interface
   
   interface hipblasDtpsv
@@ -10791,11 +10236,10 @@ hipblasStpsv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDtpsv_rank_0,&
-      
-hipblasDtpsv_rank_1
+    module procedure &
+      hipblasDtpsv_rank_0,&
+      hipblasDtpsv_rank_1
 #endif
-
   end interface
   
   interface hipblasCtpsv
@@ -10819,11 +10263,10 @@ hipblasDtpsv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCtpsv_rank_0,&
-      
-hipblasCtpsv_rank_1
+    module procedure &
+      hipblasCtpsv_rank_0,&
+      hipblasCtpsv_rank_1
 #endif
-
   end interface
   
   interface hipblasZtpsv
@@ -10847,11 +10290,10 @@ hipblasCtpsv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZtpsv_rank_0,&
-      
-hipblasZtpsv_rank_1
+    module procedure &
+      hipblasZtpsv_rank_0,&
+      hipblasZtpsv_rank_1
 #endif
-
   end interface
   
   interface hipblasStpsvBatched
@@ -10876,13 +10318,11 @@ hipblasZtpsv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasStpsvBatched_full_rank,&
-      
-hipblasStpsvBatched_rank_0,&
-      
-hipblasStpsvBatched_rank_1
+    module procedure &
+      hipblasStpsvBatched_full_rank,&
+      hipblasStpsvBatched_rank_0,&
+      hipblasStpsvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDtpsvBatched
@@ -10907,13 +10347,11 @@ hipblasStpsvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDtpsvBatched_full_rank,&
-      
-hipblasDtpsvBatched_rank_0,&
-      
-hipblasDtpsvBatched_rank_1
+    module procedure &
+      hipblasDtpsvBatched_full_rank,&
+      hipblasDtpsvBatched_rank_0,&
+      hipblasDtpsvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCtpsvBatched
@@ -10938,13 +10376,11 @@ hipblasDtpsvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCtpsvBatched_full_rank,&
-      
-hipblasCtpsvBatched_rank_0,&
-      
-hipblasCtpsvBatched_rank_1
+    module procedure &
+      hipblasCtpsvBatched_full_rank,&
+      hipblasCtpsvBatched_rank_0,&
+      hipblasCtpsvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZtpsvBatched
@@ -10969,13 +10405,11 @@ hipblasCtpsvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZtpsvBatched_full_rank,&
-      
-hipblasZtpsvBatched_rank_0,&
-      
-hipblasZtpsvBatched_rank_1
+    module procedure &
+      hipblasZtpsvBatched_full_rank,&
+      hipblasZtpsvBatched_rank_0,&
+      hipblasZtpsvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasStpsvStridedBatched
@@ -11002,11 +10436,10 @@ hipblasZtpsvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasStpsvStridedBatched_rank_0,&
-      
-hipblasStpsvStridedBatched_rank_1
+    module procedure &
+      hipblasStpsvStridedBatched_rank_0,&
+      hipblasStpsvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDtpsvStridedBatched
@@ -11033,11 +10466,10 @@ hipblasStpsvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDtpsvStridedBatched_rank_0,&
-      
-hipblasDtpsvStridedBatched_rank_1
+    module procedure &
+      hipblasDtpsvStridedBatched_rank_0,&
+      hipblasDtpsvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCtpsvStridedBatched
@@ -11064,11 +10496,10 @@ hipblasDtpsvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCtpsvStridedBatched_rank_0,&
-      
-hipblasCtpsvStridedBatched_rank_1
+    module procedure &
+      hipblasCtpsvStridedBatched_rank_0,&
+      hipblasCtpsvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZtpsvStridedBatched
@@ -11095,11 +10526,10 @@ hipblasCtpsvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZtpsvStridedBatched_rank_0,&
-      
-hipblasZtpsvStridedBatched_rank_1
+    module procedure &
+      hipblasZtpsvStridedBatched_rank_0,&
+      hipblasZtpsvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasStrmv
@@ -11124,13 +10554,11 @@ hipblasZtpsvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasStrmv_full_rank,&
-      
-hipblasStrmv_rank_0,&
-      
-hipblasStrmv_rank_1
+    module procedure &
+      hipblasStrmv_full_rank,&
+      hipblasStrmv_rank_0,&
+      hipblasStrmv_rank_1
 #endif
-
   end interface
   
   interface hipblasDtrmv
@@ -11155,13 +10583,11 @@ hipblasStrmv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDtrmv_full_rank,&
-      
-hipblasDtrmv_rank_0,&
-      
-hipblasDtrmv_rank_1
+    module procedure &
+      hipblasDtrmv_full_rank,&
+      hipblasDtrmv_rank_0,&
+      hipblasDtrmv_rank_1
 #endif
-
   end interface
   
   interface hipblasCtrmv
@@ -11186,13 +10612,11 @@ hipblasDtrmv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCtrmv_full_rank,&
-      
-hipblasCtrmv_rank_0,&
-      
-hipblasCtrmv_rank_1
+    module procedure &
+      hipblasCtrmv_full_rank,&
+      hipblasCtrmv_rank_0,&
+      hipblasCtrmv_rank_1
 #endif
-
   end interface
   
   interface hipblasZtrmv
@@ -11217,13 +10641,11 @@ hipblasCtrmv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZtrmv_full_rank,&
-      
-hipblasZtrmv_rank_0,&
-      
-hipblasZtrmv_rank_1
+    module procedure &
+      hipblasZtrmv_full_rank,&
+      hipblasZtrmv_rank_0,&
+      hipblasZtrmv_rank_1
 #endif
-
   end interface
   
   interface hipblasStrmvBatched
@@ -11249,13 +10671,11 @@ hipblasZtrmv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasStrmvBatched_full_rank,&
-      
-hipblasStrmvBatched_rank_0,&
-      
-hipblasStrmvBatched_rank_1
+    module procedure &
+      hipblasStrmvBatched_full_rank,&
+      hipblasStrmvBatched_rank_0,&
+      hipblasStrmvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDtrmvBatched
@@ -11281,13 +10701,11 @@ hipblasStrmvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDtrmvBatched_full_rank,&
-      
-hipblasDtrmvBatched_rank_0,&
-      
-hipblasDtrmvBatched_rank_1
+    module procedure &
+      hipblasDtrmvBatched_full_rank,&
+      hipblasDtrmvBatched_rank_0,&
+      hipblasDtrmvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCtrmvBatched
@@ -11313,13 +10731,11 @@ hipblasDtrmvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCtrmvBatched_full_rank,&
-      
-hipblasCtrmvBatched_rank_0,&
-      
-hipblasCtrmvBatched_rank_1
+    module procedure &
+      hipblasCtrmvBatched_full_rank,&
+      hipblasCtrmvBatched_rank_0,&
+      hipblasCtrmvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZtrmvBatched
@@ -11345,13 +10761,11 @@ hipblasCtrmvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZtrmvBatched_full_rank,&
-      
-hipblasZtrmvBatched_rank_0,&
-      
-hipblasZtrmvBatched_rank_1
+    module procedure &
+      hipblasZtrmvBatched_full_rank,&
+      hipblasZtrmvBatched_rank_0,&
+      hipblasZtrmvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasStrmvStridedBatched
@@ -11379,13 +10793,11 @@ hipblasZtrmvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasStrmvStridedBatched_full_rank,&
-      
-hipblasStrmvStridedBatched_rank_0,&
-      
-hipblasStrmvStridedBatched_rank_1
+    module procedure &
+      hipblasStrmvStridedBatched_full_rank,&
+      hipblasStrmvStridedBatched_rank_0,&
+      hipblasStrmvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDtrmvStridedBatched
@@ -11413,13 +10825,11 @@ hipblasStrmvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDtrmvStridedBatched_full_rank,&
-      
-hipblasDtrmvStridedBatched_rank_0,&
-      
-hipblasDtrmvStridedBatched_rank_1
+    module procedure &
+      hipblasDtrmvStridedBatched_full_rank,&
+      hipblasDtrmvStridedBatched_rank_0,&
+      hipblasDtrmvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCtrmvStridedBatched
@@ -11447,13 +10857,11 @@ hipblasDtrmvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCtrmvStridedBatched_full_rank,&
-      
-hipblasCtrmvStridedBatched_rank_0,&
-      
-hipblasCtrmvStridedBatched_rank_1
+    module procedure &
+      hipblasCtrmvStridedBatched_full_rank,&
+      hipblasCtrmvStridedBatched_rank_0,&
+      hipblasCtrmvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZtrmvStridedBatched
@@ -11481,13 +10889,11 @@ hipblasCtrmvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZtrmvStridedBatched_full_rank,&
-      
-hipblasZtrmvStridedBatched_rank_0,&
-      
-hipblasZtrmvStridedBatched_rank_1
+    module procedure &
+      hipblasZtrmvStridedBatched_full_rank,&
+      hipblasZtrmvStridedBatched_rank_0,&
+      hipblasZtrmvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasStrsv
@@ -11512,13 +10918,11 @@ hipblasZtrmvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasStrsv_full_rank,&
-      
-hipblasStrsv_rank_0,&
-      
-hipblasStrsv_rank_1
+    module procedure &
+      hipblasStrsv_full_rank,&
+      hipblasStrsv_rank_0,&
+      hipblasStrsv_rank_1
 #endif
-
   end interface
   
   interface hipblasDtrsv
@@ -11543,13 +10947,11 @@ hipblasStrsv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDtrsv_full_rank,&
-      
-hipblasDtrsv_rank_0,&
-      
-hipblasDtrsv_rank_1
+    module procedure &
+      hipblasDtrsv_full_rank,&
+      hipblasDtrsv_rank_0,&
+      hipblasDtrsv_rank_1
 #endif
-
   end interface
   
   interface hipblasCtrsv
@@ -11574,13 +10976,11 @@ hipblasDtrsv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCtrsv_full_rank,&
-      
-hipblasCtrsv_rank_0,&
-      
-hipblasCtrsv_rank_1
+    module procedure &
+      hipblasCtrsv_full_rank,&
+      hipblasCtrsv_rank_0,&
+      hipblasCtrsv_rank_1
 #endif
-
   end interface
   
   interface hipblasZtrsv
@@ -11605,13 +11005,11 @@ hipblasCtrsv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZtrsv_full_rank,&
-      
-hipblasZtrsv_rank_0,&
-      
-hipblasZtrsv_rank_1
+    module procedure &
+      hipblasZtrsv_full_rank,&
+      hipblasZtrsv_rank_0,&
+      hipblasZtrsv_rank_1
 #endif
-
   end interface
   
   interface hipblasStrsvBatched
@@ -11637,13 +11035,11 @@ hipblasZtrsv_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasStrsvBatched_full_rank,&
-      
-hipblasStrsvBatched_rank_0,&
-      
-hipblasStrsvBatched_rank_1
+    module procedure &
+      hipblasStrsvBatched_full_rank,&
+      hipblasStrsvBatched_rank_0,&
+      hipblasStrsvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDtrsvBatched
@@ -11669,13 +11065,11 @@ hipblasStrsvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDtrsvBatched_full_rank,&
-      
-hipblasDtrsvBatched_rank_0,&
-      
-hipblasDtrsvBatched_rank_1
+    module procedure &
+      hipblasDtrsvBatched_full_rank,&
+      hipblasDtrsvBatched_rank_0,&
+      hipblasDtrsvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCtrsvBatched
@@ -11701,13 +11095,11 @@ hipblasDtrsvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCtrsvBatched_full_rank,&
-      
-hipblasCtrsvBatched_rank_0,&
-      
-hipblasCtrsvBatched_rank_1
+    module procedure &
+      hipblasCtrsvBatched_full_rank,&
+      hipblasCtrsvBatched_rank_0,&
+      hipblasCtrsvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZtrsvBatched
@@ -11733,13 +11125,11 @@ hipblasCtrsvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZtrsvBatched_full_rank,&
-      
-hipblasZtrsvBatched_rank_0,&
-      
-hipblasZtrsvBatched_rank_1
+    module procedure &
+      hipblasZtrsvBatched_full_rank,&
+      hipblasZtrsvBatched_rank_0,&
+      hipblasZtrsvBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasStrsvStridedBatched
@@ -11767,13 +11157,11 @@ hipblasZtrsvBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasStrsvStridedBatched_full_rank,&
-      
-hipblasStrsvStridedBatched_rank_0,&
-      
-hipblasStrsvStridedBatched_rank_1
+    module procedure &
+      hipblasStrsvStridedBatched_full_rank,&
+      hipblasStrsvStridedBatched_rank_0,&
+      hipblasStrsvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDtrsvStridedBatched
@@ -11801,13 +11189,11 @@ hipblasStrsvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDtrsvStridedBatched_full_rank,&
-      
-hipblasDtrsvStridedBatched_rank_0,&
-      
-hipblasDtrsvStridedBatched_rank_1
+    module procedure &
+      hipblasDtrsvStridedBatched_full_rank,&
+      hipblasDtrsvStridedBatched_rank_0,&
+      hipblasDtrsvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCtrsvStridedBatched
@@ -11835,13 +11221,11 @@ hipblasDtrsvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCtrsvStridedBatched_full_rank,&
-      
-hipblasCtrsvStridedBatched_rank_0,&
-      
-hipblasCtrsvStridedBatched_rank_1
+    module procedure &
+      hipblasCtrsvStridedBatched_full_rank,&
+      hipblasCtrsvStridedBatched_rank_0,&
+      hipblasCtrsvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZtrsvStridedBatched
@@ -11869,13 +11253,11 @@ hipblasCtrsvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZtrsvStridedBatched_full_rank,&
-      
-hipblasZtrsvStridedBatched_rank_0,&
-      
-hipblasZtrsvStridedBatched_rank_1
+    module procedure &
+      hipblasZtrsvStridedBatched_full_rank,&
+      hipblasZtrsvStridedBatched_rank_0,&
+      hipblasZtrsvStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCherk
@@ -11902,13 +11284,11 @@ hipblasZtrsvStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCherk_full_rank,&
-      
-hipblasCherk_rank_0,&
-      
-hipblasCherk_rank_1
+    module procedure &
+      hipblasCherk_full_rank,&
+      hipblasCherk_rank_0,&
+      hipblasCherk_rank_1
 #endif
-
   end interface
   
   interface hipblasZherk
@@ -11935,13 +11315,11 @@ hipblasCherk_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZherk_full_rank,&
-      
-hipblasZherk_rank_0,&
-      
-hipblasZherk_rank_1
+    module procedure &
+      hipblasZherk_full_rank,&
+      hipblasZherk_rank_0,&
+      hipblasZherk_rank_1
 #endif
-
   end interface
   
   interface hipblasCherkBatched
@@ -11969,13 +11347,11 @@ hipblasZherk_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCherkBatched_full_rank,&
-      
-hipblasCherkBatched_rank_0,&
-      
-hipblasCherkBatched_rank_1
+    module procedure &
+      hipblasCherkBatched_full_rank,&
+      hipblasCherkBatched_rank_0,&
+      hipblasCherkBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZherkBatched
@@ -12003,13 +11379,11 @@ hipblasCherkBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZherkBatched_full_rank,&
-      
-hipblasZherkBatched_rank_0,&
-      
-hipblasZherkBatched_rank_1
+    module procedure &
+      hipblasZherkBatched_full_rank,&
+      hipblasZherkBatched_rank_0,&
+      hipblasZherkBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCherkStridedBatched
@@ -12039,13 +11413,11 @@ hipblasZherkBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCherkStridedBatched_full_rank,&
-      
-hipblasCherkStridedBatched_rank_0,&
-      
-hipblasCherkStridedBatched_rank_1
+    module procedure &
+      hipblasCherkStridedBatched_full_rank,&
+      hipblasCherkStridedBatched_rank_0,&
+      hipblasCherkStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZherkStridedBatched
@@ -12075,13 +11447,11 @@ hipblasCherkStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZherkStridedBatched_full_rank,&
-      
-hipblasZherkStridedBatched_rank_0,&
-      
-hipblasZherkStridedBatched_rank_1
+    module procedure &
+      hipblasZherkStridedBatched_full_rank,&
+      hipblasZherkStridedBatched_rank_0,&
+      hipblasZherkStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCherkx
@@ -12110,13 +11480,11 @@ hipblasZherkStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCherkx_full_rank,&
-      
-hipblasCherkx_rank_0,&
-      
-hipblasCherkx_rank_1
+    module procedure &
+      hipblasCherkx_full_rank,&
+      hipblasCherkx_rank_0,&
+      hipblasCherkx_rank_1
 #endif
-
   end interface
   
   interface hipblasZherkx
@@ -12145,13 +11513,11 @@ hipblasCherkx_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZherkx_full_rank,&
-      
-hipblasZherkx_rank_0,&
-      
-hipblasZherkx_rank_1
+    module procedure &
+      hipblasZherkx_full_rank,&
+      hipblasZherkx_rank_0,&
+      hipblasZherkx_rank_1
 #endif
-
   end interface
   
   interface hipblasCherkxBatched
@@ -12181,13 +11547,11 @@ hipblasZherkx_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCherkxBatched_full_rank,&
-      
-hipblasCherkxBatched_rank_0,&
-      
-hipblasCherkxBatched_rank_1
+    module procedure &
+      hipblasCherkxBatched_full_rank,&
+      hipblasCherkxBatched_rank_0,&
+      hipblasCherkxBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZherkxBatched
@@ -12217,13 +11581,11 @@ hipblasCherkxBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZherkxBatched_full_rank,&
-      
-hipblasZherkxBatched_rank_0,&
-      
-hipblasZherkxBatched_rank_1
+    module procedure &
+      hipblasZherkxBatched_full_rank,&
+      hipblasZherkxBatched_rank_0,&
+      hipblasZherkxBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCherkxStridedBatched
@@ -12256,13 +11618,11 @@ hipblasZherkxBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCherkxStridedBatched_full_rank,&
-      
-hipblasCherkxStridedBatched_rank_0,&
-      
-hipblasCherkxStridedBatched_rank_1
+    module procedure &
+      hipblasCherkxStridedBatched_full_rank,&
+      hipblasCherkxStridedBatched_rank_0,&
+      hipblasCherkxStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZherkxStridedBatched
@@ -12295,13 +11655,11 @@ hipblasCherkxStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZherkxStridedBatched_full_rank,&
-      
-hipblasZherkxStridedBatched_rank_0,&
-      
-hipblasZherkxStridedBatched_rank_1
+    module procedure &
+      hipblasZherkxStridedBatched_full_rank,&
+      hipblasZherkxStridedBatched_rank_0,&
+      hipblasZherkxStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCher2k
@@ -12330,13 +11688,11 @@ hipblasZherkxStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCher2k_full_rank,&
-      
-hipblasCher2k_rank_0,&
-      
-hipblasCher2k_rank_1
+    module procedure &
+      hipblasCher2k_full_rank,&
+      hipblasCher2k_rank_0,&
+      hipblasCher2k_rank_1
 #endif
-
   end interface
   
   interface hipblasZher2k
@@ -12365,13 +11721,11 @@ hipblasCher2k_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZher2k_full_rank,&
-      
-hipblasZher2k_rank_0,&
-      
-hipblasZher2k_rank_1
+    module procedure &
+      hipblasZher2k_full_rank,&
+      hipblasZher2k_rank_0,&
+      hipblasZher2k_rank_1
 #endif
-
   end interface
   
   interface hipblasCher2kBatched
@@ -12401,13 +11755,11 @@ hipblasZher2k_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCher2kBatched_full_rank,&
-      
-hipblasCher2kBatched_rank_0,&
-      
-hipblasCher2kBatched_rank_1
+    module procedure &
+      hipblasCher2kBatched_full_rank,&
+      hipblasCher2kBatched_rank_0,&
+      hipblasCher2kBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZher2kBatched
@@ -12437,13 +11789,11 @@ hipblasCher2kBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZher2kBatched_full_rank,&
-      
-hipblasZher2kBatched_rank_0,&
-      
-hipblasZher2kBatched_rank_1
+    module procedure &
+      hipblasZher2kBatched_full_rank,&
+      hipblasZher2kBatched_rank_0,&
+      hipblasZher2kBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCher2kStridedBatched
@@ -12476,13 +11826,11 @@ hipblasZher2kBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCher2kStridedBatched_full_rank,&
-      
-hipblasCher2kStridedBatched_rank_0,&
-      
-hipblasCher2kStridedBatched_rank_1
+    module procedure &
+      hipblasCher2kStridedBatched_full_rank,&
+      hipblasCher2kStridedBatched_rank_0,&
+      hipblasCher2kStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZher2kStridedBatched
@@ -12515,13 +11863,11 @@ hipblasCher2kStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZher2kStridedBatched_full_rank,&
-      
-hipblasZher2kStridedBatched_rank_0,&
-      
-hipblasZher2kStridedBatched_rank_1
+    module procedure &
+      hipblasZher2kStridedBatched_full_rank,&
+      hipblasZher2kStridedBatched_rank_0,&
+      hipblasZher2kStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSsymm
@@ -12550,13 +11896,11 @@ hipblasZher2kStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSsymm_full_rank,&
-      
-hipblasSsymm_rank_0,&
-      
-hipblasSsymm_rank_1
+    module procedure &
+      hipblasSsymm_full_rank,&
+      hipblasSsymm_rank_0,&
+      hipblasSsymm_rank_1
 #endif
-
   end interface
   
   interface hipblasDsymm
@@ -12585,13 +11929,11 @@ hipblasSsymm_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDsymm_full_rank,&
-      
-hipblasDsymm_rank_0,&
-      
-hipblasDsymm_rank_1
+    module procedure &
+      hipblasDsymm_full_rank,&
+      hipblasDsymm_rank_0,&
+      hipblasDsymm_rank_1
 #endif
-
   end interface
   
   interface hipblasCsymm
@@ -12620,13 +11962,11 @@ hipblasDsymm_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCsymm_full_rank,&
-      
-hipblasCsymm_rank_0,&
-      
-hipblasCsymm_rank_1
+    module procedure &
+      hipblasCsymm_full_rank,&
+      hipblasCsymm_rank_0,&
+      hipblasCsymm_rank_1
 #endif
-
   end interface
   
   interface hipblasZsymm
@@ -12655,13 +11995,11 @@ hipblasCsymm_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZsymm_full_rank,&
-      
-hipblasZsymm_rank_0,&
-      
-hipblasZsymm_rank_1
+    module procedure &
+      hipblasZsymm_full_rank,&
+      hipblasZsymm_rank_0,&
+      hipblasZsymm_rank_1
 #endif
-
   end interface
   
   interface hipblasSsymmBatched
@@ -12691,13 +12029,11 @@ hipblasZsymm_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSsymmBatched_full_rank,&
-      
-hipblasSsymmBatched_rank_0,&
-      
-hipblasSsymmBatched_rank_1
+    module procedure &
+      hipblasSsymmBatched_full_rank,&
+      hipblasSsymmBatched_rank_0,&
+      hipblasSsymmBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDsymmBatched
@@ -12727,13 +12063,11 @@ hipblasSsymmBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDsymmBatched_full_rank,&
-      
-hipblasDsymmBatched_rank_0,&
-      
-hipblasDsymmBatched_rank_1
+    module procedure &
+      hipblasDsymmBatched_full_rank,&
+      hipblasDsymmBatched_rank_0,&
+      hipblasDsymmBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCsymmBatched
@@ -12763,13 +12097,11 @@ hipblasDsymmBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCsymmBatched_full_rank,&
-      
-hipblasCsymmBatched_rank_0,&
-      
-hipblasCsymmBatched_rank_1
+    module procedure &
+      hipblasCsymmBatched_full_rank,&
+      hipblasCsymmBatched_rank_0,&
+      hipblasCsymmBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZsymmBatched
@@ -12799,13 +12131,11 @@ hipblasCsymmBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZsymmBatched_full_rank,&
-      
-hipblasZsymmBatched_rank_0,&
-      
-hipblasZsymmBatched_rank_1
+    module procedure &
+      hipblasZsymmBatched_full_rank,&
+      hipblasZsymmBatched_rank_0,&
+      hipblasZsymmBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSsymmStridedBatched
@@ -12838,13 +12168,11 @@ hipblasZsymmBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSsymmStridedBatched_full_rank,&
-      
-hipblasSsymmStridedBatched_rank_0,&
-      
-hipblasSsymmStridedBatched_rank_1
+    module procedure &
+      hipblasSsymmStridedBatched_full_rank,&
+      hipblasSsymmStridedBatched_rank_0,&
+      hipblasSsymmStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDsymmStridedBatched
@@ -12877,13 +12205,11 @@ hipblasSsymmStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDsymmStridedBatched_full_rank,&
-      
-hipblasDsymmStridedBatched_rank_0,&
-      
-hipblasDsymmStridedBatched_rank_1
+    module procedure &
+      hipblasDsymmStridedBatched_full_rank,&
+      hipblasDsymmStridedBatched_rank_0,&
+      hipblasDsymmStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCsymmStridedBatched
@@ -12916,13 +12242,11 @@ hipblasDsymmStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCsymmStridedBatched_full_rank,&
-      
-hipblasCsymmStridedBatched_rank_0,&
-      
-hipblasCsymmStridedBatched_rank_1
+    module procedure &
+      hipblasCsymmStridedBatched_full_rank,&
+      hipblasCsymmStridedBatched_rank_0,&
+      hipblasCsymmStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZsymmStridedBatched
@@ -12955,13 +12279,11 @@ hipblasCsymmStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZsymmStridedBatched_full_rank,&
-      
-hipblasZsymmStridedBatched_rank_0,&
-      
-hipblasZsymmStridedBatched_rank_1
+    module procedure &
+      hipblasZsymmStridedBatched_full_rank,&
+      hipblasZsymmStridedBatched_rank_0,&
+      hipblasZsymmStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSsyrk
@@ -12988,13 +12310,11 @@ hipblasZsymmStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSsyrk_full_rank,&
-      
-hipblasSsyrk_rank_0,&
-      
-hipblasSsyrk_rank_1
+    module procedure &
+      hipblasSsyrk_full_rank,&
+      hipblasSsyrk_rank_0,&
+      hipblasSsyrk_rank_1
 #endif
-
   end interface
   
   interface hipblasDsyrk
@@ -13021,13 +12341,11 @@ hipblasSsyrk_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDsyrk_full_rank,&
-      
-hipblasDsyrk_rank_0,&
-      
-hipblasDsyrk_rank_1
+    module procedure &
+      hipblasDsyrk_full_rank,&
+      hipblasDsyrk_rank_0,&
+      hipblasDsyrk_rank_1
 #endif
-
   end interface
   
   interface hipblasCsyrk
@@ -13054,13 +12372,11 @@ hipblasDsyrk_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCsyrk_full_rank,&
-      
-hipblasCsyrk_rank_0,&
-      
-hipblasCsyrk_rank_1
+    module procedure &
+      hipblasCsyrk_full_rank,&
+      hipblasCsyrk_rank_0,&
+      hipblasCsyrk_rank_1
 #endif
-
   end interface
   
   interface hipblasZsyrk
@@ -13087,13 +12403,11 @@ hipblasCsyrk_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZsyrk_full_rank,&
-      
-hipblasZsyrk_rank_0,&
-      
-hipblasZsyrk_rank_1
+    module procedure &
+      hipblasZsyrk_full_rank,&
+      hipblasZsyrk_rank_0,&
+      hipblasZsyrk_rank_1
 #endif
-
   end interface
   
   interface hipblasSsyrkBatched
@@ -13121,13 +12435,11 @@ hipblasZsyrk_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSsyrkBatched_full_rank,&
-      
-hipblasSsyrkBatched_rank_0,&
-      
-hipblasSsyrkBatched_rank_1
+    module procedure &
+      hipblasSsyrkBatched_full_rank,&
+      hipblasSsyrkBatched_rank_0,&
+      hipblasSsyrkBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDsyrkBatched
@@ -13155,13 +12467,11 @@ hipblasSsyrkBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDsyrkBatched_full_rank,&
-      
-hipblasDsyrkBatched_rank_0,&
-      
-hipblasDsyrkBatched_rank_1
+    module procedure &
+      hipblasDsyrkBatched_full_rank,&
+      hipblasDsyrkBatched_rank_0,&
+      hipblasDsyrkBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCsyrkBatched
@@ -13189,13 +12499,11 @@ hipblasDsyrkBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCsyrkBatched_full_rank,&
-      
-hipblasCsyrkBatched_rank_0,&
-      
-hipblasCsyrkBatched_rank_1
+    module procedure &
+      hipblasCsyrkBatched_full_rank,&
+      hipblasCsyrkBatched_rank_0,&
+      hipblasCsyrkBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZsyrkBatched
@@ -13223,13 +12531,11 @@ hipblasCsyrkBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZsyrkBatched_full_rank,&
-      
-hipblasZsyrkBatched_rank_0,&
-      
-hipblasZsyrkBatched_rank_1
+    module procedure &
+      hipblasZsyrkBatched_full_rank,&
+      hipblasZsyrkBatched_rank_0,&
+      hipblasZsyrkBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSsyrkStridedBatched
@@ -13259,13 +12565,11 @@ hipblasZsyrkBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSsyrkStridedBatched_full_rank,&
-      
-hipblasSsyrkStridedBatched_rank_0,&
-      
-hipblasSsyrkStridedBatched_rank_1
+    module procedure &
+      hipblasSsyrkStridedBatched_full_rank,&
+      hipblasSsyrkStridedBatched_rank_0,&
+      hipblasSsyrkStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDsyrkStridedBatched
@@ -13295,13 +12599,11 @@ hipblasSsyrkStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDsyrkStridedBatched_full_rank,&
-      
-hipblasDsyrkStridedBatched_rank_0,&
-      
-hipblasDsyrkStridedBatched_rank_1
+    module procedure &
+      hipblasDsyrkStridedBatched_full_rank,&
+      hipblasDsyrkStridedBatched_rank_0,&
+      hipblasDsyrkStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCsyrkStridedBatched
@@ -13331,13 +12633,11 @@ hipblasDsyrkStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCsyrkStridedBatched_full_rank,&
-      
-hipblasCsyrkStridedBatched_rank_0,&
-      
-hipblasCsyrkStridedBatched_rank_1
+    module procedure &
+      hipblasCsyrkStridedBatched_full_rank,&
+      hipblasCsyrkStridedBatched_rank_0,&
+      hipblasCsyrkStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZsyrkStridedBatched
@@ -13367,13 +12667,11 @@ hipblasCsyrkStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZsyrkStridedBatched_full_rank,&
-      
-hipblasZsyrkStridedBatched_rank_0,&
-      
-hipblasZsyrkStridedBatched_rank_1
+    module procedure &
+      hipblasZsyrkStridedBatched_full_rank,&
+      hipblasZsyrkStridedBatched_rank_0,&
+      hipblasZsyrkStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSsyr2k
@@ -13402,13 +12700,11 @@ hipblasZsyrkStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSsyr2k_full_rank,&
-      
-hipblasSsyr2k_rank_0,&
-      
-hipblasSsyr2k_rank_1
+    module procedure &
+      hipblasSsyr2k_full_rank,&
+      hipblasSsyr2k_rank_0,&
+      hipblasSsyr2k_rank_1
 #endif
-
   end interface
   
   interface hipblasDsyr2k
@@ -13437,13 +12733,11 @@ hipblasSsyr2k_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDsyr2k_full_rank,&
-      
-hipblasDsyr2k_rank_0,&
-      
-hipblasDsyr2k_rank_1
+    module procedure &
+      hipblasDsyr2k_full_rank,&
+      hipblasDsyr2k_rank_0,&
+      hipblasDsyr2k_rank_1
 #endif
-
   end interface
   
   interface hipblasCsyr2k
@@ -13472,13 +12766,11 @@ hipblasDsyr2k_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCsyr2k_full_rank,&
-      
-hipblasCsyr2k_rank_0,&
-      
-hipblasCsyr2k_rank_1
+    module procedure &
+      hipblasCsyr2k_full_rank,&
+      hipblasCsyr2k_rank_0,&
+      hipblasCsyr2k_rank_1
 #endif
-
   end interface
   
   interface hipblasZsyr2k
@@ -13507,13 +12799,11 @@ hipblasCsyr2k_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZsyr2k_full_rank,&
-      
-hipblasZsyr2k_rank_0,&
-      
-hipblasZsyr2k_rank_1
+    module procedure &
+      hipblasZsyr2k_full_rank,&
+      hipblasZsyr2k_rank_0,&
+      hipblasZsyr2k_rank_1
 #endif
-
   end interface
   
   interface hipblasSsyr2kBatched
@@ -13543,13 +12833,11 @@ hipblasZsyr2k_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSsyr2kBatched_full_rank,&
-      
-hipblasSsyr2kBatched_rank_0,&
-      
-hipblasSsyr2kBatched_rank_1
+    module procedure &
+      hipblasSsyr2kBatched_full_rank,&
+      hipblasSsyr2kBatched_rank_0,&
+      hipblasSsyr2kBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDsyr2kBatched
@@ -13579,13 +12867,11 @@ hipblasSsyr2kBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDsyr2kBatched_full_rank,&
-      
-hipblasDsyr2kBatched_rank_0,&
-      
-hipblasDsyr2kBatched_rank_1
+    module procedure &
+      hipblasDsyr2kBatched_full_rank,&
+      hipblasDsyr2kBatched_rank_0,&
+      hipblasDsyr2kBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCsyr2kBatched
@@ -13615,13 +12901,11 @@ hipblasDsyr2kBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCsyr2kBatched_full_rank,&
-      
-hipblasCsyr2kBatched_rank_0,&
-      
-hipblasCsyr2kBatched_rank_1
+    module procedure &
+      hipblasCsyr2kBatched_full_rank,&
+      hipblasCsyr2kBatched_rank_0,&
+      hipblasCsyr2kBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZsyr2kBatched
@@ -13651,13 +12935,11 @@ hipblasCsyr2kBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZsyr2kBatched_full_rank,&
-      
-hipblasZsyr2kBatched_rank_0,&
-      
-hipblasZsyr2kBatched_rank_1
+    module procedure &
+      hipblasZsyr2kBatched_full_rank,&
+      hipblasZsyr2kBatched_rank_0,&
+      hipblasZsyr2kBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSsyr2kStridedBatched
@@ -13690,13 +12972,11 @@ hipblasZsyr2kBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSsyr2kStridedBatched_full_rank,&
-      
-hipblasSsyr2kStridedBatched_rank_0,&
-      
-hipblasSsyr2kStridedBatched_rank_1
+    module procedure &
+      hipblasSsyr2kStridedBatched_full_rank,&
+      hipblasSsyr2kStridedBatched_rank_0,&
+      hipblasSsyr2kStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDsyr2kStridedBatched
@@ -13729,13 +13009,11 @@ hipblasSsyr2kStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDsyr2kStridedBatched_full_rank,&
-      
-hipblasDsyr2kStridedBatched_rank_0,&
-      
-hipblasDsyr2kStridedBatched_rank_1
+    module procedure &
+      hipblasDsyr2kStridedBatched_full_rank,&
+      hipblasDsyr2kStridedBatched_rank_0,&
+      hipblasDsyr2kStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCsyr2kStridedBatched
@@ -13768,13 +13046,11 @@ hipblasDsyr2kStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCsyr2kStridedBatched_full_rank,&
-      
-hipblasCsyr2kStridedBatched_rank_0,&
-      
-hipblasCsyr2kStridedBatched_rank_1
+    module procedure &
+      hipblasCsyr2kStridedBatched_full_rank,&
+      hipblasCsyr2kStridedBatched_rank_0,&
+      hipblasCsyr2kStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZsyr2kStridedBatched
@@ -13807,13 +13083,11 @@ hipblasCsyr2kStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZsyr2kStridedBatched_full_rank,&
-      
-hipblasZsyr2kStridedBatched_rank_0,&
-      
-hipblasZsyr2kStridedBatched_rank_1
+    module procedure &
+      hipblasZsyr2kStridedBatched_full_rank,&
+      hipblasZsyr2kStridedBatched_rank_0,&
+      hipblasZsyr2kStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSsyrkx
@@ -13842,13 +13116,11 @@ hipblasZsyr2kStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSsyrkx_full_rank,&
-      
-hipblasSsyrkx_rank_0,&
-      
-hipblasSsyrkx_rank_1
+    module procedure &
+      hipblasSsyrkx_full_rank,&
+      hipblasSsyrkx_rank_0,&
+      hipblasSsyrkx_rank_1
 #endif
-
   end interface
   
   interface hipblasDsyrkx
@@ -13877,13 +13149,11 @@ hipblasSsyrkx_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDsyrkx_full_rank,&
-      
-hipblasDsyrkx_rank_0,&
-      
-hipblasDsyrkx_rank_1
+    module procedure &
+      hipblasDsyrkx_full_rank,&
+      hipblasDsyrkx_rank_0,&
+      hipblasDsyrkx_rank_1
 #endif
-
   end interface
   
   interface hipblasCsyrkx
@@ -13912,13 +13182,11 @@ hipblasDsyrkx_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCsyrkx_full_rank,&
-      
-hipblasCsyrkx_rank_0,&
-      
-hipblasCsyrkx_rank_1
+    module procedure &
+      hipblasCsyrkx_full_rank,&
+      hipblasCsyrkx_rank_0,&
+      hipblasCsyrkx_rank_1
 #endif
-
   end interface
   
   interface hipblasZsyrkx
@@ -13947,13 +13215,11 @@ hipblasCsyrkx_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZsyrkx_full_rank,&
-      
-hipblasZsyrkx_rank_0,&
-      
-hipblasZsyrkx_rank_1
+    module procedure &
+      hipblasZsyrkx_full_rank,&
+      hipblasZsyrkx_rank_0,&
+      hipblasZsyrkx_rank_1
 #endif
-
   end interface
   
   interface hipblasSsyrkxBatched
@@ -13983,13 +13249,11 @@ hipblasZsyrkx_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSsyrkxBatched_full_rank,&
-      
-hipblasSsyrkxBatched_rank_0,&
-      
-hipblasSsyrkxBatched_rank_1
+    module procedure &
+      hipblasSsyrkxBatched_full_rank,&
+      hipblasSsyrkxBatched_rank_0,&
+      hipblasSsyrkxBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDsyrkxBatched
@@ -14019,13 +13283,11 @@ hipblasSsyrkxBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDsyrkxBatched_full_rank,&
-      
-hipblasDsyrkxBatched_rank_0,&
-      
-hipblasDsyrkxBatched_rank_1
+    module procedure &
+      hipblasDsyrkxBatched_full_rank,&
+      hipblasDsyrkxBatched_rank_0,&
+      hipblasDsyrkxBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCsyrkxBatched
@@ -14055,13 +13317,11 @@ hipblasDsyrkxBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCsyrkxBatched_full_rank,&
-      
-hipblasCsyrkxBatched_rank_0,&
-      
-hipblasCsyrkxBatched_rank_1
+    module procedure &
+      hipblasCsyrkxBatched_full_rank,&
+      hipblasCsyrkxBatched_rank_0,&
+      hipblasCsyrkxBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZsyrkxBatched
@@ -14091,13 +13351,11 @@ hipblasCsyrkxBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZsyrkxBatched_full_rank,&
-      
-hipblasZsyrkxBatched_rank_0,&
-      
-hipblasZsyrkxBatched_rank_1
+    module procedure &
+      hipblasZsyrkxBatched_full_rank,&
+      hipblasZsyrkxBatched_rank_0,&
+      hipblasZsyrkxBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSsyrkxStridedBatched
@@ -14130,13 +13388,11 @@ hipblasZsyrkxBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSsyrkxStridedBatched_full_rank,&
-      
-hipblasSsyrkxStridedBatched_rank_0,&
-      
-hipblasSsyrkxStridedBatched_rank_1
+    module procedure &
+      hipblasSsyrkxStridedBatched_full_rank,&
+      hipblasSsyrkxStridedBatched_rank_0,&
+      hipblasSsyrkxStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDsyrkxStridedBatched
@@ -14169,13 +13425,11 @@ hipblasSsyrkxStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDsyrkxStridedBatched_full_rank,&
-      
-hipblasDsyrkxStridedBatched_rank_0,&
-      
-hipblasDsyrkxStridedBatched_rank_1
+    module procedure &
+      hipblasDsyrkxStridedBatched_full_rank,&
+      hipblasDsyrkxStridedBatched_rank_0,&
+      hipblasDsyrkxStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCsyrkxStridedBatched
@@ -14208,13 +13462,11 @@ hipblasDsyrkxStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCsyrkxStridedBatched_full_rank,&
-      
-hipblasCsyrkxStridedBatched_rank_0,&
-      
-hipblasCsyrkxStridedBatched_rank_1
+    module procedure &
+      hipblasCsyrkxStridedBatched_full_rank,&
+      hipblasCsyrkxStridedBatched_rank_0,&
+      hipblasCsyrkxStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZsyrkxStridedBatched
@@ -14247,13 +13499,11 @@ hipblasCsyrkxStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZsyrkxStridedBatched_full_rank,&
-      
-hipblasZsyrkxStridedBatched_rank_0,&
-      
-hipblasZsyrkxStridedBatched_rank_1
+    module procedure &
+      hipblasZsyrkxStridedBatched_full_rank,&
+      hipblasZsyrkxStridedBatched_rank_0,&
+      hipblasZsyrkxStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSgeam
@@ -14282,13 +13532,11 @@ hipblasZsyrkxStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSgeam_full_rank,&
-      
-hipblasSgeam_rank_0,&
-      
-hipblasSgeam_rank_1
+    module procedure &
+      hipblasSgeam_full_rank,&
+      hipblasSgeam_rank_0,&
+      hipblasSgeam_rank_1
 #endif
-
   end interface
   
   interface hipblasDgeam
@@ -14317,13 +13565,11 @@ hipblasSgeam_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDgeam_full_rank,&
-      
-hipblasDgeam_rank_0,&
-      
-hipblasDgeam_rank_1
+    module procedure &
+      hipblasDgeam_full_rank,&
+      hipblasDgeam_rank_0,&
+      hipblasDgeam_rank_1
 #endif
-
   end interface
   
   interface hipblasCgeam
@@ -14352,13 +13598,11 @@ hipblasDgeam_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCgeam_full_rank,&
-      
-hipblasCgeam_rank_0,&
-      
-hipblasCgeam_rank_1
+    module procedure &
+      hipblasCgeam_full_rank,&
+      hipblasCgeam_rank_0,&
+      hipblasCgeam_rank_1
 #endif
-
   end interface
   
   interface hipblasZgeam
@@ -14387,13 +13631,11 @@ hipblasCgeam_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZgeam_full_rank,&
-      
-hipblasZgeam_rank_0,&
-      
-hipblasZgeam_rank_1
+    module procedure &
+      hipblasZgeam_full_rank,&
+      hipblasZgeam_rank_0,&
+      hipblasZgeam_rank_1
 #endif
-
   end interface
   
   interface hipblasSgeamBatched
@@ -14423,13 +13665,11 @@ hipblasZgeam_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSgeamBatched_full_rank,&
-      
-hipblasSgeamBatched_rank_0,&
-      
-hipblasSgeamBatched_rank_1
+    module procedure &
+      hipblasSgeamBatched_full_rank,&
+      hipblasSgeamBatched_rank_0,&
+      hipblasSgeamBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDgeamBatched
@@ -14459,13 +13699,11 @@ hipblasSgeamBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDgeamBatched_full_rank,&
-      
-hipblasDgeamBatched_rank_0,&
-      
-hipblasDgeamBatched_rank_1
+    module procedure &
+      hipblasDgeamBatched_full_rank,&
+      hipblasDgeamBatched_rank_0,&
+      hipblasDgeamBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCgeamBatched
@@ -14495,13 +13733,11 @@ hipblasDgeamBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCgeamBatched_full_rank,&
-      
-hipblasCgeamBatched_rank_0,&
-      
-hipblasCgeamBatched_rank_1
+    module procedure &
+      hipblasCgeamBatched_full_rank,&
+      hipblasCgeamBatched_rank_0,&
+      hipblasCgeamBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZgeamBatched
@@ -14531,13 +13767,11 @@ hipblasCgeamBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZgeamBatched_full_rank,&
-      
-hipblasZgeamBatched_rank_0,&
-      
-hipblasZgeamBatched_rank_1
+    module procedure &
+      hipblasZgeamBatched_full_rank,&
+      hipblasZgeamBatched_rank_0,&
+      hipblasZgeamBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSgeamStridedBatched
@@ -14570,13 +13804,11 @@ hipblasZgeamBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSgeamStridedBatched_full_rank,&
-      
-hipblasSgeamStridedBatched_rank_0,&
-      
-hipblasSgeamStridedBatched_rank_1
+    module procedure &
+      hipblasSgeamStridedBatched_full_rank,&
+      hipblasSgeamStridedBatched_rank_0,&
+      hipblasSgeamStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDgeamStridedBatched
@@ -14609,13 +13841,11 @@ hipblasSgeamStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDgeamStridedBatched_full_rank,&
-      
-hipblasDgeamStridedBatched_rank_0,&
-      
-hipblasDgeamStridedBatched_rank_1
+    module procedure &
+      hipblasDgeamStridedBatched_full_rank,&
+      hipblasDgeamStridedBatched_rank_0,&
+      hipblasDgeamStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCgeamStridedBatched
@@ -14648,13 +13878,11 @@ hipblasDgeamStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCgeamStridedBatched_full_rank,&
-      
-hipblasCgeamStridedBatched_rank_0,&
-      
-hipblasCgeamStridedBatched_rank_1
+    module procedure &
+      hipblasCgeamStridedBatched_full_rank,&
+      hipblasCgeamStridedBatched_rank_0,&
+      hipblasCgeamStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZgeamStridedBatched
@@ -14687,13 +13915,11 @@ hipblasCgeamStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZgeamStridedBatched_full_rank,&
-      
-hipblasZgeamStridedBatched_rank_0,&
-      
-hipblasZgeamStridedBatched_rank_1
+    module procedure &
+      hipblasZgeamStridedBatched_full_rank,&
+      hipblasZgeamStridedBatched_rank_0,&
+      hipblasZgeamStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasChemm
@@ -14722,13 +13948,11 @@ hipblasZgeamStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasChemm_full_rank,&
-      
-hipblasChemm_rank_0,&
-      
-hipblasChemm_rank_1
+    module procedure &
+      hipblasChemm_full_rank,&
+      hipblasChemm_rank_0,&
+      hipblasChemm_rank_1
 #endif
-
   end interface
   
   interface hipblasZhemm
@@ -14757,13 +13981,11 @@ hipblasChemm_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZhemm_full_rank,&
-      
-hipblasZhemm_rank_0,&
-      
-hipblasZhemm_rank_1
+    module procedure &
+      hipblasZhemm_full_rank,&
+      hipblasZhemm_rank_0,&
+      hipblasZhemm_rank_1
 #endif
-
   end interface
   
   interface hipblasChemmBatched
@@ -14793,13 +14015,11 @@ hipblasZhemm_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasChemmBatched_full_rank,&
-      
-hipblasChemmBatched_rank_0,&
-      
-hipblasChemmBatched_rank_1
+    module procedure &
+      hipblasChemmBatched_full_rank,&
+      hipblasChemmBatched_rank_0,&
+      hipblasChemmBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZhemmBatched
@@ -14829,13 +14049,11 @@ hipblasChemmBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZhemmBatched_full_rank,&
-      
-hipblasZhemmBatched_rank_0,&
-      
-hipblasZhemmBatched_rank_1
+    module procedure &
+      hipblasZhemmBatched_full_rank,&
+      hipblasZhemmBatched_rank_0,&
+      hipblasZhemmBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasChemmStridedBatched
@@ -14868,13 +14086,11 @@ hipblasZhemmBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasChemmStridedBatched_full_rank,&
-      
-hipblasChemmStridedBatched_rank_0,&
-      
-hipblasChemmStridedBatched_rank_1
+    module procedure &
+      hipblasChemmStridedBatched_full_rank,&
+      hipblasChemmStridedBatched_rank_0,&
+      hipblasChemmStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZhemmStridedBatched
@@ -14907,13 +14123,11 @@ hipblasChemmStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZhemmStridedBatched_full_rank,&
-      
-hipblasZhemmStridedBatched_rank_0,&
-      
-hipblasZhemmStridedBatched_rank_1
+    module procedure &
+      hipblasZhemmStridedBatched_full_rank,&
+      hipblasZhemmStridedBatched_rank_0,&
+      hipblasZhemmStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasStrmm
@@ -14941,13 +14155,11 @@ hipblasZhemmStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasStrmm_full_rank,&
-      
-hipblasStrmm_rank_0,&
-      
-hipblasStrmm_rank_1
+    module procedure &
+      hipblasStrmm_full_rank,&
+      hipblasStrmm_rank_0,&
+      hipblasStrmm_rank_1
 #endif
-
   end interface
   
   interface hipblasDtrmm
@@ -14975,13 +14187,11 @@ hipblasStrmm_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDtrmm_full_rank,&
-      
-hipblasDtrmm_rank_0,&
-      
-hipblasDtrmm_rank_1
+    module procedure &
+      hipblasDtrmm_full_rank,&
+      hipblasDtrmm_rank_0,&
+      hipblasDtrmm_rank_1
 #endif
-
   end interface
   
   interface hipblasCtrmm
@@ -15009,13 +14219,11 @@ hipblasDtrmm_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCtrmm_full_rank,&
-      
-hipblasCtrmm_rank_0,&
-      
-hipblasCtrmm_rank_1
+    module procedure &
+      hipblasCtrmm_full_rank,&
+      hipblasCtrmm_rank_0,&
+      hipblasCtrmm_rank_1
 #endif
-
   end interface
   
   interface hipblasZtrmm
@@ -15043,13 +14251,11 @@ hipblasCtrmm_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZtrmm_full_rank,&
-      
-hipblasZtrmm_rank_0,&
-      
-hipblasZtrmm_rank_1
+    module procedure &
+      hipblasZtrmm_full_rank,&
+      hipblasZtrmm_rank_0,&
+      hipblasZtrmm_rank_1
 #endif
-
   end interface
   
   interface hipblasStrmmBatched
@@ -15078,13 +14284,11 @@ hipblasZtrmm_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasStrmmBatched_full_rank,&
-      
-hipblasStrmmBatched_rank_0,&
-      
-hipblasStrmmBatched_rank_1
+    module procedure &
+      hipblasStrmmBatched_full_rank,&
+      hipblasStrmmBatched_rank_0,&
+      hipblasStrmmBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDtrmmBatched
@@ -15113,13 +14317,11 @@ hipblasStrmmBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDtrmmBatched_full_rank,&
-      
-hipblasDtrmmBatched_rank_0,&
-      
-hipblasDtrmmBatched_rank_1
+    module procedure &
+      hipblasDtrmmBatched_full_rank,&
+      hipblasDtrmmBatched_rank_0,&
+      hipblasDtrmmBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCtrmmBatched
@@ -15148,13 +14350,11 @@ hipblasDtrmmBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCtrmmBatched_full_rank,&
-      
-hipblasCtrmmBatched_rank_0,&
-      
-hipblasCtrmmBatched_rank_1
+    module procedure &
+      hipblasCtrmmBatched_full_rank,&
+      hipblasCtrmmBatched_rank_0,&
+      hipblasCtrmmBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZtrmmBatched
@@ -15183,13 +14383,11 @@ hipblasCtrmmBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZtrmmBatched_full_rank,&
-      
-hipblasZtrmmBatched_rank_0,&
-      
-hipblasZtrmmBatched_rank_1
+    module procedure &
+      hipblasZtrmmBatched_full_rank,&
+      hipblasZtrmmBatched_rank_0,&
+      hipblasZtrmmBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasStrmmStridedBatched
@@ -15220,13 +14418,11 @@ hipblasZtrmmBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasStrmmStridedBatched_full_rank,&
-      
-hipblasStrmmStridedBatched_rank_0,&
-      
-hipblasStrmmStridedBatched_rank_1
+    module procedure &
+      hipblasStrmmStridedBatched_full_rank,&
+      hipblasStrmmStridedBatched_rank_0,&
+      hipblasStrmmStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDtrmmStridedBatched
@@ -15257,13 +14453,11 @@ hipblasStrmmStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDtrmmStridedBatched_full_rank,&
-      
-hipblasDtrmmStridedBatched_rank_0,&
-      
-hipblasDtrmmStridedBatched_rank_1
+    module procedure &
+      hipblasDtrmmStridedBatched_full_rank,&
+      hipblasDtrmmStridedBatched_rank_0,&
+      hipblasDtrmmStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCtrmmStridedBatched
@@ -15294,13 +14488,11 @@ hipblasDtrmmStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCtrmmStridedBatched_full_rank,&
-      
-hipblasCtrmmStridedBatched_rank_0,&
-      
-hipblasCtrmmStridedBatched_rank_1
+    module procedure &
+      hipblasCtrmmStridedBatched_full_rank,&
+      hipblasCtrmmStridedBatched_rank_0,&
+      hipblasCtrmmStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZtrmmStridedBatched
@@ -15331,13 +14523,11 @@ hipblasCtrmmStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZtrmmStridedBatched_full_rank,&
-      
-hipblasZtrmmStridedBatched_rank_0,&
-      
-hipblasZtrmmStridedBatched_rank_1
+    module procedure &
+      hipblasZtrmmStridedBatched_full_rank,&
+      hipblasZtrmmStridedBatched_rank_0,&
+      hipblasZtrmmStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasStrsm
@@ -15365,13 +14555,11 @@ hipblasZtrmmStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasStrsm_full_rank,&
-      
-hipblasStrsm_rank_0,&
-      
-hipblasStrsm_rank_1
+    module procedure &
+      hipblasStrsm_full_rank,&
+      hipblasStrsm_rank_0,&
+      hipblasStrsm_rank_1
 #endif
-
   end interface
   
   interface hipblasDtrsm
@@ -15399,13 +14587,11 @@ hipblasStrsm_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDtrsm_full_rank,&
-      
-hipblasDtrsm_rank_0,&
-      
-hipblasDtrsm_rank_1
+    module procedure &
+      hipblasDtrsm_full_rank,&
+      hipblasDtrsm_rank_0,&
+      hipblasDtrsm_rank_1
 #endif
-
   end interface
   
   interface hipblasCtrsm
@@ -15433,13 +14619,11 @@ hipblasDtrsm_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCtrsm_full_rank,&
-      
-hipblasCtrsm_rank_0,&
-      
-hipblasCtrsm_rank_1
+    module procedure &
+      hipblasCtrsm_full_rank,&
+      hipblasCtrsm_rank_0,&
+      hipblasCtrsm_rank_1
 #endif
-
   end interface
   
   interface hipblasZtrsm
@@ -15467,13 +14651,11 @@ hipblasCtrsm_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZtrsm_full_rank,&
-      
-hipblasZtrsm_rank_0,&
-      
-hipblasZtrsm_rank_1
+    module procedure &
+      hipblasZtrsm_full_rank,&
+      hipblasZtrsm_rank_0,&
+      hipblasZtrsm_rank_1
 #endif
-
   end interface
   
   interface hipblasStrsmBatched
@@ -15502,13 +14684,11 @@ hipblasZtrsm_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasStrsmBatched_full_rank,&
-      
-hipblasStrsmBatched_rank_0,&
-      
-hipblasStrsmBatched_rank_1
+    module procedure &
+      hipblasStrsmBatched_full_rank,&
+      hipblasStrsmBatched_rank_0,&
+      hipblasStrsmBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDtrsmBatched
@@ -15537,13 +14717,11 @@ hipblasStrsmBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDtrsmBatched_full_rank,&
-      
-hipblasDtrsmBatched_rank_0,&
-      
-hipblasDtrsmBatched_rank_1
+    module procedure &
+      hipblasDtrsmBatched_full_rank,&
+      hipblasDtrsmBatched_rank_0,&
+      hipblasDtrsmBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCtrsmBatched
@@ -15572,13 +14750,11 @@ hipblasDtrsmBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCtrsmBatched_full_rank,&
-      
-hipblasCtrsmBatched_rank_0,&
-      
-hipblasCtrsmBatched_rank_1
+    module procedure &
+      hipblasCtrsmBatched_full_rank,&
+      hipblasCtrsmBatched_rank_0,&
+      hipblasCtrsmBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZtrsmBatched
@@ -15607,13 +14783,11 @@ hipblasCtrsmBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZtrsmBatched_full_rank,&
-      
-hipblasZtrsmBatched_rank_0,&
-      
-hipblasZtrsmBatched_rank_1
+    module procedure &
+      hipblasZtrsmBatched_full_rank,&
+      hipblasZtrsmBatched_rank_0,&
+      hipblasZtrsmBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasStrsmStridedBatched
@@ -15644,13 +14818,11 @@ hipblasZtrsmBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasStrsmStridedBatched_full_rank,&
-      
-hipblasStrsmStridedBatched_rank_0,&
-      
-hipblasStrsmStridedBatched_rank_1
+    module procedure &
+      hipblasStrsmStridedBatched_full_rank,&
+      hipblasStrsmStridedBatched_rank_0,&
+      hipblasStrsmStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDtrsmStridedBatched
@@ -15681,13 +14853,11 @@ hipblasStrsmStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDtrsmStridedBatched_full_rank,&
-      
-hipblasDtrsmStridedBatched_rank_0,&
-      
-hipblasDtrsmStridedBatched_rank_1
+    module procedure &
+      hipblasDtrsmStridedBatched_full_rank,&
+      hipblasDtrsmStridedBatched_rank_0,&
+      hipblasDtrsmStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCtrsmStridedBatched
@@ -15718,13 +14888,11 @@ hipblasDtrsmStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCtrsmStridedBatched_full_rank,&
-      
-hipblasCtrsmStridedBatched_rank_0,&
-      
-hipblasCtrsmStridedBatched_rank_1
+    module procedure &
+      hipblasCtrsmStridedBatched_full_rank,&
+      hipblasCtrsmStridedBatched_rank_0,&
+      hipblasCtrsmStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZtrsmStridedBatched
@@ -15755,13 +14923,11 @@ hipblasCtrsmStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZtrsmStridedBatched_full_rank,&
-      
-hipblasZtrsmStridedBatched_rank_0,&
-      
-hipblasZtrsmStridedBatched_rank_1
+    module procedure &
+      hipblasZtrsmStridedBatched_full_rank,&
+      hipblasZtrsmStridedBatched_rank_0,&
+      hipblasZtrsmStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasStrtri
@@ -15785,13 +14951,11 @@ hipblasZtrsmStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasStrtri_full_rank,&
-      
-hipblasStrtri_rank_0,&
-      
-hipblasStrtri_rank_1
+    module procedure &
+      hipblasStrtri_full_rank,&
+      hipblasStrtri_rank_0,&
+      hipblasStrtri_rank_1
 #endif
-
   end interface
   
   interface hipblasDtrtri
@@ -15815,13 +14979,11 @@ hipblasStrtri_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDtrtri_full_rank,&
-      
-hipblasDtrtri_rank_0,&
-      
-hipblasDtrtri_rank_1
+    module procedure &
+      hipblasDtrtri_full_rank,&
+      hipblasDtrtri_rank_0,&
+      hipblasDtrtri_rank_1
 #endif
-
   end interface
   
   interface hipblasCtrtri
@@ -15845,13 +15007,11 @@ hipblasDtrtri_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCtrtri_full_rank,&
-      
-hipblasCtrtri_rank_0,&
-      
-hipblasCtrtri_rank_1
+    module procedure &
+      hipblasCtrtri_full_rank,&
+      hipblasCtrtri_rank_0,&
+      hipblasCtrtri_rank_1
 #endif
-
   end interface
   
   interface hipblasZtrtri
@@ -15875,13 +15035,11 @@ hipblasCtrtri_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZtrtri_full_rank,&
-      
-hipblasZtrtri_rank_0,&
-      
-hipblasZtrtri_rank_1
+    module procedure &
+      hipblasZtrtri_full_rank,&
+      hipblasZtrtri_rank_0,&
+      hipblasZtrtri_rank_1
 #endif
-
   end interface
   
   interface hipblasStrtriBatched
@@ -15906,13 +15064,11 @@ hipblasZtrtri_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasStrtriBatched_full_rank,&
-      
-hipblasStrtriBatched_rank_0,&
-      
-hipblasStrtriBatched_rank_1
+    module procedure &
+      hipblasStrtriBatched_full_rank,&
+      hipblasStrtriBatched_rank_0,&
+      hipblasStrtriBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDtrtriBatched
@@ -15937,13 +15093,11 @@ hipblasStrtriBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDtrtriBatched_full_rank,&
-      
-hipblasDtrtriBatched_rank_0,&
-      
-hipblasDtrtriBatched_rank_1
+    module procedure &
+      hipblasDtrtriBatched_full_rank,&
+      hipblasDtrtriBatched_rank_0,&
+      hipblasDtrtriBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCtrtriBatched
@@ -15968,13 +15122,11 @@ hipblasDtrtriBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCtrtriBatched_full_rank,&
-      
-hipblasCtrtriBatched_rank_0,&
-      
-hipblasCtrtriBatched_rank_1
+    module procedure &
+      hipblasCtrtriBatched_full_rank,&
+      hipblasCtrtriBatched_rank_0,&
+      hipblasCtrtriBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZtrtriBatched
@@ -15999,13 +15151,11 @@ hipblasCtrtriBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZtrtriBatched_full_rank,&
-      
-hipblasZtrtriBatched_rank_0,&
-      
-hipblasZtrtriBatched_rank_1
+    module procedure &
+      hipblasZtrtriBatched_full_rank,&
+      hipblasZtrtriBatched_rank_0,&
+      hipblasZtrtriBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasStrtriStridedBatched
@@ -16032,13 +15182,11 @@ hipblasZtrtriBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasStrtriStridedBatched_full_rank,&
-      
-hipblasStrtriStridedBatched_rank_0,&
-      
-hipblasStrtriStridedBatched_rank_1
+    module procedure &
+      hipblasStrtriStridedBatched_full_rank,&
+      hipblasStrtriStridedBatched_rank_0,&
+      hipblasStrtriStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDtrtriStridedBatched
@@ -16065,13 +15213,11 @@ hipblasStrtriStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDtrtriStridedBatched_full_rank,&
-      
-hipblasDtrtriStridedBatched_rank_0,&
-      
-hipblasDtrtriStridedBatched_rank_1
+    module procedure &
+      hipblasDtrtriStridedBatched_full_rank,&
+      hipblasDtrtriStridedBatched_rank_0,&
+      hipblasDtrtriStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCtrtriStridedBatched
@@ -16098,13 +15244,11 @@ hipblasDtrtriStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCtrtriStridedBatched_full_rank,&
-      
-hipblasCtrtriStridedBatched_rank_0,&
-      
-hipblasCtrtriStridedBatched_rank_1
+    module procedure &
+      hipblasCtrtriStridedBatched_full_rank,&
+      hipblasCtrtriStridedBatched_rank_0,&
+      hipblasCtrtriStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZtrtriStridedBatched
@@ -16131,13 +15275,11 @@ hipblasCtrtriStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZtrtriStridedBatched_full_rank,&
-      
-hipblasZtrtriStridedBatched_rank_0,&
-      
-hipblasZtrtriStridedBatched_rank_1
+    module procedure &
+      hipblasZtrtriStridedBatched_full_rank,&
+      hipblasZtrtriStridedBatched_rank_0,&
+      hipblasZtrtriStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSdgmm
@@ -16163,13 +15305,11 @@ hipblasZtrtriStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSdgmm_full_rank,&
-      
-hipblasSdgmm_rank_0,&
-      
-hipblasSdgmm_rank_1
+    module procedure &
+      hipblasSdgmm_full_rank,&
+      hipblasSdgmm_rank_0,&
+      hipblasSdgmm_rank_1
 #endif
-
   end interface
   
   interface hipblasDdgmm
@@ -16195,13 +15335,11 @@ hipblasSdgmm_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDdgmm_full_rank,&
-      
-hipblasDdgmm_rank_0,&
-      
-hipblasDdgmm_rank_1
+    module procedure &
+      hipblasDdgmm_full_rank,&
+      hipblasDdgmm_rank_0,&
+      hipblasDdgmm_rank_1
 #endif
-
   end interface
   
   interface hipblasCdgmm
@@ -16227,13 +15365,11 @@ hipblasDdgmm_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCdgmm_full_rank,&
-      
-hipblasCdgmm_rank_0,&
-      
-hipblasCdgmm_rank_1
+    module procedure &
+      hipblasCdgmm_full_rank,&
+      hipblasCdgmm_rank_0,&
+      hipblasCdgmm_rank_1
 #endif
-
   end interface
   
   interface hipblasZdgmm
@@ -16259,13 +15395,11 @@ hipblasCdgmm_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZdgmm_full_rank,&
-      
-hipblasZdgmm_rank_0,&
-      
-hipblasZdgmm_rank_1
+    module procedure &
+      hipblasZdgmm_full_rank,&
+      hipblasZdgmm_rank_0,&
+      hipblasZdgmm_rank_1
 #endif
-
   end interface
   
   interface hipblasSdgmmBatched
@@ -16292,13 +15426,11 @@ hipblasZdgmm_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSdgmmBatched_full_rank,&
-      
-hipblasSdgmmBatched_rank_0,&
-      
-hipblasSdgmmBatched_rank_1
+    module procedure &
+      hipblasSdgmmBatched_full_rank,&
+      hipblasSdgmmBatched_rank_0,&
+      hipblasSdgmmBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDdgmmBatched
@@ -16325,13 +15457,11 @@ hipblasSdgmmBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDdgmmBatched_full_rank,&
-      
-hipblasDdgmmBatched_rank_0,&
-      
-hipblasDdgmmBatched_rank_1
+    module procedure &
+      hipblasDdgmmBatched_full_rank,&
+      hipblasDdgmmBatched_rank_0,&
+      hipblasDdgmmBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCdgmmBatched
@@ -16358,13 +15488,11 @@ hipblasDdgmmBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCdgmmBatched_full_rank,&
-      
-hipblasCdgmmBatched_rank_0,&
-      
-hipblasCdgmmBatched_rank_1
+    module procedure &
+      hipblasCdgmmBatched_full_rank,&
+      hipblasCdgmmBatched_rank_0,&
+      hipblasCdgmmBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZdgmmBatched
@@ -16391,13 +15519,11 @@ hipblasCdgmmBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZdgmmBatched_full_rank,&
-      
-hipblasZdgmmBatched_rank_0,&
-      
-hipblasZdgmmBatched_rank_1
+    module procedure &
+      hipblasZdgmmBatched_full_rank,&
+      hipblasZdgmmBatched_rank_0,&
+      hipblasZdgmmBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSdgmmStridedBatched
@@ -16427,13 +15553,11 @@ hipblasZdgmmBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSdgmmStridedBatched_full_rank,&
-      
-hipblasSdgmmStridedBatched_rank_0,&
-      
-hipblasSdgmmStridedBatched_rank_1
+    module procedure &
+      hipblasSdgmmStridedBatched_full_rank,&
+      hipblasSdgmmStridedBatched_rank_0,&
+      hipblasSdgmmStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDdgmmStridedBatched
@@ -16463,13 +15587,11 @@ hipblasSdgmmStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDdgmmStridedBatched_full_rank,&
-      
-hipblasDdgmmStridedBatched_rank_0,&
-      
-hipblasDdgmmStridedBatched_rank_1
+    module procedure &
+      hipblasDdgmmStridedBatched_full_rank,&
+      hipblasDdgmmStridedBatched_rank_0,&
+      hipblasDdgmmStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCdgmmStridedBatched
@@ -16499,13 +15621,11 @@ hipblasDdgmmStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCdgmmStridedBatched_full_rank,&
-      
-hipblasCdgmmStridedBatched_rank_0,&
-      
-hipblasCdgmmStridedBatched_rank_1
+    module procedure &
+      hipblasCdgmmStridedBatched_full_rank,&
+      hipblasCdgmmStridedBatched_rank_0,&
+      hipblasCdgmmStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZdgmmStridedBatched
@@ -16535,13 +15655,11 @@ hipblasCdgmmStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZdgmmStridedBatched_full_rank,&
-      
-hipblasZdgmmStridedBatched_rank_0,&
-      
-hipblasZdgmmStridedBatched_rank_1
+    module procedure &
+      hipblasZdgmmStridedBatched_full_rank,&
+      hipblasZdgmmStridedBatched_rank_0,&
+      hipblasZdgmmStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSgetrf
@@ -16563,13 +15681,11 @@ hipblasZdgmmStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSgetrf_full_rank,&
-      
-hipblasSgetrf_rank_0,&
-      
-hipblasSgetrf_rank_1
+    module procedure &
+      hipblasSgetrf_full_rank,&
+      hipblasSgetrf_rank_0,&
+      hipblasSgetrf_rank_1
 #endif
-
   end interface
   
   interface hipblasDgetrf
@@ -16591,13 +15707,11 @@ hipblasSgetrf_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDgetrf_full_rank,&
-      
-hipblasDgetrf_rank_0,&
-      
-hipblasDgetrf_rank_1
+    module procedure &
+      hipblasDgetrf_full_rank,&
+      hipblasDgetrf_rank_0,&
+      hipblasDgetrf_rank_1
 #endif
-
   end interface
   
   interface hipblasCgetrf
@@ -16619,13 +15733,11 @@ hipblasDgetrf_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCgetrf_full_rank,&
-      
-hipblasCgetrf_rank_0,&
-      
-hipblasCgetrf_rank_1
+    module procedure &
+      hipblasCgetrf_full_rank,&
+      hipblasCgetrf_rank_0,&
+      hipblasCgetrf_rank_1
 #endif
-
   end interface
   
   interface hipblasZgetrf
@@ -16647,13 +15759,11 @@ hipblasCgetrf_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZgetrf_full_rank,&
-      
-hipblasZgetrf_rank_0,&
-      
-hipblasZgetrf_rank_1
+    module procedure &
+      hipblasZgetrf_full_rank,&
+      hipblasZgetrf_rank_0,&
+      hipblasZgetrf_rank_1
 #endif
-
   end interface
   
   interface hipblasSgetrfBatched
@@ -16676,13 +15786,11 @@ hipblasZgetrf_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSgetrfBatched_full_rank,&
-      
-hipblasSgetrfBatched_rank_0,&
-      
-hipblasSgetrfBatched_rank_1
+    module procedure &
+      hipblasSgetrfBatched_full_rank,&
+      hipblasSgetrfBatched_rank_0,&
+      hipblasSgetrfBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDgetrfBatched
@@ -16705,13 +15813,11 @@ hipblasSgetrfBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDgetrfBatched_full_rank,&
-      
-hipblasDgetrfBatched_rank_0,&
-      
-hipblasDgetrfBatched_rank_1
+    module procedure &
+      hipblasDgetrfBatched_full_rank,&
+      hipblasDgetrfBatched_rank_0,&
+      hipblasDgetrfBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCgetrfBatched
@@ -16734,13 +15840,11 @@ hipblasDgetrfBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCgetrfBatched_full_rank,&
-      
-hipblasCgetrfBatched_rank_0,&
-      
-hipblasCgetrfBatched_rank_1
+    module procedure &
+      hipblasCgetrfBatched_full_rank,&
+      hipblasCgetrfBatched_rank_0,&
+      hipblasCgetrfBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZgetrfBatched
@@ -16763,13 +15867,11 @@ hipblasCgetrfBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZgetrfBatched_full_rank,&
-      
-hipblasZgetrfBatched_rank_0,&
-      
-hipblasZgetrfBatched_rank_1
+    module procedure &
+      hipblasZgetrfBatched_full_rank,&
+      hipblasZgetrfBatched_rank_0,&
+      hipblasZgetrfBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSgetrfStridedBatched
@@ -16794,13 +15896,11 @@ hipblasZgetrfBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSgetrfStridedBatched_full_rank,&
-      
-hipblasSgetrfStridedBatched_rank_0,&
-      
-hipblasSgetrfStridedBatched_rank_1
+    module procedure &
+      hipblasSgetrfStridedBatched_full_rank,&
+      hipblasSgetrfStridedBatched_rank_0,&
+      hipblasSgetrfStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDgetrfStridedBatched
@@ -16825,13 +15925,11 @@ hipblasSgetrfStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDgetrfStridedBatched_full_rank,&
-      
-hipblasDgetrfStridedBatched_rank_0,&
-      
-hipblasDgetrfStridedBatched_rank_1
+    module procedure &
+      hipblasDgetrfStridedBatched_full_rank,&
+      hipblasDgetrfStridedBatched_rank_0,&
+      hipblasDgetrfStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCgetrfStridedBatched
@@ -16856,13 +15954,11 @@ hipblasDgetrfStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCgetrfStridedBatched_full_rank,&
-      
-hipblasCgetrfStridedBatched_rank_0,&
-      
-hipblasCgetrfStridedBatched_rank_1
+    module procedure &
+      hipblasCgetrfStridedBatched_full_rank,&
+      hipblasCgetrfStridedBatched_rank_0,&
+      hipblasCgetrfStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZgetrfStridedBatched
@@ -16887,13 +15983,11 @@ hipblasCgetrfStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZgetrfStridedBatched_full_rank,&
-      
-hipblasZgetrfStridedBatched_rank_0,&
-      
-hipblasZgetrfStridedBatched_rank_1
+    module procedure &
+      hipblasZgetrfStridedBatched_full_rank,&
+      hipblasZgetrfStridedBatched_rank_0,&
+      hipblasZgetrfStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSgetrs
@@ -16919,13 +16013,11 @@ hipblasZgetrfStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSgetrs_full_rank,&
-      
-hipblasSgetrs_rank_0,&
-      
-hipblasSgetrs_rank_1
+    module procedure &
+      hipblasSgetrs_full_rank,&
+      hipblasSgetrs_rank_0,&
+      hipblasSgetrs_rank_1
 #endif
-
   end interface
   
   interface hipblasDgetrs
@@ -16951,13 +16043,11 @@ hipblasSgetrs_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDgetrs_full_rank,&
-      
-hipblasDgetrs_rank_0,&
-      
-hipblasDgetrs_rank_1
+    module procedure &
+      hipblasDgetrs_full_rank,&
+      hipblasDgetrs_rank_0,&
+      hipblasDgetrs_rank_1
 #endif
-
   end interface
   
   interface hipblasCgetrs
@@ -16983,13 +16073,11 @@ hipblasDgetrs_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCgetrs_full_rank,&
-      
-hipblasCgetrs_rank_0,&
-      
-hipblasCgetrs_rank_1
+    module procedure &
+      hipblasCgetrs_full_rank,&
+      hipblasCgetrs_rank_0,&
+      hipblasCgetrs_rank_1
 #endif
-
   end interface
   
   interface hipblasZgetrs
@@ -17015,13 +16103,11 @@ hipblasCgetrs_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZgetrs_full_rank,&
-      
-hipblasZgetrs_rank_0,&
-      
-hipblasZgetrs_rank_1
+    module procedure &
+      hipblasZgetrs_full_rank,&
+      hipblasZgetrs_rank_0,&
+      hipblasZgetrs_rank_1
 #endif
-
   end interface
   
   interface hipblasSgetrsBatched
@@ -17048,13 +16134,11 @@ hipblasZgetrs_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSgetrsBatched_full_rank,&
-      
-hipblasSgetrsBatched_rank_0,&
-      
-hipblasSgetrsBatched_rank_1
+    module procedure &
+      hipblasSgetrsBatched_full_rank,&
+      hipblasSgetrsBatched_rank_0,&
+      hipblasSgetrsBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDgetrsBatched
@@ -17081,13 +16165,11 @@ hipblasSgetrsBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDgetrsBatched_full_rank,&
-      
-hipblasDgetrsBatched_rank_0,&
-      
-hipblasDgetrsBatched_rank_1
+    module procedure &
+      hipblasDgetrsBatched_full_rank,&
+      hipblasDgetrsBatched_rank_0,&
+      hipblasDgetrsBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCgetrsBatched
@@ -17114,13 +16196,11 @@ hipblasDgetrsBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCgetrsBatched_full_rank,&
-      
-hipblasCgetrsBatched_rank_0,&
-      
-hipblasCgetrsBatched_rank_1
+    module procedure &
+      hipblasCgetrsBatched_full_rank,&
+      hipblasCgetrsBatched_rank_0,&
+      hipblasCgetrsBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZgetrsBatched
@@ -17147,13 +16227,11 @@ hipblasCgetrsBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZgetrsBatched_full_rank,&
-      
-hipblasZgetrsBatched_rank_0,&
-      
-hipblasZgetrsBatched_rank_1
+    module procedure &
+      hipblasZgetrsBatched_full_rank,&
+      hipblasZgetrsBatched_rank_0,&
+      hipblasZgetrsBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSgetrsStridedBatched
@@ -17183,13 +16261,11 @@ hipblasZgetrsBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSgetrsStridedBatched_full_rank,&
-      
-hipblasSgetrsStridedBatched_rank_0,&
-      
-hipblasSgetrsStridedBatched_rank_1
+    module procedure &
+      hipblasSgetrsStridedBatched_full_rank,&
+      hipblasSgetrsStridedBatched_rank_0,&
+      hipblasSgetrsStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDgetrsStridedBatched
@@ -17219,13 +16295,11 @@ hipblasSgetrsStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDgetrsStridedBatched_full_rank,&
-      
-hipblasDgetrsStridedBatched_rank_0,&
-      
-hipblasDgetrsStridedBatched_rank_1
+    module procedure &
+      hipblasDgetrsStridedBatched_full_rank,&
+      hipblasDgetrsStridedBatched_rank_0,&
+      hipblasDgetrsStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCgetrsStridedBatched
@@ -17255,13 +16329,11 @@ hipblasDgetrsStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCgetrsStridedBatched_full_rank,&
-      
-hipblasCgetrsStridedBatched_rank_0,&
-      
-hipblasCgetrsStridedBatched_rank_1
+    module procedure &
+      hipblasCgetrsStridedBatched_full_rank,&
+      hipblasCgetrsStridedBatched_rank_0,&
+      hipblasCgetrsStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZgetrsStridedBatched
@@ -17291,13 +16363,11 @@ hipblasCgetrsStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZgetrsStridedBatched_full_rank,&
-      
-hipblasZgetrsStridedBatched_rank_0,&
-      
-hipblasZgetrsStridedBatched_rank_1
+    module procedure &
+      hipblasZgetrsStridedBatched_full_rank,&
+      hipblasZgetrsStridedBatched_rank_0,&
+      hipblasZgetrsStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSgetriBatched
@@ -17322,13 +16392,11 @@ hipblasZgetrsStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSgetriBatched_full_rank,&
-      
-hipblasSgetriBatched_rank_0,&
-      
-hipblasSgetriBatched_rank_1
+    module procedure &
+      hipblasSgetriBatched_full_rank,&
+      hipblasSgetriBatched_rank_0,&
+      hipblasSgetriBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDgetriBatched
@@ -17353,13 +16421,11 @@ hipblasSgetriBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDgetriBatched_full_rank,&
-      
-hipblasDgetriBatched_rank_0,&
-      
-hipblasDgetriBatched_rank_1
+    module procedure &
+      hipblasDgetriBatched_full_rank,&
+      hipblasDgetriBatched_rank_0,&
+      hipblasDgetriBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCgetriBatched
@@ -17384,13 +16450,11 @@ hipblasDgetriBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCgetriBatched_full_rank,&
-      
-hipblasCgetriBatched_rank_0,&
-      
-hipblasCgetriBatched_rank_1
+    module procedure &
+      hipblasCgetriBatched_full_rank,&
+      hipblasCgetriBatched_rank_0,&
+      hipblasCgetriBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZgetriBatched
@@ -17415,13 +16479,11 @@ hipblasCgetriBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZgetriBatched_full_rank,&
-      
-hipblasZgetriBatched_rank_0,&
-      
-hipblasZgetriBatched_rank_1
+    module procedure &
+      hipblasZgetriBatched_full_rank,&
+      hipblasZgetriBatched_rank_0,&
+      hipblasZgetriBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSgeqrf
@@ -17444,13 +16506,11 @@ hipblasZgetriBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSgeqrf_full_rank,&
-      
-hipblasSgeqrf_rank_0,&
-      
-hipblasSgeqrf_rank_1
+    module procedure &
+      hipblasSgeqrf_full_rank,&
+      hipblasSgeqrf_rank_0,&
+      hipblasSgeqrf_rank_1
 #endif
-
   end interface
   
   interface hipblasDgeqrf
@@ -17473,13 +16533,11 @@ hipblasSgeqrf_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDgeqrf_full_rank,&
-      
-hipblasDgeqrf_rank_0,&
-      
-hipblasDgeqrf_rank_1
+    module procedure &
+      hipblasDgeqrf_full_rank,&
+      hipblasDgeqrf_rank_0,&
+      hipblasDgeqrf_rank_1
 #endif
-
   end interface
   
   interface hipblasCgeqrf
@@ -17502,13 +16560,11 @@ hipblasDgeqrf_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCgeqrf_full_rank,&
-      
-hipblasCgeqrf_rank_0,&
-      
-hipblasCgeqrf_rank_1
+    module procedure &
+      hipblasCgeqrf_full_rank,&
+      hipblasCgeqrf_rank_0,&
+      hipblasCgeqrf_rank_1
 #endif
-
   end interface
   
   interface hipblasZgeqrf
@@ -17531,13 +16587,11 @@ hipblasCgeqrf_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZgeqrf_full_rank,&
-      
-hipblasZgeqrf_rank_0,&
-      
-hipblasZgeqrf_rank_1
+    module procedure &
+      hipblasZgeqrf_full_rank,&
+      hipblasZgeqrf_rank_0,&
+      hipblasZgeqrf_rank_1
 #endif
-
   end interface
   
   interface hipblasSgeqrfBatched
@@ -17561,13 +16615,11 @@ hipblasZgeqrf_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSgeqrfBatched_full_rank,&
-      
-hipblasSgeqrfBatched_rank_0,&
-      
-hipblasSgeqrfBatched_rank_1
+    module procedure &
+      hipblasSgeqrfBatched_full_rank,&
+      hipblasSgeqrfBatched_rank_0,&
+      hipblasSgeqrfBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDgeqrfBatched
@@ -17591,13 +16643,11 @@ hipblasSgeqrfBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDgeqrfBatched_full_rank,&
-      
-hipblasDgeqrfBatched_rank_0,&
-      
-hipblasDgeqrfBatched_rank_1
+    module procedure &
+      hipblasDgeqrfBatched_full_rank,&
+      hipblasDgeqrfBatched_rank_0,&
+      hipblasDgeqrfBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCgeqrfBatched
@@ -17621,13 +16671,11 @@ hipblasDgeqrfBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCgeqrfBatched_full_rank,&
-      
-hipblasCgeqrfBatched_rank_0,&
-      
-hipblasCgeqrfBatched_rank_1
+    module procedure &
+      hipblasCgeqrfBatched_full_rank,&
+      hipblasCgeqrfBatched_rank_0,&
+      hipblasCgeqrfBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZgeqrfBatched
@@ -17651,13 +16699,11 @@ hipblasCgeqrfBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZgeqrfBatched_full_rank,&
-      
-hipblasZgeqrfBatched_rank_0,&
-      
-hipblasZgeqrfBatched_rank_1
+    module procedure &
+      hipblasZgeqrfBatched_full_rank,&
+      hipblasZgeqrfBatched_rank_0,&
+      hipblasZgeqrfBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSgeqrfStridedBatched
@@ -17683,13 +16729,11 @@ hipblasZgeqrfBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSgeqrfStridedBatched_full_rank,&
-      
-hipblasSgeqrfStridedBatched_rank_0,&
-      
-hipblasSgeqrfStridedBatched_rank_1
+    module procedure &
+      hipblasSgeqrfStridedBatched_full_rank,&
+      hipblasSgeqrfStridedBatched_rank_0,&
+      hipblasSgeqrfStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDgeqrfStridedBatched
@@ -17715,13 +16759,11 @@ hipblasSgeqrfStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDgeqrfStridedBatched_full_rank,&
-      
-hipblasDgeqrfStridedBatched_rank_0,&
-      
-hipblasDgeqrfStridedBatched_rank_1
+    module procedure &
+      hipblasDgeqrfStridedBatched_full_rank,&
+      hipblasDgeqrfStridedBatched_rank_0,&
+      hipblasDgeqrfStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCgeqrfStridedBatched
@@ -17747,13 +16789,11 @@ hipblasDgeqrfStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCgeqrfStridedBatched_full_rank,&
-      
-hipblasCgeqrfStridedBatched_rank_0,&
-      
-hipblasCgeqrfStridedBatched_rank_1
+    module procedure &
+      hipblasCgeqrfStridedBatched_full_rank,&
+      hipblasCgeqrfStridedBatched_rank_0,&
+      hipblasCgeqrfStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZgeqrfStridedBatched
@@ -17779,13 +16819,11 @@ hipblasCgeqrfStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZgeqrfStridedBatched_full_rank,&
-      
-hipblasZgeqrfStridedBatched_rank_0,&
-      
-hipblasZgeqrfStridedBatched_rank_1
+    module procedure &
+      hipblasZgeqrfStridedBatched_full_rank,&
+      hipblasZgeqrfStridedBatched_rank_0,&
+      hipblasZgeqrfStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSgemm
@@ -17815,13 +16853,11 @@ hipblasZgeqrfStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSgemm_full_rank,&
-      
-hipblasSgemm_rank_0,&
-      
-hipblasSgemm_rank_1
+    module procedure &
+      hipblasSgemm_full_rank,&
+      hipblasSgemm_rank_0,&
+      hipblasSgemm_rank_1
 #endif
-
   end interface
   
   interface hipblasDgemm
@@ -17851,13 +16887,11 @@ hipblasSgemm_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDgemm_full_rank,&
-      
-hipblasDgemm_rank_0,&
-      
-hipblasDgemm_rank_1
+    module procedure &
+      hipblasDgemm_full_rank,&
+      hipblasDgemm_rank_0,&
+      hipblasDgemm_rank_1
 #endif
-
   end interface
   
   interface hipblasCgemm
@@ -17887,13 +16921,11 @@ hipblasDgemm_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCgemm_full_rank,&
-      
-hipblasCgemm_rank_0,&
-      
-hipblasCgemm_rank_1
+    module procedure &
+      hipblasCgemm_full_rank,&
+      hipblasCgemm_rank_0,&
+      hipblasCgemm_rank_1
 #endif
-
   end interface
   
   interface hipblasZgemm
@@ -17923,13 +16955,11 @@ hipblasCgemm_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZgemm_full_rank,&
-      
-hipblasZgemm_rank_0,&
-      
-hipblasZgemm_rank_1
+    module procedure &
+      hipblasZgemm_full_rank,&
+      hipblasZgemm_rank_0,&
+      hipblasZgemm_rank_1
 #endif
-
   end interface
   
   interface hipblasSgemmBatched
@@ -17960,13 +16990,11 @@ hipblasZgemm_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSgemmBatched_full_rank,&
-      
-hipblasSgemmBatched_rank_0,&
-      
-hipblasSgemmBatched_rank_1
+    module procedure &
+      hipblasSgemmBatched_full_rank,&
+      hipblasSgemmBatched_rank_0,&
+      hipblasSgemmBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDgemmBatched
@@ -17997,13 +17025,11 @@ hipblasSgemmBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDgemmBatched_full_rank,&
-      
-hipblasDgemmBatched_rank_0,&
-      
-hipblasDgemmBatched_rank_1
+    module procedure &
+      hipblasDgemmBatched_full_rank,&
+      hipblasDgemmBatched_rank_0,&
+      hipblasDgemmBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCgemmBatched
@@ -18034,13 +17060,11 @@ hipblasDgemmBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCgemmBatched_full_rank,&
-      
-hipblasCgemmBatched_rank_0,&
-      
-hipblasCgemmBatched_rank_1
+    module procedure &
+      hipblasCgemmBatched_full_rank,&
+      hipblasCgemmBatched_rank_0,&
+      hipblasCgemmBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZgemmBatched
@@ -18071,13 +17095,11 @@ hipblasCgemmBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZgemmBatched_full_rank,&
-      
-hipblasZgemmBatched_rank_0,&
-      
-hipblasZgemmBatched_rank_1
+    module procedure &
+      hipblasZgemmBatched_full_rank,&
+      hipblasZgemmBatched_rank_0,&
+      hipblasZgemmBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasSgemmStridedBatched
@@ -18111,13 +17133,11 @@ hipblasZgemmBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasSgemmStridedBatched_full_rank,&
-      
-hipblasSgemmStridedBatched_rank_0,&
-      
-hipblasSgemmStridedBatched_rank_1
+    module procedure &
+      hipblasSgemmStridedBatched_full_rank,&
+      hipblasSgemmStridedBatched_rank_0,&
+      hipblasSgemmStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasDgemmStridedBatched
@@ -18151,13 +17171,11 @@ hipblasSgemmStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasDgemmStridedBatched_full_rank,&
-      
-hipblasDgemmStridedBatched_rank_0,&
-      
-hipblasDgemmStridedBatched_rank_1
+    module procedure &
+      hipblasDgemmStridedBatched_full_rank,&
+      hipblasDgemmStridedBatched_rank_0,&
+      hipblasDgemmStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasCgemmStridedBatched
@@ -18191,13 +17209,11 @@ hipblasDgemmStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasCgemmStridedBatched_full_rank,&
-      
-hipblasCgemmStridedBatched_rank_0,&
-      
-hipblasCgemmStridedBatched_rank_1
+    module procedure &
+      hipblasCgemmStridedBatched_full_rank,&
+      hipblasCgemmStridedBatched_rank_0,&
+      hipblasCgemmStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasZgemmStridedBatched
@@ -18231,13 +17247,11 @@ hipblasCgemmStridedBatched_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipblasZgemmStridedBatched_full_rank,&
-      
-hipblasZgemmStridedBatched_rank_0,&
-      
-hipblasZgemmStridedBatched_rank_1
+    module procedure &
+      hipblasZgemmStridedBatched_full_rank,&
+      hipblasZgemmStridedBatched_rank_0,&
+      hipblasZgemmStridedBatched_rank_1
 #endif
-
   end interface
   
   interface hipblasGemmEx
@@ -18270,7 +17284,6 @@ hipblasZgemmStridedBatched_rank_1
       integer(kind(HIPBLAS_R_16F)),value :: compute_type
       integer(kind(HIPBLAS_GEMM_DEFAULT)),value :: algo
     end function
-
 
   end interface
   
@@ -18305,7 +17318,6 @@ hipblasZgemmStridedBatched_rank_1
       integer(kind(HIPBLAS_R_16F)),value :: compute_type
       integer(kind(HIPBLAS_GEMM_DEFAULT)),value :: algo
     end function
-
 
   end interface
   
@@ -18344,7 +17356,6 @@ hipblasZgemmStridedBatched_rank_1
       integer(kind(HIPBLAS_GEMM_DEFAULT)),value :: algo
     end function
 
-
   end interface
   
   interface hipblasTrsmEx
@@ -18373,7 +17384,6 @@ hipblasZgemmStridedBatched_rank_1
       integer(c_int),value :: invA_size
       integer(kind(HIPBLAS_R_16F)),value :: compute_type
     end function
-
 
   end interface
   
@@ -18404,7 +17414,6 @@ hipblasZgemmStridedBatched_rank_1
       integer(c_int),value :: invA_size
       integer(kind(HIPBLAS_R_16F)),value :: compute_type
     end function
-
 
   end interface
   
@@ -18439,7 +17448,6 @@ hipblasZgemmStridedBatched_rank_1
       integer(kind(HIPBLAS_R_16F)),value :: compute_type
     end function
 
-
   end interface
   
   interface hipblasAxpyEx
@@ -18464,7 +17472,6 @@ hipblasZgemmStridedBatched_rank_1
       integer(c_int),value :: incy
       integer(kind(HIPBLAS_R_16F)),value :: executionType
     end function
-
 
   end interface
   
@@ -18491,7 +17498,6 @@ hipblasZgemmStridedBatched_rank_1
       integer(c_int),value :: batch_count
       integer(kind(HIPBLAS_R_16F)),value :: executionType
     end function
-
 
   end interface
   
@@ -18521,7 +17527,6 @@ hipblasZgemmStridedBatched_rank_1
       integer(kind(HIPBLAS_R_16F)),value :: executionType
     end function
 
-
   end interface
   
   interface hipblasDotEx
@@ -18547,7 +17552,6 @@ hipblasZgemmStridedBatched_rank_1
       integer(kind(HIPBLAS_R_16F)),value :: executionType
     end function
 
-
   end interface
   
   interface hipblasDotcEx
@@ -18572,7 +17576,6 @@ hipblasZgemmStridedBatched_rank_1
       integer(kind(HIPBLAS_R_16F)),value :: resultType
       integer(kind(HIPBLAS_R_16F)),value :: executionType
     end function
-
 
   end interface
   
@@ -18600,7 +17603,6 @@ hipblasZgemmStridedBatched_rank_1
       integer(kind(HIPBLAS_R_16F)),value :: executionType
     end function
 
-
   end interface
   
   interface hipblasDotcBatchedEx
@@ -18626,7 +17628,6 @@ hipblasZgemmStridedBatched_rank_1
       integer(kind(HIPBLAS_R_16F)),value :: resultType
       integer(kind(HIPBLAS_R_16F)),value :: executionType
     end function
-
 
   end interface
   
@@ -18656,7 +17657,6 @@ hipblasZgemmStridedBatched_rank_1
       integer(kind(HIPBLAS_R_16F)),value :: executionType
     end function
 
-
   end interface
   
   interface hipblasDotcStridedBatchedEx
@@ -18685,7 +17685,6 @@ hipblasZgemmStridedBatched_rank_1
       integer(kind(HIPBLAS_R_16F)),value :: executionType
     end function
 
-
   end interface
   
   interface hipblasNrm2Ex
@@ -18707,7 +17706,6 @@ hipblasZgemmStridedBatched_rank_1
       integer(kind(HIPBLAS_R_16F)),value :: resultType
       integer(kind(HIPBLAS_R_16F)),value :: executionType
     end function
-
 
   end interface
   
@@ -18732,7 +17730,6 @@ hipblasZgemmStridedBatched_rank_1
       integer(kind(HIPBLAS_R_16F)),value :: executionType
     end function
 
-
   end interface
   
   interface hipblasNrm2StridedBatchedEx
@@ -18756,7 +17753,6 @@ hipblasZgemmStridedBatched_rank_1
       integer(kind(HIPBLAS_R_16F)),value :: resultType
       integer(kind(HIPBLAS_R_16F)),value :: executionType
     end function
-
 
   end interface
   
@@ -18784,7 +17780,6 @@ hipblasZgemmStridedBatched_rank_1
       integer(kind(HIPBLAS_R_16F)),value :: executionType
     end function
 
-
   end interface
   
   interface hipblasRotBatchedEx
@@ -18811,7 +17806,6 @@ hipblasZgemmStridedBatched_rank_1
       integer(c_int),value :: batch_count
       integer(kind(HIPBLAS_R_16F)),value :: executionType
     end function
-
 
   end interface
   
@@ -18842,7 +17836,6 @@ hipblasZgemmStridedBatched_rank_1
       integer(kind(HIPBLAS_R_16F)),value :: executionType
     end function
 
-
   end interface
   
   interface hipblasScalEx
@@ -18864,7 +17857,6 @@ hipblasZgemmStridedBatched_rank_1
       integer(c_int),value :: incx
       integer(kind(HIPBLAS_R_16F)),value :: executionType
     end function
-
 
   end interface
   
@@ -18889,7 +17881,6 @@ hipblasZgemmStridedBatched_rank_1
       integer(kind(HIPBLAS_R_16F)),value :: executionType
     end function
 
-
   end interface
   
   interface hipblasScalStridedBatchedEx
@@ -18913,7 +17904,6 @@ hipblasZgemmStridedBatched_rank_1
       integer(c_int),value :: batch_count
       integer(kind(HIPBLAS_R_16F)),value :: executionType
     end function
-
 
   end interface
 

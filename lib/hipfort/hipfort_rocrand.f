@@ -64,7 +64,6 @@ module hipfort_rocrand
       integer(kind(ROCRAND_RNG_PSEUDO_DEFAULT)),value :: rng_type
     end function
 
-
   end interface
   !> 
   !>   \brief Destroys random number generator.
@@ -85,7 +84,6 @@ module hipfort_rocrand
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_destroy_generator_
       type(c_ptr),value :: generator
     end function
-
 
   end interface
   !> 
@@ -119,7 +117,6 @@ module hipfort_rocrand
       integer(c_size_t),value :: n
     end function
 
-
   end interface
   !> 
   !>  \brief Generates uniformly distributed 8-bit unsigned integers.
@@ -151,7 +148,6 @@ module hipfort_rocrand
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
     end function
-
 
   end interface
   !> 
@@ -185,7 +181,6 @@ module hipfort_rocrand
       integer(c_size_t),value :: n
     end function
 
-
   end interface
   !> 
   !>   \brief Generates uniformly distributed \p float values.
@@ -218,7 +213,6 @@ module hipfort_rocrand
       integer(c_size_t),value :: n
     end function
 
-
   end interface
   !> 
   !>   \brief Generates uniformly distributed double-precision floating-point values.
@@ -250,7 +244,6 @@ module hipfort_rocrand
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
     end function
-
 
   end interface
   !> 
@@ -285,7 +278,6 @@ module hipfort_rocrand
       real(c_float),value :: stddev
     end function
 
-
   end interface
   !> 
   !>   \brief Generates normally distributed \p double values.
@@ -318,7 +310,6 @@ module hipfort_rocrand
       real(c_double),value :: mean
       real(c_double),value :: stddev
     end function
-
 
   end interface
   !> 
@@ -353,7 +344,6 @@ module hipfort_rocrand
       real(c_float),value :: stddev
     end function
 
-
   end interface
   !> 
   !>   \brief Generates log-normally distributed \p double values.
@@ -387,7 +377,6 @@ module hipfort_rocrand
       real(c_double),value :: stddev
     end function
 
-
   end interface
   !> 
   !>   \brief Generates Poisson-distributed 32-bit unsigned integers.
@@ -420,7 +409,6 @@ module hipfort_rocrand
       real(c_double),value :: lambda
     end function
 
-
   end interface
   !> 
   !>   \brief Initializes the generator's state on GPU or host.
@@ -448,7 +436,6 @@ module hipfort_rocrand
       type(c_ptr),value :: generator
     end function
 
-
   end interface
   !> 
   !>   \brief Sets the current stream for kernel launches.
@@ -472,7 +459,6 @@ module hipfort_rocrand
       type(c_ptr),value :: generator
       type(c_ptr),value :: stream
     end function
-
 
   end interface
   !> 
@@ -505,7 +491,6 @@ module hipfort_rocrand
       integer(c_long_long),value :: seed
     end function
 
-
   end interface
   !> 
   !>   \brief Sets the offset of a random number generator.
@@ -534,7 +519,6 @@ module hipfort_rocrand
       type(c_ptr),value :: generator
       integer(c_long_long),value :: offset
     end function
-
 
   end interface
   !> 
@@ -565,7 +549,6 @@ module hipfort_rocrand
       integer(kind=4),value :: dimensions
     end function
 
-
   end interface
   !> 
   !>   \brief Returns the version number of the library.
@@ -587,7 +570,6 @@ module hipfort_rocrand
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_get_version_
       type(c_ptr),value :: version
     end function
-
 
   end interface
   !> 
@@ -613,7 +595,6 @@ module hipfort_rocrand
       real(c_double),value :: lambda
       type(c_ptr) :: discrete_distribution
     end function
-
 
   end interface
   !> 
@@ -646,7 +627,6 @@ module hipfort_rocrand
       type(c_ptr) :: discrete_distribution
     end function
 
-
   end interface
   !> 
   !>   \brief Destroy the histogram array for a discrete distribution.
@@ -668,7 +648,6 @@ module hipfort_rocrand
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_destroy_discrete_distribution_
       type(c_ptr),value :: discrete_distribution
     end function
-
 
   end interface
 

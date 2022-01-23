@@ -48,7 +48,6 @@ module hipfort_hipfft
       integer(c_int),value :: batch
     end function
 
-
   end interface
   
   interface hipfftPlan2d
@@ -66,7 +65,6 @@ module hipfort_hipfft
       integer(c_int),value :: ny
       integer(kind(HIPFFT_R2C)),value :: myType
     end function
-
 
   end interface
   
@@ -86,7 +84,6 @@ module hipfort_hipfft
       integer(c_int),value :: nz
       integer(kind(HIPFFT_R2C)),value :: myType
     end function
-
 
   end interface
   
@@ -114,11 +111,10 @@ module hipfort_hipfft
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipfftPlanMany_rank_0,&
-      
-hipfftPlanMany_rank_1
+    module procedure &
+      hipfftPlanMany_rank_0,&
+      hipfftPlanMany_rank_1
 #endif
-
   end interface
   
   interface hipfftMakePlan1d
@@ -139,11 +135,10 @@ hipfftPlanMany_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipfftMakePlan1d_rank_0,&
-      
-hipfftMakePlan1d_rank_1
+    module procedure &
+      hipfftMakePlan1d_rank_0,&
+      hipfftMakePlan1d_rank_1
 #endif
-
   end interface
   
   interface hipfftMakePlan2d
@@ -164,11 +159,10 @@ hipfftMakePlan1d_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipfftMakePlan2d_rank_0,&
-      
-hipfftMakePlan2d_rank_1
+    module procedure &
+      hipfftMakePlan2d_rank_0,&
+      hipfftMakePlan2d_rank_1
 #endif
-
   end interface
   
   interface hipfftMakePlan3d
@@ -190,11 +184,10 @@ hipfftMakePlan2d_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipfftMakePlan3d_rank_0,&
-      
-hipfftMakePlan3d_rank_1
+    module procedure &
+      hipfftMakePlan3d_rank_0,&
+      hipfftMakePlan3d_rank_1
 #endif
-
   end interface
   
   interface hipfftMakePlanMany
@@ -222,11 +215,10 @@ hipfftMakePlan3d_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipfftMakePlanMany_rank_0,&
-      
-hipfftMakePlanMany_rank_1
+    module procedure &
+      hipfftMakePlanMany_rank_0,&
+      hipfftMakePlanMany_rank_1
 #endif
-
   end interface
   
   interface hipfftMakePlanMany64
@@ -254,11 +246,10 @@ hipfftMakePlanMany_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipfftMakePlanMany64_rank_0,&
-      
-hipfftMakePlanMany64_rank_1
+    module procedure &
+      hipfftMakePlanMany64_rank_0,&
+      hipfftMakePlanMany64_rank_1
 #endif
-
   end interface
   
   interface hipfftGetSizeMany64
@@ -286,11 +277,10 @@ hipfftMakePlanMany64_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipfftGetSizeMany64_rank_0,&
-      
-hipfftGetSizeMany64_rank_1
+    module procedure &
+      hipfftGetSizeMany64_rank_0,&
+      hipfftGetSizeMany64_rank_1
 #endif
-
   end interface
   
   interface hipfftEstimate1d
@@ -310,11 +300,10 @@ hipfftGetSizeMany64_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipfftEstimate1d_rank_0,&
-      
-hipfftEstimate1d_rank_1
+    module procedure &
+      hipfftEstimate1d_rank_0,&
+      hipfftEstimate1d_rank_1
 #endif
-
   end interface
   
   interface hipfftEstimate2d
@@ -334,11 +323,10 @@ hipfftEstimate1d_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipfftEstimate2d_rank_0,&
-      
-hipfftEstimate2d_rank_1
+    module procedure &
+      hipfftEstimate2d_rank_0,&
+      hipfftEstimate2d_rank_1
 #endif
-
   end interface
   
   interface hipfftEstimate3d
@@ -359,11 +347,10 @@ hipfftEstimate2d_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipfftEstimate3d_rank_0,&
-      
-hipfftEstimate3d_rank_1
+    module procedure &
+      hipfftEstimate3d_rank_0,&
+      hipfftEstimate3d_rank_1
 #endif
-
   end interface
   
   interface hipfftEstimateMany
@@ -390,11 +377,10 @@ hipfftEstimate3d_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipfftEstimateMany_rank_0,&
-      
-hipfftEstimateMany_rank_1
+    module procedure &
+      hipfftEstimateMany_rank_0,&
+      hipfftEstimateMany_rank_1
 #endif
-
   end interface
   
   interface hipfftCreate
@@ -409,7 +395,6 @@ hipfftEstimateMany_rank_1
       integer(kind(HIPFFT_SUCCESS)) :: hipfftCreate_
       type(c_ptr) :: plan
     end function
-
 
   end interface
   
@@ -431,11 +416,10 @@ hipfftEstimateMany_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipfftGetSize1d_rank_0,&
-      
-hipfftGetSize1d_rank_1
+    module procedure &
+      hipfftGetSize1d_rank_0,&
+      hipfftGetSize1d_rank_1
 #endif
-
   end interface
   
   interface hipfftGetSize2d
@@ -456,11 +440,10 @@ hipfftGetSize1d_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipfftGetSize2d_rank_0,&
-      
-hipfftGetSize2d_rank_1
+    module procedure &
+      hipfftGetSize2d_rank_0,&
+      hipfftGetSize2d_rank_1
 #endif
-
   end interface
   
   interface hipfftGetSize3d
@@ -482,11 +465,10 @@ hipfftGetSize2d_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipfftGetSize3d_rank_0,&
-      
-hipfftGetSize3d_rank_1
+    module procedure &
+      hipfftGetSize3d_rank_0,&
+      hipfftGetSize3d_rank_1
 #endif
-
   end interface
   
   interface hipfftGetSizeMany
@@ -514,11 +496,10 @@ hipfftGetSize3d_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipfftGetSizeMany_rank_0,&
-      
-hipfftGetSizeMany_rank_1
+    module procedure &
+      hipfftGetSizeMany_rank_0,&
+      hipfftGetSizeMany_rank_1
 #endif
-
   end interface
   
   interface hipfftGetSize
@@ -536,11 +517,10 @@ hipfftGetSizeMany_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipfftGetSize_rank_0,&
-      
-hipfftGetSize_rank_1
+    module procedure &
+      hipfftGetSize_rank_0,&
+      hipfftGetSize_rank_1
 #endif
-
   end interface
   
   interface hipfftSetWorkArea
@@ -557,7 +537,6 @@ hipfftGetSize_rank_1
       type(c_ptr),value :: workArea
     end function
 
-
   end interface
   
   interface hipfftSetAutoAllocation
@@ -573,7 +552,6 @@ hipfftGetSize_rank_1
       type(c_ptr),value :: plan
       integer(c_int),value :: autoAllocate
     end function
-
 
   end interface
   
@@ -594,11 +572,10 @@ hipfftGetSize_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipfftExecC2C_rank_0,&
-      
-hipfftExecC2C_rank_1
+    module procedure &
+      hipfftExecC2C_rank_0,&
+      hipfftExecC2C_rank_1
 #endif
-
   end interface
   
   interface hipfftExecR2C
@@ -617,11 +594,10 @@ hipfftExecC2C_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipfftExecR2C_rank_0,&
-      
-hipfftExecR2C_rank_1
+    module procedure &
+      hipfftExecR2C_rank_0,&
+      hipfftExecR2C_rank_1
 #endif
-
   end interface
   
   interface hipfftExecC2R
@@ -640,11 +616,10 @@ hipfftExecR2C_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipfftExecC2R_rank_0,&
-      
-hipfftExecC2R_rank_1
+    module procedure &
+      hipfftExecC2R_rank_0,&
+      hipfftExecC2R_rank_1
 #endif
-
   end interface
   
   interface hipfftExecZ2Z
@@ -664,11 +639,10 @@ hipfftExecC2R_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipfftExecZ2Z_rank_0,&
-      
-hipfftExecZ2Z_rank_1
+    module procedure &
+      hipfftExecZ2Z_rank_0,&
+      hipfftExecZ2Z_rank_1
 #endif
-
   end interface
   
   interface hipfftExecD2Z
@@ -687,11 +661,10 @@ hipfftExecZ2Z_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipfftExecD2Z_rank_0,&
-      
-hipfftExecD2Z_rank_1
+    module procedure &
+      hipfftExecD2Z_rank_0,&
+      hipfftExecD2Z_rank_1
 #endif
-
   end interface
   
   interface hipfftExecZ2D
@@ -710,11 +683,10 @@ hipfftExecD2Z_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipfftExecZ2D_rank_0,&
-      
-hipfftExecZ2D_rank_1
+    module procedure &
+      hipfftExecZ2D_rank_0,&
+      hipfftExecZ2D_rank_1
 #endif
-
   end interface
   
   interface hipfftSetStream
@@ -730,7 +702,6 @@ hipfftExecZ2D_rank_1
       type(c_ptr),value :: plan
       type(c_ptr),value :: stream
     end function
-
 
   end interface
   !> 
@@ -750,7 +721,6 @@ hipfftExecZ2D_rank_1
       type(c_ptr),value :: plan
     end function
 
-
   end interface
   
   interface hipfftGetVersion
@@ -765,7 +735,6 @@ hipfftExecZ2D_rank_1
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetVersion_
       type(c_ptr),value :: version
     end function
-
 
   end interface
   
@@ -782,7 +751,6 @@ hipfftExecZ2D_rank_1
       integer(kind(HIPFFT_MAJOR_VERSION)),value :: myType
       type(c_ptr),value :: myValue
     end function
-
 
   end interface
 

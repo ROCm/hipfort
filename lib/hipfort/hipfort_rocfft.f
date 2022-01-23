@@ -40,7 +40,6 @@ module hipfort_rocfft
       integer(kind(rocfft_status_success)) :: rocfft_setup_
     end function
 
-
   end interface
   !> ! @brief Library cleanup function, called once in program after end of library
   !>   use 
@@ -51,7 +50,6 @@ module hipfort_rocfft
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_cleanup_
     end function
-
 
   end interface
   !> ! @brief Create an FFT plan
@@ -104,11 +102,10 @@ module hipfort_rocfft
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocfft_plan_create_rank_0,&
-      
-rocfft_plan_create_rank_1
+    module procedure &
+      rocfft_plan_create_rank_0,&
+      rocfft_plan_create_rank_1
 #endif
-
   end interface
   !> ! @brief Execute an FFT plan
   !>  
@@ -151,7 +148,6 @@ rocfft_plan_create_rank_1
       type(c_ptr),value :: myInfo
     end function
 
-
   end interface
   !> ! @brief Destroy an FFT plan
   !>    @details This API frees the plan after it is no longer needed.
@@ -165,7 +161,6 @@ rocfft_plan_create_rank_1
       integer(kind(rocfft_status_success)) :: rocfft_plan_destroy_
       type(c_ptr),value :: plan
     end function
-
 
   end interface
   !> ! @brief Set scaling factor in single precision
@@ -183,7 +178,6 @@ rocfft_plan_create_rank_1
       real(c_float),value :: scale
     end function
 
-
   end interface
   !> ! @brief Set scaling factor in double precision
   !>    @details This is one of plan description functions to specify optional additional plan properties using the description handle. This API specifies scaling factor.
@@ -199,7 +193,6 @@ rocfft_plan_create_rank_1
       type(c_ptr),value :: description
       real(c_double),value :: scale
     end function
-
 
   end interface
   !> !
@@ -261,11 +254,10 @@ rocfft_plan_create_rank_1
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure rocfft_plan_description_set_data_layout_rank_0,&
-      
-rocfft_plan_description_set_data_layout_rank_1
+    module procedure &
+      rocfft_plan_description_set_data_layout_rank_0,&
+      rocfft_plan_description_set_data_layout_rank_1
 #endif
-
   end interface
   !> ! @brief Get library version string
   !>  
@@ -281,7 +273,6 @@ rocfft_plan_description_set_data_layout_rank_1
       type(c_ptr),value :: buf
       integer(c_size_t),value :: len
     end function
-
 
   end interface
   !> ! @brief Set devices in plan description
@@ -301,7 +292,6 @@ rocfft_plan_description_set_data_layout_rank_1
       integer(c_size_t),value :: number_of_devices
     end function
 
-
   end interface
   !> ! @brief Get work buffer size
   !>    @details Get the work buffer size required for a plan.
@@ -318,7 +308,6 @@ rocfft_plan_description_set_data_layout_rank_1
       integer(c_size_t) :: size_in_bytes
     end function
 
-
   end interface
   !> ! @brief Print all plan information
   !>    @details Prints plan details to stdout, to aid debugging
@@ -332,7 +321,6 @@ rocfft_plan_description_set_data_layout_rank_1
       integer(kind(rocfft_status_success)) :: rocfft_plan_get_print_
       type(c_ptr),value :: plan
     end function
-
 
   end interface
   !> ! @brief Create plan description
@@ -349,7 +337,6 @@ rocfft_plan_description_set_data_layout_rank_1
       type(c_ptr) :: description
     end function
 
-
   end interface
   !> ! @brief Destroy a plan description
   !>    @details This API frees the plan description.  A plan description
@@ -364,7 +351,6 @@ rocfft_plan_description_set_data_layout_rank_1
       integer(kind(rocfft_status_success)) :: rocfft_plan_description_destroy_
       type(c_ptr),value :: description
     end function
-
 
   end interface
   !> ! @brief Create execution info
@@ -382,7 +368,6 @@ rocfft_plan_description_set_data_layout_rank_1
       type(c_ptr) :: myInfo
     end function
 
-
   end interface
   !> ! @brief Destroy an execution info
   !>    @details This API frees the execution info.  An execution info
@@ -398,7 +383,6 @@ rocfft_plan_description_set_data_layout_rank_1
       integer(kind(rocfft_status_success)) :: rocfft_execution_info_destroy_
       type(c_ptr),value :: myInfo
     end function
-
 
   end interface
   !> ! @brief Set work buffer in execution info
@@ -438,7 +422,6 @@ rocfft_plan_description_set_data_layout_rank_1
       integer(c_size_t),value :: size_in_bytes
     end function
 
-
   end interface
   !> ! @brief Set execution mode in execution info
   !>    @details This is one of the execution info functions to specify optional additional information to control execution.
@@ -456,7 +439,6 @@ rocfft_plan_description_set_data_layout_rank_1
       type(c_ptr),value :: myInfo
       integer(kind(rocfft_exec_mode_nonblocking)),value :: mode
     end function
-
 
   end interface
   !> ! @brief Set stream in execution info
@@ -481,7 +463,6 @@ rocfft_plan_description_set_data_layout_rank_1
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: stream
     end function
-
 
   end interface
   !> ! @brief Set a load callback for a plan execution (experimental)
@@ -530,7 +511,6 @@ rocfft_plan_description_set_data_layout_rank_1
       type(c_ptr) :: cb_data
       integer(c_size_t),value :: shared_mem_bytes
     end function
-
 
   end interface
   !> ! @brief Set a store callback for a plan execution (experimental)
@@ -581,7 +561,6 @@ rocfft_plan_description_set_data_layout_rank_1
       integer(c_size_t),value :: shared_mem_size
     end function
 
-
   end interface
   !> ! @brief Get events from execution info
   !>    @details This is one of the execution info functions to retrieve information from execution.
@@ -602,7 +581,6 @@ rocfft_plan_description_set_data_layout_rank_1
       integer(c_size_t) :: number_of_events
     end function
 
-
   end interface
   !> ! @brief Serialize compiled kernel cache
   !> 
@@ -620,7 +598,6 @@ rocfft_plan_description_set_data_layout_rank_1
       type(c_ptr),value :: buffer_len_bytes
     end function
 
-
   end interface
   !> ! @brief Free cache serialization buffer
   !> 
@@ -633,7 +610,6 @@ rocfft_plan_description_set_data_layout_rank_1
       integer(kind(rocfft_status_success)) :: rocfft_cache_buffer_free_
       type(c_ptr),value :: buffer
     end function
-
 
   end interface
   !> ! @brief Deserialize a buffer into the compiled kernel cache.
@@ -652,7 +628,6 @@ rocfft_plan_description_set_data_layout_rank_1
       type(c_ptr),value :: buffer
       integer(c_size_t),value :: buffer_len_bytes
     end function
-
 
   end interface
 
