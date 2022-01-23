@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['major',['major',['../structhipfort__types_1_1hipdeviceprop__t.html#a22d51e8e7b997d2fb1c3cf8288eefdf6',1,'hipfort_types::hipdeviceprop_t']]],
+  ['managedmemory',['managedmemory',['../structhipfort__types_1_1hipdeviceprop__t.html#abe6be76ee5185d13c0985e46cc9b1e96',1,'hipfort_types::hipdeviceprop_t']]],
+  ['maxgridsize',['maxgridsize',['../structhipfort__types_1_1hipdeviceprop__t.html#a0165194aefa0026e9560fb6a1f2ad5a9',1,'hipfort_types::hipdeviceprop_t']]],
+  ['maxsharedmemorypermultiprocessor',['maxsharedmemorypermultiprocessor',['../structhipfort__types_1_1hipdeviceprop__t.html#a6cb1cac7acf04cfe346a27b86590170a',1,'hipfort_types::hipdeviceprop_t']]],
+  ['maxtexture1d',['maxtexture1d',['../structhipfort__types_1_1hipdeviceprop__t.html#a351487d097705ce8d240b5638a62c595',1,'hipfort_types::hipdeviceprop_t']]],
+  ['maxtexture1dlinear',['maxtexture1dlinear',['../structhipfort__types_1_1hipdeviceprop__t.html#a01ad5f5fa1e78f5481a4d3d000164d87',1,'hipfort_types::hipdeviceprop_t']]],
+  ['maxtexture2d',['maxtexture2d',['../structhipfort__types_1_1hipdeviceprop__t.html#a451b96bbbcbfe72866f2e428e4321b65',1,'hipfort_types::hipdeviceprop_t']]],
+  ['maxtexture3d',['maxtexture3d',['../structhipfort__types_1_1hipdeviceprop__t.html#a48ef09658b4af912d1c79ad970cda163',1,'hipfort_types::hipdeviceprop_t']]],
+  ['maxthreadsdim',['maxthreadsdim',['../structhipfort__types_1_1hipdeviceprop__t.html#adfc70c668bdd9a2c7810bb5e818a2299',1,'hipfort_types::hipdeviceprop_t']]],
+  ['maxthreadsperblock',['maxthreadsperblock',['../structhipfort__types_1_1hipdeviceprop__t.html#a79acb9c65b8c40e3e3c8b9c5de207a39',1,'hipfort_types::hipdeviceprop_t']]],
+  ['maxthreadspermultiprocessor',['maxthreadspermultiprocessor',['../structhipfort__types_1_1hipdeviceprop__t.html#ac5ed0fd93228700bfd29cd1b16ee7be4',1,'hipfort_types::hipdeviceprop_t']]],
+  ['memorybuswidth',['memorybuswidth',['../structhipfort__types_1_1hipdeviceprop__t.html#af21df0a3ea45f00376d49acc3579a723',1,'hipfort_types::hipdeviceprop_t']]],
+  ['memoryclockrate',['memoryclockrate',['../structhipfort__types_1_1hipdeviceprop__t.html#a222b327511c5335396833181cc22d08f',1,'hipfort_types::hipdeviceprop_t']]],
+  ['mempitch',['mempitch',['../structhipfort__types_1_1hipdeviceprop__t.html#a8f55653a94d164962af6172e2e965f6a',1,'hipfort_types::hipdeviceprop_t']]],
+  ['minor',['minor',['../structhipfort__types_1_1hipdeviceprop__t.html#af5540f0a8f2be9b9a8bc0524808df309',1,'hipfort_types::hipdeviceprop_t']]],
+  ['multiprocessorcount',['multiprocessorcount',['../structhipfort__types_1_1hipdeviceprop__t.html#a6701411b904d7c296b565ec95fcc4b19',1,'hipfort_types::hipdeviceprop_t']]]
+];
