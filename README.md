@@ -53,6 +53,29 @@ into your code and makes it easier to read too.
 > **NOTE**: If you plan to use the `f2008` interfaces, we recommend `gfortran` version `7.5.0` or newer
 as we have observed problems with older versions.
 
+### Supported API
+
+The current batch of HIPFORT interfaces is derived from ROCm 4.5.0.
+The following tables list the supported API:
+
+* [HIP](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_HIP.md)
+* [HIPBLAS](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_HIPBLAS.md)
+* [HIPFFT](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_HIPFFT.md)
+* [HIPRAND](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_HIPRAND.md)
+* [HIPSOLVER](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_HIPSOLVER.md)
+* [HIPSPARSE](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_HIPSPARSE.md)
+* [ROCBLAS](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_ROCBLAS.md)
+* [ROCFFT](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_ROCFFT.md)
+* [ROCRAND](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_ROCRAND.md)
+* [ROCSOLVER](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_ROCSOLVER.md)
+* [ROCSPARSE](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_ROCSPARSE.md)
+
+Often, it is further convenient to use the search function on
+HIPFORT's docu page to get information on the arguments of 
+a specific interface:
+
+https://rocmsoftwareplatform.github.io/hipfort/index.html
+
 ### Example
 
 While you could write the following using the `f2003` interfaces:
