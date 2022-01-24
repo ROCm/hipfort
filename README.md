@@ -47,7 +47,7 @@ If your compiler understands the Fortran 2008 (`f2008`) code constructs that occ
 additional interfaces are compiled into the `hipfort` modules and libraries. 
 These directly take Fortran (array) variables and the number of
 elements instead of `type(c_ptr)` variables and the number of bytes, respectively. 
-Therefore, they reduces the chance to introduce compile-time and runtime errors
+Therefore, they reduce the chance to introduce compile-time and runtime errors
 into your code and makes it easier to read too.
 
 > **NOTE**: If you plan to use the `f2008` interfaces, we recommend `gfortran` version `7.5.0` or newer
@@ -112,9 +112,9 @@ The following tables list the supported API:
 * [rocSOLVER](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_ROCSOLVER.md)
 * [rocSPARSE](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_ROCSPARSE.md)
 
-Often, it is further convenient to use the search function on
+You may further find it convenient to directly use the search function on
 HIPFORT's docu page to get information on the arguments of 
-an interface (variant):
+an interface:
 
 https://rocmsoftwareplatform.github.io/hipfort/index.html
 
@@ -216,7 +216,7 @@ make run_all CFLAGS="--offload-arch=sm_70 -lcublas -lcusolver -lcufft"
 
 <A NAME="Copyright">
 
-Copyright (c) 2021 Advanced Micro Devices, Inc. All rights reserved.
+Copyright (c) 2020-2022 Advanced Micro Devices, Inc. All rights reserved.
 [MITx11 License]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
