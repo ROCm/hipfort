@@ -89,6 +89,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:adf7a220720e7849b52dfda33dd84953d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf5bef3daad8c3e3603e888b144e35ce"><td class="memItemLeft" align="right" valign="top">integer(kind(hipfft_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipfft_1_1hipfftexecr2c.html#acf5bef3daad8c3e3603e888b144e35ce">hipfftexecr2c_rank_1</a> (plan, idata, odata)</td></tr>
 <tr class="separator:acf5bef3daad8c3e3603e888b144e35ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f5c3720e81448f673d709e2588559e5"><td class="memItemLeft" align="right" valign="top">integer(kind(hipfft_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipfft_1_1hipfftexecr2c.html#a7f5c3720e81448f673d709e2588559e5">hipfftexecr2c_rank_2</a> (plan, idata, odata)</td></tr>
+<tr class="separator:a7f5c3720e81448f673d709e2588559e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add40744c6aa1c55e29dab6167f47395c"><td class="memItemLeft" align="right" valign="top">integer(kind(hipfft_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipfft_1_1hipfftexecr2c.html#add40744c6aa1c55e29dab6167f47395c">hipfftexecr2c_rank_3</a> (plan, idata, odata)</td></tr>
+<tr class="separator:add40744c6aa1c55e29dab6167f47395c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="afee02666598f5ab6d52ebbdbffd0b78e"></a>
@@ -181,6 +185,74 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">complex(c_float_complex), dimension(:), target&#160;</td>
+          <td class="paramname"><em>odata</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7f5c3720e81448f673d709e2588559e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f5c3720e81448f673d709e2588559e5">&#9670;&nbsp;</a></span>hipfftexecr2c_rank_2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer(kind(hipfft_success)) function hipfort_hipfft::hipfftexecr2c::hipfftexecr2c_rank_2 </td>
+          <td>(</td>
+          <td class="paramtype">type(c_ptr), value&#160;</td>
+          <td class="paramname"><em>plan</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(c_float), dimension(:,:), target&#160;</td>
+          <td class="paramname"><em>idata</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">complex(c_float_complex), dimension(:,:), target&#160;</td>
+          <td class="paramname"><em>odata</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="add40744c6aa1c55e29dab6167f47395c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add40744c6aa1c55e29dab6167f47395c">&#9670;&nbsp;</a></span>hipfftexecr2c_rank_3()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer(kind(hipfft_success)) function hipfort_hipfft::hipfftexecr2c::hipfftexecr2c_rank_3 </td>
+          <td>(</td>
+          <td class="paramtype">type(c_ptr), value&#160;</td>
+          <td class="paramname"><em>plan</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(c_float), dimension(:,:,:), target&#160;</td>
+          <td class="paramname"><em>idata</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">complex(c_float_complex), dimension(:,:,:), target&#160;</td>
           <td class="paramname"><em>odata</em>&#160;</td>
         </tr>
         <tr>
