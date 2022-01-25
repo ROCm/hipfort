@@ -7,6 +7,7 @@ This is a FORTRAN interface library for accessing GPU Kernels.
 ## Known issues
 
 * `hipSOLVER` interfaces will only work for AMD GPUs.
+*  We recommend `gfortran` version 7.5.0 or newer as we have observed problems with older versions.
 
 ## Build and test hipfort from source
 
