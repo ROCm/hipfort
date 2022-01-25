@@ -16,8 +16,8 @@ program main
   integer(c_int),pointer :: dInfo
   integer(c_int),pointer :: dIpiv(:)
   real(c_double),pointer :: dA(:,:)
-  real(c_double),pointer :: dWork(:)
-  integer(c_int)         :: size_work ! size of workspace to pass to getrf
+  type(c_ptr)            :: dWork
+  integer(c_int)         :: size_work_bytes ! size of workspace to pass to getrf (in bytes)
   !
   hA = reshape((/12,-51,4, 6,167,-68, -4,24,-41/),shape(hA))
   
@@ -36,17 +36,11 @@ program main
   call hipCheck(hipMalloc(dA, source=hA))
 
   ! create the workspace
-  !    type(c_ptr) :: handle
-  !    integer(c_int) :: m
-  !    integer(c_int) :: n
-  !    real(c_double),target,dimension(:,:) :: A
-  !    integer(c_int) :: lda
-  !    integer(c_int) :: lwork
-  call hipsolverCheck(hipsolverDgetrf_bufferSize(handle, M, N, dA, lda, size_work))
-  call hipCheck(hipMalloc(dWork, size_work))
+  call hipsolverCheck(hipsolverDgetrf_bufferSize(handle, M, N, dA, lda, size_work_bytes))
+  call hipCheck(hipMalloc(dWork, int(size_work_bytes,c_size_t)))
 
   ! compute the LU factorization on the GPU
-  call hipsolverCheck(hipsolverDgetrf(handle, M, N, dA, lda, c_loc(dWork), size_work, dIpiv, dInfo))
+  call hipsolverCheck(hipsolverDgetrf(handle, M, N, dA, lda, dWork, size_work_bytes, dIpiv, dInfo))
 
   ! copy the results back to CPU
   call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
