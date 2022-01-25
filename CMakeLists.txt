@@ -60,7 +60,10 @@ IF(NOT DEFINED CMAKE_Fortran_COMPILER_SUPPORTS_F08)
       end interface
     contains
       subroutine foo_a(a)
+        use iso_c_binding
         integer,target,dimension(:) :: a
+        type(c_ptr) :: a_ptr
+        a_ptr = c_loc(a) ! gfortran < 4.9 fails here
       end
       subroutine foo_b(b)
         integer,pointer,dimension(:,:) :: b
