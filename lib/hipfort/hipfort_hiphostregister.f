@@ -515,6 +515,7 @@ module hipfort_hiphostregister
 #endif
   end interface
 
+#ifdef USE_FPOINTER_INTERFACES
 contains 
      
                                         
@@ -6666,5 +6667,5 @@ contains
       !
       hipHostUnregister_c8_7 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
+#endif 
 end module
