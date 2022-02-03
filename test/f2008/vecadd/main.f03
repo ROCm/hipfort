@@ -22,8 +22,8 @@ program fortran_hip
   real(8),allocatable,dimension(:) :: a,b,out
   real(8),pointer,dimension(:) :: da => null(), db => null(),dout => null()
 
-  type(dim3) :: grid = dim3(320,1,1) 
-  type(dim3) :: block = dim3(256,1,1) 
+  !type(dim3) :: grid  = dim3(320,1,1) 
+  !type(dim3) :: block = dim3(256,1,1) 
   
   integer :: i
   type(hipDeviceProp_t),target :: props
@@ -55,7 +55,8 @@ program fortran_hip
   call hipCheck(hipMemcpy(db, b, N, hipMemcpyHostToDevice))
 
   ! launch kernel
-  call launch(grid,block,0,c_null_ptr,c_loc(dout),c_loc(da),c_loc(db),N)
+  call launch(dim3(320),dim3(256),0,c_null_ptr,c_loc(dout),c_loc(da),c_loc(db),N)
+  !call launch(grid,block,0,c_null_ptr,c_loc(dout),c_loc(da),c_loc(db),N)
   call hipCheck(hipDeviceSynchronize())
 
   ! Transfer data back to host memory
