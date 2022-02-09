@@ -120,13 +120,15 @@ IF(FCNAME STREQUAL "pgf90")
     UNSET(CMAKE_SHARED_LIBRARY_LINK_Fortran_FLAGS)
 ENDIF(FCNAME STREQUAL "pgf90")
 
+# Subdirectories and packaging
+# NOTE: rocm-cmake must be be included before
+# adding subdirectories.
+INCLUDE(${CMAKE_MODULE_PATH}/rocm-cmake.cmake)
+rocm_setup_version(VERSION ${VERSION})
 ADD_SUBDIRECTORY(${CMAKE_SOURCE_DIR}/lib)
 ADD_SUBDIRECTORY(${CMAKE_SOURCE_DIR}/test)
 ADD_SUBDIRECTORY(${CMAKE_SOURCE_DIR}/bin)
 
-# Packaging
-INCLUDE(${CMAKE_MODULE_PATH}/rocm-cmake.cmake)
-rocm_setup_version(VERSION ${VERSION})
 set(CPACK_DEBIAN_PACKAGE_DEPENDS "hip-rocclr (>= 3.5.0)")
 set(CPACK_RPM_PACKAGE_REQUIRES "hip-rocclr >= 3.5.0")
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
