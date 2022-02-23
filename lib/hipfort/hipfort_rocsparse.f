@@ -13022,9 +13022,6 @@ module hipfort_rocsparse
   !>   This function is non blocking and executed asynchronously with respect to the host.
   !>   It may return before the actual computation has finished.
   !> 
-  !>   \note
-  !>   Currently, only \p trans == \ref rocsparse_operation_none is supported.
-  !> 
   !>   @param[in]
   !>   handle       handle to the rocsparse library context queue.
   !>   @param[in]
@@ -13055,7 +13052,7 @@ module hipfort_rocsparse
   !>   \retval      rocsparse_status_invalid_handle the library context was not initialized.
   !>   \retval      rocsparse_status_invalid_pointer \p alpha, \p mat, \p x, \p beta, \p y or
   !>                \p buffer_size pointer is invalid.
-  !>   \retval      rocsparse_status_not_implemented \p trans, \p compute_type or \p alg is
+  !>   \retval      rocsparse_status_not_implemented \p compute_type or \p alg is
   !>                currently not supported.
   !> 
   interface rocsparse_spmv
@@ -13274,238 +13271,13 @@ module hipfort_rocsparse
     end function
 
   end interface
-  !> ! \ingroup generic_module
-  !>   \brief Sparse matrix dense matrix multiplication
-  !> 
-  !>   \details
-  !>   \p rocsparse_spmm multiplies the scalar \f$\alpha\f$ with a sparse \f$m \times k\f$
-  !>   matrix \f$A\f$, defined in CSR, COO or Blocked ELL storage format, and the dense \f$k \times n\f$
-  !>   matrix \f$B\f$ and adds the result to the dense \f$m \times n\f$ matrix \f$C\f$ that
-  !>   is multiplied by the scalar \f$\beta\f$, such that
-  !>   \f[
-  !>     C := \alpha \cdot op(A) \cdot op(B) + \beta \cdot C,
-  !>   \f]
-  !>   with
-  !>   \f[
-  !>     op(A) = \left\{
-  !>     \begin{array}{ll}
-  !>         A,   & \text{if trans_A == rocsparse_operation_none} \\
-  !>         A^T, & \text{if trans_A == rocsparse_operation_transpose} \\
-  !>         A^H, & \text{if trans_A == rocsparse_operation_conjugate_transpose}
-  !>     \end{array}
-  !>     \right.
-  !>   \f]
-  !>   and
-  !>   \f[
-  !>     op(B) = \left\{
-  !>     \begin{array}{ll}
-  !>         B,   & \text{if trans_B == rocsparse_operation_none} \\
-  !>         B^T, & \text{if trans_B == rocsparse_operation_transpose} \\
-  !>         B^H, & \text{if trans_B == rocsparse_operation_conjugate_transpose}
-  !>     \end{array}
-  !>     \right.
-  !>   \f]
-  !> 
-  !>   \note
-  !>   This function is non blocking and executed asynchronously with respect to the host.
-  !>   It may return before the actual computation has finished.
-  !> 
-  !>   \note
-  !>   Currently, only \p trans_A == \ref rocsparse_operation_none is supported.
-  !> 
-  !>   \note
-  !>   Currently, only CSR, COO and Blocked ELL sparse formats are supported.
-  !> 
-  !>   \note
-  !>   Different algorithms are available which can provide better performance for different matrices.
-  !>   Currently, the available algorithms are rocsparse_spmm_alg_csr, rocsparse_spmm_alg_csr_row_split
-  !>   or rocsparse_spmm_alg_csr_merge for CSR matrices, rocsparse_spmm_alg_bell for Blocked ELL matrices and
-  !>   rocsparse_spmm_alg_coo_segmented or rocsparse_spmm_alg_coo_atomic for COO matrices. Additionally,
-  !>   one can specify the algorithm to be rocsparse_spmm_alg_default. In the case of CSR matrices this will
-  !>   set the algorithm to be rocsparse_spmm_alg_csr, in the case of Blocked ELL matrices this will set the algorithm to be rocsparse_spmm_alg_bell and for COO matrices it will set the algorithm to be rocsparse_spmm_alg_coo_atomic.
-  !> 
-  !>   \note
-  !>   This function writes the required allocation size (in bytes) to \p buffer_size and
-  !>   returns without performing the SpMM operation, when a nullptr is passed for
-  !>   \p temp_buffer.
-  !> 
-  !>   \note
-  !>   This function is non blocking and executed asynchronously with respect to the host.
-  !>   It may return before the actual computation has finished.
-  !> 
-  !>   @param[in]
-  !>   handle       handle to the rocsparse library context queue.
-  !>   @param[in]
-  !>   trans_A      matrix operation type.
-  !>   @param[in]
-  !>   trans_B      matrix operation type.
-  !>   @param[in]
-  !>   alpha        scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   mat_A        matrix descriptor.
-  !>   @param[in]
-  !>   mat_B        matrix descriptor.
-  !>   @param[in]
-  !>   beta         scalar \f$\beta\f$.
-  !>   @param[in]
-  !>   mat_C        matrix descriptor.
-  !>   @param[in]
-  !>   compute_type floating point precision for the SpMM computation.
-  !>   @param[in]
-  !>   alg          SpMM algorithm for the SpMM computation.
-  !>   @param[out]
-  !>   buffer_size  number of bytes of the temporary storage buffer. When \p buffer_size is not nullptr
-  !>                and \p temp_buffer is nullptr, \p buffer_size will be set and the function returns
-  !>                without performing the SpMM operation. Currently only rocsparse_spmm_alg_csr_merge
-  !>                requires a user allocated buffer. Attempting to get the buffer size with any other
-  !>                algorithm will return a buffer size of 4 bytes and is not required.
-  !>   @param[in]
-  !>   temp_buffer  temporary storage buffer allocated by the user. When \p temp_buffer is not nullptr
-  !>                and \p buffer_size is nullptr, \p temp_buffer will be filled with any analysis data
-  !>                and the function returns without performing the SpMM operation. Currently only
-  !>                rocsparse_spmm_alg_csr_merge requires analysis data. Attempting to perform analysis
-  !>                with any other algorithm does nothing and is not necessary.
-  !> 
-  !>   \retval      rocsparse_status_success the operation completed successfully.
-  !>   \retval      rocsparse_status_invalid_handle the library context was not initialized.
-  !>   \retval      rocsparse_status_invalid_pointer \p alpha, \p mat_A, \p mat_B, \p mat_C, \p beta, or
-  !>                \p buffer_size pointer is invalid.
-  !>   \retval      rocsparse_status_not_implemented \p trans_A, \p trans_B, \p compute_type or \p alg is
-  !>                currently not supported.
-  !> 
+  
   interface rocsparse_spmm
-    function rocsparse_spmm_(handle,trans_A,trans_B,alpha,mat_A,mat_B,beta,mat_C,compute_type,alg,buffer_size,temp_buffer) bind(c, name="rocsparse_spmm")
+    function rocsparse_spmm_(handle,trans_A,trans_B,alpha,mat_A,mat_B,beta,mat_C,compute_type,alg,stage,buffer_size,temp_buffer) bind(c, name="rocsparse_spmm")
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_spmm_
-      type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
-      type(c_ptr),value :: alpha
-      type(c_ptr),value :: mat_A
-      type(c_ptr),value :: mat_B
-      type(c_ptr),value :: beta
-      type(c_ptr),value :: mat_C
-      integer(kind(rocsparse_datatype_f32_r)),value :: compute_type
-      integer(kind(rocsparse_spmm_alg_default)),value :: alg
-      integer(c_size_t) :: buffer_size
-      type(c_ptr),value :: temp_buffer
-    end function
-
-  end interface
-  !> ! \ingroup generic_module
-  !>   \brief Sparse matrix dense matrix multiplication, extension routine.
-  !> 
-  !>   \details
-  !>   \p rocsparse_spmm_ex multiplies the scalar \f$\alpha\f$ with a sparse \f$m \times k\f$
-  !>   matrix \f$A\f$, defined in CSR or COO storage format, and the dense \f$k \times n\f$
-  !>   matrix \f$B\f$ and adds the result to the dense \f$m \times n\f$ matrix \f$C\f$ that
-  !>   is multiplied by the scalar \f$\beta\f$, such that
-  !>   \f[
-  !>     C := \alpha \cdot op(A) \cdot op(B) + \beta \cdot C,
-  !>   \f]
-  !>   with
-  !>   \f[
-  !>     op(A) = \left\{
-  !>     \begin{array}{ll}
-  !>         A,   & \text{if trans_A == rocsparse_operation_none} \\
-  !>         A^T, & \text{if trans_A == rocsparse_operation_transpose} \\
-  !>         A^H, & \text{if trans_A == rocsparse_operation_conjugate_transpose}
-  !>     \end{array}
-  !>     \right.
-  !>   \f]
-  !>   and
-  !>   \f[
-  !>     op(B) = \left\{
-  !>     \begin{array}{ll}
-  !>         B,   & \text{if trans_B == rocsparse_operation_none} \\
-  !>         B^T, & \text{if trans_B == rocsparse_operation_transpose} \\
-  !>         B^H, & \text{if trans_B == rocsparse_operation_conjugate_transpose}
-  !>     \end{array}
-  !>     \right.
-  !>   \f]
-  !> 
-  !>   \note
-  !>   This function is non blocking and executed asynchronously with respect to the host.
-  !>   It may return before the actual computation has finished.
-  !> 
-  !>   \note
-  !>   Currently, only \p trans_A == \ref rocsparse_operation_none is supported.
-  !> 
-  !>   \note
-  !>   Currently, only CSR and COO sparse formats are supported.
-  !> 
-  !>   \note
-  !>   Different algorithms are available which can provide better performance for different matrices.
-  !>   Currently, the available algorithms are rocsparse_spmm_alg_csr for CSR matrices and
-  !>   rocsparse_spmm_alg_coo_segmented or rocsparse_spmm_alg_coo_atomic for COO matrices. Additionally,
-  !>   one can specify the algorithm to be rocsparse_spmm_alg_default. In the case of CSR matrices this will
-  !>   set the algorithm to be rocsparse_spmm_alg_csr and for COO matrices it will set the algorithm to be
-  !>   rocsparse_spmm_alg_coo_atomic.
-  !> 
-  !>   \note
-  !>   This function writes the required allocation size (in bytes) to \p buffer_size and
-  !>   returns without performing the SpMM operation, when a nullptr is passed for
-  !>   \p temp_buffer.
-  !> 
-  !>   \note
-  !>   This function is non blocking and executed asynchronously with respect to the host.
-  !>   It may return before the actual computation has finished.
-  !> 
-  !>   \note SpMM requires three stages to complete. The first stage
-  !>   \ref rocsparse_spmm_stage_buffer_size will return the size of the temporary storage buffer
-  !>   that is required for subsequent calls to \ref rocsparse_spmm_ex. The second stage
-  !>   \ref rocsparse_spmm_stage_preprocess will preprocess data that would be saved in the temporary storage buffer.
-  !>   In the final stage \ref rocsparse_spmm_stage_compute, the actual computation is performed.
-  !>   \note If \ref rocsparse_spgemm_stage_auto is selected, rocSPARSE will automatically detect
-  !>   which stage is required based on the following indicators:
-  !>   If \p temp_buffer is equal to \p nullptr, the required buffer size will be returned.
-  !>   Else, the SpMM preprocess and the SpMM algorithm will be executed.
-  !> 
-  !>   @param[in]
-  !>   handle       handle to the rocsparse library context queue.
-  !>   @param[in]
-  !>   trans_A      matrix operation type.
-  !>   @param[in]
-  !>   trans_B      matrix operation type.
-  !>   @param[in]
-  !>   alpha        scalar \f$\alpha\f$.
-  !>   @param[in]
-  !>   mat_A        matrix descriptor.
-  !>   @param[in]
-  !>   mat_B        matrix descriptor.
-  !>   @param[in]
-  !>   beta         scalar \f$\beta\f$.
-  !>   @param[in]
-  !>   mat_C        matrix descriptor.
-  !>   @param[in]
-  !>   compute_type floating point precision for the SpMM computation.
-  !>   @param[in]
-  !>   alg          SpMM algorithm for the SpMM computation.
-  !>   @param[in]
-  !>   stage        SpMM stage for the SpMM computation.
-  !>   @param[out]
-  !>   buffer_size  number of bytes of the temporary storage buffer. buffer_size is set when
-  !>                \p temp_buffer is nullptr.
-  !>   @param[in]
-  !>   temp_buffer  temporary storage buffer allocated by the user. When a nullptr is passed,
-  !>                the required allocation size (in bytes) is written to \p buffer_size and
-  !>                function returns without performing the SpMM operation.
-  !> 
-  !>   \retval      rocsparse_status_success the operation completed successfully.
-  !>   \retval      rocsparse_status_invalid_handle the library context was not initialized.
-  !>   \retval      rocsparse_status_invalid_pointer \p alpha, \p mat_A, \p mat_B, \p mat_C, \p beta, or
-  !>                \p buffer_size pointer is invalid.
-  !>   \retval      rocsparse_status_not_implemented \p trans_A, \p trans_B, \p compute_type or \p alg is
-  !>                currently not supported.
-  !> 
-  interface rocsparse_spmm_ex
-    function rocsparse_spmm_ex_(handle,trans_A,trans_B,alpha,mat_A,mat_B,beta,mat_C,compute_type,alg,stage,buffer_size,temp_buffer) bind(c, name="rocsparse_spmm_ex")
-      use iso_c_binding
-      use hipfort_rocsparse_enums
-      implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spmm_ex_
       type(c_ptr),value :: handle
       integer(kind(rocsparse_operation_none)),value :: trans_A
       integer(kind(rocsparse_operation_none)),value :: trans_B

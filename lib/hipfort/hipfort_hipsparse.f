@@ -30,7 +30,15 @@ module hipfort_hipsparse
   implicit none
 
  
-  !>  hipSPARSE initialization and management routines 
+  !> ! \ingroup aux_module
+  !>    \brief Create a hipsparse handle
+  !>  
+  !>    \details
+  !>    \p hipsparseCreate creates the hipSPARSE library context. It must be
+  !>    initialized before any other hipSPARSE API function is invoked and must be passed to
+  !>    all subsequent library function calls. The handle should be destroyed at the end
+  !>    using hipsparseDestroy().
+  !>  
   interface hipsparseCreate
 #ifdef USE_CUDA_NAMES
     function hipsparseCreate_(handle) bind(c, name="cusparseCreate")
@@ -46,7 +54,13 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> ! \ingroup aux_module
+  !>    \brief Destroy a hipsparse handle
+  !>  
+  !>    \details
+  !>    \p hipsparseDestroy destroys the hipSPARSE library context and releases all
+  !>    resources used by the hipSPARSE library.
+  !>  
   interface hipsparseDestroy
 #ifdef USE_CUDA_NAMES
     function hipsparseDestroy_(handle) bind(c, name="cusparseDestroy")
@@ -62,7 +76,15 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> ! \ingroup aux_module
+  !>    \brief Get hipSPARSE version
+  !>  
+  !>    \details
+  !>    \p hipsparseGetVersion gets the hipSPARSE library version number.
+  !>    - patch = version % 100
+  !>    - minor = version  100 % 1000
+  !>    - major = version  100000
+  !>  
   interface hipsparseGetVersion
 #ifdef USE_CUDA_NAMES
     function hipsparseGetVersion_(handle,version) bind(c, name="cusparseGetVersion")
@@ -79,7 +101,12 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> ! \ingroup aux_module
+  !>    \brief Get hipSPARSE git revision
+  !>  
+  !>    \details
+  !>    \p hipsparseGetGitRevision gets the hipSPARSE library git commit revision (SHA-1).
+  !>  
   interface hipsparseGetGitRevision
 #ifdef USE_CUDA_NAMES
     function hipsparseGetGitRevision_(handle,rev) bind(c, name="cusparseGetGitRevision")
@@ -96,7 +123,13 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> ! \ingroup aux_module
+  !>    \brief Specify user defined HIP stream
+  !>  
+  !>    \details
+  !>    \p hipsparseSetStream specifies the stream to be used by the hipSPARSE library
+  !>    context and all subsequent function calls.
+  !>  
   interface hipsparseSetStream
 #ifdef USE_CUDA_NAMES
     function hipsparseSetStream_(handle,streamId) bind(c, name="cusparseSetStream")
@@ -113,7 +146,13 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> ! \ingroup aux_module
+  !>    \brief Get current stream from library context
+  !>  
+  !>    \details
+  !>    \p hipsparseGetStream gets the hipSPARSE library context stream which is currently
+  !>    used for all subsequent function calls.
+  !>  
   interface hipsparseGetStream
 #ifdef USE_CUDA_NAMES
     function hipsparseGetStream_(handle,streamId) bind(c, name="cusparseGetStream")
@@ -130,7 +169,15 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !>  hipSPARSE type creation, destruction, set and get routines 
+  !> ! \ingroup aux_module
+  !>    \brief Specify pointer mode
+  !>  
+  !>    \details
+  !>    \p hipsparseSetPointerMode specifies the pointer mode to be used by the hipSPARSE
+  !>    library context and all subsequent function calls. By default, all values are passed
+  !>    by reference on the host. Valid pointer modes are \ref HIPSPARSE_POINTER_MODE_HOST
+  !>    or \p HIPSPARSE_POINTER_MODE_DEVICE.
+  !>  
   interface hipsparseSetPointerMode
 #ifdef USE_CUDA_NAMES
     function hipsparseSetPointerMode_(handle,mode) bind(c, name="cusparseSetPointerMode")
@@ -147,7 +194,13 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> ! \ingroup aux_module
+  !>    \brief Get current pointer mode from library context
+  !>  
+  !>    \details
+  !>    \p hipsparseGetPointerMode gets the hipSPARSE library context pointer mode which
+  !>    is currently used for all subsequent function calls.
+  !>  
   interface hipsparseGetPointerMode
 #ifdef USE_CUDA_NAMES
     function hipsparseGetPointerMode_(handle,mode) bind(c, name="cusparseGetPointerMode")
@@ -164,7 +217,14 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> ! \ingroup aux_module
+  !>    \brief Create a matrix descriptor
+  !>    \details
+  !>    \p hipsparseCreateMatDescr creates a matrix descriptor. It initializes
+  !>    \ref hipsparseMatrixType_t to \ref HIPSPARSE_MATRIX_TYPE_GENERAL and
+  !>    \ref hipsparseIndexBase_t to \ref HIPSPARSE_INDEX_BASE_ZERO. It should be destroyed
+  !>    at the end using hipsparseDestroyMatDescr().
+  !>  
   interface hipsparseCreateMatDescr
 #ifdef USE_CUDA_NAMES
     function hipsparseCreateMatDescr_(descrA) bind(c, name="cusparseCreateMatDescr")
@@ -180,7 +240,13 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> ! \ingroup aux_module
+  !>    \brief Destroy a matrix descriptor
+  !>  
+  !>    \details
+  !>    \p hipsparseDestroyMatDescr destroys a matrix descriptor and releases all
+  !>    resources used by the descriptor.
+  !>  
   interface hipsparseDestroyMatDescr
 #ifdef USE_CUDA_NAMES
     function hipsparseDestroyMatDescr_(descrA) bind(c, name="cusparseDestroyMatDescr")
@@ -196,7 +262,12 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> ! \ingroup aux_module
+  !>    \brief Copy a matrix descriptor
+  !>    \details
+  !>    \p hipsparseCopyMatDescr copies a matrix descriptor. Both, source and destination
+  !>    matrix descriptors must be initialized prior to calling \p hipsparseCopyMatDescr.
+  !>  
   interface hipsparseCopyMatDescr
 #ifdef USE_CUDA_NAMES
     function hipsparseCopyMatDescr_(dest,src) bind(c, name="cusparseCopyMatDescr")
@@ -213,7 +284,15 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> ! \ingroup aux_module
+  !>    \brief Specify the matrix type of a matrix descriptor
+  !>  
+  !>    \details
+  !>    \p hipsparseSetMatType sets the matrix type of a matrix descriptor. Valid
+  !>    matrix types are \ref HIPSPARSE_MATRIX_TYPE_GENERAL,
+  !>    \ref HIPSPARSE_MATRIX_TYPE_SYMMETRIC, \ref HIPSPARSE_MATRIX_TYPE_HERMITIAN or
+  !>    \ref HIPSPARSE_MATRIX_TYPE_TRIANGULAR.
+  !>  
   interface hipsparseSetMatType
 #ifdef USE_CUDA_NAMES
     function hipsparseSetMatType_(descrA,myType) bind(c, name="cusparseSetMatType")
@@ -230,7 +309,14 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> ! \ingroup aux_module
+  !>    \brief Specify the matrix fill mode of a matrix descriptor
+  !>  
+  !>    \details
+  !>    \p hipsparseSetMatFillMode sets the matrix fill mode of a matrix descriptor.
+  !>    Valid fill modes are \ref HIPSPARSE_FILL_MODE_LOWER or
+  !>    \ref HIPSPARSE_FILL_MODE_UPPER.
+  !>  
   interface hipsparseSetMatFillMode
 #ifdef USE_CUDA_NAMES
     function hipsparseSetMatFillMode_(descrA,fillMode) bind(c, name="cusparseSetMatFillMode")
@@ -247,7 +333,14 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> ! \ingroup aux_module
+  !>    \brief Specify the matrix diagonal type of a matrix descriptor
+  !>  
+  !>    \details
+  !>    \p hipsparseSetMatDiagType sets the matrix diagonal type of a matrix
+  !>    descriptor. Valid diagonal types are \ref HIPSPARSE_DIAG_TYPE_UNIT or
+  !>    \ref HIPSPARSE_DIAG_TYPE_NON_UNIT.
+  !>  
   interface hipsparseSetMatDiagType
 #ifdef USE_CUDA_NAMES
     function hipsparseSetMatDiagType_(descrA,diagType) bind(c, name="cusparseSetMatDiagType")
@@ -264,7 +357,13 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> ! \ingroup aux_module
+  !>    \brief Specify the index base of a matrix descriptor
+  !>  
+  !>    \details
+  !>    \p hipsparseSetMatIndexBase sets the index base of a matrix descriptor. Valid
+  !>    options are \ref HIPSPARSE_INDEX_BASE_ZERO or \ref HIPSPARSE_INDEX_BASE_ONE.
+  !>  
   interface hipsparseSetMatIndexBase
 #ifdef USE_CUDA_NAMES
     function hipsparseSetMatIndexBase_(descrA,base) bind(c, name="cusparseSetMatIndexBase")
@@ -313,7 +412,14 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !>  Info structures 
+  !> ! \ingroup aux_module
+  !>    \brief Create a bsrsv2 info structure
+  !>  
+  !>    \details
+  !>    \p hipsparseCreateBsrsv2Info creates a structure that holds the bsrsv2 info data
+  !>    that is gathered during the analysis routines available. It should be destroyed
+  !>    at the end using hipsparseDestroyBsrsv2Info().
+  !>  
   interface hipsparseCreateBsrsv2Info
 #ifdef USE_CUDA_NAMES
     function hipsparseCreateBsrsv2Info_(myInfo) bind(c, name="cusparseCreateBsrsv2Info")
@@ -329,7 +435,12 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> ! \ingroup aux_module
+  !>    \brief Destroy a bsrsv2 info structure
+  !>  
+  !>    \details
+  !>    \p hipsparseDestroyBsrsv2Info destroys a bsrsv2 info structure.
+  !>  
   interface hipsparseDestroyBsrsv2Info
 #ifdef USE_CUDA_NAMES
     function hipsparseDestroyBsrsv2Info_(myInfo) bind(c, name="cusparseDestroyBsrsv2Info")
@@ -345,7 +456,14 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> ! \ingroup aux_module
+  !>    \brief Create a bsrsm2 info structure
+  !>  
+  !>    \details
+  !>    \p hipsparseCreateBsrsm2Info creates a structure that holds the bsrsm2 info data
+  !>    that is gathered during the analysis routines available. It should be destroyed
+  !>    at the end using hipsparseDestroyBsrsm2Info().
+  !>  
   interface hipsparseCreateBsrsm2Info
 #ifdef USE_CUDA_NAMES
     function hipsparseCreateBsrsm2Info_(myInfo) bind(c, name="cusparseCreateBsrsm2Info")
@@ -361,7 +479,12 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> ! \ingroup aux_module
+  !>    \brief Destroy a bsrsm2 info structure
+  !>  
+  !>    \details
+  !>    \p hipsparseDestroyBsrsm2Info destroys a bsrsm2 info structure.
+  !>  
   interface hipsparseDestroyBsrsm2Info
 #ifdef USE_CUDA_NAMES
     function hipsparseDestroyBsrsm2Info_(myInfo) bind(c, name="cusparseDestroyBsrsm2Info")
@@ -377,7 +500,14 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> ! \ingroup aux_module
+  !>    \brief Create a bsrilu02 info structure
+  !>  
+  !>    \details
+  !>    \p hipsparseCreateBsrilu02Info creates a structure that holds the bsrilu02 info data
+  !>    that is gathered during the analysis routines available. It should be destroyed
+  !>    at the end using hipsparseDestroyBsrilu02Info().
+  !>  
   interface hipsparseCreateBsrilu02Info
 #ifdef USE_CUDA_NAMES
     function hipsparseCreateBsrilu02Info_(myInfo) bind(c, name="cusparseCreateBsrilu02Info")
@@ -393,7 +523,12 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> ! \ingroup aux_module
+  !>    \brief Destroy a bsrilu02 info structure
+  !>  
+  !>    \details
+  !>    \p hipsparseDestroyBsrilu02Info destroys a bsrilu02 info structure.
+  !>  
   interface hipsparseDestroyBsrilu02Info
 #ifdef USE_CUDA_NAMES
     function hipsparseDestroyBsrilu02Info_(myInfo) bind(c, name="cusparseDestroyBsrilu02Info")
@@ -409,7 +544,14 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> ! \ingroup aux_module
+  !>    \brief Create a bsric02 info structure
+  !>  
+  !>    \details
+  !>    \p hipsparseCreateBsric02Info creates a structure that holds the bsric02 info data
+  !>    that is gathered during the analysis routines available. It should be destroyed
+  !>    at the end using hipsparseDestroyBsric02Info().
+  !>  
   interface hipsparseCreateBsric02Info
 #ifdef USE_CUDA_NAMES
     function hipsparseCreateBsric02Info_(myInfo) bind(c, name="cusparseCreateBsric02Info")
@@ -425,7 +567,12 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> ! \ingroup aux_module
+  !>    \brief Destroy a bsric02 info structure
+  !>  
+  !>    \details
+  !>    \p hipsparseDestroyBsric02Info destroys a bsric02 info structure.
+  !>  
   interface hipsparseDestroyBsric02Info
 #ifdef USE_CUDA_NAMES
     function hipsparseDestroyBsric02Info_(myInfo) bind(c, name="cusparseDestroyBsric02Info")
@@ -441,7 +588,14 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> ! \ingroup aux_module
+  !>    \brief Create a csrsv2 info structure
+  !>  
+  !>    \details
+  !>    \p hipsparseCreateCsrsv2Info creates a structure that holds the csrsv2 info data
+  !>    that is gathered during the analysis routines available. It should be destroyed
+  !>    at the end using hipsparseDestroyCsrsv2Info().
+  !>  
   interface hipsparseCreateCsrsv2Info
 #ifdef USE_CUDA_NAMES
     function hipsparseCreateCsrsv2Info_(myInfo) bind(c, name="cusparseCreateCsrsv2Info")
@@ -457,7 +611,12 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> ! \ingroup aux_module
+  !>    \brief Destroy a csrsv2 info structure
+  !>  
+  !>    \details
+  !>    \p hipsparseDestroyCsrsv2Info destroys a csrsv2 info structure.
+  !>  
   interface hipsparseDestroyCsrsv2Info
 #ifdef USE_CUDA_NAMES
     function hipsparseDestroyCsrsv2Info_(myInfo) bind(c, name="cusparseDestroyCsrsv2Info")
@@ -473,7 +632,14 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> ! \ingroup aux_module
+  !>    \brief Create a csrsm2 info structure
+  !>  
+  !>    \details
+  !>    \p hipsparseCreateCsrsm2Info creates a structure that holds the csrsm2 info data
+  !>    that is gathered during the analysis routines available. It should be destroyed
+  !>    at the end using hipsparseDestroyCsrsm2Info().
+  !>  
   interface hipsparseCreateCsrsm2Info
 #ifdef USE_CUDA_NAMES
     function hipsparseCreateCsrsm2Info_(myInfo) bind(c, name="cusparseCreateCsrsm2Info")
@@ -489,7 +655,12 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> ! \ingroup aux_module
+  !>    \brief Destroy a csrsm2 info structure
+  !>  
+  !>    \details
+  !>    \p hipsparseDestroyCsrsm2Info destroys a csrsm2 info structure.
+  !>  
   interface hipsparseDestroyCsrsm2Info
 #ifdef USE_CUDA_NAMES
     function hipsparseDestroyCsrsm2Info_(myInfo) bind(c, name="cusparseDestroyCsrsm2Info")
@@ -505,7 +676,14 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> ! \ingroup aux_module
+  !>    \brief Create a csrilu02 info structure
+  !>  
+  !>    \details
+  !>    \p hipsparseCreateCsrilu02Info creates a structure that holds the csrilu02 info data
+  !>    that is gathered during the analysis routines available. It should be destroyed
+  !>    at the end using hipsparseDestroyCsrilu02Info().
+  !>  
   interface hipsparseCreateCsrilu02Info
 #ifdef USE_CUDA_NAMES
     function hipsparseCreateCsrilu02Info_(myInfo) bind(c, name="cusparseCreateCsrilu02Info")
@@ -521,7 +699,12 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> ! \ingroup aux_module
+  !>    \brief Destroy a csrilu02 info structure
+  !>  
+  !>    \details
+  !>    \p hipsparseDestroyCsrilu02Info destroys a csrilu02 info structure.
+  !>  
   interface hipsparseDestroyCsrilu02Info
 #ifdef USE_CUDA_NAMES
     function hipsparseDestroyCsrilu02Info_(myInfo) bind(c, name="cusparseDestroyCsrilu02Info")
@@ -537,7 +720,14 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> ! \ingroup aux_module
+  !>    \brief Create a csric02 info structure
+  !>  
+  !>    \details
+  !>    \p hipsparseCreateCsric02Info creates a structure that holds the csric02 info data
+  !>    that is gathered during the analysis routines available. It should be destroyed
+  !>    at the end using hipsparseDestroyCsric02Info().
+  !>  
   interface hipsparseCreateCsric02Info
 #ifdef USE_CUDA_NAMES
     function hipsparseCreateCsric02Info_(myInfo) bind(c, name="cusparseCreateCsric02Info")
@@ -553,7 +743,12 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> ! \ingroup aux_module
+  !>    \brief Destroy a csric02 info structure
+  !>  
+  !>    \details
+  !>    \p hipsparseDestroyCsric02Info destroys a csric02 info structure.
+  !>  
   interface hipsparseDestroyCsric02Info
 #ifdef USE_CUDA_NAMES
     function hipsparseDestroyCsric02Info_(myInfo) bind(c, name="cusparseDestroyCsric02Info")
@@ -569,7 +764,14 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> ! \ingroup aux_module
+  !>    \brief Create a csru2csr info structure
+  !>  
+  !>    \details
+  !>    \p hipsparseCreateCsru2csrInfo creates a structure that holds the csru2csr info data
+  !>    that is gathered during the analysis routines available. It should be destroyed
+  !>    at the end using hipsparseDestroyCsru2csrInfo().
+  !>  
   interface hipsparseCreateCsru2csrInfo
 #ifdef USE_CUDA_NAMES
     function hipsparseCreateCsru2csrInfo_(myInfo) bind(c, name="cusparseCreateCsru2csrInfo")
@@ -585,7 +787,12 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> ! \ingroup aux_module
+  !>    \brief Destroy a csru2csr info structure
+  !>  
+  !>    \details
+  !>    \p hipsparseDestroyCsru2csrInfo destroys a csru2csr info structure.
+  !>  
   interface hipsparseDestroyCsru2csrInfo
 #ifdef USE_CUDA_NAMES
     function hipsparseDestroyCsru2csrInfo_(myInfo) bind(c, name="cusparseDestroyCsru2csrInfo")
@@ -601,7 +808,14 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> ! \ingroup aux_module
+  !>    \brief Create a color info structure
+  !>  
+  !>    \details
+  !>    \p hipsparseCreateColorInfo creates a structure that holds the color info data
+  !>    that is gathered during the analysis routines available. It should be destroyed
+  !>    at the end using hipsparseDestroyColorInfo().
+  !>  
   interface hipsparseCreateColorInfo
 #ifdef USE_CUDA_NAMES
     function hipsparseCreateColorInfo_(myInfo) bind(c, name="cusparseCreateColorInfo")
@@ -617,7 +831,12 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> ! \ingroup aux_module
+  !>    \brief Destroy a color info structure
+  !>  
+  !>    \details
+  !>    \p hipsparseDestroyColorInfo destroys a color info structure.
+  !>  
   interface hipsparseDestroyColorInfo
 #ifdef USE_CUDA_NAMES
     function hipsparseDestroyColorInfo_(myInfo) bind(c, name="cusparseDestroyColorInfo")
@@ -665,7 +884,14 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> ! \ingroup aux_module
+  !>    \brief Create a prune info structure
+  !>  
+  !>    \details
+  !>    \p hipsparseCreatePruneInfo creates a structure that holds the prune info data
+  !>    that is gathered during the analysis routines available. It should be destroyed
+  !>    at the end using hipsparseDestroyPruneInfo().
+  !>  
   interface hipsparseCreatePruneInfo
 #ifdef USE_CUDA_NAMES
     function hipsparseCreatePruneInfo_(myInfo) bind(c, name="cusparseCreatePruneInfo")
@@ -681,7 +907,12 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> ! \ingroup aux_module
+  !>    \brief Destroy a prune info structure
+  !>  
+  !>    \details
+  !>    \p hipsparseDestroyPruneInfo destroys a prune info structure.
+  !>  
   interface hipsparseDestroyPruneInfo
 #ifdef USE_CUDA_NAMES
     function hipsparseDestroyPruneInfo_(myInfo) bind(c, name="cusparseDestroyPruneInfo")
@@ -1467,8 +1698,22 @@ module hipfort_hipsparse
       hipsparseZcsrmv_rank_1
 #endif
   end interface
-  !>  Description: Solution of triangular linear system op(A)  x = alpha  f,
-  !> where A is a sparse matrix in CSR storage format, x and f are dense vectors. 
+  !> ! \ingroup level2_module
+  !>   \brief Sparse triangular solve using CSR storage format
+  !> 
+  !>   \details
+  !>   \p hipsparseXcsrsv2_zeroPivot returns \ref HIPSPARSE_STATUS_ZERO_PIVOT, if either a
+  !>   structural or numerical zero has been found during hipsparseScsrsv2_solve(),
+  !>   hipsparseDcsrsv2_solve(), hipsparseCcsrsv2_solve() or hipsparseZcsrsv2_solve()
+  !>   computation. The first zero pivot \f$j\f$ at \f$A_{j,j}\f$ is stored in \p position,
+  !>   using same index base as the CSR matrix.
+  !> 
+  !>   \p position can be in host or device memory. If no zero pivot has been found,
+  !>   \p position is set to -1 and \ref HIPSPARSE_STATUS_SUCCESS is returned instead.
+  !> 
+  !>   \note \p hipsparseXcsrsv2_zeroPivot is a blocking function. It might influence
+  !>   performance negatively.
+  !> 
   interface hipsparseXcsrsv2_zeroPivot
 #ifdef USE_CUDA_NAMES
     function hipsparseXcsrsv2_zeroPivot_(handle,myInfo,position) bind(c, name="cusparseXcsrsv2_zeroPivot")
@@ -1486,7 +1731,7 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> @{
   interface hipsparseScsrsv2_bufferSize
 #ifdef USE_CUDA_NAMES
     function hipsparseScsrsv2_bufferSize_(handle,transA,m,nnz,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes) bind(c, name="cusparseScsrsv2_bufferSize")
@@ -1606,7 +1851,7 @@ module hipfort_hipsparse
       hipsparseZcsrsv2_bufferSize_rank_1
 #endif
   end interface
-  
+  !> @{
   interface hipsparseScsrsv2_bufferSizeExt
 #ifdef USE_CUDA_NAMES
     function hipsparseScsrsv2_bufferSizeExt_(handle,transA,m,nnz,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSize) bind(c, name="cusparseScsrsv2_bufferSizeExt")
@@ -1726,7 +1971,7 @@ module hipfort_hipsparse
       hipsparseZcsrsv2_bufferSizeExt_rank_1
 #endif
   end interface
-  
+  !> @{
   interface hipsparseScsrsv2_analysis
 #ifdef USE_CUDA_NAMES
     function hipsparseScsrsv2_analysis_(handle,transA,m,nnz,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer) bind(c, name="cusparseScsrsv2_analysis")
@@ -1850,7 +2095,7 @@ module hipfort_hipsparse
       hipsparseZcsrsv2_analysis_rank_1
 #endif
   end interface
-  
+  !> @{
   interface hipsparseScsrsv2_solve
 #ifdef USE_CUDA_NAMES
     function hipsparseScsrsv2_solve_(handle,transA,m,nnz,alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,myInfo,f,x,policy,pBuffer) bind(c, name="cusparseScsrsv2_solve")
@@ -2098,8 +2343,7 @@ module hipfort_hipsparse
       hipsparseZhybmv_rank_1
 #endif
   end interface
-  !>  Description: Matrix-vector multiplication  y = alpha  op(A)  x  + beta  y,
-  !> where A is a sparse matrix in BSR storage format, x and y are dense vectors. 
+  !> @{
   interface hipsparseSbsrmv
 #ifdef USE_CUDA_NAMES
     function hipsparseSbsrmv_(handle,dirA,transA,mb,nb,nnzb,alpha,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,x,beta,y) bind(c, name="cusparseSbsrmv")
@@ -2239,8 +2483,7 @@ module hipfort_hipsparse
       hipsparseZbsrmv_rank_1
 #endif
   end interface
-  !>  Description: Matrix-vector multiplication with a mask operation y(mask) = (alpha  op(A)  x  + beta  y)(mask),
-  !> where A is a sparse matrix in a modified BSR storage format, x and y are dense vectors. 
+  !> @{
   interface hipsparseSbsrxmv
 #ifdef USE_CUDA_NAMES
     function hipsparseSbsrxmv_(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha,descr,bsrVal,bsrMaskPtr,bsrRowPtr,bsrEndPtr,bsrColInd,blockDim,x,beta,y) bind(c, name="cusparseSbsrxmv")
@@ -2392,8 +2635,21 @@ module hipfort_hipsparse
       hipsparseZbsrxmv_rank_1
 #endif
   end interface
-  !>  Description: Solution of triangular linear system op(A)  x = alpha  f,
-  !> where A is a sparse matrix in BSR storage format, x and f are dense vectors. 
+  !> ! \ingroup level2_module
+  !>   \brief Sparse triangular solve using BSR storage format
+  !> 
+  !>   \details
+  !>   \p hipsparseXbsrsv2_zeroPivot returns \ref HIPSPARSE_STATUS_ZERO_PIVOT, if either a
+  !>   structural or numerical zero has been found during hipsparseXbsrsv2_analysis() or
+  !>   hipsparseXbsrsv2_solve() computation. The first zero pivot \f$j\f$ at \f$A_{j,j}\f$
+  !>   is stored in \p position, using same index base as the BSR matrix.
+  !> 
+  !>   \p position can be in host or device memory. If no zero pivot has been found,
+  !>   \p position is set to -1 and \ref HIPSPARSE_STATUS_SUCCESS is returned instead.
+  !> 
+  !>   \note \p hipsparseXbsrsv2_zeroPivot is a blocking function. It might influence
+  !>   performance negatively.
+  !> 
   interface hipsparseXbsrsv2_zeroPivot
 #ifdef USE_CUDA_NAMES
     function hipsparseXbsrsv2_zeroPivot_(handle,myInfo,position) bind(c, name="cusparseXbsrsv2_zeroPivot")
@@ -2411,7 +2667,7 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> @{
   interface hipsparseSbsrsv2_bufferSize
 #ifdef USE_CUDA_NAMES
     function hipsparseSbsrsv2_bufferSize_(handle,dirA,transA,mb,nnzb,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes) bind(c, name="cusparseSbsrsv2_bufferSize")
@@ -2539,7 +2795,7 @@ module hipfort_hipsparse
       hipsparseZbsrsv2_bufferSize_rank_1
 #endif
   end interface
-  
+  !> @{
   interface hipsparseSbsrsv2_bufferSizeExt
 #ifdef USE_CUDA_NAMES
     function hipsparseSbsrsv2_bufferSizeExt_(handle,dirA,transA,mb,nnzb,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSize) bind(c, name="cusparseSbsrsv2_bufferSizeExt")
@@ -2667,7 +2923,7 @@ module hipfort_hipsparse
       hipsparseZbsrsv2_bufferSizeExt_rank_1
 #endif
   end interface
-  
+  !> @{
   interface hipsparseSbsrsv2_analysis
 #ifdef USE_CUDA_NAMES
     function hipsparseSbsrsv2_analysis_(handle,dirA,transA,mb,nnzb,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer) bind(c, name="cusparseSbsrsv2_analysis")
@@ -2799,7 +3055,7 @@ module hipfort_hipsparse
       hipsparseZbsrsv2_analysis_rank_1
 #endif
   end interface
-  
+  !> @{
   interface hipsparseSbsrsv2_solve
 #ifdef USE_CUDA_NAMES
     function hipsparseSbsrsv2_solve_(handle,dirA,transA,mb,nnzb,alpha,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,f,x,policy,pBuffer) bind(c, name="cusparseSbsrsv2_solve")
@@ -2943,7 +3199,7 @@ module hipfort_hipsparse
       hipsparseZbsrsv2_solve_rank_1
 #endif
   end interface
-  
+  !> @{
   interface hipsparseSgemvi_bufferSize
 #ifdef USE_CUDA_NAMES
     function hipsparseSgemvi_bufferSize_(handle,transA,m,n,nnz,pBufferSize) bind(c, name="cusparseSgemvi_bufferSize")
@@ -3027,7 +3283,7 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> @{
   interface hipsparseSgemvi
 #ifdef USE_CUDA_NAMES
     function hipsparseSgemvi_(handle,transA,m,n,alpha,A,lda,nnz,x,xInd,beta,y,idxBase,pBuffer) bind(c, name="cusparseSgemvi")
@@ -3167,8 +3423,7 @@ module hipfort_hipsparse
       hipsparseZgemvi_rank_1
 #endif
   end interface
-  !>  Description: Matrix-matrix multiplication C = alpha  op(A)  B + beta  C,
-  !> where A is a sparse matrix in BSR storage format, B and C are dense matrices. 
+  !> @{
   interface hipsparseSbsrmm
 #ifdef USE_CUDA_NAMES
     function hipsparseSbsrmm_(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA,bsrValA,bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc) bind(c, name="cusparseSbsrmm")
@@ -3628,8 +3883,21 @@ module hipfort_hipsparse
       hipsparseZcsrmm2_rank_1
 #endif
   end interface
-  !>  Description: Solution of triangular linear system op(A)  op(X) = alpha  op(B),
-  !> where A is a sparse matrix in BSR storage format, X and B are dense matrices. 
+  !> ! \ingroup level3_module
+  !>   \brief Sparse triangular system solve using BSR storage format
+  !> 
+  !>   \details
+  !>   \p hipsparseXbsrsm2_zeroPivot returns \ref HIPSPARSE_STATUS_ZERO_PIVOT, if either a
+  !>   structural or numerical zero has been found during hipsparseXbsrsm2_analysis() or
+  !>   hipsparseXbsrsm2_solve() computation. The first zero pivot \f$j\f$ at \f$A_{j,j}\f$
+  !>   is stored in \p position, using same index base as the BSR matrix.
+  !> 
+  !>   \p position can be in host or device memory. If no zero pivot has been found,
+  !>   \p position is set to -1 and \ref HIPSPARSE_STATUS_SUCCESS is returned instead.
+  !> 
+  !>   \note \p hipsparseXbsrsm2_zeroPivot is a blocking function. It might influence
+  !>   performance negatively.
+  !> 
   interface hipsparseXbsrsm2_zeroPivot
 #ifdef USE_CUDA_NAMES
     function hipsparseXbsrsm2_zeroPivot_(handle,myInfo,position) bind(c, name="cusparseXbsrsm2_zeroPivot")
@@ -3647,7 +3915,7 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> @{
   interface hipsparseSbsrsm2_bufferSize
 #ifdef USE_CUDA_NAMES
     function hipsparseSbsrsm2_bufferSize_(handle,dirA,transA,transX,mb,nrhs,nnzb,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes) bind(c, name="cusparseSbsrsm2_bufferSize")
@@ -3783,7 +4051,7 @@ module hipfort_hipsparse
       hipsparseZbsrsm2_bufferSize_rank_1
 #endif
   end interface
-  
+  !> @{
   interface hipsparseSbsrsm2_analysis
 #ifdef USE_CUDA_NAMES
     function hipsparseSbsrsm2_analysis_(handle,dirA,transA,transX,mb,nrhs,nnzb,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer) bind(c, name="cusparseSbsrsm2_analysis")
@@ -3923,7 +4191,7 @@ module hipfort_hipsparse
       hipsparseZbsrsm2_analysis_rank_1
 #endif
   end interface
-  
+  !> @{
   interface hipsparseSbsrsm2_solve
 #ifdef USE_CUDA_NAMES
     function hipsparseSbsrsm2_solve_(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,B,ldb,X,ldx,policy,pBuffer) bind(c, name="cusparseSbsrsm2_solve")
@@ -4087,8 +4355,21 @@ module hipfort_hipsparse
       hipsparseZbsrsm2_solve_rank_1
 #endif
   end interface
-  !>  Description: Solution of triangular linear system op(A)  op(X) = alpha  op(B),
-  !> where A is a sparse matrix in CSR storage format, X and B are dense matrices. 
+  !> ! \ingroup level3_module
+  !>   \brief Sparse triangular system solve using CSR storage format
+  !> 
+  !>   \details
+  !>   \p hipsparseXcsrsm2_zeroPivot returns \ref HIPSPARSE_STATUS_ZERO_PIVOT, if either a
+  !>   structural or numerical zero has been found during hipsparseXcsrsm2_analysis() or
+  !>   hipsparseXcsrsm2_solve() computation. The first zero pivot \f$j\f$ at \f$A_{j,j}\f$
+  !>   is stored in \p position, using same index base as the CSR matrix.
+  !> 
+  !>   \p position can be in host or device memory. If no zero pivot has been found,
+  !>   \p position is set to -1 and \ref HIPSPARSE_STATUS_SUCCESS is returned instead.
+  !> 
+  !>   \note \p hipsparseXcsrsm2_zeroPivot is a blocking function. It might influence
+  !>   performance negatively.
+  !> 
   interface hipsparseXcsrsm2_zeroPivot
 #ifdef USE_CUDA_NAMES
     function hipsparseXcsrsm2_zeroPivot_(handle,myInfo,position) bind(c, name="cusparseXcsrsm2_zeroPivot")
@@ -4106,7 +4387,7 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> @{
   interface hipsparseScsrsm2_bufferSizeExt
 #ifdef USE_CUDA_NAMES
     function hipsparseScsrsm2_bufferSizeExt_(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBufferSize) bind(c, name="cusparseScsrsm2_bufferSizeExt")
@@ -4258,7 +4539,7 @@ module hipfort_hipsparse
       hipsparseZcsrsm2_bufferSizeExt_rank_1
 #endif
   end interface
-  
+  !> @{
   interface hipsparseScsrsm2_analysis
 #ifdef USE_CUDA_NAMES
     function hipsparseScsrsm2_analysis_(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer) bind(c, name="cusparseScsrsm2_analysis")
@@ -4410,7 +4691,7 @@ module hipfort_hipsparse
       hipsparseZcsrsm2_analysis_rank_1
 #endif
   end interface
-  
+  !> @{
   interface hipsparseScsrsm2_solve
 #ifdef USE_CUDA_NAMES
     function hipsparseScsrsm2_solve_(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer) bind(c, name="cusparseScsrsm2_solve")
@@ -4892,7 +5173,7 @@ module hipfort_hipsparse
       hipsparseZcsrgeam_rank_1
 #endif
   end interface
-  
+  !> @{
   interface hipsparseScsrgeam2_bufferSizeExt
 #ifdef USE_CUDA_NAMES
     function hipsparseScsrgeam2_bufferSizeExt_(handle,m,n,alpha,descrA,nnzA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB,csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC,pBufferSizeInBytes) bind(c, name="cusparseScsrgeam2_bufferSizeExt")
@@ -5052,7 +5333,21 @@ module hipfort_hipsparse
       hipsparseZcsrgeam2_bufferSizeExt_rank_1
 #endif
   end interface
-  
+  !> ! \ingroup extra_module
+  !>   \brief Sparse matrix sparse matrix addition using CSR storage format
+  !> 
+  !>   \details
+  !>   \p hipsparseXcsrgeam2Nnz computes the total CSR non-zero elements and the CSR row
+  !>   offsets, that point to the start of every row of the sparse CSR matrix, of the
+  !>   resulting matrix C. It is assumed that \p csr_row_ptr_C has been allocated with
+  !>   size \p m + 1.
+  !> 
+  !>   \note
+  !>   This function is non blocking and executed asynchronously with respect to the host.
+  !>   It may return before the actual computation has finished.
+  !>   \note
+  !>   Currently, only \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+  !> 
   interface hipsparseXcsrgeam2Nnz
 #ifdef USE_CUDA_NAMES
     function hipsparseXcsrgeam2Nnz_(handle,m,n,descrA,nnzA,csrSortedRowPtrA,csrSortedColIndA,descrB,nnzB,csrSortedRowPtrB,csrSortedColIndB,descrC,csrSortedRowPtrC,nnzTotalDevHostPtr,workspace) bind(c, name="cusparseXcsrgeam2Nnz")
@@ -5087,7 +5382,7 @@ module hipfort_hipsparse
       hipsparseXcsrgeam2Nnz_rank_1
 #endif
   end interface
-  
+  !> @{
   interface hipsparseScsrgeam2
 #ifdef USE_CUDA_NAMES
     function hipsparseScsrgeam2_(handle,m,n,alpha,descrA,nnzA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB,csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC,pBuffer) bind(c, name="cusparseScsrgeam2")
@@ -5833,8 +6128,27 @@ module hipfort_hipsparse
       hipsparseZcsrgemm2_rank_1
 #endif
   end interface
-  !>  Description: Compute the incomplete-LU factorization with 0 fill-in (ILU0)
-  !>    of the matrix A stored in BSR format. 
+  !> ! \ingroup precond_module
+  !>    \brief Incomplete LU factorization with 0 fill-ins and no pivoting using BSR storage
+  !>    format
+  !>  
+  !>    \details
+  !>    \p hipsparseXbsrilu02_zeroPivot returns \ref HIPSPARSE_STATUS_ZERO_PIVOT, if either a
+  !>    structural or numerical zero has been found during hipsparseXbsrilu02_analysis() or
+  !>    hipsparseXbsrilu02() computation. The first zero pivot \f$j\f$ at \f$A_{j,j}\f$ is
+  !>    stored in \p position, using same index base as the BSR matrix.
+  !>  
+  !>    \p position can be in host or device memory. If no zero pivot has been found,
+  !>    \p position is set to -1 and \ref HIPSPARSE_STATUS_SUCCESS is returned instead.
+  !>  
+  !>    \note
+  !>    If a zero pivot is found, \p position \f$=j\f$ means that either the diagonal block
+  !>    \f$A_{j,j}\f$ is missing (structural zero) or the diagonal block \f$A_{j,j}\f$ is not
+  !>    invertible (numerical zero).
+  !>  
+  !>    \note \p hipsparseXbsrilu02_zeroPivot is a blocking function. It might influence
+  !>    performance negatively.
+  !>  
   interface hipsparseXbsrilu02_zeroPivot
 #ifdef USE_CUDA_NAMES
     function hipsparseXbsrilu02_zeroPivot_(handle,myInfo,position) bind(c, name="cusparseXbsrilu02_zeroPivot")
@@ -5852,7 +6166,7 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> @{
   interface hipsparseSbsrilu02_numericBoost
 #ifdef USE_CUDA_NAMES
     function hipsparseSbsrilu02_numericBoost_(handle,myInfo,enable_boost,tol,boost_val) bind(c, name="cusparseSbsrilu02_numericBoost")
@@ -5932,7 +6246,7 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> @{
   interface hipsparseSbsrilu02_bufferSize
 #ifdef USE_CUDA_NAMES
     function hipsparseSbsrilu02_bufferSize_(handle,dirA,mb,nnzb,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes) bind(c, name="cusparseSbsrilu02_bufferSize")
@@ -6056,7 +6370,7 @@ module hipfort_hipsparse
       hipsparseZbsrilu02_bufferSize_rank_1
 #endif
   end interface
-  
+  !> @{
   interface hipsparseSbsrilu02_analysis
 #ifdef USE_CUDA_NAMES
     function hipsparseSbsrilu02_analysis_(handle,dirA,mb,nnzb,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer) bind(c, name="cusparseSbsrilu02_analysis")
@@ -6184,7 +6498,7 @@ module hipfort_hipsparse
       hipsparseZbsrilu02_analysis_rank_1
 #endif
   end interface
-  
+  !> @{
   interface hipsparseSbsrilu02
 #ifdef USE_CUDA_NAMES
     function hipsparseSbsrilu02_(handle,dirA,mb,nnzb,descrA,bsrSortedValA_valM,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer) bind(c, name="cusparseSbsrilu02")
@@ -6312,8 +6626,22 @@ module hipfort_hipsparse
       hipsparseZbsrilu02_rank_1
 #endif
   end interface
-  !>  Description: Compute the incomplete-LU factorization with 0 fill-in (ILU0)
-  !> of the matrix A stored in CSR format. 
+  !> ! \ingroup precond_module
+  !>   \brief Incomplete LU factorization with 0 fill-ins and no pivoting using CSR
+  !>   storage format
+  !> 
+  !>   \details
+  !>   \p hipsparseXcsrilu02_zeroPivot returns \ref HIPSPARSE_STATUS_ZERO_PIVOT, if either a
+  !>   structural or numerical zero has been found during hipsparseXcsrilu02() computation.
+  !>   The first zero pivot \f$j\f$ at \f$A_{j,j}\f$ is stored in \p position, using same
+  !>   index base as the CSR matrix.
+  !> 
+  !>   \p position can be in host or device memory. If no zero pivot has been found,
+  !>   \p position is set to -1 and \ref HIPSPARSE_STATUS_SUCCESS is returned instead.
+  !> 
+  !>   \note \p hipsparseXcsrilu02_zeroPivot is a blocking function. It might influence
+  !>   performance negatively.
+  !> 
   interface hipsparseXcsrilu02_zeroPivot
 #ifdef USE_CUDA_NAMES
     function hipsparseXcsrilu02_zeroPivot_(handle,myInfo,position) bind(c, name="cusparseXcsrilu02_zeroPivot")
@@ -6331,7 +6659,7 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> @{
   interface hipsparseScsrilu02_numericBoost
 #ifdef USE_CUDA_NAMES
     function hipsparseScsrilu02_numericBoost_(handle,myInfo,enable_boost,tol,boost_val) bind(c, name="cusparseScsrilu02_numericBoost")
@@ -6411,7 +6739,7 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> @{
   interface hipsparseScsrilu02_bufferSize
 #ifdef USE_CUDA_NAMES
     function hipsparseScsrilu02_bufferSize_(handle,m,nnz,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes) bind(c, name="cusparseScsrilu02_bufferSize")
@@ -6527,7 +6855,7 @@ module hipfort_hipsparse
       hipsparseZcsrilu02_bufferSize_rank_1
 #endif
   end interface
-  
+  !> @{
   interface hipsparseScsrilu02_bufferSizeExt
 #ifdef USE_CUDA_NAMES
     function hipsparseScsrilu02_bufferSizeExt_(handle,m,nnz,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSize) bind(c, name="cusparseScsrilu02_bufferSizeExt")
@@ -6643,7 +6971,7 @@ module hipfort_hipsparse
       hipsparseZcsrilu02_bufferSizeExt_rank_1
 #endif
   end interface
-  
+  !> @{
   interface hipsparseScsrilu02_analysis
 #ifdef USE_CUDA_NAMES
     function hipsparseScsrilu02_analysis_(handle,m,nnz,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer) bind(c, name="cusparseScsrilu02_analysis")
@@ -6763,7 +7091,7 @@ module hipfort_hipsparse
       hipsparseZcsrilu02_analysis_rank_1
 #endif
   end interface
-  
+  !> @{
   interface hipsparseScsrilu02
 #ifdef USE_CUDA_NAMES
     function hipsparseScsrilu02_(handle,m,nnz,descrA,csrSortedValA_valM,csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer) bind(c, name="cusparseScsrilu02")
@@ -6883,8 +7211,27 @@ module hipfort_hipsparse
       hipsparseZcsrilu02_rank_1
 #endif
   end interface
-  !>  Description: Compute the incomplete Cholesky factorization with 0 fill-in (IC0)
-  !> of the matrix A stored in BSR format. 
+  !> ! \ingroup precond_module
+  !>    \brief Incomplete Cholesky factorization with 0 fill-ins and no pivoting using BSR
+  !>    storage format
+  !>  
+  !>    \details
+  !>    \p hipsparseXbsric02_zeroPivot returns \ref HIPSPARSE_STATUS_ZERO_PIVOT, if either a
+  !>    structural or numerical zero has been found during hipsparseXbsric02_analysis() or
+  !>    hipsparseXbsric02() computation. The first zero pivot \f$j\f$ at \f$A_{j,j}\f$ is
+  !>    stored in \p position, using same index base as the BSR matrix.
+  !>  
+  !>    \p position can be in host or device memory. If no zero pivot has been found,
+  !>    \p position is set to -1 and \ref HIPSPARSE_STATUS_SUCCESS is returned instead.
+  !>  
+  !>    \note
+  !>    If a zero pivot is found, \p position=j means that either the diagonal block \p A(j,j)
+  !>    is missing (structural zero) or the diagonal block \p A(j,j) is not positive definite
+  !>    (numerical zero).
+  !>  
+  !>    \note \p hipsparseXbsric02_zeroPivot is a blocking function. It might influence
+  !>    performance negatively.
+  !>  
   interface hipsparseXbsric02_zeroPivot
 #ifdef USE_CUDA_NAMES
     function hipsparseXbsric02_zeroPivot_(handle,myInfo,position) bind(c, name="cusparseXbsric02_zeroPivot")
@@ -6902,7 +7249,7 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> @{
   interface hipsparseSbsric02_bufferSize
 #ifdef USE_CUDA_NAMES
     function hipsparseSbsric02_bufferSize_(handle,dirA,mb,nnzb,descrA,bsrValA,bsrRowPtrA,bsrColIndA,blockDim,myInfo,pBufferSizeInBytes) bind(c, name="cusparseSbsric02_bufferSize")
@@ -7026,7 +7373,7 @@ module hipfort_hipsparse
       hipsparseZbsric02_bufferSize_rank_1
 #endif
   end interface
-  
+  !> @{
   interface hipsparseSbsric02_analysis
 #ifdef USE_CUDA_NAMES
     function hipsparseSbsric02_analysis_(handle,dirA,mb,nnzb,descrA,bsrValA,bsrRowPtrA,bsrColIndA,blockDim,myInfo,policy,pBuffer) bind(c, name="cusparseSbsric02_analysis")
@@ -7154,7 +7501,7 @@ module hipfort_hipsparse
       hipsparseZbsric02_analysis_rank_1
 #endif
   end interface
-  
+  !> @{
   interface hipsparseSbsric02
 #ifdef USE_CUDA_NAMES
     function hipsparseSbsric02_(handle,dirA,mb,nnzb,descrA,bsrValA,bsrRowPtrA,bsrColIndA,blockDim,myInfo,policy,pBuffer) bind(c, name="cusparseSbsric02")
@@ -7282,8 +7629,22 @@ module hipfort_hipsparse
       hipsparseZbsric02_rank_1
 #endif
   end interface
-  !>  Description: Compute the incomplete Cholesky factorization with 0 fill-in (IC0)
-  !> of the matrix A stored in CSR format. 
+  !> ! \ingroup precond_module
+  !>   \brief Incomplete Cholesky factorization with 0 fill-ins and no pivoting using CSR
+  !>   storage format
+  !> 
+  !>   \details
+  !>   \p hipsparseXcsric02_zeroPivot returns \ref HIPSPARSE_STATUS_ZERO_PIVOT, if either a
+  !>   structural or numerical zero has been found during hipsparseXcsric02_analysis() or
+  !>   hipsparseXcsric02() computation. The first zero pivot \f$j\f$ at \f$A_{j,j}\f$
+  !>   is stored in \p position, using same index base as the CSR matrix.
+  !> 
+  !>   \p position can be in host or device memory. If no zero pivot has been found,
+  !>   \p position is set to -1 and \ref HIPSPARSE_STATUS_SUCCESS is returned instead.
+  !> 
+  !>   \note \p hipsparseXcsric02_zeroPivot is a blocking function. It might influence
+  !>   performance negatively.
+  !> 
   interface hipsparseXcsric02_zeroPivot
 #ifdef USE_CUDA_NAMES
     function hipsparseXcsric02_zeroPivot_(handle,myInfo,position) bind(c, name="cusparseXcsric02_zeroPivot")
@@ -7301,7 +7662,7 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> @{
   interface hipsparseScsric02_bufferSize
 #ifdef USE_CUDA_NAMES
     function hipsparseScsric02_bufferSize_(handle,m,nnz,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes) bind(c, name="cusparseScsric02_bufferSize")
@@ -7417,7 +7778,7 @@ module hipfort_hipsparse
       hipsparseZcsric02_bufferSize_rank_1
 #endif
   end interface
-  
+  !> @{
   interface hipsparseScsric02_bufferSizeExt
 #ifdef USE_CUDA_NAMES
     function hipsparseScsric02_bufferSizeExt_(handle,m,nnz,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSize) bind(c, name="cusparseScsric02_bufferSizeExt")
@@ -7533,7 +7894,7 @@ module hipfort_hipsparse
       hipsparseZcsric02_bufferSizeExt_rank_1
 #endif
   end interface
-  
+  !> @{
   interface hipsparseScsric02_analysis
 #ifdef USE_CUDA_NAMES
     function hipsparseScsric02_analysis_(handle,m,nnz,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer) bind(c, name="cusparseScsric02_analysis")
@@ -7653,7 +8014,7 @@ module hipfort_hipsparse
       hipsparseZcsric02_analysis_rank_1
 #endif
   end interface
-  
+  !> @{
   interface hipsparseScsric02
 #ifdef USE_CUDA_NAMES
     function hipsparseScsric02_(handle,m,nnz,descrA,csrSortedValA_valM,csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer) bind(c, name="cusparseScsric02")
@@ -7773,7 +8134,7 @@ module hipfort_hipsparse
       hipsparseZcsric02_rank_1
 #endif
   end interface
-  
+  !> @{
   interface hipsparseSgtsv2_bufferSizeExt
 #ifdef USE_CUDA_NAMES
     function hipsparseSgtsv2_bufferSizeExt_(handle,m,n,dl,d,du,B,ldb,pBufferSizeInBytes) bind(c, name="cusparseSgtsv2_bufferSizeExt")
@@ -7893,7 +8254,7 @@ module hipfort_hipsparse
       hipsparseZgtsv2_bufferSizeExt_rank_1
 #endif
   end interface
-  
+  !> @{
   interface hipsparseSgtsv2
 #ifdef USE_CUDA_NAMES
     function hipsparseSgtsv2_(handle,m,n,dl,d,du,B,ldb,pBuffer) bind(c, name="cusparseSgtsv2")
@@ -8013,7 +8374,7 @@ module hipfort_hipsparse
       hipsparseZgtsv2_rank_1
 #endif
   end interface
-  
+  !> @{
   interface hipsparseSgtsv2_nopivot_bufferSizeExt
 #ifdef USE_CUDA_NAMES
     function hipsparseSgtsv2_nopivot_bufferSizeExt_(handle,m,n,dl,d,du,B,ldb,pBufferSizeInBytes) bind(c, name="cusparseSgtsv2_nopivot_bufferSizeExt")
@@ -8133,7 +8494,7 @@ module hipfort_hipsparse
       hipsparseZgtsv2_nopivot_bufferSizeExt_rank_1
 #endif
   end interface
-  
+  !> @{
   interface hipsparseSgtsv2_nopivot
 #ifdef USE_CUDA_NAMES
     function hipsparseSgtsv2_nopivot_(handle,m,n,dl,d,du,B,ldb,pBuffer) bind(c, name="cusparseSgtsv2_nopivot")
@@ -8253,8 +8614,239 @@ module hipfort_hipsparse
       hipsparseZgtsv2_nopivot_rank_1
 #endif
   end interface
-  !>  Description: 
-  !> This function computes the number of nonzero elements per row or column and the total number of nonzero elements in a dense matrix. 
+  !> @{
+  interface hipsparseSgtsv2StridedBatch_bufferSizeExt
+#ifdef USE_CUDA_NAMES
+    function hipsparseSgtsv2StridedBatch_bufferSizeExt_(handle,m,dl,d,du,x,batchCount,batchStride,pBufferSizeInBytes) bind(c, name="cusparseSgtsv2StridedBatch_bufferSizeExt")
+#else
+    function hipsparseSgtsv2StridedBatch_bufferSizeExt_(handle,m,dl,d,du,x,batchCount,batchStride,pBufferSizeInBytes) bind(c, name="hipsparseSgtsv2StridedBatch_bufferSizeExt")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2StridedBatch_bufferSizeExt_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      type(c_ptr),value :: dl
+      type(c_ptr),value :: d
+      type(c_ptr),value :: du
+      type(c_ptr),value :: x
+      integer(c_int),value :: batchCount
+      integer(c_int),value :: batchStride
+      integer(c_size_t) :: pBufferSizeInBytes
+    end function
+
+#ifdef USE_FPOINTER_INTERFACES
+    module procedure &
+      hipsparseSgtsv2StridedBatch_bufferSizeExt_rank_0,&
+      hipsparseSgtsv2StridedBatch_bufferSizeExt_rank_1
+#endif
+  end interface
+  
+  interface hipsparseDgtsv2StridedBatch_bufferSizeExt
+#ifdef USE_CUDA_NAMES
+    function hipsparseDgtsv2StridedBatch_bufferSizeExt_(handle,m,dl,d,du,x,batchCount,batchStride,pBufferSizeInBytes) bind(c, name="cusparseDgtsv2StridedBatch_bufferSizeExt")
+#else
+    function hipsparseDgtsv2StridedBatch_bufferSizeExt_(handle,m,dl,d,du,x,batchCount,batchStride,pBufferSizeInBytes) bind(c, name="hipsparseDgtsv2StridedBatch_bufferSizeExt")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2StridedBatch_bufferSizeExt_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      type(c_ptr),value :: dl
+      type(c_ptr),value :: d
+      type(c_ptr),value :: du
+      type(c_ptr),value :: x
+      integer(c_int),value :: batchCount
+      integer(c_int),value :: batchStride
+      integer(c_size_t) :: pBufferSizeInBytes
+    end function
+
+#ifdef USE_FPOINTER_INTERFACES
+    module procedure &
+      hipsparseDgtsv2StridedBatch_bufferSizeExt_rank_0,&
+      hipsparseDgtsv2StridedBatch_bufferSizeExt_rank_1
+#endif
+  end interface
+  
+  interface hipsparseCgtsv2StridedBatch_bufferSizeExt
+#ifdef USE_CUDA_NAMES
+    function hipsparseCgtsv2StridedBatch_bufferSizeExt_(handle,m,dl,d,du,x,batchCount,batchStride,pBufferSizeInBytes) bind(c, name="cusparseCgtsv2StridedBatch_bufferSizeExt")
+#else
+    function hipsparseCgtsv2StridedBatch_bufferSizeExt_(handle,m,dl,d,du,x,batchCount,batchStride,pBufferSizeInBytes) bind(c, name="hipsparseCgtsv2StridedBatch_bufferSizeExt")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2StridedBatch_bufferSizeExt_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      type(c_ptr),value :: dl
+      type(c_ptr),value :: d
+      type(c_ptr),value :: du
+      type(c_ptr),value :: x
+      integer(c_int),value :: batchCount
+      integer(c_int),value :: batchStride
+      integer(c_size_t) :: pBufferSizeInBytes
+    end function
+
+#ifdef USE_FPOINTER_INTERFACES
+    module procedure &
+      hipsparseCgtsv2StridedBatch_bufferSizeExt_rank_0,&
+      hipsparseCgtsv2StridedBatch_bufferSizeExt_rank_1
+#endif
+  end interface
+  
+  interface hipsparseZgtsv2StridedBatch_bufferSizeExt
+#ifdef USE_CUDA_NAMES
+    function hipsparseZgtsv2StridedBatch_bufferSizeExt_(handle,m,dl,d,du,x,batchCount,batchStride,pBufferSizeInBytes) bind(c, name="cusparseZgtsv2StridedBatch_bufferSizeExt")
+#else
+    function hipsparseZgtsv2StridedBatch_bufferSizeExt_(handle,m,dl,d,du,x,batchCount,batchStride,pBufferSizeInBytes) bind(c, name="hipsparseZgtsv2StridedBatch_bufferSizeExt")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2StridedBatch_bufferSizeExt_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      type(c_ptr),value :: dl
+      type(c_ptr),value :: d
+      type(c_ptr),value :: du
+      type(c_ptr),value :: x
+      integer(c_int),value :: batchCount
+      integer(c_int),value :: batchStride
+      integer(c_size_t) :: pBufferSizeInBytes
+    end function
+
+#ifdef USE_FPOINTER_INTERFACES
+    module procedure &
+      hipsparseZgtsv2StridedBatch_bufferSizeExt_rank_0,&
+      hipsparseZgtsv2StridedBatch_bufferSizeExt_rank_1
+#endif
+  end interface
+  !> @{
+  interface hipsparseSgtsv2StridedBatch
+#ifdef USE_CUDA_NAMES
+    function hipsparseSgtsv2StridedBatch_(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer) bind(c, name="cusparseSgtsv2StridedBatch")
+#else
+    function hipsparseSgtsv2StridedBatch_(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer) bind(c, name="hipsparseSgtsv2StridedBatch")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2StridedBatch_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      type(c_ptr),value :: dl
+      type(c_ptr),value :: d
+      type(c_ptr),value :: du
+      type(c_ptr),value :: x
+      integer(c_int),value :: batchCount
+      integer(c_int),value :: batchStride
+      type(c_ptr),value :: pBuffer
+    end function
+
+#ifdef USE_FPOINTER_INTERFACES
+    module procedure &
+      hipsparseSgtsv2StridedBatch_rank_0,&
+      hipsparseSgtsv2StridedBatch_rank_1
+#endif
+  end interface
+  
+  interface hipsparseDgtsv2StridedBatch
+#ifdef USE_CUDA_NAMES
+    function hipsparseDgtsv2StridedBatch_(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer) bind(c, name="cusparseDgtsv2StridedBatch")
+#else
+    function hipsparseDgtsv2StridedBatch_(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer) bind(c, name="hipsparseDgtsv2StridedBatch")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2StridedBatch_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      type(c_ptr),value :: dl
+      type(c_ptr),value :: d
+      type(c_ptr),value :: du
+      type(c_ptr),value :: x
+      integer(c_int),value :: batchCount
+      integer(c_int),value :: batchStride
+      type(c_ptr),value :: pBuffer
+    end function
+
+#ifdef USE_FPOINTER_INTERFACES
+    module procedure &
+      hipsparseDgtsv2StridedBatch_rank_0,&
+      hipsparseDgtsv2StridedBatch_rank_1
+#endif
+  end interface
+  
+  interface hipsparseCgtsv2StridedBatch
+#ifdef USE_CUDA_NAMES
+    function hipsparseCgtsv2StridedBatch_(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer) bind(c, name="cusparseCgtsv2StridedBatch")
+#else
+    function hipsparseCgtsv2StridedBatch_(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer) bind(c, name="hipsparseCgtsv2StridedBatch")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2StridedBatch_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      type(c_ptr),value :: dl
+      type(c_ptr),value :: d
+      type(c_ptr),value :: du
+      type(c_ptr),value :: x
+      integer(c_int),value :: batchCount
+      integer(c_int),value :: batchStride
+      type(c_ptr),value :: pBuffer
+    end function
+
+#ifdef USE_FPOINTER_INTERFACES
+    module procedure &
+      hipsparseCgtsv2StridedBatch_rank_0,&
+      hipsparseCgtsv2StridedBatch_rank_1
+#endif
+  end interface
+  
+  interface hipsparseZgtsv2StridedBatch
+#ifdef USE_CUDA_NAMES
+    function hipsparseZgtsv2StridedBatch_(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer) bind(c, name="cusparseZgtsv2StridedBatch")
+#else
+    function hipsparseZgtsv2StridedBatch_(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer) bind(c, name="hipsparseZgtsv2StridedBatch")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2StridedBatch_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      type(c_ptr),value :: dl
+      type(c_ptr),value :: d
+      type(c_ptr),value :: du
+      type(c_ptr),value :: x
+      integer(c_int),value :: batchCount
+      integer(c_int),value :: batchStride
+      type(c_ptr),value :: pBuffer
+    end function
+
+#ifdef USE_FPOINTER_INTERFACES
+    module procedure &
+      hipsparseZgtsv2StridedBatch_rank_0,&
+      hipsparseZgtsv2StridedBatch_rank_1
+#endif
+  end interface
+  !> @{
   interface hipsparseSnnz
 #ifdef USE_CUDA_NAMES
     function hipsparseSnnz_(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn,nnzTotalDevHostPtr) bind(c, name="cusparseSnnz")
@@ -8374,8 +8966,7 @@ module hipfort_hipsparse
       hipsparseZnnz_rank_1
 #endif
   end interface
-  !>  Description: 
-  !> This function converts the matrix A in dense format into a sparse matrix in CSR format. 
+  !> @{
   interface hipsparseSdense2csr
 #ifdef USE_CUDA_NAMES
     function hipsparseSdense2csr_(handle,m,n,descr,A,ld,nnz_per_rows,csr_val,csr_row_ptr,csr_col_ind) bind(c, name="cusparseSdense2csr")
@@ -8499,9 +9090,7 @@ module hipfort_hipsparse
       hipsparseZdense2csr_rank_1
 #endif
   end interface
-  !>  Description: 
-  !> These functions convert the matrix A in dense format into a sparse matrix in CSR format where entries 
-  !> in A that are less than equal to a threshold are removed. 
+  !> @{
   interface hipsparseSpruneDense2csr_bufferSize
 #ifdef USE_CUDA_NAMES
     function hipsparseSpruneDense2csr_bufferSize_(handle,m,n,A,lda,threshold,descr,csrVal,csrRowPtr,csrColInd,bufferSize) bind(c, name="cusparseSpruneDense2csr_bufferSize")
@@ -8629,7 +9218,7 @@ module hipfort_hipsparse
       hipsparseDpruneDense2csr_bufferSizeExt_rank_1
 #endif
   end interface
-  
+  !> @{
   interface hipsparseSpruneDense2csrNnz
 #ifdef USE_CUDA_NAMES
     function hipsparseSpruneDense2csrNnz_(handle,m,n,A,lda,threshold,descr,csrRowPtr,nnzTotalDevHostPtr,buffer) bind(c, name="cusparseSpruneDense2csrNnz")
@@ -8691,7 +9280,7 @@ module hipfort_hipsparse
       hipsparseDpruneDense2csrNnz_rank_1
 #endif
   end interface
-  
+  !> @{
   interface hipsparseSpruneDense2csr
 #ifdef USE_CUDA_NAMES
     function hipsparseSpruneDense2csr_(handle,m,n,A,lda,threshold,descr,csrVal,csrRowPtr,csrColInd,buffer) bind(c, name="cusparseSpruneDense2csr")
@@ -8755,9 +9344,7 @@ module hipfort_hipsparse
       hipsparseDpruneDense2csr_rank_1
 #endif
   end interface
-  !>  Description: 
-  !> These functions convert the matrix A in dense format into a sparse matrix in CSR format where the bottom 
-  !> percentage of absolute valued entries from A have been removed. 
+  !> @{
   interface hipsparseSpruneDense2csrByPercentage_bufferSize
 #ifdef USE_CUDA_NAMES
     function hipsparseSpruneDense2csrByPercentage_bufferSize_(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,bufferSize) bind(c, name="cusparseSpruneDense2csrByPercentage_bufferSize")
@@ -8823,7 +9410,7 @@ module hipfort_hipsparse
       hipsparseDpruneDense2csrByPercentage_bufferSize_rank_1
 #endif
   end interface
-  
+  !> @{
   interface hipsparseSpruneDense2csrByPercentage_bufferSizeExt
 #ifdef USE_CUDA_NAMES
     function hipsparseSpruneDense2csrByPercentage_bufferSizeExt_(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,bufferSize) bind(c, name="cusparseSpruneDense2csrByPercentage_bufferSizeExt")
@@ -8889,7 +9476,7 @@ module hipfort_hipsparse
       hipsparseDpruneDense2csrByPercentage_bufferSizeExt_rank_1
 #endif
   end interface
-  
+  !> @{
   interface hipsparseSpruneDense2csrNnzByPercentage
 #ifdef USE_CUDA_NAMES
     function hipsparseSpruneDense2csrNnzByPercentage_(handle,m,n,A,lda,percentage,descr,csrRowPtr,nnzTotalDevHostPtr,myInfo,buffer) bind(c, name="cusparseSpruneDense2csrNnzByPercentage")
@@ -8953,7 +9540,7 @@ module hipfort_hipsparse
       hipsparseDpruneDense2csrNnzByPercentage_rank_1
 #endif
   end interface
-  
+  !> @{
   interface hipsparseSpruneDense2csrByPercentage
 #ifdef USE_CUDA_NAMES
     function hipsparseSpruneDense2csrByPercentage_(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,buffer) bind(c, name="cusparseSpruneDense2csrByPercentage")
@@ -9019,8 +9606,7 @@ module hipfort_hipsparse
       hipsparseDpruneDense2csrByPercentage_rank_1
 #endif
   end interface
-  !>  Description: 
-  !> This function converts the matrix A in dense format into a sparse matrix in CSC format 
+  !> @{
   interface hipsparseSdense2csc
 #ifdef USE_CUDA_NAMES
     function hipsparseSdense2csc_(handle,m,n,descr,A,ld,nnz_per_columns,csc_val,csc_row_ind,csc_col_ptr) bind(c, name="cusparseSdense2csc")
@@ -9144,8 +9730,7 @@ module hipfort_hipsparse
       hipsparseZdense2csc_rank_1
 #endif
   end interface
-  !>  Description:
-  !> This function converts the sparse matrix in CSR format into a dense matrix 
+  !> @{
   interface hipsparseScsr2dense
 #ifdef USE_CUDA_NAMES
     function hipsparseScsr2dense_(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,A,ld) bind(c, name="cusparseScsr2dense")
@@ -9265,8 +9850,7 @@ module hipfort_hipsparse
       hipsparseZcsr2dense_rank_1
 #endif
   end interface
-  !>  Description:
-  !> This function converts the sparse matrix in CSC format into a dense matrix. 
+  !> @{
   interface hipsparseScsc2dense
 #ifdef USE_CUDA_NAMES
     function hipsparseScsc2dense_(handle,m,n,descr,csc_val,csc_row_ind,csc_col_ptr,A,ld) bind(c, name="cusparseScsc2dense")
@@ -9386,9 +9970,14 @@ module hipfort_hipsparse
       hipsparseZcsc2dense_rank_1
 #endif
   end interface
-  !>  Description:
-  !> This function computes the number of nonzero block columns per block row and the total number of blocks in the BSR 
-  !> matrix where the BSR matrix is formed by converting the input CSR matrix. 
+  !> ! \ingroup conv_module
+  !>   \brief
+  !>   This function computes the number of nonzero block columns per row and the total number of nonzero blocks in a sparse
+  !>   BSR matrix given a sparse CSR matrix as input.
+  !> 
+  !>   \details
+  !>   The routine does support asynchronous execution if the pointer mode is set to device.
+  !> 
   interface hipsparseXcsr2bsrNnz
 #ifdef USE_CUDA_NAMES
     function hipsparseXcsr2bsrNnz_(handle,dirA,m,n,descrA,csrRowPtrA,csrColIndA,blockDim,descrC,bsrRowPtrC,bsrNnzb) bind(c, name="cusparseXcsr2bsrNnz")
@@ -9419,10 +10008,7 @@ module hipfort_hipsparse
       hipsparseXcsr2bsrNnz_rank_1
 #endif
   end interface
-  !>  Description:
-  !> This function computes the number of nonzero elements per row and the total number of nonzero elements 
-  !> in the compressed version of the input CSR matrix where the matrix is compressed by removing elements 
-  !> less than pr equal to the tolerance. 
+  !> @{
   interface hipsparseSnnz_compress
 #ifdef USE_CUDA_NAMES
     function hipsparseSnnz_compress_(handle,m,descrA,csrValA,csrRowPtrA,nnzPerRow,nnzC,tol) bind(c, name="cusparseSnnz_compress")
@@ -9534,8 +10120,21 @@ module hipfort_hipsparse
       hipsparseZnnz_compress_rank_1
 #endif
   end interface
-  !>  Description: This routine converts a sparse matrix in CSR storage format
-  !> to a sparse matrix in COO storage format. 
+  !> ! \ingroup conv_module
+  !>   \brief Convert a sparse CSR matrix into a sparse COO matrix
+  !> 
+  !>   \details
+  !>   \p hipsparseXcsr2coo converts the CSR array containing the row offsets, that point
+  !>   to the start of every row, into a COO array of row indices.
+  !> 
+  !>   \note
+  !>   It can also be used to convert a CSC array containing the column offsets into a COO
+  !>   array of column indices.
+  !> 
+  !>   \note
+  !>   This function is non blocking and executed asynchronously with respect to the host.
+  !>   It may return before the actual computation has finished.
+  !> 
   interface hipsparseXcsr2coo
 #ifdef USE_CUDA_NAMES
     function hipsparseXcsr2coo_(handle,csrRowPtr,nnz,m,cooRowInd,idxBase) bind(c, name="cusparseXcsr2coo")
@@ -9809,7 +10408,7 @@ module hipfort_hipsparse
       hipsparseZcsr2hyb_rank_1
 #endif
   end interface
-  
+  !> @{
   interface hipsparseSgebsr2gebsc_bufferSize
 #ifdef USE_CUDA_NAMES
     function hipsparseSgebsr2gebsc_bufferSize_(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size) bind(c, name="cusparseSgebsr2gebsc_bufferSize")
@@ -9909,7 +10508,7 @@ module hipfort_hipsparse
     end function
 
   end interface
-  
+  !> @{
   interface hipsparseSgebsr2gebsc
 #ifdef USE_CUDA_NAMES
     function hipsparseSgebsr2gebsc_(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,bsc_val,bsc_row_ind,bsc_col_ptr,copy_values,idx_base,temp_buffer) bind(c, name="cusparseSgebsr2gebsc")
@@ -10029,8 +10628,7 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !>  Description: This routine computes the required buffer size to call the routine 
-  !> hipsparseXcsr2gebsr or hipsparseXcsr2gebsrNnz. 
+  !> @{
   interface hipsparseScsr2gebsr_bufferSize
 #ifdef USE_CUDA_NAMES
     function hipsparseScsr2gebsr_bufferSize_(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,p_buffer_size) bind(c, name="cusparseScsr2gebsr_bufferSize")
@@ -10154,8 +10752,12 @@ module hipfort_hipsparse
       hipsparseZcsr2gebsr_bufferSize_rank_1
 #endif
   end interface
-  !>  Description: This routine computes the number of blocks of a sparse matrix with GEBSR format, 
-  !> from the conversion of a sparse matrix with CSR format. 
+  !> ! \ingroup conv_module
+  !>   \brief
+  !>   This function computes the number of nonzero block columns per row and the total number of nonzero blocks in a sparse
+  !>   GEneral BSR matrix given a sparse CSR matrix as input.
+  !> 
+  !> 
   interface hipsparseXcsr2gebsrNnz
 #ifdef USE_CUDA_NAMES
     function hipsparseXcsr2gebsrNnz_(handle,dir,m,n,csr_descr,csr_row_ptr,csr_col_ind,bsr_descr,bsr_row_ptr,row_block_dim,col_block_dim,bsr_nnz_devhost,p_buffer) bind(c, name="cusparseXcsr2gebsrNnz")
@@ -10188,8 +10790,7 @@ module hipfort_hipsparse
       hipsparseXcsr2gebsrNnz_rank_1
 #endif
   end interface
-  !>  Description: This routine converts a sparse matrix in CSR storage format
-  !> to a sparse matrix in GEBSR storage format. 
+  !> @{
   interface hipsparseScsr2gebsr
 #ifdef USE_CUDA_NAMES
     function hipsparseScsr2gebsr_(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer) bind(c, name="cusparseScsr2gebsr")
@@ -10329,8 +10930,7 @@ module hipfort_hipsparse
       hipsparseZcsr2gebsr_rank_1
 #endif
   end interface
-  !>  Description: This routine converts a sparse matrix in CSR storage format
-  !> to a sparse matrix in BSR storage format. 
+  !> @{
   interface hipsparseScsr2bsr
 #ifdef USE_CUDA_NAMES
     function hipsparseScsr2bsr_(handle,dirA,m,n,descrA,csrValA,csrRowPtrA,csrColIndA,blockDim,descrC,bsrValC,bsrRowPtrC,bsrColIndC) bind(c, name="cusparseScsr2bsr")
@@ -10462,8 +11062,7 @@ module hipfort_hipsparse
       hipsparseZcsr2bsr_rank_1
 #endif
   end interface
-  !>  Description: This routine converts a sparse matrix in BSR storage format
-  !> to a sparse matrix in CSR storage format. 
+  !> @{
   interface hipsparseSbsr2csr
 #ifdef USE_CUDA_NAMES
     function hipsparseSbsr2csr_(handle,dirA,mb,nb,descrA,bsrValA,bsrRowPtrA,bsrColIndA,blockDim,descrC,csrValC,csrRowPtrC,csrColIndC) bind(c, name="cusparseSbsr2csr")
@@ -10595,8 +11194,7 @@ module hipfort_hipsparse
       hipsparseZbsr2csr_rank_1
 #endif
   end interface
-  !>  Description: This routine converts a sparse matrix in GEneral BSR storage format
-  !> to a sparse matrix in CSR storage format. 
+  !> @{
   interface hipsparseSgebsr2csr
 #ifdef USE_CUDA_NAMES
     function hipsparseSgebsr2csr_(handle,dirA,mb,nb,descrA,bsrValA,bsrRowPtrA,bsrColIndA,rowBlockDim,colBlockDim,descrC,csrValC,csrRowPtrC,csrColIndC) bind(c, name="cusparseSgebsr2csr")
@@ -10732,8 +11330,7 @@ module hipfort_hipsparse
       hipsparseZgebsr2csr_rank_1
 #endif
   end interface
-  !>  Description: This routine compresses the input CSR matrix by removing elements that 
-  !> are less than or equal to the non-negative tolerance 
+  !> @{
   interface hipsparseScsr2csr_compress
 #ifdef USE_CUDA_NAMES
     function hipsparseScsr2csr_compress_(handle,m,n,descrA,csrValA,csrColIndA,csrRowPtrA,nnzA,nnzPerRow,csrValC,csrColIndC,csrRowPtrC,tol) bind(c, name="cusparseScsr2csr_compress")
@@ -10865,8 +11462,7 @@ module hipfort_hipsparse
       hipsparseZcsr2csr_compress_rank_1
 #endif
   end interface
-  !>  Description: These routines prune the input CSR matrix by removing elements that 
-  !>    are less than or equal to the non-negative threshold 
+  !> @{
   interface hipsparseSpruneCsr2csr_bufferSize
 #ifdef USE_CUDA_NAMES
     function hipsparseSpruneCsr2csr_bufferSize_(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA,csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,bufferSize) bind(c, name="cusparseSpruneCsr2csr_bufferSize")
@@ -10934,7 +11530,7 @@ module hipfort_hipsparse
       hipsparseDpruneCsr2csr_bufferSize_rank_1
 #endif
   end interface
-  
+  !> @{
   interface hipsparseSpruneCsr2csr_bufferSizeExt
 #ifdef USE_CUDA_NAMES
     function hipsparseSpruneCsr2csr_bufferSizeExt_(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA,csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,bufferSize) bind(c, name="cusparseSpruneCsr2csr_bufferSizeExt")
@@ -11002,7 +11598,7 @@ module hipfort_hipsparse
       hipsparseDpruneCsr2csr_bufferSizeExt_rank_1
 #endif
   end interface
-  
+  !> @{
   interface hipsparseSpruneCsr2csrNnz
 #ifdef USE_CUDA_NAMES
     function hipsparseSpruneCsr2csrNnz_(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA,csrColIndA,threshold,descrC,csrRowPtrC,nnzTotalDevHostPtr,buffer) bind(c, name="cusparseSpruneCsr2csrNnz")
@@ -11068,7 +11664,7 @@ module hipfort_hipsparse
       hipsparseDpruneCsr2csrNnz_rank_1
 #endif
   end interface
-  
+  !> @{
   interface hipsparseSpruneCsr2csr
 #ifdef USE_CUDA_NAMES
     function hipsparseSpruneCsr2csr_(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA,csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,buffer) bind(c, name="cusparseSpruneCsr2csr")
@@ -11136,8 +11732,7 @@ module hipfort_hipsparse
       hipsparseDpruneCsr2csr_rank_1
 #endif
   end interface
-  !>  Description: These functions convert the matrix A in CSR format into a sparse matrix in CSR format where the bottom 
-  !>     percentage of absolute valued entries from A have been removed. 
+  !> @{
   interface hipsparseSpruneCsr2csrByPercentage_bufferSize
 #ifdef USE_CUDA_NAMES
     function hipsparseSpruneCsr2csrByPercentage_bufferSize_(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA,csrColIndA,percentage,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo,bufferSize) bind(c, name="cusparseSpruneCsr2csrByPercentage_bufferSize")
@@ -11207,7 +11802,7 @@ module hipfort_hipsparse
       hipsparseDpruneCsr2csrByPercentage_bufferSize_rank_1
 #endif
   end interface
-  
+  !> @{
   interface hipsparseSpruneCsr2csrByPercentage_bufferSizeExt
 #ifdef USE_CUDA_NAMES
     function hipsparseSpruneCsr2csrByPercentage_bufferSizeExt_(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA,csrColIndA,percentage,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo,bufferSize) bind(c, name="cusparseSpruneCsr2csrByPercentage_bufferSizeExt")
@@ -11277,7 +11872,7 @@ module hipfort_hipsparse
       hipsparseDpruneCsr2csrByPercentage_bufferSizeExt_rank_1
 #endif
   end interface
-  
+  !> @{
   interface hipsparseSpruneCsr2csrNnzByPercentage
 #ifdef USE_CUDA_NAMES
     function hipsparseSpruneCsr2csrNnzByPercentage_(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA,csrColIndA,percentage,descrC,csrRowPtrC,nnzTotalDevHostPtr,myInfo,buffer) bind(c, name="cusparseSpruneCsr2csrNnzByPercentage")
@@ -11345,7 +11940,7 @@ module hipfort_hipsparse
       hipsparseDpruneCsr2csrNnzByPercentage_rank_1
 #endif
   end interface
-  
+  !> @{
   interface hipsparseSpruneCsr2csrByPercentage
 #ifdef USE_CUDA_NAMES
     function hipsparseSpruneCsr2csrByPercentage_(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA,csrColIndA,percentage,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo,buffer) bind(c, name="cusparseSpruneCsr2csrByPercentage")
@@ -11519,8 +12114,22 @@ module hipfort_hipsparse
       hipsparseZhyb2csr_rank_1
 #endif
   end interface
-  !>  Description: This routine converts a sparse matrix in COO storage format
-  !> to a sparse matrix in CSR storage format. 
+  !> ! \ingroup conv_module
+  !>    \brief Convert a sparse COO matrix into a sparse CSR matrix
+  !>  
+  !>    \details
+  !>    \p hipsparseXcoo2csr converts the COO array containing the row indices into a
+  !>    CSR array of row offsets, that point to the start of every row.
+  !>    It is assumed that the COO row index array is sorted.
+  !>  
+  !>    \note It can also be used, to convert a COO array containing the column indices into
+  !>    a CSC array of column offsets, that point to the start of every column. Then, it is
+  !>    assumed that the COO column index array is sorted, instead.
+  !>  
+  !>    \note
+  !>    This function is non blocking and executed asynchronously with respect to the host.
+  !>    It may return before the actual computation has finished.
+  !> 
   interface hipsparseXcoo2csr
 #ifdef USE_CUDA_NAMES
     function hipsparseXcoo2csr_(handle,cooRowInd,nnz,m,csrRowPtr,idxBase) bind(c, name="cusparseXcoo2csr")
@@ -11546,7 +12155,24 @@ module hipfort_hipsparse
       hipsparseXcoo2csr_rank_1
 #endif
   end interface
-  !>  Description: This routine creates an identity map. 
+  !> ! \ingroup conv_module
+  !>   \brief Create the identity map
+  !> 
+  !>   \details
+  !>   \p hipsparseCreateIdentityPermutation stores the identity map in \p p, such that
+  !>   \f$p = 0:1:(n-1)\f$.
+  !> 
+  !>   \code{.c}
+  !>       for(i = 0; i < n; ++i)
+  !>       {
+  !>           p[i] = i;
+  !>       }
+  !>   \endcode
+  !> 
+  !>   \note
+  !>   This function is non blocking and executed asynchronously with respect to the host.
+  !>   It may return before the actual computation has finished.
+  !> 
   interface hipsparseCreateIdentityPermutation
 #ifdef USE_CUDA_NAMES
     function hipsparseCreateIdentityPermutation_(handle,n,p) bind(c, name="cusparseCreateIdentityPermutation")
@@ -11569,7 +12195,14 @@ module hipfort_hipsparse
       hipsparseCreateIdentityPermutation_rank_1
 #endif
   end interface
-  !>  Description: This routine computes the required buffer size for csrsort. 
+  !> ! \ingroup conv_module
+  !>   \brief Sort a sparse CSR matrix
+  !> 
+  !>   \details
+  !>   \p hipsparseXcsrsort_bufferSizeExt returns the size of the temporary storage buffer
+  !>   required by hipsparseXcsrsort(). The temporary storage buffer must be allocated by
+  !>   the user.
+  !> 
   interface hipsparseXcsrsort_bufferSizeExt
 #ifdef USE_CUDA_NAMES
     function hipsparseXcsrsort_bufferSizeExt_(handle,m,n,nnz,csrRowPtr,csrColInd,pBufferSizeInBytes) bind(c, name="cusparseXcsrsort_bufferSizeExt")
@@ -11596,7 +12229,24 @@ module hipfort_hipsparse
       hipsparseXcsrsort_bufferSizeExt_rank_1
 #endif
   end interface
-  !>  Description: This routine sorts CSR format. 
+  !> ! \ingroup conv_module
+  !>   \brief Sort a sparse CSR matrix
+  !> 
+  !>   \details
+  !>   \p hipsparseXcsrsort sorts a matrix in CSR format. The sorted permutation vector
+  !>   \p perm can be used to obtain sorted \p csr_val array. In this case, \p perm must be
+  !>   initialized as the identity permutation, see hipsparseCreateIdentityPermutation().
+  !> 
+  !>   \p hipsparseXcsrsort requires extra temporary storage buffer that has to be allocated by
+  !>   the user. Storage buffer size can be determined by hipsparseXcsrsort_bufferSizeExt().
+  !> 
+  !>   \note
+  !>   \p perm can be \p NULL if a sorted permutation vector is not required.
+  !> 
+  !>   \note
+  !>   This function is non blocking and executed asynchronously with respect to the host.
+  !>   It may return before the actual computation has finished.
+  !> 
   interface hipsparseXcsrsort
 #ifdef USE_CUDA_NAMES
     function hipsparseXcsrsort_(handle,m,n,nnz,descrA,csrRowPtr,csrColInd,P,pBuffer) bind(c, name="cusparseXcsrsort")
@@ -11626,7 +12276,14 @@ module hipfort_hipsparse
       hipsparseXcsrsort_rank_1
 #endif
   end interface
-  !>  Description: This routine computes the required buffer size for cscsort. 
+  !> ! \ingroup conv_module
+  !>   \brief Sort a sparse CSC matrix
+  !> 
+  !>   \details
+  !>   \p hipsparseXcscsort_bufferSizeExt returns the size of the temporary storage buffer
+  !>   required by hipsparseXcscsort(). The temporary storage buffer must be allocated by
+  !>   the user.
+  !> 
   interface hipsparseXcscsort_bufferSizeExt
 #ifdef USE_CUDA_NAMES
     function hipsparseXcscsort_bufferSizeExt_(handle,m,n,nnz,cscColPtr,cscRowInd,pBufferSizeInBytes) bind(c, name="cusparseXcscsort_bufferSizeExt")
@@ -11653,7 +12310,24 @@ module hipfort_hipsparse
       hipsparseXcscsort_bufferSizeExt_rank_1
 #endif
   end interface
-  !>  Description: This routine sorts CSR format. 
+  !> ! \ingroup conv_module
+  !>   \brief Sort a sparse CSC matrix
+  !> 
+  !>   \details
+  !>   \p hipsparseXcscsort sorts a matrix in CSC format. The sorted permutation vector
+  !>   \p perm can be used to obtain sorted \p csc_val array. In this case, \p perm must be
+  !>   initialized as the identity permutation, see hipsparseCreateIdentityPermutation().
+  !> 
+  !>   \p hipsparseXcscsort requires extra temporary storage buffer that has to be allocated by
+  !>   the user. Storage buffer size can be determined by hipsparseXcscsort_bufferSizeExt().
+  !> 
+  !>   \note
+  !>   \p perm can be \p NULL if a sorted permutation vector is not required.
+  !> 
+  !>   \note
+  !>   This function is non blocking and executed asynchronously with respect to the host.
+  !>   It may return before the actual computation has finished.
+  !> 
   interface hipsparseXcscsort
 #ifdef USE_CUDA_NAMES
     function hipsparseXcscsort_(handle,m,n,nnz,descrA,cscColPtr,cscRowInd,P,pBuffer) bind(c, name="cusparseXcscsort")
@@ -11683,7 +12357,14 @@ module hipfort_hipsparse
       hipsparseXcscsort_rank_1
 #endif
   end interface
-  !>  Description: This routine computes the required buffer size for coosort. 
+  !> ! \ingroup conv_module
+  !>   \brief Sort a sparse COO matrix
+  !> 
+  !>   \details
+  !>   \p hipsparseXcoosort_bufferSizeExt returns the size of the temporary storage buffer
+  !>   required by hipsparseXcoosort(). The temporary storage buffer must be allocated by
+  !>   the user.
+  !> 
   interface hipsparseXcoosort_bufferSizeExt
 #ifdef USE_CUDA_NAMES
     function hipsparseXcoosort_bufferSizeExt_(handle,m,n,nnz,cooRows,cooCols,pBufferSizeInBytes) bind(c, name="cusparseXcoosort_bufferSizeExt")
@@ -11710,7 +12391,26 @@ module hipfort_hipsparse
       hipsparseXcoosort_bufferSizeExt_rank_1
 #endif
   end interface
-  !>  Description: This routine sorts COO format by rows. 
+  !> ! \ingroup conv_module
+  !>   \brief Sort a sparse COO matrix by row
+  !> 
+  !>   \details
+  !>   \p hipsparseXcoosortByRow sorts a matrix in COO format by row. The sorted
+  !>   permutation vector \p perm can be used to obtain sorted \p coo_val array. In this
+  !>   case, \p perm must be initialized as the identity permutation, see
+  !>   hipsparseCreateIdentityPermutation().
+  !> 
+  !>   \p hipsparseXcoosortByRow requires extra temporary storage buffer that has to be
+  !>   allocated by the user. Storage buffer size can be determined by
+  !>   hipsparseXcoosort_bufferSizeExt().
+  !> 
+  !>   \note
+  !>   \p perm can be \p NULL if a sorted permutation vector is not required.
+  !> 
+  !>   \note
+  !>   This function is non blocking and executed asynchronously with respect to the host.
+  !>   It may return before the actual computation has finished.
+  !> 
   interface hipsparseXcoosortByRow
 #ifdef USE_CUDA_NAMES
     function hipsparseXcoosortByRow_(handle,m,n,nnz,cooRows,cooCols,P,pBuffer) bind(c, name="cusparseXcoosortByRow")
@@ -11739,7 +12439,26 @@ module hipfort_hipsparse
       hipsparseXcoosortByRow_rank_1
 #endif
   end interface
-  !>  Description: This routine sorts COO format by columns. 
+  !> ! \ingroup conv_module
+  !>   \brief Sort a sparse COO matrix by column
+  !> 
+  !>   \details
+  !>   \p hipsparseXcoosortByColumn sorts a matrix in COO format by column. The sorted
+  !>   permutation vector \p perm can be used to obtain sorted \p coo_val array. In this
+  !>   case, \p perm must be initialized as the identity permutation, see
+  !>   hipsparseCreateIdentityPermutation().
+  !> 
+  !>   \p hipsparseXcoosortByColumn requires extra temporary storage buffer that has to be
+  !>   allocated by the user. Storage buffer size can be determined by
+  !>   hipsparseXcoosort_bufferSizeExt().
+  !> 
+  !>   \note
+  !>   \p perm can be \p NULL if a sorted permutation vector is not required.
+  !> 
+  !>   \note
+  !>   This function is non blocking and executed asynchronously with respect to the host.
+  !>   It may return before the actual computation has finished.
+  !> 
   interface hipsparseXcoosortByColumn
 #ifdef USE_CUDA_NAMES
     function hipsparseXcoosortByColumn_(handle,m,n,nnz,cooRows,cooCols,P,pBuffer) bind(c, name="cusparseXcoosortByColumn")
@@ -11768,9 +12487,7 @@ module hipfort_hipsparse
       hipsparseXcoosortByColumn_rank_1
 #endif
   end interface
-  !>  Description:
-  !> This function computes the temporary buffer size needed when converting from a general BSR matrix to another 
-  !> general BSR matrix 
+  !> @{
   interface hipsparseSgebsr2gebsr_bufferSize
 #ifdef USE_CUDA_NAMES
     function hipsparseSgebsr2gebsr_bufferSize_(handle,dirA,mb,nb,nnzb,descrA,bsrValA,bsrRowPtrA,bsrColIndA,rowBlockDimA,colBlockDimA,rowBlockDimC,colBlockDimC,bufferSize) bind(c, name="cusparseSgebsr2gebsr_bufferSize")
@@ -11906,9 +12623,14 @@ module hipfort_hipsparse
       hipsparseZgebsr2gebsr_bufferSize_rank_1
 #endif
   end interface
-  !>  Description:
-  !> This function computes the number of nonzero block columns per block row and the total number of blocks in the general BSR 
-  !> matrix where the general BSR matrix is formed by converting from the input general BSR matrix. 
+  !> ! \ingroup conv_module
+  !>   \brief This function is used when converting a general BSR sparse matrix \p A to another general BSR sparse matrix \p C.
+  !>   Specifically, this function determines the number of non-zero blocks that will exist in \p C (stored using either a host
+  !>   or device pointer), and computes the row pointer array for \p C.
+  !> 
+  !>   \details
+  !>   The routine does support asynchronous execution.
+  !> 
   interface hipsparseXgebsr2gebsrNnz
 #ifdef USE_CUDA_NAMES
     function hipsparseXgebsr2gebsrNnz_(handle,dirA,mb,nb,nnzb,descrA,bsrRowPtrA,bsrColIndA,rowBlockDimA,colBlockDimA,descrC,bsrRowPtrC,rowBlockDimC,colBlockDimC,nnzTotalDevHostPtr,buffer) bind(c, name="cusparseXgebsr2gebsrNnz")
@@ -11944,8 +12666,7 @@ module hipfort_hipsparse
       hipsparseXgebsr2gebsrNnz_rank_1
 #endif
   end interface
-  !>  Description:
-  !> This function completes the conversion from a general BSR matrix to another general BSR matrix 
+  !> @{
   interface hipsparseSgebsr2gebsr
 #ifdef USE_CUDA_NAMES
     function hipsparseSgebsr2gebsr_(handle,dirA,mb,nb,nnzb,descrA,bsrValA,bsrRowPtrA,bsrColIndA,rowBlockDimA,colBlockDimA,descrC,bsrValC,bsrRowPtrC,bsrColIndC,rowBlockDimC,colBlockDimC,buffer) bind(c, name="cusparseSgebsr2gebsr")
@@ -12097,7 +12818,7 @@ module hipfort_hipsparse
       hipsparseZgebsr2gebsr_rank_1
 #endif
   end interface
-  
+  !> @{
   interface hipsparseScsru2csr_bufferSizeExt
 #ifdef USE_CUDA_NAMES
     function hipsparseScsru2csr_bufferSizeExt_(handle,m,n,nnz,csrVal,csrRowPtr,csrColInd,myInfo,pBufferSizeInBytes) bind(c, name="cusparseScsru2csr_bufferSizeExt")
@@ -12213,7 +12934,7 @@ module hipfort_hipsparse
       hipsparseZcsru2csr_bufferSizeExt_rank_1
 #endif
   end interface
-  
+  !> @{
   interface hipsparseScsru2csr
 #ifdef USE_CUDA_NAMES
     function hipsparseScsru2csr_(handle,m,n,nnz,descrA,csrVal,csrRowPtr,csrColInd,myInfo,pBuffer) bind(c, name="cusparseScsru2csr")
@@ -12333,7 +13054,7 @@ module hipfort_hipsparse
       hipsparseZcsru2csr_rank_1
 #endif
   end interface
-  
+  !> @{
   interface hipsparseScsr2csru
 #ifdef USE_CUDA_NAMES
     function hipsparseScsr2csru_(handle,m,n,nnz,descrA,csrVal,csrRowPtr,csrColInd,myInfo,pBuffer) bind(c, name="cusparseScsr2csru")
@@ -12453,8 +13174,7 @@ module hipfort_hipsparse
       hipsparseZcsr2csru_rank_1
 #endif
   end interface
-  !>  Description:
-  !> This function computes a pseudo-coloring reordering of a sparse matrix stored with a CSR format. 
+  !> @{
   interface hipsparseScsrcolor
 #ifdef USE_CUDA_NAMES
     function hipsparseScsrcolor_(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA,fractionToColor,ncolors,coloring,reordering,myInfo) bind(c, name="cusparseScsrcolor")
@@ -14072,238 +14792,6 @@ module hipfort_hipsparse
       type(c_ptr),value :: externalBuffer
     end function
 
-  end interface
-  
-  interface hipsparseSgtsv2StridedBatch_bufferSizeExt
-#ifdef USE_CUDA_NAMES
-    function hipsparseSgtsv2StridedBatch_bufferSizeExt_(handle,m,dl,d,du,x,batchCount,batchStride,pBufferSizeInBytes) bind(c, name="cusparseSgtsv2StridedBatch_bufferSizeExt")
-#else
-    function hipsparseSgtsv2StridedBatch_bufferSizeExt_(handle,m,dl,d,du,x,batchCount,batchStride,pBufferSizeInBytes) bind(c, name="hipsparseSgtsv2StridedBatch_bufferSizeExt")
-#endif
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2StridedBatch_bufferSizeExt_
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
-      type(c_ptr),value :: x
-      integer(c_int),value :: batchCount
-      integer(c_int),value :: batchStride
-      integer(c_size_t) :: pBufferSizeInBytes
-    end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      hipsparseSgtsv2StridedBatch_bufferSizeExt_rank_0,&
-      hipsparseSgtsv2StridedBatch_bufferSizeExt_rank_1
-#endif
-  end interface
-  
-  interface hipsparseDgtsv2StridedBatch_bufferSizeExt
-#ifdef USE_CUDA_NAMES
-    function hipsparseDgtsv2StridedBatch_bufferSizeExt_(handle,m,dl,d,du,x,batchCount,batchStride,pBufferSizeInBytes) bind(c, name="cusparseDgtsv2StridedBatch_bufferSizeExt")
-#else
-    function hipsparseDgtsv2StridedBatch_bufferSizeExt_(handle,m,dl,d,du,x,batchCount,batchStride,pBufferSizeInBytes) bind(c, name="hipsparseDgtsv2StridedBatch_bufferSizeExt")
-#endif
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2StridedBatch_bufferSizeExt_
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
-      type(c_ptr),value :: x
-      integer(c_int),value :: batchCount
-      integer(c_int),value :: batchStride
-      integer(c_size_t) :: pBufferSizeInBytes
-    end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      hipsparseDgtsv2StridedBatch_bufferSizeExt_rank_0,&
-      hipsparseDgtsv2StridedBatch_bufferSizeExt_rank_1
-#endif
-  end interface
-  
-  interface hipsparseCgtsv2StridedBatch_bufferSizeExt
-#ifdef USE_CUDA_NAMES
-    function hipsparseCgtsv2StridedBatch_bufferSizeExt_(handle,m,dl,d,du,x,batchCount,batchStride,pBufferSizeInBytes) bind(c, name="cusparseCgtsv2StridedBatch_bufferSizeExt")
-#else
-    function hipsparseCgtsv2StridedBatch_bufferSizeExt_(handle,m,dl,d,du,x,batchCount,batchStride,pBufferSizeInBytes) bind(c, name="hipsparseCgtsv2StridedBatch_bufferSizeExt")
-#endif
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2StridedBatch_bufferSizeExt_
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
-      type(c_ptr),value :: x
-      integer(c_int),value :: batchCount
-      integer(c_int),value :: batchStride
-      integer(c_size_t) :: pBufferSizeInBytes
-    end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      hipsparseCgtsv2StridedBatch_bufferSizeExt_rank_0,&
-      hipsparseCgtsv2StridedBatch_bufferSizeExt_rank_1
-#endif
-  end interface
-  
-  interface hipsparseZgtsv2StridedBatch_bufferSizeExt
-#ifdef USE_CUDA_NAMES
-    function hipsparseZgtsv2StridedBatch_bufferSizeExt_(handle,m,dl,d,du,x,batchCount,batchStride,pBufferSizeInBytes) bind(c, name="cusparseZgtsv2StridedBatch_bufferSizeExt")
-#else
-    function hipsparseZgtsv2StridedBatch_bufferSizeExt_(handle,m,dl,d,du,x,batchCount,batchStride,pBufferSizeInBytes) bind(c, name="hipsparseZgtsv2StridedBatch_bufferSizeExt")
-#endif
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2StridedBatch_bufferSizeExt_
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
-      type(c_ptr),value :: x
-      integer(c_int),value :: batchCount
-      integer(c_int),value :: batchStride
-      integer(c_size_t) :: pBufferSizeInBytes
-    end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      hipsparseZgtsv2StridedBatch_bufferSizeExt_rank_0,&
-      hipsparseZgtsv2StridedBatch_bufferSizeExt_rank_1
-#endif
-  end interface
-  
-  interface hipsparseSgtsv2StridedBatch
-#ifdef USE_CUDA_NAMES
-    function hipsparseSgtsv2StridedBatch_(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer) bind(c, name="cusparseSgtsv2StridedBatch")
-#else
-    function hipsparseSgtsv2StridedBatch_(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer) bind(c, name="hipsparseSgtsv2StridedBatch")
-#endif
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2StridedBatch_
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
-      type(c_ptr),value :: x
-      integer(c_int),value :: batchCount
-      integer(c_int),value :: batchStride
-      type(c_ptr),value :: pBuffer
-    end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      hipsparseSgtsv2StridedBatch_rank_0,&
-      hipsparseSgtsv2StridedBatch_rank_1
-#endif
-  end interface
-  
-  interface hipsparseDgtsv2StridedBatch
-#ifdef USE_CUDA_NAMES
-    function hipsparseDgtsv2StridedBatch_(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer) bind(c, name="cusparseDgtsv2StridedBatch")
-#else
-    function hipsparseDgtsv2StridedBatch_(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer) bind(c, name="hipsparseDgtsv2StridedBatch")
-#endif
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2StridedBatch_
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
-      type(c_ptr),value :: x
-      integer(c_int),value :: batchCount
-      integer(c_int),value :: batchStride
-      type(c_ptr),value :: pBuffer
-    end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      hipsparseDgtsv2StridedBatch_rank_0,&
-      hipsparseDgtsv2StridedBatch_rank_1
-#endif
-  end interface
-  
-  interface hipsparseCgtsv2StridedBatch
-#ifdef USE_CUDA_NAMES
-    function hipsparseCgtsv2StridedBatch_(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer) bind(c, name="cusparseCgtsv2StridedBatch")
-#else
-    function hipsparseCgtsv2StridedBatch_(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer) bind(c, name="hipsparseCgtsv2StridedBatch")
-#endif
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2StridedBatch_
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
-      type(c_ptr),value :: x
-      integer(c_int),value :: batchCount
-      integer(c_int),value :: batchStride
-      type(c_ptr),value :: pBuffer
-    end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      hipsparseCgtsv2StridedBatch_rank_0,&
-      hipsparseCgtsv2StridedBatch_rank_1
-#endif
-  end interface
-  
-  interface hipsparseZgtsv2StridedBatch
-#ifdef USE_CUDA_NAMES
-    function hipsparseZgtsv2StridedBatch_(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer) bind(c, name="cusparseZgtsv2StridedBatch")
-#else
-    function hipsparseZgtsv2StridedBatch_(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer) bind(c, name="hipsparseZgtsv2StridedBatch")
-#endif
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2StridedBatch_
-      type(c_ptr),value :: handle
-      integer(c_int),value :: m
-      type(c_ptr),value :: dl
-      type(c_ptr),value :: d
-      type(c_ptr),value :: du
-      type(c_ptr),value :: x
-      integer(c_int),value :: batchCount
-      integer(c_int),value :: batchStride
-      type(c_ptr),value :: pBuffer
-    end function
-
-#ifdef USE_FPOINTER_INTERFACES
-    module procedure &
-      hipsparseZgtsv2StridedBatch_rank_0,&
-      hipsparseZgtsv2StridedBatch_rank_1
-#endif
   end interface
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -25466,6 +25954,310 @@ module hipfort_hipsparse
       hipsparseZgtsv2_nopivot_rank_1 = hipsparseZgtsv2_nopivot_(handle,m,n,dl,d,du,c_loc(B),ldb,pBuffer)
     end function
 
+    function hipsparseSgtsv2StridedBatch_bufferSizeExt_rank_0(handle,m,dl,d,du,x,batchCount,batchStride,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2StridedBatch_bufferSizeExt_rank_0
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      real(c_float),target :: x
+      integer(c_int) :: batchCount
+      integer(c_int) :: batchStride
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseSgtsv2StridedBatch_bufferSizeExt_rank_0 = hipsparseSgtsv2StridedBatch_bufferSizeExt_(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBufferSizeInBytes)
+    end function
+
+    function hipsparseSgtsv2StridedBatch_bufferSizeExt_rank_1(handle,m,dl,d,du,x,batchCount,batchStride,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2StridedBatch_bufferSizeExt_rank_1
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      real(c_float),target,dimension(:) :: x
+      integer(c_int) :: batchCount
+      integer(c_int) :: batchStride
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseSgtsv2StridedBatch_bufferSizeExt_rank_1 = hipsparseSgtsv2StridedBatch_bufferSizeExt_(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBufferSizeInBytes)
+    end function
+
+    function hipsparseDgtsv2StridedBatch_bufferSizeExt_rank_0(handle,m,dl,d,du,x,batchCount,batchStride,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2StridedBatch_bufferSizeExt_rank_0
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      real(c_double),target :: x
+      integer(c_int) :: batchCount
+      integer(c_int) :: batchStride
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseDgtsv2StridedBatch_bufferSizeExt_rank_0 = hipsparseDgtsv2StridedBatch_bufferSizeExt_(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBufferSizeInBytes)
+    end function
+
+    function hipsparseDgtsv2StridedBatch_bufferSizeExt_rank_1(handle,m,dl,d,du,x,batchCount,batchStride,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2StridedBatch_bufferSizeExt_rank_1
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      real(c_double),target,dimension(:) :: x
+      integer(c_int) :: batchCount
+      integer(c_int) :: batchStride
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseDgtsv2StridedBatch_bufferSizeExt_rank_1 = hipsparseDgtsv2StridedBatch_bufferSizeExt_(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBufferSizeInBytes)
+    end function
+
+    function hipsparseCgtsv2StridedBatch_bufferSizeExt_rank_0(handle,m,dl,d,du,x,batchCount,batchStride,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2StridedBatch_bufferSizeExt_rank_0
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      complex(c_float_complex),target :: x
+      integer(c_int) :: batchCount
+      integer(c_int) :: batchStride
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseCgtsv2StridedBatch_bufferSizeExt_rank_0 = hipsparseCgtsv2StridedBatch_bufferSizeExt_(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBufferSizeInBytes)
+    end function
+
+    function hipsparseCgtsv2StridedBatch_bufferSizeExt_rank_1(handle,m,dl,d,du,x,batchCount,batchStride,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2StridedBatch_bufferSizeExt_rank_1
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int) :: batchCount
+      integer(c_int) :: batchStride
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseCgtsv2StridedBatch_bufferSizeExt_rank_1 = hipsparseCgtsv2StridedBatch_bufferSizeExt_(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBufferSizeInBytes)
+    end function
+
+    function hipsparseZgtsv2StridedBatch_bufferSizeExt_rank_0(handle,m,dl,d,du,x,batchCount,batchStride,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2StridedBatch_bufferSizeExt_rank_0
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      complex(c_double_complex),target :: x
+      integer(c_int) :: batchCount
+      integer(c_int) :: batchStride
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseZgtsv2StridedBatch_bufferSizeExt_rank_0 = hipsparseZgtsv2StridedBatch_bufferSizeExt_(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBufferSizeInBytes)
+    end function
+
+    function hipsparseZgtsv2StridedBatch_bufferSizeExt_rank_1(handle,m,dl,d,du,x,batchCount,batchStride,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2StridedBatch_bufferSizeExt_rank_1
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int) :: batchCount
+      integer(c_int) :: batchStride
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseZgtsv2StridedBatch_bufferSizeExt_rank_1 = hipsparseZgtsv2StridedBatch_bufferSizeExt_(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBufferSizeInBytes)
+    end function
+
+    function hipsparseSgtsv2StridedBatch_rank_0(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2StridedBatch_rank_0
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      real(c_float),target :: x
+      integer(c_int) :: batchCount
+      integer(c_int) :: batchStride
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseSgtsv2StridedBatch_rank_0 = hipsparseSgtsv2StridedBatch_(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBuffer)
+    end function
+
+    function hipsparseSgtsv2StridedBatch_rank_1(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2StridedBatch_rank_1
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      real(c_float),target,dimension(:) :: x
+      integer(c_int) :: batchCount
+      integer(c_int) :: batchStride
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseSgtsv2StridedBatch_rank_1 = hipsparseSgtsv2StridedBatch_(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBuffer)
+    end function
+
+    function hipsparseDgtsv2StridedBatch_rank_0(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2StridedBatch_rank_0
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      real(c_double),target :: x
+      integer(c_int) :: batchCount
+      integer(c_int) :: batchStride
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseDgtsv2StridedBatch_rank_0 = hipsparseDgtsv2StridedBatch_(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBuffer)
+    end function
+
+    function hipsparseDgtsv2StridedBatch_rank_1(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2StridedBatch_rank_1
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      real(c_double),target,dimension(:) :: x
+      integer(c_int) :: batchCount
+      integer(c_int) :: batchStride
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseDgtsv2StridedBatch_rank_1 = hipsparseDgtsv2StridedBatch_(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBuffer)
+    end function
+
+    function hipsparseCgtsv2StridedBatch_rank_0(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2StridedBatch_rank_0
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      complex(c_float_complex),target :: x
+      integer(c_int) :: batchCount
+      integer(c_int) :: batchStride
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseCgtsv2StridedBatch_rank_0 = hipsparseCgtsv2StridedBatch_(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBuffer)
+    end function
+
+    function hipsparseCgtsv2StridedBatch_rank_1(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2StridedBatch_rank_1
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int) :: batchCount
+      integer(c_int) :: batchStride
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseCgtsv2StridedBatch_rank_1 = hipsparseCgtsv2StridedBatch_(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBuffer)
+    end function
+
+    function hipsparseZgtsv2StridedBatch_rank_0(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2StridedBatch_rank_0
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      complex(c_double_complex),target :: x
+      integer(c_int) :: batchCount
+      integer(c_int) :: batchStride
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseZgtsv2StridedBatch_rank_0 = hipsparseZgtsv2StridedBatch_(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBuffer)
+    end function
+
+    function hipsparseZgtsv2StridedBatch_rank_1(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2StridedBatch_rank_1
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int) :: batchCount
+      integer(c_int) :: batchStride
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseZgtsv2StridedBatch_rank_1 = hipsparseZgtsv2StridedBatch_(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBuffer)
+    end function
+
     function hipsparseSnnz_full_rank(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn,nnzTotalDevHostPtr)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -31822,310 +32614,6 @@ module hipfort_hipsparse
       integer(c_size_t),target,dimension(:) :: bufferSize
       !
       hipsparseDenseToSparse_bufferSize_rank_1 = hipsparseDenseToSparse_bufferSize_(handle,matA,matB,alg,c_loc(bufferSize))
-    end function
-
-    function hipsparseSgtsv2StridedBatch_bufferSizeExt_rank_0(handle,m,dl,d,du,x,batchCount,batchStride,pBufferSizeInBytes)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2StridedBatch_bufferSizeExt_rank_0
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
-      real(c_float),target :: x
-      integer(c_int) :: batchCount
-      integer(c_int) :: batchStride
-      integer(c_size_t) :: pBufferSizeInBytes
-      !
-      hipsparseSgtsv2StridedBatch_bufferSizeExt_rank_0 = hipsparseSgtsv2StridedBatch_bufferSizeExt_(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBufferSizeInBytes)
-    end function
-
-    function hipsparseSgtsv2StridedBatch_bufferSizeExt_rank_1(handle,m,dl,d,du,x,batchCount,batchStride,pBufferSizeInBytes)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2StridedBatch_bufferSizeExt_rank_1
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
-      real(c_float),target,dimension(:) :: x
-      integer(c_int) :: batchCount
-      integer(c_int) :: batchStride
-      integer(c_size_t) :: pBufferSizeInBytes
-      !
-      hipsparseSgtsv2StridedBatch_bufferSizeExt_rank_1 = hipsparseSgtsv2StridedBatch_bufferSizeExt_(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBufferSizeInBytes)
-    end function
-
-    function hipsparseDgtsv2StridedBatch_bufferSizeExt_rank_0(handle,m,dl,d,du,x,batchCount,batchStride,pBufferSizeInBytes)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2StridedBatch_bufferSizeExt_rank_0
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
-      real(c_double),target :: x
-      integer(c_int) :: batchCount
-      integer(c_int) :: batchStride
-      integer(c_size_t) :: pBufferSizeInBytes
-      !
-      hipsparseDgtsv2StridedBatch_bufferSizeExt_rank_0 = hipsparseDgtsv2StridedBatch_bufferSizeExt_(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBufferSizeInBytes)
-    end function
-
-    function hipsparseDgtsv2StridedBatch_bufferSizeExt_rank_1(handle,m,dl,d,du,x,batchCount,batchStride,pBufferSizeInBytes)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2StridedBatch_bufferSizeExt_rank_1
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
-      real(c_double),target,dimension(:) :: x
-      integer(c_int) :: batchCount
-      integer(c_int) :: batchStride
-      integer(c_size_t) :: pBufferSizeInBytes
-      !
-      hipsparseDgtsv2StridedBatch_bufferSizeExt_rank_1 = hipsparseDgtsv2StridedBatch_bufferSizeExt_(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBufferSizeInBytes)
-    end function
-
-    function hipsparseCgtsv2StridedBatch_bufferSizeExt_rank_0(handle,m,dl,d,du,x,batchCount,batchStride,pBufferSizeInBytes)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2StridedBatch_bufferSizeExt_rank_0
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
-      complex(c_float_complex),target :: x
-      integer(c_int) :: batchCount
-      integer(c_int) :: batchStride
-      integer(c_size_t) :: pBufferSizeInBytes
-      !
-      hipsparseCgtsv2StridedBatch_bufferSizeExt_rank_0 = hipsparseCgtsv2StridedBatch_bufferSizeExt_(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBufferSizeInBytes)
-    end function
-
-    function hipsparseCgtsv2StridedBatch_bufferSizeExt_rank_1(handle,m,dl,d,du,x,batchCount,batchStride,pBufferSizeInBytes)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2StridedBatch_bufferSizeExt_rank_1
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
-      complex(c_float_complex),target,dimension(:) :: x
-      integer(c_int) :: batchCount
-      integer(c_int) :: batchStride
-      integer(c_size_t) :: pBufferSizeInBytes
-      !
-      hipsparseCgtsv2StridedBatch_bufferSizeExt_rank_1 = hipsparseCgtsv2StridedBatch_bufferSizeExt_(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBufferSizeInBytes)
-    end function
-
-    function hipsparseZgtsv2StridedBatch_bufferSizeExt_rank_0(handle,m,dl,d,du,x,batchCount,batchStride,pBufferSizeInBytes)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2StridedBatch_bufferSizeExt_rank_0
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
-      complex(c_double_complex),target :: x
-      integer(c_int) :: batchCount
-      integer(c_int) :: batchStride
-      integer(c_size_t) :: pBufferSizeInBytes
-      !
-      hipsparseZgtsv2StridedBatch_bufferSizeExt_rank_0 = hipsparseZgtsv2StridedBatch_bufferSizeExt_(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBufferSizeInBytes)
-    end function
-
-    function hipsparseZgtsv2StridedBatch_bufferSizeExt_rank_1(handle,m,dl,d,du,x,batchCount,batchStride,pBufferSizeInBytes)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2StridedBatch_bufferSizeExt_rank_1
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
-      complex(c_double_complex),target,dimension(:) :: x
-      integer(c_int) :: batchCount
-      integer(c_int) :: batchStride
-      integer(c_size_t) :: pBufferSizeInBytes
-      !
-      hipsparseZgtsv2StridedBatch_bufferSizeExt_rank_1 = hipsparseZgtsv2StridedBatch_bufferSizeExt_(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBufferSizeInBytes)
-    end function
-
-    function hipsparseSgtsv2StridedBatch_rank_0(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2StridedBatch_rank_0
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
-      real(c_float),target :: x
-      integer(c_int) :: batchCount
-      integer(c_int) :: batchStride
-      type(c_ptr) :: pBuffer
-      !
-      hipsparseSgtsv2StridedBatch_rank_0 = hipsparseSgtsv2StridedBatch_(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBuffer)
-    end function
-
-    function hipsparseSgtsv2StridedBatch_rank_1(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2StridedBatch_rank_1
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
-      real(c_float),target,dimension(:) :: x
-      integer(c_int) :: batchCount
-      integer(c_int) :: batchStride
-      type(c_ptr) :: pBuffer
-      !
-      hipsparseSgtsv2StridedBatch_rank_1 = hipsparseSgtsv2StridedBatch_(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBuffer)
-    end function
-
-    function hipsparseDgtsv2StridedBatch_rank_0(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2StridedBatch_rank_0
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
-      real(c_double),target :: x
-      integer(c_int) :: batchCount
-      integer(c_int) :: batchStride
-      type(c_ptr) :: pBuffer
-      !
-      hipsparseDgtsv2StridedBatch_rank_0 = hipsparseDgtsv2StridedBatch_(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBuffer)
-    end function
-
-    function hipsparseDgtsv2StridedBatch_rank_1(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2StridedBatch_rank_1
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
-      real(c_double),target,dimension(:) :: x
-      integer(c_int) :: batchCount
-      integer(c_int) :: batchStride
-      type(c_ptr) :: pBuffer
-      !
-      hipsparseDgtsv2StridedBatch_rank_1 = hipsparseDgtsv2StridedBatch_(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBuffer)
-    end function
-
-    function hipsparseCgtsv2StridedBatch_rank_0(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2StridedBatch_rank_0
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
-      complex(c_float_complex),target :: x
-      integer(c_int) :: batchCount
-      integer(c_int) :: batchStride
-      type(c_ptr) :: pBuffer
-      !
-      hipsparseCgtsv2StridedBatch_rank_0 = hipsparseCgtsv2StridedBatch_(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBuffer)
-    end function
-
-    function hipsparseCgtsv2StridedBatch_rank_1(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2StridedBatch_rank_1
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
-      complex(c_float_complex),target,dimension(:) :: x
-      integer(c_int) :: batchCount
-      integer(c_int) :: batchStride
-      type(c_ptr) :: pBuffer
-      !
-      hipsparseCgtsv2StridedBatch_rank_1 = hipsparseCgtsv2StridedBatch_(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBuffer)
-    end function
-
-    function hipsparseZgtsv2StridedBatch_rank_0(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2StridedBatch_rank_0
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
-      complex(c_double_complex),target :: x
-      integer(c_int) :: batchCount
-      integer(c_int) :: batchStride
-      type(c_ptr) :: pBuffer
-      !
-      hipsparseZgtsv2StridedBatch_rank_0 = hipsparseZgtsv2StridedBatch_(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBuffer)
-    end function
-
-    function hipsparseZgtsv2StridedBatch_rank_1(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2StridedBatch_rank_1
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      type(c_ptr) :: dl
-      type(c_ptr) :: d
-      type(c_ptr) :: du
-      complex(c_double_complex),target,dimension(:) :: x
-      integer(c_int) :: batchCount
-      integer(c_int) :: batchStride
-      type(c_ptr) :: pBuffer
-      !
-      hipsparseZgtsv2StridedBatch_rank_1 = hipsparseZgtsv2StridedBatch_(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBuffer)
     end function
 
   

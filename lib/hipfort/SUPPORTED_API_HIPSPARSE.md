@@ -277,218 +277,218 @@
 275 | [hipsparseDgtsv2_nopivot](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedgtsv2__nopivot.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
 276 | [hipsparseCgtsv2_nopivot](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecgtsv2__nopivot.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
 277 | [hipsparseZgtsv2_nopivot](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezgtsv2__nopivot.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-278 | [hipsparseSnnz](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesnnz.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-279 | [hipsparseDnnz](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsednnz.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-280 | [hipsparseCnnz](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecnnz.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-281 | [hipsparseZnnz](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparseznnz.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-282 | [hipsparseSdense2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesdense2csr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-283 | [hipsparseDdense2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparseddense2csr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-284 | [hipsparseCdense2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecdense2csr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-285 | [hipsparseZdense2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezdense2csr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-286 | [hipsparseSpruneDense2csr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesprunedense2csr__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-287 | [hipsparseDpruneDense2csr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedprunedense2csr__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-288 | [hipsparseSpruneDense2csr_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesprunedense2csr__buffersizeext.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-289 | [hipsparseDpruneDense2csr_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedprunedense2csr__buffersizeext.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-290 | [hipsparseSpruneDense2csrNnz](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesprunedense2csrnnz.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-291 | [hipsparseDpruneDense2csrNnz](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedprunedense2csrnnz.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-292 | [hipsparseSpruneDense2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesprunedense2csr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-293 | [hipsparseDpruneDense2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedprunedense2csr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-294 | [hipsparseSpruneDense2csrByPercentage_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesprunedense2csrbypercentage__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-295 | [hipsparseDpruneDense2csrByPercentage_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedprunedense2csrbypercentage__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-296 | [hipsparseSpruneDense2csrByPercentage_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesprunedense2csrbypercentage__buffersizeext.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-297 | [hipsparseDpruneDense2csrByPercentage_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedprunedense2csrbypercentage__buffersizeext.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-298 | [hipsparseSpruneDense2csrNnzByPercentage](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesprunedense2csrnnzbypercentage.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-299 | [hipsparseDpruneDense2csrNnzByPercentage](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedprunedense2csrnnzbypercentage.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-300 | [hipsparseSpruneDense2csrByPercentage](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesprunedense2csrbypercentage.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-301 | [hipsparseDpruneDense2csrByPercentage](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedprunedense2csrbypercentage.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-302 | [hipsparseSdense2csc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesdense2csc.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-303 | [hipsparseDdense2csc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparseddense2csc.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-304 | [hipsparseCdense2csc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecdense2csc.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-305 | [hipsparseZdense2csc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezdense2csc.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-306 | [hipsparseScsr2dense](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsescsr2dense.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-307 | [hipsparseDcsr2dense](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedcsr2dense.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-308 | [hipsparseCcsr2dense](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparseccsr2dense.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-309 | [hipsparseZcsr2dense](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezcsr2dense.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-310 | [hipsparseScsc2dense](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsescsc2dense.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-311 | [hipsparseDcsc2dense](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedcsc2dense.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-312 | [hipsparseCcsc2dense](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparseccsc2dense.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-313 | [hipsparseZcsc2dense](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezcsc2dense.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-314 | [hipsparseXcsr2bsrNnz](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsexcsr2bsrnnz.html "Interface documentation") | C binding, rank_0, rank_1
-315 | [hipsparseSnnz_compress](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesnnz__compress.html "Interface documentation") | C binding, rank_0, rank_1
-316 | [hipsparseDnnz_compress](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsednnz__compress.html "Interface documentation") | C binding, rank_0, rank_1
-317 | [hipsparseCnnz_compress](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecnnz__compress.html "Interface documentation") | C binding, rank_0, rank_1
-318 | [hipsparseZnnz_compress](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparseznnz__compress.html "Interface documentation") | C binding, rank_0, rank_1
-319 | [hipsparseXcsr2coo](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsexcsr2coo.html "Interface documentation") | C binding, rank_0, rank_1
-320 | [hipsparseScsr2csc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsescsr2csc.html "Interface documentation") | C binding, rank_0, rank_1
-321 | [hipsparseDcsr2csc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedcsr2csc.html "Interface documentation") | C binding, rank_0, rank_1
-322 | [hipsparseCcsr2csc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparseccsr2csc.html "Interface documentation") | C binding, rank_0, rank_1
-323 | [hipsparseZcsr2csc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezcsr2csc.html "Interface documentation") | C binding, rank_0, rank_1
-324 | [hipsparseScsr2hyb](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsescsr2hyb.html "Interface documentation") | C binding, rank_0, rank_1
-325 | [hipsparseDcsr2hyb](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedcsr2hyb.html "Interface documentation") | C binding, rank_0, rank_1
-326 | [hipsparseCcsr2hyb](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparseccsr2hyb.html "Interface documentation") | C binding, rank_0, rank_1
-327 | [hipsparseZcsr2hyb](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezcsr2hyb.html "Interface documentation") | C binding, rank_0, rank_1
-328 | [hipsparseSgebsr2gebsc_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesgebsr2gebsc__buffersize.html "Interface documentation") | C binding
-329 | [hipsparseDgebsr2gebsc_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedgebsr2gebsc__buffersize.html "Interface documentation") | C binding
-330 | [hipsparseCgebsr2gebsc_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecgebsr2gebsc__buffersize.html "Interface documentation") | C binding
-331 | [hipsparseZgebsr2gebsc_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezgebsr2gebsc__buffersize.html "Interface documentation") | C binding
-332 | [hipsparseSgebsr2gebsc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesgebsr2gebsc.html "Interface documentation") | C binding
-333 | [hipsparseDgebsr2gebsc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedgebsr2gebsc.html "Interface documentation") | C binding
-334 | [hipsparseCgebsr2gebsc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecgebsr2gebsc.html "Interface documentation") | C binding
-335 | [hipsparseZgebsr2gebsc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezgebsr2gebsc.html "Interface documentation") | C binding
-336 | [hipsparseScsr2gebsr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsescsr2gebsr__buffersize.html "Interface documentation") | C binding, rank_0, rank_1
-337 | [hipsparseDcsr2gebsr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedcsr2gebsr__buffersize.html "Interface documentation") | C binding, rank_0, rank_1
-338 | [hipsparseCcsr2gebsr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparseccsr2gebsr__buffersize.html "Interface documentation") | C binding, rank_0, rank_1
-339 | [hipsparseZcsr2gebsr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezcsr2gebsr__buffersize.html "Interface documentation") | C binding, rank_0, rank_1
-340 | [hipsparseXcsr2gebsrNnz](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsexcsr2gebsrnnz.html "Interface documentation") | C binding, rank_0, rank_1
-341 | [hipsparseScsr2gebsr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsescsr2gebsr.html "Interface documentation") | C binding, rank_0, rank_1
-342 | [hipsparseDcsr2gebsr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedcsr2gebsr.html "Interface documentation") | C binding, rank_0, rank_1
-343 | [hipsparseCcsr2gebsr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparseccsr2gebsr.html "Interface documentation") | C binding, rank_0, rank_1
-344 | [hipsparseZcsr2gebsr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezcsr2gebsr.html "Interface documentation") | C binding, rank_0, rank_1
-345 | [hipsparseScsr2bsr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsescsr2bsr.html "Interface documentation") | C binding, rank_0, rank_1
-346 | [hipsparseDcsr2bsr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedcsr2bsr.html "Interface documentation") | C binding, rank_0, rank_1
-347 | [hipsparseCcsr2bsr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparseccsr2bsr.html "Interface documentation") | C binding, rank_0, rank_1
-348 | [hipsparseZcsr2bsr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezcsr2bsr.html "Interface documentation") | C binding, rank_0, rank_1
-349 | [hipsparseSbsr2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesbsr2csr.html "Interface documentation") | C binding, rank_0, rank_1
-350 | [hipsparseDbsr2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedbsr2csr.html "Interface documentation") | C binding, rank_0, rank_1
-351 | [hipsparseCbsr2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecbsr2csr.html "Interface documentation") | C binding, rank_0, rank_1
-352 | [hipsparseZbsr2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezbsr2csr.html "Interface documentation") | C binding, rank_0, rank_1
-353 | [hipsparseSgebsr2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesgebsr2csr.html "Interface documentation") | C binding, rank_0, rank_1
-354 | [hipsparseDgebsr2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedgebsr2csr.html "Interface documentation") | C binding, rank_0, rank_1
-355 | [hipsparseCgebsr2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecgebsr2csr.html "Interface documentation") | C binding, rank_0, rank_1
-356 | [hipsparseZgebsr2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezgebsr2csr.html "Interface documentation") | C binding, rank_0, rank_1
-357 | [hipsparseScsr2csr_compress](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsescsr2csr__compress.html "Interface documentation") | C binding, rank_0, rank_1
-358 | [hipsparseDcsr2csr_compress](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedcsr2csr__compress.html "Interface documentation") | C binding, rank_0, rank_1
-359 | [hipsparseCcsr2csr_compress](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparseccsr2csr__compress.html "Interface documentation") | C binding, rank_0, rank_1
-360 | [hipsparseZcsr2csr_compress](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezcsr2csr__compress.html "Interface documentation") | C binding, rank_0, rank_1
-361 | [hipsparseSpruneCsr2csr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesprunecsr2csr__buffersize.html "Interface documentation") | C binding, rank_0, rank_1
-362 | [hipsparseDpruneCsr2csr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedprunecsr2csr__buffersize.html "Interface documentation") | C binding, rank_0, rank_1
-363 | [hipsparseSpruneCsr2csr_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesprunecsr2csr__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1
-364 | [hipsparseDpruneCsr2csr_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedprunecsr2csr__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1
-365 | [hipsparseSpruneCsr2csrNnz](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesprunecsr2csrnnz.html "Interface documentation") | C binding, rank_0, rank_1
-366 | [hipsparseDpruneCsr2csrNnz](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedprunecsr2csrnnz.html "Interface documentation") | C binding, rank_0, rank_1
-367 | [hipsparseSpruneCsr2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesprunecsr2csr.html "Interface documentation") | C binding, rank_0, rank_1
-368 | [hipsparseDpruneCsr2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedprunecsr2csr.html "Interface documentation") | C binding, rank_0, rank_1
-369 | [hipsparseSpruneCsr2csrByPercentage_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesprunecsr2csrbypercentage__buffersize.html "Interface documentation") | C binding, rank_0, rank_1
-370 | [hipsparseDpruneCsr2csrByPercentage_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedprunecsr2csrbypercentage__buffersize.html "Interface documentation") | C binding, rank_0, rank_1
-371 | [hipsparseSpruneCsr2csrByPercentage_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesprunecsr2csrbypercentage__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1
-372 | [hipsparseDpruneCsr2csrByPercentage_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedprunecsr2csrbypercentage__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1
-373 | [hipsparseSpruneCsr2csrNnzByPercentage](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesprunecsr2csrnnzbypercentage.html "Interface documentation") | C binding, rank_0, rank_1
-374 | [hipsparseDpruneCsr2csrNnzByPercentage](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedprunecsr2csrnnzbypercentage.html "Interface documentation") | C binding, rank_0, rank_1
-375 | [hipsparseSpruneCsr2csrByPercentage](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesprunecsr2csrbypercentage.html "Interface documentation") | C binding, rank_0, rank_1
-376 | [hipsparseDpruneCsr2csrByPercentage](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedprunecsr2csrbypercentage.html "Interface documentation") | C binding, rank_0, rank_1
-377 | [hipsparseShyb2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparseshyb2csr.html "Interface documentation") | C binding, rank_0, rank_1
-378 | [hipsparseDhyb2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedhyb2csr.html "Interface documentation") | C binding, rank_0, rank_1
-379 | [hipsparseChyb2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsechyb2csr.html "Interface documentation") | C binding, rank_0, rank_1
-380 | [hipsparseZhyb2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezhyb2csr.html "Interface documentation") | C binding, rank_0, rank_1
-381 | [hipsparseXcoo2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsexcoo2csr.html "Interface documentation") | C binding, rank_0, rank_1
-382 | [hipsparseCreateIdentityPermutation](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecreateidentitypermutation.html "Interface documentation") | C binding, rank_0, rank_1
-383 | [hipsparseXcsrsort_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsexcsrsort__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1
-384 | [hipsparseXcsrsort](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsexcsrsort.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-385 | [hipsparseXcscsort_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsexcscsort__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1
-386 | [hipsparseXcscsort](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsexcscsort.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-387 | [hipsparseXcoosort_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsexcoosort__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1
-388 | [hipsparseXcoosortByRow](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsexcoosortbyrow.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-389 | [hipsparseXcoosortByColumn](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsexcoosortbycolumn.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
-390 | [hipsparseSgebsr2gebsr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesgebsr2gebsr__buffersize.html "Interface documentation") | C binding, rank_0, rank_1
-391 | [hipsparseDgebsr2gebsr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedgebsr2gebsr__buffersize.html "Interface documentation") | C binding, rank_0, rank_1
-392 | [hipsparseCgebsr2gebsr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecgebsr2gebsr__buffersize.html "Interface documentation") | C binding, rank_0, rank_1
-393 | [hipsparseZgebsr2gebsr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezgebsr2gebsr__buffersize.html "Interface documentation") | C binding, rank_0, rank_1
-394 | [hipsparseXgebsr2gebsrNnz](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsexgebsr2gebsrnnz.html "Interface documentation") | C binding, rank_0, rank_1
-395 | [hipsparseSgebsr2gebsr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesgebsr2gebsr.html "Interface documentation") | C binding, rank_0, rank_1
-396 | [hipsparseDgebsr2gebsr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedgebsr2gebsr.html "Interface documentation") | C binding, rank_0, rank_1
-397 | [hipsparseCgebsr2gebsr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecgebsr2gebsr.html "Interface documentation") | C binding, rank_0, rank_1
-398 | [hipsparseZgebsr2gebsr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezgebsr2gebsr.html "Interface documentation") | C binding, rank_0, rank_1
-399 | [hipsparseScsru2csr_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsescsru2csr__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1
-400 | [hipsparseDcsru2csr_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedcsru2csr__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1
-401 | [hipsparseCcsru2csr_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparseccsru2csr__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1
-402 | [hipsparseZcsru2csr_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezcsru2csr__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1
-403 | [hipsparseScsru2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsescsru2csr.html "Interface documentation") | C binding, rank_0, rank_1
-404 | [hipsparseDcsru2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedcsru2csr.html "Interface documentation") | C binding, rank_0, rank_1
-405 | [hipsparseCcsru2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparseccsru2csr.html "Interface documentation") | C binding, rank_0, rank_1
-406 | [hipsparseZcsru2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezcsru2csr.html "Interface documentation") | C binding, rank_0, rank_1
-407 | [hipsparseScsr2csru](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsescsr2csru.html "Interface documentation") | C binding, rank_0, rank_1
-408 | [hipsparseDcsr2csru](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedcsr2csru.html "Interface documentation") | C binding, rank_0, rank_1
-409 | [hipsparseCcsr2csru](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparseccsr2csru.html "Interface documentation") | C binding, rank_0, rank_1
-410 | [hipsparseZcsr2csru](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezcsr2csru.html "Interface documentation") | C binding, rank_0, rank_1
-411 | [hipsparseScsrcolor](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsescsrcolor.html "Interface documentation") | C binding, rank_0, rank_1
-412 | [hipsparseDcsrcolor](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedcsrcolor.html "Interface documentation") | C binding, rank_0, rank_1
-413 | [hipsparseCcsrcolor](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparseccsrcolor.html "Interface documentation") | C binding, rank_0, rank_1
-414 | [hipsparseZcsrcolor](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezcsrcolor.html "Interface documentation") | C binding, rank_0, rank_1
-415 | [hipsparseCreateSpVec](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecreatespvec.html "Interface documentation") | C binding
-416 | [hipsparseDestroySpVec](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedestroyspvec.html "Interface documentation") | C binding
-417 | [hipsparseSpVecGet](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespvecget.html "Interface documentation") | C binding
-418 | [hipsparseSpVecGetIndexBase](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespvecgetindexbase.html "Interface documentation") | C binding
-419 | [hipsparseSpVecGetValues](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespvecgetvalues.html "Interface documentation") | C binding
-420 | [hipsparseSpVecSetValues](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespvecsetvalues.html "Interface documentation") | C binding
-421 | [hipsparseCreateCoo](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecreatecoo.html "Interface documentation") | C binding
-422 | [hipsparseCreateCooAoS](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecreatecooaos.html "Interface documentation") | C binding
-423 | [hipsparseCreateCsr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecreatecsr.html "Interface documentation") | C binding
-424 | [hipsparseCreateCsc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecreatecsc.html "Interface documentation") | C binding
-425 | [hipsparseCreateBlockedEll](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecreateblockedell.html "Interface documentation") | C binding
-426 | [hipsparseDestroySpMat](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedestroyspmat.html "Interface documentation") | C binding
-427 | [hipsparseCooGet](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecooget.html "Interface documentation") | C binding
-428 | [hipsparseCooAoSGet](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecooaosget.html "Interface documentation") | C binding
-429 | [hipsparseCsrGet](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecsrget.html "Interface documentation") | C binding
-430 | [hipsparseBlockedEllGet](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparseblockedellget.html "Interface documentation") | C binding
-431 | [hipsparseCsrSetPointers](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecsrsetpointers.html "Interface documentation") | C binding
-432 | [hipsparseCscSetPointers](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecscsetpointers.html "Interface documentation") | C binding
-433 | [hipsparseCooSetPointers](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecoosetpointers.html "Interface documentation") | C binding
-434 | [hipsparseSpMatGetSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmatgetsize.html "Interface documentation") | C binding
-435 | [hipsparseSpMatGetFormat](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmatgetformat.html "Interface documentation") | C binding
-436 | [hipsparseSpMatGetIndexBase](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmatgetindexbase.html "Interface documentation") | C binding
-437 | [hipsparseSpMatGetValues](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmatgetvalues.html "Interface documentation") | C binding
-438 | [hipsparseSpMatSetValues](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmatsetvalues.html "Interface documentation") | C binding
-439 | [hipsparseCreateDnVec](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecreatednvec.html "Interface documentation") | C binding
-440 | [hipsparseDestroyDnVec](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedestroydnvec.html "Interface documentation") | C binding
-441 | [hipsparseDnVecGet](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsednvecget.html "Interface documentation") | C binding
-442 | [hipsparseDnVecGetValues](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsednvecgetvalues.html "Interface documentation") | C binding
-443 | [hipsparseDnVecSetValues](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsednvecsetvalues.html "Interface documentation") | C binding
-444 | [hipsparseCreateDnMat](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecreatednmat.html "Interface documentation") | C binding
-445 | [hipsparseDestroyDnMat](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedestroydnmat.html "Interface documentation") | C binding
-446 | [hipsparseDnMatGet](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsednmatget.html "Interface documentation") | C binding
-447 | [hipsparseDnMatGetValues](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsednmatgetvalues.html "Interface documentation") | C binding
-448 | [hipsparseDnMatSetValues](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsednmatsetvalues.html "Interface documentation") | C binding
-449 | [hipsparseSpMatGetAttribute](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmatgetattribute.html "Interface documentation") | C binding
-450 | [hipsparseSpMatSetAttribute](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmatsetattribute.html "Interface documentation") | C binding
-451 | [hipsparseAxpby](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparseaxpby.html "Interface documentation") | C binding
-452 | [hipsparseGather](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsegather.html "Interface documentation") | C binding
-453 | [hipsparseScatter](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsescatter.html "Interface documentation") | C binding
-454 | [hipsparseRot](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparserot.html "Interface documentation") | C binding
-455 | [hipsparseSparseToDense_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesparsetodense__buffersize.html "Interface documentation") | C binding, rank_0, rank_1
-456 | [hipsparseSparseToDense](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesparsetodense.html "Interface documentation") | C binding
-457 | [hipsparseDenseToSparse_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedensetosparse__buffersize.html "Interface documentation") | C binding, rank_0, rank_1
-458 | [hipsparseDenseToSparse_analysis](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedensetosparse__analysis.html "Interface documentation") | C binding
-459 | [hipsparseDenseToSparse_convert](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedensetosparse__convert.html "Interface documentation") | C binding
-460 | [hipsparseSpVV_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespvv__buffersize.html "Interface documentation") | C binding
-461 | [hipsparseSpVV](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespvv.html "Interface documentation") | C binding
-462 | [hipsparseSpMV_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmv__buffersize.html "Interface documentation") | C binding
-463 | [hipsparseSpMV](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmv.html "Interface documentation") | C binding
-464 | [hipsparseSpMM_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmm__buffersize.html "Interface documentation") | C binding
-465 | [hipsparseSpMM_preprocess](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmm__preprocess.html "Interface documentation") | C binding
-466 | [hipsparseSpMM](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmm.html "Interface documentation") | C binding
-467 | [hipsparseSpGEMM_createDescr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespgemm__createdescr.html "Interface documentation") | C binding
-468 | [hipsparseSpGEMM_destroyDescr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespgemm__destroydescr.html "Interface documentation") | C binding
-469 | [hipsparseSpGEMM_workEstimation](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespgemm__workestimation.html "Interface documentation") | C binding
-470 | [hipsparseSpGEMM_compute](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespgemm__compute.html "Interface documentation") | C binding
-471 | [hipsparseSpGEMM_copy](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespgemm__copy.html "Interface documentation") | C binding
-472 | [hipsparseSDDMM](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesddmm.html "Interface documentation") | C binding
-473 | [hipsparseSDDMM_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesddmm__buffersize.html "Interface documentation") | C binding
-474 | [hipsparseSDDMM_preprocess](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesddmm__preprocess.html "Interface documentation") | C binding
-475 | [hipsparseSpSV_createDescr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespsv__createdescr.html "Interface documentation") | C binding
-476 | [hipsparseSpSV_destroyDescr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespsv__destroydescr.html "Interface documentation") | C binding
-477 | [hipsparseSpSV_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespsv__buffersize.html "Interface documentation") | C binding
-478 | [hipsparseSpSV_analysis](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespsv__analysis.html "Interface documentation") | C binding
-479 | [hipsparseSpSV_solve](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespsv__solve.html "Interface documentation") | C binding
-480 | [hipsparseSpSM_createDescr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespsm__createdescr.html "Interface documentation") | C binding
-481 | [hipsparseSpSM_destroyDescr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespsm__destroydescr.html "Interface documentation") | C binding
-482 | [hipsparseSpSM_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespsm__buffersize.html "Interface documentation") | C binding
-483 | [hipsparseSpSM_analysis](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespsm__analysis.html "Interface documentation") | C binding
-484 | [hipsparseSpSM_solve](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespsm__solve.html "Interface documentation") | C binding
-485 | [hipsparseSgtsv2StridedBatch_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesgtsv2stridedbatch__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1
-486 | [hipsparseDgtsv2StridedBatch_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedgtsv2stridedbatch__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1
-487 | [hipsparseCgtsv2StridedBatch_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecgtsv2stridedbatch__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1
-488 | [hipsparseZgtsv2StridedBatch_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezgtsv2stridedbatch__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1
-489 | [hipsparseSgtsv2StridedBatch](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesgtsv2stridedbatch.html "Interface documentation") | C binding, rank_0, rank_1
-490 | [hipsparseDgtsv2StridedBatch](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedgtsv2stridedbatch.html "Interface documentation") | C binding, rank_0, rank_1
-491 | [hipsparseCgtsv2StridedBatch](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecgtsv2stridedbatch.html "Interface documentation") | C binding, rank_0, rank_1
-492 | [hipsparseZgtsv2StridedBatch](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezgtsv2stridedbatch.html "Interface documentation") | C binding, rank_0, rank_1
+278 | [hipsparseSgtsv2StridedBatch_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesgtsv2stridedbatch__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1
+279 | [hipsparseDgtsv2StridedBatch_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedgtsv2stridedbatch__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1
+280 | [hipsparseCgtsv2StridedBatch_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecgtsv2stridedbatch__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1
+281 | [hipsparseZgtsv2StridedBatch_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezgtsv2stridedbatch__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1
+282 | [hipsparseSgtsv2StridedBatch](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesgtsv2stridedbatch.html "Interface documentation") | C binding, rank_0, rank_1
+283 | [hipsparseDgtsv2StridedBatch](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedgtsv2stridedbatch.html "Interface documentation") | C binding, rank_0, rank_1
+284 | [hipsparseCgtsv2StridedBatch](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecgtsv2stridedbatch.html "Interface documentation") | C binding, rank_0, rank_1
+285 | [hipsparseZgtsv2StridedBatch](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezgtsv2stridedbatch.html "Interface documentation") | C binding, rank_0, rank_1
+286 | [hipsparseSnnz](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesnnz.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+287 | [hipsparseDnnz](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsednnz.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+288 | [hipsparseCnnz](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecnnz.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+289 | [hipsparseZnnz](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparseznnz.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+290 | [hipsparseSdense2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesdense2csr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+291 | [hipsparseDdense2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparseddense2csr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+292 | [hipsparseCdense2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecdense2csr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+293 | [hipsparseZdense2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezdense2csr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+294 | [hipsparseSpruneDense2csr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesprunedense2csr__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+295 | [hipsparseDpruneDense2csr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedprunedense2csr__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+296 | [hipsparseSpruneDense2csr_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesprunedense2csr__buffersizeext.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+297 | [hipsparseDpruneDense2csr_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedprunedense2csr__buffersizeext.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+298 | [hipsparseSpruneDense2csrNnz](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesprunedense2csrnnz.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+299 | [hipsparseDpruneDense2csrNnz](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedprunedense2csrnnz.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+300 | [hipsparseSpruneDense2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesprunedense2csr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+301 | [hipsparseDpruneDense2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedprunedense2csr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+302 | [hipsparseSpruneDense2csrByPercentage_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesprunedense2csrbypercentage__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+303 | [hipsparseDpruneDense2csrByPercentage_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedprunedense2csrbypercentage__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+304 | [hipsparseSpruneDense2csrByPercentage_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesprunedense2csrbypercentage__buffersizeext.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+305 | [hipsparseDpruneDense2csrByPercentage_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedprunedense2csrbypercentage__buffersizeext.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+306 | [hipsparseSpruneDense2csrNnzByPercentage](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesprunedense2csrnnzbypercentage.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+307 | [hipsparseDpruneDense2csrNnzByPercentage](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedprunedense2csrnnzbypercentage.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+308 | [hipsparseSpruneDense2csrByPercentage](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesprunedense2csrbypercentage.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+309 | [hipsparseDpruneDense2csrByPercentage](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedprunedense2csrbypercentage.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+310 | [hipsparseSdense2csc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesdense2csc.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+311 | [hipsparseDdense2csc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparseddense2csc.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+312 | [hipsparseCdense2csc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecdense2csc.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+313 | [hipsparseZdense2csc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezdense2csc.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+314 | [hipsparseScsr2dense](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsescsr2dense.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+315 | [hipsparseDcsr2dense](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedcsr2dense.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+316 | [hipsparseCcsr2dense](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparseccsr2dense.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+317 | [hipsparseZcsr2dense](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezcsr2dense.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+318 | [hipsparseScsc2dense](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsescsc2dense.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+319 | [hipsparseDcsc2dense](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedcsc2dense.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+320 | [hipsparseCcsc2dense](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparseccsc2dense.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+321 | [hipsparseZcsc2dense](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezcsc2dense.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+322 | [hipsparseXcsr2bsrNnz](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsexcsr2bsrnnz.html "Interface documentation") | C binding, rank_0, rank_1
+323 | [hipsparseSnnz_compress](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesnnz__compress.html "Interface documentation") | C binding, rank_0, rank_1
+324 | [hipsparseDnnz_compress](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsednnz__compress.html "Interface documentation") | C binding, rank_0, rank_1
+325 | [hipsparseCnnz_compress](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecnnz__compress.html "Interface documentation") | C binding, rank_0, rank_1
+326 | [hipsparseZnnz_compress](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparseznnz__compress.html "Interface documentation") | C binding, rank_0, rank_1
+327 | [hipsparseXcsr2coo](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsexcsr2coo.html "Interface documentation") | C binding, rank_0, rank_1
+328 | [hipsparseScsr2csc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsescsr2csc.html "Interface documentation") | C binding, rank_0, rank_1
+329 | [hipsparseDcsr2csc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedcsr2csc.html "Interface documentation") | C binding, rank_0, rank_1
+330 | [hipsparseCcsr2csc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparseccsr2csc.html "Interface documentation") | C binding, rank_0, rank_1
+331 | [hipsparseZcsr2csc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezcsr2csc.html "Interface documentation") | C binding, rank_0, rank_1
+332 | [hipsparseScsr2hyb](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsescsr2hyb.html "Interface documentation") | C binding, rank_0, rank_1
+333 | [hipsparseDcsr2hyb](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedcsr2hyb.html "Interface documentation") | C binding, rank_0, rank_1
+334 | [hipsparseCcsr2hyb](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparseccsr2hyb.html "Interface documentation") | C binding, rank_0, rank_1
+335 | [hipsparseZcsr2hyb](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezcsr2hyb.html "Interface documentation") | C binding, rank_0, rank_1
+336 | [hipsparseSgebsr2gebsc_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesgebsr2gebsc__buffersize.html "Interface documentation") | C binding
+337 | [hipsparseDgebsr2gebsc_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedgebsr2gebsc__buffersize.html "Interface documentation") | C binding
+338 | [hipsparseCgebsr2gebsc_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecgebsr2gebsc__buffersize.html "Interface documentation") | C binding
+339 | [hipsparseZgebsr2gebsc_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezgebsr2gebsc__buffersize.html "Interface documentation") | C binding
+340 | [hipsparseSgebsr2gebsc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesgebsr2gebsc.html "Interface documentation") | C binding
+341 | [hipsparseDgebsr2gebsc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedgebsr2gebsc.html "Interface documentation") | C binding
+342 | [hipsparseCgebsr2gebsc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecgebsr2gebsc.html "Interface documentation") | C binding
+343 | [hipsparseZgebsr2gebsc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezgebsr2gebsc.html "Interface documentation") | C binding
+344 | [hipsparseScsr2gebsr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsescsr2gebsr__buffersize.html "Interface documentation") | C binding, rank_0, rank_1
+345 | [hipsparseDcsr2gebsr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedcsr2gebsr__buffersize.html "Interface documentation") | C binding, rank_0, rank_1
+346 | [hipsparseCcsr2gebsr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparseccsr2gebsr__buffersize.html "Interface documentation") | C binding, rank_0, rank_1
+347 | [hipsparseZcsr2gebsr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezcsr2gebsr__buffersize.html "Interface documentation") | C binding, rank_0, rank_1
+348 | [hipsparseXcsr2gebsrNnz](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsexcsr2gebsrnnz.html "Interface documentation") | C binding, rank_0, rank_1
+349 | [hipsparseScsr2gebsr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsescsr2gebsr.html "Interface documentation") | C binding, rank_0, rank_1
+350 | [hipsparseDcsr2gebsr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedcsr2gebsr.html "Interface documentation") | C binding, rank_0, rank_1
+351 | [hipsparseCcsr2gebsr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparseccsr2gebsr.html "Interface documentation") | C binding, rank_0, rank_1
+352 | [hipsparseZcsr2gebsr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezcsr2gebsr.html "Interface documentation") | C binding, rank_0, rank_1
+353 | [hipsparseScsr2bsr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsescsr2bsr.html "Interface documentation") | C binding, rank_0, rank_1
+354 | [hipsparseDcsr2bsr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedcsr2bsr.html "Interface documentation") | C binding, rank_0, rank_1
+355 | [hipsparseCcsr2bsr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparseccsr2bsr.html "Interface documentation") | C binding, rank_0, rank_1
+356 | [hipsparseZcsr2bsr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezcsr2bsr.html "Interface documentation") | C binding, rank_0, rank_1
+357 | [hipsparseSbsr2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesbsr2csr.html "Interface documentation") | C binding, rank_0, rank_1
+358 | [hipsparseDbsr2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedbsr2csr.html "Interface documentation") | C binding, rank_0, rank_1
+359 | [hipsparseCbsr2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecbsr2csr.html "Interface documentation") | C binding, rank_0, rank_1
+360 | [hipsparseZbsr2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezbsr2csr.html "Interface documentation") | C binding, rank_0, rank_1
+361 | [hipsparseSgebsr2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesgebsr2csr.html "Interface documentation") | C binding, rank_0, rank_1
+362 | [hipsparseDgebsr2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedgebsr2csr.html "Interface documentation") | C binding, rank_0, rank_1
+363 | [hipsparseCgebsr2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecgebsr2csr.html "Interface documentation") | C binding, rank_0, rank_1
+364 | [hipsparseZgebsr2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezgebsr2csr.html "Interface documentation") | C binding, rank_0, rank_1
+365 | [hipsparseScsr2csr_compress](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsescsr2csr__compress.html "Interface documentation") | C binding, rank_0, rank_1
+366 | [hipsparseDcsr2csr_compress](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedcsr2csr__compress.html "Interface documentation") | C binding, rank_0, rank_1
+367 | [hipsparseCcsr2csr_compress](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparseccsr2csr__compress.html "Interface documentation") | C binding, rank_0, rank_1
+368 | [hipsparseZcsr2csr_compress](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezcsr2csr__compress.html "Interface documentation") | C binding, rank_0, rank_1
+369 | [hipsparseSpruneCsr2csr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesprunecsr2csr__buffersize.html "Interface documentation") | C binding, rank_0, rank_1
+370 | [hipsparseDpruneCsr2csr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedprunecsr2csr__buffersize.html "Interface documentation") | C binding, rank_0, rank_1
+371 | [hipsparseSpruneCsr2csr_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesprunecsr2csr__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1
+372 | [hipsparseDpruneCsr2csr_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedprunecsr2csr__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1
+373 | [hipsparseSpruneCsr2csrNnz](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesprunecsr2csrnnz.html "Interface documentation") | C binding, rank_0, rank_1
+374 | [hipsparseDpruneCsr2csrNnz](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedprunecsr2csrnnz.html "Interface documentation") | C binding, rank_0, rank_1
+375 | [hipsparseSpruneCsr2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesprunecsr2csr.html "Interface documentation") | C binding, rank_0, rank_1
+376 | [hipsparseDpruneCsr2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedprunecsr2csr.html "Interface documentation") | C binding, rank_0, rank_1
+377 | [hipsparseSpruneCsr2csrByPercentage_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesprunecsr2csrbypercentage__buffersize.html "Interface documentation") | C binding, rank_0, rank_1
+378 | [hipsparseDpruneCsr2csrByPercentage_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedprunecsr2csrbypercentage__buffersize.html "Interface documentation") | C binding, rank_0, rank_1
+379 | [hipsparseSpruneCsr2csrByPercentage_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesprunecsr2csrbypercentage__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1
+380 | [hipsparseDpruneCsr2csrByPercentage_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedprunecsr2csrbypercentage__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1
+381 | [hipsparseSpruneCsr2csrNnzByPercentage](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesprunecsr2csrnnzbypercentage.html "Interface documentation") | C binding, rank_0, rank_1
+382 | [hipsparseDpruneCsr2csrNnzByPercentage](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedprunecsr2csrnnzbypercentage.html "Interface documentation") | C binding, rank_0, rank_1
+383 | [hipsparseSpruneCsr2csrByPercentage](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesprunecsr2csrbypercentage.html "Interface documentation") | C binding, rank_0, rank_1
+384 | [hipsparseDpruneCsr2csrByPercentage](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedprunecsr2csrbypercentage.html "Interface documentation") | C binding, rank_0, rank_1
+385 | [hipsparseShyb2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparseshyb2csr.html "Interface documentation") | C binding, rank_0, rank_1
+386 | [hipsparseDhyb2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedhyb2csr.html "Interface documentation") | C binding, rank_0, rank_1
+387 | [hipsparseChyb2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsechyb2csr.html "Interface documentation") | C binding, rank_0, rank_1
+388 | [hipsparseZhyb2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezhyb2csr.html "Interface documentation") | C binding, rank_0, rank_1
+389 | [hipsparseXcoo2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsexcoo2csr.html "Interface documentation") | C binding, rank_0, rank_1
+390 | [hipsparseCreateIdentityPermutation](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecreateidentitypermutation.html "Interface documentation") | C binding, rank_0, rank_1
+391 | [hipsparseXcsrsort_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsexcsrsort__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1
+392 | [hipsparseXcsrsort](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsexcsrsort.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+393 | [hipsparseXcscsort_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsexcscsort__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1
+394 | [hipsparseXcscsort](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsexcscsort.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+395 | [hipsparseXcoosort_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsexcoosort__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1
+396 | [hipsparseXcoosortByRow](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsexcoosortbyrow.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+397 | [hipsparseXcoosortByColumn](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsexcoosortbycolumn.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+398 | [hipsparseSgebsr2gebsr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesgebsr2gebsr__buffersize.html "Interface documentation") | C binding, rank_0, rank_1
+399 | [hipsparseDgebsr2gebsr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedgebsr2gebsr__buffersize.html "Interface documentation") | C binding, rank_0, rank_1
+400 | [hipsparseCgebsr2gebsr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecgebsr2gebsr__buffersize.html "Interface documentation") | C binding, rank_0, rank_1
+401 | [hipsparseZgebsr2gebsr_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezgebsr2gebsr__buffersize.html "Interface documentation") | C binding, rank_0, rank_1
+402 | [hipsparseXgebsr2gebsrNnz](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsexgebsr2gebsrnnz.html "Interface documentation") | C binding, rank_0, rank_1
+403 | [hipsparseSgebsr2gebsr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesgebsr2gebsr.html "Interface documentation") | C binding, rank_0, rank_1
+404 | [hipsparseDgebsr2gebsr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedgebsr2gebsr.html "Interface documentation") | C binding, rank_0, rank_1
+405 | [hipsparseCgebsr2gebsr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecgebsr2gebsr.html "Interface documentation") | C binding, rank_0, rank_1
+406 | [hipsparseZgebsr2gebsr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezgebsr2gebsr.html "Interface documentation") | C binding, rank_0, rank_1
+407 | [hipsparseScsru2csr_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsescsru2csr__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1
+408 | [hipsparseDcsru2csr_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedcsru2csr__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1
+409 | [hipsparseCcsru2csr_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparseccsru2csr__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1
+410 | [hipsparseZcsru2csr_bufferSizeExt](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezcsru2csr__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1
+411 | [hipsparseScsru2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsescsru2csr.html "Interface documentation") | C binding, rank_0, rank_1
+412 | [hipsparseDcsru2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedcsru2csr.html "Interface documentation") | C binding, rank_0, rank_1
+413 | [hipsparseCcsru2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparseccsru2csr.html "Interface documentation") | C binding, rank_0, rank_1
+414 | [hipsparseZcsru2csr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezcsru2csr.html "Interface documentation") | C binding, rank_0, rank_1
+415 | [hipsparseScsr2csru](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsescsr2csru.html "Interface documentation") | C binding, rank_0, rank_1
+416 | [hipsparseDcsr2csru](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedcsr2csru.html "Interface documentation") | C binding, rank_0, rank_1
+417 | [hipsparseCcsr2csru](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparseccsr2csru.html "Interface documentation") | C binding, rank_0, rank_1
+418 | [hipsparseZcsr2csru](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezcsr2csru.html "Interface documentation") | C binding, rank_0, rank_1
+419 | [hipsparseScsrcolor](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsescsrcolor.html "Interface documentation") | C binding, rank_0, rank_1
+420 | [hipsparseDcsrcolor](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedcsrcolor.html "Interface documentation") | C binding, rank_0, rank_1
+421 | [hipsparseCcsrcolor](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparseccsrcolor.html "Interface documentation") | C binding, rank_0, rank_1
+422 | [hipsparseZcsrcolor](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsezcsrcolor.html "Interface documentation") | C binding, rank_0, rank_1
+423 | [hipsparseCreateSpVec](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecreatespvec.html "Interface documentation") | C binding
+424 | [hipsparseDestroySpVec](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedestroyspvec.html "Interface documentation") | C binding
+425 | [hipsparseSpVecGet](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespvecget.html "Interface documentation") | C binding
+426 | [hipsparseSpVecGetIndexBase](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespvecgetindexbase.html "Interface documentation") | C binding
+427 | [hipsparseSpVecGetValues](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespvecgetvalues.html "Interface documentation") | C binding
+428 | [hipsparseSpVecSetValues](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespvecsetvalues.html "Interface documentation") | C binding
+429 | [hipsparseCreateCoo](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecreatecoo.html "Interface documentation") | C binding
+430 | [hipsparseCreateCooAoS](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecreatecooaos.html "Interface documentation") | C binding
+431 | [hipsparseCreateCsr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecreatecsr.html "Interface documentation") | C binding
+432 | [hipsparseCreateCsc](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecreatecsc.html "Interface documentation") | C binding
+433 | [hipsparseCreateBlockedEll](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecreateblockedell.html "Interface documentation") | C binding
+434 | [hipsparseDestroySpMat](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedestroyspmat.html "Interface documentation") | C binding
+435 | [hipsparseCooGet](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecooget.html "Interface documentation") | C binding
+436 | [hipsparseCooAoSGet](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecooaosget.html "Interface documentation") | C binding
+437 | [hipsparseCsrGet](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecsrget.html "Interface documentation") | C binding
+438 | [hipsparseBlockedEllGet](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparseblockedellget.html "Interface documentation") | C binding
+439 | [hipsparseCsrSetPointers](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecsrsetpointers.html "Interface documentation") | C binding
+440 | [hipsparseCscSetPointers](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecscsetpointers.html "Interface documentation") | C binding
+441 | [hipsparseCooSetPointers](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecoosetpointers.html "Interface documentation") | C binding
+442 | [hipsparseSpMatGetSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmatgetsize.html "Interface documentation") | C binding
+443 | [hipsparseSpMatGetFormat](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmatgetformat.html "Interface documentation") | C binding
+444 | [hipsparseSpMatGetIndexBase](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmatgetindexbase.html "Interface documentation") | C binding
+445 | [hipsparseSpMatGetValues](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmatgetvalues.html "Interface documentation") | C binding
+446 | [hipsparseSpMatSetValues](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmatsetvalues.html "Interface documentation") | C binding
+447 | [hipsparseCreateDnVec](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecreatednvec.html "Interface documentation") | C binding
+448 | [hipsparseDestroyDnVec](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedestroydnvec.html "Interface documentation") | C binding
+449 | [hipsparseDnVecGet](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsednvecget.html "Interface documentation") | C binding
+450 | [hipsparseDnVecGetValues](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsednvecgetvalues.html "Interface documentation") | C binding
+451 | [hipsparseDnVecSetValues](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsednvecsetvalues.html "Interface documentation") | C binding
+452 | [hipsparseCreateDnMat](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecreatednmat.html "Interface documentation") | C binding
+453 | [hipsparseDestroyDnMat](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedestroydnmat.html "Interface documentation") | C binding
+454 | [hipsparseDnMatGet](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsednmatget.html "Interface documentation") | C binding
+455 | [hipsparseDnMatGetValues](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsednmatgetvalues.html "Interface documentation") | C binding
+456 | [hipsparseDnMatSetValues](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsednmatsetvalues.html "Interface documentation") | C binding
+457 | [hipsparseSpMatGetAttribute](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmatgetattribute.html "Interface documentation") | C binding
+458 | [hipsparseSpMatSetAttribute](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmatsetattribute.html "Interface documentation") | C binding
+459 | [hipsparseAxpby](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparseaxpby.html "Interface documentation") | C binding
+460 | [hipsparseGather](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsegather.html "Interface documentation") | C binding
+461 | [hipsparseScatter](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsescatter.html "Interface documentation") | C binding
+462 | [hipsparseRot](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparserot.html "Interface documentation") | C binding
+463 | [hipsparseSparseToDense_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesparsetodense__buffersize.html "Interface documentation") | C binding, rank_0, rank_1
+464 | [hipsparseSparseToDense](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesparsetodense.html "Interface documentation") | C binding
+465 | [hipsparseDenseToSparse_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedensetosparse__buffersize.html "Interface documentation") | C binding, rank_0, rank_1
+466 | [hipsparseDenseToSparse_analysis](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedensetosparse__analysis.html "Interface documentation") | C binding
+467 | [hipsparseDenseToSparse_convert](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsedensetosparse__convert.html "Interface documentation") | C binding
+468 | [hipsparseSpVV_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespvv__buffersize.html "Interface documentation") | C binding
+469 | [hipsparseSpVV](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespvv.html "Interface documentation") | C binding
+470 | [hipsparseSpMV_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmv__buffersize.html "Interface documentation") | C binding
+471 | [hipsparseSpMV](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmv.html "Interface documentation") | C binding
+472 | [hipsparseSpMM_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmm__buffersize.html "Interface documentation") | C binding
+473 | [hipsparseSpMM_preprocess](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmm__preprocess.html "Interface documentation") | C binding
+474 | [hipsparseSpMM](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespmm.html "Interface documentation") | C binding
+475 | [hipsparseSpGEMM_createDescr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespgemm__createdescr.html "Interface documentation") | C binding
+476 | [hipsparseSpGEMM_destroyDescr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespgemm__destroydescr.html "Interface documentation") | C binding
+477 | [hipsparseSpGEMM_workEstimation](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespgemm__workestimation.html "Interface documentation") | C binding
+478 | [hipsparseSpGEMM_compute](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespgemm__compute.html "Interface documentation") | C binding
+479 | [hipsparseSpGEMM_copy](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespgemm__copy.html "Interface documentation") | C binding
+480 | [hipsparseSDDMM](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesddmm.html "Interface documentation") | C binding
+481 | [hipsparseSDDMM_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesddmm__buffersize.html "Interface documentation") | C binding
+482 | [hipsparseSDDMM_preprocess](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsesddmm__preprocess.html "Interface documentation") | C binding
+483 | [hipsparseSpSV_createDescr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespsv__createdescr.html "Interface documentation") | C binding
+484 | [hipsparseSpSV_destroyDescr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespsv__destroydescr.html "Interface documentation") | C binding
+485 | [hipsparseSpSV_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespsv__buffersize.html "Interface documentation") | C binding
+486 | [hipsparseSpSV_analysis](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespsv__analysis.html "Interface documentation") | C binding
+487 | [hipsparseSpSV_solve](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespsv__solve.html "Interface documentation") | C binding
+488 | [hipsparseSpSM_createDescr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespsm__createdescr.html "Interface documentation") | C binding
+489 | [hipsparseSpSM_destroyDescr](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespsm__destroydescr.html "Interface documentation") | C binding
+490 | [hipsparseSpSM_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespsm__buffersize.html "Interface documentation") | C binding
+491 | [hipsparseSpSM_analysis](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespsm__analysis.html "Interface documentation") | C binding
+492 | [hipsparseSpSM_solve](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsespsm__solve.html "Interface documentation") | C binding

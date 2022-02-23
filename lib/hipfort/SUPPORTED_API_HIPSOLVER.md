@@ -148,3 +148,11 @@
 146 | [hipsolverDsytrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdsytrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
 147 | [hipsolverChetrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverchetrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
 148 | [hipsolverZhetrd](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzhetrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+149 | [hipsolverSsytrf_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverssytrf__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+150 | [hipsolverDsytrf_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdsytrf__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+151 | [hipsolverCsytrf_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercsytrf__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+152 | [hipsolverZsytrf_bufferSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzsytrf__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+153 | [hipsolverSsytrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverssytrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+154 | [hipsolverDsytrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverdsytrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+155 | [hipsolverCsytrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercsytrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1
+156 | [hipsolverZsytrf](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolverzsytrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1

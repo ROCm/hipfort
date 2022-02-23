@@ -4,24 +4,24 @@
 2 | [hipfftPlan2d](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftplan2d.html "Interface documentation") | C binding
 3 | [hipfftPlan3d](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftplan3d.html "Interface documentation") | C binding
 4 | [hipfftPlanMany](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftplanmany.html "Interface documentation") | C binding, rank_0, rank_1
-5 | [hipfftMakePlan1d](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftmakeplan1d.html "Interface documentation") | C binding, rank_0, rank_1
-6 | [hipfftMakePlan2d](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftmakeplan2d.html "Interface documentation") | C binding, rank_0, rank_1
-7 | [hipfftMakePlan3d](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftmakeplan3d.html "Interface documentation") | C binding, rank_0, rank_1
-8 | [hipfftMakePlanMany](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftmakeplanmany.html "Interface documentation") | C binding, rank_0, rank_1
-9 | [hipfftMakePlanMany64](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftmakeplanmany64.html "Interface documentation") | C binding, rank_0, rank_1
-10 | [hipfftGetSizeMany64](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftgetsizemany64.html "Interface documentation") | C binding, rank_0, rank_1
+5 | [hipfftCreate](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftcreate.html "Interface documentation") | C binding
+6 | [hipfftMakePlan1d](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftmakeplan1d.html "Interface documentation") | C binding, rank_0, rank_1
+7 | [hipfftMakePlan2d](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftmakeplan2d.html "Interface documentation") | C binding, rank_0, rank_1
+8 | [hipfftMakePlan3d](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftmakeplan3d.html "Interface documentation") | C binding, rank_0, rank_1
+9 | [hipfftMakePlanMany](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftmakeplanmany.html "Interface documentation") | C binding, rank_0, rank_1
+10 | [hipfftMakePlanMany64](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftmakeplanmany64.html "Interface documentation") | C binding, rank_0, rank_1
 11 | [hipfftEstimate1d](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftestimate1d.html "Interface documentation") | C binding, rank_0, rank_1
 12 | [hipfftEstimate2d](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftestimate2d.html "Interface documentation") | C binding, rank_0, rank_1
 13 | [hipfftEstimate3d](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftestimate3d.html "Interface documentation") | C binding, rank_0, rank_1
 14 | [hipfftEstimateMany](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftestimatemany.html "Interface documentation") | C binding, rank_0, rank_1
-15 | [hipfftCreate](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftcreate.html "Interface documentation") | C binding
-16 | [hipfftGetSize1d](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftgetsize1d.html "Interface documentation") | C binding, rank_0, rank_1
-17 | [hipfftGetSize2d](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftgetsize2d.html "Interface documentation") | C binding, rank_0, rank_1
-18 | [hipfftGetSize3d](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftgetsize3d.html "Interface documentation") | C binding, rank_0, rank_1
-19 | [hipfftGetSizeMany](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftgetsizemany.html "Interface documentation") | C binding, rank_0, rank_1
+15 | [hipfftGetSize1d](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftgetsize1d.html "Interface documentation") | C binding, rank_0, rank_1
+16 | [hipfftGetSize2d](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftgetsize2d.html "Interface documentation") | C binding, rank_0, rank_1
+17 | [hipfftGetSize3d](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftgetsize3d.html "Interface documentation") | C binding, rank_0, rank_1
+18 | [hipfftGetSizeMany](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftgetsizemany.html "Interface documentation") | C binding, rank_0, rank_1
+19 | [hipfftGetSizeMany64](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftgetsizemany64.html "Interface documentation") | C binding, rank_0, rank_1
 20 | [hipfftGetSize](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftgetsize.html "Interface documentation") | C binding, rank_0, rank_1
-21 | [hipfftSetWorkArea](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftsetworkarea.html "Interface documentation") | C binding
-22 | [hipfftSetAutoAllocation](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftsetautoallocation.html "Interface documentation") | C binding
+21 | [hipfftSetAutoAllocation](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftsetautoallocation.html "Interface documentation") | C binding
+22 | [hipfftSetWorkArea](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftsetworkarea.html "Interface documentation") | C binding
 23 | [hipfftExecC2C](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftexecc2c.html "Interface documentation") | C binding, rank_0, rank_1, rank_2, rank_3
 24 | [hipfftExecR2C](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftexecr2c.html "Interface documentation") | C binding, rank_0, rank_1, rank_2, rank_3
 25 | [hipfftExecC2R](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftexecc2r.html "Interface documentation") | C binding, rank_0, rank_1, rank_2, rank_3

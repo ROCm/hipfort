@@ -137,6 +137,7 @@ module hipfort_rocsparse_enums
   enum, bind(c)
     enumerator :: rocsparse_spmat_fill_mode = 0
     enumerator :: rocsparse_spmat_diag_type = 1
+    enumerator :: rocsparse_spmat_matrix_type = 2
   end enum
 
   enum, bind(c)

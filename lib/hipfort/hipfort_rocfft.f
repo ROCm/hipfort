@@ -499,7 +499,7 @@ module hipfort_rocfft
   !>    @param[in] info execution info handle
   !>    @param[in] cb callback function pointers
   !>    @param[in] cbdata callback function data, passed to the function pointer when it is called
-  !>    @param[in] shared_mem_size amount of shared memory to allocate for the callback function to use 
+  !>    @param[in] shared_mem_bytes amount of shared memory to allocate for the callback function to use 
   interface rocfft_execution_info_set_load_callback
     function rocfft_execution_info_set_load_callback_(myInfo,cb_functions,cb_data,shared_mem_bytes) bind(c, name="rocfft_execution_info_set_load_callback")
       use iso_c_binding
@@ -547,18 +547,18 @@ module hipfort_rocfft
   !>    @param[in] info execution info handle
   !>    @param[in] cb callbacks function pointers
   !>    @param[in] cbdata callback function data, passed to the function pointer when it is called
-  !>    @param[in] shared_mem_size amount of shared memory to allocate for the callback function to use
+  !>    @param[in] shared_mem_bytes amount of shared memory to allocate for the callback function to use
   !>    
   interface rocfft_execution_info_set_store_callback
-    function rocfft_execution_info_set_store_callback_(desc,cb_functions,cb_data,shared_mem_size) bind(c, name="rocfft_execution_info_set_store_callback")
+    function rocfft_execution_info_set_store_callback_(myInfo,cb_functions,cb_data,shared_mem_bytes) bind(c, name="rocfft_execution_info_set_store_callback")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_execution_info_set_store_callback_
-      type(c_ptr),value :: desc
+      type(c_ptr),value :: myInfo
       type(c_ptr) :: cb_functions
       type(c_ptr) :: cb_data
-      integer(c_size_t),value :: shared_mem_size
+      integer(c_size_t),value :: shared_mem_bytes
     end function
 
   end interface

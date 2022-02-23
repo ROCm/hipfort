@@ -118,6 +118,7 @@ module hipfort_rocblas_enums
     enumerator :: rocblas_gemm_flags_none = 0
     enumerator :: rocblas_gemm_flags_pack_int8x4 = 1
     enumerator :: rocblas_gemm_flags_use_cu_efficiency = 2
+    enumerator :: rocblas_gemm_flags_fp16_alt_impl = 4
   end enum
 
   enum, bind(c)

@@ -449,12 +449,11 @@
 447 | [rocsparse_spsv](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsparse_1_1rocsparse__spsv.html "Interface documentation") | C binding
 448 | [rocsparse_spsm](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsparse_1_1rocsparse__spsm.html "Interface documentation") | C binding
 449 | [rocsparse_spmm](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsparse_1_1rocsparse__spmm.html "Interface documentation") | C binding
-450 | [rocsparse_spmm_ex](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsparse_1_1rocsparse__spmm__ex.html "Interface documentation") | C binding
-451 | [rocsparse_spgemm](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsparse_1_1rocsparse__spgemm.html "Interface documentation") | C binding
-452 | [rocsparse_sddmm](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsparse_1_1rocsparse__sddmm.html "Interface documentation") | C binding
-453 | [rocsparse_sddmm_buffer_size](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsparse_1_1rocsparse__sddmm__buffer__size.html "Interface documentation") | C binding
-454 | [rocsparse_sddmm_preprocess](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsparse_1_1rocsparse__sddmm__preprocess.html "Interface documentation") | C binding
-455 | [rocsparse_scsrcolor](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsparse_1_1rocsparse__scsrcolor.html "Interface documentation") | C binding, rank_0, rank_1
-456 | [rocsparse_dcsrcolor](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsparse_1_1rocsparse__dcsrcolor.html "Interface documentation") | C binding, rank_0, rank_1
-457 | [rocsparse_ccsrcolor](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsparse_1_1rocsparse__ccsrcolor.html "Interface documentation") | C binding, rank_0, rank_1
-458 | [rocsparse_zcsrcolor](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsparse_1_1rocsparse__zcsrcolor.html "Interface documentation") | C binding, rank_0, rank_1
+450 | [rocsparse_spgemm](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsparse_1_1rocsparse__spgemm.html "Interface documentation") | C binding
+451 | [rocsparse_sddmm](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsparse_1_1rocsparse__sddmm.html "Interface documentation") | C binding
+452 | [rocsparse_sddmm_buffer_size](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsparse_1_1rocsparse__sddmm__buffer__size.html "Interface documentation") | C binding
+453 | [rocsparse_sddmm_preprocess](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsparse_1_1rocsparse__sddmm__preprocess.html "Interface documentation") | C binding
+454 | [rocsparse_scsrcolor](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsparse_1_1rocsparse__scsrcolor.html "Interface documentation") | C binding, rank_0, rank_1
+455 | [rocsparse_dcsrcolor](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsparse_1_1rocsparse__dcsrcolor.html "Interface documentation") | C binding, rank_0, rank_1
+456 | [rocsparse_ccsrcolor](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsparse_1_1rocsparse__ccsrcolor.html "Interface documentation") | C binding, rank_0, rank_1
+457 | [rocsparse_zcsrcolor](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsparse_1_1rocsparse__zcsrcolor.html "Interface documentation") | C binding, rank_0, rank_1

@@ -29,6 +29,10 @@ module hipfort_rocsolver_enums
   implicit none
 
   enum, bind(c)
+    enumerator :: rocblas_layer_mode_ex_log_kernel = 16
+  end enum
+
+  enum, bind(c)
     enumerator :: rocblas_forward_direction = 171
     enumerator :: rocblas_backward_direction = 172
   end enum
