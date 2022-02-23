@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.14"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>HIPFORT: Member List</title>
+<title>HIPFORT: hipfort::hipgraphnodegetdependencies Interface Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -69,19 +69,42 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="namespacehipfort__rocsparse.html">hipfort_rocsparse</a></li><li class="navelem"><a class="el" href="interfacehipfort__rocsparse_1_1rocsparse__spmm__ex.html">rocsparse_spmm_ex</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespacehipfort.html">hipfort</a></li><li class="navelem"><a class="el" href="interfacehipfort_1_1hipgraphnodegetdependencies.html">hipgraphnodegetdependencies</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="interfacehipfort_1_1hipgraphnodegetdependencies-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">hipfort_rocsparse::rocsparse_spmm_ex Member List</div>  </div>
+<div class="title">hipfort::hipgraphnodegetdependencies Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>This is the complete list of members for <a class="el" href="interfacehipfort__rocsparse_1_1rocsparse__spmm__ex.html">hipfort_rocsparse::rocsparse_spmm_ex</a>, including all inherited members.</p>
-<table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="interfacehipfort__rocsparse_1_1rocsparse__spmm__ex.html#a9ccb7cdb8ae9f3dd1df5f35c7db3098c">rocsparse_spmm_ex_</a>(handle, trans_A, trans_B, alpha, mat_A, mat_B, beta, mat_C, compute_type, alg, stage, buffer_size, temp_buffer)</td><td class="entry"><a class="el" href="interfacehipfort__rocsparse_1_1rocsparse__spmm__ex.html">hipfort_rocsparse::rocsparse_spmm_ex</a></td><td class="entry"></td></tr>
-</table></div><!-- contents -->
+<p>Returns a node's dependencies.  
+ <a href="interfacehipfort_1_1hipgraphnodegetdependencies.html#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:ga9ecc4be986d9e077f6efb96c2e89975d"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsuccess)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Callback.html#ga9ecc4be986d9e077f6efb96c2e89975d">hipgraphnodegetdependencies_</a> (node, pDependencies, pNumDependencies)</td></tr>
+<tr class="separator:ga9ecc4be986d9e077f6efb96c2e89975d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Returns a node's dependencies. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">node</td><td>- graph node to get the dependencies from. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pDependencies</td><td>- pointer to to return the dependencies. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pNumDependencies</td><td>- returns the number of graph node dependencies. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>#hipSuccess, #hipErrorInvalidValue</dd></dl>
+<p>pDependencies may be NULL, in which case this function will return the number of dependencies in pNumDependencies. Otherwise, pNumDependencies entries will be filled in. If pNumDependencies is higher than the actual number of dependencies, the remaining entries in pDependencies will be set to NULL, and the number of nodes actually obtained will be returned in pNumDependencies. </p><dl class="section warning"><dt>Warning</dt><dd>: This API is marked as beta, meaning, while this is feature complete, it is still open to changes and may have outstanding issues. </dd></dl>
+</div><hr/>The documentation for this interface was generated from the following file:<ul>
+<li><a class="el" href="hipfort_8f03.html">hipfort.f03</a></li>
+</ul>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

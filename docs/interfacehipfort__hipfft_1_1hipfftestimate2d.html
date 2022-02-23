@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -80,6 +80,9 @@ $(function() {
 <div class="title">hipfort_hipfft::hipfftestimate2d Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>!  
+ <a href="interfacehipfort__hipfft_1_1hipfftestimate2d.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -90,7 +93,19 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a20f342220f873fcc03b3bf9d267ff3ca"><td class="memItemLeft" align="right" valign="top">integer(kind(hipfft_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipfft_1_1hipfftestimate2d.html#a20f342220f873fcc03b3bf9d267ff3ca">hipfftestimate2d_rank_1</a> (nx, ny, myType, workSize)</td></tr>
 <tr class="separator:a20f342220f873fcc03b3bf9d267ff3ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function/Subroutine Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>! </p>
+<p>Return an estimate of the work area size required for a 2D plan.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">nx</td><td>Number of elements in the x-direction. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ny</td><td>Number of elements in the y-direction. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">type</td><td>FFT type. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">workSize</td><td>Pointer to work area size (returned value). </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="a8cfd084d48ce17246b832880d3cd5296"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8cfd084d48ce17246b832880d3cd5296">&#9670;&nbsp;</a></span>hipfftestimate2d_()</h2>
 

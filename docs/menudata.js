@@ -24,16 +24,15 @@ for the JavaScript code in this file
 var menudata={children:[
 {text:"Main Page",url:"index.html"},
 {text:"Related Pages",url:"pages.html"},
+{text:"Modules",url:"modules.html"},
 {text:"Modules",url:"namespaces.html",children:[
 {text:"Modules List",url:"namespaces.html"},
 {text:"Module Members",url:"namespacemembers.html",children:[
 {text:"All",url:"namespacemembers.html",children:[
-{text:"d",url:"namespacemembers.html#index_d"},
-{text:"h",url:"namespacemembers_h.html#index_h"},
+{text:"h",url:"namespacemembers.html#index_h"},
 {text:"r",url:"namespacemembers_r.html#index_r"}]},
 {text:"Functions/Subroutines",url:"namespacemembers_func.html",children:[
-{text:"d",url:"namespacemembers_func.html#index_d"},
-{text:"h",url:"namespacemembers_func_h.html#index_h"},
+{text:"h",url:"namespacemembers_func.html#index_h"},
 {text:"r",url:"namespacemembers_func_r.html#index_r"}]},
 {text:"Variables",url:"namespacemembers_vars.html",children:[
 {text:"h",url:"namespacemembers_vars.html#index_h"}]}]}]},
@@ -62,8 +61,7 @@ var menudata={children:[
 {text:"y",url:"functions_y.html#index_y"},
 {text:"z",url:"functions_z.html#index_z"}]},
 {text:"Functions/Subroutines",url:"functions_func.html",children:[
-{text:"d",url:"functions_func.html#index_d"},
-{text:"h",url:"functions_func_h.html#index_h"},
+{text:"h",url:"functions_func.html#index_h"},
 {text:"r",url:"functions_func_r.html#index_r"}]},
 {text:"Variables",url:"functions_vars.html",children:[
 {text:"a",url:"functions_vars.html#index_a"},

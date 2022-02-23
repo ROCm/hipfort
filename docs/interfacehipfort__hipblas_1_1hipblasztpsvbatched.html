@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -80,6 +80,9 @@ $(function() {
 <div class="title">hipfort_hipblas::hipblasztpsvbatched Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>!  
+ <a href="interfacehipfort__hipblas_1_1hipblasztpsvbatched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -92,7 +95,32 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7b5275b77e3971694eba0822c502fa84"><td class="memItemLeft" align="right" valign="top">integer(kind(hipblas_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipblas_1_1hipblasztpsvbatched.html#a7b5275b77e3971694eba0822c502fa84">hipblasztpsvbatched_rank_1</a> (handle, uplo, transA, diag, m, AP, x, incx, batchCount)</td></tr>
 <tr class="separator:a7b5275b77e3971694eba0822c502fa84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function/Subroutine Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>! </p>
+<p>BLAS Level 2 API</p>
+<pre class="fragment"> tpsvBatched solves
+
+      A_ix_i = b_i or A_iTx_i = b_i, or A_iHx_i = b_i,
+
+ where x_i and b_i are vectors and A_i is a triangular matrix stored in the packed format,
+ for i in [1, batchCount].
+
+ The input vectors b_i are overwritten by the output vectors x_i.
+</pre><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">uplo</td><td>[hipblasFillMode_t] HIPBLAS_FILL_MODE_UPPER: each A_i is an upper triangular matrix. HIPBLAS_FILL_MODE_LOWER: each A_i is a lower triangular matrix.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">transA</td><td>[hipblasOperation_t] HIPBLAS_OP_N: Solves Ax = b HIPBLAS_OP_T: Solves ATx = b HIPBLAS_OP_C: Solves AHx = b</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">diag</td><td>[hipblasDiagType_t] HIPBLAS_DIAG_UNIT: each A_i is assumed to be unit triangular (i.e. the diagonal elements of each A_i are not used in computations). HIPBLAS_DIAG_NON_UNIT: each A_i is not assumed to be unit triangular.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>[int] n specifies the number of rows of each b_i. n &gt;= 0.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">AP</td><td>device array of device pointers storing the packed versions of each matrix A_i, of dimension &gt;= (n (n + 1) 2)</td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">x</td><td>device array of device pointers storing each input vector b_i, overwritten by x_i on output.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">incx</td><td>[int] specifies the increment for the elements of each x_i. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">batchCount</td><td>[int] specifies the number of instances in the batch. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="abddf7aadfae8c720644608d761800ecf"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abddf7aadfae8c720644608d761800ecf">&#9670;&nbsp;</a></span>hipblasztpsvbatched_()</h2>
 

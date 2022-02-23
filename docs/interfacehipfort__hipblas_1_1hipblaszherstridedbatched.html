@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -80,6 +80,9 @@ $(function() {
 <div class="title">hipfort_hipblas::hipblaszherstridedbatched Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>!  
+ <a href="interfacehipfort__hipblas_1_1hipblaszherstridedbatched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -92,7 +95,32 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a118a74b8716d73715a505ab846e7b060"><td class="memItemLeft" align="right" valign="top">integer(kind(hipblas_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipblas_1_1hipblaszherstridedbatched.html#a118a74b8716d73715a505ab846e7b060">hipblaszherstridedbatched_rank_1</a> (handle, uplo, n, alpha, x, incx, stridex, A, lda, strideA, batchCount)</td></tr>
 <tr class="separator:a118a74b8716d73715a505ab846e7b060"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function/Subroutine Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>! </p>
+<p>BLAS Level 2 API</p>
+<pre class="fragment"> herStridedBatched performs the matrix-vector operations
+
+     A_i := A_i + alphax_ix_iH
+
+ where alpha is a real scalar, x_i is a vector, and A_i is an
+ n by n Hermitian matrix, for i = 1, ..., batchCount.
+</pre><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">uplo</td><td>[hipblasFillMode_t] specifies whether the upper 'HIPBLAS_FILL_MODE_UPPER' or lower 'HIPBLAS_FILL_MODE_LOWER' HIPBLAS_FILL_MODE_UPPER: The upper triangular part of each A_i is supplied in A. HIPBLAS_FILL_MODE_LOWER: The lower triangular part of each A_i is supplied in A. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>[int] the number of rows and columns of each matrix A_i, must be at least 0. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">alpha</td><td>device pointer or host pointer to scalar alpha. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>device pointer pointing to the first vector (x_1). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">incx</td><td>[int] specifies the increment for the elements of each x_i. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">stridex</td><td>[hipblasStride] stride from the start of one vector (x_i) and the next one (x_i+1). </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>device array of device pointers storing the specified triangular portion of each Hermitian matrix A_i. Points to the first matrix (A_1). if uplo == HIPBLAS_FILL_MODE_UPPER: The upper triangular portion of each Hermitian matrix A_i is supplied. The lower triangular portion of each A_i will not be touched. if uplo == HIPBLAS_FILL_MODE_LOWER: The lower triangular portion of each Hermitian matrix A_i is supplied. The upper triangular portion of each A_i will not be touched. Note that the imaginary part of the diagonal elements are not accessed and are assumed to be 0. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>[int] specifies the leading dimension of each A_i. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">strideA</td><td>[hipblasStride] stride from the start of one (A_i) and the next (A_i+1) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">batchCount</td><td>[int] number of instances in the batch. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="ada9be6743b62dc6d68d539d2a68762fe"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ada9be6743b62dc6d68d539d2a68762fe">&#9670;&nbsp;</a></span>hipblaszherstridedbatched_()</h2>
 

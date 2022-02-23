@@ -2,8 +2,8 @@
 DOXYFILE_ENCODING      = UTF-8
 
 PROJECT_NAME   = "HIPFORT"
-PROJECT_NUMBER = 0.4.0
-PROJECT_BRIEF  = "Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)" 
+PROJECT_NUMBER = 0.5.0
+PROJECT_BRIEF  = "Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)" 
 PROJECT_LOGO   =
 
 #INPUT                = doxygen/tmp

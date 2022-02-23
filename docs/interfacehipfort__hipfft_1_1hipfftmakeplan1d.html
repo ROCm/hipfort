@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -80,6 +80,9 @@ $(function() {
 <div class="title">hipfort_hipfft::hipfftmakeplan1d Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>!  
+ <a href="interfacehipfort__hipfft_1_1hipfftmakeplan1d.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -90,7 +93,20 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a330c8877d500e712895c3b473ab20e8d"><td class="memItemLeft" align="right" valign="top">integer(kind(hipfft_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipfft_1_1hipfftmakeplan1d.html#a330c8877d500e712895c3b473ab20e8d">hipfftmakeplan1d_rank_1</a> (plan, nx, myType, batch, workSize)</td></tr>
 <tr class="separator:a330c8877d500e712895c3b473ab20e8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function/Subroutine Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>! </p>
+<p>Initialize a new one-dimensional FFT plan.</p>
+<p>Assumes that the plan has been created already, and modifies the plan associated with the plan handle.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">plan</td><td>Handle of the FFT plan. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nx</td><td>FFT length. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">type</td><td>FFT type. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">batch</td><td>Number of batched transforms to compute. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="a2bc8435dcd3c5ac60da06654591c085b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2bc8435dcd3c5ac60da06654591c085b">&#9670;&nbsp;</a></span>hipfftmakeplan1d_()</h2>
 

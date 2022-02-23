@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -80,6 +80,9 @@ $(function() {
 <div class="title">hipfort_hipblas::hipblaszdrot Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>!  
+ <a href="interfacehipfort__hipblas_1_1hipblaszdrot.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -90,7 +93,25 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad9878672daa73e3200f0bd6c5ca7e223"><td class="memItemLeft" align="right" valign="top">integer(kind(hipblas_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipblas_1_1hipblaszdrot.html#ad9878672daa73e3200f0bd6c5ca7e223">hipblaszdrot_rank_1</a> (handle, n, x, incx, y, incy, c, s)</td></tr>
 <tr class="separator:ad9878672daa73e3200f0bd6c5ca7e223"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function/Subroutine Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>! </p>
+<p>BLAS Level 1 API</p>
+<pre class="fragment"> rot applies the Givens rotation matrix defined by c=cos(alpha) and s=sin(alpha) to vectors x and y.
+     Scalars c and s may be stored in either host or device memory, location is specified by calling hipblasSetPointerMode.
+</pre><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>[int] number of elements in the x and y vectors. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">x</td><td>device pointer storing vector x. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">incx</td><td>[int] specifies the increment between elements of x. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">y</td><td>device pointer storing vector y. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">incy</td><td>[int] specifies the increment between elements of y. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">c</td><td>device pointer or host pointer storing scalar cosine component of the rotation matrix. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">s</td><td>device pointer or host pointer storing scalar sine component of the rotation matrix. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="af3c41768d3f581928a45cbc581cbf0d7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af3c41768d3f581928a45cbc581cbf0d7">&#9670;&nbsp;</a></span>hipblaszdrot_()</h2>
 

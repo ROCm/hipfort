@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -110,11 +110,11 @@ a n-by-n orthogonalunitary matrix represented as the product of Householder matr
 </pre><p class="formulaDsp">
 \[ Q = H_k&#39;H_{k-1}&#39; \cdots H_1&#39;, \quad \text{with} \: k = \text{min}(m,n). \]
 </p>
- <pre class="fragment">Each Householder matrix \form#8 is given by
+ <pre class="fragment">Each Householder matrix \form#12 is given by
 </pre><p class="formulaDsp">
 \[ H_i = I - \text{ipiv}[i] \cdot v_i&#39; v_i \]
 </p>
- <pre class="fragment">where the first i-1 elements of the Householder vector \form#13 are zero, and \form#23.
+ <pre class="fragment">where the first i-1 elements of the Householder vector \form#14 are zero, and \form#15.
 </pre><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>rocblas_handle. </td></tr>

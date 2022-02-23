@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -80,6 +80,9 @@ $(function() {
 <div class="title">hipfort_hipblas::hipblaszdgmm Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>!  
+ <a href="interfacehipfort__hipblas_1_1hipblaszdgmm.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -92,7 +95,33 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7c0cc41d57f635d63e2f173c850f855b"><td class="memItemLeft" align="right" valign="top">integer(kind(hipblas_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipblas_1_1hipblaszdgmm.html#a7c0cc41d57f635d63e2f173c850f855b">hipblaszdgmm_rank_1</a> (handle, side, m, n, A, lda, x, incx, C, ldc)</td></tr>
 <tr class="separator:a7c0cc41d57f635d63e2f173c850f855b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function/Subroutine Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>! </p>
+<p>BLAS Level 3 API</p>
+<pre class="fragment"> dgmm performs one of the matrix-matrix operations
+
+     C = A  diag(x) if side == HIPBLAS_SIDE_RIGHT
+     C = diag(x)  A if side == HIPBLAS_SIDE_LEFT
+
+ where C and A are m by n dimensional matrices. diag( x ) is a diagonal matrix
+ and x is vector of dimension n if side == HIPBLAS_SIDE_RIGHT and dimension m
+ if side == HIPBLAS_SIDE_LEFT.
+</pre><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">side</td><td>[hipblasSideMode_t] specifies the side of diag(x) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">m</td><td>[int] matrix dimension m. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>[int] matrix dimension n. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>device pointer storing matrix A. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>[int] specifies the leading dimension of A. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>device pointer storing vector x. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">incx</td><td>[int] specifies the increment between values of x </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">C</td><td>device pointer storing matrix C. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ldc</td><td>[int] specifies the leading dimension of C. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="a7a3ea69f8ca24d73f0fff5bdfe2d07d0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7a3ea69f8ca24d73f0fff5bdfe2d07d0">&#9670;&nbsp;</a></span>hipblaszdgmm_()</h2>
 

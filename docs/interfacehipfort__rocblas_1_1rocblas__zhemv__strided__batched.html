@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -98,7 +98,7 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>! </p>
 <p>BLAS Level 2 API</p>
-<pre class="fragment"> xHEMV_STRIDED_BATCHED performs one of the matrix-vector operations
+<pre class="fragment"> hemv_strided_batched performs one of the matrix-vector operations
 
      y_i := alphaA_ix_i + betay_i
 
@@ -112,11 +112,14 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">alpha</td><td>device pointer or host pointer to scalar alpha. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>device array of device pointers storing each matrix A_i of dimension (lda, n). if uplo == rocblas_fill_upper: The upper triangular part of each A_i must contain the upper triangular part of a Hermitian matrix. The lower triangular part of each A_i will not be referenced. if uplo == rocblas_fill_lower: The lower triangular part of each A_i must contain the lower triangular part of a Hermitian matrix. The upper triangular part of each A_i will not be referenced. As a Hermitian matrix, the imaginary part of the main diagonal of each A_i will not be referenced and is assumed to be == 0. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>[rocblas_int] specifies the leading dimension of each A_i. must be &gt;= max(1, n) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">stride_A</td><td>[rocblas_stride] stride from the start of one (A_i) to the next (A_i+1) </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>device array of device pointers storing each vector x_i. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">incx</td><td>[rocblas_int] specifies the increment for the elements of each x_i. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">stride_x</td><td>[rocblas_stride] stride from the start of one vector (x_i) and the next one (x_i+1). </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">beta</td><td>device pointer or host pointer to scalar beta. </td></tr>
     <tr><td class="paramdir">[in,out]</td><td class="paramname">y</td><td>device array of device pointers storing each vector y_i. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">incy</td><td>[rocblas_int] specifies the increment for the elements of y. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">stride_y</td><td>[rocblas_stride] stride from the start of one vector (y_i) and the next one (y_i+1). </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">batch_count</td><td>[rocblas_int] number of instances in the batch. </td></tr>
   </table>
   </dd>

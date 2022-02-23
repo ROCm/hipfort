@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -80,6 +80,9 @@ $(function() {
 <div class="title">hipfort_hipblas::hipblasztrmm Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>!  
+ <a href="interfacehipfort__hipblas_1_1hipblasztrmm.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -92,7 +95,43 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad5d50605edf05b39fb908360b46d104e"><td class="memItemLeft" align="right" valign="top">integer(kind(hipblas_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipblas_1_1hipblasztrmm.html#ad5d50605edf05b39fb908360b46d104e">hipblasztrmm_rank_1</a> (handle, side, uplo, transA, diag, m, n, alpha, A, lda, B, ldb)</td></tr>
 <tr class="separator:ad5d50605edf05b39fb908360b46d104e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function/Subroutine Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>! </p>
+<p>BLAS Level 3 API</p>
+<pre class="fragment"> trmm performs one of the matrix-matrix operations
+
+ B := alphaop( A )B,   or   B := alphaBop( A )
+
+ where  alpha  is a scalar,  B  is an m by n matrix,  A  is a unit, or
+ non-unit,  upper or lower triangular matrix  and  op( A )  is one  of
+
+     op( A ) = A   or   op( A ) = A^T   or   op( A ) = A^H.
+</pre><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">side</td><td>[hipblasSideMode_t] Specifies whether op(A) multiplies B from the left or right as follows: HIPBLAS_SIDE_LEFT: B := alphaop( A )B. HIPBLAS_SIDE_RIGHT: B := alphaBop( A ).</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">uplo</td><td>[hipblasFillMode_t] Specifies whether the matrix A is an upper or lower triangular matrix as follows: HIPBLAS_FILL_MODE_UPPER: A is an upper triangular matrix. HIPBLAS_FILL_MODE_LOWER: A is a lower triangular matrix.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">transA</td><td>[hipblasOperation_t] Specifies the form of op(A) to be used in the matrix multiplication as follows: HIPBLAS_OP_N: op(A) = A. HIPBLAS_OP_T: op(A) = A^T. HIPBLAS_OP_C: op(A) = A^H.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">diag</td><td>[hipblasDiagType_t] Specifies whether or not A is unit triangular as follows: HIPBLAS_DIAG_UNIT: A is assumed to be unit triangular. HIPBLAS_DIAG_NON_UNIT: A is not assumed to be unit triangular.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">m</td><td>[int] m specifies the number of rows of B. m &gt;= 0.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>[int] n specifies the number of columns of B. n &gt;= 0.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">alpha</td><td>alpha specifies the scalar alpha. When alpha is zero then A is not referenced and B need not be set before entry.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>Device pointer to matrix A on the GPU. A has dimension ( lda, k ), where k is m when side == HIPBLAS_SIDE_LEFT and is n when side == HIPBLAS_SIDE_RIGHT.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>When uplo == HIPBLAS_FILL_MODE_UPPER the leading k by k upper triangular part of the array A must contain the upper triangular matrix and the strictly lower triangular part of A is not referenced.</p>
+<p>When uplo == HIPBLAS_FILL_MODE_LOWER the leading k by k lower triangular part of the array A must contain the lower triangular matrix and the strictly upper triangular part of A is not referenced.</p>
+<p>Note that when diag == HIPBLAS_DIAG_UNIT the diagonal elements of A are not referenced either, but are assumed to be unity.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>[int] lda specifies the first dimension of A. if side == HIPBLAS_SIDE_LEFT, lda &gt;= max( 1, m ), if side == HIPBLAS_SIDE_RIGHT, lda &gt;= max( 1, n ).</td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">B</td><td>Device pointer to the first matrix B_0 on the GPU. On entry, the leading m by n part of the array B must contain the matrix B, and on exit is overwritten by the transformed matrix.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ldb</td><td>[int] ldb specifies the first dimension of B. ldb &gt;= max( 1, m ). </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="a5efb37cd9922d3b497fd066330b9020a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5efb37cd9922d3b497fd066330b9020a">&#9670;&nbsp;</a></span>hipblasztrmm_()</h2>
 

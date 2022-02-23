@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -80,6 +80,9 @@ $(function() {
 <div class="title">hipfort_hipblas::hipblasztrtri Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>!  
+ <a href="interfacehipfort__hipblas_1_1hipblasztrtri.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -92,7 +95,26 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0354c1c517af7034f24f7292e771d43a"><td class="memItemLeft" align="right" valign="top">integer(kind(hipblas_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipblas_1_1hipblasztrtri.html#a0354c1c517af7034f24f7292e771d43a">hipblasztrtri_rank_1</a> (handle, uplo, diag, n, A, lda, invA, ldinvA)</td></tr>
 <tr class="separator:a0354c1c517af7034f24f7292e771d43a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function/Subroutine Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>! </p>
+<p>BLAS Level 3 API</p>
+<pre class="fragment"> trtri  compute the inverse of a matrix A, namely, invA
+
+     and write the result into invA;
+</pre><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">uplo</td><td>[hipblasFillMode_t] specifies whether the upper 'HIPBLAS_FILL_MODE_UPPER' or lower 'HIPBLAS_FILL_MODE_LOWER' if HIPBLAS_FILL_MODE_UPPER, the lower part of A is not referenced if HIPBLAS_FILL_MODE_LOWER, the upper part of A is not referenced </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">diag</td><td>[hipblasDiagType_t] = 'HIPBLAS_DIAG_NON_UNIT', A is non-unit triangular; = 'HIPBLAS_DIAG_UNIT', A is unit triangular; </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>[int] size of matrix A and invA </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>device pointer storing matrix A. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>[int] specifies the leading dimension of A. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">invA</td><td>device pointer storing matrix invA. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ldinvA</td><td>[int] specifies the leading dimension of invA. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="a79fda5ee6457569ad1c94f39bb6fe626"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a79fda5ee6457569ad1c94f39bb6fe626">&#9670;&nbsp;</a></span>hipblasztrtri_()</h2>
 

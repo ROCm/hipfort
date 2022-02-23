@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -80,6 +80,9 @@ $(function() {
 <div class="title">hipfort_hipblas::hipblasztbmv Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>!  
+ <a href="interfacehipfort__hipblas_1_1hipblasztbmv.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -92,7 +95,32 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0649816637e6167cdf11290fc06d9685"><td class="memItemLeft" align="right" valign="top">integer(kind(hipblas_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipblas_1_1hipblasztbmv.html#a0649816637e6167cdf11290fc06d9685">hipblasztbmv_rank_1</a> (handle, uplo, transA, diag, m, k, A, lda, x, incx)</td></tr>
 <tr class="separator:a0649816637e6167cdf11290fc06d9685"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function/Subroutine Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>! </p>
+<p>BLAS Level 2 API</p>
+<pre class="fragment"> tbmv performs one of the matrix-vector operations
+
+     x := Ax      or
+     x := ATx   or
+     x := AHx,
+
+ x is a vectors and A is a banded m by m matrix (see description below).
+</pre><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">uplo</td><td>[hipblasFillMode_t] HIPBLAS_FILL_MODE_UPPER: A is an upper banded triangular matrix. HIPBLAS_FILL_MODE_LOWER: A is a lower banded triangular matrix. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">trans</td><td>[hipblasOperation_t] indicates whether matrix A is tranposed (conjugated) or not. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">diag</td><td>[hipblasDiagType_t] HIPBLAS_DIAG_UNIT: The main diagonal of A is assumed to consist of only 1's and is not referenced. HIPBLAS_DIAG_NON_UNIT: No assumptions are made of A's main diagonal. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">m</td><td>[int] the number of rows and columns of the matrix represented by A. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">k</td><td>[int] if uplo == HIPBLAS_FILL_MODE_UPPER, k specifies the number of super-diagonals of the matrix A. if uplo == HIPBLAS_FILL_MODE_LOWER, k specifies the number of sub-diagonals of the matrix A. k must satisfy k &gt; 0 &amp;&amp; k &lt; lda. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>device pointer storing banded triangular matrix A. if uplo == HIPBLAS_FILL_MODE_UPPER: The matrix represented is an upper banded triangular matrix with the main diagonal and k super-diagonals, everything else can be assumed to be 0. The matrix is compacted so that the main diagonal resides on the k'th row, the first super diagonal resides on the RHS of the k-1'th row, etc, with the k'th diagonal on the RHS of the 0'th row. Ex: (HIPBLAS_FILL_MODE_UPPER; m = 5; k = 2) 1 6 9 0 0 0 0 9 8 7 0 2 7 8 0 0 6 7 8 9 0 0 3 8 7 -&mdash;&gt; 1 2 3 4 5 0 0 0 4 9 0 0 0 0 0 0 0 0 0 5 0 0 0 0 0 if uplo == HIPBLAS_FILL_MODE_LOWER: The matrix represnted is a lower banded triangular matrix with the main diagonal and k sub-diagonals, everything else can be assumed to be 0. The matrix is compacted so that the main diagonal resides on the 0'th row, working up to the k'th diagonal residing on the LHS of the k'th row. Ex: (HIPBLAS_FILL_MODE_LOWER; m = 5; k = 2) 1 0 0 0 0 1 2 3 4 5 6 2 0 0 0 6 7 8 9 0 9 7 3 0 0 -&mdash;&gt; 9 8 7 0 0 0 8 8 4 0 0 0 0 0 0 0 0 7 9 5 0 0 0 0 0 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>[int] specifies the leading dimension of A. lda must satisfy lda &gt; k. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">x</td><td>device pointer storing vector x. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">incx</td><td>[int] specifies the increment for the elements of x. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="a8acb0cea35dbe00f1f23920ef311f019"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8acb0cea35dbe00f1f23920ef311f019">&#9670;&nbsp;</a></span>hipblasztbmv_()</h2>
 

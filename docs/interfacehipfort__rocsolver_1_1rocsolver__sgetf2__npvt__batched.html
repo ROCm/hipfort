@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -103,12 +103,12 @@ Public Member Functions</h2></td></tr>
  could be executed with small and mid-size matrices if optimizations are enabled (default option). For more details, see the
  "Tuning rocSOLVER performance" section of the Library Design Guide).
 
- The factorization of matrix \form#43 in the batch has the form
+ The factorization of matrix \form#2 in the batch has the form
 </pre><p class="formulaDsp">
 \[ A_i = L_iU_i \]
 </p>
- <pre class="fragment">where \form#45 is lower triangular with unit
-diagonal elements (lower trapezoidal if m &gt; n), and \form#46 is upper
+ <pre class="fragment">where \form#5 is lower triangular with unit
+diagonal elements (lower trapezoidal if m &gt; n), and \form#6 is upper
 triangular (upper trapezoidal if m &lt; n).
 
 Note: Although this routine can offer better performance, Gaussian elimination without pivoting is not backward stable.

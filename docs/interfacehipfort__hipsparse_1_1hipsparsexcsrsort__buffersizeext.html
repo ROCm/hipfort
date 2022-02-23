@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -81,20 +81,23 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Description: This routine computes the required buffer size for csrsort.  
+<p>!  
  <a href="interfacehipfort__hipsparse_1_1hipsparsexcsrsort__buffersizeext.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a96376ff26c462189484d6e6a0f6f8ebd"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsexcsrsort__buffersizeext.html#a96376ff26c462189484d6e6a0f6f8ebd">hipsparsexcsrsort_buffersizeext_</a> (handle, m, n, nnz, csrRowPtr, csrColInd, pBufferSizeInBytes)</td></tr>
-<tr class="separator:a96376ff26c462189484d6e6a0f6f8ebd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac16d5b32ff4cd28d47a43c5e597dc05"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsexcsrsort__buffersizeext.html#aac16d5b32ff4cd28d47a43c5e597dc05">hipsparsexcsrsort_buffersizeext_rank_0</a> (handle, m, n, nnz, csrRowPtr, csrColInd, pBufferSizeInBytes)</td></tr>
 <tr class="separator:aac16d5b32ff4cd28d47a43c5e597dc05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a96376ff26c462189484d6e6a0f6f8ebd"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsexcsrsort__buffersizeext.html#a96376ff26c462189484d6e6a0f6f8ebd">hipsparsexcsrsort_buffersizeext_</a> (handle, m, n, nnz, csrRowPtr, csrColInd, pBufferSizeInBytes)</td></tr>
+<tr class="separator:a96376ff26c462189484d6e6a0f6f8ebd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6d474a1486563621da851b52fbef9866"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsexcsrsort__buffersizeext.html#a6d474a1486563621da851b52fbef9866">hipsparsexcsrsort_buffersizeext_rank_1</a> (handle, m, n, nnz, csrRowPtr, csrColInd, pBufferSizeInBytes)</td></tr>
 <tr class="separator:a6d474a1486563621da851b52fbef9866"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Description: This routine computes the required buffer size for csrsort. </p>
+<div class="textblock"><p>! </p>
+<p>Sort a sparse CSR matrix</p>
+<p><code>hipsparseXcsrsort_bufferSizeExt</code> returns the size of the temporary storage buffer required by hipsparseXcsrsort(). The temporary storage buffer must be allocated by the user. </p>
 </div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="a96376ff26c462189484d6e6a0f6f8ebd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a96376ff26c462189484d6e6a0f6f8ebd">&#9670;&nbsp;</a></span>hipsparsexcsrsort_buffersizeext_()</h2>

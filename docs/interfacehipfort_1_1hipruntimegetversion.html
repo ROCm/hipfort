@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -98,7 +98,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>#hipSuccess, #hipErrorInavlidValue</dd></dl>
-<dl class="section warning"><dt>Warning</dt><dd>On HIPHCC path this function returns HIP runtime patch version however on HIPNVCC path this function return CUDA runtime version.</dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>The version definition of HIP runtime is different from CUDA. On AMD platform, the function returns HIP runtime version, while on NVIDIA platform, it returns CUDA runtime version. And there is no mappingcorrelation between HIP version and CUDA version.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>hipDriverGetVersion </dd></dl>
 </div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="a0d90f997756681d789b5b4369097a6fd"></a>

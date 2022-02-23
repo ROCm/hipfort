@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -81,20 +81,23 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Description: This function computes the number of nonzero block columns per block row and the total number of blocks in the general BSR matrix where the general BSR matrix is formed by converting from the input general BSR matrix.  
+<p>!  
  <a href="interfacehipfort__hipsparse_1_1hipsparsexgebsr2gebsrnnz.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aba1e82989a929d3dda662e8bb3f1cda9"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsexgebsr2gebsrnnz.html#aba1e82989a929d3dda662e8bb3f1cda9">hipsparsexgebsr2gebsrnnz_</a> (handle, dirA, mb, nb, nnzb, descrA, bsrRowPtrA, bsrColIndA, rowBlockDimA, colBlockDimA, descrC, bsrRowPtrC, rowBlockDimC, colBlockDimC, nnzTotalDevHostPtr, buffer)</td></tr>
-<tr class="separator:aba1e82989a929d3dda662e8bb3f1cda9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6cdbdc411209da6de548603f6dd78d9a"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsexgebsr2gebsrnnz.html#a6cdbdc411209da6de548603f6dd78d9a">hipsparsexgebsr2gebsrnnz_rank_0</a> (handle, dirA, mb, nb, nnzb, descrA, bsrRowPtrA, bsrColIndA, rowBlockDimA, colBlockDimA, descrC, bsrRowPtrC, rowBlockDimC, colBlockDimC, nnzTotalDevHostPtr, buffer)</td></tr>
 <tr class="separator:a6cdbdc411209da6de548603f6dd78d9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:aba1e82989a929d3dda662e8bb3f1cda9"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsexgebsr2gebsrnnz.html#aba1e82989a929d3dda662e8bb3f1cda9">hipsparsexgebsr2gebsrnnz_</a> (handle, dirA, mb, nb, nnzb, descrA, bsrRowPtrA, bsrColIndA, rowBlockDimA, colBlockDimA, descrC, bsrRowPtrC, rowBlockDimC, colBlockDimC, nnzTotalDevHostPtr, buffer)</td></tr>
+<tr class="separator:aba1e82989a929d3dda662e8bb3f1cda9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d2e9b1940fcb4ca6e6f76771778aab7"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsexgebsr2gebsrnnz.html#a8d2e9b1940fcb4ca6e6f76771778aab7">hipsparsexgebsr2gebsrnnz_rank_1</a> (handle, dirA, mb, nb, nnzb, descrA, bsrRowPtrA, bsrColIndA, rowBlockDimA, colBlockDimA, descrC, bsrRowPtrC, rowBlockDimC, colBlockDimC, nnzTotalDevHostPtr, buffer)</td></tr>
 <tr class="separator:a8d2e9b1940fcb4ca6e6f76771778aab7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Description: This function computes the number of nonzero block columns per block row and the total number of blocks in the general BSR matrix where the general BSR matrix is formed by converting from the input general BSR matrix. </p>
+<div class="textblock"><p>! </p>
+<p>This function is used when converting a general BSR sparse matrix <code>A</code> to another general BSR sparse matrix <code>C</code>. Specifically, this function determines the number of non-zero blocks that will exist in <code>C</code> (stored using either a host or device pointer), and computes the row pointer array for <code>C</code>.</p>
+<p>The routine does support asynchronous execution. </p>
 </div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="aba1e82989a929d3dda662e8bb3f1cda9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aba1e82989a929d3dda662e8bb3f1cda9">&#9670;&nbsp;</a></span>hipsparsexgebsr2gebsrnnz_()</h2>

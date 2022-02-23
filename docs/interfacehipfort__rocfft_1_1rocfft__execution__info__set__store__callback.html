@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -86,8 +86,8 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a0c6b45759f4f435c264d64e25e9994d8"><td class="memItemLeft" align="right" valign="top">integer(kind(rocfft_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__rocfft_1_1rocfft__execution__info__set__store__callback.html#a0c6b45759f4f435c264d64e25e9994d8">rocfft_execution_info_set_store_callback_</a> (desc, cb_functions, cb_data, shared_mem_size)</td></tr>
-<tr class="separator:a0c6b45759f4f435c264d64e25e9994d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74d0f2e6f387e92c03cc6a2c7c0422e1"><td class="memItemLeft" align="right" valign="top">integer(kind(rocfft_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__rocfft_1_1rocfft__execution__info__set__store__callback.html#a74d0f2e6f387e92c03cc6a2c7c0422e1">rocfft_execution_info_set_store_callback_</a> (myInfo, cb_functions, cb_data, shared_mem_bytes)</td></tr>
+<tr class="separator:a74d0f2e6f387e92c03cc6a2c7c0422e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>! </p>
@@ -104,13 +104,13 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">info</td><td>execution info handle </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">cb</td><td>callbacks function pointers </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">cbdata</td><td>callback function data, passed to the function pointer when it is called </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">shared_mem_size</td><td>amount of shared memory to allocate for the callback function to use </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">shared_mem_bytes</td><td>amount of shared memory to allocate for the callback function to use </td></tr>
   </table>
   </dd>
 </dl>
 </div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
-<a id="a0c6b45759f4f435c264d64e25e9994d8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0c6b45759f4f435c264d64e25e9994d8">&#9670;&nbsp;</a></span>rocfft_execution_info_set_store_callback_()</h2>
+<a id="a74d0f2e6f387e92c03cc6a2c7c0422e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74d0f2e6f387e92c03cc6a2c7c0422e1">&#9670;&nbsp;</a></span>rocfft_execution_info_set_store_callback_()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -119,7 +119,7 @@ Public Member Functions</h2></td></tr>
           <td class="memname">integer(kind(rocfft_status_success)) function hipfort_rocfft::rocfft_execution_info_set_store_callback::rocfft_execution_info_set_store_callback_ </td>
           <td>(</td>
           <td class="paramtype">type(c_ptr), value&#160;</td>
-          <td class="paramname"><em>desc</em>, </td>
+          <td class="paramname"><em>myInfo</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -137,7 +137,7 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">integer(c_size_t), value&#160;</td>
-          <td class="paramname"><em>shared_mem_size</em>&#160;</td>
+          <td class="paramname"><em>shared_mem_bytes</em>&#160;</td>
         </tr>
         <tr>
           <td></td>

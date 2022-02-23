@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -74,24 +74,39 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="interfacehipfort__hipsparse_1_1hipsparsexbsric02__zeropivot-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">hipfort_hipsparse::hipsparsexbsric02_zeropivot Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Description: Compute the incomplete Cholesky factorization with 0 fill-in (IC0) of the matrix A stored in BSR format.  
+<p>!  
  <a href="interfacehipfort__hipsparse_1_1hipsparsexbsric02__zeropivot.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:abdd3dfa48b7ae475e4493306439fdf3f"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsexbsric02__zeropivot.html#abdd3dfa48b7ae475e4493306439fdf3f">hipsparsexbsric02_zeropivot_</a> (handle, myInfo, position)</td></tr>
 <tr class="separator:abdd3dfa48b7ae475e4493306439fdf3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Description: Compute the incomplete Cholesky factorization with 0 fill-in (IC0) of the matrix A stored in BSR format. </p>
-</div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
+<div class="textblock"><p>! </p>
+<p>Incomplete Cholesky factorization with 0 fill-ins and no pivoting using BSR storage format</p>
+<pre class="fragment">\p hipsparseXbsric02_zeroPivot returns \ref HIPSPARSE_STATUS_ZERO_PIVOT, if either a
+structural or numerical zero has been found during hipsparseXbsric02_analysis() or
+hipsparseXbsric02() computation. The first zero pivot \form#24 at \form#25 is
+stored in \p position, using same index base as the BSR matrix.
+
+\p position can be in host or device memory. If no zero pivot has been found,
+\p position is set to -1 and \ref HIPSPARSE_STATUS_SUCCESS is returned instead.
+
+\note
+If a zero pivot is found, \p position=j means that either the diagonal block \p A(j,j)
+is missing (structural zero) or the diagonal block \p A(j,j) is not positive definite
+(numerical zero).
+
+\note \p hipsparseXbsric02_zeroPivot is a blocking function. It might influence
+performance negatively.</pre> </div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="abdd3dfa48b7ae475e4493306439fdf3f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abdd3dfa48b7ae475e4493306439fdf3f">&#9670;&nbsp;</a></span>hipsparsexbsric02_zeropivot_()</h2>
 

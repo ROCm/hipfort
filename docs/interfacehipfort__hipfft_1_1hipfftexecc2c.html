@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -80,6 +80,9 @@ $(function() {
 <div class="title">hipfort_hipfft::hipfftexecc2c Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>!  
+ <a href="interfacehipfort__hipfft_1_1hipfftexecc2c.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -94,7 +97,20 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aee8d74d1ec5fc6c210a7442959a29067"><td class="memItemLeft" align="right" valign="top">integer(kind(hipfft_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipfft_1_1hipfftexecc2c.html#aee8d74d1ec5fc6c210a7442959a29067">hipfftexecc2c_rank_3</a> (plan, idata, odata, direction)</td></tr>
 <tr class="separator:aee8d74d1ec5fc6c210a7442959a29067"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function/Subroutine Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>! </p>
+<p>Execute a (float) complex-to-complex FFT.</p>
+<p>If the input and output buffers are equal, an in-place transform is performed.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">plan</td><td>The FFT plan. </td></tr>
+    <tr><td class="paramname">idata</td><td>Input data (on device). </td></tr>
+    <tr><td class="paramname">odata</td><td>Output data (on device). </td></tr>
+    <tr><td class="paramname">direction</td><td>Either <code>HIPFFT_FORWARD</code> or <code>HIPFFT_BACKWARD</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="accc424d54673cb3a05e19862027f26c8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#accc424d54673cb3a05e19862027f26c8">&#9670;&nbsp;</a></span>hipfftexecc2c_()</h2>
 

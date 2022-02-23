@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -76,7 +76,6 @@ $(function() {
   <div class="summary">
 <a href="#nested-classes">Data Types</a> &#124;
 <a href="#namespaces">Modules</a> &#124;
-<a href="#func-members">Functions/Subroutines</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">hipfort_types.f03 File Reference</div>  </div>
@@ -85,10 +84,7 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Types</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structhipfort__types_1_1dim3.html">hipfort_types::dim3</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Derived type that can be mapped directly to a CUDA/HIP C++ <a class="el" href="structhipfort__types_1_1dim3.html" title="Derived type that can be mapped directly to a CUDA/HIP C++ dim3. ">dim3</a>.  <a href="structhipfort__types_1_1dim3.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structhipfort__types_1_1dim3.html">hipfort_types::dim3</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">type &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structhipfort__types_1_1dim3.html">hipfort_types::dim3</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Derived type that can be mapped directly to a CUDA/HIP C++ <a class="el" href="structhipfort__types_1_1dim3.html" title="Derived type that can be mapped directly to a CUDA/HIP C++ dim3. ">dim3</a>.  <a href="structhipfort__types_1_1dim3.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">type &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structhipfort__types_1_1hipdeviceprop__t.html">hipfort_types::hipdeviceprop_t</a></td></tr>
@@ -98,21 +94,6 @@ Data Types</h2></td></tr>
 Modules</h2></td></tr>
 <tr class="memitem:namespacehipfort__types"><td class="memItemLeft" align="right" valign="top">module &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehipfort__types.html">hipfort_types</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
-Functions/Subroutines</h2></td></tr>
-<tr class="memitem:a046312dae3bd821fe358a8bdaf833b40"><td class="memItemLeft" align="right" valign="top">type(dim3) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehipfort__types.html#a046312dae3bd821fe358a8bdaf833b40">hipfort_types::dim3_c_int_1</a> (x)</td></tr>
-<tr class="separator:a046312dae3bd821fe358a8bdaf833b40"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac6d49da0a808786bc1a059579cb56aae"><td class="memItemLeft" align="right" valign="top">type(dim3) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehipfort__types.html#ac6d49da0a808786bc1a059579cb56aae">hipfort_types::dim3_c_int_2</a> (x, y)</td></tr>
-<tr class="separator:ac6d49da0a808786bc1a059579cb56aae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa37c9f56b379b9314c18ba0816d54819"><td class="memItemLeft" align="right" valign="top">type(dim3) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehipfort__types.html#aa37c9f56b379b9314c18ba0816d54819">hipfort_types::dim3_c_int_3</a> (x, y, z)</td></tr>
-<tr class="separator:aa37c9f56b379b9314c18ba0816d54819"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab56b257edb3d290fe7aad6d1f646453"><td class="memItemLeft" align="right" valign="top">type(dim3) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehipfort__types.html#aab56b257edb3d290fe7aad6d1f646453">hipfort_types::dim3_c_long_1</a> (x)</td></tr>
-<tr class="separator:aab56b257edb3d290fe7aad6d1f646453"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad505b864df3b8e3e1399f6151c270466"><td class="memItemLeft" align="right" valign="top">type(dim3) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehipfort__types.html#ad505b864df3b8e3e1399f6151c270466">hipfort_types::dim3_c_long_2</a> (x, y)</td></tr>
-<tr class="separator:ad505b864df3b8e3e1399f6151c270466"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af3cbb36e4ee1d43bf9f65a68f0ea579d"><td class="memItemLeft" align="right" valign="top">type(dim3) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehipfort__types.html#af3cbb36e4ee1d43bf9f65a68f0ea579d">hipfort_types::dim3_c_long_3</a> (x, y, z)</td></tr>
-<tr class="separator:af3cbb36e4ee1d43bf9f65a68f0ea579d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>

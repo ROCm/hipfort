@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -104,7 +104,7 @@ Public Member Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[rocblas_handle] handle to the rocblas library context queue.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">side</td><td>[rocblas_side] Specifies whether op(A_i) multiplies B_i from the left or right as follows: rocblas_side_left: B_i := alphaop( A_i )B_i. rocblas_side_right: B_i := alphaB_iop( A_i ).</td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">uplo</td><td>[rocblas_fill] Specifies whether the matrix A is an uppoer or lower triangular matrix as follows: rocblas_fill_upper: A is an upper triangular matrix. rocblas_fill_lower: A is a lower triangular matrix.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">uplo</td><td>[rocblas_fill] Specifies whether the matrix A is an upper or lower triangular matrix as follows: rocblas_fill_upper: A is an upper triangular matrix. rocblas_fill_lower: A is a lower triangular matrix.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">transA</td><td>[rocblas_operation] Specifies the form of op(A_i) to be used in the matrix multiplication as follows: rocblas_operation_none: op(A_i) = A_i. rocblas_operation_transpose: op(A_i) = A_i^T. rocblas_operation_conjugate_transpose: op(A_i) = A_i^H.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">diag</td><td>[rocblas_diagonal] Specifies whether or not A_i is unit triangular as follows: rocblas_diagonal_unit: A_i is assumed to be unit triangular. rocblas_diagonal_non_unit: A_i is not assumed to be unit triangular.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">m</td><td>[rocblas_int] m specifies the number of rows of B_i. m &gt;= 0.</td></tr>
@@ -121,7 +121,7 @@ Public Member Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>[rocblas_int] lda specifies the first dimension of A. if side == rocblas_side_left, lda &gt;= max( 1, m ), if side == rocblas_side_right, lda &gt;= max( 1, n ).</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">stride_A</td><td>[rocblas_stride] stride from the start of one matrix (A_i) and the next one (A_i+1)</td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">B</td><td>Device pointer to the first matrix B_0 on the GPU. On entry, the leading m by n part of the array B_i must contain the matrix B_i, and on exit is overwritten by the transformed matrix.</td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">B</td><td>Device pointer to the first matrix B_0 on the GPU. On entry, the leading m by n part of the array B_i must contain the matrix B_i, and on exit is overwritten by the transformed matrix.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ldb</td><td>[rocblas_int] ldb specifies the first dimension of B_i. ldb &gt;= max( 1, m ).</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">stride_B</td><td>[rocblas_stride] stride from the start of one matrix (B_i) and the next one (B_i+1) </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">batch_count</td><td>[rocblas_int] number of instances i in the batch. </td></tr>

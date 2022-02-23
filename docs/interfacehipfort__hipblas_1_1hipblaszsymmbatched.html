@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -80,6 +80,9 @@ $(function() {
 <div class="title">hipfort_hipblas::hipblaszsymmbatched Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>!  
+ <a href="interfacehipfort__hipblas_1_1hipblaszsymmbatched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -92,7 +95,36 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad800a1bb8baf88858a652bfa92617252"><td class="memItemLeft" align="right" valign="top">integer(kind(hipblas_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipblas_1_1hipblaszsymmbatched.html#ad800a1bb8baf88858a652bfa92617252">hipblaszsymmbatched_rank_1</a> (handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, ldc, batchCount)</td></tr>
 <tr class="separator:ad800a1bb8baf88858a652bfa92617252"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function/Subroutine Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>! </p>
+<p>BLAS Level 3 API</p>
+<pre class="fragment"> symmBatched performs a batch of the matrix-matrix operations:
+
+ C_i := alphaA_iB_i + betaC_i if side == HIPBLAS_SIDE_LEFT,
+ C_i := alphaB_iA_i + betaC_i if side == HIPBLAS_SIDE_RIGHT,
+
+ where alpha and beta are scalars, B_i and C_i are m by n matrices, and
+ A_i is a symmetric matrix stored as either upper or lower.
+</pre><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">side</td><td>[hipblasSideMode_t] HIPBLAS_SIDE_LEFT: C_i := alphaA_iB_i + betaC_i HIPBLAS_SIDE_RIGHT: C_i := alphaB_iA_i + betaC_i</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">uplo</td><td>[hipblasFillMode_t] HIPBLAS_FILL_MODE_UPPER: A_i is an upper triangular matrix HIPBLAS_FILL_MODE_LOWER: A_i is a lower triangular matrix</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">m</td><td>[int] m specifies the number of rows of B_i and C_i. m &gt;= 0.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>[int] n specifies the number of columns of B_i and C_i. n &gt;= 0.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">alpha</td><td>alpha specifies the scalar alpha. When alpha is zero then A_i and B_i are not referenced.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>device array of device pointers storing each matrix A_i on the GPU. A_i is m by m if side == HIPBLAS_SIDE_LEFT A_i is n by n if side == HIPBLAS_SIDE_RIGHT only the upperlower triangular part is accessed.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>[int] lda specifies the first dimension of A_i. if side = HIPBLAS_SIDE_LEFT, lda &gt;= max( 1, m ), otherwise lda &gt;= max( 1, n ).</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">B</td><td>device array of device pointers storing each matrix B_i on the GPU. Matrix dimension is m by n</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ldb</td><td>[int] ldb specifies the first dimension of B_i. ldb &gt;= max( 1, m )</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">beta</td><td>beta specifies the scalar beta. When beta is zero then C_i need not be set before entry.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">C</td><td>device array of device pointers storing each matrix C_i on the GPU. Matrix dimension is m by n</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ldc</td><td>[int] ldc specifies the first dimension of C_i. ldc &gt;= max( 1, m )</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">batchCount</td><td>[int] number of instances in the batch. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="a814d90b7fe9392c75d45a98037801828"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a814d90b7fe9392c75d45a98037801828">&#9670;&nbsp;</a></span>hipblaszsymmbatched_()</h2>
 

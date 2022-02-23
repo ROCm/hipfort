@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -93,10 +93,10 @@ Public Member Functions</h2></td></tr>
 <div class="textblock"><p>Return attributes for the specified pointer. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[out]</td><td class="paramname">attributes</td><td>for the specified pointer </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">pointer</td><td>to get attributes for <pre class="fragment">@return #hipSuccess, #hipErrorInvalidDevice, #hipErrorInvalidValue
+    <tr><td class="paramdir">[out]</td><td class="paramname">attributes</td><td>attributes for the specified pointer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ptr</td><td>pointer to get attributes for <pre class="fragment">@return #hipSuccess, #hipErrorInvalidDevice, #hipErrorInvalidValue
 
-@see hipGetDeviceCount, hipGetDevice, hipSetDevice, hipChooseDevice</pre> </td></tr>
+@see hipPointerGetAttribute</pre> </td></tr>
   </table>
   </dd>
 </dl>

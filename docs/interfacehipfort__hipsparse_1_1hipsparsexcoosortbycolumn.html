@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -81,22 +81,29 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Description: This routine sorts COO format by columns.  
+<p>!  
  <a href="interfacehipfort__hipsparse_1_1hipsparsexcoosortbycolumn.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aabbc65eb99fffaa27392700ac296206b"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsexcoosortbycolumn.html#aabbc65eb99fffaa27392700ac296206b">hipsparsexcoosortbycolumn_</a> (handle, m, n, nnz, cooRows, cooCols, P, pBuffer)</td></tr>
-<tr class="separator:aabbc65eb99fffaa27392700ac296206b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7cea8e87d3a24e7e71cbfceedfc71b18"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsexcoosortbycolumn.html#a7cea8e87d3a24e7e71cbfceedfc71b18">hipsparsexcoosortbycolumn_full_rank</a> (handle, m, n, nnz, cooRows, cooCols, P, pBuffer)</td></tr>
 <tr class="separator:a7cea8e87d3a24e7e71cbfceedfc71b18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:aabbc65eb99fffaa27392700ac296206b"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsexcoosortbycolumn.html#aabbc65eb99fffaa27392700ac296206b">hipsparsexcoosortbycolumn_</a> (handle, m, n, nnz, cooRows, cooCols, P, pBuffer)</td></tr>
+<tr class="separator:aabbc65eb99fffaa27392700ac296206b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a22564f040678228650226df6111de81c"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsexcoosortbycolumn.html#a22564f040678228650226df6111de81c">hipsparsexcoosortbycolumn_rank_0</a> (handle, m, n, nnz, cooRows, cooCols, P, pBuffer)</td></tr>
 <tr class="separator:a22564f040678228650226df6111de81c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aabce62b6c5c640bdfd231afebc24d9d4"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsexcoosortbycolumn.html#aabce62b6c5c640bdfd231afebc24d9d4">hipsparsexcoosortbycolumn_rank_1</a> (handle, m, n, nnz, cooRows, cooCols, P, pBuffer)</td></tr>
 <tr class="separator:aabce62b6c5c640bdfd231afebc24d9d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Description: This routine sorts COO format by columns. </p>
+<div class="textblock"><p>! </p>
+<p>Sort a sparse COO matrix by column</p>
+<p><code>hipsparseXcoosortByColumn</code> sorts a matrix in COO format by column. The sorted permutation vector <code>perm</code> can be used to obtain sorted <code>coo_val</code> array. In this case, <code>perm</code> must be initialized as the identity permutation, see hipsparseCreateIdentityPermutation().</p>
+<p><code>hipsparseXcoosortByColumn</code> requires extra temporary storage buffer that has to be allocated by the user. Storage buffer size can be determined by hipsparseXcoosort_bufferSizeExt().</p>
+<dl class="section note"><dt>Note</dt><dd><code>perm</code> can be <code>NULL</code> if a sorted permutation vector is not required.</dd>
+<dd>
+This function is non blocking and executed asynchronously with respect to the host. It may return before the actual computation has finished. </dd></dl>
 </div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="aabbc65eb99fffaa27392700ac296206b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aabbc65eb99fffaa27392700ac296206b">&#9670;&nbsp;</a></span>hipsparsexcoosortbycolumn_()</h2>

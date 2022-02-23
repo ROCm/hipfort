@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -80,6 +80,9 @@ $(function() {
 <div class="title">hipfort_hipblas::hipblaszher2batched Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>!  
+ <a href="interfacehipfort__hipblas_1_1hipblaszher2batched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -92,7 +95,32 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aebdc89c3353b44a4f712374a19a4f97f"><td class="memItemLeft" align="right" valign="top">integer(kind(hipblas_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipblas_1_1hipblaszher2batched.html#aebdc89c3353b44a4f712374a19a4f97f">hipblaszher2batched_rank_1</a> (handle, uplo, n, alpha, x, incx, y, incy, A, lda, batchCount)</td></tr>
 <tr class="separator:aebdc89c3353b44a4f712374a19a4f97f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function/Subroutine Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>! </p>
+<p>BLAS Level 2 API</p>
+<pre class="fragment"> her2Batched performs the matrix-vector operations
+
+     A_i := A_i + alphax_iy_iH + conj(alpha)y_ix_iH
+
+ where alpha is a complex scalar, x_i and y_i are vectors, and A_i is an
+ n by n Hermitian matrix for each batch in i = [1, batchCount].
+</pre><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">uplo</td><td>[hipblasFillMode_t] specifies whether the upper 'HIPBLAS_FILL_MODE_UPPER' or lower 'HIPBLAS_FILL_MODE_LOWER' HIPBLAS_FILL_MODE_UPPER: The upper triangular part of each A_i is supplied. HIPBLAS_FILL_MODE_LOWER: The lower triangular part of each A_i is supplied. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>[int] the number of rows and columns of each matrix A_i, must be at least 0. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">alpha</td><td>device pointer or host pointer to scalar alpha. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>device array of device pointers storing each vector x_i. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">incx</td><td>[int] specifies the increment for the elements of x. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">y</td><td>device array of device pointers storing each vector y_i. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">incy</td><td>[int] specifies the increment for the elements of each y_i. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>device array of device pointers storing the specified triangular portion of each Hermitian matrix A_i of size (lda, n). if uplo == HIPBLAS_FILL_MODE_UPPER: The upper triangular portion of each Hermitian matrix A_i is supplied. The lower triangular portion of each A_i will not be touched. if uplo == HIPBLAS_FILL_MODE_LOWER: The lower triangular portion of each Hermitian matrix A_i is supplied. The upper triangular portion of each A_i will not be touched. Note that the imaginary part of the diagonal elements are not accessed and are assumed to be 0. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>[int] specifies the leading dimension of each A_i. Must be at least max(lda, 1). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">batchCount</td><td>[int] number of instances in the batch. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="ae0c9d8b0df3cf699c0c65c8fce316a0c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae0c9d8b0df3cf699c0c65c8fce316a0c">&#9670;&nbsp;</a></span>hipblaszher2batched_()</h2>
 

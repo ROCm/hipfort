@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -80,24 +80,20 @@ $(function() {
 <div class="title">hipfort_hipsparse::hipsparsesbsrmm Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>Description: Matrix-matrix multiplication C = alpha op(A) B + beta C, where A is a sparse matrix in BSR storage format, B and C are dense matrices.  
- <a href="interfacehipfort__hipsparse_1_1hipsparsesbsrmm.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa9cf1b1683c09bd524d8085a5b0a6b1b"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsesbsrmm.html#aa9cf1b1683c09bd524d8085a5b0a6b1b">hipsparsesbsrmm_</a> (handle, dirA, transA, transB, mb, n, kb, nnzb, alpha, descrA, bsrValA, bsrRowPtrA, bsrColIndA, blockDim, B, ldb, beta, C, ldc)</td></tr>
-<tr class="separator:aa9cf1b1683c09bd524d8085a5b0a6b1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4dd1b5497906ba02bd3204ee0e46e6ec"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsesbsrmm.html#a4dd1b5497906ba02bd3204ee0e46e6ec">hipsparsesbsrmm_full_rank</a> (handle, dirA, transA, transB, mb, n, kb, nnzb, alpha, descrA, bsrValA, bsrRowPtrA, bsrColIndA, blockDim, B, ldb, beta, C, ldc)</td></tr>
 <tr class="separator:a4dd1b5497906ba02bd3204ee0e46e6ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:aa9cf1b1683c09bd524d8085a5b0a6b1b"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsesbsrmm.html#aa9cf1b1683c09bd524d8085a5b0a6b1b">hipsparsesbsrmm_</a> (handle, dirA, transA, transB, mb, n, kb, nnzb, alpha, descrA, bsrValA, bsrRowPtrA, bsrColIndA, blockDim, B, ldb, beta, C, ldc)</td></tr>
+<tr class="separator:aa9cf1b1683c09bd524d8085a5b0a6b1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b4ff44b2bb79c236714dcf05c8b57f6"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsesbsrmm.html#a3b4ff44b2bb79c236714dcf05c8b57f6">hipsparsesbsrmm_rank_0</a> (handle, dirA, transA, transB, mb, n, kb, nnzb, alpha, descrA, bsrValA, bsrRowPtrA, bsrColIndA, blockDim, B, ldb, beta, C, ldc)</td></tr>
 <tr class="separator:a3b4ff44b2bb79c236714dcf05c8b57f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad73b78435b847fa4548458d13f3cc0a7"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsesbsrmm.html#ad73b78435b847fa4548458d13f3cc0a7">hipsparsesbsrmm_rank_1</a> (handle, dirA, transA, transB, mb, n, kb, nnzb, alpha, descrA, bsrValA, bsrRowPtrA, bsrColIndA, blockDim, B, ldb, beta, C, ldc)</td></tr>
 <tr class="separator:ad73b78435b847fa4548458d13f3cc0a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Description: Matrix-matrix multiplication C = alpha op(A) B + beta C, where A is a sparse matrix in BSR storage format, B and C are dense matrices. </p>
-</div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
+<h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="aa9cf1b1683c09bd524d8085a5b0a6b1b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa9cf1b1683c09bd524d8085a5b0a6b1b">&#9670;&nbsp;</a></span>hipsparsesbsrmm_()</h2>
 

@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -80,22 +80,18 @@ $(function() {
 <div class="title">hipfort_hipsparse::hipsparsesbsrxmv Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>Description: Matrix-vector multiplication with a mask operation y(mask) = (alpha op(A) x + beta y)(mask), where A is a sparse matrix in a modified BSR storage format, x and y are dense vectors.  
- <a href="interfacehipfort__hipsparse_1_1hipsparsesbsrxmv.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7f2b3f7d5a13e45eabcc4a0abf833371"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsesbsrxmv.html#a7f2b3f7d5a13e45eabcc4a0abf833371">hipsparsesbsrxmv_</a> (handle, dir, trans, sizeOfMask, mb, nb, nnzb, alpha, descr, bsrVal, bsrMaskPtr, bsrRowPtr, bsrEndPtr, bsrColInd, blockDim, x, beta, y)</td></tr>
-<tr class="separator:a7f2b3f7d5a13e45eabcc4a0abf833371"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab1f38a1bc21e89a2c3d702e0b3f00c1b"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsesbsrxmv.html#ab1f38a1bc21e89a2c3d702e0b3f00c1b">hipsparsesbsrxmv_rank_0</a> (handle, dir, trans, sizeOfMask, mb, nb, nnzb, alpha, descr, bsrVal, bsrMaskPtr, bsrRowPtr, bsrEndPtr, bsrColInd, blockDim, x, beta, y)</td></tr>
 <tr class="separator:ab1f38a1bc21e89a2c3d702e0b3f00c1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a7f2b3f7d5a13e45eabcc4a0abf833371"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsesbsrxmv.html#a7f2b3f7d5a13e45eabcc4a0abf833371">hipsparsesbsrxmv_</a> (handle, dir, trans, sizeOfMask, mb, nb, nnzb, alpha, descr, bsrVal, bsrMaskPtr, bsrRowPtr, bsrEndPtr, bsrColInd, blockDim, x, beta, y)</td></tr>
+<tr class="separator:a7f2b3f7d5a13e45eabcc4a0abf833371"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a250e929b62c3ad099a7903e738b725e8"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsesbsrxmv.html#a250e929b62c3ad099a7903e738b725e8">hipsparsesbsrxmv_rank_1</a> (handle, dir, trans, sizeOfMask, mb, nb, nnzb, alpha, descr, bsrVal, bsrMaskPtr, bsrRowPtr, bsrEndPtr, bsrColInd, blockDim, x, beta, y)</td></tr>
 <tr class="separator:a250e929b62c3ad099a7903e738b725e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Description: Matrix-vector multiplication with a mask operation y(mask) = (alpha op(A) x + beta y)(mask), where A is a sparse matrix in a modified BSR storage format, x and y are dense vectors. </p>
-</div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
+<h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="a7f2b3f7d5a13e45eabcc4a0abf833371"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7f2b3f7d5a13e45eabcc4a0abf833371">&#9670;&nbsp;</a></span>hipsparsesbsrxmv_()</h2>
 

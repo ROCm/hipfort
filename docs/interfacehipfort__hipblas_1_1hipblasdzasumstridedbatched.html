@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -80,6 +80,9 @@ $(function() {
 <div class="title">hipfort_hipblas::hipblasdzasumstridedbatched Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>!  
+ <a href="interfacehipfort__hipblas_1_1hipblasdzasumstridedbatched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -90,7 +93,25 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aacf0b549a168bf15d9547257a73f639d"><td class="memItemLeft" align="right" valign="top">integer(kind(hipblas_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipblas_1_1hipblasdzasumstridedbatched.html#aacf0b549a168bf15d9547257a73f639d">hipblasdzasumstridedbatched_rank_1</a> (handle, n, x, incx, stridex, batchCount, myResult)</td></tr>
 <tr class="separator:aacf0b549a168bf15d9547257a73f639d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function/Subroutine Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>! </p>
+<p>BLAS Level 1 API</p>
+<pre class="fragment"> asumStridedBatched computes the sum of the magnitudes of elements of a real vectors x_i,
+     or the sum of magnitudes of the real and imaginary parts of elements if x_i is a complex
+     vector, for i = 1, ..., batchCount
+</pre><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>[int] number of elements in each vector x_i </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>device pointer to the first vector x_1. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">incx</td><td>[int] specifies the increment for the elements of each x_i. incx must be &gt; 0. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">stridex</td><td>[hipblasStride] stride from the start of one vector (x_i) and the next one (x_i+1). There are no restrictions placed on stride_x, however the user should take care to ensure that stride_x is of appropriate size, for a typical case this means stride_x &gt;= n incx. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">batchCount</td><td>[int] number of instances in the batch </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">result</td><td>device pointer or host pointer to array for storing contiguous batchCount results. return is 0.0 if n, incx&lt;=0. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="aec62596446c9f6f4b89fea38ff0c3302"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aec62596446c9f6f4b89fea38ff0c3302">&#9670;&nbsp;</a></span>hipblasdzasumstridedbatched_()</h2>
 

@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -117,8 +117,8 @@ first m rows of the product of k Householder reflectors of order n
 </pre><p class="formulaDsp">
 \[ Q = H_{n-1}H_{n-2}\cdots H_1 \]
 </p>
- <pre class="fragment">The Householder matrices \form#8 are never stored, they are computed from its corresponding
-Householder vectors \form#13 and scalars \form#26, as returned by \ref rocsolver_sgebrd "GEBRD" in its arguments A and tauq or taup.
+ <pre class="fragment">The Householder matrices \form#12 are never stored, they are computed from its corresponding
+Householder vectors \form#14 and scalars \form#56, as returned by \ref rocsolver_sgebrd "GEBRD" in its arguments A and tauq or taup.
 </pre><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>rocblas_handle. </td></tr>

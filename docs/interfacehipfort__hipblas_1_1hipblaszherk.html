@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -80,6 +80,9 @@ $(function() {
 <div class="title">hipfort_hipblas::hipblaszherk Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>!  
+ <a href="interfacehipfort__hipblas_1_1hipblaszherk.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -92,7 +95,35 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad7ff0be8f9acc271b5c17ce976487719"><td class="memItemLeft" align="right" valign="top">integer(kind(hipblas_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipblas_1_1hipblaszherk.html#ad7ff0be8f9acc271b5c17ce976487719">hipblaszherk_rank_1</a> (handle, uplo, transA, n, k, alpha, A, lda, beta, C, ldc)</td></tr>
 <tr class="separator:ad7ff0be8f9acc271b5c17ce976487719"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function/Subroutine Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>! </p>
+<p>BLAS Level 3 API</p>
+<pre class="fragment"> herk performs one of the matrix-matrix operations for a Hermitian rank-k update
+
+ C := alphaop( A )op( A )^H + betaC
+
+ where  alpha and beta are scalars, op(A) is an n by k matrix, and
+ C is a n x n Hermitian matrix stored as either upper or lower.
+
+     op( A ) = A,  and A is n by k if transA == HIPBLAS_OP_N
+     op( A ) = A^H and A is k by n if transA == HIPBLAS_OP_C
+</pre><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">uplo</td><td>[hipblasFillMode_t] HIPBLAS_FILL_MODE_UPPER: C is an upper triangular matrix HIPBLAS_FILL_MODE_LOWER: C is a lower triangular matrix</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">transA</td><td>[hipblasOperation_t] HIPBLAS_OP_C: op(A) = A^H HIPBLAS_ON_N: op(A) = A</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>[int] n specifies the number of rows and columns of C. n &gt;= 0.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">k</td><td>[int] k specifies the number of columns of op(A). k &gt;= 0.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">alpha</td><td>alpha specifies the scalar alpha. When alpha is zero then A is not referenced and A need not be set before entry.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>pointer storing matrix A on the GPU. Martrix dimension is ( lda, k ) when if transA = HIPBLAS_OP_N, otherwise (lda, n) only the upperlower triangular part is accessed.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>[int] lda specifies the first dimension of A. if transA = HIPBLAS_OP_N, lda &gt;= max( 1, n ), otherwise lda &gt;= max( 1, k ).</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">beta</td><td>beta specifies the scalar beta. When beta is zero then C need not be set before entry.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">C</td><td>pointer storing matrix C on the GPU. The imaginary component of the diagonal elements are not used but are set to zero unless quick return.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ldc</td><td>[int] ldc specifies the first dimension of C. ldc &gt;= max( 1, n ). </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="a681800849d595820b12ff5180ceb8ce0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a681800849d595820b12ff5180ceb8ce0">&#9670;&nbsp;</a></span>hipblaszherk_()</h2>
 

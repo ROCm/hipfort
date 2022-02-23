@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -80,6 +80,9 @@ $(function() {
 <div class="title">hipfort_hipblas::hipblasztbsvbatched Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>!  
+ <a href="interfacehipfort__hipblas_1_1hipblasztbsvbatched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -92,7 +95,34 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a57fa24e0fb0b841289fd94db18c94f25"><td class="memItemLeft" align="right" valign="top">integer(kind(hipblas_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipblas_1_1hipblasztbsvbatched.html#a57fa24e0fb0b841289fd94db18c94f25">hipblasztbsvbatched_rank_1</a> (handle, uplo, transA, diag, n, k, A, lda, x, incx, batchCount)</td></tr>
 <tr class="separator:a57fa24e0fb0b841289fd94db18c94f25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function/Subroutine Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>! </p>
+<p>BLAS Level 2 API</p>
+<pre class="fragment"> tbsvBatched solves
+
+      A_ix_i = b_i or A_iTx_i = b_i or A_iHx_i = b_i,
+
+ where x_i and b_i are vectors and A_i is a banded triangular matrix,
+ for i = [1, batchCount].
+
+ The input vectors b_i are overwritten by the output vectors x_i.
+</pre><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">uplo</td><td>[hipblasFillMode_t] HIPBLAS_FILL_MODE_UPPER: A_i is an upper triangular matrix. HIPBLAS_FILL_MODE_LOWER: A_i is a lower triangular matrix.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">transA</td><td>[hipblasOperation_t] HIPBLAS_OP_N: Solves A_ix_i = b_i HIPBLAS_OP_T: Solves A_iTx_i = b_i HIPBLAS_OP_C: Solves A_iHx_i = b_i</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">diag</td><td>[hipblasDiagType_t] HIPBLAS_DIAG_UNIT: each A_i is assumed to be unit triangular (i.e. the diagonal elements of each A_i are not used in computations). HIPBLAS_DIAG_NON_UNIT: each A_i is not assumed to be unit triangular.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>[int] n specifies the number of rows of each b_i. n &gt;= 0. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">k</td><td>[int] if(uplo == HIPBLAS_FILL_MODE_UPPER) k specifies the number of super-diagonals of each A_i. if(uplo == HIPBLAS_FILL_MODE_LOWER) k specifies the number of sub-diagonals of each A_i. k &gt;= 0.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>device vector of device pointers storing each matrix A_i in banded format.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>[int] specifies the leading dimension of each A_i. lda &gt;= (k + 1).</td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">x</td><td>device vector of device pointers storing each input vector b_i. Overwritten by each output vector x_i. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">incx</td><td>[int] specifies the increment for the elements of each x_i. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">batchCount</td><td>[int] number of instances in the batch. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="ad77547c763e9dffef8dda0c9a0b706ce"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad77547c763e9dffef8dda0c9a0b706ce">&#9670;&nbsp;</a></span>hipblasztbsvbatched_()</h2>
 

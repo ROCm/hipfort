@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -101,16 +101,16 @@ Public Member Functions</h2></td></tr>
 <p>GEQL2_STRIDED_BATCHED computes the QL factorization of a batch of general m-by-n matrices.</p>
 <pre class="fragment"> (This is the unblocked version of the algorithm).
 
- The factorization of matrix \form#52 in the batch has the form</pre><p> {array}] ]</p>
+ The factorization of matrix \form#72 in the batch has the form</pre><p> {array}] ]</p>
 <p>where \(L_j\) is lower triangular (lower trapezoidal if m &lt; n), and \(Q_j\) is a m-by-m orthogonalunitary matrix represented as the product of Householder matrices</p>
 <p class="formulaDsp">
 \[ Q = H_{j_k}H_{j_{k-1}}\cdots H_{j_1}, \quad \text{with} \: k = \text{min}(m,n) \]
 </p>
- <pre class="fragment">Each Householder matrix \form#56 is given by
+ <pre class="fragment">Each Householder matrix \form#76 is given by
 </pre><p class="formulaDsp">
 \[ H_{j_i} = I - \text{ipiv}_j[i] \cdot v_{j_i} v_{j_i}&#39; \]
 </p>
- <pre class="fragment">where the last m-i elements of the Householder vector \form#58 are zero, and \form#59.
+ <pre class="fragment">where the last m-i elements of the Householder vector \form#78 are zero, and \form#79.
 </pre><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>rocblas_handle. </td></tr>

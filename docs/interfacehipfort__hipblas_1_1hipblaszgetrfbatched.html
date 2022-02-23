@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -80,21 +80,60 @@ $(function() {
 <div class="title">hipfort_hipblas::hipblaszgetrfbatched Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>!  
+ <a href="interfacehipfort__hipblas_1_1hipblaszgetrfbatched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a2984a949267256c96da99f14f9d9f978"><td class="memItemLeft" align="right" valign="top">integer(kind(hipblas_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipblas_1_1hipblaszgetrfbatched.html#a2984a949267256c96da99f14f9d9f978">hipblaszgetrfbatched_</a> (handle, n, A, lda, ipiv, myInfo, batch_count)</td></tr>
-<tr class="separator:a2984a949267256c96da99f14f9d9f978"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad11b3372690ceb8e72729a2381d9bf86"><td class="memItemLeft" align="right" valign="top">integer(kind(hipblas_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipblas_1_1hipblaszgetrfbatched.html#ad11b3372690ceb8e72729a2381d9bf86">hipblaszgetrfbatched_full_rank</a> (handle, n, A, lda, ipiv, myInfo, batch_count)</td></tr>
-<tr class="separator:ad11b3372690ceb8e72729a2381d9bf86"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5bf8d4838334b76f8b81a7387659cf3"><td class="memItemLeft" align="right" valign="top">integer(kind(hipblas_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipblas_1_1hipblaszgetrfbatched.html#ad5bf8d4838334b76f8b81a7387659cf3">hipblaszgetrfbatched_rank_0</a> (handle, n, A, lda, ipiv, myInfo, batch_count)</td></tr>
-<tr class="separator:ad5bf8d4838334b76f8b81a7387659cf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a70245480aab721634be72bb4a810633e"><td class="memItemLeft" align="right" valign="top">integer(kind(hipblas_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipblas_1_1hipblaszgetrfbatched.html#a70245480aab721634be72bb4a810633e">hipblaszgetrfbatched_rank_1</a> (handle, n, A, lda, ipiv, myInfo, batch_count)</td></tr>
-<tr class="separator:a70245480aab721634be72bb4a810633e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a898471f4237923d4ea9498fbd782f253"><td class="memItemLeft" align="right" valign="top">integer(kind(hipblas_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipblas_1_1hipblaszgetrfbatched.html#a898471f4237923d4ea9498fbd782f253">hipblaszgetrfbatched_</a> (handle, n, A, lda, ipiv, myInfo, batchCount)</td></tr>
+<tr class="separator:a898471f4237923d4ea9498fbd782f253"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac63b1cb7f7d1689550093cfaaf3054da"><td class="memItemLeft" align="right" valign="top">integer(kind(hipblas_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipblas_1_1hipblaszgetrfbatched.html#ac63b1cb7f7d1689550093cfaaf3054da">hipblaszgetrfbatched_full_rank</a> (handle, n, A, lda, ipiv, myInfo, batchCount)</td></tr>
+<tr class="separator:ac63b1cb7f7d1689550093cfaaf3054da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0601feb3764e3925bb9a8812aeb1c96"><td class="memItemLeft" align="right" valign="top">integer(kind(hipblas_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipblas_1_1hipblaszgetrfbatched.html#aa0601feb3764e3925bb9a8812aeb1c96">hipblaszgetrfbatched_rank_0</a> (handle, n, A, lda, ipiv, myInfo, batchCount)</td></tr>
+<tr class="separator:aa0601feb3764e3925bb9a8812aeb1c96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6db020a64af8e46ce2ea9816e7d471a"><td class="memItemLeft" align="right" valign="top">integer(kind(hipblas_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipblas_1_1hipblaszgetrfbatched.html#aa6db020a64af8e46ce2ea9816e7d471a">hipblaszgetrfbatched_rank_1</a> (handle, n, A, lda, ipiv, myInfo, batchCount)</td></tr>
+<tr class="separator:aa6db020a64af8e46ce2ea9816e7d471a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function/Subroutine Documentation</h2>
-<a id="a2984a949267256c96da99f14f9d9f978"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2984a949267256c96da99f14f9d9f978">&#9670;&nbsp;</a></span>hipblaszgetrfbatched_()</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>! </p>
+<p>SOLVER API</p>
+<pre class="fragment"> getrfBatched computes the LU factorization of a batch of general
+ n-by-n matrices using partial pivoting with row interchanges. The LU factorization can
+ be done without pivoting if ipiv is passed as a nullptr.
+
+ In the case that ipiv is not null, the factorization of matrix \form#2 in the batch has the form:
+</pre><p class="formulaDsp">
+\[ A_i = P_iL_iU_i \]
+</p>
+ <pre class="fragment">where \form#4 is a permutation matrix, \form#5 is lower triangular with unit
+diagonal elements, and \form#6 is upper triangular.
+
+In the case that ipiv is null, the factorization is done without pivoting:
+</pre><p class="formulaDsp">
+\[ A_i = L_iU_i \]
+</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>hipblasHandle_t. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>int. n &gt;= 0.<br />
+ The number of columns and rows of all matrices A_i in the batch. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.<br />
+ On entry, the n-by-n matrices A_i to be factored. On exit, the factors L_i and U_i from the factorizations. The unit diagonal elements of L_i are not stored. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>int. lda &gt;= n.<br />
+ Specifies the leading dimension of matrices A_i. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">ipiv</td><td>pointer to int. Array on the GPU.<br />
+ Contains the vectors of pivot indices ipiv_i (corresponding to A_i). Dimension of ipiv_i is n. Elements of ipiv_i are 1-based indices. For each instance A_i in the batch and for 1 &lt;= j &lt;= n, the row j of the matrix A_i was interchanged with row ipiv_i[j]. Matrix P_i of the factorization can be derived from ipiv_i. The factorization here can be done without pivoting if ipiv is passed in as a nullptr. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">info</td><td>pointer to int. Array of batchCount integers on the GPU.<br />
+ If info[i] = 0, successful exit for factorization of A_i. If info[i] = j &gt; 0, U_i is singular. U_i[j,j] is the first zero pivot. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">batchCount</td><td>int. batchCount &gt;= 0.<br />
+ Number of matrices in the batch. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
+<a id="a898471f4237923d4ea9498fbd782f253"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a898471f4237923d4ea9498fbd782f253">&#9670;&nbsp;</a></span>hipblaszgetrfbatched_()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -139,7 +178,7 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">integer(c_int), value&#160;</td>
-          <td class="paramname"><em>batch_count</em>&#160;</td>
+          <td class="paramname"><em>batchCount</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -151,8 +190,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ad11b3372690ceb8e72729a2381d9bf86"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad11b3372690ceb8e72729a2381d9bf86">&#9670;&nbsp;</a></span>hipblaszgetrfbatched_full_rank()</h2>
+<a id="ac63b1cb7f7d1689550093cfaaf3054da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac63b1cb7f7d1689550093cfaaf3054da">&#9670;&nbsp;</a></span>hipblaszgetrfbatched_full_rank()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -197,7 +236,7 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">integer(c_int)&#160;</td>
-          <td class="paramname"><em>batch_count</em>&#160;</td>
+          <td class="paramname"><em>batchCount</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -209,8 +248,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ad5bf8d4838334b76f8b81a7387659cf3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad5bf8d4838334b76f8b81a7387659cf3">&#9670;&nbsp;</a></span>hipblaszgetrfbatched_rank_0()</h2>
+<a id="aa0601feb3764e3925bb9a8812aeb1c96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0601feb3764e3925bb9a8812aeb1c96">&#9670;&nbsp;</a></span>hipblaszgetrfbatched_rank_0()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -255,7 +294,7 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">integer(c_int)&#160;</td>
-          <td class="paramname"><em>batch_count</em>&#160;</td>
+          <td class="paramname"><em>batchCount</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -267,8 +306,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a70245480aab721634be72bb4a810633e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a70245480aab721634be72bb4a810633e">&#9670;&nbsp;</a></span>hipblaszgetrfbatched_rank_1()</h2>
+<a id="aa6db020a64af8e46ce2ea9816e7d471a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6db020a64af8e46ce2ea9816e7d471a">&#9670;&nbsp;</a></span>hipblaszgetrfbatched_rank_1()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -313,7 +352,7 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">integer(c_int)&#160;</td>
-          <td class="paramname"><em>batch_count</em>&#160;</td>
+          <td class="paramname"><em>batchCount</em>&#160;</td>
         </tr>
         <tr>
           <td></td>

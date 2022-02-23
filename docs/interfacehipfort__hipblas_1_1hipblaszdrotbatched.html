@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -80,6 +80,9 @@ $(function() {
 <div class="title">hipfort_hipblas::hipblaszdrotbatched Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>!  
+ <a href="interfacehipfort__hipblas_1_1hipblaszdrotbatched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -92,7 +95,26 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab7b6d8596574580a5c4fe280279d3ac6"><td class="memItemLeft" align="right" valign="top">integer(kind(hipblas_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipblas_1_1hipblaszdrotbatched.html#ab7b6d8596574580a5c4fe280279d3ac6">hipblaszdrotbatched_rank_1</a> (handle, n, x, incx, y, incy, c, s, batchCount)</td></tr>
 <tr class="separator:ab7b6d8596574580a5c4fe280279d3ac6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function/Subroutine Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>! </p>
+<p>BLAS Level 1 API</p>
+<pre class="fragment"> rotBatched applies the Givens rotation matrix defined by c=cos(alpha) and s=sin(alpha) to batched vectors x_i and y_i, for i = 1, ..., batchCount.
+     Scalars c and s may be stored in either host or device memory, location is specified by calling hipblasSetPointerMode.
+</pre><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>[int] number of elements in each x_i and y_i vectors. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">x</td><td>device array of deivce pointers storing each vector x_i. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">incx</td><td>[int] specifies the increment between elements of each x_i. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">y</td><td>device array of device pointers storing each vector y_i. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">incy</td><td>[int] specifies the increment between elements of each y_i. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">c</td><td>device pointer or host pointer to scalar cosine component of the rotation matrix. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">s</td><td>device pointer or host pointer to scalar sine component of the rotation matrix. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">batchCount</td><td>[int] the number of x and y arrays, i.e. the number of batches. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="a4fc99331b5c9d96a096b82f26037164c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4fc99331b5c9d96a096b82f26037164c">&#9670;&nbsp;</a></span>hipblaszdrotbatched_()</h2>
 

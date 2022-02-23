@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -101,20 +101,20 @@ Public Member Functions</h2></td></tr>
 <p>GERQ2_STRIDED_BATCHED computes the RQ factorization of a batch of general m-by-n matrices.</p>
 <pre class="fragment"> (This is the unblocked version of the algorithm).
 
- The factorization of matrix \form#52 in the batch has the form
+ The factorization of matrix \form#72 in the batch has the form
 </pre><p class="formulaDsp">
 \[ A_j = \left[\begin{array}{cc} 0 &amp; R_j \end{array}\right] Q_j \]
 </p>
- <pre class="fragment">where \form#53 is upper triangular (upper trapezoidal if m &gt; n), and \form#54 is
+ <pre class="fragment">where \form#73 is upper triangular (upper trapezoidal if m &gt; n), and \form#74 is
 a n-by-n orthogonalunitary matrix represented as the product of Householder matrices
 </pre><p class="formulaDsp">
 \[ Q_j = H_{j_1}&#39;H_{j_2}&#39; \cdots H_{j_k}&#39;, \quad \text{with} \: k = \text{min}(m,n). \]
 </p>
- <pre class="fragment">Each Householder matrices \form#56 is given by
+ <pre class="fragment">Each Householder matrices \form#76 is given by
 </pre><p class="formulaDsp">
 \[ H_{j_i} = I - \text{ipiv}_j[i] \cdot v_{j_i} v_{j_i}&#39; \]
 </p>
- <pre class="fragment">where the last n-i elements of Householder vector \form#58 are zero, and \form#59.
+ <pre class="fragment">where the last n-i elements of Householder vector \form#78 are zero, and \form#79.
 </pre><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>rocblas_handle. </td></tr>

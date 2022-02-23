@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -255,6 +255,12 @@ Data Types</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hippointergetattributes.html">hipfort::hippointergetattributes</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return attributes for the specified pointer.  <a href="interfacehipfort_1_1hippointergetattributes.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hippointergetattribute.html">hipfort::hippointergetattribute</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns information about the specified pointer.  <a href="interfacehipfort_1_1hippointergetattribute.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipdrvpointergetattributes.html">hipfort::hipdrvpointergetattributes</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns information about the specified pointer.  <a href="interfacehipfort_1_1hipdrvpointergetattributes.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipsignalexternalsemaphoresasync.html">hipfort::hipsignalexternalsemaphoresasync</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Signals a set of external semaphore objects.  <a href="interfacehipfort_1_1hipsignalexternalsemaphoresasync.html#details">More...</a><br /></td></tr>
@@ -582,6 +588,7 @@ Data Types</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies memory for 2D arrays.  <a href="interfacehipfort_1_1hipdrvmemcpy2dunaligned.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipextlaunchkernel.html">hipfort::hipextlaunchkernel</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Launches kernel from the pointer address, with arguments and shared memory on stream.  <a href="interfacehipfort_1_1hipextlaunchkernel.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipbindtexture.html">hipfort::hipbindtexture</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -592,20 +599,6 @@ Data Types</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgettexturealignmentoffset.html">hipfort::hipgettexturealignmentoffset</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipunbindtexture.html">hipfort::hipunbindtexture</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipbindtexturetomipmappedarray.html">hipfort::hipbindtexturetomipmappedarray</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipcreatetextureobject.html">hipfort::hipcreatetextureobject</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipdestroytextureobject.html">hipfort::hipdestroytextureobject</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgetchanneldesc.html">hipfort::hipgetchanneldesc</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgettextureobjectresourcedesc.html">hipfort::hipgettextureobjectresourcedesc</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgettextureobjectresourceviewdesc.html">hipfort::hipgettextureobjectresourceviewdesc</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgettextureobjecttexturedesc.html">hipfort::hipgettextureobjecttexturedesc</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hiptexrefgetaddress.html">hipfort::hiptexrefgetaddress</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -631,6 +624,22 @@ Data Types</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hiptexrefsetaddress2d.html">hipfort::hiptexrefsetaddress2d</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hiptexrefsetmaxanisotropy.html">hipfort::hiptexrefsetmaxanisotropy</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipbindtexturetomipmappedarray.html">hipfort::hipbindtexturetomipmappedarray</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipcreatetextureobject.html">hipfort::hipcreatetextureobject</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipdestroytextureobject.html">hipfort::hipdestroytextureobject</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgetchanneldesc.html">hipfort::hipgetchanneldesc</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgettextureobjectresourcedesc.html">hipfort::hipgettextureobjectresourcedesc</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgettextureobjectresourceviewdesc.html">hipfort::hipgettextureobjectresourceviewdesc</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgettextureobjecttexturedesc.html">hipfort::hipgettextureobjecttexturedesc</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hiptexrefsetaddressmode.html">hipfort::hiptexrefsetaddressmode</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hiptexrefsetarray.html">hipfort::hiptexrefsetarray</a></td></tr>
@@ -640,8 +649,6 @@ Data Types</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hiptexrefsetflags.html">hipfort::hiptexrefsetflags</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hiptexrefsetformat.html">hipfort::hiptexrefsetformat</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hiptexrefsetmaxanisotropy.html">hipfort::hiptexrefsetmaxanisotropy</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hiptexobjectcreate.html">hipfort::hiptexobjectcreate</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -670,7 +677,6 @@ Data Types</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipmipmappedarraygetlevel.html">hipfort::hipmipmappedarraygetlevel</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipregisterapicallback.html">hipfort::hipregisterapicallback</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">CallbackActivity API.  <a href="interfacehipfort_1_1hipregisterapicallback.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipremoveapicallback.html">hipfort::hipremoveapicallback</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -684,32 +690,32 @@ Data Types</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipstreamendcapture.html">hipfort::hipstreamendcapture</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ends capture on a stream, returning the captured graph.  <a href="interfacehipfort_1_1hipstreamendcapture.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipstreamgetcaptureinfo.html">hipfort::hipstreamgetcaptureinfo</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get capture status of a stream.  <a href="interfacehipfort_1_1hipstreamgetcaptureinfo.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipstreamgetcaptureinfo__v2.html">hipfort::hipstreamgetcaptureinfo_v2</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get stream's capture state.  <a href="interfacehipfort_1_1hipstreamgetcaptureinfo__v2.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipstreamiscapturing.html">hipfort::hipstreamiscapturing</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get stream's capture state.  <a href="interfacehipfort_1_1hipstreamiscapturing.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipstreamupdatecapturedependencies.html">hipfort::hipstreamupdatecapturedependencies</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the set of dependencies in a capturing stream.  <a href="interfacehipfort_1_1hipstreamupdatecapturedependencies.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphcreate.html">hipfort::hipgraphcreate</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a graph.  <a href="interfacehipfort_1_1hipgraphcreate.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphdestroy.html">hipfort::hipgraphdestroy</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys a graph.  <a href="interfacehipfort_1_1hipgraphdestroy.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphexecdestroy.html">hipfort::hipgraphexecdestroy</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys an executable graph.  <a href="interfacehipfort_1_1hipgraphexecdestroy.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphadddependencies.html">hipfort::hipgraphadddependencies</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds dependency edges to a graph.  <a href="interfacehipfort_1_1hipgraphadddependencies.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphinstantiate.html">hipfort::hipgraphinstantiate</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an executable graph from a graph.  <a href="interfacehipfort_1_1hipgraphinstantiate.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphremovedependencies.html">hipfort::hipgraphremovedependencies</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes dependency edges from a graph.  <a href="interfacehipfort_1_1hipgraphremovedependencies.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphlaunch.html">hipfort::hipgraphlaunch</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">launches an executable graph in a stream  <a href="interfacehipfort_1_1hipgraphlaunch.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphaddkernelnode.html">hipfort::hipgraphaddkernelnode</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a kernel execution node and adds it to a graph.  <a href="interfacehipfort_1_1hipgraphaddkernelnode.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphaddmemcpynode.html">hipfort::hipgraphaddmemcpynode</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a memcpy node and adds it to a graph.  <a href="interfacehipfort_1_1hipgraphaddmemcpynode.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphaddmemcpynode1d.html">hipfort::hipgraphaddmemcpynode1d</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a 1D memcpy node and adds it to a graph.  <a href="interfacehipfort_1_1hipgraphaddmemcpynode1d.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphaddmemsetnode.html">hipfort::hipgraphaddmemsetnode</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a memset node and adds it to a graph.  <a href="interfacehipfort_1_1hipgraphaddmemsetnode.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphgetedges.html">hipfort::hipgraphgetedges</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a graph's dependency edges.  <a href="interfacehipfort_1_1hipgraphgetedges.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphgetnodes.html">hipfort::hipgraphgetnodes</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns graph nodes.  <a href="interfacehipfort_1_1hipgraphgetnodes.html#details">More...</a><br /></td></tr>
@@ -717,11 +723,54 @@ Data Types</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphgetrootnodes.html">hipfort::hipgraphgetrootnodes</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns graph's root nodes.  <a href="interfacehipfort_1_1hipgraphgetrootnodes.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphnodegetdependencies.html">hipfort::hipgraphnodegetdependencies</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a node's dependencies.  <a href="interfacehipfort_1_1hipgraphnodegetdependencies.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphnodegetdependentnodes.html">hipfort::hipgraphnodegetdependentnodes</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a node's dependent nodes.  <a href="interfacehipfort_1_1hipgraphnodegetdependentnodes.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphnodegettype.html">hipfort::hipgraphnodegettype</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a node's type.  <a href="interfacehipfort_1_1hipgraphnodegettype.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphdestroynode.html">hipfort::hipgraphdestroynode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove a node from the graph.  <a href="interfacehipfort_1_1hipgraphdestroynode.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphclone.html">hipfort::hipgraphclone</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clones a graph.  <a href="interfacehipfort_1_1hipgraphclone.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphnodefindinclone.html">hipfort::hipgraphnodefindinclone</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds a cloned version of a node.  <a href="interfacehipfort_1_1hipgraphnodefindinclone.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphinstantiate.html">hipfort::hipgraphinstantiate</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an executable graph from a graph.  <a href="interfacehipfort_1_1hipgraphinstantiate.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphinstantiatewithflags.html">hipfort::hipgraphinstantiatewithflags</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an executable graph from a graph.  <a href="interfacehipfort_1_1hipgraphinstantiatewithflags.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphlaunch.html">hipfort::hipgraphlaunch</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">launches an executable graph in a stream  <a href="interfacehipfort_1_1hipgraphlaunch.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphexecdestroy.html">hipfort::hipgraphexecdestroy</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys an executable graph.  <a href="interfacehipfort_1_1hipgraphexecdestroy.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphexecupdate.html">hipfort::hipgraphexecupdate</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check whether an executable graph can be updated with a graph and perform the update if <br />
+ possible.  <a href="interfacehipfort_1_1hipgraphexecupdate.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphaddkernelnode.html">hipfort::hipgraphaddkernelnode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a kernel execution node and adds it to a graph.  <a href="interfacehipfort_1_1hipgraphaddkernelnode.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphkernelnodegetparams.html">hipfort::hipgraphkernelnodegetparams</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets kernel node's parameters.  <a href="interfacehipfort_1_1hipgraphkernelnodegetparams.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphkernelnodesetparams.html">hipfort::hipgraphkernelnodesetparams</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a kernel node's parameters.  <a href="interfacehipfort_1_1hipgraphkernelnodesetparams.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphexeckernelnodesetparams.html">hipfort::hipgraphexeckernelnodesetparams</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the parameters for a kernel node in the given graphExec.  <a href="interfacehipfort_1_1hipgraphexeckernelnodesetparams.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphaddmemcpynode.html">hipfort::hipgraphaddmemcpynode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a memcpy node and adds it to a graph.  <a href="interfacehipfort_1_1hipgraphaddmemcpynode.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphmemcpynodegetparams.html">hipfort::hipgraphmemcpynodegetparams</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a memcpy node's parameters.  <a href="interfacehipfort_1_1hipgraphmemcpynodegetparams.html#details">More...</a><br /></td></tr>
@@ -729,20 +778,95 @@ Data Types</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphmemcpynodesetparams.html">hipfort::hipgraphmemcpynodesetparams</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a memcpy node's parameters.  <a href="interfacehipfort_1_1hipgraphmemcpynodesetparams.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphexecmemcpynodesetparams.html">hipfort::hipgraphexecmemcpynodesetparams</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the parameters for a memcpy node in the given graphExec.  <a href="interfacehipfort_1_1hipgraphexecmemcpynodesetparams.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphaddmemcpynode1d.html">hipfort::hipgraphaddmemcpynode1d</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a 1D memcpy node and adds it to a graph.  <a href="interfacehipfort_1_1hipgraphaddmemcpynode1d.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphmemcpynodesetparams1d.html">hipfort::hipgraphmemcpynodesetparams1d</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a memcpy node's parameters to perform a 1-dimensional copy.  <a href="interfacehipfort_1_1hipgraphmemcpynodesetparams1d.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphexecmemcpynodesetparams1d.html">hipfort::hipgraphexecmemcpynodesetparams1d</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the parameters for a memcpy node in the given graphExec to perform a 1-dimensional copy.  <a href="interfacehipfort_1_1hipgraphexecmemcpynodesetparams1d.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphaddmemcpynodefromsymbol.html">hipfort::hipgraphaddmemcpynodefromsymbol</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a memcpy node to copy from a symbol on the device and adds it to a graph.  <a href="interfacehipfort_1_1hipgraphaddmemcpynodefromsymbol.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphmemcpynodesetparamsfromsymbol.html">hipfort::hipgraphmemcpynodesetparamsfromsymbol</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a memcpy node's parameters to copy from a symbol on the device.  <a href="interfacehipfort_1_1hipgraphmemcpynodesetparamsfromsymbol.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphexecmemcpynodesetparamsfromsymbol.html">hipfort::hipgraphexecmemcpynodesetparamsfromsymbol</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the parameters for a memcpy node in the given graphExec to copy from a symbol on the device.  <a href="interfacehipfort_1_1hipgraphexecmemcpynodesetparamsfromsymbol.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphaddmemcpynodetosymbol.html">hipfort::hipgraphaddmemcpynodetosymbol</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a memcpy node to copy to a symbol on the device and adds it to a graph.  <a href="interfacehipfort_1_1hipgraphaddmemcpynodetosymbol.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphmemcpynodesetparamstosymbol.html">hipfort::hipgraphmemcpynodesetparamstosymbol</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a memcpy node's parameters to copy to a symbol on the device.  <a href="interfacehipfort_1_1hipgraphmemcpynodesetparamstosymbol.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphexecmemcpynodesetparamstosymbol.html">hipfort::hipgraphexecmemcpynodesetparamstosymbol</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the parameters for a memcpy node in the given graphExec to copy to a symbol on the device.  <a href="interfacehipfort_1_1hipgraphexecmemcpynodesetparamstosymbol.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphaddmemsetnode.html">hipfort::hipgraphaddmemsetnode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a memset node and adds it to a graph.  <a href="interfacehipfort_1_1hipgraphaddmemsetnode.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphmemsetnodegetparams.html">hipfort::hipgraphmemsetnodegetparams</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a memset node's parameters.  <a href="interfacehipfort_1_1hipgraphmemsetnodegetparams.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphmemsetnodesetparams.html">hipfort::hipgraphmemsetnodesetparams</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a memset node's parameters.  <a href="interfacehipfort_1_1hipgraphmemsetnodesetparams.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphexeckernelnodesetparams.html">hipfort::hipgraphexeckernelnodesetparams</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the parameters for a kernel node in the given graphExec.  <a href="interfacehipfort_1_1hipgraphexeckernelnodesetparams.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphexecmemsetnodesetparams.html">hipfort::hipgraphexecmemsetnodesetparams</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the parameters for a memset node in the given graphExec.  <a href="interfacehipfort_1_1hipgraphexecmemsetnodesetparams.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphadddependencies.html">hipfort::hipgraphadddependencies</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds dependency edges to a graph.  <a href="interfacehipfort_1_1hipgraphadddependencies.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphaddhostnode.html">hipfort::hipgraphaddhostnode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a host execution node and adds it to a graph.  <a href="interfacehipfort_1_1hipgraphaddhostnode.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphhostnodegetparams.html">hipfort::hipgraphhostnodegetparams</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a host node's parameters.  <a href="interfacehipfort_1_1hipgraphhostnodegetparams.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphhostnodesetparams.html">hipfort::hipgraphhostnodesetparams</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a host node's parameters.  <a href="interfacehipfort_1_1hipgraphhostnodesetparams.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphexechostnodesetparams.html">hipfort::hipgraphexechostnodesetparams</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the parameters for a host node in the given graphExec.  <a href="interfacehipfort_1_1hipgraphexechostnodesetparams.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphaddchildgraphnode.html">hipfort::hipgraphaddchildgraphnode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a child graph node and adds it to a graph.  <a href="interfacehipfort_1_1hipgraphaddchildgraphnode.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphchildgraphnodegetgraph.html">hipfort::hipgraphchildgraphnodegetgraph</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a handle to the embedded graph of a child graph node.  <a href="interfacehipfort_1_1hipgraphchildgraphnodegetgraph.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphexecchildgraphnodesetparams.html">hipfort::hipgraphexecchildgraphnodesetparams</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates node parameters in the child graph node in the given graphExec.  <a href="interfacehipfort_1_1hipgraphexecchildgraphnodesetparams.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphaddemptynode.html">hipfort::hipgraphaddemptynode</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an empty node and adds it to a graph.  <a href="interfacehipfort_1_1hipgraphaddemptynode.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphaddeventrecordnode.html">hipfort::hipgraphaddeventrecordnode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an event record node and adds it to a graph.  <a href="interfacehipfort_1_1hipgraphaddeventrecordnode.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgrapheventrecordnodegetevent.html">hipfort::hipgrapheventrecordnodegetevent</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the event associated with an event record node.  <a href="interfacehipfort_1_1hipgrapheventrecordnodegetevent.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgrapheventrecordnodesetevent.html">hipfort::hipgrapheventrecordnodesetevent</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets an event record node's event.  <a href="interfacehipfort_1_1hipgrapheventrecordnodesetevent.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphexeceventrecordnodesetevent.html">hipfort::hipgraphexeceventrecordnodesetevent</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the event for an event record node in the given graphExec.  <a href="interfacehipfort_1_1hipgraphexeceventrecordnodesetevent.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphaddeventwaitnode.html">hipfort::hipgraphaddeventwaitnode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an event wait node and adds it to a graph.  <a href="interfacehipfort_1_1hipgraphaddeventwaitnode.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgrapheventwaitnodegetevent.html">hipfort::hipgrapheventwaitnodegetevent</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the event associated with an event wait node.  <a href="interfacehipfort_1_1hipgrapheventwaitnodegetevent.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgrapheventwaitnodesetevent.html">hipfort::hipgrapheventwaitnodesetevent</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets an event wait node's event.  <a href="interfacehipfort_1_1hipgrapheventwaitnodesetevent.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphexeceventwaitnodesetevent.html">hipfort::hipgraphexeceventwaitnodesetevent</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the event for an event record node in the given graphExec.  <a href="interfacehipfort_1_1hipgraphexeceventwaitnodesetevent.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>

@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -80,6 +80,9 @@ $(function() {
 <div class="title">hipfort_hipblas::hipblaszsymv Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>!  
+ <a href="interfacehipfort__hipblas_1_1hipblaszsymv.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -92,7 +95,32 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a413c80a1422acfb19df4c3c71d4feddb"><td class="memItemLeft" align="right" valign="top">integer(kind(hipblas_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipblas_1_1hipblaszsymv.html#a413c80a1422acfb19df4c3c71d4feddb">hipblaszsymv_rank_1</a> (handle, uplo, n, alpha, A, lda, x, incx, beta, y, incy)</td></tr>
 <tr class="separator:a413c80a1422acfb19df4c3c71d4feddb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function/Subroutine Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>! </p>
+<p>BLAS Level 2 API</p>
+<pre class="fragment"> symv performs the matrix-vector operation:
+
+     y := alphaAx + betay,
+
+ where alpha and beta are scalars, x and y are n element vectors and
+ A should contain an upper or lower triangular n by n symmetric matrix.
+</pre><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">uplo</td><td>[hipblasFillMode_t] specifies whether the upper 'HIPBLAS_FILL_MODE_UPPER' or lower 'HIPBLAS_FILL_MODE_LOWER' if HIPBLAS_FILL_MODE_UPPER, the lower part of A is not referenced if HIPBLAS_FILL_MODE_LOWER, the upper part of A is not referenced </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>[int] </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">alpha</td><td>specifies the scalar alpha </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>pointer storing matrix A on the GPU </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>[int] specifies the leading dimension of A </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>pointer storing vector x on the GPU </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">incx</td><td>[int] specifies the increment for the elements of x </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">beta</td><td>specifies the scalar beta </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">y</td><td>pointer storing vector y on the GPU </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">incy</td><td>[int] specifies the increment for the elements of y </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="a7a8eebd823325d2e7e7d16e67a7fe608"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7a8eebd823325d2e7e7d16e67a7fe608">&#9670;&nbsp;</a></span>hipblaszsymv_()</h2>
 

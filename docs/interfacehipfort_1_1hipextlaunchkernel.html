@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -80,13 +80,33 @@ $(function() {
 <div class="title">hipfort::hipextlaunchkernel Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Launches kernel from the pointer address, with arguments and shared memory on stream.  
+ <a href="interfacehipfort_1_1hipextlaunchkernel.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a4c3ff0bf41ef8fd71f9def9fc1eae5e4"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsuccess)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipextlaunchkernel.html#a4c3ff0bf41ef8fd71f9def9fc1eae5e4">hipextlaunchkernel_</a> (function_address, numBlocks, dimBlocks, args, sharedMemBytes, stream, startEvent, stopEvent, flags)</td></tr>
 <tr class="separator:a4c3ff0bf41ef8fd71f9def9fc1eae5e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function/Subroutine Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Launches kernel from the pointer address, with arguments and shared memory on stream. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">function_address</td><td>pointer to the Kernel to launch. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">numBlocks</td><td>number of blocks. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dimBlocks</td><td>dimension of a block. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">args</td><td>pointer to kernel arguments. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sharedMemBytes</td><td>Amount of dynamic shared memory to allocate for this kernel. HIP-Clang compiler provides support for extern shared declarations. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">stream</td><td>Stream where the kernel should be dispatched. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">startEvent</td><td>If non-null, specified event will be updated to track the start time of the kernel launch. The event must be created before calling this API. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">stopEvent</td><td>If non-null, specified event will be updated to track the stop time of the kernel launch. The event must be created before calling this API. May be 0, in which case the default stream is used with associated synchronization rules. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">flags.</td><td>The value of hipExtAnyOrderLaunch, signifies if kernel can be launched in any order. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>hipSuccess, hipInvalidDevice, hipErrorNotInitialized, hipErrorInvalidValue. </dd></dl>
+</div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="a4c3ff0bf41ef8fd71f9def9fc1eae5e4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4c3ff0bf41ef8fd71f9def9fc1eae5e4">&#9670;&nbsp;</a></span>hipextlaunchkernel_()</h2>
 

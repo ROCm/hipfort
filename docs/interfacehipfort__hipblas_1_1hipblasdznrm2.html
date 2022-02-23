@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -80,6 +80,9 @@ $(function() {
 <div class="title">hipfort_hipblas::hipblasdznrm2 Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>!  
+ <a href="interfacehipfort__hipblas_1_1hipblasdznrm2.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -90,7 +93,24 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5246300e3ee3f6331c0db67d81502c7c"><td class="memItemLeft" align="right" valign="top">integer(kind(hipblas_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipblas_1_1hipblasdznrm2.html#a5246300e3ee3f6331c0db67d81502c7c">hipblasdznrm2_rank_1</a> (handle, n, x, incx, myResult)</td></tr>
 <tr class="separator:a5246300e3ee3f6331c0db67d81502c7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function/Subroutine Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>! </p>
+<p>BLAS Level 1 API</p>
+<pre class="fragment"> nrm2 computes the euclidean norm of a real or complex vector
+
+           result := sqrt( x'x ) for real vectors
+           result := sqrt( xHx ) for complex vectors
+</pre><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>[int] the number of elements in x. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>device pointer storing vector x. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">incx</td><td>[int] specifies the increment for the elements of y. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">result</td><td>device pointer or host pointer to store the nrm2 product. return is 0.0 if n, incx&lt;=0. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="a9f0997cc01b9f9272d86c18cf7c6b139"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9f0997cc01b9f9272d86c18cf7c6b139">&#9670;&nbsp;</a></span>hipblasdznrm2_()</h2>
 

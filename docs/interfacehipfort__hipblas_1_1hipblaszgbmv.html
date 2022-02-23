@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -80,6 +80,9 @@ $(function() {
 <div class="title">hipfort_hipblas::hipblaszgbmv Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>!  
+ <a href="interfacehipfort__hipblas_1_1hipblaszgbmv.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -92,7 +95,37 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2d148f9b40ee35fa6bd90ba52c019b6a"><td class="memItemLeft" align="right" valign="top">integer(kind(hipblas_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipblas_1_1hipblaszgbmv.html#a2d148f9b40ee35fa6bd90ba52c019b6a">hipblaszgbmv_rank_1</a> (handle, trans, m, n, kl, ku, alpha, A, lda, x, incx, beta, y, incy)</td></tr>
 <tr class="separator:a2d148f9b40ee35fa6bd90ba52c019b6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function/Subroutine Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>! </p>
+<p>BLAS Level 2 API</p>
+<pre class="fragment"> gbmv performs one of the matrix-vector operations
+
+     y := alphaAx    + betay,   or
+     y := alphaATx + betay,   or
+     y := alphaAHx + betay,
+
+ where alpha and beta are scalars, x and y are vectors and A is an
+ m by n banded matrix with kl sub-diagonals and ku super-diagonals.
+</pre><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">trans</td><td>[hipblasOperation_t] indicates whether matrix A is tranposed (conjugated) or not </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">m</td><td>[int] number of rows of matrix A </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>[int] number of columns of matrix A </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">kl</td><td>[int] number of sub-diagonals of A </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ku</td><td>[int] number of super-diagonals of A </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">alpha</td><td>device pointer or host pointer to scalar alpha. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>device pointer storing banded matrix A. Leading (kl + ku + 1) by n part of the matrix contains the coefficients of the banded matrix. The leading diagonal resides in row (ku + 1) with the first super-diagonal above on the RHS of row ku. The first sub-diagonal resides below on the LHS of row ku + 2. This propogates up and down across subsuper-diagonals. Ex: (m = n = 7; ku = 2, kl = 2) 1 2 3 0 0 0 0 0 0 3 3 3 3 3 4 1 2 3 0 0 0 0 2 2 2 2 2 2 5 4 1 2 3 0 0 -&mdash;&gt; 1 1 1 1 1 1 1 0 5 4 1 2 3 0 4 4 4 4 4 4 0 0 0 5 4 1 2 0 5 5 5 5 5 0 0 0 0 0 5 4 1 2 0 0 0 0 0 0 0 0 0 0 0 5 4 1 0 0 0 0 0 0 0 Note that the empty elements which don't correspond to data will not be referenced. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>[int] specifies the leading dimension of A. Must be &gt;= (kl + ku + 1) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>device pointer storing vector x. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">incx</td><td>[int] specifies the increment for the elements of x. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">beta</td><td>device pointer or host pointer to scalar beta. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">y</td><td>device pointer storing vector y. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">incy</td><td>[int] specifies the increment for the elements of y. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="ac0d87821e538b613db5559a1a41f2c2c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac0d87821e538b613db5559a1a41f2c2c">&#9670;&nbsp;</a></span>hipblaszgbmv_()</h2>
 

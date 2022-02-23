@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -81,21 +81,33 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Description: This routine converts a sparse matrix in COO storage format to a sparse matrix in CSR storage format.  
+<p>!  
  <a href="interfacehipfort__hipsparse_1_1hipsparsexcoo2csr.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a561d07e97bfb02c2cd1f249b691a23e7"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsexcoo2csr.html#a561d07e97bfb02c2cd1f249b691a23e7">hipsparsexcoo2csr_</a> (handle, cooRowInd, nnz, m, csrRowPtr, idxBase)</td></tr>
-<tr class="separator:a561d07e97bfb02c2cd1f249b691a23e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a54d28472f57034fa199791981244941b"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsexcoo2csr.html#a54d28472f57034fa199791981244941b">hipsparsexcoo2csr_rank_0</a> (handle, cooRowInd, nnz, m, csrRowPtr, idxBase)</td></tr>
 <tr class="separator:a54d28472f57034fa199791981244941b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a561d07e97bfb02c2cd1f249b691a23e7"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsexcoo2csr.html#a561d07e97bfb02c2cd1f249b691a23e7">hipsparsexcoo2csr_</a> (handle, cooRowInd, nnz, m, csrRowPtr, idxBase)</td></tr>
+<tr class="separator:a561d07e97bfb02c2cd1f249b691a23e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a803c5b0270d92463b4afbc2fd34e61b1"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsexcoo2csr.html#a803c5b0270d92463b4afbc2fd34e61b1">hipsparsexcoo2csr_rank_1</a> (handle, cooRowInd, nnz, m, csrRowPtr, idxBase)</td></tr>
 <tr class="separator:a803c5b0270d92463b4afbc2fd34e61b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Description: This routine converts a sparse matrix in COO storage format to a sparse matrix in CSR storage format. </p>
-</div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
+<div class="textblock"><p>! </p>
+<p>Convert a sparse COO matrix into a sparse CSR matrix</p>
+<pre class="fragment">\p hipsparseXcoo2csr converts the COO array containing the row indices into a
+CSR array of row offsets, that point to the start of every row.
+It is assumed that the COO row index array is sorted.
+
+\note It can also be used, to convert a COO array containing the column indices into
+a CSC array of column offsets, that point to the start of every column. Then, it is
+assumed that the COO column index array is sorted, instead.
+
+\note
+This function is non blocking and executed asynchronously with respect to the host.
+It may return before the actual computation has finished.</pre> </div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="a561d07e97bfb02c2cd1f249b691a23e7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a561d07e97bfb02c2cd1f249b691a23e7">&#9670;&nbsp;</a></span>hipsparsexcoo2csr_()</h2>
 

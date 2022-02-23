@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -80,6 +80,9 @@ $(function() {
 <div class="title">hipfort_hipblas::hipblasztpsvstridedbatched Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>!  
+ <a href="interfacehipfort__hipblas_1_1hipblasztpsvstridedbatched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -90,7 +93,34 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a290e157f2ed10d99ae7eb1c86371870e"><td class="memItemLeft" align="right" valign="top">integer(kind(hipblas_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipblas_1_1hipblasztpsvstridedbatched.html#a290e157f2ed10d99ae7eb1c86371870e">hipblasztpsvstridedbatched_rank_1</a> (handle, uplo, transA, diag, m, AP, strideAP, x, incx, stridex, batchCount)</td></tr>
 <tr class="separator:a290e157f2ed10d99ae7eb1c86371870e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function/Subroutine Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>! </p>
+<p>BLAS Level 2 API</p>
+<pre class="fragment"> tpsvStridedBatched solves
+
+      A_ix_i = b_i or A_iTx_i = b_i, or A_iHx_i = b_i,
+
+ where x_i and b_i are vectors and A_i is a triangular matrix stored in the packed format,
+ for i in [1, batchCount].
+
+ The input vectors b_i are overwritten by the output vectors x_i.
+</pre><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">uplo</td><td>[hipblasFillMode_t] HIPBLAS_FILL_MODE_UPPER: each A_i is an upper triangular matrix. HIPBLAS_FILL_MODE_LOWER: each A_i is a lower triangular matrix.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">transA</td><td>[hipblasOperation_t] HIPBLAS_OP_N: Solves Ax = b HIPBLAS_OP_T: Solves ATx = b HIPBLAS_OP_C: Solves AHx = b</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">diag</td><td>[hipblasDiagType_t] HIPBLAS_DIAG_UNIT: each A_i is assumed to be unit triangular (i.e. the diagonal elements of each A_i are not used in computations). HIPBLAS_DIAG_NON_UNIT: each A_i is not assumed to be unit triangular.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>[int] n specifies the number of rows of each b_i. n &gt;= 0.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">AP</td><td>device pointer pointing to the first packed matrix A_1, of dimension &gt;= (n (n + 1) 2)</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">strideA</td><td>[hipblasStride] stride from the beginning of one packed matrix (AP_i) and the next (AP_i+1).</td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">x</td><td>device pointer pointing to the first input vector b_1. Overwritten by each x_i on output.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">incx</td><td>[int] specifies the increment for the elements of each x_i. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">stridex</td><td>[hipblasStride] stride from the beginning of one vector (x_i) and the next (x_i+1). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">batchCount</td><td>[int] specifies the number of instances in the batch. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="a43abfd8fb84a693d07936922ef185c44"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a43abfd8fb84a693d07936922ef185c44">&#9670;&nbsp;</a></span>hipblasztpsvstridedbatched_()</h2>
 

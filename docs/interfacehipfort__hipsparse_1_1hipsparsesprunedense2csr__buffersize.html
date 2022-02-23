@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -80,24 +80,20 @@ $(function() {
 <div class="title">hipfort_hipsparse::hipsparsesprunedense2csr_buffersize Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>Description: These functions convert the matrix A in dense format into a sparse matrix in CSR format where entries in A that are less than equal to a threshold are removed.  
- <a href="interfacehipfort__hipsparse_1_1hipsparsesprunedense2csr__buffersize.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a525c81007a0f3cfb0422170c6c9fe128"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsesprunedense2csr__buffersize.html#a525c81007a0f3cfb0422170c6c9fe128">hipsparsesprunedense2csr_buffersize_</a> (handle, m, n, A, lda, threshold, descr, csrVal, csrRowPtr, csrColInd, bufferSize)</td></tr>
-<tr class="separator:a525c81007a0f3cfb0422170c6c9fe128"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab65545fc05c37b3a9ded6f2cbeed6a80"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsesprunedense2csr__buffersize.html#ab65545fc05c37b3a9ded6f2cbeed6a80">hipsparsesprunedense2csr_buffersize_full_rank</a> (handle, m, n, A, lda, threshold, descr, csrVal, csrRowPtr, csrColInd, bufferSize)</td></tr>
 <tr class="separator:ab65545fc05c37b3a9ded6f2cbeed6a80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a525c81007a0f3cfb0422170c6c9fe128"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsesprunedense2csr__buffersize.html#a525c81007a0f3cfb0422170c6c9fe128">hipsparsesprunedense2csr_buffersize_</a> (handle, m, n, A, lda, threshold, descr, csrVal, csrRowPtr, csrColInd, bufferSize)</td></tr>
+<tr class="separator:a525c81007a0f3cfb0422170c6c9fe128"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e2daf7ce15d4b1358e77b75965f2897"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsesprunedense2csr__buffersize.html#a4e2daf7ce15d4b1358e77b75965f2897">hipsparsesprunedense2csr_buffersize_rank_0</a> (handle, m, n, A, lda, threshold, descr, csrVal, csrRowPtr, csrColInd, bufferSize)</td></tr>
 <tr class="separator:a4e2daf7ce15d4b1358e77b75965f2897"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ba27dfd408c5021c1ccd1560c38f1a2"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsesprunedense2csr__buffersize.html#a0ba27dfd408c5021c1ccd1560c38f1a2">hipsparsesprunedense2csr_buffersize_rank_1</a> (handle, m, n, A, lda, threshold, descr, csrVal, csrRowPtr, csrColInd, bufferSize)</td></tr>
 <tr class="separator:a0ba27dfd408c5021c1ccd1560c38f1a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Description: These functions convert the matrix A in dense format into a sparse matrix in CSR format where entries in A that are less than equal to a threshold are removed. </p>
-</div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
+<h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="a525c81007a0f3cfb0422170c6c9fe128"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a525c81007a0f3cfb0422170c6c9fe128">&#9670;&nbsp;</a></span>hipsparsesprunedense2csr_buffersize_()</h2>
 

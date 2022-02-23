@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -80,6 +80,9 @@ $(function() {
 <div class="title">hipfort_hipblas::hipblaszher2kstridedbatched Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>!  
+ <a href="interfacehipfort__hipblas_1_1hipblaszher2kstridedbatched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -92,7 +95,41 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac8b99fc8a32ccc0e5f8af982ffaacce0"><td class="memItemLeft" align="right" valign="top">integer(kind(hipblas_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipblas_1_1hipblaszher2kstridedbatched.html#ac8b99fc8a32ccc0e5f8af982ffaacce0">hipblaszher2kstridedbatched_rank_1</a> (handle, uplo, transA, n, k, alpha, A, lda, strideA, B, ldb, strideB, beta, C, ldc, strideC, batchCount)</td></tr>
 <tr class="separator:ac8b99fc8a32ccc0e5f8af982ffaacce0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function/Subroutine Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>! </p>
+<p>BLAS Level 3 API</p>
+<pre class="fragment"> her2kStridedBatched performs a batch of the matrix-matrix operations for a Hermitian rank-2k update
+
+ C_i := alphaop( A_i )op( B_i )^H + conj(alpha)op( B_i )op( A_i )^H + betaC_i
+
+ where  alpha and beta are scalars, op(A_i) and op(B_i) are n by k matrices, and
+ C_i is a n x n Hermitian matrix stored as either upper or lower.
+
+     op( A_i ) = A_i, op( B_i ) = B_i, and A_i and B_i are n by k if trans == HIPBLAS_OP_N
+     op( A_i ) = A_i^H, op( B_i ) = B_i^H,  and A_i and B_i are k by n if trans == HIPBLAS_OP_C
+</pre><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">uplo</td><td>[hipblasFillMode_t] HIPBLAS_FILL_MODE_UPPER: C_i is an upper triangular matrix HIPBLAS_FILL_MODE_LOWER: C_i is a lower triangular matrix</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">trans</td><td>[hipblasOperation_t] HIPBLAS_OP_C: op( A_i ) = A_i^H, op( B_i ) = B_i^H HIPBLAS_OP_N: op( A_i ) = A_i, op( B_i ) = B_i</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>[int] n specifies the number of rows and columns of C_i. n &gt;= 0.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">k</td><td>[int] k specifies the number of columns of op(A). k &gt;= 0.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">alpha</td><td>alpha specifies the scalar alpha. When alpha is zero then A is not referenced and A need not be set before entry.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>Device pointer to the first matrix A_1 on the GPU of dimension (lda, k) when trans is HIPBLAS_OP_N, otherwise of dimension (lda, n)</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>[int] lda specifies the first dimension of A_i. if trans = HIPBLAS_OP_N, lda &gt;= max( 1, n ), otherwise lda &gt;= max( 1, k ).</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">strideA</td><td>[hipblasStride] stride from the start of one matrix (A_i) and the next one (A_i+1)</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">B</td><td>Device pointer to the first matrix B_1 on the GPU of dimension (ldb, k) when trans is HIPBLAS_OP_N, otherwise of dimension (ldb, n)</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ldb</td><td>[int] ldb specifies the first dimension of B_i. if trans = HIPBLAS_OP_N, ldb &gt;= max( 1, n ), otherwise ldb &gt;= max( 1, k ).</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">strideB</td><td>[hipblasStride] stride from the start of one matrix (B_i) and the next one (B_i+1)</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">beta</td><td>beta specifies the scalar beta. When beta is zero then C need not be set before entry.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">C</td><td>Device pointer to the first matrix C_1 on the GPU. The imaginary component of the diagonal elements are not used but are set to zero unless quick return.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ldc</td><td>[int] ldc specifies the first dimension of C. ldc &gt;= max( 1, n ).</td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">strideC</td><td>[hipblasStride] stride from the start of one matrix (C_i) and the next one (C_i+1)</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">batchCount</td><td>[int] number of instances in the batch. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="a3399a9aeadd11f6faa9662cc6935b19f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3399a9aeadd11f6faa9662cc6935b19f">&#9670;&nbsp;</a></span>hipblaszher2kstridedbatched_()</h2>
 

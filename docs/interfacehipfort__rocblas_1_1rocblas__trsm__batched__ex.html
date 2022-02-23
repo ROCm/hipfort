@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -91,10 +91,10 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>! BLAS EX API </p>
-<p>TRSM_BATCHED_EX solves </p><pre class="fragment">op(A_i)X_i = alphaB_i or X_iop(A_i) = alphaB_i,
+<p>trsm_batched_ex solves </p><pre class="fragment">op(A_i)X_i = alphaB_i or X_iop(A_i) = alphaB_i,
 </pre><p>for i = 1, ..., batch_count; and where alpha is a scalar, X and B are arrays of m by n matrices, A is an array of triangular matrix and each op(A_i) is one of </p><pre class="fragment">op( A_i ) = A_i   or   op( A_i ) = A_i^T   or   op( A_i ) = A_i^H.
 </pre><p>Each matrix X_i is overwritten on B_i.</p>
-<p>TRSM_EX gives the user the ability to reuse the invA matrix between runs. If invA == NULL, <a class="el" href="interfacehipfort__rocblas_1_1rocblas__trsm__batched__ex.html" title="! BLAS EX API ">rocblas_trsm_batched_ex</a> will automatically calculate each invA_i on every run.</p>
+<p>This function gives the user the ability to reuse the invA matrix between runs. If invA == NULL, <a class="el" href="interfacehipfort__rocblas_1_1rocblas__trsm__batched__ex.html" title="! BLAS EX API ">rocblas_trsm_batched_ex</a> will automatically calculate each invA_i on every run.</p>
 <p>Setting up invA: Each accepted invA_i matrix consists of the packed 128x128 inverses of the diagonal blocks of matrix A_i, followed by any smaller diagonal block that remains. To set up each invA_i it is recommended that rocblas_trtri_batched be used with matrix A_i as the input. invA is an array of pointers of batch_count length holding each invA_i.</p>
 <p>Device memory of size 128 x k should be allocated for each invA_i ahead of time, where k is m when rocblas_side_left and is n when rocblas_side_right. The actual number of elements in each invA_i should be passed as invA_size.</p>
 <p>To begin, rocblas_trtri_batched must be called on the full 128x128 sized diagonal blocks of each matrix A_i. Below are the restricted parameters:</p><ul>

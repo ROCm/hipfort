@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -80,6 +80,9 @@ $(function() {
 <div class="title">hipfort_hipfft::hipfftestimatemany Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>!  
+ <a href="interfacehipfort__hipfft_1_1hipfftestimatemany.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -90,7 +93,26 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8ea57b0eaaefb7ea0e412f05d2bdef9e"><td class="memItemLeft" align="right" valign="top">integer(kind(hipfft_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipfft_1_1hipfftestimatemany.html#a8ea57b0eaaefb7ea0e412f05d2bdef9e">hipfftestimatemany_rank_1</a> (rank, n, inembed, istride, idist, onembed, ostride, odist, myType, batch, workSize)</td></tr>
 <tr class="separator:a8ea57b0eaaefb7ea0e412f05d2bdef9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function/Subroutine Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>! </p>
+<p>Return an estimate of the work area size required for a rank-dimensional plan.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">rank</td><td>Dimension of FFT transform (1, 2, or 3). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>Number of elements in the xyz directions. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">inembed</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">istride</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">idist</td><td>Distance between input batches. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">onembed</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ostride</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">odist</td><td>Distance between output batches. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">type</td><td>FFT type. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">batch</td><td>Number of batched transforms to perform. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">workSize</td><td>Pointer to work area size (returned value). </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="a0405de209124d9a27d9cbeefeb35514c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0405de209124d9a27d9cbeefeb35514c">&#9670;&nbsp;</a></span>hipfftestimatemany_()</h2>
 

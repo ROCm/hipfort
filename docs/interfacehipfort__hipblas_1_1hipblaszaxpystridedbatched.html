@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -80,19 +80,41 @@ $(function() {
 <div class="title">hipfort_hipblas::hipblaszaxpystridedbatched Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>!  
+ <a href="interfacehipfort__hipblas_1_1hipblaszaxpystridedbatched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a4fe45b2a3c522c21a006d48ec39ee804"><td class="memItemLeft" align="right" valign="top">integer(kind(hipblas_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipblas_1_1hipblaszaxpystridedbatched.html#a4fe45b2a3c522c21a006d48ec39ee804">hipblaszaxpystridedbatched_</a> (handle, n, alpha, x, incx, stridex, y, incy, stridey, batch_count)</td></tr>
-<tr class="separator:a4fe45b2a3c522c21a006d48ec39ee804"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a981fcc695341e815581172f77f653585"><td class="memItemLeft" align="right" valign="top">integer(kind(hipblas_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipblas_1_1hipblaszaxpystridedbatched.html#a981fcc695341e815581172f77f653585">hipblaszaxpystridedbatched_rank_0</a> (handle, n, alpha, x, incx, stridex, y, incy, stridey, batch_count)</td></tr>
-<tr class="separator:a981fcc695341e815581172f77f653585"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af887001f9c0fdded1a978f4d77c606b3"><td class="memItemLeft" align="right" valign="top">integer(kind(hipblas_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipblas_1_1hipblaszaxpystridedbatched.html#af887001f9c0fdded1a978f4d77c606b3">hipblaszaxpystridedbatched_rank_1</a> (handle, n, alpha, x, incx, stridex, y, incy, stridey, batch_count)</td></tr>
-<tr class="separator:af887001f9c0fdded1a978f4d77c606b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5b8a674b01705e63515572bb87e50f7"><td class="memItemLeft" align="right" valign="top">integer(kind(hipblas_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipblas_1_1hipblaszaxpystridedbatched.html#aa5b8a674b01705e63515572bb87e50f7">hipblaszaxpystridedbatched_</a> (handle, n, alpha, x, incx, stridex, y, incy, stridey, batchCount)</td></tr>
+<tr class="separator:aa5b8a674b01705e63515572bb87e50f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08b07bed78309d421e9db0d8791bcf80"><td class="memItemLeft" align="right" valign="top">integer(kind(hipblas_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipblas_1_1hipblaszaxpystridedbatched.html#a08b07bed78309d421e9db0d8791bcf80">hipblaszaxpystridedbatched_rank_0</a> (handle, n, alpha, x, incx, stridex, y, incy, stridey, batchCount)</td></tr>
+<tr class="separator:a08b07bed78309d421e9db0d8791bcf80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab390d0cca433005ea5728939391f2ad3"><td class="memItemLeft" align="right" valign="top">integer(kind(hipblas_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipblas_1_1hipblaszaxpystridedbatched.html#ab390d0cca433005ea5728939391f2ad3">hipblaszaxpystridedbatched_rank_1</a> (handle, n, alpha, x, incx, stridex, y, incy, stridey, batchCount)</td></tr>
+<tr class="separator:ab390d0cca433005ea5728939391f2ad3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function/Subroutine Documentation</h2>
-<a id="a4fe45b2a3c522c21a006d48ec39ee804"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4fe45b2a3c522c21a006d48ec39ee804">&#9670;&nbsp;</a></span>hipblaszaxpystridedbatched_()</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>! </p>
+<p>BLAS Level 1 API</p>
+<pre class="fragment"> axpyStridedBatched   compute y := alpha  x + y over a set of strided batched vectors.
+</pre><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>[int] </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">alpha</td><td>specifies the scalar alpha. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>pointer storing vector x on the GPU. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">incx</td><td>[int] specifies the increment for the elements of x. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">stridex</td><td>[hipblasStride] specifies the increment between vectors of x. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">y</td><td>pointer storing vector y on the GPU. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">incy</td><td>[int] specifies the increment for the elements of y. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">stridey</td><td>[hipblasStride] specifies the increment between vectors of y.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">batchCount</td><td>[int] number of instances in the batch </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
+<a id="aa5b8a674b01705e63515572bb87e50f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5b8a674b01705e63515572bb87e50f7">&#9670;&nbsp;</a></span>hipblaszaxpystridedbatched_()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -155,7 +177,7 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">integer(c_int), value&#160;</td>
-          <td class="paramname"><em>batch_count</em>&#160;</td>
+          <td class="paramname"><em>batchCount</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -167,8 +189,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a981fcc695341e815581172f77f653585"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a981fcc695341e815581172f77f653585">&#9670;&nbsp;</a></span>hipblaszaxpystridedbatched_rank_0()</h2>
+<a id="a08b07bed78309d421e9db0d8791bcf80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08b07bed78309d421e9db0d8791bcf80">&#9670;&nbsp;</a></span>hipblaszaxpystridedbatched_rank_0()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -231,7 +253,7 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">integer(c_int)&#160;</td>
-          <td class="paramname"><em>batch_count</em>&#160;</td>
+          <td class="paramname"><em>batchCount</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -243,8 +265,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="af887001f9c0fdded1a978f4d77c606b3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af887001f9c0fdded1a978f4d77c606b3">&#9670;&nbsp;</a></span>hipblaszaxpystridedbatched_rank_1()</h2>
+<a id="ab390d0cca433005ea5728939391f2ad3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab390d0cca433005ea5728939391f2ad3">&#9670;&nbsp;</a></span>hipblaszaxpystridedbatched_rank_1()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -307,7 +329,7 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">integer(c_int)&#160;</td>
-          <td class="paramname"><em>batch_count</em>&#160;</td>
+          <td class="paramname"><em>batchCount</em>&#160;</td>
         </tr>
         <tr>
           <td></td>

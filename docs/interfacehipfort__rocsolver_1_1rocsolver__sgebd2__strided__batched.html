@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -105,7 +105,7 @@ Public Member Functions</h2></td></tr>
 </pre><p class="formulaDsp">
 \[ B_j = Q_j&#39; A_j P_j \]
 </p>
- <pre class="fragment">where \form#77 is upper bidiagonal if m &gt;= n and lower bidiagonal if m &lt; n, and \form#54 and
+ <pre class="fragment">where \form#97 is upper bidiagonal if m &gt;= n and lower bidiagonal if m &lt; n, and \form#74 and
 </pre><p> \(P_j\) are orthogonalunitary matrices represented as the product of Householder matrices {array} ]</p>
 <p>Each Householder matrix \(H_{j_i}\) and \(G_{j_i}\) is given by {array} ]</p>
 <p>If m &gt;= n, the first i-1 elements of the Householder vector \(v_{j_i}\) are zero, and \(v_{j_i}[i] = 1\); while the first i elements of the Householder vector \(u_{j_i}\) are zero, and \(u_{j_i}[i+1] = 1\). If m &lt; n, the first i elements of the Householder vector \(v_{j_i}\) are zero, and \(v_{j_i}[i+1] = 1\); while the first i-1 elements of the Householder vector \(u_{j_i}\) are zero, and \(u_{j_i}[i] = 1\).</p>

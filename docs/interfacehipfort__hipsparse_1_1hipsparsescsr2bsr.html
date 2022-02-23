@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -80,22 +80,18 @@ $(function() {
 <div class="title">hipfort_hipsparse::hipsparsescsr2bsr Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>Description: This routine converts a sparse matrix in CSR storage format to a sparse matrix in BSR storage format.  
- <a href="interfacehipfort__hipsparse_1_1hipsparsescsr2bsr.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae463226b6f66cf6c1cc196cbed64cf11"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsescsr2bsr.html#ae463226b6f66cf6c1cc196cbed64cf11">hipsparsescsr2bsr_</a> (handle, dirA, m, n, descrA, csrValA, csrRowPtrA, csrColIndA, blockDim, descrC, bsrValC, bsrRowPtrC, bsrColIndC)</td></tr>
-<tr class="separator:ae463226b6f66cf6c1cc196cbed64cf11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad2c0b79dad1a428ae3c08df0d906def1"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsescsr2bsr.html#ad2c0b79dad1a428ae3c08df0d906def1">hipsparsescsr2bsr_rank_0</a> (handle, dirA, m, n, descrA, csrValA, csrRowPtrA, csrColIndA, blockDim, descrC, bsrValC, bsrRowPtrC, bsrColIndC)</td></tr>
 <tr class="separator:ad2c0b79dad1a428ae3c08df0d906def1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:ae463226b6f66cf6c1cc196cbed64cf11"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsescsr2bsr.html#ae463226b6f66cf6c1cc196cbed64cf11">hipsparsescsr2bsr_</a> (handle, dirA, m, n, descrA, csrValA, csrRowPtrA, csrColIndA, blockDim, descrC, bsrValC, bsrRowPtrC, bsrColIndC)</td></tr>
+<tr class="separator:ae463226b6f66cf6c1cc196cbed64cf11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a69e12070e64297fefe74089ae3edbfe1"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsescsr2bsr.html#a69e12070e64297fefe74089ae3edbfe1">hipsparsescsr2bsr_rank_1</a> (handle, dirA, m, n, descrA, csrValA, csrRowPtrA, csrColIndA, blockDim, descrC, bsrValC, bsrRowPtrC, bsrColIndC)</td></tr>
 <tr class="separator:a69e12070e64297fefe74089ae3edbfe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Description: This routine converts a sparse matrix in CSR storage format to a sparse matrix in BSR storage format. </p>
-</div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
+<h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="ae463226b6f66cf6c1cc196cbed64cf11"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae463226b6f66cf6c1cc196cbed64cf11">&#9670;&nbsp;</a></span>hipsparsescsr2bsr_()</h2>
 

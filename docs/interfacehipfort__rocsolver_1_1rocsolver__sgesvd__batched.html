@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -103,34 +103,34 @@ Public Member Functions</h2></td></tr>
 </pre><p class="formulaDsp">
 \[ A_j = U_j S_j V_j&#39; \]
 </p>
- <pre class="fragment">where the m-by-n matrix \form#103 is zero except, possibly, for its min(m,n)
-diagonal elements, which are the singular values of \form#52. \form#86 and \form#104 are
-orthogonal (unitary) matrices. The first min(m,n) columns of \form#86 and \form#104 are
-the left and right singular vectors of \form#52, respectively.
+ <pre class="fragment">where the m-by-n matrix \form#122 is zero except, possibly, for its min(m,n)
+diagonal elements, which are the singular values of \form#72. \form#106 and \form#123 are
+orthogonal (unitary) matrices. The first min(m,n) columns of \form#106 and \form#123 are
+the left and right singular vectors of \form#72, respectively.
 
 The computation of the singular vectors is optional and it is controlled by
 the function arguments left_svect and right_svect as described below. When
 computed, this function returns the transpose (or transpose conjugate) of the
-right singular vectors, i.e. the rows of \form#105.
+right singular vectors, i.e. the rows of \form#124.
 
 left_svect and right_svect are #rocblas_svect enums that can take the
 following values:
 
-- rocblas_svect_all: the entire matrix \form#86 (or \form#105) is computed,
+- rocblas_svect_all: the entire matrix \form#106 (or \form#124) is computed,
 - rocblas_svect_singular: only the singular vectors (first min(m,n)
-  columns of \form#86 or rows of \form#105) are computed,
+  columns of \form#106 or rows of \form#124) are computed,
 - rocblas_svect_overwrite: the
-  first columns (or rows) of \form#52 are overwritten with the singular vectors, or
-- rocblas_svect_none: no columns (or rows) of \form#86 (or \form#105) are computed,
+  first columns (or rows) of \form#72 are overwritten with the singular vectors, or
+- rocblas_svect_none: no columns (or rows) of \form#106 (or \form#124) are computed,
   i.e. no singular vectors.
 
 left_svect and right_svect cannot both be set to overwrite. When neither is
-set to overwrite, the contents of \form#52 are destroyed by the time the function
+set to overwrite, the contents of \form#72 are destroyed by the time the function
 returns.
 
 \note
 When m &gt;&gt; n (or n &gt;&gt; m) the algorithm could be sped up by compressing
-the matrix \form#52 via a QR (or LQ) factorization, and working with the
+the matrix \form#72 via a QR (or LQ) factorization, and working with the
 triangular factor afterwards (thin-SVD). If the singular vectors are also
 requested, its computation could be sped up as well via executing some
 intermediate operations out-of-place, and relying more on matrix

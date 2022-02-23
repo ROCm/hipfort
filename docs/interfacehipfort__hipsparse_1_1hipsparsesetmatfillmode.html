@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -80,13 +80,21 @@ $(function() {
 <div class="title">hipfort_hipsparse::hipsparsesetmatfillmode Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>!  
+ <a href="interfacehipfort__hipsparse_1_1hipsparsesetmatfillmode.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aedab6374bec8c041bf70765bf24408dd"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsesetmatfillmode.html#aedab6374bec8c041bf70765bf24408dd">hipsparsesetmatfillmode_</a> (descrA, fillMode)</td></tr>
 <tr class="separator:aedab6374bec8c041bf70765bf24408dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function/Subroutine Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>! </p>
+<p>Specify the matrix fill mode of a matrix descriptor</p>
+<pre class="fragment">\p hipsparseSetMatFillMode sets the matrix fill mode of a matrix descriptor.
+Valid fill modes are \ref HIPSPARSE_FILL_MODE_LOWER or
+\ref HIPSPARSE_FILL_MODE_UPPER.</pre> </div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="aedab6374bec8c041bf70765bf24408dd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aedab6374bec8c041bf70765bf24408dd">&#9670;&nbsp;</a></span>hipsparsesetmatfillmode_()</h2>
 

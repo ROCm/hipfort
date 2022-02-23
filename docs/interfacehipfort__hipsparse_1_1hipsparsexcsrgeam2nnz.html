@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -80,17 +80,28 @@ $(function() {
 <div class="title">hipfort_hipsparse::hipsparsexcsrgeam2nnz Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>!  
+ <a href="interfacehipfort__hipsparse_1_1hipsparsexcsrgeam2nnz.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aaa370eb3740abc663caee2d1c9352caa"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsexcsrgeam2nnz.html#aaa370eb3740abc663caee2d1c9352caa">hipsparsexcsrgeam2nnz_</a> (handle, m, n, descrA, nnzA, csrSortedRowPtrA, csrSortedColIndA, descrB, nnzB, csrSortedRowPtrB, csrSortedColIndB, descrC, csrSortedRowPtrC, nnzTotalDevHostPtr, workspace)</td></tr>
-<tr class="separator:aaa370eb3740abc663caee2d1c9352caa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a31a3228cc226b5884c7e528b18bf97b9"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsexcsrgeam2nnz.html#a31a3228cc226b5884c7e528b18bf97b9">hipsparsexcsrgeam2nnz_rank_0</a> (handle, m, n, descrA, nnzA, csrSortedRowPtrA, csrSortedColIndA, descrB, nnzB, csrSortedRowPtrB, csrSortedColIndB, descrC, csrSortedRowPtrC, nnzTotalDevHostPtr, workspace)</td></tr>
 <tr class="separator:a31a3228cc226b5884c7e528b18bf97b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:aaa370eb3740abc663caee2d1c9352caa"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsexcsrgeam2nnz.html#aaa370eb3740abc663caee2d1c9352caa">hipsparsexcsrgeam2nnz_</a> (handle, m, n, descrA, nnzA, csrSortedRowPtrA, csrSortedColIndA, descrB, nnzB, csrSortedRowPtrB, csrSortedColIndB, descrC, csrSortedRowPtrC, nnzTotalDevHostPtr, workspace)</td></tr>
+<tr class="separator:aaa370eb3740abc663caee2d1c9352caa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaaf14921de7cdc580f56e00275ff0d07"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsexcsrgeam2nnz.html#aaaf14921de7cdc580f56e00275ff0d07">hipsparsexcsrgeam2nnz_rank_1</a> (handle, m, n, descrA, nnzA, csrSortedRowPtrA, csrSortedColIndA, descrB, nnzB, csrSortedRowPtrB, csrSortedColIndB, descrC, csrSortedRowPtrC, nnzTotalDevHostPtr, workspace)</td></tr>
 <tr class="separator:aaaf14921de7cdc580f56e00275ff0d07"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function/Subroutine Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>! </p>
+<p>Sparse matrix sparse matrix addition using CSR storage format</p>
+<p><code>hipsparseXcsrgeam2Nnz</code> computes the total CSR non-zero elements and the CSR row offsets, that point to the start of every row of the sparse CSR matrix, of the resulting matrix C. It is assumed that <code>csr_row_ptr_C</code> has been allocated with size <code>m</code> + 1.</p>
+<dl class="section note"><dt>Note</dt><dd>This function is non blocking and executed asynchronously with respect to the host. It may return before the actual computation has finished. </dd>
+<dd>
+Currently, only HIPSPARSE_MATRIX_TYPE_GENERAL is supported. </dd></dl>
+</div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="aaa370eb3740abc663caee2d1c9352caa"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aaa370eb3740abc663caee2d1c9352caa">&#9670;&nbsp;</a></span>hipsparsexcsrgeam2nnz_()</h2>
 

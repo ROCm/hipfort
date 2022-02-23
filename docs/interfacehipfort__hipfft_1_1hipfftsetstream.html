@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -80,13 +80,27 @@ $(function() {
 <div class="title">hipfort_hipfft::hipfftsetstream Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>!  
+ <a href="interfacehipfort__hipfft_1_1hipfftsetstream.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a9bce168bd0d880bb7eff93f12eb0aafc"><td class="memItemLeft" align="right" valign="top">integer(kind(hipfft_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipfft_1_1hipfftsetstream.html#a9bce168bd0d880bb7eff93f12eb0aafc">hipfftsetstream_</a> (plan, stream)</td></tr>
 <tr class="separator:a9bce168bd0d880bb7eff93f12eb0aafc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function/Subroutine Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>! </p>
+<p>Set HIP stream to execute plan on.</p>
+<p>Associates a HIP stream with a hipFFT plan. All kernels launched by this plan are associated with the provided stream.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">plan</td><td>The FFT plan. </td></tr>
+    <tr><td class="paramname">stream</td><td>The HIP stream. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="a9bce168bd0d880bb7eff93f12eb0aafc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9bce168bd0d880bb7eff93f12eb0aafc">&#9670;&nbsp;</a></span>hipfftsetstream_()</h2>
 

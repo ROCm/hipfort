@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -106,27 +106,34 @@ Public Member Functions</h2></td></tr>
  non-unit,  upper or lower triangular matrix  and  op( A )  is one  of
 
      op( A ) = A   or   op( A ) = A^T   or   op( A ) = A^H.
+
+ When uplo == rocblas_fill_upper the  leading  k by k
+ upper triangular part of the array  A must contain the upper
+ triangular matrix and the strictly lower triangular part of
+ A is not referenced. Here k is m when side == rocblas_side_left
+ and is n when side == rocblas_side_right.
+
+ When uplo == rocblas_fill_lower the  leading  k by k
+ lower triangular part of the array  A must contain the lower
+ triangular matrix  and the strictly upper triangular part of
+ A is not referenced. Here k is m when  side == rocblas_side_left
+ and is n when side == rocblas_side_right.
+
+ Note that when  diag == rocblas_diagonal_unit  the diagonal elements of
+ A  are not referenced either,  but are assumed to be  unity.
 </pre><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[rocblas_handle] handle to the rocblas library context queue.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">side</td><td>[rocblas_side] Specifies whether op(A) multiplies B from the left or right as follows: rocblas_side_left: B := alphaop( A )B. rocblas_side_right: B := alphaBop( A ).</td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">uplo</td><td>[rocblas_fill] Specifies whether the matrix A is an uppoer or lower triangular matrix as follows: rocblas_fill_upper: A is an upper triangular matrix. rocblas_fill_lower: A is a lower triangular matrix.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">uplo</td><td>[rocblas_fill] Specifies whether the matrix A is an upper or lower triangular matrix as follows: rocblas_fill_upper: A is an upper triangular matrix. rocblas_fill_lower: A is a lower triangular matrix.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">transA</td><td>[rocblas_operation] Specifies the form of op(A) to be used in the matrix multiplication as follows: rocblas_operation_none: op(A) = A. rocblas_operation_transpose: op(A) = A^T. rocblas_operation_conjugate_transpose: op(A) = A^H.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">diag</td><td>[rocblas_diagonal] Specifies whether or not A is unit triangular as follows: rocblas_diagonal_unit: A is assumed to be unit triangular. rocblas_diagonal_non_unit: A is not assumed to be unit triangular.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">m</td><td>[rocblas_int] m specifies the number of rows of B. m &gt;= 0.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>[rocblas_int] n specifies the number of columns of B. n &gt;= 0.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">alpha</td><td>alpha specifies the scalar alpha. When alpha is zero then A is not referenced and B need not be set before entry.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>Device pointer to matrix A on the GPU. A has dimension ( lda, k ), where k is m when side == rocblas_side_left and is n when side == rocblas_side_right.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>When uplo == rocblas_fill_upper the leading k by k upper triangular part of the array A must contain the upper triangular matrix and the strictly lower triangular part of A is not referenced.</p>
-<p>When uplo == rocblas_fill_lower the leading k by k lower triangular part of the array A must contain the lower triangular matrix and the strictly upper triangular part of A is not referenced.</p>
-<p>Note that when diag == rocblas_diagonal_unit the diagonal elements of A are not referenced either, but are assumed to be unity.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>[rocblas_int] lda specifies the first dimension of A. if side == rocblas_side_left, lda &gt;= max( 1, m ), if side == rocblas_side_right, lda &gt;= max( 1, n ).</td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">B</td><td>Device pointer to the first matrix B_0 on the GPU. On entry, the leading m by n part of the array B must contain the matrix B, and on exit is overwritten by the transformed matrix.</td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">B</td><td>Device pointer to the first matrix B_0 on the GPU. On entry, the leading m by n part of the array B must contain the matrix B, and on exit is overwritten by the transformed matrix.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ldb</td><td>[rocblas_int] ldb specifies the first dimension of B. ldb &gt;= max( 1, m ). </td></tr>
   </table>
   </dd>

@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -81,20 +81,23 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Description: This function computes the number of nonzero block columns per block row and the total number of blocks in the BSR matrix where the BSR matrix is formed by converting the input CSR matrix.  
+<p>!  
  <a href="interfacehipfort__hipsparse_1_1hipsparsexcsr2bsrnnz.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:acb46cbb5b9b91403c890079077afdd3b"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsexcsr2bsrnnz.html#acb46cbb5b9b91403c890079077afdd3b">hipsparsexcsr2bsrnnz_</a> (handle, dirA, m, n, descrA, csrRowPtrA, csrColIndA, blockDim, descrC, bsrRowPtrC, bsrNnzb)</td></tr>
-<tr class="separator:acb46cbb5b9b91403c890079077afdd3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f0bf589fddacf92063702475f3c1a66"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsexcsr2bsrnnz.html#a7f0bf589fddacf92063702475f3c1a66">hipsparsexcsr2bsrnnz_rank_0</a> (handle, dirA, m, n, descrA, csrRowPtrA, csrColIndA, blockDim, descrC, bsrRowPtrC, bsrNnzb)</td></tr>
 <tr class="separator:a7f0bf589fddacf92063702475f3c1a66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:acb46cbb5b9b91403c890079077afdd3b"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsexcsr2bsrnnz.html#acb46cbb5b9b91403c890079077afdd3b">hipsparsexcsr2bsrnnz_</a> (handle, dirA, m, n, descrA, csrRowPtrA, csrColIndA, blockDim, descrC, bsrRowPtrC, bsrNnzb)</td></tr>
+<tr class="separator:acb46cbb5b9b91403c890079077afdd3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a25ae9c82c559f4045a7716c84681676a"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsexcsr2bsrnnz.html#a25ae9c82c559f4045a7716c84681676a">hipsparsexcsr2bsrnnz_rank_1</a> (handle, dirA, m, n, descrA, csrRowPtrA, csrColIndA, blockDim, descrC, bsrRowPtrC, bsrNnzb)</td></tr>
 <tr class="separator:a25ae9c82c559f4045a7716c84681676a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Description: This function computes the number of nonzero block columns per block row and the total number of blocks in the BSR matrix where the BSR matrix is formed by converting the input CSR matrix. </p>
+<div class="textblock"><p>! </p>
+<p>This function computes the number of nonzero block columns per row and the total number of nonzero blocks in a sparse BSR matrix given a sparse CSR matrix as input.</p>
+<p>The routine does support asynchronous execution if the pointer mode is set to device. </p>
 </div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="acb46cbb5b9b91403c890079077afdd3b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acb46cbb5b9b91403c890079077afdd3b">&#9670;&nbsp;</a></span>hipsparsexcsr2bsrnnz_()</h2>

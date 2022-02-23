@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -80,6 +80,9 @@ $(function() {
 <div class="title">hipfort_hipblas::hipblaszdscalbatched Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>!  
+ <a href="interfacehipfort__hipblas_1_1hipblaszdscalbatched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -92,7 +95,26 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a69f8b4de15916967d4bde02a29708f0f"><td class="memItemLeft" align="right" valign="top">integer(kind(hipblas_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipblas_1_1hipblaszdscalbatched.html#a69f8b4de15916967d4bde02a29708f0f">hipblaszdscalbatched_rank_1</a> (handle, n, alpha, x, incx, batchCount)</td></tr>
 <tr class="separator:a69f8b4de15916967d4bde02a29708f0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function/Subroutine Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>! </p>
+<p>BLAS Level 1 API</p>
+<pre class="fragment"> scalBatched  scales each element of vector x_i with scalar alpha, for i = 1, ... , batchCount.
+
+      x_i := alpha  x_i
+
+  where (x_i) is the i-th instance of the batch.
+</pre> <dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>[int] the number of elements in each x_i. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">alpha</td><td>host pointer or device pointer for the scalar alpha. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">x</td><td>device array of device pointers storing each vector x_i. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">incx</td><td>[int] specifies the increment for the elements of each x_i. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">batchCount</td><td>[int] specifies the number of batches in x. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="af0a23324a5e353384bb5c0f3dcdaa10f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af0a23324a5e353384bb5c0f3dcdaa10f">&#9670;&nbsp;</a></span>hipblaszdscalbatched_()</h2>
 

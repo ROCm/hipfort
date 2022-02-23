@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -80,6 +80,9 @@ $(function() {
 <div class="title">hipfort_hipblas::hipblasztrmmstridedbatched Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>!  
+ <a href="interfacehipfort__hipblas_1_1hipblasztrmmstridedbatched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -92,7 +95,46 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a89e8e1553303dfd3c168ca760366a5c9"><td class="memItemLeft" align="right" valign="top">integer(kind(hipblas_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipblas_1_1hipblasztrmmstridedbatched.html#a89e8e1553303dfd3c168ca760366a5c9">hipblasztrmmstridedbatched_rank_1</a> (handle, side, uplo, transA, diag, m, n, alpha, A, lda, strideA, B, ldb, strideB, batchCount)</td></tr>
 <tr class="separator:a89e8e1553303dfd3c168ca760366a5c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function/Subroutine Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>! </p>
+<p>BLAS Level 3 API</p>
+<pre class="fragment"> trmmStridedBatched performs one of the strided_batched matrix-matrix operations
+
+ B_i := alphaop( A_i )B_i,   or   B_i := alphaB_iop( A_i )  for i = 0, 1, ... batchCount -1
+
+ where  alpha  is a scalar,  B_i  is an m by n matrix,  A_i  is a unit, or
+ non-unit,  upper or lower triangular matrix  and  op( A_i )  is one  of
+
+     op( A_i ) = A_i   or   op( A_i ) = A_i^T   or   op( A_i ) = A_i^H.
+</pre><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">side</td><td>[hipblasSideMode_t] Specifies whether op(A_i) multiplies B_i from the left or right as follows: HIPBLAS_SIDE_LEFT: B_i := alphaop( A_i )B_i. HIPBLAS_SIDE_RIGHT: B_i := alphaB_iop( A_i ).</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">uplo</td><td>[hipblasFillMode_t] Specifies whether the matrix A is an upper or lower triangular matrix as follows: HIPBLAS_FILL_MODE_UPPER: A is an upper triangular matrix. HIPBLAS_FILL_MODE_LOWER: A is a lower triangular matrix.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">transA</td><td>[hipblasOperation_t] Specifies the form of op(A_i) to be used in the matrix multiplication as follows: HIPBLAS_OP_N: op(A_i) = A_i. HIPBLAS_OP_T: op(A_i) = A_i^T. HIPBLAS_OP_C: op(A_i) = A_i^H.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">diag</td><td>[hipblasDiagType_t] Specifies whether or not A_i is unit triangular as follows: HIPBLAS_DIAG_UNIT: A_i is assumed to be unit triangular. HIPBLAS_DIAG_NON_UNIT: A_i is not assumed to be unit triangular.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">m</td><td>[int] m specifies the number of rows of B_i. m &gt;= 0.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>[int] n specifies the number of columns of B_i. n &gt;= 0.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">alpha</td><td>alpha specifies the scalar alpha. When alpha is zero then A_i is not referenced and B_i need not be set before entry.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>Device pointer to the first matrix A_0 on the GPU. Each A_i is of dimension ( lda, k ), where k is m when side == HIPBLAS_SIDE_LEFT and is n when side == HIPBLAS_SIDE_RIGHT.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>When uplo == HIPBLAS_FILL_MODE_UPPER the leading k by k upper triangular part of the array A must contain the upper triangular matrix and the strictly lower triangular part of A is not referenced.</p>
+<p>When uplo == HIPBLAS_FILL_MODE_LOWER the leading k by k lower triangular part of the array A must contain the lower triangular matrix and the strictly upper triangular part of A is not referenced.</p>
+<p>Note that when diag == HIPBLAS_DIAG_UNIT the diagonal elements of A_i are not referenced either, but are assumed to be unity.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>[int] lda specifies the first dimension of A. if side == HIPBLAS_SIDE_LEFT, lda &gt;= max( 1, m ), if side == HIPBLAS_SIDE_RIGHT, lda &gt;= max( 1, n ).</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">strideA</td><td>[hipblasStride] stride from the start of one matrix (A_i) and the next one (A_i+1)</td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">B</td><td>Device pointer to the first matrix B_0 on the GPU. On entry, the leading m by n part of the array B_i must contain the matrix B_i, and on exit is overwritten by the transformed matrix.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ldb</td><td>[int] ldb specifies the first dimension of B_i. ldb &gt;= max( 1, m ).</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">strideB</td><td>[hipblasStride] stride from the start of one matrix (B_i) and the next one (B_i+1) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">batchCount</td><td>[int] number of instances i in the batch. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="ab12578dacd87fce803c98e024b487337"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab12578dacd87fce803c98e024b487337">&#9670;&nbsp;</a></span>hipblasztrmmstridedbatched_()</h2>
 

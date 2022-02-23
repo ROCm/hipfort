@@ -33,6 +33,7 @@ doxygen:
 	    echo "OUTPUT_DIRECTORY = $(DOXYGEN_BUILDDIR)";\
 	    echo "INPUT = $(DOXYGEN_BUILDDIR)/tmp" ) | doxygen -
 	rm -rf $(DOXYGEN_BUILDDIR)/tmp
+	cp -r $(BUILDDIR)/doxygen/html/* .
 
 clean_doxygen:
 	rm -rf $(DOXYGEN_BUILDDIR)

@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -91,10 +91,10 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>! BLAS EX API </p>
-<p>TRSM_EX solves </p><pre class="fragment">op(A)X = alphaB or Xop(A) = alphaB,
+<p>trsm_ex solves </p><pre class="fragment">op(A)X = alphaB or Xop(A) = alphaB,
 </pre><p>where alpha is a scalar, X and B are m by n matrices, A is triangular matrix and op(A) is one of </p><pre class="fragment">op( A ) = A   or   op( A ) = A^T   or   op( A ) = A^H.
 </pre><p>The matrix X is overwritten on B.</p>
-<p>TRSM_EX gives the user the ability to reuse the invA matrix between runs. If invA == NULL, <a class="el" href="interfacehipfort__rocblas_1_1rocblas__trsm__ex.html" title="! BLAS EX API ">rocblas_trsm_ex</a> will automatically calculate invA on every run.</p>
+<p>This function gives the user the ability to reuse the invA matrix between runs. If invA == NULL, <a class="el" href="interfacehipfort__rocblas_1_1rocblas__trsm__ex.html" title="! BLAS EX API ">rocblas_trsm_ex</a> will automatically calculate invA on every run.</p>
 <p>Setting up invA: The accepted invA matrix consists of the packed 128x128 inverses of the diagonal blocks of matrix A, followed by any smaller diagonal block that remains. To set up invA it is recommended that rocblas_trtri_batched be used with matrix A as the input.</p>
 <p>Device memory of size 128 x k should be allocated for invA ahead of time, where k is m when rocblas_side_left and is n when rocblas_side_right. The actual number of elements in invA should be passed as invA_size.</p>
 <p>To begin, rocblas_trtri_batched must be called on the full 128x128 sized diagonal blocks of matrix A. Below are the restricted parameters:</p><ul>

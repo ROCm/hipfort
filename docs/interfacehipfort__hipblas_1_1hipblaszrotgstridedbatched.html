@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -80,13 +80,38 @@ $(function() {
 <div class="title">hipfort_hipblas::hipblaszrotgstridedbatched Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>!  
+ <a href="interfacehipfort__hipblas_1_1hipblaszrotgstridedbatched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a7b71c03cb5bbaabf07f0631d5772142d"><td class="memItemLeft" align="right" valign="top">integer(kind(hipblas_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipblas_1_1hipblaszrotgstridedbatched.html#a7b71c03cb5bbaabf07f0631d5772142d">hipblaszrotgstridedbatched_</a> (handle, a, stride_a, b, stride_b, c, stride_c, s, stride_s, batchCount)</td></tr>
 <tr class="separator:a7b71c03cb5bbaabf07f0631d5772142d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function/Subroutine Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>! </p>
+<p>BLAS Level 1 API</p>
+<pre class="fragment"> rotgStridedBatched creates the Givens rotation matrix for the strided batched vectors (a_i b_i), for i = 1, ..., batchCount.
+      a, b, c, and s may be stored in either host or device memory, location is specified by calling hipblasSetPointerMode.
+      If the pointer mode is set to HIPBLAS_POINTER_MODE_HOST, this function blocks the CPU until the GPU has finished and the results are available in host memory.
+      If the pointer mode is set to HIPBLAS_POINTER_MODE_HOST, this function returns immediately and synchronization is required to read the results.
+</pre><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">a</td><td>device strided_batched pointer or host strided_batched pointer to first single input vector element a_1, overwritten with r. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">stride_a</td><td>[hipblasStride] distance between elements of a in batch (distance between a_i and a_(i + 1)) </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">b</td><td>device strided_batched pointer or host strided_batched pointer to first single input vector element b_1, overwritten with z. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">stride_b</td><td>[hipblasStride] distance between elements of b in batch (distance between b_i and b_(i + 1)) </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">c</td><td>device strided_batched pointer or host strided_batched pointer to first cosine element of Givens rotations c_1. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">stride_c</td><td>[hipblasStride] distance between elements of c in batch (distance between c_i and c_(i + 1)) </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">s</td><td>device strided_batched pointer or host strided_batched pointer to sine element of Givens rotations s_1. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">stride_s</td><td>[hipblasStride] distance between elements of s in batch (distance between s_i and s_(i + 1)) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">batchCount</td><td>[int] number of batches (length of arrays a, b, c, and s). </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="a7b71c03cb5bbaabf07f0631d5772142d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7b71c03cb5bbaabf07f0631d5772142d">&#9670;&nbsp;</a></span>hipblaszrotgstridedbatched_()</h2>
 

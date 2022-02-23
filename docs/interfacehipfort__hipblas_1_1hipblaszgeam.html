@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -80,6 +80,9 @@ $(function() {
 <div class="title">hipfort_hipblas::hipblaszgeam Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>!  
+ <a href="interfacehipfort__hipblas_1_1hipblaszgeam.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -92,7 +95,40 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0b3f99684f05f1c45a38fca33c7c1f29"><td class="memItemLeft" align="right" valign="top">integer(kind(hipblas_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipblas_1_1hipblaszgeam.html#a0b3f99684f05f1c45a38fca33c7c1f29">hipblaszgeam_rank_1</a> (handle, transa, transb, m, n, alpha, A, lda, beta, B, ldb, C, ldc)</td></tr>
 <tr class="separator:a0b3f99684f05f1c45a38fca33c7c1f29"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function/Subroutine Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>! </p>
+<p>BLAS Level 3 API</p>
+<pre class="fragment"> geam performs one of the matrix-matrix operations
+
+     C = alphaop( A ) + betaop( B ),
+
+ where op( X ) is one of
+
+     op( X ) = X      or
+     op( X ) = XT   or
+     op( X ) = XH,
+
+ alpha and beta are scalars, and A, B and C are matrices, with
+ op( A ) an m by n matrix, op( B ) an m by n matrix, and C an m by n matrix.
+</pre><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">transA</td><td>[hipblasOperation_t] specifies the form of op( A ) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">transB</td><td>[hipblasOperation_t] specifies the form of op( B ) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">m</td><td>[int] matrix dimension m. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>[int] matrix dimension n. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">alpha</td><td>device pointer or host pointer specifying the scalar alpha. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>device pointer storing matrix A. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>[int] specifies the leading dimension of A. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">beta</td><td>device pointer or host pointer specifying the scalar beta. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">B</td><td>device pointer storing matrix B. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ldb</td><td>[int] specifies the leading dimension of B. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">C</td><td>device pointer storing matrix C. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ldc</td><td>[int] specifies the leading dimension of C. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="a48dfe4b721e4f9850be6a974a0b56d35"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a48dfe4b721e4f9850be6a974a0b56d35">&#9670;&nbsp;</a></span>hipblaszgeam_()</h2>
 

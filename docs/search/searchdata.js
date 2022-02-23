@@ -4,9 +4,10 @@ var indexSectionsWithContent =
   1: "dhr",
   2: "h",
   3: "h",
-  4: "dhr",
+  4: "hr",
   5: "acdeghiklmnprstwxyz",
-  6: "b"
+  6: "c",
+  7: "b"
 };
 
 var indexSectionNames =
@@ -17,7 +18,8 @@ var indexSectionNames =
   3: "files",
   4: "functions",
   5: "variables",
-  6: "pages"
+  6: "groups",
+  7: "pages"
 };
 
 var indexSectionLabels =
@@ -28,6 +30,7 @@ var indexSectionLabels =
   3: "Files",
   4: "Functions",
   5: "Variables",
-  6: "Pages"
+  6: "Modules",
+  7: "Pages"
 };
 

@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -98,11 +98,11 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>! </p>
 <p>BLAS Level 2 API</p>
-<pre class="fragment"> xSPR2_BATCHED performs the matrix-vector operation
+<pre class="fragment"> spr2_batched performs the matrix-vector operation
 
-     A_i := A_i + alphax_iy_iT + alphayxT
+     A_i := A_i + alphax_iy_iT + alphay_ix_iT
 
- where alpha is a scalar, x_i is a vector, and A_i is an
+ where alpha is a scalar, x_i and y_i are vectors, and A_i is an
  n by n symmetric matrix, supplied in packed form, for i = 1, ..., batch_count.
 </pre><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -81,22 +81,29 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Description: This routine sorts CSR format.  
+<p>!  
  <a href="interfacehipfort__hipsparse_1_1hipsparsexcscsort.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad6a2e0411dc97eec1ad408ae9f2fbf8d"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsexcscsort.html#ad6a2e0411dc97eec1ad408ae9f2fbf8d">hipsparsexcscsort_</a> (handle, m, n, nnz, descrA, cscColPtr, cscRowInd, P, pBuffer)</td></tr>
-<tr class="separator:ad6a2e0411dc97eec1ad408ae9f2fbf8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad831d4bb8ceae61bcbbdf610c64a3dc2"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsexcscsort.html#ad831d4bb8ceae61bcbbdf610c64a3dc2">hipsparsexcscsort_full_rank</a> (handle, m, n, nnz, descrA, cscColPtr, cscRowInd, P, pBuffer)</td></tr>
 <tr class="separator:ad831d4bb8ceae61bcbbdf610c64a3dc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:ad6a2e0411dc97eec1ad408ae9f2fbf8d"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsexcscsort.html#ad6a2e0411dc97eec1ad408ae9f2fbf8d">hipsparsexcscsort_</a> (handle, m, n, nnz, descrA, cscColPtr, cscRowInd, P, pBuffer)</td></tr>
+<tr class="separator:ad6a2e0411dc97eec1ad408ae9f2fbf8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd46d7454894b2b680721897d459ba43"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsexcscsort.html#afd46d7454894b2b680721897d459ba43">hipsparsexcscsort_rank_0</a> (handle, m, n, nnz, descrA, cscColPtr, cscRowInd, P, pBuffer)</td></tr>
 <tr class="separator:afd46d7454894b2b680721897d459ba43"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a65989e6556b7c2b1b3254793bf32f0b8"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsexcscsort.html#a65989e6556b7c2b1b3254793bf32f0b8">hipsparsexcscsort_rank_1</a> (handle, m, n, nnz, descrA, cscColPtr, cscRowInd, P, pBuffer)</td></tr>
 <tr class="separator:a65989e6556b7c2b1b3254793bf32f0b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Description: This routine sorts CSR format. </p>
+<div class="textblock"><p>! </p>
+<p>Sort a sparse CSC matrix</p>
+<p><code>hipsparseXcscsort</code> sorts a matrix in CSC format. The sorted permutation vector <code>perm</code> can be used to obtain sorted <code>csc_val</code> array. In this case, <code>perm</code> must be initialized as the identity permutation, see hipsparseCreateIdentityPermutation().</p>
+<p><code>hipsparseXcscsort</code> requires extra temporary storage buffer that has to be allocated by the user. Storage buffer size can be determined by hipsparseXcscsort_bufferSizeExt().</p>
+<dl class="section note"><dt>Note</dt><dd><code>perm</code> can be <code>NULL</code> if a sorted permutation vector is not required.</dd>
+<dd>
+This function is non blocking and executed asynchronously with respect to the host. It may return before the actual computation has finished. </dd></dl>
 </div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="ad6a2e0411dc97eec1ad408ae9f2fbf8d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad6a2e0411dc97eec1ad408ae9f2fbf8d">&#9670;&nbsp;</a></span>hipsparsexcscsort_()</h2>

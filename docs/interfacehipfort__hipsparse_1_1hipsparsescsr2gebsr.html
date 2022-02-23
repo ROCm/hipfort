@@ -28,9 +28,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">HIPFORT
-   &#160;<span id="projectnumber">0.4.0</span>
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
-   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 4.5.0)</div>
+   <div id="projectbrief">Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)</div>
   </td>
  </tr>
  </tbody>
@@ -80,22 +80,18 @@ $(function() {
 <div class="title">hipfort_hipsparse::hipsparsescsr2gebsr Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>Description: This routine converts a sparse matrix in CSR storage format to a sparse matrix in GEBSR storage format.  
- <a href="interfacehipfort__hipsparse_1_1hipsparsescsr2gebsr.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a531df1826330729add248f9fe51422a9"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsescsr2gebsr.html#a531df1826330729add248f9fe51422a9">hipsparsescsr2gebsr_</a> (handle, dir, m, n, csr_descr, csr_val, csr_row_ptr, csr_col_ind, bsr_descr, bsr_val, bsr_row_ptr, bsr_col_ind, row_block_dim, col_block_dim, p_buffer)</td></tr>
-<tr class="separator:a531df1826330729add248f9fe51422a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98af27895092b8a8ec85265a6d312aec"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsescsr2gebsr.html#a98af27895092b8a8ec85265a6d312aec">hipsparsescsr2gebsr_rank_0</a> (handle, dir, m, n, csr_descr, csr_val, csr_row_ptr, csr_col_ind, bsr_descr, bsr_val, bsr_row_ptr, bsr_col_ind, row_block_dim, col_block_dim, p_buffer)</td></tr>
 <tr class="separator:a98af27895092b8a8ec85265a6d312aec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a531df1826330729add248f9fe51422a9"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsescsr2gebsr.html#a531df1826330729add248f9fe51422a9">hipsparsescsr2gebsr_</a> (handle, dir, m, n, csr_descr, csr_val, csr_row_ptr, csr_col_ind, bsr_descr, bsr_val, bsr_row_ptr, bsr_col_ind, row_block_dim, col_block_dim, p_buffer)</td></tr>
+<tr class="separator:a531df1826330729add248f9fe51422a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a628f05490ddebfe419ec6bdab4394a7a"><td class="memItemLeft" align="right" valign="top">integer(kind(hipsparse_status_success)) function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort__hipsparse_1_1hipsparsescsr2gebsr.html#a628f05490ddebfe419ec6bdab4394a7a">hipsparsescsr2gebsr_rank_1</a> (handle, dir, m, n, csr_descr, csr_val, csr_row_ptr, csr_col_ind, bsr_descr, bsr_val, bsr_row_ptr, bsr_col_ind, row_block_dim, col_block_dim, p_buffer)</td></tr>
 <tr class="separator:a628f05490ddebfe419ec6bdab4394a7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Description: This routine converts a sparse matrix in CSR storage format to a sparse matrix in GEBSR storage format. </p>
-</div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
+<h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="a531df1826330729add248f9fe51422a9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a531df1826330729add248f9fe51422a9">&#9670;&nbsp;</a></span>hipsparsescsr2gebsr_()</h2>
 
