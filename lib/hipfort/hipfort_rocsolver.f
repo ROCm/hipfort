@@ -116,15 +116,14 @@ module hipfort_rocsolver
     end function
 
   end interface
-  !> ! \brief GET_VERSION_STRING Queries the library version.
+  !>  \brief GET_VERSION_STRING Queries the library version.
   !> 
   !>     \details
   !>     @param[out]
   !>     buf         A buffer that the version string will be written into.
   !>     @param[in]
   !>     len         The size of the given buffer in bytes.
-  !> 
-  !>  
+  !>
   interface rocsolver_get_version_string
     function rocsolver_get_version_string_(buf,len) bind(c, name="rocsolver_get_version_string")
       use iso_c_binding
@@ -137,7 +136,7 @@ module hipfort_rocsolver
     end function
 
   end interface
-  !> ! \brief GET_VERSION_STRING_SIZE Queries the minimum buffer size for a
+  !>  \brief GET_VERSION_STRING_SIZE Queries the minimum buffer size for a
   !>     successful call to \ref rocsolver_get_version_string.
   !> 
   !>     \details
@@ -145,8 +144,7 @@ module hipfort_rocsolver
   !>     len         pointer to size_t.\n
   !>                 The minimum length of buffer to pass to
   !>                 \ref rocsolver_get_version_string.
-  !> 
-  !>  
+  !>
   interface rocsolver_get_version_string_size
     function rocsolver_get_version_string_size_(len) bind(c, name="rocsolver_get_version_string_size")
       use iso_c_binding
@@ -158,7 +156,7 @@ module hipfort_rocsolver
     end function
 
   end interface
-  !> ! \brief LOG_BEGIN begins a rocSOLVER multi-level logging session.
+  !>  \brief LOG_BEGIN begins a rocSOLVER multi-level logging session.
   !> 
   !>     \details
   !>     Initializes the rocSOLVER logging environment with default values (no
@@ -168,8 +166,7 @@ module hipfort_rocsolver
   !>     This function also sets the streams where the log results will be outputted.
   !>     The default is STDERR for all the modes. This default can also be overridden
   !>     using the environment variable ROCSOLVER_LOG_PATH, or specifically
-  !>     ROCSOLVER_LOG_TRACE_PATH, ROCSOLVER_LOG_BENCH_PATH, andor ROCSOLVER_LOG_PROFILE_PATH.
-  !>  
+  !>     ROCSOLVER_LOG_TRACE_PATH, ROCSOLVER_LOG_BENCH_PATH, and/or ROCSOLVER_LOG_PROFILE_PATH.
   interface rocsolver_log_begin
     function rocsolver_log_begin_() bind(c, name="rocsolver_log_begin")
       use iso_c_binding
@@ -180,12 +177,11 @@ module hipfort_rocsolver
     end function
 
   end interface
-  !> ! \brief LOG_END ends the multi-level rocSOLVER logging session.
+  !>  \brief LOG_END ends the multi-level rocSOLVER logging session.
   !> 
   !>     \details
   !>     If applicable, this function also prints the profile logging results
   !>     before cleaning the logging environment.
-  !>  
   interface rocsolver_log_end
     function rocsolver_log_end_() bind(c, name="rocsolver_log_end")
       use iso_c_binding
@@ -196,14 +192,13 @@ module hipfort_rocsolver
     end function
 
   end interface
-  !> ! \brief LOG_SET_LAYER_MODE sets the logging mode for the rocSOLVER multi-level
+  !>  \brief LOG_SET_LAYER_MODE sets the logging mode for the rocSOLVER multi-level
   !>     logging environment.
   !> 
   !>     \details
   !>     @param[in]
   !>     layer_mode      rocblas_layer_mode_flags.\n
   !>                     Specifies the logging mode.
-  !>  
   interface rocsolver_log_set_layer_mode
     function rocsolver_log_set_layer_mode_(layer_mode) bind(c, name="rocsolver_log_set_layer_mode")
       use iso_c_binding
@@ -215,7 +210,7 @@ module hipfort_rocsolver
     end function
 
   end interface
-  !> ! \brief LOG_SET_MAX_LEVELS sets the maximum trace log depth for the rocSOLVER
+  !>  \brief LOG_SET_MAX_LEVELS sets the maximum trace log depth for the rocSOLVER
   !>     multi-level logging environment.
   !> 
   !>     \details
@@ -223,7 +218,6 @@ module hipfort_rocsolver
   !>     max_levels      rocblas_int. max_levels >= 1.\n
   !>                     Specifies the maximum depth at which nested function calls
   !>                     will appear in the trace and profile logs.
-  !>  
   interface rocsolver_log_set_max_levels
     function rocsolver_log_set_max_levels_(max_levels) bind(c, name="rocsolver_log_set_max_levels")
       use iso_c_binding
@@ -235,13 +229,12 @@ module hipfort_rocsolver
     end function
 
   end interface
-  !> ! \brief LOG_RESTORE_DEFAULTS restores the default values of the rocSOLVER
+  !>  \brief LOG_RESTORE_DEFAULTS restores the default values of the rocSOLVER
   !>     multi-level logging environment.
   !> 
   !>     \details
   !>     This function sets the logging mode and maximum trace log depth to their
   !>     default values (no logging and one level depth).
-  !>  
   interface rocsolver_log_restore_defaults
     function rocsolver_log_restore_defaults_() bind(c, name="rocsolver_log_restore_defaults")
       use iso_c_binding
@@ -252,8 +245,7 @@ module hipfort_rocsolver
     end function
 
   end interface
-  !> ! \brief LOG_WRITE_PROFILE prints the profile logging results.
-  !>  
+  !>  \brief LOG_WRITE_PROFILE prints the profile logging results.
   interface rocsolver_log_write_profile
     function rocsolver_log_write_profile_() bind(c, name="rocsolver_log_write_profile")
       use iso_c_binding
@@ -264,9 +256,8 @@ module hipfort_rocsolver
     end function
 
   end interface
-  !> ! \brief LOG_FLUSH_PROFILE prints the profile logging results and clears the
+  !>  \brief LOG_FLUSH_PROFILE prints the profile logging results and clears the
   !>     profile record.
-  !>  
   interface rocsolver_log_flush_profile
     function rocsolver_log_flush_profile_() bind(c, name="rocsolver_log_flush_profile")
       use iso_c_binding
@@ -277,7 +268,7 @@ module hipfort_rocsolver
     end function
 
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief LACGV conjugates the complex vector x.
   !> 
   !>     \details
@@ -297,7 +288,6 @@ module hipfort_rocsolver
   !>                     The distance between two consecutive elements of x.
   !>                     If incx is negative, the elements of x are indexed in
   !>                     reverse order.
-  !>     
   interface rocsolver_clacgv
     function rocsolver_clacgv_(handle,n,x,incx) bind(c, name="rocsolver_clacgv")
       use iso_c_binding
@@ -337,7 +327,7 @@ module hipfort_rocsolver
       rocsolver_zlacgv_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief LASWP performs a series of row interchanges on the matrix A.
   !> 
   !>     \details
@@ -350,7 +340,7 @@ module hipfort_rocsolver
   !>     n               rocblas_int. n >= 0.\n
   !>                     The number of columns of the matrix A.
   !>     @param[inout]
-  !>     A               pointer to type. Array on the GPU of dimension ldan. \n
+  !>     A               pointer to type. Array on the GPU of dimension lda*n. \n
   !>                     On entry, the matrix to which the row
   !>                     interchanges will be applied. On exit, the resulting permuted matrix.
   !>     @param[in]
@@ -365,15 +355,14 @@ module hipfort_rocsolver
   !>                     The k_2 index. k_2 - k_1 + 1 is the number of elements of ipiv for which a row
   !>                     interchange will be done. This is a 1-based index.
   !>     @param[in]
-  !>     ipiv            pointer to rocblas_int. Array on the GPU of dimension at least k_1 + (k_2 - k_1)abs(incx).\n
+  !>     ipiv            pointer to rocblas_int. Array on the GPU of dimension at least k_1 + (k_2 - k_1)*abs(incx).\n
   !>                     The vector of pivot indices. Only the elements in positions
-  !>                     k_1 through k_1 + (k_2 - k_1)abs(incx) of this vector are accessed.
+  !>                     k_1 through k_1 + (k_2 - k_1)*abs(incx) of this vector are accessed.
   !>                     Elements of ipiv are considered 1-based.
   !>     @param[in]
   !>     incx            rocblas_int. incx != 0.\n
   !>                     The distance between successive values of ipiv.  If incx
   !>                     is negative, the pivots are applied in reverse order.
-  !>     
   interface rocsolver_slaswp
     function rocsolver_slaswp_(handle,n,A,lda,k1,k2,ipiv,incx) bind(c, name="rocsolver_slaswp")
       use iso_c_binding
@@ -473,7 +462,7 @@ module hipfort_rocsolver
       rocsolver_zlaswp_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief LARFG generates a Householder reflector H of order n.
   !> 
   !>     \details
@@ -513,7 +502,7 @@ module hipfort_rocsolver
   !>     is the Householder vector associated with the reflection.
   !> 
   !>     \note
-  !>     The matrix H is orthogonalunitary (i.e. \f$H'H=HH'=I\f$). It is symmetric when real (i.e. \f$H^T=H\f$), but not Hermitian when complex
+  !>     The matrix H is orthogonal/unitary (i.e. \f$H'H=HH'=I\f$). It is symmetric when real (i.e. \f$H^T=H\f$), but not Hermitian when complex
   !>     (i.e. \f$H^H\neq H\f$ in general).
   !> 
   !>     @param[in]
@@ -535,8 +524,7 @@ module hipfort_rocsolver
   !>     @param[out]
   !>     tau             pointer to type. A scalar on the GPU.\n
   !>                     The Householder scalar tau.
-  !> 
-  !>     
+  !>
   interface rocsolver_slarfg
     function rocsolver_slarfg_(handle,n,alpha,x,incx,tau) bind(c, name="rocsolver_slarfg")
       use iso_c_binding
@@ -624,7 +612,7 @@ module hipfort_rocsolver
       rocsolver_zlarfg_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief LARFT generates the triangular factor T of a block reflector H of
   !>     order n.
   !> 
@@ -668,7 +656,7 @@ module hipfort_rocsolver
   !>     k                   rocblas_int. k >= 1.\n
   !>                         The number of Householder matrices forming H.
   !>     @param[in]
-  !>     V                   pointer to type. Array on the GPU of size ldvk if column-wise, or ldvn if row-wise.\n
+  !>     V                   pointer to type. Array on the GPU of size ldv*k if column-wise, or ldv*n if row-wise.\n
   !>                         The matrix of Householder vectors.
   !>     @param[in]
   !>     ldv                 rocblas_int. ldv >= n if column-wise, or ldv >= k if row-wise.\n
@@ -677,14 +665,13 @@ module hipfort_rocsolver
   !>     tau                 pointer to type. Array of k scalars on the GPU.\n
   !>                         The vector of all the Householder scalars.
   !>     @param[out]
-  !>     T                   pointer to type. Array on the GPU of dimension ldtk.\n
+  !>     T                   pointer to type. Array on the GPU of dimension ldt*k.\n
   !>                         The triangular factor. T is upper triangular if direct indicates forward direction, otherwise it is
   !>                         lower triangular. The rest of the array is not used.
   !>     @param[in]
   !>     ldt                 rocblas_int. ldt >= k.\n
   !>                         The leading dimension of T.
-  !> 
-  !>     
+  !>
   interface rocsolver_slarft
     function rocsolver_slarft_(handle,myDirect,storev,n,k,V,ldv,tau,T,ldt) bind(c, name="rocsolver_slarft")
       use iso_c_binding
@@ -792,7 +779,7 @@ module hipfort_rocsolver
       rocsolver_zlarft_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief LARF applies a Householder reflector H to a general matrix A.
   !> 
   !>     \details
@@ -818,8 +805,8 @@ module hipfort_rocsolver
   !>                     Number of columns of A.
   !>     @param[in]
   !>     x               pointer to type. Array on the GPU of
-  !>                     size at least 1 + (m-1)abs(incx) if left side, or
-  !>                     at least 1 + (n-1)abs(incx) if right side.\n
+  !>                     size at least 1 + (m-1)*abs(incx) if left side, or
+  !>                     at least 1 + (n-1)*abs(incx) if right side.\n
   !>                     The Householder vector x.
   !>     @param[in]
   !>     incx            rocblas_int. incx != 0.\n
@@ -829,14 +816,13 @@ module hipfort_rocsolver
   !>     alpha           pointer to type. A scalar on the GPU.\n
   !>                     The Householder scalar. If alpha = 0, then H = I (A will remain the same; x is never used)
   !>     @param[inout]
-  !>     A               pointer to type. Array on the GPU of size ldan.\n
+  !>     A               pointer to type. Array on the GPU of size lda*n.\n
   !>                     On entry, the matrix A. On exit, it is overwritten with
-  !>                     HA (or AH).
+  !>                     H*A (or A*H).
   !>     @param[in]
   !>     lda             rocblas_int. lda >= m.\n
   !>                     Leading dimension of A.
-  !> 
-  !>     
+  !>
   interface rocsolver_slarf
     function rocsolver_slarf_(handle,side,m,n,x,incx,alpha,A,lda) bind(c, name="rocsolver_slarf")
       use iso_c_binding
@@ -940,7 +926,7 @@ module hipfort_rocsolver
       rocsolver_zlarf_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief LARFB applies a block reflector H to a general m-by-n matrix A.
   !> 
   !>     \details
@@ -987,7 +973,7 @@ module hipfort_rocsolver
   !>                         Specifies from which side to apply H.
   !>     @param[in]
   !>     trans               rocblas_operation.\n
-  !>                         Specifies whether the block reflector or its transposeconjugate transpose is to be applied.
+  !>                         Specifies whether the block reflector or its transpose/conjugate transpose is to be applied.
   !>     @param[in]
   !>     direct              #rocblas_direct.\n
   !>                         Specifies the direction in which the Householder matrices are to be applied to generate H.
@@ -1004,28 +990,27 @@ module hipfort_rocsolver
   !>     k                   rocblas_int. k >= 1.\n
   !>                         The number of Householder matrices.
   !>     @param[in]
-  !>     V                   pointer to type. Array on the GPU of size ldvk if column-wise, ldvn if row-wise and applying from the right,
-  !>                         or ldvm if row-wise and applying from the left.\n
+  !>     V                   pointer to type. Array on the GPU of size ldv*k if column-wise, ldv*n if row-wise and applying from the right,
+  !>                         or ldv*m if row-wise and applying from the left.\n
   !>                         The matrix of Householder vectors.
   !>     @param[in]
   !>     ldv                 rocblas_int. ldv >= k if row-wise, ldv >= m if column-wise and applying from the left, or ldv >= n if
   !>                         column-wise and applying from the right.\n
   !>                         Leading dimension of V.
   !>     @param[in]
-  !>     T                   pointer to type. Array on the GPU of dimension ldtk.\n
+  !>     T                   pointer to type. Array on the GPU of dimension ldt*k.\n
   !>                         The triangular factor of the block reflector.
   !>     @param[in]
   !>     ldt                 rocblas_int. ldt >= k.\n
   !>                         The leading dimension of T.
   !>     @param[inout]
-  !>     A                   pointer to type. Array on the GPU of size ldan.\n
+  !>     A                   pointer to type. Array on the GPU of size lda*n.\n
   !>                         On entry, the matrix A. On exit, it is overwritten with
-  !>                         HA, AH, H'A, or AH'.
+  !>                         H*A, A*H, H'*A, or A*H'.
   !>     @param[in]
   !>     lda                 rocblas_int. lda >= m.\n
   !>                         Leading dimension of A.
-  !> 
-  !>     
+  !>
   interface rocsolver_slarfb
     function rocsolver_slarfb_(handle,side,trans,myDirect,storev,m,n,k,V,ldv,T,ldt,A,lda) bind(c, name="rocsolver_slarfb")
       use iso_c_binding
@@ -1149,7 +1134,7 @@ module hipfort_rocsolver
       rocsolver_zlarfb_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief LABRD computes the bidiagonal form of the first k rows and columns of
   !>     a general m-by-n matrix A, as well as the matrices X and Y needed to reduce
   !>     the remaining part of A.
@@ -1162,7 +1147,7 @@ module hipfort_rocsolver
   !>     \f]
   !> 
   !>     where the leading k-by-k block of B is upper bidiagonal if m >= n, or lower bidiagonal if m < n. Q and
-  !>     P are orthogonalunitary matrices represented as the product of Householder matrices
+  !>     P are orthogonal/unitary matrices represented as the product of Householder matrices
   !> 
   !>     \f[
   !>         \begin{array}{cl}
@@ -1205,7 +1190,7 @@ module hipfort_rocsolver
   !>     k         rocblas_int. min(m,n) >= k >= 0.\n
   !>               The number of leading rows and columns of matrix A that will be reduced.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
   !>               On entry, the m-by-n matrix to be reduced.
   !>               On exit, the first k elements on the diagonal and superdiagonal (if m >= n), or
   !>               subdiagonal (if m < n), contain the bidiagonal form B.
@@ -1231,19 +1216,18 @@ module hipfort_rocsolver
   !>     taup      pointer to type. Array on the GPU of dimension k.\n
   !>               The Householder scalars associated with matrix P.
   !>     @param[out]
-  !>     X         pointer to type. Array on the GPU of dimension ldxk.\n
+  !>     X         pointer to type. Array on the GPU of dimension ldx*k.\n
   !>               The m-by-k matrix needed to update the unreduced part of A.
   !>     @param[in]
   !>     ldx       rocblas_int. ldx >= m.\n
   !>               The leading dimension of X.
   !>     @param[out]
-  !>     Y         pointer to type. Array on the GPU of dimension ldyk.\n
+  !>     Y         pointer to type. Array on the GPU of dimension ldy*k.\n
   !>               The n-by-k matrix needed to update the unreduced part of A.
   !>     @param[in]
   !>     ldy       rocblas_int. ldy >= n.\n
   !>               The leading dimension of Y.
-  !> 
-  !>     
+  !>
   interface rocsolver_slabrd
     function rocsolver_slabrd_(handle,m,n,k,A,lda,D,E,tauq,taup,X,ldx,Y,ldy) bind(c, name="rocsolver_slabrd")
       use iso_c_binding
@@ -1367,9 +1351,9 @@ module hipfort_rocsolver
       rocsolver_zlabrd_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief LATRD computes the tridiagonal form of k rows and columns of
-  !>     a symmetrichermitian matrix A, as well as the matrix W needed to update
+  !>     a symmetric/hermitian matrix A, as well as the matrix W needed to update
   !>     the remaining part of A.
   !> 
   !>     \details
@@ -1380,7 +1364,7 @@ module hipfort_rocsolver
   !>     \f]
   !> 
   !>     If uplo is lower, the first k rows and columns of T form the tridiagonal block. If uplo is upper, then the last
-  !>     k rows and columns of T form the tridiagonal block. Q is an orthogonalunitary matrix represented as the
+  !>     k rows and columns of T form the tridiagonal block. Q is an orthogonal/unitary matrix represented as the
   !>     product of Householder matrices
   !> 
   !>     \f[
@@ -1422,7 +1406,7 @@ module hipfort_rocsolver
   !>     k         rocblas_int. 0 <= k <= n.\n
   !>               The number of rows and columns of the matrix A to be reduced.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
   !>               On entry, the n-by-n matrix to be reduced.
   !>               On exit, if uplo is lower, the first k columns have been reduced to tridiagonal form
   !>               (given in the diagonal elements of A and the array E), the elements below the diagonal
@@ -1441,12 +1425,11 @@ module hipfort_rocsolver
   !>     tau       pointer to type. Array on the GPU of dimension n-1.\n
   !>               If upper (lower), the last (first) k elements of tau are the Householder scalars related to Q.
   !>     @param[out]
-  !>     W         pointer to type. Array on the GPU of dimension ldwk.\n
+  !>     W         pointer to type. Array on the GPU of dimension ldw*k.\n
   !>               The n-by-k matrix needed to update the unreduced part of A.
   !>     @param[in]
   !>     ldw       rocblas_int. ldw >= n.\n
   !>               The leading dimension of W.
-  !>     
   interface rocsolver_slatrd
     function rocsolver_slatrd_(handle,uplo,n,k,A,lda,E,tau,W,ldw) bind(c, name="rocsolver_slatrd")
       use iso_c_binding
@@ -1554,7 +1537,7 @@ module hipfort_rocsolver
       rocsolver_zlatrd_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief LASYF computes a partial factorization of a symmetric matrix \f$A\f$
   !>     using Bunch-Kaufman diagonal pivoting.
   !> 
@@ -1610,7 +1593,7 @@ module hipfort_rocsolver
   !>               The number of columns of A that were actually factored (either nb or
   !>               nb-1).
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
   !>               On entry, the symmetric matrix A to be factored.
   !>               On exit, the partially factored matrix.
   !>     @param[in]
@@ -1635,7 +1618,6 @@ module hipfort_rocsolver
   !>     info      pointer to a rocblas_int on the GPU.\n
   !>               If info = 0, successful exit.
   !>               If info[i] = j > 0, D is singular. D[j,j] is the first diagonal zero.
-  !>     
   interface rocsolver_slasyf
     function rocsolver_slasyf_(handle,uplo,n,nb,kb,A,lda,ipiv,myInfo) bind(c, name="rocsolver_slasyf")
       use iso_c_binding
@@ -1739,7 +1721,7 @@ module hipfort_rocsolver
       rocsolver_zlasyf_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief ORG2R generates an m-by-n Matrix Q with orthonormal columns.
   !> 
   !>     \details
@@ -1767,7 +1749,7 @@ module hipfort_rocsolver
   !>     k           rocblas_int. 0 <= k <= n.\n
   !>                 The number of Householder reflectors.
   !>     @param[inout]
-  !>     A           pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
   !>                 On entry, the matrix A as returned by \ref rocsolver_sgeqrf "GEQRF", with the Householder vectors in the first k columns.
   !>                 On exit, the computed matrix Q.
   !>     @param[in]
@@ -1776,7 +1758,6 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     ipiv        pointer to type. Array on the GPU of dimension at least k.\n
   !>                 The Householder scalars as returned by \ref rocsolver_sgeqrf "GEQRF".
-  !>     
   interface rocsolver_sorg2r
     function rocsolver_sorg2r_(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_sorg2r")
       use iso_c_binding
@@ -1824,7 +1805,7 @@ module hipfort_rocsolver
       rocsolver_dorg2r_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief UNG2R generates an m-by-n complex Matrix Q with orthonormal columns.
   !> 
   !>     \details
@@ -1852,7 +1833,7 @@ module hipfort_rocsolver
   !>     k           rocblas_int. 0 <= k <= n.\n
   !>                 The number of Householder reflectors.
   !>     @param[inout]
-  !>     A           pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
   !>                 On entry, the matrix A as returned by \ref rocsolver_sgeqrf "GEQRF", with the Householder vectors in the first k columns.
   !>                 On exit, the computed matrix Q.
   !>     @param[in]
@@ -1861,7 +1842,6 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     ipiv        pointer to type. Array on the GPU of dimension at least k.\n
   !>                 The Householder scalars as returned by \ref rocsolver_sgeqrf "GEQRF".
-  !>     
   interface rocsolver_cung2r
     function rocsolver_cung2r_(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_cung2r")
       use iso_c_binding
@@ -1909,7 +1889,7 @@ module hipfort_rocsolver
       rocsolver_zung2r_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief ORGQR generates an m-by-n Matrix Q with orthonormal columns.
   !> 
   !>     \details
@@ -1937,7 +1917,7 @@ module hipfort_rocsolver
   !>     k           rocblas_int. 0 <= k <= n.\n
   !>                 The number of Householder reflectors.
   !>     @param[inout]
-  !>     A           pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
   !>                 On entry, the matrix A as returned by \ref rocsolver_sgeqrf "GEQRF", with the Householder vectors in the first k columns.
   !>                 On exit, the computed matrix Q.
   !>     @param[in]
@@ -1946,7 +1926,6 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     ipiv        pointer to type. Array on the GPU of dimension at least k.\n
   !>                 The Householder scalars as returned by \ref rocsolver_sgeqrf "GEQRF".
-  !>     
   interface rocsolver_sorgqr
     function rocsolver_sorgqr_(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_sorgqr")
       use iso_c_binding
@@ -1994,7 +1973,7 @@ module hipfort_rocsolver
       rocsolver_dorgqr_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief UNGQR generates an m-by-n complex Matrix Q with orthonormal columns.
   !> 
   !>     \details
@@ -2022,7 +2001,7 @@ module hipfort_rocsolver
   !>     k           rocblas_int. 0 <= k <= n.\n
   !>                 The number of Householder reflectors.
   !>     @param[inout]
-  !>     A           pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
   !>                 On entry, the matrix A as returned by \ref rocsolver_sgeqrf "GEQRF", with the Householder vectors in the first k columns.
   !>                 On exit, the computed matrix Q.
   !>     @param[in]
@@ -2031,7 +2010,6 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     ipiv        pointer to type. Array on the GPU of dimension at least k.\n
   !>                 The Householder scalars as returned by \ref rocsolver_sgeqrf "GEQRF".
-  !>     
   interface rocsolver_cungqr
     function rocsolver_cungqr_(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_cungqr")
       use iso_c_binding
@@ -2079,7 +2057,7 @@ module hipfort_rocsolver
       rocsolver_zungqr_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief ORGL2 generates an m-by-n Matrix Q with orthonormal rows.
   !> 
   !>     \details
@@ -2107,7 +2085,7 @@ module hipfort_rocsolver
   !>     k           rocblas_int. 0 <= k <= m.\n
   !>                 The number of Householder reflectors.
   !>     @param[inout]
-  !>     A           pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
   !>                 On entry, the matrix A as returned by \ref rocsolver_sgeqrf "GELQF", with the Householder vectors in the first k rows.
   !>                 On exit, the computed matrix Q.
   !>     @param[in]
@@ -2116,7 +2094,6 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     ipiv        pointer to type. Array on the GPU of dimension at least k.\n
   !>                 The Householder scalars as returned by \ref rocsolver_sgelqf "GELQF".
-  !>     
   interface rocsolver_sorgl2
     function rocsolver_sorgl2_(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_sorgl2")
       use iso_c_binding
@@ -2164,7 +2141,7 @@ module hipfort_rocsolver
       rocsolver_dorgl2_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief UNGL2 generates an m-by-n complex Matrix Q with orthonormal rows.
   !> 
   !>     \details
@@ -2192,7 +2169,7 @@ module hipfort_rocsolver
   !>     k           rocblas_int. 0 <= k <= m.\n
   !>                 The number of Householder reflectors.
   !>     @param[inout]
-  !>     A           pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
   !>                 On entry, the matrix A as returned by \ref rocsolver_sgeqrf "GELQF", with the Householder vectors in the first k rows.
   !>                 On exit, the computed matrix Q.
   !>     @param[in]
@@ -2201,7 +2178,6 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     ipiv        pointer to type. Array on the GPU of dimension at least k.\n
   !>                 The Householder scalars as returned by \ref rocsolver_sgelqf "GELQF".
-  !>     
   interface rocsolver_cungl2
     function rocsolver_cungl2_(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_cungl2")
       use iso_c_binding
@@ -2249,7 +2225,7 @@ module hipfort_rocsolver
       rocsolver_zungl2_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief ORGLQ generates an m-by-n Matrix Q with orthonormal rows.
   !> 
   !>     \details
@@ -2277,7 +2253,7 @@ module hipfort_rocsolver
   !>     k           rocblas_int. 0 <= k <= m.\n
   !>                 The number of Householder reflectors.
   !>     @param[inout]
-  !>     A           pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
   !>                 On entry, the matrix A as returned by \ref rocsolver_sgeqrf "GELQF", with the Householder vectors in the first k rows.
   !>                 On exit, the computed matrix Q.
   !>     @param[in]
@@ -2286,7 +2262,6 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     ipiv        pointer to type. Array on the GPU of dimension at least k.\n
   !>                 The Householder scalars as returned by \ref rocsolver_sgelqf "GELQF".
-  !>     
   interface rocsolver_sorglq
     function rocsolver_sorglq_(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_sorglq")
       use iso_c_binding
@@ -2334,7 +2309,7 @@ module hipfort_rocsolver
       rocsolver_dorglq_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief UNGLQ generates an m-by-n complex Matrix Q with orthonormal rows.
   !> 
   !>     \details
@@ -2362,7 +2337,7 @@ module hipfort_rocsolver
   !>     k           rocblas_int. 0 <= k <= m.\n
   !>                 The number of Householder reflectors.
   !>     @param[inout]
-  !>     A           pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
   !>                 On entry, the matrix A as returned by \ref rocsolver_sgeqrf "GELQF", with the Householder vectors in the first k rows.
   !>                 On exit, the computed matrix Q.
   !>     @param[in]
@@ -2371,7 +2346,6 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     ipiv        pointer to type. Array on the GPU of dimension at least k.\n
   !>                 The Householder scalars as returned by \ref rocsolver_sgelqf "GELQF".
-  !>     
   interface rocsolver_cunglq
     function rocsolver_cunglq_(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_cunglq")
       use iso_c_binding
@@ -2419,7 +2393,7 @@ module hipfort_rocsolver
       rocsolver_zunglq_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief ORG2L generates an m-by-n Matrix Q with orthonormal columns.
   !> 
   !>     \details
@@ -2447,7 +2421,7 @@ module hipfort_rocsolver
   !>     k           rocblas_int. 0 <= k <= n.\n
   !>                 The number of Householder reflectors.
   !>     @param[inout]
-  !>     A           pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
   !>                 On entry, the matrix A as returned by \ref rocsolver_sgeqrf "GEQLF", with the Householder vectors in the last k columns.
   !>                 On exit, the computed matrix Q.
   !>     @param[in]
@@ -2456,7 +2430,6 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     ipiv        pointer to type. Array on the GPU of dimension at least k.\n
   !>                 The Householder scalars as returned by \ref rocsolver_sgeqlf "GEQLF".
-  !>     
   interface rocsolver_sorg2l
     function rocsolver_sorg2l_(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_sorg2l")
       use iso_c_binding
@@ -2504,7 +2477,7 @@ module hipfort_rocsolver
       rocsolver_dorg2l_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief UNG2L generates an m-by-n complex Matrix Q with orthonormal columns.
   !> 
   !>     \details
@@ -2532,7 +2505,7 @@ module hipfort_rocsolver
   !>     k           rocblas_int. 0 <= k <= n.\n
   !>                 The number of Householder reflectors.
   !>     @param[inout]
-  !>     A           pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
   !>                 On entry, the matrix A as returned by \ref rocsolver_sgeqrf "GEQLF", with the Householder vectors in the last k columns.
   !>                 On exit, the computed matrix Q.
   !>     @param[in]
@@ -2541,7 +2514,6 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     ipiv        pointer to type. Array on the GPU of dimension at least k.\n
   !>                 The Householder scalars as returned by \ref rocsolver_sgeqlf "GEQLF".
-  !>     
   interface rocsolver_cung2l
     function rocsolver_cung2l_(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_cung2l")
       use iso_c_binding
@@ -2589,7 +2561,7 @@ module hipfort_rocsolver
       rocsolver_zung2l_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief ORGQL generates an m-by-n Matrix Q with orthonormal columns.
   !> 
   !>     \details
@@ -2617,7 +2589,7 @@ module hipfort_rocsolver
   !>     k           rocblas_int. 0 <= k <= n.\n
   !>                 The number of Householder reflectors.
   !>     @param[inout]
-  !>     A           pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
   !>                 On entry, the matrix A as returned by \ref rocsolver_sgeqrf "GEQLF", with the Householder vectors in the last k columns.
   !>                 On exit, the computed matrix Q.
   !>     @param[in]
@@ -2626,7 +2598,6 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     ipiv        pointer to type. Array on the GPU of dimension at least k.\n
   !>                 The Householder scalars as returned by \ref rocsolver_sgeqlf "GEQLF".
-  !>     
   interface rocsolver_sorgql
     function rocsolver_sorgql_(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_sorgql")
       use iso_c_binding
@@ -2674,7 +2645,7 @@ module hipfort_rocsolver
       rocsolver_dorgql_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief UNGQL generates an m-by-n complex Matrix Q with orthonormal columns.
   !> 
   !>     \details
@@ -2702,7 +2673,7 @@ module hipfort_rocsolver
   !>     k           rocblas_int. 0 <= k <= n.\n
   !>                 The number of Householder reflectors.
   !>     @param[inout]
-  !>     A           pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
   !>                 On entry, the matrix A as returned by \ref rocsolver_sgeqrf "GEQLF", with the Householder vectors in the last k columns.
   !>                 On exit, the computed matrix Q.
   !>     @param[in]
@@ -2711,7 +2682,6 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     ipiv        pointer to type. Array on the GPU of dimension at least k.\n
   !>                 The Householder scalars as returned by \ref rocsolver_sgeqlf "GEQLF".
-  !>     
   interface rocsolver_cungql
     function rocsolver_cungql_(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_cungql")
       use iso_c_binding
@@ -2759,7 +2729,7 @@ module hipfort_rocsolver
       rocsolver_zungql_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief ORGBR generates an m-by-n Matrix Q with orthonormal rows or columns.
   !> 
   !>     \details
@@ -2810,7 +2780,7 @@ module hipfort_rocsolver
   !>                 The number of columns (if storev is column-wise) or rows (if row-wise) of the
   !>                 original matrix reduced by \ref rocsolver_sgebrd "GEBRD".
   !>     @param[inout]
-  !>     A           pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
   !>                 On entry, the Householder vectors as returned by \ref rocsolver_sgebrd "GEBRD".
   !>                 On exit, the computed matrix Q.
   !>     @param[in]
@@ -2819,7 +2789,6 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     ipiv        pointer to type. Array on the GPU of dimension min(m,k) if column-wise, or min(n,k) if row-wise.\n
   !>                 The Householder scalars as returned by \ref rocsolver_sgebrd "GEBRD".
-  !>     
   interface rocsolver_sorgbr
     function rocsolver_sorgbr_(handle,storev,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_sorgbr")
       use iso_c_binding
@@ -2869,7 +2838,7 @@ module hipfort_rocsolver
       rocsolver_dorgbr_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief UNGBR generates an m-by-n complex Matrix Q with orthonormal rows or
   !>     columns.
   !> 
@@ -2921,7 +2890,7 @@ module hipfort_rocsolver
   !>                 The number of columns (if storev is column-wise) or rows (if row-wise) of the
   !>                 original matrix reduced by \ref rocsolver_sgebrd "GEBRD".
   !>     @param[inout]
-  !>     A           pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
   !>                 On entry, the Householder vectors as returned by \ref rocsolver_sgebrd "GEBRD".
   !>                 On exit, the computed matrix Q.
   !>     @param[in]
@@ -2930,7 +2899,6 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     ipiv        pointer to type. Array on the GPU of dimension min(m,k) if column-wise, or min(n,k) if row-wise.\n
   !>                 The Householder scalars as returned by \ref rocsolver_sgebrd "GEBRD".
-  !>     
   interface rocsolver_cungbr
     function rocsolver_cungbr_(handle,storev,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_cungbr")
       use iso_c_binding
@@ -2980,7 +2948,7 @@ module hipfort_rocsolver
       rocsolver_zungbr_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief ORGTR generates an n-by-n orthogonal Matrix Q.
   !> 
   !>     \details
@@ -3012,7 +2980,7 @@ module hipfort_rocsolver
   !>     n           rocblas_int. n >= 0.\n
   !>                 The number of rows and columns of the matrix Q.
   !>     @param[inout]
-  !>     A           pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
   !>                 On entry, the Householder vectors as returned
   !>                 by \ref rocsolver_ssytrd "SYTRD". On exit, the computed matrix Q.
   !>     @param[in]
@@ -3021,7 +2989,6 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     ipiv        pointer to type. Array on the GPU of dimension n-1.\n
   !>                 The Householder scalars as returned by \ref rocsolver_ssytrd "SYTRD".
-  !>     
   interface rocsolver_sorgtr
     function rocsolver_sorgtr_(handle,uplo,n,A,lda,ipiv) bind(c, name="rocsolver_sorgtr")
       use iso_c_binding
@@ -3067,7 +3034,7 @@ module hipfort_rocsolver
       rocsolver_dorgtr_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief UNGTR generates an n-by-n unitary Matrix Q.
   !> 
   !>     \details
@@ -3099,7 +3066,7 @@ module hipfort_rocsolver
   !>     n           rocblas_int. n >= 0.\n
   !>                 The number of rows and columns of the matrix Q.
   !>     @param[inout]
-  !>     A           pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
   !>                 On entry, the Householder vectors as returned
   !>                 by \ref rocsolver_chetrd "HETRD". On exit, the computed matrix Q.
   !>     @param[in]
@@ -3108,7 +3075,6 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     ipiv        pointer to type. Array on the GPU of dimension n-1.\n
   !>                 The Householder scalars as returned by \ref rocsolver_chetrd "HETRD".
-  !>     
   interface rocsolver_cungtr
     function rocsolver_cungtr_(handle,uplo,n,A,lda,ipiv) bind(c, name="rocsolver_cungtr")
       use iso_c_binding
@@ -3154,7 +3120,7 @@ module hipfort_rocsolver
       rocsolver_zungtr_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief ORM2R multiplies a matrix Q with orthonormal columns by a general m-by-n
   !>     matrix C.
   !> 
@@ -3200,7 +3166,7 @@ module hipfort_rocsolver
   !>     k                   rocblas_int. k >= 0; k <= m if side is left, k <= n if side is right.\n
   !>                         The number of Householder reflectors that form Q.
   !>     @param[in]
-  !>     A                   pointer to type. Array on the GPU of size ldak.\n
+  !>     A                   pointer to type. Array on the GPU of size lda*k.\n
   !>                         The Householder vectors as returned by \ref rocsolver_sgeqrf "GEQRF"
   !>                         in the first k columns of its argument A.
   !>     @param[in]
@@ -3210,13 +3176,12 @@ module hipfort_rocsolver
   !>     ipiv                pointer to type. Array on the GPU of dimension at least k.\n
   !>                         The Householder scalars as returned by \ref rocsolver_sgeqrf "GEQRF".
   !>     @param[inout]
-  !>     C                   pointer to type. Array on the GPU of size ldcn.\n
+  !>     C                   pointer to type. Array on the GPU of size ldc*n.\n
   !>                         On entry, the matrix C. On exit, it is overwritten with
-  !>                         QC, CQ, Q'C, or CQ'.
+  !>                         Q*C, C*Q, Q'*C, or C*Q'.
   !>     @param[in]
   !>     ldc                 rocblas_int. ldc >= m.\n
   !>                         Leading dimension of C.
-  !>     
   interface rocsolver_sorm2r
     function rocsolver_sorm2r_(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_sorm2r")
       use iso_c_binding
@@ -3272,7 +3237,7 @@ module hipfort_rocsolver
       rocsolver_dorm2r_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief UNM2R multiplies a complex matrix Q with orthonormal columns by a
   !>     general m-by-n matrix C.
   !> 
@@ -3318,7 +3283,7 @@ module hipfort_rocsolver
   !>     k                   rocblas_int. k >= 0; k <= m if side is left, k <= n if side is right.\n
   !>                         The number of Householder reflectors that form Q.
   !>     @param[in]
-  !>     A                   pointer to type. Array on the GPU of size ldak.\n
+  !>     A                   pointer to type. Array on the GPU of size lda*k.\n
   !>                         The Householder vectors as returned by \ref rocsolver_sgeqrf "GEQRF"
   !>                         in the first k columns of its argument A.
   !>     @param[in]
@@ -3328,14 +3293,13 @@ module hipfort_rocsolver
   !>     ipiv                pointer to type. Array on the GPU of dimension at least k.\n
   !>                         The Householder scalars as returned by \ref rocsolver_sgeqrf "GEQRF".
   !>     @param[inout]
-  !>     C                   pointer to type. Array on the GPU of size ldcn.\n
+  !>     C                   pointer to type. Array on the GPU of size ldc*n.\n
   !>                         On entry, the matrix C. On exit, it is overwritten with
-  !>                         QC, CQ, Q'C, or CQ'.
+  !>                         Q*C, C*Q, Q'*C, or C*Q'.
   !>     @param[in]
   !>     ldc                 rocblas_int. ldc >= m.\n
   !>                         Leading dimension of C.
-  !> 
-  !>     
+  !>
   interface rocsolver_cunm2r
     function rocsolver_cunm2r_(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_cunm2r")
       use iso_c_binding
@@ -3391,7 +3355,7 @@ module hipfort_rocsolver
       rocsolver_zunm2r_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief ORMQR multiplies a matrix Q with orthonormal columns by a general m-by-n
   !>     matrix C.
   !> 
@@ -3437,7 +3401,7 @@ module hipfort_rocsolver
   !>     k                   rocblas_int. k >= 0; k <= m if side is left, k <= n if side is right.\n
   !>                         The number of Householder reflectors that form Q.
   !>     @param[in]
-  !>     A                   pointer to type. Array on the GPU of size ldak.\n
+  !>     A                   pointer to type. Array on the GPU of size lda*k.\n
   !>                         The Householder vectors as returned by \ref rocsolver_sgeqrf "GEQRF"
   !>                         in the first k columns of its argument A.
   !>     @param[in]
@@ -3447,13 +3411,12 @@ module hipfort_rocsolver
   !>     ipiv                pointer to type. Array on the GPU of dimension at least k.\n
   !>                         The Householder scalars as returned by \ref rocsolver_sgeqrf "GEQRF".
   !>     @param[inout]
-  !>     C                   pointer to type. Array on the GPU of size ldcn.\n
+  !>     C                   pointer to type. Array on the GPU of size ldc*n.\n
   !>                         On entry, the matrix C. On exit, it is overwritten with
-  !>                         QC, CQ, Q'C, or CQ'.
+  !>                         Q*C, C*Q, Q'*C, or C*Q'.
   !>     @param[in]
   !>     ldc                 rocblas_int. ldc >= m.\n
   !>                         Leading dimension of C.
-  !>     
   interface rocsolver_sormqr
     function rocsolver_sormqr_(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_sormqr")
       use iso_c_binding
@@ -3509,7 +3472,7 @@ module hipfort_rocsolver
       rocsolver_dormqr_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief UNMQR multiplies a complex matrix Q with orthonormal columns by a
   !>     general m-by-n matrix C.
   !> 
@@ -3555,7 +3518,7 @@ module hipfort_rocsolver
   !>     k                   rocblas_int. k >= 0; k <= m if side is left, k <= n if side is right.\n
   !>                         The number of Householder reflectors that form Q.
   !>     @param[in]
-  !>     A                   pointer to type. Array on the GPU of size ldak.\n
+  !>     A                   pointer to type. Array on the GPU of size lda*k.\n
   !>                         The Householder vectors as returned by \ref rocsolver_sgeqrf "GEQRF"
   !>                         in the first k columns of its argument A.
   !>     @param[in]
@@ -3565,13 +3528,12 @@ module hipfort_rocsolver
   !>     ipiv                pointer to type. Array on the GPU of dimension at least k.\n
   !>                         The Householder scalars as returned by \ref rocsolver_sgeqrf "GEQRF".
   !>     @param[inout]
-  !>     C                   pointer to type. Array on the GPU of size ldcn.\n
+  !>     C                   pointer to type. Array on the GPU of size ldc*n.\n
   !>                         On entry, the matrix C. On exit, it is overwritten with
-  !>                         QC, CQ, Q'C, or CQ'.
+  !>                         Q*C, C*Q, Q'*C, or C*Q'.
   !>     @param[in]
   !>     ldc                 rocblas_int. ldc >= m.\n
   !>                         Leading dimension of C.
-  !>     
   interface rocsolver_cunmqr
     function rocsolver_cunmqr_(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_cunmqr")
       use iso_c_binding
@@ -3627,7 +3589,7 @@ module hipfort_rocsolver
       rocsolver_zunmqr_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief ORML2 multiplies a matrix Q with orthonormal rows by a general m-by-n
   !>     matrix C.
   !> 
@@ -3673,7 +3635,7 @@ module hipfort_rocsolver
   !>     k                   rocblas_int. k >= 0; k <= m if side is left, k <= n if side is right.\n
   !>                         The number of Householder reflectors that form Q.
   !>     @param[in]
-  !>     A                   pointer to type. Array on the GPU of size ldam if side is left, or ldan if side is right.\n
+  !>     A                   pointer to type. Array on the GPU of size lda*m if side is left, or lda*n if side is right.\n
   !>                         The Householder vectors as returned by \ref rocsolver_sgelqf "GELQF"
   !>                         in the first k rows of its argument A.
   !>     @param[in]
@@ -3683,14 +3645,13 @@ module hipfort_rocsolver
   !>     ipiv                pointer to type. Array on the GPU of dimension at least k.\n
   !>                         The Householder scalars as returned by \ref rocsolver_sgelqf "GELQF".
   !>     @param[inout]
-  !>     C                   pointer to type. Array on the GPU of size ldcn.\n
+  !>     C                   pointer to type. Array on the GPU of size ldc*n.\n
   !>                         On entry, the matrix C. On exit, it is overwritten with
-  !>                         QC, CQ, Q'C, or CQ'.
+  !>                         Q*C, C*Q, Q'*C, or C*Q'.
   !>     @param[in]
   !>     ldc                 rocblas_int. ldc >= m.\n
   !>                         Leading dimension of C.
-  !> 
-  !>     
+  !>
   interface rocsolver_sorml2
     function rocsolver_sorml2_(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_sorml2")
       use iso_c_binding
@@ -3746,7 +3707,7 @@ module hipfort_rocsolver
       rocsolver_dorml2_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief UNML2 multiplies a complex matrix Q with orthonormal rows by a general
   !>     m-by-n matrix C.
   !> 
@@ -3792,7 +3753,7 @@ module hipfort_rocsolver
   !>     k                   rocblas_int. k >= 0; k <= m if side is left, k <= n if side is right.\n
   !>                         The number of Householder reflectors that form Q.
   !>     @param[in]
-  !>     A                   pointer to type. Array on the GPU of size ldam if side is left, or ldan if side is right.\n
+  !>     A                   pointer to type. Array on the GPU of size lda*m if side is left, or lda*n if side is right.\n
   !>                         The Householder vectors as returned by \ref rocsolver_sgelqf "GELQF"
   !>                         in the first k rows of its argument A.
   !>     @param[in]
@@ -3802,13 +3763,12 @@ module hipfort_rocsolver
   !>     ipiv                pointer to type. Array on the GPU of dimension at least k.\n
   !>                         The Householder scalars as returned by \ref rocsolver_sgelqf "GELQF".
   !>     @param[inout]
-  !>     C                   pointer to type. Array on the GPU of size ldcn.\n
+  !>     C                   pointer to type. Array on the GPU of size ldc*n.\n
   !>                         On entry, the matrix C. On exit, it is overwritten with
-  !>                         QC, CQ, Q'C, or CQ'.
+  !>                         Q*C, C*Q, Q'*C, or C*Q'.
   !>     @param[in]
   !>     ldc                 rocblas_int. ldc >= m.\n
   !>                         Leading dimension of C.
-  !>     
   interface rocsolver_cunml2
     function rocsolver_cunml2_(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_cunml2")
       use iso_c_binding
@@ -3864,7 +3824,7 @@ module hipfort_rocsolver
       rocsolver_zunml2_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief ORMLQ multiplies a matrix Q with orthonormal rows by a general m-by-n
   !>     matrix C.
   !> 
@@ -3910,7 +3870,7 @@ module hipfort_rocsolver
   !>     k                   rocblas_int. k >= 0; k <= m if side is left, k <= n if side is right.\n
   !>                         The number of Householder reflectors that form Q.
   !>     @param[in]
-  !>     A                   pointer to type. Array on the GPU of size ldam if side is left, or ldan if side is right.\n
+  !>     A                   pointer to type. Array on the GPU of size lda*m if side is left, or lda*n if side is right.\n
   !>                         The Householder vectors as returned by \ref rocsolver_sgelqf "GELQF"
   !>                         in the first k rows of its argument A.
   !>     @param[in]
@@ -3920,13 +3880,12 @@ module hipfort_rocsolver
   !>     ipiv                pointer to type. Array on the GPU of dimension at least k.\n
   !>                         The Householder scalars as returned by \ref rocsolver_sgelqf "GELQF".
   !>     @param[inout]
-  !>     C                   pointer to type. Array on the GPU of size ldcn.\n
+  !>     C                   pointer to type. Array on the GPU of size ldc*n.\n
   !>                         On entry, the matrix C. On exit, it is overwritten with
-  !>                         QC, CQ, Q'C, or CQ'.
+  !>                         Q*C, C*Q, Q'*C, or C*Q'.
   !>     @param[in]
   !>     ldc                 rocblas_int. ldc >= m.\n
   !>                         Leading dimension of C.
-  !>     
   interface rocsolver_sormlq
     function rocsolver_sormlq_(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_sormlq")
       use iso_c_binding
@@ -3982,7 +3941,7 @@ module hipfort_rocsolver
       rocsolver_dormlq_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief UNMLQ multiplies a complex matrix Q with orthonormal rows by a general
   !>     m-by-n matrix C.
   !> 
@@ -4028,7 +3987,7 @@ module hipfort_rocsolver
   !>     k                   rocblas_int. k >= 0; k <= m if side is left, k <= n if side is right.\n
   !>                         The number of Householder reflectors that form Q.
   !>     @param[in]
-  !>     A                   pointer to type. Array on the GPU of size ldam if side is left, or ldan if side is right.\n
+  !>     A                   pointer to type. Array on the GPU of size lda*m if side is left, or lda*n if side is right.\n
   !>                         The Householder vectors as returned by \ref rocsolver_sgelqf "GELQF"
   !>                         in the first k rows of its argument A.
   !>     @param[in]
@@ -4038,13 +3997,12 @@ module hipfort_rocsolver
   !>     ipiv                pointer to type. Array on the GPU of dimension at least k.\n
   !>                         The Householder scalars as returned by \ref rocsolver_sgelqf "GELQF".
   !>     @param[inout]
-  !>     C                   pointer to type. Array on the GPU of size ldcn.\n
+  !>     C                   pointer to type. Array on the GPU of size ldc*n.\n
   !>                         On entry, the matrix C. On exit, it is overwritten with
-  !>                         QC, CQ, Q'C, or CQ'.
+  !>                         Q*C, C*Q, Q'*C, or C*Q'.
   !>     @param[in]
   !>     ldc                 rocblas_int. ldc >= m.\n
   !>                         Leading dimension of C.
-  !>     
   interface rocsolver_cunmlq
     function rocsolver_cunmlq_(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_cunmlq")
       use iso_c_binding
@@ -4100,7 +4058,7 @@ module hipfort_rocsolver
       rocsolver_zunmlq_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief ORM2L multiplies a matrix Q with orthonormal columns by a general m-by-n
   !>     matrix C.
   !> 
@@ -4148,7 +4106,7 @@ module hipfort_rocsolver
   !>     k                   rocblas_int. k >= 0; k <= m if side is left, k <= n if side is right.\n
   !>                         The number of Householder reflectors that form Q.
   !>     @param[in]
-  !>     A                   pointer to type. Array on the GPU of size ldak.\n
+  !>     A                   pointer to type. Array on the GPU of size lda*k.\n
   !>                         The Householder vectors as returned by \ref rocsolver_sgeqlf "GEQLF" in the last k columns of its
   !>                         argument A.
   !>     @param[in]
@@ -4159,13 +4117,12 @@ module hipfort_rocsolver
   !>                         The Householder scalars as returned by
   !>                         \ref rocsolver_sgeqlf "GEQLF".
   !>     @param[inout]
-  !>     C                   pointer to type. Array on the GPU of size ldcn.\n
+  !>     C                   pointer to type. Array on the GPU of size ldc*n.\n
   !>                         On entry, the matrix C. On exit, it is overwritten with
-  !>                         QC, CQ, Q'C, or CQ'.
+  !>                         Q*C, C*Q, Q'*C, or C*Q'.
   !>     @param[in]
   !>     ldc                 rocblas_int. ldc >= m.\n
   !>                         Leading dimension of C.
-  !>     
   interface rocsolver_sorm2l
     function rocsolver_sorm2l_(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_sorm2l")
       use iso_c_binding
@@ -4221,7 +4178,7 @@ module hipfort_rocsolver
       rocsolver_dorm2l_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief UNM2L multiplies a complex matrix Q with orthonormal columns by a
   !>     general m-by-n matrix C.
   !> 
@@ -4269,7 +4226,7 @@ module hipfort_rocsolver
   !>     k                   rocblas_int. k >= 0; k <= m if side is left, k <= n if side is right.\n
   !>                         The number of Householder reflectors that form Q.
   !>     @param[in]
-  !>     A                   pointer to type. Array on the GPU of size ldak.\n
+  !>     A                   pointer to type. Array on the GPU of size lda*k.\n
   !>                         The Householder vectors as returned by \ref rocsolver_sgeqlf "GEQLF" in the last k columns of its
   !>                         argument A.
   !>     @param[in]
@@ -4280,13 +4237,12 @@ module hipfort_rocsolver
   !>                         The Householder scalars as returned by
   !>                         \ref rocsolver_sgeqlf "GEQLF".
   !>     @param[inout]
-  !>     C                   pointer to type. Array on the GPU of size ldcn.\n
+  !>     C                   pointer to type. Array on the GPU of size ldc*n.\n
   !>                         On entry, the matrix C. On exit, it is overwritten with
-  !>                         QC, CQ, Q'C, or CQ'.
+  !>                         Q*C, C*Q, Q'*C, or C*Q'.
   !>     @param[in]
   !>     ldc                 rocblas_int. ldc >= m.\n
   !>                         Leading dimension of C.
-  !>     
   interface rocsolver_cunm2l
     function rocsolver_cunm2l_(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_cunm2l")
       use iso_c_binding
@@ -4342,7 +4298,7 @@ module hipfort_rocsolver
       rocsolver_zunm2l_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief ORMQL multiplies a matrix Q with orthonormal columns by a general m-by-n
   !>     matrix C.
   !> 
@@ -4390,7 +4346,7 @@ module hipfort_rocsolver
   !>     k                   rocblas_int. k >= 0; k <= m if side is left, k <= n if side is right.\n
   !>                         The number of Householder reflectors that form Q.
   !>     @param[in]
-  !>     A                   pointer to type. Array on the GPU of size ldak.\n
+  !>     A                   pointer to type. Array on the GPU of size lda*k.\n
   !>                         The Householder vectors as returned by \ref rocsolver_sgeqlf "GEQLF" in the last k columns of its
   !>                         argument A.
   !>     @param[in]
@@ -4401,13 +4357,12 @@ module hipfort_rocsolver
   !>                         The Householder scalars as returned by
   !>                         \ref rocsolver_sgeqlf "GEQLF".
   !>     @param[inout]
-  !>     C                   pointer to type. Array on the GPU of size ldcn.\n
+  !>     C                   pointer to type. Array on the GPU of size ldc*n.\n
   !>                         On entry, the matrix C. On exit, it is overwritten with
-  !>                         QC, CQ, Q'C, or CQ'.
+  !>                         Q*C, C*Q, Q'*C, or C*Q'.
   !>     @param[in]
   !>     ldc                 rocblas_int. ldc >= m.\n
   !>                         Leading dimension of C.
-  !>     
   interface rocsolver_sormql
     function rocsolver_sormql_(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_sormql")
       use iso_c_binding
@@ -4463,7 +4418,7 @@ module hipfort_rocsolver
       rocsolver_dormql_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief UNMQL multiplies a complex matrix Q with orthonormal columns by a
   !>     general m-by-n matrix C.
   !> 
@@ -4511,7 +4466,7 @@ module hipfort_rocsolver
   !>     k                   rocblas_int. k >= 0; k <= m if side is left, k <= n if side is right.\n
   !>                         The number of Householder reflectors that form Q.
   !>     @param[in]
-  !>     A                   pointer to type. Array on the GPU of size ldak.\n
+  !>     A                   pointer to type. Array on the GPU of size lda*k.\n
   !>                         The Householder vectors as returned by \ref rocsolver_sgeqlf "GEQLF" in the last k columns of its
   !>                         argument A.
   !>     @param[in]
@@ -4522,13 +4477,12 @@ module hipfort_rocsolver
   !>                         The Householder scalars as returned by
   !>                         \ref rocsolver_sgeqlf "GEQLF".
   !>     @param[inout]
-  !>     C                   pointer to type. Array on the GPU of size ldcn.\n
+  !>     C                   pointer to type. Array on the GPU of size ldc*n.\n
   !>                         On entry, the matrix C. On exit, it is overwritten with
-  !>                         QC, CQ, Q'C, or CQ'.
+  !>                         Q*C, C*Q, Q'*C, or C*Q'.
   !>     @param[in]
   !>     ldc                 rocblas_int. ldc >= m.\n
   !>                         Leading dimension of C.
-  !>     
   interface rocsolver_cunmql
     function rocsolver_cunmql_(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_cunmql")
       use iso_c_binding
@@ -4584,7 +4538,7 @@ module hipfort_rocsolver
       rocsolver_zunmql_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief ORMBR multiplies a matrix Q with orthonormal rows or columns by a
   !>     general m-by-n matrix C.
   !> 
@@ -4654,7 +4608,7 @@ module hipfort_rocsolver
   !>                         The number of columns (if storev is column-wise) or rows (if row-wise) of the
   !>                         original matrix reduced by \ref rocsolver_sgebrd "GEBRD".
   !>     @param[in]
-  !>     A                   pointer to type. Array on the GPU of size ldamin(q,k) if column-wise, or ldaq if row-wise.\n
+  !>     A                   pointer to type. Array on the GPU of size lda*min(q,k) if column-wise, or lda*q if row-wise.\n
   !>                         The Householder vectors as returned by \ref rocsolver_sgebrd "GEBRD".
   !>     @param[in]
   !>     lda                 rocblas_int. lda >= q if column-wise, or lda >= min(q,k) if row-wise. \n
@@ -4663,13 +4617,12 @@ module hipfort_rocsolver
   !>     ipiv                pointer to type. Array on the GPU of dimension at least min(q,k).\n
   !>                         The Householder scalars as returned by \ref rocsolver_sgebrd "GEBRD".
   !>     @param[inout]
-  !>     C                   pointer to type. Array on the GPU of size ldcn.\n
+  !>     C                   pointer to type. Array on the GPU of size ldc*n.\n
   !>                         On entry, the matrix C. On exit, it is overwritten with
-  !>                         QC, CQ, Q'C, or CQ'.
+  !>                         Q*C, C*Q, Q'*C, or C*Q'.
   !>     @param[in]
   !>     ldc                 rocblas_int. ldc >= m.\n
   !>                         Leading dimension of C.
-  !>     
   interface rocsolver_sormbr
     function rocsolver_sormbr_(handle,storev,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_sormbr")
       use iso_c_binding
@@ -4727,7 +4680,7 @@ module hipfort_rocsolver
       rocsolver_dormbr_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief UNMBR multiplies a complex matrix Q with orthonormal rows or columns by
   !>     a general m-by-n matrix C.
   !> 
@@ -4797,7 +4750,7 @@ module hipfort_rocsolver
   !>                         The number of columns (if storev is column-wise) or rows (if row-wise) of the
   !>                         original matrix reduced by \ref rocsolver_sgebrd "GEBRD".
   !>     @param[in]
-  !>     A                   pointer to type. Array on the GPU of size ldamin(q,k) if column-wise, or ldaq if row-wise.\n
+  !>     A                   pointer to type. Array on the GPU of size lda*min(q,k) if column-wise, or lda*q if row-wise.\n
   !>                         The Householder vectors as returned by \ref rocsolver_sgebrd "GEBRD".
   !>     @param[in]
   !>     lda                 rocblas_int. lda >= q if column-wise, or lda >= min(q,k) if row-wise. \n
@@ -4806,13 +4759,12 @@ module hipfort_rocsolver
   !>     ipiv                pointer to type. Array on the GPU of dimension at least min(q,k).\n
   !>                         The Householder scalars as returned by \ref rocsolver_sgebrd "GEBRD".
   !>     @param[inout]
-  !>     C                   pointer to type. Array on the GPU of size ldcn.\n
+  !>     C                   pointer to type. Array on the GPU of size ldc*n.\n
   !>                         On entry, the matrix C. On exit, it is overwritten with
-  !>                         QC, CQ, Q'C, or CQ'.
+  !>                         Q*C, C*Q, Q'*C, or C*Q'.
   !>     @param[in]
   !>     ldc                 rocblas_int. ldc >= m.\n
   !>                         Leading dimension of C.
-  !>     
   interface rocsolver_cunmbr
     function rocsolver_cunmbr_(handle,storev,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_cunmbr")
       use iso_c_binding
@@ -4870,7 +4822,7 @@ module hipfort_rocsolver
       rocsolver_zunmbr_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief ORMTR multiplies an orthogonal matrix Q by a general m-by-n matrix C.
   !> 
   !>     \details
@@ -4927,7 +4879,7 @@ module hipfort_rocsolver
   !>     n                   rocblas_int. n >= 0.\n
   !>                         Number of columns of matrix C.
   !>     @param[in]
-  !>     A                   pointer to type. Array on the GPU of size ldaq.\n
+  !>     A                   pointer to type. Array on the GPU of size lda*q.\n
   !>                         On entry, the Householder vectors as
   !>                         returned by \ref rocsolver_ssytrd "SYTRD".
   !>     @param[in]
@@ -4938,13 +4890,12 @@ module hipfort_rocsolver
   !>                         The Householder scalars as returned by
   !>                         \ref rocsolver_ssytrd "SYTRD".
   !>     @param[inout]
-  !>     C                   pointer to type. Array on the GPU of size ldcn.\n
+  !>     C                   pointer to type. Array on the GPU of size ldc*n.\n
   !>                         On entry, the matrix C. On exit, it is overwritten with
-  !>                         QC, CQ, Q'C, or CQ'.
+  !>                         Q*C, C*Q, Q'*C, or C*Q'.
   !>     @param[in]
   !>     ldc                 rocblas_int. ldc >= m.\n
   !>                         Leading dimension of C.
-  !>     
   interface rocsolver_sormtr
     function rocsolver_sormtr_(handle,side,uplo,trans,m,n,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_sormtr")
       use iso_c_binding
@@ -5000,7 +4951,7 @@ module hipfort_rocsolver
       rocsolver_dormtr_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief UNMTR multiplies a unitary matrix Q by a general m-by-n matrix C.
   !> 
   !>     \details
@@ -5057,7 +5008,7 @@ module hipfort_rocsolver
   !>     n                   rocblas_int. n >= 0.\n
   !>                         Number of columns of matrix C.
   !>     @param[in]
-  !>     A                   pointer to type. Array on the GPU of size ldaq.\n
+  !>     A                   pointer to type. Array on the GPU of size lda*q.\n
   !>                         On entry, the Householder vectors as
   !>                         returned by \ref rocsolver_chetrd "HETRD".
   !>     @param[in]
@@ -5068,13 +5019,12 @@ module hipfort_rocsolver
   !>                         The Householder scalars as returned by
   !>                         \ref rocsolver_chetrd "HETRD".
   !>     @param[inout]
-  !>     C                   pointer to type. Array on the GPU of size ldcn.\n
+  !>     C                   pointer to type. Array on the GPU of size ldc*n.\n
   !>                         On entry, the matrix C. On exit, it is overwritten with
-  !>                         QC, CQ, Q'C, or CQ'.
+  !>                         Q*C, C*Q, Q'*C, or C*Q'.
   !>     @param[in]
   !>     ldc                 rocblas_int. ldc >= m.\n
   !>                         Leading dimension of C.
-  !>     
   interface rocsolver_cunmtr
     function rocsolver_cunmtr_(handle,side,uplo,trans,m,n,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_cunmtr")
       use iso_c_binding
@@ -5130,7 +5080,7 @@ module hipfort_rocsolver
       rocsolver_zunmtr_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief BDSQR computes the singular value decomposition (SVD) of an
   !>     n-by-n bidiagonal matrix B, using the implicit QR algorithm.
   !> 
@@ -5179,22 +5129,22 @@ module hipfort_rocsolver
   !>                 the off-diagonal elements of a bidiagonal matrix
   !>                 orthogonally equivalent to B (if info = 0 this matrix converges to zero).
   !>     @param[inout]
-  !>     V           pointer to type. Array on the GPU of dimension ldvnv.\n
-  !>                 On entry, the matrix V. On exit, it is overwritten with P'V.
+  !>     V           pointer to type. Array on the GPU of dimension ldv*nv.\n
+  !>                 On entry, the matrix V. On exit, it is overwritten with P'*V.
   !>                 (Not referenced if nv = 0).
   !>     @param[in]
   !>     ldv         rocblas_int. ldv >= n if nv > 0, or ldv >=1 if nv = 0.\n
   !>                 The leading dimension of V.
   !>     @param[inout]
-  !>     U           pointer to type. Array on the GPU of dimension ldun.\n
-  !>                 On entry, the matrix U. On exit, it is overwritten with UQ.
+  !>     U           pointer to type. Array on the GPU of dimension ldu*n.\n
+  !>                 On entry, the matrix U. On exit, it is overwritten with U*Q.
   !>                 (Not referenced if nu = 0).
   !>     @param[in]
   !>     ldu         rocblas_int. ldu >= nu.\n
   !>                 The leading dimension of U.
   !>     @param[inout]
-  !>     C           pointer to type. Array on the GPU of dimension ldcnc.\n
-  !>                 On entry, the matrix C. On exit, it is overwritten with Q'C.
+  !>     C           pointer to type. Array on the GPU of dimension ldc*nc.\n
+  !>                 On entry, the matrix C. On exit, it is overwritten with Q'*C.
   !>                 (Not referenced if nc = 0).
   !>     @param[in]
   !>     ldc         rocblas_int. ldc >= n if nc > 0, or ldc >=1 if nc = 0.\n
@@ -5203,7 +5153,6 @@ module hipfort_rocsolver
   !>     info        pointer to a rocblas_int on the GPU.\n
   !>                 If info = 0, successful exit.
   !>                 If info = i > 0, i elements of E have not converged to zero.
-  !>     
   interface rocsolver_sbdsqr
     function rocsolver_sbdsqr_(handle,uplo,n,nv,nu,nc,D,E,V,ldv,U,ldu,C,ldc,myInfo) bind(c, name="rocsolver_sbdsqr")
       use iso_c_binding
@@ -5331,12 +5280,12 @@ module hipfort_rocsolver
       rocsolver_zbdsqr_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief STERF computes the eigenvalues of a symmetric tridiagonal matrix.
   !> 
   !>     \details
   !>     The eigenvalues of the symmetric tridiagonal matrix are computed by the
-  !>     Pal-Walker-Kahan variant of the QLQR algorithm, and returned in
+  !>     Pal-Walker-Kahan variant of the QL/QR algorithm, and returned in
   !>     increasing order.
   !> 
   !>     The matrix is not represented explicitly, but rather as the array of
@@ -5366,8 +5315,7 @@ module hipfort_rocsolver
   !>               If info = 0, successful exit.
   !>               If info = i > 0, STERF did not converge. i elements of E did not
   !>               converge to zero.
-  !> 
-  !>     
+  !>
   interface rocsolver_ssterf
     function rocsolver_ssterf_(handle,n,D,E,myInfo) bind(c, name="rocsolver_ssterf")
       use iso_c_binding
@@ -5409,17 +5357,17 @@ module hipfort_rocsolver
       rocsolver_dsterf_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief STEQR computes the eigenvalues and (optionally) eigenvectors of
   !>     a symmetric tridiagonal matrix.
   !> 
   !>     \details
   !>     The eigenvalues of the symmetric tridiagonal matrix are computed by the
-  !>     implicit QLQR algorithm, and returned in increasing order.
+  !>     implicit QL/QR algorithm, and returned in increasing order.
   !> 
   !>     The matrix is not represented explicitly, but rather as the array of
   !>     diagonal elements D and the array of symmetric off-diagonal elements E.
-  !>     When D and E correspond to the tridiagonal form of a full symmetricHermitian matrix, as returned by, e.g.,
+  !>     When D and E correspond to the tridiagonal form of a full symmetric/Hermitian matrix, as returned by, e.g.,
   !>     \ref rocsolver_ssytrd "SYTRD" or \ref rocsolver_chetrd "HETRD", the eigenvectors of the original matrix can also
   !>     be computed, depending on the value of evect.
   !> 
@@ -5446,12 +5394,12 @@ module hipfort_rocsolver
   !>               that is similar to the original matrix (i.e. has the same
   !>               eigenvalues).
   !>     @param[inout]
-  !>     C         pointer to type. Array on the GPU of dimension ldcn.\n
-  !>               On entry, if evect is original, the orthogonalunitary matrix
+  !>     C         pointer to type. Array on the GPU of dimension ldc*n.\n
+  !>               On entry, if evect is original, the orthogonal/unitary matrix
   !>               used for the reduction to tridiagonal form as returned by, e.g.,
   !>               \ref rocsolver_sorgtr "ORGTR" or \ref rocsolver_cungtr "UNGTR".
   !>               On exit, it is overwritten with the eigenvectors of the original
-  !>               symmetricHermitian matrix (if evect is original), or the
+  !>               symmetric/Hermitian matrix (if evect is original), or the
   !>               eigenvectors of the tridiagonal matrix (if evect is tridiagonal).
   !>               (Not referenced if evect is none).
   !>     @param[in]
@@ -5463,8 +5411,7 @@ module hipfort_rocsolver
   !>               If info = 0, successful exit.
   !>               If info = i > 0, STEQR did not converge. i elements of E did not
   !>               converge to zero.
-  !> 
-  !>     
+  !>
   interface rocsolver_ssteqr
     function rocsolver_ssteqr_(handle,evect,n,D,E,C,ldc,myInfo) bind(c, name="rocsolver_ssteqr")
       use iso_c_binding
@@ -5564,7 +5511,7 @@ module hipfort_rocsolver
       rocsolver_zsteqr_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief STEDC computes the eigenvalues and (optionally) eigenvectors of
   !>     a symmetric tridiagonal matrix.
   !> 
@@ -5574,7 +5521,7 @@ module hipfort_rocsolver
   !> 
   !>     The matrix is not represented explicitly, but rather as the array of
   !>     diagonal elements D and the array of symmetric off-diagonal elements E.
-  !>     When D and E correspond to the tridiagonal form of a full symmetricHermitian matrix, as returned by, e.g.,
+  !>     When D and E correspond to the tridiagonal form of a full symmetric/Hermitian matrix, as returned by, e.g.,
   !>     \ref rocsolver_ssytrd "SYTRD" or \ref rocsolver_chetrd "HETRD", the eigenvectors of the original matrix can also
   !>     be computed, depending on the value of evect.
   !> 
@@ -5595,12 +5542,12 @@ module hipfort_rocsolver
   !>               On entry, the off-diagonal elements of the tridiagonal matrix.
   !>               On exit, if info = 0, the values of this array are destroyed.
   !>     @param[inout]
-  !>     C         pointer to type. Array on the GPU of dimension ldcn.\n
-  !>               On entry, if evect is original, the orthogonalunitary matrix
+  !>     C         pointer to type. Array on the GPU of dimension ldc*n.\n
+  !>               On entry, if evect is original, the orthogonal/unitary matrix
   !>               used for the reduction to tridiagonal form as returned by, e.g.,
   !>               \ref rocsolver_sorgtr "ORGTR" or \ref rocsolver_cungtr "UNGTR".
   !>               On exit, if info = 0, it is overwritten with the eigenvectors of the original
-  !>               symmetricHermitian matrix (if evect is original), or the
+  !>               symmetric/Hermitian matrix (if evect is original), or the
   !>               eigenvectors of the tridiagonal matrix (if evect is tridiagonal).
   !>               (Not referenced if evect is none).
   !>     @param[in]
@@ -5610,8 +5557,7 @@ module hipfort_rocsolver
   !>     info      pointer to a rocblas_int on the GPU.\n
   !>               If info = 0, successful exit.
   !>               If info = i > 0, STEDC failed to compute an eigenvalue on the sub-matrix formed by
-  !>               the rows and columns info(n+1) through mod(info,n+1).
-  !>     
+  !>               the rows and columns info/(n+1) through mod(info,n+1).
   interface rocsolver_sstedc
     function rocsolver_sstedc_(handle,evect,n,D,E,C,ldc,myInfo) bind(c, name="rocsolver_sstedc")
       use iso_c_binding
@@ -5711,7 +5657,7 @@ module hipfort_rocsolver
       rocsolver_zstedc_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GETF2_NPVT computes the LU factorization of a general m-by-n matrix A
   !>     without partial pivoting.
   !> 
@@ -5742,7 +5688,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of columns of the matrix A.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
   !>               On entry, the m-by-n matrix A to be factored.
   !>               On exit, the factors L and U from the factorization.
   !>               The unit diagonal elements of L are not stored.
@@ -5754,7 +5700,6 @@ module hipfort_rocsolver
   !>               If info = 0, successful exit.
   !>               If info = j > 0, U is singular. U[j,j] is the first zero element in the diagonal. The factorization from
   !>               this point might be incomplete.
-  !>     
   interface rocsolver_sgetf2_npvt
     function rocsolver_sgetf2_npvt_(handle,m,n,A,lda,myInfo) bind(c, name="rocsolver_sgetf2_npvt")
       use iso_c_binding
@@ -5846,7 +5791,7 @@ module hipfort_rocsolver
       rocsolver_zgetf2_npvt_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GETF2_NPVT_BATCHED computes the LU factorization of a batch of
   !>     general m-by-n matrices without partial pivoting.
   !> 
@@ -5877,7 +5822,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of columns of all matrices A_i in the batch.
   !>     @param[inout]
-  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
   !>               On entry, the m-by-n matrices A_i to be factored.
   !>               On exit, the factors L_i and U_i from the factorizations.
   !>               The unit diagonal elements of L_i are not stored.
@@ -5892,7 +5837,6 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !>     
   interface rocsolver_sgetf2_npvt_batched
     function rocsolver_sgetf2_npvt_batched_(handle,m,n,A,lda,myInfo,batch_count) bind(c, name="rocsolver_sgetf2_npvt_batched")
       use iso_c_binding
@@ -5988,7 +5932,7 @@ module hipfort_rocsolver
       rocsolver_zgetf2_npvt_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GETF2_NPVT_STRIDED_BATCHED computes the LU factorization of a batch
   !>     of general m-by-n matrices without partial pivoting.
   !> 
@@ -6029,7 +5973,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA   rocblas_stride.\n
   !>               Stride from the start of one matrix A_i to the next one A_(i+1).
-  !>               There is no restriction for the value of strideA. Normal use case is strideA >= ldan
+  !>               There is no restriction for the value of strideA. Normal use case is strideA >= lda*n
   !>     @param[out]
   !>     info      pointer to rocblas_int. Array of batch_count integers on the GPU.\n
   !>               If info[i] = 0, successful exit for factorization of A_i.
@@ -6038,7 +5982,6 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !>     
   interface rocsolver_sgetf2_npvt_strided_batched
     function rocsolver_sgetf2_npvt_strided_batched_(handle,m,n,A,lda,strideA,myInfo,batch_count) bind(c, name="rocsolver_sgetf2_npvt_strided_batched")
       use iso_c_binding
@@ -6138,7 +6081,7 @@ module hipfort_rocsolver
       rocsolver_zgetf2_npvt_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GETRF_NPVT computes the LU factorization of a general m-by-n matrix A
   !>     without partial pivoting.
   !> 
@@ -6169,7 +6112,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of columns of the matrix A.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
   !>               On entry, the m-by-n matrix A to be factored.
   !>               On exit, the factors L and U from the factorization.
   !>               The unit diagonal elements of L are not stored.
@@ -6181,7 +6124,6 @@ module hipfort_rocsolver
   !>               If info = 0, successful exit.
   !>               If info = j > 0, U is singular. U[j,j] is the first zero element in the diagonal. The factorization from
   !>               this point might be incomplete.
-  !>     
   interface rocsolver_sgetrf_npvt
     function rocsolver_sgetrf_npvt_(handle,m,n,A,lda,myInfo) bind(c, name="rocsolver_sgetrf_npvt")
       use iso_c_binding
@@ -6273,7 +6215,7 @@ module hipfort_rocsolver
       rocsolver_zgetrf_npvt_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GETRF_NPVT_BATCHED computes the LU factorization of a batch of
   !>     general m-by-n matrices without partial pivoting.
   !> 
@@ -6304,7 +6246,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of columns of all matrices A_i in the batch.
   !>     @param[inout]
-  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
   !>               On entry, the m-by-n matrices A_i to be factored.
   !>               On exit, the factors L_i and U_i from the factorizations.
   !>               The unit diagonal elements of L_i are not stored.
@@ -6319,8 +6261,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_sgetrf_npvt_batched
     function rocsolver_sgetrf_npvt_batched_(handle,m,n,A,lda,myInfo,batch_count) bind(c, name="rocsolver_sgetrf_npvt_batched")
       use iso_c_binding
@@ -6416,7 +6357,7 @@ module hipfort_rocsolver
       rocsolver_zgetrf_npvt_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GETRF_NPVT_STRIDED_BATCHED computes the LU factorization of a batch
   !>     of general m-by-n matrices without partial pivoting.
   !> 
@@ -6457,7 +6398,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA   rocblas_stride.\n
   !>               Stride from the start of one matrix A_i to the next one A_(i+1).
-  !>               There is no restriction for the value of strideA. Normal use case is strideA >= ldan
+  !>               There is no restriction for the value of strideA. Normal use case is strideA >= lda*n
   !>     @param[out]
   !>     info      pointer to rocblas_int. Array of batch_count integers on the GPU.\n
   !>               If info[i] = 0, successful exit for factorization of A_i.
@@ -6466,8 +6407,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_sgetrf_npvt_strided_batched
     function rocsolver_sgetrf_npvt_strided_batched_(handle,m,n,A,lda,strideA,myInfo,batch_count) bind(c, name="rocsolver_sgetrf_npvt_strided_batched")
       use iso_c_binding
@@ -6567,7 +6507,7 @@ module hipfort_rocsolver
       rocsolver_zgetrf_npvt_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GETF2 computes the LU factorization of a general m-by-n matrix A
   !>     using partial pivoting with row interchanges.
   !> 
@@ -6595,7 +6535,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of columns of the matrix A.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
   !>               On entry, the m-by-n matrix A to be factored.
   !>               On exit, the factors L and U from the factorization.
   !>               The unit diagonal elements of L are not stored.
@@ -6612,7 +6552,6 @@ module hipfort_rocsolver
   !>     info      pointer to a rocblas_int on the GPU.\n
   !>               If info = 0, successful exit.
   !>               If info = j > 0, U is singular. U[j,j] is the first zero pivot.
-  !>     
   interface rocsolver_sgetf2
     function rocsolver_sgetf2_(handle,m,n,A,lda,ipiv,myInfo) bind(c, name="rocsolver_sgetf2")
       use iso_c_binding
@@ -6708,7 +6647,7 @@ module hipfort_rocsolver
       rocsolver_zgetf2_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GETF2_BATCHED computes the LU factorization of a batch of general
   !>     m-by-n matrices using partial pivoting with row interchanges.
   !> 
@@ -6736,7 +6675,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of columns of all matrices A_i in the batch.
   !>     @param[inout]
-  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
   !>               On entry, the m-by-n matrices A_i to be factored.
   !>               On exit, the factors L_i and U_i from the factorizations.
   !>               The unit diagonal elements of L_i are not stored.
@@ -6762,7 +6701,6 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !>     
   interface rocsolver_sgetf2_batched
     function rocsolver_sgetf2_batched_(handle,m,n,A,lda,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_sgetf2_batched")
       use iso_c_binding
@@ -6866,7 +6804,7 @@ module hipfort_rocsolver
       rocsolver_zgetf2_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GETF2_STRIDED_BATCHED computes the LU factorization of a batch of
   !>     general m-by-n matrices using partial pivoting with row interchanges.
   !> 
@@ -6904,7 +6842,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA   rocblas_stride.\n
   !>               Stride from the start of one matrix A_i to the next one A_(i+1).
-  !>               There is no restriction for the value of strideA. Normal use case is strideA >= ldan
+  !>               There is no restriction for the value of strideA. Normal use case is strideA >= lda*n
   !>     @param[out]
   !>     ipiv      pointer to rocblas_int. Array on the GPU (the size depends on the value of strideP).\n
   !>               Contains the vectors of pivots indices ipiv_i (corresponding to A_i).
@@ -6924,7 +6862,6 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !>     
   interface rocsolver_sgetf2_strided_batched
     function rocsolver_sgetf2_strided_batched_(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_sgetf2_strided_batched")
       use iso_c_binding
@@ -7032,7 +6969,7 @@ module hipfort_rocsolver
       rocsolver_zgetf2_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GETRF computes the LU factorization of a general m-by-n matrix A
   !>     using partial pivoting with row interchanges.
   !> 
@@ -7060,7 +6997,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of columns of the matrix A.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
   !>               On entry, the m-by-n matrix A to be factored.
   !>               On exit, the factors L and U from the factorization.
   !>               The unit diagonal elements of L are not stored.
@@ -7077,7 +7014,6 @@ module hipfort_rocsolver
   !>     info      pointer to a rocblas_int on the GPU.\n
   !>               If info = 0, successful exit.
   !>               If info = j > 0, U is singular. U[j,j] is the first zero pivot.
-  !>     
   interface rocsolver_sgetrf
     function rocsolver_sgetrf_(handle,m,n,A,lda,ipiv,myInfo) bind(c, name="rocsolver_sgetrf")
       use iso_c_binding
@@ -7173,7 +7109,7 @@ module hipfort_rocsolver
       rocsolver_zgetrf_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GETRF_BATCHED computes the LU factorization of a batch of general
   !>     m-by-n matrices using partial pivoting with row interchanges.
   !> 
@@ -7201,7 +7137,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of columns of all matrices A_i in the batch.
   !>     @param[inout]
-  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
   !>               On entry, the m-by-n matrices A_i to be factored.
   !>               On exit, the factors L_i and U_i from the factorizations.
   !>               The unit diagonal elements of L_i are not stored.
@@ -7227,7 +7163,6 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !>     
   interface rocsolver_sgetrf_batched
     function rocsolver_sgetrf_batched_(handle,m,n,A,lda,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_sgetrf_batched")
       use iso_c_binding
@@ -7331,7 +7266,7 @@ module hipfort_rocsolver
       rocsolver_zgetrf_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GETRF_STRIDED_BATCHED computes the LU factorization of a batch of
   !>     general m-by-n matrices using partial pivoting with row interchanges.
   !> 
@@ -7369,7 +7304,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA   rocblas_stride.\n
   !>               Stride from the start of one matrix A_i to the next one A_(i+1).
-  !>               There is no restriction for the value of strideA. Normal use case is strideA >= ldan
+  !>               There is no restriction for the value of strideA. Normal use case is strideA >= lda*n
   !>     @param[out]
   !>     ipiv      pointer to rocblas_int. Array on the GPU (the size depends on the value of strideP).\n
   !>               Contains the vectors of pivots indices ipiv_i (corresponding to A_i).
@@ -7389,7 +7324,6 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !>     
   interface rocsolver_sgetrf_strided_batched
     function rocsolver_sgetrf_strided_batched_(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_sgetrf_strided_batched")
       use iso_c_binding
@@ -7497,7 +7431,7 @@ module hipfort_rocsolver
       rocsolver_zgetrf_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GEQR2 computes a QR factorization of a general m-by-n matrix A.
   !> 
   !>     \details
@@ -7513,7 +7447,7 @@ module hipfort_rocsolver
   !>     \f]
   !> 
   !>     where R is upper triangular (upper trapezoidal if m < n), and Q is
-  !>     a m-by-m orthogonalunitary matrix represented as the product of Householder matrices
+  !>     a m-by-m orthogonal/unitary matrix represented as the product of Householder matrices
   !> 
   !>     \f[
   !>         Q = H_1H_2\cdots H_k, \quad \text{with} \: k = \text{min}(m,n)
@@ -7536,7 +7470,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of columns of the matrix A.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
   !>               On entry, the m-by-n matrix to be factored.
   !>               On exit, the elements on and above the diagonal contain the
   !>               factor R; the elements below the diagonal are the last m - i elements
@@ -7547,8 +7481,7 @@ module hipfort_rocsolver
   !>     @param[out]
   !>     ipiv      pointer to type. Array on the GPU of dimension min(m,n).\n
   !>               The Householder scalars.
-  !> 
-  !>     
+  !>
   interface rocsolver_sgeqr2
     function rocsolver_sgeqr2_(handle,m,n,A,lda,ipiv) bind(c, name="rocsolver_sgeqr2")
       use iso_c_binding
@@ -7640,7 +7573,7 @@ module hipfort_rocsolver
       rocsolver_zgeqr2_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GEQR2_BATCHED computes the QR factorization of a batch of general
   !>     m-by-n matrices.
   !> 
@@ -7657,7 +7590,7 @@ module hipfort_rocsolver
   !>     \f]
   !> 
   !>     where \f$R_j\f$ is upper triangular (upper trapezoidal if m < n), and \f$Q_j\f$ is
-  !>     a m-by-m orthogonalunitary matrix represented as the product of Householder matrices
+  !>     a m-by-m orthogonal/unitary matrix represented as the product of Householder matrices
   !> 
   !>     \f[
   !>         Q_j = H_{j_1}H_{j_2}\cdots H_{j_k}, \quad \text{with} \: k = \text{min}(m,n)
@@ -7680,7 +7613,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of columns of all the matrices A_j in the batch.
   !>     @param[inout]
-  !>     A         Array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !>     A         Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
   !>               On entry, the m-by-n matrices A_j to be factored.
   !>               On exit, the elements on and above the diagonal contain the
   !>               factor R_j. The elements below the diagonal are the last m - i elements
@@ -7699,8 +7632,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count  rocblas_int. batch_count >= 0.\n
   !>                  Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_sgeqr2_batched
     function rocsolver_sgeqr2_batched_(handle,m,n,A,lda,ipiv,strideP,batch_count) bind(c, name="rocsolver_sgeqr2_batched")
       use iso_c_binding
@@ -7800,7 +7732,7 @@ module hipfort_rocsolver
       rocsolver_zgeqr2_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GEQR2_STRIDED_BATCHED computes the QR factorization of a batch of
   !>     general m-by-n matrices.
   !> 
@@ -7817,7 +7749,7 @@ module hipfort_rocsolver
   !>     \f]
   !> 
   !>     where \f$R_j\f$ is upper triangular (upper trapezoidal if m < n), and \f$Q_j\f$ is
-  !>     a m-by-m orthogonalunitary matrix represented as the product of Householder matrices
+  !>     a m-by-m orthogonal/unitary matrix represented as the product of Householder matrices
   !> 
   !>     \f[
   !>         Q_j = H_{j_1}H_{j_2}\cdots H_{j_k}, \quad \text{with} \: k = \text{min}(m,n)
@@ -7851,7 +7783,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA   rocblas_stride.\n
   !>               Stride from the start of one matrix A_j to the next one A_(j+1).
-  !>               There is no restriction for the value of strideA. Normal use case is strideA >= ldan.
+  !>               There is no restriction for the value of strideA. Normal use case is strideA >= lda*n.
   !>     @param[out]
   !>     ipiv      pointer to type. Array on the GPU (the size depends on the value of strideP).\n
   !>               Contains the vectors ipiv_j of corresponding Householder scalars.
@@ -7863,8 +7795,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count  rocblas_int. batch_count >= 0.\n
   !>                  Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_sgeqr2_strided_batched
     function rocsolver_sgeqr2_strided_batched_(handle,m,n,A,lda,strideA,ipiv,strideP,batch_count) bind(c, name="rocsolver_sgeqr2_strided_batched")
       use iso_c_binding
@@ -7968,7 +7899,7 @@ module hipfort_rocsolver
       rocsolver_zgeqr2_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GERQ2 computes a RQ factorization of a general m-by-n matrix A.
   !> 
   !>     \details
@@ -7983,7 +7914,7 @@ module hipfort_rocsolver
   !>     \f]
   !> 
   !>     where R is upper triangular (upper trapezoidal if m > n), and Q is
-  !>     a n-by-n orthogonalunitary matrix represented as the product of Householder matrices
+  !>     a n-by-n orthogonal/unitary matrix represented as the product of Householder matrices
   !> 
   !>     \f[
   !>         Q = H_1'H_2' \cdots H_k', \quad \text{with} \: k = \text{min}(m,n).
@@ -8006,11 +7937,11 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of columns of the matrix A.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
   !>               On entry, the m-by-n matrix to be factored.
   !>               On exit, the elements on and above the (m-n)-th subdiagonal (when
   !>               m >= n) or the (n-m)-th superdiagonal (when n > m) contain the
-  !>               factor R; the elements below the subsuperdiagonal are the first i - 1
+  !>               factor R; the elements below the sub/superdiagonal are the first i - 1
   !>               elements of Householder vector v_i.
   !>     @param[in]
   !>     lda       rocblas_int. lda >= m.\n
@@ -8018,8 +7949,7 @@ module hipfort_rocsolver
   !>     @param[out]
   !>     ipiv      pointer to type. Array on the GPU of dimension min(m,n).\n
   !>               The Householder scalars.
-  !> 
-  !>     
+  !>
   interface rocsolver_sgerq2
     function rocsolver_sgerq2_(handle,m,n,A,lda,ipiv) bind(c, name="rocsolver_sgerq2")
       use iso_c_binding
@@ -8111,7 +8041,7 @@ module hipfort_rocsolver
       rocsolver_zgerq2_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GERQ2_BATCHED computes the RQ factorization of a batch of general
   !>     m-by-n matrices.
   !> 
@@ -8127,7 +8057,7 @@ module hipfort_rocsolver
   !>     \f]
   !> 
   !>     where \f$R_j\f$ is upper triangular (upper trapezoidal if m > n), and \f$Q_j\f$ is
-  !>     a n-by-n orthogonalunitary matrix represented as the product of Householder matrices
+  !>     a n-by-n orthogonal/unitary matrix represented as the product of Householder matrices
   !> 
   !>     \f[
   !>         Q_j = H_{j_1}'H_{j_2}' \cdots H_{j_k}', \quad \text{with} \: k = \text{min}(m,n).
@@ -8150,11 +8080,11 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of columns of all the matrices A_j in the batch.
   !>     @param[inout]
-  !>     A         Array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !>     A         Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
   !>               On entry, the m-by-n matrices A_j to be factored.
   !>               On exit, the elements on and above the (m-n)-th subdiagonal (when
   !>               m >= n) or the (n-m)-th superdiagonal (when n > m) contain the
-  !>               factor R_j; the elements below the subsuperdiagonal are the first i - 1
+  !>               factor R_j; the elements below the sub/superdiagonal are the first i - 1
   !>               elements of Householder vector v_(j_i).
   !>     @param[in]
   !>     lda       rocblas_int. lda >= m.\n
@@ -8170,7 +8100,6 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count  rocblas_int. batch_count >= 0.\n
   !>                  Number of matrices in the batch.
-  !>     
   interface rocsolver_sgerq2_batched
     function rocsolver_sgerq2_batched_(handle,m,n,A,lda,ipiv,strideP,batch_count) bind(c, name="rocsolver_sgerq2_batched")
       use iso_c_binding
@@ -8270,7 +8199,7 @@ module hipfort_rocsolver
       rocsolver_zgerq2_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GERQ2_STRIDED_BATCHED computes the RQ factorization of a batch of
   !>     general m-by-n matrices.
   !> 
@@ -8286,7 +8215,7 @@ module hipfort_rocsolver
   !>     \f]
   !> 
   !>     where \f$R_j\f$ is upper triangular (upper trapezoidal if m > n), and \f$Q_j\f$ is
-  !>     a n-by-n orthogonalunitary matrix represented as the product of Householder matrices
+  !>     a n-by-n orthogonal/unitary matrix represented as the product of Householder matrices
   !> 
   !>     \f[
   !>         Q_j = H_{j_1}'H_{j_2}' \cdots H_{j_k}', \quad \text{with} \: k = \text{min}(m,n).
@@ -8313,7 +8242,7 @@ module hipfort_rocsolver
   !>               On entry, the m-by-n matrices A_j to be factored.
   !>               On exit, the elements on and above the (m-n)-th subdiagonal (when
   !>               m >= n) or the (n-m)-th superdiagonal (when n > m) contain the
-  !>               factor R_j; the elements below the subsuperdiagonal are the first i - 1
+  !>               factor R_j; the elements below the sub/superdiagonal are the first i - 1
   !>               elements of Householder vector v_(j_i).
   !>     @param[in]
   !>     lda       rocblas_int. lda >= m.\n
@@ -8321,7 +8250,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA   rocblas_stride.\n
   !>               Stride from the start of one matrix A_j to the next one A_(j+1).
-  !>               There is no restriction for the value of strideA. Normal use case is strideA >= ldan.
+  !>               There is no restriction for the value of strideA. Normal use case is strideA >= lda*n.
   !>     @param[out]
   !>     ipiv      pointer to type. Array on the GPU (the size depends on the value of strideP).\n
   !>               Contains the vectors ipiv_j of corresponding Householder scalars.
@@ -8333,8 +8262,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count  rocblas_int. batch_count >= 0.\n
   !>                  Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_sgerq2_strided_batched
     function rocsolver_sgerq2_strided_batched_(handle,m,n,A,lda,strideA,ipiv,strideP,batch_count) bind(c, name="rocsolver_sgerq2_strided_batched")
       use iso_c_binding
@@ -8438,7 +8366,7 @@ module hipfort_rocsolver
       rocsolver_zgerq2_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GEQL2 computes a QL factorization of a general m-by-n matrix A.
   !> 
   !>     \details
@@ -8454,7 +8382,7 @@ module hipfort_rocsolver
   !>     \f]
   !> 
   !>     where L is lower triangular (lower trapezoidal if m < n), and Q is
-  !>     a m-by-m orthogonalunitary matrix represented as the product of Householder matrices
+  !>     a m-by-m orthogonal/unitary matrix represented as the product of Householder matrices
   !> 
   !>     \f[
   !>         Q = H_kH_{k-1}\cdots H_1, \quad \text{with} \: k = \text{min}(m,n)
@@ -8477,11 +8405,11 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of columns of the matrix A.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
   !>               On entry, the m-by-n matrix to be factored.
   !>               On exit, the elements on and below the (m-n)-th subdiagonal (when
   !>               m >= n) or the (n-m)-th superdiagonal (when n > m) contain the
-  !>               factor L; the elements above the subsuperdiagonal are the first i - 1
+  !>               factor L; the elements above the sub/superdiagonal are the first i - 1
   !>               elements of Householder vector v_i.
   !>     @param[in]
   !>     lda       rocblas_int. lda >= m.\n
@@ -8489,8 +8417,7 @@ module hipfort_rocsolver
   !>     @param[out]
   !>     ipiv      pointer to type. Array on the GPU of dimension min(m,n).\n
   !>               The Householder scalars.
-  !> 
-  !>     
+  !>
   interface rocsolver_sgeql2
     function rocsolver_sgeql2_(handle,m,n,A,lda,ipiv) bind(c, name="rocsolver_sgeql2")
       use iso_c_binding
@@ -8582,7 +8509,7 @@ module hipfort_rocsolver
       rocsolver_zgeql2_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GEQL2_BATCHED computes the QL factorization of a batch of general
   !>     m-by-n matrices.
   !> 
@@ -8599,7 +8526,7 @@ module hipfort_rocsolver
   !>     \f]
   !> 
   !>     where \f$L_j\f$ is lower triangular (lower trapezoidal if m < n), and \f$Q_j\f$ is
-  !>     a m-by-m orthogonalunitary matrix represented as the product of Householder matrices
+  !>     a m-by-m orthogonal/unitary matrix represented as the product of Householder matrices
   !> 
   !>     \f[
   !>         Q = H_{j_k}H_{j_{k-1}}\cdots H_{j_1}, \quad \text{with} \: k = \text{min}(m,n)
@@ -8622,11 +8549,11 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of columns of all the matrices A_j in the batch.
   !>     @param[inout]
-  !>     A         Array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !>     A         Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
   !>               On entry, the m-by-n matrices A_j to be factored.
   !>               On exit, the elements on and below the (m-n)-th subdiagonal (when
   !>               m >= n) or the (n-m)-th superdiagonal (when n > m) contain the
-  !>               factor L_j; the elements above the subsuperdiagonal are the first i - 1
+  !>               factor L_j; the elements above the sub/superdiagonal are the first i - 1
   !>               elements of Householder vector v_(j_i).
   !>     @param[in]
   !>     lda       rocblas_int. lda >= m.\n
@@ -8642,8 +8569,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count  rocblas_int. batch_count >= 0.\n
   !>                  Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_sgeql2_batched
     function rocsolver_sgeql2_batched_(handle,m,n,A,lda,ipiv,strideP,batch_count) bind(c, name="rocsolver_sgeql2_batched")
       use iso_c_binding
@@ -8743,7 +8669,7 @@ module hipfort_rocsolver
       rocsolver_zgeql2_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GEQL2_STRIDED_BATCHED computes the QL factorization of a batch of
   !>     general m-by-n matrices.
   !> 
@@ -8760,7 +8686,7 @@ module hipfort_rocsolver
   !>     \f]
   !> 
   !>     where \f$L_j\f$ is lower triangular (lower trapezoidal if m < n), and \f$Q_j\f$ is
-  !>     a m-by-m orthogonalunitary matrix represented as the product of Householder matrices
+  !>     a m-by-m orthogonal/unitary matrix represented as the product of Householder matrices
   !> 
   !>     \f[
   !>         Q = H_{j_k}H_{j_{k-1}}\cdots H_{j_1}, \quad \text{with} \: k = \text{min}(m,n)
@@ -8787,7 +8713,7 @@ module hipfort_rocsolver
   !>               On entry, the m-by-n matrices A_j to be factored.
   !>               On exit, the elements on and below the (m-n)-th subdiagonal (when
   !>               m >= n) or the (n-m)-th superdiagonal (when n > m) contain the
-  !>               factor L_j; the elements above the subsuperdiagonal are the first i - 1
+  !>               factor L_j; the elements above the sub/superdiagonal are the first i - 1
   !>               elements of Householder vector v_(j_i).
   !>     @param[in]
   !>     lda       rocblas_int. lda >= m.\n
@@ -8795,7 +8721,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA   rocblas_stride.\n
   !>               Stride from the start of one matrix A_j to the next one A_(j+1).
-  !>               There is no restriction for the value of strideA. Normal use case is strideA >= ldan.
+  !>               There is no restriction for the value of strideA. Normal use case is strideA >= lda*n.
   !>     @param[out]
   !>     ipiv      pointer to type. Array on the GPU (the size depends on the value of strideP).\n
   !>               Contains the vectors ipiv_j of corresponding Householder scalars.
@@ -8807,7 +8733,6 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count  rocblas_int. batch_count >= 0.\n
   !>                  Number of matrices in the batch.
-  !>     
   interface rocsolver_sgeql2_strided_batched
     function rocsolver_sgeql2_strided_batched_(handle,m,n,A,lda,strideA,ipiv,strideP,batch_count) bind(c, name="rocsolver_sgeql2_strided_batched")
       use iso_c_binding
@@ -8911,7 +8836,7 @@ module hipfort_rocsolver
       rocsolver_zgeql2_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GELQ2 computes a LQ factorization of a general m-by-n matrix A.
   !> 
   !>     \details
@@ -8926,7 +8851,7 @@ module hipfort_rocsolver
   !>     \f]
   !> 
   !>     where L is lower triangular (lower trapezoidal if m > n), and Q is
-  !>     a n-by-n orthogonalunitary matrix represented as the product of Householder matrices
+  !>     a n-by-n orthogonal/unitary matrix represented as the product of Householder matrices
   !> 
   !>     \f[
   !>         Q = H_k'H_{k-1}' \cdots H_1', \quad \text{with} \: k = \text{min}(m,n).
@@ -8949,7 +8874,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of columns of the matrix A.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
   !>               On entry, the m-by-n matrix to be factored.
   !>               On exit, the elements on and below the diagonal contain the
   !>               factor L; the elements above the diagonal are the last n - i elements
@@ -8960,8 +8885,7 @@ module hipfort_rocsolver
   !>     @param[out]
   !>     ipiv      pointer to type. Array on the GPU of dimension min(m,n).\n
   !>               The Householder scalars.
-  !> 
-  !>     
+  !>
   interface rocsolver_sgelq2
     function rocsolver_sgelq2_(handle,m,n,A,lda,ipiv) bind(c, name="rocsolver_sgelq2")
       use iso_c_binding
@@ -9053,7 +8977,7 @@ module hipfort_rocsolver
       rocsolver_zgelq2_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GELQ2_BATCHED computes the LQ factorization of a batch of general
   !>     m-by-n matrices.
   !> 
@@ -9069,7 +8993,7 @@ module hipfort_rocsolver
   !>     \f]
   !> 
   !>     where \f$L_j\f$ is lower triangular (lower trapezoidal if m > n), and \f$Q_j\f$ is
-  !>     a n-by-n orthogonalunitary matrix represented as the product of Householder matrices
+  !>     a n-by-n orthogonal/unitary matrix represented as the product of Householder matrices
   !> 
   !>     \f[
   !>         Q_j = H_{j_k}'H_{j_{k-1}}' \cdots H_{j_1}', \quad \text{with} \: k = \text{min}(m,n).
@@ -9092,7 +9016,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of columns of all the matrices A_j in the batch.
   !>     @param[inout]
-  !>     A         Array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !>     A         Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
   !>               On entry, the m-by-n matrices A_j to be factored.
   !>               On exit, the elements on and below the diagonal contain the
   !>               factor L_j. The elements above the diagonal are the last n - i elements
@@ -9111,7 +9035,6 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count  rocblas_int. batch_count >= 0.\n
   !>                  Number of matrices in the batch.
-  !>     
   interface rocsolver_sgelq2_batched
     function rocsolver_sgelq2_batched_(handle,m,n,A,lda,ipiv,strideP,batch_count) bind(c, name="rocsolver_sgelq2_batched")
       use iso_c_binding
@@ -9211,7 +9134,7 @@ module hipfort_rocsolver
       rocsolver_zgelq2_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GELQ2_STRIDED_BATCHED computes the LQ factorization of a batch of
   !>     general m-by-n matrices.
   !> 
@@ -9227,7 +9150,7 @@ module hipfort_rocsolver
   !>     \f]
   !> 
   !>     where \f$L_j\f$ is lower triangular (lower trapezoidal if m > n), and \f$Q_j\f$ is
-  !>     a n-by-n orthogonalunitary matrix represented as the product of Householder matrices
+  !>     a n-by-n orthogonal/unitary matrix represented as the product of Householder matrices
   !> 
   !>     \f[
   !>         Q_j = H_{j_k}'H_{j_{k-1}}' \cdots H_{j_1}', \quad \text{with} \: k = \text{min}(m,n).
@@ -9261,7 +9184,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA   rocblas_stride.\n
   !>               Stride from the start of one matrix A_j to the next one A_(j+1).
-  !>               There is no restriction for the value of strideA. Normal use case is strideA >= ldan.
+  !>               There is no restriction for the value of strideA. Normal use case is strideA >= lda*n.
   !>     @param[out]
   !>     ipiv      pointer to type. Array on the GPU (the size depends on the value of strideP).\n
   !>               Contains the vectors ipiv_j of corresponding Householder scalars.
@@ -9273,8 +9196,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count  rocblas_int. batch_count >= 0.\n
   !>                  Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_sgelq2_strided_batched
     function rocsolver_sgelq2_strided_batched_(handle,m,n,A,lda,strideA,ipiv,strideP,batch_count) bind(c, name="rocsolver_sgelq2_strided_batched")
       use iso_c_binding
@@ -9378,7 +9300,7 @@ module hipfort_rocsolver
       rocsolver_zgelq2_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GEQRF computes a QR factorization of a general m-by-n matrix A.
   !> 
   !>     \details
@@ -9394,7 +9316,7 @@ module hipfort_rocsolver
   !>     \f]
   !> 
   !>     where R is upper triangular (upper trapezoidal if m < n), and Q is
-  !>     a m-by-m orthogonalunitary matrix represented as the product of Householder matrices
+  !>     a m-by-m orthogonal/unitary matrix represented as the product of Householder matrices
   !> 
   !>     \f[
   !>         Q = H_1H_2\cdots H_k, \quad \text{with} \: k = \text{min}(m,n)
@@ -9417,7 +9339,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of columns of the matrix A.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
   !>               On entry, the m-by-n matrix to be factored.
   !>               On exit, the elements on and above the diagonal contain the
   !>               factor R; the elements below the diagonal are the last m - i elements
@@ -9428,8 +9350,7 @@ module hipfort_rocsolver
   !>     @param[out]
   !>     ipiv      pointer to type. Array on the GPU of dimension min(m,n).\n
   !>               The Householder scalars.
-  !> 
-  !>     
+  !>
   interface rocsolver_sgeqrf
     function rocsolver_sgeqrf_(handle,m,n,A,lda,ipiv) bind(c, name="rocsolver_sgeqrf")
       use iso_c_binding
@@ -9521,7 +9442,7 @@ module hipfort_rocsolver
       rocsolver_zgeqrf_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GEQRF_BATCHED computes the QR factorization of a batch of general
   !>     m-by-n matrices.
   !> 
@@ -9538,7 +9459,7 @@ module hipfort_rocsolver
   !>     \f]
   !> 
   !>     where \f$R_j\f$ is upper triangular (upper trapezoidal if m < n), and \f$Q_j\f$ is
-  !>     a m-by-m orthogonalunitary matrix represented as the product of Householder matrices
+  !>     a m-by-m orthogonal/unitary matrix represented as the product of Householder matrices
   !> 
   !>     \f[
   !>         Q_j = H_{j_1}H_{j_2}\cdots H_{j_k}, \quad \text{with} \: k = \text{min}(m,n)
@@ -9561,7 +9482,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of columns of all the matrices A_j in the batch.
   !>     @param[inout]
-  !>     A         Array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !>     A         Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
   !>               On entry, the m-by-n matrices A_j to be factored.
   !>               On exit, the elements on and above the diagonal contain the
   !>               factor R_j. The elements below the diagonal are the last m - i elements
@@ -9580,7 +9501,6 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count  rocblas_int. batch_count >= 0.\n
   !>                  Number of matrices in the batch.
-  !>     
   interface rocsolver_sgeqrf_batched
     function rocsolver_sgeqrf_batched_(handle,m,n,A,lda,ipiv,strideP,batch_count) bind(c, name="rocsolver_sgeqrf_batched")
       use iso_c_binding
@@ -9680,7 +9600,7 @@ module hipfort_rocsolver
       rocsolver_zgeqrf_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GEQRF_STRIDED_BATCHED computes the QR factorization of a batch of
   !>     general m-by-n matrices.
   !> 
@@ -9697,7 +9617,7 @@ module hipfort_rocsolver
   !>     \f]
   !> 
   !>     where \f$R_j\f$ is upper triangular (upper trapezoidal if m < n), and \f$Q_j\f$ is
-  !>     a m-by-m orthogonalunitary matrix represented as the product of Householder matrices
+  !>     a m-by-m orthogonal/unitary matrix represented as the product of Householder matrices
   !> 
   !>     \f[
   !>         Q_j = H_{j_1}H_{j_2}\cdots H_{j_k}, \quad \text{with} \: k = \text{min}(m,n)
@@ -9731,7 +9651,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA   rocblas_stride.\n
   !>               Stride from the start of one matrix A_j to the next one A_(j+1).
-  !>               There is no restriction for the value of strideA. Normal use case is strideA >= ldan.
+  !>               There is no restriction for the value of strideA. Normal use case is strideA >= lda*n.
   !>     @param[out]
   !>     ipiv      pointer to type. Array on the GPU (the size depends on the value of strideP).\n
   !>               Contains the vectors ipiv_j of corresponding Householder scalars.
@@ -9743,7 +9663,6 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count  rocblas_int. batch_count >= 0.\n
   !>                  Number of matrices in the batch.
-  !>     
   interface rocsolver_sgeqrf_strided_batched
     function rocsolver_sgeqrf_strided_batched_(handle,m,n,A,lda,strideA,ipiv,strideP,batch_count) bind(c, name="rocsolver_sgeqrf_strided_batched")
       use iso_c_binding
@@ -9847,7 +9766,7 @@ module hipfort_rocsolver
       rocsolver_zgeqrf_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GERQF computes a RQ factorization of a general m-by-n matrix A.
   !> 
   !>     \details
@@ -9862,7 +9781,7 @@ module hipfort_rocsolver
   !>     \f]
   !> 
   !>     where R is upper triangular (upper trapezoidal if m > n), and Q is
-  !>     a n-by-n orthogonalunitary matrix represented as the product of Householder matrices
+  !>     a n-by-n orthogonal/unitary matrix represented as the product of Householder matrices
   !> 
   !>     \f[
   !>         Q = H_1'H_2' \cdots H_k', \quad \text{with} \: k = \text{min}(m,n).
@@ -9885,11 +9804,11 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of columns of the matrix A.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
   !>               On entry, the m-by-n matrix to be factored.
   !>               On exit, the elements on and above the (m-n)-th subdiagonal (when
   !>               m >= n) or the (n-m)-th superdiagonal (when n > m) contain the
-  !>               factor R; the elements below the subsuperdiagonal are the first i - 1
+  !>               factor R; the elements below the sub/superdiagonal are the first i - 1
   !>               elements of Householder vector v_i.
   !>     @param[in]
   !>     lda       rocblas_int. lda >= m.\n
@@ -9897,8 +9816,7 @@ module hipfort_rocsolver
   !>     @param[out]
   !>     ipiv      pointer to type. Array on the GPU of dimension min(m,n).\n
   !>               The Householder scalars.
-  !> 
-  !>     
+  !>
   interface rocsolver_sgerqf
     function rocsolver_sgerqf_(handle,m,n,A,lda,ipiv) bind(c, name="rocsolver_sgerqf")
       use iso_c_binding
@@ -9990,7 +9908,7 @@ module hipfort_rocsolver
       rocsolver_zgerqf_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GERQF_BATCHED computes the RQ factorization of a batch of general
   !>     m-by-n matrices.
   !> 
@@ -10006,7 +9924,7 @@ module hipfort_rocsolver
   !>     \f]
   !> 
   !>     where \f$R_j\f$ is upper triangular (upper trapezoidal if m > n), and \f$Q_j\f$ is
-  !>     a n-by-n orthogonalunitary matrix represented as the product of Householder matrices
+  !>     a n-by-n orthogonal/unitary matrix represented as the product of Householder matrices
   !> 
   !>     \f[
   !>         Q_j = H_{j_1}'H_{j_2}' \cdots H_{j_k}', \quad \text{with} \: k = \text{min}(m,n).
@@ -10029,11 +9947,11 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of columns of all the matrices A_j in the batch.
   !>     @param[inout]
-  !>     A         Array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !>     A         Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
   !>               On entry, the m-by-n matrices A_j to be factored.
   !>               On exit, the elements on and above the (m-n)-th subdiagonal (when
   !>               m >= n) or the (n-m)-th superdiagonal (when n > m) contain the
-  !>               factor R_j; the elements below the subsuperdiagonal are the first i - 1
+  !>               factor R_j; the elements below the sub/superdiagonal are the first i - 1
   !>               elements of Householder vector v_(j_i).
   !>     @param[in]
   !>     lda       rocblas_int. lda >= m.\n
@@ -10049,7 +9967,6 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count  rocblas_int. batch_count >= 0.\n
   !>                  Number of matrices in the batch.
-  !>     
   interface rocsolver_sgerqf_batched
     function rocsolver_sgerqf_batched_(handle,m,n,A,lda,ipiv,strideP,batch_count) bind(c, name="rocsolver_sgerqf_batched")
       use iso_c_binding
@@ -10149,7 +10066,7 @@ module hipfort_rocsolver
       rocsolver_zgerqf_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GERQF_STRIDED_BATCHED computes the RQ factorization of a batch of
   !>     general m-by-n matrices.
   !> 
@@ -10165,7 +10082,7 @@ module hipfort_rocsolver
   !>     \f]
   !> 
   !>     where \f$R_j\f$ is upper triangular (upper trapezoidal if m > n), and \f$Q_j\f$ is
-  !>     a n-by-n orthogonalunitary matrix represented as the product of Householder matrices
+  !>     a n-by-n orthogonal/unitary matrix represented as the product of Householder matrices
   !> 
   !>     \f[
   !>         Q_j = H_{j_1}'H_{j_2}' \cdots H_{j_k}', \quad \text{with} \: k = \text{min}(m,n).
@@ -10192,7 +10109,7 @@ module hipfort_rocsolver
   !>               On entry, the m-by-n matrices A_j to be factored.
   !>               On exit, the elements on and above the (m-n)-th subdiagonal (when
   !>               m >= n) or the (n-m)-th superdiagonal (when n > m) contain the
-  !>               factor R_j; the elements below the subsuperdiagonal are the first i - 1
+  !>               factor R_j; the elements below the sub/superdiagonal are the first i - 1
   !>               elements of Householder vector v_(j_i).
   !>     @param[in]
   !>     lda       rocblas_int. lda >= m.\n
@@ -10200,7 +10117,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA   rocblas_stride.\n
   !>               Stride from the start of one matrix A_j to the next one A_(j+1).
-  !>               There is no restriction for the value of strideA. Normal use case is strideA >= ldan.
+  !>               There is no restriction for the value of strideA. Normal use case is strideA >= lda*n.
   !>     @param[out]
   !>     ipiv      pointer to type. Array on the GPU (the size depends on the value of strideP).\n
   !>               Contains the vectors ipiv_j of corresponding Householder scalars.
@@ -10212,8 +10129,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count  rocblas_int. batch_count >= 0.\n
   !>                  Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_sgerqf_strided_batched
     function rocsolver_sgerqf_strided_batched_(handle,m,n,A,lda,strideA,ipiv,strideP,batch_count) bind(c, name="rocsolver_sgerqf_strided_batched")
       use iso_c_binding
@@ -10317,7 +10233,7 @@ module hipfort_rocsolver
       rocsolver_zgerqf_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GEQLF computes a QL factorization of a general m-by-n matrix A.
   !> 
   !>     \details
@@ -10333,7 +10249,7 @@ module hipfort_rocsolver
   !>     \f]
   !> 
   !>     where L is lower triangular (lower trapezoidal if m < n), and Q is
-  !>     a m-by-m orthogonalunitary matrix represented as the product of Householder matrices
+  !>     a m-by-m orthogonal/unitary matrix represented as the product of Householder matrices
   !> 
   !>     \f[
   !>         Q = H_kH_{k-1}\cdots H_1, \quad \text{with} \: k = \text{min}(m,n)
@@ -10356,11 +10272,11 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of columns of the matrix A.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
   !>               On entry, the m-by-n matrix to be factored.
   !>               On exit, the elements on and below the (m-n)-th subdiagonal (when
   !>               m >= n) or the (n-m)-th superdiagonal (when n > m) contain the
-  !>               factor L; the elements above the subsuperdiagonal are the first i - 1
+  !>               factor L; the elements above the sub/superdiagonal are the first i - 1
   !>               elements of Householder vector v_i.
   !>     @param[in]
   !>     lda       rocblas_int. lda >= m.\n
@@ -10368,7 +10284,6 @@ module hipfort_rocsolver
   !>     @param[out]
   !>     ipiv      pointer to type. Array on the GPU of dimension min(m,n).\n
   !>               The Householder scalars.
-  !>     
   interface rocsolver_sgeqlf
     function rocsolver_sgeqlf_(handle,m,n,A,lda,ipiv) bind(c, name="rocsolver_sgeqlf")
       use iso_c_binding
@@ -10460,7 +10375,7 @@ module hipfort_rocsolver
       rocsolver_zgeqlf_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GEQLF_BATCHED computes the QL factorization of a batch of general
   !>     m-by-n matrices.
   !> 
@@ -10477,7 +10392,7 @@ module hipfort_rocsolver
   !>     \f]
   !> 
   !>     where \f$L_j\f$ is lower triangular (lower trapezoidal if m < n), and \f$Q_j\f$ is
-  !>     a m-by-m orthogonalunitary matrix represented as the product of Householder matrices
+  !>     a m-by-m orthogonal/unitary matrix represented as the product of Householder matrices
   !> 
   !>     \f[
   !>         Q = H_{j_k}H_{j_{k-1}}\cdots H_{j_1}, \quad \text{with} \: k = \text{min}(m,n)
@@ -10500,11 +10415,11 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of columns of all the matrices A_j in the batch.
   !>     @param[inout]
-  !>     A         Array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !>     A         Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
   !>               On entry, the m-by-n matrices A_j to be factored.
   !>               On exit, the elements on and below the (m-n)-th subdiagonal (when
   !>               m >= n) or the (n-m)-th superdiagonal (when n > m) contain the
-  !>               factor L_j; the elements above the subsuperdiagonal are the first i - 1
+  !>               factor L_j; the elements above the sub/superdiagonal are the first i - 1
   !>               elements of Householder vector v_(j_i).
   !>     @param[in]
   !>     lda       rocblas_int. lda >= m.\n
@@ -10520,7 +10435,6 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count  rocblas_int. batch_count >= 0.\n
   !>                  Number of matrices in the batch.
-  !>     
   interface rocsolver_sgeqlf_batched
     function rocsolver_sgeqlf_batched_(handle,m,n,A,lda,ipiv,strideP,batch_count) bind(c, name="rocsolver_sgeqlf_batched")
       use iso_c_binding
@@ -10620,7 +10534,7 @@ module hipfort_rocsolver
       rocsolver_zgeqlf_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GEQLF_STRIDED_BATCHED computes the QL factorization of a batch of
   !>     general m-by-n matrices.
   !> 
@@ -10637,7 +10551,7 @@ module hipfort_rocsolver
   !>     \f]
   !> 
   !>     where \f$L_j\f$ is lower triangular (lower trapezoidal if m < n), and \f$Q_j\f$ is
-  !>     a m-by-m orthogonalunitary matrix represented as the product of Householder matrices
+  !>     a m-by-m orthogonal/unitary matrix represented as the product of Householder matrices
   !> 
   !>     \f[
   !>         Q = H_{j_k}H_{j_{k-1}}\cdots H_{j_1}, \quad \text{with} \: k = \text{min}(m,n)
@@ -10664,7 +10578,7 @@ module hipfort_rocsolver
   !>               On entry, the m-by-n matrices A_j to be factored.
   !>               On exit, the elements on and below the (m-n)-th subdiagonal (when
   !>               m >= n) or the (n-m)-th superdiagonal (when n > m) contain the
-  !>               factor L_j; the elements above the subsuperdiagonal are the first i - 1
+  !>               factor L_j; the elements above the sub/superdiagonal are the first i - 1
   !>               elements of Householder vector v_(j_i).
   !>     @param[in]
   !>     lda       rocblas_int. lda >= m.\n
@@ -10672,7 +10586,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA   rocblas_stride.\n
   !>               Stride from the start of one matrix A_j to the next one A_(j+1).
-  !>               There is no restriction for the value of strideA. Normal use case is strideA >= ldan.
+  !>               There is no restriction for the value of strideA. Normal use case is strideA >= lda*n.
   !>     @param[out]
   !>     ipiv      pointer to type. Array on the GPU (the size depends on the value of strideP).\n
   !>               Contains the vectors ipiv_j of corresponding Householder scalars.
@@ -10684,7 +10598,6 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count  rocblas_int. batch_count >= 0.\n
   !>                  Number of matrices in the batch.
-  !>     
   interface rocsolver_sgeqlf_strided_batched
     function rocsolver_sgeqlf_strided_batched_(handle,m,n,A,lda,strideA,ipiv,strideP,batch_count) bind(c, name="rocsolver_sgeqlf_strided_batched")
       use iso_c_binding
@@ -10788,7 +10701,7 @@ module hipfort_rocsolver
       rocsolver_zgeqlf_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GELQF computes a LQ factorization of a general m-by-n matrix A.
   !> 
   !>     \details
@@ -10803,7 +10716,7 @@ module hipfort_rocsolver
   !>     \f]
   !> 
   !>     where L is lower triangular (lower trapezoidal if m > n), and Q is
-  !>     a n-by-n orthogonalunitary matrix represented as the product of Householder matrices
+  !>     a n-by-n orthogonal/unitary matrix represented as the product of Householder matrices
   !> 
   !>     \f[
   !>         Q = H_k'H_{k-1}' \cdots H_1', \quad \text{with} \: k = \text{min}(m,n).
@@ -10826,7 +10739,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of columns of the matrix A.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
   !>               On entry, the m-by-n matrix to be factored.
   !>               On exit, the elements on and below the diagonal contain the
   !>               factor L; the elements above the diagonal are the last n - i elements
@@ -10837,8 +10750,7 @@ module hipfort_rocsolver
   !>     @param[out]
   !>     ipiv      pointer to type. Array on the GPU of dimension min(m,n).\n
   !>               The Householder scalars.
-  !> 
-  !>     
+  !>
   interface rocsolver_sgelqf
     function rocsolver_sgelqf_(handle,m,n,A,lda,ipiv) bind(c, name="rocsolver_sgelqf")
       use iso_c_binding
@@ -10930,7 +10842,7 @@ module hipfort_rocsolver
       rocsolver_zgelqf_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GELQF_BATCHED computes the LQ factorization of a batch of general
   !>     m-by-n matrices.
   !> 
@@ -10946,7 +10858,7 @@ module hipfort_rocsolver
   !>     \f]
   !> 
   !>     where \f$L_j\f$ is lower triangular (lower trapezoidal if m > n), and \f$Q_j\f$ is
-  !>     a n-by-n orthogonalunitary matrix represented as the product of Householder matrices
+  !>     a n-by-n orthogonal/unitary matrix represented as the product of Householder matrices
   !> 
   !>     \f[
   !>         Q_j = H_{j_k}'H_{j_{k-1}}' \cdots H_{j_1}', \quad \text{with} \: k = \text{min}(m,n).
@@ -10969,7 +10881,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of columns of all the matrices A_j in the batch.
   !>     @param[inout]
-  !>     A         Array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !>     A         Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
   !>               On entry, the m-by-n matrices A_j to be factored.
   !>               On exit, the elements on and below the diagonal contain the
   !>               factor L_j. The elements above the diagonal are the last n - i elements
@@ -10988,8 +10900,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count  rocblas_int. batch_count >= 0.\n
   !>                  Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_sgelqf_batched
     function rocsolver_sgelqf_batched_(handle,m,n,A,lda,ipiv,strideP,batch_count) bind(c, name="rocsolver_sgelqf_batched")
       use iso_c_binding
@@ -11089,7 +11000,7 @@ module hipfort_rocsolver
       rocsolver_zgelqf_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GELQF_STRIDED_BATCHED computes the LQ factorization of a batch of
   !>     general m-by-n matrices.
   !> 
@@ -11105,7 +11016,7 @@ module hipfort_rocsolver
   !>     \f]
   !> 
   !>     where \f$L_j\f$ is lower triangular (lower trapezoidal if m > n), and \f$Q_j\f$ is
-  !>     a n-by-n orthogonalunitary matrix represented as the product of Householder matrices
+  !>     a n-by-n orthogonal/unitary matrix represented as the product of Householder matrices
   !> 
   !>     \f[
   !>         Q_j = H_{j_k}'H_{j_{k-1}}' \cdots H_{j_1}', \quad \text{with} \: k = \text{min}(m,n).
@@ -11139,7 +11050,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA   rocblas_stride.\n
   !>               Stride from the start of one matrix A_j to the next one A_(j+1).
-  !>               There is no restriction for the value of strideA. Normal use case is strideA >= ldan.
+  !>               There is no restriction for the value of strideA. Normal use case is strideA >= lda*n.
   !>     @param[out]
   !>     ipiv      pointer to type. Array on the GPU (the size depends on the value of strideP).\n
   !>               Contains the vectors ipiv_j of corresponding Householder scalars.
@@ -11151,7 +11062,6 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count  rocblas_int. batch_count >= 0.\n
   !>                  Number of matrices in the batch.
-  !>     
   interface rocsolver_sgelqf_strided_batched
     function rocsolver_sgelqf_strided_batched_(handle,m,n,A,lda,strideA,ipiv,strideP,batch_count) bind(c, name="rocsolver_sgelqf_strided_batched")
       use iso_c_binding
@@ -11255,7 +11165,7 @@ module hipfort_rocsolver
       rocsolver_zgelqf_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GEBD2 computes the bidiagonal form of a general m-by-n matrix A.
   !> 
   !>     \details
@@ -11268,7 +11178,7 @@ module hipfort_rocsolver
   !>     \f]
   !> 
   !>     where B is upper bidiagonal if m >= n and lower bidiagonal if m < n, and Q and
-  !>     P are orthogonalunitary matrices represented as the product of Householder matrices
+  !>     P are orthogonal/unitary matrices represented as the product of Householder matrices
   !> 
   !>     \f[
   !>         \begin{array}{cl}
@@ -11300,7 +11210,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of columns of the matrix A.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
   !>               On entry, the m-by-n matrix to be factored.
   !>               On exit, the elements on the diagonal and superdiagonal (if m >= n), or
   !>               subdiagonal (if m < n) contain the bidiagonal form B.
@@ -11325,8 +11235,7 @@ module hipfort_rocsolver
   !>     @param[out]
   !>     taup      pointer to type. Array on the GPU of dimension min(m,n).\n
   !>               The Householder scalars associated with matrix P.
-  !> 
-  !>     
+  !>
   interface rocsolver_sgebd2
     function rocsolver_sgebd2_(handle,m,n,A,lda,D,E,tauq,taup) bind(c, name="rocsolver_sgebd2")
       use iso_c_binding
@@ -11430,7 +11339,7 @@ module hipfort_rocsolver
       rocsolver_zgebd2_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GEBD2_BATCHED computes the bidiagonal form of a batch of general
   !>     m-by-n matrices.
   !> 
@@ -11444,7 +11353,7 @@ module hipfort_rocsolver
   !>     \f]
   !> 
   !>     where \f$B_j\f$ is upper bidiagonal if m >= n and lower bidiagonal if m < n, and \f$Q_j\f$ and
-  !>     \f$P_j\f$ are orthogonalunitary matrices represented as the product of Householder matrices
+  !>     \f$P_j\f$ are orthogonal/unitary matrices represented as the product of Householder matrices
   !> 
   !>     \f[
   !>         \begin{array}{cl}
@@ -11476,7 +11385,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of columns of all the matrices A_j in the batch.
   !>     @param[inout]
-  !>     A         Array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !>     A         Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
   !>               On entry, the m-by-n matrices A_j to be factored.
   !>               On exit, the elements on the diagonal and superdiagonal (if m >= n), or
   !>               subdiagonal (if m < n) contain the bidiagonal form B_j.
@@ -11522,8 +11431,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count  rocblas_int. batch_count >= 0.\n
   !>                  Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_sgebd2_batched
     function rocsolver_sgebd2_batched_(handle,m,n,A,lda,D,strideD,E,strideE,tauq,strideQ,taup,strideP,batch_count) bind(c, name="rocsolver_sgebd2_batched")
       use iso_c_binding
@@ -11647,7 +11555,7 @@ module hipfort_rocsolver
       rocsolver_zgebd2_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GEBD2_STRIDED_BATCHED computes the bidiagonal form of a batch of
   !>     general m-by-n matrices.
   !> 
@@ -11661,7 +11569,7 @@ module hipfort_rocsolver
   !>     \f]
   !> 
   !>     where \f$B_j\f$ is upper bidiagonal if m >= n and lower bidiagonal if m < n, and \f$Q_j\f$ and
-  !>     \f$P_j\f$ are orthogonalunitary matrices represented as the product of Householder matrices
+  !>     \f$P_j\f$ are orthogonal/unitary matrices represented as the product of Householder matrices
   !> 
   !>     \f[
   !>         \begin{array}{cl}
@@ -11709,7 +11617,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA   rocblas_stride.\n
   !>               Stride from the start of one matrix A_j to the next one A_(j+1).
-  !>               There is no restriction for the value of strideA. Normal use case is strideA >= ldan.
+  !>               There is no restriction for the value of strideA. Normal use case is strideA >= lda*n.
   !>     @param[out]
   !>     D         pointer to real type. Array on the GPU (the size depends on the value of strideD).\n
   !>               The diagonal elements of B_j.
@@ -11743,8 +11651,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count  rocblas_int. batch_count >= 0.\n
   !>                  Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_sgebd2_strided_batched
     function rocsolver_sgebd2_strided_batched_(handle,m,n,A,lda,strideA,D,strideD,E,strideE,tauq,strideQ,taup,strideP,batch_count) bind(c, name="rocsolver_sgebd2_strided_batched")
       use iso_c_binding
@@ -11872,7 +11779,7 @@ module hipfort_rocsolver
       rocsolver_zgebd2_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GEBRD computes the bidiagonal form of a general m-by-n matrix A.
   !> 
   !>     \details
@@ -11885,7 +11792,7 @@ module hipfort_rocsolver
   !>     \f]
   !> 
   !>     where B is upper bidiagonal if m >= n and lower bidiagonal if m < n, and Q and
-  !>     P are orthogonalunitary matrices represented as the product of Householder matrices
+  !>     P are orthogonal/unitary matrices represented as the product of Householder matrices
   !> 
   !>     \f[
   !>         \begin{array}{cl}
@@ -11917,7 +11824,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of columns of the matrix A.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
   !>               On entry, the m-by-n matrix to be factored.
   !>               On exit, the elements on the diagonal and superdiagonal (if m >= n), or
   !>               subdiagonal (if m < n) contain the bidiagonal form B.
@@ -11942,8 +11849,7 @@ module hipfort_rocsolver
   !>     @param[out]
   !>     taup      pointer to type. Array on the GPU of dimension min(m,n).\n
   !>               The Householder scalars associated with matrix P.
-  !> 
-  !>     
+  !>
   interface rocsolver_sgebrd
     function rocsolver_sgebrd_(handle,m,n,A,lda,D,E,tauq,taup) bind(c, name="rocsolver_sgebrd")
       use iso_c_binding
@@ -12047,7 +11953,7 @@ module hipfort_rocsolver
       rocsolver_zgebrd_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GEBRD_BATCHED computes the bidiagonal form of a batch of general
   !>     m-by-n matrices.
   !> 
@@ -12061,7 +11967,7 @@ module hipfort_rocsolver
   !>     \f]
   !> 
   !>     where \f$B_j\f$ is upper bidiagonal if m >= n and lower bidiagonal if m < n, and \f$Q_j\f$ and
-  !>     \f$P_j\f$ are orthogonalunitary matrices represented as the product of Householder matrices
+  !>     \f$P_j\f$ are orthogonal/unitary matrices represented as the product of Householder matrices
   !> 
   !>     \f[
   !>         \begin{array}{cl}
@@ -12093,7 +11999,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of columns of all the matrices A_j in the batch.
   !>     @param[inout]
-  !>     A         Array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !>     A         Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
   !>               On entry, the m-by-n matrices A_j to be factored.
   !>               On exit, the elements on the diagonal and superdiagonal (if m >= n), or
   !>               subdiagonal (if m < n) contain the bidiagonal form B_j.
@@ -12139,8 +12045,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count  rocblas_int. batch_count >= 0.\n
   !>                  Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_sgebrd_batched
     function rocsolver_sgebrd_batched_(handle,m,n,A,lda,D,strideD,E,strideE,tauq,strideQ,taup,strideP,batch_count) bind(c, name="rocsolver_sgebrd_batched")
       use iso_c_binding
@@ -12264,7 +12169,7 @@ module hipfort_rocsolver
       rocsolver_zgebrd_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GEBRD_STRIDED_BATCHED computes the bidiagonal form of a batch of
   !>     general m-by-n matrices.
   !> 
@@ -12278,7 +12183,7 @@ module hipfort_rocsolver
   !>     \f]
   !> 
   !>     where \f$B_j\f$ is upper bidiagonal if m >= n and lower bidiagonal if m < n, and \f$Q_j\f$ and
-  !>     \f$P_j\f$ are orthogonalunitary matrices represented as the product of Householder matrices
+  !>     \f$P_j\f$ are orthogonal/unitary matrices represented as the product of Householder matrices
   !> 
   !>     \f[
   !>         \begin{array}{cl}
@@ -12326,7 +12231,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA   rocblas_stride.\n
   !>               Stride from the start of one matrix A_j to the next one A_(j+1).
-  !>               There is no restriction for the value of strideA. Normal use case is strideA >= ldan.
+  !>               There is no restriction for the value of strideA. Normal use case is strideA >= lda*n.
   !>     @param[out]
   !>     D         pointer to real type. Array on the GPU (the size depends on the value of strideD).\n
   !>               The diagonal elements of B_j.
@@ -12360,8 +12265,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count  rocblas_int. batch_count >= 0.\n
   !>                  Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_sgebrd_strided_batched
     function rocsolver_sgebrd_strided_batched_(handle,m,n,A,lda,strideA,D,strideD,E,strideE,tauq,strideQ,taup,strideP,batch_count) bind(c, name="rocsolver_sgebrd_strided_batched")
       use iso_c_binding
@@ -12489,7 +12393,7 @@ module hipfort_rocsolver
       rocsolver_zgebrd_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GETRS solves a system of n linear equations on n variables in its factorized form.
   !> 
   !>     \details
@@ -12518,8 +12422,8 @@ module hipfort_rocsolver
   !>                 The number of right hand sides, i.e., the number of columns
   !>                 of the matrix B.
   !>     @param[in]
-  !>     A           pointer to type. Array on the GPU of dimension ldan.\n
-  !>                 The factors L and U of the factorization A = PLU returned by \ref rocsolver_sgetrf "GETRF".
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
+  !>                 The factors L and U of the factorization A = P*L*U returned by \ref rocsolver_sgetrf "GETRF".
   !>     @param[in]
   !>     lda         rocblas_int. lda >= n.\n
   !>                 The leading dimension of A.
@@ -12527,14 +12431,13 @@ module hipfort_rocsolver
   !>     ipiv        pointer to rocblas_int. Array on the GPU of dimension n.\n
   !>                 The pivot indices returned by \ref rocsolver_sgetrf "GETRF".
   !>     @param[in,out]
-  !>     B           pointer to type. Array on the GPU of dimension ldbnrhs.\n
+  !>     B           pointer to type. Array on the GPU of dimension ldb*nrhs.\n
   !>                 On entry, the right hand side matrix B.
   !>                 On exit, the solution matrix X.
   !>     @param[in]
   !>     ldb         rocblas_int. ldb >= n.\n
   !>                 The leading dimension of B.
-  !> 
-  !>    
+  !>
   interface rocsolver_sgetrs
     function rocsolver_sgetrs_(handle,trans,n,nrhs,A,lda,ipiv,B,ldb) bind(c, name="rocsolver_sgetrs")
       use iso_c_binding
@@ -12638,7 +12541,7 @@ module hipfort_rocsolver
       rocsolver_zgetrs_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GETRS_BATCHED solves a batch of systems of n linear equations on n
   !>     variables in its factorized forms.
   !> 
@@ -12668,8 +12571,8 @@ module hipfort_rocsolver
   !>                 The number of right hand sides, i.e., the number of columns
   !>                 of all the matrices B_j.
   !>     @param[in]
-  !>     A           Array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
-  !>                 The factors L_j and U_j of the factorization A_j = P_jL_jU_j returned by \ref rocsolver_sgetrf_batched "GETRF_BATCHED".
+  !>     A           Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
+  !>                 The factors L_j and U_j of the factorization A_j = P_j*L_j*U_j returned by \ref rocsolver_sgetrf_batched "GETRF_BATCHED".
   !>     @param[in]
   !>     lda         rocblas_int. lda >= n.\n
   !>                 The leading dimension of matrices A_j.
@@ -12681,7 +12584,7 @@ module hipfort_rocsolver
   !>                 Stride from the start of one vector ipiv_j to the next one ipiv_(j+1).
   !>                 There is no restriction for the value of strideP. Normal use case is strideP >= n.
   !>     @param[in,out]
-  !>     B           Array of pointers to type. Each pointer points to an array on the GPU of dimension ldbnrhs.\n
+  !>     B           Array of pointers to type. Each pointer points to an array on the GPU of dimension ldb*nrhs.\n
   !>                 On entry, the right hand side matrices B_j.
   !>                 On exit, the solution matrix X_j of each system in the batch.
   !>     @param[in]
@@ -12690,8 +12593,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of instances (systems) in the batch.
-  !> 
-  !>    
+  !>
   interface rocsolver_sgetrs_batched
     function rocsolver_sgetrs_batched_(handle,trans,n,nrhs,A,lda,ipiv,strideP,B,ldb,batch_count) bind(c, name="rocsolver_sgetrs_batched")
       use iso_c_binding
@@ -12803,7 +12705,7 @@ module hipfort_rocsolver
       rocsolver_zgetrs_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GETRS_STRIDED_BATCHED solves a batch of systems of n linear equations
   !>     on n variables in its factorized forms.
   !> 
@@ -12834,14 +12736,14 @@ module hipfort_rocsolver
   !>                 of all the matrices B_j.
   !>     @param[in]
   !>     A           pointer to type. Array on the GPU (the size depends on the value of strideA).\n
-  !>                 The factors L_j and U_j of the factorization A_j = P_jL_jU_j returned by \ref rocsolver_sgetrf_strided_batched "GETRF_STRIDED_BATCHED".
+  !>                 The factors L_j and U_j of the factorization A_j = P_j*L_j*U_j returned by \ref rocsolver_sgetrf_strided_batched "GETRF_STRIDED_BATCHED".
   !>     @param[in]
   !>     lda         rocblas_int. lda >= n.\n
   !>                 The leading dimension of matrices A_j.
   !>     @param[in]
   !>     strideA     rocblas_stride.\n
   !>                 Stride from the start of one matrix A_j to the next one A_(j+1).
-  !>                 There is no restriction for the value of strideA. Normal use case is strideA >= ldan.
+  !>                 There is no restriction for the value of strideA. Normal use case is strideA >= lda*n.
   !>     @param[in]
   !>     ipiv        pointer to rocblas_int. Array on the GPU (the size depends on the value of strideP).\n
   !>                 Contains the vectors ipiv_j of pivot indices returned by \ref rocsolver_sgetrf_strided_batched "GETRF_STRIDED_BATCHED".
@@ -12859,12 +12761,11 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideB     rocblas_stride.\n
   !>                 Stride from the start of one matrix B_j to the next one B_(j+1).
-  !>                 There is no restriction for the value of strideB. Normal use case is strideB >= ldbnrhs.
+  !>                 There is no restriction for the value of strideB. Normal use case is strideB >= ldb*nrhs.
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of instances (systems) in the batch.
-  !> 
-  !>    
+  !>
   interface rocsolver_sgetrs_strided_batched
     function rocsolver_sgetrs_strided_batched_(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,batch_count) bind(c, name="rocsolver_sgetrs_strided_batched")
       use iso_c_binding
@@ -12984,7 +12885,7 @@ module hipfort_rocsolver
       rocsolver_zgetrs_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GESV solves a general system of n linear equations on n variables.
   !> 
   !>     \details
@@ -13007,7 +12908,7 @@ module hipfort_rocsolver
   !>                 The number of right hand sides, i.e., the number of columns
   !>                 of the matrix B.
   !>     @param[in]
-  !>     A           pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
   !>                 On entry, the matrix A.
   !>                 On exit, if info = 0, the factors L and U of the LU decomposition of A returned by
   !>                 \ref rocsolver_sgetrf "GETRF".
@@ -13018,7 +12919,7 @@ module hipfort_rocsolver
   !>     ipiv        pointer to rocblas_int. Array on the GPU of dimension n.\n
   !>                 The pivot indices returned by \ref rocsolver_sgetrf "GETRF".
   !>     @param[in,out]
-  !>     B           pointer to type. Array on the GPU of dimension ldbnrhs.\n
+  !>     B           pointer to type. Array on the GPU of dimension ldb*nrhs.\n
   !>                 On entry, the right hand side matrix B.
   !>                 On exit, the solution matrix X.
   !>     @param[in]
@@ -13029,8 +12930,7 @@ module hipfort_rocsolver
   !>                 If info = 0, successful exit.
   !>                 If info = i > 0, U is singular, and the solution could not be computed.
   !>                 U[i,i] is the first zero element in the diagonal.
-  !> 
-  !>    
+  !>
   interface rocsolver_sgesv
     function rocsolver_sgesv_(handle,n,nrhs,A,lda,ipiv,B,ldb,myInfo) bind(c, name="rocsolver_sgesv")
       use iso_c_binding
@@ -13134,7 +13034,7 @@ module hipfort_rocsolver
       rocsolver_zgesv_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GESV_BATCHED solves a batch of general systems of n linear equations on n
   !>     variables.
   !> 
@@ -13158,7 +13058,7 @@ module hipfort_rocsolver
   !>                 The number of right hand sides, i.e., the number of columns
   !>                 of all the matrices B_j.
   !>     @param[in]
-  !>     A           Array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !>     A           Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
   !>                 On entry, the matrices A_j.
   !>                 On exit, if info_j = 0, the factors L_j and U_j of the LU decomposition of A_j returned by
   !>                 \ref rocsolver_sgetrf_batched "GETRF_BATCHED".
@@ -13173,7 +13073,7 @@ module hipfort_rocsolver
   !>                 Stride from the start of one vector ipiv_j to the next one ipiv_(j+1).
   !>                 There is no restriction for the value of strideP. Normal use case is strideP >= n.
   !>     @param[in,out]
-  !>     B           Array of pointers to type. Each pointer points to an array on the GPU of dimension ldbnrhs.\n
+  !>     B           Array of pointers to type. Each pointer points to an array on the GPU of dimension ldb*nrhs.\n
   !>                 On entry, the right hand side matrices B_j.
   !>                 On exit, the solution matrix X_j of each system in the batch.
   !>     @param[in]
@@ -13187,8 +13087,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of instances (systems) in the batch.
-  !> 
-  !>    
+  !>
   interface rocsolver_sgesv_batched
     function rocsolver_sgesv_batched_(handle,n,nrhs,A,lda,ipiv,strideP,B,ldb,myInfo,batch_count) bind(c, name="rocsolver_sgesv_batched")
       use iso_c_binding
@@ -13300,7 +13199,7 @@ module hipfort_rocsolver
       rocsolver_zgesv_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GESV_STRIDED_BATCHED solves a batch of general systems of n linear equations
   !>     on n variables.
   !> 
@@ -13334,7 +13233,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA     rocblas_stride.\n
   !>                 Stride from the start of one matrix A_j to the next one A_(j+1).
-  !>                 There is no restriction for the value of strideA. Normal use case is strideA >= ldan.
+  !>                 There is no restriction for the value of strideA. Normal use case is strideA >= lda*n.
   !>     @param[out]
   !>     ipiv        pointer to rocblas_int. Array on the GPU (the size depends on the value of strideP).\n
   !>                 The vectors ipiv_j of pivot indices returned by \ref rocsolver_sgetrf_strided_batched "GETRF_STRIDED_BATCHED".
@@ -13352,7 +13251,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideB     rocblas_stride.\n
   !>                 Stride from the start of one matrix B_j to the next one B_(j+1).
-  !>                 There is no restriction for the value of strideB. Normal use case is strideB >= ldbnrhs.
+  !>                 There is no restriction for the value of strideB. Normal use case is strideB >= ldb*nrhs.
   !>     @param[out]
   !>     info        pointer to rocblas_int. Array of batch_count integers on the GPU.\n
   !>                 If info[j] = 0, successful exit for A_j.
@@ -13361,8 +13260,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of instances (systems) in the batch.
-  !> 
-  !>    
+  !>
   interface rocsolver_sgesv_strided_batched
     function rocsolver_sgesv_strided_batched_(handle,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,myInfo,batch_count) bind(c, name="rocsolver_sgesv_strided_batched")
       use iso_c_binding
@@ -13482,7 +13380,7 @@ module hipfort_rocsolver
       rocsolver_zgesv_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GETRI inverts a general n-by-n matrix A using the LU factorization
   !>     computed by \ref rocsolver_sgetrf "GETRF".
   !> 
@@ -13502,8 +13400,8 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of rows and columns of the matrix A.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension ldan.\n
-  !>               On entry, the factors L and U of the factorization A = PLU returned by \ref rocsolver_sgetrf "GETRF".
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
+  !>               On entry, the factors L and U of the factorization A = P*L*U returned by \ref rocsolver_sgetrf "GETRF".
   !>               On exit, the inverse of A if info = 0; otherwise undefined.
   !>     @param[in]
   !>     lda       rocblas_int. lda >= n.\n
@@ -13515,8 +13413,7 @@ module hipfort_rocsolver
   !>     info      pointer to a rocblas_int on the GPU.\n
   !>               If info = 0, successful exit.
   !>               If info = i > 0, U is singular. U[i,i] is the first zero pivot.
-  !> 
-  !>     
+  !>
   interface rocsolver_sgetri
     function rocsolver_sgetri_(handle,n,A,lda,ipiv,myInfo) bind(c, name="rocsolver_sgetri")
       use iso_c_binding
@@ -13608,7 +13505,7 @@ module hipfort_rocsolver
       rocsolver_zgetri_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GETRI_BATCHED inverts a batch of general n-by-n matrices using
   !>     the LU factorization computed by \ref rocsolver_sgetrf_batched "GETRF_BATCHED".
   !> 
@@ -13628,8 +13525,8 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of rows and columns of all matrices A_j in the batch.
   !>     @param[inout]
-  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
-  !>               On entry, the factors L_j and U_j of the factorization A = P_jL_jU_j returned by
+  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
+  !>               On entry, the factors L_j and U_j of the factorization A = P_j*L_j*U_j returned by
   !>               \ref rocsolver_sgetrf_batched "GETRF_BATCHED".
   !>               On exit, the inverses of A_j if info[j] = 0; otherwise undefined.
   !>     @param[in]
@@ -13649,8 +13546,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_sgetri_batched
     function rocsolver_sgetri_batched_(handle,n,A,lda,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_sgetri_batched")
       use iso_c_binding
@@ -13750,7 +13646,7 @@ module hipfort_rocsolver
       rocsolver_zgetri_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GETRI_STRIDED_BATCHED inverts a batch of general n-by-n matrices
   !>     using the LU factorization computed by \ref rocsolver_sgetrf_strided_batched "GETRF_STRIDED_BATCHED".
   !> 
@@ -13771,7 +13667,7 @@ module hipfort_rocsolver
   !>               The number of rows and columns of all matrices A_j in the batch.
   !>     @param[inout]
   !>     A         pointer to type. Array on the GPU (the size depends on the value of strideA).\n
-  !>               On entry, the factors L_j and U_j of the factorization A_j = P_jL_jU_j returned by
+  !>               On entry, the factors L_j and U_j of the factorization A_j = P_j*L_j*U_j returned by
   !>               \ref rocsolver_sgetrf_strided_batched "GETRF_STRIDED_BATCHED".
   !>               On exit, the inverses of A_j if info[j] = 0; otherwise undefined.
   !>     @param[in]
@@ -13780,7 +13676,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA   rocblas_stride.\n
   !>               Stride from the start of one matrix A_j to the next one A_(j+1).
-  !>               There is no restriction for the value of strideA. Normal use case is strideA >= ldan
+  !>               There is no restriction for the value of strideA. Normal use case is strideA >= lda*n
   !>     @param[in]
   !>     ipiv      pointer to rocblas_int. Array on the GPU (the size depends on the value of strideP).\n
   !>               The pivot indices returned by \ref rocsolver_sgetrf_strided_batched "GETRF_STRIDED_BATCHED".
@@ -13795,8 +13691,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_sgetri_strided_batched
     function rocsolver_sgetri_strided_batched_(handle,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_sgetri_strided_batched")
       use iso_c_binding
@@ -13900,7 +13795,7 @@ module hipfort_rocsolver
       rocsolver_zgetri_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GETRI_NPVT inverts a general n-by-n matrix A using the LU factorization
   !>     computed by \ref rocsolver_sgetrf_npvt "GETRF_NPVT".
   !> 
@@ -13920,8 +13815,8 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of rows and columns of the matrix A.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension ldan.\n
-  !>               On entry, the factors L and U of the factorization A = LU returned by \ref rocsolver_sgetrf_npvt "GETRF_NPVT".
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
+  !>               On entry, the factors L and U of the factorization A = L*U returned by \ref rocsolver_sgetrf_npvt "GETRF_NPVT".
   !>               On exit, the inverse of A if info = 0; otherwise undefined.
   !>     @param[in]
   !>     lda       rocblas_int. lda >= n.\n
@@ -13930,8 +13825,7 @@ module hipfort_rocsolver
   !>     info      pointer to a rocblas_int on the GPU.\n
   !>               If info = 0, successful exit.
   !>               If info = i > 0, U is singular. U[i,i] is the first zero pivot.
-  !> 
-  !>     
+  !>
   interface rocsolver_sgetri_npvt
     function rocsolver_sgetri_npvt_(handle,n,A,lda,myInfo) bind(c, name="rocsolver_sgetri_npvt")
       use iso_c_binding
@@ -14019,7 +13913,7 @@ module hipfort_rocsolver
       rocsolver_zgetri_npvt_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GETRI_NPVT_BATCHED inverts a batch of general n-by-n matrices using
   !>     the LU factorization computed by \ref rocsolver_sgetrf_npvt_batched "GETRF_NPVT_BATCHED".
   !> 
@@ -14039,8 +13933,8 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of rows and columns of all matrices A_j in the batch.
   !>     @param[inout]
-  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
-  !>               On entry, the factors L_j and U_j of the factorization A = L_jU_j returned by
+  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
+  !>               On entry, the factors L_j and U_j of the factorization A = L_j*U_j returned by
   !>               \ref rocsolver_sgetrf_npvt_batched "GETRF_NPVT_BATCHED".
   !>               On exit, the inverses of A_j if info[j] = 0; otherwise undefined.
   !>     @param[in]
@@ -14053,8 +13947,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_sgetri_npvt_batched
     function rocsolver_sgetri_npvt_batched_(handle,n,A,lda,myInfo,batch_count) bind(c, name="rocsolver_sgetri_npvt_batched")
       use iso_c_binding
@@ -14146,7 +14039,7 @@ module hipfort_rocsolver
       rocsolver_zgetri_npvt_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GETRI_NPVT_STRIDED_BATCHED inverts a batch of general n-by-n matrices
   !>     using the LU factorization computed by \ref rocsolver_sgetrf_npvt_strided_batched "GETRF_NPVT_STRIDED_BATCHED".
   !> 
@@ -14167,7 +14060,7 @@ module hipfort_rocsolver
   !>               The number of rows and columns of all matrices A_j in the batch.
   !>     @param[inout]
   !>     A         pointer to type. Array on the GPU (the size depends on the value of strideA).\n
-  !>               On entry, the factors L_j and U_j of the factorization A_j = L_jU_j returned by
+  !>               On entry, the factors L_j and U_j of the factorization A_j = L_j*U_j returned by
   !>               \ref rocsolver_sgetrf_npvt_strided_batched "GETRF_NPVT_STRIDED_BATCHED".
   !>               On exit, the inverses of A_j if info[j] = 0; otherwise undefined.
   !>     @param[in]
@@ -14176,7 +14069,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA   rocblas_stride.\n
   !>               Stride from the start of one matrix A_j to the next one A_(j+1).
-  !>               There is no restriction for the value of strideA. Normal use case is strideA >= ldan
+  !>               There is no restriction for the value of strideA. Normal use case is strideA >= lda*n
   !>     @param[out]
   !>     info      pointer to rocblas_int. Array of batch_count integers on the GPU.\n
   !>               If info[j] = 0, successful exit for inversion of A_j.
@@ -14184,8 +14077,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_sgetri_npvt_strided_batched
     function rocsolver_sgetri_npvt_strided_batched_(handle,n,A,lda,strideA,myInfo,batch_count) bind(c, name="rocsolver_sgetri_npvt_strided_batched")
       use iso_c_binding
@@ -14281,7 +14173,7 @@ module hipfort_rocsolver
       rocsolver_zgetri_npvt_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GELS solves an overdetermined (or underdetermined) linear system defined by an m-by-n
   !>     matrix A, and a corresponding matrix B, using the QR factorization computed by \ref rocsolver_sgeqrf "GEQRF" (or the LQ
   !>     factorization computed by \ref rocsolver_sgelqf "GELQF").
@@ -14296,14 +14188,14 @@ module hipfort_rocsolver
   !>         \end{array}
   !>     \f]
   !> 
-  !>     If m >= n (or m < n in the case of transposeconjugate transpose), the system is overdetermined
+  !>     If m >= n (or m < n in the case of transpose/conjugate transpose), the system is overdetermined
   !>     and a least-squares solution approximating X is found by minimizing
   !> 
   !>     \f[
   !>         || B - A  X || \quad \text{(or} \: || B - A' X ||\text{)}
   !>     \f]
   !> 
-  !>     If m < n (or m >= n in the case of transposeconjugate transpose), the system is underdetermined
+  !>     If m < n (or m >= n in the case of transpose/conjugate transpose), the system is underdetermined
   !>     and a unique solution for X is chosen such that \f$|| X ||\f$ is minimal.
   !> 
   !>     @param[in]
@@ -14322,14 +14214,14 @@ module hipfort_rocsolver
   !>               The number of columns of matrices B and X;
   !>               i.e., the columns on the right hand side.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
   !>               On entry, the matrix A.
   !>               On exit, the QR (or LQ) factorization of A as returned by \ref rocsolver_sgeqrf "GEQRF" (or \ref rocsolver_sgelqf "GELQF").
   !>     @param[in]
   !>     lda       rocblas_int. lda >= m.\n
   !>               Specifies the leading dimension of matrix A.
   !>     @param[inout]
-  !>     B         pointer to type. Array on the GPU of dimension ldbnrhs.\n
+  !>     B         pointer to type. Array on the GPU of dimension ldb*nrhs.\n
   !>               On entry, the matrix B.
   !>               On exit, when info = 0, B is overwritten by the solution vectors (and the residuals in
   !>               the overdetermined cases) stored as columns.
@@ -14341,8 +14233,7 @@ module hipfort_rocsolver
   !>               If info = 0, successful exit.
   !>               If info = j > 0, the solution could not be computed because input matrix A is
   !>               rank deficient; the j-th diagonal element of its triangular factor is zero.
-  !> 
-  !>     
+  !>
   interface rocsolver_sgels
     function rocsolver_sgels_(handle,trans,m,n,nrhs,A,lda,B,ldb,myInfo) bind(c, name="rocsolver_sgels")
       use iso_c_binding
@@ -14450,7 +14341,7 @@ module hipfort_rocsolver
       rocsolver_zgels_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GELS_BATCHED solves a batch of overdetermined (or underdetermined) linear systems
   !>     defined by a set of m-by-n matrices \f$A_i\f$, and corresponding matrices \f$B_i\f$, using the
   !>     QR factorizations computed by \ref rocsolver_sgeqrf_batched "GEQRF_BATCHED" (or the LQ factorizations computed by \ref rocsolver_sgelqf_batched "GELQF_BATCHED").
@@ -14465,14 +14356,14 @@ module hipfort_rocsolver
   !>         \end{array}
   !>     \f]
   !> 
-  !>     If m >= n (or m < n in the case of transposeconjugate transpose), the system is overdetermined
+  !>     If m >= n (or m < n in the case of transpose/conjugate transpose), the system is overdetermined
   !>     and a least-squares solution approximating X_i is found by minimizing
   !> 
   !>     \f[
   !>         || B_i - A_i  X_i || \quad \text{(or} \: || B_i - A_i' X_i ||\text{)}
   !>     \f]
   !> 
-  !>     If m < n (or m >= n in the case of transposeconjugate transpose), the system is underdetermined
+  !>     If m < n (or m >= n in the case of transpose/conjugate transpose), the system is underdetermined
   !>     and a unique solution for X_i is chosen such that \f$|| X_i ||\f$ is minimal.
   !> 
   !>     @param[in]
@@ -14491,14 +14382,14 @@ module hipfort_rocsolver
   !>               The number of columns of all matrices B_i and X_i in the batch;
   !>               i.e., the columns on the right hand side.
   !>     @param[inout]
-  !>     A         array of pointer to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !>     A         array of pointer to type. Each pointer points to an array on the GPU of dimension lda*n.\n
   !>               On entry, the matrices A_i.
   !>               On exit, the QR (or LQ) factorizations of A_i as returned by \ref rocsolver_sgeqrf_batched "GEQRF_BATCHED" (or \ref rocsolver_sgelqf_batched "GELQF_BATCHED").
   !>     @param[in]
   !>     lda       rocblas_int. lda >= m.\n
   !>               Specifies the leading dimension of matrices A_i.
   !>     @param[inout]
-  !>     B         array of pointer to type. Each pointer points to an array on the GPU of dimension ldbnrhs.\n
+  !>     B         array of pointer to type. Each pointer points to an array on the GPU of dimension ldb*nrhs.\n
   !>               On entry, the matrices B_i.
   !>               On exit, when info[i] = 0, B_i is overwritten by the solution vectors (and the residuals in
   !>               the overdetermined cases) stored as columns.
@@ -14513,8 +14404,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>               Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_sgels_batched
     function rocsolver_sgels_batched_(handle,trans,m,n,nrhs,A,lda,B,ldb,myInfo,batch_count) bind(c, name="rocsolver_sgels_batched")
       use iso_c_binding
@@ -14626,7 +14516,7 @@ module hipfort_rocsolver
       rocsolver_zgels_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GELS_STRIDED_BATCHED solves a batch of overdetermined (or underdetermined) linear
   !>     systems defined by a set of m-by-n matrices \f$A_i\f$, and corresponding matrices \f$B_i\f$,
   !>     using the QR factorizations computed by \ref rocsolver_sgeqrf_strided_batched "GEQRF_STRIDED_BATCHED"
@@ -14642,14 +14532,14 @@ module hipfort_rocsolver
   !>         \end{array}
   !>     \f]
   !> 
-  !>     If m >= n (or m < n in the case of transposeconjugate transpose), the system is overdetermined
+  !>     If m >= n (or m < n in the case of transpose/conjugate transpose), the system is overdetermined
   !>     and a least-squares solution approximating X_i is found by minimizing
   !> 
   !>     \f[
   !>         || B_i - A_i  X_i || \quad \text{(or} \: || B_i - A_i' X_i ||\text{)}
   !>     \f]
   !> 
-  !>     If m < n (or m >= n in the case of transposeconjugate transpose), the system is underdetermined
+  !>     If m < n (or m >= n in the case of transpose/conjugate transpose), the system is underdetermined
   !>     and a unique solution for X_i is chosen such that \f$|| X_i ||\f$ is minimal.
   !> 
   !>     @param[in]
@@ -14678,7 +14568,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA   rocblas_stride.\n
   !>               Stride from the start of one matrix A_i to the next one A_(i+1).
-  !>               There is no restriction for the value of strideA. Normal use case is strideA >= ldan
+  !>               There is no restriction for the value of strideA. Normal use case is strideA >= lda*n
   !>     @param[inout]
   !>     B         pointer to type. Array on the GPU (the size depends on the value of strideB).\n
   !>               On entry, the matrices B_i.
@@ -14690,7 +14580,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideB   rocblas_stride.\n
   !>               Stride from the start of one matrix B_i to the next one B_(i+1).
-  !>               There is no restriction for the value of strideB. Normal use case is strideB >= ldbnrhs
+  !>               There is no restriction for the value of strideB. Normal use case is strideB >= ldb*nrhs
   !>     @param[out]
   !>     info      pointer to rocblas_int. Array of batch_count integers on the GPU.\n
   !>               If info[i] = 0, successful exit for solution of A_i.
@@ -14699,8 +14589,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>               Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_sgels_strided_batched
     function rocsolver_sgels_strided_batched_(handle,trans,m,n,nrhs,A,lda,strideA,B,ldb,strideB,myInfo,batch_count) bind(c, name="rocsolver_sgels_strided_batched")
       use iso_c_binding
@@ -14820,7 +14709,7 @@ module hipfort_rocsolver
       rocsolver_zgels_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief POTF2 computes the Cholesky factorization of a real symmetric (complex
   !>     Hermitian) positive definite matrix A.
   !> 
@@ -14848,7 +14737,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of rows and columns of matrix A.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
   !>               On entry, the matrix A to be factored. On exit, the lower or upper triangular factor.
   !>     @param[in]
   !>     lda       rocblas_int. lda >= n.\n
@@ -14858,7 +14747,6 @@ module hipfort_rocsolver
   !>               If info = 0, successful factorization of matrix A.
   !>               If info = j > 0, the leading minor of order j of A is not positive definite.
   !>               The factorization stopped at this point.
-  !>     
   interface rocsolver_spotf2
     function rocsolver_spotf2_(handle,uplo,n,A,lda,myInfo) bind(c, name="rocsolver_spotf2")
       use iso_c_binding
@@ -14950,7 +14838,7 @@ module hipfort_rocsolver
       rocsolver_zpotf2_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief POTF2_BATCHED computes the Cholesky factorization of a
   !>     batch of real symmetric (complex Hermitian) positive definite matrices.
   !> 
@@ -14978,7 +14866,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of rows and columns of matrix A_i.
   !>     @param[inout]
-  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
   !>               On entry, the matrices A_i to be factored. On exit, the upper or lower triangular factors.
   !>     @param[in]
   !>     lda       rocblas_int. lda >= n.\n
@@ -14991,7 +14879,6 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !>     
   interface rocsolver_spotf2_batched
     function rocsolver_spotf2_batched_(handle,uplo,n,A,lda,myInfo,batch_count) bind(c, name="rocsolver_spotf2_batched")
       use iso_c_binding
@@ -15087,7 +14974,7 @@ module hipfort_rocsolver
       rocsolver_zpotf2_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief POTF2_STRIDED_BATCHED computes the Cholesky factorization of a
   !>     batch of real symmetric (complex Hermitian) positive definite matrices.
   !> 
@@ -15123,7 +15010,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA   rocblas_stride.\n
   !>               Stride from the start of one matrix A_i to the next one A_(i+1).
-  !>               There is no restriction for the value of strideA. Normal use case is strideA >= ldan.
+  !>               There is no restriction for the value of strideA. Normal use case is strideA >= lda*n.
   !>     @param[out]
   !>     info      pointer to rocblas_int. Array of batch_count integers on the GPU.\n
   !>               If info[i] = 0, successful factorization of matrix A_i.
@@ -15132,7 +15019,6 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !>     
   interface rocsolver_spotf2_strided_batched
     function rocsolver_spotf2_strided_batched_(handle,uplo,n,A,lda,strideA,myInfo,batch_count) bind(c, name="rocsolver_spotf2_strided_batched")
       use iso_c_binding
@@ -15232,7 +15118,7 @@ module hipfort_rocsolver
       rocsolver_zpotf2_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief POTRF computes the Cholesky factorization of a real symmetric (complex
   !>     Hermitian) positive definite matrix A.
   !> 
@@ -15260,7 +15146,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of rows and columns of matrix A.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
   !>               On entry, the matrix A to be factored. On exit, the lower or upper triangular factor.
   !>     @param[in]
   !>     lda       rocblas_int. lda >= n.\n
@@ -15270,7 +15156,6 @@ module hipfort_rocsolver
   !>               If info = 0, successful factorization of matrix A.
   !>               If info = j > 0, the leading minor of order j of A is not positive definite.
   !>               The factorization stopped at this point.
-  !>     
   interface rocsolver_spotrf
     function rocsolver_spotrf_(handle,uplo,n,A,lda,myInfo) bind(c, name="rocsolver_spotrf")
       use iso_c_binding
@@ -15362,7 +15247,7 @@ module hipfort_rocsolver
       rocsolver_zpotrf_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief POTRF_BATCHED computes the Cholesky factorization of a
   !>     batch of real symmetric (complex Hermitian) positive definite matrices.
   !> 
@@ -15390,7 +15275,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of rows and columns of matrix A_i.
   !>     @param[inout]
-  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
   !>               On entry, the matrices A_i to be factored. On exit, the upper or lower triangular factors.
   !>     @param[in]
   !>     lda       rocblas_int. lda >= n.\n
@@ -15403,7 +15288,6 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !>     
   interface rocsolver_spotrf_batched
     function rocsolver_spotrf_batched_(handle,uplo,n,A,lda,myInfo,batch_count) bind(c, name="rocsolver_spotrf_batched")
       use iso_c_binding
@@ -15499,7 +15383,7 @@ module hipfort_rocsolver
       rocsolver_zpotrf_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief POTRF_STRIDED_BATCHED computes the Cholesky factorization of a
   !>     batch of real symmetric (complex Hermitian) positive definite matrices.
   !> 
@@ -15535,7 +15419,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA   rocblas_stride.\n
   !>               Stride from the start of one matrix A_i to the next one A_(i+1).
-  !>               There is no restriction for the value of strideA. Normal use case is strideA >= ldan.
+  !>               There is no restriction for the value of strideA. Normal use case is strideA >= lda*n.
   !>     @param[out]
   !>     info      pointer to rocblas_int. Array of batch_count integers on the GPU.\n
   !>               If info[i] = 0, successful factorization of matrix A_i.
@@ -15544,7 +15428,6 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !>     
   interface rocsolver_spotrf_strided_batched
     function rocsolver_spotrf_strided_batched_(handle,uplo,n,A,lda,strideA,myInfo,batch_count) bind(c, name="rocsolver_spotrf_strided_batched")
       use iso_c_binding
@@ -15644,8 +15527,8 @@ module hipfort_rocsolver
       rocsolver_zpotrf_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
-  !>     \brief POTRS solves a symmetrichermitian system of n linear equations on n variables in its factorized form.
+  !>  @{
+  !>     \brief POTRS solves a symmetric/hermitian system of n linear equations on n variables in its factorized form.
   !> 
   !>     \details
   !>     It solves the system
@@ -15679,20 +15562,19 @@ module hipfort_rocsolver
   !>                 The number of right hand sides, i.e., the number of columns
   !>                 of the matrix B.
   !>     @param[in]
-  !>     A           pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
   !>                 The factor L or U of the Cholesky factorization of A returned by \ref rocsolver_spotrf "POTRF".
   !>     @param[in]
   !>     lda         rocblas_int. lda >= n.\n
   !>                 The leading dimension of A.
   !>     @param[in,out]
-  !>     B           pointer to type. Array on the GPU of dimension ldbnrhs.\n
+  !>     B           pointer to type. Array on the GPU of dimension ldb*nrhs.\n
   !>                 On entry, the right hand side matrix B.
   !>                 On exit, the solution matrix X.
   !>     @param[in]
   !>     ldb         rocblas_int. ldb >= n.\n
   !>                 The leading dimension of B.
-  !> 
-  !>    
+  !>
   interface rocsolver_spotrs
     function rocsolver_spotrs_(handle,uplo,n,nrhs,A,lda,B,ldb) bind(c, name="rocsolver_spotrs")
       use iso_c_binding
@@ -15792,8 +15674,8 @@ module hipfort_rocsolver
       rocsolver_zpotrs_rank_1
 #endif
   end interface
-  !> ! @{
-  !>     \brief POTRS_BATCHED solves a batch of symmetrichermitian systems of n linear equations on n
+  !>  @{
+  !>     \brief POTRS_BATCHED solves a batch of symmetric/hermitian systems of n linear equations on n
   !>     variables in its factorized forms.
   !> 
   !>     \details
@@ -15829,13 +15711,13 @@ module hipfort_rocsolver
   !>                 The number of right hand sides, i.e., the number of columns
   !>                 of all the matrices B_j.
   !>     @param[in]
-  !>     A           Array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !>     A           Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
   !>                 The factor L_j or U_j of the Cholesky factorization of A_j returned by \ref rocsolver_spotrf_batched "POTRF_BATCHED".
   !>     @param[in]
   !>     lda         rocblas_int. lda >= n.\n
   !>                 The leading dimension of matrices A_j.
   !>     @param[in,out]
-  !>     B           Array of pointers to type. Each pointer points to an array on the GPU of dimension ldbnrhs.\n
+  !>     B           Array of pointers to type. Each pointer points to an array on the GPU of dimension ldb*nrhs.\n
   !>                 On entry, the right hand side matrices B_j.
   !>                 On exit, the solution matrix X_j of each system in the batch.
   !>     @param[in]
@@ -15844,8 +15726,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of instances (systems) in the batch.
-  !> 
-  !>    
+  !>
   interface rocsolver_spotrs_batched
     function rocsolver_spotrs_batched_(handle,uplo,n,nrhs,A,lda,B,ldb,batch_count) bind(c, name="rocsolver_spotrs_batched")
       use iso_c_binding
@@ -15949,8 +15830,8 @@ module hipfort_rocsolver
       rocsolver_zpotrs_batched_rank_1
 #endif
   end interface
-  !> ! @{
-  !>     \brief POTRS_STRIDED_BATCHED solves a batch of symmetrichermitian systems of n linear equations
+  !>  @{
+  !>     \brief POTRS_STRIDED_BATCHED solves a batch of symmetric/hermitian systems of n linear equations
   !>     on n variables in its factorized forms.
   !> 
   !>     \details
@@ -15994,7 +15875,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA     rocblas_stride.\n
   !>                 Stride from the start of one matrix A_j to the next one A_(j+1).
-  !>                 There is no restriction for the value of strideA. Normal use case is strideA >= ldan.
+  !>                 There is no restriction for the value of strideA. Normal use case is strideA >= lda*n.
   !>     @param[in,out]
   !>     B           pointer to type. Array on the GPU (size depends on the value of strideB).\n
   !>                 On entry, the right hand side matrices B_j.
@@ -16005,12 +15886,11 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideB     rocblas_stride.\n
   !>                 Stride from the start of one matrix B_j to the next one B_(j+1).
-  !>                 There is no restriction for the value of strideB. Normal use case is strideB >= ldbnrhs.
+  !>                 There is no restriction for the value of strideB. Normal use case is strideB >= ldb*nrhs.
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of instances (systems) in the batch.
-  !> 
-  !>    
+  !>
   interface rocsolver_spotrs_strided_batched
     function rocsolver_spotrs_strided_batched_(handle,uplo,n,nrhs,A,lda,strideA,B,ldb,strideB,batch_count) bind(c, name="rocsolver_spotrs_strided_batched")
       use iso_c_binding
@@ -16122,8 +16002,8 @@ module hipfort_rocsolver
       rocsolver_zpotrs_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
-  !>     \brief POSV solves a symmetrichermitian system of n linear equations on n variables.
+  !>  @{
+  !>     \brief POSV solves a symmetric/hermitian system of n linear equations on n variables.
   !> 
   !>     \details
   !>     It solves the system
@@ -16150,15 +16030,15 @@ module hipfort_rocsolver
   !>                 The number of right hand sides, i.e., the number of columns
   !>                 of the matrix B.
   !>     @param[in]
-  !>     A           pointer to type. Array on the GPU of dimension ldan.\n
-  !>                 On entry, the symmetrichermitian matrix A.
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
+  !>                 On entry, the symmetric/hermitian matrix A.
   !>                 On exit, if info = 0, the factor L or U of the Cholesky factorization of A returned by
   !>                 \ref rocsolver_spotrf "POTRF".
   !>     @param[in]
   !>     lda         rocblas_int. lda >= n.\n
   !>                 The leading dimension of A.
   !>     @param[in,out]
-  !>     B           pointer to type. Array on the GPU of dimension ldbnrhs.\n
+  !>     B           pointer to type. Array on the GPU of dimension ldb*nrhs.\n
   !>                 On entry, the right hand side matrix B.
   !>                 On exit, the solution matrix X.
   !>     @param[in]
@@ -16169,8 +16049,7 @@ module hipfort_rocsolver
   !>                 If info = 0, successful exit.
   !>                 If info = j > 0, the leading minor of order j of A is not positive definite.
   !>                 The solution could not be computed.
-  !> 
-  !>    
+  !>
   interface rocsolver_sposv
     function rocsolver_sposv_(handle,uplo,n,nrhs,A,lda,B,ldb,myInfo) bind(c, name="rocsolver_sposv")
       use iso_c_binding
@@ -16274,8 +16153,8 @@ module hipfort_rocsolver
       rocsolver_zposv_rank_1
 #endif
   end interface
-  !> ! @{
-  !>     \brief POSV_BATCHED solves a batch of symmetrichermitian systems of n linear equations on n
+  !>  @{
+  !>     \brief POSV_BATCHED solves a batch of symmetric/hermitian systems of n linear equations on n
   !>     variables.
   !> 
   !>     \details
@@ -16303,15 +16182,15 @@ module hipfort_rocsolver
   !>                 The number of right hand sides, i.e., the number of columns
   !>                 of all the matrices B_j.
   !>     @param[in]
-  !>     A           Array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
-  !>                 On entry, the symmetrichermitian matrices A_j.
+  !>     A           Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
+  !>                 On entry, the symmetric/hermitian matrices A_j.
   !>                 On exit, if info[j] = 0, the factor L_j or U_j of the Cholesky factorization of A_j returned by
   !>                 \ref rocsolver_spotrf_batched "POTRF_BATCHED".
   !>     @param[in]
   !>     lda         rocblas_int. lda >= n.\n
   !>                 The leading dimension of matrices A_j.
   !>     @param[in,out]
-  !>     B           Array of pointers to type. Each pointer points to an array on the GPU of dimension ldbnrhs.\n
+  !>     B           Array of pointers to type. Each pointer points to an array on the GPU of dimension ldb*nrhs.\n
   !>                 On entry, the right hand side matrices B_j.
   !>                 On exit, the solution matrix X_j of each system in the batch.
   !>     @param[in]
@@ -16325,8 +16204,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of instances (systems) in the batch.
-  !> 
-  !>    
+  !>
   interface rocsolver_sposv_batched
     function rocsolver_sposv_batched_(handle,uplo,n,nrhs,A,lda,B,ldb,myInfo,batch_count) bind(c, name="rocsolver_sposv_batched")
       use iso_c_binding
@@ -16434,8 +16312,8 @@ module hipfort_rocsolver
       rocsolver_zposv_batched_rank_1
 #endif
   end interface
-  !> ! @{
-  !>     \brief POSV_STRIDED_BATCHED solves a batch of symmetrichermitian systems of n linear equations
+  !>  @{
+  !>     \brief POSV_STRIDED_BATCHED solves a batch of symmetric/hermitian systems of n linear equations
   !>     on n variables.
   !> 
   !>     \details
@@ -16464,7 +16342,7 @@ module hipfort_rocsolver
   !>                 of all the matrices B_j.
   !>     @param[in]
   !>     A           pointer to type. Array on the GPU (the size depends on the value of strideA).\n
-  !>                 On entry, the symmetrichermitian matrices A_j.
+  !>                 On entry, the symmetric/hermitian matrices A_j.
   !>                 On exit, if info[j] = 0, the factor L_j or U_j of the Cholesky factorization of A_j returned by
   !>                 \ref rocsolver_spotrf_strided_batched "POTRF_STRIDED_BATCHED".
   !>     @param[in]
@@ -16473,7 +16351,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA     rocblas_stride.\n
   !>                 Stride from the start of one matrix A_j to the next one A_(j+1).
-  !>                 There is no restriction for the value of strideA. Normal use case is strideA >= ldan.
+  !>                 There is no restriction for the value of strideA. Normal use case is strideA >= lda*n.
   !>     @param[in,out]
   !>     B           pointer to type. Array on the GPU (size depends on the value of strideB).\n
   !>                 On entry, the right hand side matrices B_j.
@@ -16484,7 +16362,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideB     rocblas_stride.\n
   !>                 Stride from the start of one matrix B_j to the next one B_(j+1).
-  !>                 There is no restriction for the value of strideB. Normal use case is strideB >= ldbnrhs.
+  !>                 There is no restriction for the value of strideB. Normal use case is strideB >= ldb*nrhs.
   !>     @param[out]
   !>     info        pointer to rocblas_int. Array of batch_count integers on the GPU.\n
   !>                 If info[j] = 0, successful exit.
@@ -16493,8 +16371,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of instances (systems) in the batch.
-  !> 
-  !>    
+  !>
   interface rocsolver_sposv_strided_batched
     function rocsolver_sposv_strided_batched_(handle,uplo,n,nrhs,A,lda,strideA,B,ldb,strideB,myInfo,batch_count) bind(c, name="rocsolver_sposv_strided_batched")
       use iso_c_binding
@@ -16610,8 +16487,8 @@ module hipfort_rocsolver
       rocsolver_zposv_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
-  !>     \brief POTRI inverts a symmetrichermitian positive definite matrix A.
+  !>  @{
+  !>     \brief POTRI inverts a symmetric/hermitian positive definite matrix A.
   !> 
   !>     \details
   !>     The inverse of matrix \f$A\f$ is computed as
@@ -16636,7 +16513,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of rows and columns of matrix A.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
   !>               On entry, the factor L or U of the Cholesky factorization of A returned by
   !>               \ref rocsolver_spotrf "POTRF".
   !>               On exit, the inverses of A if info = 0.
@@ -16647,7 +16524,6 @@ module hipfort_rocsolver
   !>     info      pointer to a rocblas_int on the GPU.\n
   !>               If info = 0, successful exit for inversion of A.
   !>               If info = j > 0, A is singular. L[j,j] or U[j,j] is zero.
-  !>     
   interface rocsolver_spotri
     function rocsolver_spotri_(handle,uplo,n,A,lda,myInfo) bind(c, name="rocsolver_spotri")
       use iso_c_binding
@@ -16739,8 +16615,8 @@ module hipfort_rocsolver
       rocsolver_zpotri_rank_1
 #endif
   end interface
-  !> ! @{
-  !>     \brief POTRI_BATCHED inverts a batch of symmetrichermitian positive definite matrices \f$A_i\f$.
+  !>  @{
+  !>     \brief POTRI_BATCHED inverts a batch of symmetric/hermitian positive definite matrices \f$A_i\f$.
   !> 
   !>     \details
   !>     The inverse of matrix \f$A_i\f$ in the batch is computed as
@@ -16765,7 +16641,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of rows and columns of matrix A_i.
   !>     @param[inout]
-  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
   !>               On entry, the factor L_i or U_i of the Cholesky factorization of A_i returned by
   !>               \ref rocsolver_spotrf_batched "POTRF_BATCHED".
   !>               On exit, the inverses of A_i if info[i] = 0.
@@ -16779,7 +16655,6 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !>     
   interface rocsolver_spotri_batched
     function rocsolver_spotri_batched_(handle,uplo,n,A,lda,myInfo,batch_count) bind(c, name="rocsolver_spotri_batched")
       use iso_c_binding
@@ -16875,8 +16750,8 @@ module hipfort_rocsolver
       rocsolver_zpotri_batched_rank_1
 #endif
   end interface
-  !> ! @{
-  !>     \brief POTRI_STRIDED_BATCHED inverts a batch of symmetrichermitian positive definite matrices \f$A_i\f$.
+  !>  @{
+  !>     \brief POTRI_STRIDED_BATCHED inverts a batch of symmetric/hermitian positive definite matrices \f$A_i\f$.
   !> 
   !>     \details
   !>     The inverse of matrix \f$A_i\f$ in the batch is computed as
@@ -16911,7 +16786,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA   rocblas_stride.\n
   !>               Stride from the start of one matrix A_i to the next one A_(i+1).
-  !>               There is no restriction for the value of strideA. Normal use case is strideA >= ldan.
+  !>               There is no restriction for the value of strideA. Normal use case is strideA >= lda*n.
   !>     @param[out]
   !>     info      pointer to rocblas_int. Array of batch_count integers on the GPU.\n
   !>               If info[i] = 0, successful exit for inversion of A_i.
@@ -16919,7 +16794,6 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !>     
   interface rocsolver_spotri_strided_batched
     function rocsolver_spotri_strided_batched_(handle,uplo,n,A,lda,strideA,myInfo,batch_count) bind(c, name="rocsolver_spotri_strided_batched")
       use iso_c_binding
@@ -17019,7 +16893,7 @@ module hipfort_rocsolver
       rocsolver_zpotri_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GESVD computes the singular values and optionally the singular
   !>     vectors of a general m-by-n matrix A (Singular Value Decomposition).
   !> 
@@ -17080,7 +16954,7 @@ module hipfort_rocsolver
   !>     n           rocblas_int. n >= 0.\n
   !>                 The number of columns of matrix A.
   !>     @param[inout]
-  !>     A           pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
   !>                 On entry, the matrix A.
   !>                 On exit, if left_svect (or right_svect) is equal to overwrite,
   !>                 the first columns (or rows) contain the left (or right) singular vectors;
@@ -17092,16 +16966,16 @@ module hipfort_rocsolver
   !>     S           pointer to real type. Array on the GPU of dimension min(m,n). \n
   !>                 The singular values of A in decreasing order.
   !>     @param[out]
-  !>     U           pointer to type. Array on the GPU of dimension ldumin(m,n) if
-  !>                 left_svect is set to singular, or ldum when left_svect is equal to all.\n
+  !>     U           pointer to type. Array on the GPU of dimension ldu*min(m,n) if
+  !>                 left_svect is set to singular, or ldu*m when left_svect is equal to all.\n
   !>                 The matrix of left singular vectors stored as columns. Not
   !>                 referenced if left_svect is set to overwrite or none.
   !>     @param[in]
   !>     ldu         rocblas_int. ldu >= m if left_svect is all or singular; ldu >= 1 otherwise.\n
   !>                 The leading dimension of U.
   !>     @param[out]
-  !>     V           pointer to type. Array on the GPU of dimension ldvn. \n
-  !>                 The matrix of right singular vectors stored as rows (transposed  conjugate-transposed).
+  !>     V           pointer to type. Array on the GPU of dimension ldv*n. \n
+  !>                 The matrix of right singular vectors stored as rows (transposed conjugate-transposed).
   !>                 Not referenced if right_svect is set to overwrite or none.
   !>     @param[in]
   !>     ldv         rocblas_int. ldv >= n if right_svect is all; ldv >= min(m,n) if right_svect is
@@ -17122,8 +16996,7 @@ module hipfort_rocsolver
   !>     info        pointer to a rocblas_int on the GPU.\n
   !>                 If info = 0, successful exit.
   !>                 If info = i > 0, \ref rocsolver_sbdsqr "BDSQR" did not converge. i elements of E did not converge to zero.
-  !> 
-  !>     
+  !>
   interface rocsolver_sgesvd
     function rocsolver_sgesvd_(handle,left_svect,right_svect,m,n,A,lda,S,U,ldu,V,ldv,E,fast_alg,myInfo) bind(c, name="rocsolver_sgesvd")
       use iso_c_binding
@@ -17251,7 +17124,7 @@ module hipfort_rocsolver
       rocsolver_zgesvd_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GESVD_BATCHED computes the singular values and optionally the
   !>     singular vectors of a batch of general m-by-n matrix A (Singular Value
   !>     Decomposition).
@@ -17315,7 +17188,7 @@ module hipfort_rocsolver
   !>                 The number of columns of all matrices A_j in the batch.
   !>     @param[inout]
   !>     A           Array of pointers to type. Each pointer points to an array on
-  !>                 the GPU of dimension ldan.\n
+  !>                 the GPU of dimension lda*n.\n
   !>                 On entry, the matrices A_j.
   !>                 On exit, if left_svect (or right_svect) is equal to overwrite,
   !>                 the first columns (or rows) of A_j contain the left (or right)
@@ -17342,11 +17215,11 @@ module hipfort_rocsolver
   !>     strideU     rocblas_stride.\n
   !>                 Stride from the start of one matrix U_j to the next one U_(j+1).
   !>                 There is no restriction for the value of strideU.
-  !>                 Normal use case is strideU >= ldumin(m,n) if left_svect is set to singular,
-  !>                 or strideU >= ldum when left_svect is equal to all.
+  !>                 Normal use case is strideU >= ldu*min(m,n) if left_svect is set to singular,
+  !>                 or strideU >= ldu*m when left_svect is equal to all.
   !>     @param[out]
   !>     V           pointer to type. Array on the GPU (the size depends on the value of strideV). \n
-  !>                 The matrices V_j of right singular vectors stored as rows (transposed  conjugate-transposed).
+  !>                 The matrices V_j of right singular vectors stored as rows (transposed conjugate-transposed).
   !>                 Not referenced if right_svect is set to overwrite or none.
   !>     @param[in]
   !>     ldv         rocblas_int. ldv >= n if right_svect is all; ldv >= min(m,n) if
@@ -17356,7 +17229,7 @@ module hipfort_rocsolver
   !>     strideV     rocblas_stride.\n
   !>                 Stride from the start of one matrix V_j to the next one V_(j+1).
   !>                 There is no restriction for the value of strideV.
-  !>                 Normal use case is strideV >= ldvn.
+  !>                 Normal use case is strideV >= ldv*n.
   !>     @param[out]
   !>     E           pointer to real type. Array on the GPU (the size depends on the value of strideE).\n
   !>                 This array is used to work internally with the bidiagonal matrix B_j associated with A_j (using \ref rocsolver_sbdsqr "BDSQR").
@@ -17378,8 +17251,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_sgesvd_batched
     function rocsolver_sgesvd_batched_(handle,left_svect,right_svect,m,n,A,lda,S,strideS,U,ldu,strideU,V,ldv,strideV,E,strideE,fast_alg,myInfo,batch_count) bind(c, name="rocsolver_sgesvd_batched")
       use iso_c_binding
@@ -17527,7 +17399,7 @@ module hipfort_rocsolver
       rocsolver_zgesvd_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GESVD_STRIDED_BATCHED computes the singular values and optionally the
   !>     singular vectors of a batch of general m-by-n matrix A (Singular Value
   !>     Decomposition).
@@ -17601,7 +17473,7 @@ module hipfort_rocsolver
   !>     strideA     rocblas_stride.\n
   !>                 Stride from the start of one matrix A_j to the next one A_(j+1).
   !>                 There is no restriction for the value of strideA.
-  !>                 Normal use case is strideA >= ldan.
+  !>                 Normal use case is strideA >= lda*n.
   !>     @param[out]
   !>     S           pointer to real type. Array on the GPU (the size depends on the value of strideS).\n
   !>                 The singular values of A_j in decreasing order.
@@ -17621,11 +17493,11 @@ module hipfort_rocsolver
   !>     strideU     rocblas_stride.\n
   !>                 Stride from the start of one matrix U_j to the next one U_(j+1).
   !>                 There is no restriction for the value of strideU.
-  !>                 Normal use case is strideU >= ldumin(m,n) if left_svect is set to singular,
-  !>                 or strideU >= ldum when left_svect is equal to all.
+  !>                 Normal use case is strideU >= ldu*min(m,n) if left_svect is set to singular,
+  !>                 or strideU >= ldu*m when left_svect is equal to all.
   !>     @param[out]
   !>     V           pointer to type. Array on the GPU (the size depends on the value of strideV). \n
-  !>                 The matrices V_j of right singular vectors stored as rows (transposed  conjugate-transposed).
+  !>                 The matrices V_j of right singular vectors stored as rows (transposed conjugate-transposed).
   !>                 Not referenced if right_svect is set to overwrite or none.
   !>     @param[in]
   !>     ldv         rocblas_int. ldv >= n if right_svect is all; ldv >= min(m,n) if right_svect is
@@ -17635,7 +17507,7 @@ module hipfort_rocsolver
   !>     strideV     rocblas_stride.\n
   !>                 Stride from the start of one matrix V_j to the next one V_(j+1).
   !>                 There is no restriction for the value of strideV.
-  !>                 Normal use case is strideV >= ldvn.
+  !>                 Normal use case is strideV >= ldv*n.
   !>     @param[out]
   !>     E           pointer to real type. Array on the GPU (the size depends on the value of strideE).\n
   !>                 This array is used to work internally with the bidiagonal matrix B_j associated with A_j (using \ref rocsolver_sbdsqr "BDSQR").
@@ -17658,8 +17530,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_sgesvd_strided_batched
     function rocsolver_sgesvd_strided_batched_(handle,left_svect,right_svect,m,n,A,lda,strideA,S,strideS,U,ldu,strideU,V,ldv,strideV,E,strideE,fast_alg,myInfo,batch_count) bind(c, name="rocsolver_sgesvd_strided_batched")
       use iso_c_binding
@@ -17811,7 +17682,7 @@ module hipfort_rocsolver
       rocsolver_zgesvd_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief SYTD2 computes the tridiagonal form of a real symmetric matrix A.
   !> 
   !>     \details
@@ -17854,7 +17725,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of rows and columns of the matrix A.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
   !>               On entry, the matrix to be factored.
   !>               On exit, if upper, then the elements on the diagonal and superdiagonal
   !>               contain the tridiagonal form T; the elements above the superdiagonal contain
@@ -17874,8 +17745,7 @@ module hipfort_rocsolver
   !>     @param[out]
   !>     tau       pointer to type. Array on the GPU of dimension n-1.\n
   !>               The Householder scalars.
-  !> 
-  !>     
+  !>
   interface rocsolver_ssytd2
     function rocsolver_ssytd2_(handle,uplo,n,A,lda,D,E,tau) bind(c, name="rocsolver_ssytd2")
       use iso_c_binding
@@ -17925,7 +17795,7 @@ module hipfort_rocsolver
       rocsolver_dsytd2_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief HETD2 computes the tridiagonal form of a complex hermitian matrix A.
   !> 
   !>     \details
@@ -17968,7 +17838,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of rows and columns of the matrix A.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
   !>               On entry, the matrix to be factored.
   !>               On exit, if upper, then the elements on the diagonal and superdiagonal
   !>               contain the tridiagonal form T; the elements above the superdiagonal contain
@@ -17988,8 +17858,7 @@ module hipfort_rocsolver
   !>     @param[out]
   !>     tau       pointer to type. Array on the GPU of dimension n-1.\n
   !>               The Householder scalars.
-  !> 
-  !>     
+  !>
   interface rocsolver_chetd2
     function rocsolver_chetd2_(handle,uplo,n,A,lda,D,E,tau) bind(c, name="rocsolver_chetd2")
       use iso_c_binding
@@ -18039,7 +17908,7 @@ module hipfort_rocsolver
       rocsolver_zhetd2_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief SYTD2_BATCHED computes the tridiagonal form of a batch of real symmetric matrices A_j.
   !> 
   !>     \details
@@ -18082,7 +17951,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of rows and columns of the matrices A_j.
   !>     @param[inout]
-  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
   !>               On entry, the matrices A_j to be factored.
   !>               On exit, if upper, then the elements on the diagonal and superdiagonal
   !>               contain the tridiagonal form T_j; the elements above the superdiagonal contain
@@ -18118,8 +17987,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count  rocblas_int. batch_count >= 0.\n
   !>                  Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_ssytd2_batched
     function rocsolver_ssytd2_batched_(handle,uplo,n,A,lda,D,strideD,E,strideE,tau,strideP,batch_count) bind(c, name="rocsolver_ssytd2_batched")
       use iso_c_binding
@@ -18177,7 +18045,7 @@ module hipfort_rocsolver
       rocsolver_dsytd2_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief HETD2_BATCHED computes the tridiagonal form of a batch of complex hermitian matrices A_j.
   !> 
   !>     \details
@@ -18220,7 +18088,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of rows and columns of the matrices A_j.
   !>     @param[inout]
-  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
   !>               On entry, the matrices A_j to be factored.
   !>               On exit, if upper, then the elements on the diagonal and superdiagonal
   !>               contain the tridiagonal form T_j; the elements above the superdiagonal contain
@@ -18256,8 +18124,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count  rocblas_int. batch_count >= 0.\n
   !>                  Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_chetd2_batched
     function rocsolver_chetd2_batched_(handle,uplo,n,A,lda,D,strideD,E,strideE,tau,strideP,batch_count) bind(c, name="rocsolver_chetd2_batched")
       use iso_c_binding
@@ -18315,7 +18182,7 @@ module hipfort_rocsolver
       rocsolver_zhetd2_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief SYTD2_STRIDED_BATCHED computes the tridiagonal form of a batch of real symmetric matrices A_j.
   !> 
   !>     \details
@@ -18372,7 +18239,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA   rocblas_stride.\n
   !>               Stride from the start of one matrix A_j to the next one A_(j+1).
-  !>               There is no restriction for the value of strideA. Normal use case is strideA >= ldan.
+  !>               There is no restriction for the value of strideA. Normal use case is strideA >= lda*n.
   !>     @param[out]
   !>     D         pointer to type. Array on the GPU (the size depends on the value of strideD).\n
   !>               The diagonal elements of T_j.
@@ -18398,8 +18265,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count  rocblas_int. batch_count >= 0.\n
   !>                  Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_ssytd2_strided_batched
     function rocsolver_ssytd2_strided_batched_(handle,uplo,n,A,lda,strideA,D,strideD,E,strideE,tau,strideP,batch_count) bind(c, name="rocsolver_ssytd2_strided_batched")
       use iso_c_binding
@@ -18459,7 +18325,7 @@ module hipfort_rocsolver
       rocsolver_dsytd2_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief HETD2_STRIDED_BATCHED computes the tridiagonal form of a batch of complex hermitian matrices A_j.
   !> 
   !>     \details
@@ -18516,7 +18382,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA   rocblas_stride.\n
   !>               Stride from the start of one matrix A_j to the next one A_(j+1).
-  !>               There is no restriction for the value of strideA. Normal use case is strideA >= ldan.
+  !>               There is no restriction for the value of strideA. Normal use case is strideA >= lda*n.
   !>     @param[out]
   !>     D         pointer to real type. Array on the GPU (the size depends on the value of strideD).\n
   !>               The diagonal elements of T_j.
@@ -18542,8 +18408,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count  rocblas_int. batch_count >= 0.\n
   !>                  Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_chetd2_strided_batched
     function rocsolver_chetd2_strided_batched_(handle,uplo,n,A,lda,strideA,D,strideD,E,strideE,tau,strideP,batch_count) bind(c, name="rocsolver_chetd2_strided_batched")
       use iso_c_binding
@@ -18603,7 +18468,7 @@ module hipfort_rocsolver
       rocsolver_zhetd2_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief SYTRD computes the tridiagonal form of a real symmetric matrix A.
   !> 
   !>     \details
@@ -18646,7 +18511,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of rows and columns of the matrix A.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
   !>               On entry, the matrix to be factored.
   !>               On exit, if upper, then the elements on the diagonal and superdiagonal
   !>               contain the tridiagonal form T; the elements above the superdiagonal contain
@@ -18666,8 +18531,7 @@ module hipfort_rocsolver
   !>     @param[out]
   !>     tau       pointer to type. Array on the GPU of dimension n-1.\n
   !>               The Householder scalars.
-  !> 
-  !>     
+  !>
   interface rocsolver_ssytrd
     function rocsolver_ssytrd_(handle,uplo,n,A,lda,D,E,tau) bind(c, name="rocsolver_ssytrd")
       use iso_c_binding
@@ -18717,7 +18581,7 @@ module hipfort_rocsolver
       rocsolver_dsytrd_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief HETRD computes the tridiagonal form of a complex hermitian matrix A.
   !> 
   !>     \details
@@ -18760,7 +18624,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of rows and columns of the matrix A.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
   !>               On entry, the matrix to be factored.
   !>               On exit, if upper, then the elements on the diagonal and superdiagonal
   !>               contain the tridiagonal form T; the elements above the superdiagonal contain
@@ -18780,8 +18644,7 @@ module hipfort_rocsolver
   !>     @param[out]
   !>     tau       pointer to type. Array on the GPU of dimension n-1.\n
   !>               The Householder scalars.
-  !> 
-  !>     
+  !>
   interface rocsolver_chetrd
     function rocsolver_chetrd_(handle,uplo,n,A,lda,D,E,tau) bind(c, name="rocsolver_chetrd")
       use iso_c_binding
@@ -18831,7 +18694,7 @@ module hipfort_rocsolver
       rocsolver_zhetrd_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief SYTRD_BATCHED computes the tridiagonal form of a batch of real symmetric matrices A_j.
   !> 
   !>     \details
@@ -18874,7 +18737,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of rows and columns of the matrices A_j.
   !>     @param[inout]
-  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
   !>               On entry, the matrices A_j to be factored.
   !>               On exit, if upper, then the elements on the diagonal and superdiagonal
   !>               contain the tridiagonal form T_j; the elements above the superdiagonal contain
@@ -18910,8 +18773,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count  rocblas_int. batch_count >= 0.\n
   !>                  Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_ssytrd_batched
     function rocsolver_ssytrd_batched_(handle,uplo,n,A,lda,D,strideD,E,strideE,tau,strideP,batch_count) bind(c, name="rocsolver_ssytrd_batched")
       use iso_c_binding
@@ -18969,7 +18831,7 @@ module hipfort_rocsolver
       rocsolver_dsytrd_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief HETRD_BATCHED computes the tridiagonal form of a batch of complex hermitian matrices A_j.
   !> 
   !>     \details
@@ -19012,7 +18874,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of rows and columns of the matrices A_j.
   !>     @param[inout]
-  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
   !>               On entry, the matrices A_j to be factored.
   !>               On exit, if upper, then the elements on the diagonal and superdiagonal
   !>               contain the tridiagonal form T_j; the elements above the superdiagonal contain
@@ -19048,8 +18910,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count  rocblas_int. batch_count >= 0.\n
   !>                  Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_chetrd_batched
     function rocsolver_chetrd_batched_(handle,uplo,n,A,lda,D,strideD,E,strideE,tau,strideP,batch_count) bind(c, name="rocsolver_chetrd_batched")
       use iso_c_binding
@@ -19107,7 +18968,7 @@ module hipfort_rocsolver
       rocsolver_zhetrd_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief SYTRD_STRIDED_BATCHED computes the tridiagonal form of a batch of real symmetric matrices A_j.
   !> 
   !>     \details
@@ -19164,7 +19025,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA   rocblas_stride.\n
   !>               Stride from the start of one matrix A_j to the next one A_(j+1).
-  !>               There is no restriction for the value of strideA. Normal use case is strideA >= ldan.
+  !>               There is no restriction for the value of strideA. Normal use case is strideA >= lda*n.
   !>     @param[out]
   !>     D         pointer to type. Array on the GPU (the size depends on the value of strideD).\n
   !>               The diagonal elements of T_j.
@@ -19190,8 +19051,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count  rocblas_int. batch_count >= 0.\n
   !>                  Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_ssytrd_strided_batched
     function rocsolver_ssytrd_strided_batched_(handle,uplo,n,A,lda,strideA,D,strideD,E,strideE,tau,strideP,batch_count) bind(c, name="rocsolver_ssytrd_strided_batched")
       use iso_c_binding
@@ -19251,7 +19111,7 @@ module hipfort_rocsolver
       rocsolver_dsytrd_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief HETRD_STRIDED_BATCHED computes the tridiagonal form of a batch of complex hermitian matrices A_j.
   !> 
   !>     \details
@@ -19308,7 +19168,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA   rocblas_stride.\n
   !>               Stride from the start of one matrix A_j to the next one A_(j+1).
-  !>               There is no restriction for the value of strideA. Normal use case is strideA >= ldan.
+  !>               There is no restriction for the value of strideA. Normal use case is strideA >= lda*n.
   !>     @param[out]
   !>     D         pointer to real type. Array on the GPU (the size depends on the value of strideD).\n
   !>               The diagonal elements of T_j.
@@ -19334,8 +19194,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count  rocblas_int. batch_count >= 0.\n
   !>                  Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_chetrd_strided_batched
     function rocsolver_chetrd_strided_batched_(handle,uplo,n,A,lda,strideA,D,strideD,E,strideE,tau,strideP,batch_count) bind(c, name="rocsolver_chetrd_strided_batched")
       use iso_c_binding
@@ -19395,7 +19254,7 @@ module hipfort_rocsolver
       rocsolver_zhetrd_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief SYGS2 reduces a real symmetric-definite generalized eigenproblem to standard
   !>     form.
   !> 
@@ -19452,20 +19311,19 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The matrix dimensions.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
   !>               On entry, the matrix A. On exit, the transformed matrix associated with
   !>               the equivalent standard eigenvalue problem.
   !>     @param[in]
   !>     lda       rocblas_int. lda >= n.\n
   !>               Specifies the leading dimension of A.
   !>     @param[out]
-  !>     B         pointer to type. Array on the GPU of dimension ldbn.\n
+  !>     B         pointer to type. Array on the GPU of dimension ldb*n.\n
   !>               The triangular factor of the matrix B, as returned by \ref rocsolver_spotrf "POTRF".
   !>     @param[in]
   !>     ldb       rocblas_int. ldb >= n.\n
   !>               Specifies the leading dimension of B.
-  !> 
-  !>     
+  !>
   interface rocsolver_ssygs2
     function rocsolver_ssygs2_(handle,itype,uplo,n,A,lda,B,ldb) bind(c, name="rocsolver_ssygs2")
       use iso_c_binding
@@ -19515,7 +19373,7 @@ module hipfort_rocsolver
       rocsolver_dsygs2_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief HEGS2 reduces a hermitian-definite generalized eigenproblem to standard form.
   !> 
   !>     \details
@@ -19571,20 +19429,19 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The matrix dimensions.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
   !>               On entry, the matrix A. On exit, the transformed matrix associated with
   !>               the equivalent standard eigenvalue problem.
   !>     @param[in]
   !>     lda       rocblas_int. lda >= n.\n
   !>               Specifies the leading dimension of A.
   !>     @param[out]
-  !>     B         pointer to type. Array on the GPU of dimension ldbn.\n
+  !>     B         pointer to type. Array on the GPU of dimension ldb*n.\n
   !>               The triangular factor of the matrix B, as returned by \ref rocsolver_spotrf "POTRF".
   !>     @param[in]
   !>     ldb       rocblas_int. ldb >= n.\n
   !>               Specifies the leading dimension of B.
-  !> 
-  !>     
+  !>
   interface rocsolver_chegs2
     function rocsolver_chegs2_(handle,itype,uplo,n,A,lda,B,ldb) bind(c, name="rocsolver_chegs2")
       use iso_c_binding
@@ -19634,7 +19491,7 @@ module hipfort_rocsolver
       rocsolver_zhegs2_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief SYGS2_BATCHED reduces a batch of real symmetric-definite generalized eigenproblems
   !>     to standard form.
   !> 
@@ -19691,14 +19548,14 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The matrix dimensions.
   !>     @param[inout]
-  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
   !>               On entry, the matrices A_i. On exit, the transformed matrices associated with
   !>               the equivalent standard eigenvalue problems.
   !>     @param[in]
   !>     lda       rocblas_int. lda >= n.\n
   !>               Specifies the leading dimension of A_i.
   !>     @param[out]
-  !>     B         array of pointers to type. Each pointer points to an array on the GPU of dimension ldbn.\n
+  !>     B         array of pointers to type. Each pointer points to an array on the GPU of dimension ldb*n.\n
   !>               The triangular factors of the matrices B_i, as returned by \ref rocsolver_spotrf_batched "POTRF_BATCHED".
   !>     @param[in]
   !>     ldb       rocblas_int. ldb >= n.\n
@@ -19706,8 +19563,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count  rocblas_int. batch_count >= 0.\n
   !>                  Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_ssygs2_batched
     function rocsolver_ssygs2_batched_(handle,itype,uplo,n,A,lda,B,ldb,batch_count) bind(c, name="rocsolver_ssygs2_batched")
       use iso_c_binding
@@ -19759,7 +19615,7 @@ module hipfort_rocsolver
       rocsolver_dsygs2_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief HEGS2_BATCHED reduces a batch of hermitian-definite generalized eigenproblems to
   !>     standard form.
   !> 
@@ -19816,14 +19672,14 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The matrix dimensions.
   !>     @param[inout]
-  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
   !>               On entry, the matrices A_i. On exit, the transformed matrices associated with
   !>               the equivalent standard eigenvalue problems.
   !>     @param[in]
   !>     lda       rocblas_int. lda >= n.\n
   !>               Specifies the leading dimension of A_i.
   !>     @param[out]
-  !>     B         array of pointers to type. Each pointer points to an array on the GPU of dimension ldbn.\n
+  !>     B         array of pointers to type. Each pointer points to an array on the GPU of dimension ldb*n.\n
   !>               The triangular factors of the matrices B_i, as returned by \ref rocsolver_spotrf_batched "POTRF_BATCHED".
   !>     @param[in]
   !>     ldb       rocblas_int. ldb >= n.\n
@@ -19831,8 +19687,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count  rocblas_int. batch_count >= 0.\n
   !>                  Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_chegs2_batched
     function rocsolver_chegs2_batched_(handle,itype,uplo,n,A,lda,B,ldb,batch_count) bind(c, name="rocsolver_chegs2_batched")
       use iso_c_binding
@@ -19884,7 +19739,7 @@ module hipfort_rocsolver
       rocsolver_zhegs2_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief SYGS2_STRIDED_BATCHED reduces a batch of real symmetric-definite generalized
   !>     eigenproblems to standard form.
   !> 
@@ -19950,7 +19805,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA   rocblas_stride.\n
   !>               Stride from the start of one matrix A_i to the next one A_(i+1).
-  !>               There is no restriction for the value of strideA. Normal use case is strideA >= ldan.
+  !>               There is no restriction for the value of strideA. Normal use case is strideA >= lda*n.
   !>     @param[out]
   !>     B         pointer to type. Array on the GPU (the size depends on the value of strideB).\n
   !>               The triangular factors of the matrices B_i, as returned by \ref rocsolver_spotrf_strided_batched "POTRF_STRIDED_BATCHED".
@@ -19960,12 +19815,11 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideB   rocblas_stride.\n
   !>               Stride from the start of one matrix B_i to the next one B_(i+1).
-  !>               There is no restriction for the value of strideB. Normal use case is strideB >= ldbn.
+  !>               There is no restriction for the value of strideB. Normal use case is strideB >= ldb*n.
   !>     @param[in]
   !>     batch_count  rocblas_int. batch_count >= 0.\n
   !>                  Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_ssygs2_strided_batched
     function rocsolver_ssygs2_strided_batched_(handle,itype,uplo,n,A,lda,strideA,B,ldb,strideB,batch_count) bind(c, name="rocsolver_ssygs2_strided_batched")
       use iso_c_binding
@@ -20021,7 +19875,7 @@ module hipfort_rocsolver
       rocsolver_dsygs2_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief HEGS2_STRIDED_BATCHED reduces a batch of hermitian-definite generalized
   !>     eigenproblems to standard form.
   !> 
@@ -20087,7 +19941,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA   rocblas_stride.\n
   !>               Stride from the start of one matrix A_i to the next one A_(i+1).
-  !>               There is no restriction for the value of strideA. Normal use case is strideA >= ldan.
+  !>               There is no restriction for the value of strideA. Normal use case is strideA >= lda*n.
   !>     @param[out]
   !>     B         pointer to type. Array on the GPU (the size depends on the value of strideB).\n
   !>               The triangular factors of the matrices B_i, as returned by \ref rocsolver_spotrf_strided_batched "POTRF_STRIDED_BATCHED".
@@ -20097,12 +19951,11 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideB   rocblas_stride.\n
   !>               Stride from the start of one matrix B_i to the next one B_(i+1).
-  !>               There is no restriction for the value of strideB. Normal use case is strideB >= ldbn.
+  !>               There is no restriction for the value of strideB. Normal use case is strideB >= ldb*n.
   !>     @param[in]
   !>     batch_count  rocblas_int. batch_count >= 0.\n
   !>                  Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_chegs2_strided_batched
     function rocsolver_chegs2_strided_batched_(handle,itype,uplo,n,A,lda,strideA,B,ldb,strideB,batch_count) bind(c, name="rocsolver_chegs2_strided_batched")
       use iso_c_binding
@@ -20158,7 +20011,7 @@ module hipfort_rocsolver
       rocsolver_zhegs2_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief SYGST reduces a real symmetric-definite generalized eigenproblem to standard
   !>     form.
   !> 
@@ -20215,20 +20068,19 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The matrix dimensions.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
   !>               On entry, the matrix A. On exit, the transformed matrix associated with
   !>               the equivalent standard eigenvalue problem.
   !>     @param[in]
   !>     lda       rocblas_int. lda >= n.\n
   !>               Specifies the leading dimension of A.
   !>     @param[out]
-  !>     B         pointer to type. Array on the GPU of dimension ldbn.\n
+  !>     B         pointer to type. Array on the GPU of dimension ldb*n.\n
   !>               The triangular factor of the matrix B, as returned by \ref rocsolver_spotrf "POTRF".
   !>     @param[in]
   !>     ldb       rocblas_int. ldb >= n.\n
   !>               Specifies the leading dimension of B.
-  !> 
-  !>     
+  !>
   interface rocsolver_ssygst
     function rocsolver_ssygst_(handle,itype,uplo,n,A,lda,B,ldb) bind(c, name="rocsolver_ssygst")
       use iso_c_binding
@@ -20278,7 +20130,7 @@ module hipfort_rocsolver
       rocsolver_dsygst_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief HEGST reduces a hermitian-definite generalized eigenproblem to standard form.
   !> 
   !>     \details
@@ -20334,20 +20186,19 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The matrix dimensions.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
   !>               On entry, the matrix A. On exit, the transformed matrix associated with
   !>               the equivalent standard eigenvalue problem.
   !>     @param[in]
   !>     lda       rocblas_int. lda >= n.\n
   !>               Specifies the leading dimension of A.
   !>     @param[out]
-  !>     B         pointer to type. Array on the GPU of dimension ldbn.\n
+  !>     B         pointer to type. Array on the GPU of dimension ldb*n.\n
   !>               The triangular factor of the matrix B, as returned by \ref rocsolver_spotrf "POTRF".
   !>     @param[in]
   !>     ldb       rocblas_int. ldb >= n.\n
   !>               Specifies the leading dimension of B.
-  !> 
-  !>     
+  !>
   interface rocsolver_chegst
     function rocsolver_chegst_(handle,itype,uplo,n,A,lda,B,ldb) bind(c, name="rocsolver_chegst")
       use iso_c_binding
@@ -20397,7 +20248,7 @@ module hipfort_rocsolver
       rocsolver_zhegst_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief SYGST_BATCHED reduces a batch of real symmetric-definite generalized eigenproblems
   !>     to standard form.
   !> 
@@ -20454,14 +20305,14 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The matrix dimensions.
   !>     @param[inout]
-  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
   !>               On entry, the matrices A_i. On exit, the transformed matrices associated with
   !>               the equivalent standard eigenvalue problems.
   !>     @param[in]
   !>     lda       rocblas_int. lda >= n.\n
   !>               Specifies the leading dimension of A_i.
   !>     @param[out]
-  !>     B         array of pointers to type. Each pointer points to an array on the GPU of dimension ldbn.\n
+  !>     B         array of pointers to type. Each pointer points to an array on the GPU of dimension ldb*n.\n
   !>               The triangular factors of the matrices B_i, as returned by \ref rocsolver_spotrf_batched "POTRF_BATCHED".
   !>     @param[in]
   !>     ldb       rocblas_int. ldb >= n.\n
@@ -20469,8 +20320,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count  rocblas_int. batch_count >= 0.\n
   !>                  Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_ssygst_batched
     function rocsolver_ssygst_batched_(handle,itype,uplo,n,A,lda,B,ldb,batch_count) bind(c, name="rocsolver_ssygst_batched")
       use iso_c_binding
@@ -20522,7 +20372,7 @@ module hipfort_rocsolver
       rocsolver_dsygst_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief HEGST_BATCHED reduces a batch of hermitian-definite generalized eigenproblems to
   !>     standard form.
   !> 
@@ -20579,14 +20429,14 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The matrix dimensions.
   !>     @param[inout]
-  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
   !>               On entry, the matrices A_i. On exit, the transformed matrices associated with
   !>               the equivalent standard eigenvalue problems.
   !>     @param[in]
   !>     lda       rocblas_int. lda >= n.\n
   !>               Specifies the leading dimension of A_i.
   !>     @param[out]
-  !>     B         array of pointers to type. Each pointer points to an array on the GPU of dimension ldbn.\n
+  !>     B         array of pointers to type. Each pointer points to an array on the GPU of dimension ldb*n.\n
   !>               The triangular factors of the matrices B_i, as returned by \ref rocsolver_spotrf_batched "POTRF_BATCHED".
   !>     @param[in]
   !>     ldb       rocblas_int. ldb >= n.\n
@@ -20594,8 +20444,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count  rocblas_int. batch_count >= 0.\n
   !>                  Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_chegst_batched
     function rocsolver_chegst_batched_(handle,itype,uplo,n,A,lda,B,ldb,batch_count) bind(c, name="rocsolver_chegst_batched")
       use iso_c_binding
@@ -20647,7 +20496,7 @@ module hipfort_rocsolver
       rocsolver_zhegst_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief SYGST_STRIDED_BATCHED reduces a batch of real symmetric-definite generalized
   !>     eigenproblems to standard form.
   !> 
@@ -20713,7 +20562,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA   rocblas_stride.\n
   !>               Stride from the start of one matrix A_i to the next one A_(i+1).
-  !>               There is no restriction for the value of strideA. Normal use case is strideA >= ldan.
+  !>               There is no restriction for the value of strideA. Normal use case is strideA >= lda*n.
   !>     @param[out]
   !>     B         pointer to type. Array on the GPU (the size depends on the value of strideB).\n
   !>               The triangular factors of the matrices B_i, as returned by \ref rocsolver_spotrf_strided_batched "POTRF_STRIDED_BATCHED".
@@ -20723,12 +20572,11 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideB   rocblas_stride.\n
   !>               Stride from the start of one matrix B_i to the next one B_(i+1).
-  !>               There is no restriction for the value of strideB. Normal use case is strideB >= ldbn.
+  !>               There is no restriction for the value of strideB. Normal use case is strideB >= ldb*n.
   !>     @param[in]
   !>     batch_count  rocblas_int. batch_count >= 0.\n
   !>                  Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_ssygst_strided_batched
     function rocsolver_ssygst_strided_batched_(handle,itype,uplo,n,A,lda,strideA,B,ldb,strideB,batch_count) bind(c, name="rocsolver_ssygst_strided_batched")
       use iso_c_binding
@@ -20784,7 +20632,7 @@ module hipfort_rocsolver
       rocsolver_dsygst_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief HEGST_STRIDED_BATCHED reduces a batch of hermitian-definite generalized
   !>     eigenproblems to standard form.
   !> 
@@ -20850,7 +20698,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA   rocblas_stride.\n
   !>               Stride from the start of one matrix A_i to the next one A_(i+1).
-  !>               There is no restriction for the value of strideA. Normal use case is strideA >= ldan.
+  !>               There is no restriction for the value of strideA. Normal use case is strideA >= lda*n.
   !>     @param[out]
   !>     B         pointer to type. Array on the GPU (the size depends on the value of strideB).\n
   !>               The triangular factors of the matrices B_i, as returned by \ref rocsolver_spotrf_strided_batched "POTRF_STRIDED_BATCHED".
@@ -20860,12 +20708,11 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideB   rocblas_stride.\n
   !>               Stride from the start of one matrix B_i to the next one B_(i+1).
-  !>               There is no restriction for the value of strideB. Normal use case is strideB >= ldbn.
+  !>               There is no restriction for the value of strideB. Normal use case is strideB >= ldb*n.
   !>     @param[in]
   !>     batch_count  rocblas_int. batch_count >= 0.\n
   !>                  Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_chegst_strided_batched
     function rocsolver_chegst_strided_batched_(handle,itype,uplo,n,A,lda,strideA,B,ldb,strideB,batch_count) bind(c, name="rocsolver_chegst_strided_batched")
       use iso_c_binding
@@ -20921,7 +20768,7 @@ module hipfort_rocsolver
       rocsolver_zhegst_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief SYEV computes the eigenvalues and optionally the eigenvectors of a real symmetric
   !>     matrix A.
   !> 
@@ -20945,7 +20792,7 @@ module hipfort_rocsolver
   !>     n           rocblas_int. n >= 0.\n
   !>                 Number of rows and columns of matrix A.
   !>     @param[inout]
-  !>     A           pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
   !>                 On entry, the matrix A. On exit, the eigenvectors of A if they were computed and
   !>                 the algorithm converged; otherwise the contents of A are destroyed.
   !>     @param[in]
@@ -20965,8 +20812,7 @@ module hipfort_rocsolver
   !>     info        pointer to a rocblas_int on the GPU.\n
   !>                 If info = 0, successful exit. If info = i > 0, the algorithm did not converge.
   !>                 i elements of E did not converge to zero.
-  !> 
-  !>     
+  !>
   interface rocsolver_ssyev
     function rocsolver_ssyev_(handle,evect,uplo,n,A,lda,D,E,myInfo) bind(c, name="rocsolver_ssyev")
       use iso_c_binding
@@ -21018,7 +20864,7 @@ module hipfort_rocsolver
       rocsolver_dsyev_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief HEEV computes the eigenvalues and optionally the eigenvectors of a Hermitian matrix A.
   !> 
   !>     \details
@@ -21041,7 +20887,7 @@ module hipfort_rocsolver
   !>     n           rocblas_int. n >= 0.\n
   !>                 Number of rows and columns of matrix A.
   !>     @param[inout]
-  !>     A           pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
   !>                 On entry, the matrix A. On exit, the eigenvectors of A if they were computed and
   !>                 the algorithm converged; otherwise the contents of A are destroyed.
   !>     @param[in]
@@ -21061,8 +20907,7 @@ module hipfort_rocsolver
   !>     info        pointer to a rocblas_int on the GPU.\n
   !>                 If info = 0, successful exit. If info = i > 0, the algorithm did not converge.
   !>                 i elements of E did not converge to zero.
-  !> 
-  !>     
+  !>
   interface rocsolver_cheev
     function rocsolver_cheev_(handle,evect,uplo,n,A,lda,D,E,myInfo) bind(c, name="rocsolver_cheev")
       use iso_c_binding
@@ -21114,7 +20959,7 @@ module hipfort_rocsolver
       rocsolver_zheev_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief SYEV_BATCHED computes the eigenvalues and optionally the eigenvectors of a batch of
   !>     real symmetric matrices A_j.
   !> 
@@ -21138,7 +20983,7 @@ module hipfort_rocsolver
   !>     n           rocblas_int. n >= 0.\n
   !>                 Number of rows and columns of matrices A_j.
   !>     @param[inout]
-  !>     A           Array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !>     A           Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
   !>                 On entry, the matrices A_j. On exit, the eigenvectors of A_j if they were computed and
   !>                 the algorithm converged; otherwise the contents of A_j are destroyed.
   !>     @param[in]
@@ -21169,8 +21014,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_ssyev_batched
     function rocsolver_ssyev_batched_(handle,evect,uplo,n,A,lda,D,strideD,E,strideE,myInfo,batch_count) bind(c, name="rocsolver_ssyev_batched")
       use iso_c_binding
@@ -21228,7 +21072,7 @@ module hipfort_rocsolver
       rocsolver_dsyev_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief HEEV_BATCHED computes the eigenvalues and optionally the eigenvectors of a batch of
   !>     Hermitian matrices A_j.
   !> 
@@ -21252,7 +21096,7 @@ module hipfort_rocsolver
   !>     n           rocblas_int. n >= 0.\n
   !>                 Number of rows and columns of matrices A_j.
   !>     @param[inout]
-  !>     A           Array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !>     A           Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
   !>                 On entry, the matrices A_j. On exit, the eigenvectors of A_j if they were computed and
   !>                 the algorithm converged; otherwise the contents of A_j are destroyed.
   !>     @param[in]
@@ -21283,8 +21127,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_cheev_batched
     function rocsolver_cheev_batched_(handle,evect,uplo,n,A,lda,D,strideD,E,strideE,myInfo,batch_count) bind(c, name="rocsolver_cheev_batched")
       use iso_c_binding
@@ -21342,7 +21185,7 @@ module hipfort_rocsolver
       rocsolver_zheev_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief SYEV_STRIDED_BATCHED computes the eigenvalues and optionally the eigenvectors of a batch of
   !>     real symmetric matrices A_j.
   !> 
@@ -21375,7 +21218,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA     rocblas_stride.\n
   !>                 Stride from the start of one matrix A_j to the next one A_(j+1).
-  !>                 There is no restriction for the value of strideA. Normal use case is strideA >= ldan.
+  !>                 There is no restriction for the value of strideA. Normal use case is strideA >= lda*n.
   !>     @param[out]
   !>     D           pointer to type. Array on the GPU (the size depends on the value of strideD).\n
   !>                 The eigenvalues of A_j in increasing order.
@@ -21401,8 +21244,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_ssyev_strided_batched
     function rocsolver_ssyev_strided_batched_(handle,evect,uplo,n,A,lda,strideA,D,strideD,E,strideE,myInfo,batch_count) bind(c, name="rocsolver_ssyev_strided_batched")
       use iso_c_binding
@@ -21462,7 +21304,7 @@ module hipfort_rocsolver
       rocsolver_dsyev_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief HEEV_STRIDED_BATCHED computes the eigenvalues and optionally the eigenvectors of a batch of
   !>     Hermitian matrices A_j.
   !> 
@@ -21495,7 +21337,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA     rocblas_stride.\n
   !>                 Stride from the start of one matrix A_j to the next one A_(j+1).
-  !>                 There is no restriction for the value of strideA. Normal use case is strideA >= ldan.
+  !>                 There is no restriction for the value of strideA. Normal use case is strideA >= lda*n.
   !>     @param[out]
   !>     D           pointer to real type. Array on the GPU (the size depends on the value of strideD).\n
   !>                 The eigenvalues of A_j in increasing order.
@@ -21521,8 +21363,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_cheev_strided_batched
     function rocsolver_cheev_strided_batched_(handle,evect,uplo,n,A,lda,strideA,D,strideD,E,strideE,myInfo,batch_count) bind(c, name="rocsolver_cheev_strided_batched")
       use iso_c_binding
@@ -21582,7 +21423,7 @@ module hipfort_rocsolver
       rocsolver_zheev_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief SYEVD computes the eigenvalues and optionally the eigenvectors of a real symmetric
   !>     matrix A.
   !> 
@@ -21607,7 +21448,7 @@ module hipfort_rocsolver
   !>     n           rocblas_int. n >= 0.\n
   !>                 Number of rows and columns of matrix A.
   !>     @param[inout]
-  !>     A           pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
   !>                 On entry, the matrix A. On exit, the eigenvectors of A if they were computed and
   !>                 the algorithm converged; otherwise the contents of A are destroyed.
   !>     @param[in]
@@ -21629,9 +21470,8 @@ module hipfort_rocsolver
   !>                 If info = i > 0 and evect is rocblas_evect_none, the algorithm did not converge.
   !>                 i elements of E did not converge to zero.
   !>                 If info = i > 0 and evect is rocblas_evect_original, the algorithm failed to
-  !>                 compute an eigenvalue in the submatrix from [i(n+1), i(n+1)] to [i%(n+1), i%(n+1)].
-  !> 
-  !>     
+  !>                 compute an eigenvalue in the submatrix from [i/(n+1), i/(n+1)] to [i%(n+1), i%(n+1)].
+  !>
   interface rocsolver_ssyevd
     function rocsolver_ssyevd_(handle,evect,uplo,n,A,lda,D,E,myInfo) bind(c, name="rocsolver_ssyevd")
       use iso_c_binding
@@ -21683,7 +21523,7 @@ module hipfort_rocsolver
       rocsolver_dsyevd_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief HEEVD computes the eigenvalues and optionally the eigenvectors of a Hermitian matrix A.
   !> 
   !>     \details
@@ -21707,7 +21547,7 @@ module hipfort_rocsolver
   !>     n           rocblas_int. n >= 0.\n
   !>                 Number of rows and columns of matrix A.
   !>     @param[inout]
-  !>     A           pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
   !>                 On entry, the matrix A. On exit, the eigenvectors of A if they were computed and
   !>                 the algorithm converged; otherwise the contents of A are destroyed.
   !>     @param[in]
@@ -21729,9 +21569,8 @@ module hipfort_rocsolver
   !>                 If info = i > 0 and evect is rocblas_evect_none, the algorithm did not converge.
   !>                 i elements of E did not converge to zero.
   !>                 If info = i > 0 and evect is rocblas_evect_original, the algorithm failed to
-  !>                 compute an eigenvalue in the submatrix from [i(n+1), i(n+1)] to [i%(n+1), i%(n+1)].
-  !> 
-  !>     
+  !>                 compute an eigenvalue in the submatrix from [i/(n+1), i/(n+1)] to [i%(n+1), i%(n+1)].
+  !>
   interface rocsolver_cheevd
     function rocsolver_cheevd_(handle,evect,uplo,n,A,lda,D,E,myInfo) bind(c, name="rocsolver_cheevd")
       use iso_c_binding
@@ -21783,7 +21622,7 @@ module hipfort_rocsolver
       rocsolver_zheevd_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief SYEVD_BATCHED computes the eigenvalues and optionally the eigenvectors of a batch of
   !>     real symmetric matrices A_j.
   !> 
@@ -21808,7 +21647,7 @@ module hipfort_rocsolver
   !>     n           rocblas_int. n >= 0.\n
   !>                 Number of rows and columns of matrices A_j.
   !>     @param[inout]
-  !>     A           Array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !>     A           Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
   !>                 On entry, the matrices A_j. On exit, the eigenvectors of A_j if they were computed and
   !>                 the algorithm converged; otherwise the contents of A_j are destroyed.
   !>     @param[in]
@@ -21838,12 +21677,11 @@ module hipfort_rocsolver
   !>                 If info[j] = i > 0 and evect is rocblas_evect_none, the algorithm did not converge.
   !>                 i elements of E_j did not converge to zero.
   !>                 If info[j] = i > 0 and evect is rocblas_evect_original, the algorithm failed to
-  !>                 compute an eigenvalue in the submatrix from [i(n+1), i(n+1)] to [i%(n+1), i%(n+1)].
+  !>                 compute an eigenvalue in the submatrix from [i/(n+1), i/(n+1)] to [i%(n+1), i%(n+1)].
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_ssyevd_batched
     function rocsolver_ssyevd_batched_(handle,evect,uplo,n,A,lda,D,strideD,E,strideE,myInfo,batch_count) bind(c, name="rocsolver_ssyevd_batched")
       use iso_c_binding
@@ -21901,7 +21739,7 @@ module hipfort_rocsolver
       rocsolver_dsyevd_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief HEEVD_BATCHED computes the eigenvalues and optionally the eigenvectors of a batch of
   !>     Hermitian matrices A_j.
   !> 
@@ -21926,7 +21764,7 @@ module hipfort_rocsolver
   !>     n           rocblas_int. n >= 0.\n
   !>                 Number of rows and columns of matrices A_j.
   !>     @param[inout]
-  !>     A           Array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !>     A           Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
   !>                 On entry, the matrices A_j. On exit, the eigenvectors of A_j if they were computed and
   !>                 the algorithm converged; otherwise the contents of A_j are destroyed.
   !>     @param[in]
@@ -21956,12 +21794,11 @@ module hipfort_rocsolver
   !>                 If info[j] = i > 0 and evect is rocblas_evect_none, the algorithm did not converge.
   !>                 i elements of E_j did not converge to zero.
   !>                 If info[j] = i > 0 and evect is rocblas_evect_original, the algorithm failed to
-  !>                 compute an eigenvalue in the submatrix from [i(n+1), i(n+1)] to [i%(n+1), i%(n+1)].
+  !>                 compute an eigenvalue in the submatrix from [i/(n+1), i/(n+1)] to [i%(n+1), i%(n+1)].
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_cheevd_batched
     function rocsolver_cheevd_batched_(handle,evect,uplo,n,A,lda,D,strideD,E,strideE,myInfo,batch_count) bind(c, name="rocsolver_cheevd_batched")
       use iso_c_binding
@@ -22019,7 +21856,7 @@ module hipfort_rocsolver
       rocsolver_zheevd_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief SYEVD_STRIDED_BATCHED computes the eigenvalues and optionally the eigenvectors of a batch of
   !>     real symmetric matrices A_j.
   !> 
@@ -22053,7 +21890,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA     rocblas_stride.\n
   !>                 Stride from the start of one matrix A_j to the next one A_(j+1).
-  !>                 There is no restriction for the value of strideA. Normal use case is strideA >= ldan.
+  !>                 There is no restriction for the value of strideA. Normal use case is strideA >= lda*n.
   !>     @param[out]
   !>     D           pointer to type. Array on the GPU (the size depends on the value of strideD).\n
   !>                 The eigenvalues of A_j in increasing order.
@@ -22078,12 +21915,11 @@ module hipfort_rocsolver
   !>                 If info[j] = i > 0 and evect is rocblas_evect_none, the algorithm did not converge.
   !>                 i elements of E_j did not converge to zero.
   !>                 If info[j] = i > 0 and evect is rocblas_evect_original, the algorithm failed to
-  !>                 compute an eigenvalue in the submatrix from [i(n+1), i(n+1)] to [i%(n+1), i%(n+1)].
+  !>                 compute an eigenvalue in the submatrix from [i/(n+1), i/(n+1)] to [i%(n+1), i%(n+1)].
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_ssyevd_strided_batched
     function rocsolver_ssyevd_strided_batched_(handle,evect,uplo,n,A,lda,strideA,D,strideD,E,strideE,myInfo,batch_count) bind(c, name="rocsolver_ssyevd_strided_batched")
       use iso_c_binding
@@ -22143,7 +21979,7 @@ module hipfort_rocsolver
       rocsolver_dsyevd_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief HEEVD_STRIDED_BATCHED computes the eigenvalues and optionally the eigenvectors of a batch of
   !>     Hermitian matrices A_j.
   !> 
@@ -22177,7 +22013,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA     rocblas_stride.\n
   !>                 Stride from the start of one matrix A_j to the next one A_(j+1).
-  !>                 There is no restriction for the value of strideA. Normal use case is strideA >= ldan.
+  !>                 There is no restriction for the value of strideA. Normal use case is strideA >= lda*n.
   !>     @param[out]
   !>     D           pointer to real type. Array on the GPU (the size depends on the value of strideD).\n
   !>                 The eigenvalues of A_j in increasing order.
@@ -22202,12 +22038,11 @@ module hipfort_rocsolver
   !>                 If info[j] = i > 0 and evect is rocblas_evect_none, the algorithm did not converge.
   !>                 i elements of E_j did not converge to zero.
   !>                 If info[j] = i > 0 and evect is rocblas_evect_original, the algorithm failed to
-  !>                 compute an eigenvalue in the submatrix from [i(n+1), i(n+1)] to [i%(n+1), i%(n+1)].
+  !>                 compute an eigenvalue in the submatrix from [i/(n+1), i/(n+1)] to [i%(n+1), i%(n+1)].
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_cheevd_strided_batched
     function rocsolver_cheevd_strided_batched_(handle,evect,uplo,n,A,lda,strideA,D,strideD,E,strideE,myInfo,batch_count) bind(c, name="rocsolver_cheevd_strided_batched")
       use iso_c_binding
@@ -22267,7 +22102,7 @@ module hipfort_rocsolver
       rocsolver_zheevd_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief SYGV computes the eigenvalues and (optionally) eigenvectors of
   !>     a real generalized symmetric-definite eigenproblem.
   !> 
@@ -22313,7 +22148,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The matrix dimensions.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
   !>               On entry, the symmetric matrix A. On exit, if evect is original,
   !>               the normalized matrix Z of eigenvectors. If evect is none, then the upper or lower triangular
   !>               part of the matrix A (including the diagonal) is destroyed,
@@ -22322,7 +22157,7 @@ module hipfort_rocsolver
   !>     lda       rocblas_int. lda >= n.\n
   !>               Specifies the leading dimension of A.
   !>     @param[out]
-  !>     B         pointer to type. Array on the GPU of dimension ldbn.\n
+  !>     B         pointer to type. Array on the GPU of dimension ldb*n.\n
   !>               On entry, the symmetric positive definite matrix B. On exit, the
   !>               triangular factor of B as returned by \ref rocsolver_spotrf "POTRF".
   !>     @param[in]
@@ -22346,8 +22181,7 @@ module hipfort_rocsolver
   !>               tridiagonal form did not converge to zero.
   !>               If info = n + j, the leading minor of order j of B is not
   !>               positive definite.
-  !> 
-  !>     
+  !>
   interface rocsolver_ssygv
     function rocsolver_ssygv_(handle,itype,evect,uplo,n,A,lda,B,ldb,D,E,myInfo) bind(c, name="rocsolver_ssygv")
       use iso_c_binding
@@ -22405,7 +22239,7 @@ module hipfort_rocsolver
       rocsolver_dsygv_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief HEGV computes the eigenvalues and (optionally) eigenvectors of
   !>     a complex generalized hermitian-definite eigenproblem.
   !> 
@@ -22451,7 +22285,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The matrix dimensions.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
   !>               On entry, the hermitian matrix A. On exit, if evect is original,
   !>               the normalized matrix Z of eigenvectors. If evect is none, then the upper or lower triangular
   !>               part of the matrix A (including the diagonal) is destroyed,
@@ -22460,7 +22294,7 @@ module hipfort_rocsolver
   !>     lda       rocblas_int. lda >= n.\n
   !>               Specifies the leading dimension of A.
   !>     @param[out]
-  !>     B         pointer to type. Array on the GPU of dimension ldbn.\n
+  !>     B         pointer to type. Array on the GPU of dimension ldb*n.\n
   !>               On entry, the hermitian positive definite matrix B. On exit, the
   !>               triangular factor of B as returned by \ref rocsolver_spotrf "POTRF".
   !>     @param[in]
@@ -22484,8 +22318,7 @@ module hipfort_rocsolver
   !>               tridiagonal form did not converge to zero.
   !>               If info = n + j, the leading minor of order j of B is not
   !>               positive definite.
-  !> 
-  !>     
+  !>
   interface rocsolver_chegv
     function rocsolver_chegv_(handle,itype,evect,uplo,n,A,lda,B,ldb,D,E,myInfo) bind(c, name="rocsolver_chegv")
       use iso_c_binding
@@ -22543,7 +22376,7 @@ module hipfort_rocsolver
       rocsolver_zhegv_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief SYGV_BATCHED computes the eigenvalues and (optionally)
   !>     eigenvectors of a batch of real generalized symmetric-definite eigenproblems.
   !> 
@@ -22589,7 +22422,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The matrix dimensions.
   !>     @param[inout]
-  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
   !>               On entry, the symmetric matrices A_i. On exit, if evect is original,
   !>               the normalized matrix Z_i of eigenvectors. If evect is none, then the upper or lower triangular
   !>               part of the matrices A_i (including the diagonal) are destroyed,
@@ -22598,7 +22431,7 @@ module hipfort_rocsolver
   !>     lda       rocblas_int. lda >= n.\n
   !>               Specifies the leading dimension of A_i.
   !>     @param[out]
-  !>     B         array of pointers to type. Each pointer points to an array on the GPU of dimension ldbn.\n
+  !>     B         array of pointers to type. Each pointer points to an array on the GPU of dimension ldb*n.\n
   !>               On entry, the symmetric positive definite matrices B_i. On exit, the
   !>               triangular factor of B_i as returned by \ref rocsolver_spotrf_batched "POTRF_BATCHED".
   !>     @param[in]
@@ -22633,8 +22466,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_ssygv_batched
     function rocsolver_ssygv_batched_(handle,itype,evect,uplo,n,A,lda,B,ldb,D,strideD,E,strideE,myInfo,batch_count) bind(c, name="rocsolver_ssygv_batched")
       use iso_c_binding
@@ -22698,7 +22530,7 @@ module hipfort_rocsolver
       rocsolver_dsygv_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief HEGV_BATCHED computes the eigenvalues and (optionally)
   !>     eigenvectors of a batch of complex generalized hermitian-definite eigenproblems.
   !> 
@@ -22744,7 +22576,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The matrix dimensions.
   !>     @param[inout]
-  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
   !>               On entry, the hermitian matrices A_i. On exit, if evect is original,
   !>               the normalized matrix Z_i of eigenvectors. If evect is none, then the upper or lower triangular
   !>               part of the matrices A_i (including the diagonal) are destroyed,
@@ -22753,7 +22585,7 @@ module hipfort_rocsolver
   !>     lda       rocblas_int. lda >= n.\n
   !>               Specifies the leading dimension of A_i.
   !>     @param[out]
-  !>     B         array of pointers to type. Each pointer points to an array on the GPU of dimension ldbn.\n
+  !>     B         array of pointers to type. Each pointer points to an array on the GPU of dimension ldb*n.\n
   !>               On entry, the hermitian positive definite matrices B_i. On exit, the
   !>               triangular factor of B_i as returned by \ref rocsolver_spotrf_batched "POTRF_BATCHED".
   !>     @param[in]
@@ -22788,8 +22620,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_chegv_batched
     function rocsolver_chegv_batched_(handle,itype,evect,uplo,n,A,lda,B,ldb,D,strideD,E,strideE,myInfo,batch_count) bind(c, name="rocsolver_chegv_batched")
       use iso_c_binding
@@ -22853,7 +22684,7 @@ module hipfort_rocsolver
       rocsolver_zhegv_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief SYGV_STRIDED_BATCHED computes the eigenvalues and (optionally)
   !>     eigenvectors of a batch of real generalized symmetric-definite eigenproblems.
   !> 
@@ -22910,7 +22741,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA   rocblas_stride.\n
   !>               Stride from the start of one matrix A_i to the next one A_(i+1).
-  !>               There is no restriction for the value of strideA. Normal use is strideA >= ldan.
+  !>               There is no restriction for the value of strideA. Normal use is strideA >= lda*n.
   !>     @param[out]
   !>     B         pointer to type. Array on the GPU (the size depends on the value of strideB).\n
   !>               On entry, the symmetric positive definite matrices B_i. On exit, the
@@ -22921,7 +22752,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideB   rocblas_stride.\n
   !>               Stride from the start of one matrix B_i to the next one B_(i+1).
-  !>               There is no restriction for the value of strideB. Normal use is strideB >= ldbn.
+  !>               There is no restriction for the value of strideB. Normal use is strideB >= ldb*n.
   !>     @param[out]
   !>     D         pointer to type. Array on the GPU (the size depends on the value of strideD).\n
   !>               On exit, the eigenvalues in increasing order.
@@ -22951,8 +22782,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_ssygv_strided_batched
     function rocsolver_ssygv_strided_batched_(handle,itype,evect,uplo,n,A,lda,strideA,B,ldb,strideB,D,strideD,E,strideE,myInfo,batch_count) bind(c, name="rocsolver_ssygv_strided_batched")
       use iso_c_binding
@@ -23020,7 +22850,7 @@ module hipfort_rocsolver
       rocsolver_dsygv_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief HEGV_STRIDED_BATCHED computes the eigenvalues and (optionally)
   !>     eigenvectors of a batch of complex generalized hermitian-definite eigenproblems.
   !> 
@@ -23077,7 +22907,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA   rocblas_stride.\n
   !>               Stride from the start of one matrix A_i to the next one A_(i+1).
-  !>               There is no restriction for the value of strideA. Normal use is strideA >= ldan.
+  !>               There is no restriction for the value of strideA. Normal use is strideA >= lda*n.
   !>     @param[out]
   !>     B         pointer to type. Array on the GPU (the size depends on the value of strideB).\n
   !>               On entry, the hermitian positive definite matrices B_i. On exit, the
@@ -23088,7 +22918,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideB   rocblas_stride.\n
   !>               Stride from the start of one matrix B_i to the next one B_(i+1).
-  !>               There is no restriction for the value of strideB. Normal use is strideB >= ldbn.
+  !>               There is no restriction for the value of strideB. Normal use is strideB >= ldb*n.
   !>     @param[out]
   !>     D         pointer to real type. Array on the GPU (the size depends on the value of strideD).\n
   !>               On exit, the eigenvalues in increasing order.
@@ -23118,8 +22948,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_chegv_strided_batched
     function rocsolver_chegv_strided_batched_(handle,itype,evect,uplo,n,A,lda,strideA,B,ldb,strideB,D,strideD,E,strideE,myInfo,batch_count) bind(c, name="rocsolver_chegv_strided_batched")
       use iso_c_binding
@@ -23187,7 +23016,7 @@ module hipfort_rocsolver
       rocsolver_zhegv_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief SYGVD computes the eigenvalues and (optionally) eigenvectors of
   !>     a real generalized symmetric-definite eigenproblem.
   !> 
@@ -23233,7 +23062,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The matrix dimensions.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
   !>               On entry, the symmetric matrix A. On exit, if evect is original,
   !>               the normalized matrix Z of eigenvectors. If evect is none, then the upper or lower triangular
   !>               part of the matrix A (including the diagonal) is destroyed,
@@ -23242,7 +23071,7 @@ module hipfort_rocsolver
   !>     lda       rocblas_int. lda >= n.\n
   !>               Specifies the leading dimension of A.
   !>     @param[out]
-  !>     B         pointer to type. Array on the GPU of dimension ldbn.\n
+  !>     B         pointer to type. Array on the GPU of dimension ldb*n.\n
   !>               On entry, the symmetric positive definite matrix B. On exit, the
   !>               triangular factor of B as returned by \ref rocsolver_spotrf "POTRF".
   !>     @param[in]
@@ -23265,11 +23094,10 @@ module hipfort_rocsolver
   !>               If info = j <= n and evect is rocblas_evect_none, j off-diagonal elements of an
   !>               intermediate tridiagonal form did not converge to zero.
   !>               If info = j <= n and evect is rocblas_evect_original, the algorithm failed to
-  !>               compute an eigenvalue in the submatrix from [j(n+1), j(n+1)] to [j%(n+1), j%(n+1)].
+  !>               compute an eigenvalue in the submatrix from [j/(n+1), j/(n+1)] to [j%(n+1), j%(n+1)].
   !>               If info = n + j, the leading minor of order j of B is not
   !>               positive definite.
-  !> 
-  !>     
+  !>
   interface rocsolver_ssygvd
     function rocsolver_ssygvd_(handle,itype,evect,uplo,n,A,lda,B,ldb,D,E,myInfo) bind(c, name="rocsolver_ssygvd")
       use iso_c_binding
@@ -23327,7 +23155,7 @@ module hipfort_rocsolver
       rocsolver_dsygvd_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief HEGVD computes the eigenvalues and (optionally) eigenvectors of
   !>     a complex generalized hermitian-definite eigenproblem.
   !> 
@@ -23373,7 +23201,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The matrix dimensions.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
   !>               On entry, the hermitian matrix A. On exit, if evect is original,
   !>               the normalized matrix Z of eigenvectors. If evect is none, then the upper or lower triangular
   !>               part of the matrix A (including the diagonal) is destroyed,
@@ -23382,7 +23210,7 @@ module hipfort_rocsolver
   !>     lda       rocblas_int. lda >= n.\n
   !>               Specifies the leading dimension of A.
   !>     @param[out]
-  !>     B         pointer to type. Array on the GPU of dimension ldbn.\n
+  !>     B         pointer to type. Array on the GPU of dimension ldb*n.\n
   !>               On entry, the hermitian positive definite matrix B. On exit, the
   !>               triangular factor of B as returned by \ref rocsolver_spotrf "POTRF".
   !>     @param[in]
@@ -23405,11 +23233,10 @@ module hipfort_rocsolver
   !>               If info = j <= n and evect is rocblas_evect_none, j off-diagonal elements of an
   !>               intermediate tridiagonal form did not converge to zero.
   !>               If info = j <= n and evect is rocblas_evect_original, the algorithm failed to
-  !>               compute an eigenvalue in the submatrix from [j(n+1), j(n+1)] to [j%(n+1), j%(n+1)].
+  !>               compute an eigenvalue in the submatrix from [j/(n+1), j/(n+1)] to [j%(n+1), j%(n+1)].
   !>               If info = n + j, the leading minor of order j of B is not
   !>               positive definite.
-  !> 
-  !>     
+  !>
   interface rocsolver_chegvd
     function rocsolver_chegvd_(handle,itype,evect,uplo,n,A,lda,B,ldb,D,E,myInfo) bind(c, name="rocsolver_chegvd")
       use iso_c_binding
@@ -23467,7 +23294,7 @@ module hipfort_rocsolver
       rocsolver_zhegvd_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief SYGVD_BATCHED computes the eigenvalues and (optionally)
   !>     eigenvectors of a batch of real generalized symmetric-definite eigenproblems.
   !> 
@@ -23513,7 +23340,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The matrix dimensions.
   !>     @param[inout]
-  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
   !>               On entry, the symmetric matrices A_i. On exit, if evect is original,
   !>               the normalized matrix Z_i of eigenvectors. If evect is none, then the upper or lower triangular
   !>               part of the matrices A_i (including the diagonal) are destroyed,
@@ -23522,7 +23349,7 @@ module hipfort_rocsolver
   !>     lda       rocblas_int. lda >= n.\n
   !>               Specifies the leading dimension of A_i.
   !>     @param[out]
-  !>     B         array of pointers to type. Each pointer points to an array on the GPU of dimension ldbn.\n
+  !>     B         array of pointers to type. Each pointer points to an array on the GPU of dimension ldb*n.\n
   !>               On entry, the symmetric positive definite matrices B_i. On exit, the
   !>               triangular factor of B_i as returned by \ref rocsolver_spotrf_batched "POTRF_BATCHED".
   !>     @param[in]
@@ -23553,14 +23380,13 @@ module hipfort_rocsolver
   !>               If info[i] = j <= n and evect is rocblas_evect_none, j off-diagonal elements of an
   !>               intermediate tridiagonal form did not converge to zero.
   !>               If info[i] = j <= n and evect is rocblas_evect_original, the algorithm failed to
-  !>               compute an eigenvalue in the submatrix from [j(n+1), j(n+1)] to [j%(n+1), j%(n+1)].
+  !>               compute an eigenvalue in the submatrix from [j/(n+1), j/(n+1)] to [j%(n+1), j%(n+1)].
   !>               If info[i] = n + j, the leading minor of order j of B_i is not
   !>               positive definite.
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_ssygvd_batched
     function rocsolver_ssygvd_batched_(handle,itype,evect,uplo,n,A,lda,B,ldb,D,strideD,E,strideE,myInfo,batch_count) bind(c, name="rocsolver_ssygvd_batched")
       use iso_c_binding
@@ -23624,7 +23450,7 @@ module hipfort_rocsolver
       rocsolver_dsygvd_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief HEGVD_BATCHED computes the eigenvalues and (optionally)
   !>     eigenvectors of a batch of complex generalized hermitian-definite eigenproblems.
   !> 
@@ -23670,7 +23496,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The matrix dimensions.
   !>     @param[inout]
-  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
   !>               On entry, the hermitian matrices A_i. On exit, if evect is original,
   !>               the normalized matrix Z_i of eigenvectors. If evect is none, then the upper or lower triangular
   !>               part of the matrices A_i (including the diagonal) are destroyed,
@@ -23679,7 +23505,7 @@ module hipfort_rocsolver
   !>     lda       rocblas_int. lda >= n.\n
   !>               Specifies the leading dimension of A_i.
   !>     @param[out]
-  !>     B         array of pointers to type. Each pointer points to an array on the GPU of dimension ldbn.\n
+  !>     B         array of pointers to type. Each pointer points to an array on the GPU of dimension ldb*n.\n
   !>               On entry, the hermitian positive definite matrices B_i. On exit, the
   !>               triangular factor of B_i as returned by \ref rocsolver_spotrf_batched "POTRF_BATCHED".
   !>     @param[in]
@@ -23710,14 +23536,13 @@ module hipfort_rocsolver
   !>               If info[i] = j <= n and evect is rocblas_evect_none, j off-diagonal elements of an
   !>               intermediate tridiagonal form did not converge to zero.
   !>               If info[i] = j <= n and evect is rocblas_evect_original, the algorithm failed to
-  !>               compute an eigenvalue in the submatrix from [j(n+1), j(n+1)] to [j%(n+1), j%(n+1)].
+  !>               compute an eigenvalue in the submatrix from [j/(n+1), j/(n+1)] to [j%(n+1), j%(n+1)].
   !>               If info[i] = n + j, the leading minor of order j of B_i is not
   !>               positive definite.
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_chegvd_batched
     function rocsolver_chegvd_batched_(handle,itype,evect,uplo,n,A,lda,B,ldb,D,strideD,E,strideE,myInfo,batch_count) bind(c, name="rocsolver_chegvd_batched")
       use iso_c_binding
@@ -23781,7 +23606,7 @@ module hipfort_rocsolver
       rocsolver_zhegvd_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief SYGVD_STRIDED_BATCHED computes the eigenvalues and (optionally)
   !>     eigenvectors of a batch of real generalized symmetric-definite eigenproblems.
   !> 
@@ -23838,7 +23663,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA   rocblas_stride.\n
   !>               Stride from the start of one matrix A_i to the next one A_(i+1).
-  !>               There is no restriction for the value of strideA. Normal use is strideA >= ldan.
+  !>               There is no restriction for the value of strideA. Normal use is strideA >= lda*n.
   !>     @param[out]
   !>     B         pointer to type. Array on the GPU (the size depends on the value of strideB).\n
   !>               On entry, the symmetric positive definite matrices B_i. On exit, the
@@ -23849,7 +23674,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideB   rocblas_stride.\n
   !>               Stride from the start of one matrix B_i to the next one B_(i+1).
-  !>               There is no restriction for the value of strideB. Normal use is strideB >= ldbn.
+  !>               There is no restriction for the value of strideB. Normal use is strideB >= ldb*n.
   !>     @param[out]
   !>     D         pointer to type. Array on the GPU (the size depends on the value of strideD).\n
   !>               On exit, the eigenvalues in increasing order.
@@ -23875,14 +23700,13 @@ module hipfort_rocsolver
   !>               If info[i] = j <= n and evect is rocblas_evect_none, j off-diagonal elements of an
   !>               intermediate tridiagonal form did not converge to zero.
   !>               If info[i] = j <= n and evect is rocblas_evect_original, the algorithm failed to
-  !>               compute an eigenvalue in the submatrix from [j(n+1), j(n+1)] to [j%(n+1), j%(n+1)].
+  !>               compute an eigenvalue in the submatrix from [j/(n+1), j/(n+1)] to [j%(n+1), j%(n+1)].
   !>               If info[i] = n + j, the leading minor of order j of B_i is not
   !>               positive definite.
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_ssygvd_strided_batched
     function rocsolver_ssygvd_strided_batched_(handle,itype,evect,uplo,n,A,lda,strideA,B,ldb,strideB,D,strideD,E,strideE,myInfo,batch_count) bind(c, name="rocsolver_ssygvd_strided_batched")
       use iso_c_binding
@@ -23950,7 +23774,7 @@ module hipfort_rocsolver
       rocsolver_dsygvd_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief HEGVD_STRIDED_BATCHED computes the eigenvalues and (optionally)
   !>     eigenvectors of a batch of complex generalized hermitian-definite eigenproblems.
   !> 
@@ -24007,7 +23831,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA   rocblas_stride.\n
   !>               Stride from the start of one matrix A_i to the next one A_(i+1).
-  !>               There is no restriction for the value of strideA. Normal use is strideA >= ldan.
+  !>               There is no restriction for the value of strideA. Normal use is strideA >= lda*n.
   !>     @param[out]
   !>     B         pointer to type. Array on the GPU (the size depends on the value of strideB).\n
   !>               On entry, the hermitian positive definite matrices B_i. On exit, the
@@ -24018,7 +23842,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideB   rocblas_stride.\n
   !>               Stride from the start of one matrix B_i to the next one B_(i+1).
-  !>               There is no restriction for the value of strideB. Normal use is strideB >= ldbn.
+  !>               There is no restriction for the value of strideB. Normal use is strideB >= ldb*n.
   !>     @param[out]
   !>     D         pointer to real type. Array on the GPU (the size depends on the value of strideD).\n
   !>               On exit, the eigenvalues in increasing order.
@@ -24044,14 +23868,13 @@ module hipfort_rocsolver
   !>               If info[i] = j <= n and evect is rocblas_evect_none, j off-diagonal elements of an
   !>               intermediate tridiagonal form did not converge to zero.
   !>               If info[i] = j <= n and evect is rocblas_evect_original, the algorithm failed to
-  !>               compute an eigenvalue in the submatrix from [j(n+1), j(n+1)] to [j%(n+1), j%(n+1)].
+  !>               compute an eigenvalue in the submatrix from [j/(n+1), j/(n+1)] to [j%(n+1), j%(n+1)].
   !>               If info[i] = n + j, the leading minor of order j of B_i is not
   !>               positive definite.
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_chegvd_strided_batched
     function rocsolver_chegvd_strided_batched_(handle,itype,evect,uplo,n,A,lda,strideA,B,ldb,strideB,D,strideD,E,strideE,myInfo,batch_count) bind(c, name="rocsolver_chegvd_strided_batched")
       use iso_c_binding
@@ -24119,7 +23942,7 @@ module hipfort_rocsolver
       rocsolver_zhegvd_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GETRI_OUTOFPLACE computes the inverse \f$C = A^{-1}\f$ of a general n-by-n matrix A.
   !> 
   !>     \details
@@ -24137,8 +23960,8 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of rows and columns of the matrix A.
   !>     @param[in]
-  !>     A         pointer to type. Array on the GPU of dimension ldan.\n
-  !>               The factors L and U of the factorization A = PLU returned by \ref rocsolver_sgetrf "GETRF".
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
+  !>               The factors L and U of the factorization A = P*L*U returned by \ref rocsolver_sgetrf "GETRF".
   !>     @param[in]
   !>     lda       rocblas_int. lda >= n.\n
   !>               Specifies the leading dimension of A.
@@ -24146,7 +23969,7 @@ module hipfort_rocsolver
   !>     ipiv      pointer to rocblas_int. Array on the GPU of dimension n.\n
   !>               The pivot indices returned by \ref rocsolver_sgetrf "GETRF".
   !>     @param[out]
-  !>     C         pointer to type. Array on the GPU of dimension ldcn.\n
+  !>     C         pointer to type. Array on the GPU of dimension ldc*n.\n
   !>               If info = 0, the inverse of A. Otherwise, undefined.
   !>     @param[in]
   !>     ldc       rocblas_int. ldc >= n.\n
@@ -24155,8 +23978,7 @@ module hipfort_rocsolver
   !>     info      pointer to a rocblas_int on the GPU.\n
   !>               If info = 0, successful exit.
   !>               If info = i > 0, U is singular. U[i,i] is the first zero pivot.
-  !> 
-  !>     
+  !>
   interface rocsolver_sgetri_outofplace
     function rocsolver_sgetri_outofplace_(handle,n,A,lda,ipiv,C,ldc,myInfo) bind(c, name="rocsolver_sgetri_outofplace")
       use iso_c_binding
@@ -24256,7 +24078,7 @@ module hipfort_rocsolver
       rocsolver_zgetri_outofplace_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GETRI_OUTOFPLACE_BATCHED computes the inverse \f$C_j = A_j^{-1}\f$ of a batch of general n-by-n matrices \f$A_j\f$.
   !> 
   !>     \details
@@ -24274,8 +24096,8 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of rows and columns of all matrices A_j in the batch.
   !>     @param[in]
-  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
-  !>               The factors L_j and U_j of the factorization A_j = P_jL_jU_j returned by \ref rocsolver_sgetrf_batched "GETRF_BATCHED".
+  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
+  !>               The factors L_j and U_j of the factorization A_j = P_j*L_j*U_j returned by \ref rocsolver_sgetrf_batched "GETRF_BATCHED".
   !>     @param[in]
   !>     lda       rocblas_int. lda >= n.\n
   !>               Specifies the leading dimension of matrices A_j.
@@ -24287,7 +24109,7 @@ module hipfort_rocsolver
   !>               Stride from the start of one vector ipiv_j to the next one ipiv_(i+j).
   !>               There is no restriction for the value of strideP. Normal use case is strideP >= n.
   !>     @param[out]
-  !>     C         array of pointers to type. Each pointer points to an array on the GPU of dimension ldcn.\n
+  !>     C         array of pointers to type. Each pointer points to an array on the GPU of dimension ldc*n.\n
   !>               If info[j] = 0, the inverse of matrices A_j. Otherwise, undefined.
   !>     @param[in]
   !>     ldc       rocblas_int. ldc >= n.\n
@@ -24299,8 +24121,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_sgetri_outofplace_batched
     function rocsolver_sgetri_outofplace_batched_(handle,n,A,lda,ipiv,strideP,C,ldc,myInfo,batch_count) bind(c, name="rocsolver_sgetri_outofplace_batched")
       use iso_c_binding
@@ -24408,7 +24229,7 @@ module hipfort_rocsolver
       rocsolver_zgetri_outofplace_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GETRI_OUTOFPLACE_STRIDED_BATCHED computes the inverse \f$C_j = A_j^{-1}\f$ of a batch of general n-by-n matrices \f$A_j\f$.
   !> 
   !>     \details
@@ -24427,7 +24248,7 @@ module hipfort_rocsolver
   !>               The number of rows and columns of all matrices A_j in the batch.
   !>     @param[in]
   !>     A         pointer to type. Array on the GPU (the size depends on the value of strideA).\n
-  !>               The factors L_j and U_j of the factorization A_j = P_jL_jU_j returned by
+  !>               The factors L_j and U_j of the factorization A_j = P_j*L_j*U_j returned by
   !>               \ref rocsolver_sgetrf_strided_batched "GETRF_STRIDED_BATCHED".
   !>     @param[in]
   !>     lda       rocblas_int. lda >= n.\n
@@ -24435,7 +24256,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA   rocblas_stride.\n
   !>               Stride from the start of one matrix A_j to the next one A_(j+1).
-  !>               There is no restriction for the value of strideA. Normal use case is strideA >= ldan
+  !>               There is no restriction for the value of strideA. Normal use case is strideA >= lda*n
   !>     @param[in]
   !>     ipiv      pointer to rocblas_int. Array on the GPU (the size depends on the value of strideP).\n
   !>               The pivot indices returned by \ref rocsolver_sgetrf_strided_batched "GETRF_STRIDED_BATCHED".
@@ -24452,7 +24273,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideC   rocblas_stride.\n
   !>               Stride from the start of one matrix C_j to the next one C_(j+1).
-  !>               There is no restriction for the value of strideC. Normal use case is strideC >= ldcn
+  !>               There is no restriction for the value of strideC. Normal use case is strideC >= ldc*n
   !>     @param[out]
   !>     info      pointer to rocblas_int. Array of batch_count integers on the GPU.\n
   !>               If info[j] = 0, successful exit for inversion of A_j.
@@ -24460,8 +24281,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_sgetri_outofplace_strided_batched
     function rocsolver_sgetri_outofplace_strided_batched_(handle,n,A,lda,strideA,ipiv,strideP,C,ldc,strideC,myInfo,batch_count) bind(c, name="rocsolver_sgetri_outofplace_strided_batched")
       use iso_c_binding
@@ -24577,7 +24397,7 @@ module hipfort_rocsolver
       rocsolver_zgetri_outofplace_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GETRI_NPVT_OUTOFPLACE computes the inverse \f$C = A^{-1}\f$ of a general n-by-n matrix A without partial pivoting.
   !> 
   !>     \details
@@ -24595,13 +24415,13 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of rows and columns of the matrix A.
   !>     @param[in]
-  !>     A         pointer to type. Array on the GPU of dimension ldan.\n
-  !>               The factors L and U of the factorization A = LU returned by \ref rocsolver_sgetrf_npvt "GETRF_NPVT".
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
+  !>               The factors L and U of the factorization A = L*U returned by \ref rocsolver_sgetrf_npvt "GETRF_NPVT".
   !>     @param[in]
   !>     lda       rocblas_int. lda >= n.\n
   !>               Specifies the leading dimension of A.
   !>     @param[out]
-  !>     C         pointer to type. Array on the GPU of dimension ldcn.\n
+  !>     C         pointer to type. Array on the GPU of dimension ldc*n.\n
   !>               If info = 0, the inverse of A. Otherwise, undefined.
   !>     @param[in]
   !>     ldc       rocblas_int. ldc >= n.\n
@@ -24610,8 +24430,7 @@ module hipfort_rocsolver
   !>     info      pointer to a rocblas_int on the GPU.\n
   !>               If info = 0, successful exit.
   !>               If info = i > 0, U is singular. U[i,i] is the first zero pivot.
-  !> 
-  !>     
+  !>
   interface rocsolver_sgetri_npvt_outofplace
     function rocsolver_sgetri_npvt_outofplace_(handle,n,A,lda,C,ldc,myInfo) bind(c, name="rocsolver_sgetri_npvt_outofplace")
       use iso_c_binding
@@ -24707,7 +24526,7 @@ module hipfort_rocsolver
       rocsolver_zgetri_npvt_outofplace_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GETRI_NPVT_OUTOFPLACE_BATCHED computes the inverse \f$C_j = A_j^{-1}\f$ of a batch of general n-by-n matrices \f$A_j\f$
   !>     without partial pivoting.
   !> 
@@ -24726,13 +24545,13 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of rows and columns of all matrices A_j in the batch.
   !>     @param[in]
-  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
-  !>               The factors L_j and U_j of the factorization A_j = L_jU_j returned by \ref rocsolver_sgetrf_npvt_batched "GETRF_NPVT_BATCHED".
+  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
+  !>               The factors L_j and U_j of the factorization A_j = L_j*U_j returned by \ref rocsolver_sgetrf_npvt_batched "GETRF_NPVT_BATCHED".
   !>     @param[in]
   !>     lda       rocblas_int. lda >= n.\n
   !>               Specifies the leading dimension of matrices A_j.
   !>     @param[out]
-  !>     C         array of pointers to type. Each pointer points to an array on the GPU of dimension ldcn.\n
+  !>     C         array of pointers to type. Each pointer points to an array on the GPU of dimension ldc*n.\n
   !>               If info[j] = 0, the inverse of matrices A_j. Otherwise, undefined.
   !>     @param[in]
   !>     ldc       rocblas_int. ldc >= n.\n
@@ -24744,8 +24563,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_sgetri_npvt_outofplace_batched
     function rocsolver_sgetri_npvt_outofplace_batched_(handle,n,A,lda,C,ldc,myInfo,batch_count) bind(c, name="rocsolver_sgetri_npvt_outofplace_batched")
       use iso_c_binding
@@ -24845,7 +24663,7 @@ module hipfort_rocsolver
       rocsolver_zgetri_npvt_outofplace_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief GETRI_NPVT_OUTOFPLACE_STRIDED_BATCHED computes the inverse \f$C_j = A_j^{-1}\f$ of a batch of general n-by-n matrices \f$A_j\f$
   !>     without partial pivoting.
   !> 
@@ -24865,7 +24683,7 @@ module hipfort_rocsolver
   !>               The number of rows and columns of all matrices A_j in the batch.
   !>     @param[in]
   !>     A         pointer to type. Array on the GPU (the size depends on the value of strideA).\n
-  !>               The factors L_j and U_j of the factorization A_j = L_jU_j returned by
+  !>               The factors L_j and U_j of the factorization A_j = L_j*U_j returned by
   !>               \ref rocsolver_sgetrf_npvt_strided_batched "GETRF_NPVT_STRIDED_BATCHED".
   !>     @param[in]
   !>     lda       rocblas_int. lda >= n.\n
@@ -24873,7 +24691,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA   rocblas_stride.\n
   !>               Stride from the start of one matrix A_j to the next one A_(j+1).
-  !>               There is no restriction for the value of strideA. Normal use case is strideA >= ldan
+  !>               There is no restriction for the value of strideA. Normal use case is strideA >= lda*n
   !>     @param[out]
   !>     C         pointer to type. Array on the GPU (the size depends on the value of strideC).\n
   !>               If info[j] = 0, the inverse of matrices A_j. Otherwise, undefined.
@@ -24883,7 +24701,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideC   rocblas_stride.\n
   !>               Stride from the start of one matrix C_j to the next one C_(j+1).
-  !>               There is no restriction for the value of strideC. Normal use case is strideC >= ldcn
+  !>               There is no restriction for the value of strideC. Normal use case is strideC >= ldc*n
   !>     @param[out]
   !>     info      pointer to rocblas_int. Array of batch_count integers on the GPU.\n
   !>               If info[j] = 0, successful exit for inversion of A_j.
@@ -24891,8 +24709,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_sgetri_npvt_outofplace_strided_batched
     function rocsolver_sgetri_npvt_outofplace_strided_batched_(handle,n,A,lda,strideA,C,ldc,strideC,myInfo,batch_count) bind(c, name="rocsolver_sgetri_npvt_outofplace_strided_batched")
       use iso_c_binding
@@ -25000,7 +24817,7 @@ module hipfort_rocsolver
       rocsolver_zgetri_npvt_outofplace_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief TRTRI inverts a triangular n-by-n matrix A.
   !> 
   !>     \details
@@ -25022,7 +24839,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of rows and columns of the matrix A.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
   !>               On entry, the triangular matrix.
   !>               On exit, the inverse of A if info = 0.
   !>     @param[in]
@@ -25032,8 +24849,7 @@ module hipfort_rocsolver
   !>     info      pointer to a rocblas_int on the GPU.\n
   !>               If info = 0, successful exit.
   !>               If info = i > 0, A is singular. A[i,i] is the first zero element in the diagonal.
-  !> 
-  !>     
+  !>
   interface rocsolver_strtri
     function rocsolver_strtri_(handle,uplo,diag,n,A,lda,myInfo) bind(c, name="rocsolver_strtri")
       use iso_c_binding
@@ -25129,7 +24945,7 @@ module hipfort_rocsolver
       rocsolver_ztrtri_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief TRTRI_BATCHED inverts a batch of triangular n-by-n matrices \f$A_j\f$.
   !> 
   !>     \details
@@ -25151,7 +24967,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of rows and columns of all matrices A_j in the batch.
   !>     @param[inout]
-  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
   !>               On entry, the triangular matrices A_j.
   !>               On exit, the inverses of A_j if info[j] = 0.
   !>     @param[in]
@@ -25164,8 +24980,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_strtri_batched
     function rocsolver_strtri_batched_(handle,uplo,diag,n,A,lda,myInfo,batch_count) bind(c, name="rocsolver_strtri_batched")
       use iso_c_binding
@@ -25265,7 +25080,7 @@ module hipfort_rocsolver
       rocsolver_ztrtri_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief TRTRI_STRIDED_BATCHED inverts a batch of triangular n-by-n matrices \f$A_j\f$.
   !> 
   !>     \details
@@ -25296,7 +25111,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA   rocblas_stride.\n
   !>               Stride from the start of one matrix A_j to the next one A_(j+1).
-  !>               There is no restriction for the value of strideA. Normal use case is strideA >= ldan
+  !>               There is no restriction for the value of strideA. Normal use case is strideA >= lda*n
   !>     @param[out]
   !>     info      pointer to rocblas_int. Array of batch_count integers on the GPU.\n
   !>               If info[j] = 0, successful exit for inversion of A_j.
@@ -25304,8 +25119,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface rocsolver_strtri_strided_batched
     function rocsolver_strtri_strided_batched_(handle,uplo,diag,n,A,lda,strideA,myInfo,batch_count) bind(c, name="rocsolver_strtri_strided_batched")
       use iso_c_binding
@@ -25409,7 +25223,7 @@ module hipfort_rocsolver
       rocsolver_ztrtri_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief SYTF2 computes the factorization of a symmetric indefinite matrix \f$A\f$
   !>     using Bunch-Kaufman diagonal pivoting.
   !> 
@@ -25425,7 +25239,7 @@ module hipfort_rocsolver
   !>         \end{array}
   !>     \f]
   !> 
-  !>     where \f$U\f$ or \f$L\f$ is a product of permutation and unit upperlower
+  !>     where \f$U\f$ or \f$L\f$ is a product of permutation and unit upper/lower
   !>     triangular matrices (depending on the value of uplo), and \f$D\f$ is a symmetric
   !>     block diagonal matrix with 1-by-1 and 2-by-2 diagonal blocks \f$D(k)\f$.
   !> 
@@ -25441,7 +25255,7 @@ module hipfort_rocsolver
   !>     where \f$k\f$ decreases from \f$n\f$ to 1 (increases from 1 to \f$n\f$) in steps of 1 or 2,
   !>     depending on the order of block \f$D(k)\f$, and \f$P(k)\f$ is a permutation matrix defined by
   !>     \f$ipiv[k]\f$. If we let \f$s\f$ denote the order of block \f$D(k)\f$, then \f$U(k)\f$
-  !>     and \f$L(k)\f$ are unit upperlower triangular matrices defined as
+  !>     and \f$L(k)\f$ are unit upper/lower triangular matrices defined as
   !> 
   !>     \f[
   !>         U(k) = \left[ \begin{array}{ccc}
@@ -25461,7 +25275,7 @@ module hipfort_rocsolver
   !>         \end{array} \right].
   !>     \f]
   !> 
-  !>     If \f$s = 1\f$, then \f$D(k)\f$ is stored in \f$A[k,k]\f$ and \f$v\f$ is stored in the upperlower
+  !>     If \f$s = 1\f$, then \f$D(k)\f$ is stored in \f$A[k,k]\f$ and \f$v\f$ is stored in the upper/lower
   !>     part of column \f$k\f$ of \f$A\f$.
   !>     If \f$s = 2\f$ and uplo is upper, then \f$D(k)\f$ is stored in \f$A[k-1,k-1]\f$, \f$A[k-1,k]\f$,
   !>     and \f$A[k,k]\f$, and \f$v\f$ is stored in the upper parts of columns \f$k-1\f$ and \f$k\f$ of \f$A\f$.
@@ -25479,7 +25293,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of rows and columns of the matrix A.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
   !>               On entry, the symmetric matrix A to be factored.
   !>               On exit, the block diagonal matrix D and the multipliers needed to
   !>               compute U or L.
@@ -25500,7 +25314,6 @@ module hipfort_rocsolver
   !>     info      pointer to a rocblas_int on the GPU.\n
   !>               If info = 0, successful exit.
   !>               If info[i] = j > 0, D is singular. D[j,j] is the first diagonal zero.
-  !>     
   interface rocsolver_ssytf2
     function rocsolver_ssytf2_(handle,uplo,n,A,lda,ipiv,myInfo) bind(c, name="rocsolver_ssytf2")
       use iso_c_binding
@@ -25596,7 +25409,7 @@ module hipfort_rocsolver
       rocsolver_zsytf2_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief SYTF2_BATCHED computes the factorization of a batch of symmetric indefinite
   !>     matrices using Bunch-Kaufman diagonal pivoting.
   !> 
@@ -25612,7 +25425,7 @@ module hipfort_rocsolver
   !>         \end{array}
   !>     \f]
   !> 
-  !>     where \f$U_i\f$ or \f$L_i\f$ is a product of permutation and unit upperlower
+  !>     where \f$U_i\f$ or \f$L_i\f$ is a product of permutation and unit upper/lower
   !>     triangular matrices (depending on the value of uplo), and \f$D_i\f$ is a symmetric
   !>     block diagonal matrix with 1-by-1 and 2-by-2 diagonal blocks \f$D_i(k)\f$.
   !> 
@@ -25628,7 +25441,7 @@ module hipfort_rocsolver
   !>     where \f$k\f$ decreases from \f$n\f$ to 1 (increases from 1 to \f$n\f$) in steps of 1 or 2,
   !>     depending on the order of block \f$D_i(k)\f$, and \f$P_i(k)\f$ is a permutation matrix defined by
   !>     \f$ipiv_i[k]\f$. If we let \f$s\f$ denote the order of block \f$D_i(k)\f$, then \f$U_i(k)\f$
-  !>     and \f$L_i(k)\f$ are unit upperlower triangular matrices defined as
+  !>     and \f$L_i(k)\f$ are unit upper/lower triangular matrices defined as
   !> 
   !>     \f[
   !>         U_i(k) = \left[ \begin{array}{ccc}
@@ -25648,7 +25461,7 @@ module hipfort_rocsolver
   !>         \end{array} \right].
   !>     \f]
   !> 
-  !>     If \f$s = 1\f$, then \f$D_i(k)\f$ is stored in \f$A_i[k,k]\f$ and \f$v\f$ is stored in the upperlower
+  !>     If \f$s = 1\f$, then \f$D_i(k)\f$ is stored in \f$A_i[k,k]\f$ and \f$v\f$ is stored in the upper/lower
   !>     part of column \f$k\f$ of \f$A_i\f$.
   !>     If \f$s = 2\f$ and uplo is upper, then \f$D_i(k)\f$ is stored in \f$A_i[k-1,k-1]\f$, \f$A_i[k-1,k]\f$,
   !>     and \f$A_i[k,k]\f$, and \f$v\f$ is stored in the upper parts of columns \f$k-1\f$ and \f$k\f$ of \f$A_i\f$.
@@ -25666,7 +25479,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of rows and columns of all matrices A_i in the batch.
   !>     @param[inout]
-  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
   !>               On entry, the symmetric matrices A_i to be factored.
   !>               On exit, the block diagonal matrices D_i and the multipliers needed to
   !>               compute U_i or L_i.
@@ -25694,7 +25507,6 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !>     
   interface rocsolver_ssytf2_batched
     function rocsolver_ssytf2_batched_(handle,uplo,n,A,lda,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_ssytf2_batched")
       use iso_c_binding
@@ -25798,7 +25610,7 @@ module hipfort_rocsolver
       rocsolver_zsytf2_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief SYTF2_STRIDED_BATCHED computes the factorization of a batch of symmetric indefinite
   !>     matrices using Bunch-Kaufman diagonal pivoting.
   !> 
@@ -25814,7 +25626,7 @@ module hipfort_rocsolver
   !>         \end{array}
   !>     \f]
   !> 
-  !>     where \f$U_i\f$ or \f$L_i\f$ is a product of permutation and unit upperlower
+  !>     where \f$U_i\f$ or \f$L_i\f$ is a product of permutation and unit upper/lower
   !>     triangular matrices (depending on the value of uplo), and \f$D_i\f$ is a symmetric
   !>     block diagonal matrix with 1-by-1 and 2-by-2 diagonal blocks \f$D_i(k)\f$.
   !> 
@@ -25830,7 +25642,7 @@ module hipfort_rocsolver
   !>     where \f$k\f$ decreases from \f$n\f$ to 1 (increases from 1 to \f$n\f$) in steps of 1 or 2,
   !>     depending on the order of block \f$D_i(k)\f$, and \f$P_i(k)\f$ is a permutation matrix defined by
   !>     \f$ipiv_i[k]\f$. If we let \f$s\f$ denote the order of block \f$D_i(k)\f$, then \f$U_i(k)\f$
-  !>     and \f$L_i(k)\f$ are unit upperlower triangular matrices defined as
+  !>     and \f$L_i(k)\f$ are unit upper/lower triangular matrices defined as
   !> 
   !>     \f[
   !>         U_i(k) = \left[ \begin{array}{ccc}
@@ -25850,7 +25662,7 @@ module hipfort_rocsolver
   !>         \end{array} \right].
   !>     \f]
   !> 
-  !>     If \f$s = 1\f$, then \f$D_i(k)\f$ is stored in \f$A_i[k,k]\f$ and \f$v\f$ is stored in the upperlower
+  !>     If \f$s = 1\f$, then \f$D_i(k)\f$ is stored in \f$A_i[k,k]\f$ and \f$v\f$ is stored in the upper/lower
   !>     part of column \f$k\f$ of \f$A_i\f$.
   !>     If \f$s = 2\f$ and uplo is upper, then \f$D_i(k)\f$ is stored in \f$A_i[k-1,k-1]\f$, \f$A_i[k-1,k]\f$,
   !>     and \f$A_i[k,k]\f$, and \f$v\f$ is stored in the upper parts of columns \f$k-1\f$ and \f$k\f$ of \f$A_i\f$.
@@ -25878,7 +25690,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA   rocblas_stride.\n
   !>               Stride from the start of one matrix A_i to the next one A_(i+1).
-  !>               There is no restriction for the value of strideA. Normal use case is strideA >= ldan
+  !>               There is no restriction for the value of strideA. Normal use case is strideA >= lda*n
   !>     @param[out]
   !>     ipiv      pointer to rocblas_int. Array on the GPU of dimension n.\n
   !>               The vector of pivot indices. Elements of ipiv are 1-based indices.
@@ -25900,7 +25712,6 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !>     
   interface rocsolver_ssytf2_strided_batched
     function rocsolver_ssytf2_strided_batched_(handle,uplo,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_ssytf2_strided_batched")
       use iso_c_binding
@@ -26008,7 +25819,7 @@ module hipfort_rocsolver
       rocsolver_zsytf2_strided_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief SYTRF computes the factorization of a symmetric indefinite matrix \f$A\f$
   !>     using Bunch-Kaufman diagonal pivoting.
   !> 
@@ -26024,7 +25835,7 @@ module hipfort_rocsolver
   !>         \end{array}
   !>     \f]
   !> 
-  !>     where \f$U\f$ or \f$L\f$ is a product of permutation and unit upperlower
+  !>     where \f$U\f$ or \f$L\f$ is a product of permutation and unit upper/lower
   !>     triangular matrices (depending on the value of uplo), and \f$D\f$ is a symmetric
   !>     block diagonal matrix with 1-by-1 and 2-by-2 diagonal blocks \f$D(k)\f$.
   !> 
@@ -26040,7 +25851,7 @@ module hipfort_rocsolver
   !>     where \f$k\f$ decreases from \f$n\f$ to 1 (increases from 1 to \f$n\f$) in steps of 1 or 2,
   !>     depending on the order of block \f$D(k)\f$, and \f$P(k)\f$ is a permutation matrix defined by
   !>     \f$ipiv[k]\f$. If we let \f$s\f$ denote the order of block \f$D(k)\f$, then \f$U(k)\f$
-  !>     and \f$L(k)\f$ are unit upperlower triangular matrices defined as
+  !>     and \f$L(k)\f$ are unit upper/lower triangular matrices defined as
   !> 
   !>     \f[
   !>         U(k) = \left[ \begin{array}{ccc}
@@ -26060,7 +25871,7 @@ module hipfort_rocsolver
   !>         \end{array} \right].
   !>     \f]
   !> 
-  !>     If \f$s = 1\f$, then \f$D(k)\f$ is stored in \f$A[k,k]\f$ and \f$v\f$ is stored in the upperlower
+  !>     If \f$s = 1\f$, then \f$D(k)\f$ is stored in \f$A[k,k]\f$ and \f$v\f$ is stored in the upper/lower
   !>     part of column \f$k\f$ of \f$A\f$.
   !>     If \f$s = 2\f$ and uplo is upper, then \f$D(k)\f$ is stored in \f$A[k-1,k-1]\f$, \f$A[k-1,k]\f$,
   !>     and \f$A[k,k]\f$, and \f$v\f$ is stored in the upper parts of columns \f$k-1\f$ and \f$k\f$ of \f$A\f$.
@@ -26078,7 +25889,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of rows and columns of the matrix A.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
   !>               On entry, the symmetric matrix A to be factored.
   !>               On exit, the block diagonal matrix D and the multipliers needed to
   !>               compute U or L.
@@ -26099,7 +25910,6 @@ module hipfort_rocsolver
   !>     info      pointer to a rocblas_int on the GPU.\n
   !>               If info = 0, successful exit.
   !>               If info[i] = j > 0, D is singular. D[j,j] is the first diagonal zero.
-  !>     
   interface rocsolver_ssytrf
     function rocsolver_ssytrf_(handle,uplo,n,A,lda,ipiv,myInfo) bind(c, name="rocsolver_ssytrf")
       use iso_c_binding
@@ -26195,7 +26005,7 @@ module hipfort_rocsolver
       rocsolver_zsytrf_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief SYTRF_BATCHED computes the factorization of a batch of symmetric indefinite
   !>     matrices using Bunch-Kaufman diagonal pivoting.
   !> 
@@ -26211,7 +26021,7 @@ module hipfort_rocsolver
   !>         \end{array}
   !>     \f]
   !> 
-  !>     where \f$U_i\f$ or \f$L_i\f$ is a product of permutation and unit upperlower
+  !>     where \f$U_i\f$ or \f$L_i\f$ is a product of permutation and unit upper/lower
   !>     triangular matrices (depending on the value of uplo), and \f$D_i\f$ is a symmetric
   !>     block diagonal matrix with 1-by-1 and 2-by-2 diagonal blocks \f$D_i(k)\f$.
   !> 
@@ -26227,7 +26037,7 @@ module hipfort_rocsolver
   !>     where \f$k\f$ decreases from \f$n\f$ to 1 (increases from 1 to \f$n\f$) in steps of 1 or 2,
   !>     depending on the order of block \f$D_i(k)\f$, and \f$P_i(k)\f$ is a permutation matrix defined by
   !>     \f$ipiv_i[k]\f$. If we let \f$s\f$ denote the order of block \f$D_i(k)\f$, then \f$U_i(k)\f$
-  !>     and \f$L_i(k)\f$ are unit upperlower triangular matrices defined as
+  !>     and \f$L_i(k)\f$ are unit upper/lower triangular matrices defined as
   !> 
   !>     \f[
   !>         U_i(k) = \left[ \begin{array}{ccc}
@@ -26247,7 +26057,7 @@ module hipfort_rocsolver
   !>         \end{array} \right].
   !>     \f]
   !> 
-  !>     If \f$s = 1\f$, then \f$D_i(k)\f$ is stored in \f$A_i[k,k]\f$ and \f$v\f$ is stored in the upperlower
+  !>     If \f$s = 1\f$, then \f$D_i(k)\f$ is stored in \f$A_i[k,k]\f$ and \f$v\f$ is stored in the upper/lower
   !>     part of column \f$k\f$ of \f$A_i\f$.
   !>     If \f$s = 2\f$ and uplo is upper, then \f$D_i(k)\f$ is stored in \f$A_i[k-1,k-1]\f$, \f$A_i[k-1,k]\f$,
   !>     and \f$A_i[k,k]\f$, and \f$v\f$ is stored in the upper parts of columns \f$k-1\f$ and \f$k\f$ of \f$A_i\f$.
@@ -26265,7 +26075,7 @@ module hipfort_rocsolver
   !>     n         rocblas_int. n >= 0.\n
   !>               The number of rows and columns of all matrices A_i in the batch.
   !>     @param[inout]
-  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
   !>               On entry, the symmetric matrices A_i to be factored.
   !>               On exit, the block diagonal matrices D_i and the multipliers needed to
   !>               compute U_i or L_i.
@@ -26293,7 +26103,6 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !>     
   interface rocsolver_ssytrf_batched
     function rocsolver_ssytrf_batched_(handle,uplo,n,A,lda,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_ssytrf_batched")
       use iso_c_binding
@@ -26397,7 +26206,7 @@ module hipfort_rocsolver
       rocsolver_zsytrf_batched_rank_1
 #endif
   end interface
-  !> ! @{
+  !>  @{
   !>     \brief SYTRF_STRIDED_BATCHED computes the factorization of a batch of symmetric indefinite
   !>     matrices using Bunch-Kaufman diagonal pivoting.
   !> 
@@ -26413,7 +26222,7 @@ module hipfort_rocsolver
   !>         \end{array}
   !>     \f]
   !> 
-  !>     where \f$U_i\f$ or \f$L_i\f$ is a product of permutation and unit upperlower
+  !>     where \f$U_i\f$ or \f$L_i\f$ is a product of permutation and unit upper/lower
   !>     triangular matrices (depending on the value of uplo), and \f$D_i\f$ is a symmetric
   !>     block diagonal matrix with 1-by-1 and 2-by-2 diagonal blocks \f$D_i(k)\f$.
   !> 
@@ -26429,7 +26238,7 @@ module hipfort_rocsolver
   !>     where \f$k\f$ decreases from \f$n\f$ to 1 (increases from 1 to \f$n\f$) in steps of 1 or 2,
   !>     depending on the order of block \f$D_i(k)\f$, and \f$P_i(k)\f$ is a permutation matrix defined by
   !>     \f$ipiv_i[k]\f$. If we let \f$s\f$ denote the order of block \f$D_i(k)\f$, then \f$U_i(k)\f$
-  !>     and \f$L_i(k)\f$ are unit upperlower triangular matrices defined as
+  !>     and \f$L_i(k)\f$ are unit upper/lower triangular matrices defined as
   !> 
   !>     \f[
   !>         U_i(k) = \left[ \begin{array}{ccc}
@@ -26449,7 +26258,7 @@ module hipfort_rocsolver
   !>         \end{array} \right].
   !>     \f]
   !> 
-  !>     If \f$s = 1\f$, then \f$D_i(k)\f$ is stored in \f$A_i[k,k]\f$ and \f$v\f$ is stored in the upperlower
+  !>     If \f$s = 1\f$, then \f$D_i(k)\f$ is stored in \f$A_i[k,k]\f$ and \f$v\f$ is stored in the upper/lower
   !>     part of column \f$k\f$ of \f$A_i\f$.
   !>     If \f$s = 2\f$ and uplo is upper, then \f$D_i(k)\f$ is stored in \f$A_i[k-1,k-1]\f$, \f$A_i[k-1,k]\f$,
   !>     and \f$A_i[k,k]\f$, and \f$v\f$ is stored in the upper parts of columns \f$k-1\f$ and \f$k\f$ of \f$A_i\f$.
@@ -26477,7 +26286,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     strideA   rocblas_stride.\n
   !>               Stride from the start of one matrix A_i to the next one A_(i+1).
-  !>               There is no restriction for the value of strideA. Normal use case is strideA >= ldan
+  !>               There is no restriction for the value of strideA. Normal use case is strideA >= lda*n
   !>     @param[out]
   !>     ipiv      pointer to rocblas_int. Array on the GPU of dimension n.\n
   !>               The vector of pivot indices. Elements of ipiv are 1-based indices.
@@ -26499,7 +26308,6 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     batch_count rocblas_int. batch_count >= 0.\n
   !>                 Number of matrices in the batch.
-  !>     
   interface rocsolver_ssytrf_strided_batched
     function rocsolver_ssytrf_strided_batched_(handle,uplo,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_ssytrf_strided_batched")
       use iso_c_binding

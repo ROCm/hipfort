@@ -30,22 +30,21 @@ module hipfort_rocsparse
   implicit none
 
  
-  !> ! \ingroup aux_module
-  !>    \brief Create a rocsparse handle
-  !>  
-  !>    \details
-  !>    \p rocsparse_create_handle creates the rocSPARSE library context. It must be
-  !>    initialized before any other rocSPARSE API function is invoked and must be passed to
-  !>    all subsequent library function calls. The handle should be destroyed at the end
-  !>    using rocsparse_destroy_handle().
-  !>  
-  !>    @param[out]
-  !>    handle  the pointer to the handle to the rocSPARSE library context.
-  !>  
-  !>    \retval rocsparse_status_success the initialization succeeded.
-  !>    \retval rocsparse_status_invalid_handle \p handle pointer is invalid.
-  !>    \retval rocsparse_status_internal_error an internal error occurred.
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Create a rocsparse handle
+  !> 
+  !>   \details
+  !>   \p rocsparse_create_handle creates the rocSPARSE library context. It must be
+  !>   initialized before any other rocSPARSE API function is invoked and must be passed to
+  !>   all subsequent library function calls. The handle should be destroyed at the end
+  !>   using rocsparse_destroy_handle().
+  !> 
+  !>   @param[out]
+  !>   handle  the pointer to the handle to the rocSPARSE library context.
+  !> 
+  !>   \retval rocsparse_status_success the initialization succeeded.
+  !>   \retval rocsparse_status_invalid_handle \p handle pointer is invalid.
+  !>   \retval rocsparse_status_internal_error an internal error occurred.
   interface rocsparse_create_handle
     function rocsparse_create_handle_(handle) bind(c, name="rocsparse_create_handle")
       use iso_c_binding
@@ -56,20 +55,19 @@ module hipfort_rocsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Destroy a rocsparse handle
-  !>  
-  !>    \details
-  !>    \p rocsparse_destroy_handle destroys the rocSPARSE library context and releases all
-  !>    resources used by the rocSPARSE library.
-  !>  
-  !>    @param[in]
-  !>    handle  the handle to the rocSPARSE library context.
-  !>  
-  !>    \retval rocsparse_status_success the operation completed successfully.
-  !>    \retval rocsparse_status_invalid_handle \p handle is invalid.
-  !>    \retval rocsparse_status_internal_error an internal error occurred.
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Destroy a rocsparse handle
+  !> 
+  !>   \details
+  !>   \p rocsparse_destroy_handle destroys the rocSPARSE library context and releases all
+  !>   resources used by the rocSPARSE library.
+  !> 
+  !>   @param[in]
+  !>   handle  the handle to the rocSPARSE library context.
+  !> 
+  !>   \retval rocsparse_status_success the operation completed successfully.
+  !>   \retval rocsparse_status_invalid_handle \p handle is invalid.
+  !>   \retval rocsparse_status_internal_error an internal error occurred.
   interface rocsparse_destroy_handle
     function rocsparse_destroy_handle_(handle) bind(c, name="rocsparse_destroy_handle")
       use iso_c_binding
@@ -80,43 +78,42 @@ module hipfort_rocsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Specify user defined HIP stream
-  !>  
-  !>    \details
-  !>    \p rocsparse_set_stream specifies the stream to be used by the rocSPARSE library
-  !>    context and all subsequent function calls.
-  !>  
-  !>    @param[inout]
-  !>    handle  the handle to the rocSPARSE library context.
-  !>    @param[in]
-  !>    stream  the stream to be used by the rocSPARSE library context.
-  !>  
-  !>    \retval rocsparse_status_success the operation completed successfully.
-  !>    \retval rocsparse_status_invalid_handle \p handle is invalid.
-  !>  
-  !>    \par Example
-  !>    This example illustrates, how a user defined stream can be used in rocSPARSE.
-  !>    \code{.c}
-  !>         Create rocSPARSE handle
-  !>        rocsparse_handle handle;
-  !>        rocsparse_create_handle(&handle);
-  !>  
-  !>         Create stream
-  !>        hipStream_t stream;
-  !>        hipStreamCreate(&stream);
-  !>  
-  !>         Set stream to rocSPARSE handle
-  !>        rocsparse_set_stream(handle, stream);
-  !>  
-  !>         Do some work
-  !>         ...
-  !>  
-  !>         Clean up
-  !>        rocsparse_destroy_handle(handle);
-  !>        hipStreamDestroy(stream);
-  !>    \endcode
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Specify user defined HIP stream
+  !> 
+  !>   \details
+  !>   \p rocsparse_set_stream specifies the stream to be used by the rocSPARSE library
+  !>   context and all subsequent function calls.
+  !> 
+  !>   @param[inout]
+  !>   handle  the handle to the rocSPARSE library context.
+  !>   @param[in]
+  !>   stream  the stream to be used by the rocSPARSE library context.
+  !> 
+  !>   \retval rocsparse_status_success the operation completed successfully.
+  !>   \retval rocsparse_status_invalid_handle \p handle is invalid.
+  !> 
+  !>   \par Example
+  !>   This example illustrates, how a user defined stream can be used in rocSPARSE.
+  !>   \code{.c}
+  !> / Create rocSPARSE handle
+  !>       rocsparse_handle handle;
+  !>       rocsparse_create_handle(&handle);
+  !> 
+  !> / Create stream
+  !>       hipStream_t stream;
+  !>       hipStreamCreate(&stream);
+  !> 
+  !> / Set stream to rocSPARSE handle
+  !>       rocsparse_set_stream(handle, stream);
+  !> 
+  !> / Do some work
+  !> / ...
+  !> 
+  !> / Clean up
+  !>       rocsparse_destroy_handle(handle);
+  !>       hipStreamDestroy(stream);
+  !>   \endcode
   interface rocsparse_set_stream
     function rocsparse_set_stream_(handle,stream) bind(c, name="rocsparse_set_stream")
       use iso_c_binding
@@ -128,21 +125,20 @@ module hipfort_rocsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Get current stream from library context
-  !>  
-  !>    \details
-  !>    \p rocsparse_get_stream gets the rocSPARSE library context stream which is currently
-  !>    used for all subsequent function calls.
-  !>  
-  !>    @param[in]
-  !>    handle the handle to the rocSPARSE library context.
-  !>    @param[out]
-  !>    stream the stream currently used by the rocSPARSE library context.
-  !>  
-  !>    \retval rocsparse_status_success the operation completed successfully.
-  !>    \retval rocsparse_status_invalid_handle \p handle is invalid.
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Get current stream from library context
+  !> 
+  !>   \details
+  !>   \p rocsparse_get_stream gets the rocSPARSE library context stream which is currently
+  !>   used for all subsequent function calls.
+  !> 
+  !>   @param[in]
+  !>   handle the handle to the rocSPARSE library context.
+  !>   @param[out]
+  !>   stream the stream currently used by the rocSPARSE library context.
+  !> 
+  !>   \retval rocsparse_status_success the operation completed successfully.
+  !>   \retval rocsparse_status_invalid_handle \p handle is invalid.
   interface rocsparse_get_stream
     function rocsparse_get_stream_(handle,stream) bind(c, name="rocsparse_get_stream")
       use iso_c_binding
@@ -154,23 +150,22 @@ module hipfort_rocsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Specify pointer mode
-  !>  
-  !>    \details
-  !>    \p rocsparse_set_pointer_mode specifies the pointer mode to be used by the rocSPARSE
-  !>    library context and all subsequent function calls. By default, all values are passed
-  !>    by reference on the host. Valid pointer modes are \ref rocsparse_pointer_mode_host
-  !>    or \p rocsparse_pointer_mode_device.
-  !>  
-  !>    @param[in]
-  !>    handle          the handle to the rocSPARSE library context.
-  !>    @param[in]
-  !>    pointer_mode    the pointer mode to be used by the rocSPARSE library context.
-  !>  
-  !>    \retval rocsparse_status_success the operation completed successfully.
-  !>    \retval rocsparse_status_invalid_handle \p handle is invalid.
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Specify pointer mode
+  !> 
+  !>   \details
+  !>   \p rocsparse_set_pointer_mode specifies the pointer mode to be used by the rocSPARSE
+  !>   library context and all subsequent function calls. By default, all values are passed
+  !>   by reference on the host. Valid pointer modes are \ref rocsparse_pointer_mode_host
+  !>   or \p rocsparse_pointer_mode_device.
+  !> 
+  !>   @param[in]
+  !>   handle          the handle to the rocSPARSE library context.
+  !>   @param[in]
+  !>   pointer_mode    the pointer mode to be used by the rocSPARSE library context.
+  !> 
+  !>   \retval rocsparse_status_success the operation completed successfully.
+  !>   \retval rocsparse_status_invalid_handle \p handle is invalid.
   interface rocsparse_set_pointer_mode
     function rocsparse_set_pointer_mode_(handle,pointer_mode) bind(c, name="rocsparse_set_pointer_mode")
       use iso_c_binding
@@ -182,22 +177,21 @@ module hipfort_rocsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Get current pointer mode from library context
-  !>  
-  !>    \details
-  !>    \p rocsparse_get_pointer_mode gets the rocSPARSE library context pointer mode which
-  !>    is currently used for all subsequent function calls.
-  !>  
-  !>    @param[in]
-  !>    handle          the handle to the rocSPARSE library context.
-  !>    @param[out]
-  !>    pointer_mode    the pointer mode that is currently used by the rocSPARSE library
-  !>                    context.
-  !>  
-  !>    \retval rocsparse_status_success the operation completed successfully.
-  !>    \retval rocsparse_status_invalid_handle \p handle is invalid.
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Get current pointer mode from library context
+  !> 
+  !>   \details
+  !>   \p rocsparse_get_pointer_mode gets the rocSPARSE library context pointer mode which
+  !>   is currently used for all subsequent function calls.
+  !> 
+  !>   @param[in]
+  !>   handle          the handle to the rocSPARSE library context.
+  !>   @param[out]
+  !>   pointer_mode    the pointer mode that is currently used by the rocSPARSE library
+  !>                   context.
+  !> 
+  !>   \retval rocsparse_status_success the operation completed successfully.
+  !>   \retval rocsparse_status_invalid_handle \p handle is invalid.
   interface rocsparse_get_pointer_mode
     function rocsparse_get_pointer_mode_(handle,pointer_mode) bind(c, name="rocsparse_get_pointer_mode")
       use iso_c_binding
@@ -209,23 +203,22 @@ module hipfort_rocsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Get rocSPARSE version
-  !>  
-  !>    \details
-  !>    \p rocsparse_get_version gets the rocSPARSE library version number.
-  !>    - patch = version % 100
-  !>    - minor = version  100 % 1000
-  !>    - major = version  100000
-  !>  
-  !>    @param[in]
-  !>    handle  the handle to the rocSPARSE library context.
-  !>    @param[out]
-  !>    version the version number of the rocSPARSE library.
-  !>  
-  !>    \retval rocsparse_status_success the operation completed successfully.
-  !>    \retval rocsparse_status_invalid_handle \p handle is invalid.
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Get rocSPARSE version
+  !> 
+  !>   \details
+  !>   \p rocsparse_get_version gets the rocSPARSE library version number.
+  !>   - patch = version % 100
+  !>   - minor = version 100 % 1000
+  !>   - major = version 100000
+  !> 
+  !>   @param[in]
+  !>   handle  the handle to the rocSPARSE library context.
+  !>   @param[out]
+  !>   version the version number of the rocSPARSE library.
+  !> 
+  !>   \retval rocsparse_status_success the operation completed successfully.
+  !>   \retval rocsparse_status_invalid_handle \p handle is invalid.
   interface rocsparse_get_version
     function rocsparse_get_version_(handle,version) bind(c, name="rocsparse_get_version")
       use iso_c_binding
@@ -237,20 +230,19 @@ module hipfort_rocsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Get rocSPARSE git revision
-  !>  
-  !>    \details
-  !>    \p rocsparse_get_git_rev gets the rocSPARSE library git commit revision (SHA-1).
-  !>  
-  !>    @param[in]
-  !>    handle  the handle to the rocSPARSE library context.
-  !>    @param[out]
-  !>    rev     the git commit revision (SHA-1).
-  !>  
-  !>    \retval rocsparse_status_success the operation completed successfully.
-  !>    \retval rocsparse_status_invalid_handle \p handle is invalid.
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Get rocSPARSE git revision
+  !> 
+  !>   \details
+  !>   \p rocsparse_get_git_rev gets the rocSPARSE library git commit revision (SHA-1).
+  !> 
+  !>   @param[in]
+  !>   handle  the handle to the rocSPARSE library context.
+  !>   @param[out]
+  !>   rev     the git commit revision (SHA-1).
+  !> 
+  !>   \retval rocsparse_status_success the operation completed successfully.
+  !>   \retval rocsparse_status_invalid_handle \p handle is invalid.
   interface rocsparse_get_git_rev
     function rocsparse_get_git_rev_(handle,rev) bind(c, name="rocsparse_get_git_rev")
       use iso_c_binding
@@ -262,20 +254,19 @@ module hipfort_rocsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Create a matrix descriptor
-  !>    \details
-  !>    \p rocsparse_create_mat_descr creates a matrix descriptor. It initializes
-  !>    \ref rocsparse_matrix_type to \ref rocsparse_matrix_type_general and
-  !>    \ref rocsparse_index_base to \ref rocsparse_index_base_zero. It should be destroyed
-  !>    at the end using rocsparse_destroy_mat_descr().
-  !>  
-  !>    @param[out]
-  !>    descr   the pointer to the matrix descriptor.
-  !>  
-  !>    \retval rocsparse_status_success the operation completed successfully.
-  !>    \retval rocsparse_status_invalid_pointer \p descr pointer is invalid.
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Create a matrix descriptor
+  !>   \details
+  !>   \p rocsparse_create_mat_descr creates a matrix descriptor. It initializes
+  !>   \ref rocsparse_matrix_type to \ref rocsparse_matrix_type_general and
+  !>   \ref rocsparse_index_base to \ref rocsparse_index_base_zero. It should be destroyed
+  !>   at the end using rocsparse_destroy_mat_descr().
+  !> 
+  !>   @param[out]
+  !>   descr   the pointer to the matrix descriptor.
+  !> 
+  !>   \retval rocsparse_status_success the operation completed successfully.
+  !>   \retval rocsparse_status_invalid_pointer \p descr pointer is invalid.
   interface rocsparse_create_mat_descr
     function rocsparse_create_mat_descr_(descr) bind(c, name="rocsparse_create_mat_descr")
       use iso_c_binding
@@ -286,20 +277,19 @@ module hipfort_rocsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Copy a matrix descriptor
-  !>    \details
-  !>    \p rocsparse_copy_mat_descr copies a matrix descriptor. Both, source and destination
-  !>    matrix descriptors must be initialized prior to calling \p rocsparse_copy_mat_descr.
-  !>  
-  !>    @param[out]
-  !>    dest    the pointer to the destination matrix descriptor.
-  !>    @param[in]
-  !>    src     the pointer to the source matrix descriptor.
-  !>  
-  !>    \retval rocsparse_status_success the operation completed successfully.
-  !>    \retval rocsparse_status_invalid_pointer \p src or \p dest pointer is invalid.
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Copy a matrix descriptor
+  !>   \details
+  !>   \p rocsparse_copy_mat_descr copies a matrix descriptor. Both, source and destination
+  !>   matrix descriptors must be initialized prior to calling \p rocsparse_copy_mat_descr.
+  !> 
+  !>   @param[out]
+  !>   dest    the pointer to the destination matrix descriptor.
+  !>   @param[in]
+  !>   src     the pointer to the source matrix descriptor.
+  !> 
+  !>   \retval rocsparse_status_success the operation completed successfully.
+  !>   \retval rocsparse_status_invalid_pointer \p src or \p dest pointer is invalid.
   interface rocsparse_copy_mat_descr
     function rocsparse_copy_mat_descr_(dest,src) bind(c, name="rocsparse_copy_mat_descr")
       use iso_c_binding
@@ -311,19 +301,18 @@ module hipfort_rocsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Destroy a matrix descriptor
-  !>  
-  !>    \details
-  !>    \p rocsparse_destroy_mat_descr destroys a matrix descriptor and releases all
-  !>    resources used by the descriptor.
-  !>  
-  !>    @param[in]
-  !>    descr   the matrix descriptor.
-  !>  
-  !>    \retval rocsparse_status_success the operation completed successfully.
-  !>    \retval rocsparse_status_invalid_pointer \p descr is invalid.
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Destroy a matrix descriptor
+  !> 
+  !>   \details
+  !>   \p rocsparse_destroy_mat_descr destroys a matrix descriptor and releases all
+  !>   resources used by the descriptor.
+  !> 
+  !>   @param[in]
+  !>   descr   the matrix descriptor.
+  !> 
+  !>   \retval rocsparse_status_success the operation completed successfully.
+  !>   \retval rocsparse_status_invalid_pointer \p descr is invalid.
   interface rocsparse_destroy_mat_descr
     function rocsparse_destroy_mat_descr_(descr) bind(c, name="rocsparse_destroy_mat_descr")
       use iso_c_binding
@@ -334,22 +323,21 @@ module hipfort_rocsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Specify the index base of a matrix descriptor
-  !>  
-  !>    \details
-  !>    \p rocsparse_set_mat_index_base sets the index base of a matrix descriptor. Valid
-  !>    options are \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
-  !>  
-  !>    @param[inout]
-  !>    descr   the matrix descriptor.
-  !>    @param[in]
-  !>    base    \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
-  !>  
-  !>    \retval rocsparse_status_success the operation completed successfully.
-  !>    \retval rocsparse_status_invalid_pointer \p descr pointer is invalid.
-  !>    \retval rocsparse_status_invalid_value \p base is invalid.
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Specify the index base of a matrix descriptor
+  !> 
+  !>   \details
+  !>   \p rocsparse_set_mat_index_base sets the index base of a matrix descriptor. Valid
+  !>   options are \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+  !> 
+  !>   @param[inout]
+  !>   descr   the matrix descriptor.
+  !>   @param[in]
+  !>   base    \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+  !> 
+  !>   \retval rocsparse_status_success the operation completed successfully.
+  !>   \retval rocsparse_status_invalid_pointer \p descr pointer is invalid.
+  !>   \retval rocsparse_status_invalid_value \p base is invalid.
   interface rocsparse_set_mat_index_base
     function rocsparse_set_mat_index_base_(descr,base) bind(c, name="rocsparse_set_mat_index_base")
       use iso_c_binding
@@ -361,26 +349,25 @@ module hipfort_rocsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Specify the matrix type of a matrix descriptor
-  !>  
-  !>    \details
-  !>    \p rocsparse_set_mat_type sets the matrix type of a matrix descriptor. Valid
-  !>    matrix types are \ref rocsparse_matrix_type_general,
-  !>    \ref rocsparse_matrix_type_symmetric, \ref rocsparse_matrix_type_hermitian or
-  !>    \ref rocsparse_matrix_type_triangular.
-  !>  
-  !>    @param[inout]
-  !>    descr   the matrix descriptor.
-  !>    @param[in]
-  !>    type    \ref rocsparse_matrix_type_general, \ref rocsparse_matrix_type_symmetric,
-  !>            \ref rocsparse_matrix_type_hermitian or
-  !>            \ref rocsparse_matrix_type_triangular.
-  !>  
-  !>    \retval rocsparse_status_success the operation completed successfully.
-  !>    \retval rocsparse_status_invalid_pointer \p descr pointer is invalid.
-  !>    \retval rocsparse_status_invalid_value \p type is invalid.
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Specify the matrix type of a matrix descriptor
+  !> 
+  !>   \details
+  !>   \p rocsparse_set_mat_type sets the matrix type of a matrix descriptor. Valid
+  !>   matrix types are \ref rocsparse_matrix_type_general,
+  !>   \ref rocsparse_matrix_type_symmetric, \ref rocsparse_matrix_type_hermitian or
+  !>   \ref rocsparse_matrix_type_triangular.
+  !> 
+  !>   @param[inout]
+  !>   descr   the matrix descriptor.
+  !>   @param[in]
+  !>   type    \ref rocsparse_matrix_type_general, \ref rocsparse_matrix_type_symmetric,
+  !>           \ref rocsparse_matrix_type_hermitian or
+  !>           \ref rocsparse_matrix_type_triangular.
+  !> 
+  !>   \retval rocsparse_status_success the operation completed successfully.
+  !>   \retval rocsparse_status_invalid_pointer \p descr pointer is invalid.
+  !>   \retval rocsparse_status_invalid_value \p type is invalid.
   interface rocsparse_set_mat_type
     function rocsparse_set_mat_type_(descr,myType) bind(c, name="rocsparse_set_mat_type")
       use iso_c_binding
@@ -392,23 +379,22 @@ module hipfort_rocsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Specify the matrix fill mode of a matrix descriptor
-  !>  
-  !>    \details
-  !>    \p rocsparse_set_mat_fill_mode sets the matrix fill mode of a matrix descriptor.
-  !>    Valid fill modes are \ref rocsparse_fill_mode_lower or
-  !>    \ref rocsparse_fill_mode_upper.
-  !>  
-  !>    @param[inout]
-  !>    descr       the matrix descriptor.
-  !>    @param[in]
-  !>    fill_mode   \ref rocsparse_fill_mode_lower or \ref rocsparse_fill_mode_upper.
-  !>  
-  !>    \retval rocsparse_status_success the operation completed successfully.
-  !>    \retval rocsparse_status_invalid_pointer \p descr pointer is invalid.
-  !>    \retval rocsparse_status_invalid_value \p fill_mode is invalid.
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Specify the matrix fill mode of a matrix descriptor
+  !> 
+  !>   \details
+  !>   \p rocsparse_set_mat_fill_mode sets the matrix fill mode of a matrix descriptor.
+  !>   Valid fill modes are \ref rocsparse_fill_mode_lower or
+  !>   \ref rocsparse_fill_mode_upper.
+  !> 
+  !>   @param[inout]
+  !>   descr       the matrix descriptor.
+  !>   @param[in]
+  !>   fill_mode   \ref rocsparse_fill_mode_lower or \ref rocsparse_fill_mode_upper.
+  !> 
+  !>   \retval rocsparse_status_success the operation completed successfully.
+  !>   \retval rocsparse_status_invalid_pointer \p descr pointer is invalid.
+  !>   \retval rocsparse_status_invalid_value \p fill_mode is invalid.
   interface rocsparse_set_mat_fill_mode
     function rocsparse_set_mat_fill_mode_(descr,fill_mode) bind(c, name="rocsparse_set_mat_fill_mode")
       use iso_c_binding
@@ -420,23 +406,22 @@ module hipfort_rocsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Specify the matrix diagonal type of a matrix descriptor
-  !>  
-  !>    \details
-  !>    \p rocsparse_set_mat_diag_type sets the matrix diagonal type of a matrix
-  !>    descriptor. Valid diagonal types are \ref rocsparse_diag_type_unit or
-  !>    \ref rocsparse_diag_type_non_unit.
-  !>  
-  !>    @param[inout]
-  !>    descr       the matrix descriptor.
-  !>    @param[in]
-  !>    diag_type   \ref rocsparse_diag_type_unit or \ref rocsparse_diag_type_non_unit.
-  !>  
-  !>    \retval rocsparse_status_success the operation completed successfully.
-  !>    \retval rocsparse_status_invalid_pointer \p descr pointer is invalid.
-  !>    \retval rocsparse_status_invalid_value \p diag_type is invalid.
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Specify the matrix diagonal type of a matrix descriptor
+  !> 
+  !>   \details
+  !>   \p rocsparse_set_mat_diag_type sets the matrix diagonal type of a matrix
+  !>   descriptor. Valid diagonal types are \ref rocsparse_diag_type_unit or
+  !>   \ref rocsparse_diag_type_non_unit.
+  !> 
+  !>   @param[inout]
+  !>   descr       the matrix descriptor.
+  !>   @param[in]
+  !>   diag_type   \ref rocsparse_diag_type_unit or \ref rocsparse_diag_type_non_unit.
+  !> 
+  !>   \retval rocsparse_status_success the operation completed successfully.
+  !>   \retval rocsparse_status_invalid_pointer \p descr pointer is invalid.
+  !>   \retval rocsparse_status_invalid_value \p diag_type is invalid.
   interface rocsparse_set_mat_diag_type
     function rocsparse_set_mat_diag_type_(descr,diag_type) bind(c, name="rocsparse_set_mat_diag_type")
       use iso_c_binding
@@ -448,19 +433,18 @@ module hipfort_rocsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Create a \p HYB matrix structure
-  !>  
-  !>    \details
-  !>    \p rocsparse_create_hyb_mat creates a structure that holds the matrix in \p HYB
-  !>    storage format. It should be destroyed at the end using rocsparse_destroy_hyb_mat().
-  !>  
-  !>    @param[inout]
-  !>    hyb the pointer to the hybrid matrix.
-  !>  
-  !>    \retval rocsparse_status_success the operation completed successfully.
-  !>    \retval rocsparse_status_invalid_pointer \p hyb pointer is invalid.
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Create a \p HYB matrix structure
+  !> 
+  !>   \details
+  !>   \p rocsparse_create_hyb_mat creates a structure that holds the matrix in \p HYB
+  !>   storage format. It should be destroyed at the end using rocsparse_destroy_hyb_mat().
+  !> 
+  !>   @param[inout]
+  !>   hyb the pointer to the hybrid matrix.
+  !> 
+  !>   \retval rocsparse_status_success the operation completed successfully.
+  !>   \retval rocsparse_status_invalid_pointer \p hyb pointer is invalid.
   interface rocsparse_create_hyb_mat
     function rocsparse_create_hyb_mat_(hyb) bind(c, name="rocsparse_create_hyb_mat")
       use iso_c_binding
@@ -471,19 +455,18 @@ module hipfort_rocsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Destroy a \p HYB matrix structure
-  !>  
-  !>    \details
-  !>    \p rocsparse_destroy_hyb_mat destroys a \p HYB structure.
-  !>  
-  !>    @param[in]
-  !>    hyb the hybrid matrix structure.
-  !>  
-  !>    \retval rocsparse_status_success the operation completed successfully.
-  !>    \retval rocsparse_status_invalid_pointer \p hyb pointer is invalid.
-  !>    \retval rocsparse_status_internal_error an internal error occurred.
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Destroy a \p HYB matrix structure
+  !> 
+  !>   \details
+  !>   \p rocsparse_destroy_hyb_mat destroys a \p HYB structure.
+  !> 
+  !>   @param[in]
+  !>   hyb the hybrid matrix structure.
+  !> 
+  !>   \retval rocsparse_status_success the operation completed successfully.
+  !>   \retval rocsparse_status_invalid_pointer \p hyb pointer is invalid.
+  !>   \retval rocsparse_status_internal_error an internal error occurred.
   interface rocsparse_destroy_hyb_mat
     function rocsparse_destroy_hyb_mat_(hyb) bind(c, name="rocsparse_destroy_hyb_mat")
       use iso_c_binding
@@ -494,20 +477,19 @@ module hipfort_rocsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Create a matrix info structure
-  !>  
-  !>    \details
-  !>    \p rocsparse_create_mat_info creates a structure that holds the matrix info data
-  !>    that is gathered during the analysis routines available. It should be destroyed
-  !>    at the end using rocsparse_destroy_mat_info().
-  !>  
-  !>    @param[inout]
-  !>    info    the pointer to the info structure.
-  !>  
-  !>    \retval rocsparse_status_success the operation completed successfully.
-  !>    \retval rocsparse_status_invalid_pointer \p info pointer is invalid.
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Create a matrix info structure
+  !> 
+  !>   \details
+  !>   \p rocsparse_create_mat_info creates a structure that holds the matrix info data
+  !>   that is gathered during the analysis routines available. It should be destroyed
+  !>   at the end using rocsparse_destroy_mat_info().
+  !> 
+  !>   @param[inout]
+  !>   info    the pointer to the info structure.
+  !> 
+  !>   \retval rocsparse_status_success the operation completed successfully.
+  !>   \retval rocsparse_status_invalid_pointer \p info pointer is invalid.
   interface rocsparse_create_mat_info
     function rocsparse_create_mat_info_(myInfo) bind(c, name="rocsparse_create_mat_info")
       use iso_c_binding
@@ -518,19 +500,18 @@ module hipfort_rocsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Destroy a matrix info structure
-  !>  
-  !>    \details
-  !>    \p rocsparse_destroy_mat_info destroys a matrix info structure.
-  !>  
-  !>    @param[in]
-  !>    info    the info structure.
-  !>  
-  !>    \retval rocsparse_status_success the operation completed successfully.
-  !>    \retval rocsparse_status_invalid_pointer \p info pointer is invalid.
-  !>    \retval rocsparse_status_internal_error an internal error occurred.
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Destroy a matrix info structure
+  !> 
+  !>   \details
+  !>   \p rocsparse_destroy_mat_info destroys a matrix info structure.
+  !> 
+  !>   @param[in]
+  !>   info    the info structure.
+  !> 
+  !>   \retval rocsparse_status_success the operation completed successfully.
+  !>   \retval rocsparse_status_invalid_pointer \p info pointer is invalid.
+  !>   \retval rocsparse_status_internal_error an internal error occurred.
   interface rocsparse_destroy_mat_info
     function rocsparse_destroy_mat_info_(myInfo) bind(c, name="rocsparse_destroy_mat_info")
       use iso_c_binding
@@ -541,20 +522,19 @@ module hipfort_rocsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Create a color info structure
-  !>  
-  !>    \details
-  !>    \p rocsparse_create_color_info creates a structure that holds the color info data
-  !>    that is gathered during the analysis routines available. It should be destroyed
-  !>    at the end using rocsparse_destroy_color_info().
-  !>  
-  !>    @param[inout]
-  !>    info    the pointer to the info structure.
-  !>  
-  !>    \retval rocsparse_status_success the operation completed successfully.
-  !>    \retval rocsparse_status_invalid_pointer \p info pointer is invalid.
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Create a color info structure
+  !> 
+  !>   \details
+  !>   \p rocsparse_create_color_info creates a structure that holds the color info data
+  !>   that is gathered during the analysis routines available. It should be destroyed
+  !>   at the end using rocsparse_destroy_color_info().
+  !> 
+  !>   @param[inout]
+  !>   info    the pointer to the info structure.
+  !> 
+  !>   \retval rocsparse_status_success the operation completed successfully.
+  !>   \retval rocsparse_status_invalid_pointer \p info pointer is invalid.
   interface rocsparse_create_color_info
     function rocsparse_create_color_info_(myInfo) bind(c, name="rocsparse_create_color_info")
       use iso_c_binding
@@ -565,19 +545,18 @@ module hipfort_rocsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Destroy a color info structure
-  !>  
-  !>    \details
-  !>    \p rocsparse_destroy_color_info destroys a color info structure.
-  !>  
-  !>    @param[in]
-  !>    info    the info structure.
-  !>  
-  !>    \retval rocsparse_status_success the operation completed successfully.
-  !>    \retval rocsparse_status_invalid_pointer \p info pointer is invalid.
-  !>    \retval rocsparse_status_internal_error an internal error occurred.
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Destroy a color info structure
+  !> 
+  !>   \details
+  !>   \p rocsparse_destroy_color_info destroys a color info structure.
+  !> 
+  !>   @param[in]
+  !>   info    the info structure.
+  !> 
+  !>   \retval rocsparse_status_success the operation completed successfully.
+  !>   \retval rocsparse_status_invalid_pointer \p info pointer is invalid.
+  !>   \retval rocsparse_status_internal_error an internal error occurred.
   interface rocsparse_destroy_color_info
     function rocsparse_destroy_color_info_(myInfo) bind(c, name="rocsparse_destroy_color_info")
       use iso_c_binding
@@ -1984,7 +1963,7 @@ module hipfort_rocsparse
       rocsparse_zbsrxmv_rank_1
 #endif
   end interface
-  !> ! \ingroup level2_module
+  !>  \ingroup level2_module
   !>   \brief Sparse triangular solve using BSR storage format
   !> 
   !>   \details
@@ -2013,7 +1992,6 @@ module hipfort_rocsparse
   !>               invalid.
   !>   \retval     rocsparse_status_internal_error an internal error occurred.
   !>   \retval     rocsparse_status_zero_pivot zero pivot has been found.
-  !> 
   interface rocsparse_bsrsv_zero_pivot
     function rocsparse_bsrsv_zero_pivot_(handle,myInfo,position) bind(c, name="rocsparse_bsrsv_zero_pivot")
       use iso_c_binding
@@ -2250,7 +2228,7 @@ module hipfort_rocsparse
       rocsparse_zbsrsv_analysis_rank_1
 #endif
   end interface
-  !> ! \ingroup level2_module
+  !>  \ingroup level2_module
   !>   \brief Sparse triangular solve using BSR storage format
   !> 
   !>   \details
@@ -2273,7 +2251,6 @@ module hipfort_rocsparse
   !>   \retval     rocsparse_status_memory_error the buffer holding the meta data could not
   !>               be deallocated.
   !>   \retval     rocsparse_status_internal_error an internal error occurred.
-  !> 
   interface rocsparse_bsrsv_clear
     function rocsparse_bsrsv_clear_(handle,myInfo) bind(c, name="rocsparse_bsrsv_clear")
       use iso_c_binding
@@ -2621,7 +2598,7 @@ module hipfort_rocsparse
       rocsparse_zcsrmv_analysis_rank_1
 #endif
   end interface
-  !> ! \ingroup level2_module
+  !>  \ingroup level2_module
   !>   \brief Sparse matrix vector multiplication using CSR storage format
   !> 
   !>   \details
@@ -2647,7 +2624,6 @@ module hipfort_rocsparse
   !>   \retval     rocsparse_status_memory_error the buffer for the gathered information
   !>               could not be deallocated.
   !>   \retval     rocsparse_status_internal_error an internal error occurred.
-  !>  
   interface rocsparse_csrmv_clear
     function rocsparse_csrmv_clear_(handle,myInfo) bind(c, name="rocsparse_csrmv_clear")
       use iso_c_binding
@@ -2775,7 +2751,7 @@ module hipfort_rocsparse
       rocsparse_zcsrmv_rank_1
 #endif
   end interface
-  !> ! \ingroup level2_module
+  !>  \ingroup level2_module
   !>   \brief Sparse triangular solve using CSR storage format
   !> 
   !>   \details
@@ -2806,7 +2782,6 @@ module hipfort_rocsparse
   !>               invalid.
   !>   \retval     rocsparse_status_internal_error an internal error occurred.
   !>   \retval     rocsparse_status_zero_pivot zero pivot has been found.
-  !> 
   interface rocsparse_csrsv_zero_pivot
     function rocsparse_csrsv_zero_pivot_(handle,descr,myInfo,position) bind(c, name="rocsparse_csrsv_zero_pivot")
       use iso_c_binding
@@ -3028,7 +3003,7 @@ module hipfort_rocsparse
       rocsparse_zcsrsv_analysis_rank_1
 #endif
   end interface
-  !> ! \ingroup level2_module
+  !>  \ingroup level2_module
   !>   \brief Sparse triangular solve using CSR storage format
   !> 
   !>   \details
@@ -3053,7 +3028,6 @@ module hipfort_rocsparse
   !>   \retval     rocsparse_status_memory_error the buffer holding the meta data could not
   !>               be deallocated.
   !>   \retval     rocsparse_status_internal_error an internal error occurred.
-  !> 
   interface rocsparse_csrsv_clear
     function rocsparse_csrsv_clear_(handle,descr,myInfo) bind(c, name="rocsparse_csrsv_clear")
       use iso_c_binding
@@ -4106,7 +4080,7 @@ module hipfort_rocsparse
       rocsparse_zcsrmm_rank_1
 #endif
   end interface
-  !> ! \ingroup level3_module
+  !>  \ingroup level3_module
   !>   \brief Sparse triangular system solve using CSR storage format
   !> 
   !>   \details
@@ -4135,7 +4109,6 @@ module hipfort_rocsparse
   !>               invalid.
   !>   \retval     rocsparse_status_internal_error an internal error occurred.
   !>   \retval     rocsparse_status_zero_pivot zero pivot has been found.
-  !> 
   interface rocsparse_csrsm_zero_pivot
     function rocsparse_csrsm_zero_pivot_(handle,myInfo,position) bind(c, name="rocsparse_csrsm_zero_pivot")
       use iso_c_binding
@@ -4408,7 +4381,7 @@ module hipfort_rocsparse
       rocsparse_zcsrsm_analysis_rank_1
 #endif
   end interface
-  !> ! \ingroup level3_module
+  !>  \ingroup level3_module
   !>   \brief Sparse triangular system solve using CSR storage format
   !> 
   !>   \details
@@ -4431,7 +4404,6 @@ module hipfort_rocsparse
   !>   \retval     rocsparse_status_memory_error the buffer holding the meta data could not
   !>               be deallocated.
   !>   \retval     rocsparse_status_internal_error an internal error occurred.
-  !> 
   interface rocsparse_csrsm_clear
     function rocsparse_csrsm_clear_(handle,myInfo) bind(c, name="rocsparse_csrsm_clear")
       use iso_c_binding
@@ -4571,7 +4543,7 @@ module hipfort_rocsparse
       rocsparse_zcsrsm_solve_rank_1
 #endif
   end interface
-  !> ! \ingroup level3_module
+  !>  \ingroup level3_module
   !>   \brief Sparse triangular system solve using BSR storage format
   !> 
   !>   \details
@@ -4600,7 +4572,6 @@ module hipfort_rocsparse
   !>               invalid.
   !>   \retval     rocsparse_status_internal_error an internal error occurred.
   !>   \retval     rocsparse_status_zero_pivot zero pivot has been found.
-  !> 
   interface rocsparse_bsrsm_zero_pivot
     function rocsparse_bsrsm_zero_pivot_(handle,myInfo,position) bind(c, name="rocsparse_bsrsm_zero_pivot")
       use iso_c_binding
@@ -4853,7 +4824,7 @@ module hipfort_rocsparse
       rocsparse_zbsrsm_analysis_rank_1
 #endif
   end interface
-  !> ! \ingroup level3_module
+  !>  \ingroup level3_module
   !>   \brief Sparse triangular system solve using BSR storage format
   !> 
   !>   \details
@@ -4876,7 +4847,6 @@ module hipfort_rocsparse
   !>   \retval     rocsparse_status_memory_error the buffer holding the meta data could not
   !>               be deallocated.
   !>   \retval     rocsparse_status_internal_error an internal error occurred.
-  !> 
   interface rocsparse_bsrsm_clear
     function rocsparse_bsrsm_clear_(handle,myInfo) bind(c, name="rocsparse_bsrsm_clear")
       use iso_c_binding
@@ -5164,7 +5134,7 @@ module hipfort_rocsparse
       rocsparse_zgemmi_rank_1
 #endif
   end interface
-  !> ! \ingroup extra_module
+  !>  \ingroup extra_module
   !>   \brief Sparse matrix sparse matrix addition using CSR storage format
   !> 
   !>   \details
@@ -5225,7 +5195,6 @@ module hipfort_rocsparse
   !>           \p descr_C, \p csr_row_ptr_C or \p nnz_C is invalid.
   !>   \retval rocsparse_status_not_implemented
   !>           \p rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
-  !> 
   interface rocsparse_csrgeam_nnz
     function rocsparse_csrgeam_nnz_(handle,m,n,descr_A,nnz_A,csr_row_ptr_A,csr_col_ind_A,descr_B,nnz_B,csr_row_ptr_B,csr_col_ind_B,descr_C,csr_row_ptr_C,nnz_C) bind(c, name="rocsparse_csrgeam_nnz")
       use iso_c_binding
@@ -5538,7 +5507,7 @@ module hipfort_rocsparse
       rocsparse_zcsrgemm_buffer_size_rank_1
 #endif
   end interface
-  !> ! \ingroup extra_module
+  !>  \ingroup extra_module
   !>   \brief Sparse matrix sparse matrix multiplication using CSR storage format
   !> 
   !>   \details
@@ -5642,7 +5611,6 @@ module hipfort_rocsparse
   !>           \p trans_A != \ref rocsparse_operation_none,
   !>           \p trans_B != \ref rocsparse_operation_none, or
   !>           \p rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
-  !> 
   interface rocsparse_csrgemm_nnz
     function rocsparse_csrgemm_nnz_(handle,trans_A,trans_B,m,n,k,descr_A,nnz_A,csr_row_ptr_A,csr_col_ind_A,descr_B,nnz_B,csr_row_ptr_B,csr_col_ind_B,descr_D,nnz_D,csr_row_ptr_D,csr_col_ind_D,descr_C,csr_row_ptr_C,nnz_C,info_C,temp_buffer) bind(c, name="rocsparse_csrgemm_nnz")
       use iso_c_binding
@@ -5856,42 +5824,41 @@ module hipfort_rocsparse
       rocsparse_zcsrgemm_rank_1
 #endif
   end interface
-  !> ! \ingroup precond_module
-  !>    \brief Incomplete Cholesky factorization with 0 fill-ins and no pivoting using BSR
-  !>    storage format
-  !>  
-  !>    \details
-  !>    \p rocsparse_bsric0_zero_pivot returns \ref rocsparse_status_zero_pivot, if either a
-  !>    structural or numerical zero has been found during rocsparse_sbsric0(),
-  !>    rocsparse_dbsric0(), rocsparse_cbsric0() or rocsparse_zbsric0() computation.
-  !>    The first zero pivot \f$j\f$ at \f$A_{j,j}\f$ is stored in \p position, using same
-  !>    index base as the BSR matrix.
-  !>  
-  !>    \p position can be in host or device memory. If no zero pivot has been found,
-  !>    \p position is set to -1 and \ref rocsparse_status_success is returned instead.
-  !>  
-  !>    \note
-  !>    If a zero pivot is found, \p position=j means that either the diagonal block \p A(j,j)
-  !>    is missing (structural zero) or the diagonal block \p A(j,j) is not positive definite
-  !>    (numerical zero).
-  !>  
-  !>    \note \p rocsparse_bsric0_zero_pivot is a blocking function. It might influence
-  !>    performance negatively.
-  !>  
-  !>    @param[in]
-  !>    handle      handle to the rocsparse library context queue.
-  !>    @param[in]
-  !>    info        structure that holds the information collected during the analysis step.
-  !>    @param[inout]
-  !>    position    pointer to zero pivot \f$j\f$, can be in host or device memory.
-  !>  
-  !>    \retval     rocsparse_status_success the operation completed successfully.
-  !>    \retval     rocsparse_status_invalid_handle the library context was not initialized.
-  !>    \retval     rocsparse_status_invalid_pointer \p info or \p position pointer is
-  !>                invalid.
-  !>    \retval     rocsparse_status_internal_error an internal error occurred.
-  !>    \retval     rocsparse_status_zero_pivot zero pivot has been found.
-  !>  
+  !>  \ingroup precond_module
+  !>   \brief Incomplete Cholesky factorization with 0 fill-ins and no pivoting using BSR
+  !>   storage format
+  !> 
+  !>   \details
+  !>   \p rocsparse_bsric0_zero_pivot returns \ref rocsparse_status_zero_pivot, if either a
+  !>   structural or numerical zero has been found during rocsparse_sbsric0(),
+  !>   rocsparse_dbsric0(), rocsparse_cbsric0() or rocsparse_zbsric0() computation.
+  !>   The first zero pivot \f$j\f$ at \f$A_{j,j}\f$ is stored in \p position, using same
+  !>   index base as the BSR matrix.
+  !> 
+  !>   \p position can be in host or device memory. If no zero pivot has been found,
+  !>   \p position is set to -1 and \ref rocsparse_status_success is returned instead.
+  !> 
+  !>   \note
+  !>   If a zero pivot is found, \p position=j means that either the diagonal block \p A(j,j)
+  !>   is missing (structural zero) or the diagonal block \p A(j,j) is not positive definite
+  !>   (numerical zero).
+  !> 
+  !>   \note \p rocsparse_bsric0_zero_pivot is a blocking function. It might influence
+  !>   performance negatively.
+  !> 
+  !>   @param[in]
+  !>   handle      handle to the rocsparse library context queue.
+  !>   @param[in]
+  !>   info        structure that holds the information collected during the analysis step.
+  !>   @param[inout]
+  !>   position    pointer to zero pivot \f$j\f$, can be in host or device memory.
+  !> 
+  !>   \retval     rocsparse_status_success the operation completed successfully.
+  !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
+  !>   \retval     rocsparse_status_invalid_pointer \p info or \p position pointer is
+  !>               invalid.
+  !>   \retval     rocsparse_status_internal_error an internal error occurred.
+  !>   \retval     rocsparse_status_zero_pivot zero pivot has been found.
   interface rocsparse_bsric0_zero_pivot
     function rocsparse_bsric0_zero_pivot_(handle,myInfo,position) bind(c, name="rocsparse_bsric0_zero_pivot")
       use iso_c_binding
@@ -6120,33 +6087,32 @@ module hipfort_rocsparse
       rocsparse_zbsric0_analysis_rank_1
 #endif
   end interface
-  !> ! \ingroup precond_module
-  !>    \brief Incomplete Cholesky factorization with 0 fill-ins and no pivoting using BSR
-  !>    storage format
-  !>  
-  !>    \details
-  !>    \p rocsparse_bsric0_clear deallocates all memory that was allocated by
-  !>    rocsparse_sbsric0_analysis(), rocsparse_dbsric0_analysis(), rocsparse_cbsric0_analysis()
-  !>    or rocsparse_zbsric0_analysis(). This is especially useful, if memory is an issue and
-  !>    the analysis data is not required for further computation.
-  !>  
-  !>    \note
-  !>    Calling \p rocsparse_bsric0_clear is optional. All allocated resources will be
-  !>    cleared, when the opaque \ref rocsparse_mat_info struct is destroyed using
-  !>    rocsparse_destroy_mat_info().
-  !>  
-  !>    @param[in]
-  !>    handle      handle to the rocsparse library context queue.
-  !>    @param[inout]
-  !>    info        structure that holds the information collected during the analysis step.
-  !>  
-  !>    \retval     rocsparse_status_success the operation completed successfully.
-  !>    \retval     rocsparse_status_invalid_handle the library context was not initialized.
-  !>    \retval     rocsparse_status_invalid_pointer \p info pointer is invalid.
-  !>    \retval     rocsparse_status_memory_error the buffer holding the meta data could not
-  !>                be deallocated.
-  !>    \retval     rocsparse_status_internal_error an internal error occurred.
-  !>  
+  !>  \ingroup precond_module
+  !>   \brief Incomplete Cholesky factorization with 0 fill-ins and no pivoting using BSR
+  !>   storage format
+  !> 
+  !>   \details
+  !>   \p rocsparse_bsric0_clear deallocates all memory that was allocated by
+  !>   rocsparse_sbsric0_analysis(), rocsparse_dbsric0_analysis(), rocsparse_cbsric0_analysis()
+  !>   or rocsparse_zbsric0_analysis(). This is especially useful, if memory is an issue and
+  !>   the analysis data is not required for further computation.
+  !> 
+  !>   \note
+  !>   Calling \p rocsparse_bsric0_clear is optional. All allocated resources will be
+  !>   cleared, when the opaque \ref rocsparse_mat_info struct is destroyed using
+  !>   rocsparse_destroy_mat_info().
+  !> 
+  !>   @param[in]
+  !>   handle      handle to the rocsparse library context queue.
+  !>   @param[inout]
+  !>   info        structure that holds the information collected during the analysis step.
+  !> 
+  !>   \retval     rocsparse_status_success the operation completed successfully.
+  !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
+  !>   \retval     rocsparse_status_invalid_pointer \p info pointer is invalid.
+  !>   \retval     rocsparse_status_memory_error the buffer holding the meta data could not
+  !>               be deallocated.
+  !>   \retval     rocsparse_status_internal_error an internal error occurred.
   interface rocsparse_bsric0_clear
     function rocsparse_bsric0_clear_(handle,myInfo) bind(c, name="rocsparse_bsric0_clear")
       use iso_c_binding
@@ -6266,42 +6232,41 @@ module hipfort_rocsparse
       rocsparse_zbsric0_rank_1
 #endif
   end interface
-  !> ! \ingroup precond_module
-  !>    \brief Incomplete LU factorization with 0 fill-ins and no pivoting using BSR storage
-  !>    format
-  !>  
-  !>    \details
-  !>    \p rocsparse_bsrilu0_zero_pivot returns \ref rocsparse_status_zero_pivot, if either a
-  !>    structural or numerical zero has been found during rocsparse_sbsrilu0(),
-  !>    rocsparse_dbsrilu0(), rocsparse_cbsrilu0() or rocsparse_zbsrilu0() computation.
-  !>    The first zero pivot \f$j\f$ at \f$A_{j,j}\f$ is stored in \p position, using same
-  !>    index base as the BSR matrix.
-  !>  
-  !>    \p position can be in host or device memory. If no zero pivot has been found,
-  !>    \p position is set to -1 and \ref rocsparse_status_success is returned instead.
-  !>  
-  !>    \note
-  !>    If a zero pivot is found, \p position \f$=j\f$ means that either the diagonal block
-  !>    \f$A_{j,j}\f$ is missing (structural zero) or the diagonal block \f$A_{j,j}\f$ is not
-  !>    invertible (numerical zero).
-  !>  
-  !>    \note \p rocsparse_bsrilu0_zero_pivot is a blocking function. It might influence
-  !>    performance negatively.
-  !>  
-  !>    @param[in]
-  !>    handle      handle to the rocsparse library context queue.
-  !>    @param[in]
-  !>    info        structure that holds the information collected during the analysis step.
-  !>    @param[inout]
-  !>    position    pointer to zero pivot \f$j\f$, can be in host or device memory.
-  !>  
-  !>    \retval     rocsparse_status_success the operation completed successfully.
-  !>    \retval     rocsparse_status_invalid_handle the library context was not initialized.
-  !>    \retval     rocsparse_status_invalid_pointer \p info or \p position pointer is
-  !>                invalid.
-  !>    \retval     rocsparse_status_internal_error an internal error occurred.
-  !>    \retval     rocsparse_status_zero_pivot zero pivot has been found.
-  !>  
+  !>  \ingroup precond_module
+  !>   \brief Incomplete LU factorization with 0 fill-ins and no pivoting using BSR storage
+  !>   format
+  !> 
+  !>   \details
+  !>   \p rocsparse_bsrilu0_zero_pivot returns \ref rocsparse_status_zero_pivot, if either a
+  !>   structural or numerical zero has been found during rocsparse_sbsrilu0(),
+  !>   rocsparse_dbsrilu0(), rocsparse_cbsrilu0() or rocsparse_zbsrilu0() computation.
+  !>   The first zero pivot \f$j\f$ at \f$A_{j,j}\f$ is stored in \p position, using same
+  !>   index base as the BSR matrix.
+  !> 
+  !>   \p position can be in host or device memory. If no zero pivot has been found,
+  !>   \p position is set to -1 and \ref rocsparse_status_success is returned instead.
+  !> 
+  !>   \note
+  !>   If a zero pivot is found, \p position \f$=j\f$ means that either the diagonal block
+  !>   \f$A_{j,j}\f$ is missing (structural zero) or the diagonal block \f$A_{j,j}\f$ is not
+  !>   invertible (numerical zero).
+  !> 
+  !>   \note \p rocsparse_bsrilu0_zero_pivot is a blocking function. It might influence
+  !>   performance negatively.
+  !> 
+  !>   @param[in]
+  !>   handle      handle to the rocsparse library context queue.
+  !>   @param[in]
+  !>   info        structure that holds the information collected during the analysis step.
+  !>   @param[inout]
+  !>   position    pointer to zero pivot \f$j\f$, can be in host or device memory.
+  !> 
+  !>   \retval     rocsparse_status_success the operation completed successfully.
+  !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
+  !>   \retval     rocsparse_status_invalid_pointer \p info or \p position pointer is
+  !>               invalid.
+  !>   \retval     rocsparse_status_internal_error an internal error occurred.
+  !>   \retval     rocsparse_status_zero_pivot zero pivot has been found.
   interface rocsparse_bsrilu0_zero_pivot
     function rocsparse_bsrilu0_zero_pivot_(handle,myInfo,position) bind(c, name="rocsparse_bsrilu0_zero_pivot")
       use iso_c_binding
@@ -6620,33 +6585,32 @@ module hipfort_rocsparse
       rocsparse_zbsrilu0_analysis_rank_1
 #endif
   end interface
-  !> ! \ingroup precond_module
-  !>    \brief Incomplete LU factorization with 0 fill-ins and no pivoting using BSR storage
-  !>    format
-  !>  
-  !>    \details
-  !>    \p rocsparse_bsrilu0_clear deallocates all memory that was allocated by
-  !>    rocsparse_sbsrilu0_analysis(), rocsparse_dbsrilu0_analysis(), rocsparse_cbsrilu0_analysis()
-  !>    or rocsparse_zbsrilu0_analysis(). This is especially useful, if memory is an issue and
-  !>    the analysis data is not required for further computation.
-  !>  
-  !>    \note
-  !>    Calling \p rocsparse_bsrilu0_clear is optional. All allocated resources will be
-  !>    cleared, when the opaque \ref rocsparse_mat_info struct is destroyed using
-  !>    rocsparse_destroy_mat_info().
-  !>  
-  !>    @param[in]
-  !>    handle      handle to the rocsparse library context queue.
-  !>    @param[inout]
-  !>    info        structure that holds the information collected during the analysis step.
-  !>  
-  !>    \retval     rocsparse_status_success the operation completed successfully.
-  !>    \retval     rocsparse_status_invalid_handle the library context was not initialized.
-  !>    \retval     rocsparse_status_invalid_pointer \p info pointer is invalid.
-  !>    \retval     rocsparse_status_memory_error the buffer holding the meta data could not
-  !>                be deallocated.
-  !>    \retval     rocsparse_status_internal_error an internal error occurred.
-  !>  
+  !>  \ingroup precond_module
+  !>   \brief Incomplete LU factorization with 0 fill-ins and no pivoting using BSR storage
+  !>   format
+  !> 
+  !>   \details
+  !>   \p rocsparse_bsrilu0_clear deallocates all memory that was allocated by
+  !>   rocsparse_sbsrilu0_analysis(), rocsparse_dbsrilu0_analysis(), rocsparse_cbsrilu0_analysis()
+  !>   or rocsparse_zbsrilu0_analysis(). This is especially useful, if memory is an issue and
+  !>   the analysis data is not required for further computation.
+  !> 
+  !>   \note
+  !>   Calling \p rocsparse_bsrilu0_clear is optional. All allocated resources will be
+  !>   cleared, when the opaque \ref rocsparse_mat_info struct is destroyed using
+  !>   rocsparse_destroy_mat_info().
+  !> 
+  !>   @param[in]
+  !>   handle      handle to the rocsparse library context queue.
+  !>   @param[inout]
+  !>   info        structure that holds the information collected during the analysis step.
+  !> 
+  !>   \retval     rocsparse_status_success the operation completed successfully.
+  !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
+  !>   \retval     rocsparse_status_invalid_pointer \p info pointer is invalid.
+  !>   \retval     rocsparse_status_memory_error the buffer holding the meta data could not
+  !>               be deallocated.
+  !>   \retval     rocsparse_status_internal_error an internal error occurred.
   interface rocsparse_bsrilu0_clear
     function rocsparse_bsrilu0_clear_(handle,myInfo) bind(c, name="rocsparse_bsrilu0_clear")
       use iso_c_binding
@@ -6766,7 +6730,7 @@ module hipfort_rocsparse
       rocsparse_zbsrilu0_rank_1
 #endif
   end interface
-  !> ! \ingroup precond_module
+  !>  \ingroup precond_module
   !>   \brief Incomplete Cholesky factorization with 0 fill-ins and no pivoting using CSR
   !>   storage format
   !> 
@@ -6795,7 +6759,6 @@ module hipfort_rocsparse
   !>               invalid.
   !>   \retval     rocsparse_status_internal_error an internal error occurred.
   !>   \retval     rocsparse_status_zero_pivot zero pivot has been found.
-  !> 
   interface rocsparse_csric0_zero_pivot
     function rocsparse_csric0_zero_pivot_(handle,myInfo,position) bind(c, name="rocsparse_csric0_zero_pivot")
       use iso_c_binding
@@ -7008,7 +6971,7 @@ module hipfort_rocsparse
       rocsparse_zcsric0_analysis_rank_1
 #endif
   end interface
-  !> ! \ingroup precond_module
+  !>  \ingroup precond_module
   !>   \brief Incomplete Cholesky factorization with 0 fill-ins and no pivoting using CSR
   !>   storage format
   !> 
@@ -7034,7 +6997,6 @@ module hipfort_rocsparse
   !>   \retval     rocsparse_status_memory_error the buffer holding the meta data could not
   !>               be deallocated.
   !>   \retval     rocsparse_status_internal_error an internal error occurred.
-  !> 
   interface rocsparse_csric0_clear
     function rocsparse_csric0_clear_(handle,myInfo) bind(c, name="rocsparse_csric0_clear")
       use iso_c_binding
@@ -7146,7 +7108,7 @@ module hipfort_rocsparse
       rocsparse_zcsric0_rank_1
 #endif
   end interface
-  !> ! \ingroup precond_module
+  !>  \ingroup precond_module
   !>   \brief Incomplete LU factorization with 0 fill-ins and no pivoting using CSR
   !>   storage format
   !> 
@@ -7176,7 +7138,6 @@ module hipfort_rocsparse
   !>               invalid.
   !>   \retval     rocsparse_status_internal_error an internal error occurred.
   !>   \retval     rocsparse_status_zero_pivot zero pivot has been found.
-  !> 
   interface rocsparse_csrilu0_zero_pivot
     function rocsparse_csrilu0_zero_pivot_(handle,myInfo,position) bind(c, name="rocsparse_csrilu0_zero_pivot")
       use iso_c_binding
@@ -7479,7 +7440,7 @@ module hipfort_rocsparse
       rocsparse_zcsrilu0_analysis_rank_1
 #endif
   end interface
-  !> ! \ingroup precond_module
+  !>  \ingroup precond_module
   !>   \brief Incomplete LU factorization with 0 fill-ins and no pivoting using CSR
   !>   storage format
   !> 
@@ -7506,7 +7467,6 @@ module hipfort_rocsparse
   !>   \retval     rocsparse_status_memory_error the buffer holding the meta data could not
   !>               be deallocated.
   !>   \retval     rocsparse_status_internal_error an internal error occurred.
-  !> 
   interface rocsparse_csrilu0_clear
     function rocsparse_csrilu0_clear_(handle,myInfo) bind(c, name="rocsparse_csrilu0_clear")
       use iso_c_binding
@@ -9344,7 +9304,7 @@ module hipfort_rocsparse
       rocsparse_znnz_compress_rank_1
 #endif
   end interface
-  !> ! \ingroup conv_module
+  !>  \ingroup conv_module
   !>   \brief Convert a sparse CSR matrix into a sparse COO matrix
   !> 
   !>   \details
@@ -9384,28 +9344,28 @@ module hipfort_rocsparse
   !>   \par Example
   !>   This example converts a CSR matrix into a COO matrix.
   !>   \code{.c}
-  !>            1 2 0 3 0
-  !>        A = 0 4 5 0 0
-  !>            6 0 0 7 8
+  !> /     1 2 0 3 0
+  !> / A = 0 4 5 0 0
+  !> /     6 0 0 7 8
   !> 
   !>       rocsparse_int m   = 3;
   !>       rocsparse_int n   = 5;
   !>       rocsparse_int nnz = 8;
   !> 
-  !>       csr_row_ptr[m+1] = {0, 3, 5, 8};              device memory
-  !>       csr_col_ind[nnz] = {0, 1, 3, 1, 2, 0, 3, 4};  device memory
-  !>       csr_val[nnz]     = {1, 2, 3, 4, 5, 6, 7, 8};  device memory
+  !>       csr_row_ptr[m+1] = {0, 3, 5, 8};/ device memory
+  !>       csr_col_ind[nnz] = {0, 1, 3, 1, 2, 0, 3, 4};/ device memory
+  !>       csr_val[nnz]     = {1, 2, 3, 4, 5, 6, 7, 8};/ device memory
   !> 
-  !>        Allocate COO matrix arrays
-  !>       rocsparse_int coo_row_ind;
-  !>       rocsparse_int coo_col_ind;
-  !>       float coo_val;
+  !> / Allocate COO matrix arrays
+  !>       rocsparse_int* coo_row_ind;
+  !>       rocsparse_int* coo_col_ind;
+  !>       float* coo_val;
   !> 
-  !>       hipMalloc((void)&coo_row_ind, sizeof(rocsparse_int)  nnz);
-  !>       hipMalloc((void)&coo_col_ind, sizeof(rocsparse_int)  nnz);
-  !>       hipMalloc((void)&coo_val, sizeof(float)  nnz);
+  !>       hipMalloc((void**)&coo_row_ind, sizeof(rocsparse_int) * nnz);
+  !>       hipMalloc((void**)&coo_col_ind, sizeof(rocsparse_int) * nnz);
+  !>       hipMalloc((void**)&coo_val, sizeof(float) * nnz);
   !> 
-  !>        Convert the csr row offsets into coo row indices
+  !> / Convert the csr row offsets into coo row indices
   !>       rocsparse_csr2coo(handle,
   !>                         csr_row_ptr,
   !>                         nnz,
@@ -9413,18 +9373,17 @@ module hipfort_rocsparse
   !>                         coo_row_ind,
   !>                         rocsparse_index_base_zero);
   !> 
-  !>        Copy the column and value arrays
+  !> / Copy the column and value arrays
   !>       hipMemcpy(coo_col_ind,
   !>                 csr_col_ind,
-  !>                 sizeof(rocsparse_int)  nnz,
+  !>                 sizeof(rocsparse_int) * nnz,
   !>                 hipMemcpyDeviceToDevice);
   !> 
   !>       hipMemcpy(coo_val,
   !>                 csr_val,
-  !>                 sizeof(float)  nnz,
+  !>                 sizeof(float) * nnz,
   !>                 hipMemcpyDeviceToDevice);
   !>   \endcode
-  !> 
   interface rocsparse_csr2coo
     function rocsparse_csr2coo_(handle,csr_row_ptr,nnz,m,coo_row_ind,idx_base) bind(c, name="rocsparse_csr2coo")
       use iso_c_binding
@@ -9445,7 +9404,7 @@ module hipfort_rocsparse
       rocsparse_csr2coo_rank_1
 #endif
   end interface
-  !> ! \ingroup conv_module
+  !>  \ingroup conv_module
   !>   \brief Convert a sparse CSR matrix into a sparse CSC matrix
   !> 
   !>   \details
@@ -9480,7 +9439,6 @@ module hipfort_rocsparse
   !>   \retval     rocsparse_status_invalid_pointer \p csr_row_ptr, \p csr_col_ind or
   !>               \p buffer_size pointer is invalid.
   !>   \retval     rocsparse_status_internal_error an internal error occurred.
-  !> 
   interface rocsparse_csr2csc_buffer_size
     function rocsparse_csr2csc_buffer_size_(handle,m,n,nnz,csr_row_ptr,csr_col_ind,copy_values,buffer_size) bind(c, name="rocsparse_csr2csc_buffer_size")
       use iso_c_binding
@@ -9835,7 +9793,7 @@ module hipfort_rocsparse
       rocsparse_zgebsr2gebsc_rank_1
 #endif
   end interface
-  !> ! \ingroup conv_module
+  !>  \ingroup conv_module
   !>   \brief Convert a sparse CSR matrix into a sparse ELL matrix
   !> 
   !>   \details
@@ -9871,7 +9829,6 @@ module hipfort_rocsparse
   !>   \retval     rocsparse_status_internal_error an internal error occurred.
   !>   \retval     rocsparse_status_not_implemented
   !>               \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
-  !> 
   interface rocsparse_csr2ell_width
     function rocsparse_csr2ell_width_(handle,m,csr_descr,csr_row_ptr,ell_descr,ell_width) bind(c, name="rocsparse_csr2ell_width")
       use iso_c_binding
@@ -10092,7 +10049,7 @@ module hipfort_rocsparse
       rocsparse_zcsr2hyb_rank_1
 #endif
   end interface
-  !> ! \ingroup conv_module
+  !>  \ingroup conv_module
   !>   \brief
   !>   This function computes the number of nonzero block columns per row and the total number of nonzero blocks in a sparse
   !>   BSR matrix given a sparse CSR matrix as input.
@@ -10139,7 +10096,6 @@ module hipfort_rocsparse
   !>   \retval     rocsparse_status_invalid_size \p m or \p n or \p block_dim is invalid.
   !>   \retval     rocsparse_status_invalid_pointer \p csr_row_ptr or \p csr_col_ind or \p bsr_row_ptr or \p bsr_nnz
   !>               pointer is invalid.
-  !> 
   interface rocsparse_csr2bsr_nnz
     function rocsparse_csr2bsr_nnz_(handle,dir,m,n,csr_descr,csr_row_ptr,csr_col_ind,block_dim,bsr_descr,bsr_row_ptr,bsr_nnz) bind(c, name="rocsparse_csr2bsr_nnz")
       use iso_c_binding
@@ -10991,87 +10947,86 @@ module hipfort_rocsparse
       rocsparse_dprune_csr2csr_by_percentage_rank_1
 #endif
   end interface
-  !> ! \ingroup conv_module
-  !>    \brief Convert a sparse COO matrix into a sparse CSR matrix
-  !>  
-  !>    \details
-  !>    \p rocsparse_coo2csr converts the COO array containing the row indices into a
-  !>    CSR array of row offsets, that point to the start of every row.
-  !>    It is assumed that the COO row index array is sorted.
-  !>  
-  !>    \note It can also be used, to convert a COO array containing the column indices into
-  !>    a CSC array of column offsets, that point to the start of every column. Then, it is
-  !>    assumed that the COO column index array is sorted, instead.
-  !>  
-  !>    \note
-  !>    This function is non blocking and executed asynchronously with respect to the host.
-  !>    It may return before the actual computation has finished.
-  !>  
-  !>    @param[in]
-  !>    handle      handle to the rocsparse library context queue.
-  !>    @param[in]
-  !>    coo_row_ind array of \p nnz elements containing the row indices of the sparse COO
-  !>                matrix.
-  !>    @param[in]
-  !>    nnz         number of non-zero entries of the sparse CSR matrix.
-  !>    @param[in]
-  !>    m           number of rows of the sparse CSR matrix.
-  !>    @param[out]
-  !>    csr_row_ptr array of \p m+1 elements that point to the start of every row of the
-  !>                sparse CSR matrix.
-  !>    @param[in]
-  !>    idx_base    \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
-  !>  
-  !>    \retval     rocsparse_status_success the operation completed successfully.
-  !>    \retval     rocsparse_status_invalid_handle the library context was not initialized.
-  !>    \retval     rocsparse_status_invalid_size \p m or \p nnz is invalid.
-  !>    \retval     rocsparse_status_invalid_pointer \p coo_row_ind or \p csr_row_ptr
-  !>                pointer is invalid.
-  !>  
-  !>    \par Example
-  !>    This example converts a COO matrix into a CSR matrix.
-  !>    \code{.c}
-  !>             1 2 0 3 0
-  !>         A = 0 4 5 0 0
-  !>             6 0 0 7 8
-  !>  
-  !>        rocsparse_int m   = 3;
-  !>        rocsparse_int n   = 5;
-  !>        rocsparse_int nnz = 8;
-  !>  
-  !>        coo_row_ind[nnz] = {0, 0, 0, 1, 1, 2, 2, 2};  device memory
-  !>        coo_col_ind[nnz] = {0, 1, 3, 1, 2, 0, 3, 4};  device memory
-  !>        coo_val[nnz]     = {1, 2, 3, 4, 5, 6, 7, 8};  device memory
-  !>  
-  !>         Allocate CSR matrix arrays
-  !>        rocsparse_int csr_row_ptr;
-  !>        rocsparse_int csr_col_ind;
-  !>        float csr_val;
-  !>  
-  !>        hipMalloc((void)&csr_row_ptr, sizeof(rocsparse_int)  (m + 1));
-  !>        hipMalloc((void)&csr_col_ind, sizeof(rocsparse_int)  nnz);
-  !>        hipMalloc((void)&csr_val, sizeof(float)  nnz);
-  !>  
-  !>         Convert the coo row indices into csr row offsets
-  !>        rocsparse_coo2csr(handle,
-  !>                          coo_row_ind,
-  !>                          nnz,
-  !>                          m,
-  !>                          csr_row_ptr,
-  !>                          rocsparse_index_base_zero);
-  !>  
-  !>         Copy the column and value arrays
-  !>        hipMemcpy(csr_col_ind,
-  !>                  coo_col_ind,
-  !>                  sizeof(rocsparse_int)  nnz,
-  !>                  hipMemcpyDeviceToDevice);
-  !>  
-  !>        hipMemcpy(csr_val,
-  !>                  coo_val,
-  !>                  sizeof(float)  nnz,
-  !>                  hipMemcpyDeviceToDevice);
-  !>    \endcode
-  !>  
+  !>  \ingroup conv_module
+  !>   \brief Convert a sparse COO matrix into a sparse CSR matrix
+  !> 
+  !>   \details
+  !>   \p rocsparse_coo2csr converts the COO array containing the row indices into a
+  !>   CSR array of row offsets, that point to the start of every row.
+  !>   It is assumed that the COO row index array is sorted.
+  !> 
+  !>   \note It can also be used, to convert a COO array containing the column indices into
+  !>   a CSC array of column offsets, that point to the start of every column. Then, it is
+  !>   assumed that the COO column index array is sorted, instead.
+  !> 
+  !>   \note
+  !>   This function is non blocking and executed asynchronously with respect to the host.
+  !>   It may return before the actual computation has finished.
+  !> 
+  !>   @param[in]
+  !>   handle      handle to the rocsparse library context queue.
+  !>   @param[in]
+  !>   coo_row_ind array of \p nnz elements containing the row indices of the sparse COO
+  !>               matrix.
+  !>   @param[in]
+  !>   nnz         number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in]
+  !>   m           number of rows of the sparse CSR matrix.
+  !>   @param[out]
+  !>   csr_row_ptr array of \p m+1 elements that point to the start of every row of the
+  !>               sparse CSR matrix.
+  !>   @param[in]
+  !>   idx_base    \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+  !> 
+  !>   \retval     rocsparse_status_success the operation completed successfully.
+  !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
+  !>   \retval     rocsparse_status_invalid_size \p m or \p nnz is invalid.
+  !>   \retval     rocsparse_status_invalid_pointer \p coo_row_ind or \p csr_row_ptr
+  !>               pointer is invalid.
+  !> 
+  !>   \par Example
+  !>   This example converts a COO matrix into a CSR matrix.
+  !>   \code{.c}
+  !> /     1 2 0 3 0
+  !> / A = 0 4 5 0 0
+  !> /     6 0 0 7 8
+  !> 
+  !>       rocsparse_int m   = 3;
+  !>       rocsparse_int n   = 5;
+  !>       rocsparse_int nnz = 8;
+  !> 
+  !>       coo_row_ind[nnz] = {0, 0, 0, 1, 1, 2, 2, 2};/ device memory
+  !>       coo_col_ind[nnz] = {0, 1, 3, 1, 2, 0, 3, 4};/ device memory
+  !>       coo_val[nnz]     = {1, 2, 3, 4, 5, 6, 7, 8};/ device memory
+  !> 
+  !> / Allocate CSR matrix arrays
+  !>       rocsparse_int* csr_row_ptr;
+  !>       rocsparse_int* csr_col_ind;
+  !>       float* csr_val;
+  !> 
+  !>       hipMalloc((void**)&csr_row_ptr, sizeof(rocsparse_int) * (m + 1));
+  !>       hipMalloc((void**)&csr_col_ind, sizeof(rocsparse_int) * nnz);
+  !>       hipMalloc((void**)&csr_val, sizeof(float) * nnz);
+  !> 
+  !> / Convert the coo row indices into csr row offsets
+  !>       rocsparse_coo2csr(handle,
+  !>                         coo_row_ind,
+  !>                         nnz,
+  !>                         m,
+  !>                         csr_row_ptr,
+  !>                         rocsparse_index_base_zero);
+  !> 
+  !> / Copy the column and value arrays
+  !>       hipMemcpy(csr_col_ind,
+  !>                 coo_col_ind,
+  !>                 sizeof(rocsparse_int) * nnz,
+  !>                 hipMemcpyDeviceToDevice);
+  !> 
+  !>       hipMemcpy(csr_val,
+  !>                 coo_val,
+  !>                 sizeof(float) * nnz,
+  !>                 hipMemcpyDeviceToDevice);
+  !>   \endcode
   interface rocsparse_coo2csr
     function rocsparse_coo2csr_(handle,coo_row_ind,nnz,m,csr_row_ptr,idx_base) bind(c, name="rocsparse_coo2csr")
       use iso_c_binding
@@ -11092,7 +11047,7 @@ module hipfort_rocsparse
       rocsparse_coo2csr_rank_1
 #endif
   end interface
-  !> ! \ingroup conv_module
+  !>  \ingroup conv_module
   !>   \brief Convert a sparse ELL matrix into a sparse CSR matrix
   !> 
   !>   \details
@@ -11136,7 +11091,6 @@ module hipfort_rocsparse
   !>               \p csr_descr, \p csr_row_ptr or \p csr_nnz pointer is invalid.
   !>   \retval     rocsparse_status_not_implemented
   !>               \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
-  !> 
   interface rocsparse_ell2csr_nnz
     function rocsparse_ell2csr_nnz_(handle,m,n,ell_descr,ell_width,ell_col_ind,csr_descr,csr_row_ptr,csr_nnz) bind(c, name="rocsparse_ell2csr_nnz")
       use iso_c_binding
@@ -11264,7 +11218,7 @@ module hipfort_rocsparse
       rocsparse_zell2csr_rank_1
 #endif
   end interface
-  !> ! \ingroup conv_module
+  !>  \ingroup conv_module
   !>   \brief Convert a sparse HYB matrix into a sparse CSR matrix
   !> 
   !>   \details
@@ -11294,7 +11248,6 @@ module hipfort_rocsparse
   !>   \retval     rocsparse_status_internal_error an internal error occurred.
   !>   \retval     rocsparse_status_not_implemented
   !>               \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
-  !> 
   interface rocsparse_hyb2csr_buffer_size
     function rocsparse_hyb2csr_buffer_size_(handle,descr,hyb,csr_row_ptr,buffer_size) bind(c, name="rocsparse_hyb2csr_buffer_size")
       use iso_c_binding
@@ -11402,7 +11355,7 @@ module hipfort_rocsparse
       rocsparse_zhyb2csr_rank_1
 #endif
   end interface
-  !> ! \ingroup conv_module
+  !>  \ingroup conv_module
   !>   \brief Create the identity map
   !> 
   !>   \details
@@ -11437,14 +11390,13 @@ module hipfort_rocsparse
   !>   \code{.c}
   !>       rocsparse_int size = 200;
   !> 
-  !>        Allocate memory to hold the identity map
-  !>       rocsparse_int perm;
-  !>       hipMalloc((void)&perm, sizeof(rocsparse_int)  size);
+  !> / Allocate memory to hold the identity map
+  !>       rocsparse_int* perm;
+  !>       hipMalloc((void**)&perm, sizeof(rocsparse_int) * size);
   !> 
-  !>        Fill perm with the identity permutation
+  !> / Fill perm with the identity permutation
   !>       rocsparse_create_identity_permutation(handle, size, perm);
   !>   \endcode
-  !> 
   interface rocsparse_create_identity_permutation
     function rocsparse_create_identity_permutation_(handle,n,p) bind(c, name="rocsparse_create_identity_permutation")
       use iso_c_binding
@@ -11462,7 +11414,7 @@ module hipfort_rocsparse
       rocsparse_create_identity_permutation_rank_1
 #endif
   end interface
-  !> ! \ingroup conv_module
+  !>  \ingroup conv_module
   !>   \brief Sort a sparse CSR matrix
   !> 
   !>   \details
@@ -11493,7 +11445,6 @@ module hipfort_rocsparse
   !>   \retval     rocsparse_status_invalid_size \p m, \p n or \p nnz is invalid.
   !>   \retval     rocsparse_status_invalid_pointer \p csr_row_ptr, \p csr_col_ind or
   !>               \p buffer_size pointer is invalid.
-  !> 
   interface rocsparse_csrsort_buffer_size
     function rocsparse_csrsort_buffer_size_(handle,m,n,nnz,csr_row_ptr,csr_col_ind,buffer_size) bind(c, name="rocsparse_csrsort_buffer_size")
       use iso_c_binding
@@ -11515,7 +11466,7 @@ module hipfort_rocsparse
       rocsparse_csrsort_buffer_size_rank_1
 #endif
   end interface
-  !> ! \ingroup conv_module
+  !>  \ingroup conv_module
   !>   \brief Sort a sparse CSR matrix
   !> 
   !>   \details
@@ -11569,42 +11520,41 @@ module hipfort_rocsparse
   !>   \par Example
   !>   The following example sorts a \f$3 \times 3\f$ CSR matrix.
   !>   \code{.c}
-  !>            1 2 3
-  !>        A = 4 5 6
-  !>            7 8 9
+  !> /     1 2 3
+  !> / A = 4 5 6
+  !> /     7 8 9
   !>       rocsparse_int m   = 3;
   !>       rocsparse_int n   = 3;
   !>       rocsparse_int nnz = 9;
   !> 
-  !>       csr_row_ptr[m + 1] = {0, 3, 6, 9};                 device memory
-  !>       csr_col_ind[nnz]   = {2, 0, 1, 0, 1, 2, 0, 2, 1};  device memory
-  !>       csr_val[nnz]       = {3, 1, 2, 4, 5, 6, 7, 9, 8};  device memory
+  !>       csr_row_ptr[m + 1] = {0, 3, 6, 9};/ device memory
+  !>       csr_col_ind[nnz]   = {2, 0, 1, 0, 1, 2, 0, 2, 1};/ device memory
+  !>       csr_val[nnz]       = {3, 1, 2, 4, 5, 6, 7, 9, 8};/ device memory
   !> 
-  !>        Create permutation vector perm as the identity map
-  !>       rocsparse_int perm;
-  !>       hipMalloc((void)&perm, sizeof(rocsparse_int)  nnz);
+  !> / Create permutation vector perm as the identity map
+  !>       rocsparse_int* perm;
+  !>       hipMalloc((void**)&perm, sizeof(rocsparse_int) * nnz);
   !>       rocsparse_create_identity_permutation(handle, nnz, perm);
   !> 
-  !>        Allocate temporary buffer
+  !> / Allocate temporary buffer
   !>       size_t buffer_size;
-  !>       void temp_buffer;
+  !>       void* temp_buffer;
   !>       rocsparse_csrsort_buffer_size(handle, m, n, nnz, csr_row_ptr, csr_col_ind, &buffer_size);
   !>       hipMalloc(&temp_buffer, buffer_size);
   !> 
-  !>        Sort the CSR matrix
+  !> / Sort the CSR matrix
   !>       rocsparse_csrsort(handle, m, n, nnz, descr, csr_row_ptr, csr_col_ind, perm, temp_buffer);
   !> 
-  !>        Gather sorted csr_val array
-  !>       float csr_val_sorted;
-  !>       hipMalloc((void)&csr_val_sorted, sizeof(float)  nnz);
+  !> / Gather sorted csr_val array
+  !>       float* csr_val_sorted;
+  !>       hipMalloc((void**)&csr_val_sorted, sizeof(float) * nnz);
   !>       rocsparse_sgthr(handle, nnz, csr_val, csr_val_sorted, perm, rocsparse_index_base_zero);
   !> 
-  !>        Clean up
+  !> / Clean up
   !>       hipFree(temp_buffer);
   !>       hipFree(perm);
   !>       hipFree(csr_val);
   !>   \endcode
-  !> 
   interface rocsparse_csrsort
     function rocsparse_csrsort_(handle,m,n,nnz,descr,csr_row_ptr,csr_col_ind,perm,temp_buffer) bind(c, name="rocsparse_csrsort")
       use iso_c_binding
@@ -11628,7 +11578,7 @@ module hipfort_rocsparse
       rocsparse_csrsort_rank_1
 #endif
   end interface
-  !> ! \ingroup conv_module
+  !>  \ingroup conv_module
   !>   \brief Sort a sparse CSC matrix
   !> 
   !>   \details
@@ -11659,7 +11609,6 @@ module hipfort_rocsparse
   !>   \retval     rocsparse_status_invalid_size \p m, \p n or \p nnz is invalid.
   !>   \retval     rocsparse_status_invalid_pointer \p csc_col_ptr, \p csc_row_ind or
   !>               \p buffer_size pointer is invalid.
-  !> 
   interface rocsparse_cscsort_buffer_size
     function rocsparse_cscsort_buffer_size_(handle,m,n,nnz,csc_col_ptr,csc_row_ind,buffer_size) bind(c, name="rocsparse_cscsort_buffer_size")
       use iso_c_binding
@@ -11681,7 +11630,7 @@ module hipfort_rocsparse
       rocsparse_cscsort_buffer_size_rank_1
 #endif
   end interface
-  !> ! \ingroup conv_module
+  !>  \ingroup conv_module
   !>   \brief Sort a sparse CSC matrix
   !> 
   !>   \details
@@ -11735,42 +11684,41 @@ module hipfort_rocsparse
   !>   \par Example
   !>   The following example sorts a \f$3 \times 3\f$ CSC matrix.
   !>   \code{.c}
-  !>            1 2 3
-  !>        A = 4 5 6
-  !>            7 8 9
+  !> /     1 2 3
+  !> / A = 4 5 6
+  !> /     7 8 9
   !>       rocsparse_int m   = 3;
   !>       rocsparse_int n   = 3;
   !>       rocsparse_int nnz = 9;
   !> 
-  !>       csc_col_ptr[m + 1] = {0, 3, 6, 9};                 device memory
-  !>       csc_row_ind[nnz]   = {2, 0, 1, 0, 1, 2, 0, 2, 1};  device memory
-  !>       csc_val[nnz]       = {7, 1, 4, 2, 5, 8, 3, 9, 6};  device memory
+  !>       csc_col_ptr[m + 1] = {0, 3, 6, 9};/ device memory
+  !>       csc_row_ind[nnz]   = {2, 0, 1, 0, 1, 2, 0, 2, 1};/ device memory
+  !>       csc_val[nnz]       = {7, 1, 4, 2, 5, 8, 3, 9, 6};/ device memory
   !> 
-  !>        Create permutation vector perm as the identity map
-  !>       rocsparse_int perm;
-  !>       hipMalloc((void)&perm, sizeof(rocsparse_int)  nnz);
+  !> / Create permutation vector perm as the identity map
+  !>       rocsparse_int* perm;
+  !>       hipMalloc((void**)&perm, sizeof(rocsparse_int) * nnz);
   !>       rocsparse_create_identity_permutation(handle, nnz, perm);
   !> 
-  !>        Allocate temporary buffer
+  !> / Allocate temporary buffer
   !>       size_t buffer_size;
-  !>       void temp_buffer;
+  !>       void* temp_buffer;
   !>       rocsparse_cscsort_buffer_size(handle, m, n, nnz, csc_col_ptr, csc_row_ind, &buffer_size);
   !>       hipMalloc(&temp_buffer, buffer_size);
   !> 
-  !>        Sort the CSC matrix
+  !> / Sort the CSC matrix
   !>       rocsparse_cscsort(handle, m, n, nnz, descr, csc_col_ptr, csc_row_ind, perm, temp_buffer);
   !> 
-  !>        Gather sorted csc_val array
-  !>       float csc_val_sorted;
-  !>       hipMalloc((void)&csc_val_sorted, sizeof(float)  nnz);
+  !> / Gather sorted csc_val array
+  !>       float* csc_val_sorted;
+  !>       hipMalloc((void**)&csc_val_sorted, sizeof(float) * nnz);
   !>       rocsparse_sgthr(handle, nnz, csc_val, csc_val_sorted, perm, rocsparse_index_base_zero);
   !> 
-  !>        Clean up
+  !> / Clean up
   !>       hipFree(temp_buffer);
   !>       hipFree(perm);
   !>       hipFree(csc_val);
   !>   \endcode
-  !> 
   interface rocsparse_cscsort
     function rocsparse_cscsort_(handle,m,n,nnz,descr,csc_col_ptr,csc_row_ind,perm,temp_buffer) bind(c, name="rocsparse_cscsort")
       use iso_c_binding
@@ -11794,7 +11742,7 @@ module hipfort_rocsparse
       rocsparse_cscsort_rank_1
 #endif
   end interface
-  !> ! \ingroup conv_module
+  !>  \ingroup conv_module
   !>   \brief Sort a sparse COO matrix
   !> 
   !>   \details
@@ -11826,7 +11774,6 @@ module hipfort_rocsparse
   !>   \retval     rocsparse_status_invalid_pointer \p coo_row_ind, \p coo_col_ind or
   !>               \p buffer_size pointer is invalid.
   !>   \retval     rocsparse_status_internal_error an internal error occurred.
-  !> 
   interface rocsparse_coosort_buffer_size
     function rocsparse_coosort_buffer_size_(handle,m,n,nnz,coo_row_ind,coo_col_ind,buffer_size) bind(c, name="rocsparse_coosort_buffer_size")
       use iso_c_binding
@@ -11848,7 +11795,7 @@ module hipfort_rocsparse
       rocsparse_coosort_buffer_size_rank_1
 #endif
   end interface
-  !> ! \ingroup conv_module
+  !>  \ingroup conv_module
   !>   \brief Sort a sparse COO matrix by row
   !> 
   !>   \details
@@ -11899,25 +11846,25 @@ module hipfort_rocsparse
   !>   \par Example
   !>   The following example sorts a \f$3 \times 3\f$ COO matrix by row indices.
   !>   \code{.c}
-  !>            1 2 3
-  !>        A = 4 5 6
-  !>            7 8 9
+  !> /     1 2 3
+  !> / A = 4 5 6
+  !> /     7 8 9
   !>       rocsparse_int m   = 3;
   !>       rocsparse_int n   = 3;
   !>       rocsparse_int nnz = 9;
   !> 
-  !>       coo_row_ind[nnz] = {0, 1, 2, 0, 1, 2, 0, 1, 2};  device memory
-  !>       coo_col_ind[nnz] = {0, 0, 0, 1, 1, 1, 2, 2, 2};  device memory
-  !>       coo_val[nnz]     = {1, 4, 7, 2, 5, 8, 3, 6, 9};  device memory
+  !>       coo_row_ind[nnz] = {0, 1, 2, 0, 1, 2, 0, 1, 2};/ device memory
+  !>       coo_col_ind[nnz] = {0, 0, 0, 1, 1, 1, 2, 2, 2};/ device memory
+  !>       coo_val[nnz]     = {1, 4, 7, 2, 5, 8, 3, 6, 9};/ device memory
   !> 
-  !>        Create permutation vector perm as the identity map
-  !>       rocsparse_int perm;
-  !>       hipMalloc((void)&perm, sizeof(rocsparse_int)  nnz);
+  !> / Create permutation vector perm as the identity map
+  !>       rocsparse_int* perm;
+  !>       hipMalloc((void**)&perm, sizeof(rocsparse_int) * nnz);
   !>       rocsparse_create_identity_permutation(handle, nnz, perm);
   !> 
-  !>        Allocate temporary buffer
+  !> / Allocate temporary buffer
   !>       size_t buffer_size;
-  !>       void temp_buffer;
+  !>       void* temp_buffer;
   !>       rocsparse_coosort_buffer_size(handle,
   !>                                     m,
   !>                                     n,
@@ -11927,7 +11874,7 @@ module hipfort_rocsparse
   !>                                     &buffer_size);
   !>       hipMalloc(&temp_buffer, buffer_size);
   !> 
-  !>        Sort the COO matrix
+  !> / Sort the COO matrix
   !>       rocsparse_coosort_by_row(handle,
   !>                                m,
   !>                                n,
@@ -11937,17 +11884,16 @@ module hipfort_rocsparse
   !>                                perm,
   !>                                temp_buffer);
   !> 
-  !>        Gather sorted coo_val array
-  !>       float coo_val_sorted;
-  !>       hipMalloc((void)&coo_val_sorted, sizeof(float)  nnz);
+  !> / Gather sorted coo_val array
+  !>       float* coo_val_sorted;
+  !>       hipMalloc((void**)&coo_val_sorted, sizeof(float) * nnz);
   !>       rocsparse_sgthr(handle, nnz, coo_val, coo_val_sorted, perm, rocsparse_index_base_zero);
   !> 
-  !>        Clean up
+  !> / Clean up
   !>       hipFree(temp_buffer);
   !>       hipFree(perm);
   !>       hipFree(coo_val);
   !>   \endcode
-  !> 
   interface rocsparse_coosort_by_row
     function rocsparse_coosort_by_row_(handle,m,n,nnz,coo_row_ind,coo_col_ind,perm,temp_buffer) bind(c, name="rocsparse_coosort_by_row")
       use iso_c_binding
@@ -11970,7 +11916,7 @@ module hipfort_rocsparse
       rocsparse_coosort_by_row_rank_1
 #endif
   end interface
-  !> ! \ingroup conv_module
+  !>  \ingroup conv_module
   !>   \brief Sort a sparse COO matrix by column
   !> 
   !>   \details
@@ -12021,25 +11967,25 @@ module hipfort_rocsparse
   !>   \par Example
   !>   The following example sorts a \f$3 \times 3\f$ COO matrix by column indices.
   !>   \code{.c}
-  !>            1 2 3
-  !>        A = 4 5 6
-  !>            7 8 9
+  !> /     1 2 3
+  !> / A = 4 5 6
+  !> /     7 8 9
   !>       rocsparse_int m   = 3;
   !>       rocsparse_int n   = 3;
   !>       rocsparse_int nnz = 9;
   !> 
-  !>       coo_row_ind[nnz] = {0, 0, 0, 1, 1, 1, 2, 2, 2};  device memory
-  !>       coo_col_ind[nnz] = {0, 1, 2, 0, 1, 2, 0, 1, 2};  device memory
-  !>       coo_val[nnz]     = {1, 2, 3, 4, 5, 6, 7, 8, 9};  device memory
+  !>       coo_row_ind[nnz] = {0, 0, 0, 1, 1, 1, 2, 2, 2};/ device memory
+  !>       coo_col_ind[nnz] = {0, 1, 2, 0, 1, 2, 0, 1, 2};/ device memory
+  !>       coo_val[nnz]     = {1, 2, 3, 4, 5, 6, 7, 8, 9};/ device memory
   !> 
-  !>        Create permutation vector perm as the identity map
-  !>       rocsparse_int perm;
-  !>       hipMalloc((void)&perm, sizeof(rocsparse_int)  nnz);
+  !> / Create permutation vector perm as the identity map
+  !>       rocsparse_int* perm;
+  !>       hipMalloc((void**)&perm, sizeof(rocsparse_int) * nnz);
   !>       rocsparse_create_identity_permutation(handle, nnz, perm);
   !> 
-  !>        Allocate temporary buffer
+  !> / Allocate temporary buffer
   !>       size_t buffer_size;
-  !>       void temp_buffer;
+  !>       void* temp_buffer;
   !>       rocsparse_coosort_buffer_size(handle,
   !>                                     m,
   !>                                     n,
@@ -12049,7 +11995,7 @@ module hipfort_rocsparse
   !>                                     &buffer_size);
   !>       hipMalloc(&temp_buffer, buffer_size);
   !> 
-  !>        Sort the COO matrix
+  !> / Sort the COO matrix
   !>       rocsparse_coosort_by_column(handle,
   !>                                   m,
   !>                                   n,
@@ -12059,17 +12005,16 @@ module hipfort_rocsparse
   !>                                   perm,
   !>                                   temp_buffer);
   !> 
-  !>        Gather sorted coo_val array
-  !>       float coo_val_sorted;
-  !>       hipMalloc((void)&coo_val_sorted, sizeof(float)  nnz);
+  !> / Gather sorted coo_val array
+  !>       float* coo_val_sorted;
+  !>       hipMalloc((void**)&coo_val_sorted, sizeof(float) * nnz);
   !>       rocsparse_sgthr(handle, nnz, coo_val, coo_val_sorted, perm, rocsparse_index_base_zero);
   !> 
-  !>        Clean up
+  !> / Clean up
   !>       hipFree(temp_buffer);
   !>       hipFree(perm);
   !>       hipFree(coo_val);
   !>   \endcode
-  !> 
   interface rocsparse_coosort_by_column
     function rocsparse_coosort_by_column_(handle,m,n,nnz,coo_row_ind,coo_col_ind,perm,temp_buffer) bind(c, name="rocsparse_coosort_by_column")
       use iso_c_binding
@@ -12416,7 +12361,7 @@ module hipfort_rocsparse
     end function
 
   end interface
-  !> ! \ingroup conv_module
+  !>  \ingroup conv_module
   !>   \brief This function is used when converting a general BSR sparse matrix \p A to another general BSR sparse matrix \p C.
   !>   Specifically, this function determines the number of non-zero blocks that will exist in \p C (stored using either a host
   !>   or device pointer), and computes the row pointer array for \p C.
@@ -12459,7 +12404,7 @@ module hipfort_rocsparse
   !> 
   !>   @param[in]
   !>   bsr_row_ptr_C array of \p mb_C+1 elements that point to the start of every block row of the
-  !>               sparse general BSR matrix \p C where \p mb_C=(m+row_block_dim_C-1)row_block_dim_C.
+  !>               sparse general BSR matrix \p C where \p mb_C=(m+row_block_dim_C-1)/row_block_dim_C.
   !>   @param[in]
   !>   row_block_dim_C   row size of the blocks in the sparse general BSR matrix \p C.
   !> 
@@ -12480,7 +12425,6 @@ module hipfort_rocsparse
   !>               \p col_block_dim_A or \p row_block_dim_C or \p col_block_dim_C is invalid.
   !>   \retval     rocsparse_status_invalid_pointer \p bsr_row_ptr_A or \p bsr_col_ind_A
   !>               or \p bsr_row_ptr_C or \p descr_A or \p descr_C or \p temp_buffer pointer is invalid.
-  !> 
   interface rocsparse_gebsr2gebsr_nnz
     function rocsparse_gebsr2gebsr_nnz_(handle,dir,mb,nb,nnzb,descr_A,bsr_row_ptr_A,bsr_col_ind_A,row_block_dim_A,col_block_dim_A,descr_C,bsr_row_ptr_C,row_block_dim_C,col_block_dim_C,nnz_total_dev_host_ptr,temp_buffer) bind(c, name="rocsparse_gebsr2gebsr_nnz")
       use iso_c_binding
@@ -12618,7 +12562,7 @@ module hipfort_rocsparse
     end function
 
   end interface
-  !> ! \ingroup generic_module
+  !>  \ingroup generic_module
   !>   \brief Scale a sparse vector and add it to a scaled dense vector.
   !> 
   !>   \details
@@ -12633,7 +12577,7 @@ module hipfort_rocsparse
   !>   \code{.c}
   !>       for(i = 0; i < nnz; ++i)
   !>       {
-  !>           y[x_ind[i]] = alpha  x_val[i] + beta  y[x_ind[i]]
+  !>           y[x_ind[i]] = alpha * x_val[i] + beta * y[x_ind[i]]
   !>       }
   !>   \endcode
   !> 
@@ -12656,7 +12600,6 @@ module hipfort_rocsparse
   !>   \retval rocsparse_status_invalid_handle the library context was not initialized.
   !>   \retval rocsparse_status_invalid_pointer \p alpha, \p x, \p beta or \p y pointer is
   !>           invalid.
-  !> 
   interface rocsparse_axpby
     function rocsparse_axpby_(handle,alpha,x,beta,y) bind(c, name="rocsparse_axpby")
       use iso_c_binding
@@ -12671,7 +12614,7 @@ module hipfort_rocsparse
     end function
 
   end interface
-  !> ! \ingroup generic_module
+  !>  \ingroup generic_module
   !>   \brief Gather elements from a dense vector and store them into a sparse vector.
   !> 
   !>   \details
@@ -12699,7 +12642,6 @@ module hipfort_rocsparse
   !>   \retval      rocsparse_status_success the operation completed successfully.
   !>   \retval      rocsparse_status_invalid_handle the library context was not initialized.
   !>   \retval      rocsparse_status_invalid_pointer \p x or \p y pointer is invalid.
-  !> 
   interface rocsparse_gather
     function rocsparse_gather_(handle,y,x) bind(c, name="rocsparse_gather")
       use iso_c_binding
@@ -12712,7 +12654,7 @@ module hipfort_rocsparse
     end function
 
   end interface
-  !> ! \ingroup generic_module
+  !>  \ingroup generic_module
   !>   \brief Scatter elements from a sparse vector into a dense vector.
   !> 
   !>   \details
@@ -12740,7 +12682,6 @@ module hipfort_rocsparse
   !>   \retval      rocsparse_status_success the operation completed successfully.
   !>   \retval      rocsparse_status_invalid_handle the library context was not initialized.
   !>   \retval      rocsparse_status_invalid_pointer \p x or \p y pointer is invalid.
-  !> 
   interface rocsparse_scatter
     function rocsparse_scatter_(handle,x,y) bind(c, name="rocsparse_scatter")
       use iso_c_binding
@@ -12753,7 +12694,7 @@ module hipfort_rocsparse
     end function
 
   end interface
-  !> ! \ingroup generic_module
+  !>  \ingroup generic_module
   !>   \brief Apply Givens rotation to a dense and a sparse vector.
   !> 
   !>   \details
@@ -12769,8 +12710,8 @@ module hipfort_rocsparse
   !>           x_tmp = x_val[i];
   !>           y_tmp = y[x_ind[i]];
   !> 
-  !>           x_val[i]    = c  x_tmp + s  y_tmp;
-  !>           y[x_ind[i]] = c  y_tmp - s  x_tmp;
+  !>           x_val[i]    = c * x_tmp + s * y_tmp;
+  !>           y[x_ind[i]] = c * y_tmp - s * x_tmp;
   !>       }
   !>   \endcode
   !> 
@@ -12793,7 +12734,6 @@ module hipfort_rocsparse
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
   !>   \retval     rocsparse_status_invalid_pointer \p c, \p s, \p x or \p y pointer is
   !>               invalid.
-  !> 
   interface rocsparse_rot
     function rocsparse_rot_(handle,c,s,x,y) bind(c, name="rocsparse_rot")
       use iso_c_binding
@@ -12808,7 +12748,7 @@ module hipfort_rocsparse
     end function
 
   end interface
-  !> ! \ingroup generic_module
+  !>  \ingroup generic_module
   !>   \brief Sparse matrix to dense matrix conversion
   !> 
   !>   \details
@@ -12844,7 +12784,6 @@ module hipfort_rocsparse
   !>   \retval      rocsparse_status_invalid_handle the library context was not initialized.
   !>   \retval      rocsparse_status_invalid_pointer \p mat_A, \p mat_B, or \p buffer_size
   !>                pointer is invalid.
-  !> 
   interface rocsparse_sparse_to_dense
     function rocsparse_sparse_to_dense_(handle,mat_A,mat_B,alg,buffer_size,temp_buffer) bind(c, name="rocsparse_sparse_to_dense")
       use iso_c_binding
@@ -12860,7 +12799,7 @@ module hipfort_rocsparse
     end function
 
   end interface
-  !> ! \ingroup generic_module
+  !>  \ingroup generic_module
   !>   \brief Dense matrix to sparse matrix conversion
   !> 
   !>   \details
@@ -12896,7 +12835,6 @@ module hipfort_rocsparse
   !>   \retval      rocsparse_status_invalid_handle the library context was not initialized.
   !>   \retval      rocsparse_status_invalid_pointer \p mat_A, \p mat_B, or \p buffer_size
   !>                pointer is invalid.
-  !> 
   interface rocsparse_dense_to_sparse
     function rocsparse_dense_to_sparse_(handle,mat_A,mat_B,alg,buffer_size,temp_buffer) bind(c, name="rocsparse_dense_to_sparse")
       use iso_c_binding
@@ -12912,7 +12850,7 @@ module hipfort_rocsparse
     end function
 
   end interface
-  !> ! \ingroup generic_module
+  !>  \ingroup generic_module
   !>   \brief Sparse vector inner dot product
   !> 
   !>   \details
@@ -12935,7 +12873,7 @@ module hipfort_rocsparse
   !>       result = 0;
   !>       for(i = 0; i < nnz; ++i)
   !>       {
-  !>           result += x_val[i]  y[x_ind[i]];
+  !>           result += x_val[i] * y[x_ind[i]];
   !>       }
   !>   \endcode
   !> 
@@ -12974,7 +12912,6 @@ module hipfort_rocsparse
   !>                pointer is invalid.
   !>   \retval      rocsparse_status_not_implemented \p compute_type is currently not
   !>                supported.
-  !> 
   interface rocsparse_spvv
     function rocsparse_spvv_(handle,trans,x,y,myResult,compute_type,buffer_size,temp_buffer) bind(c, name="rocsparse_spvv")
       use iso_c_binding
@@ -12992,7 +12929,7 @@ module hipfort_rocsparse
     end function
 
   end interface
-  !> ! \ingroup generic_module
+  !>  \ingroup generic_module
   !>   \brief Sparse matrix vector multiplication
   !> 
   !>   \details
@@ -13054,7 +12991,6 @@ module hipfort_rocsparse
   !>                \p buffer_size pointer is invalid.
   !>   \retval      rocsparse_status_not_implemented \p compute_type or \p alg is
   !>                currently not supported.
-  !> 
   interface rocsparse_spmv
     function rocsparse_spmv_(handle,trans,alpha,mat,x,beta,y,compute_type,alg,buffer_size,temp_buffer) bind(c, name="rocsparse_spmv")
       use iso_c_binding
@@ -13075,7 +13011,7 @@ module hipfort_rocsparse
     end function
 
   end interface
-  !> ! \ingroup generic_module
+  !>  \ingroup generic_module
   !>   \brief Sparse triangular solve
   !> 
   !>   \details
@@ -13145,7 +13081,6 @@ module hipfort_rocsparse
   !>                \p buffer_size pointer is invalid.
   !>   \retval      rocsparse_status_not_implemented \p trans, \p compute_type, \p stage or \p alg is
   !>                currently not supported.
-  !> 
   interface rocsparse_spsv
     function rocsparse_spsv_(handle,trans,alpha,mat,x,y,compute_type,alg,stage,buffer_size,temp_buffer) bind(c, name="rocsparse_spsv")
       use iso_c_binding
@@ -13166,7 +13101,7 @@ module hipfort_rocsparse
     end function
 
   end interface
-  !> ! \ingroup generic_module
+  !>  \ingroup generic_module
   !>   \brief Sparse triangular system solve
   !> 
   !>   \details
@@ -13249,7 +13184,6 @@ module hipfort_rocsparse
   !>                \p buffer_size pointer is invalid.
   !>   \retval      rocsparse_status_not_implemented \p trans_A, \p trans_B, \p compute_type, \p stage or \p alg is
   !>                currently not supported.
-  !> 
   interface rocsparse_spsm
     function rocsparse_spsm_(handle,trans_A,trans_B,alpha,matA,matB,matC,compute_type,alg,stage,buffer_size,temp_buffer) bind(c, name="rocsparse_spsm")
       use iso_c_binding
@@ -13294,7 +13228,7 @@ module hipfort_rocsparse
     end function
 
   end interface
-  !> ! \ingroup generic_module
+  !>  \ingroup generic_module
   !>   \brief Sparse matrix sparse matrix multiplication
   !> 
   !>   \details
@@ -13394,7 +13328,6 @@ module hipfort_rocsparse
   !>   \retval rocsparse_status_not_implemented
   !>           \p trans_A != \ref rocsparse_operation_none or
   !>           \p trans_B != \ref rocsparse_operation_none.
-  !> 
   interface rocsparse_spgemm
     function rocsparse_spgemm_(handle,trans_A,trans_B,alpha,A,B,beta,D,C,compute_type,alg,stage,buffer_size,temp_buffer) bind(c, name="rocsparse_spgemm")
       use iso_c_binding
@@ -13418,7 +13351,7 @@ module hipfort_rocsparse
     end function
 
   end interface
-  !> ! \ingroup generic_module
+  !>  \ingroup generic_module
   !>   \brief  Sampled Dense-Dense Matrix Multiplication.
   !> 
   !>   \details
@@ -13489,7 +13422,6 @@ module hipfort_rocsparse
   !>   \retval rocsparse_status_not_implemented
   !>           \p opA == \ref rocsparse_operation_conjugate_transpose or
   !>           \p opB == \ref rocsparse_operation_conjugate_transpose.
-  !> 
   interface rocsparse_sddmm
     function rocsparse_sddmm_(handle,opA,opB,alpha,A,B,beta,C,compute_type,alg,temp_buffer) bind(c, name="rocsparse_sddmm")
       use iso_c_binding
@@ -13510,7 +13442,7 @@ module hipfort_rocsparse
     end function
 
   end interface
-  !> ! \ingroup generic_module
+  !>  \ingroup generic_module
   !>   \brief Calculate the size in bytes of the required buffer for the use of \ref rocsparse_sddmm and \ref rocsparse_sddmm_preprocess
   !> 
   !>   \details
@@ -13546,7 +13478,6 @@ module hipfort_rocsparse
   !>   \retval rocsparse_status_not_implemented
   !>           \p opA == \ref rocsparse_operation_conjugate_transpose or
   !>           \p opB == \ref rocsparse_operation_conjugate_transpose.
-  !> 
   interface rocsparse_sddmm_buffer_size
     function rocsparse_sddmm_buffer_size_(handle,opA,opB,alpha,A,B,beta,C,compute_type,alg,buffer_size) bind(c, name="rocsparse_sddmm_buffer_size")
       use iso_c_binding
@@ -13567,7 +13498,7 @@ module hipfort_rocsparse
     end function
 
   end interface
-  !> ! \ingroup generic_module
+  !>  \ingroup generic_module
   !>   \brief Preprocess data before the use of \ref rocsparse_sddmm.
   !> 
   !>   \details
@@ -13605,7 +13536,6 @@ module hipfort_rocsparse
   !>   \retval rocsparse_status_not_implemented
   !>           \p opA == \ref rocsparse_operation_conjugate_transpose or
   !>           \p opB == \ref rocsparse_operation_conjugate_transpose.
-  !> 
   interface rocsparse_sddmm_preprocess
     function rocsparse_sddmm_preprocess_(handle,opA,opB,alpha,A,B,beta,C,compute_type,alg,temp_buffer) bind(c, name="rocsparse_sddmm_preprocess")
       use iso_c_binding

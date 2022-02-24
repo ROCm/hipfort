@@ -31,11 +31,9 @@ module hipfort_rocblas
   implicit none
 
  
-  !> 
-  !>   ===========================================================================
-  !>      level 1 BLAS
-  !>   ===========================================================================
-  !>  
+  !>  ===========================================================================
+  !>     level 1 BLAS
+  !>  ===========================================================================
   interface rocblas_sscal
     function rocblas_sscal_(handle,incx) bind(c, name="rocblas_sscal")
       use iso_c_binding
@@ -119,12 +117,12 @@ module hipfort_rocblas
       rocblas_csscal_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     scal  scales each element of vector x with scalar alpha.
   !> 
-  !>         x := alpha  x
+  !>         x := alpha * x
   !> 
   !>     @param[in]
   !>     handle    [rocblas_handle]
@@ -140,8 +138,7 @@ module hipfort_rocblas
   !>     incx      [rocblas_int]
   !>               specifies the increment for the elements of x.
   !> 
-  !> 
-  !>     
+  !>
   interface rocblas_zdscal
     function rocblas_zdscal_(handle,n,alpha,x,incx) bind(c, name="rocblas_zdscal")
       use iso_c_binding
@@ -271,11 +268,11 @@ module hipfort_rocblas
       rocblas_csscal_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !>      \details
   !>     scal_batched  scales each element of vector x_i with scalar alpha, for i = 1, ... , batch_count.
   !> 
-  !>          x_i := alpha  x_i
+  !>          x_i := alpha * x_i
   !> 
   !>      where (x_i) is the i-th instance of the batch.
   !>     @param[in]
@@ -294,7 +291,6 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 specifies the number of batches in x.
-  !>      
   interface rocblas_zdscal_batched
     function rocblas_zdscal_batched_(handle,n,alpha,x,incx,batch_count) bind(c, name="rocblas_zdscal_batched")
       use iso_c_binding
@@ -426,11 +422,11 @@ module hipfort_rocblas
       rocblas_csscal_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !>      \details
   !>     scal_strided_batched  scales each element of vector x_i with scalar alpha, for i = 1, ... , batch_count.
   !> 
-  !>          x_i := alpha  x_i ,
+  !>          x_i := alpha * x_i ,
   !> 
   !>      where (x_i) is the i-th instance of the batch.
   !>      @param[in]
@@ -451,11 +447,10 @@ module hipfort_rocblas
   !>                 stride from the start of one vector (x_i) and the next one (x_i+1).
   !>                 There are no restrictions placed on stride_x, however the user should
   !>                 take care to ensure that stride_x is of appropriate size, for a typical
-  !>                 case this means stride_x >= n  incx.
+  !>                 case this means stride_x >= n * incx.
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 specifies the number of batches in x.
-  !>      
   interface rocblas_zdscal_strided_batched
     function rocblas_zdscal_strided_batched_(handle,n,alpha,x,incx,stride_x,batch_count) bind(c, name="rocblas_zdscal_strided_batched")
       use iso_c_binding
@@ -540,7 +535,7 @@ module hipfort_rocblas
       rocblas_ccopy_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     copy  copies each element x[i] into y[i], for  i = 1 , ... , n
@@ -563,8 +558,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     incy      [rocblas_int]
   !>               specifies the increment for the elements of y.
-  !> 
-  !>     
+  !>
   interface rocblas_zcopy
     function rocblas_zcopy_(handle,n,x,incx,y,incy) bind(c, name="rocblas_zcopy")
       use iso_c_binding
@@ -654,7 +648,7 @@ module hipfort_rocblas
       rocblas_ccopy_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     copy_batched copies each element x_i[j] into y_i[j], for  j = 1 , ... , n; i = 1 , ... , batch_count
@@ -683,8 +677,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch
-  !> 
-  !>     
+  !>
   interface rocblas_zcopy_batched
     function rocblas_zcopy_batched_(handle,n,x,incx,y,incy,batch_count) bind(c, name="rocblas_zcopy_batched")
       use iso_c_binding
@@ -779,7 +772,7 @@ module hipfort_rocblas
       rocblas_ccopy_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     copy_strided_batched copies each element x_i[j] into y_i[j], for  j = 1 , ... , n; i = 1 , ... , batch_count
@@ -805,7 +798,7 @@ module hipfort_rocblas
   !>                 stride from the start of one vector (x_i) and the next one (x_i+1).
   !>                 There are no restrictions placed on stride_x, however the user should
   !>                 take care to ensure that stride_x is of appropriate size, for a typical
-  !>                 case this means stride_x >= n  incx.
+  !>                 case this means stride_x >= n * incx.
   !>     @param[out]
   !>     y         device pointer to the first vector (y_1) in the batch.
   !>     @param[in]
@@ -816,15 +809,14 @@ module hipfort_rocblas
   !>                 stride from the start of one vector (y_i) and the next one (y_i+1).
   !>                 There are no restrictions placed on stride_y, however the user should
   !>                 take care to ensure that stride_y is of appropriate size, for a typical
-  !>                 case this means stride_y >= n  incy. stridey should be non zero.
+  !>                 case this means stride_y >= n * incy. stridey should be non zero.
   !>     @param[in]
   !>     incy      [rocblas_int]
   !>               specifies the increment for the elements of y.
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch
-  !> 
-  !>     
+  !>
   interface rocblas_zcopy_strided_batched
     function rocblas_zcopy_strided_batched_(handle,n,x,incx,stridex,y,incy,stridey,batch_count) bind(c, name="rocblas_zcopy_strided_batched")
       use iso_c_binding
@@ -992,16 +984,16 @@ module hipfort_rocblas
       rocblas_cdotc_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     dot(u)  performs the dot product of vectors x and y
   !> 
-  !>         result = x  y;
+  !>         result = x * y;
   !> 
   !>     dotc  performs the dot product of the conjugate of complex vector x and complex vector y
   !> 
-  !>         result = conjugate (x)  y;
+  !>         result = conjugate (x) * y;
   !> 
   !>     @param[in]
   !>     handle    [rocblas_handle]
@@ -1023,8 +1015,7 @@ module hipfort_rocblas
   !>     result
   !>               device pointer or host pointer to store the dot product.
   !>               return is 0.0 if n <= 0.
-  !> 
-  !>     
+  !>
   interface rocblas_zdotc
     function rocblas_zdotc_(handle,n,x,incx,y,incy,myResult) bind(c, name="rocblas_zdotc")
       use iso_c_binding
@@ -1202,16 +1193,16 @@ module hipfort_rocblas
       rocblas_cdotc_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     dot_batched(u) performs a batch of dot products of vectors x and y
   !> 
-  !>         result_i = x_i  y_i;
+  !>         result_i = x_i * y_i;
   !> 
   !>     dotc_batched  performs a batch of dot products of the conjugate of complex vector x and complex vector y
   !> 
-  !>         result_i = conjugate (x_i)  y_i;
+  !>         result_i = conjugate (x_i) * y_i;
   !> 
   !>     where (x_i, y_i) is the i-th instance of the batch.
   !>     x_i and y_i are vectors, for i = 1, ..., batch_count
@@ -1239,8 +1230,7 @@ module hipfort_rocblas
   !>     result
   !>               device array or host array of batch_count size to store the dot products of each batch.
   !>               return 0.0 for each element if n <= 0.
-  !> 
-  !>     
+  !>
   interface rocblas_zdotc_batched
     function rocblas_zdotc_batched_(handle,n,x,incx,y,incy,batch_count,myResult) bind(c, name="rocblas_zdotc_batched")
       use iso_c_binding
@@ -1429,16 +1419,16 @@ module hipfort_rocblas
       rocblas_cdotc_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     dot_strided_batched(u)  performs a batch of dot products of vectors x and y
   !> 
-  !>         result_i = x_i  y_i;
+  !>         result_i = x_i * y_i;
   !> 
   !>     dotc_strided_batched  performs a batch of dot products of the conjugate of complex vector x and complex vector y
   !> 
-  !>         result_i = conjugate (x_i)  y_i;
+  !>         result_i = conjugate (x_i) * y_i;
   !> 
   !>     where (x_i, y_i) is the i-th instance of the batch.
   !>     x_i and y_i are vectors, for i = 1, ..., batch_count
@@ -1472,8 +1462,7 @@ module hipfort_rocblas
   !>     result
   !>               device array or host array of batch_count size to store the dot products of each batch.
   !>               return 0.0 for each element if n <= 0.
-  !> 
-  !>     
+  !>
   interface rocblas_zdotc_strided_batched
     function rocblas_zdotc_strided_batched_(handle,n,x,incx,stridex,y,incy,stridey,batch_count,myResult) bind(c, name="rocblas_zdotc_strided_batched")
       use iso_c_binding
@@ -1543,7 +1532,7 @@ module hipfort_rocblas
       rocblas_cswap_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     swap  interchanges vectors x and y.
@@ -1566,8 +1555,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     incy      [rocblas_int]
   !>               specifies the increment for the elements of y.
-  !> 
-  !>     
+  !>
   interface rocblas_zswap
     function rocblas_zswap_(handle,n,x,incx,y,incy) bind(c, name="rocblas_zswap")
       use iso_c_binding
@@ -1657,7 +1645,7 @@ module hipfort_rocblas
       rocblas_cswap_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     swap_batched interchanges vectors x_i and y_i, for i = 1 , ... , batch_count
@@ -1683,8 +1671,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface rocblas_zswap_batched
     function rocblas_zswap_batched_(handle,n,x,incx,y,incy,batch_count) bind(c, name="rocblas_zswap_batched")
       use iso_c_binding
@@ -1779,7 +1766,7 @@ module hipfort_rocblas
       rocblas_cswap_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     swap_strided_batched interchanges vectors x_i and y_i, for i = 1 , ... , batch_count
@@ -1802,7 +1789,7 @@ module hipfort_rocblas
   !>               stride from the start of one vector (x_i) and the next one (x_i+1).
   !>               There are no restrictions placed on stride_x, however the user should
   !>               take care to ensure that stride_x is of appropriate size, for a typical
-  !>               case this means stride_x >= n  incx.
+  !>               case this means stride_x >= n * incx.
   !>     @param[inout]
   !>     y         device pointer to the first vector y_1.
   !>     @param[in]
@@ -1813,12 +1800,11 @@ module hipfort_rocblas
   !>               stride from the start of one vector (y_i) and the next one (y_i+1).
   !>               There are no restrictions placed on stride_x, however the user should
   !>               take care to ensure that stride_y is of appropriate size, for a typical
-  !>               case this means stride_y >= n  incy. stridey should be non zero.
+  !>               case this means stride_y >= n * incy. stridey should be non zero.
   !>      @param[in]
   !>      batch_count [rocblas_int]
   !>                  number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface rocblas_zswap_strided_batched
     function rocblas_zswap_strided_batched_(handle,n,x,incx,stridex,y,incy,stridey,batch_count) bind(c, name="rocblas_zswap_strided_batched")
       use iso_c_binding
@@ -1925,12 +1911,12 @@ module hipfort_rocblas
       rocblas_caxpy_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     axpy   computes ant alpha multiplied by vector x, plus vector y
   !> 
-  !>         y := alpha  x + y
+  !>         y := alpha * x + y
   !> 
   !>     @param[in]
   !>     handle    [rocblas_handle]
@@ -1950,8 +1936,7 @@ module hipfort_rocblas
   !>     @param[inout]
   !>     incy      [rocblas_int]
   !>               specifies the increment for the elements of y.
-  !> 
-  !>     
+  !>
   interface rocblas_zaxpy
     function rocblas_zaxpy_(handle,n,alpha,x,incx,y,incy) bind(c, name="rocblas_zaxpy")
       use iso_c_binding
@@ -2063,10 +2048,10 @@ module hipfort_rocblas
       rocblas_caxpy_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
-  !>     axpy_batched   compute y := alpha  x + y over a set of batched vectors.
+  !>     axpy_batched   compute y := alpha * x + y over a set of batched vectors.
   !> 
   !>     @param[in]
   !>     handle    rocblas_handle
@@ -2089,8 +2074,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count rocblas_int
   !>               number of instances in the batch
-  !> 
-  !>     
+  !>
   interface rocblas_zaxpy_batched
     function rocblas_zaxpy_batched_(handle,n,alpha,x,incx,y,incy,batch_count) bind(c, name="rocblas_zaxpy_batched")
       use iso_c_binding
@@ -2209,10 +2193,10 @@ module hipfort_rocblas
       rocblas_caxpy_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
-  !>     axpy_strided_batched   compute y := alpha  x + y over a set of strided batched vectors.
+  !>     axpy_strided_batched   compute y := alpha * x + y over a set of strided batched vectors.
   !> 
   !>     @param[in]
   !>     handle    rocblas_handle
@@ -2241,8 +2225,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count rocblas_int
   !>               number of instances in the batch
-  !> 
-  !>     
+  !>
   interface rocblas_zaxpy_strided_batched
     function rocblas_zaxpy_strided_batched_(handle,n,alpha,x,incx,stridex,y,incy,stridey,batch_count) bind(c, name="rocblas_zaxpy_strided_batched")
       use iso_c_binding
@@ -2313,7 +2296,7 @@ module hipfort_rocblas
       rocblas_scasum_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     asum computes the sum of the magnitudes of elements of a real vector x,
@@ -2335,8 +2318,7 @@ module hipfort_rocblas
   !>     result
   !>               device pointer or host pointer to store the asum product.
   !>               return is 0.0 if n <= 0.
-  !> 
-  !>     
+  !>
   interface rocblas_dzasum
     function rocblas_dzasum_(handle,n,x,incx,myResult) bind(c, name="rocblas_dzasum")
       use iso_c_binding
@@ -2422,7 +2404,7 @@ module hipfort_rocblas
       rocblas_scasum_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     asum_batched computes the sum of the magnitudes of the elements in a batch of real vectors x_i,
@@ -2447,7 +2429,6 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>               number of instances in the batch.
-  !>     
   interface rocblas_dzasum_batched
     function rocblas_dzasum_batched_(handle,n,x,incx,batch_count,results) bind(c, name="rocblas_dzasum_batched")
       use iso_c_binding
@@ -2535,7 +2516,7 @@ module hipfort_rocblas
       rocblas_scasum_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     asum_strided_batched computes the sum of the magnitudes of elements of a real vectors x_i,
@@ -2558,7 +2539,7 @@ module hipfort_rocblas
   !>               stride from the start of one vector (x_i) and the next one (x_i+1).
   !>               There are no restrictions placed on stride_x, however the user should
   !>               take care to ensure that stride_x is of appropriate size, for a typical
-  !>               case this means stride_x >= n  incx.
+  !>               case this means stride_x >= n * incx.
   !>     @param[out]
   !>     results
   !>               device pointer or host pointer to array for storing contiguous batch_count results.
@@ -2566,7 +2547,6 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>               number of instances in the batch
-  !>     
   interface rocblas_dzasum_strided_batched
     function rocblas_dzasum_strided_batched_(handle,n,x,incx,stridex,batch_count,results) bind(c, name="rocblas_dzasum_strided_batched")
       use iso_c_binding
@@ -2634,13 +2614,13 @@ module hipfort_rocblas
       rocblas_scnrm2_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     nrm2 computes the euclidean norm of a real or complex vector
   !> 
-  !>               result := sqrt( x'x ) for real vectors
-  !>               result := sqrt( xHx ) for complex vectors
+  !>               result := sqrt( x'*x ) for real vectors
+  !>               result := sqrt( x**H*x ) for complex vectors
   !> 
   !>     @param[in]
   !>     handle    [rocblas_handle]
@@ -2657,7 +2637,6 @@ module hipfort_rocblas
   !>     result
   !>               device pointer or host pointer to store the nrm2 product.
   !>               return is 0.0 if n, incx<=0.
-  !>     
   interface rocblas_dznrm2
     function rocblas_dznrm2_(handle,n,x,incx,myResult) bind(c, name="rocblas_dznrm2")
       use iso_c_binding
@@ -2743,13 +2722,13 @@ module hipfort_rocblas
       rocblas_scnrm2_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     nrm2_batched computes the euclidean norm over a batch of real or complex vectors
   !> 
-  !>               result := sqrt( x_i'x_i ) for real vectors x, for i = 1, ..., batch_count
-  !>               result := sqrt( x_iHx_i ) for complex vectors x, for i = 1, ..., batch_count
+  !>               result := sqrt( x_i'*x_i ) for real vectors x, for i = 1, ..., batch_count
+  !>               result := sqrt( x_i**H*x_i ) for complex vectors x, for i = 1, ..., batch_count
   !> 
   !>     @param[in]
   !>     handle    [rocblas_handle]
@@ -2769,8 +2748,7 @@ module hipfort_rocblas
   !>     results
   !>               device pointer or host pointer to array of batch_count size for nrm2 results.
   !>               return is 0.0 for each element if n <= 0, incx<=0.
-  !> 
-  !>     
+  !>
   interface rocblas_dznrm2_batched
     function rocblas_dznrm2_batched_(handle,n,x,incx,batch_count,results) bind(c, name="rocblas_dznrm2_batched")
       use iso_c_binding
@@ -2858,13 +2836,13 @@ module hipfort_rocblas
       rocblas_scnrm2_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     nrm2_strided_batched computes the euclidean norm over a batch of real or complex vectors
   !> 
-  !>               := sqrt( x_i'x_i ) for real vectors x, for i = 1, ..., batch_count
-  !>               := sqrt( x_iHx_i ) for complex vectors, for i = 1, ..., batch_count
+  !>               := sqrt( x_i'*x_i ) for real vectors x, for i = 1, ..., batch_count
+  !>               := sqrt( x_i**H*x_i ) for complex vectors, for i = 1, ..., batch_count
   !> 
   !>     @param[in]
   !>     handle    [rocblas_handle]
@@ -2882,7 +2860,7 @@ module hipfort_rocblas
   !>               stride from the start of one vector (x_i) and the next one (x_i+1).
   !>               There are no restrictions placed on stride_x, however the user should
   !>               take care to ensure that stride_x is of appropriate size, for a typical
-  !>               case this means stride_x >= n  incx.
+  !>               case this means stride_x >= n * incx.
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>               number of instances in the batch
@@ -2890,8 +2868,7 @@ module hipfort_rocblas
   !>     results
   !>               device pointer or host pointer to array for storing contiguous batch_count results.
   !>               return is 0.0 for each element if n <= 0, incx<=0.
-  !> 
-  !>     
+  !>
   interface rocblas_dznrm2_strided_batched
     function rocblas_dznrm2_strided_batched_(handle,n,x,incx,stridex,batch_count,results) bind(c, name="rocblas_dznrm2_strided_batched")
       use iso_c_binding
@@ -2957,7 +2934,7 @@ module hipfort_rocblas
       rocblas_icamax_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     amax finds the first index of the element of maximum magnitude of a vector x.
@@ -2978,7 +2955,6 @@ module hipfort_rocblas
   !>     result
   !>               device pointer or host pointer to store the amax index.
   !>               return is 0.0 if n, incx<=0.
-  !>     
   interface rocblas_izamax
     function rocblas_izamax_(handle,n,x,incx,myResult) bind(c, name="rocblas_izamax")
       use iso_c_binding
@@ -3064,7 +3040,7 @@ module hipfort_rocblas
       rocblas_icamax_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>      amax_batched finds the first index of the element of maximum magnitude of each vector x_i in a batch, for i = 1, ..., batch_count.
@@ -3087,7 +3063,6 @@ module hipfort_rocblas
   !>     result
   !>               device or host array of pointers of batch_count size for results.
   !>               return is 0 if n, incx<=0.
-  !>     
   interface rocblas_izamax_batched
     function rocblas_izamax_batched_(handle,n,x,incx,batch_count,myResult) bind(c, name="rocblas_izamax_batched")
       use iso_c_binding
@@ -3175,7 +3150,7 @@ module hipfort_rocblas
       rocblas_icamax_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>      amax_strided_batched finds the first index of the element of maximum magnitude of each vector x_i in a batch, for i = 1, ..., batch_count.
@@ -3201,8 +3176,7 @@ module hipfort_rocblas
   !>     result
   !>               device or host pointer for storing contiguous batch_count results.
   !>               return is 0 if n <= 0, incx<=0.
-  !> 
-  !>     
+  !>
   interface rocblas_izamax_strided_batched
     function rocblas_izamax_strided_batched_(handle,n,x,incx,stridex,batch_count,myResult) bind(c, name="rocblas_izamax_strided_batched")
       use iso_c_binding
@@ -3268,7 +3242,7 @@ module hipfort_rocblas
       rocblas_icamin_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     amin finds the first index of the element of minimum magnitude of a vector x.
@@ -3290,7 +3264,6 @@ module hipfort_rocblas
   !>     result
   !>               device pointer or host pointer to store the amin index.
   !>               return is 0.0 if n, incx<=0.
-  !>     
   interface rocblas_izamin
     function rocblas_izamin_(handle,n,x,incx,myResult) bind(c, name="rocblas_izamin")
       use iso_c_binding
@@ -3376,7 +3349,7 @@ module hipfort_rocblas
       rocblas_icamin_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     amin_batched finds the first index of the element of minimum magnitude of each vector x_i in a batch, for i = 1, ..., batch_count.
@@ -3399,7 +3372,6 @@ module hipfort_rocblas
   !>     result
   !>               device or host pointers to array of batch_count size for results.
   !>               return is 0 if n, incx<=0.
-  !>     
   interface rocblas_izamin_batched
     function rocblas_izamin_batched_(handle,n,x,incx,batch_count,myResult) bind(c, name="rocblas_izamin_batched")
       use iso_c_binding
@@ -3487,7 +3459,7 @@ module hipfort_rocblas
       rocblas_icamin_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>      amin_strided_batched finds the first index of the element of minimum magnitude of each vector x_i in a batch, for i = 1, ..., batch_count.
@@ -3513,8 +3485,7 @@ module hipfort_rocblas
   !>     result
   !>               device or host pointer to array for storing contiguous batch_count results.
   !>               return is 0 if n <= 0, incx<=0.
-  !> 
-  !>     
+  !>
   interface rocblas_izamin_strided_batched
     function rocblas_izamin_strided_batched_(handle,n,x,incx,stridex,batch_count,myResult) bind(c, name="rocblas_izamin_strided_batched")
       use iso_c_binding
@@ -3651,7 +3622,7 @@ module hipfort_rocblas
       rocblas_zrot_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     rot applies the Givens rotation matrix defined by c=cos(alpha) and s=sin(alpha) to vectors x and y.
@@ -3677,8 +3648,7 @@ module hipfort_rocblas
   !>     c       device pointer or host pointer storing scalar cosine component of the rotation matrix.
   !>     @param[in]
   !>     s       device pointer or host pointer storing scalar sine component of the rotation matrix.
-  !> 
-  !>     
+  !>
   interface rocblas_zdrot
     function rocblas_zdrot_(handle,n,x,incx,y,incy,c,s) bind(c, name="rocblas_zdrot")
       use iso_c_binding
@@ -3826,7 +3796,7 @@ module hipfort_rocblas
       rocblas_zrot_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     rot_batched applies the Givens rotation matrix defined by c=cos(alpha) and s=sin(alpha) to batched vectors x_i and y_i, for i = 1, ..., batch_count.
@@ -3855,8 +3825,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 the number of x and y arrays, i.e. the number of batches.
-  !> 
-  !>     
+  !>
   interface rocblas_zdrot_batched
     function rocblas_zdrot_batched_(handle,n,x,incx,y,incy,c,s,batch_count) bind(c, name="rocblas_zdrot_batched")
       use iso_c_binding
@@ -4011,7 +3980,7 @@ module hipfort_rocblas
       rocblas_zrot_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     rot_strided_batched applies the Givens rotation matrix defined by c=cos(alpha) and s=sin(alpha) to strided batched vectors x_i and y_i, for i = 1, ..., batch_count.
@@ -4046,8 +4015,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>             the number of x and y arrays, i.e. the number of batches.
-  !> 
-  !>     
+  !>
   interface rocblas_zdrot_strided_batched
     function rocblas_zdrot_strided_batched_(handle,n,x,incx,stride_x,y,incy,stride_y,c,s,batch_count) bind(c, name="rocblas_zdrot_strided_batched")
       use iso_c_binding
@@ -4118,7 +4086,7 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     rotg creates the Givens rotation matrix for the vector (a b).
@@ -4137,8 +4105,7 @@ module hipfort_rocblas
   !>     c       device pointer or host pointer to cosine element of Givens rotation.
   !>     @param[inout]
   !>     s       device pointer or host pointer sine element of Givens rotation.
-  !> 
-  !>     
+  !>
   interface rocblas_zrotg
     function rocblas_zrotg_(handle,a,b,c,s) bind(c, name="rocblas_zrotg")
       use iso_c_binding
@@ -4201,7 +4168,7 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     rotg_batched creates the Givens rotation matrix for the batched vectors (a_i b_i), for i = 1, ..., batch_count.
@@ -4223,8 +4190,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of batches (length of arrays a, b, c, and s).
-  !> 
-  !>     
+  !>
   interface rocblas_zrotg_batched
     function rocblas_zrotg_batched_(handle,a,b,c,s,batch_count) bind(c, name="rocblas_zrotg_batched")
       use iso_c_binding
@@ -4300,7 +4266,7 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     rotg_strided_batched creates the Givens rotation matrix for the strided batched vectors (a_i b_i), for i = 1, ..., batch_count.
@@ -4334,8 +4300,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of batches (length of arrays a, b, c, and s).
-  !> 
-  !>     
+  !>
   interface rocblas_zrotg_strided_batched
     function rocblas_zrotg_strided_batched_(handle,a,stride_a,b,stride_b,c,stride_c,s,stride_s,batch_count) bind(c, name="rocblas_zrotg_strided_batched")
       use iso_c_binding
@@ -4377,7 +4342,7 @@ module hipfort_rocblas
       rocblas_srotm_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     rotm applies the modified Givens rotation matrix defined by param to vectors x and y.
@@ -4411,8 +4376,7 @@ module hipfort_rocblas
   !>             flag =  1 => H = ( H11 1.0 -1.0 H22 )
   !>             flag = -2 => H = ( 1.0 0.0 0.0 1.0 )
   !>             param may be stored in either host or device memory, location is specified by calling rocblas_set_pointer_mode.
-  !> 
-  !>     
+  !>
   interface rocblas_drotm
     function rocblas_drotm_(handle,n,x,incx,y,incy,param) bind(c, name="rocblas_drotm")
       use iso_c_binding
@@ -4458,7 +4422,7 @@ module hipfort_rocblas
       rocblas_srotm_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     rotm_batched applies the modified Givens rotation matrix defined by param_i to batched vectors x_i and y_i, for i = 1, ..., batch_count.
@@ -4495,8 +4459,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 the number of x and y arrays, i.e. the number of batches.
-  !> 
-  !>     
+  !>
   interface rocblas_drotm_batched
     function rocblas_drotm_batched_(handle,n,x,incx,y,incy,param,batch_count) bind(c, name="rocblas_drotm_batched")
       use iso_c_binding
@@ -4546,7 +4509,7 @@ module hipfort_rocblas
       rocblas_srotm_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     rotm_strided_batched applies the modified Givens rotation matrix defined by param_i to strided batched vectors x_i and y_i, for i = 1, ..., batch_count
@@ -4592,8 +4555,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 the number of x and y arrays, i.e. the number of batches.
-  !> 
-  !>     
+  !>
   interface rocblas_drotm_strided_batched
     function rocblas_drotm_strided_batched_(handle,n,x,incx,stride_x,y,incy,stride_y,param,stride_param,batch_count) bind(c, name="rocblas_drotm_strided_batched")
       use iso_c_binding
@@ -4635,10 +4597,10 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
-  !>     rotmg creates the modified Givens rotation matrix for the vector (d1  x1, d2  y1).
+  !>     rotmg creates the modified Givens rotation matrix for the vector (d1 * x1, d2 * y1).
   !>           Parameters may be stored in either host or device memory, location is specified by calling rocblas_set_pointer_mode.
   !>           If the pointer mode is set to rocblas_pointer_mode_host, this function blocks the CPU until the GPU has finished and the results are available in host memory.
   !>           If the pointer mode is set to rocblas_pointer_mode_device, this function returns immediately and synchronization is required to read the results.
@@ -4667,8 +4629,7 @@ module hipfort_rocblas
   !>             flag =  1 => H = ( H11 1.0 -1.0 H22 )
   !>             flag = -2 => H = ( 1.0 0.0 0.0 1.0 )
   !>             param may be stored in either host or device memory, location is specified by calling rocblas_set_pointer_mode.
-  !> 
-  !>     
+  !>
   interface rocblas_drotmg
     function rocblas_drotmg_(handle,d1,d2,x1,y1,param) bind(c, name="rocblas_drotmg")
       use iso_c_binding
@@ -4701,10 +4662,10 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
-  !>     rotmg_batched creates the modified Givens rotation matrix for the batched vectors (d1_i  x1_i, d2_i  y1_i), for i = 1, ..., batch_count.
+  !>     rotmg_batched creates the modified Givens rotation matrix for the batched vectors (d1_i * x1_i, d2_i * y1_i), for i = 1, ..., batch_count.
   !>           Parameters may be stored in either host or device memory, location is specified by calling rocblas_set_pointer_mode.
   !>           If the pointer mode is set to rocblas_pointer_mode_host, this function blocks the CPU until the GPU has finished and the results are available in host memory.
   !>           If the pointer mode is set to rocblas_pointer_mode_device, this function returns immediately and synchronization is required to read the results.
@@ -4736,8 +4697,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 the number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface rocblas_drotmg_batched
     function rocblas_drotmg_batched_(handle,d1,d2,x1,y1,param,batch_count) bind(c, name="rocblas_drotmg_batched")
       use iso_c_binding
@@ -4776,10 +4736,10 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
-  !>     rotmg_strided_batched creates the modified Givens rotation matrix for the strided batched vectors (d1_i  x1_i, d2_i  y1_i), for i = 1, ..., batch_count.
+  !>     rotmg_strided_batched creates the modified Givens rotation matrix for the strided batched vectors (d1_i * x1_i, d2_i * y1_i), for i = 1, ..., batch_count.
   !>           Parameters may be stored in either host or device memory, location is specified by calling rocblas_set_pointer_mode.
   !>           If the pointer mode is set to rocblas_pointer_mode_host, this function blocks the CPU until the GPU has finished and the results are available in host memory.
   !>           If the pointer mode is set to rocblas_pointer_mode_device, this function returns immediately and synchronization is required to read the results.
@@ -4826,8 +4786,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 the number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface rocblas_drotmg_strided_batched
     function rocblas_drotmg_strided_batched_(handle,d1,stride_d1,d2,stride_d2,x1,stride_x1,y1,stride_y1,param,stride_param,batch_count) bind(c, name="rocblas_drotmg_strided_batched")
       use iso_c_binding
@@ -4849,11 +4808,9 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> 
-  !>   ===========================================================================
-  !>      level 2 BLAS
-  !>   ===========================================================================
-  !>  
+  !>  ===========================================================================
+  !>     level 2 BLAS
+  !>  ===========================================================================
   interface rocblas_sgbmv
     function rocblas_sgbmv_(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_sgbmv")
       use iso_c_binding
@@ -4943,14 +4900,14 @@ module hipfort_rocblas
       rocblas_cgbmv_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     gbmv performs one of the matrix-vector operations
   !> 
-  !>         y := alphaAx    + betay,   or
-  !>         y := alphaATx + betay,   or
-  !>         y := alphaAHx + betay,
+  !>         y := alpha*A*x    + beta*y,   or
+  !>         y := alpha*A**T*x + beta*y,   or
+  !>         y := alpha*A**H*x + beta*y,
   !> 
   !>     where alpha and beta are scalars, x and y are vectors and A is an
   !>     m by n banded matrix with kl sub-diagonals and ku super-diagonals.
@@ -4981,7 +4938,7 @@ module hipfort_rocblas
   !>               of the banded matrix. The leading diagonal resides in row (ku + 1) with
   !>               the first super-diagonal above on the RHS of row ku. The first sub-diagonal
   !>               resides below on the LHS of row ku + 2. This propogates up and down across
-  !>               subsuper-diagonals.
+  !>               sub/super-diagonals.
   !>                 Ex: (m = n = 7; ku = 2, kl = 2)
   !>                 1 2 3 0 0 0 0             0 0 3 3 3 3 3
   !>                 4 1 2 3 0 0 0             0 2 2 2 2 2 2
@@ -5007,8 +4964,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     incy      [rocblas_int]
   !>               specifies the increment for the elements of y.
-  !> 
-  !>     
+  !>
   interface rocblas_zgbmv
     function rocblas_zgbmv_(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_zgbmv")
       use iso_c_binding
@@ -5131,14 +5087,14 @@ module hipfort_rocblas
       rocblas_cgbmv_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     gbmv_batched performs one of the matrix-vector operations
   !> 
-  !>         y_i := alphaA_ix_i    + betay_i,   or
-  !>         y_i := alphaA_iTx_i + betay_i,   or
-  !>         y_i := alphaA_iHx_i + betay_i,
+  !>         y_i := alpha*A_i*x_i    + beta*y_i,   or
+  !>         y_i := alpha*A_i**T*x_i + beta*y_i,   or
+  !>         y_i := alpha*A_i**H*x_i + beta*y_i,
   !> 
   !>     where (A_i, x_i, y_i) is the i-th instance of the batch.
   !>     alpha and beta are scalars, x_i and y_i are vectors and A_i is an
@@ -5171,7 +5127,7 @@ module hipfort_rocblas
   !>               of the banded matrix. The leading diagonal resides in row (ku + 1) with
   !>               the first super-diagonal above on the RHS of row ku. The first sub-diagonal
   !>               resides below on the LHS of row ku + 2. This propogates up and down across
-  !>               subsuper-diagonals.
+  !>               sub/super-diagonals.
   !>                 Ex: (m = n = 7; ku = 2, kl = 2)
   !>                 1 2 3 0 0 0 0             0 0 3 3 3 3 3
   !>                 4 1 2 3 0 0 0             0 2 2 2 2 2 2
@@ -5200,8 +5156,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 specifies the number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface rocblas_zgbmv_batched
     function rocblas_zgbmv_batched_(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_zgbmv_batched")
       use iso_c_binding
@@ -5334,14 +5289,14 @@ module hipfort_rocblas
       rocblas_cgbmv_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     gbmv_strided_batched performs one of the matrix-vector operations
   !> 
-  !>         y_i := alphaA_ix_i    + betay_i,   or
-  !>         y_i := alphaA_iTx_i + betay_i,   or
-  !>         y_i := alphaA_iHx_i + betay_i,
+  !>         y_i := alpha*A_i*x_i    + beta*y_i,   or
+  !>         y_i := alpha*A_i**T*x_i + beta*y_i,   or
+  !>         y_i := alpha*A_i**H*x_i + beta*y_i,
   !> 
   !>     where (A_i, x_i, y_i) is the i-th instance of the batch.
   !>     alpha and beta are scalars, x_i and y_i are vectors and A_i is an
@@ -5374,7 +5329,7 @@ module hipfort_rocblas
   !>               of the banded matrix. The leading diagonal resides in row (ku + 1) with
   !>               the first super-diagonal above on the RHS of row ku. The first sub-diagonal
   !>               resides below on the LHS of row ku + 2. This propogates up and down across
-  !>               subsuper-diagonals.
+  !>               sub/super-diagonals.
   !>                 Ex: (m = n = 7; ku = 2, kl = 2)
   !>                 1 2 3 0 0 0 0             0 0 3 3 3 3 3
   !>                 4 1 2 3 0 0 0             0 2 2 2 2 2 2
@@ -5412,8 +5367,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 specifies the number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface rocblas_zgbmv_strided_batched
     function rocblas_zgbmv_strided_batched_(handle,trans,m,n,kl,ku,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count) bind(c, name="rocblas_zgbmv_strided_batched")
       use iso_c_binding
@@ -5531,14 +5485,14 @@ module hipfort_rocblas
       rocblas_cgemv_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     gemv performs one of the matrix-vector operations
   !> 
-  !>         y := alphaAx    + betay,   or
-  !>         y := alphaATx + betay,   or
-  !>         y := alphaAHx + betay,
+  !>         y := alpha*A*x    + beta*y,   or
+  !>         y := alpha*A**T*x + beta*y,   or
+  !>         y := alpha*A**H*x + beta*y,
   !> 
   !>     where alpha and beta are scalars, x and y are vectors and A is an
   !>     m by n matrix.
@@ -5574,8 +5528,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     incy      [rocblas_int]
   !>               specifies the increment for the elements of y.
-  !> 
-  !>     
+  !>
   interface rocblas_zgemv
     function rocblas_zgemv_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_zgemv")
       use iso_c_binding
@@ -5690,14 +5643,14 @@ module hipfort_rocblas
       rocblas_cgemv_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     gemv_batched performs a batch of matrix-vector operations
   !> 
-  !>         y_i := alphaA_ix_i    + betay_i,   or
-  !>         y_i := alphaA_iTx_i + betay_i,   or
-  !>         y_i := alphaA_iHx_i + betay_i,
+  !>         y_i := alpha*A_i*x_i    + beta*y_i,   or
+  !>         y_i := alpha*A_i**T*x_i + beta*y_i,   or
+  !>         y_i := alpha*A_i**H*x_i + beta*y_i,
   !> 
   !>     where (A_i, x_i, y_i) is the i-th instance of the batch.
   !>     alpha and beta are scalars, x_i and y_i are vectors and A_i is an
@@ -5737,8 +5690,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch
-  !> 
-  !>     
+  !>
   interface rocblas_zgemv_batched
     function rocblas_zgemv_batched_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_zgemv_batched")
       use iso_c_binding
@@ -5863,14 +5815,14 @@ module hipfort_rocblas
       rocblas_cgemv_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     gemv_strided_batched performs a batch of matrix-vector operations
   !> 
-  !>         y_i := alphaA_ix_i    + betay_i,   or
-  !>         y_i := alphaA_iTx_i + betay_i,   or
-  !>         y_i := alphaA_iHx_i + betay_i,
+  !>         y_i := alpha*A_i*x_i    + beta*y_i,   or
+  !>         y_i := alpha*A_i**T*x_i + beta*y_i,   or
+  !>         y_i := alpha*A_i**H*x_i + beta*y_i,
   !> 
   !>     where (A_i, x_i, y_i) is the i-th instance of the batch.
   !>     alpha and beta are scalars, x_i and y_i are vectors and A_i is an
@@ -5908,7 +5860,7 @@ module hipfort_rocblas
   !>                 stride from the start of one vector (x_i) and the next one (x_i+1).
   !>                 There are no restrictions placed on stride_x, however the user should
   !>                 take care to ensure that stride_x is of appropriate size. When trans equals rocblas_operation_none
-  !>                 this typically means stride_x >= n  incx, otherwise stride_x >= m  incx.
+  !>                 this typically means stride_x >= n * incx, otherwise stride_x >= m * incx.
   !>     @param[in]
   !>     beta        device pointer or host pointer to scalar beta.
   !>     @param[inout]
@@ -5921,12 +5873,11 @@ module hipfort_rocblas
   !>                 stride from the start of one vector (y_i) and the next one (y_i+1).
   !>                 There are no restrictions placed on stride_y, however the user should
   !>                 take care to ensure that stride_y is of appropriate size. When trans equals rocblas_operation_none
-  !>                 this typically means stride_y >= m  incy, otherwise stride_y >= n  incy. stridey should be non zero.
+  !>                 this typically means stride_y >= m * incy, otherwise stride_y >= n * incy. stridey should be non zero.
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch
-  !> 
-  !>     
+  !>
   interface rocblas_zgemv_strided_batched
     function rocblas_zgemv_strided_batched_(handle,transA,m,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_zgemv_strided_batched")
       use iso_c_binding
@@ -5986,12 +5937,12 @@ module hipfort_rocblas
       rocblas_chbmv_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     hbmv performs the matrix-vector operations
   !> 
-  !>         y := alphaAx + betay
+  !>         y := alpha*A*x + beta*y
   !> 
   !>     where alpha and beta are scalars, x and y are n element vectors and A is an
   !>     n by n Hermitian band matrix, with k super-diagonals.
@@ -6056,8 +6007,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     incy      [rocblas_int]
   !>               specifies the increment for the elements of y.
-  !> 
-  !>     
+  !>
   interface rocblas_zhbmv
     function rocblas_zhbmv_(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_zhbmv")
       use iso_c_binding
@@ -6114,12 +6064,12 @@ module hipfort_rocblas
       rocblas_chbmv_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     hbmv_batched performs one of the matrix-vector operations
   !> 
-  !>         y_i := alphaA_ix_i + betay_i
+  !>         y_i := alpha*A_i*x_i + beta*y_i
   !> 
   !>     where alpha and beta are scalars, x_i and y_i are n element vectors and A_i is an
   !>     n by n Hermitian band matrix with k super-diagonals, for each batch in i = [1, batch_count].
@@ -6187,8 +6137,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface rocblas_zhbmv_batched
     function rocblas_zhbmv_batched_(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_zhbmv_batched")
       use iso_c_binding
@@ -6249,12 +6198,12 @@ module hipfort_rocblas
       rocblas_chbmv_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     hbmv_strided_batched performs one of the matrix-vector operations
   !> 
-  !>         y_i := alphaA_ix_i + betay_i
+  !>         y_i := alpha*A_i*x_i + beta*y_i
   !> 
   !>     where alpha and beta are scalars, x_i and y_i are n element vectors and A_i is an
   !>     n by n Hermitian band matrix with k super-diagonals, for each batch in i = [1, batch_count].
@@ -6331,8 +6280,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface rocblas_zhbmv_strided_batched
     function rocblas_zhbmv_strided_batched_(handle,uplo,n,k,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count) bind(c, name="rocblas_zhbmv_strided_batched")
       use iso_c_binding
@@ -6391,12 +6339,12 @@ module hipfort_rocblas
       rocblas_chemv_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     hemv performs one of the matrix-vector operations
   !> 
-  !>         y := alphaAx + betay
+  !>         y := alpha*A*x + beta*y
   !> 
   !>     where alpha and beta are scalars, x and y are n element vectors and A is an
   !>     n by n Hermitian matrix.
@@ -6440,8 +6388,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     incy      [rocblas_int]
   !>               specifies the increment for the elements of y.
-  !> 
-  !>     
+  !>
   interface rocblas_zhemv
     function rocblas_zhemv_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_zhemv")
       use iso_c_binding
@@ -6496,12 +6443,12 @@ module hipfort_rocblas
       rocblas_chemv_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     hemv_batched performs one of the matrix-vector operations
   !> 
-  !>         y_i := alphaA_ix_i + betay_i
+  !>         y_i := alpha*A_i*x_i + beta*y_i
   !> 
   !>     where alpha and beta are scalars, x_i and y_i are n element vectors and A_i is an
   !>     n by n Hermitian matrix, for each batch in i = [1, batch_count].
@@ -6548,8 +6495,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface rocblas_zhemv_batched
     function rocblas_zhemv_batched_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_zhemv_batched")
       use iso_c_binding
@@ -6608,12 +6554,12 @@ module hipfort_rocblas
       rocblas_chemv_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     hemv_strided_batched performs one of the matrix-vector operations
   !> 
-  !>         y_i := alphaA_ix_i + betay_i
+  !>         y_i := alpha*A_i*x_i + beta*y_i
   !> 
   !>     where alpha and beta are scalars, x_i and y_i are n element vectors and A_i is an
   !>     n by n Hermitian matrix, for each batch in i = [1, batch_count].
@@ -6669,8 +6615,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface rocblas_zhemv_strided_batched
     function rocblas_zhemv_strided_batched_(handle,uplo,n,alpha,A,lda,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count) bind(c, name="rocblas_zhemv_strided_batched")
       use iso_c_binding
@@ -6725,12 +6670,12 @@ module hipfort_rocblas
       rocblas_cher_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     her performs the matrix-vector operations
   !> 
-  !>         A := A + alphaxxH
+  !>         A := A + alpha*x*x**H
   !> 
   !>     where alpha is a real scalar, x is a vector, and A is an
   !>     n by n Hermitian matrix.
@@ -6756,7 +6701,7 @@ module hipfort_rocblas
   !>               specifies the increment for the elements of x.
   !>     @param[inout]
   !>     A         device pointer storing the specified triangular portion of
-  !>               the Hermitian matrix A. Of size (lda  n).
+  !>               the Hermitian matrix A. Of size (lda * n).
   !>               if uplo == rocblas_fill_upper:
   !>                 The upper triangular portion of the Hermitian matrix A is supplied. The lower
   !>                 triangluar portion will not be touched.
@@ -6768,7 +6713,6 @@ module hipfort_rocblas
   !>     @param[in]
   !>     lda       [rocblas_int]
   !>               specifies the leading dimension of A. Must be at least max(1, n).
-  !>     
   interface rocblas_zher
     function rocblas_zher_(handle,uplo,n,alpha,x,incx,A,lda) bind(c, name="rocblas_zher")
       use iso_c_binding
@@ -6817,12 +6761,12 @@ module hipfort_rocblas
       rocblas_cher_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     her_batched performs the matrix-vector operations
   !> 
-  !>         A_i := A_i + alphax_ix_iH
+  !>         A_i := A_i + alpha*x_i*x_i**H
   !> 
   !>     where alpha is a real scalar, x_i is a vector, and A_i is an
   !>     n by n symmetric matrix, for i = 1, ..., batch_count.
@@ -6848,7 +6792,7 @@ module hipfort_rocblas
   !>               specifies the increment for the elements of each x_i.
   !>     @param[inout]
   !>     A         device array of device pointers storing the specified triangular portion of
-  !>               each Hermitian matrix A_i of at least size ((n  (n + 1))  2). Array is of at least size batch_count.
+  !>               each Hermitian matrix A_i of at least size ((n * (n + 1)) 2). Array is of at least size batch_count.
   !>               if uplo == rocblas_fill_upper:
   !>                 The upper triangular portion of each Hermitian matrix A_i is supplied. The lower triangular portion
   !>                 of each A_i will not be touched.
@@ -6863,7 +6807,6 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
-  !>     
   interface rocblas_zher_batched
     function rocblas_zher_batched_(handle,uplo,n,alpha,x,incx,A,lda,batch_count) bind(c, name="rocblas_zher_batched")
       use iso_c_binding
@@ -6915,12 +6858,12 @@ module hipfort_rocblas
       rocblas_cher_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     her_strided_batched performs the matrix-vector operations
   !> 
-  !>         A_i := A_i + alphax_ix_iH
+  !>         A_i := A_i + alpha*x_i*x_i**H
   !> 
   !>     where alpha is a real scalar, x_i is a vector, and A_i is an
   !>     n by n Hermitian matrix, for i = 1, ..., batch_count.
@@ -6967,7 +6910,6 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
-  !>     
   interface rocblas_zher_strided_batched
     function rocblas_zher_strided_batched_(handle,uplo,n,alpha,x,incx,stride_x,A,lda,stride_A,batch_count) bind(c, name="rocblas_zher_strided_batched")
       use iso_c_binding
@@ -7020,12 +6962,12 @@ module hipfort_rocblas
       rocblas_cher2_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     her2 performs the matrix-vector operations
   !> 
-  !>         A := A + alphaxyH + conj(alpha)yxH
+  !>         A := A + alpha*x*y**H + conj(alpha)*y*x**H
   !> 
   !>     where alpha is a complex scalar, x and y are vectors, and A is an
   !>     n by n Hermitian matrix.
@@ -7068,7 +7010,6 @@ module hipfort_rocblas
   !>     @param[in]
   !>     lda       [rocblas_int]
   !>               specifies the leading dimension of A. Must be at least max(lda, 1).
-  !>     
   interface rocblas_zher2
     function rocblas_zher2_(handle,uplo,n,alpha,x,incx,y,incy,A,lda) bind(c, name="rocblas_zher2")
       use iso_c_binding
@@ -7121,12 +7062,12 @@ module hipfort_rocblas
       rocblas_cher2_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     her2_batched performs the matrix-vector operations
   !> 
-  !>         A_i := A_i + alphax_iy_iH + conj(alpha)y_ix_iH
+  !>         A_i := A_i + alpha*x_i*y_i**H + conj(alpha)*y_i*x_i**H
   !> 
   !>     where alpha is a complex scalar, x_i and y_i are vectors, and A_i is an
   !>     n by n Hermitian matrix for each batch in i = [1, batch_count].
@@ -7172,7 +7113,6 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
-  !>     
   interface rocblas_zher2_batched
     function rocblas_zher2_batched_(handle,uplo,n,alpha,x,incx,y,incy,A,lda,batch_count) bind(c, name="rocblas_zher2_batched")
       use iso_c_binding
@@ -7229,12 +7169,12 @@ module hipfort_rocblas
       rocblas_cher2_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     her2_strided_batched performs the matrix-vector operations
   !> 
-  !>         A_i := A_i + alphax_iy_iH + conj(alpha)y_ix_iH
+  !>         A_i := A_i + alpha*x_i*y_i**H + conj(alpha)*y_i*x_i**H
   !> 
   !>     where alpha is a complex scalar, x_i and y_i are vectors, and A_i is an
   !>     n by n Hermitian matrix for each batch in i = [1, batch_count].
@@ -7289,7 +7229,6 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
-  !>     
   interface rocblas_zher2_strided_batched
     function rocblas_zher2_strided_batched_(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,A,lda,stride_A,batch_count) bind(c, name="rocblas_zher2_strided_batched")
       use iso_c_binding
@@ -7344,12 +7283,12 @@ module hipfort_rocblas
       rocblas_chpmv_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     hpmv performs the matrix-vector operation
   !> 
-  !>         y := alphaAx + betay
+  !>         y := alpha*A*x + beta*y
   !> 
   !>     where alpha and beta are scalars, x and y are n element vectors and A is an
   !>     n by n Hermitian matrix, supplied in packed form (see description below).
@@ -7368,7 +7307,7 @@ module hipfort_rocblas
   !>     alpha     device pointer or host pointer to scalar alpha.
   !>     @param[in]
   !>     AP        device pointer storing the packed version of the specified triangular portion of
-  !>               the Hermitian matrix A. Of at least size ((n  (n + 1))  2).
+  !>               the Hermitian matrix A. Of at least size ((n * (n + 1)) 2).
   !>               if uplo == rocblas_fill_upper:
   !>                 The upper triangular portion of the Hermitian matrix A is supplied.
   !>                 The matrix is compacted so that AP contains the triangular portion column-by-column
@@ -7405,8 +7344,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     incy      [rocblas_int]
   !>               specifies the increment for the elements of y.
-  !> 
-  !>     
+  !>
   interface rocblas_zhpmv
     function rocblas_zhpmv_(handle,uplo,n,alpha,AP,x,incx,beta,y,incy) bind(c, name="rocblas_zhpmv")
       use iso_c_binding
@@ -7458,12 +7396,12 @@ module hipfort_rocblas
       rocblas_chpmv_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     hpmv_batched performs the matrix-vector operation
   !> 
-  !>         y_i := alphaA_ix_i + betay_i
+  !>         y_i := alpha*A_i*x_i + beta*y_i
   !> 
   !>     where alpha and beta are scalars, x_i and y_i are n element vectors and A_i is an
   !>     n by n Hermitian matrix, supplied in packed form (see description below),
@@ -7483,7 +7421,7 @@ module hipfort_rocblas
   !>     alpha     device pointer or host pointer to scalar alpha.
   !>     @param[in]
   !>     AP      device pointer of device pointers storing the packed version of the specified triangular
-  !>             portion of each Hermitian matrix A_i. Each A_i is of at least size ((n  (n + 1))  2).
+  !>             portion of each Hermitian matrix A_i. Each A_i is of at least size ((n * (n + 1)) 2).
   !>             if uplo == rocblas_fill_upper:
   !>             The upper triangular portion of each Hermitian matrix A_i is supplied.
   !>             The matrix is compacted so that each AP_i contains the triangular portion column-by-column
@@ -7523,8 +7461,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface rocblas_zhpmv_batched
     function rocblas_zhpmv_batched_(handle,uplo,n,alpha,AP,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_zhpmv_batched")
       use iso_c_binding
@@ -7580,12 +7517,12 @@ module hipfort_rocblas
       rocblas_chpmv_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     hpmv_strided_batched performs the matrix-vector operation
   !> 
-  !>         y_i := alphaA_ix_i + betay_i
+  !>         y_i := alpha*A_i*x_i + beta*y_i
   !> 
   !>     where alpha and beta are scalars, x_i and y_i are n element vectors and A_i is an
   !>     n by n Hermitian matrix, supplied in packed form (see description below),
@@ -7605,7 +7542,7 @@ module hipfort_rocblas
   !>     alpha     device pointer or host pointer to scalar alpha.
   !>     @param[in]
   !>     AP        device pointer pointing to the beginning of the first matrix (AP_1). Stores the packed
-  !>               version of the specified triangular portion of each Hermitian matrix AP_i of size ((n  (n + 1))  2).
+  !>               version of the specified triangular portion of each Hermitian matrix AP_i of size ((n * (n + 1)) 2).
   !>               if uplo == rocblas_fill_upper:
   !>                 The upper triangular portion of each Hermitian matrix A_i is supplied.
   !>                 The matrix is compacted so that each AP_i contains the triangular portion column-by-column
@@ -7654,8 +7591,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface rocblas_zhpmv_strided_batched
     function rocblas_zhpmv_strided_batched_(handle,uplo,n,alpha,AP,stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count) bind(c, name="rocblas_zhpmv_strided_batched")
       use iso_c_binding
@@ -7706,12 +7642,12 @@ module hipfort_rocblas
       rocblas_chpr_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     hpr performs the matrix-vector operations
   !> 
-  !>         A := A + alphaxxH
+  !>         A := A + alpha*x*x**H
   !> 
   !>     where alpha is a real scalar, x is a vector, and A is an
   !>     n by n Hermitian matrix, supplied in packed form.
@@ -7737,7 +7673,7 @@ module hipfort_rocblas
   !>               specifies the increment for the elements of x.
   !>     @param[inout]
   !>     AP        device pointer storing the packed version of the specified triangular portion of
-  !>               the Hermitian matrix A. Of at least size ((n  (n + 1))  2).
+  !>               the Hermitian matrix A. Of at least size ((n * (n + 1)) 2).
   !>               if uplo == rocblas_fill_upper:
   !>                 The upper triangular portion of the Hermitian matrix A is supplied.
   !>                 The matrix is compacted so that AP contains the triangular portion column-by-column
@@ -7762,7 +7698,6 @@ module hipfort_rocblas
   !>                         (4,-9) (5,-3) (6,0)
   !>             Note that the imaginary part of the diagonal elements are not accessed and are assumed
   !>             to be 0.
-  !>     
   interface rocblas_zhpr
     function rocblas_zhpr_(handle,uplo,n,alpha,x,incx,AP) bind(c, name="rocblas_zhpr")
       use iso_c_binding
@@ -7808,12 +7743,12 @@ module hipfort_rocblas
       rocblas_chpr_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     hpr_batched performs the matrix-vector operations
   !> 
-  !>         A_i := A_i + alphax_ix_iH
+  !>         A_i := A_i + alpha*x_i*x_i**H
   !> 
   !>     where alpha is a real scalar, x_i is a vector, and A_i is an
   !>     n by n symmetric matrix, supplied in packed form, for i = 1, ..., batch_count.
@@ -7839,7 +7774,7 @@ module hipfort_rocblas
   !>               specifies the increment for the elements of each x_i.
   !>     @param[inout]
   !>     AP        device array of device pointers storing the packed version of the specified triangular portion of
-  !>               each Hermitian matrix A_i of at least size ((n  (n + 1))  2). Array is of at least size batch_count.
+  !>               each Hermitian matrix A_i of at least size ((n * (n + 1)) 2). Array is of at least size batch_count.
   !>               if uplo == rocblas_fill_upper:
   !>                 The upper triangular portion of each Hermitian matrix A_i is supplied.
   !>                 The matrix is compacted so that AP contains the triangular portion column-by-column
@@ -7867,7 +7802,6 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
-  !>     
   interface rocblas_zhpr_batched
     function rocblas_zhpr_batched_(handle,uplo,n,alpha,x,incx,AP,batch_count) bind(c, name="rocblas_zhpr_batched")
       use iso_c_binding
@@ -7916,12 +7850,12 @@ module hipfort_rocblas
       rocblas_chpr_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     hpr_strided_batched performs the matrix-vector operations
   !> 
-  !>         A_i := A_i + alphax_ix_iH
+  !>         A_i := A_i + alpha*x_i*x_i**H
   !> 
   !>     where alpha is a real scalar, x_i is a vector, and A_i is an
   !>     n by n symmetric matrix, supplied in packed form, for i = 1, ..., batch_count.
@@ -7981,7 +7915,6 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
-  !>     
   interface rocblas_zhpr_strided_batched
     function rocblas_zhpr_strided_batched_(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A,batch_count) bind(c, name="rocblas_zhpr_strided_batched")
       use iso_c_binding
@@ -8030,12 +7963,12 @@ module hipfort_rocblas
       rocblas_chpr2_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     hpr2 performs the matrix-vector operations
   !> 
-  !>         A := A + alphaxyH + conj(alpha)yxH
+  !>         A := A + alpha*x*y**H + conj(alpha)*y*x**H
   !> 
   !>     where alpha is a complex scalar, x and y are vectors, and A is an
   !>     n by n Hermitian matrix, supplied in packed form.
@@ -8066,7 +7999,7 @@ module hipfort_rocblas
   !>               specifies the increment for the elements of y.
   !>     @param[inout]
   !>     AP        device pointer storing the packed version of the specified triangular portion of
-  !>               the Hermitian matrix A. Of at least size ((n  (n + 1))  2).
+  !>               the Hermitian matrix A. Of at least size ((n * (n + 1)) 2).
   !>               if uplo == rocblas_fill_upper:
   !>                 The upper triangular portion of the Hermitian matrix A is supplied.
   !>                 The matrix is compacted so that AP contains the triangular portion column-by-column
@@ -8091,7 +8024,6 @@ module hipfort_rocblas
   !>                         (4,-9) (5,-3) (6,0)
   !>             Note that the imaginary part of the diagonal elements are not accessed and are assumed
   !>             to be 0.
-  !>     
   interface rocblas_zhpr2
     function rocblas_zhpr2_(handle,uplo,n,alpha,x,incx,y,incy,AP) bind(c, name="rocblas_zhpr2")
       use iso_c_binding
@@ -8141,12 +8073,12 @@ module hipfort_rocblas
       rocblas_chpr2_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     hpr2_batched performs the matrix-vector operations
   !> 
-  !>         A_i := A_i + alphax_iy_iH + conj(alpha)y_ix_iH
+  !>         A_i := A_i + alpha*x_i*y_i**H + conj(alpha)*y_i*x_i**H
   !> 
   !>     where alpha is a complex scalar, x_i and y_i are vectors, and A_i is an
   !>     n by n symmetric matrix, supplied in packed form, for i = 1, ..., batch_count.
@@ -8177,7 +8109,7 @@ module hipfort_rocblas
   !>               specifies the increment for the elements of each y_i.
   !>     @param[inout]
   !>     AP        device array of device pointers storing the packed version of the specified triangular portion of
-  !>               each Hermitian matrix A_i of at least size ((n  (n + 1))  2). Array is of at least size batch_count.
+  !>               each Hermitian matrix A_i of at least size ((n * (n + 1)) 2). Array is of at least size batch_count.
   !>               if uplo == rocblas_fill_upper:
   !>                 The upper triangular portion of each Hermitian matrix A_i is supplied.
   !>                 The matrix is compacted so that AP contains the triangular portion column-by-column
@@ -8205,7 +8137,6 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
-  !>     
   interface rocblas_zhpr2_batched
     function rocblas_zhpr2_batched_(handle,uplo,n,alpha,x,incx,y,incy,AP,batch_count) bind(c, name="rocblas_zhpr2_batched")
       use iso_c_binding
@@ -8259,12 +8190,12 @@ module hipfort_rocblas
       rocblas_chpr2_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     hpr2_strided_batched performs the matrix-vector operations
   !> 
-  !>         A_i := A_i + alphax_iy_iH + conj(alpha)y_ix_iH
+  !>         A_i := A_i + alpha*x_i*y_i**H + conj(alpha)*y_i*x_i**H
   !> 
   !>     where alpha is a complex scalar, x_i and y_i are vectors, and A_i is an
   !>     n by n symmetric matrix, supplied in packed form, for i = 1, ..., batch_count.
@@ -8332,7 +8263,6 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
-  !>     
   interface rocblas_zhpr2_strided_batched
     function rocblas_zhpr2_strided_batched_(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,AP,stride_A,batch_count) bind(c, name="rocblas_zhpr2_strided_batched")
       use iso_c_binding
@@ -8435,12 +8365,12 @@ module hipfort_rocblas
       rocblas_ctrmv_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     trmv performs one of the matrix-vector operations
   !> 
-  !>          x = Ax or x = ATx,
+  !>          x = A*x or x = A**T*x,
   !> 
   !>     where x is an n element vector and A is an n by n unit, or non-unit, upper or lower triangular matrix.
   !> 
@@ -8482,8 +8412,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     incx      [rocblas_int]
   !>               specifies the increment for the elements of x.
-  !> 
-  !>     
+  !>
   interface rocblas_ztrmv
     function rocblas_ztrmv_(handle,uplo,transA,diag,m,A,lda,x,incx) bind(c, name="rocblas_ztrmv")
       use iso_c_binding
@@ -8592,12 +8521,12 @@ module hipfort_rocblas
       rocblas_ctrmv_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     trmv_strided_batched performs one of the matrix-vector operations
   !> 
-  !>          x_i = A_ix_i or x_i = ATx_i, 0 \le i < batch_count
+  !>          x_i = A_i*x_i or x_i = A**T*x_i, 0 \le i < batch_count
   !> 
   !>     where x_i is an n element vector and A_i is an n by n (unit, or non-unit, upper or lower triangular matrix)
   !>     with strides specifying how to retrieve $x_i$ (resp. $A_i$) from $x_{i-1}$ (resp. $A_i$).
@@ -8651,10 +8580,9 @@ module hipfort_rocblas
   !> 
   !>     @param[in]
   !>     batch_count [rocblas_int]
-  !>               The number of batched matricesvectors.
+  !>               The number of batched matrices/vectors.
   !> 
-  !> 
-  !>     
+  !>
   interface rocblas_ztrmv_strided_batched
     function rocblas_ztrmv_strided_batched_(handle,uplo,transA,diag,m,A,lda,stridea,x,incx,stridex,batch_count) bind(c, name="rocblas_ztrmv_strided_batched")
       use iso_c_binding
@@ -8754,12 +8682,12 @@ module hipfort_rocblas
       rocblas_ctpmv_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     tpmv performs one of the matrix-vector operations
   !> 
-  !>          x = Ax or x = ATx,
+  !>          x = A*x or x = A**T*x,
   !> 
   !>     where x is an n element vector and A is an n by n unit, or non-unit, upper or lower triangular matrix, supplied in the pack form.
   !> 
@@ -8788,7 +8716,7 @@ module hipfort_rocblas
   !> 
   !>     @param[in]
   !>     A       device pointer storing matrix A,
-  !>             of dimension at leat ( m  ( m + 1 )  2 ).
+  !>             of dimension at leat ( m * ( m + 1 ) 2 ).
   !>           Before entry with uplo = rocblas_fill_upper, the array A
   !>           must contain the upper triangular matrix packed sequentially,
   !>           column by column, so that A[0] contains a_{0,0}, A[1] and A[2] contain
@@ -8806,8 +8734,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     incx    [rocblas_int]
   !>             specifies the increment for the elements of x. incx must not be zero.
-  !> 
-  !>     
+  !>
   interface rocblas_ztpmv
     function rocblas_ztpmv_(handle,uplo,transA,diag,m,A,x,incx) bind(c, name="rocblas_ztpmv")
       use iso_c_binding
@@ -8912,12 +8839,12 @@ module hipfort_rocblas
       rocblas_ctpmv_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     tpmv_strided_batched performs one of the matrix-vector operations
   !> 
-  !>          x_i = A_ix_i or x_i = ATx_i, 0 \le i < batch_count
+  !>          x_i = A_i*x_i or x_i = A**T*x_i, 0 \le i < batch_count
   !> 
   !>     where x_i is an n element vector and A_i is an n by n (unit, or non-unit, upper or lower triangular matrix)
   !>     with strides specifying how to retrieve $x_i$ (resp. $A_i$) from $x_{i-1}$ (resp. $A_i$).
@@ -8966,10 +8893,9 @@ module hipfort_rocblas
   !> 
   !>     @param[in]
   !>     batch_count [rocblas_int]
-  !>               The number of batched matricesvectors.
+  !>               The number of batched matrices/vectors.
   !> 
-  !> 
-  !>     
+  !>
   interface rocblas_ztpmv_strided_batched
     function rocblas_ztpmv_strided_batched_(handle,uplo,transA,diag,m,A,stridea,x,incx,stridex,batch_count) bind(c, name="rocblas_ztpmv_strided_batched")
       use iso_c_binding
@@ -9074,14 +9000,14 @@ module hipfort_rocblas
       rocblas_ctbmv_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     tbmv performs one of the matrix-vector operations
   !> 
-  !>         x := Ax      or
-  !>         x := ATx   or
-  !>         x := AHx,
+  !>         x := A*x      or
+  !>         x := A**T*x   or
+  !>         x := A**H*x,
   !> 
   !>     x is a vectors and A is a banded m by m matrix (see description below).
   !> 
@@ -9145,8 +9071,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     incx      [rocblas_int]
   !>               specifies the increment for the elements of x.
-  !> 
-  !>     
+  !>
   interface rocblas_ztbmv
     function rocblas_ztbmv_(handle,uplo,trans,diag,m,k,A,lda,x,incx) bind(c, name="rocblas_ztbmv")
       use iso_c_binding
@@ -9253,14 +9178,14 @@ module hipfort_rocblas
       rocblas_ctbmv_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     tbmv_batched performs one of the matrix-vector operations
   !> 
-  !>         x_i := A_ix_i      or
-  !>         x_i := A_iTx_i   or
-  !>         x_i := A_iHx_i,
+  !>         x_i := A_i*x_i      or
+  !>         x_i := A_i**T*x_i   or
+  !>         x_i := A_i**H*x_i,
   !> 
   !>     where (A_i, x_i) is the i-th instance of the batch.
   !>     x_i is a vector and A_i is an m by m matrix, for i = 1, ..., batch_count.
@@ -9328,8 +9253,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface rocblas_ztbmv_batched
     function rocblas_ztbmv_batched_(handle,uplo,trans,diag,m,k,A,lda,x,incx,batch_count) bind(c, name="rocblas_ztbmv_batched")
       use iso_c_binding
@@ -9443,14 +9367,14 @@ module hipfort_rocblas
       rocblas_ctbmv_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     tbmv_strided_batched performs one of the matrix-vector operations
   !> 
-  !>         x_i := A_ix_i      or
-  !>         x_i := A_iTx_i   or
-  !>         x_i := A_iHx_i,
+  !>         x_i := A_i*x_i      or
+  !>         x_i := A_i**T*x_i   or
+  !>         x_i := A_i**H*x_i,
   !> 
   !>     where (A_i, x_i) is the i-th instance of the batch.
   !>     x_i is a vector and A_i is an m by m matrix, for i = 1, ..., batch_count.
@@ -9524,8 +9448,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface rocblas_ztbmv_strided_batched
     function rocblas_ztbmv_strided_batched_(handle,uplo,trans,diag,m,k,A,lda,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_ztbmv_strided_batched")
       use iso_c_binding
@@ -9632,12 +9555,12 @@ module hipfort_rocblas
       rocblas_ctbsv_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     tbsv solves
   !> 
-  !>          Ax = b or ATx = b or AHx = b,
+  !>          A*x = b or A**T*x = b or A**H*x = b,
   !> 
   !>     where x and b are vectors and A is a banded triangular matrix.
   !> 
@@ -9652,9 +9575,9 @@ module hipfort_rocblas
   !> 
   !>     @param[in]
   !>     transA     [rocblas_operation]
-  !>                rocblas_operation_none: Solves Ax = b
-  !>                rocblas_operation_transpose: Solves ATx = b
-  !>                rocblas_operation_conjugate_transpose: Solves AHx = b
+  !>                rocblas_operation_none: Solves A*x = b
+  !>                rocblas_operation_transpose: Solves A**T*x = b
+  !>                rocblas_operation_conjugate_transpose: Solves A**H*x = b
   !> 
   !>     @param[in]
   !>     diag    [rocblas_diagonal]
@@ -9687,8 +9610,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     incx      [rocblas_int]
   !>               specifies the increment for the elements of x.
-  !> 
-  !>     
+  !>
   interface rocblas_ztbsv
     function rocblas_ztbsv_(handle,uplo,transA,diag,n,k,A,lda,x,incx) bind(c, name="rocblas_ztbsv")
       use iso_c_binding
@@ -9795,12 +9717,12 @@ module hipfort_rocblas
       rocblas_ctbsv_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     tbsv_batched solves
   !> 
-  !>          A_ix_i = b_i or A_iTx_i = b_i or A_iHx_i = b_i,
+  !>          A_i*x_i = b_i or A_i**T*x_i = b_i or A_i**H*x_i = b_i,
   !> 
   !>     where x_i and b_i are vectors and A_i is a banded triangular matrix,
   !>     for i = [1, batch_count].
@@ -9818,9 +9740,9 @@ module hipfort_rocblas
   !> 
   !>     @param[in]
   !>     transA     [rocblas_operation]
-  !>                rocblas_operation_none: Solves A_ix_i = b_i
-  !>                rocblas_operation_transpose: Solves A_iTx_i = b_i
-  !>                rocblas_operation_conjugate_transpose: Solves A_iHx_i = b_i
+  !>                rocblas_operation_none: Solves A_i*x_i = b_i
+  !>                rocblas_operation_transpose: Solves A_i**T*x_i = b_i
+  !>                rocblas_operation_conjugate_transpose: Solves A_i**H*x_i = b_i
   !> 
   !>     @param[in]
   !>     diag    [rocblas_diagonal]
@@ -9856,8 +9778,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface rocblas_ztbsv_batched
     function rocblas_ztbsv_batched_(handle,uplo,transA,diag,n,k,A,lda,x,incx,batch_count) bind(c, name="rocblas_ztbsv_batched")
       use iso_c_binding
@@ -9971,12 +9892,12 @@ module hipfort_rocblas
       rocblas_ctbsv_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     tbsv_strided_batched solves
   !> 
-  !>          A_ix_i = b_i or A_iTx_i = b_i or A_iHx_i = b_i,
+  !>          A_i*x_i = b_i or A_i**T*x_i = b_i or A_i**H*x_i = b_i,
   !> 
   !>     where x_i and b_i are vectors and A_i is a banded triangular matrix,
   !>     for i = [1, batch_count].
@@ -9994,9 +9915,9 @@ module hipfort_rocblas
   !> 
   !>     @param[in]
   !>     transA     [rocblas_operation]
-  !>                rocblas_operation_none: Solves A_ix_i = b_i
-  !>                rocblas_operation_transpose: Solves A_iTx_i = b_i
-  !>                rocblas_operation_conjugate_transpose: Solves A_iHx_i = b_i
+  !>                rocblas_operation_none: Solves A_i*x_i = b_i
+  !>                rocblas_operation_transpose: Solves A_i**T*x_i = b_i
+  !>                rocblas_operation_conjugate_transpose: Solves A_i**H*x_i = b_i
   !> 
   !>     @param[in]
   !>     diag    [rocblas_diagonal]
@@ -10037,8 +9958,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface rocblas_ztbsv_strided_batched
     function rocblas_ztbsv_strided_batched_(handle,uplo,transA,diag,n,k,A,lda,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_ztbsv_strided_batched")
       use iso_c_binding
@@ -10142,12 +10062,12 @@ module hipfort_rocblas
       rocblas_ctrsv_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     trsv solves
   !> 
-  !>          Ax = b or ATx = b,
+  !>          A*x = b or A**T*x = b,
   !> 
   !>     where x and b are vectors and A is a triangular matrix.
   !> 
@@ -10189,8 +10109,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     incx      [rocblas_int]
   !>               specifies the increment for the elements of x.
-  !> 
-  !>     
+  !>
   interface rocblas_ztrsv
     function rocblas_ztrsv_(handle,uplo,transA,diag,m,A,lda,x,incx) bind(c, name="rocblas_ztrsv")
       use iso_c_binding
@@ -10293,12 +10212,12 @@ module hipfort_rocblas
       rocblas_ctrsv_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     trsv_batched solves
   !> 
-  !>          A_ix_i = b_i or A_iTx_i = b_i,
+  !>          A_i*x_i = b_i or A_i**T*x_i = b_i,
   !> 
   !>     where (A_i, x_i, b_i) is the i-th instance of the batch.
   !>     x_i and b_i are vectors and A_i is an
@@ -10345,8 +10264,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch
-  !> 
-  !>     
+  !>
   interface rocblas_ztrsv_batched
     function rocblas_ztrsv_batched_(handle,uplo,transA,diag,m,A,lda,x,incx,batch_count) bind(c, name="rocblas_ztrsv_batched")
       use iso_c_binding
@@ -10456,12 +10374,12 @@ module hipfort_rocblas
       rocblas_ctrsv_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     trsv_strided_batched solves
   !> 
-  !>          A_ix_i = b_i or A_iTx_i = b_i,
+  !>          A_i*x_i = b_i or A_i**T*x_i = b_i,
   !> 
   !>     where (A_i, x_i, b_i) is the i-th instance of the batch.
   !>     x_i and b_i are vectors and A_i is an m by m triangular matrix, for i = 1, ..., batch_count.
@@ -10515,8 +10433,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch
-  !> 
-  !>     
+  !>
   interface rocblas_ztrsv_strided_batched
     function rocblas_ztrsv_strided_batched_(handle,uplo,transA,diag,m,A,lda,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_ztrsv_strided_batched")
       use iso_c_binding
@@ -10613,12 +10530,12 @@ module hipfort_rocblas
       rocblas_ctpsv_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     tpsv solves
   !> 
-  !>          Ax = b or ATx = b, or AHx = b,
+  !>          A*x = b or A**T*x = b, or A**H*x = b,
   !> 
   !>     where x and b are vectors and A is a triangular matrix stored in the packed format.
   !> 
@@ -10635,9 +10552,9 @@ module hipfort_rocblas
   !> 
   !>     @param[in]
   !>     transA  [rocblas_operation]
-  !>             rocblas_operation_none: Solves Ax = b
-  !>             rocblas_operation_transpose: Solves ATx = b
-  !>             rocblas_operation_conjugate_transpose: Solves AHx = b
+  !>             rocblas_operation_none: Solves A*x = b
+  !>             rocblas_operation_transpose: Solves A**T*x = b
+  !>             rocblas_operation_conjugate_transpose: Solves A**H*x = b
   !> 
   !>     @param[in]
   !>     diag    [rocblas_diagonal]
@@ -10651,7 +10568,7 @@ module hipfort_rocblas
   !> 
   !>     @param[in]
   !>     AP        device pointer storing the packed version of matrix A,
-  !>               of dimension >= (n  (n + 1)  2)
+  !>               of dimension >= (n * (n + 1) 2)
   !> 
   !>     @param[inout]
   !>     x         device pointer storing vector b on input, overwritten by x on output.
@@ -10659,8 +10576,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     incx      [rocblas_int]
   !>               specifies the increment for the elements of x.
-  !> 
-  !>     
+  !>
   interface rocblas_ztpsv
     function rocblas_ztpsv_(handle,uplo,transA,diag,n,AP,x,incx) bind(c, name="rocblas_ztpsv")
       use iso_c_binding
@@ -10758,12 +10674,12 @@ module hipfort_rocblas
       rocblas_ctpsv_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     tpsv_batched solves
   !> 
-  !>          A_ix_i = b_i or A_iTx_i = b_i, or A_iHx_i = b_i,
+  !>          A_i*x_i = b_i or A_i**T*x_i = b_i, or A_i**H*x_i = b_i,
   !> 
   !>     where x_i and b_i are vectors and A_i is a triangular matrix stored in the packed format,
   !>     for i in [1, batch_count].
@@ -10781,9 +10697,9 @@ module hipfort_rocblas
   !> 
   !>     @param[in]
   !>     transA  [rocblas_operation]
-  !>             rocblas_operation_none: Solves Ax = b
-  !>             rocblas_operation_transpose: Solves ATx = b
-  !>             rocblas_operation_conjugate_transpose: Solves AHx = b
+  !>             rocblas_operation_none: Solves A*x = b
+  !>             rocblas_operation_transpose: Solves A**T*x = b
+  !>             rocblas_operation_conjugate_transpose: Solves A**H*x = b
   !> 
   !>     @param[in]
   !>     diag    [rocblas_diagonal]
@@ -10797,7 +10713,7 @@ module hipfort_rocblas
   !> 
   !>     @param[in]
   !>     AP        device array of device pointers storing the packed versions of each matrix A_i,
-  !>               of dimension >= (n  (n + 1)  2)
+  !>               of dimension >= (n * (n + 1) 2)
   !> 
   !>     @param[inout]
   !>     x         device array of device pointers storing each input vector b_i, overwritten by x_i on output.
@@ -10808,8 +10724,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 specifies the number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface rocblas_ztpsv_batched
     function rocblas_ztpsv_batched_(handle,uplo,transA,diag,n,AP,x,incx,batch_count) bind(c, name="rocblas_ztpsv_batched")
       use iso_c_binding
@@ -10912,12 +10827,12 @@ module hipfort_rocblas
       rocblas_ctpsv_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     tpsv_strided_batched solves
   !> 
-  !>          A_ix_i = b_i or A_iTx_i = b_i, or A_iHx_i = b_i,
+  !>          A_i*x_i = b_i or A_i**T*x_i = b_i, or A_i**H*x_i = b_i,
   !> 
   !>     where x_i and b_i are vectors and A_i is a triangular matrix stored in the packed format,
   !>     for i in [1, batch_count].
@@ -10935,9 +10850,9 @@ module hipfort_rocblas
   !> 
   !>     @param[in]
   !>     transA  [rocblas_operation]
-  !>             rocblas_operation_none: Solves Ax = b
-  !>             rocblas_operation_transpose: Solves ATx = b
-  !>             rocblas_operation_conjugate_transpose: Solves AHx = b
+  !>             rocblas_operation_none: Solves A*x = b
+  !>             rocblas_operation_transpose: Solves A**T*x = b
+  !>             rocblas_operation_conjugate_transpose: Solves A**H*x = b
   !> 
   !>     @param[in]
   !>     diag    [rocblas_diagonal]
@@ -10951,7 +10866,7 @@ module hipfort_rocblas
   !> 
   !>     @param[in]
   !>     AP        device pointer pointing to the first packed matrix A_1,
-  !>               of dimension >= (n  (n + 1)  2)
+  !>               of dimension >= (n * (n + 1) 2)
   !> 
   !>     @param[in]
   !>     stride_A  [rocblas_stride]
@@ -10969,8 +10884,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 specifies the number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface rocblas_ztpsv_strided_batched
     function rocblas_ztpsv_strided_batched_(handle,uplo,transA,diag,n,AP,stride_A,x,incx,stride_x,batch_count) bind(c, name="rocblas_ztpsv_strided_batched")
       use iso_c_binding
@@ -11077,12 +10991,12 @@ module hipfort_rocblas
       rocblas_csymv_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     symv performs the matrix-vector operation:
   !> 
-  !>         y := alphaAx + betay,
+  !>         y := alpha*A*x + beta*y,
   !> 
   !>     where alpha and beta are scalars, x and y are n element vectors and
   !>     A should contain an upper or lower triangular n by n symmetric matrix.
@@ -11117,8 +11031,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     incy      [rocblas_int]
   !>               specifies the increment for the elements of y
-  !> 
-  !>     
+  !>
   interface rocblas_zsymv
     function rocblas_zsymv_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_zsymv")
       use iso_c_binding
@@ -11229,12 +11142,12 @@ module hipfort_rocblas
       rocblas_csymv_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     symv_batched performs the matrix-vector operation:
   !> 
-  !>         y_i := alphaA_ix_i + betay_i,
+  !>         y_i := alpha*A_i*x_i + beta*y_i,
   !> 
   !>     where (A_i, x_i, y_i) is the i-th instance of the batch.
   !>     alpha and beta are scalars, x_i and y_i are vectors and A_i is an
@@ -11276,8 +11189,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch
-  !> 
-  !>     
+  !>
   interface rocblas_zsymv_batched
     function rocblas_zsymv_batched_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_zsymv_batched")
       use iso_c_binding
@@ -11398,12 +11310,12 @@ module hipfort_rocblas
       rocblas_csymv_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     symv_strided_batched performs the matrix-vector operation:
   !> 
-  !>         y_i := alphaA_ix_i + betay_i,
+  !>         y_i := alpha*A_i*x_i + beta*y_i,
   !> 
   !>     where (A_i, x_i, y_i) is the i-th instance of the batch.
   !>     alpha and beta are scalars, x_i and y_i are vectors and A_i is an
@@ -11443,7 +11355,7 @@ module hipfort_rocblas
   !>                 stride from the start of one vector (x_i) and the next one (x_i+1).
   !>                 There are no restrictions placed on stride_x, however the user should
   !>                 take care to ensure that stridex is of appropriate size.
-  !>                 This typically means stridex >= n  incx. stridex should be non zero.
+  !>                 This typically means stridex >= n * incx. stridex should be non zero.
   !>     @param[in]
   !>     beta      device pointer or host pointer to scalar beta
   !>     @param[out]
@@ -11456,12 +11368,11 @@ module hipfort_rocblas
   !>                 stride from the start of one vector (y_i) and the next one (y_i+1).
   !>                 There are no restrictions placed on stride_y, however the user should
   !>                 take care to ensure that stridey is of appropriate size.
-  !>                 This typically means stridey >= n  incy. stridey should be non zero.
+  !>                 This typically means stridey >= n * incy. stridey should be non zero.
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch
-  !> 
-  !>     
+  !>
   interface rocblas_zsymv_strided_batched
     function rocblas_zsymv_strided_batched_(handle,uplo,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_zsymv_strided_batched")
       use iso_c_binding
@@ -11518,12 +11429,12 @@ module hipfort_rocblas
       rocblas_sspmv_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     spmv performs the matrix-vector operation:
   !> 
-  !>         y := alphaAx + betay,
+  !>         y := alpha*A*x + beta*y,
   !> 
   !>     where alpha and beta are scalars, x and y are n element vectors and
   !>     A should contain an upper or lower triangular n by n packed symmetric matrix.
@@ -11555,8 +11466,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     incy      [rocblas_int]
   !>               specifies the increment for the elements of y
-  !> 
-  !>     
+  !>
   interface rocblas_dspmv
     function rocblas_dspmv_(handle,uplo,n,alpha,A,x,incx,beta,y,incy) bind(c, name="rocblas_dspmv")
       use iso_c_binding
@@ -11609,12 +11519,12 @@ module hipfort_rocblas
       rocblas_sspmv_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     spmv_batched performs the matrix-vector operation:
   !> 
-  !>         y_i := alphaA_ix_i + betay_i,
+  !>         y_i := alpha*A_i*x_i + beta*y_i,
   !> 
   !>     where (A_i, x_i, y_i) is the i-th instance of the batch.
   !>     alpha and beta are scalars, x_i and y_i are vectors and A_i is an
@@ -11652,8 +11562,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch
-  !> 
-  !>     
+  !>
   interface rocblas_dspmv_batched
     function rocblas_dspmv_batched_(handle,uplo,n,alpha,A,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_dspmv_batched")
       use iso_c_binding
@@ -11710,12 +11619,12 @@ module hipfort_rocblas
       rocblas_sspmv_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     spmv_strided_batched performs the matrix-vector operation:
   !> 
-  !>         y_i := alphaA_ix_i + betay_i,
+  !>         y_i := alpha*A_i*x_i + beta*y_i,
   !> 
   !>     where (A_i, x_i, y_i) is the i-th instance of the batch.
   !>     alpha and beta are scalars, x_i and y_i are vectors and A_i is an
@@ -11751,7 +11660,7 @@ module hipfort_rocblas
   !>                 stride from the start of one vector (x_i) and the next one (x_i+1).
   !>                 There are no restrictions placed on stridex, however the user should
   !>                 take care to ensure that stridex is of appropriate size.
-  !>                 This typically means stridex >= n  incx. stridex should be non zero.
+  !>                 This typically means stridex >= n * incx. stridex should be non zero.
   !>     @param[in]
   !>     beta      device pointer or host pointer to scalar beta
   !>     @param[out]
@@ -11764,12 +11673,11 @@ module hipfort_rocblas
   !>                 stride from the start of one vector (y_i) and the next one (y_i+1).
   !>                 There are no restrictions placed on stridey, however the user should
   !>                 take care to ensure that stridey is of appropriate size.
-  !>                 This typically means stridey >= n  incy. stridey should be non zero.
+  !>                 This typically means stridey >= n * incy. stridey should be non zero.
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch
-  !> 
-  !>     
+  !>
   interface rocblas_dspmv_strided_batched
     function rocblas_dspmv_strided_batched_(handle,uplo,n,alpha,A,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_dspmv_strided_batched")
       use iso_c_binding
@@ -11827,12 +11735,12 @@ module hipfort_rocblas
       rocblas_ssbmv_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     sbmv performs the matrix-vector operation:
   !> 
-  !>         y := alphaAx + betay,
+  !>         y := alpha*A*x + beta*y,
   !> 
   !>     where alpha and beta are scalars, x and y are n element vectors and
   !>     A should contain an upper or lower triangular n by n symmetric banded matrix.
@@ -11870,8 +11778,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     incy      [rocblas_int]
   !>               specifies the increment for the elements of y
-  !> 
-  !>     
+  !>
   interface rocblas_dsbmv
     function rocblas_dsbmv_(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="rocblas_dsbmv")
       use iso_c_binding
@@ -11928,12 +11835,12 @@ module hipfort_rocblas
       rocblas_dsbmv_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     sbmv_batched performs the matrix-vector operation:
   !> 
-  !>         y_i := alphaA_ix_i + betay_i,
+  !>         y_i := alpha*A_i*x_i + beta*y_i,
   !> 
   !>     where (A_i, x_i, y_i) is the i-th instance of the batch.
   !>     alpha and beta are scalars, x_i and y_i are vectors and A_i is an
@@ -11977,8 +11884,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch
-  !> 
-  !>     
+  !>
   interface rocblas_ssbmv_batched
     function rocblas_ssbmv_batched_(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy,batch_count) bind(c, name="rocblas_ssbmv_batched")
       use iso_c_binding
@@ -12039,12 +11945,12 @@ module hipfort_rocblas
       rocblas_ssbmv_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     sbmv_strided_batched performs the matrix-vector operation:
   !> 
-  !>         y_i := alphaA_ix_i + betay_i,
+  !>         y_i := alpha*A_i*x_i + beta*y_i,
   !> 
   !>     where (A_i, x_i, y_i) is the i-th instance of the batch.
   !>     alpha and beta are scalars, x_i and y_i are vectors and A_i is an
@@ -12086,7 +11992,7 @@ module hipfort_rocblas
   !>                 stride from the start of one vector (x_i) and the next one (x_i+1).
   !>                 There are no restrictions placed on stridex, however the user should
   !>                 take care to ensure that stridex is of appropriate size.
-  !>                 This typically means stridex >= n  incx. stridex should be non zero.
+  !>                 This typically means stridex >= n * incx. stridex should be non zero.
   !>     @param[in]
   !>     beta      device pointer or host pointer to scalar beta
   !>     @param[out]
@@ -12099,12 +12005,11 @@ module hipfort_rocblas
   !>                 stride from the start of one vector (y_i) and the next one (y_i+1).
   !>                 There are no restrictions placed on stridey, however the user should
   !>                 take care to ensure that stridey is of appropriate size.
-  !>                 This typically means stridey >= n  incy. stridey should be non zero.
+  !>                 This typically means stridey >= n * incy. stridey should be non zero.
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch
-  !> 
-  !>     
+  !>
   interface rocblas_dsbmv_strided_batched
     function rocblas_dsbmv_strided_batched_(handle,uplo,n,k,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batch_count) bind(c, name="rocblas_dsbmv_strided_batched")
       use iso_c_binding
@@ -12266,13 +12171,13 @@ module hipfort_rocblas
       rocblas_cgerc_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     ger,geru,gerc performs the matrix-vector operations
   !> 
-  !>         A := A + alphaxyT , OR
-  !>         A := A + alphaxyH for gerc
+  !>         A := A + alpha*x*y**T , OR
+  !>         A := A + alpha*x*y**H for gerc
   !> 
   !>     where alpha is a scalar, x and y are vectors, and A is an
   !>     m by n matrix.
@@ -12304,8 +12209,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     lda       [rocblas_int]
   !>               specifies the leading dimension of A.
-  !> 
-  !>     
+  !>
   interface rocblas_zgerc
     function rocblas_zgerc_(handle,m,n,alpha,x,incx,y,incy,A,lda) bind(c, name="rocblas_zgerc")
       use iso_c_binding
@@ -12466,13 +12370,13 @@ module hipfort_rocblas
       rocblas_cgerc_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     ger_batched,geru_batched,gerc_batched perform a batch of the matrix-vector operations
   !> 
-  !>         A := A + alphaxyT , OR
-  !>         A := A + alphaxyH for gerc
+  !>         A := A + alpha*x*y**T , OR
+  !>         A := A + alpha*x*y**H for gerc
   !> 
   !>     where (A_i, x_i, y_i) is the i-th instance of the batch.
   !>     alpha is a scalar, x_i and y_i are vectors and A_i is an
@@ -12508,8 +12412,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch
-  !> 
-  !>     
+  !>
   interface rocblas_zgerc_batched
     function rocblas_zgerc_batched_(handle,m,n,alpha,x,incx,y,incy,A,lda,batch_count) bind(c, name="rocblas_zgerc_batched")
       use iso_c_binding
@@ -12686,13 +12589,13 @@ module hipfort_rocblas
       rocblas_cgerc_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     ger_strided_batched,geru_strided_batched,gerc_strided_batched performs the matrix-vector operations
   !> 
-  !>         A_i := A_i + alphax_iy_iT, OR
-  !>         A_i := A_i + alphax_iy_iH  for gerc
+  !>         A_i := A_i + alpha*x_i*y_i**T, OR
+  !>         A_i := A_i + alpha*x_i*y_i**H  for gerc
   !> 
   !>     where (A_i, x_i, y_i) is the i-th instance of the batch.
   !>     alpha is a scalar, x_i and y_i are vectors and A_i is an
@@ -12720,7 +12623,7 @@ module hipfort_rocblas
   !>               stride from the start of one vector (x_i) and the next one (x_i+1).
   !>               There are no restrictions placed on stride_x, however the user should
   !>               take care to ensure that stride_x is of appropriate size, for a typical
-  !>               case this means stride_x >= m  incx.
+  !>               case this means stride_x >= m * incx.
   !>     @param[inout]
   !>     y         device pointer to the first vector (y_1) in the batch.
   !>     @param[in]
@@ -12731,7 +12634,7 @@ module hipfort_rocblas
   !>               stride from the start of one vector (y_i) and the next one (y_i+1).
   !>               There are no restrictions placed on stride_y, however the user should
   !>               take care to ensure that stride_y is of appropriate size, for a typical
-  !>               case this means stride_y >= n  incy.
+  !>               case this means stride_y >= n * incy.
   !>     @param[inout]
   !>     A         device pointer to the first matrix (A_1) in the batch.
   !>     @param[in]
@@ -12743,8 +12646,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch
-  !> 
-  !>     
+  !>
   interface rocblas_zgerc_strided_batched
     function rocblas_zgerc_strided_batched_(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count) bind(c, name="rocblas_zgerc_strided_batched")
       use iso_c_binding
@@ -12840,12 +12742,12 @@ module hipfort_rocblas
       rocblas_cspr_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     spr performs the matrix-vector operations
   !> 
-  !>         A := A + alphaxxT
+  !>         A := A + alpha*x*x**T
   !> 
   !>     where alpha is a scalar, x is a vector, and A is an
   !>     n by n symmetric matrix, supplied in packed form.
@@ -12871,7 +12773,7 @@ module hipfort_rocblas
   !>               specifies the increment for the elements of x.
   !>     @param[inout]
   !>     AP        device pointer storing the packed version of the specified triangular portion of
-  !>               the symmetric matrix A. Of at least size ((n  (n + 1))  2).
+  !>               the symmetric matrix A. Of at least size ((n * (n + 1)) 2).
   !>               if uplo == rocblas_fill_upper:
   !>                 The upper triangular portion of the symmetric matrix A is supplied.
   !>                 The matrix is compacted so that AP contains the triangular portion column-by-column
@@ -12896,7 +12798,6 @@ module hipfort_rocblas
   !>                         2 5 6 7    -----> [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
   !>                         3 6 8 9
   !>                         4 7 9 0
-  !>     
   interface rocblas_zspr
     function rocblas_zspr_(handle,uplo,n,alpha,x,incx,AP) bind(c, name="rocblas_zspr")
       use iso_c_binding
@@ -12990,12 +12891,12 @@ module hipfort_rocblas
       rocblas_cspr_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     spr_batched performs the matrix-vector operations
   !> 
-  !>         A_i := A_i + alphax_ix_iT
+  !>         A_i := A_i + alpha*x_i*x_i**T
   !> 
   !>     where alpha is a scalar, x_i is a vector, and A_i is an
   !>     n by n symmetric matrix, supplied in packed form, for i = 1, ..., batch_count.
@@ -13021,7 +12922,7 @@ module hipfort_rocblas
   !>               specifies the increment for the elements of each x_i.
   !>     @param[inout]
   !>     AP        device array of device pointers storing the packed version of the specified triangular portion of
-  !>               each symmetric matrix A_i of at least size ((n  (n + 1))  2). Array is of at least size batch_count.
+  !>               each symmetric matrix A_i of at least size ((n * (n + 1)) 2). Array is of at least size batch_count.
   !>               if uplo == rocblas_fill_upper:
   !>                 The upper triangular portion of each symmetric matrix A_i is supplied.
   !>                 The matrix is compacted so that AP contains the triangular portion column-by-column
@@ -13049,7 +12950,6 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
-  !>     
   interface rocblas_zspr_batched
     function rocblas_zspr_batched_(handle,uplo,n,alpha,x,incx,AP,batch_count) bind(c, name="rocblas_zspr_batched")
       use iso_c_binding
@@ -13148,12 +13048,12 @@ module hipfort_rocblas
       rocblas_cspr_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     spr_strided_batched performs the matrix-vector operations
   !> 
-  !>         A_i := A_i + alphax_ix_iT
+  !>         A_i := A_i + alpha*x_i*x_i**T
   !> 
   !>     where alpha is a scalar, x_i is a vector, and A_i is an
   !>     n by n symmetric matrix, supplied in packed form, for i = 1, ..., batch_count.
@@ -13213,7 +13113,6 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
-  !>     
   interface rocblas_zspr_strided_batched
     function rocblas_zspr_strided_batched_(handle,uplo,n,alpha,x,incx,stride_x,AP,stride_A,batch_count) bind(c, name="rocblas_zspr_strided_batched")
       use iso_c_binding
@@ -13262,12 +13161,12 @@ module hipfort_rocblas
       rocblas_sspr2_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     spr2 performs the matrix-vector operation
   !> 
-  !>         A := A + alphaxyT + alphayxT
+  !>         A := A + alpha*x*y**T + alpha*y*x**T
   !> 
   !>     where alpha is a scalar, x and y are vectors, and A is an
   !>     n by n symmetric matrix, supplied in packed form.
@@ -13298,7 +13197,7 @@ module hipfort_rocblas
   !>               specifies the increment for the elements of y.
   !>     @param[inout]
   !>     AP        device pointer storing the packed version of the specified triangular portion of
-  !>               the symmetric matrix A. Of at least size ((n  (n + 1))  2).
+  !>               the symmetric matrix A. Of at least size ((n * (n + 1)) 2).
   !>               if uplo == rocblas_fill_upper:
   !>                 The upper triangular portion of the symmetric matrix A is supplied.
   !>                 The matrix is compacted so that AP contains the triangular portion column-by-column
@@ -13323,7 +13222,6 @@ module hipfort_rocblas
   !>                         2 5 6 7    -----> [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
   !>                         3 6 8 9
   !>                         4 7 9 0
-  !>     
   interface rocblas_dspr2
     function rocblas_dspr2_(handle,uplo,n,alpha,x,incx,y,incy,AP) bind(c, name="rocblas_dspr2")
       use iso_c_binding
@@ -13373,12 +13271,12 @@ module hipfort_rocblas
       rocblas_sspr2_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     spr2_batched performs the matrix-vector operation
   !> 
-  !>         A_i := A_i + alphax_iy_iT + alphay_ix_iT
+  !>         A_i := A_i + alpha*x_i*y_i**T + alpha*y_i*x_i**T
   !> 
   !>     where alpha is a scalar, x_i and y_i are vectors, and A_i is an
   !>     n by n symmetric matrix, supplied in packed form, for i = 1, ..., batch_count.
@@ -13409,7 +13307,7 @@ module hipfort_rocblas
   !>               specifies the increment for the elements of each y_i.
   !>     @param[inout]
   !>     AP        device array of device pointers storing the packed version of the specified triangular portion of
-  !>               each symmetric matrix A_i of at least size ((n  (n + 1))  2). Array is of at least size batch_count.
+  !>               each symmetric matrix A_i of at least size ((n * (n + 1)) 2). Array is of at least size batch_count.
   !>               if uplo == rocblas_fill_upper:
   !>                 The upper triangular portion of each symmetric matrix A_i is supplied.
   !>                 The matrix is compacted so that AP contains the triangular portion column-by-column
@@ -13437,7 +13335,6 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
-  !>     
   interface rocblas_dspr2_batched
     function rocblas_dspr2_batched_(handle,uplo,n,alpha,x,incx,y,incy,AP,batch_count) bind(c, name="rocblas_dspr2_batched")
       use iso_c_binding
@@ -13491,12 +13388,12 @@ module hipfort_rocblas
       rocblas_sspr2_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     spr2_strided_batched performs the matrix-vector operation
   !> 
-  !>         A_i := A_i + alphax_iy_iT + alphay_ix_iT
+  !>         A_i := A_i + alpha*x_i*y_i**T + alpha*y_i*x_i**T
   !> 
   !>     where alpha is a scalar, x_i and y_i are vectors, and A_i is an
   !>     n by n symmetric matrix, supplied in packed form, for i = 1, ..., batch_count.
@@ -13564,7 +13461,6 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
-  !>     
   interface rocblas_dspr2_strided_batched
     function rocblas_dspr2_strided_batched_(handle,uplo,n,alpha,x,incx,stride_x,y,incy,stride_y,AP,stride_A,batch_count) bind(c, name="rocblas_dspr2_strided_batched")
       use iso_c_binding
@@ -13664,12 +13560,12 @@ module hipfort_rocblas
       rocblas_csyr_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     syr performs the matrix-vector operations
   !> 
-  !>         A := A + alphaxxT
+  !>         A := A + alpha*x*x**T
   !> 
   !>     where alpha is a scalar, x is a vector, and A is an
   !>     n by n symmetric matrix.
@@ -13699,8 +13595,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     lda       [rocblas_int]
   !>               specifies the leading dimension of A.
-  !> 
-  !>     
+  !>
   interface rocblas_zsyr
     function rocblas_zsyr_(handle,uplo,n,alpha,x,incx,A,lda) bind(c, name="rocblas_zsyr")
       use iso_c_binding
@@ -13799,12 +13694,12 @@ module hipfort_rocblas
       rocblas_csyr_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     syr_batched performs a batch of matrix-vector operations
   !> 
-  !>         A[i] := A[i] + alphax[i]x[i]T
+  !>         A[i] := A[i] + alpha*x[i]*x[i]**T
   !> 
   !>     where alpha is a scalar, x is an array of vectors, and A is an array of
   !>     n by n symmetric matrices, for i = 1 , ... , batch_count
@@ -13836,8 +13731,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch
-  !> 
-  !>     
+  !>
   interface rocblas_zsyr_batched
     function rocblas_zsyr_batched_(handle,uplo,n,alpha,x,incx,A,lda,batch_count) bind(c, name="rocblas_zsyr_batched")
       use iso_c_binding
@@ -13943,12 +13837,12 @@ module hipfort_rocblas
       rocblas_csyr_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     syr_strided_batched performs the matrix-vector operations
   !> 
-  !>         A[i] := A[i] + alphax[i]x[i]T
+  !>         A[i] := A[i] + alpha*x[i]*x[i]**T
   !> 
   !>     where alpha is a scalar, vectors, and A is an array of
   !>     n by n symmetric matrices, for i = 1 , ... , batch_count
@@ -13986,8 +13880,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>               number of instances in the batch
-  !> 
-  !>     
+  !>
   interface rocblas_zsyr_strided_batched
     function rocblas_zsyr_strided_batched_(handle,uplo,n,alpha,x,incx,stridex,A,lda,strideA,batch_count) bind(c, name="rocblas_zsyr_strided_batched")
       use iso_c_binding
@@ -14092,12 +13985,12 @@ module hipfort_rocblas
       rocblas_csyr2_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     syr2 performs the matrix-vector operations
   !> 
-  !>         A := A + alphaxyT + alphayxT
+  !>         A := A + alpha*x*y**T + alpha*y*x**T
   !> 
   !>     where alpha is a scalar, x and y are vectors, and A is an
   !>     n by n symmetric matrix.
@@ -14132,8 +14025,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     lda       [rocblas_int]
   !>               specifies the leading dimension of A.
-  !> 
-  !>     
+  !>
   interface rocblas_zsyr2
     function rocblas_zsyr2_(handle,uplo,n,alpha,x,incx,y,incy,A,lda) bind(c, name="rocblas_zsyr2")
       use iso_c_binding
@@ -14240,12 +14132,12 @@ module hipfort_rocblas
       rocblas_csyr2_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     syr2_batched performs a batch of matrix-vector operations
   !> 
-  !>         A[i] := A[i] + alphax[i]y[i]T + alphay[i]x[i]T
+  !>         A[i] := A[i] + alpha*x[i]*y[i]**T + alpha*y[i]*x[i]**T
   !> 
   !>     where alpha is a scalar, x[i] and y[i] are vectors, and A[i] is a
   !>     n by n symmetric matrix, for i = 1 , ... , batch_count
@@ -14282,8 +14174,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch
-  !> 
-  !>     
+  !>
   interface rocblas_zsyr2_batched
     function rocblas_zsyr2_batched_(handle,uplo,n,alpha,x,incx,y,incy,A,lda,batch_count) bind(c, name="rocblas_zsyr2_batched")
       use iso_c_binding
@@ -14400,12 +14291,12 @@ module hipfort_rocblas
       rocblas_csyr2_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     syr2_strided_batched the matrix-vector operations
   !> 
-  !>         A[i] := A[i] + alphax[i]y[i]T + alphay[i]x[i]T
+  !>         A[i] := A[i] + alpha*x[i]*y[i]**T + alpha*y[i]*x[i]**T
   !> 
   !>     where alpha is a scalar, x[i] and y[i] are vectors, and A[i] is a
   !>     n by n symmetric matrices, for i = 1 , ... , batch_count
@@ -14451,8 +14342,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>               number of instances in the batch
-  !> 
-  !>     
+  !>
   interface rocblas_zsyr2_strided_batched
     function rocblas_zsyr2_strided_batched_(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batch_count) bind(c, name="rocblas_zsyr2_strided_batched")
       use iso_c_binding
@@ -14482,11 +14372,9 @@ module hipfort_rocblas
       rocblas_zsyr2_strided_batched_rank_1
 #endif
   end interface
-  !> 
-  !>   ===========================================================================
-  !>      level 3 BLAS
-  !>   ===========================================================================
-  !>  
+  !>  ===========================================================================
+  !>     level 3 BLAS
+  !>  ===========================================================================
   interface rocblas_chemm
     function rocblas_chemm_(handle,side,uplo,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_chemm")
       use iso_c_binding
@@ -14515,14 +14403,14 @@ module hipfort_rocblas
       rocblas_chemm_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     hemm performs one of the matrix-matrix operations:
   !> 
-  !>     C := alphaAB + betaC if side == rocblas_side_left,
-  !>     C := alphaBA + betaC if side == rocblas_side_right,
+  !>     C := alpha*A*B + beta*C if side == rocblas_side_left,
+  !>     C := alpha*B*A + beta*C if side == rocblas_side_right,
   !> 
   !>     where alpha and beta are scalars, B and C are m by n matrices, and
   !>     A is a Hermitian matrix stored as either upper or lower.
@@ -14533,8 +14421,8 @@ module hipfort_rocblas
   !> 
   !>     @param[in]
   !>     side  [rocblas_side]
-  !>             rocblas_side_left:      C := alphaAB + betaC
-  !>             rocblas_side_right:     C := alphaBA + betaC
+  !>             rocblas_side_left:      C := alpha*A*B + beta*C
+  !>             rocblas_side_right:     C := alpha*B*A + beta*C
   !> 
   !>     @param[in]
   !>     uplo    [rocblas_fill]
@@ -14558,7 +14446,7 @@ module hipfort_rocblas
   !>     A       pointer storing matrix A on the GPU.
   !>             A is m by m if side == rocblas_side_left
   !>             A is n by n if side == rocblas_side_right
-  !>             Only the upperlower triangular part is accessed.
+  !>             Only the upper/lower triangular part is accessed.
   !>             The imaginary component of the diagonal elements is not used.
   !> 
   !>     @param[in]
@@ -14587,8 +14475,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     ldc    [rocblas_int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, m )
-  !> 
-  !>     
+  !>
   interface rocblas_zhemm
     function rocblas_zhemm_(handle,side,uplo,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_zhemm")
       use iso_c_binding
@@ -14647,14 +14534,14 @@ module hipfort_rocblas
       rocblas_chemm_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     hemm_batched performs a batch of the matrix-matrix operations:
   !> 
-  !>     C_i := alphaA_iB_i + betaC_i if side == rocblas_side_left,
-  !>     C_i := alphaB_iA_i + betaC_i if side == rocblas_side_right,
+  !>     C_i := alpha*A_i*B_i + beta*C_i if side == rocblas_side_left,
+  !>     C_i := alpha*B_i*A_i + beta*C_i if side == rocblas_side_right,
   !> 
   !>     where alpha and beta are scalars, B_i and C_i are m by n matrices, and
   !>     A_i is a Hermitian matrix stored as either upper or lower.
@@ -14665,8 +14552,8 @@ module hipfort_rocblas
   !> 
   !>     @param[in]
   !>     side  [rocblas_side]
-  !>             rocblas_side_left:      C_i := alphaA_iB_i + betaC_i
-  !>             rocblas_side_right:     C_i := alphaB_iA_i + betaC_i
+  !>             rocblas_side_left:      C_i := alpha*A_i*B_i + beta*C_i
+  !>             rocblas_side_right:     C_i := alpha*B_i*A_i + beta*C_i
   !> 
   !>     @param[in]
   !>     uplo    [rocblas_fill]
@@ -14690,7 +14577,7 @@ module hipfort_rocblas
   !>     A       device array of device pointers storing each matrix A_i on the GPU.
   !>             A_i is m by m if side == rocblas_side_left
   !>             A_i is n by n if side == rocblas_side_right
-  !>             Only the upperlower triangular part is accessed.
+  !>             Only the upper/lower triangular part is accessed.
   !>             The imaginary component of the diagonal elements is not used.
   !> 
   !>     @param[in]
@@ -14723,8 +14610,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface rocblas_zhemm_batched
     function rocblas_zhemm_batched_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_zhemm_batched")
       use iso_c_binding
@@ -14787,14 +14673,14 @@ module hipfort_rocblas
       rocblas_chemm_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     hemm_strided_batched performs a batch of the matrix-matrix operations:
   !> 
-  !>     C_i := alphaA_iB_i + betaC_i if side == rocblas_side_left,
-  !>     C_i := alphaB_iA_i + betaC_i if side == rocblas_side_right,
+  !>     C_i := alpha*A_i*B_i + beta*C_i if side == rocblas_side_left,
+  !>     C_i := alpha*B_i*A_i + beta*C_i if side == rocblas_side_right,
   !> 
   !>     where alpha and beta are scalars, B_i and C_i are m by n matrices, and
   !>     A_i is a Hermitian matrix stored as either upper or lower.
@@ -14805,8 +14691,8 @@ module hipfort_rocblas
   !> 
   !>     @param[in]
   !>     side  [rocblas_side]
-  !>             rocblas_side_left:      C_i := alphaA_iB_i + betaC_i
-  !>             rocblas_side_right:     C_i := alphaB_iA_i + betaC_i
+  !>             rocblas_side_left:      C_i := alpha*A_i*B_i + beta*C_i
+  !>             rocblas_side_right:     C_i := alpha*B_i*A_i + beta*C_i
   !> 
   !>     @param[in]
   !>     uplo    [rocblas_fill]
@@ -14830,7 +14716,7 @@ module hipfort_rocblas
   !>     A       device pointer to first matrix A_1
   !>             A_i is m by m if side == rocblas_side_left
   !>             A_i is n by n if side == rocblas_side_right
-  !>             Only the upperlower triangular part is accessed.
+  !>             Only the upper/lower triangular part is accessed.
   !>             The imaginary component of the diagonal elements is not used.
   !> 
   !>     @param[in]
@@ -14875,8 +14761,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch
-  !> 
-  !>     
+  !>
   interface rocblas_zhemm_strided_batched
     function rocblas_zhemm_strided_batched_(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_zhemm_strided_batched")
       use iso_c_binding
@@ -14936,13 +14821,13 @@ module hipfort_rocblas
       rocblas_cherk_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     herk performs one of the matrix-matrix operations for a Hermitian rank-k update
   !> 
-  !>     C := alphaop( A )op( A )^H + betaC
+  !>     C := alpha*op( A )*op( A )^H + beta*C
   !> 
   !>     where  alpha and beta are scalars, op(A) is an n by k matrix, and
   !>     C is a n x n Hermitian matrix stored as either upper or lower.
@@ -14981,7 +14866,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     A       pointer storing matrix A on the GPU.
   !>             Martrix dimension is ( lda, k ) when if transA = rocblas_operation_none, otherwise (lda, n)
-  !>             only the upperlower triangular part is accessed.
+  !>             only the upper/lower triangular part is accessed.
   !> 
   !>     @param[in]
   !>     lda     [rocblas_int]
@@ -15001,8 +14886,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     ldc    [rocblas_int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
-  !> 
-  !>     
+  !>
   interface rocblas_zherk
     function rocblas_zherk_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) bind(c, name="rocblas_zherk")
       use iso_c_binding
@@ -15057,13 +14941,13 @@ module hipfort_rocblas
       rocblas_cherk_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     herk_batched performs a batch of the matrix-matrix operations for a Hermitian rank-k update
   !> 
-  !>     C_i := alphaop( A_i )op( A_i )^H + betaC_i
+  !>     C_i := alpha*op( A_i )*op( A_i )^H + beta*C_i
   !> 
   !>     where  alpha and beta are scalars, op(A) is an n by k matrix, and
   !>     C_i is a n x n Hermitian matrix stored as either upper or lower.
@@ -15124,8 +15008,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface rocblas_zherk_batched
     function rocblas_zherk_batched_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batch_count) bind(c, name="rocblas_zherk_batched")
       use iso_c_binding
@@ -15183,13 +15066,13 @@ module hipfort_rocblas
       rocblas_cherk_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     herk_strided_batched performs a batch of the matrix-matrix operations for a Hermitian rank-k update
   !> 
-  !>     C_i := alphaop( A_i )op( A_i )^H + betaC_i
+  !>     C_i := alpha*op( A_i )*op( A_i )^H + beta*C_i
   !> 
   !>     where  alpha and beta are scalars, op(A) is an n by k matrix, and
   !>     C_i is a n x n Hermitian matrix stored as either upper or lower.
@@ -15260,8 +15143,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface rocblas_zherk_strided_batched
     function rocblas_zherk_strided_batched_(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_zherk_strided_batched")
       use iso_c_binding
@@ -15320,13 +15202,13 @@ module hipfort_rocblas
       rocblas_cher2k_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     her2k performs one of the matrix-matrix operations for a Hermitian rank-2k update
   !> 
-  !>     C := alphaop( A )op( B )^H + conj(alpha)op( B )op( A )^H + betaC
+  !>     C := alpha*op( A )*op( B )^H + conj(alpha)*op( B )*op( A )^H + beta*C
   !> 
   !>     where  alpha and beta are scalars, op(A) and op(B) are n by k matrices, and
   !>     C is a n x n Hermitian matrix stored as either upper or lower.
@@ -15365,7 +15247,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     A       pointer storing matrix A on the GPU.
   !>             Martrix dimension is ( lda, k ) when if trans = rocblas_operation_none, otherwise (lda, n)
-  !>             only the upperlower triangular part is accessed.
+  !>             only the upper/lower triangular part is accessed.
   !> 
   !>     @param[in]
   !>     lda     [rocblas_int]
@@ -15375,7 +15257,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     B       pointer storing matrix B on the GPU.
   !>             Martrix dimension is ( ldb, k ) when if trans = rocblas_operation_none, otherwise (ldb, n)
-  !>             only the upperlower triangular part is accessed.
+  !>             only the upper/lower triangular part is accessed.
   !> 
   !>     @param[in]
   !>     ldb     [rocblas_int]
@@ -15394,8 +15276,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     ldc    [rocblas_int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
-  !> 
-  !>     
+  !>
   interface rocblas_zher2k
     function rocblas_zher2k_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_zher2k")
       use iso_c_binding
@@ -15454,13 +15335,13 @@ module hipfort_rocblas
       rocblas_cher2k_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     her2k_batched performs a batch of the matrix-matrix operations for a Hermitian rank-2k update
   !> 
-  !>     C_i := alphaop( A_i )op( B_i )^H + conj(alpha)op( B_i )op( A_i )^H + betaC_i
+  !>     C_i := alpha*op( A_i )*op( B_i )^H + conj(alpha)*op( B_i )*op( A_i )^H + beta*C_i
   !> 
   !>     where  alpha and beta are scalars, op(A_i) and op(B_i) are n by k matrices, and
   !>     C_i is a n x n Hermitian matrix stored as either upper or lower.
@@ -15529,8 +15410,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface rocblas_zher2k_batched
     function rocblas_zher2k_batched_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_zher2k_batched")
       use iso_c_binding
@@ -15593,13 +15473,13 @@ module hipfort_rocblas
       rocblas_cher2k_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     her2k_strided_batched performs a batch of the matrix-matrix operations for a Hermitian rank-2k update
   !> 
-  !>     C_i := alphaop( A_i )op( B_i )^H + conj(alpha)op( B_i )op( A_i )^H + betaC_i
+  !>     C_i := alpha*op( A_i )*op( B_i )^H + conj(alpha)*op( B_i )*op( A_i )^H + beta*C_i
   !> 
   !>     where  alpha and beta are scalars, op(A_i) and op(B_i) are n by k matrices, and
   !>     C_i is a n x n Hermitian matrix stored as either upper or lower.
@@ -15683,8 +15563,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface rocblas_zher2k_strided_batched
     function rocblas_zher2k_strided_batched_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_zher2k_strided_batched")
       use iso_c_binding
@@ -15746,17 +15625,17 @@ module hipfort_rocblas
       rocblas_cherkx_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     herkx performs one of the matrix-matrix operations for a Hermitian rank-k update
   !> 
-  !>     C := alphaop( A )op( B )^H + betaC
+  !>     C := alpha*op( A )*op( B )^H + beta*C
   !> 
   !>     where  alpha and beta are scalars, op(A) and op(B) are n by k matrices, and
   !>     C is a n x n Hermitian matrix stored as either upper or lower.
-  !>     This routine should only be used when the caller can guarantee that the result of op( A )op( B )^T will be Hermitian.
+  !>     This routine should only be used when the caller can guarantee that the result of op( A )*op( B )^T will be Hermitian.
   !> 
   !> 
   !>         op( A ) = A, op( B ) = B, and A and B are n by k if trans == rocblas_operation_none
@@ -15793,7 +15672,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     A       pointer storing matrix A on the GPU.
   !>             Martrix dimension is ( lda, k ) when if trans = rocblas_operation_none, otherwise (lda, n)
-  !>             only the upperlower triangular part is accessed.
+  !>             only the upper/lower triangular part is accessed.
   !> 
   !>     @param[in]
   !>     lda     [rocblas_int]
@@ -15803,7 +15682,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     B       pointer storing matrix B on the GPU.
   !>             Martrix dimension is ( ldb, k ) when if trans = rocblas_operation_none, otherwise (ldb, n)
-  !>             only the upperlower triangular part is accessed.
+  !>             only the upper/lower triangular part is accessed.
   !> 
   !>     @param[in]
   !>     ldb     [rocblas_int]
@@ -15822,8 +15701,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     ldc    [rocblas_int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
-  !> 
-  !>     
+  !>
   interface rocblas_zherkx
     function rocblas_zherkx_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_zherkx")
       use iso_c_binding
@@ -15882,17 +15760,17 @@ module hipfort_rocblas
       rocblas_cherkx_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     herkx_batched performs a batch of the matrix-matrix operations for a Hermitian rank-k update
   !> 
-  !>     C_i := alphaop( A_i )op( B_i )^H + betaC_i
+  !>     C_i := alpha*op( A_i )*op( B_i )^H + beta*C_i
   !> 
   !>     where  alpha and beta are scalars, op(A_i) and op(B_i) are n by k matrices, and
   !>     C_i is a n x n Hermitian matrix stored as either upper or lower.
-  !>     This routine should only be used when the caller can guarantee that the result of op( A )op( B )^T will be Hermitian.
+  !>     This routine should only be used when the caller can guarantee that the result of op( A )*op( B )^T will be Hermitian.
   !> 
   !>         op( A_i ) = A_i, op( B_i ) = B_i, and A_i and B_i are n by k if trans == rocblas_operation_none
   !>         op( A_i ) = A_i^H, op( B_i ) = B_i^H,  and A_i and B_i are k by n if trans == rocblas_operation_conjugate_transpose
@@ -15961,8 +15839,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface rocblas_zherkx_batched
     function rocblas_zherkx_batched_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_zherkx_batched")
       use iso_c_binding
@@ -16025,17 +15902,17 @@ module hipfort_rocblas
       rocblas_cherkx_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     herkx_strided_batched performs a batch of the matrix-matrix operations for a Hermitian rank-k update
   !> 
-  !>     C_i := alphaop( A_i )op( B_i )^H + betaC_i
+  !>     C_i := alpha*op( A_i )*op( B_i )^H + beta*C_i
   !> 
   !>     where  alpha and beta are scalars, op(A_i) and op(B_i) are n by k matrices, and
   !>     C_i is a n x n Hermitian matrix stored as either upper or lower.
-  !>     This routine should only be used when the caller can guarantee that the result of op( A )op( B )^T will be Hermitian.
+  !>     This routine should only be used when the caller can guarantee that the result of op( A )*op( B )^T will be Hermitian.
   !> 
   !>         op( A_i ) = A_i, op( B_i ) = B_i, and A_i and B_i are n by k if trans == rocblas_operation_none
   !>         op( A_i ) = A_i^H, op( B_i ) = B_i^H,  and A_i and B_i are k by n if trans == rocblas_operation_conjugate_transpose
@@ -16116,8 +15993,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface rocblas_zherkx_strided_batched
     function rocblas_zherkx_strided_batched_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_zherkx_strided_batched")
       use iso_c_binding
@@ -16237,14 +16113,14 @@ module hipfort_rocblas
       rocblas_csymm_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     symm performs one of the matrix-matrix operations:
   !> 
-  !>     C := alphaAB + betaC if side == rocblas_side_left,
-  !>     C := alphaBA + betaC if side == rocblas_side_right,
+  !>     C := alpha*A*B + beta*C if side == rocblas_side_left,
+  !>     C := alpha*B*A + beta*C if side == rocblas_side_right,
   !> 
   !>     where alpha and beta are scalars, B and C are m by n matrices, and
   !>     A is a symmetric matrix stored as either upper or lower.
@@ -16255,8 +16131,8 @@ module hipfort_rocblas
   !> 
   !>     @param[in]
   !>     side  [rocblas_side]
-  !>             rocblas_side_left:      C := alphaAB + betaC
-  !>             rocblas_side_right:     C := alphaBA + betaC
+  !>             rocblas_side_left:      C := alpha*A*B + beta*C
+  !>             rocblas_side_right:     C := alpha*B*A + beta*C
   !> 
   !>     @param[in]
   !>     uplo    [rocblas_fill]
@@ -16280,7 +16156,7 @@ module hipfort_rocblas
   !>     A       pointer storing matrix A on the GPU.
   !>             A is m by m if side == rocblas_side_left
   !>             A is n by n if side == rocblas_side_right
-  !>             only the upperlower triangular part is accessed.
+  !>             only the upper/lower triangular part is accessed.
   !> 
   !>     @param[in]
   !>     lda     [rocblas_int]
@@ -16308,8 +16184,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     ldc    [rocblas_int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, m )
-  !> 
-  !>     
+  !>
   interface rocblas_zsymm
     function rocblas_zsymm_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_zsymm")
       use iso_c_binding
@@ -16428,14 +16303,14 @@ module hipfort_rocblas
       rocblas_csymm_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     symm_batched performs a batch of the matrix-matrix operations:
   !> 
-  !>     C_i := alphaA_iB_i + betaC_i if side == rocblas_side_left,
-  !>     C_i := alphaB_iA_i + betaC_i if side == rocblas_side_right,
+  !>     C_i := alpha*A_i*B_i + beta*C_i if side == rocblas_side_left,
+  !>     C_i := alpha*B_i*A_i + beta*C_i if side == rocblas_side_right,
   !> 
   !>     where alpha and beta are scalars, B_i and C_i are m by n matrices, and
   !>     A_i is a symmetric matrix stored as either upper or lower.
@@ -16446,8 +16321,8 @@ module hipfort_rocblas
   !> 
   !>     @param[in]
   !>     side  [rocblas_side]
-  !>             rocblas_side_left:      C_i := alphaA_iB_i + betaC_i
-  !>             rocblas_side_right:     C_i := alphaB_iA_i + betaC_i
+  !>             rocblas_side_left:      C_i := alpha*A_i*B_i + beta*C_i
+  !>             rocblas_side_right:     C_i := alpha*B_i*A_i + beta*C_i
   !> 
   !>     @param[in]
   !>     uplo    [rocblas_fill]
@@ -16471,7 +16346,7 @@ module hipfort_rocblas
   !>     A       device array of device pointers storing each matrix A_i on the GPU.
   !>             A_i is m by m if side == rocblas_side_left
   !>             A_i is n by n if side == rocblas_side_right
-  !>             only the upperlower triangular part is accessed.
+  !>             only the upper/lower triangular part is accessed.
   !> 
   !>     @param[in]
   !>     lda     [rocblas_int]
@@ -16503,8 +16378,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface rocblas_zsymm_batched
     function rocblas_zsymm_batched_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_zsymm_batched")
       use iso_c_binding
@@ -16633,14 +16507,14 @@ module hipfort_rocblas
       rocblas_csymm_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     symm_strided_batched performs a batch of the matrix-matrix operations:
   !> 
-  !>     C_i := alphaA_iB_i + betaC_i if side == rocblas_side_left,
-  !>     C_i := alphaB_iA_i + betaC_i if side == rocblas_side_right,
+  !>     C_i := alpha*A_i*B_i + beta*C_i if side == rocblas_side_left,
+  !>     C_i := alpha*B_i*A_i + beta*C_i if side == rocblas_side_right,
   !> 
   !>     where alpha and beta are scalars, B_i and C_i are m by n matrices, and
   !>     A_i is a symmetric matrix stored as either upper or lower.
@@ -16651,8 +16525,8 @@ module hipfort_rocblas
   !> 
   !>     @param[in]
   !>     side  [rocblas_side]
-  !>             rocblas_side_left:      C_i := alphaA_iB_i + betaC_i
-  !>             rocblas_side_right:     C_i := alphaB_iA_i + betaC_i
+  !>             rocblas_side_left:      C_i := alpha*A_i*B_i + beta*C_i
+  !>             rocblas_side_right:     C_i := alpha*B_i*A_i + beta*C_i
   !> 
   !>     @param[in]
   !>     uplo    [rocblas_fill]
@@ -16676,7 +16550,7 @@ module hipfort_rocblas
   !>     A       device pointer to first matrix A_1
   !>             A_i is m by m if side == rocblas_side_left
   !>             A_i is n by n if side == rocblas_side_right
-  !>             only the upperlower triangular part is accessed.
+  !>             only the upper/lower triangular part is accessed.
   !> 
   !>     @param[in]
   !>     lda     [rocblas_int]
@@ -16717,8 +16591,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface rocblas_zsymm_strided_batched
     function rocblas_zsymm_strided_batched_(handle,side,uplo,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_zsymm_strided_batched")
       use iso_c_binding
@@ -16832,13 +16705,13 @@ module hipfort_rocblas
       rocblas_csyrk_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     syrk performs one of the matrix-matrix operations for a symmetric rank-k update
   !> 
-  !>     C := alphaop( A )op( A )^T + betaC
+  !>     C := alpha*op( A )*op( A )^T + beta*C
   !> 
   !>     where  alpha and beta are scalars, op(A) is an n by k matrix, and
   !>     C is a symmetric n x n matrix stored as either upper or lower.
@@ -16881,7 +16754,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     A       pointer storing matrix A on the GPU.
   !>             Martrix dimension is ( lda, k ) when if transA = rocblas_operation_none, otherwise (lda, n)
-  !>             only the upperlower triangular part is accessed.
+  !>             only the upper/lower triangular part is accessed.
   !> 
   !>     @param[in]
   !>     lda     [rocblas_int]
@@ -16900,8 +16773,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     ldc    [rocblas_int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
-  !> 
-  !>     
+  !>
   interface rocblas_zsyrk
     function rocblas_zsyrk_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) bind(c, name="rocblas_zsyrk")
       use iso_c_binding
@@ -17012,13 +16884,13 @@ module hipfort_rocblas
       rocblas_csyrk_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     syrk_batched performs a batch of the matrix-matrix operations for a symmetric rank-k update
   !> 
-  !>     C_i := alphaop( A_i )op( A_i )^T + betaC_i
+  !>     C_i := alpha*op( A_i )*op( A_i )^T + beta*C_i
   !> 
   !>     where  alpha and beta are scalars, op(A_i) is an n by k matrix, and
   !>     C_i is a symmetric n x n matrix stored as either upper or lower.
@@ -17082,8 +16954,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface rocblas_zsyrk_batched
     function rocblas_zsyrk_batched_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batch_count) bind(c, name="rocblas_zsyrk_batched")
       use iso_c_binding
@@ -17201,13 +17072,13 @@ module hipfort_rocblas
       rocblas_csyrk_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     syrk_strided_batched performs a batch of the matrix-matrix operations for a symmetric rank-k update
   !> 
-  !>     C_i := alphaop( A_i )op( A_i )^T + betaC_i
+  !>     C_i := alpha*op( A_i )*op( A_i )^T + beta*C_i
   !> 
   !>     where  alpha and beta are scalars, op(A_i) is an n by k matrix, and
   !>     C_i is a symmetric n x n matrix stored as either upper or lower.
@@ -17280,8 +17151,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface rocblas_zsyrk_strided_batched
     function rocblas_zsyrk_strided_batched_(handle,uplo,transA,n,k,alpha,A,lda,stride_A,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_zsyrk_strided_batched")
       use iso_c_binding
@@ -17398,13 +17268,13 @@ module hipfort_rocblas
       rocblas_csyr2k_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     syr2k performs one of the matrix-matrix operations for a symmetric rank-2k update
   !> 
-  !>     C := alpha(op( A )op( B )^T + op( B )op( A )^T) + betaC
+  !>     C := alpha*(op( A )*op( B )^T + op( B )*op( A )^T) + beta*C
   !> 
   !>     where  alpha and beta are scalars, op(A) and op(B) are n by k matrix, and
   !>     C is a symmetric n x n matrix stored as either upper or lower.
@@ -17443,7 +17313,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     A       pointer storing matrix A on the GPU.
   !>             Martrix dimension is ( lda, k ) when if trans = rocblas_operation_none, otherwise (lda, n)
-  !>             only the upperlower triangular part is accessed.
+  !>             only the upper/lower triangular part is accessed.
   !> 
   !>     @param[in]
   !>     lda     [rocblas_int]
@@ -17453,7 +17323,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     B       pointer storing matrix B on the GPU.
   !>             Martrix dimension is ( ldb, k ) when if trans = rocblas_operation_none, otherwise (ldb, n)
-  !>             only the upperlower triangular part is accessed.
+  !>             only the upper/lower triangular part is accessed.
   !> 
   !>     @param[in]
   !>     ldb     [rocblas_int]
@@ -17471,8 +17341,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     ldc    [rocblas_int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
-  !> 
-  !>     
+  !>
   interface rocblas_zsyr2k
     function rocblas_zsyr2k_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_zsyr2k")
       use iso_c_binding
@@ -17591,13 +17460,13 @@ module hipfort_rocblas
       rocblas_csyr2k_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     syr2k_batched performs a batch of the matrix-matrix operations for a symmetric rank-2k update
   !> 
-  !>     C_i := alpha(op( A_i )op( B_i )^T + op( B_i )op( A_i )^T) + betaC_i
+  !>     C_i := alpha*(op( A_i )*op( B_i )^T + op( B_i )*op( A_i )^T) + beta*C_i
   !> 
   !>     where  alpha and beta are scalars, op(A_i) and op(B_i) are n by k matrix, and
   !>     C_i is a symmetric n x n matrix stored as either upper or lower.
@@ -17664,8 +17533,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface rocblas_zsyr2k_batched
     function rocblas_zsyr2k_batched_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_zsyr2k_batched")
       use iso_c_binding
@@ -17794,13 +17662,13 @@ module hipfort_rocblas
       rocblas_csyr2k_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     syr2k_strided_batched performs a batch of the matrix-matrix operations for a symmetric rank-2k update
   !> 
-  !>     C_i := alpha(op( A_i )op( B_i )^T + op( B_i )op( A_i )^T) + betaC_i
+  !>     C_i := alpha*(op( A_i )*op( B_i )^T + op( B_i )*op( A_i )^T) + beta*C_i
   !> 
   !>     where  alpha and beta are scalars, op(A_i) and op(B_i) are n by k matrix, and
   !>     C_i is a symmetric n x n matrix stored as either upper or lower.
@@ -17883,8 +17751,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface rocblas_zsyr2k_strided_batched
     function rocblas_zsyr2k_strided_batched_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_zsyr2k_strided_batched")
       use iso_c_binding
@@ -18004,17 +17871,17 @@ module hipfort_rocblas
       rocblas_csyrkx_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     syrkx performs one of the matrix-matrix operations for a symmetric rank-k update
   !> 
-  !>     C := alphaop( A )op( B )^T + betaC
+  !>     C := alpha*op( A )*op( B )^T + beta*C
   !> 
   !>     where  alpha and beta are scalars, op(A) and op(B) are n by k matrix, and
   !>     C is a symmetric n x n matrix stored as either upper or lower.
-  !>     This routine should only be used when the caller can guarantee that the result of op( A )op( B )^T will be symmetric.
+  !>     This routine should only be used when the caller can guarantee that the result of op( A )*op( B )^T will be symmetric.
   !> 
   !>         op( A ) = A, op( B ) = B, and A and B are n by k if trans == rocblas_operation_none
   !>         op( A ) = A^T, op( B ) = B^T,  and A and B are k by n if trans == rocblas_operation_transpose
@@ -18050,7 +17917,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     A       pointer storing matrix A on the GPU.
   !>             Martrix dimension is ( lda, k ) when if trans = rocblas_operation_none, otherwise (lda, n)
-  !>             only the upperlower triangular part is accessed.
+  !>             only the upper/lower triangular part is accessed.
   !> 
   !>     @param[in]
   !>     lda     [rocblas_int]
@@ -18061,7 +17928,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     B       pointer storing matrix B on the GPU.
   !>             Martrix dimension is ( ldb, k ) when if trans = rocblas_operation_none, otherwise (ldb, n)
-  !>             only the upperlower triangular part is accessed.
+  !>             only the upper/lower triangular part is accessed.
   !> 
   !>     @param[in]
   !>     ldb     [rocblas_int]
@@ -18080,8 +17947,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     ldc    [rocblas_int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
-  !> 
-  !>     
+  !>
   interface rocblas_zsyrkx
     function rocblas_zsyrkx_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_zsyrkx")
       use iso_c_binding
@@ -18200,17 +18066,17 @@ module hipfort_rocblas
       rocblas_csyrkx_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     syrkx_batched performs a batch of the matrix-matrix operations for a symmetric rank-k update
   !> 
-  !>     C_i := alphaop( A_i )op( B_i )^T + betaC_i
+  !>     C_i := alpha*op( A_i )*op( B_i )^T + beta*C_i
   !> 
   !>     where  alpha and beta are scalars, op(A_i) and op(B_i) are n by k matrix, and
   !>     C_i is a symmetric n x n matrix stored as either upper or lower.
-  !>     This routine should only be used when the caller can guarantee that the result of op( A_i )op( B_i )^T will be symmetric.
+  !>     This routine should only be used when the caller can guarantee that the result of op( A_i )*op( B_i )^T will be symmetric.
   !> 
   !>         op( A_i ) = A_i, op( B_i ) = B_i, and A_i and B_i are n by k if trans == rocblas_operation_none
   !>         op( A_i ) = A_i^T, op( B_i ) = B_i^T,  and A_i and B_i are k by n if trans == rocblas_operation_transpose
@@ -18278,8 +18144,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>             number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface rocblas_zsyrkx_batched
     function rocblas_zsyrkx_batched_(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_zsyrkx_batched")
       use iso_c_binding
@@ -18408,17 +18273,17 @@ module hipfort_rocblas
       rocblas_csyrkx_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     syrkx_strided_batched performs a batch of the matrix-matrix operations for a symmetric rank-k update
   !> 
-  !>     C_i := alphaop( A_i )op( B_i )^T + betaC_i
+  !>     C_i := alpha*op( A_i )*op( B_i )^T + beta*C_i
   !> 
   !>     where  alpha and beta are scalars, op(A_i) and op(B_i) are n by k matrix, and
   !>     C_i is a symmetric n x n matrix stored as either upper or lower.
-  !>     This routine should only be used when the caller can guarantee that the result of op( A_i )op( B_i )^T will be symmetric.
+  !>     This routine should only be used when the caller can guarantee that the result of op( A_i )*op( B_i )^T will be symmetric.
   !> 
   !>         op( A_i ) = A_i, op( B_i ) = B_i, and A_i and B_i are n by k if trans == rocblas_operation_none
   !>         op( A_i ) = A_i^T, op( B_i ) = B_i^T,  and A_i and B_i are k by n if trans == rocblas_operation_transpose
@@ -18498,8 +18363,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface rocblas_zsyrkx_strided_batched
     function rocblas_zsyrkx_strided_batched_(handle,uplo,trans,n,k,alpha,A,lda,stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count) bind(c, name="rocblas_zsyrkx_strided_batched")
       use iso_c_binding
@@ -18616,13 +18480,13 @@ module hipfort_rocblas
       rocblas_ctrmm_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     trmm performs one of the matrix-matrix operations
   !> 
-  !>     B := alphaop( A )B,   or   B := alphaBop( A )
+  !>     B := alpha*op( A )*B,   or   B := alpha*B*op( A )
   !> 
   !>     where  alpha  is a scalar,  B  is an m by n matrix,  A  is a unit, or
   !>     non-unit,  upper or lower triangular matrix  and  op( A )  is one  of
@@ -18651,8 +18515,8 @@ module hipfort_rocblas
   !>     @param[in]
   !>     side    [rocblas_side]
   !>             Specifies whether op(A) multiplies B from the left or right as follows:
-  !>             rocblas_side_left:       B := alphaop( A )B.
-  !>             rocblas_side_right:      B := alphaBop( A ).
+  !>             rocblas_side_left:       B := alpha*op( A )*B.
+  !>             rocblas_side_right:      B := alpha*B*op( A ).
   !> 
   !>     @param[in]
   !>     uplo    [rocblas_fill]
@@ -18708,8 +18572,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     ldb    [rocblas_int]
   !>            ldb specifies the first dimension of B. ldb >= max( 1, m ).
-  !> 
-  !>     
+  !>
   interface rocblas_ztrmm
     function rocblas_ztrmm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="rocblas_ztrmm")
       use iso_c_binding
@@ -18806,13 +18669,13 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     trmm_batched performs one of the batched matrix-matrix operations
   !> 
-  !>     B_i := alphaop( A_i )B_i,   or   B_i := alphaB_iop( A_i )  for i = 0, 1, ... batch_count -1
+  !>     B_i := alpha*op( A_i )*B_i,   or   B_i := alpha*B_i*op( A_i )  for i = 0, 1, ... batch_count -1
   !> 
   !>     where  alpha  is a scalar,  B_i  is an m by n matrix,  A_i  is a unit, or
   !>     non-unit,  upper or lower triangular matrix  and  op( A_i )  is one  of
@@ -18826,8 +18689,8 @@ module hipfort_rocblas
   !>     @param[in]
   !>     side    [rocblas_side]
   !>             Specifies whether op(A_i) multiplies B_i from the left or right as follows:
-  !>             rocblas_side_left:       B_i := alphaop( A_i )B_i.
-  !>             rocblas_side_right:      B_i := alphaB_iop( A_i ).
+  !>             rocblas_side_left:       B_i := alpha*op( A_i )*B_i.
+  !>             rocblas_side_right:      B_i := alpha*B_i*op( A_i ).
   !> 
   !>     @param[in]
   !>     uplo    [rocblas_fill]
@@ -18900,7 +18763,6 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances i in the batch.
-  !>     
   interface rocblas_ztrmm_batched
     function rocblas_ztrmm_batched_(handle,side,uplo,transa,diag,m,n,alpha,a,lda,c,ldc,batch_count) bind(c, name="rocblas_ztrmm_batched")
       use iso_c_binding
@@ -18998,13 +18860,13 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     trmm_strided_batched performs one of the strided_batched matrix-matrix operations
   !> 
-  !>     B_i := alphaop( A_i )B_i,   or   B_i := alphaB_iop( A_i )  for i = 0, 1, ... batch_count -1
+  !>     B_i := alpha*op( A_i )*B_i,   or   B_i := alpha*B_i*op( A_i )  for i = 0, 1, ... batch_count -1
   !> 
   !>     where  alpha  is a scalar,  B_i  is an m by n matrix,  A_i  is a unit, or
   !>     non-unit,  upper or lower triangular matrix  and  op( A_i )  is one  of
@@ -19018,8 +18880,8 @@ module hipfort_rocblas
   !>     @param[in]
   !>     side    [rocblas_side]
   !>             Specifies whether op(A_i) multiplies B_i from the left or right as follows:
-  !>             rocblas_side_left:       B_i := alphaop( A_i )B_i.
-  !>             rocblas_side_right:      B_i := alphaB_iop( A_i ).
+  !>             rocblas_side_left:       B_i := alpha*op( A_i )*B_i.
+  !>             rocblas_side_right:      B_i := alpha*B_i*op( A_i ).
   !> 
   !>     @param[in]
   !>     uplo    [rocblas_fill]
@@ -19099,7 +18961,6 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances i in the batch.
-  !>     
   interface rocblas_ztrmm_strided_batched
     function rocblas_ztrmm_strided_batched_(handle,side,uplo,transa,diag,m,n,alpha,a,lda,stride_a,c,ldc,stride_c,batch_count) bind(c, name="rocblas_ztrmm_strided_batched")
       use iso_c_binding
@@ -19214,13 +19075,13 @@ module hipfort_rocblas
       rocblas_ctrmm_outofplace_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     trmm_outofplace performs one of the matrix-matrix operations
   !> 
-  !>     C := alphaop( A )B,   or   C := alphaBop( A )
+  !>     C := alpha*op( A )*B,   or   C := alpha*B*op( A )
   !> 
   !>     where  alpha  is a scalar,  B and C are m by n matrices,  A  is a unit, or
   !>     non-unit,  upper or lower triangular matrix  and  op( A )  is one  of
@@ -19237,8 +19098,8 @@ module hipfort_rocblas
   !>     @param[in]
   !>     side    [rocblas_side]
   !>             Specifies whether op(A) multiplies B from the left or right as follows:
-  !>             rocblas_side_left:       C := alphaop( A )B.
-  !>             rocblas_side_right:      C := alphaBop( A ).
+  !>             rocblas_side_left:       C := alpha*op( A )*B.
+  !>             rocblas_side_right:      C := alpha*B*op( A ).
   !> 
   !>     @param[in]
   !>     uplo    [rocblas_fill]
@@ -19311,8 +19172,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     ldc   [rocblas_int]
   !>           ldc specifies the first dimension of C. ldc >= max( 1, m).
-  !> 
-  !>     
+  !>
   interface rocblas_ztrmm_outofplace
     function rocblas_ztrmm_outofplace_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc) bind(c, name="rocblas_ztrmm_outofplace")
       use iso_c_binding
@@ -19435,13 +19295,13 @@ module hipfort_rocblas
       rocblas_ctrmm_outofplace_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     trmm_outofplace_batched performs one of the batched matrix-matrix operations
   !> 
-  !>     C_i := alphaop( A_i )B_i,   or   C_i := alphaB_iop( A_i )  for i = 0, 1, ... batch_count -1
+  !>     C_i := alpha*op( A_i )*B_i,   or   C_i := alpha*B_i*op( A_i )  for i = 0, 1, ... batch_count -1
   !> 
   !>     where  alpha  is a scalar,  B_i  is an m by n matrix,  A_i  is a unit, or
   !>     non-unit,  upper or lower triangular matrix  and  op( A_i )  is one  of
@@ -19458,8 +19318,8 @@ module hipfort_rocblas
   !>     @param[in]
   !>     side    [rocblas_side]
   !>             Specifies whether op(A_i) multiplies B_i from the left or right as follows:
-  !>             rocblas_side_left:       C_i := alphaop( A_i )B_i.
-  !>             rocblas_side_right:      C_i := alphaB_iop( A_i ).
+  !>             rocblas_side_left:       C_i := alpha*op( A_i )*B_i.
+  !>             rocblas_side_right:      C_i := alpha*B_i*op( A_i ).
   !> 
   !>     @param[in]
   !>     uplo    [rocblas_fill]
@@ -19536,7 +19396,6 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances i in the batch.
-  !>     
   interface rocblas_ztrmm_outofplace_batched
     function rocblas_ztrmm_outofplace_batched_(handle,side,uplo,transa,diag,m,n,alpha,A,lda,B,ldb,C,ldc,batch_count) bind(c, name="rocblas_ztrmm_outofplace_batched")
       use iso_c_binding
@@ -19669,13 +19528,13 @@ module hipfort_rocblas
       rocblas_ctrmm_outofplace_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     trmm_outofplace_strided_batched performs one of the strided_batched matrix-matrix operations
   !> 
-  !>     C_i := alphaop( A_i )B_i,   or   C_i := alphaB_iop( A_i )  for i = 0, 1, ... batch_count -1
+  !>     C_i := alpha*op( A_i )*B_i,   or   C_i := alpha*B_i*op( A_i )  for i = 0, 1, ... batch_count -1
   !> 
   !>     where  alpha  is a scalar,  B_i  is an m by n matrix,  A_i  is a unit, or
   !>     non-unit,  upper or lower triangular matrix  and  op( A_i )  is one  of
@@ -19692,8 +19551,8 @@ module hipfort_rocblas
   !>     @param[in]
   !>     side    [rocblas_side]
   !>             Specifies whether op(A_i) multiplies B_i from the left or right as follows:
-  !>             rocblas_side_left:       C_i := alphaop( A_i )B_i.
-  !>             rocblas_side_right:      C_i := alphaB_iop( A_i ).
+  !>             rocblas_side_left:       C_i := alpha*op( A_i )*B_i.
+  !>             rocblas_side_right:      C_i := alpha*B_i*op( A_i ).
   !> 
   !>     @param[in]
   !>     uplo    [rocblas_fill]
@@ -19782,7 +19641,6 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances i in the batch.
-  !>     
   interface rocblas_ztrmm_outofplace_strided_batched
     function rocblas_ztrmm_outofplace_strided_batched_(handle,side,uplo,transa,diag,m,n,alpha,A,lda,stride_a,B,ldb,stride_b,C,ldc,stride_c,batch_count) bind(c, name="rocblas_ztrmm_outofplace_strided_batched")
       use iso_c_binding
@@ -19888,7 +19746,7 @@ module hipfort_rocblas
       rocblas_ctrtri_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !>     trtri  compute the inverse of a matrix A, namely, invA
@@ -19920,8 +19778,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     ldinvA    [rocblas_int]
   !>               specifies the leading dimension of invA.
-  !> 
-  !> 
+  !>
   interface rocblas_ztrtri
     function rocblas_ztrtri_(handle,uplo,diag,n,A,lda,invA,ldinvA) bind(c, name="rocblas_ztrtri")
       use iso_c_binding
@@ -20020,7 +19877,7 @@ module hipfort_rocblas
       rocblas_ctrtri_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !>     trtri_batched  compute the inverse of A_i and write into invA_i where
@@ -20059,7 +19916,6 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>               numbers of matrices in the batch
-  !>     
   interface rocblas_ztrtri_batched
     function rocblas_ztrtri_batched_(handle,uplo,diag,n,A,lda,invA,ldinvA,batch_count) bind(c, name="rocblas_ztrtri_batched")
       use iso_c_binding
@@ -20165,7 +20021,7 @@ module hipfort_rocblas
       rocblas_ctrtri_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !>     trtri_strided_batched compute the inverse of A_i and write into invA_i where
@@ -20210,7 +20066,6 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count  [rocblas_int]
   !>                  numbers of matrices in the batch
-  !>     
   interface rocblas_ztrtri_strided_batched
     function rocblas_ztrtri_strided_batched_(handle,uplo,diag,n,A,lda,stride_a,invA,ldinvA,stride_invA,batch_count) bind(c, name="rocblas_ztrtri_strided_batched")
       use iso_c_binding
@@ -20321,13 +20176,13 @@ module hipfort_rocblas
       rocblas_ctrsm_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     trsm solves
   !> 
-  !>         op(A)X = alphaB or  Xop(A) = alphaB,
+  !>         op(A)*X = alpha*B or  X*op(A) = alpha*B,
   !> 
   !>     where alpha is a scalar, X and B are m by n matrices,
   !>     A is triangular matrix and op(A) is one of
@@ -20353,8 +20208,8 @@ module hipfort_rocblas
   !> 
   !>     @param[in]
   !>     side    [rocblas_side]
-  !>             rocblas_side_left:       op(A)X = alphaB.
-  !>             rocblas_side_right:      Xop(A) = alphaB.
+  !>             rocblas_side_left:       op(A)*X = alpha*B.
+  !>             rocblas_side_right:      X*op(A) = alpha*B.
   !> 
   !>     @param[in]
   !>     uplo    [rocblas_fill]
@@ -20391,7 +20246,7 @@ module hipfort_rocblas
   !>             of dimension ( lda, k ), where k is m
   !>             when  rocblas_side_left  and
   !>             is  n  when  rocblas_side_right
-  !>             only the upperlower triangular part is accessed.
+  !>             only the upper/lower triangular part is accessed.
   !> 
   !>     @param[in]
   !>     lda     [rocblas_int]
@@ -20405,8 +20260,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     ldb    [rocblas_int]
   !>            ldb specifies the first dimension of B. ldb >= max( 1, m ).
-  !> 
-  !>     
+  !>
   interface rocblas_ztrsm
     function rocblas_ztrsm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="rocblas_ztrsm")
       use iso_c_binding
@@ -20521,11 +20375,11 @@ module hipfort_rocblas
       rocblas_ctrsm_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !>     \details
   !>     trsm_batched performs the following batched operation:
   !> 
-  !>         op(A_i)X_i = alphaB_i or  X_iop(A_i) = alphaB_i, for i = 1, ..., batch_count.
+  !>         op(A_i)*X_i = alpha*B_i or  X_i*op(A_i) = alpha*B_i, for i = 1, ..., batch_count.
   !> 
   !>     where alpha is a scalar, X and B are batched m by n matrices,
   !>     A is triangular batched matrix and op(A) is one of
@@ -20549,8 +20403,8 @@ module hipfort_rocblas
   !>               handle to the rocblas library context queue.
   !>     @param[in]
   !>     side    [rocblas_side]
-  !>             rocblas_side_left:       op(A)X = alphaB.
-  !>             rocblas_side_right:      Xop(A) = alphaB.
+  !>             rocblas_side_left:       op(A)*X = alpha*B.
+  !>             rocblas_side_right:      X*op(A) = alpha*B.
   !>     @param[in]
   !>     uplo    [rocblas_fill]
   !>             rocblas_fill_upper:  each A_i is an upper triangular matrix.
@@ -20579,7 +20433,7 @@ module hipfort_rocblas
   !>     A       device array of device pointers storing each matrix A_i on the GPU.
   !>             Matricies are of dimension ( lda, k ), where k is m
   !>             when  rocblas_side_left  and is  n  when  rocblas_side_right
-  !>             only the upperlower triangular part is accessed.
+  !>             only the upper/lower triangular part is accessed.
   !>     @param[in]
   !>     lda     [rocblas_int]
   !>             lda specifies the first dimension of each A_i.
@@ -20593,7 +20447,6 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of trsm operatons in the batch.
-  !>     
   interface rocblas_ztrsm_batched
     function rocblas_ztrsm_batched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,batch_count) bind(c, name="rocblas_ztrsm_batched")
       use iso_c_binding
@@ -20715,11 +20568,11 @@ module hipfort_rocblas
       rocblas_ctrsm_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !>     \details
   !>     trsm_srided_batched performs the following strided batched operation:
   !> 
-  !>         op(A_i)X_i = alphaB_i or  X_iop(A_i) = alphaB_i, for i = 1, ..., batch_count.
+  !>         op(A_i)*X_i = alpha*B_i or  X_i*op(A_i) = alpha*B_i, for i = 1, ..., batch_count.
   !> 
   !>     where alpha is a scalar, X and B are strided batched m by n matrices,
   !>     A is triangular strided batched matrix and op(A) is one of
@@ -20742,8 +20595,8 @@ module hipfort_rocblas
   !>               handle to the rocblas library context queue.
   !>     @param[in]
   !>     side    [rocblas_side]
-  !>             rocblas_side_left:       op(A)X = alphaB.
-  !>             rocblas_side_right:      Xop(A) = alphaB.
+  !>             rocblas_side_left:       op(A)*X = alpha*B.
+  !>             rocblas_side_right:      X*op(A) = alpha*B.
   !>     @param[in]
   !>     uplo    [rocblas_fill]
   !>             rocblas_fill_upper:  each A_i is an upper triangular matrix.
@@ -20773,7 +20626,7 @@ module hipfort_rocblas
   !>             of dimension ( lda, k ), where k is m
   !>             when  rocblas_side_left  and
   !>             is  n  when  rocblas_side_right
-  !>             only the upperlower triangular part is accessed.
+  !>             only the upper/lower triangular part is accessed.
   !>     @param[in]
   !>     lda     [rocblas_int]
   !>             lda specifies the first dimension of each A_i.
@@ -20793,7 +20646,6 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of trsm operatons in the batch.
-  !>     
   interface rocblas_ztrsm_strided_batched
     function rocblas_ztrsm_strided_batched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_a,B,ldb,stride_b,batch_count) bind(c, name="rocblas_ztrsm_strided_batched")
       use iso_c_binding
@@ -20938,18 +20790,18 @@ module hipfort_rocblas
       rocblas_cgemm_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !>     gemm performs one of the matrix-matrix operations
   !> 
-  !>         C = alphaop( A )op( B ) + betaC,
+  !>         C = alpha*op( A )*op( B ) + beta*C,
   !> 
   !>     where op( X ) is one of
   !> 
   !>         op( X ) = X      or
-  !>         op( X ) = XT   or
-  !>         op( X ) = XH,
+  !>         op( X ) = X**T   or
+  !>         op( X ) = X**H,
   !> 
   !>     alpha and beta are scalars, and A, B and C are matrices, with
   !>     op( A ) an m by k matrix, op( B ) a k by n matrix and C an m by n matrix.
@@ -20991,8 +20843,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     ldc       [rocblas_int]
   !>               specifies the leading dimension of C.
-  !> 
-  !>     
+  !>
   interface rocblas_zgemm
     function rocblas_zgemm_(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="rocblas_zgemm")
       use iso_c_binding
@@ -21140,14 +20991,14 @@ module hipfort_rocblas
       rocblas_cgemm_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !>      \details
   !>     gemm_batched performs one of the batched matrix-matrix operations
-  !>          C_i = alphaop( A_i )op( B_i ) + betaC_i, for i = 1, ..., batch_count.
+  !>          C_i = alpha*op( A_i )*op( B_i ) + beta*C_i, for i = 1, ..., batch_count.
   !>      where op( X ) is one of
   !>          op( X ) = X      or
-  !>         op( X ) = XT   or
-  !>         op( X ) = XH,
+  !>         op( X ) = X**T   or
+  !>         op( X ) = X**H,
   !>      alpha and beta are scalars, and A, B and C are strided batched matrices, with
   !>     op( A ) an m by k by batch_count strided_batched matrix,
   !>     op( B ) an k by n by batch_count strided_batched matrix and
@@ -21193,7 +21044,6 @@ module hipfort_rocblas
   !>     batch_count
   !>               [rocblas_int]
   !>               number of gemm operations in the batch
-  !>      
   interface rocblas_zgemm_batched
     function rocblas_zgemm_batched_(handle,transa,transb,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batch_count) bind(c, name="rocblas_zgemm_batched")
       use iso_c_binding
@@ -21450,18 +21300,18 @@ module hipfort_rocblas
       rocblas_cgemm_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !>     gemm_strided_batched performs one of the strided batched matrix-matrix operations
   !> 
-  !>         C_i = alphaop( A_i )op( B_i ) + betaC_i, for i = 1, ..., batch_count.
+  !>         C_i = alpha*op( A_i )*op( B_i ) + beta*C_i, for i = 1, ..., batch_count.
   !> 
   !>     where op( X ) is one of
   !> 
   !>         op( X ) = X      or
-  !>         op( X ) = XT   or
-  !>         op( X ) = XH,
+  !>         op( X ) = X**T   or
+  !>         op( X ) = X**H,
   !> 
   !>     alpha and beta are scalars, and A, B and C are strided batched matrices, with
   !>     op( A ) an m by k by batch_count strided_batched matrix,
@@ -21518,8 +21368,7 @@ module hipfort_rocblas
   !>     batch_count
   !>               [rocblas_int]
   !>               number of gemm operatons in the batch
-  !> 
-  !>     
+  !>
   interface rocblas_zgemm_strided_batched
     function rocblas_zgemm_strided_batched_(handle,transa,transb,m,n,k,alpha,A,lda,stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count) bind(c, name="rocblas_zgemm_strided_batched")
       use iso_c_binding
@@ -21631,13 +21480,13 @@ module hipfort_rocblas
       rocblas_cdgmm_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !>     dgmm performs one of the matrix-matrix operations
   !> 
-  !>         C = A  diag(x) if side == rocblas_side_right
-  !>         C = diag(x)  A if side == rocblas_side_left
+  !>         C = A * diag(x) if side == rocblas_side_right
+  !>         C = diag(x) * A if side == rocblas_side_left
   !> 
   !>     where C and A are m by n dimensional matrices. diag( x ) is a diagonal matrix
   !>     and x is vector of dimension n if side == rocblas_side_right and dimension m
@@ -21671,8 +21520,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     ldc       [rocblas_int]
   !>               specifies the leading dimension of C.
-  !> 
-  !>     
+  !>
   interface rocblas_zdgmm
     function rocblas_zdgmm_(handle,side,m,n,A,lda,x,incx,C,ldc) bind(c, name="rocblas_zdgmm")
       use iso_c_binding
@@ -21779,13 +21627,13 @@ module hipfort_rocblas
       rocblas_cdgmm_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !>     dgmm_batched performs one of the batched matrix-matrix operations
   !> 
-  !>         C_i = A_i  diag(x_i) for i = 0, 1, ... batch_count-1 if side == rocblas_side_right
-  !>         C_i = diag(x_i)  A_i for i = 0, 1, ... batch_count-1 if side == rocblas_side_left
+  !>         C_i = A_i * diag(x_i) for i = 0, 1, ... batch_count-1 if side == rocblas_side_right
+  !>         C_i = diag(x_i) * A_i for i = 0, 1, ... batch_count-1 if side == rocblas_side_left
   !> 
   !>     where C_i and A_i are m by n dimensional matrices. diag(x_i) is a diagonal matrix
   !>     and x_i is vector of dimension n if side == rocblas_side_right and dimension m
@@ -21825,8 +21673,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface rocblas_zdgmm_batched
     function rocblas_zdgmm_batched_(handle,side,m,n,A,lda,x,incx,C,ldc,batch_count) bind(c, name="rocblas_zdgmm_batched")
       use iso_c_binding
@@ -21943,13 +21790,13 @@ module hipfort_rocblas
       rocblas_cdgmm_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !>     dgmm_strided_batched performs one of the batched matrix-matrix operations
   !> 
-  !>         C_i = A_i  diag(x_i)   if side == rocblas_side_right   for i = 0, 1, ... batch_count-1
-  !>         C_i = diag(x_i)  A_i   if side == rocblas_side_left    for i = 0, 1, ... batch_count-1
+  !>         C_i = A_i * diag(x_i)   if side == rocblas_side_right   for i = 0, 1, ... batch_count-1
+  !>         C_i = diag(x_i) * A_i   if side == rocblas_side_left    for i = 0, 1, ... batch_count-1
   !> 
   !>     where C_i and A_i are m by n dimensional matrices. diag(x_i) is a diagonal matrix
   !>     and x_i is vector of dimension n if side == rocblas_side_right and dimension m
@@ -21998,8 +21845,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances i in the batch.
-  !> 
-  !>     
+  !>
   interface rocblas_zdgmm_strided_batched
     function rocblas_zdgmm_strided_batched_(handle,side,m,n,A,lda,stride_a,x,incx,stride_x,C,ldc,stride_c,batch_count) bind(c, name="rocblas_zdgmm_strided_batched")
       use iso_c_binding
@@ -22116,18 +21962,18 @@ module hipfort_rocblas
       rocblas_cgeam_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !>     geam performs one of the matrix-matrix operations
   !> 
-  !>         C = alphaop( A ) + betaop( B ),
+  !>         C = alpha*op( A ) + beta*op( B ),
   !> 
   !>     where op( X ) is one of
   !> 
   !>         op( X ) = X      or
-  !>         op( X ) = XT   or
-  !>         op( X ) = XH,
+  !>         op( X ) = X**T   or
+  !>         op( X ) = X**H,
   !> 
   !>     alpha and beta are scalars, and A, B and C are matrices, with
   !>     op( A ) an m by n matrix, op( B ) an m by n matrix, and C an m by n matrix.
@@ -22166,8 +22012,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     ldc       [rocblas_int]
   !>               specifies the leading dimension of C.
-  !> 
-  !>     
+  !>
   interface rocblas_zgeam
     function rocblas_zgeam_(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc) bind(c, name="rocblas_zgeam")
       use iso_c_binding
@@ -22286,18 +22131,18 @@ module hipfort_rocblas
       rocblas_cgeam_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !>     geam_batched performs one of the batched matrix-matrix operations
   !> 
-  !>         C_i = alphaop( A_i ) + betaop( B_i )  for i = 0, 1, ... batch_count - 1
+  !>         C_i = alpha*op( A_i ) + beta*op( B_i )  for i = 0, 1, ... batch_count - 1
   !> 
   !>     where alpha and beta are scalars, and op(A_i), op(B_i) and C_i are m by n matrices
   !>     and op( X ) is one of
   !> 
   !>         op( X ) = X      or
-  !>         op( X ) = XT
+  !>         op( X ) = X**T
   !> 
   !>     @param[in]
   !>     handle    [rocblas_handle]
@@ -22344,8 +22189,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances i in the batch.
-  !> 
-  !>     
+  !>
   interface rocblas_zgeam_batched
     function rocblas_zgeam_batched_(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc,batch_count) bind(c, name="rocblas_zgeam_batched")
       use iso_c_binding
@@ -22474,18 +22318,18 @@ module hipfort_rocblas
       rocblas_cgeam_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !>     geam_strided_batched performs one of the batched matrix-matrix operations
   !> 
-  !>         C_i = alphaop( A_i ) + betaop( B_i )  for i = 0, 1, ... batch_count - 1
+  !>         C_i = alpha*op( A_i ) + beta*op( B_i )  for i = 0, 1, ... batch_count - 1
   !> 
   !>     where alpha and beta are scalars, and op(A_i), op(B_i) and C_i are m by n matrices
   !>     and op( X ) is one of
   !> 
   !>         op( X ) = X      or
-  !>         op( X ) = XT
+  !>         op( X ) = X**T
   !> 
   !>     @param[in]
   !>     handle    [rocblas_handle]
@@ -22556,8 +22400,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances i in the batch.
-  !> 
-  !>     
+  !>
   interface rocblas_zgeam_strided_batched
     function rocblas_zgeam_strided_batched_(handle,transA,transB,m,n,alpha,A,lda,stride_a,beta,B,ldb,stride_b,C,ldc,stride_c,batch_count) bind(c, name="rocblas_zgeam_strided_batched")
       use iso_c_binding
@@ -22590,18 +22433,18 @@ module hipfort_rocblas
       rocblas_zgeam_strided_batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS EX API
+  !>  \brief BLAS EX API
   !> 
   !>     \details
   !>     gemm_ex performs one of the matrix-matrix operations
   !> 
-  !>         D = alphaop( A )op( B ) + betaC,
+  !>         D = alpha*op( A )*op( B ) + beta*C,
   !> 
   !>     where op( X ) is one of
   !> 
   !>         op( X ) = X      or
-  !>         op( X ) = XT   or
-  !>         op( X ) = XH,
+  !>         op( X ) = X**T   or
+  !>         op( X ) = X**H,
   !> 
   !>     alpha and beta are scalars, and A, B, C, and D are matrices, with
   !>     op( A ) an m by k matrix, op( B ) a k by n matrix and C and D are m by n matrices.
@@ -22628,10 +22471,10 @@ module hipfort_rocblas
   !>    c_type = d_type = compute_type, in addition to a last flag param indicating packing input or not.
   !> 
   !>         - Without setting the last param 'flags' (default=none), this is supported for gfx908 or
-  !>    later GPUs only. Input ab won't be packed into int8x4. So the following size restrictions and
+  !>    later GPUs only. Input a/b won't be packed into int8x4. So the following size restrictions and
   !>    packing pseudo-code is not neccessary.
   !> 
-  !>         - Set the last param 'flags' |= rocblas_gemm_flags_pack_int8x4. Input ab would be packed
+  !>         - Set the last param 'flags' |= rocblas_gemm_flags_pack_int8x4. Input a/b would be packed
   !>    into int8x4, and this will impose some size restrictions on A or B (See below.) For GPUs before
   !>    gfx908, only packed-int8 version is supported so this flag and packing is required, while
   !>    gfx908 GPUs support both versions.
@@ -22659,7 +22502,7 @@ module hipfort_rocblas
   !>         {
   !>             for(int i_k = 0; i_k < k; i_k++)
   !>             {
-  !>                 A_packed[i_k % nb + (i_m + (i_k  nb)  lda)  nb] = A[i_m + i_k  lda];
+  !>                 A_packed[i_k % nb + (i_m + (i_k nb) * lda) * nb] = A[i_m + i_k * lda];
   !>             }
   !>         }
   !>     }
@@ -22674,7 +22517,7 @@ module hipfort_rocblas
   !>         {
   !>             for(int i_k = 0; i_k < k; i_k++)
   !>             {
-  !>                 B_packed[i_k % nb + (i_n + (i_k  nb)  ldb)  nb] = B[i_n + i_k  ldb];
+  !>                 B_packed[i_k % nb + (i_n + (i_k nb) * ldb) * nb] = B[i_n + i_k * ldb];
   !>             }
   !>         }
   !>     }
@@ -22703,10 +22546,10 @@ module hipfort_rocblas
   !>     k         [rocblas_int]
   !>               matrix dimension k.
   !>     @param[in]
-  !>     alpha     [ void ]
+  !>     alpha     [ void *]
   !>               device pointer or host pointer specifying the scalar alpha. Same datatype as compute_type.
   !>     @param[in]
-  !>     a         [void ]
+  !>     a         [void *]
   !>               device pointer storing matrix A.
   !>     @param[in]
   !>     a_type    [rocblas_datatype]
@@ -22715,7 +22558,7 @@ module hipfort_rocblas
   !>     lda       [rocblas_int]
   !>               specifies the leading dimension of A.
   !>     @param[in]
-  !>     b         [void ]
+  !>     b         [void *]
   !>               device pointer storing matrix B.
   !>     @param[in]
   !>     b_type    [rocblas_datatype]
@@ -22724,10 +22567,10 @@ module hipfort_rocblas
   !>     ldb       [rocblas_int]
   !>               specifies the leading dimension of B.
   !>     @param[in]
-  !>     beta      [ void ]
+  !>     beta      [ void *]
   !>               device pointer or host pointer specifying the scalar beta. Same datatype as compute_type.
   !>     @param[in]
-  !>     c         [void ]
+  !>     c         [void *]
   !>               device pointer storing matrix C.
   !>     @param[in]
   !>     c_type    [rocblas_datatype]
@@ -22736,7 +22579,7 @@ module hipfort_rocblas
   !>     ldc       [rocblas_int]
   !>               specifies the leading dimension of C.
   !>     @param[out]
-  !>     d         [void ]
+  !>     d         [void *]
   !>               device pointer storing matrix D.
   !>     @param[in]
   !>     d_type    [rocblas_datatype]
@@ -22758,8 +22601,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     flags     [uint32_t]
   !>               optional gemm flags.
-  !> 
-  !>     
+  !>
   interface rocblas_gemm_ex
     function rocblas_gemm_ex_(handle,transA,transB,m,n,k,alpha,a,a_type,lda,b,b_type,ldb,beta,c,c_type,ldc,d,d_type,ldd,compute_type,algo,solution_index,flags) bind(c, name="rocblas_gemm_ex")
       use iso_c_binding
@@ -22793,14 +22635,14 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief BLAS EX API
+  !>  \brief BLAS EX API
   !>     \details
   !>     gemm_batched_ex performs one of the batched matrix-matrix operations
-  !>         D_i = alphaop(A_i)op(B_i) + betaC_i, for i = 1, ..., batch_count.
+  !>         D_i = alpha*op(A_i)*op(B_i) + beta*C_i, for i = 1, ..., batch_count.
   !>     where op( X ) is one of
   !>         op( X ) = X      or
-  !>         op( X ) = XT   or
-  !>         op( X ) = XH,
+  !>         op( X ) = X**T   or
+  !>         op( X ) = X**H,
   !>     alpha and beta are scalars, and A, B, C, and D are batched pointers to matrices, with
   !>     op( A ) an m by k by batch_count batched matrix,
   !>     op( B ) a k by n by batch_count batched matrix and
@@ -22825,10 +22667,10 @@ module hipfort_rocblas
   !>    c_type = d_type = compute_type, in addition to a last flag param indicating packing input or not.
   !> 
   !>         - Without setting the last param 'flags' (default=none), this is supported for gfx908 or
-  !>    later GPUs only. Input ab won't be packed into int8x4. So the following size restrictions and
+  !>    later GPUs only. Input a/b won't be packed into int8x4. So the following size restrictions and
   !>    packing pseudo-code is not neccessary.
   !> 
-  !>         - Set the last param 'flags' |= rocblas_gemm_flags_pack_int8x4. Input ab would be packed
+  !>         - Set the last param 'flags' |= rocblas_gemm_flags_pack_int8x4. Input a/b would be packed
   !>    into int8x4, and this will impose some size restrictions on A or B (See below.) For GPUs before
   !>    gfx908, only packed-int8 version is supported so this flag and packing is required, while
   !>    gfx908 GPUs support both versions.
@@ -22855,7 +22697,7 @@ module hipfort_rocblas
   !>         {
   !>             for(int i_k = 0; i_k < k; i_k++)
   !>             {
-  !>                 A_packed[i_k % nb + (i_m + (i_k  nb)  lda)  nb] = A[i_m + i_k  lda];
+  !>                 A_packed[i_k % nb + (i_m + (i_k nb) * lda) * nb] = A[i_m + i_k * lda];
   !>             }
   !>         }
   !>     }
@@ -22870,7 +22712,7 @@ module hipfort_rocblas
   !>         {
   !>             for(int i_k = 0; i_k < k; i_k++)
   !>             {
-  !>                 B_packed[i_k % nb + (i_n + (i_k  nb)  ldb)  nb] = B[i_n + i_k  ldb];
+  !>                 B_packed[i_k % nb + (i_n + (i_k nb) * ldb) * nb] = B[i_n + i_k * ldb];
   !>             }
   !>         }
   !>     }
@@ -22898,10 +22740,10 @@ module hipfort_rocblas
   !>     k         [rocblas_int]
   !>               matrix dimension k.
   !>     @param[in]
-  !>     alpha     [ void ]
+  !>     alpha     [ void *]
   !>               device pointer or host pointer specifying the scalar alpha. Same datatype as compute_type.
   !>     @param[in]
-  !>     a         [void ]
+  !>     a         [void *]
   !>               device pointer storing array of pointers to each matrix A_i.
   !>     @param[in]
   !>     a_type    [rocblas_datatype]
@@ -22910,7 +22752,7 @@ module hipfort_rocblas
   !>     lda       [rocblas_int]
   !>               specifies the leading dimension of each A_i.
   !>     @param[in]
-  !>     b         [void ]
+  !>     b         [void *]
   !>               device pointer storing array of pointers to each matrix B_i.
   !>     @param[in]
   !>     b_type    [rocblas_datatype]
@@ -22919,10 +22761,10 @@ module hipfort_rocblas
   !>     ldb       [rocblas_int]
   !>               specifies the leading dimension of each B_i.
   !>     @param[in]
-  !>     beta      [ void ]
+  !>     beta      [ void *]
   !>               device pointer or host pointer specifying the scalar beta. Same datatype as compute_type.
   !>     @param[in]
-  !>     c         [void ]
+  !>     c         [void *]
   !>               device array of device pointers to each matrix C_i.
   !>     @param[in]
   !>     c_type    [rocblas_datatype]
@@ -22931,7 +22773,7 @@ module hipfort_rocblas
   !>     ldc       [rocblas_int]
   !>               specifies the leading dimension of each C_i.
   !>     @param[out]
-  !>     d         [void ]
+  !>     d         [void *]
   !>               device array of device pointers to each matrix D_i.
   !>     @param[in]
   !>     d_type    [rocblas_datatype]
@@ -22957,8 +22799,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     flags     [uint32_t]
   !>               optional gemm flags.
-  !> 
-  !>     
+  !>
   interface rocblas_gemm_batched_ex
     function rocblas_gemm_batched_ex_(handle,transA,transB,m,n,k,alpha,a,a_type,lda,b,b_type,ldb,beta,c,c_type,ldc,d,d_type,ldd,batch_count,compute_type,algo,solution_index,flags) bind(c, name="rocblas_gemm_batched_ex")
       use iso_c_binding
@@ -22993,18 +22834,18 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief BLAS EX API
+  !>  \brief BLAS EX API
   !> 
   !>     \details
   !>     gemm_strided_batched_ex performs one of the strided_batched matrix-matrix operations
   !> 
-  !>         D_i = alphaop(A_i)op(B_i) + betaC_i, for i = 1, ..., batch_count
+  !>         D_i = alpha*op(A_i)*op(B_i) + beta*C_i, for i = 1, ..., batch_count
   !> 
   !>     where op( X ) is one of
   !> 
   !>         op( X ) = X      or
-  !>         op( X ) = XT   or
-  !>         op( X ) = XH,
+  !>         op( X ) = X**T   or
+  !>         op( X ) = X**H,
   !> 
   !>     alpha and beta are scalars, and A, B, C, and D are strided_batched matrices, with
   !>     op( A ) an m by k by batch_count strided_batched matrix,
@@ -23032,10 +22873,10 @@ module hipfort_rocblas
   !>    c_type = d_type = compute_type, in addition to a last flag param indicating packing input or not.
   !> 
   !>         - Without setting the last param 'flags' (default=none), this is supported for gfx908 or
-  !>    later GPUs only. Input ab won't be packed into int8x4. So the following size restrictions and
+  !>    later GPUs only. Input a/b won't be packed into int8x4. So the following size restrictions and
   !>    packing pseudo-code is not neccessary.
   !> 
-  !>         - Set the last param 'flags' |= rocblas_gemm_flags_pack_int8x4. Input ab would be packed
+  !>         - Set the last param 'flags' |= rocblas_gemm_flags_pack_int8x4. Input a/b would be packed
   !>    into int8x4, and this will impose some size restrictions on A or B (See below.) For GPUs before
   !>    gfx908, only packed-int8 version is supported so this flag and packing is required, while
   !>    gfx908 GPUs support both versions.
@@ -23063,7 +22904,7 @@ module hipfort_rocblas
   !>         {
   !>             for(int i_k = 0; i_k < k; i_k++)
   !>             {
-  !>                 A_packed[i_k % nb + (i_m + (i_k  nb)  lda)  nb] = A[i_m + i_k  lda];
+  !>                 A_packed[i_k % nb + (i_m + (i_k nb) * lda) * nb] = A[i_m + i_k * lda];
   !>             }
   !>         }
   !>     }
@@ -23078,7 +22919,7 @@ module hipfort_rocblas
   !>         {
   !>             for(int i_k = 0; i_k < k; i_k++)
   !>             {
-  !>                 B_packed[i_k % nb + (i_n + (i_k  nb)  ldb)  nb] = B[i_n + i_k  ldb];
+  !>                 B_packed[i_k % nb + (i_n + (i_k nb) * ldb) * nb] = B[i_n + i_k * ldb];
   !>             }
   !>         }
   !>     }
@@ -23107,10 +22948,10 @@ module hipfort_rocblas
   !>     k         [rocblas_int]
   !>               matrix dimension k.
   !>     @param[in]
-  !>     alpha     [ void ]
+  !>     alpha     [ void *]
   !>               device pointer or host pointer specifying the scalar alpha. Same datatype as compute_type.
   !>     @param[in]
-  !>     a         [void ]
+  !>     a         [void *]
   !>               device pointer pointing to first matrix A_1.
   !>     @param[in]
   !>     a_type    [rocblas_datatype]
@@ -23122,7 +22963,7 @@ module hipfort_rocblas
   !>     stride_a  [rocblas_stride]
   !>               specifies stride from start of one A_i matrix to the next A_(i + 1).
   !>     @param[in]
-  !>     b         [void ]
+  !>     b         [void *]
   !>               device pointer pointing to first matrix B_1.
   !>     @param[in]
   !>     b_type    [rocblas_datatype]
@@ -23134,10 +22975,10 @@ module hipfort_rocblas
   !>     stride_b  [rocblas_stride]
   !>               specifies stride from start of one B_i matrix to the next B_(i + 1).
   !>     @param[in]
-  !>     beta      [ void ]
+  !>     beta      [ void *]
   !>               device pointer or host pointer specifying the scalar beta. Same datatype as compute_type.
   !>     @param[in]
-  !>     c         [void ]
+  !>     c         [void *]
   !>               device pointer pointing to first matrix C_1.
   !>     @param[in]
   !>     c_type    [rocblas_datatype]
@@ -23149,7 +22990,7 @@ module hipfort_rocblas
   !>     stride_c  [rocblas_stride]
   !>               specifies stride from start of one C_i matrix to the next C_(i + 1).
   !>     @param[out]
-  !>     d         [void ]
+  !>     d         [void *]
   !>               device pointer storing each matrix D_i.
   !>     @param[in]
   !>     d_type    [rocblas_datatype]
@@ -23178,8 +23019,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     flags     [uint32_t]
   !>               optional gemm flags.
-  !> 
-  !>     
+  !>
   interface rocblas_gemm_strided_batched_ex
     function rocblas_gemm_strided_batched_ex_(handle,transA,transB,m,n,k,alpha,a,a_type,lda,stride_a,b,b_type,ldb,stride_b,beta,c,c_type,ldc,stride_c,d,d_type,ldd,stride_d,batch_count,compute_type,algo,solution_index,flags) bind(c, name="rocblas_gemm_strided_batched_ex")
       use iso_c_binding
@@ -23218,12 +23058,12 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief BLAS EX API
+  !>  \brief BLAS EX API
   !> 
   !>     \details
   !>     gemm_ext2 performs the matrix-matrix operations
   !> 
-  !>         D = alpha  A  B  + beta  C,
+  !>         D = alpha * A * B  + beta * C,
   !> 
   !>     alpha and beta are scalars, and A, B, C, and D are matrices, with A a m by k
   !>     matrtix, B a k by n matrix, and C and D are m by n matrices. Each matrix A, B, C, D
@@ -23244,10 +23084,10 @@ module hipfort_rocblas
   !>     k         [rocblas_int]
   !>               matrix dimension k.
   !>     @param[in]
-  !>     alpha     [ void ]
+  !>     alpha     [ void *]
   !>               device pointer or host pointer specifying the scalar alpha. Same datatype as compute_type.
   !>     @param[in]
-  !>     a         [void ]
+  !>     a         [void *]
   !>               device pointer storing matrix A.
   !>     @param[in]
   !>     a_type    [rocblas_datatype]
@@ -23259,7 +23099,7 @@ module hipfort_rocblas
   !>     col_stride_a [rocblas_int]
   !>               specifies the column stride of A.
   !>     @param[in]
-  !>     b         [void ]
+  !>     b         [void *]
   !>               device pointer storing matrix B.
   !>     @param[in]
   !>     b_type    [rocblas_datatype]
@@ -23271,10 +23111,10 @@ module hipfort_rocblas
   !>     col_stride_a    [rocblas_int]
   !>               specifies the column stride of B.
   !>     @param[in]
-  !>     beta      [ void ]
+  !>     beta      [ void *]
   !>               device pointer or host pointer specifying the scalar beta. Same datatype as compute_type.
   !>     @param[in]
-  !>     c         [void ]
+  !>     c         [void *]
   !>               device pointer storing matrix C.
   !>     @param[in]
   !>     c_type    [rocblas_datatype]
@@ -23286,7 +23126,7 @@ module hipfort_rocblas
   !>     col_stride_c [rocblas_int]
   !>               specifies the column stride of C.
   !>     @param[out]
-  !>     d         [void ]
+  !>     d         [void *]
   !>               device pointer storing matrix D.
   !>     @param[in]
   !>     d_type    [rocblas_datatype]
@@ -23311,8 +23151,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     flags     [uint32_t]
   !>               optional gemm flags.
-  !> 
-  !>     
+  !>
   interface rocblas_gemm_ext2
     function rocblas_gemm_ext2_(handle,m,n,k,alpha,a,a_type,row_stride_a,col_stride_a,b,b_type,row_stride_b,col_stride_b,beta,c,c_type,row_stride_c,col_stride_c,d,d_type,row_stride_d,col_stride_d,compute_type,algo,solution_index,flags) bind(c, name="rocblas_gemm_ext2")
       use iso_c_binding
@@ -23348,12 +23187,12 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! BLAS EX API
+  !>  BLAS EX API
   !> 
   !>     \details
   !>     trsm_ex solves
   !> 
-  !>         op(A)X = alphaB or Xop(A) = alphaB,
+  !>         op(A)*X = alpha*B or X*op(A) = alpha*B,
   !> 
   !>     where alpha is a scalar, X and B are m by n matrices,
   !>     A is triangular matrix and op(A) is one of
@@ -23379,11 +23218,11 @@ module hipfort_rocblas
   !>       - n = 128
   !>       - ldinvA = 128
   !>       - stride_invA = 128x128
-  !>       - batch_count = k  128,
+  !>       - batch_count = k 128,
   !> 
   !>     Then any remaining block may be added:
   !>       - n = k % 128
-  !>       - invA = invA + stride_invA  previous_batch_count
+  !>       - invA = invA + stride_invA * previous_batch_count
   !>       - ldinvA = 128
   !>       - batch_count = 1
   !> 
@@ -23393,8 +23232,8 @@ module hipfort_rocblas
   !> 
   !>     @param[in]
   !>     side    [rocblas_side]
-  !>             rocblas_side_left:       op(A)X = alphaB.
-  !>             rocblas_side_right:      Xop(A) = alphaB.
+  !>             rocblas_side_left:       op(A)*X = alpha*B.
+  !>             rocblas_side_right:      X*op(A) = alpha*B.
   !> 
   !>     @param[in]
   !>     uplo    [rocblas_fill]
@@ -23421,18 +23260,18 @@ module hipfort_rocblas
   !>             n specifies the number of columns of B. n >= 0.
   !> 
   !>     @param[in]
-  !>     alpha   [void ]
+  !>     alpha   [void *]
   !>             device pointer or host pointer specifying the scalar alpha. When alpha is
   !>             &zero then A is not referenced, and B need not be set before
   !>             entry.
   !> 
   !>     @param[in]
-  !>     A       [void ]
+  !>     A       [void *]
   !>             device pointer storing matrix A.
   !>             of dimension ( lda, k ), where k is m
   !>             when rocblas_side_left and
   !>             is n when rocblas_side_right
-  !>             only the upperlower triangular part is accessed.
+  !>             only the upper/lower triangular part is accessed.
   !> 
   !>     @param[in]
   !>     lda     [rocblas_int]
@@ -23441,7 +23280,7 @@ module hipfort_rocblas
   !>             if side = rocblas_side_right, lda >= max( 1, n ).
   !> 
   !>     @param[in, out]
-  !>     B       [void ]
+  !>     B       [void *]
   !>             device pointer storing matrix B.
   !>             B is of dimension ( ldb, n ).
   !>             Before entry, the leading m by n part of the array B must
@@ -23453,7 +23292,7 @@ module hipfort_rocblas
   !>            ldb specifies the first dimension of B. ldb >= max( 1, m ).
   !> 
   !>     @param[in]
-  !>     invA    [void ]
+  !>     invA    [void *]
   !>             device pointer storing the inverse diagonal blocks of A.
   !>             invA is of dimension ( ld_invA, k ), where k is m
   !>             when rocblas_side_left and
@@ -23467,8 +23306,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     compute_type [rocblas_datatype]
   !>             specifies the datatype of computation
-  !> 
-  !>     
+  !>
   interface rocblas_trsm_ex
     function rocblas_trsm_ex_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,invA,invA_size,compute_type) bind(c, name="rocblas_trsm_ex")
       use iso_c_binding
@@ -23493,12 +23331,12 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! BLAS EX API
+  !>  BLAS EX API
   !> 
   !>     \details
   !>     trsm_batched_ex solves
   !> 
-  !>         op(A_i)X_i = alphaB_i or X_iop(A_i) = alphaB_i,
+  !>         op(A_i)*X_i = alpha*B_i or X_i*op(A_i) = alpha*B_i,
   !> 
   !>     for i = 1, ..., batch_count; and where alpha is a scalar, X and B are arrays of m by n matrices,
   !>     A is an array of triangular matrix and each op(A_i) is one of
@@ -23525,11 +23363,11 @@ module hipfort_rocblas
   !>       - n = 128
   !>       - ldinvA = 128
   !>       - stride_invA = 128x128
-  !>       - batch_count = k  128,
+  !>       - batch_count = k 128,
   !> 
   !>     Then any remaining block may be added:
   !>       - n = k % 128
-  !>       - invA = invA + stride_invA  previous_batch_count
+  !>       - invA = invA + stride_invA * previous_batch_count
   !>       - ldinvA = 128
   !>       - batch_count = 1
   !> 
@@ -23539,8 +23377,8 @@ module hipfort_rocblas
   !> 
   !>     @param[in]
   !>     side    [rocblas_side]
-  !>             rocblas_side_left:       op(A)X = alphaB.
-  !>             rocblas_side_right:      Xop(A) = alphaB.
+  !>             rocblas_side_left:       op(A)*X = alpha*B.
+  !>             rocblas_side_right:      X*op(A) = alpha*B.
   !> 
   !>     @param[in]
   !>     uplo    [rocblas_fill]
@@ -23567,18 +23405,18 @@ module hipfort_rocblas
   !>             n specifies the number of columns of each B_i. n >= 0.
   !> 
   !>     @param[in]
-  !>     alpha   [void ]
+  !>     alpha   [void *]
   !>             device pointer or host pointer alpha specifying the scalar alpha. When alpha is
   !>             &zero then A is not referenced, and B need not be set before
   !>             entry.
   !> 
   !>     @param[in]
-  !>     A       [void ]
+  !>     A       [void *]
   !>             device array of device pointers storing each matrix A_i.
   !>             each A_i is of dimension ( lda, k ), where k is m
   !>             when rocblas_side_left and
   !>             is n when rocblas_side_right
-  !>             only the upperlower triangular part is accessed.
+  !>             only the upper/lower triangular part is accessed.
   !> 
   !>     @param[in]
   !>     lda     [rocblas_int]
@@ -23587,7 +23425,7 @@ module hipfort_rocblas
   !>             if side = rocblas_side_right, lda >= max( 1, n ).
   !> 
   !>     @param[in, out]
-  !>     B       [void ]
+  !>     B       [void *]
   !>             device array of device pointers storing each matrix B_i.
   !>             each B_i is of dimension ( ldb, n ).
   !>             Before entry, the leading m by n part of the array B_i must
@@ -23603,7 +23441,7 @@ module hipfort_rocblas
   !>             specifies how many batches.
   !> 
   !>     @param[in]
-  !>     invA    [void ]
+  !>     invA    [void *]
   !>             device array of device pointers storing the inverse diagonal blocks of each A_i.
   !>             each invA_i is of dimension ( ld_invA, k ), where k is m
   !>             when rocblas_side_left and
@@ -23617,8 +23455,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     compute_type [rocblas_datatype]
   !>             specifies the datatype of computation
-  !> 
-  !>     
+  !>
   interface rocblas_trsm_batched_ex
     function rocblas_trsm_batched_ex_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,batch_count,invA,invA_size,compute_type) bind(c, name="rocblas_trsm_batched_ex")
       use iso_c_binding
@@ -23644,12 +23481,12 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! BLAS EX API
+  !>  BLAS EX API
   !> 
   !>     \details
   !>     trsm_strided_batched_ex solves
   !> 
-  !>         op(A_i)X_i = alphaB_i or X_iop(A_i) = alphaB_i,
+  !>         op(A_i)*X_i = alpha*B_i or X_i*op(A_i) = alpha*B_i,
   !> 
   !>     for i = 1, ..., batch_count; and where alpha is a scalar, X and B are strided batched m by n matrices,
   !>     A is a strided batched triangular matrix and op(A_i) is one of
@@ -23676,11 +23513,11 @@ module hipfort_rocblas
   !>       - n = 128
   !>       - ldinvA = 128
   !>       - stride_invA = 128x128
-  !>       - batch_count = k  128,
+  !>       - batch_count = k 128,
   !> 
   !>     Then any remaining block may be added:
   !>       - n = k % 128
-  !>       - invA = invA + stride_invA  previous_batch_count
+  !>       - invA = invA + stride_invA * previous_batch_count
   !>       - ldinvA = 128
   !>       - batch_count = 1
   !> 
@@ -23690,8 +23527,8 @@ module hipfort_rocblas
   !> 
   !>     @param[in]
   !>     side    [rocblas_side]
-  !>             rocblas_side_left:       op(A)X = alphaB.
-  !>             rocblas_side_right:      Xop(A) = alphaB.
+  !>             rocblas_side_left:       op(A)*X = alpha*B.
+  !>             rocblas_side_right:      X*op(A) = alpha*B.
   !> 
   !>     @param[in]
   !>     uplo    [rocblas_fill]
@@ -23718,18 +23555,18 @@ module hipfort_rocblas
   !>             n specifies the number of columns of each B_i. n >= 0.
   !> 
   !>     @param[in]
-  !>     alpha   [void ]
+  !>     alpha   [void *]
   !>             device pointer or host pointer specifying the scalar alpha. When alpha is
   !>             &zero then A is not referenced, and B need not be set before
   !>             entry.
   !> 
   !>     @param[in]
-  !>     A       [void ]
+  !>     A       [void *]
   !>             device pointer storing matrix A.
   !>             of dimension ( lda, k ), where k is m
   !>             when rocblas_side_left and
   !>             is n when rocblas_side_right
-  !>             only the upperlower triangular part is accessed.
+  !>             only the upper/lower triangular part is accessed.
   !> 
   !>     @param[in]
   !>     lda     [rocblas_int]
@@ -23742,7 +23579,7 @@ module hipfort_rocblas
   !>             The stride between each A matrix.
   !> 
   !>     @param[in, out]
-  !>     B       [void ]
+  !>     B       [void *]
   !>             device pointer pointing to first matrix B_i.
   !>             each B_i is of dimension ( ldb, n ).
   !>             Before entry, the leading m by n part of each array B_i must
@@ -23762,7 +23599,7 @@ module hipfort_rocblas
   !>             specifies how many batches.
   !> 
   !>     @param[in]
-  !>     invA    [void ]
+  !>     invA    [void *]
   !>             device pointer storing the inverse diagonal blocks of each A_i.
   !>             invA points to the first invA_1.
   !>             each invA_i is of dimension ( ld_invA, k ), where k is m
@@ -23781,8 +23618,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     compute_type [rocblas_datatype]
   !>             specifies the datatype of computation
-  !> 
-  !>     
+  !>
   interface rocblas_trsm_strided_batched_ex
     function rocblas_trsm_strided_batched_ex_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,stride_A,B,ldb,stride_B,batch_count,invA,invA_size,stride_invA,compute_type) bind(c, name="rocblas_trsm_strided_batched_ex")
       use iso_c_binding
@@ -23811,12 +23647,12 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief BLAS EX API
+  !>  \brief BLAS EX API
   !> 
   !>     \details
   !>     axpy_ex   computes ant alpha multiplied by vector x, plus vector y
   !> 
-  !>         y := alpha  x + y
+  !>         y := alpha * x + y
   !> 
   !>         Currently supported datatypes are as follows:
   !> 
@@ -23862,8 +23698,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     execution_type [rocblas_datatype]
   !>                   specifies the datatype of computation.
-  !> 
-  !>     
+  !>
   interface rocblas_axpy_ex
     function rocblas_axpy_ex_(handle,n,alpha,alpha_type,x,x_type,incx,y,y_type,incy,execution_type) bind(c, name="rocblas_axpy_ex")
       use iso_c_binding
@@ -23884,13 +23719,13 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief BLAS EX API
+  !>  \brief BLAS EX API
   !> 
   !>     \details
   !>     axpy_batched_ex   computes ant alpha multiplied by vector x, plus vector y over
   !>                       a set of batched vectors.
   !> 
-  !>         y := alpha  x + y
+  !>         y := alpha * x + y
   !> 
   !>         Currently supported datatypes are as follows:
   !> 
@@ -23939,8 +23774,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     execution_type [rocblas_datatype]
   !>                   specifies the datatype of computation.
-  !> 
-  !>     
+  !>
   interface rocblas_axpy_batched_ex
     function rocblas_axpy_batched_ex_(handle,n,alpha,alpha_type,x,x_type,incx,y,y_type,incy,batch_count,execution_type) bind(c, name="rocblas_axpy_batched_ex")
       use iso_c_binding
@@ -23962,13 +23796,13 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief BLAS EX API
+  !>  \brief BLAS EX API
   !> 
   !>     \details
   !>     axpy_strided_batched_ex   computes ant alpha multiplied by vector x, plus vector y over
   !>                       a set of strided batched vectors.
   !> 
-  !>         y := alpha  x + y
+  !>         y := alpha * x + y
   !> 
   !>         Currently supported datatypes are as follows:
   !> 
@@ -24008,7 +23842,7 @@ module hipfort_rocblas
   !>               stride from the start of one vector (x_i) to the next one (x_i+1).
   !>               There are no restrictions placed on stridex, however the user should
   !>               take care to ensure that stridex is of appropriate size, for a typical
-  !>               case this means stridex >= n  incx.
+  !>               case this means stridex >= n * incx.
   !>     @param[inout]
   !>     y         device pointer to the first vector y_1.
   !>     @param[in]
@@ -24022,15 +23856,14 @@ module hipfort_rocblas
   !>               stride from the start of one vector (y_i) to the next one (y_i+1).
   !>               There are no restrictions placed on stridey, however the user should
   !>               take care to ensure that stridey is of appropriate size, for a typical
-  !>               case this means stridey >= n  incy.
+  !>               case this means stridey >= n * incy.
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   !>     @param[in]
   !>     execution_type [rocblas_datatype]
   !>                   specifies the datatype of computation.
-  !> 
-  !>     
+  !>
   interface rocblas_axpy_strided_batched_ex
     function rocblas_axpy_strided_batched_ex_(handle,n,alpha,alpha_type,x,x_type,incx,stridex,y,y_type,incy,stridey,batch_count,execution_type) bind(c, name="rocblas_axpy_strided_batched_ex")
       use iso_c_binding
@@ -24054,16 +23887,16 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief BLAS EX API
+  !>  \brief BLAS EX API
   !> 
   !>     \details
   !>     dot_ex  performs the dot product of vectors x and y
   !> 
-  !>         result = x  y;
+  !>         result = x * y;
   !> 
   !>     dotc_ex  performs the dot product of the conjugate of complex vector x and complex vector y
   !> 
-  !>         result = conjugate (x)  y;
+  !>         result = conjugate (x) * y;
   !> 
   !>         Currently supported datatypes are as follows:
   !> 
@@ -24111,8 +23944,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     execution_type [rocblas_datatype]
   !>                   specifies the datatype of computation.
-  !> 
-  !>     
+  !>
   interface rocblas_dot_ex
     function rocblas_dot_ex_(handle,n,x,x_type,incx,y,y_type,incy,myResult,result_type,execution_type) bind(c, name="rocblas_dot_ex")
       use iso_c_binding
@@ -24154,16 +23986,16 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief BLAS EX API
+  !>  \brief BLAS EX API
   !> 
   !>     \details
   !>     dot_batched_ex performs a batch of dot products of vectors x and y
   !> 
-  !>         result_i = x_i  y_i;
+  !>         result_i = x_i * y_i;
   !> 
   !>     dotc_batched_ex  performs a batch of dot products of the conjugate of complex vector x and complex vector y
   !> 
-  !>         result_i = conjugate (x_i)  y_i;
+  !>         result_i = conjugate (x_i) * y_i;
   !> 
   !>     where (x_i, y_i) is the i-th instance of the batch.
   !>     x_i and y_i are vectors, for i = 1, ..., batch_count
@@ -24217,8 +24049,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     execution_type [rocblas_datatype]
   !>                   specifies the datatype of computation.
-  !> 
-  !>     
+  !>
   interface rocblas_dot_batched_ex
     function rocblas_dot_batched_ex_(handle,n,x,x_type,incx,y,y_type,incy,batch_count,myResult,result_type,execution_type) bind(c, name="rocblas_dot_batched_ex")
       use iso_c_binding
@@ -24262,16 +24093,16 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief BLAS EX API
+  !>  \brief BLAS EX API
   !> 
   !>     \details
   !>     dot_strided_batched_ex  performs a batch of dot products of vectors x and y
   !> 
-  !>         result_i = x_i  y_i;
+  !>         result_i = x_i * y_i;
   !> 
   !>     dotc_strided_batched_ex  performs a batch of dot products of the conjugate of complex vector x and complex vector y
   !> 
-  !>         result_i = conjugate (x_i)  y_i;
+  !>         result_i = conjugate (x_i) * y_i;
   !> 
   !>     where (x_i, y_i) is the i-th instance of the batch.
   !>     x_i and y_i are vectors, for i = 1, ..., batch_count
@@ -24331,8 +24162,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     execution_type [rocblas_datatype]
   !>                   specifies the datatype of computation.
-  !> 
-  !>     
+  !>
   interface rocblas_dot_strided_batched_ex
     function rocblas_dot_strided_batched_ex_(handle,n,x,x_type,incx,stride_x,y,y_type,incy,stride_y,batch_count,myResult,result_type,execution_type) bind(c, name="rocblas_dot_strided_batched_ex")
       use iso_c_binding
@@ -24380,13 +24210,13 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief BLAS_EX API
+  !>  \brief BLAS_EX API
   !> 
   !>     \details
   !>     nrm2_ex computes the euclidean norm of a real or complex vector
   !> 
-  !>               result := sqrt( x'x ) for real vectors
-  !>               result := sqrt( xHx ) for complex vectors
+  !>               result := sqrt( x'*x ) for real vectors
+  !>               result := sqrt( x**H*x ) for complex vectors
   !> 
   !>     Currently supported datatypes are as follows:
   !> 
@@ -24424,7 +24254,6 @@ module hipfort_rocblas
   !>     @param[in]
   !>     execution_type [rocblas_datatype]
   !>                   specifies the datatype of computation.
-  !>     
   interface rocblas_nrm2_ex
     function rocblas_nrm2_ex_(handle,n,x,x_type,incx,results,result_type,execution_type) bind(c, name="rocblas_nrm2_ex")
       use iso_c_binding
@@ -24442,13 +24271,13 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief BLAS_EX API
+  !>  \brief BLAS_EX API
   !> 
   !>     \details
   !>     nrm2_batched_ex computes the euclidean norm over a batch of real or complex vectors
   !> 
-  !>               result := sqrt( x_i'x_i ) for real vectors x, for i = 1, ..., batch_count
-  !>               result := sqrt( x_iHx_i ) for complex vectors x, for i = 1, ..., batch_count
+  !>               result := sqrt( x_i'*x_i ) for real vectors x, for i = 1, ..., batch_count
+  !>               result := sqrt( x_i**H*x_i ) for complex vectors x, for i = 1, ..., batch_count
   !> 
   !>     Currently supported datatypes are as follows:
   !> 
@@ -24489,8 +24318,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     execution_type [rocblas_datatype]
   !>                   specifies the datatype of computation.
-  !> 
-  !>     
+  !>
   interface rocblas_nrm2_batched_ex
     function rocblas_nrm2_batched_ex_(handle,n,x,x_type,incx,batch_count,results,result_type,execution_type) bind(c, name="rocblas_nrm2_batched_ex")
       use iso_c_binding
@@ -24509,13 +24337,13 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief BLAS_EX API
+  !>  \brief BLAS_EX API
   !> 
   !>     \details
   !>     nrm2_strided_batched_ex computes the euclidean norm over a batch of real or complex vectors
   !> 
-  !>               := sqrt( x_i'x_i ) for real vectors x, for i = 1, ..., batch_count
-  !>               := sqrt( x_iHx_i ) for complex vectors, for i = 1, ..., batch_count
+  !>               := sqrt( x_i'*x_i ) for real vectors x, for i = 1, ..., batch_count
+  !>               := sqrt( x_i**H*x_i ) for complex vectors, for i = 1, ..., batch_count
   !> 
   !>     Currently supported datatypes are as follows:
   !> 
@@ -24548,7 +24376,7 @@ module hipfort_rocblas
   !>               stride from the start of one vector (x_i) and the next one (x_i+1).
   !>               There are no restrictions placed on stride_x, however the user should
   !>               take care to ensure that stride_x is of appropriate size, for a typical
-  !>               case this means stride_x >= n  incx.
+  !>               case this means stride_x >= n * incx.
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>               number of instances in the batch
@@ -24562,8 +24390,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     execution_type [rocblas_datatype]
   !>                   specifies the datatype of computation.
-  !> 
-  !>     
+  !>
   interface rocblas_nrm2_strided_batched_ex
     function rocblas_nrm2_strided_batched_ex_(handle,n,x,x_type,incx,stride_x,batch_count,results,result_type,execution_type) bind(c, name="rocblas_nrm2_strided_batched_ex")
       use iso_c_binding
@@ -24583,19 +24410,19 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief BLAS EX API
+  !>  \brief BLAS EX API
   !> 
   !>     \details
   !>     rot_ex applies the Givens rotation matrix defined by c=cos(alpha) and s=sin(alpha) to vectors x and y.
   !>         Scalars c and s may be stored in either host or device memory, location is specified by calling rocblas_set_pointer_mode.
   !> 
   !>     In the case where cs_type is real:
-  !>         x := c  x + s  y
-  !>             y := c  y - s  x
+  !>         x := c * x + s * y
+  !>             y := c * y - s * x
   !> 
   !>     In the case where cs_type is complex, the imaginary part of c is ignored:
-  !>         x := real(c)  x + s  y
-  !>             y := real(c)  y - conj(s)  x
+  !>         x := real(c) * x + s * y
+  !>             y := real(c) * y - conj(s) * x
   !> 
   !>     Currently supported datatypes are as follows:
   !> 
@@ -24644,8 +24471,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     execution_type [rocblas_datatype]
   !>                    specifies the datatype of computation.
-  !> 
-  !>     
+  !>
   interface rocblas_rot_ex
     function rocblas_rot_ex_(handle,n,x,x_type,incx,y,y_type,incy,c,s,cs_type,execution_type) bind(c, name="rocblas_rot_ex")
       use iso_c_binding
@@ -24667,19 +24493,19 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief BLAS EX API
+  !>  \brief BLAS EX API
   !> 
   !>     \details
   !>     rot_batched_ex applies the Givens rotation matrix defined by c=cos(alpha) and s=sin(alpha) to batched vectors x_i and y_i, for i = 1, ..., batch_count.
   !>         Scalars c and s may be stored in either host or device memory, location is specified by calling rocblas_set_pointer_mode.
   !> 
   !>     In the case where cs_type is real:
-  !>             x := c  x + s  y
-  !>             y := c  y - s  x
+  !>             x := c * x + s * y
+  !>             y := c * y - s * x
   !> 
   !>         In the case where cs_type is complex, the imaginary part of c is ignored:
-  !>             x := real(c)  x + s  y
-  !>             y := real(c)  y - conj(s)  x
+  !>             x := real(c) * x + s * y
+  !>             y := real(c) * y - conj(s) * x
   !> 
   !>     Currently supported datatypes are as follows:
   !> 
@@ -24731,8 +24557,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     execution_type [rocblas_datatype]
   !>                    specifies the datatype of computation.
-  !> 
-  !>     
+  !>
   interface rocblas_rot_batched_ex
     function rocblas_rot_batched_ex_(handle,n,x,x_type,incx,y,y_type,incy,c,s,cs_type,batch_count,execution_type) bind(c, name="rocblas_rot_batched_ex")
       use iso_c_binding
@@ -24755,19 +24580,19 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     rot_strided_batched_ex applies the Givens rotation matrix defined by c=cos(alpha) and s=sin(alpha) to strided batched vectors x_i and y_i, for i = 1, ..., batch_count.
   !>         Scalars c and s may be stored in either host or device memory, location is specified by calling rocblas_set_pointer_mode.
   !> 
   !>     In the case where cs_type is real:
-  !>             x := c  x + s  y
-  !>             y := c  y - s  x
+  !>             x := c * x + s * y
+  !>             y := c * y - s * x
   !> 
   !>         In the case where cs_type is complex, the imaginary part of c is ignored:
-  !>             x := real(c)  x + s  y
-  !>             y := real(c)  y - conj(s)  x
+  !>             x := real(c) * x + s * y
+  !>             y := real(c) * y - conj(s) * x
   !> 
   !>     Currently supported datatypes are as follows:
   !> 
@@ -24825,8 +24650,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     execution_type [rocblas_datatype]
   !>                    specifies the datatype of computation.
-  !> 
-  !>     
+  !>
   interface rocblas_rot_strided_batched_ex
     function rocblas_rot_strided_batched_ex_(handle,n,x,x_type,incx,stride_x,y,y_type,incy,stride_y,c,s,cs_type,batch_count,execution_type) bind(c, name="rocblas_rot_strided_batched_ex")
       use iso_c_binding
@@ -24851,12 +24675,12 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief BLAS EX API
+  !>  \brief BLAS EX API
   !> 
   !>     \details
   !>     scal_ex  scales each element of vector x with scalar alpha.
   !> 
-  !>         x := alpha  x
+  !>         x := alpha * x
   !> 
   !>     Currently supported datatypes are as follows:
   !> 
@@ -24896,8 +24720,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     execution_type [rocblas_datatype]
   !>                    specifies the datatype of computation.
-  !> 
-  !>     
+  !>
   interface rocblas_scal_ex
     function rocblas_scal_ex_(handle,n,alpha,alpha_type,x,x_type,incx,execution_type) bind(c, name="rocblas_scal_ex")
       use iso_c_binding
@@ -24915,12 +24738,12 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief BLAS EX API
+  !>  \brief BLAS EX API
   !> 
   !>     \details
   !>     scal_batched_ex  scales each element of each vector x_i with scalar alpha.
   !> 
-  !>         x_i := alpha  x_i
+  !>         x_i := alpha * x_i
   !> 
   !>     Currently supported datatypes are as follows:
   !> 
@@ -24963,8 +24786,7 @@ module hipfort_rocblas
   !>     @param[in]
   !>     execution_type [rocblas_datatype]
   !>                    specifies the datatype of computation.
-  !> 
-  !>     
+  !>
   interface rocblas_scal_batched_ex
     function rocblas_scal_batched_ex_(handle,n,alpha,alpha_type,x,x_type,incx,batch_count,execution_type) bind(c, name="rocblas_scal_batched_ex")
       use iso_c_binding
@@ -24983,13 +24805,13 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief BLAS EX API
+  !>  \brief BLAS EX API
   !> 
   !>     \details
   !>     scal_strided_batched_ex  scales each element of vector x with scalar alpha over a set
   !>                              of strided batched vectors.
   !> 
-  !>         x := alpha  x
+  !>         x := alpha * x
   !> 
   !>     Currently supported datatypes are as follows:
   !> 
@@ -25031,15 +24853,14 @@ module hipfort_rocblas
   !>               stride from the start of one vector (x_i) to the next one (x_i+1).
   !>               There are no restrictions placed on stridex, however the user should
   !>               take care to ensure that stridex is of appropriate size, for a typical
-  !>               case this means stridex >= n  incx.
+  !>               case this means stridex >= n * incx.
   !>     @param[in]
   !>     batch_count [rocblas_int]
   !>                 number of instances in the batch.
   !>     @param[in]
   !>     execution_type [rocblas_datatype]
   !>                    specifies the datatype of computation.
-  !> 
-  !>     
+  !>
   interface rocblas_scal_strided_batched_ex
     function rocblas_scal_strided_batched_ex_(handle,n,alpha,alpha_type,x,x_type,incx,stridex,batch_count,execution_type) bind(c, name="rocblas_scal_strided_batched_ex")
       use iso_c_binding
@@ -25059,8 +24880,8 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief   loads char buf with the rocblas library version. size_t len
-  !>     is the maximum length of char buf.
+  !>  \brief   loads char* buf with the rocblas library version. size_t len
+  !>     is the maximum length of char* buf.
   !>     \details
   !> 
   !>     @param[in, out]
@@ -25068,8 +24889,7 @@ module hipfort_rocblas
   !> 
   !>     @param[in]
   !>     len             length of buf
-  !> 
-  !>  
+  !>
   interface rocblas_get_version_string
     function rocblas_get_version_string_(buf,len) bind(c, name="rocblas_get_version_string")
       use iso_c_binding
@@ -25081,14 +24901,13 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief   Queries the minimum buffer size for a successful call to
+  !>  \brief   Queries the minimum buffer size for a successful call to
   !>     \ref rocblas_get_version_string
   !>     \details
   !> 
   !>     @param[out]
   !>     len             pointer to size_t for storing the length
-  !> 
-  !>  
+  !>
   interface rocblas_get_version_string_size
     function rocblas_get_version_string_size_(len) bind(c, name="rocblas_get_version_string_size")
       use iso_c_binding
@@ -25099,7 +24918,7 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief
+  !>  \brief
   !>     \details
   !>     Indicates that subsequent rocBLAS kernel calls should collect the optimal device memory size in bytes for their given kernel arguments,
   !>     and keep track of the maximum.
@@ -25107,7 +24926,6 @@ module hipfort_rocblas
   !>     Returns rocblas_status_size_query_mismatch if another size query is already in progress; returns rocblas_status_success otherwise.
   !>     @param[in]
   !>     handle          rocblas handle
-  !>  
   interface rocblas_start_device_memory_size_query
     function rocblas_start_device_memory_size_query_(handle) bind(c, name="rocblas_start_device_memory_size_query")
       use iso_c_binding
@@ -25118,7 +24936,7 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief
+  !>  \brief
   !>     \details
   !>     Stops collecting optimal device memory size information
   !>     Returns rocblas_status_size_query_mismatch if a collection is not underway; rocblas_status_invalid_handle if handle is nullptr;
@@ -25127,7 +24945,6 @@ module hipfort_rocblas
   !>     handle          rocblas handle
   !>     @param[out]
   !>     size            maximum of the optimal sizes collected
-  !>  
   interface rocblas_stop_device_memory_size_query
     function rocblas_stop_device_memory_size_query_(handle,mySize) bind(c, name="rocblas_stop_device_memory_size_query")
       use iso_c_binding
@@ -25175,7 +24992,7 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief
+  !>  \brief
   !>     \details
   !>     Gets the current device memory size for the handle
   !>     Returns rocblas_status_invalid_handle if handle is nullptr; rocblas_status_invalid_pointer if size is nullptr; rocblas_status_success otherwise
@@ -25183,7 +25000,6 @@ module hipfort_rocblas
   !>     handle          rocblas handle
   !>     @param[out]
   !>     size            current device memory size for the handle
-  !>  
   interface rocblas_get_device_memory_size
     function rocblas_get_device_memory_size_(handle,mySize) bind(c, name="rocblas_get_device_memory_size")
       use iso_c_binding
@@ -25195,7 +25011,7 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief
+  !>  \brief
   !>     \details
   !>     Changes the size of allocated device memory at runtime.
   !> 
@@ -25208,7 +25024,6 @@ module hipfort_rocblas
   !>     handle          rocblas handle
   !>     @param[in]
   !>     size            size of allocated device memory
-  !>  
   interface rocblas_set_device_memory_size
     function rocblas_set_device_memory_size_(handle,mySize) bind(c, name="rocblas_set_device_memory_size")
       use iso_c_binding
@@ -25220,7 +25035,7 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief
+  !>  \brief
   !>     \details
   !>     Sets the device workspace for the handle to use.
   !> 
@@ -25233,8 +25048,7 @@ module hipfort_rocblas
   !>     addr            address of workspace memory
   !>     @param[in]
   !>     size            size of workspace memory
-  !> 
-  !>  
+  !>
   interface rocblas_set_workspace
     function rocblas_set_workspace_(handle,addr,mySize) bind(c, name="rocblas_set_workspace")
       use iso_c_binding
@@ -25247,8 +25061,7 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief create handle
-  !>  
+  !>  \brief create handle
   interface rocblas_create_handle
     function rocblas_create_handle_(handle) bind(c, name="rocblas_create_handle")
       use iso_c_binding
@@ -25259,8 +25072,7 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief destroy handle
-  !>  
+  !>  \brief destroy handle
   interface rocblas_destroy_handle
     function rocblas_destroy_handle_(handle) bind(c, name="rocblas_destroy_handle")
       use iso_c_binding
@@ -25271,8 +25083,7 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief set stream for handle
-  !>  
+  !>  \brief set stream for handle
   interface rocblas_set_stream
     function rocblas_set_stream_(handle,stream) bind(c, name="rocblas_set_stream")
       use iso_c_binding
@@ -25284,8 +25095,7 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief get stream [0] from handle
-  !>  
+  !>  \brief get stream [0] from handle
   interface rocblas_get_stream
     function rocblas_get_stream_(handle,stream) bind(c, name="rocblas_get_stream")
       use iso_c_binding
@@ -25297,8 +25107,7 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief set rocblas_pointer_mode
-  !>  
+  !>  \brief set rocblas_pointer_mode
   interface rocblas_set_pointer_mode
     function rocblas_set_pointer_mode_(handle,pointer_mode) bind(c, name="rocblas_set_pointer_mode")
       use iso_c_binding
@@ -25310,8 +25119,7 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief get rocblas_pointer_mode
-  !>  
+  !>  \brief get rocblas_pointer_mode
   interface rocblas_get_pointer_mode
     function rocblas_get_pointer_mode_(handle,pointer_mode) bind(c, name="rocblas_get_pointer_mode")
       use iso_c_binding
@@ -25323,8 +25131,7 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief set rocblas_atomics_mode
-  !>  
+  !>  \brief set rocblas_atomics_mode
   interface rocblas_set_atomics_mode
     function rocblas_set_atomics_mode_(handle,atomics_mode) bind(c, name="rocblas_set_atomics_mode")
       use iso_c_binding
@@ -25336,8 +25143,7 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief get rocblas_atomics_mode
-  !>  
+  !>  \brief get rocblas_atomics_mode
   interface rocblas_get_atomics_mode
     function rocblas_get_atomics_mode_(handle,atomics_mode) bind(c, name="rocblas_get_atomics_mode")
       use iso_c_binding
@@ -25349,7 +25155,7 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief query the preferable supported int8 input layout for gemm
+  !>  \brief query the preferable supported int8 input layout for gemm
   !>      \details
   !>     Indicates the supported int8 input layout for gemm according to the device.
   !>     If the device supports packed-int8x4 (1) only, output flag is rocblas_gemm_flags_pack_int8x4
@@ -25360,7 +25166,6 @@ module hipfort_rocblas
   !>                 the handle of device
   !>     @param[out]
   !>     flag        pointer to rocblas_gemm_flags
-  !>      
   interface rocblas_query_int8_layout_flag
     function rocblas_query_int8_layout_flag_(handle,flag) bind(c, name="rocblas_query_int8_layout_flag")
       use iso_c_binding
@@ -25372,9 +25177,7 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> 
-  !>   Function to set startstop event handlers (for internal use only)
-  !>  
+  !>  Function to set start/stop event handlers (for internal use only)
   interface rocblas_set_start_stop_events
     function rocblas_set_start_stop_events_(handle,startEvent,stopEvent) bind(c, name="rocblas_set_start_stop_events")
       use iso_c_binding
@@ -25399,7 +25202,7 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief specifies the performance metric that solution selection uses
+  !>  \brief specifies the performance metric that solution selection uses
   !>      \details
   !>     Determines which performance metric will be used by Tensile when selecting the optimal solution
   !>     for gemm problems. If a valid solution benchmarked for this performance metric does not exist
@@ -25410,7 +25213,6 @@ module hipfort_rocblas
   !>     @param[in]
   !>     metric      [rocblas_performance_metric]
   !>                 the performance metric to be used
-  !>      
   interface rocblas_set_performance_metric
     function rocblas_set_performance_metric_(handle,metric) bind(c, name="rocblas_set_performance_metric")
       use iso_c_binding
@@ -25422,16 +25224,15 @@ module hipfort_rocblas
     end function
 
   end interface
-  !> ! \brief returns the performance metric being used for solution selection
+  !>  \brief returns the performance metric being used for solution selection
   !>      \details
   !>     Returns the performance metric used by Tensile to select the optimal solution for gemm problems.
   !>     @param[in]
   !>     handle      [rocblas_handle]
   !>                 the handle of device
   !>     @param[out]
-  !>     metric      [rocblas_performance_metric]
+  !>     metric      [rocblas_performance_metric*]
   !>                 pointer to where the metric will be stored
-  !>      
   interface rocblas_get_performance_metric
     function rocblas_get_performance_metric_(handle,metric) bind(c, name="rocblas_get_performance_metric")
       use iso_c_binding

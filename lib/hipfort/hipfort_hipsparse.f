@@ -30,15 +30,14 @@ module hipfort_hipsparse
   implicit none
 
  
-  !> ! \ingroup aux_module
-  !>    \brief Create a hipsparse handle
-  !>  
-  !>    \details
-  !>    \p hipsparseCreate creates the hipSPARSE library context. It must be
-  !>    initialized before any other hipSPARSE API function is invoked and must be passed to
-  !>    all subsequent library function calls. The handle should be destroyed at the end
-  !>    using hipsparseDestroy().
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Create a hipsparse handle
+  !> 
+  !>   \details
+  !>   \p hipsparseCreate creates the hipSPARSE library context. It must be
+  !>   initialized before any other hipSPARSE API function is invoked and must be passed to
+  !>   all subsequent library function calls. The handle should be destroyed at the end
+  !>   using hipsparseDestroy().
   interface hipsparseCreate
 #ifdef USE_CUDA_NAMES
     function hipsparseCreate_(handle) bind(c, name="cusparseCreate")
@@ -54,13 +53,12 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Destroy a hipsparse handle
-  !>  
-  !>    \details
-  !>    \p hipsparseDestroy destroys the hipSPARSE library context and releases all
-  !>    resources used by the hipSPARSE library.
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Destroy a hipsparse handle
+  !> 
+  !>   \details
+  !>   \p hipsparseDestroy destroys the hipSPARSE library context and releases all
+  !>   resources used by the hipSPARSE library.
   interface hipsparseDestroy
 #ifdef USE_CUDA_NAMES
     function hipsparseDestroy_(handle) bind(c, name="cusparseDestroy")
@@ -76,15 +74,14 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Get hipSPARSE version
-  !>  
-  !>    \details
-  !>    \p hipsparseGetVersion gets the hipSPARSE library version number.
-  !>    - patch = version % 100
-  !>    - minor = version  100 % 1000
-  !>    - major = version  100000
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Get hipSPARSE version
+  !> 
+  !>   \details
+  !>   \p hipsparseGetVersion gets the hipSPARSE library version number.
+  !>   - patch = version % 100
+  !>   - minor = version 100 % 1000
+  !>   - major = version 100000
   interface hipsparseGetVersion
 #ifdef USE_CUDA_NAMES
     function hipsparseGetVersion_(handle,version) bind(c, name="cusparseGetVersion")
@@ -101,12 +98,11 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Get hipSPARSE git revision
-  !>  
-  !>    \details
-  !>    \p hipsparseGetGitRevision gets the hipSPARSE library git commit revision (SHA-1).
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Get hipSPARSE git revision
+  !> 
+  !>   \details
+  !>   \p hipsparseGetGitRevision gets the hipSPARSE library git commit revision (SHA-1).
   interface hipsparseGetGitRevision
 #ifdef USE_CUDA_NAMES
     function hipsparseGetGitRevision_(handle,rev) bind(c, name="cusparseGetGitRevision")
@@ -123,13 +119,12 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Specify user defined HIP stream
-  !>  
-  !>    \details
-  !>    \p hipsparseSetStream specifies the stream to be used by the hipSPARSE library
-  !>    context and all subsequent function calls.
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Specify user defined HIP stream
+  !> 
+  !>   \details
+  !>   \p hipsparseSetStream specifies the stream to be used by the hipSPARSE library
+  !>   context and all subsequent function calls.
   interface hipsparseSetStream
 #ifdef USE_CUDA_NAMES
     function hipsparseSetStream_(handle,streamId) bind(c, name="cusparseSetStream")
@@ -146,13 +141,12 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Get current stream from library context
-  !>  
-  !>    \details
-  !>    \p hipsparseGetStream gets the hipSPARSE library context stream which is currently
-  !>    used for all subsequent function calls.
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Get current stream from library context
+  !> 
+  !>   \details
+  !>   \p hipsparseGetStream gets the hipSPARSE library context stream which is currently
+  !>   used for all subsequent function calls.
   interface hipsparseGetStream
 #ifdef USE_CUDA_NAMES
     function hipsparseGetStream_(handle,streamId) bind(c, name="cusparseGetStream")
@@ -169,15 +163,14 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Specify pointer mode
-  !>  
-  !>    \details
-  !>    \p hipsparseSetPointerMode specifies the pointer mode to be used by the hipSPARSE
-  !>    library context and all subsequent function calls. By default, all values are passed
-  !>    by reference on the host. Valid pointer modes are \ref HIPSPARSE_POINTER_MODE_HOST
-  !>    or \p HIPSPARSE_POINTER_MODE_DEVICE.
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Specify pointer mode
+  !> 
+  !>   \details
+  !>   \p hipsparseSetPointerMode specifies the pointer mode to be used by the hipSPARSE
+  !>   library context and all subsequent function calls. By default, all values are passed
+  !>   by reference on the host. Valid pointer modes are \ref HIPSPARSE_POINTER_MODE_HOST
+  !>   or \p HIPSPARSE_POINTER_MODE_DEVICE.
   interface hipsparseSetPointerMode
 #ifdef USE_CUDA_NAMES
     function hipsparseSetPointerMode_(handle,mode) bind(c, name="cusparseSetPointerMode")
@@ -194,13 +187,12 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Get current pointer mode from library context
-  !>  
-  !>    \details
-  !>    \p hipsparseGetPointerMode gets the hipSPARSE library context pointer mode which
-  !>    is currently used for all subsequent function calls.
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Get current pointer mode from library context
+  !> 
+  !>   \details
+  !>   \p hipsparseGetPointerMode gets the hipSPARSE library context pointer mode which
+  !>   is currently used for all subsequent function calls.
   interface hipsparseGetPointerMode
 #ifdef USE_CUDA_NAMES
     function hipsparseGetPointerMode_(handle,mode) bind(c, name="cusparseGetPointerMode")
@@ -217,14 +209,13 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Create a matrix descriptor
-  !>    \details
-  !>    \p hipsparseCreateMatDescr creates a matrix descriptor. It initializes
-  !>    \ref hipsparseMatrixType_t to \ref HIPSPARSE_MATRIX_TYPE_GENERAL and
-  !>    \ref hipsparseIndexBase_t to \ref HIPSPARSE_INDEX_BASE_ZERO. It should be destroyed
-  !>    at the end using hipsparseDestroyMatDescr().
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Create a matrix descriptor
+  !>   \details
+  !>   \p hipsparseCreateMatDescr creates a matrix descriptor. It initializes
+  !>   \ref hipsparseMatrixType_t to \ref HIPSPARSE_MATRIX_TYPE_GENERAL and
+  !>   \ref hipsparseIndexBase_t to \ref HIPSPARSE_INDEX_BASE_ZERO. It should be destroyed
+  !>   at the end using hipsparseDestroyMatDescr().
   interface hipsparseCreateMatDescr
 #ifdef USE_CUDA_NAMES
     function hipsparseCreateMatDescr_(descrA) bind(c, name="cusparseCreateMatDescr")
@@ -240,13 +231,12 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Destroy a matrix descriptor
-  !>  
-  !>    \details
-  !>    \p hipsparseDestroyMatDescr destroys a matrix descriptor and releases all
-  !>    resources used by the descriptor.
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Destroy a matrix descriptor
+  !> 
+  !>   \details
+  !>   \p hipsparseDestroyMatDescr destroys a matrix descriptor and releases all
+  !>   resources used by the descriptor.
   interface hipsparseDestroyMatDescr
 #ifdef USE_CUDA_NAMES
     function hipsparseDestroyMatDescr_(descrA) bind(c, name="cusparseDestroyMatDescr")
@@ -262,12 +252,11 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Copy a matrix descriptor
-  !>    \details
-  !>    \p hipsparseCopyMatDescr copies a matrix descriptor. Both, source and destination
-  !>    matrix descriptors must be initialized prior to calling \p hipsparseCopyMatDescr.
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Copy a matrix descriptor
+  !>   \details
+  !>   \p hipsparseCopyMatDescr copies a matrix descriptor. Both, source and destination
+  !>   matrix descriptors must be initialized prior to calling \p hipsparseCopyMatDescr.
   interface hipsparseCopyMatDescr
 #ifdef USE_CUDA_NAMES
     function hipsparseCopyMatDescr_(dest,src) bind(c, name="cusparseCopyMatDescr")
@@ -284,15 +273,14 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Specify the matrix type of a matrix descriptor
-  !>  
-  !>    \details
-  !>    \p hipsparseSetMatType sets the matrix type of a matrix descriptor. Valid
-  !>    matrix types are \ref HIPSPARSE_MATRIX_TYPE_GENERAL,
-  !>    \ref HIPSPARSE_MATRIX_TYPE_SYMMETRIC, \ref HIPSPARSE_MATRIX_TYPE_HERMITIAN or
-  !>    \ref HIPSPARSE_MATRIX_TYPE_TRIANGULAR.
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Specify the matrix type of a matrix descriptor
+  !> 
+  !>   \details
+  !>   \p hipsparseSetMatType sets the matrix type of a matrix descriptor. Valid
+  !>   matrix types are \ref HIPSPARSE_MATRIX_TYPE_GENERAL,
+  !>   \ref HIPSPARSE_MATRIX_TYPE_SYMMETRIC, \ref HIPSPARSE_MATRIX_TYPE_HERMITIAN or
+  !>   \ref HIPSPARSE_MATRIX_TYPE_TRIANGULAR.
   interface hipsparseSetMatType
 #ifdef USE_CUDA_NAMES
     function hipsparseSetMatType_(descrA,myType) bind(c, name="cusparseSetMatType")
@@ -309,14 +297,13 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Specify the matrix fill mode of a matrix descriptor
-  !>  
-  !>    \details
-  !>    \p hipsparseSetMatFillMode sets the matrix fill mode of a matrix descriptor.
-  !>    Valid fill modes are \ref HIPSPARSE_FILL_MODE_LOWER or
-  !>    \ref HIPSPARSE_FILL_MODE_UPPER.
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Specify the matrix fill mode of a matrix descriptor
+  !> 
+  !>   \details
+  !>   \p hipsparseSetMatFillMode sets the matrix fill mode of a matrix descriptor.
+  !>   Valid fill modes are \ref HIPSPARSE_FILL_MODE_LOWER or
+  !>   \ref HIPSPARSE_FILL_MODE_UPPER.
   interface hipsparseSetMatFillMode
 #ifdef USE_CUDA_NAMES
     function hipsparseSetMatFillMode_(descrA,fillMode) bind(c, name="cusparseSetMatFillMode")
@@ -333,14 +320,13 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Specify the matrix diagonal type of a matrix descriptor
-  !>  
-  !>    \details
-  !>    \p hipsparseSetMatDiagType sets the matrix diagonal type of a matrix
-  !>    descriptor. Valid diagonal types are \ref HIPSPARSE_DIAG_TYPE_UNIT or
-  !>    \ref HIPSPARSE_DIAG_TYPE_NON_UNIT.
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Specify the matrix diagonal type of a matrix descriptor
+  !> 
+  !>   \details
+  !>   \p hipsparseSetMatDiagType sets the matrix diagonal type of a matrix
+  !>   descriptor. Valid diagonal types are \ref HIPSPARSE_DIAG_TYPE_UNIT or
+  !>   \ref HIPSPARSE_DIAG_TYPE_NON_UNIT.
   interface hipsparseSetMatDiagType
 #ifdef USE_CUDA_NAMES
     function hipsparseSetMatDiagType_(descrA,diagType) bind(c, name="cusparseSetMatDiagType")
@@ -357,13 +343,12 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Specify the index base of a matrix descriptor
-  !>  
-  !>    \details
-  !>    \p hipsparseSetMatIndexBase sets the index base of a matrix descriptor. Valid
-  !>    options are \ref HIPSPARSE_INDEX_BASE_ZERO or \ref HIPSPARSE_INDEX_BASE_ONE.
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Specify the index base of a matrix descriptor
+  !> 
+  !>   \details
+  !>   \p hipsparseSetMatIndexBase sets the index base of a matrix descriptor. Valid
+  !>   options are \ref HIPSPARSE_INDEX_BASE_ZERO or \ref HIPSPARSE_INDEX_BASE_ONE.
   interface hipsparseSetMatIndexBase
 #ifdef USE_CUDA_NAMES
     function hipsparseSetMatIndexBase_(descrA,base) bind(c, name="cusparseSetMatIndexBase")
@@ -412,14 +397,13 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Create a bsrsv2 info structure
-  !>  
-  !>    \details
-  !>    \p hipsparseCreateBsrsv2Info creates a structure that holds the bsrsv2 info data
-  !>    that is gathered during the analysis routines available. It should be destroyed
-  !>    at the end using hipsparseDestroyBsrsv2Info().
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Create a bsrsv2 info structure
+  !> 
+  !>   \details
+  !>   \p hipsparseCreateBsrsv2Info creates a structure that holds the bsrsv2 info data
+  !>   that is gathered during the analysis routines available. It should be destroyed
+  !>   at the end using hipsparseDestroyBsrsv2Info().
   interface hipsparseCreateBsrsv2Info
 #ifdef USE_CUDA_NAMES
     function hipsparseCreateBsrsv2Info_(myInfo) bind(c, name="cusparseCreateBsrsv2Info")
@@ -435,12 +419,11 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Destroy a bsrsv2 info structure
-  !>  
-  !>    \details
-  !>    \p hipsparseDestroyBsrsv2Info destroys a bsrsv2 info structure.
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Destroy a bsrsv2 info structure
+  !> 
+  !>   \details
+  !>   \p hipsparseDestroyBsrsv2Info destroys a bsrsv2 info structure.
   interface hipsparseDestroyBsrsv2Info
 #ifdef USE_CUDA_NAMES
     function hipsparseDestroyBsrsv2Info_(myInfo) bind(c, name="cusparseDestroyBsrsv2Info")
@@ -456,14 +439,13 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Create a bsrsm2 info structure
-  !>  
-  !>    \details
-  !>    \p hipsparseCreateBsrsm2Info creates a structure that holds the bsrsm2 info data
-  !>    that is gathered during the analysis routines available. It should be destroyed
-  !>    at the end using hipsparseDestroyBsrsm2Info().
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Create a bsrsm2 info structure
+  !> 
+  !>   \details
+  !>   \p hipsparseCreateBsrsm2Info creates a structure that holds the bsrsm2 info data
+  !>   that is gathered during the analysis routines available. It should be destroyed
+  !>   at the end using hipsparseDestroyBsrsm2Info().
   interface hipsparseCreateBsrsm2Info
 #ifdef USE_CUDA_NAMES
     function hipsparseCreateBsrsm2Info_(myInfo) bind(c, name="cusparseCreateBsrsm2Info")
@@ -479,12 +461,11 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Destroy a bsrsm2 info structure
-  !>  
-  !>    \details
-  !>    \p hipsparseDestroyBsrsm2Info destroys a bsrsm2 info structure.
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Destroy a bsrsm2 info structure
+  !> 
+  !>   \details
+  !>   \p hipsparseDestroyBsrsm2Info destroys a bsrsm2 info structure.
   interface hipsparseDestroyBsrsm2Info
 #ifdef USE_CUDA_NAMES
     function hipsparseDestroyBsrsm2Info_(myInfo) bind(c, name="cusparseDestroyBsrsm2Info")
@@ -500,14 +481,13 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Create a bsrilu02 info structure
-  !>  
-  !>    \details
-  !>    \p hipsparseCreateBsrilu02Info creates a structure that holds the bsrilu02 info data
-  !>    that is gathered during the analysis routines available. It should be destroyed
-  !>    at the end using hipsparseDestroyBsrilu02Info().
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Create a bsrilu02 info structure
+  !> 
+  !>   \details
+  !>   \p hipsparseCreateBsrilu02Info creates a structure that holds the bsrilu02 info data
+  !>   that is gathered during the analysis routines available. It should be destroyed
+  !>   at the end using hipsparseDestroyBsrilu02Info().
   interface hipsparseCreateBsrilu02Info
 #ifdef USE_CUDA_NAMES
     function hipsparseCreateBsrilu02Info_(myInfo) bind(c, name="cusparseCreateBsrilu02Info")
@@ -523,12 +503,11 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Destroy a bsrilu02 info structure
-  !>  
-  !>    \details
-  !>    \p hipsparseDestroyBsrilu02Info destroys a bsrilu02 info structure.
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Destroy a bsrilu02 info structure
+  !> 
+  !>   \details
+  !>   \p hipsparseDestroyBsrilu02Info destroys a bsrilu02 info structure.
   interface hipsparseDestroyBsrilu02Info
 #ifdef USE_CUDA_NAMES
     function hipsparseDestroyBsrilu02Info_(myInfo) bind(c, name="cusparseDestroyBsrilu02Info")
@@ -544,14 +523,13 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Create a bsric02 info structure
-  !>  
-  !>    \details
-  !>    \p hipsparseCreateBsric02Info creates a structure that holds the bsric02 info data
-  !>    that is gathered during the analysis routines available. It should be destroyed
-  !>    at the end using hipsparseDestroyBsric02Info().
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Create a bsric02 info structure
+  !> 
+  !>   \details
+  !>   \p hipsparseCreateBsric02Info creates a structure that holds the bsric02 info data
+  !>   that is gathered during the analysis routines available. It should be destroyed
+  !>   at the end using hipsparseDestroyBsric02Info().
   interface hipsparseCreateBsric02Info
 #ifdef USE_CUDA_NAMES
     function hipsparseCreateBsric02Info_(myInfo) bind(c, name="cusparseCreateBsric02Info")
@@ -567,12 +545,11 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Destroy a bsric02 info structure
-  !>  
-  !>    \details
-  !>    \p hipsparseDestroyBsric02Info destroys a bsric02 info structure.
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Destroy a bsric02 info structure
+  !> 
+  !>   \details
+  !>   \p hipsparseDestroyBsric02Info destroys a bsric02 info structure.
   interface hipsparseDestroyBsric02Info
 #ifdef USE_CUDA_NAMES
     function hipsparseDestroyBsric02Info_(myInfo) bind(c, name="cusparseDestroyBsric02Info")
@@ -588,14 +565,13 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Create a csrsv2 info structure
-  !>  
-  !>    \details
-  !>    \p hipsparseCreateCsrsv2Info creates a structure that holds the csrsv2 info data
-  !>    that is gathered during the analysis routines available. It should be destroyed
-  !>    at the end using hipsparseDestroyCsrsv2Info().
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Create a csrsv2 info structure
+  !> 
+  !>   \details
+  !>   \p hipsparseCreateCsrsv2Info creates a structure that holds the csrsv2 info data
+  !>   that is gathered during the analysis routines available. It should be destroyed
+  !>   at the end using hipsparseDestroyCsrsv2Info().
   interface hipsparseCreateCsrsv2Info
 #ifdef USE_CUDA_NAMES
     function hipsparseCreateCsrsv2Info_(myInfo) bind(c, name="cusparseCreateCsrsv2Info")
@@ -611,12 +587,11 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Destroy a csrsv2 info structure
-  !>  
-  !>    \details
-  !>    \p hipsparseDestroyCsrsv2Info destroys a csrsv2 info structure.
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Destroy a csrsv2 info structure
+  !> 
+  !>   \details
+  !>   \p hipsparseDestroyCsrsv2Info destroys a csrsv2 info structure.
   interface hipsparseDestroyCsrsv2Info
 #ifdef USE_CUDA_NAMES
     function hipsparseDestroyCsrsv2Info_(myInfo) bind(c, name="cusparseDestroyCsrsv2Info")
@@ -632,14 +607,13 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Create a csrsm2 info structure
-  !>  
-  !>    \details
-  !>    \p hipsparseCreateCsrsm2Info creates a structure that holds the csrsm2 info data
-  !>    that is gathered during the analysis routines available. It should be destroyed
-  !>    at the end using hipsparseDestroyCsrsm2Info().
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Create a csrsm2 info structure
+  !> 
+  !>   \details
+  !>   \p hipsparseCreateCsrsm2Info creates a structure that holds the csrsm2 info data
+  !>   that is gathered during the analysis routines available. It should be destroyed
+  !>   at the end using hipsparseDestroyCsrsm2Info().
   interface hipsparseCreateCsrsm2Info
 #ifdef USE_CUDA_NAMES
     function hipsparseCreateCsrsm2Info_(myInfo) bind(c, name="cusparseCreateCsrsm2Info")
@@ -655,12 +629,11 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Destroy a csrsm2 info structure
-  !>  
-  !>    \details
-  !>    \p hipsparseDestroyCsrsm2Info destroys a csrsm2 info structure.
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Destroy a csrsm2 info structure
+  !> 
+  !>   \details
+  !>   \p hipsparseDestroyCsrsm2Info destroys a csrsm2 info structure.
   interface hipsparseDestroyCsrsm2Info
 #ifdef USE_CUDA_NAMES
     function hipsparseDestroyCsrsm2Info_(myInfo) bind(c, name="cusparseDestroyCsrsm2Info")
@@ -676,14 +649,13 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Create a csrilu02 info structure
-  !>  
-  !>    \details
-  !>    \p hipsparseCreateCsrilu02Info creates a structure that holds the csrilu02 info data
-  !>    that is gathered during the analysis routines available. It should be destroyed
-  !>    at the end using hipsparseDestroyCsrilu02Info().
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Create a csrilu02 info structure
+  !> 
+  !>   \details
+  !>   \p hipsparseCreateCsrilu02Info creates a structure that holds the csrilu02 info data
+  !>   that is gathered during the analysis routines available. It should be destroyed
+  !>   at the end using hipsparseDestroyCsrilu02Info().
   interface hipsparseCreateCsrilu02Info
 #ifdef USE_CUDA_NAMES
     function hipsparseCreateCsrilu02Info_(myInfo) bind(c, name="cusparseCreateCsrilu02Info")
@@ -699,12 +671,11 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Destroy a csrilu02 info structure
-  !>  
-  !>    \details
-  !>    \p hipsparseDestroyCsrilu02Info destroys a csrilu02 info structure.
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Destroy a csrilu02 info structure
+  !> 
+  !>   \details
+  !>   \p hipsparseDestroyCsrilu02Info destroys a csrilu02 info structure.
   interface hipsparseDestroyCsrilu02Info
 #ifdef USE_CUDA_NAMES
     function hipsparseDestroyCsrilu02Info_(myInfo) bind(c, name="cusparseDestroyCsrilu02Info")
@@ -720,14 +691,13 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Create a csric02 info structure
-  !>  
-  !>    \details
-  !>    \p hipsparseCreateCsric02Info creates a structure that holds the csric02 info data
-  !>    that is gathered during the analysis routines available. It should be destroyed
-  !>    at the end using hipsparseDestroyCsric02Info().
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Create a csric02 info structure
+  !> 
+  !>   \details
+  !>   \p hipsparseCreateCsric02Info creates a structure that holds the csric02 info data
+  !>   that is gathered during the analysis routines available. It should be destroyed
+  !>   at the end using hipsparseDestroyCsric02Info().
   interface hipsparseCreateCsric02Info
 #ifdef USE_CUDA_NAMES
     function hipsparseCreateCsric02Info_(myInfo) bind(c, name="cusparseCreateCsric02Info")
@@ -743,12 +713,11 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Destroy a csric02 info structure
-  !>  
-  !>    \details
-  !>    \p hipsparseDestroyCsric02Info destroys a csric02 info structure.
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Destroy a csric02 info structure
+  !> 
+  !>   \details
+  !>   \p hipsparseDestroyCsric02Info destroys a csric02 info structure.
   interface hipsparseDestroyCsric02Info
 #ifdef USE_CUDA_NAMES
     function hipsparseDestroyCsric02Info_(myInfo) bind(c, name="cusparseDestroyCsric02Info")
@@ -764,14 +733,13 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Create a csru2csr info structure
-  !>  
-  !>    \details
-  !>    \p hipsparseCreateCsru2csrInfo creates a structure that holds the csru2csr info data
-  !>    that is gathered during the analysis routines available. It should be destroyed
-  !>    at the end using hipsparseDestroyCsru2csrInfo().
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Create a csru2csr info structure
+  !> 
+  !>   \details
+  !>   \p hipsparseCreateCsru2csrInfo creates a structure that holds the csru2csr info data
+  !>   that is gathered during the analysis routines available. It should be destroyed
+  !>   at the end using hipsparseDestroyCsru2csrInfo().
   interface hipsparseCreateCsru2csrInfo
 #ifdef USE_CUDA_NAMES
     function hipsparseCreateCsru2csrInfo_(myInfo) bind(c, name="cusparseCreateCsru2csrInfo")
@@ -787,12 +755,11 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Destroy a csru2csr info structure
-  !>  
-  !>    \details
-  !>    \p hipsparseDestroyCsru2csrInfo destroys a csru2csr info structure.
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Destroy a csru2csr info structure
+  !> 
+  !>   \details
+  !>   \p hipsparseDestroyCsru2csrInfo destroys a csru2csr info structure.
   interface hipsparseDestroyCsru2csrInfo
 #ifdef USE_CUDA_NAMES
     function hipsparseDestroyCsru2csrInfo_(myInfo) bind(c, name="cusparseDestroyCsru2csrInfo")
@@ -808,14 +775,13 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Create a color info structure
-  !>  
-  !>    \details
-  !>    \p hipsparseCreateColorInfo creates a structure that holds the color info data
-  !>    that is gathered during the analysis routines available. It should be destroyed
-  !>    at the end using hipsparseDestroyColorInfo().
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Create a color info structure
+  !> 
+  !>   \details
+  !>   \p hipsparseCreateColorInfo creates a structure that holds the color info data
+  !>   that is gathered during the analysis routines available. It should be destroyed
+  !>   at the end using hipsparseDestroyColorInfo().
   interface hipsparseCreateColorInfo
 #ifdef USE_CUDA_NAMES
     function hipsparseCreateColorInfo_(myInfo) bind(c, name="cusparseCreateColorInfo")
@@ -831,12 +797,11 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Destroy a color info structure
-  !>  
-  !>    \details
-  !>    \p hipsparseDestroyColorInfo destroys a color info structure.
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Destroy a color info structure
+  !> 
+  !>   \details
+  !>   \p hipsparseDestroyColorInfo destroys a color info structure.
   interface hipsparseDestroyColorInfo
 #ifdef USE_CUDA_NAMES
     function hipsparseDestroyColorInfo_(myInfo) bind(c, name="cusparseDestroyColorInfo")
@@ -884,14 +849,13 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Create a prune info structure
-  !>  
-  !>    \details
-  !>    \p hipsparseCreatePruneInfo creates a structure that holds the prune info data
-  !>    that is gathered during the analysis routines available. It should be destroyed
-  !>    at the end using hipsparseDestroyPruneInfo().
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Create a prune info structure
+  !> 
+  !>   \details
+  !>   \p hipsparseCreatePruneInfo creates a structure that holds the prune info data
+  !>   that is gathered during the analysis routines available. It should be destroyed
+  !>   at the end using hipsparseDestroyPruneInfo().
   interface hipsparseCreatePruneInfo
 #ifdef USE_CUDA_NAMES
     function hipsparseCreatePruneInfo_(myInfo) bind(c, name="cusparseCreatePruneInfo")
@@ -907,12 +871,11 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> ! \ingroup aux_module
-  !>    \brief Destroy a prune info structure
-  !>  
-  !>    \details
-  !>    \p hipsparseDestroyPruneInfo destroys a prune info structure.
-  !>  
+  !>  \ingroup aux_module
+  !>   \brief Destroy a prune info structure
+  !> 
+  !>   \details
+  !>   \p hipsparseDestroyPruneInfo destroys a prune info structure.
   interface hipsparseDestroyPruneInfo
 #ifdef USE_CUDA_NAMES
     function hipsparseDestroyPruneInfo_(myInfo) bind(c, name="cusparseDestroyPruneInfo")
@@ -1698,7 +1661,7 @@ module hipfort_hipsparse
       hipsparseZcsrmv_rank_1
 #endif
   end interface
-  !> ! \ingroup level2_module
+  !>  \ingroup level2_module
   !>   \brief Sparse triangular solve using CSR storage format
   !> 
   !>   \details
@@ -1713,7 +1676,6 @@ module hipfort_hipsparse
   !> 
   !>   \note \p hipsparseXcsrsv2_zeroPivot is a blocking function. It might influence
   !>   performance negatively.
-  !> 
   interface hipsparseXcsrsv2_zeroPivot
 #ifdef USE_CUDA_NAMES
     function hipsparseXcsrsv2_zeroPivot_(handle,myInfo,position) bind(c, name="cusparseXcsrsv2_zeroPivot")
@@ -2635,7 +2597,7 @@ module hipfort_hipsparse
       hipsparseZbsrxmv_rank_1
 #endif
   end interface
-  !> ! \ingroup level2_module
+  !>  \ingroup level2_module
   !>   \brief Sparse triangular solve using BSR storage format
   !> 
   !>   \details
@@ -2649,7 +2611,6 @@ module hipfort_hipsparse
   !> 
   !>   \note \p hipsparseXbsrsv2_zeroPivot is a blocking function. It might influence
   !>   performance negatively.
-  !> 
   interface hipsparseXbsrsv2_zeroPivot
 #ifdef USE_CUDA_NAMES
     function hipsparseXbsrsv2_zeroPivot_(handle,myInfo,position) bind(c, name="cusparseXbsrsv2_zeroPivot")
@@ -3883,7 +3844,7 @@ module hipfort_hipsparse
       hipsparseZcsrmm2_rank_1
 #endif
   end interface
-  !> ! \ingroup level3_module
+  !>  \ingroup level3_module
   !>   \brief Sparse triangular system solve using BSR storage format
   !> 
   !>   \details
@@ -3897,7 +3858,6 @@ module hipfort_hipsparse
   !> 
   !>   \note \p hipsparseXbsrsm2_zeroPivot is a blocking function. It might influence
   !>   performance negatively.
-  !> 
   interface hipsparseXbsrsm2_zeroPivot
 #ifdef USE_CUDA_NAMES
     function hipsparseXbsrsm2_zeroPivot_(handle,myInfo,position) bind(c, name="cusparseXbsrsm2_zeroPivot")
@@ -4355,7 +4315,7 @@ module hipfort_hipsparse
       hipsparseZbsrsm2_solve_rank_1
 #endif
   end interface
-  !> ! \ingroup level3_module
+  !>  \ingroup level3_module
   !>   \brief Sparse triangular system solve using CSR storage format
   !> 
   !>   \details
@@ -4369,7 +4329,6 @@ module hipfort_hipsparse
   !> 
   !>   \note \p hipsparseXcsrsm2_zeroPivot is a blocking function. It might influence
   !>   performance negatively.
-  !> 
   interface hipsparseXcsrsm2_zeroPivot
 #ifdef USE_CUDA_NAMES
     function hipsparseXcsrsm2_zeroPivot_(handle,myInfo,position) bind(c, name="cusparseXcsrsm2_zeroPivot")
@@ -5333,7 +5292,7 @@ module hipfort_hipsparse
       hipsparseZcsrgeam2_bufferSizeExt_rank_1
 #endif
   end interface
-  !> ! \ingroup extra_module
+  !>  \ingroup extra_module
   !>   \brief Sparse matrix sparse matrix addition using CSR storage format
   !> 
   !>   \details
@@ -5347,7 +5306,6 @@ module hipfort_hipsparse
   !>   It may return before the actual computation has finished.
   !>   \note
   !>   Currently, only \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
-  !> 
   interface hipsparseXcsrgeam2Nnz
 #ifdef USE_CUDA_NAMES
     function hipsparseXcsrgeam2Nnz_(handle,m,n,descrA,nnzA,csrSortedRowPtrA,csrSortedColIndA,descrB,nnzB,csrSortedRowPtrB,csrSortedColIndB,descrC,csrSortedRowPtrC,nnzTotalDevHostPtr,workspace) bind(c, name="cusparseXcsrgeam2Nnz")
@@ -6128,27 +6086,26 @@ module hipfort_hipsparse
       hipsparseZcsrgemm2_rank_1
 #endif
   end interface
-  !> ! \ingroup precond_module
-  !>    \brief Incomplete LU factorization with 0 fill-ins and no pivoting using BSR storage
-  !>    format
-  !>  
-  !>    \details
-  !>    \p hipsparseXbsrilu02_zeroPivot returns \ref HIPSPARSE_STATUS_ZERO_PIVOT, if either a
-  !>    structural or numerical zero has been found during hipsparseXbsrilu02_analysis() or
-  !>    hipsparseXbsrilu02() computation. The first zero pivot \f$j\f$ at \f$A_{j,j}\f$ is
-  !>    stored in \p position, using same index base as the BSR matrix.
-  !>  
-  !>    \p position can be in host or device memory. If no zero pivot has been found,
-  !>    \p position is set to -1 and \ref HIPSPARSE_STATUS_SUCCESS is returned instead.
-  !>  
-  !>    \note
-  !>    If a zero pivot is found, \p position \f$=j\f$ means that either the diagonal block
-  !>    \f$A_{j,j}\f$ is missing (structural zero) or the diagonal block \f$A_{j,j}\f$ is not
-  !>    invertible (numerical zero).
-  !>  
-  !>    \note \p hipsparseXbsrilu02_zeroPivot is a blocking function. It might influence
-  !>    performance negatively.
-  !>  
+  !>  \ingroup precond_module
+  !>   \brief Incomplete LU factorization with 0 fill-ins and no pivoting using BSR storage
+  !>   format
+  !> 
+  !>   \details
+  !>   \p hipsparseXbsrilu02_zeroPivot returns \ref HIPSPARSE_STATUS_ZERO_PIVOT, if either a
+  !>   structural or numerical zero has been found during hipsparseXbsrilu02_analysis() or
+  !>   hipsparseXbsrilu02() computation. The first zero pivot \f$j\f$ at \f$A_{j,j}\f$ is
+  !>   stored in \p position, using same index base as the BSR matrix.
+  !> 
+  !>   \p position can be in host or device memory. If no zero pivot has been found,
+  !>   \p position is set to -1 and \ref HIPSPARSE_STATUS_SUCCESS is returned instead.
+  !> 
+  !>   \note
+  !>   If a zero pivot is found, \p position \f$=j\f$ means that either the diagonal block
+  !>   \f$A_{j,j}\f$ is missing (structural zero) or the diagonal block \f$A_{j,j}\f$ is not
+  !>   invertible (numerical zero).
+  !> 
+  !>   \note \p hipsparseXbsrilu02_zeroPivot is a blocking function. It might influence
+  !>   performance negatively.
   interface hipsparseXbsrilu02_zeroPivot
 #ifdef USE_CUDA_NAMES
     function hipsparseXbsrilu02_zeroPivot_(handle,myInfo,position) bind(c, name="cusparseXbsrilu02_zeroPivot")
@@ -6626,7 +6583,7 @@ module hipfort_hipsparse
       hipsparseZbsrilu02_rank_1
 #endif
   end interface
-  !> ! \ingroup precond_module
+  !>  \ingroup precond_module
   !>   \brief Incomplete LU factorization with 0 fill-ins and no pivoting using CSR
   !>   storage format
   !> 
@@ -6641,7 +6598,6 @@ module hipfort_hipsparse
   !> 
   !>   \note \p hipsparseXcsrilu02_zeroPivot is a blocking function. It might influence
   !>   performance negatively.
-  !> 
   interface hipsparseXcsrilu02_zeroPivot
 #ifdef USE_CUDA_NAMES
     function hipsparseXcsrilu02_zeroPivot_(handle,myInfo,position) bind(c, name="cusparseXcsrilu02_zeroPivot")
@@ -7211,27 +7167,26 @@ module hipfort_hipsparse
       hipsparseZcsrilu02_rank_1
 #endif
   end interface
-  !> ! \ingroup precond_module
-  !>    \brief Incomplete Cholesky factorization with 0 fill-ins and no pivoting using BSR
-  !>    storage format
-  !>  
-  !>    \details
-  !>    \p hipsparseXbsric02_zeroPivot returns \ref HIPSPARSE_STATUS_ZERO_PIVOT, if either a
-  !>    structural or numerical zero has been found during hipsparseXbsric02_analysis() or
-  !>    hipsparseXbsric02() computation. The first zero pivot \f$j\f$ at \f$A_{j,j}\f$ is
-  !>    stored in \p position, using same index base as the BSR matrix.
-  !>  
-  !>    \p position can be in host or device memory. If no zero pivot has been found,
-  !>    \p position is set to -1 and \ref HIPSPARSE_STATUS_SUCCESS is returned instead.
-  !>  
-  !>    \note
-  !>    If a zero pivot is found, \p position=j means that either the diagonal block \p A(j,j)
-  !>    is missing (structural zero) or the diagonal block \p A(j,j) is not positive definite
-  !>    (numerical zero).
-  !>  
-  !>    \note \p hipsparseXbsric02_zeroPivot is a blocking function. It might influence
-  !>    performance negatively.
-  !>  
+  !>  \ingroup precond_module
+  !>   \brief Incomplete Cholesky factorization with 0 fill-ins and no pivoting using BSR
+  !>   storage format
+  !> 
+  !>   \details
+  !>   \p hipsparseXbsric02_zeroPivot returns \ref HIPSPARSE_STATUS_ZERO_PIVOT, if either a
+  !>   structural or numerical zero has been found during hipsparseXbsric02_analysis() or
+  !>   hipsparseXbsric02() computation. The first zero pivot \f$j\f$ at \f$A_{j,j}\f$ is
+  !>   stored in \p position, using same index base as the BSR matrix.
+  !> 
+  !>   \p position can be in host or device memory. If no zero pivot has been found,
+  !>   \p position is set to -1 and \ref HIPSPARSE_STATUS_SUCCESS is returned instead.
+  !> 
+  !>   \note
+  !>   If a zero pivot is found, \p position=j means that either the diagonal block \p A(j,j)
+  !>   is missing (structural zero) or the diagonal block \p A(j,j) is not positive definite
+  !>   (numerical zero).
+  !> 
+  !>   \note \p hipsparseXbsric02_zeroPivot is a blocking function. It might influence
+  !>   performance negatively.
   interface hipsparseXbsric02_zeroPivot
 #ifdef USE_CUDA_NAMES
     function hipsparseXbsric02_zeroPivot_(handle,myInfo,position) bind(c, name="cusparseXbsric02_zeroPivot")
@@ -7629,7 +7584,7 @@ module hipfort_hipsparse
       hipsparseZbsric02_rank_1
 #endif
   end interface
-  !> ! \ingroup precond_module
+  !>  \ingroup precond_module
   !>   \brief Incomplete Cholesky factorization with 0 fill-ins and no pivoting using CSR
   !>   storage format
   !> 
@@ -7644,7 +7599,6 @@ module hipfort_hipsparse
   !> 
   !>   \note \p hipsparseXcsric02_zeroPivot is a blocking function. It might influence
   !>   performance negatively.
-  !> 
   interface hipsparseXcsric02_zeroPivot
 #ifdef USE_CUDA_NAMES
     function hipsparseXcsric02_zeroPivot_(handle,myInfo,position) bind(c, name="cusparseXcsric02_zeroPivot")
@@ -9970,14 +9924,13 @@ module hipfort_hipsparse
       hipsparseZcsc2dense_rank_1
 #endif
   end interface
-  !> ! \ingroup conv_module
+  !>  \ingroup conv_module
   !>   \brief
   !>   This function computes the number of nonzero block columns per row and the total number of nonzero blocks in a sparse
   !>   BSR matrix given a sparse CSR matrix as input.
   !> 
   !>   \details
   !>   The routine does support asynchronous execution if the pointer mode is set to device.
-  !> 
   interface hipsparseXcsr2bsrNnz
 #ifdef USE_CUDA_NAMES
     function hipsparseXcsr2bsrNnz_(handle,dirA,m,n,descrA,csrRowPtrA,csrColIndA,blockDim,descrC,bsrRowPtrC,bsrNnzb) bind(c, name="cusparseXcsr2bsrNnz")
@@ -10120,7 +10073,7 @@ module hipfort_hipsparse
       hipsparseZnnz_compress_rank_1
 #endif
   end interface
-  !> ! \ingroup conv_module
+  !>  \ingroup conv_module
   !>   \brief Convert a sparse CSR matrix into a sparse COO matrix
   !> 
   !>   \details
@@ -10134,7 +10087,6 @@ module hipfort_hipsparse
   !>   \note
   !>   This function is non blocking and executed asynchronously with respect to the host.
   !>   It may return before the actual computation has finished.
-  !> 
   interface hipsparseXcsr2coo
 #ifdef USE_CUDA_NAMES
     function hipsparseXcsr2coo_(handle,csrRowPtr,nnz,m,cooRowInd,idxBase) bind(c, name="cusparseXcsr2coo")
@@ -10752,12 +10704,11 @@ module hipfort_hipsparse
       hipsparseZcsr2gebsr_bufferSize_rank_1
 #endif
   end interface
-  !> ! \ingroup conv_module
+  !>  \ingroup conv_module
   !>   \brief
   !>   This function computes the number of nonzero block columns per row and the total number of nonzero blocks in a sparse
   !>   GEneral BSR matrix given a sparse CSR matrix as input.
-  !> 
-  !> 
+  !>
   interface hipsparseXcsr2gebsrNnz
 #ifdef USE_CUDA_NAMES
     function hipsparseXcsr2gebsrNnz_(handle,dir,m,n,csr_descr,csr_row_ptr,csr_col_ind,bsr_descr,bsr_row_ptr,row_block_dim,col_block_dim,bsr_nnz_devhost,p_buffer) bind(c, name="cusparseXcsr2gebsrNnz")
@@ -12114,22 +12065,21 @@ module hipfort_hipsparse
       hipsparseZhyb2csr_rank_1
 #endif
   end interface
-  !> ! \ingroup conv_module
-  !>    \brief Convert a sparse COO matrix into a sparse CSR matrix
-  !>  
-  !>    \details
-  !>    \p hipsparseXcoo2csr converts the COO array containing the row indices into a
-  !>    CSR array of row offsets, that point to the start of every row.
-  !>    It is assumed that the COO row index array is sorted.
-  !>  
-  !>    \note It can also be used, to convert a COO array containing the column indices into
-  !>    a CSC array of column offsets, that point to the start of every column. Then, it is
-  !>    assumed that the COO column index array is sorted, instead.
-  !>  
-  !>    \note
-  !>    This function is non blocking and executed asynchronously with respect to the host.
-  !>    It may return before the actual computation has finished.
+  !>  \ingroup conv_module
+  !>   \brief Convert a sparse COO matrix into a sparse CSR matrix
   !> 
+  !>   \details
+  !>   \p hipsparseXcoo2csr converts the COO array containing the row indices into a
+  !>   CSR array of row offsets, that point to the start of every row.
+  !>   It is assumed that the COO row index array is sorted.
+  !> 
+  !>   \note It can also be used, to convert a COO array containing the column indices into
+  !>   a CSC array of column offsets, that point to the start of every column. Then, it is
+  !>   assumed that the COO column index array is sorted, instead.
+  !> 
+  !>   \note
+  !>   This function is non blocking and executed asynchronously with respect to the host.
+  !>   It may return before the actual computation has finished.
   interface hipsparseXcoo2csr
 #ifdef USE_CUDA_NAMES
     function hipsparseXcoo2csr_(handle,cooRowInd,nnz,m,csrRowPtr,idxBase) bind(c, name="cusparseXcoo2csr")
@@ -12155,7 +12105,7 @@ module hipfort_hipsparse
       hipsparseXcoo2csr_rank_1
 #endif
   end interface
-  !> ! \ingroup conv_module
+  !>  \ingroup conv_module
   !>   \brief Create the identity map
   !> 
   !>   \details
@@ -12172,7 +12122,6 @@ module hipfort_hipsparse
   !>   \note
   !>   This function is non blocking and executed asynchronously with respect to the host.
   !>   It may return before the actual computation has finished.
-  !> 
   interface hipsparseCreateIdentityPermutation
 #ifdef USE_CUDA_NAMES
     function hipsparseCreateIdentityPermutation_(handle,n,p) bind(c, name="cusparseCreateIdentityPermutation")
@@ -12195,14 +12144,13 @@ module hipfort_hipsparse
       hipsparseCreateIdentityPermutation_rank_1
 #endif
   end interface
-  !> ! \ingroup conv_module
+  !>  \ingroup conv_module
   !>   \brief Sort a sparse CSR matrix
   !> 
   !>   \details
   !>   \p hipsparseXcsrsort_bufferSizeExt returns the size of the temporary storage buffer
   !>   required by hipsparseXcsrsort(). The temporary storage buffer must be allocated by
   !>   the user.
-  !> 
   interface hipsparseXcsrsort_bufferSizeExt
 #ifdef USE_CUDA_NAMES
     function hipsparseXcsrsort_bufferSizeExt_(handle,m,n,nnz,csrRowPtr,csrColInd,pBufferSizeInBytes) bind(c, name="cusparseXcsrsort_bufferSizeExt")
@@ -12229,7 +12177,7 @@ module hipfort_hipsparse
       hipsparseXcsrsort_bufferSizeExt_rank_1
 #endif
   end interface
-  !> ! \ingroup conv_module
+  !>  \ingroup conv_module
   !>   \brief Sort a sparse CSR matrix
   !> 
   !>   \details
@@ -12246,7 +12194,6 @@ module hipfort_hipsparse
   !>   \note
   !>   This function is non blocking and executed asynchronously with respect to the host.
   !>   It may return before the actual computation has finished.
-  !> 
   interface hipsparseXcsrsort
 #ifdef USE_CUDA_NAMES
     function hipsparseXcsrsort_(handle,m,n,nnz,descrA,csrRowPtr,csrColInd,P,pBuffer) bind(c, name="cusparseXcsrsort")
@@ -12276,14 +12223,13 @@ module hipfort_hipsparse
       hipsparseXcsrsort_rank_1
 #endif
   end interface
-  !> ! \ingroup conv_module
+  !>  \ingroup conv_module
   !>   \brief Sort a sparse CSC matrix
   !> 
   !>   \details
   !>   \p hipsparseXcscsort_bufferSizeExt returns the size of the temporary storage buffer
   !>   required by hipsparseXcscsort(). The temporary storage buffer must be allocated by
   !>   the user.
-  !> 
   interface hipsparseXcscsort_bufferSizeExt
 #ifdef USE_CUDA_NAMES
     function hipsparseXcscsort_bufferSizeExt_(handle,m,n,nnz,cscColPtr,cscRowInd,pBufferSizeInBytes) bind(c, name="cusparseXcscsort_bufferSizeExt")
@@ -12310,7 +12256,7 @@ module hipfort_hipsparse
       hipsparseXcscsort_bufferSizeExt_rank_1
 #endif
   end interface
-  !> ! \ingroup conv_module
+  !>  \ingroup conv_module
   !>   \brief Sort a sparse CSC matrix
   !> 
   !>   \details
@@ -12327,7 +12273,6 @@ module hipfort_hipsparse
   !>   \note
   !>   This function is non blocking and executed asynchronously with respect to the host.
   !>   It may return before the actual computation has finished.
-  !> 
   interface hipsparseXcscsort
 #ifdef USE_CUDA_NAMES
     function hipsparseXcscsort_(handle,m,n,nnz,descrA,cscColPtr,cscRowInd,P,pBuffer) bind(c, name="cusparseXcscsort")
@@ -12357,14 +12302,13 @@ module hipfort_hipsparse
       hipsparseXcscsort_rank_1
 #endif
   end interface
-  !> ! \ingroup conv_module
+  !>  \ingroup conv_module
   !>   \brief Sort a sparse COO matrix
   !> 
   !>   \details
   !>   \p hipsparseXcoosort_bufferSizeExt returns the size of the temporary storage buffer
   !>   required by hipsparseXcoosort(). The temporary storage buffer must be allocated by
   !>   the user.
-  !> 
   interface hipsparseXcoosort_bufferSizeExt
 #ifdef USE_CUDA_NAMES
     function hipsparseXcoosort_bufferSizeExt_(handle,m,n,nnz,cooRows,cooCols,pBufferSizeInBytes) bind(c, name="cusparseXcoosort_bufferSizeExt")
@@ -12391,7 +12335,7 @@ module hipfort_hipsparse
       hipsparseXcoosort_bufferSizeExt_rank_1
 #endif
   end interface
-  !> ! \ingroup conv_module
+  !>  \ingroup conv_module
   !>   \brief Sort a sparse COO matrix by row
   !> 
   !>   \details
@@ -12410,7 +12354,6 @@ module hipfort_hipsparse
   !>   \note
   !>   This function is non blocking and executed asynchronously with respect to the host.
   !>   It may return before the actual computation has finished.
-  !> 
   interface hipsparseXcoosortByRow
 #ifdef USE_CUDA_NAMES
     function hipsparseXcoosortByRow_(handle,m,n,nnz,cooRows,cooCols,P,pBuffer) bind(c, name="cusparseXcoosortByRow")
@@ -12439,7 +12382,7 @@ module hipfort_hipsparse
       hipsparseXcoosortByRow_rank_1
 #endif
   end interface
-  !> ! \ingroup conv_module
+  !>  \ingroup conv_module
   !>   \brief Sort a sparse COO matrix by column
   !> 
   !>   \details
@@ -12458,7 +12401,6 @@ module hipfort_hipsparse
   !>   \note
   !>   This function is non blocking and executed asynchronously with respect to the host.
   !>   It may return before the actual computation has finished.
-  !> 
   interface hipsparseXcoosortByColumn
 #ifdef USE_CUDA_NAMES
     function hipsparseXcoosortByColumn_(handle,m,n,nnz,cooRows,cooCols,P,pBuffer) bind(c, name="cusparseXcoosortByColumn")
@@ -12623,14 +12565,13 @@ module hipfort_hipsparse
       hipsparseZgebsr2gebsr_bufferSize_rank_1
 #endif
   end interface
-  !> ! \ingroup conv_module
+  !>  \ingroup conv_module
   !>   \brief This function is used when converting a general BSR sparse matrix \p A to another general BSR sparse matrix \p C.
   !>   Specifically, this function determines the number of non-zero blocks that will exist in \p C (stored using either a host
   !>   or device pointer), and computes the row pointer array for \p C.
   !> 
   !>   \details
   !>   The routine does support asynchronous execution.
-  !> 
   interface hipsparseXgebsr2gebsrNnz
 #ifdef USE_CUDA_NAMES
     function hipsparseXgebsr2gebsrNnz_(handle,dirA,mb,nb,nnzb,descrA,bsrRowPtrA,bsrColIndA,rowBlockDimA,colBlockDimA,descrC,bsrRowPtrC,rowBlockDimC,colBlockDimC,nnzTotalDevHostPtr,buffer) bind(c, name="cusparseXgebsr2gebsrNnz")
@@ -14328,7 +14269,6 @@ module hipfort_hipsparse
 
   end interface
   !>  Description: Preprocess step of the sparse matrix multiplication with a dense matrix.
-  !>  
   interface hipsparseSpMM_preprocess
 #ifdef USE_CUDA_NAMES
     function hipsparseSpMM_preprocess_(handle,opA,opB,alpha,matA,matB,beta,matC,computeType,alg,externalBuffer) bind(c, name="cusparseSpMM_preprocess")
@@ -14354,7 +14294,7 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !>  Description: Compute the sparse matrix multiplication with a dense matrix 
+  !>  Description: Compute the sparse matrix multiplication with a dense matrix
   interface hipsparseSpMM
 #ifdef USE_CUDA_NAMES
     function hipsparseSpMM_(handle,opA,opB,alpha,matA,matB,beta,matC,computeType,alg,externalBuffer) bind(c, name="cusparseSpMM")
@@ -14629,8 +14569,8 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !>  Description: Analysis step of solution of triangular linear system op(A)  Y = alpha  X,
-  !> where A is a sparse matrix in CSR storage format, x and Y are dense vectors. 
+  !>  Description: Analysis step of solution of triangular linear system op(A) * Y = alpha * X,
+  !> where A is a sparse matrix in CSR storage format, x and Y are dense vectors.
   interface hipsparseSpSV_analysis
 #ifdef USE_CUDA_NAMES
     function hipsparseSpSV_analysis_(handle,opA,alpha,matA,x,y,computeType,alg,spsvDescr,externalBuffer) bind(c, name="cusparseSpSV_analysis")
@@ -14655,8 +14595,8 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !>  Description: Solve step of solution of triangular linear system op(A)  Y = alpha  X,
-  !> where A is a sparse matrix in CSR storage format, x and Y are dense vectors. 
+  !>  Description: Solve step of solution of triangular linear system op(A) * Y = alpha * X,
+  !> where A is a sparse matrix in CSR storage format, x and Y are dense vectors.
   interface hipsparseSpSV_solve
 #ifdef USE_CUDA_NAMES
     function hipsparseSpSV_solve_(handle,opA,alpha,matA,x,y,computeType,alg,spsvDescr,externalBuffer) bind(c, name="cusparseSpSV_solve")
@@ -14739,8 +14679,8 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !>  Description: Analysis step of solution of triangular linear system op(A)  C = alpha  op(B),
-  !> where A is a sparse matrix in CSR storage format, B and C are dense vectors. 
+  !>  Description: Analysis step of solution of triangular linear system op(A) * C = alpha * op(B),
+  !> where A is a sparse matrix in CSR storage format, B and C are dense vectors.
   interface hipsparseSpSM_analysis
 #ifdef USE_CUDA_NAMES
     function hipsparseSpSM_analysis_(handle,opA,opB,alpha,matA,matB,matC,computeType,alg,spsmDescr,externalBuffer) bind(c, name="cusparseSpSM_analysis")
@@ -14766,8 +14706,8 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !>  Description: Solve step of solution of triangular linear system op(A)  C = alpha  op(B),
-  !> where A is a sparse matrix in CSR storage format, B and C are dense vectors. 
+  !>  Description: Solve step of solution of triangular linear system op(A) * C = alpha * op(B),
+  !> where A is a sparse matrix in CSR storage format, B and C are dense vectors.
   interface hipsparseSpSM_solve
 #ifdef USE_CUDA_NAMES
     function hipsparseSpSM_solve_(handle,opA,opB,alpha,matA,matB,matC,computeType,alg,spsmDescr,externalBuffer) bind(c, name="cusparseSpSM_solve")

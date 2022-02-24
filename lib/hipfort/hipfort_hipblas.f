@@ -229,7 +229,7 @@ module hipfort_hipblas
       hipblasIcamax_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     amax finds the first index of the element of maximum magnitude of a vector x.
@@ -249,7 +249,6 @@ module hipfort_hipblas
   !>     result
   !>               device pointer or host pointer to store the amax index.
   !>               return is 0.0 if n, incx<=0.
-  !>     
   interface hipblasIzamax
 #ifdef USE_CUDA_NAMES
     function hipblasIzamax_(handle,n,x,incx,myResult) bind(c, name="cublasIzamax_v2")
@@ -351,7 +350,7 @@ module hipfort_hipblas
       hipblasIcamaxBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>      amaxBatched finds the first index of the element of maximum magnitude of each vector x_i in a batch, for i = 1, ..., batchCount.
@@ -374,7 +373,6 @@ module hipfort_hipblas
   !>     result
   !>               device or host array of pointers of batchCount size for results.
   !>               return is 0 if n, incx<=0.
-  !>     
   interface hipblasIzamaxBatched
 #ifdef USE_CUDA_NAMES
     function hipblasIzamaxBatched_(handle,n,x,incx,batchCount,myResult) bind(c, name="cublasIzamaxBatched")
@@ -478,7 +476,7 @@ module hipfort_hipblas
       hipblasIcamaxStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>      amaxStridedBatched finds the first index of the element of maximum magnitude of each vector x_i in a batch, for i = 1, ..., batchCount.
@@ -504,8 +502,7 @@ module hipfort_hipblas
   !>     result
   !>               device or host pointer for storing contiguous batchCount results.
   !>               return is 0 if n <= 0, incx<=0.
-  !> 
-  !>     
+  !>
   interface hipblasIzamaxStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasIzamaxStridedBatched_(handle,n,x,incx,stridex,batchCount,myResult) bind(c, name="cublasIzamaxStridedBatched")
@@ -603,7 +600,7 @@ module hipfort_hipblas
       hipblasIcamin_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     amin finds the first index of the element of minimum magnitude of a vector x.
@@ -623,7 +620,6 @@ module hipfort_hipblas
   !>     result
   !>               device pointer or host pointer to store the amin index.
   !>               return is 0.0 if n, incx<=0.
-  !>     
   interface hipblasIzamin
 #ifdef USE_CUDA_NAMES
     function hipblasIzamin_(handle,n,x,incx,myResult) bind(c, name="cublasIzamin_v2")
@@ -725,7 +721,7 @@ module hipfort_hipblas
       hipblasIcaminBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     aminBatched finds the first index of the element of minimum magnitude of each vector x_i in a batch, for i = 1, ..., batchCount.
@@ -748,7 +744,6 @@ module hipfort_hipblas
   !>     result
   !>               device or host pointers to array of batchCount size for results.
   !>               return is 0 if n, incx<=0.
-  !>     
   interface hipblasIzaminBatched
 #ifdef USE_CUDA_NAMES
     function hipblasIzaminBatched_(handle,n,x,incx,batchCount,myResult) bind(c, name="cublasIzaminBatched")
@@ -852,7 +847,7 @@ module hipfort_hipblas
       hipblasIcaminStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>      aminStridedBatched finds the first index of the element of minimum magnitude of each vector x_i in a batch, for i = 1, ..., batchCount.
@@ -878,8 +873,7 @@ module hipfort_hipblas
   !>     result
   !>               device or host pointer to array for storing contiguous batchCount results.
   !>               return is 0 if n <= 0, incx<=0.
-  !> 
-  !>     
+  !>
   interface hipblasIzaminStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasIzaminStridedBatched_(handle,n,x,incx,stridex,batchCount,myResult) bind(c, name="cublasIzaminStridedBatched")
@@ -977,7 +971,7 @@ module hipfort_hipblas
       hipblasScasum_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     asum computes the sum of the magnitudes of elements of a real vector x,
@@ -998,8 +992,7 @@ module hipfort_hipblas
   !>     result
   !>               device pointer or host pointer to store the asum product.
   !>               return is 0.0 if n <= 0.
-  !> 
-  !>     
+  !>
   interface hipblasDzasum
 #ifdef USE_CUDA_NAMES
     function hipblasDzasum_(handle,n,x,incx,myResult) bind(c, name="cublasDzasum_v2")
@@ -1101,7 +1094,7 @@ module hipfort_hipblas
       hipblasScasumBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     asumBatched computes the sum of the magnitudes of the elements in a batch of real vectors x_i,
@@ -1126,7 +1119,6 @@ module hipfort_hipblas
   !>     result
   !>               device array or host array of batchCount size for results.
   !>               return is 0.0 if n, incx<=0.
-  !>     
   interface hipblasDzasumBatched
 #ifdef USE_CUDA_NAMES
     function hipblasDzasumBatched_(handle,n,x,incx,batchCount,myResult) bind(c, name="cublasDzasumBatched")
@@ -1230,7 +1222,7 @@ module hipfort_hipblas
       hipblasScasumStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     asumStridedBatched computes the sum of the magnitudes of elements of a real vectors x_i,
@@ -1253,7 +1245,7 @@ module hipfort_hipblas
   !>               stride from the start of one vector (x_i) and the next one (x_i+1).
   !>               There are no restrictions placed on stride_x, however the user should
   !>               take care to ensure that stride_x is of appropriate size, for a typical
-  !>               case this means stride_x >= n  incx.
+  !>               case this means stride_x >= n * incx.
   !>     @param[in]
   !>     batchCount [int]
   !>               number of instances in the batch
@@ -1261,7 +1253,6 @@ module hipfort_hipblas
   !>     result
   !>               device pointer or host pointer to array for storing contiguous batchCount results.
   !>               return is 0.0 if n, incx<=0.
-  !>     
   interface hipblasDzasumStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasDzasumStridedBatched_(handle,n,x,incx,stridex,batchCount,myResult) bind(c, name="cublasDzasumStridedBatched")
@@ -1365,12 +1356,12 @@ module hipfort_hipblas
       hipblasCaxpy_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     axpy   computes ant alpha multiplied by vector x, plus vector y
   !> 
-  !>         y := alpha  x + y
+  !>         y := alpha * x + y
   !> 
   !>     @param[in]
   !>     handle    [hipblasHandle_t]
@@ -1390,8 +1381,7 @@ module hipfort_hipblas
   !>     @param[inout]
   !>     incy      [int]
   !>               specifies the increment for the elements of y.
-  !> 
-  !>     
+  !>
   interface hipblasZaxpy
 #ifdef USE_CUDA_NAMES
     function hipblasZaxpy_(handle,n,alpha,x,incx,y,incy) bind(c, name="cublasZaxpy_v2")
@@ -1501,10 +1491,10 @@ module hipfort_hipblas
       hipblasCaxpyBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
-  !>     axpyBatched   compute y := alpha  x + y over a set of batched vectors.
+  !>     axpyBatched   compute y := alpha * x + y over a set of batched vectors.
   !> 
   !>     @param[in]
   !>     handle    [hipblasHandle_t]
@@ -1527,8 +1517,7 @@ module hipfort_hipblas
   !> 
   !>     @param[in]
   !>     batchCount [int]
-  !>               number of instances in the batch  
-  !>     
+  !>               number of instances in the batch
   interface hipblasZaxpyBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZaxpyBatched_(handle,n,alpha,x,incx,y,incy,batchCount) bind(c, name="cublasZaxpyBatched")
@@ -1643,10 +1632,10 @@ module hipfort_hipblas
       hipblasCaxpyStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
-  !>     axpyStridedBatched   compute y := alpha  x + y over a set of strided batched vectors.
+  !>     axpyStridedBatched   compute y := alpha * x + y over a set of strided batched vectors.
   !> 
   !>     @param[in]
   !>     handle    [hipblasHandle_t]
@@ -1675,8 +1664,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>               number of instances in the batch
-  !> 
-  !>     
+  !>
   interface hipblasZaxpyStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZaxpyStridedBatched_(handle,n,alpha,x,incx,stridex,y,incy,stridey,batchCount) bind(c, name="cublasZaxpyStridedBatched")
@@ -1780,7 +1768,7 @@ module hipfort_hipblas
       hipblasCcopy_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     copy  copies each element x[i] into y[i], for  i = 1 , ... , n
@@ -1803,8 +1791,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     incy      [int]
   !>               specifies the increment for the elements of y.
-  !> 
-  !>     
+  !>
   interface hipblasZcopy
 #ifdef USE_CUDA_NAMES
     function hipblasZcopy_(handle,n,x,incx,y,incy) bind(c, name="cublasZcopy_v2")
@@ -1910,7 +1897,7 @@ module hipfort_hipblas
       hipblasCcopyBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     copyBatched copies each element x_i[j] into y_i[j], for  j = 1 , ... , n; i = 1 , ... , batchCount
@@ -1939,8 +1926,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch
-  !> 
-  !>     
+  !>
   interface hipblasZcopyBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZcopyBatched_(handle,n,x,incx,y,incy,batchCount) bind(c, name="cublasZcopyBatched")
@@ -2051,7 +2037,7 @@ module hipfort_hipblas
       hipblasCcopyStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     copyStridedBatched copies each element x_i[j] into y_i[j], for  j = 1 , ... , n; i = 1 , ... , batchCount
@@ -2077,7 +2063,7 @@ module hipfort_hipblas
   !>                 stride from the start of one vector (x_i) and the next one (x_i+1).
   !>                 There are no restrictions placed on stride_x, however the user should
   !>                 take care to ensure that stride_x is of appropriate size, for a typical
-  !>                 case this means stride_x >= n  incx.
+  !>                 case this means stride_x >= n * incx.
   !>     @param[out]
   !>     y         device pointer to the first vector (y_1) in the batch.
   !>     @param[in]
@@ -2088,15 +2074,14 @@ module hipfort_hipblas
   !>                 stride from the start of one vector (y_i) and the next one (y_i+1).
   !>                 There are no restrictions placed on stride_y, however the user should
   !>                 take care to ensure that stride_y is of appropriate size, for a typical
-  !>                 case this means stride_y >= n  incy. stridey should be non zero.
+  !>                 case this means stride_y >= n * incy. stridey should be non zero.
   !>     @param[in]
   !>     incy      [int]
   !>               specifies the increment for the elements of y.
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch
-  !> 
-  !>     
+  !>
   interface hipblasZcopyStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZcopyStridedBatched_(handle,n,x,incx,stridex,y,incy,stridey,batchCount) bind(c, name="cublasZcopyStridedBatched")
@@ -2254,16 +2239,16 @@ module hipfort_hipblas
       hipblasZdotc_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     dot(u)  performs the dot product of vectors x and y
   !> 
-  !>         result = x  y;
+  !>         result = x * y;
   !> 
   !>     dotc  performs the dot product of the conjugate of complex vector x and complex vector y
   !> 
-  !>         result = conjugate (x)  y;
+  !>         result = conjugate (x) * y;
   !> 
   !>     @param[in]
   !>     handle    [hipblasHandle_t]
@@ -2285,8 +2270,7 @@ module hipfort_hipblas
   !>     result
   !>               device pointer or host pointer to store the dot product.
   !>               return is 0.0 if n <= 0.
-  !> 
-  !>     
+  !>
   interface hipblasZdotu
 #ifdef USE_CUDA_NAMES
     function hipblasZdotu_(handle,n,x,incx,y,incy,myResult) bind(c, name="cublasZdotu_v2")
@@ -2452,16 +2436,16 @@ module hipfort_hipblas
       hipblasZdotcBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     dotBatched(u) performs a batch of dot products of vectors x and y
   !> 
-  !>         result_i = x_i  y_i;
+  !>         result_i = x_i * y_i;
   !> 
   !>     dotcBatched  performs a batch of dot products of the conjugate of complex vector x and complex vector y
   !> 
-  !>         result_i = conjugate (x_i)  y_i;
+  !>         result_i = conjugate (x_i) * y_i;
   !> 
   !>     where (x_i, y_i) is the i-th instance of the batch.
   !>     x_i and y_i are vectors, for i = 1, ..., batchCount
@@ -2489,8 +2473,7 @@ module hipfort_hipblas
   !>     result
   !>               device array or host array of batchCount size to store the dot products of each batch.
   !>               return 0.0 for each element if n <= 0.
-  !> 
-  !>     
+  !>
   interface hipblasZdotuBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZdotuBatched_(handle,n,x,incx,y,incy,batchCount,myResult) bind(c, name="cublasZdotuBatched")
@@ -2663,16 +2646,16 @@ module hipfort_hipblas
       hipblasZdotcStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     dotStridedBatched(u)  performs a batch of dot products of vectors x and y
   !> 
-  !>         result_i = x_i  y_i;
+  !>         result_i = x_i * y_i;
   !> 
   !>     dotcStridedBatched  performs a batch of dot products of the conjugate of complex vector x and complex vector y
   !> 
-  !>         result_i = conjugate (x_i)  y_i;
+  !>         result_i = conjugate (x_i) * y_i;
   !> 
   !>     where (x_i, y_i) is the i-th instance of the batch.
   !>     x_i and y_i are vectors, for i = 1, ..., batchCount
@@ -2706,8 +2689,7 @@ module hipfort_hipblas
   !>     result
   !>               device array or host array of batchCount size to store the dot products of each batch.
   !>               return 0.0 for each element if n <= 0.
-  !> 
-  !>     
+  !>
   interface hipblasZdotuStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZdotuStridedBatched_(handle,n,x,incx,stridex,y,incy,stridey,batchCount,myResult) bind(c, name="cublasZdotuStridedBatched")
@@ -2808,13 +2790,13 @@ module hipfort_hipblas
       hipblasScnrm2_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     nrm2 computes the euclidean norm of a real or complex vector
   !> 
-  !>               result := sqrt( x'x ) for real vectors
-  !>               result := sqrt( xHx ) for complex vectors
+  !>               result := sqrt( x'*x ) for real vectors
+  !>               result := sqrt( x**H*x ) for complex vectors
   !> 
   !>     @param[in]
   !>     handle    [hipblasHandle_t]
@@ -2831,7 +2813,6 @@ module hipfort_hipblas
   !>     result
   !>               device pointer or host pointer to store the nrm2 product.
   !>               return is 0.0 if n, incx<=0.
-  !>     
   interface hipblasDznrm2
 #ifdef USE_CUDA_NAMES
     function hipblasDznrm2_(handle,n,x,incx,myResult) bind(c, name="cublasDznrm2_v2")
@@ -2933,13 +2914,13 @@ module hipfort_hipblas
       hipblasScnrm2Batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     nrm2Batched computes the euclidean norm over a batch of real or complex vectors
   !> 
-  !>               result := sqrt( x_i'x_i ) for real vectors x, for i = 1, ..., batchCount
-  !>               result := sqrt( x_iHx_i ) for complex vectors x, for i = 1, ..., batchCount
+  !>               result := sqrt( x_i'*x_i ) for real vectors x, for i = 1, ..., batchCount
+  !>               result := sqrt( x_i**H*x_i ) for complex vectors x, for i = 1, ..., batchCount
   !> 
   !>     @param[in]
   !>     handle    [hipblasHandle_t]
@@ -2959,8 +2940,7 @@ module hipfort_hipblas
   !>     result
   !>               device pointer or host pointer to array of batchCount size for nrm2 results.
   !>               return is 0.0 for each element if n <= 0, incx<=0.
-  !> 
-  !>     
+  !>
   interface hipblasDznrm2Batched
 #ifdef USE_CUDA_NAMES
     function hipblasDznrm2Batched_(handle,n,x,incx,batchCount,myResult) bind(c, name="cublasDznrm2Batched")
@@ -3064,13 +3044,13 @@ module hipfort_hipblas
       hipblasScnrm2StridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     nrm2StridedBatched computes the euclidean norm over a batch of real or complex vectors
   !> 
-  !>               := sqrt( x_i'x_i ) for real vectors x, for i = 1, ..., batchCount
-  !>               := sqrt( x_iHx_i ) for complex vectors, for i = 1, ..., batchCount
+  !>               := sqrt( x_i'*x_i ) for real vectors x, for i = 1, ..., batchCount
+  !>               := sqrt( x_i**H*x_i ) for complex vectors, for i = 1, ..., batchCount
   !> 
   !>     @param[in]
   !>     handle    [hipblasHandle_t]
@@ -3088,7 +3068,7 @@ module hipfort_hipblas
   !>               stride from the start of one vector (x_i) and the next one (x_i+1).
   !>               There are no restrictions placed on stride_x, however the user should
   !>               take care to ensure that stride_x is of appropriate size, for a typical
-  !>               case this means stride_x >= n  incx.
+  !>               case this means stride_x >= n * incx.
   !>     @param[in]
   !>     batchCount [int]
   !>               number of instances in the batch
@@ -3096,8 +3076,7 @@ module hipfort_hipblas
   !>     result
   !>               device pointer or host pointer to array for storing contiguous batch_count results.
   !>               return is 0.0 for each element if n <= 0, incx<=0.
-  !> 
-  !>     
+  !>
   interface hipblasDznrm2StridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasDznrm2StridedBatched_(handle,n,x,incx,stridex,batchCount,myResult) bind(c, name="cublasDznrm2StridedBatched")
@@ -3258,7 +3237,7 @@ module hipfort_hipblas
       hipblasZrot_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     rot applies the Givens rotation matrix defined by c=cos(alpha) and s=sin(alpha) to vectors x and y.
@@ -3284,8 +3263,7 @@ module hipfort_hipblas
   !>     c       device pointer or host pointer storing scalar cosine component of the rotation matrix.
   !>     @param[in]
   !>     s       device pointer or host pointer storing scalar sine component of the rotation matrix.
-  !> 
-  !>     
+  !>
   interface hipblasZdrot
 #ifdef USE_CUDA_NAMES
     function hipblasZdrot_(handle,n,x,incx,y,incy,c,s) bind(c, name="cublasZdrot_v2")
@@ -3457,7 +3435,7 @@ module hipfort_hipblas
       hipblasZrotBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     rotBatched applies the Givens rotation matrix defined by c=cos(alpha) and s=sin(alpha) to batched vectors x_i and y_i, for i = 1, ..., batchCount.
@@ -3486,8 +3464,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 the number of x and y arrays, i.e. the number of batches.
-  !> 
-  !>     
+  !>
   interface hipblasZdrotBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZdrotBatched_(handle,n,x,incx,y,incy,c,s,batchCount) bind(c, name="cublasZdrotBatched")
@@ -3666,7 +3643,7 @@ module hipfort_hipblas
       hipblasZrotStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     rotStridedBatched applies the Givens rotation matrix defined by c=cos(alpha) and s=sin(alpha) to strided batched vectors x_i and y_i, for i = 1, ..., batchCount.
@@ -3701,8 +3678,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>             the number of x and y arrays, i.e. the number of batches.
-  !> 
-  !>     
+  !>
   interface hipblasZdrotStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZdrotStridedBatched_(handle,n,x,incx,stridex,y,incy,stridey,c,s,batchCount) bind(c, name="cublasZdrotStridedBatched")
@@ -3789,7 +3765,7 @@ module hipfort_hipblas
     end function
 
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     rotg creates the Givens rotation matrix for the vector (a b).
@@ -3808,8 +3784,7 @@ module hipfort_hipblas
   !>     c       device pointer or host pointer to cosine element of Givens rotation.
   !>     @param[inout]
   !>     s       device pointer or host pointer sine element of Givens rotation.
-  !> 
-  !>     
+  !>
   interface hipblasZrotg
 #ifdef USE_CUDA_NAMES
     function hipblasZrotg_(handle,a,b,c,s) bind(c, name="cublasZrotg_v2")
@@ -3888,7 +3863,7 @@ module hipfort_hipblas
     end function
 
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     rotgBatched creates the Givens rotation matrix for the batched vectors (a_i b_i), for i = 1, ..., batchCount.
@@ -3910,8 +3885,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of batches (length of arrays a, b, c, and s).
-  !> 
-  !>     
+  !>
   interface hipblasZrotgBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZrotgBatched_(handle,a,b,c,s,batchCount) bind(c, name="cublasZrotgBatched")
@@ -4003,7 +3977,7 @@ module hipfort_hipblas
     end function
 
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     rotgStridedBatched creates the Givens rotation matrix for the strided batched vectors (a_i b_i), for i = 1, ..., batchCount.
@@ -4037,8 +4011,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of batches (length of arrays a, b, c, and s).
-  !> 
-  !>     
+  !>
   interface hipblasZrotgStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZrotgStridedBatched_(handle,a,stride_a,b,stride_b,c,stride_c,s,stride_s,batchCount) bind(c, name="cublasZrotgStridedBatched")
@@ -4088,7 +4061,7 @@ module hipfort_hipblas
       hipblasSrotm_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     rotm applies the modified Givens rotation matrix defined by param to vectors x and y.
@@ -4122,8 +4095,7 @@ module hipfort_hipblas
   !>             flag =  1 => H = ( H11 1.0 -1.0 H22 )
   !>             flag = -2 => H = ( 1.0 0.0 0.0 1.0 )
   !>             param may be stored in either host or device memory, location is specified by calling hipblasSetPointerMode.
-  !> 
-  !>     
+  !>
   interface hipblasDrotm
 #ifdef USE_CUDA_NAMES
     function hipblasDrotm_(handle,n,x,incx,y,incy,param) bind(c, name="cublasDrotm_v2")
@@ -4177,7 +4149,7 @@ module hipfort_hipblas
       hipblasSrotmBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     rotmBatched applies the modified Givens rotation matrix defined by param_i to batched vectors x_i and y_i, for i = 1, ..., batchCount.
@@ -4214,8 +4186,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 the number of x and y arrays, i.e. the number of batches.
-  !> 
-  !>     
+  !>
   interface hipblasDrotmBatched
 #ifdef USE_CUDA_NAMES
     function hipblasDrotmBatched_(handle,n,x,incx,y,incy,param,batchCount) bind(c, name="cublasDrotmBatched")
@@ -4273,7 +4244,7 @@ module hipfort_hipblas
       hipblasSrotmStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     rotmStridedBatched applies the modified Givens rotation matrix defined by param_i to strided batched vectors x_i and y_i, for i = 1, ..., batchCount
@@ -4319,8 +4290,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 the number of x and y arrays, i.e. the number of batches.
-  !> 
-  !>     
+  !>
   interface hipblasDrotmStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasDrotmStridedBatched_(handle,n,x,incx,stridex,y,incy,stridey,param,strideParam,batchCount) bind(c, name="cublasDrotmStridedBatched")
@@ -4370,10 +4340,10 @@ module hipfort_hipblas
     end function
 
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
-  !>     rotmg creates the modified Givens rotation matrix for the vector (d1  x1, d2  y1).
+  !>     rotmg creates the modified Givens rotation matrix for the vector (d1 * x1, d2 * y1).
   !>           Parameters may be stored in either host or device memory, location is specified by calling hipblasSetPointerMode.
   !>           If the pointer mode is set to HIPBLAS_POINTER_MODE_HOST, this function blocks the CPU until the GPU has finished and the results are available in host memory.
   !>           If the pointer mode is set to HIPBLAS_POINTER_MODE_DEVICE, this function returns immediately and synchronization is required to read the results.
@@ -4402,8 +4372,7 @@ module hipfort_hipblas
   !>             flag =  1 => H = ( H11 1.0 -1.0 H22 )
   !>             flag = -2 => H = ( 1.0 0.0 0.0 1.0 )
   !>             param may be stored in either host or device memory, location is specified by calling hipblasSetPointerMode.
-  !> 
-  !>     
+  !>
   interface hipblasDrotmg
 #ifdef USE_CUDA_NAMES
     function hipblasDrotmg_(handle,d1,d2,x1,y1,param) bind(c, name="cublasDrotmg_v2")
@@ -4444,10 +4413,10 @@ module hipfort_hipblas
     end function
 
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
-  !>     rotmgBatched creates the modified Givens rotation matrix for the batched vectors (d1_i  x1_i, d2_i  y1_i), for i = 1, ..., batchCount.
+  !>     rotmgBatched creates the modified Givens rotation matrix for the batched vectors (d1_i * x1_i, d2_i * y1_i), for i = 1, ..., batchCount.
   !>           Parameters may be stored in either host or device memory, location is specified by calling hipblasSetPointerMode.
   !>           If the pointer mode is set to HIPBLAS_POINTER_MODE_HOST, this function blocks the CPU until the GPU has finished and the results are available in host memory.
   !>           If the pointer mode is set to HIPBLAS_POINTER_MODE_DEVICE, this function returns immediately and synchronization is required to read the results.
@@ -4479,8 +4448,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 the number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface hipblasDrotmgBatched
 #ifdef USE_CUDA_NAMES
     function hipblasDrotmgBatched_(handle,d1,d2,x1,y1,param,batchCount) bind(c, name="cublasDrotmgBatched")
@@ -4527,10 +4495,10 @@ module hipfort_hipblas
     end function
 
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
-  !>     rotmgStridedBatched creates the modified Givens rotation matrix for the strided batched vectors (d1_i  x1_i, d2_i  y1_i), for i = 1, ..., batchCount.
+  !>     rotmgStridedBatched creates the modified Givens rotation matrix for the strided batched vectors (d1_i * x1_i, d2_i * y1_i), for i = 1, ..., batchCount.
   !>           Parameters may be stored in either host or device memory, location is specified by calling hipblasSetPointerMode.
   !>           If the pointer mode is set to HIPBLAS_POINTER_MODE_HOST, this function blocks the CPU until the GPU has finished and the results are available in host memory.
   !>           If the pointer mode is set to HIPBLAS_POINTER_MODE_DEVICE, this function returns immediately and synchronization is required to read the results.
@@ -4577,8 +4545,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 the number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface hipblasDrotmgStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasDrotmgStridedBatched_(handle,d1,stride_d1,d2,stride_d2,x1,stride_x1,y1,stride_y1,param,strideParam,batchCount) bind(c, name="cublasDrotmgStridedBatched")
@@ -4700,12 +4667,12 @@ module hipfort_hipblas
       hipblasCsscal_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     scal  scales each element of vector x with scalar alpha.
   !> 
-  !>         x := alpha  x
+  !>         x := alpha * x
   !> 
   !>     @param[in]
   !>     handle    [hipblasHandle_t]
@@ -4721,8 +4688,7 @@ module hipfort_hipblas
   !>     incx      [int]
   !>               specifies the increment for the elements of x.
   !> 
-  !> 
-  !>     
+  !>
   interface hipblasZscal
 #ifdef USE_CUDA_NAMES
     function hipblasZscal_(handle,n,alpha,x,incx) bind(c, name="cublasZscal_v2")
@@ -4900,11 +4866,11 @@ module hipfort_hipblas
       hipblasCsscalBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !>      \details
   !>     scalBatched  scales each element of vector x_i with scalar alpha, for i = 1, ... , batchCount.
   !> 
-  !>          x_i := alpha  x_i
+  !>          x_i := alpha * x_i
   !> 
   !>      where (x_i) is the i-th instance of the batch.
   !>     @param[in]
@@ -4923,7 +4889,6 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 specifies the number of batches in x.
-  !>      
   interface hipblasZdscalBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZdscalBatched_(handle,n,alpha,x,incx,batchCount) bind(c, name="cublasZdscalBatched")
@@ -5079,11 +5044,11 @@ module hipfort_hipblas
       hipblasCsscalStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !>      \details
   !>     scalStridedBatched  scales each element of vector x_i with scalar alpha, for i = 1, ... , batchCount.
   !> 
-  !>          x_i := alpha  x_i ,
+  !>          x_i := alpha * x_i ,
   !> 
   !>      where (x_i) is the i-th instance of the batch.
   !>      @param[in]
@@ -5104,11 +5069,10 @@ module hipfort_hipblas
   !>                 stride from the start of one vector (x_i) and the next one (x_i+1).
   !>                 There are no restrictions placed on stride_x, however the user should
   !>                 take care to ensure that stride_x is of appropriate size, for a typical
-  !>                 case this means stride_x >= n  incx.
+  !>                 case this means stride_x >= n * incx.
   !>     @param[in]
   !>     batchCount [int]
   !>                 specifies the number of batches in x.
-  !>      
   interface hipblasZdscalStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZdscalStridedBatched_(handle,n,alpha,x,incx,stridex,batchCount) bind(c, name="cublasZdscalStridedBatched")
@@ -5209,7 +5173,7 @@ module hipfort_hipblas
       hipblasCswap_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     swap  interchanges vectors x and y.
@@ -5232,8 +5196,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     incy      [int]
   !>               specifies the increment for the elements of y.
-  !> 
-  !>     
+  !>
   interface hipblasZswap
 #ifdef USE_CUDA_NAMES
     function hipblasZswap_(handle,n,x,incx,y,incy) bind(c, name="cublasZswap_v2")
@@ -5339,7 +5302,7 @@ module hipfort_hipblas
       hipblasCswapBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     swapBatched interchanges vectors x_i and y_i, for i = 1 , ... , batchCount
@@ -5365,8 +5328,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface hipblasZswapBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZswapBatched_(handle,n,x,incx,y,incy,batchCount) bind(c, name="cublasZswapBatched")
@@ -5477,7 +5439,7 @@ module hipfort_hipblas
       hipblasCswapStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 1 API
+  !>  \brief BLAS Level 1 API
   !> 
   !>     \details
   !>     swapStridedBatched interchanges vectors x_i and y_i, for i = 1 , ... , batchCount
@@ -5500,7 +5462,7 @@ module hipfort_hipblas
   !>               stride from the start of one vector (x_i) and the next one (x_i+1).
   !>               There are no restrictions placed on stride_x, however the user should
   !>               take care to ensure that stride_x is of appropriate size, for a typical
-  !>               case this means stride_x >= n  incx.
+  !>               case this means stride_x >= n * incx.
   !>     @param[inout]
   !>     y         device pointer to the first vector y_1.
   !>     @param[in]
@@ -5511,12 +5473,11 @@ module hipfort_hipblas
   !>               stride from the start of one vector (y_i) and the next one (y_i+1).
   !>               There are no restrictions placed on stride_x, however the user should
   !>               take care to ensure that stride_y is of appropriate size, for a typical
-  !>               case this means stride_y >= n  incy. stridey should be non zero.
+  !>               case this means stride_y >= n * incy. stridey should be non zero.
   !>      @param[in]
   !>      batchCount [int]
   !>                  number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface hipblasZswapStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZswapStridedBatched_(handle,n,x,incx,stridex,y,incy,stridey,batchCount) bind(c, name="cublasZswapStridedBatched")
@@ -5646,14 +5607,14 @@ module hipfort_hipblas
       hipblasCgbmv_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     gbmv performs one of the matrix-vector operations
   !> 
-  !>         y := alphaAx    + betay,   or
-  !>         y := alphaATx + betay,   or
-  !>         y := alphaAHx + betay,
+  !>         y := alpha*A*x    + beta*y,   or
+  !>         y := alpha*A**T*x + beta*y,   or
+  !>         y := alpha*A**H*x + beta*y,
   !> 
   !>     where alpha and beta are scalars, x and y are vectors and A is an
   !>     m by n banded matrix with kl sub-diagonals and ku super-diagonals.
@@ -5684,7 +5645,7 @@ module hipfort_hipblas
   !>               of the banded matrix. The leading diagonal resides in row (ku + 1) with
   !>               the first super-diagonal above on the RHS of row ku. The first sub-diagonal
   !>               resides below on the LHS of row ku + 2. This propogates up and down across
-  !>               subsuper-diagonals.
+  !>               sub/super-diagonals.
   !>                 Ex: (m = n = 7; ku = 2, kl = 2)
   !>                 1 2 3 0 0 0 0             0 0 3 3 3 3 3
   !>                 4 1 2 3 0 0 0             0 2 2 2 2 2 2
@@ -5710,8 +5671,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     incy      [int]
   !>               specifies the increment for the elements of y.
-  !> 
-  !>     
+  !>
   interface hipblasZgbmv
 #ifdef USE_CUDA_NAMES
     function hipblasZgbmv_(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="cublasZgbmv_v2")
@@ -5850,14 +5810,14 @@ module hipfort_hipblas
       hipblasCgbmvBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     gbmvBatched performs one of the matrix-vector operations
   !> 
-  !>         y_i := alphaA_ix_i    + betay_i,   or
-  !>         y_i := alphaA_iTx_i + betay_i,   or
-  !>         y_i := alphaA_iHx_i + betay_i,
+  !>         y_i := alpha*A_i*x_i    + beta*y_i,   or
+  !>         y_i := alpha*A_i**T*x_i + beta*y_i,   or
+  !>         y_i := alpha*A_i**H*x_i + beta*y_i,
   !> 
   !>     where (A_i, x_i, y_i) is the i-th instance of the batch.
   !>     alpha and beta are scalars, x_i and y_i are vectors and A_i is an
@@ -5890,7 +5850,7 @@ module hipfort_hipblas
   !>               of the banded matrix. The leading diagonal resides in row (ku + 1) with
   !>               the first super-diagonal above on the RHS of row ku. The first sub-diagonal
   !>               resides below on the LHS of row ku + 2. This propogates up and down across
-  !>               subsuper-diagonals.
+  !>               sub/super-diagonals.
   !>                 Ex: (m = n = 7; ku = 2, kl = 2)
   !>                 1 2 3 0 0 0 0             0 0 3 3 3 3 3
   !>                 4 1 2 3 0 0 0             0 2 2 2 2 2 2
@@ -5919,8 +5879,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 specifies the number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface hipblasZgbmvBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZgbmvBatched_(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy,batchCount) bind(c, name="cublasZgbmvBatched")
@@ -6069,14 +6028,14 @@ module hipfort_hipblas
       hipblasCgbmvStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     gbmvStridedBatched performs one of the matrix-vector operations
   !> 
-  !>         y_i := alphaA_ix_i    + betay_i,   or
-  !>         y_i := alphaA_iTx_i + betay_i,   or
-  !>         y_i := alphaA_iHx_i + betay_i,
+  !>         y_i := alpha*A_i*x_i    + beta*y_i,   or
+  !>         y_i := alpha*A_i**T*x_i + beta*y_i,   or
+  !>         y_i := alpha*A_i**H*x_i + beta*y_i,
   !> 
   !>     where (A_i, x_i, y_i) is the i-th instance of the batch.
   !>     alpha and beta are scalars, x_i and y_i are vectors and A_i is an
@@ -6109,7 +6068,7 @@ module hipfort_hipblas
   !>               of the banded matrix. The leading diagonal resides in row (ku + 1) with
   !>               the first super-diagonal above on the RHS of row ku. The first sub-diagonal
   !>               resides below on the LHS of row ku + 2. This propogates up and down across
-  !>               subsuper-diagonals.
+  !>               sub/super-diagonals.
   !>                 Ex: (m = n = 7; ku = 2, kl = 2)
   !>                 1 2 3 0 0 0 0             0 0 3 3 3 3 3
   !>                 4 1 2 3 0 0 0             0 2 2 2 2 2 2
@@ -6147,8 +6106,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 specifies the number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface hipblasZgbmvStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZgbmvStridedBatched_(handle,trans,m,n,kl,ku,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="cublasZgbmvStridedBatched")
@@ -6282,14 +6240,14 @@ module hipfort_hipblas
       hipblasCgemv_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     gemv performs one of the matrix-vector operations
   !> 
-  !>         y := alphaAx    + betay,   or
-  !>         y := alphaATx + betay,   or
-  !>         y := alphaAHx + betay,
+  !>         y := alpha*A*x    + beta*y,   or
+  !>         y := alpha*A**T*x + beta*y,   or
+  !>         y := alpha*A**H*x + beta*y,
   !> 
   !>     where alpha and beta are scalars, x and y are vectors and A is an
   !>     m by n matrix.
@@ -6325,8 +6283,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     incy      [int]
   !>               specifies the increment for the elements of y.
-  !> 
-  !>     
+  !>
   interface hipblasZgemv
 #ifdef USE_CUDA_NAMES
     function hipblasZgemv_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="cublasZgemv_v2")
@@ -6457,14 +6414,14 @@ module hipfort_hipblas
       hipblasCgemvBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     gemvBatched performs a batch of matrix-vector operations
   !> 
-  !>         y_i := alphaA_ix_i    + betay_i,   or
-  !>         y_i := alphaA_iTx_i + betay_i,   or
-  !>         y_i := alphaA_iHx_i + betay_i,
+  !>         y_i := alpha*A_i*x_i    + beta*y_i,   or
+  !>         y_i := alpha*A_i**T*x_i + beta*y_i,   or
+  !>         y_i := alpha*A_i**H*x_i + beta*y_i,
   !> 
   !>     where (A_i, x_i, y_i) is the i-th instance of the batch.
   !>     alpha and beta are scalars, x_i and y_i are vectors and A_i is an
@@ -6504,8 +6461,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch
-  !> 
-  !>     
+  !>
   interface hipblasZgemvBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZgemvBatched_(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy,batchCount) bind(c, name="cublasZgemvBatched")
@@ -6646,14 +6602,14 @@ module hipfort_hipblas
       hipblasCgemvStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     gemvStridedBatched performs a batch of matrix-vector operations
   !> 
-  !>         y_i := alphaA_ix_i    + betay_i,   or
-  !>         y_i := alphaA_iTx_i + betay_i,   or
-  !>         y_i := alphaA_iHx_i + betay_i,
+  !>         y_i := alpha*A_i*x_i    + beta*y_i,   or
+  !>         y_i := alpha*A_i**T*x_i + beta*y_i,   or
+  !>         y_i := alpha*A_i**H*x_i + beta*y_i,
   !> 
   !>     where (A_i, x_i, y_i) is the i-th instance of the batch.
   !>     alpha and beta are scalars, x_i and y_i are vectors and A_i is an
@@ -6691,7 +6647,7 @@ module hipfort_hipblas
   !>                 stride from the start of one vector (x_i) and the next one (x_i+1).
   !>                 There are no restrictions placed on stridex, however the user should
   !>                 take care to ensure that stridex is of appropriate size. When trans equals HIPBLAS_OP_N
-  !>                 this typically means stridex >= n  incx, otherwise stridex >= m  incx.
+  !>                 this typically means stridex >= n * incx, otherwise stridex >= m * incx.
   !>     @param[in]
   !>     beta        device pointer or host pointer to scalar beta.
   !>     @param[inout]
@@ -6704,12 +6660,11 @@ module hipfort_hipblas
   !>                 stride from the start of one vector (y_i) and the next one (y_i+1).
   !>                 There are no restrictions placed on stridey, however the user should
   !>                 take care to ensure that stridey is of appropriate size. When trans equals HIPBLAS_OP_N
-  !>                 this typically means stridey >= m  incy, otherwise stridey >= n  incy. stridey should be non zero.
+  !>                 this typically means stridey >= m * incy, otherwise stridey >= n * incy. stridey should be non zero.
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch
-  !> 
-  !>     
+  !>
   interface hipblasZgemvStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZgemvStridedBatched_(handle,trans,m,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="cublasZgemvStridedBatched")
@@ -6895,13 +6850,13 @@ module hipfort_hipblas
       hipblasZgeru_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     ger,geru,gerc performs the matrix-vector operations
   !> 
-  !>         A := A + alphaxyT , OR
-  !>         A := A + alphaxyH for gerc
+  !>         A := A + alpha*x*y**T , OR
+  !>         A := A + alpha*x*y**H for gerc
   !> 
   !>     where alpha is a scalar, x and y are vectors, and A is an
   !>     m by n matrix.
@@ -6933,8 +6888,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     lda       [int]
   !>               specifies the leading dimension of A.
-  !> 
-  !>     
+  !>
   interface hipblasZgerc
 #ifdef USE_CUDA_NAMES
     function hipblasZgerc_(handle,m,n,alpha,x,incx,y,incy,A,lda) bind(c, name="cublasZgerc_v2")
@@ -7119,13 +7073,13 @@ module hipfort_hipblas
       hipblasZgeruBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     gerBatched,geruBatched,gercBatched performs a batch of the matrix-vector operations
   !> 
-  !>         A := A + alphaxyT , OR
-  !>         A := A + alphaxyH for gerc
+  !>         A := A + alpha*x*y**T , OR
+  !>         A := A + alpha*x*y**H for gerc
   !> 
   !>     where (A_i, x_i, y_i) is the i-th instance of the batch.
   !>     alpha is a scalar, x_i and y_i are vectors and A_i is an
@@ -7161,8 +7115,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch
-  !> 
-  !>     
+  !>
   interface hipblasZgercBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZgercBatched_(handle,m,n,alpha,x,incx,y,incy,A,lda,batchCount) bind(c, name="cublasZgercBatched")
@@ -7363,13 +7316,13 @@ module hipfort_hipblas
       hipblasZgeruStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     gerStridedBatched,geruStridedBatched,gercStridedBatched performs the matrix-vector operations
   !> 
-  !>         A_i := A_i + alphax_iy_iT, OR
-  !>         A_i := A_i + alphax_iy_iH  for gerc
+  !>         A_i := A_i + alpha*x_i*y_i**T, OR
+  !>         A_i := A_i + alpha*x_i*y_i**H  for gerc
   !> 
   !>     where (A_i, x_i, y_i) is the i-th instance of the batch.
   !>     alpha is a scalar, x_i and y_i are vectors and A_i is an
@@ -7397,7 +7350,7 @@ module hipfort_hipblas
   !>               stride from the start of one vector (x_i) and the next one (x_i+1).
   !>               There are no restrictions placed on stridex, however the user should
   !>               take care to ensure that stridex is of appropriate size, for a typical
-  !>               case this means stridex >= m  incx.
+  !>               case this means stridex >= m * incx.
   !>     @param[inout]
   !>     y         device pointer to the first vector (y_1) in the batch.
   !>     @param[in]
@@ -7408,7 +7361,7 @@ module hipfort_hipblas
   !>               stride from the start of one vector (y_i) and the next one (y_i+1).
   !>               There are no restrictions placed on stridey, however the user should
   !>               take care to ensure that stridey is of appropriate size, for a typical
-  !>               case this means stridey >= n  incy.
+  !>               case this means stridey >= n * incy.
   !>     @param[inout]
   !>     A         device pointer to the first matrix (A_1) in the batch.
   !>     @param[in]
@@ -7420,8 +7373,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch
-  !> 
-  !>     
+  !>
   interface hipblasZgercStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZgercStridedBatched_(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batchCount) bind(c, name="cublasZgercStridedBatched")
@@ -7487,12 +7439,12 @@ module hipfort_hipblas
       hipblasChbmv_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     hbmv performs the matrix-vector operations
   !> 
-  !>         y := alphaAx + betay
+  !>         y := alpha*A*x + beta*y
   !> 
   !>     where alpha and beta are scalars, x and y are n element vectors and A is an
   !>     n by n Hermitian band matrix, with k super-diagonals.
@@ -7557,8 +7509,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     incy      [int]
   !>               specifies the increment for the elements of y.
-  !> 
-  !>     
+  !>
   interface hipblasZhbmv
 #ifdef USE_CUDA_NAMES
     function hipblasZhbmv_(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="cublasZhbmv_v2")
@@ -7623,12 +7574,12 @@ module hipfort_hipblas
       hipblasChbmvBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     hbmvBatched performs one of the matrix-vector operations
   !> 
-  !>         y_i := alphaA_ix_i + betay_i
+  !>         y_i := alpha*A_i*x_i + beta*y_i
   !> 
   !>     where alpha and beta are scalars, x_i and y_i are n element vectors and A_i is an
   !>     n by n Hermitian band matrix with k super-diagonals, for each batch in i = [1, batchCount].
@@ -7696,8 +7647,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface hipblasZhbmvBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZhbmvBatched_(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy,batchCount) bind(c, name="cublasZhbmvBatched")
@@ -7766,12 +7716,12 @@ module hipfort_hipblas
       hipblasChbmvStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     hbmvStridedBatched performs one of the matrix-vector operations
   !> 
-  !>         y_i := alphaA_ix_i + betay_i
+  !>         y_i := alpha*A_i*x_i + beta*y_i
   !> 
   !>     where alpha and beta are scalars, x_i and y_i are n element vectors and A_i is an
   !>     n by n Hermitian band matrix with k super-diagonals, for each batch in i = [1, batchCount].
@@ -7848,8 +7798,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface hipblasZhbmvStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZhbmvStridedBatched_(handle,uplo,n,k,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="cublasZhbmvStridedBatched")
@@ -7916,12 +7865,12 @@ module hipfort_hipblas
       hipblasChemv_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     hemv performs one of the matrix-vector operations
   !> 
-  !>         y := alphaAx + betay
+  !>         y := alpha*A*x + beta*y
   !> 
   !>     where alpha and beta are scalars, x and y are n element vectors and A is an
   !>     n by n Hermitian matrix.
@@ -7965,8 +7914,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     incy      [int]
   !>               specifies the increment for the elements of y.
-  !> 
-  !>     
+  !>
   interface hipblasZhemv
 #ifdef USE_CUDA_NAMES
     function hipblasZhemv_(handle,uplo,n,alpha,A,da,x,incx,beta,y,incy) bind(c, name="cublasZhemv_v2")
@@ -8029,12 +7977,12 @@ module hipfort_hipblas
       hipblasChemvBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     hemvBatched performs one of the matrix-vector operations
   !> 
-  !>         y_i := alphaA_ix_i + betay_i
+  !>         y_i := alpha*A_i*x_i + beta*y_i
   !> 
   !>     where alpha and beta are scalars, x_i and y_i are n element vectors and A_i is an
   !>     n by n Hermitian matrix, for each batch in i = [1, batchCount].
@@ -8081,8 +8029,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface hipblasZhemvBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZhemvBatched_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy,batchCount) bind(c, name="cublasZhemvBatched")
@@ -8149,12 +8096,12 @@ module hipfort_hipblas
       hipblasChemvStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     hemvStridedBatched performs one of the matrix-vector operations
   !> 
-  !>         y_i := alphaA_ix_i + betay_i
+  !>         y_i := alpha*A_i*x_i + beta*y_i
   !> 
   !>     where alpha and beta are scalars, x_i and y_i are n element vectors and A_i is an
   !>     n by n Hermitian matrix, for each batch in i = [1, batchCount].
@@ -8211,8 +8158,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface hipblasZhemvStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZhemvStridedBatched_(handle,uplo,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="cublasZhemvStridedBatched")
@@ -8275,12 +8221,12 @@ module hipfort_hipblas
       hipblasCher_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     her performs the matrix-vector operations
   !> 
-  !>         A := A + alphaxxH
+  !>         A := A + alpha*x*x**H
   !> 
   !>     where alpha is a real scalar, x is a vector, and A is an
   !>     n by n Hermitian matrix.
@@ -8306,7 +8252,7 @@ module hipfort_hipblas
   !>               specifies the increment for the elements of x.
   !>     @param[inout]
   !>     A         device pointer storing the specified triangular portion of
-  !>               the Hermitian matrix A. Of size (lda  n).
+  !>               the Hermitian matrix A. Of size (lda * n).
   !>               if uplo == HIPBLAS_FILL_MODE_UPPER:
   !>                 The upper triangular portion of the Hermitian matrix A is supplied. The lower
   !>                 triangluar portion will not be touched.
@@ -8318,7 +8264,6 @@ module hipfort_hipblas
   !>     @param[in]
   !>     lda       [int]
   !>               specifies the leading dimension of A. Must be at least max(1, n).
-  !>     
   interface hipblasZher
 #ifdef USE_CUDA_NAMES
     function hipblasZher_(handle,uplo,n,alpha,x,incx,A,lda) bind(c, name="cublasZher_v2")
@@ -8375,12 +8320,12 @@ module hipfort_hipblas
       hipblasCherBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     herBatched performs the matrix-vector operations
   !> 
-  !>         A_i := A_i + alphax_ix_iH
+  !>         A_i := A_i + alpha*x_i*x_i**H
   !> 
   !>     where alpha is a real scalar, x_i is a vector, and A_i is an
   !>     n by n symmetric matrix, for i = 1, ..., batchCount.
@@ -8406,7 +8351,7 @@ module hipfort_hipblas
   !>               specifies the increment for the elements of each x_i.
   !>     @param[inout]
   !>     A         device array of device pointers storing the specified triangular portion of
-  !>               each Hermitian matrix A_i of at least size ((n  (n + 1))  2). Array is of at least size batchCount.
+  !>               each Hermitian matrix A_i of at least size ((n * (n + 1)) 2). Array is of at least size batchCount.
   !>               if uplo == HIPBLAS_FILL_MODE_UPPER:
   !>                 The upper triangular portion of each Hermitian matrix A_i is supplied. The lower triangular portion
   !>                 of each A_i will not be touched.
@@ -8421,7 +8366,6 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch.
-  !>     
   interface hipblasZherBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZherBatched_(handle,uplo,n,alpha,x,incx,A,lda,batchCount) bind(c, name="cublasZherBatched")
@@ -8481,12 +8425,12 @@ module hipfort_hipblas
       hipblasCherStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     herStridedBatched performs the matrix-vector operations
   !> 
-  !>         A_i := A_i + alphax_ix_iH
+  !>         A_i := A_i + alpha*x_i*x_i**H
   !> 
   !>     where alpha is a real scalar, x_i is a vector, and A_i is an
   !>     n by n Hermitian matrix, for i = 1, ..., batchCount.
@@ -8533,7 +8477,6 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch.
-  !>     
   interface hipblasZherStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZherStridedBatched_(handle,uplo,n,alpha,x,incx,stridex,A,lda,strideA,batchCount) bind(c, name="cublasZherStridedBatched")
@@ -8594,12 +8537,12 @@ module hipfort_hipblas
       hipblasCher2_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     her2 performs the matrix-vector operations
   !> 
-  !>         A := A + alphaxyH + conj(alpha)yxH
+  !>         A := A + alpha*x*y**H + conj(alpha)*y*x**H
   !> 
   !>     where alpha is a complex scalar, x and y are vectors, and A is an
   !>     n by n Hermitian matrix.
@@ -8642,7 +8585,6 @@ module hipfort_hipblas
   !>     @param[in]
   !>     lda       [int]
   !>               specifies the leading dimension of A. Must be at least max(lda, 1).
-  !>     
   interface hipblasZher2
 #ifdef USE_CUDA_NAMES
     function hipblasZher2_(handle,uplo,n,alpha,x,incx,y,incy,A,lda) bind(c, name="cublasZher2_v2")
@@ -8703,12 +8645,12 @@ module hipfort_hipblas
       hipblasCher2Batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     her2Batched performs the matrix-vector operations
   !> 
-  !>         A_i := A_i + alphax_iy_iH + conj(alpha)y_ix_iH
+  !>         A_i := A_i + alpha*x_i*y_i**H + conj(alpha)*y_i*x_i**H
   !> 
   !>     where alpha is a complex scalar, x_i and y_i are vectors, and A_i is an
   !>     n by n Hermitian matrix for each batch in i = [1, batchCount].
@@ -8754,7 +8696,6 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch.
-  !>     
   interface hipblasZher2Batched
 #ifdef USE_CUDA_NAMES
     function hipblasZher2Batched_(handle,uplo,n,alpha,x,incx,y,incy,A,lda,batchCount) bind(c, name="cublasZher2Batched")
@@ -8819,12 +8760,12 @@ module hipfort_hipblas
       hipblasCher2StridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     her2StridedBatched performs the matrix-vector operations
   !> 
-  !>         A_i := A_i + alphax_iy_iH + conj(alpha)y_ix_iH
+  !>         A_i := A_i + alpha*x_i*y_i**H + conj(alpha)*y_i*x_i**H
   !> 
   !>     where alpha is a complex scalar, x_i and y_i are vectors, and A_i is an
   !>     n by n Hermitian matrix for each batch in i = [1, batchCount].
@@ -8879,7 +8820,6 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch.
-  !>     
   interface hipblasZher2StridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZher2StridedBatched_(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batchCount) bind(c, name="cublasZher2StridedBatched")
@@ -8942,12 +8882,12 @@ module hipfort_hipblas
       hipblasChpmv_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     hpmv performs the matrix-vector operation
   !> 
-  !>         y := alphaAx + betay
+  !>         y := alpha*A*x + beta*y
   !> 
   !>     where alpha and beta are scalars, x and y are n element vectors and A is an
   !>     n by n Hermitian matrix, supplied in packed form (see description below).
@@ -8966,7 +8906,7 @@ module hipfort_hipblas
   !>     alpha     device pointer or host pointer to scalar alpha.
   !>     @param[in]
   !>     AP        device pointer storing the packed version of the specified triangular portion of
-  !>               the Hermitian matrix A. Of at least size ((n  (n + 1))  2).
+  !>               the Hermitian matrix A. Of at least size ((n * (n + 1)) 2).
   !>               if uplo == HIPBLAS_FILL_MODE_UPPER:
   !>                 The upper triangular portion of the Hermitian matrix A is supplied.
   !>                 The matrix is compacted so that AP contains the triangular portion column-by-column
@@ -9003,8 +8943,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     incy      [int]
   !>               specifies the increment for the elements of y.
-  !> 
-  !>     
+  !>
   interface hipblasZhpmv
 #ifdef USE_CUDA_NAMES
     function hipblasZhpmv_(handle,uplo,n,alpha,AP,x,incx,beta,y,incy) bind(c, name="cublasZhpmv_v2")
@@ -9064,12 +9003,12 @@ module hipfort_hipblas
       hipblasChpmvBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     hpmvBatched performs the matrix-vector operation
   !> 
-  !>         y_i := alphaA_ix_i + betay_i
+  !>         y_i := alpha*A_i*x_i + beta*y_i
   !> 
   !>     where alpha and beta are scalars, x_i and y_i are n element vectors and A_i is an
   !>     n by n Hermitian matrix, supplied in packed form (see description below),
@@ -9089,7 +9028,7 @@ module hipfort_hipblas
   !>     alpha     device pointer or host pointer to scalar alpha.
   !>     @param[in]
   !>     AP      device pointer of device pointers storing the packed version of the specified triangular
-  !>             portion of each Hermitian matrix A_i. Each A_i is of at least size ((n  (n + 1))  2).
+  !>             portion of each Hermitian matrix A_i. Each A_i is of at least size ((n * (n + 1)) 2).
   !>             if uplo == HIPBLAS_FILL_MODE_UPPER:
   !>             The upper triangular portion of each Hermitian matrix A_i is supplied.
   !>             The matrix is compacted so that each AP_i contains the triangular portion column-by-column
@@ -9129,8 +9068,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface hipblasZhpmvBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZhpmvBatched_(handle,uplo,n,alpha,AP,x,incx,beta,y,incy,batchCount) bind(c, name="cublasZhpmvBatched")
@@ -9194,12 +9132,12 @@ module hipfort_hipblas
       hipblasChpmvStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     hpmvStridedBatched performs the matrix-vector operation
   !> 
-  !>         y_i := alphaA_ix_i + betay_i
+  !>         y_i := alpha*A_i*x_i + beta*y_i
   !> 
   !>     where alpha and beta are scalars, x_i and y_i are n element vectors and A_i is an
   !>     n by n Hermitian matrix, supplied in packed form (see description below),
@@ -9219,7 +9157,7 @@ module hipfort_hipblas
   !>     alpha     device pointer or host pointer to scalar alpha.
   !>     @param[in]
   !>     AP        device pointer pointing to the beginning of the first matrix (AP_1). Stores the packed
-  !>               version of the specified triangular portion of each Hermitian matrix AP_i of size ((n  (n + 1))  2).
+  !>               version of the specified triangular portion of each Hermitian matrix AP_i of size ((n * (n + 1)) 2).
   !>               if uplo == HIPBLAS_FILL_MODE_UPPER:
   !>                 The upper triangular portion of each Hermitian matrix A_i is supplied.
   !>                 The matrix is compacted so that each AP_i contains the triangular portion column-by-column
@@ -9268,8 +9206,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface hipblasZhpmvStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZhpmvStridedBatched_(handle,uplo,n,alpha,AP,strideAP,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="cublasZhpmvStridedBatched")
@@ -9328,12 +9265,12 @@ module hipfort_hipblas
       hipblasChpr_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     hpr performs the matrix-vector operations
   !> 
-  !>         A := A + alphaxxH
+  !>         A := A + alpha*x*x**H
   !> 
   !>     where alpha is a real scalar, x is a vector, and A is an
   !>     n by n Hermitian matrix, supplied in packed form.
@@ -9359,7 +9296,7 @@ module hipfort_hipblas
   !>               specifies the increment for the elements of x.
   !>     @param[inout]
   !>     AP        device pointer storing the packed version of the specified triangular portion of
-  !>               the Hermitian matrix A. Of at least size ((n  (n + 1))  2).
+  !>               the Hermitian matrix A. Of at least size ((n * (n + 1)) 2).
   !>               if uplo == HIPBLAS_FILL_MODE_UPPER:
   !>                 The upper triangular portion of the Hermitian matrix A is supplied.
   !>                 The matrix is compacted so that AP contains the triangular portion column-by-column
@@ -9384,7 +9321,6 @@ module hipfort_hipblas
   !>                         (4,-9) (5,-3) (6,0)
   !>             Note that the imaginary part of the diagonal elements are not accessed and are assumed
   !>             to be 0.
-  !>     
   interface hipblasZhpr
 #ifdef USE_CUDA_NAMES
     function hipblasZhpr_(handle,uplo,n,alpha,x,incx,AP) bind(c, name="cublasZhpr_v2")
@@ -9438,12 +9374,12 @@ module hipfort_hipblas
       hipblasChprBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     hprBatched performs the matrix-vector operations
   !> 
-  !>         A_i := A_i + alphax_ix_iH
+  !>         A_i := A_i + alpha*x_i*x_i**H
   !> 
   !>     where alpha is a real scalar, x_i is a vector, and A_i is an
   !>     n by n symmetric matrix, supplied in packed form, for i = 1, ..., batchCount.
@@ -9469,7 +9405,7 @@ module hipfort_hipblas
   !>               specifies the increment for the elements of each x_i.
   !>     @param[inout]
   !>     AP        device array of device pointers storing the packed version of the specified triangular portion of
-  !>               each Hermitian matrix A_i of at least size ((n  (n + 1))  2). Array is of at least size batchCount.
+  !>               each Hermitian matrix A_i of at least size ((n * (n + 1)) 2). Array is of at least size batchCount.
   !>               if uplo == HIPBLAS_FILL_MODE_UPPER:
   !>                 The upper triangular portion of each Hermitian matrix A_i is supplied.
   !>                 The matrix is compacted so that AP contains the triangular portion column-by-column
@@ -9497,7 +9433,6 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch.
-  !>     
   interface hipblasZhprBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZhprBatched_(handle,uplo,n,alpha,x,incx,AP,batchCount) bind(c, name="cublasZhprBatched")
@@ -9554,12 +9489,12 @@ module hipfort_hipblas
       hipblasChprStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     hprStridedBatched performs the matrix-vector operations
   !> 
-  !>         A_i := A_i + alphax_ix_iH
+  !>         A_i := A_i + alpha*x_i*x_i**H
   !> 
   !>     where alpha is a real scalar, x_i is a vector, and A_i is an
   !>     n by n symmetric matrix, supplied in packed form, for i = 1, ..., batchCount.
@@ -9619,7 +9554,6 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch.
-  !>     
   interface hipblasZhprStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZhprStridedBatched_(handle,uplo,n,alpha,x,incx,stridex,AP,strideAP,batchCount) bind(c, name="cublasZhprStridedBatched")
@@ -9676,12 +9610,12 @@ module hipfort_hipblas
       hipblasChpr2_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     hpr2 performs the matrix-vector operations
   !> 
-  !>         A := A + alphaxyH + conj(alpha)yxH
+  !>         A := A + alpha*x*y**H + conj(alpha)*y*x**H
   !> 
   !>     where alpha is a complex scalar, x and y are vectors, and A is an
   !>     n by n Hermitian matrix, supplied in packed form.
@@ -9712,7 +9646,7 @@ module hipfort_hipblas
   !>               specifies the increment for the elements of y.
   !>     @param[inout]
   !>     AP        device pointer storing the packed version of the specified triangular portion of
-  !>               the Hermitian matrix A. Of at least size ((n  (n + 1))  2).
+  !>               the Hermitian matrix A. Of at least size ((n * (n + 1)) 2).
   !>               if uplo == HIPBLAS_FILL_MODE_UPPER:
   !>                 The upper triangular portion of the Hermitian matrix A is supplied.
   !>                 The matrix is compacted so that AP contains the triangular portion column-by-column
@@ -9737,7 +9671,6 @@ module hipfort_hipblas
   !>                         (4,-9) (5,-3) (6,0)
   !>             Note that the imaginary part of the diagonal elements are not accessed and are assumed
   !>             to be 0.
-  !>     
   interface hipblasZhpr2
 #ifdef USE_CUDA_NAMES
     function hipblasZhpr2_(handle,uplo,n,alpha,x,incx,y,incy,AP) bind(c, name="cublasZhpr2_v2")
@@ -9795,12 +9728,12 @@ module hipfort_hipblas
       hipblasChpr2Batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     hpr2Batched performs the matrix-vector operations
   !> 
-  !>         A_i := A_i + alphax_iy_iH + conj(alpha)y_ix_iH
+  !>         A_i := A_i + alpha*x_i*y_i**H + conj(alpha)*y_i*x_i**H
   !> 
   !>     where alpha is a complex scalar, x_i and y_i are vectors, and A_i is an
   !>     n by n symmetric matrix, supplied in packed form, for i = 1, ..., batchCount.
@@ -9831,7 +9764,7 @@ module hipfort_hipblas
   !>               specifies the increment for the elements of each y_i.
   !>     @param[inout]
   !>     AP        device array of device pointers storing the packed version of the specified triangular portion of
-  !>               each Hermitian matrix A_i of at least size ((n  (n + 1))  2). Array is of at least size batchCount.
+  !>               each Hermitian matrix A_i of at least size ((n * (n + 1)) 2). Array is of at least size batchCount.
   !>               if uplo == HIPBLAS_FILL_MODE_UPPER:
   !>                 The upper triangular portion of each Hermitian matrix A_i is supplied.
   !>                 The matrix is compacted so that AP contains the triangular portion column-by-column
@@ -9859,7 +9792,6 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch.
-  !>     
   interface hipblasZhpr2Batched
 #ifdef USE_CUDA_NAMES
     function hipblasZhpr2Batched_(handle,uplo,n,alpha,x,incx,y,incy,AP,batchCount) bind(c, name="cublasZhpr2Batched")
@@ -9921,12 +9853,12 @@ module hipfort_hipblas
       hipblasChpr2StridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     hpr2StridedBatched performs the matrix-vector operations
   !> 
-  !>         A_i := A_i + alphax_iy_iH + conj(alpha)y_ix_iH
+  !>         A_i := A_i + alpha*x_i*y_i**H + conj(alpha)*y_i*x_i**H
   !> 
   !>     where alpha is a complex scalar, x_i and y_i are vectors, and A_i is an
   !>     n by n symmetric matrix, supplied in packed form, for i = 1, ..., batchCount.
@@ -9994,7 +9926,6 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch.
-  !>     
   interface hipblasZhpr2StridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZhpr2StridedBatched_(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,AP,strideAP,batchCount) bind(c, name="cublasZhpr2StridedBatched")
@@ -10058,12 +9989,12 @@ module hipfort_hipblas
       hipblasSsbmv_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     sbmv performs the matrix-vector operation:
   !> 
-  !>         y := alphaAx + betay,
+  !>         y := alpha*A*x + beta*y,
   !> 
   !>     where alpha and beta are scalars, x and y are n element vectors and
   !>     A should contain an upper or lower triangular n by n symmetric banded matrix.
@@ -10101,8 +10032,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     incy      [int]
   !>               specifies the increment for the elements of y
-  !> 
-  !>     
+  !>
   interface hipblasDsbmv
 #ifdef USE_CUDA_NAMES
     function hipblasDsbmv_(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="cublasDsbmv_v2")
@@ -10167,12 +10097,12 @@ module hipfort_hipblas
       hipblasSsbmvBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     sbmvBatched performs the matrix-vector operation:
   !> 
-  !>         y_i := alphaA_ix_i + betay_i,
+  !>         y_i := alpha*A_i*x_i + beta*y_i,
   !> 
   !>     where (A_i, x_i, y_i) is the i-th instance of the batch.
   !>     alpha and beta are scalars, x_i and y_i are vectors and A_i is an
@@ -10216,8 +10146,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch
-  !> 
-  !>     
+  !>
   interface hipblasDsbmvBatched
 #ifdef USE_CUDA_NAMES
     function hipblasDsbmvBatched_(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy,batchCount) bind(c, name="cublasDsbmvBatched")
@@ -10286,12 +10215,12 @@ module hipfort_hipblas
       hipblasSsbmvStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     sbmvStridedBatched performs the matrix-vector operation:
   !> 
-  !>         y_i := alphaA_ix_i + betay_i,
+  !>         y_i := alpha*A_i*x_i + beta*y_i,
   !> 
   !>     where (A_i, x_i, y_i) is the i-th instance of the batch.
   !>     alpha and beta are scalars, x_i and y_i are vectors and A_i is an
@@ -10333,7 +10262,7 @@ module hipfort_hipblas
   !>                 stride from the start of one vector (x_i) and the next one (x_i+1).
   !>                 There are no restrictions placed on stridex, however the user should
   !>                 take care to ensure that stridex is of appropriate size.
-  !>                 This typically means stridex >= n  incx. stridex should be non zero.
+  !>                 This typically means stridex >= n * incx. stridex should be non zero.
   !>     @param[in]
   !>     beta      device pointer or host pointer to scalar beta
   !>     @param[out]
@@ -10346,12 +10275,11 @@ module hipfort_hipblas
   !>                 stride from the start of one vector (y_i) and the next one (y_i+1).
   !>                 There are no restrictions placed on stridey, however the user should
   !>                 take care to ensure that stridey is of appropriate size.
-  !>                 This typically means stridey >= n  incy. stridey should be non zero.
+  !>                 This typically means stridey >= n * incy. stridey should be non zero.
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch
-  !> 
-  !>     
+  !>
   interface hipblasDsbmvStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasDsbmvStridedBatched_(handle,uplo,n,k,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="cublasDsbmvStridedBatched")
@@ -10416,12 +10344,12 @@ module hipfort_hipblas
       hipblasSspmv_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     spmv performs the matrix-vector operation:
   !> 
-  !>         y := alphaAx + betay,
+  !>         y := alpha*A*x + beta*y,
   !> 
   !>     where alpha and beta are scalars, x and y are n element vectors and
   !>     A should contain an upper or lower triangular n by n packed symmetric matrix.
@@ -10453,8 +10381,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     incy      [int]
   !>               specifies the increment for the elements of y
-  !> 
-  !>     
+  !>
   interface hipblasDspmv
 #ifdef USE_CUDA_NAMES
     function hipblasDspmv_(handle,uplo,n,alpha,AP,x,incx,beta,y,incy) bind(c, name="cublasDspmv_v2")
@@ -10514,12 +10441,12 @@ module hipfort_hipblas
       hipblasSspmvBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     spmvBatched performs the matrix-vector operation:
   !> 
-  !>         y_i := alphaA_ix_i + betay_i,
+  !>         y_i := alpha*A_i*x_i + beta*y_i,
   !> 
   !>     where (A_i, x_i, y_i) is the i-th instance of the batch.
   !>     alpha and beta are scalars, x_i and y_i are vectors and A_i is an
@@ -10557,8 +10484,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch
-  !> 
-  !>     
+  !>
   interface hipblasDspmvBatched
 #ifdef USE_CUDA_NAMES
     function hipblasDspmvBatched_(handle,uplo,n,alpha,AP,x,incx,beta,y,incy,batchCount) bind(c, name="cublasDspmvBatched")
@@ -10622,12 +10548,12 @@ module hipfort_hipblas
       hipblasSspmvStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     spmvStridedBatched performs the matrix-vector operation:
   !> 
-  !>         y_i := alphaA_ix_i + betay_i,
+  !>         y_i := alpha*A_i*x_i + beta*y_i,
   !> 
   !>     where (A_i, x_i, y_i) is the i-th instance of the batch.
   !>     alpha and beta are scalars, x_i and y_i are vectors and A_i is an
@@ -10663,7 +10589,7 @@ module hipfort_hipblas
   !>                 stride from the start of one vector (x_i) and the next one (x_i+1).
   !>                 There are no restrictions placed on stridex, however the user should
   !>                 take care to ensure that stridex is of appropriate size.
-  !>                 This typically means stridex >= n  incx. stridex should be non zero.
+  !>                 This typically means stridex >= n * incx. stridex should be non zero.
   !>     @param[in]
   !>     beta      device pointer or host pointer to scalar beta
   !>     @param[out]
@@ -10676,12 +10602,11 @@ module hipfort_hipblas
   !>                 stride from the start of one vector (y_i) and the next one (y_i+1).
   !>                 There are no restrictions placed on stridey, however the user should
   !>                 take care to ensure that stridey is of appropriate size.
-  !>                 This typically means stridey >= n  incy. stridey should be non zero.
+  !>                 This typically means stridey >= n * incy. stridey should be non zero.
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch
-  !> 
-  !>     
+  !>
   interface hipblasDspmvStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasDspmvStridedBatched_(handle,uplo,n,alpha,AP,strideAP,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="cublasDspmvStridedBatched")
@@ -10792,12 +10717,12 @@ module hipfort_hipblas
       hipblasCspr_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     spr performs the matrix-vector operations
   !> 
-  !>         A := A + alphaxxT
+  !>         A := A + alpha*x*x**T
   !> 
   !>     where alpha is a scalar, x is a vector, and A is an
   !>     n by n symmetric matrix, supplied in packed form.
@@ -10823,7 +10748,7 @@ module hipfort_hipblas
   !>               specifies the increment for the elements of x.
   !>     @param[inout]
   !>     AP        device pointer storing the packed version of the specified triangular portion of
-  !>               the symmetric matrix A. Of at least size ((n  (n + 1))  2).
+  !>               the symmetric matrix A. Of at least size ((n * (n + 1)) 2).
   !>               if uplo == HIPBLAS_FILL_MODE_UPPER:
   !>                 The upper triangular portion of the symmetric matrix A is supplied.
   !>                 The matrix is compacted so that AP contains the triangular portion column-by-column
@@ -10848,7 +10773,6 @@ module hipfort_hipblas
   !>                         2 5 6 7    -----> [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
   !>                         3 6 8 9
   !>                         4 7 9 0
-  !>     
   interface hipblasZspr
 #ifdef USE_CUDA_NAMES
     function hipblasZspr_(handle,uplo,n,alpha,x,incx,AP) bind(c, name="cublasZspr")
@@ -10958,12 +10882,12 @@ module hipfort_hipblas
       hipblasCsprBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     sprBatched performs the matrix-vector operations
   !> 
-  !>         A_i := A_i + alphax_ix_iT
+  !>         A_i := A_i + alpha*x_i*x_i**T
   !> 
   !>     where alpha is a scalar, x_i is a vector, and A_i is an
   !>     n by n symmetric matrix, supplied in packed form, for i = 1, ..., batchCount.
@@ -10989,7 +10913,7 @@ module hipfort_hipblas
   !>               specifies the increment for the elements of each x_i.
   !>     @param[inout]
   !>     AP        device array of device pointers storing the packed version of the specified triangular portion of
-  !>               each symmetric matrix A_i of at least size ((n  (n + 1))  2). Array is of at least size batchCount.
+  !>               each symmetric matrix A_i of at least size ((n * (n + 1)) 2). Array is of at least size batchCount.
   !>               if uplo == HIPBLAS_FILL_MODE_UPPER:
   !>                 The upper triangular portion of each symmetric matrix A_i is supplied.
   !>                 The matrix is compacted so that AP contains the triangular portion column-by-column
@@ -11017,7 +10941,6 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch.
-  !>     
   interface hipblasZsprBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZsprBatched_(handle,uplo,n,alpha,x,incx,AP,batchCount) bind(c, name="cublasZsprBatched")
@@ -11132,12 +11055,12 @@ module hipfort_hipblas
       hipblasCsprStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     sprStridedBatched performs the matrix-vector operations
   !> 
-  !>         A_i := A_i + alphax_ix_iT
+  !>         A_i := A_i + alpha*x_i*x_i**T
   !> 
   !>     where alpha is a scalar, x_i is a vector, and A_i is an
   !>     n by n symmetric matrix, supplied in packed form, for i = 1, ..., batchCount.
@@ -11197,7 +11120,6 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch.
-  !>     
   interface hipblasZsprStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZsprStridedBatched_(handle,uplo,n,alpha,x,incx,stridex,AP,strideAP,batchCount) bind(c, name="cublasZsprStridedBatched")
@@ -11254,12 +11176,12 @@ module hipfort_hipblas
       hipblasSspr2_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     spr2 performs the matrix-vector operation
   !> 
-  !>         A := A + alphaxyT + alphayxT
+  !>         A := A + alpha*x*y**T + alpha*y*x**T
   !> 
   !>     where alpha is a scalar, x and y are vectors, and A is an
   !>     n by n symmetric matrix, supplied in packed form.
@@ -11290,7 +11212,7 @@ module hipfort_hipblas
   !>               specifies the increment for the elements of y.
   !>     @param[inout]
   !>     AP        device pointer storing the packed version of the specified triangular portion of
-  !>               the symmetric matrix A. Of at least size ((n  (n + 1))  2).
+  !>               the symmetric matrix A. Of at least size ((n * (n + 1)) 2).
   !>               if uplo == HIPBLAS_FILL_MODE_UPPER:
   !>                 The upper triangular portion of the symmetric matrix A is supplied.
   !>                 The matrix is compacted so that AP contains the triangular portion column-by-column
@@ -11315,7 +11237,6 @@ module hipfort_hipblas
   !>                         2 5 6 7    -----> [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
   !>                         3 6 8 9
   !>                         4 7 9 0
-  !>     
   interface hipblasDspr2
 #ifdef USE_CUDA_NAMES
     function hipblasDspr2_(handle,uplo,n,alpha,x,incx,y,incy,AP) bind(c, name="cublasDspr2_v2")
@@ -11373,12 +11294,12 @@ module hipfort_hipblas
       hipblasSspr2Batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     spr2Batched performs the matrix-vector operation
   !> 
-  !>         A_i := A_i + alphax_iy_iT + alphay_ix_iT
+  !>         A_i := A_i + alpha*x_i*y_i**T + alpha*y_i*x_i**T
   !> 
   !>     where alpha is a scalar, x_i and y_i are vectors, and A_i is an
   !>     n by n symmetric matrix, supplied in packed form, for i = 1, ..., batchCount.
@@ -11409,7 +11330,7 @@ module hipfort_hipblas
   !>               specifies the increment for the elements of each y_i.
   !>     @param[inout]
   !>     AP        device array of device pointers storing the packed version of the specified triangular portion of
-  !>               each symmetric matrix A_i of at least size ((n  (n + 1))  2). Array is of at least size batchCount.
+  !>               each symmetric matrix A_i of at least size ((n * (n + 1)) 2). Array is of at least size batchCount.
   !>               if uplo == HIPBLAS_FILL_MODE_UPPER:
   !>                 The upper triangular portion of each symmetric matrix A_i is supplied.
   !>                 The matrix is compacted so that AP contains the triangular portion column-by-column
@@ -11437,7 +11358,6 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch.
-  !>     
   interface hipblasDspr2Batched
 #ifdef USE_CUDA_NAMES
     function hipblasDspr2Batched_(handle,uplo,n,alpha,x,incx,y,incy,AP,batchCount) bind(c, name="cublasDspr2Batched")
@@ -11499,12 +11419,12 @@ module hipfort_hipblas
       hipblasSspr2StridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     spr2StridedBatched performs the matrix-vector operation
   !> 
-  !>         A_i := A_i + alphax_iy_iT + alphay_ix_iT
+  !>         A_i := A_i + alpha*x_i*y_i**T + alpha*y_i*x_i**T
   !> 
   !>     where alpha is a scalar, x_i amd y_i are vectors, and A_i is an
   !>     n by n symmetric matrix, supplied in packed form, for i = 1, ..., batchCount.
@@ -11572,7 +11492,6 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch.
-  !>     
   interface hipblasDspr2StridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasDspr2StridedBatched_(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,AP,strideAP,batchCount) bind(c, name="cublasDspr2StridedBatched")
@@ -11697,12 +11616,12 @@ module hipfort_hipblas
       hipblasCsymv_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     symv performs the matrix-vector operation:
   !> 
-  !>         y := alphaAx + betay,
+  !>         y := alpha*A*x + beta*y,
   !> 
   !>     where alpha and beta are scalars, x and y are n element vectors and
   !>     A should contain an upper or lower triangular n by n symmetric matrix.
@@ -11737,8 +11656,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     incy      [int]
   !>               specifies the increment for the elements of y
-  !> 
-  !>     
+  !>
   interface hipblasZsymv
 #ifdef USE_CUDA_NAMES
     function hipblasZsymv_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy) bind(c, name="cublasZsymv_v2")
@@ -11865,12 +11783,12 @@ module hipfort_hipblas
       hipblasCsymvBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     symvBatched performs the matrix-vector operation:
   !> 
-  !>         y_i := alphaA_ix_i + betay_i,
+  !>         y_i := alpha*A_i*x_i + beta*y_i,
   !> 
   !>     where (A_i, x_i, y_i) is the i-th instance of the batch.
   !>     alpha and beta are scalars, x_i and y_i are vectors and A_i is an
@@ -11912,8 +11830,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch
-  !> 
-  !>     
+  !>
   interface hipblasZsymvBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZsymvBatched_(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy,batchCount) bind(c, name="cublasZsymvBatched")
@@ -12050,12 +11967,12 @@ module hipfort_hipblas
       hipblasCsymvStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     symvStridedBatched performs the matrix-vector operation:
   !> 
-  !>         y_i := alphaA_ix_i + betay_i,
+  !>         y_i := alpha*A_i*x_i + beta*y_i,
   !> 
   !>     where (A_i, x_i, y_i) is the i-th instance of the batch.
   !>     alpha and beta are scalars, x_i and y_i are vectors and A_i is an
@@ -12095,7 +12012,7 @@ module hipfort_hipblas
   !>                 stride from the start of one vector (x_i) and the next one (x_i+1).
   !>                 There are no restrictions placed on stridex, however the user should
   !>                 take care to ensure that stridex is of appropriate size.
-  !>                 This typically means stridex >= n  incx. stridex should be non zero.
+  !>                 This typically means stridex >= n * incx. stridex should be non zero.
   !>     @param[in]
   !>     beta      device pointer or host pointer to scalar beta
   !>     @param[out]
@@ -12108,12 +12025,11 @@ module hipfort_hipblas
   !>                 stride from the start of one vector (y_i) and the next one (y_i+1).
   !>                 There are no restrictions placed on stridey, however the user should
   !>                 take care to ensure that stridey is of appropriate size.
-  !>                 This typically means stridey >= n  incy. stridey should be non zero.
+  !>                 This typically means stridey >= n * incy. stridey should be non zero.
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch
-  !> 
-  !>     
+  !>
   interface hipblasZsymvStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZsymvStridedBatched_(handle,uplo,n,alpha,A,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="cublasZsymvStridedBatched")
@@ -12232,12 +12148,12 @@ module hipfort_hipblas
       hipblasCsyr_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     syr performs the matrix-vector operations
   !> 
-  !>         A := A + alphaxxT
+  !>         A := A + alpha*x*x**T
   !> 
   !>     where alpha is a scalar, x is a vector, and A is an
   !>     n by n symmetric matrix.
@@ -12267,8 +12183,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     lda       [int]
   !>               specifies the leading dimension of A.
-  !> 
-  !>     
+  !>
   interface hipblasZsyr
 #ifdef USE_CUDA_NAMES
     function hipblasZsyr_(handle,uplo,n,alpha,x,incx,A,lda) bind(c, name="cublasZsyr_v2")
@@ -12383,12 +12298,12 @@ module hipfort_hipblas
       hipblasCsyrBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     syrBatched performs a batch of matrix-vector operations
   !> 
-  !>         A[i] := A[i] + alphax[i]x[i]T
+  !>         A[i] := A[i] + alpha*x[i]*x[i]**T
   !> 
   !>     where alpha is a scalar, x is an array of vectors, and A is an array of
   !>     n by n symmetric matrices, for i = 1 , ... , batchCount
@@ -12420,8 +12335,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch
-  !> 
-  !>     
+  !>
   interface hipblasZsyrBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZsyrBatched_(handle,uplo,n,alpha,x,incx,A,lda,batchCount) bind(c, name="cublasZsyrBatched")
@@ -12543,12 +12457,12 @@ module hipfort_hipblas
       hipblasCsyrStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     syrStridedBatched performs the matrix-vector operations
   !> 
-  !>         A[i] := A[i] + alphax[i]x[i]T
+  !>         A[i] := A[i] + alpha*x[i]*x[i]**T
   !> 
   !>     where alpha is a scalar, vectors, and A is an array of
   !>     n by n symmetric matrices, for i = 1 , ... , batchCount
@@ -12586,8 +12500,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>               number of instances in the batch
-  !> 
-  !>     
+  !>
   interface hipblasZsyrStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZsyrStridedBatched_(handle,uplo,n,alpha,x,incx,stridex,A,lda,stridey,batchCount) bind(c, name="cublasZsyrStridedBatched")
@@ -12708,12 +12621,12 @@ module hipfort_hipblas
       hipblasCsyr2_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     syr2 performs the matrix-vector operations
   !> 
-  !>         A := A + alphaxyT + alphayxT
+  !>         A := A + alpha*x*y**T + alpha*y*x**T
   !> 
   !>     where alpha is a scalar, x and y are vectors, and A is an
   !>     n by n symmetric matrix.
@@ -12748,8 +12661,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     lda       [int]
   !>               specifies the leading dimension of A.
-  !> 
-  !>     
+  !>
   interface hipblasZsyr2
 #ifdef USE_CUDA_NAMES
     function hipblasZsyr2_(handle,uplo,n,alpha,x,incx,y,incy,A,lda) bind(c, name="cublasZsyr2_v2")
@@ -12872,12 +12784,12 @@ module hipfort_hipblas
       hipblasCsyr2Batched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     syr2Batched performs a batch of matrix-vector operations
   !> 
-  !>         A[i] := A[i] + alphax[i]y[i]T + alphay[i]x[i]T
+  !>         A[i] := A[i] + alpha*x[i]*y[i]**T + alpha*y[i]*x[i]**T
   !> 
   !>     where alpha is a scalar, x[i] and y[i] are vectors, and A[i] is a
   !>     n by n symmetric matrix, for i = 1 , ... , batchCount
@@ -12914,8 +12826,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch
-  !> 
-  !>     
+  !>
   interface hipblasZsyr2Batched
 #ifdef USE_CUDA_NAMES
     function hipblasZsyr2Batched_(handle,uplo,n,alpha,x,incx,y,incy,A,lda,batchCount) bind(c, name="cublasZsyr2Batched")
@@ -13048,12 +12959,12 @@ module hipfort_hipblas
       hipblasCsyr2StridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     syr2StridedBatched the matrix-vector operations
   !> 
-  !>         A[i] := A[i] + alphax[i]y[i]T + alphay[i]x[i]T
+  !>         A[i] := A[i] + alpha*x[i]*y[i]**T + alpha*y[i]*x[i]**T
   !> 
   !>     where alpha is a scalar, x[i] and y[i] are vectors, and A[i] is a
   !>     n by n symmetric matrices, for i = 1 , ... , batchCount
@@ -13099,8 +13010,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>               number of instances in the batch
-  !> 
-  !>     
+  !>
   interface hipblasZsyr2StridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZsyr2StridedBatched_(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,A,lda,strideA,batchCount) bind(c, name="cublasZsyr2StridedBatched")
@@ -13224,14 +13134,14 @@ module hipfort_hipblas
       hipblasCtbmv_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     tbmv performs one of the matrix-vector operations
   !> 
-  !>         x := Ax      or
-  !>         x := ATx   or
-  !>         x := AHx,
+  !>         x := A*x      or
+  !>         x := A**T*x   or
+  !>         x := A**H*x,
   !> 
   !>     x is a vectors and A is a banded m by m matrix (see description below).
   !> 
@@ -13295,8 +13205,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     incx      [int]
   !>               specifies the increment for the elements of x.
-  !> 
-  !>     
+  !>
   interface hipblasZtbmv
 #ifdef USE_CUDA_NAMES
     function hipblasZtbmv_(handle,uplo,transA,diag,m,k,A,lda,x,incx) bind(c, name="cublasZtbmv_v2")
@@ -13419,14 +13328,14 @@ module hipfort_hipblas
       hipblasCtbmvBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     tbmvBatched performs one of the matrix-vector operations
   !> 
-  !>         x_i := A_ix_i      or
-  !>         x_i := A_iTx_i   or
-  !>         x_i := A_iHx_i,
+  !>         x_i := A_i*x_i      or
+  !>         x_i := A_i**T*x_i   or
+  !>         x_i := A_i**H*x_i,
   !> 
   !>     where (A_i, x_i) is the i-th instance of the batch.
   !>     x_i is a vector and A_i is an m by m matrix, for i = 1, ..., batchCount.
@@ -13494,8 +13403,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface hipblasZtbmvBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZtbmvBatched_(handle,uplo,transA,diag,m,k,A,lda,x,incx,batchCount) bind(c, name="cublasZtbmvBatched")
@@ -13625,14 +13533,14 @@ module hipfort_hipblas
       hipblasCtbmvStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     tbmvStridedBatched performs one of the matrix-vector operations
   !> 
-  !>         x_i := A_ix_i      or
-  !>         x_i := A_iTx_i   or
-  !>         x_i := A_iHx_i,
+  !>         x_i := A_i*x_i      or
+  !>         x_i := A_i**T*x_i   or
+  !>         x_i := A_i**H*x_i,
   !> 
   !>     where (A_i, x_i) is the i-th instance of the batch.
   !>     x_i is a vector and A_i is an m by m matrix, for i = 1, ..., batchCount.
@@ -13706,8 +13614,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface hipblasZtbmvStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZtbmvStridedBatched_(handle,uplo,transA,diag,m,k,A,lda,strideA,x,incx,stridex,batchCount) bind(c, name="cublasZtbmvStridedBatched")
@@ -13830,12 +13737,12 @@ module hipfort_hipblas
       hipblasCtbsv_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     tbsv solves
   !> 
-  !>          Ax = b or ATx = b or AHx = b,
+  !>          A*x = b or A**T*x = b or A**H*x = b,
   !> 
   !>     where x and b are vectors and A is a banded triangular matrix.
   !> 
@@ -13850,9 +13757,9 @@ module hipfort_hipblas
   !> 
   !>     @param[in]
   !>     transA     [hipblasOperation_t]
-  !>                HIPBLAS_OP_N: Solves Ax = b
-  !>                HIPBLAS_OP_T: Solves ATx = b
-  !>                HIPBLAS_OP_C: Solves AHx = b
+  !>                HIPBLAS_OP_N: Solves A*x = b
+  !>                HIPBLAS_OP_T: Solves A**T*x = b
+  !>                HIPBLAS_OP_C: Solves A**H*x = b
   !> 
   !>     @param[in]
   !>     diag    [hipblasDiagType_t]
@@ -13885,8 +13792,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     incx      [int]
   !>               specifies the increment for the elements of x.
-  !> 
-  !>     
+  !>
   interface hipblasZtbsv
 #ifdef USE_CUDA_NAMES
     function hipblasZtbsv_(handle,uplo,transA,diag,n,k,A,lda,x,incx) bind(c, name="cublasZtbsv_v2")
@@ -14009,12 +13915,12 @@ module hipfort_hipblas
       hipblasCtbsvBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     tbsvBatched solves
   !> 
-  !>          A_ix_i = b_i or A_iTx_i = b_i or A_iHx_i = b_i,
+  !>          A_i*x_i = b_i or A_i**T*x_i = b_i or A_i**H*x_i = b_i,
   !> 
   !>     where x_i and b_i are vectors and A_i is a banded triangular matrix,
   !>     for i = [1, batchCount].
@@ -14032,9 +13938,9 @@ module hipfort_hipblas
   !> 
   !>     @param[in]
   !>     transA     [hipblasOperation_t]
-  !>                HIPBLAS_OP_N: Solves A_ix_i = b_i
-  !>                HIPBLAS_OP_T: Solves A_iTx_i = b_i
-  !>                HIPBLAS_OP_C: Solves A_iHx_i = b_i
+  !>                HIPBLAS_OP_N: Solves A_i*x_i = b_i
+  !>                HIPBLAS_OP_T: Solves A_i**T*x_i = b_i
+  !>                HIPBLAS_OP_C: Solves A_i**H*x_i = b_i
   !> 
   !>     @param[in]
   !>     diag    [hipblasDiagType_t]
@@ -14070,8 +13976,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface hipblasZtbsvBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZtbsvBatched_(handle,uplo,transA,diag,n,k,A,lda,x,incx,batchCount) bind(c, name="cublasZtbsvBatched")
@@ -14201,12 +14106,12 @@ module hipfort_hipblas
       hipblasCtbsvStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     tbsvStridedBatched solves
   !> 
-  !>          A_ix_i = b_i or A_iTx_i = b_i or A_iHx_i = b_i,
+  !>          A_i*x_i = b_i or A_i**T*x_i = b_i or A_i**H*x_i = b_i,
   !> 
   !>     where x_i and b_i are vectors and A_i is a banded triangular matrix,
   !>     for i = [1, batchCount].
@@ -14224,9 +14129,9 @@ module hipfort_hipblas
   !> 
   !>     @param[in]
   !>     transA     [hipblasOperation_t]
-  !>                HIPBLAS_OP_N: Solves A_ix_i = b_i
-  !>                HIPBLAS_OP_T: Solves A_iTx_i = b_i
-  !>                HIPBLAS_OP_C: Solves A_iHx_i = b_i
+  !>                HIPBLAS_OP_N: Solves A_i*x_i = b_i
+  !>                HIPBLAS_OP_T: Solves A_i**T*x_i = b_i
+  !>                HIPBLAS_OP_C: Solves A_i**H*x_i = b_i
   !> 
   !>     @param[in]
   !>     diag    [hipblasDiagType_t]
@@ -14267,8 +14172,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface hipblasZtbsvStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZtbsvStridedBatched_(handle,uplo,transA,diag,n,k,A,lda,strideA,x,incx,stridex,batchCount) bind(c, name="cublasZtbsvStridedBatched")
@@ -14382,12 +14286,12 @@ module hipfort_hipblas
       hipblasCtpmv_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     tpmv performs one of the matrix-vector operations
   !> 
-  !>          x = Ax or x = ATx,
+  !>          x = A*x or x = A**T*x,
   !> 
   !>     where x is an n element vector and A is an n by n unit, or non-unit, upper or lower triangular matrix, supplied in the pack form.
   !> 
@@ -14416,7 +14320,7 @@ module hipfort_hipblas
   !> 
   !>     @param[in]
   !>     A       device pointer storing matrix A,
-  !>             of dimension at leat ( m  ( m + 1 )  2 ).
+  !>             of dimension at leat ( m * ( m + 1 ) 2 ).
   !>           Before entry with uplo = HIPBLAS_FILL_MODE_UPPER, the array A
   !>           must contain the upper triangular matrix packed sequentially,
   !>           column by column, so that A[0] contains a_{0,0}, A[1] and A[2] contain
@@ -14434,8 +14338,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     incx    [int]
   !>             specifies the increment for the elements of x. incx must not be zero.
-  !> 
-  !>     
+  !>
   interface hipblasZtpmv
 #ifdef USE_CUDA_NAMES
     function hipblasZtpmv_(handle,uplo,transA,diag,m,AP,x,incx) bind(c, name="cublasZtpmv_v2")
@@ -14549,12 +14452,12 @@ module hipfort_hipblas
       hipblasCtpmvBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     tpmvBatched performs one of the matrix-vector operations
   !> 
-  !>          x_i = A_ix_i or x_i = ATx_i, 0 \le i < batchCount
+  !>          x_i = A_i*x_i or x_i = A**T*x_i, 0 \le i < batchCount
   !> 
   !>     where x_i is an n element vector and A_i is an n by n (unit, or non-unit, upper or lower triangular matrix)
   !> 
@@ -14594,10 +14497,9 @@ module hipfort_hipblas
   !> 
   !>     @param[in]
   !>     batchCount [int]
-  !>               The number of batched matricesvectors.
+  !>               The number of batched matrices/vectors.
   !> 
-  !> 
-  !>     
+  !>
   interface hipblasZtpmvBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZtpmvBatched_(handle,uplo,transA,diag,m,AP,x,incx,batchCount) bind(c, name="cublasZtpmvBatched")
@@ -14716,12 +14618,12 @@ module hipfort_hipblas
       hipblasCtpmvStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     tpmvStridedBatched performs one of the matrix-vector operations
   !> 
-  !>          x_i = A_ix_i or x_i = ATx_i, 0 \le i < batchCount
+  !>          x_i = A_i*x_i or x_i = A**T*x_i, 0 \le i < batchCount
   !> 
   !>     where x_i is an n element vector and A_i is an n by n (unit, or non-unit, upper or lower triangular matrix)
   !>     with strides specifying how to retrieve $x_i$ (resp. $A_i$) from $x_{i-1}$ (resp. $A_i$).
@@ -14770,10 +14672,9 @@ module hipfort_hipblas
   !> 
   !>     @param[in]
   !>     batchCount [int]
-  !>               The number of batched matricesvectors.
+  !>               The number of batched matrices/vectors.
   !> 
-  !> 
-  !>     
+  !>
   interface hipblasZtpmvStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZtpmvStridedBatched_(handle,uplo,transA,diag,m,AP,strideAP,x,incx,stride,batchCount) bind(c, name="cublasZtpmvStridedBatched")
@@ -14884,12 +14785,12 @@ module hipfort_hipblas
       hipblasCtpsv_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     tpsv solves
   !> 
-  !>          Ax = b or ATx = b, or AHx = b,
+  !>          A*x = b or A**T*x = b, or A**H*x = b,
   !> 
   !>     where x and b are vectors and A is a triangular matrix stored in the packed format.
   !> 
@@ -14906,9 +14807,9 @@ module hipfort_hipblas
   !> 
   !>     @param[in]
   !>     transA  [hipblasOperation_t]
-  !>             HIPBLAS_OP_N: Solves Ax = b
-  !>             HIPBLAS_OP_T: Solves ATx = b
-  !>             HIPBLAS_OP_C: Solves AHx = b
+  !>             HIPBLAS_OP_N: Solves A*x = b
+  !>             HIPBLAS_OP_T: Solves A**T*x = b
+  !>             HIPBLAS_OP_C: Solves A**H*x = b
   !> 
   !>     @param[in]
   !>     diag    [hipblasDiagType_t]
@@ -14922,7 +14823,7 @@ module hipfort_hipblas
   !> 
   !>     @param[in]
   !>     AP        device pointer storing the packed version of matrix A,
-  !>               of dimension >= (n  (n + 1)  2)
+  !>               of dimension >= (n * (n + 1) 2)
   !> 
   !>     @param[inout]
   !>     x         device pointer storing vector b on input, overwritten by x on output.
@@ -14930,8 +14831,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     incx      [int]
   !>               specifies the increment for the elements of x.
-  !> 
-  !>     
+  !>
   interface hipblasZtpsv
 #ifdef USE_CUDA_NAMES
     function hipblasZtpsv_(handle,uplo,transA,diag,m,AP,x,incx) bind(c, name="cublasZtpsv_v2")
@@ -15045,12 +14945,12 @@ module hipfort_hipblas
       hipblasCtpsvBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     tpsvBatched solves
   !> 
-  !>          A_ix_i = b_i or A_iTx_i = b_i, or A_iHx_i = b_i,
+  !>          A_i*x_i = b_i or A_i**T*x_i = b_i, or A_i**H*x_i = b_i,
   !> 
   !>     where x_i and b_i are vectors and A_i is a triangular matrix stored in the packed format,
   !>     for i in [1, batchCount].
@@ -15068,9 +14968,9 @@ module hipfort_hipblas
   !> 
   !>     @param[in]
   !>     transA  [hipblasOperation_t]
-  !>             HIPBLAS_OP_N: Solves Ax = b
-  !>             HIPBLAS_OP_T: Solves ATx = b
-  !>             HIPBLAS_OP_C: Solves AHx = b
+  !>             HIPBLAS_OP_N: Solves A*x = b
+  !>             HIPBLAS_OP_T: Solves A**T*x = b
+  !>             HIPBLAS_OP_C: Solves A**H*x = b
   !> 
   !>     @param[in]
   !>     diag    [hipblasDiagType_t]
@@ -15084,7 +14984,7 @@ module hipfort_hipblas
   !> 
   !>     @param[in]
   !>     AP        device array of device pointers storing the packed versions of each matrix A_i,
-  !>               of dimension >= (n  (n + 1)  2)
+  !>               of dimension >= (n * (n + 1) 2)
   !> 
   !>     @param[inout]
   !>     x         device array of device pointers storing each input vector b_i, overwritten by x_i on output.
@@ -15095,8 +14995,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 specifies the number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface hipblasZtpsvBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZtpsvBatched_(handle,uplo,transA,diag,m,AP,x,incx,batchCount) bind(c, name="cublasZtpsvBatched")
@@ -15215,12 +15114,12 @@ module hipfort_hipblas
       hipblasCtpsvStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     tpsvStridedBatched solves
   !> 
-  !>          A_ix_i = b_i or A_iTx_i = b_i, or A_iHx_i = b_i,
+  !>          A_i*x_i = b_i or A_i**T*x_i = b_i, or A_i**H*x_i = b_i,
   !> 
   !>     where x_i and b_i are vectors and A_i is a triangular matrix stored in the packed format,
   !>     for i in [1, batchCount].
@@ -15238,9 +15137,9 @@ module hipfort_hipblas
   !> 
   !>     @param[in]
   !>     transA  [hipblasOperation_t]
-  !>             HIPBLAS_OP_N: Solves Ax = b
-  !>             HIPBLAS_OP_T: Solves ATx = b
-  !>             HIPBLAS_OP_C: Solves AHx = b
+  !>             HIPBLAS_OP_N: Solves A*x = b
+  !>             HIPBLAS_OP_T: Solves A**T*x = b
+  !>             HIPBLAS_OP_C: Solves A**H*x = b
   !> 
   !>     @param[in]
   !>     diag    [hipblasDiagType_t]
@@ -15254,7 +15153,7 @@ module hipfort_hipblas
   !> 
   !>     @param[in]
   !>     AP        device pointer pointing to the first packed matrix A_1,
-  !>               of dimension >= (n  (n + 1)  2)
+  !>               of dimension >= (n * (n + 1) 2)
   !> 
   !>     @param[in]
   !>     strideA  [hipblasStride]
@@ -15272,8 +15171,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 specifies the number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface hipblasZtpsvStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZtpsvStridedBatched_(handle,uplo,transA,diag,m,AP,strideAP,x,incx,stridex,batchCount) bind(c, name="cublasZtpsvStridedBatched")
@@ -15390,12 +15288,12 @@ module hipfort_hipblas
       hipblasCtrmv_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     trmv performs one of the matrix-vector operations
   !> 
-  !>          x = Ax or x = ATx,
+  !>          x = A*x or x = A**T*x,
   !> 
   !>     where x is an n element vector and A is an n by n unit, or non-unit, upper or lower triangular matrix.
   !> 
@@ -15437,8 +15335,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     incx      [int]
   !>               specifies the increment for the elements of x.
-  !> 
-  !>     
+  !>
   interface hipblasZtrmv
 #ifdef USE_CUDA_NAMES
     function hipblasZtrmv_(handle,uplo,transA,diag,m,A,lda,x,incx) bind(c, name="cublasZtrmv_v2")
@@ -15557,12 +15454,12 @@ module hipfort_hipblas
       hipblasCtrmvBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     trmvBatched performs one of the matrix-vector operations
   !> 
-  !>          x_i = A_ix_i or x_i = ATx_i, 0 \le i < batchCount
+  !>          x_i = A_i*x_i or x_i = A**T*x_i, 0 \le i < batchCount
   !> 
   !>     where x_i is an n element vector and A_i is an n by n (unit, or non-unit, upper or lower triangular matrix)
   !> 
@@ -15607,10 +15504,9 @@ module hipfort_hipblas
   !> 
   !>     @param[in]
   !>     batchCount [int]
-  !>               The number of batched matricesvectors.
+  !>               The number of batched matrices/vectors.
   !> 
-  !> 
-  !>     
+  !>
   interface hipblasZtrmvBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZtrmvBatched_(handle,uplo,transA,diag,m,A,lda,x,incx,batchCount) bind(c, name="cublasZtrmvBatched")
@@ -15736,12 +15632,12 @@ module hipfort_hipblas
       hipblasCtrmvStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     trmvStridedBatched performs one of the matrix-vector operations
   !> 
-  !>          x_i = A_ix_i or x_i = ATx_i, 0 \le i < batchCount
+  !>          x_i = A_i*x_i or x_i = A**T*x_i, 0 \le i < batchCount
   !> 
   !>     where x_i is an n element vector and A_i is an n by n (unit, or non-unit, upper or lower triangular matrix)
   !>     with strides specifying how to retrieve $x_i$ (resp. $A_i$) from $x_{i-1}$ (resp. $A_i$).
@@ -15795,10 +15691,9 @@ module hipfort_hipblas
   !> 
   !>     @param[in]
   !>     batchCount [int]
-  !>               The number of batched matricesvectors.
+  !>               The number of batched matrices/vectors.
   !> 
-  !> 
-  !>     
+  !>
   interface hipblasZtrmvStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZtrmvStridedBatched_(handle,uplo,transA,diag,m,A,lda,strideA,x,incx,stridex,batchCount) bind(c, name="cublasZtrmvStridedBatched")
@@ -15917,12 +15812,12 @@ module hipfort_hipblas
       hipblasCtrsv_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     trsv solves
   !> 
-  !>          Ax = b or ATx = b,
+  !>          A*x = b or A**T*x = b,
   !> 
   !>     where x and b are vectors and A is a triangular matrix.
   !> 
@@ -15964,8 +15859,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     incx      [int]
   !>               specifies the increment for the elements of x.
-  !> 
-  !>     
+  !>
   interface hipblasZtrsv
 #ifdef USE_CUDA_NAMES
     function hipblasZtrsv_(handle,uplo,transA,diag,m,A,lda,x,incx) bind(c, name="cublasZtrsv_v2")
@@ -16084,12 +15978,12 @@ module hipfort_hipblas
       hipblasCtrsvBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     trsvBatched solves
   !> 
-  !>          A_ix_i = b_i or A_iTx_i = b_i,
+  !>          A_i*x_i = b_i or A_i**T*x_i = b_i,
   !> 
   !>     where (A_i, x_i, b_i) is the i-th instance of the batch.
   !>     x_i and b_i are vectors and A_i is an
@@ -16136,8 +16030,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch
-  !> 
-  !>     
+  !>
   interface hipblasZtrsvBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZtrsvBatched_(handle,uplo,transA,diag,m,A,lda,x,incx,batchCount) bind(c, name="cublasZtrsvBatched")
@@ -16263,12 +16156,12 @@ module hipfort_hipblas
       hipblasCtrsvStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 2 API
+  !>  \brief BLAS Level 2 API
   !> 
   !>     \details
   !>     trsvStridedBatched solves
   !> 
-  !>          A_ix_i = b_i or A_iTx_i = b_i,
+  !>          A_i*x_i = b_i or A_i**T*x_i = b_i,
   !> 
   !>     where (A_i, x_i, b_i) is the i-th instance of the batch.
   !>     x_i and b_i are vectors and A_i is an m by m triangular matrix, for i = 1, ..., batchCount.
@@ -16322,8 +16215,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch
-  !> 
-  !>     
+  !>
   interface hipblasZtrsvStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZtrsvStridedBatched_(handle,uplo,transA,diag,m,A,lda,strideA,x,incx,stridex,batchCount) bind(c, name="cublasZtrsvStridedBatched")
@@ -16457,18 +16349,18 @@ module hipfort_hipblas
       hipblasCgemm_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !>     gemm performs one of the matrix-matrix operations
   !> 
-  !>         C = alphaop( A )op( B ) + betaC,
+  !>         C = alpha*op( A )*op( B ) + beta*C,
   !> 
   !>     where op( X ) is one of
   !> 
   !>         op( X ) = X      or
-  !>         op( X ) = XT   or
-  !>         op( X ) = XH,
+  !>         op( X ) = X**T   or
+  !>         op( X ) = X**H,
   !> 
   !>     alpha and beta are scalars, and A, B and C are matrices, with
   !>     op( A ) an m by k matrix, op( B ) a k by n matrix and C an m by n matrix.
@@ -16510,8 +16402,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     ldc       [int]
   !>               specifies the leading dimension of C.
-  !> 
-  !>     
+  !>
   interface hipblasZgemm
 #ifdef USE_CUDA_NAMES
     function hipblasZgemm_(handle,transa,transb,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasZgemm_v2")
@@ -16650,14 +16541,14 @@ module hipfort_hipblas
       hipblasCgemmBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !>      \details
   !>     gemmBatched performs one of the batched matrix-matrix operations
-  !>          C_i = alphaop( A_i )op( B_i ) + betaC_i, for i = 1, ..., batchCount.
+  !>          C_i = alpha*op( A_i )*op( B_i ) + beta*C_i, for i = 1, ..., batchCount.
   !>      where op( X ) is one of
   !>          op( X ) = X      or
-  !>         op( X ) = XT   or
-  !>         op( X ) = XH,
+  !>         op( X ) = X**T   or
+  !>         op( X ) = X**H,
   !>      alpha and beta are scalars, and A, B and C are strided batched matrices, with
   !>     op( A ) an m by k by batchCount strided_batched matrix,
   !>     op( B ) an k by n by batchCount strided_batched matrix and
@@ -16703,7 +16594,6 @@ module hipfort_hipblas
   !>     batchCount
   !>               [int]
   !>               number of gemm operations in the batch
-  !>      
   interface hipblasZgemmBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZgemmBatched_(handle,transa,transb,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="cublasZgemmBatched")
@@ -16852,18 +16742,18 @@ module hipfort_hipblas
       hipblasCgemmStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !>     gemmStridedBatched performs one of the strided batched matrix-matrix operations
   !> 
-  !>         C_i = alphaop( A_i )op( B_i ) + betaC_i, for i = 1, ..., batchCount.
+  !>         C_i = alpha*op( A_i )*op( B_i ) + beta*C_i, for i = 1, ..., batchCount.
   !> 
   !>     where op( X ) is one of
   !> 
   !>         op( X ) = X      or
-  !>         op( X ) = XT   or
-  !>         op( X ) = XH,
+  !>         op( X ) = X**T   or
+  !>         op( X ) = X**H,
   !> 
   !>     alpha and beta are scalars, and A, B and C are strided batched matrices, with
   !>     op( A ) an m by k by batchCount strided_batched matrix,
@@ -16920,8 +16810,7 @@ module hipfort_hipblas
   !>     batchCount
   !>               [int]
   !>               number of gemm operatons in the batch
-  !> 
-  !>     
+  !>
   interface hipblasZgemmStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZgemmStridedBatched_(handle,transa,transb,m,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount) bind(c, name="cublasZgemmStridedBatched")
@@ -16990,13 +16879,13 @@ module hipfort_hipblas
       hipblasCherk_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     herk performs one of the matrix-matrix operations for a Hermitian rank-k update
   !> 
-  !>     C := alphaop( A )op( A )^H + betaC
+  !>     C := alpha*op( A )*op( A )^H + beta*C
   !> 
   !>     where  alpha and beta are scalars, op(A) is an n by k matrix, and
   !>     C is a n x n Hermitian matrix stored as either upper or lower.
@@ -17035,7 +16924,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     A       pointer storing matrix A on the GPU.
   !>             Martrix dimension is ( lda, k ) when if transA = HIPBLAS_OP_N, otherwise (lda, n)
-  !>             only the upperlower triangular part is accessed.
+  !>             only the upper/lower triangular part is accessed.
   !> 
   !>     @param[in]
   !>     lda     [int]
@@ -17055,8 +16944,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     ldc    [int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
-  !> 
-  !>     
+  !>
   interface hipblasZherk
 #ifdef USE_CUDA_NAMES
     function hipblasZherk_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) bind(c, name="cublasZherk_v2")
@@ -17119,13 +17007,13 @@ module hipfort_hipblas
       hipblasCherkBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     herkBatched performs a batch of the matrix-matrix operations for a Hermitian rank-k update
   !> 
-  !>     C_i := alphaop( A_i )op( A_i )^H + betaC_i
+  !>     C_i := alpha*op( A_i )*op( A_i )^H + beta*C_i
   !> 
   !>     where  alpha and beta are scalars, op(A) is an n by k matrix, and
   !>     C_i is a n x n Hermitian matrix stored as either upper or lower.
@@ -17186,8 +17074,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface hipblasZherkBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZherkBatched_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batchCount) bind(c, name="cublasZherkBatched")
@@ -17253,13 +17140,13 @@ module hipfort_hipblas
       hipblasCherkStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     herkStridedBatched performs a batch of the matrix-matrix operations for a Hermitian rank-k update
   !> 
-  !>     C_i := alphaop( A_i )op( A_i )^H + betaC_i
+  !>     C_i := alpha*op( A_i )*op( A_i )^H + beta*C_i
   !> 
   !>     where  alpha and beta are scalars, op(A) is an n by k matrix, and
   !>     C_i is a n x n Hermitian matrix stored as either upper or lower.
@@ -17330,8 +17217,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface hipblasZherkStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZherkStridedBatched_(handle,uplo,transA,n,k,alpha,A,lda,strideA,beta,C,ldc,strideC,batchCount) bind(c, name="cublasZherkStridedBatched")
@@ -17398,17 +17284,17 @@ module hipfort_hipblas
       hipblasCherkx_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     herkx performs one of the matrix-matrix operations for a Hermitian rank-k update
   !> 
-  !>     C := alphaop( A )op( B )^H + betaC
+  !>     C := alpha*op( A )*op( B )^H + beta*C
   !> 
   !>     where  alpha and beta are scalars, op(A) and op(B) are n by k matrices, and
   !>     C is a n x n Hermitian matrix stored as either upper or lower.
-  !>     This routine should only be used when the caller can guarantee that the result of op( A )op( B )^T will be Hermitian.
+  !>     This routine should only be used when the caller can guarantee that the result of op( A )*op( B )^T will be Hermitian.
   !> 
   !> 
   !>         op( A ) = A, op( B ) = B, and A and B are n by k if trans == HIPBLAS_OP_N
@@ -17445,7 +17331,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     A       pointer storing matrix A on the GPU.
   !>             Martrix dimension is ( lda, k ) when if trans = HIPBLAS_OP_N, otherwise (lda, n)
-  !>             only the upperlower triangular part is accessed.
+  !>             only the upper/lower triangular part is accessed.
   !> 
   !>     @param[in]
   !>     lda     [int]
@@ -17455,7 +17341,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     B       pointer storing matrix B on the GPU.
   !>             Martrix dimension is ( ldb, k ) when if trans = HIPBLAS_OP_N, otherwise (ldb, n)
-  !>             only the upperlower triangular part is accessed.
+  !>             only the upper/lower triangular part is accessed.
   !> 
   !>     @param[in]
   !>     ldb     [int]
@@ -17474,8 +17360,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     ldc    [int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
-  !> 
-  !>     
+  !>
   interface hipblasZherkx
 #ifdef USE_CUDA_NAMES
     function hipblasZherkx_(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasZherkx")
@@ -17542,17 +17427,17 @@ module hipfort_hipblas
       hipblasCherkxBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     herkxBatched performs a batch of the matrix-matrix operations for a Hermitian rank-k update
   !> 
-  !>     C_i := alphaop( A_i )op( B_i )^H + betaC_i
+  !>     C_i := alpha*op( A_i )*op( B_i )^H + beta*C_i
   !> 
   !>     where  alpha and beta are scalars, op(A_i) and op(B_i) are n by k matrices, and
   !>     C_i is a n x n Hermitian matrix stored as either upper or lower.
-  !>     This routine should only be used when the caller can guarantee that the result of op( A )op( B )^T will be Hermitian.
+  !>     This routine should only be used when the caller can guarantee that the result of op( A )*op( B )^T will be Hermitian.
   !> 
   !>         op( A_i ) = A_i, op( B_i ) = B_i, and A_i and B_i are n by k if trans == HIPBLAS_OP_N
   !>         op( A_i ) = A_i^H, op( B_i ) = B_i^H,  and A_i and B_i are k by n if trans == HIPBLAS_OP_C
@@ -17621,8 +17506,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface hipblasZherkxBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZherkxBatched_(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="cublasZherkxBatched")
@@ -17693,17 +17577,17 @@ module hipfort_hipblas
       hipblasCherkxStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     herkxStridedBatched performs a batch of the matrix-matrix operations for a Hermitian rank-k update
   !> 
-  !>     C_i := alphaop( A_i )op( B_i )^H + betaC_i
+  !>     C_i := alpha*op( A_i )*op( B_i )^H + beta*C_i
   !> 
   !>     where  alpha and beta are scalars, op(A_i) and op(B_i) are n by k matrices, and
   !>     C_i is a n x n Hermitian matrix stored as either upper or lower.
-  !>     This routine should only be used when the caller can guarantee that the result of op( A )op( B )^T will be Hermitian.
+  !>     This routine should only be used when the caller can guarantee that the result of op( A )*op( B )^T will be Hermitian.
   !> 
   !>         op( A_i ) = A_i, op( B_i ) = B_i, and A_i and B_i are n by k if trans == HIPBLAS_OP_N
   !>         op( A_i ) = A_i^H, op( B_i ) = B_i^H,  and A_i and B_i are k by n if trans == HIPBLAS_OP_C
@@ -17784,8 +17668,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface hipblasZherkxStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZherkxStridedBatched_(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount) bind(c, name="cublasZherkxStridedBatched")
@@ -17855,13 +17738,13 @@ module hipfort_hipblas
       hipblasCher2k_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     her2k performs one of the matrix-matrix operations for a Hermitian rank-2k update
   !> 
-  !>     C := alphaop( A )op( B )^H + conj(alpha)op( B )op( A )^H + betaC
+  !>     C := alpha*op( A )*op( B )^H + conj(alpha)*op( B )*op( A )^H + beta*C
   !> 
   !>     where  alpha and beta are scalars, op(A) and op(B) are n by k matrices, and
   !>     C is a n x n Hermitian matrix stored as either upper or lower.
@@ -17900,7 +17783,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     A       pointer storing matrix A on the GPU.
   !>             Martrix dimension is ( lda, k ) when if trans = HIPBLAS_OP_N, otherwise (lda, n)
-  !>             only the upperlower triangular part is accessed.
+  !>             only the upper/lower triangular part is accessed.
   !> 
   !>     @param[in]
   !>     lda     [int]
@@ -17910,7 +17793,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     B       pointer storing matrix B on the GPU.
   !>             Martrix dimension is ( ldb, k ) when if trans = HIPBLAS_OP_N, otherwise (ldb, n)
-  !>             only the upperlower triangular part is accessed.
+  !>             only the upper/lower triangular part is accessed.
   !> 
   !>     @param[in]
   !>     ldb     [int]
@@ -17929,8 +17812,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     ldc    [int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
-  !> 
-  !>     
+  !>
   interface hipblasZher2k
 #ifdef USE_CUDA_NAMES
     function hipblasZher2k_(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasZher2k_v2")
@@ -17997,13 +17879,13 @@ module hipfort_hipblas
       hipblasCher2kBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     her2kBatched performs a batch of the matrix-matrix operations for a Hermitian rank-2k update
   !> 
-  !>     C_i := alphaop( A_i )op( B_i )^H + conj(alpha)op( B_i )op( A_i )^H + betaC_i
+  !>     C_i := alpha*op( A_i )*op( B_i )^H + conj(alpha)*op( B_i )*op( A_i )^H + beta*C_i
   !> 
   !>     where  alpha and beta are scalars, op(A_i) and op(B_i) are n by k matrices, and
   !>     C_i is a n x n Hermitian matrix stored as either upper or lower.
@@ -18072,8 +17954,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface hipblasZher2kBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZher2kBatched_(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="cublasZher2kBatched")
@@ -18144,13 +18025,13 @@ module hipfort_hipblas
       hipblasCher2kStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     her2kStridedBatched performs a batch of the matrix-matrix operations for a Hermitian rank-2k update
   !> 
-  !>     C_i := alphaop( A_i )op( B_i )^H + conj(alpha)op( B_i )op( A_i )^H + betaC_i
+  !>     C_i := alpha*op( A_i )*op( B_i )^H + conj(alpha)*op( B_i )*op( A_i )^H + beta*C_i
   !> 
   !>     where  alpha and beta are scalars, op(A_i) and op(B_i) are n by k matrices, and
   !>     C_i is a n x n Hermitian matrix stored as either upper or lower.
@@ -18234,8 +18115,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface hipblasZher2kStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZher2kStridedBatched_(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount) bind(c, name="cublasZher2kStridedBatched")
@@ -18371,14 +18251,14 @@ module hipfort_hipblas
       hipblasCsymm_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     symm performs one of the matrix-matrix operations:
   !> 
-  !>     C := alphaAB + betaC if side == HIPBLAS_SIDE_LEFT,
-  !>     C := alphaBA + betaC if side == HIPBLAS_SIDE_RIGHT,
+  !>     C := alpha*A*B + beta*C if side == HIPBLAS_SIDE_LEFT,
+  !>     C := alpha*B*A + beta*C if side == HIPBLAS_SIDE_RIGHT,
   !> 
   !>     where alpha and beta are scalars, B and C are m by n matrices, and
   !>     A is a symmetric matrix stored as either upper or lower.
@@ -18389,8 +18269,8 @@ module hipfort_hipblas
   !> 
   !>     @param[in]
   !>     side  [hipblasSideMode_t]
-  !>             HIPBLAS_SIDE_LEFT:      C := alphaAB + betaC
-  !>             HIPBLAS_SIDE_RIGHT:     C := alphaBA + betaC
+  !>             HIPBLAS_SIDE_LEFT:      C := alpha*A*B + beta*C
+  !>             HIPBLAS_SIDE_RIGHT:     C := alpha*B*A + beta*C
   !> 
   !>     @param[in]
   !>     uplo    [hipblasFillMode_t]
@@ -18414,7 +18294,7 @@ module hipfort_hipblas
   !>     A       pointer storing matrix A on the GPU.
   !>             A is m by m if side == HIPBLAS_SIDE_LEFT
   !>             A is n by n if side == HIPBLAS_SIDE_RIGHT
-  !>             only the upperlower triangular part is accessed.
+  !>             only the upper/lower triangular part is accessed.
   !> 
   !>     @param[in]
   !>     lda     [int]
@@ -18442,8 +18322,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     ldc    [int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, m )
-  !> 
-  !>     
+  !>
   interface hipblasZsymm
 #ifdef USE_CUDA_NAMES
     function hipblasZsymm_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasZsymm_v2")
@@ -18578,14 +18457,14 @@ module hipfort_hipblas
       hipblasCsymmBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     symmBatched performs a batch of the matrix-matrix operations:
   !> 
-  !>     C_i := alphaA_iB_i + betaC_i if side == HIPBLAS_SIDE_LEFT,
-  !>     C_i := alphaB_iA_i + betaC_i if side == HIPBLAS_SIDE_RIGHT,
+  !>     C_i := alpha*A_i*B_i + beta*C_i if side == HIPBLAS_SIDE_LEFT,
+  !>     C_i := alpha*B_i*A_i + beta*C_i if side == HIPBLAS_SIDE_RIGHT,
   !> 
   !>     where alpha and beta are scalars, B_i and C_i are m by n matrices, and
   !>     A_i is a symmetric matrix stored as either upper or lower.
@@ -18596,8 +18475,8 @@ module hipfort_hipblas
   !> 
   !>     @param[in]
   !>     side  [hipblasSideMode_t]
-  !>             HIPBLAS_SIDE_LEFT:      C_i := alphaA_iB_i + betaC_i
-  !>             HIPBLAS_SIDE_RIGHT:     C_i := alphaB_iA_i + betaC_i
+  !>             HIPBLAS_SIDE_LEFT:      C_i := alpha*A_i*B_i + beta*C_i
+  !>             HIPBLAS_SIDE_RIGHT:     C_i := alpha*B_i*A_i + beta*C_i
   !> 
   !>     @param[in]
   !>     uplo    [hipblasFillMode_t]
@@ -18621,7 +18500,7 @@ module hipfort_hipblas
   !>     A       device array of device pointers storing each matrix A_i on the GPU.
   !>             A_i is m by m if side == HIPBLAS_SIDE_LEFT
   !>             A_i is n by n if side == HIPBLAS_SIDE_RIGHT
-  !>             only the upperlower triangular part is accessed.
+  !>             only the upper/lower triangular part is accessed.
   !> 
   !>     @param[in]
   !>     lda     [int]
@@ -18653,8 +18532,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface hipblasZsymmBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZsymmBatched_(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="cublasZsymmBatched")
@@ -18799,14 +18677,14 @@ module hipfort_hipblas
       hipblasCsymmStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     symmStridedBatched performs a batch of the matrix-matrix operations:
   !> 
-  !>     C_i := alphaA_iB_i + betaC_i if side == HIPBLAS_SIDE_LEFT,
-  !>     C_i := alphaB_iA_i + betaC_i if side == HIPBLAS_SIDE_RIGHT,
+  !>     C_i := alpha*A_i*B_i + beta*C_i if side == HIPBLAS_SIDE_LEFT,
+  !>     C_i := alpha*B_i*A_i + beta*C_i if side == HIPBLAS_SIDE_RIGHT,
   !> 
   !>     where alpha and beta are scalars, B_i and C_i are m by n matrices, and
   !>     A_i is a symmetric matrix stored as either upper or lower.
@@ -18817,8 +18695,8 @@ module hipfort_hipblas
   !> 
   !>     @param[in]
   !>     side  [hipblasSideMode_t]
-  !>             HIPBLAS_SIDE_LEFT:      C_i := alphaA_iB_i + betaC_i
-  !>             HIPBLAS_SIDE_RIGHT:     C_i := alphaB_iA_i + betaC_i
+  !>             HIPBLAS_SIDE_LEFT:      C_i := alpha*A_i*B_i + beta*C_i
+  !>             HIPBLAS_SIDE_RIGHT:     C_i := alpha*B_i*A_i + beta*C_i
   !> 
   !>     @param[in]
   !>     uplo    [hipblasFillMode_t]
@@ -18842,7 +18720,7 @@ module hipfort_hipblas
   !>     A       device pointer to first matrix A_1
   !>             A_i is m by m if side == HIPBLAS_SIDE_LEFT
   !>             A_i is n by n if side == HIPBLAS_SIDE_RIGHT
-  !>             only the upperlower triangular part is accessed.
+  !>             only the upper/lower triangular part is accessed.
   !> 
   !>     @param[in]
   !>     lda     [int]
@@ -18883,8 +18761,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface hipblasZsymmStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZsymmStridedBatched_(handle,side,uplo,m,n,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount) bind(c, name="cublasZsymmStridedBatched")
@@ -19014,13 +18891,13 @@ module hipfort_hipblas
       hipblasCsyrk_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     syrk performs one of the matrix-matrix operations for a symmetric rank-k update
   !> 
-  !>     C := alphaop( A )op( A )^T + betaC
+  !>     C := alpha*op( A )*op( A )^T + beta*C
   !> 
   !>     where  alpha and beta are scalars, op(A) is an n by k matrix, and
   !>     C is a symmetric n x n matrix stored as either upper or lower.
@@ -19063,7 +18940,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     A       pointer storing matrix A on the GPU.
   !>             Martrix dimension is ( lda, k ) when if transA = HIPBLAS_OP_N, otherwise (lda, n)
-  !>             only the upperlower triangular part is accessed.
+  !>             only the upper/lower triangular part is accessed.
   !> 
   !>     @param[in]
   !>     lda     [int]
@@ -19082,8 +18959,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     ldc    [int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
-  !> 
-  !>     
+  !>
   interface hipblasZsyrk
 #ifdef USE_CUDA_NAMES
     function hipblasZsyrk_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc) bind(c, name="cublasZsyrk_v2")
@@ -19210,13 +19086,13 @@ module hipfort_hipblas
       hipblasCsyrkBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     syrkBatched performs a batch of the matrix-matrix operations for a symmetric rank-k update
   !> 
-  !>     C_i := alphaop( A_i )op( A_i )^T + betaC_i
+  !>     C_i := alpha*op( A_i )*op( A_i )^T + beta*C_i
   !> 
   !>     where  alpha and beta are scalars, op(A_i) is an n by k matrix, and
   !>     C_i is a symmetric n x n matrix stored as either upper or lower.
@@ -19280,8 +19156,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface hipblasZsyrkBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZsyrkBatched_(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc,batchCount) bind(c, name="cublasZsyrkBatched")
@@ -19415,13 +19290,13 @@ module hipfort_hipblas
       hipblasCsyrkStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     syrkStridedBatched performs a batch of the matrix-matrix operations for a symmetric rank-k update
   !> 
-  !>     C_i := alphaop( A_i )op( A_i )^T + betaC_i
+  !>     C_i := alpha*op( A_i )*op( A_i )^T + beta*C_i
   !> 
   !>     where  alpha and beta are scalars, op(A_i) is an n by k matrix, and
   !>     C_i is a symmetric n x n matrix stored as either upper or lower.
@@ -19494,8 +19369,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface hipblasZsyrkStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZsyrkStridedBatched_(handle,uplo,transA,n,k,alpha,A,lda,strideA,beta,C,ldc,strideC,batchCount) bind(c, name="cublasZsyrkStridedBatched")
@@ -19628,13 +19502,13 @@ module hipfort_hipblas
       hipblasCsyr2k_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     syr2k performs one of the matrix-matrix operations for a symmetric rank-2k update
   !> 
-  !>     C := alpha(op( A )op( B )^T + op( B )op( A )^T) + betaC
+  !>     C := alpha*(op( A )*op( B )^T + op( B )*op( A )^T) + beta*C
   !> 
   !>     where  alpha and beta are scalars, op(A) and op(B) are n by k matrix, and
   !>     C is a symmetric n x n matrix stored as either upper or lower.
@@ -19673,7 +19547,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     A       pointer storing matrix A on the GPU.
   !>             Martrix dimension is ( lda, k ) when if trans = HIPBLAS_OP_N, otherwise (lda, n)
-  !>             only the upperlower triangular part is accessed.
+  !>             only the upper/lower triangular part is accessed.
   !> 
   !>     @param[in]
   !>     lda     [int]
@@ -19683,7 +19557,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     B       pointer storing matrix B on the GPU.
   !>             Martrix dimension is ( ldb, k ) when if trans = HIPBLAS_OP_N, otherwise (ldb, n)
-  !>             only the upperlower triangular part is accessed.
+  !>             only the upper/lower triangular part is accessed.
   !> 
   !>     @param[in]
   !>     ldb     [int]
@@ -19701,8 +19575,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     ldc    [int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
-  !> 
-  !>     
+  !>
   interface hipblasZsyr2k
 #ifdef USE_CUDA_NAMES
     function hipblasZsyr2k_(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasZsyr2k_v2")
@@ -19837,13 +19710,13 @@ module hipfort_hipblas
       hipblasCsyr2kBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     syr2kBatched performs a batch of the matrix-matrix operations for a symmetric rank-2k update
   !> 
-  !>     C_i := alpha(op( A_i )op( B_i )^T + op( B_i )op( A_i )^T) + betaC_i
+  !>     C_i := alpha*(op( A_i )*op( B_i )^T + op( B_i )*op( A_i )^T) + beta*C_i
   !> 
   !>     where  alpha and beta are scalars, op(A_i) and op(B_i) are n by k matrix, and
   !>     C_i is a symmetric n x n matrix stored as either upper or lower.
@@ -19910,8 +19783,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface hipblasZsyr2kBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZsyr2kBatched_(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="cublasZsyr2kBatched")
@@ -20056,13 +19928,13 @@ module hipfort_hipblas
       hipblasCsyr2kStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     syr2kStridedBatched performs a batch of the matrix-matrix operations for a symmetric rank-2k update
   !> 
-  !>     C_i := alpha(op( A_i )op( B_i )^T + op( B_i )op( A_i )^T) + betaC_i
+  !>     C_i := alpha*(op( A_i )*op( B_i )^T + op( B_i )*op( A_i )^T) + beta*C_i
   !> 
   !>     where  alpha and beta are scalars, op(A_i) and op(B_i) are n by k matrix, and
   !>     C_i is a symmetric n x n matrix stored as either upper or lower.
@@ -20145,8 +20017,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface hipblasZsyr2kStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZsyr2kStridedBatched_(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount) bind(c, name="cublasZsyr2kStridedBatched")
@@ -20282,17 +20153,17 @@ module hipfort_hipblas
       hipblasCsyrkx_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     syrkx performs one of the matrix-matrix operations for a symmetric rank-k update
   !> 
-  !>     C := alphaop( A )op( B )^T + betaC
+  !>     C := alpha*op( A )*op( B )^T + beta*C
   !> 
   !>     where  alpha and beta are scalars, op(A) and op(B) are n by k matrix, and
   !>     C is a symmetric n x n matrix stored as either upper or lower.
-  !>     This routine should only be used when the caller can guarantee that the result of op( A )op( B )^T will be symmetric.
+  !>     This routine should only be used when the caller can guarantee that the result of op( A )*op( B )^T will be symmetric.
   !> 
   !>         op( A ) = A, op( B ) = B, and A and B are n by k if trans == HIPBLAS_OP_N
   !>         op( A ) = A^T, op( B ) = B^T,  and A and B are k by n if trans == HIPBLAS_OP_T
@@ -20328,7 +20199,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     A       pointer storing matrix A on the GPU.
   !>             Martrix dimension is ( lda, k ) when if trans = HIPBLAS_OP_N, otherwise (lda, n)
-  !>             only the upperlower triangular part is accessed.
+  !>             only the upper/lower triangular part is accessed.
   !> 
   !>     @param[in]
   !>     lda     [int]
@@ -20339,7 +20210,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     B       pointer storing matrix B on the GPU.
   !>             Martrix dimension is ( ldb, k ) when if trans = HIPBLAS_OP_N, otherwise (ldb, n)
-  !>             only the upperlower triangular part is accessed.
+  !>             only the upper/lower triangular part is accessed.
   !> 
   !>     @param[in]
   !>     ldb     [int]
@@ -20358,8 +20229,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     ldc    [int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, n ).
-  !> 
-  !>     
+  !>
   interface hipblasZsyrkx
 #ifdef USE_CUDA_NAMES
     function hipblasZsyrkx_(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasZsyrkx")
@@ -20494,17 +20364,17 @@ module hipfort_hipblas
       hipblasCsyrkxBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     syrkxBatched performs a batch of the matrix-matrix operations for a symmetric rank-k update
   !> 
-  !>     C_i := alphaop( A_i )op( B_i )^T + betaC_i
+  !>     C_i := alpha*op( A_i )*op( B_i )^T + beta*C_i
   !> 
   !>     where  alpha and beta are scalars, op(A_i) and op(B_i) are n by k matrix, and
   !>     C_i is a symmetric n x n matrix stored as either upper or lower.
-  !>     This routine should only be used when the caller can guarantee that the result of op( A_i )op( B_i )^T will be symmetric.
+  !>     This routine should only be used when the caller can guarantee that the result of op( A_i )*op( B_i )^T will be symmetric.
   !> 
   !>         op( A_i ) = A_i, op( B_i ) = B_i, and A_i and B_i are n by k if trans == HIPBLAS_OP_N
   !>         op( A_i ) = A_i^T, op( B_i ) = B_i^T,  and A_i and B_i are k by n if trans == HIPBLAS_OP_T
@@ -20572,8 +20442,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>             number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface hipblasZsyrkxBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZsyrkxBatched_(handle,uplo,transA,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="cublasZsyrkxBatched")
@@ -20718,17 +20587,17 @@ module hipfort_hipblas
       hipblasCsyrkxStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     syrkxStridedBatched performs a batch of the matrix-matrix operations for a symmetric rank-k update
   !> 
-  !>     C_i := alphaop( A_i )op( B_i )^T + betaC_i
+  !>     C_i := alpha*op( A_i )*op( B_i )^T + beta*C_i
   !> 
   !>     where  alpha and beta are scalars, op(A_i) and op(B_i) are n by k matrix, and
   !>     C_i is a symmetric n x n matrix stored as either upper or lower.
-  !>     This routine should only be used when the caller can guarantee that the result of op( A_i )op( B_i )^T will be symmetric.
+  !>     This routine should only be used when the caller can guarantee that the result of op( A_i )*op( B_i )^T will be symmetric.
   !> 
   !>         op( A_i ) = A_i, op( B_i ) = B_i, and A_i and B_i are n by k if trans == HIPBLAS_OP_N
   !>         op( A_i ) = A_i^T, op( B_i ) = B_i^T,  and A_i and B_i are k by n if trans == HIPBLAS_OP_T
@@ -20808,8 +20677,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface hipblasZsyrkxStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZsyrkxStridedBatched_(handle,uplo,transA,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,stridec,batchCount) bind(c, name="cublasZsyrkxStridedBatched")
@@ -20945,18 +20813,18 @@ module hipfort_hipblas
       hipblasCgeam_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !>     geam performs one of the matrix-matrix operations
   !> 
-  !>         C = alphaop( A ) + betaop( B ),
+  !>         C = alpha*op( A ) + beta*op( B ),
   !> 
   !>     where op( X ) is one of
   !> 
   !>         op( X ) = X      or
-  !>         op( X ) = XT   or
-  !>         op( X ) = XH,
+  !>         op( X ) = X**T   or
+  !>         op( X ) = X**H,
   !> 
   !>     alpha and beta are scalars, and A, B and C are matrices, with
   !>     op( A ) an m by n matrix, op( B ) an m by n matrix, and C an m by n matrix.
@@ -20995,8 +20863,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     ldc       [int]
   !>               specifies the leading dimension of C.
-  !> 
-  !>     
+  !>
   interface hipblasZgeam
 #ifdef USE_CUDA_NAMES
     function hipblasZgeam_(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc) bind(c, name="cublasZgeam")
@@ -21131,18 +20998,18 @@ module hipfort_hipblas
       hipblasCgeamBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !>     geamBatched performs one of the batched matrix-matrix operations
   !> 
-  !>         C_i = alphaop( A_i ) + betaop( B_i )  for i = 0, 1, ... batchCount - 1
+  !>         C_i = alpha*op( A_i ) + beta*op( B_i )  for i = 0, 1, ... batchCount - 1
   !> 
   !>     where alpha and beta are scalars, and op(A_i), op(B_i) and C_i are m by n matrices
   !>     and op( X ) is one of
   !> 
   !>         op( X ) = X      or
-  !>         op( X ) = XT
+  !>         op( X ) = X**T
   !> 
   !>     @param[in]
   !>     handle    [hipblasHandle_t]
@@ -21189,8 +21056,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances i in the batch.
-  !> 
-  !>     
+  !>
   interface hipblasZgeamBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZgeamBatched_(handle,transa,transb,m,n,alpha,A,lda,beta,B,ldb,C,ldc,batchCount) bind(c, name="cublasZgeamBatched")
@@ -21335,18 +21201,18 @@ module hipfort_hipblas
       hipblasCgeamStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !>     geamStridedBatched performs one of the batched matrix-matrix operations
   !> 
-  !>         C_i = alphaop( A_i ) + betaop( B_i )  for i = 0, 1, ... batchCount - 1
+  !>         C_i = alpha*op( A_i ) + beta*op( B_i )  for i = 0, 1, ... batchCount - 1
   !> 
   !>     where alpha and beta are scalars, and op(A_i), op(B_i) and C_i are m by n matrices
   !>     and op( X ) is one of
   !> 
   !>         op( X ) = X      or
-  !>         op( X ) = XT
+  !>         op( X ) = X**T
   !> 
   !>     @param[in]
   !>     handle    [hipblasHandle_t]
@@ -21417,8 +21283,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances i in the batch.
-  !> 
-  !>     
+  !>
   interface hipblasZgeamStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZgeamStridedBatched_(handle,transa,transb,m,n,alpha,A,lda,strideA,beta,B,ldb,strideB,C,ldc,strideC,batchCount) bind(c, name="cublasZgeamStridedBatched")
@@ -21488,14 +21353,14 @@ module hipfort_hipblas
       hipblasChemm_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     hemm performs one of the matrix-matrix operations:
   !> 
-  !>     C := alphaAB + betaC if side == HIPBLAS_SIDE_LEFT,
-  !>     C := alphaBA + betaC if side == HIPBLAS_SIDE_RIGHT,
+  !>     C := alpha*A*B + beta*C if side == HIPBLAS_SIDE_LEFT,
+  !>     C := alpha*B*A + beta*C if side == HIPBLAS_SIDE_RIGHT,
   !> 
   !>     where alpha and beta are scalars, B and C are m by n matrices, and
   !>     A is a Hermitian matrix stored as either upper or lower.
@@ -21506,8 +21371,8 @@ module hipfort_hipblas
   !> 
   !>     @param[in]
   !>     side  [hipblasSideMode_t]
-  !>             HIPBLAS_SIDE_LEFT:      C := alphaAB + betaC
-  !>             HIPBLAS_SIDE_RIGHT:     C := alphaBA + betaC
+  !>             HIPBLAS_SIDE_LEFT:      C := alpha*A*B + beta*C
+  !>             HIPBLAS_SIDE_RIGHT:     C := alpha*B*A + beta*C
   !> 
   !>     @param[in]
   !>     uplo    [hipblasFillMode_t]
@@ -21531,7 +21396,7 @@ module hipfort_hipblas
   !>     A       pointer storing matrix A on the GPU.
   !>             A is m by m if side == HIPBLAS_SIDE_LEFT
   !>             A is n by n if side == HIPBLAS_SIDE_RIGHT
-  !>             Only the upperlower triangular part is accessed.
+  !>             Only the upper/lower triangular part is accessed.
   !>             The imaginary component of the diagonal elements is not used.
   !> 
   !>     @param[in]
@@ -21560,8 +21425,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     ldc    [int]
   !>            ldc specifies the first dimension of C. ldc >= max( 1, m )
-  !> 
-  !>     
+  !>
   interface hipblasZhemm
 #ifdef USE_CUDA_NAMES
     function hipblasZhemm_(handle,side,uplo,n,k,alpha,A,lda,B,ldb,beta,C,ldc) bind(c, name="cublasZhemm_v2")
@@ -21628,14 +21492,14 @@ module hipfort_hipblas
       hipblasChemmBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     hemmBatched performs a batch of the matrix-matrix operations:
   !> 
-  !>     C_i := alphaA_iB_i + betaC_i if side == HIPBLAS_SIDE_LEFT,
-  !>     C_i := alphaB_iA_i + betaC_i if side == HIPBLAS_SIDE_RIGHT,
+  !>     C_i := alpha*A_i*B_i + beta*C_i if side == HIPBLAS_SIDE_LEFT,
+  !>     C_i := alpha*B_i*A_i + beta*C_i if side == HIPBLAS_SIDE_RIGHT,
   !> 
   !>     where alpha and beta are scalars, B_i and C_i are m by n matrices, and
   !>     A_i is a Hermitian matrix stored as either upper or lower.
@@ -21646,8 +21510,8 @@ module hipfort_hipblas
   !> 
   !>     @param[in]
   !>     side  [hipblasSideMode_t]
-  !>             HIPBLAS_SIDE_LEFT:      C_i := alphaA_iB_i + betaC_i
-  !>             HIPBLAS_SIDE_RIGHT:     C_i := alphaB_iA_i + betaC_i
+  !>             HIPBLAS_SIDE_LEFT:      C_i := alpha*A_i*B_i + beta*C_i
+  !>             HIPBLAS_SIDE_RIGHT:     C_i := alpha*B_i*A_i + beta*C_i
   !> 
   !>     @param[in]
   !>     uplo    [hipblasFillMode_t]
@@ -21671,7 +21535,7 @@ module hipfort_hipblas
   !>     A       device array of device pointers storing each matrix A_i on the GPU.
   !>             A_i is m by m if side == HIPBLAS_SIDE_LEFT
   !>             A_i is n by n if side == HIPBLAS_SIDE_RIGHT
-  !>             Only the upperlower triangular part is accessed.
+  !>             Only the upper/lower triangular part is accessed.
   !>             The imaginary component of the diagonal elements is not used.
   !> 
   !>     @param[in]
@@ -21704,8 +21568,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface hipblasZhemmBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZhemmBatched_(handle,side,uplo,n,k,alpha,A,lda,B,ldb,beta,C,ldc,batchCount) bind(c, name="cublasZhemmBatched")
@@ -21776,14 +21639,14 @@ module hipfort_hipblas
       hipblasChemmStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     hemmStridedBatched performs a batch of the matrix-matrix operations:
   !> 
-  !>     C_i := alphaA_iB_i + betaC_i if side == HIPBLAS_SIDE_LEFT,
-  !>     C_i := alphaB_iA_i + betaC_i if side == HIPBLAS_SIDE_RIGHT,
+  !>     C_i := alpha*A_i*B_i + beta*C_i if side == HIPBLAS_SIDE_LEFT,
+  !>     C_i := alpha*B_i*A_i + beta*C_i if side == HIPBLAS_SIDE_RIGHT,
   !> 
   !>     where alpha and beta are scalars, B_i and C_i are m by n matrices, and
   !>     A_i is a Hermitian matrix stored as either upper or lower.
@@ -21794,8 +21657,8 @@ module hipfort_hipblas
   !> 
   !>     @param[in]
   !>     side  [hipblasSideMode_t]
-  !>             HIPBLAS_SIDE_LEFT:      C_i := alphaA_iB_i + betaC_i
-  !>             HIPBLAS_SIDE_RIGHT:     C_i := alphaB_iA_i + betaC_i
+  !>             HIPBLAS_SIDE_LEFT:      C_i := alpha*A_i*B_i + beta*C_i
+  !>             HIPBLAS_SIDE_RIGHT:     C_i := alpha*B_i*A_i + beta*C_i
   !> 
   !>     @param[in]
   !>     uplo    [hipblasFillMode_t]
@@ -21819,7 +21682,7 @@ module hipfort_hipblas
   !>     A       device pointer to first matrix A_1
   !>             A_i is m by m if side == HIPBLAS_SIDE_LEFT
   !>             A_i is n by n if side == HIPBLAS_SIDE_RIGHT
-  !>             Only the upperlower triangular part is accessed.
+  !>             Only the upper/lower triangular part is accessed.
   !>             The imaginary component of the diagonal elements is not used.
   !> 
   !>     @param[in]
@@ -21864,8 +21727,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch
-  !> 
-  !>     
+  !>
   interface hipblasZhemmStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZhemmStridedBatched_(handle,side,uplo,n,k,alpha,A,lda,strideA,B,ldb,strideB,beta,C,ldc,strideC,batchCount) bind(c, name="cublasZhemmStridedBatched")
@@ -21998,13 +21860,13 @@ module hipfort_hipblas
       hipblasCtrmm_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     trmm performs one of the matrix-matrix operations
   !> 
-  !>     B := alphaop( A )B,   or   B := alphaBop( A )
+  !>     B := alpha*op( A )*B,   or   B := alpha*B*op( A )
   !> 
   !>     where  alpha  is a scalar,  B  is an m by n matrix,  A  is a unit, or
   !>     non-unit,  upper or lower triangular matrix  and  op( A )  is one  of
@@ -22018,8 +21880,8 @@ module hipfort_hipblas
   !>     @param[in]
   !>     side    [hipblasSideMode_t]
   !>             Specifies whether op(A) multiplies B from the left or right as follows:
-  !>             HIPBLAS_SIDE_LEFT:       B := alphaop( A )B.
-  !>             HIPBLAS_SIDE_RIGHT:      B := alphaBop( A ).
+  !>             HIPBLAS_SIDE_LEFT:       B := alpha*op( A )*B.
+  !>             HIPBLAS_SIDE_RIGHT:      B := alpha*B*op( A ).
   !> 
   !>     @param[in]
   !>     uplo    [hipblasFillMode_t]
@@ -22088,8 +21950,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     ldb    [int]
   !>            ldb specifies the first dimension of B. ldb >= max( 1, m ).
-  !> 
-  !>     
+  !>
   interface hipblasZtrmm
 #ifdef USE_CUDA_NAMES
     function hipblasZtrmm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="cublasZtrmm_v2")
@@ -22220,13 +22081,13 @@ module hipfort_hipblas
       hipblasCtrmmBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     trmmBatched performs one of the batched matrix-matrix operations
   !> 
-  !>     B_i := alphaop( A_i )B_i,   or   B_i := alphaB_iop( A_i )  for i = 0, 1, ... batchCount -1
+  !>     B_i := alpha*op( A_i )*B_i,   or   B_i := alpha*B_i*op( A_i )  for i = 0, 1, ... batchCount -1
   !> 
   !>     where  alpha  is a scalar,  B_i  is an m by n matrix,  A_i  is a unit, or
   !>     non-unit,  upper or lower triangular matrix  and  op( A_i )  is one  of
@@ -22240,8 +22101,8 @@ module hipfort_hipblas
   !>     @param[in]
   !>     side    [hipblasSideMode_t]
   !>             Specifies whether op(A_i) multiplies B_i from the left or right as follows:
-  !>             HIPBLAS_SIDE_LEFT:       B_i := alphaop( A_i )B_i.
-  !>             HIPBLAS_SIDE_RIGHT:      B_i := alphaB_iop( A_i ).
+  !>             HIPBLAS_SIDE_LEFT:       B_i := alpha*op( A_i )*B_i.
+  !>             HIPBLAS_SIDE_RIGHT:      B_i := alpha*B_i*op( A_i ).
   !> 
   !>     @param[in]
   !>     uplo    [hipblasFillMode_t]
@@ -22314,7 +22175,6 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances i in the batch.
-  !>     
   interface hipblasZtrmmBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZtrmmBatched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,batchCount) bind(c, name="cublasZtrmmBatched")
@@ -22452,13 +22312,13 @@ module hipfort_hipblas
       hipblasCtrmmStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     trmmStridedBatched performs one of the strided_batched matrix-matrix operations
   !> 
-  !>     B_i := alphaop( A_i )B_i,   or   B_i := alphaB_iop( A_i )  for i = 0, 1, ... batchCount -1
+  !>     B_i := alpha*op( A_i )*B_i,   or   B_i := alpha*B_i*op( A_i )  for i = 0, 1, ... batchCount -1
   !> 
   !>     where  alpha  is a scalar,  B_i  is an m by n matrix,  A_i  is a unit, or
   !>     non-unit,  upper or lower triangular matrix  and  op( A_i )  is one  of
@@ -22472,8 +22332,8 @@ module hipfort_hipblas
   !>     @param[in]
   !>     side    [hipblasSideMode_t]
   !>             Specifies whether op(A_i) multiplies B_i from the left or right as follows:
-  !>             HIPBLAS_SIDE_LEFT:       B_i := alphaop( A_i )B_i.
-  !>             HIPBLAS_SIDE_RIGHT:      B_i := alphaB_iop( A_i ).
+  !>             HIPBLAS_SIDE_LEFT:       B_i := alpha*op( A_i )*B_i.
+  !>             HIPBLAS_SIDE_RIGHT:      B_i := alpha*B_i*op( A_i ).
   !> 
   !>     @param[in]
   !>     uplo    [hipblasFillMode_t]
@@ -22553,7 +22413,6 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances i in the batch.
-  !>     
   interface hipblasZtrmmStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZtrmmStridedBatched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,strideA,B,ldb,strideB,batchCount) bind(c, name="cublasZtrmmStridedBatched")
@@ -22684,13 +22543,13 @@ module hipfort_hipblas
       hipblasCtrsm_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !> 
   !>     trsm solves
   !> 
-  !>         op(A)X = alphaB or  Xop(A) = alphaB,
+  !>         op(A)*X = alpha*B or  X*op(A) = alpha*B,
   !> 
   !>     where alpha is a scalar, X and B are m by n matrices,
   !>     A is triangular matrix and op(A) is one of
@@ -22716,8 +22575,8 @@ module hipfort_hipblas
   !> 
   !>     @param[in]
   !>     side    [hipblasSideMode_t]
-  !>             HIPBLAS_SIDE_LEFT:       op(A)X = alphaB.
-  !>             HIPBLAS_SIDE_RIGHT:      Xop(A) = alphaB.
+  !>             HIPBLAS_SIDE_LEFT:       op(A)*X = alpha*B.
+  !>             HIPBLAS_SIDE_RIGHT:      X*op(A) = alpha*B.
   !> 
   !>     @param[in]
   !>     uplo    [hipblasFillMode_t]
@@ -22754,7 +22613,7 @@ module hipfort_hipblas
   !>             of dimension ( lda, k ), where k is m
   !>             when  HIPBLAS_SIDE_LEFT  and
   !>             is  n  when  HIPBLAS_SIDE_RIGHT
-  !>             only the upperlower triangular part is accessed.
+  !>             only the upper/lower triangular part is accessed.
   !> 
   !>     @param[in]
   !>     lda     [int]
@@ -22768,8 +22627,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     ldb    [int]
   !>            ldb specifies the first dimension of B. ldb >= max( 1, m ).
-  !> 
-  !>     
+  !>
   interface hipblasZtrsm
 #ifdef USE_CUDA_NAMES
     function hipblasZtrsm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="cublasZtrsm_v2")
@@ -22900,11 +22758,11 @@ module hipfort_hipblas
       hipblasCtrsmBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !>     \details
   !>     trsmBatched performs the following batched operation:
   !> 
-  !>         op(A_i)X_i = alphaB_i or  X_iop(A_i) = alphaB_i, for i = 1, ..., batchCount.
+  !>         op(A_i)*X_i = alpha*B_i or  X_i*op(A_i) = alpha*B_i, for i = 1, ..., batchCount.
   !> 
   !>     where alpha is a scalar, X and B are batched m by n matrices,
   !>     A is triangular batched matrix and op(A) is one of
@@ -22928,8 +22786,8 @@ module hipfort_hipblas
   !>               handle to the hipblas library context queue.
   !>     @param[in]
   !>     side    [hipblasSideMode_t]
-  !>             HIPBLAS_SIDE_LEFT:       op(A)X = alphaB.
-  !>             HIPBLAS_SIDE_RIGHT:      Xop(A) = alphaB.
+  !>             HIPBLAS_SIDE_LEFT:       op(A)*X = alpha*B.
+  !>             HIPBLAS_SIDE_RIGHT:      X*op(A) = alpha*B.
   !>     @param[in]
   !>     uplo    [hipblasFillMode_t]
   !>             HIPBLAS_FILL_MODE_UPPER:  each A_i is an upper triangular matrix.
@@ -22958,7 +22816,7 @@ module hipfort_hipblas
   !>     A       device array of device pointers storing each matrix A_i on the GPU.
   !>             Matricies are of dimension ( lda, k ), where k is m
   !>             when  HIPBLAS_SIDE_LEFT  and is  n  when  HIPBLAS_SIDE_RIGHT
-  !>             only the upperlower triangular part is accessed.
+  !>             only the upper/lower triangular part is accessed.
   !>     @param[in]
   !>     lda     [int]
   !>             lda specifies the first dimension of each A_i.
@@ -22972,7 +22830,6 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of trsm operatons in the batch.
-  !>     
   interface hipblasZtrsmBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZtrsmBatched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,batchCount) bind(c, name="cublasZtrsmBatched")
@@ -23110,11 +22967,11 @@ module hipfort_hipblas
       hipblasCtrsmStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !>     \details
   !>     trsmSridedBatched performs the following strided batched operation:
   !> 
-  !>         op(A_i)X_i = alphaB_i or  X_iop(A_i) = alphaB_i, for i = 1, ..., batchCount.
+  !>         op(A_i)*X_i = alpha*B_i or  X_i*op(A_i) = alpha*B_i, for i = 1, ..., batchCount.
   !> 
   !>     where alpha is a scalar, X and B are strided batched m by n matrices,
   !>     A is triangular strided batched matrix and op(A) is one of
@@ -23137,8 +22994,8 @@ module hipfort_hipblas
   !>               handle to the hipblas library context queue.
   !>     @param[in]
   !>     side    [hipblasSideMode_t]
-  !>             HIPBLAS_SIDE_LEFT:       op(A)X = alphaB.
-  !>             HIPBLAS_SIDE_RIGHT:      Xop(A) = alphaB.
+  !>             HIPBLAS_SIDE_LEFT:       op(A)*X = alpha*B.
+  !>             HIPBLAS_SIDE_RIGHT:      X*op(A) = alpha*B.
   !>     @param[in]
   !>     uplo    [hipblasFillMode_t]
   !>             HIPBLAS_FILL_MODE_UPPER:  each A_i is an upper triangular matrix.
@@ -23168,7 +23025,7 @@ module hipfort_hipblas
   !>             of dimension ( lda, k ), where k is m
   !>             when  HIPBLAS_SIDE_LEFT  and
   !>             is  n  when  HIPBLAS_SIDE_RIGHT
-  !>             only the upperlower triangular part is accessed.
+  !>             only the upper/lower triangular part is accessed.
   !>     @param[in]
   !>     lda     [int]
   !>             lda specifies the first dimension of each A_i.
@@ -23188,7 +23045,6 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of trsm operatons in the batch.
-  !>     
   interface hipblasZtrsmStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZtrsmStridedBatched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,strideA,B,ldb,strideB,batchCount) bind(c, name="cublasZtrsmStridedBatched")
@@ -23307,7 +23163,7 @@ module hipfort_hipblas
       hipblasCtrtri_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !>     trtri  compute the inverse of a matrix A, namely, invA
@@ -23339,8 +23195,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     ldinvA    [int]
   !>               specifies the leading dimension of invA.
-  !> 
-  !> 
+  !>
   interface hipblasZtrtri
 #ifdef USE_CUDA_NAMES
     function hipblasZtrtri_(handle,uplo,diag,n,A,lda,invA,ldinvA) bind(c, name="cublasZtrtri")
@@ -23455,7 +23310,7 @@ module hipfort_hipblas
       hipblasCtrtriBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !>     trtriBatched  compute the inverse of A_i and write into invA_i where
@@ -23494,7 +23349,6 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>               numbers of matrices in the batch
-  !>     
   interface hipblasZtrtriBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZtrtriBatched_(handle,uplo,diag,n,A,lda,invA,ldinvA,batchCount) bind(c, name="cublasZtrtriBatched")
@@ -23616,7 +23470,7 @@ module hipfort_hipblas
       hipblasCtrtriStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !>     trtriStridedBatched compute the inverse of A_i and write into invA_i where
@@ -23661,7 +23515,6 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount  [int]
   !>                  numbers of matrices in the batch
-  !>     
   interface hipblasZtrtriStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZtrtriStridedBatched_(handle,uplo,diag,n,A,lda,strideA,invA,ldinvA,stride_invA,batchCount) bind(c, name="cublasZtrtriStridedBatched")
@@ -23782,13 +23635,13 @@ module hipfort_hipblas
       hipblasCdgmm_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !>     dgmm performs one of the matrix-matrix operations
   !> 
-  !>         C = A  diag(x) if side == HIPBLAS_SIDE_RIGHT
-  !>         C = diag(x)  A if side == HIPBLAS_SIDE_LEFT
+  !>         C = A * diag(x) if side == HIPBLAS_SIDE_RIGHT
+  !>         C = diag(x) * A if side == HIPBLAS_SIDE_LEFT
   !> 
   !>     where C and A are m by n dimensional matrices. diag( x ) is a diagonal matrix
   !>     and x is vector of dimension n if side == HIPBLAS_SIDE_RIGHT and dimension m
@@ -23822,8 +23675,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     ldc       [int]
   !>               specifies the leading dimension of C.
-  !> 
-  !>     
+  !>
   interface hipblasZdgmm
 #ifdef USE_CUDA_NAMES
     function hipblasZdgmm_(handle,side,m,n,A,lda,x,incx,C,ldc) bind(c, name="cublasZdgmm")
@@ -23946,13 +23798,13 @@ module hipfort_hipblas
       hipblasCdgmmBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !>     dgmmBatched performs one of the batched matrix-matrix operations
   !> 
-  !>         C_i = A_i  diag(x_i) for i = 0, 1, ... batchCount-1 if side == HIPBLAS_SIDE_RIGHT
-  !>         C_i = diag(x_i)  A_i for i = 0, 1, ... batchCount-1 if side == HIPBLAS_SIDE_LEFT
+  !>         C_i = A_i * diag(x_i) for i = 0, 1, ... batchCount-1 if side == HIPBLAS_SIDE_RIGHT
+  !>         C_i = diag(x_i) * A_i for i = 0, 1, ... batchCount-1 if side == HIPBLAS_SIDE_LEFT
   !> 
   !>     where C_i and A_i are m by n dimensional matrices. diag(x_i) is a diagonal matrix
   !>     and x_i is vector of dimension n if side == HIPBLAS_SIDE_RIGHT and dimension m
@@ -23992,8 +23844,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances in the batch.
-  !> 
-  !>     
+  !>
   interface hipblasZdgmmBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZdgmmBatched_(handle,side,m,n,A,lda,x,incx,C,ldc,batchCount) bind(c, name="cublasZdgmmBatched")
@@ -24126,13 +23977,13 @@ module hipfort_hipblas
       hipblasCdgmmStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief BLAS Level 3 API
+  !>  \brief BLAS Level 3 API
   !> 
   !>     \details
   !>     dgmmStridedBatched performs one of the batched matrix-matrix operations
   !> 
-  !>         C_i = A_i  diag(x_i)   if side == HIPBLAS_SIDE_RIGHT   for i = 0, 1, ... batchCount-1
-  !>         C_i = diag(x_i)  A_i   if side == HIPBLAS_SIDE_LEFT    for i = 0, 1, ... batchCount-1
+  !>         C_i = A_i * diag(x_i)   if side == HIPBLAS_SIDE_RIGHT   for i = 0, 1, ... batchCount-1
+  !>         C_i = diag(x_i) * A_i   if side == HIPBLAS_SIDE_LEFT    for i = 0, 1, ... batchCount-1
   !> 
   !>     where C_i and A_i are m by n dimensional matrices. diag(x_i) is a diagonal matrix
   !>     and x_i is vector of dimension n if side == HIPBLAS_SIDE_RIGHT and dimension m
@@ -24181,8 +24032,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount [int]
   !>                 number of instances i in the batch.
-  !> 
-  !>     
+  !>
   interface hipblasZdgmmStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZdgmmStridedBatched_(handle,side,m,n,A,lda,strideA,x,incx,stridex,C,ldc,strideC,batchCount) bind(c, name="cublasZdgmmStridedBatched")
@@ -24294,7 +24144,7 @@ module hipfort_hipblas
       hipblasCgetrf_rank_1
 #endif
   end interface
-  !> ! \brief SOLVER API
+  !>  \brief SOLVER API
   !> 
   !>     \details
   !>     getrf computes the LU factorization of a general n-by-n matrix A
@@ -24322,7 +24172,7 @@ module hipfort_hipblas
   !>     n         int. n >= 0.\n
   !>               The number of columns and rows of the matrix A.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
   !>               On entry, the n-by-n matrix A to be factored.
   !>               On exit, the factors L and U from the factorization.
   !>               The unit diagonal elements of L are not stored.
@@ -24341,7 +24191,6 @@ module hipfort_hipblas
   !>     info      pointer to a int on the GPU.\n
   !>               If info = 0, successful exit.
   !>               If info = j > 0, U is singular. U[j,j] is the first zero pivot.
-  !>     
   interface hipblasZgetrf
 #ifdef USE_CUDA_NAMES
     function hipblasZgetrf_(handle,n,A,lda,ipiv,myInfo) bind(c, name="cublasZgetrf")
@@ -24448,7 +24297,7 @@ module hipfort_hipblas
       hipblasCgetrfBatched_rank_1
 #endif
   end interface
-  !> ! \brief SOLVER API
+  !>  \brief SOLVER API
   !> 
   !>     \details
   !>     getrfBatched computes the LU factorization of a batch of general
@@ -24476,7 +24325,7 @@ module hipfort_hipblas
   !>     n         int. n >= 0.\n
   !>               The number of columns and rows of all matrices A_i in the batch.
   !>     @param[inout]
-  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
   !>               On entry, the n-by-n matrices A_i to be factored.
   !>               On exit, the factors L_i and U_i from the factorizations.
   !>               The unit diagonal elements of L_i are not stored.
@@ -24500,7 +24349,6 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount int. batchCount >= 0.\n
   !>                 Number of matrices in the batch.
-  !>     
   interface hipblasZgetrfBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZgetrfBatched_(handle,n,A,lda,ipiv,myInfo,batchCount) bind(c, name="cublasZgetrfBatched")
@@ -24614,7 +24462,7 @@ module hipfort_hipblas
       hipblasCgetrfStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief SOLVER API
+  !>  \brief SOLVER API
   !> 
   !>     \details
   !>     getrfStridedBatched computes the LU factorization of a batch of
@@ -24652,7 +24500,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     strideA   hipblasStride.\n
   !>               Stride from the start of one matrix A_i to the next one A_(i+1).
-  !>               There is no restriction for the value of strideA. Normal use case is strideA >= ldan
+  !>               There is no restriction for the value of strideA. Normal use case is strideA >= lda*n
   !>     @param[out]
   !>     ipiv      pointer to int. Array on the GPU (the size depends on the value of strideP).\n
   !>               Contains the vectors of pivots indices ipiv_i (corresponding to A_i).
@@ -24674,7 +24522,6 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount int. batchCount >= 0.\n
   !>                 Number of matrices in the batch.
-  !>     
   interface hipblasZgetrfStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZgetrfStridedBatched_(handle,n,A,lda,strideA,ipiv,strideP,myInfo,batchCount) bind(c, name="cublasZgetrfStridedBatched")
@@ -24793,7 +24640,7 @@ module hipfort_hipblas
       hipblasCgetrs_rank_1
 #endif
   end interface
-  !> ! \brief SOLVER API
+  !>  \brief SOLVER API
   !> 
   !>     \details
   !>     getrs solves a system of n linear equations on n variables in its factorized form.
@@ -24823,8 +24670,8 @@ module hipfort_hipblas
   !>                 The number of right hand sides, i.e., the number of columns
   !>                 of the matrix B.
   !>     @param[in]
-  !>     A           pointer to type. Array on the GPU of dimension ldan.\n
-  !>                 The factors L and U of the factorization A = PLU returned by \ref hipblasSgetrf "getrf".
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
+  !>                 The factors L and U of the factorization A = P*L*U returned by \ref hipblasSgetrf "getrf".
   !>     @param[in]
   !>     lda         int. lda >= n.\n
   !>                 The leading dimension of A.
@@ -24832,7 +24679,7 @@ module hipfort_hipblas
   !>     ipiv        pointer to int. Array on the GPU of dimension n.\n
   !>                 The pivot indices returned by \ref hipblasSgetrf "getrf".
   !>     @param[in,out]
-  !>     B           pointer to type. Array on the GPU of dimension ldbnrhs.\n
+  !>     B           pointer to type. Array on the GPU of dimension ldb*nrhs.\n
   !>                 On entry, the right hand side matrix B.
   !>                 On exit, the solution matrix X.
   !>     @param[in]
@@ -24842,7 +24689,6 @@ module hipfort_hipblas
   !>     info      pointer to a int on the host.\n
   !>               If info = 0, successful exit.
   !>               If info = j < 0, the j-th argument is invalid.
-  !>    
   interface hipblasZgetrs
 #ifdef USE_CUDA_NAMES
     function hipblasZgetrs_(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo) bind(c, name="cublasZgetrs")
@@ -24965,7 +24811,7 @@ module hipfort_hipblas
       hipblasCgetrsBatched_rank_1
 #endif
   end interface
-  !> ! \brief SOLVER API
+  !>  \brief SOLVER API
   !> 
   !>     \details getrsBatched solves a batch of systems of n linear equations on n
   !>     variables in its factorized forms.
@@ -24995,8 +24841,8 @@ module hipfort_hipblas
   !>                 The number of right hand sides, i.e., the number of columns
   !>                 of all the matrices B_i.
   !>     @param[in]
-  !>     A           Array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
-  !>                 The factors L_i and U_i of the factorization A_i = P_iL_iU_i returned by \ref hipblasSgetrfBatched "getrfBatched".
+  !>     A           Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
+  !>                 The factors L_i and U_i of the factorization A_i = P_i*L_i*U_i returned by \ref hipblasSgetrfBatched "getrfBatched".
   !>     @param[in]
   !>     lda         int. lda >= n.\n
   !>                 The leading dimension of matrices A_i.
@@ -25004,7 +24850,7 @@ module hipfort_hipblas
   !>     ipiv        pointer to int. Array on the GPU.\n
   !>                 Contains the vectors ipiv_i of pivot indices returned by \ref hipblasSgetrfBatched "getrfBatched".
   !>     @param[in,out]
-  !>     B           Array of pointers to type. Each pointer points to an array on the GPU of dimension ldbnrhs.\n
+  !>     B           Array of pointers to type. Each pointer points to an array on the GPU of dimension ldb*nrhs.\n
   !>                 On entry, the right hand side matrices B_i.
   !>                 On exit, the solution matrix X_i of each system in the batch.
   !>     @param[in]
@@ -25017,8 +24863,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount int. batchCount >= 0.\n
   !>                 Number of instances (systems) in the batch.
-  !> 
-  !>    
+  !>
   interface hipblasZgetrsBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZgetrsBatched_(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo,batchCount) bind(c, name="cublasZgetrsBatched")
@@ -25151,7 +24996,7 @@ module hipfort_hipblas
       hipblasCgetrsStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief SOLVER API
+  !>  \brief SOLVER API
   !> 
   !>     \details
   !>     getrsStridedBatched solves a batch of systems of n linear equations
@@ -25183,14 +25028,14 @@ module hipfort_hipblas
   !>                 of all the matrices B_i.
   !>     @param[in]
   !>     A           pointer to type. Array on the GPU (the size depends on the value of strideA).\n
-  !>                 The factors L_i and U_i of the factorization A_i = P_iL_iU_i returned by \ref hipblasSgetrfStridedBatched "getrfStridedBatched".
+  !>                 The factors L_i and U_i of the factorization A_i = P_i*L_i*U_i returned by \ref hipblasSgetrfStridedBatched "getrfStridedBatched".
   !>     @param[in]
   !>     lda         int. lda >= n.\n
   !>                 The leading dimension of matrices A_i.
   !>     @param[in]
   !>     strideA     hipblasStride.\n
   !>                 Stride from the start of one matrix A_i to the next one A_(i+1).
-  !>                 There is no restriction for the value of strideA. Normal use case is strideA >= ldan.
+  !>                 There is no restriction for the value of strideA. Normal use case is strideA >= lda*n.
   !>     @param[in]
   !>     ipiv        pointer to int. Array on the GPU (the size depends on the value of strideP).\n
   !>                 Contains the vectors ipiv_i of pivot indices returned by \ref hipblasSgetrfStridedBatched "getrfStridedBatched".
@@ -25208,7 +25053,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     strideB     hipblasStride.\n
   !>                 Stride from the start of one matrix B_i to the next one B_(i+1).
-  !>                 There is no restriction for the value of strideB. Normal use case is strideB >= ldbnrhs.
+  !>                 There is no restriction for the value of strideB. Normal use case is strideB >= ldb*nrhs.
   !>     @param[out]
   !>     info      pointer to a int on the host.\n
   !>               If info = 0, successful exit.
@@ -25216,8 +25061,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount int. batchCount >= 0.\n
   !>                 Number of instances (systems) in the batch.
-  !> 
-  !>    
+  !>
   interface hipblasZgetrsStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZgetrsStridedBatched_(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B,ldb,strideB,myInfo,batchCount) bind(c, name="cublasZgetrsStridedBatched")
@@ -25338,7 +25182,7 @@ module hipfort_hipblas
       hipblasCgetriBatched_rank_1
 #endif
   end interface
-  !> ! \brief SOLVER API
+  !>  \brief SOLVER API
   !> 
   !>     \details
   !>     getriBatched computes the inverse \f$C_i = A_i^{-1}\f$ of a batch of general n-by-n matrices \f$A_i\f$.
@@ -25357,8 +25201,8 @@ module hipfort_hipblas
   !>     n         int. n >= 0.\n
   !>               The number of rows and columns of all matrices A_i in the batch.
   !>     @param[in]
-  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
-  !>               The factors L_i and U_i of the factorization A_i = P_iL_iU_i returned by \ref hipblasSgetrfBatched "getrfBatched".
+  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
+  !>               The factors L_i and U_i of the factorization A_i = P_i*L_i*U_i returned by \ref hipblasSgetrfBatched "getrfBatched".
   !>     @param[in]
   !>     lda       int. lda >= n.\n
   !>               Specifies the leading dimension of matrices A_i.
@@ -25367,7 +25211,7 @@ module hipfort_hipblas
   !>               The pivot indices returned by \ref hipblasSgetrfBatched "getrfBatched".
   !>               ipiv can be passed in as a nullptr, this will assume that getrfBatched was called without partial pivoting.
   !>     @param[out]
-  !>     C         array of pointers to type. Each pointer points to an array on the GPU of dimension ldcn.\n
+  !>     C         array of pointers to type. Each pointer points to an array on the GPU of dimension ldc*n.\n
   !>               If info[i] = 0, the inverse of matrices A_i. Otherwise, undefined.
   !>     @param[in]
   !>     ldc       int. ldc >= n.\n
@@ -25379,8 +25223,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount int. batchCount >= 0.\n
   !>                 Number of matrices in the batch.
-  !> 
-  !>     
+  !>
   interface hipblasZgetriBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZgetriBatched_(handle,n,A,lda,ipiv,C,ldc,myInfo,batchCount) bind(c, name="cublasZgetriBatched")
@@ -25490,7 +25333,7 @@ module hipfort_hipblas
       hipblasCgeqrf_rank_1
 #endif
   end interface
-  !> ! \brief SOLVER API
+  !>  \brief SOLVER API
   !> 
   !>     \details
   !>     geqrf computes a QR factorization of a general m-by-n matrix A.
@@ -25505,7 +25348,7 @@ module hipfort_hipblas
   !>     \f]
   !> 
   !>     where R is upper triangular (upper trapezoidal if m < n), and Q is
-  !>     a m-by-m orthogonalunitary matrix represented as the product of Householder matrices
+  !>     a m-by-m orthogonal/unitary matrix represented as the product of Householder matrices
   !> 
   !>     \f[
   !>         Q = H_1H_2\cdots H_k, \quad \text{with} \: k = \text{min}(m,n)
@@ -25528,7 +25371,7 @@ module hipfort_hipblas
   !>     n         int. n >= 0.\n
   !>               The number of columns of the matrix A.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension ldan.\n
+  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
   !>               On entry, the m-by-n matrix to be factored.
   !>               On exit, the elements on and above the diagonal contain the
   !>               factor R; the elements below the diagonal are the last m - i elements
@@ -25543,8 +25386,7 @@ module hipfort_hipblas
   !>     info      pointer to a int on the host.\n
   !>               If info = 0, successful exit.
   !>               If info = j < 0, the j-th argument is invalid.
-  !> 
-  !>     
+  !>
   interface hipblasZgeqrf
 #ifdef USE_CUDA_NAMES
     function hipblasZgeqrf_(handle,m,n,A,lda,ipiv,myInfo) bind(c, name="cublasZgeqrf")
@@ -25655,7 +25497,7 @@ module hipfort_hipblas
       hipblasCgeqrfBatched_rank_1
 #endif
   end interface
-  !> ! \brief SOLVER API
+  !>  \brief SOLVER API
   !> 
   !>     \details
   !>     geqrfBatched computes the QR factorization of a batch of general
@@ -25671,7 +25513,7 @@ module hipfort_hipblas
   !>     \f]
   !> 
   !>     where \f$R_i\f$ is upper triangular (upper trapezoidal if m < n), and \f$Q_i\f$ is
-  !>     a m-by-m orthogonalunitary matrix represented as the product of Householder matrices
+  !>     a m-by-m orthogonal/unitary matrix represented as the product of Householder matrices
   !> 
   !>     \f[
   !>         Q_i = H_{i_1}H_{i_2}\cdots H_{i_k}, \quad \text{with} \: k = \text{min}(m,n)
@@ -25694,7 +25536,7 @@ module hipfort_hipblas
   !>     n         int. n >= 0.\n
   !>               The number of columns of all the matrices A_i in the batch.
   !>     @param[inout]
-  !>     A         Array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.\n
+  !>     A         Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
   !>               On entry, the m-by-n matrices A_i to be factored.
   !>               On exit, the elements on and above the diagonal contain the
   !>               factor R_i. The elements below the diagonal are the last m - j elements
@@ -25713,7 +25555,6 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount  int. batchCount >= 0.\n
   !>                  Number of matrices in the batch.
-  !>     
   interface hipblasZgeqrfBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZgeqrfBatched_(handle,m,n,A,lda,ipiv,myInfo,batchCount) bind(c, name="cublasZgeqrfBatched")
@@ -25831,7 +25672,7 @@ module hipfort_hipblas
       hipblasCgeqrfStridedBatched_rank_1
 #endif
   end interface
-  !> ! \brief SOLVER API
+  !>  \brief SOLVER API
   !> 
   !>     \details
   !>     geqrfStridedBatched computes the QR factorization of a batch of
@@ -25847,7 +25688,7 @@ module hipfort_hipblas
   !>     \f]
   !> 
   !>     where \f$R_i\f$ is upper triangular (upper trapezoidal if m < n), and \f$Q_i\f$ is
-  !>     a m-by-m orthogonalunitary matrix represented as the product of Householder matrices
+  !>     a m-by-m orthogonal/unitary matrix represented as the product of Householder matrices
   !> 
   !>     \f[
   !>         Q_i = H_{i_1}H_{i_2}\cdots H_{i_k}, \quad \text{with} \: k = \text{min}(m,n)
@@ -25881,7 +25722,7 @@ module hipfort_hipblas
   !>     @param[in]
   !>     strideA   hipblasStride.\n
   !>               Stride from the start of one matrix A_i to the next one A_(i+1).
-  !>               There is no restriction for the value of strideA. Normal use case is strideA >= ldan.
+  !>               There is no restriction for the value of strideA. Normal use case is strideA >= lda*n.
   !>     @param[out]
   !>     ipiv      pointer to type. Array on the GPU (the size depends on the value of strideP).\n
   !>               Contains the vectors ipiv_i of corresponding Householder scalars.
@@ -25897,7 +25738,6 @@ module hipfort_hipblas
   !>     @param[in]
   !>     batchCount  int. batchCount >= 0.\n
   !>                  Number of matrices in the batch.
-  !>     
   interface hipblasZgeqrfStridedBatched
 #ifdef USE_CUDA_NAMES
     function hipblasZgeqrfStridedBatched_(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo,batchCount) bind(c, name="cublasZgeqrfStridedBatched")
