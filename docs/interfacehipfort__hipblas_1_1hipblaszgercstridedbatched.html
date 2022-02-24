@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>BLAS Level 2 API.  
  <a href="interfacehipfort__hipblas_1_1hipblaszgercstridedbatched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -96,17 +96,11 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa7b55864898bf87c4b4067e651f8c318"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>BLAS Level 2 API</p>
-<pre class="fragment"> gerStridedBatched,geruStridedBatched,gercStridedBatched performs the matrix-vector operations
-
-     A_i := A_i + alphax_iy_iT, OR
-     A_i := A_i + alphax_iy_iH  for gerc
-
- where (A_i, x_i, y_i) is the i-th instance of the batch.
- alpha is a scalar, x_i and y_i are vectors and A_i is an
- m by n matrix, for i = 1, ..., batchCount.
-</pre><dl class="params"><dt>Parameters</dt><dd>
+<div class="textblock"><p>BLAS Level 2 API. </p>
+<p>gerStridedBatched,geruStridedBatched,gercStridedBatched performs the matrix-vector operations </p><pre class="fragment">A_i := A_i + alpha*x_i*y_i**T, OR
+A_i := A_i + alpha*x_i*y_i**H  for gerc
+</pre><p>where (A_i, x_i, y_i) is the i-th instance of the batch. alpha is a scalar, x_i and y_i are vectors and A_i is an m by n matrix, for i = 1, ..., batchCount.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">m</td><td>[int] the number of rows of each matrix A_i. </td></tr>
@@ -114,10 +108,10 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">alpha</td><td>device pointer or host pointer to scalar alpha. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>device pointer to the first vector (x_1) in the batch. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">incx</td><td>[int] specifies the increments for the elements of each vector x_i. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">stridex</td><td>[hipblasStride] stride from the start of one vector (x_i) and the next one (x_i+1). There are no restrictions placed on stridex, however the user should take care to ensure that stridex is of appropriate size, for a typical case this means stridex &gt;= m incx. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">stridex</td><td>[hipblasStride] stride from the start of one vector (x_i) and the next one (x_i+1). There are no restrictions placed on stridex, however the user should take care to ensure that stridex is of appropriate size, for a typical case this means stridex &gt;= m * incx. </td></tr>
     <tr><td class="paramdir">[in,out]</td><td class="paramname">y</td><td>device pointer to the first vector (y_1) in the batch. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">incy</td><td>[int] specifies the increment for the elements of each vector y_i. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">stridey</td><td>[hipblasStride] stride from the start of one vector (y_i) and the next one (y_i+1). There are no restrictions placed on stridey, however the user should take care to ensure that stridey is of appropriate size, for a typical case this means stridey &gt;= n incy. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">stridey</td><td>[hipblasStride] stride from the start of one vector (y_i) and the next one (y_i+1). There are no restrictions placed on stridey, however the user should take care to ensure that stridey is of appropriate size, for a typical case this means stridey &gt;= n * incy. </td></tr>
     <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>device pointer to the first matrix (A_1) in the batch. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>[int] specifies the leading dimension of each A_i. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">strideA</td><td>[hipblasStride] stride from the start of one matrix (A_i) and the next one (A_i+1) </td></tr>

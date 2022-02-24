@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>STEQR computes the eigenvalues and (optionally) eigenvectors of a symmetric tridiagonal matrix.  
  <a href="interfacehipfort__rocsolver_1_1rocsolver__ssteqr.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,17 +97,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a3f6dca64d10e61f8bc113b90519b3c63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>STEQR computes the eigenvalues and (optionally) eigenvectors of a symmetric tridiagonal matrix.</p>
-<pre class="fragment"> The eigenvalues of the symmetric tridiagonal matrix are computed by the
- implicit QLQR algorithm, and returned in increasing order.
-
- The matrix is not represented explicitly, but rather as the array of
- diagonal elements D and the array of symmetric off-diagonal elements E.
- When D and E correspond to the tridiagonal form of a full symmetricHermitian matrix, as returned by, e.g.,
- \ref rocsolver_ssytrd "SYTRD" or \ref rocsolver_chetrd "HETRD", the eigenvectors of the original matrix can also
- be computed, depending on the value of evect.
-</pre><dl class="params"><dt>Parameters</dt><dd>
+<div class="textblock"><p>STEQR computes the eigenvalues and (optionally) eigenvectors of a symmetric tridiagonal matrix. </p>
+<p>The eigenvalues of the symmetric tridiagonal matrix are computed by the implicit QL/QR algorithm, and returned in increasing order.</p>
+<p>The matrix is not represented explicitly, but rather as the array of diagonal elements D and the array of symmetric off-diagonal elements E. When D and E correspond to the tridiagonal form of a full symmetric/Hermitian matrix, as returned by, e.g., <a class="el" href="interfacehipfort__rocsolver_1_1rocsolver__ssytrd.html">SYTRD</a> or <a class="el" href="interfacehipfort__rocsolver_1_1rocsolver__chetrd.html">HETRD</a>, the eigenvectors of the original matrix can also be computed, depending on the value of evect.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>rocblas_handle. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">evect</td><td>#rocblas_evect.<br />
@@ -118,8 +111,8 @@ Public Member Functions</h2></td></tr>
  On entry, the diagonal elements of the tridiagonal matrix. On exit, if info = 0, the eigenvalues in increasing order. If info &gt; 0, the diagonal elements of a tridiagonal matrix that is similar to the original matrix (i.e. has the same eigenvalues). </td></tr>
     <tr><td class="paramdir">[in,out]</td><td class="paramname">E</td><td>pointer to real type. Array on the GPU of dimension n-1.<br />
  On entry, the off-diagonal elements of the tridiagonal matrix. On exit, if info = 0, this array converges to zero. If info &gt; 0, the off-diagonal elements of a tridiagonal matrix that is similar to the original matrix (i.e. has the same eigenvalues). </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">C</td><td>pointer to type. Array on the GPU of dimension ldcn.<br />
- On entry, if evect is original, the orthogonalunitary matrix used for the reduction to tridiagonal form as returned by, e.g., <a class="el" href="interfacehipfort__rocsolver_1_1rocsolver__sorgtr.html">ORGTR</a> or <a class="el" href="interfacehipfort__rocsolver_1_1rocsolver__cungtr.html">UNGTR</a>. On exit, it is overwritten with the eigenvectors of the original symmetricHermitian matrix (if evect is original), or the eigenvectors of the tridiagonal matrix (if evect is tridiagonal). (Not referenced if evect is none). </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">C</td><td>pointer to type. Array on the GPU of dimension ldc*n.<br />
+ On entry, if evect is original, the orthogonal/unitary matrix used for the reduction to tridiagonal form as returned by, e.g., <a class="el" href="interfacehipfort__rocsolver_1_1rocsolver__sorgtr.html">ORGTR</a> or <a class="el" href="interfacehipfort__rocsolver_1_1rocsolver__cungtr.html">UNGTR</a>. On exit, it is overwritten with the eigenvectors of the original symmetric/Hermitian matrix (if evect is original), or the eigenvectors of the tridiagonal matrix (if evect is tridiagonal). (Not referenced if evect is none). </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ldc</td><td>rocblas_int. ldc &gt;= n if evect is original or tridiagonal.<br />
  Specifies the leading dimension of C. (Not referenced if evect is none). </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">info</td><td>pointer to a rocblas_int on the GPU.<br />

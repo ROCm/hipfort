@@ -93,11 +93,11 @@ Public Member Functions</h2></td></tr>
 <div class="textblock"><p>Return the default device id for the calling host thread. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[out]</td><td class="paramname">device</td><td>device is written with the default device</td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">device</td><td>*device is written with the default device</td></tr>
   </table>
   </dd>
 </dl>
-<p>HIP maintains an default device for each thread using thread-local-storage. This device is used implicitly for HIP runtime APIs called by this thread. hipGetDevice returns in <code>device</code> the default device for the calling host thread.</p>
+<p>HIP maintains an default device for each thread using thread-local-storage. This device is used implicitly for HIP runtime APIs called by this thread. hipGetDevice returns in * <code>device</code> the default device for the calling host thread.</p>
 <dl class="section return"><dt>Returns</dt><dd>#hipSuccess, #hipErrorInvalidDevice, #hipErrorInvalidValue</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>hipSetDevice, hipGetDevicesizeBytes </dd></dl>
 </div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>

@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>BLAS Level 2 API.  
  <a href="interfacehipfort__hipblas_1_1hipblasztpsvbatched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -96,24 +96,18 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a7b5275b77e3971694eba0822c502fa84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>BLAS Level 2 API</p>
-<pre class="fragment"> tpsvBatched solves
-
-      A_ix_i = b_i or A_iTx_i = b_i, or A_iHx_i = b_i,
-
- where x_i and b_i are vectors and A_i is a triangular matrix stored in the packed format,
- for i in [1, batchCount].
-
- The input vectors b_i are overwritten by the output vectors x_i.
-</pre><dl class="params"><dt>Parameters</dt><dd>
+<div class="textblock"><p>BLAS Level 2 API. </p>
+<p>tpsvBatched solves </p><pre class="fragment"> A_i*x_i = b_i or A_i**T*x_i = b_i, or A_i**H*x_i = b_i,
+</pre><p>where x_i and b_i are vectors and A_i is a triangular matrix stored in the packed format, for i in [1, batchCount].</p>
+<p>The input vectors b_i are overwritten by the output vectors x_i.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">uplo</td><td>[hipblasFillMode_t] HIPBLAS_FILL_MODE_UPPER: each A_i is an upper triangular matrix. HIPBLAS_FILL_MODE_LOWER: each A_i is a lower triangular matrix.</td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">transA</td><td>[hipblasOperation_t] HIPBLAS_OP_N: Solves Ax = b HIPBLAS_OP_T: Solves ATx = b HIPBLAS_OP_C: Solves AHx = b</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">transA</td><td>[hipblasOperation_t] HIPBLAS_OP_N: Solves A*x = b HIPBLAS_OP_T: Solves A**T*x = b HIPBLAS_OP_C: Solves A**H*x = b</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">diag</td><td>[hipblasDiagType_t] HIPBLAS_DIAG_UNIT: each A_i is assumed to be unit triangular (i.e. the diagonal elements of each A_i are not used in computations). HIPBLAS_DIAG_NON_UNIT: each A_i is not assumed to be unit triangular.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>[int] n specifies the number of rows of each b_i. n &gt;= 0.</td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">AP</td><td>device array of device pointers storing the packed versions of each matrix A_i, of dimension &gt;= (n (n + 1) 2)</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">AP</td><td>device array of device pointers storing the packed versions of each matrix A_i, of dimension &gt;= (n * (n + 1) 2)</td></tr>
     <tr><td class="paramdir">[in,out]</td><td class="paramname">x</td><td>device array of device pointers storing each input vector b_i, overwritten by x_i on output.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">incx</td><td>[int] specifies the increment for the elements of each x_i. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">batchCount</td><td>[int] specifies the number of instances in the batch. </td></tr>

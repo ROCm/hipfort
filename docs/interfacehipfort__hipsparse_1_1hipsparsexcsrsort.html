@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>Sort a sparse CSR matrix.  
  <a href="interfacehipfort__hipsparse_1_1hipsparsexcsrsort.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,8 +97,7 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a697db11d64c8934980a22c5980582136"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>Sort a sparse CSR matrix</p>
+<div class="textblock"><p>Sort a sparse CSR matrix. </p>
 <p><code>hipsparseXcsrsort</code> sorts a matrix in CSR format. The sorted permutation vector <code>perm</code> can be used to obtain sorted <code>csr_val</code> array. In this case, <code>perm</code> must be initialized as the identity permutation, see hipsparseCreateIdentityPermutation().</p>
 <p><code>hipsparseXcsrsort</code> requires extra temporary storage buffer that has to be allocated by the user. Storage buffer size can be determined by hipsparseXcsrsort_bufferSizeExt().</p>
 <dl class="section note"><dt>Note</dt><dd><code>perm</code> can be <code>NULL</code> if a sorted permutation vector is not required.</dd>

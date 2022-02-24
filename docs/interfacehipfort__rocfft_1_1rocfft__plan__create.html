@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>Create an FFT plan.  
  <a href="interfacehipfort__rocfft_1_1rocfft__plan__create.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -94,8 +94,7 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa3339313886528c4a1404d29546da55c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>Create an FFT plan</p>
+<div class="textblock"><p>Create an FFT plan. </p>
 <p>This API creates a plan, which the user can execute subsequently. This function takes many of the fundamental parameters needed to specify a transform.</p>
 <p>The dimensions parameter can take a value of 1, 2, or 3. The 'lengths' array specifies the size of data in each dimension. Note that lengths[0] is the size of the innermost dimension, lengths[1] is the next higher dimension and so on (column-major ordering).</p>
 <p>The 'number_of_transforms' parameter specifies how many transforms (of the same kind) needs to be computed. By specifying a value greater than 1, a batch of transforms can be computed with a single API call.</p>
@@ -110,7 +109,7 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">dimensions</td><td>dimensions </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lengths</td><td>dimensions-sized array of transform lengths </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">number_of_transforms</td><td>number of transforms </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">description</td><td>description handle created by <a class="el" href="interfacehipfort__rocfft_1_1rocfft__plan__description__create.html" title="! ">rocfft_plan_description_create</a>; can be NULL for simple transforms </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">description</td><td>description handle created by <a class="el" href="interfacehipfort__rocfft_1_1rocfft__plan__description__create.html" title="Create plan description. ">rocfft_plan_description_create</a>; can be NULL for simple transforms </td></tr>
   </table>
   </dd>
 </dl>

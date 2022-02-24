@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>BLAS Level 1 API.  
  <a href="interfacehipfort__hipblas_1_1hipblaszdotu.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -94,15 +94,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a6e239f1b5ff0c1ddfdb6a5d397bbb25f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>BLAS Level 1 API</p>
-<pre class="fragment"> dot(u)  performs the dot product of vectors x and y
-
-     result = x  y;
-
- dotc  performs the dot product of the conjugate of complex vector x and complex vector y
-
-     result = conjugate (x)  y;
+<div class="textblock"><p>BLAS Level 1 API. </p>
+<p>dot(u) performs the dot product of vectors x and y </p><pre class="fragment">result = x * y;
+</pre><p>dotc performs the dot product of the conjugate of complex vector x and complex vector y </p><pre class="fragment">result = conjugate (x) * y;
 </pre><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue. </td></tr>

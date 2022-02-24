@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>BLAS Level 3 API.  
  <a href="interfacehipfort__rocblas_1_1rocblas__zher2k__batched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -96,17 +96,11 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a926d2b40a6ad7fe809d3beda988bbefb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>BLAS Level 3 API</p>
-<pre class="fragment"> her2k_batched performs a batch of the matrix-matrix operations for a Hermitian rank-2k update
-
- C_i := alphaop( A_i )op( B_i )^H + conj(alpha)op( B_i )op( A_i )^H + betaC_i
-
- where  alpha and beta are scalars, op(A_i) and op(B_i) are n by k matrices, and
- C_i is a n x n Hermitian matrix stored as either upper or lower.
-
-     op( A_i ) = A_i, op( B_i ) = B_i, and A_i and B_i are n by k if trans == rocblas_operation_none
-     op( A_i ) = A_i^H, op( B_i ) = B_i^H,  and A_i and B_i are k by n if trans == rocblas_operation_conjugate_transpose
+<div class="textblock"><p>BLAS Level 3 API. </p>
+<p>her2k_batched performs a batch of the matrix-matrix operations for a Hermitian rank-2k update</p>
+<p>C_i := alpha*op( A_i )*op( B_i )^H + conj(alpha)*op( B_i )*op( A_i )^H + beta*C_i</p>
+<p>where alpha and beta are scalars, op(A_i) and op(B_i) are n by k matrices, and C_i is a n x n Hermitian matrix stored as either upper or lower. </p><pre class="fragment">op( A_i ) = A_i, op( B_i ) = B_i, and A_i and B_i are n by k if trans == rocblas_operation_none
+op( A_i ) = A_i^H, op( B_i ) = B_i^H,  and A_i and B_i are k by n if trans == rocblas_operation_conjugate_transpose
 </pre><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[rocblas_handle] handle to the rocblas library context queue.</td></tr>

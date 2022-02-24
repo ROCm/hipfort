@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>POTRF_STRIDED_BATCHED computes the Cholesky factorization of a batch of real symmetric (complex Hermitian) positive definite matrices.  
  <a href="interfacehipfort__rocsolver_1_1rocsolver__spotrf__strided__batched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,11 +97,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa362cc6f6a6653e085678efcd0427c32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>POTRF_STRIDED_BATCHED computes the Cholesky factorization of a batch of real symmetric (complex Hermitian) positive definite matrices.</p>
-<pre class="fragment"> (This is the blocked version of the algorithm).
-
- The factorization of matrix \form#2 in the batch has the form:</pre><p> {array} ]</p>
+<div class="textblock"><p>POTRF_STRIDED_BATCHED computes the Cholesky factorization of a batch of real symmetric (complex Hermitian) positive definite matrices. </p>
+<p>(This is the blocked version of the algorithm).</p>
+<p>The factorization of matrix \(A_i\) in the batch has the form: {array} ]</p>
 <p>\(U_i\) is an upper triangular matrix and \(L_i\) is lower triangular.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -115,7 +113,7 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>rocblas_int. lda &gt;= n.<br />
  specifies the leading dimension of A_i. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">strideA</td><td>rocblas_stride.<br />
- Stride from the start of one matrix A_i to the next one A_(i+1). There is no restriction for the value of strideA. Normal use case is strideA &gt;= ldan. </td></tr>
+ Stride from the start of one matrix A_i to the next one A_(i+1). There is no restriction for the value of strideA. Normal use case is strideA &gt;= lda*n. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">info</td><td>pointer to rocblas_int. Array of batch_count integers on the GPU.<br />
  If info[i] = 0, successful factorization of matrix A_i. If info[i] = j &gt; 0, the leading minor of order j of A_i is not positive definite. The i-th factorization stopped at this point. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">batch_count</td><td>rocblas_int. batch_count &gt;= 0.<br />

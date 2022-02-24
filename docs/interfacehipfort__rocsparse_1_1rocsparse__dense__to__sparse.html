@@ -80,7 +80,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>Dense matrix to sparse matrix conversion.  
  <a href="interfacehipfort__rocsparse_1_1rocsparse__dense__to__sparse.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -90,9 +90,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a46631a07bc6b3a54123d4507348767d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>Dense matrix to sparse matrix conversion</p>
-<p><code><a class="el" href="interfacehipfort__rocsparse_1_1rocsparse__dense__to__sparse.html" title="! ">rocsparse_dense_to_sparse</a></code> <code><a class="el" href="interfacehipfort__rocsparse_1_1rocsparse__dense__to__sparse.html" title="! ">rocsparse_dense_to_sparse</a></code> performs the conversion of a dense matrix to a sparse matrix in CSR, CSC, or COO format.</p>
+<div class="textblock"><p>Dense matrix to sparse matrix conversion. </p>
+<p><code><a class="el" href="interfacehipfort__rocsparse_1_1rocsparse__dense__to__sparse.html" title="Dense matrix to sparse matrix conversion. ">rocsparse_dense_to_sparse</a></code> <code><a class="el" href="interfacehipfort__rocsparse_1_1rocsparse__dense__to__sparse.html" title="Dense matrix to sparse matrix conversion. ">rocsparse_dense_to_sparse</a></code> performs the conversion of a dense matrix to a sparse matrix in CSR, CSC, or COO format.</p>
 <dl class="section note"><dt>Note</dt><dd>This function writes the required allocation size (in bytes) to <code>buffer_size</code> and returns without performing the dense to sparse operation, when a nullptr is passed for <code>temp_buffer</code>.</dd>
 <dd>
 This function is non blocking and executed asynchronously with respect to the host. It may return before the actual computation has finished.</dd></dl>

@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>BLAS EX API.  
  <a href="interfacehipfort__rocblas_1_1rocblas__axpy__ex.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -90,25 +90,22 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a657e083766a24c0cfdc525d6ed9b2b92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>BLAS EX API</p>
-<pre class="fragment"> axpy_ex   computes ant alpha multiplied by vector x, plus vector y
+<div class="textblock"><p>BLAS EX API. </p>
+<p>axpy_ex computes ant alpha multiplied by vector x, plus vector y </p><pre class="fragment">y := alpha * x + y
 
-     y := alpha  x + y
+Currently supported datatypes are as follows:
 
-     Currently supported datatypes are as follows:
-
-     -------------------------------------------------
-     | alpha_type | x_type | y_type | execution_type |
-     |------------|--------|--------|----------------|
-     |  f16_r     | f16_r  |  f16_r |      f16_r     |
-     |  f16_r     | f16_r  |  f16_r |      f32_r     |
-     |  f32_r     | f16_r  |  f16_r |      f32_r     |
-     |  f32_r     | f32_r  |  f32_r |      f32_r     |
-     |  f64_r     | f64_r  |  f64_r |      f64_r     |
-     |  f32_c     | f32_c  |  f32_c |      f32_c     |
-     |  f64_c     | f64_c  |  f64_c |      f64_c     |
-     -------------------------------------------------
+-------------------------------------------------
+| alpha_type | x_type | y_type | execution_type |
+|------------|--------|--------|----------------|
+|  f16_r     | f16_r  |  f16_r |      f16_r     |
+|  f16_r     | f16_r  |  f16_r |      f32_r     |
+|  f32_r     | f16_r  |  f16_r |      f32_r     |
+|  f32_r     | f32_r  |  f32_r |      f32_r     |
+|  f64_r     | f64_r  |  f64_r |      f64_r     |
+|  f32_c     | f32_c  |  f32_c |      f32_c     |
+|  f64_c     | f64_c  |  f64_c |      f64_c     |
+-------------------------------------------------
 </pre><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[rocblas_handle] handle to the rocblas library context queue. </td></tr>

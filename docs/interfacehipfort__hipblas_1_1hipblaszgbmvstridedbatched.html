@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>BLAS Level 2 API.  
  <a href="interfacehipfort__hipblas_1_1hipblaszgbmvstridedbatched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -96,19 +96,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a2feb497eafafcf03d700b510de83554b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>BLAS Level 2 API</p>
-<pre class="fragment"> gbmvStridedBatched performs one of the matrix-vector operations
-
-     y_i := alphaA_ix_i    + betay_i,   or
-     y_i := alphaA_iTx_i + betay_i,   or
-     y_i := alphaA_iHx_i + betay_i,
-
- where (A_i, x_i, y_i) is the i-th instance of the batch.
- alpha and beta are scalars, x_i and y_i are vectors and A_i is an
- m by n banded matrix with kl sub-diagonals and ku super-diagonals,
- for i = 1, ..., batchCount.
-</pre><dl class="params"><dt>Parameters</dt><dd>
+<div class="textblock"><p>BLAS Level 2 API. </p>
+<p>gbmvStridedBatched performs one of the matrix-vector operations </p><pre class="fragment">y_i := alpha*A_i*x_i    + beta*y_i,   or
+y_i := alpha*A_i**T*x_i + beta*y_i,   or
+y_i := alpha*A_i**H*x_i + beta*y_i,
+</pre><p>where (A_i, x_i, y_i) is the i-th instance of the batch. alpha and beta are scalars, x_i and y_i are vectors and A_i is an m by n banded matrix with kl sub-diagonals and ku super-diagonals, for i = 1, ..., batchCount.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">trans</td><td>[hipblasOperation_t] indicates whether matrix A is tranposed (conjugated) or not </td></tr>
@@ -117,7 +110,7 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">kl</td><td>[int] number of sub-diagonals of A </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ku</td><td>[int] number of super-diagonals of A </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">alpha</td><td>device pointer or host pointer to scalar alpha. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>device pointer to first banded matrix (A_1). Leading (kl + ku + 1) by n part of the matrix contains the coefficients of the banded matrix. The leading diagonal resides in row (ku + 1) with the first super-diagonal above on the RHS of row ku. The first sub-diagonal resides below on the LHS of row ku + 2. This propogates up and down across subsuper-diagonals. Ex: (m = n = 7; ku = 2, kl = 2) 1 2 3 0 0 0 0 0 0 3 3 3 3 3 4 1 2 3 0 0 0 0 2 2 2 2 2 2 5 4 1 2 3 0 0 -&mdash;&gt; 1 1 1 1 1 1 1 0 5 4 1 2 3 0 4 4 4 4 4 4 0 0 0 5 4 1 2 0 5 5 5 5 5 0 0 0 0 0 5 4 1 2 0 0 0 0 0 0 0 0 0 0 0 5 4 1 0 0 0 0 0 0 0 Note that the empty elements which don't correspond to data will not be referenced. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>device pointer to first banded matrix (A_1). Leading (kl + ku + 1) by n part of the matrix contains the coefficients of the banded matrix. The leading diagonal resides in row (ku + 1) with the first super-diagonal above on the RHS of row ku. The first sub-diagonal resides below on the LHS of row ku + 2. This propogates up and down across sub/super-diagonals. Ex: (m = n = 7; ku = 2, kl = 2) 1 2 3 0 0 0 0 0 0 3 3 3 3 3 4 1 2 3 0 0 0 0 2 2 2 2 2 2 5 4 1 2 3 0 0 -&mdash;&gt; 1 1 1 1 1 1 1 0 5 4 1 2 3 0 4 4 4 4 4 4 0 0 0 5 4 1 2 0 5 5 5 5 5 0 0 0 0 0 5 4 1 2 0 0 0 0 0 0 0 0 0 0 0 5 4 1 0 0 0 0 0 0 0 Note that the empty elements which don't correspond to data will not be referenced. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>[int] specifies the leading dimension of A. Must be &gt;= (kl + ku + 1) </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">strideA</td><td>[hipblasStride] stride from the start of one matrix (A_i) and the next one (A_i+1) </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>device pointer to first vector (x_1). </td></tr>

@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>HEEV_BATCHED computes the eigenvalues and optionally the eigenvectors of a batch of Hermitian matrices A_j.  
  <a href="interfacehipfort__rocsolver_1_1rocsolver__cheev__batched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,11 +97,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aac973e1cc5024148d74cd04bd7f8913a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>HEEV_BATCHED computes the eigenvalues and optionally the eigenvectors of a batch of Hermitian matrices A_j.</p>
-<pre class="fragment"> The eigenvalues are returned in ascending order. The eigenvectors are computed depending
- on the value of evect. The computed eigenvectors are orthonormal.
-</pre><dl class="params"><dt>Parameters</dt><dd>
+<div class="textblock"><p>HEEV_BATCHED computes the eigenvalues and optionally the eigenvectors of a batch of Hermitian matrices A_j. </p>
+<p>The eigenvalues are returned in ascending order. The eigenvectors are computed depending on the value of evect. The computed eigenvectors are orthonormal.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>rocblas_handle. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">evect</td><td>#rocblas_evect.<br />
@@ -110,7 +108,7 @@ Public Member Functions</h2></td></tr>
  Specifies whether the upper or lower part of the Hermitian matrices A_j is stored. If uplo indicates lower (or upper), then the upper (or lower) part of A_j is not used. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>rocblas_int. n &gt;= 0.<br />
  Number of rows and columns of matrices A_j. </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>Array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.<br />
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.<br />
  On entry, the matrices A_j. On exit, the eigenvectors of A_j if they were computed and the algorithm converged; otherwise the contents of A_j are destroyed. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>rocblas_int. lda &gt;= n.<br />
  Specifies the leading dimension of matrices A_j. </td></tr>

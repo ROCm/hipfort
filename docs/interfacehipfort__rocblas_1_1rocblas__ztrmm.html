@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>BLAS Level 3 API.  
  <a href="interfacehipfort__rocblas_1_1rocblas__ztrmm.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -96,35 +96,17 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a760562226f7534b8458819490873f814"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>BLAS Level 3 API</p>
-<pre class="fragment"> trmm performs one of the matrix-matrix operations
-
- B := alphaop( A )B,   or   B := alphaBop( A )
-
- where  alpha  is a scalar,  B  is an m by n matrix,  A  is a unit, or
- non-unit,  upper or lower triangular matrix  and  op( A )  is one  of
-
-     op( A ) = A   or   op( A ) = A^T   or   op( A ) = A^H.
-
- When uplo == rocblas_fill_upper the  leading  k by k
- upper triangular part of the array  A must contain the upper
- triangular matrix and the strictly lower triangular part of
- A is not referenced. Here k is m when side == rocblas_side_left
- and is n when side == rocblas_side_right.
-
- When uplo == rocblas_fill_lower the  leading  k by k
- lower triangular part of the array  A must contain the lower
- triangular matrix  and the strictly upper triangular part of
- A is not referenced. Here k is m when  side == rocblas_side_left
- and is n when side == rocblas_side_right.
-
- Note that when  diag == rocblas_diagonal_unit  the diagonal elements of
- A  are not referenced either,  but are assumed to be  unity.
-</pre><dl class="params"><dt>Parameters</dt><dd>
+<div class="textblock"><p>BLAS Level 3 API. </p>
+<p>trmm performs one of the matrix-matrix operations</p>
+<p>B := alpha*op( A )*B, or B := alpha*B*op( A )</p>
+<p>where alpha is a scalar, B is an m by n matrix, A is a unit, or non-unit, upper or lower triangular matrix and op( A ) is one of </p><pre class="fragment">op( A ) = A   or   op( A ) = A^T   or   op( A ) = A^H.
+</pre><p>When uplo == rocblas_fill_upper the leading k by k upper triangular part of the array A must contain the upper triangular matrix and the strictly lower triangular part of A is not referenced. Here k is m when side == rocblas_side_left and is n when side == rocblas_side_right.</p>
+<p>When uplo == rocblas_fill_lower the leading k by k lower triangular part of the array A must contain the lower triangular matrix and the strictly upper triangular part of A is not referenced. Here k is m when side == rocblas_side_left and is n when side == rocblas_side_right.</p>
+<p>Note that when diag == rocblas_diagonal_unit the diagonal elements of A are not referenced either, but are assumed to be unity.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[rocblas_handle] handle to the rocblas library context queue.</td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">side</td><td>[rocblas_side] Specifies whether op(A) multiplies B from the left or right as follows: rocblas_side_left: B := alphaop( A )B. rocblas_side_right: B := alphaBop( A ).</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">side</td><td>[rocblas_side] Specifies whether op(A) multiplies B from the left or right as follows: rocblas_side_left: B := alpha*op( A )*B. rocblas_side_right: B := alpha*B*op( A ).</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">uplo</td><td>[rocblas_fill] Specifies whether the matrix A is an upper or lower triangular matrix as follows: rocblas_fill_upper: A is an upper triangular matrix. rocblas_fill_lower: A is a lower triangular matrix.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">transA</td><td>[rocblas_operation] Specifies the form of op(A) to be used in the matrix multiplication as follows: rocblas_operation_none: op(A) = A. rocblas_operation_transpose: op(A) = A^T. rocblas_operation_conjugate_transpose: op(A) = A^H.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">diag</td><td>[rocblas_diagonal] Specifies whether or not A is unit triangular as follows: rocblas_diagonal_unit: A is assumed to be unit triangular. rocblas_diagonal_non_unit: A is not assumed to be unit triangular.</td></tr>

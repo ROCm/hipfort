@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>LARFT generates the triangular factor T of a block reflector H of order n.  
  <a href="interfacehipfort__rocsolver_1_1rocsolver__slarft.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,9 +97,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a516828a49a1e7a9b985324195fa99d1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>LARFT generates the triangular factor T of a block reflector H of order n.</p>
-<pre class="fragment"> The block reflector H is defined as the product of k Householder matrices</pre><p> {array} ]</p>
+<div class="textblock"><p>LARFT generates the triangular factor T of a block reflector H of order n. </p>
+<p>The block reflector H is defined as the product of k Householder matrices {array} ]</p>
 <p>The triangular factor T is upper triangular in the forward direction and lower triangular in the backward direction. If storev is column-wise, then</p>
 <p class="formulaDsp">
 \[ H = I - VTV&#39; \]
@@ -120,13 +119,13 @@ Public Member Functions</h2></td></tr>
  The order (size) of the block reflector. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">k</td><td>rocblas_int. k &gt;= 1.<br />
  The number of Householder matrices forming H. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">V</td><td>pointer to type. Array on the GPU of size ldvk if column-wise, or ldvn if row-wise.<br />
+    <tr><td class="paramdir">[in]</td><td class="paramname">V</td><td>pointer to type. Array on the GPU of size ldv*k if column-wise, or ldv*n if row-wise.<br />
  The matrix of Householder vectors. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ldv</td><td>rocblas_int. ldv &gt;= n if column-wise, or ldv &gt;= k if row-wise.<br />
  Leading dimension of V. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">tau</td><td>pointer to type. Array of k scalars on the GPU.<br />
  The vector of all the Householder scalars. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">T</td><td>pointer to type. Array on the GPU of dimension ldtk.<br />
+    <tr><td class="paramdir">[out]</td><td class="paramname">T</td><td>pointer to type. Array on the GPU of dimension ldt*k.<br />
  The triangular factor. T is upper triangular if direct indicates forward direction, otherwise it is lower triangular. The rest of the array is not used. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ldt</td><td>rocblas_int. ldt &gt;= k.<br />
  The leading dimension of T. </td></tr>

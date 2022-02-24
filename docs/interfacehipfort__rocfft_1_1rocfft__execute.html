@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>Execute an FFT plan.  
  <a href="interfacehipfort__rocfft_1_1rocfft__execute.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -90,30 +90,18 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae426a4d8e49ac18be0b77446383cb1d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>Execute an FFT plan</p>
-<p>This API executes an FFT plan on buffers given by the user. </p><pre class="fragment">If the transform is in-place, only the input buffer is needed and
-the output buffer parameter can be set to NULL. For not in-place
-transforms, output buffers have to be specified.
-
-Input and output buffer are arrays of pointers.  Interleaved
-array formats are the default, and require just one pointer per
-input or output buffer.  Planar array formats require two
-pointers per input or output buffer - real and imaginary
-pointers, in that order.
-
-Note that input buffers may still be overwritten during execution
-of a transform, even if the transform is not in-place.
-
-The final parameter in this function is a rocfft_execution_info
-handle. This optional parameter serves as a way for the user to control
-execution streams and work buffers.
-</pre><dl class="params"><dt>Parameters</dt><dd>
+<div class="textblock"><p>Execute an FFT plan. </p>
+<p>This API executes an FFT plan on buffers given by the user.</p>
+<p>If the transform is in-place, only the input buffer is needed and the output buffer parameter can be set to NULL. For not in-place transforms, output buffers have to be specified.</p>
+<p>Input and output buffer are arrays of pointers. Interleaved array formats are the default, and require just one pointer per input or output buffer. Planar array formats require two pointers per input or output buffer - real and imaginary pointers, in that order.</p>
+<p>Note that input buffers may still be overwritten during execution of a transform, even if the transform is not in-place.</p>
+<p>The final parameter in this function is a rocfft_execution_info handle. This optional parameter serves as a way for the user to control execution streams and work buffers.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">plan</td><td>plan handle </td></tr>
     <tr><td class="paramdir">[in,out]</td><td class="paramname">in_buffer</td><td>array (of size 1 for interleaved data, of size 2 for planar data) of input buffers </td></tr>
     <tr><td class="paramdir">[in,out]</td><td class="paramname">out_buffer</td><td>array (of size 1 for interleaved data, of size 2 for planar data) of output buffers, ignored for in-place transforms </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">info</td><td>execution info handle created by <a class="el" href="interfacehipfort__rocfft_1_1rocfft__execution__info__create.html" title="! ">rocfft_execution_info_create</a> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">info</td><td>execution info handle created by <a class="el" href="interfacehipfort__rocfft_1_1rocfft__execution__info__create.html" title="Create execution info. ">rocfft_execution_info_create</a> </td></tr>
   </table>
   </dd>
 </dl>

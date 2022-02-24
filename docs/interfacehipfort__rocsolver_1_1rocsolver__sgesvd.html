@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>GESVD computes the singular values and optionally the singular vectors of a general m-by-n matrix A (Singular Value Decomposition).  
  <a href="interfacehipfort__rocsolver_1_1rocsolver__sgesvd.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,10 +97,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a44f53e26b00ab02ca9d41ff18c58d77c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>GESVD computes the singular values and optionally the singular vectors of a general m-by-n matrix A (Singular Value Decomposition).</p>
-<pre class="fragment"> The SVD of matrix A is given by:
-</pre><p class="formulaDsp">
+<div class="textblock"><p>GESVD computes the singular values and optionally the singular vectors of a general m-by-n matrix A (Singular Value Decomposition). </p>
+<p>The SVD of matrix A is given by:</p>
+<p class="formulaDsp">
 \[ A = U S V&#39; \]
 </p>
  <pre class="fragment">where the m-by-n matrix S is zero except, possibly, for its min(m,n)
@@ -139,17 +138,17 @@ returns.
  The number of rows of matrix A. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>rocblas_int. n &gt;= 0.<br />
  The number of columns of matrix A. </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>pointer to type. Array on the GPU of dimension ldan.<br />
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>pointer to type. Array on the GPU of dimension lda*n.<br />
  On entry, the matrix A. On exit, if left_svect (or right_svect) is equal to overwrite, the first columns (or rows) contain the left (or right) singular vectors; otherwise, the contents of A are destroyed. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>rocblas_int. lda &gt;= m.<br />
  The leading dimension of A. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">S</td><td>pointer to real type. Array on the GPU of dimension min(m,n). <br />
  The singular values of A in decreasing order. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">U</td><td>pointer to type. Array on the GPU of dimension ldumin(m,n) if left_svect is set to singular, or ldum when left_svect is equal to all.<br />
+    <tr><td class="paramdir">[out]</td><td class="paramname">U</td><td>pointer to type. Array on the GPU of dimension ldu*min(m,n) if left_svect is set to singular, or ldu*m when left_svect is equal to all.<br />
  The matrix of left singular vectors stored as columns. Not referenced if left_svect is set to overwrite or none. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ldu</td><td>rocblas_int. ldu &gt;= m if left_svect is all or singular; ldu &gt;= 1 otherwise.<br />
  The leading dimension of U. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">V</td><td>pointer to type. Array on the GPU of dimension ldvn. <br />
+    <tr><td class="paramdir">[out]</td><td class="paramname">V</td><td>pointer to type. Array on the GPU of dimension ldv*n. <br />
  The matrix of right singular vectors stored as rows (transposed conjugate-transposed). Not referenced if right_svect is set to overwrite or none. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ldv</td><td>rocblas_int. ldv &gt;= n if right_svect is all; ldv &gt;= min(m,n) if right_svect is set to singular; or ldv &gt;= 1 otherwise.<br />
  The leading dimension of V. </td></tr>

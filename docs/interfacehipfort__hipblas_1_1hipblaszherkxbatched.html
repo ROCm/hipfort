@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>BLAS Level 3 API.  
  <a href="interfacehipfort__hipblas_1_1hipblaszherkxbatched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -96,18 +96,11 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a26ffe627a58e2713cc4075075b42c21d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>BLAS Level 3 API</p>
-<pre class="fragment"> herkxBatched performs a batch of the matrix-matrix operations for a Hermitian rank-k update
-
- C_i := alphaop( A_i )op( B_i )^H + betaC_i
-
- where  alpha and beta are scalars, op(A_i) and op(B_i) are n by k matrices, and
- C_i is a n x n Hermitian matrix stored as either upper or lower.
- This routine should only be used when the caller can guarantee that the result of op( A )op( B )^T will be Hermitian.
-
-     op( A_i ) = A_i, op( B_i ) = B_i, and A_i and B_i are n by k if trans == HIPBLAS_OP_N
-     op( A_i ) = A_i^H, op( B_i ) = B_i^H,  and A_i and B_i are k by n if trans == HIPBLAS_OP_C
+<div class="textblock"><p>BLAS Level 3 API. </p>
+<p>herkxBatched performs a batch of the matrix-matrix operations for a Hermitian rank-k update</p>
+<p>C_i := alpha*op( A_i )*op( B_i )^H + beta*C_i</p>
+<p>where alpha and beta are scalars, op(A_i) and op(B_i) are n by k matrices, and C_i is a n x n Hermitian matrix stored as either upper or lower. This routine should only be used when the caller can guarantee that the result of op( A )*op( B )^T will be Hermitian. </p><pre class="fragment">op( A_i ) = A_i, op( B_i ) = B_i, and A_i and B_i are n by k if trans == HIPBLAS_OP_N
+op( A_i ) = A_i^H, op( B_i ) = B_i^H,  and A_i and B_i are k by n if trans == HIPBLAS_OP_C
 </pre><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue.</td></tr>

@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>Set a store callback for a plan execution (experimental)  
  <a href="interfacehipfort__rocfft_1_1rocfft__execution__info__set__store__callback.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -90,13 +90,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a74d0f2e6f387e92c03cc6a2c7c0422e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>Set a store callback for a plan execution (experimental)</p>
+<div class="textblock"><p>Set a store callback for a plan execution (experimental) </p>
 <p>This function specifies a user-defined callback function that is run to store output to global memory at the end of the transform. Callbacks are an experimental feature in rocFFT.</p>
-<p>Callback function pointersdata are given as arrays, with one functiondata pointer per device executing this plan. Currently, plans can only use one device.</p>
+<p>Callback function pointers/data are given as arrays, with one function/data pointer per device executing this plan. Currently, plans can only use one device.</p>
 <p>The provided function pointers replace any previously-specified store callback for this execution info handle.</p>
 <p>Store callbacks have the following signature:</p>
-<div class="fragment"><div class="line">void store_cb(t <span class="keyword">data</span>, size_t offset, t element, void cbdata, void sharedmem);</div></div><!-- fragment --><p>'T' is the type of a single element of the output buffer. It is the caller's responsibility to ensure that the function type is appropriate for the plan (for example, a single-precision real-to-complex transform would store single-precision complex elements).</p>
+<div class="fragment"><div class="line">void store_cb(t* <span class="keyword">data</span>, size_t offset, t element, void* cbdata, void* sharedmem);</div></div><!-- fragment --><p>'T' is the type of a single element of the output buffer. It is the caller's responsibility to ensure that the function type is appropriate for the plan (for example, a single-precision real-to-complex transform would store single-precision complex elements).</p>
 <p>A null value for 'cb' may be specified to clear any previously registered store callback.</p>
 <p>Currently, 'shared_mem_bytes' must be 0. Callbacks are not supported on transforms that use planar formats for either input or output.</p>
 <dl class="params"><dt>Parameters</dt><dd>

@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>POSV_BATCHED solves a batch of symmetric/hermitian systems of n linear equations on n variables.  
  <a href="interfacehipfort__rocsolver_1_1rocsolver__sposv__batched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,10 +97,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a152734adbc8db6e69cf0a4365984eaa7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>POSV_BATCHED solves a batch of symmetrichermitian systems of n linear equations on n variables.</p>
-<pre class="fragment"> For each instance j in the batch, it solves the system
-</pre><p class="formulaDsp">
+<div class="textblock"><p>POSV_BATCHED solves a batch of symmetric/hermitian systems of n linear equations on n variables. </p>
+<p>For each instance j in the batch, it solves the system</p>
+<p class="formulaDsp">
 \[ A_j X_j = B_j \]
 </p>
  <pre class="fragment">where \form#72 is a real symmetric (complex hermitian) positive definite matrix. Matrix \form#72 is first
@@ -115,11 +114,11 @@ then, the solution is computed with \ref rocsolver_spotrs_batched "POTRS_BATCHED
  The order of the system, i.e. the number of columns and rows of all A_j matrices. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">nrhs</td><td>rocblas_int. nrhs &gt;= 0.<br />
  The number of right hand sides, i.e., the number of columns of all the matrices B_j. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>Array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.<br />
- On entry, the symmetrichermitian matrices A_j. On exit, if info[j] = 0, the factor L_j or U_j of the Cholesky factorization of A_j returned by <a class="el" href="interfacehipfort__rocsolver_1_1rocsolver__spotrf__batched.html">POTRF_BATCHED</a>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.<br />
+ On entry, the symmetric/hermitian matrices A_j. On exit, if info[j] = 0, the factor L_j or U_j of the Cholesky factorization of A_j returned by <a class="el" href="interfacehipfort__rocsolver_1_1rocsolver__spotrf__batched.html">POTRF_BATCHED</a>. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>rocblas_int. lda &gt;= n.<br />
  The leading dimension of matrices A_j. </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">B</td><td>Array of pointers to type. Each pointer points to an array on the GPU of dimension ldbnrhs.<br />
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">B</td><td>Array of pointers to type. Each pointer points to an array on the GPU of dimension ldb*nrhs.<br />
  On entry, the right hand side matrices B_j. On exit, the solution matrix X_j of each system in the batch. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ldb</td><td>rocblas_int. ldb &gt;= n.<br />
  The leading dimension of matrices B_j. </td></tr>

@@ -80,7 +80,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>Sparse matrix vector multiplication using CSR storage format.  
  <a href="interfacehipfort__rocsparse_1_1rocsparse__csrmv__clear.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -90,10 +90,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a84848af96acec472c0afb3450e0b2529"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>Sparse matrix vector multiplication using CSR storage format</p>
-<p><code><a class="el" href="interfacehipfort__rocsparse_1_1rocsparse__csrmv__clear.html" title="! ">rocsparse_csrmv_clear</a></code> deallocates all memory that was allocated by rocsparse_scsrmv_analysis(), rocsparse_dcsrmv_analysis(), rocsparse_ccsrmv_analysis() or rocsparse_zcsrmv_analysis(). This is especially useful, if memory is an issue and the analysis data is not required anymore for further computation, e.g. when switching to another sparse matrix format.</p>
-<dl class="section note"><dt>Note</dt><dd>Calling <code><a class="el" href="interfacehipfort__rocsparse_1_1rocsparse__csrmv__clear.html" title="! ">rocsparse_csrmv_clear</a></code> is optional. All allocated resources will be cleared, when the opaque rocsparse_mat_info struct is destroyed using rocsparse_destroy_mat_info().</dd></dl>
+<div class="textblock"><p>Sparse matrix vector multiplication using CSR storage format. </p>
+<p><code><a class="el" href="interfacehipfort__rocsparse_1_1rocsparse__csrmv__clear.html" title="Sparse matrix vector multiplication using CSR storage format. ">rocsparse_csrmv_clear</a></code> deallocates all memory that was allocated by rocsparse_scsrmv_analysis(), rocsparse_dcsrmv_analysis(), rocsparse_ccsrmv_analysis() or rocsparse_zcsrmv_analysis(). This is especially useful, if memory is an issue and the analysis data is not required anymore for further computation, e.g. when switching to another sparse matrix format.</p>
+<dl class="section note"><dt>Note</dt><dd>Calling <code><a class="el" href="interfacehipfort__rocsparse_1_1rocsparse__csrmv__clear.html" title="Sparse matrix vector multiplication using CSR storage format. ">rocsparse_csrmv_clear</a></code> is optional. All allocated resources will be cleared, when the opaque rocsparse_mat_info struct is destroyed using rocsparse_destroy_mat_info().</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>handle to the rocsparse library context queue. </td></tr>

@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>LASWP performs a series of row interchanges on the matrix A.  
  <a href="interfacehipfort__rocsolver_1_1rocsolver__slaswp.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,16 +97,14 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ada3b2f5224bbc1ac4a5b993fb7f94543"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>LASWP performs a series of row interchanges on the matrix A.</p>
-<pre class="fragment"> Row interchanges are done one by one. If \form#28, then the j-th row of A
- will be interchanged with the r-th row of A, for \form#29. Indices \form#30 and \form#31 are 1-based indices.
-</pre><dl class="params"><dt>Parameters</dt><dd>
+<div class="textblock"><p>LASWP performs a series of row interchanges on the matrix A. </p>
+<p>Row interchanges are done one by one. If \(\text{ipiv}[k_1 + (j - k_1) \cdot \text{abs}(\text{incx})] = r\), then the j-th row of A will be interchanged with the r-th row of A, for \(j = k_1,k_1+1,\dots,k_2\). Indices \(k_1\) and \(k_2\) are 1-based indices.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>rocblas_handle. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>rocblas_int. n &gt;= 0.<br />
  The number of columns of the matrix A. </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>pointer to type. Array on the GPU of dimension ldan. <br />
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>pointer to type. Array on the GPU of dimension lda*n. <br />
  On entry, the matrix to which the row interchanges will be applied. On exit, the resulting permuted matrix. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>rocblas_int. lda &gt; 0.<br />
  The leading dimension of the array A. </td></tr>
@@ -114,8 +112,8 @@ Public Member Functions</h2></td></tr>
  The k_1 index. It is the first element of ipiv for which a row interchange will be done. This is a 1-based index. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">k2</td><td>rocblas_int. k2 &gt; k1 &gt; 0.<br />
  The k_2 index. k_2 - k_1 + 1 is the number of elements of ipiv for which a row interchange will be done. This is a 1-based index. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">ipiv</td><td>pointer to rocblas_int. Array on the GPU of dimension at least k_1 + (k_2 - k_1)abs(incx).<br />
- The vector of pivot indices. Only the elements in positions k_1 through k_1 + (k_2 - k_1)abs(incx) of this vector are accessed. Elements of ipiv are considered 1-based. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ipiv</td><td>pointer to rocblas_int. Array on the GPU of dimension at least k_1 + (k_2 - k_1)*abs(incx).<br />
+ The vector of pivot indices. Only the elements in positions k_1 through k_1 + (k_2 - k_1)*abs(incx) of this vector are accessed. Elements of ipiv are considered 1-based. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">incx</td><td>rocblas_int. incx != 0.<br />
  The distance between successive values of ipiv. If incx is negative, the pivots are applied in reverse order. </td></tr>
   </table>

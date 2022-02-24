@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>BLAS Level 1 API.  
  <a href="interfacehipfort__rocblas_1_1rocblas__drotmg.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -90,20 +90,16 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a2eb9017a3a30b47746dd2db580590350"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>BLAS Level 1 API</p>
-<pre class="fragment"> rotmg creates the modified Givens rotation matrix for the vector (d1  x1, d2  y1).
-       Parameters may be stored in either host or device memory, location is specified by calling rocblas_set_pointer_mode.
-       If the pointer mode is set to rocblas_pointer_mode_host, this function blocks the CPU until the GPU has finished and the results are available in host memory.
-       If the pointer mode is set to rocblas_pointer_mode_device, this function returns immediately and synchronization is required to read the results.
-</pre><dl class="params"><dt>Parameters</dt><dd>
+<div class="textblock"><p>BLAS Level 1 API. </p>
+<p>rotmg creates the modified Givens rotation matrix for the vector (d1 * x1, d2 * y1). Parameters may be stored in either host or device memory, location is specified by calling <a class="el" href="interfacehipfort__rocblas_1_1rocblas__set__pointer__mode.html" title="set rocblas_pointer_mode ">rocblas_set_pointer_mode</a>. If the pointer mode is set to rocblas_pointer_mode_host, this function blocks the CPU until the GPU has finished and the results are available in host memory. If the pointer mode is set to rocblas_pointer_mode_device, this function returns immediately and synchronization is required to read the results.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[rocblas_handle] handle to the rocblas library context queue. </td></tr>
     <tr><td class="paramdir">[in,out]</td><td class="paramname">d1</td><td>device pointer or host pointer to input scalar that is overwritten. </td></tr>
     <tr><td class="paramdir">[in,out]</td><td class="paramname">d2</td><td>device pointer or host pointer to input scalar that is overwritten. </td></tr>
     <tr><td class="paramdir">[in,out]</td><td class="paramname">x1</td><td>device pointer or host pointer to input scalar that is overwritten. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">y1</td><td>device pointer or host pointer to input scalar. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">param</td><td>device vector or host vector of 5 elements defining the rotation. param[0] = flag param[1] = H11 param[2] = H21 param[3] = H12 param[4] = H22 The flag parameter defines the form of H: flag = -1 =&gt; H = ( H11 H12 H21 H22 ) flag = 0 =&gt; H = ( 1.0 H12 H21 1.0 ) flag = 1 =&gt; H = ( H11 1.0 -1.0 H22 ) flag = -2 =&gt; H = ( 1.0 0.0 0.0 1.0 ) param may be stored in either host or device memory, location is specified by calling <a class="el" href="interfacehipfort__rocblas_1_1rocblas__set__pointer__mode.html" title="! ">rocblas_set_pointer_mode</a>. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">param</td><td>device vector or host vector of 5 elements defining the rotation. param[0] = flag param[1] = H11 param[2] = H21 param[3] = H12 param[4] = H22 The flag parameter defines the form of H: flag = -1 =&gt; H = ( H11 H12 H21 H22 ) flag = 0 =&gt; H = ( 1.0 H12 H21 1.0 ) flag = 1 =&gt; H = ( H11 1.0 -1.0 H22 ) flag = -2 =&gt; H = ( 1.0 0.0 0.0 1.0 ) param may be stored in either host or device memory, location is specified by calling <a class="el" href="interfacehipfort__rocblas_1_1rocblas__set__pointer__mode.html" title="set rocblas_pointer_mode ">rocblas_set_pointer_mode</a>. </td></tr>
   </table>
   </dd>
 </dl>

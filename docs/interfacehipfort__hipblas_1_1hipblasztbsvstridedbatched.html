@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>BLAS Level 2 API.  
  <a href="interfacehipfort__hipblas_1_1hipblasztbsvstridedbatched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -96,21 +96,15 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a43f53289caaf195f24fbb750c9170e6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>BLAS Level 2 API</p>
-<pre class="fragment"> tbsvStridedBatched solves
-
-      A_ix_i = b_i or A_iTx_i = b_i or A_iHx_i = b_i,
-
- where x_i and b_i are vectors and A_i is a banded triangular matrix,
- for i = [1, batchCount].
-
- The input vectors b_i are overwritten by the output vectors x_i.
-</pre><dl class="params"><dt>Parameters</dt><dd>
+<div class="textblock"><p>BLAS Level 2 API. </p>
+<p>tbsvStridedBatched solves </p><pre class="fragment"> A_i*x_i = b_i or A_i**T*x_i = b_i or A_i**H*x_i = b_i,
+</pre><p>where x_i and b_i are vectors and A_i is a banded triangular matrix, for i = [1, batchCount].</p>
+<p>The input vectors b_i are overwritten by the output vectors x_i.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">uplo</td><td>[hipblasFillMode_t] HIPBLAS_FILL_MODE_UPPER: A_i is an upper triangular matrix. HIPBLAS_FILL_MODE_LOWER: A_i is a lower triangular matrix.</td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">transA</td><td>[hipblasOperation_t] HIPBLAS_OP_N: Solves A_ix_i = b_i HIPBLAS_OP_T: Solves A_iTx_i = b_i HIPBLAS_OP_C: Solves A_iHx_i = b_i</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">transA</td><td>[hipblasOperation_t] HIPBLAS_OP_N: Solves A_i*x_i = b_i HIPBLAS_OP_T: Solves A_i**T*x_i = b_i HIPBLAS_OP_C: Solves A_i**H*x_i = b_i</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">diag</td><td>[hipblasDiagType_t] HIPBLAS_DIAG_UNIT: each A_i is assumed to be unit triangular (i.e. the diagonal elements of each A_i are not used in computations). HIPBLAS_DIAG_NON_UNIT: each A_i is not assumed to be unit triangular.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>[int] n specifies the number of rows of each b_i. n &gt;= 0. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">k</td><td>[int] if(uplo == HIPBLAS_FILL_MODE_UPPER) k specifies the number of super-diagonals of each A_i. if(uplo == HIPBLAS_FILL_MODE_LOWER) k specifies the number of sub-diagonals of each A_i. k &gt;= 0.</td></tr>

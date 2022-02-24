@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>Convert a sparse COO matrix into a sparse CSR matrix.  
  <a href="interfacehipfort__rocsparse_1_1rocsparse__coo2csr.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -95,20 +95,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a9964564305185cf388edea23b30654aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>Convert a sparse COO matrix into a sparse CSR matrix</p>
-<pre class="fragment">\p rocsparse_coo2csr converts the COO array containing the row indices into a
-CSR array of row offsets, that point to the start of every row.
-It is assumed that the COO row index array is sorted.
-
-\note It can also be used, to convert a COO array containing the column indices into
-a CSC array of column offsets, that point to the start of every column. Then, it is
-assumed that the COO column index array is sorted, instead.
-
-\note
-This function is non blocking and executed asynchronously with respect to the host.
-It may return before the actual computation has finished.
-</pre><dl class="params"><dt>Parameters</dt><dd>
+<div class="textblock"><p>Convert a sparse COO matrix into a sparse CSR matrix. </p>
+<p><code><a class="el" href="interfacehipfort__rocsparse_1_1rocsparse__coo2csr.html" title="Convert a sparse COO matrix into a sparse CSR matrix. ">rocsparse_coo2csr</a></code> converts the COO array containing the row indices into a CSR array of row offsets, that point to the start of every row. It is assumed that the COO row index array is sorted.</p>
+<dl class="section note"><dt>Note</dt><dd>It can also be used, to convert a COO array containing the column indices into a CSC array of column offsets, that point to the start of every column. Then, it is assumed that the COO column index array is sorted, instead.</dd>
+<dd>
+This function is non blocking and executed asynchronously with respect to the host. It may return before the actual computation has finished.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>handle to the rocsparse library context queue. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">coo_row_ind</td><td>array of <code>nnz</code> elements containing the row indices of the sparse COO matrix. </td></tr>
@@ -128,7 +120,7 @@ It may return before the actual computation has finished.
   </table>
   </dd>
 </dl>
-<dl class="section user"><dt>Example</dt><dd>This example converts a COO matrix into a CSR matrix. <div class="fragment"><div class="line">     1 2 0 3 0</div><div class="line"> A = 0 4 5 0 0</div><div class="line">     6 0 0 7 8</div><div class="line"></div><div class="line">rocsparse_int m   = 3;</div><div class="line">rocsparse_int n   = 5;</div><div class="line">rocsparse_int nnz = 8;</div><div class="line"></div><div class="line">coo_row_ind[nnz] = {0, 0, 0, 1, 1, 2, 2, 2};  device memory</div><div class="line">coo_col_ind[nnz] = {0, 1, 3, 1, 2, 0, 3, 4};  device memory</div><div class="line">coo_val[nnz]     = {1, 2, 3, 4, 5, 6, 7, 8};  device memory</div><div class="line"></div><div class="line"> Allocate CSR matrix arrays</div><div class="line">rocsparse_int csr_row_ptr;</div><div class="line">rocsparse_int csr_col_ind;</div><div class="line"><span class="keywordtype">float</span> csr_val;</div><div class="line"></div><div class="line">hipMalloc((<span class="keywordtype">void</span>)&amp;csr_row_ptr, <span class="keyword">sizeof</span>(rocsparse_int)  (m + 1));</div><div class="line">hipMalloc((<span class="keywordtype">void</span>)&amp;csr_col_ind, <span class="keyword">sizeof</span>(rocsparse_int)  nnz);</div><div class="line">hipMalloc((<span class="keywordtype">void</span>)&amp;csr_val, <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>)  nnz);</div><div class="line"></div><div class="line"> Convert the coo row indices into csr row offsets</div><div class="line">rocsparse_coo2csr(handle,</div><div class="line">                  coo_row_ind,</div><div class="line">                  nnz,</div><div class="line">                  m,</div><div class="line">                  csr_row_ptr,</div><div class="line">                  rocsparse_index_base_zero);</div><div class="line"></div><div class="line"> Copy the column and value arrays</div><div class="line">hipMemcpy(csr_col_ind,</div><div class="line">          coo_col_ind,</div><div class="line">          <span class="keyword">sizeof</span>(rocsparse_int)  nnz,</div><div class="line">          hipMemcpyDeviceToDevice);</div><div class="line"></div><div class="line">hipMemcpy(csr_val,</div><div class="line">          coo_val,</div><div class="line">          <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>)  nnz,</div><div class="line">          hipMemcpyDeviceToDevice);</div></div><!-- fragment --> </dd></dl>
+<dl class="section user"><dt>Example</dt><dd>This example converts a COO matrix into a CSR matrix. <div class="fragment"><div class="line">/     1 2 0 3 0</div><div class="line">/ A = 0 4 5 0 0</div><div class="line">/     6 0 0 7 8</div><div class="line"></div><div class="line">      rocsparse_int m   = 3;</div><div class="line">      rocsparse_int n   = 5;</div><div class="line">      rocsparse_int nnz = 8;</div><div class="line"></div><div class="line">      coo_row_ind[nnz] = {0, 0, 0, 1, 1, 2, 2, 2};/ device memory</div><div class="line">      coo_col_ind[nnz] = {0, 1, 3, 1, 2, 0, 3, 4};/ device memory</div><div class="line">      coo_val[nnz]     = {1, 2, 3, 4, 5, 6, 7, 8};/ device memory</div><div class="line"></div><div class="line">/ Allocate CSR matrix arrays</div><div class="line">      rocsparse_int* csr_row_ptr;</div><div class="line">      rocsparse_int* csr_col_ind;</div><div class="line">      <span class="keywordtype">float</span>* csr_val;</div><div class="line"></div><div class="line">      hipMalloc((<span class="keywordtype">void</span>**)&amp;csr_row_ptr, <span class="keyword">sizeof</span>(rocsparse_int) * (m + 1));</div><div class="line">      hipMalloc((<span class="keywordtype">void</span>**)&amp;csr_col_ind, <span class="keyword">sizeof</span>(rocsparse_int) * nnz);</div><div class="line">      hipMalloc((<span class="keywordtype">void</span>**)&amp;csr_val, <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>) * nnz);</div><div class="line"></div><div class="line">/ Convert the coo row indices into csr row offsets</div><div class="line">      rocsparse_coo2csr(handle,</div><div class="line">                        coo_row_ind,</div><div class="line">                        nnz,</div><div class="line">                        m,</div><div class="line">                        csr_row_ptr,</div><div class="line">                        rocsparse_index_base_zero);</div><div class="line"></div><div class="line">/ Copy the column and value arrays</div><div class="line">      hipMemcpy(csr_col_ind,</div><div class="line">                coo_col_ind,</div><div class="line">                <span class="keyword">sizeof</span>(rocsparse_int) * nnz,</div><div class="line">                hipMemcpyDeviceToDevice);</div><div class="line"></div><div class="line">      hipMemcpy(csr_val,</div><div class="line">                coo_val,</div><div class="line">                <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>) * nnz,</div><div class="line">                hipMemcpyDeviceToDevice);</div></div><!-- fragment --> </dd></dl>
 </div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="a4b5094c1f7785ca6a2e757ccca313df7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4b5094c1f7785ca6a2e757ccca313df7">&#9670;&nbsp;</a></span>rocsparse_coo2csr_()</h2>

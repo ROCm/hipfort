@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>GELS_BATCHED solves a batch of overdetermined (or underdetermined) linear systems defined by a set of m-by-n matrices \(A_i\), and corresponding matrices \(B_i\), using the QR factorizations computed by <a class="el" href="interfacehipfort__rocsolver_1_1rocsolver__sgeqrf__batched.html">GEQRF_BATCHED</a> (or the LQ factorizations computed by <a class="el" href="interfacehipfort__rocsolver_1_1rocsolver__sgelqf__batched.html">GELQF_BATCHED</a>).  
  <a href="interfacehipfort__rocsolver_1_1rocsolver__sgels__batched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,14 +97,13 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a1fb8e31dbdc831cc20efe8cf4116d59a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>GELS_BATCHED solves a batch of overdetermined (or underdetermined) linear systems defined by a set of m-by-n matrices \(A_i\), and corresponding matrices \(B_i\), using the QR factorizations computed by <a class="el" href="interfacehipfort__rocsolver_1_1rocsolver__sgeqrf__batched.html">GEQRF_BATCHED</a> (or the LQ factorizations computed by <a class="el" href="interfacehipfort__rocsolver_1_1rocsolver__sgelqf__batched.html">GELQF_BATCHED</a>).</p>
-<pre class="fragment"> For each instance in the batch, depending on the value of trans, the problem solved by this function is either of the form</pre><p> {array} ]</p>
-<p>If m &gt;= n (or m &lt; n in the case of transposeconjugate transpose), the system is overdetermined and a least-squares solution approximating X_i is found by minimizing</p>
+<div class="textblock"><p>GELS_BATCHED solves a batch of overdetermined (or underdetermined) linear systems defined by a set of m-by-n matrices \(A_i\), and corresponding matrices \(B_i\), using the QR factorizations computed by <a class="el" href="interfacehipfort__rocsolver_1_1rocsolver__sgeqrf__batched.html">GEQRF_BATCHED</a> (or the LQ factorizations computed by <a class="el" href="interfacehipfort__rocsolver_1_1rocsolver__sgelqf__batched.html">GELQF_BATCHED</a>). </p>
+<p>For each instance in the batch, depending on the value of trans, the problem solved by this function is either of the form {array} ]</p>
+<p>If m &gt;= n (or m &lt; n in the case of transpose/conjugate transpose), the system is overdetermined and a least-squares solution approximating X_i is found by minimizing</p>
 <p class="formulaDsp">
 \[ || B_i - A_i X_i || \quad \text{(or} \: || B_i - A_i&#39; X_i ||\text{)} \]
 </p>
- <pre class="fragment">If m &lt; n (or m &gt;= n in the case of transposeconjugate transpose), the system is underdetermined
+ <pre class="fragment">If m &lt; n (or m &gt;= n in the case of transpose/conjugate transpose), the system is underdetermined
 and a unique solution for X_i is chosen such that \form#113 is minimal.
 </pre><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -117,11 +116,11 @@ and a unique solution for X_i is chosen such that \form#113 is minimal.
  The number of columns of all matrices A_i in the batch. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">nrhs</td><td>rocblas_int. nrhs &gt;= 0.<br />
  The number of columns of all matrices B_i and X_i in the batch; i.e., the columns on the right hand side. </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>array of pointer to type. Each pointer points to an array on the GPU of dimension ldan.<br />
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>array of pointer to type. Each pointer points to an array on the GPU of dimension lda*n.<br />
  On entry, the matrices A_i. On exit, the QR (or LQ) factorizations of A_i as returned by <a class="el" href="interfacehipfort__rocsolver_1_1rocsolver__sgeqrf__batched.html">GEQRF_BATCHED</a> (or <a class="el" href="interfacehipfort__rocsolver_1_1rocsolver__sgelqf__batched.html">GELQF_BATCHED</a>). </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>rocblas_int. lda &gt;= m.<br />
  Specifies the leading dimension of matrices A_i. </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">B</td><td>array of pointer to type. Each pointer points to an array on the GPU of dimension ldbnrhs.<br />
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">B</td><td>array of pointer to type. Each pointer points to an array on the GPU of dimension ldb*nrhs.<br />
  On entry, the matrices B_i. On exit, when info[i] = 0, B_i is overwritten by the solution vectors (and the residuals in the overdetermined cases) stored as columns. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ldb</td><td>rocblas_int. ldb &gt;= max(m,n).<br />
  Specifies the leading dimension of matrices B_i. </td></tr>

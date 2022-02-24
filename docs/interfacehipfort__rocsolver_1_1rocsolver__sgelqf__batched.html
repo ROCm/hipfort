@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>GELQF_BATCHED computes the LQ factorization of a batch of general m-by-n matrices.  
  <a href="interfacehipfort__rocsolver_1_1rocsolver__sgelqf__batched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,16 +97,14 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a911137669a29fc492166a83165d5af48"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>GELQF_BATCHED computes the LQ factorization of a batch of general m-by-n matrices.</p>
-<pre class="fragment"> (This is the blocked version of the algorithm).
-
- The factorization of matrix \form#72 in the batch has the form
-</pre><p class="formulaDsp">
+<div class="textblock"><p>GELQF_BATCHED computes the LQ factorization of a batch of general m-by-n matrices. </p>
+<p>(This is the blocked version of the algorithm).</p>
+<p>The factorization of matrix \(A_j\) in the batch has the form</p>
+<p class="formulaDsp">
 \[ A_j = \left[\begin{array}{cc} L_j &amp; 0 \end{array}\right] Q_j \]
 </p>
  <pre class="fragment">where \form#85 is lower triangular (lower trapezoidal if m &gt; n), and \form#74 is
-a n-by-n orthogonalunitary matrix represented as the product of Householder matrices
+a n-by-n orthogonal/unitary matrix represented as the product of Householder matrices
 </pre><p class="formulaDsp">
 \[ Q_j = H_{j_k}&#39;H_{j_{k-1}}&#39; \cdots H_{j_1}&#39;, \quad \text{with} \: k = \text{min}(m,n). \]
 </p>
@@ -122,7 +120,7 @@ a n-by-n orthogonalunitary matrix represented as the product of Householder matr
  The number of rows of all the matrices A_j in the batch. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>rocblas_int. n &gt;= 0.<br />
  The number of columns of all the matrices A_j in the batch. </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>Array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.<br />
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.<br />
  On entry, the m-by-n matrices A_j to be factored. On exit, the elements on and below the diagonal contain the factor L_j. The elements above the diagonal are the last n - i elements of Householder vector v_(j_i). </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>rocblas_int. lda &gt;= m.<br />
  Specifies the leading dimension of matrices A_j. </td></tr>

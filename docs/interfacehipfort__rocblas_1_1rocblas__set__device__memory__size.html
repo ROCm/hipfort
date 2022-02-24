@@ -80,9 +80,6 @@ $(function() {
 <div class="title">hipfort_rocblas::rocblas_set_device_memory_size Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>!  
- <a href="interfacehipfort__rocblas_1_1rocblas__set__device__memory__size.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -90,8 +87,7 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a9fe452a8c13d25922ffbd96902ea9374"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>Changes the size of allocated device memory at runtime.</p>
+<div class="textblock"><p>Changes the size of allocated device memory at runtime.</p>
 <p>Any previously allocated device memory managed by the handle is freed.</p>
 <p>If size &gt; 0 sets the device memory size to the specified size (in bytes) If size == 0 frees the memory allocated so far, and lets rocBLAS manage device memory in the future, expanding it when necessary Returns rocblas_status_invalid_handle if handle is nullptr; rocblas_status_invalid_pointer if size is nullptr; rocblas_status_success otherwise </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

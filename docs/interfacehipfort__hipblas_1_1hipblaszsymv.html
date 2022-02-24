@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>BLAS Level 2 API.  
  <a href="interfacehipfort__hipblas_1_1hipblaszsymv.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -96,15 +96,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a413c80a1422acfb19df4c3c71d4feddb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>BLAS Level 2 API</p>
-<pre class="fragment"> symv performs the matrix-vector operation:
-
-     y := alphaAx + betay,
-
- where alpha and beta are scalars, x and y are n element vectors and
- A should contain an upper or lower triangular n by n symmetric matrix.
-</pre><dl class="params"><dt>Parameters</dt><dd>
+<div class="textblock"><p>BLAS Level 2 API. </p>
+<p>symv performs the matrix-vector operation: </p><pre class="fragment">y := alpha*A*x + beta*y,
+</pre><p>where alpha and beta are scalars, x and y are n element vectors and A should contain an upper or lower triangular n by n symmetric matrix.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">uplo</td><td>[hipblasFillMode_t] specifies whether the upper 'HIPBLAS_FILL_MODE_UPPER' or lower 'HIPBLAS_FILL_MODE_LOWER' if HIPBLAS_FILL_MODE_UPPER, the lower part of A is not referenced if HIPBLAS_FILL_MODE_LOWER, the upper part of A is not referenced </td></tr>

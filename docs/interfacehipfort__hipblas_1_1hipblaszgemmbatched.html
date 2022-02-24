@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>BLAS Level 3 API.  
  <a href="interfacehipfort__hipblas_1_1hipblaszgemmbatched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -96,19 +96,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a89139e9838edddc6cdff778aa538e981"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>BLAS Level 3 API</p>
-<pre class="fragment"> gemmBatched performs one of the batched matrix-matrix operations
-      C_i = alphaop( A_i )op( B_i ) + betaC_i, for i = 1, ..., batchCount.
-  where op( X ) is one of
-      op( X ) = X      or
-     op( X ) = XT   or
-     op( X ) = XH,
-  alpha and beta are scalars, and A, B and C are strided batched matrices, with
- op( A ) an m by k by batchCount strided_batched matrix,
- op( B ) an k by n by batchCount strided_batched matrix and
- C an m by n by batchCount strided_batched matrix.
-</pre> <dl class="params"><dt>Parameters</dt><dd>
+<div class="textblock"><p>BLAS Level 3 API. </p>
+<p>gemmBatched performs one of the batched matrix-matrix operations C_i = alpha*op( A_i )*op( B_i ) + beta*C_i, for i = 1, ..., batchCount. where op( X ) is one of op( X ) = X or op( X ) = X**T or op( X ) = X**H, alpha and beta are scalars, and A, B and C are strided batched matrices, with op( A ) an m by k by batchCount strided_batched matrix, op( B ) an k by n by batchCount strided_batched matrix and C an m by n by batchCount strided_batched matrix. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">transA</td><td>[hipblasOperation_t] specifies the form of op( A ) </td></tr>

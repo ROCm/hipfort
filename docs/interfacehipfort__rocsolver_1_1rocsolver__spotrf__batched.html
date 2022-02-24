@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>POTRF_BATCHED computes the Cholesky factorization of a batch of real symmetric (complex Hermitian) positive definite matrices.  
  <a href="interfacehipfort__rocsolver_1_1rocsolver__spotrf__batched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,11 +97,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aebf23258f75ce0b2a432b9aab495d0a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>POTRF_BATCHED computes the Cholesky factorization of a batch of real symmetric (complex Hermitian) positive definite matrices.</p>
-<pre class="fragment"> (This is the blocked version of the algorithm).
-
- The factorization of matrix \form#2 in the batch has the form:</pre><p> {array} ]</p>
+<div class="textblock"><p>POTRF_BATCHED computes the Cholesky factorization of a batch of real symmetric (complex Hermitian) positive definite matrices. </p>
+<p>(This is the blocked version of the algorithm).</p>
+<p>The factorization of matrix \(A_i\) in the batch has the form: {array} ]</p>
 <p>\(U_i\) is an upper triangular matrix and \(L_i\) is lower triangular.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -110,7 +108,7 @@ Public Member Functions</h2></td></tr>
  Specifies whether the factorization is upper or lower triangular. If uplo indicates lower (or upper), then the upper (or lower) part of A is not used. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>rocblas_int. n &gt;= 0.<br />
  The number of rows and columns of matrix A_i. </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.<br />
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.<br />
  On entry, the matrices A_i to be factored. On exit, the upper or lower triangular factors. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>rocblas_int. lda &gt;= n.<br />
  specifies the leading dimension of A_i. </td></tr>

@@ -95,15 +95,13 @@ Public Member Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramdir">[out]</td><td class="paramname">ptr</td><td>Pointer to the allocated memory </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>Requested memory size </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">flags</td><td>Type of memory allocation <pre class="fragment">If size is 0, no memory is allocated, ptr returns nullptr, and hipSuccess is returned.
-
-@return #hipSuccess, #hipErrorOutOfMemory, #hipErrorInvalidValue (bad context, null ptr)
-
-@see hipMallocPitch, hipFree, hipMallocArray, hipFreeArray, hipMalloc3D, hipMalloc3DArray,
-</pre> hipHostFree, hipHostMalloc </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">flags</td><td>Type of memory allocation</td></tr>
   </table>
   </dd>
 </dl>
+<p>If size is 0, no memory is allocated, *ptr returns nullptr, and hipSuccess is returned.</p>
+<dl class="section return"><dt>Returns</dt><dd>#hipSuccess, #hipErrorOutOfMemory, #hipErrorInvalidValue (bad context, null *ptr)</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>hipMallocPitch, hipFree, hipMallocArray, hipFreeArray, hipMalloc3D, hipMalloc3DArray, hipHostFree, hipHostMalloc </dd></dl>
 </div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="a48bdc2abb928222b88eee61242881a78"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a48bdc2abb928222b88eee61242881a78">&#9670;&nbsp;</a></span>hipextmallocwithflags_()</h2>

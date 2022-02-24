@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>BLAS Level 3 API.  
  <a href="interfacehipfort__rocblas_1_1rocblas__zsyr2k__strided__batched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -96,17 +96,11 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:adf0ee34e8d9ea440537483489fd64785"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>BLAS Level 3 API</p>
-<pre class="fragment"> syr2k_strided_batched performs a batch of the matrix-matrix operations for a symmetric rank-2k update
-
- C_i := alpha(op( A_i )op( B_i )^T + op( B_i )op( A_i )^T) + betaC_i
-
- where  alpha and beta are scalars, op(A_i) and op(B_i) are n by k matrix, and
- C_i is a symmetric n x n matrix stored as either upper or lower.
-
-     op( A_i ) = A_i, op( B_i ) = B_i, and A_i and B_i are n by k if trans == rocblas_operation_none
-     op( A_i ) = A_i^T, op( B_i ) = B_i^T,  and A_i and B_i are k by n if trans == rocblas_operation_transpose
+<div class="textblock"><p>BLAS Level 3 API. </p>
+<p>syr2k_strided_batched performs a batch of the matrix-matrix operations for a symmetric rank-2k update</p>
+<p>C_i := alpha*(op( A_i )*op( B_i )^T + op( B_i )*op( A_i )^T) + beta*C_i</p>
+<p>where alpha and beta are scalars, op(A_i) and op(B_i) are n by k matrix, and C_i is a symmetric n x n matrix stored as either upper or lower. </p><pre class="fragment">op( A_i ) = A_i, op( B_i ) = B_i, and A_i and B_i are n by k if trans == rocblas_operation_none
+op( A_i ) = A_i^T, op( B_i ) = B_i^T,  and A_i and B_i are k by n if trans == rocblas_operation_transpose
 </pre><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[rocblas_handle] handle to the rocblas library context queue.</td></tr>

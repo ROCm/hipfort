@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>LARF applies a Householder reflector H to a general matrix A.  
  <a href="interfacehipfort__rocsolver_1_1rocsolver__slarf.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,11 +97,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a607c99ba507a9de4ea14b948e45764dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>LARF applies a Householder reflector H to a general matrix A.</p>
-<pre class="fragment"> The Householder reflector H, of order m or n, is to be applied to an m-by-n matrix A
- from the left or the right, depending on the value of side. H is given by
-</pre><p class="formulaDsp">
+<div class="textblock"><p>LARF applies a Householder reflector H to a general matrix A. </p>
+<p>The Householder reflector H, of order m or n, is to be applied to an m-by-n matrix A from the left or the right, depending on the value of side. H is given by</p>
+<p class="formulaDsp">
 \[ H = I - \text{alpha}\cdot xx&#39; \]
 </p>
  <pre class="fragment">where alpha is the Householder scalar and x is a Householder vector. H is never actually computed.
@@ -114,14 +112,14 @@ Public Member Functions</h2></td></tr>
  Number of rows of A. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>rocblas_int. n &gt;= 0.<br />
  Number of columns of A. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>pointer to type. Array on the GPU of size at least 1 + (m-1)abs(incx) if left side, or at least 1 + (n-1)abs(incx) if right side.<br />
+    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>pointer to type. Array on the GPU of size at least 1 + (m-1)*abs(incx) if left side, or at least 1 + (n-1)*abs(incx) if right side.<br />
  The Householder vector x. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">incx</td><td>rocblas_int. incx != 0.<br />
  Distance between two consecutive elements of x. If incx &lt; 0, the elements of x are indexed in reverse order. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">alpha</td><td>pointer to type. A scalar on the GPU.<br />
  The Householder scalar. If alpha = 0, then H = I (A will remain the same; x is never used) </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>pointer to type. Array on the GPU of size ldan.<br />
- On entry, the matrix A. On exit, it is overwritten with HA (or AH). </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>pointer to type. Array on the GPU of size lda*n.<br />
+ On entry, the matrix A. On exit, it is overwritten with H*A (or A*H). </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>rocblas_int. lda &gt;= m.<br />
  Leading dimension of A. </td></tr>
   </table>

@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>Specify user defined HIP stream.  
  <a href="interfacehipfort__rocsparse_1_1rocsparse__set__stream.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -90,11 +90,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a7908ae3cf3b7b829bf81608a4646f714"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>Specify user defined HIP stream</p>
-<pre class="fragment">\p rocsparse_set_stream specifies the stream to be used by the rocSPARSE library
-context and all subsequent function calls.
-</pre><dl class="params"><dt>Parameters</dt><dd>
+<div class="textblock"><p>Specify user defined HIP stream. </p>
+<p><code><a class="el" href="interfacehipfort__rocsparse_1_1rocsparse__set__stream.html" title="Specify user defined HIP stream. ">rocsparse_set_stream</a></code> specifies the stream to be used by the rocSPARSE library context and all subsequent function calls.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in,out]</td><td class="paramname">handle</td><td>the handle to the rocSPARSE library context. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">stream</td><td>the stream to be used by the rocSPARSE library context.</td></tr>
@@ -104,12 +102,11 @@ context and all subsequent function calls.
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
     <tr><td class="paramname">rocsparse_status_success</td><td>the operation completed successfully. </td></tr>
-    <tr><td class="paramname">rocsparse_status_invalid_handle</td><td><code>handle</code> is invalid. <pre class="fragment">\par Example
-This example illustrates, how a user defined stream can be used in rocSPARSE.
-</pre> <div class="fragment"><div class="line"> Create rocSPARSE handle</div><div class="line">rocsparse_handle handle;</div><div class="line">rocsparse_create_handle(&amp;handle);</div><div class="line"></div><div class="line"> Create stream</div><div class="line">hipStream_t stream;</div><div class="line">hipStreamCreate(&amp;stream);</div><div class="line"></div><div class="line"> Set stream to rocSPARSE handle</div><div class="line">rocsparse_set_stream(handle, stream);</div><div class="line"></div><div class="line"> Do some work</div><div class="line"> ...</div><div class="line"></div><div class="line"> Clean up</div><div class="line">rocsparse_destroy_handle(handle);</div><div class="line">hipStreamDestroy(stream);</div></div><!-- fragment --> </td></tr>
+    <tr><td class="paramname">rocsparse_status_invalid_handle</td><td><code>handle</code> is invalid.</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section user"><dt>Example</dt><dd>This example illustrates, how a user defined stream can be used in rocSPARSE. <div class="fragment"><div class="line">/ Create rocSPARSE handle</div><div class="line">      rocsparse_handle handle;</div><div class="line">      rocsparse_create_handle(&amp;handle);</div><div class="line"></div><div class="line">/ Create stream</div><div class="line">      hipStream_t stream;</div><div class="line">      hipStreamCreate(&amp;stream);</div><div class="line"></div><div class="line">/ Set stream to rocSPARSE handle</div><div class="line">      rocsparse_set_stream(handle, stream);</div><div class="line"></div><div class="line">/ Do some work</div><div class="line">/ ...</div><div class="line"></div><div class="line">/ Clean up</div><div class="line">      rocsparse_destroy_handle(handle);</div><div class="line">      hipStreamDestroy(stream);</div></div><!-- fragment --> </dd></dl>
 </div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="a7908ae3cf3b7b829bf81608a4646f714"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7908ae3cf3b7b829bf81608a4646f714">&#9670;&nbsp;</a></span>rocsparse_set_stream_()</h2>

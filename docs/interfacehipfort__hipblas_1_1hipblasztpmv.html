@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>BLAS Level 2 API.  
  <a href="interfacehipfort__hipblas_1_1hipblasztpmv.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -94,23 +94,18 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a4b1f6131c34eb2b995153917718b5d29"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>BLAS Level 2 API</p>
-<pre class="fragment"> tpmv performs one of the matrix-vector operations
-
-      x = Ax or x = ATx,
-
- where x is an n element vector and A is an n by n unit, or non-unit, upper or lower triangular matrix, supplied in the pack form.
-
- The vector x is overwritten.
-</pre><dl class="params"><dt>Parameters</dt><dd>
+<div class="textblock"><p>BLAS Level 2 API. </p>
+<p>tpmv performs one of the matrix-vector operations </p><pre class="fragment"> x = A*x or x = A**T*x,
+</pre><p>where x is an n element vector and A is an n by n unit, or non-unit, upper or lower triangular matrix, supplied in the pack form.</p>
+<p>The vector x is overwritten.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">uplo</td><td>[hipblasFillMode_t] HIPBLAS_FILL_MODE_UPPER: A is an upper triangular matrix. HIPBLAS_FILL_MODE_LOWER: A is a lower triangular matrix.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">transA</td><td>[hipblasOperation_t]</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">diag</td><td>[hipblasDiagType_t] HIPBLAS_DIAG_UNIT: A is assumed to be unit triangular. HIPBLAS_DIAG_NON_UNIT: A is not assumed to be unit triangular.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">m</td><td>[int] m specifies the number of rows of A. m &gt;= 0.</td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>device pointer storing matrix A, of dimension at leat ( m ( m + 1 ) 2 ). Before entry with uplo = HIPBLAS_FILL_MODE_UPPER, the array A must contain the upper triangular matrix packed sequentially, column by column, so that A[0] contains a_{0,0}, A[1] and A[2] contain a_{0,1} and a_{1, 1} respectively, and so on. Before entry with uplo = HIPBLAS_FILL_MODE_LOWER, the array A must contain the lower triangular matrix packed sequentially, column by column, so that A[0] contains a_{0,0}, A[1] and A[2] contain a_{1,0} and a_{2,0} respectively, and so on. Note that when DIAG = HIPBLAS_DIAG_UNIT, the diagonal elements of A are not referenced, but are assumed to be unity.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>device pointer storing matrix A, of dimension at leat ( m * ( m + 1 ) 2 ). Before entry with uplo = HIPBLAS_FILL_MODE_UPPER, the array A must contain the upper triangular matrix packed sequentially, column by column, so that A[0] contains a_{0,0}, A[1] and A[2] contain a_{0,1} and a_{1, 1} respectively, and so on. Before entry with uplo = HIPBLAS_FILL_MODE_LOWER, the array A must contain the lower triangular matrix packed sequentially, column by column, so that A[0] contains a_{0,0}, A[1] and A[2] contain a_{1,0} and a_{2,0} respectively, and so on. Note that when DIAG = HIPBLAS_DIAG_UNIT, the diagonal elements of A are not referenced, but are assumed to be unity.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>device pointer storing vector x.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">incx</td><td>[int] specifies the increment for the elements of x. incx must not be zero. </td></tr>
   </table>

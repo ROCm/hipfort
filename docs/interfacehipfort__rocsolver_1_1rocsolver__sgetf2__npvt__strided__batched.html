@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>GETF2_NPVT_STRIDED_BATCHED computes the LU factorization of a batch of general m-by-n matrices without partial pivoting.  
  <a href="interfacehipfort__rocsolver_1_1rocsolver__sgetf2__npvt__strided__batched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,14 +97,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a465a14a44edee48cbc2346472a99bb6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>GETF2_NPVT_STRIDED_BATCHED computes the LU factorization of a batch of general m-by-n matrices without partial pivoting.</p>
-<pre class="fragment"> (This is the unblocked Level-2-BLAS version of the algorithm. An optimized internal implementation without rocBLAS calls
- could be executed with small and mid-size matrices if optimizations are enabled (default option). For more details, see the
- "Tuning rocSOLVER performance" section of the Library Design Guide).
-
- The factorization of matrix \form#2 in the batch has the form
-</pre><p class="formulaDsp">
+<div class="textblock"><p>GETF2_NPVT_STRIDED_BATCHED computes the LU factorization of a batch of general m-by-n matrices without partial pivoting. </p>
+<p>(This is the unblocked Level-2-BLAS version of the algorithm. An optimized internal implementation without rocBLAS calls could be executed with small and mid-size matrices if optimizations are enabled (default option). For more details, see the "Tuning rocSOLVER performance" section of the Library Design Guide).</p>
+<p>The factorization of matrix \(A_i\) in the batch has the form</p>
+<p class="formulaDsp">
 \[ A_i = L_iU_i \]
 </p>
  <pre class="fragment">where \form#5 is lower triangular with unit
@@ -125,7 +121,7 @@ If numerical accuracy is compromised, use the legacy-LAPACK-like API \ref rocsol
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>rocblas_int. lda &gt;= m.<br />
  Specifies the leading dimension of matrices A_i. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">strideA</td><td>rocblas_stride.<br />
- Stride from the start of one matrix A_i to the next one A_(i+1). There is no restriction for the value of strideA. Normal use case is strideA &gt;= ldan </td></tr>
+ Stride from the start of one matrix A_i to the next one A_(i+1). There is no restriction for the value of strideA. Normal use case is strideA &gt;= lda*n </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">info</td><td>pointer to rocblas_int. Array of batch_count integers on the GPU.<br />
  If info[i] = 0, successful exit for factorization of A_i. If info[i] = j &gt; 0, U_i is singular. U_i[j,j] is the first zero element in the diagonal. The factorization from this point might be incomplete. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">batch_count</td><td>rocblas_int. batch_count &gt;= 0.<br />

@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>HEEVD computes the eigenvalues and optionally the eigenvectors of a Hermitian matrix A.  
  <a href="interfacehipfort__rocsolver_1_1rocsolver__cheevd.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,12 +97,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:af78ca28b07faf2fea7dcb6ef12847e7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>HEEVD computes the eigenvalues and optionally the eigenvectors of a Hermitian matrix A.</p>
-<pre class="fragment"> The eigenvalues are returned in ascending order. The eigenvectors are computed using a
- divide-and-conquer algorithm, depending on the value of evect. The computed eigenvectors
- are orthonormal.
-</pre><dl class="params"><dt>Parameters</dt><dd>
+<div class="textblock"><p>HEEVD computes the eigenvalues and optionally the eigenvectors of a Hermitian matrix A. </p>
+<p>The eigenvalues are returned in ascending order. The eigenvectors are computed using a divide-and-conquer algorithm, depending on the value of evect. The computed eigenvectors are orthonormal.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>rocblas_handle. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">evect</td><td>#rocblas_evect.<br />
@@ -111,7 +108,7 @@ Public Member Functions</h2></td></tr>
  Specifies whether the upper or lower part of the Hermitian matrix A is stored. If uplo indicates lower (or upper), then the upper (or lower) part of A is not used. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>rocblas_int. n &gt;= 0.<br />
  Number of rows and columns of matrix A. </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>pointer to type. Array on the GPU of dimension ldan.<br />
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>pointer to type. Array on the GPU of dimension lda*n.<br />
  On entry, the matrix A. On exit, the eigenvectors of A if they were computed and the algorithm converged; otherwise the contents of A are destroyed. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>rocblas_int. lda &gt;= n.<br />
  Specifies the leading dimension of matrix A. </td></tr>
@@ -120,7 +117,7 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">E</td><td>pointer to real type. Array on the GPU of dimension n.<br />
  This array is used to work internally with the tridiagonal matrix T associated with A. On exit, if info &gt; 0, it contains the unconverged off-diagonal elements of T (or properly speaking, a tridiagonal matrix equivalent to T). The diagonal elements of this matrix are in D; those that converged correspond to a subset of the eigenvalues of A (not necessarily ordered). </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">info</td><td>pointer to a rocblas_int on the GPU.<br />
- If info = 0, successful exit. If info = i &gt; 0 and evect is rocblas_evect_none, the algorithm did not converge. i elements of E did not converge to zero. If info = i &gt; 0 and evect is rocblas_evect_original, the algorithm failed to compute an eigenvalue in the submatrix from [i(n+1), i(n+1)] to [i%(n+1), i%(n+1)]. </td></tr>
+ If info = 0, successful exit. If info = i &gt; 0 and evect is rocblas_evect_none, the algorithm did not converge. i elements of E did not converge to zero. If info = i &gt; 0 and evect is rocblas_evect_original, the algorithm failed to compute an eigenvalue in the submatrix from [i/(n+1), i/(n+1)] to [i%(n+1), i%(n+1)]. </td></tr>
   </table>
   </dd>
 </dl>

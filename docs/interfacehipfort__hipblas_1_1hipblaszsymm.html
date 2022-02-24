@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>BLAS Level 3 API.  
  <a href="interfacehipfort__hipblas_1_1hipblaszsymm.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -96,24 +96,19 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:af317594cc4f4923b2fa357f3ffab1738"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>BLAS Level 3 API</p>
-<pre class="fragment"> symm performs one of the matrix-matrix operations:
-
- C := alphaAB + betaC if side == HIPBLAS_SIDE_LEFT,
- C := alphaBA + betaC if side == HIPBLAS_SIDE_RIGHT,
-
- where alpha and beta are scalars, B and C are m by n matrices, and
- A is a symmetric matrix stored as either upper or lower.
-</pre><dl class="params"><dt>Parameters</dt><dd>
+<div class="textblock"><p>BLAS Level 3 API. </p>
+<p>symm performs one of the matrix-matrix operations:</p>
+<p>C := alpha*A*B + beta*C if side == HIPBLAS_SIDE_LEFT, C := alpha*B*A + beta*C if side == HIPBLAS_SIDE_RIGHT,</p>
+<p>where alpha and beta are scalars, B and C are m by n matrices, and A is a symmetric matrix stored as either upper or lower.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue.</td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">side</td><td>[hipblasSideMode_t] HIPBLAS_SIDE_LEFT: C := alphaAB + betaC HIPBLAS_SIDE_RIGHT: C := alphaBA + betaC</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">side</td><td>[hipblasSideMode_t] HIPBLAS_SIDE_LEFT: C := alpha*A*B + beta*C HIPBLAS_SIDE_RIGHT: C := alpha*B*A + beta*C</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">uplo</td><td>[hipblasFillMode_t] HIPBLAS_FILL_MODE_UPPER: A is an upper triangular matrix HIPBLAS_FILL_MODE_LOWER: A is a lower triangular matrix</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">m</td><td>[int] m specifies the number of rows of B and C. m &gt;= 0.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>[int] n specifies the number of columns of B and C. n &gt;= 0.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">alpha</td><td>alpha specifies the scalar alpha. When alpha is zero then A and B are not referenced.</td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>pointer storing matrix A on the GPU. A is m by m if side == HIPBLAS_SIDE_LEFT A is n by n if side == HIPBLAS_SIDE_RIGHT only the upperlower triangular part is accessed.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>pointer storing matrix A on the GPU. A is m by m if side == HIPBLAS_SIDE_LEFT A is n by n if side == HIPBLAS_SIDE_RIGHT only the upper/lower triangular part is accessed.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>[int] lda specifies the first dimension of A. if side = HIPBLAS_SIDE_LEFT, lda &gt;= max( 1, m ), otherwise lda &gt;= max( 1, n ).</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">B</td><td>pointer storing matrix B on the GPU. Matrix dimension is m by n</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ldb</td><td>[int] ldb specifies the first dimension of B. ldb &gt;= max( 1, m )</td></tr>

@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>BLAS Level 3 API.  
  <a href="interfacehipfort__rocblas_1_1rocblas__ztrmm__batched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -90,20 +90,14 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a6aaa6a44cb717afade7d1889d8e77fa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>BLAS Level 3 API</p>
-<pre class="fragment"> trmm_batched performs one of the batched matrix-matrix operations
-
- B_i := alphaop( A_i )B_i,   or   B_i := alphaB_iop( A_i )  for i = 0, 1, ... batch_count -1
-
- where  alpha  is a scalar,  B_i  is an m by n matrix,  A_i  is a unit, or
- non-unit,  upper or lower triangular matrix  and  op( A_i )  is one  of
-
-     op( A_i ) = A_i   or   op( A_i ) = A_i^T   or   op( A_i ) = A_i^H.
+<div class="textblock"><p>BLAS Level 3 API. </p>
+<p>trmm_batched performs one of the batched matrix-matrix operations</p>
+<p>B_i := alpha*op( A_i )*B_i, or B_i := alpha*B_i*op( A_i ) for i = 0, 1, ... batch_count -1</p>
+<p>where alpha is a scalar, B_i is an m by n matrix, A_i is a unit, or non-unit, upper or lower triangular matrix and op( A_i ) is one of </p><pre class="fragment">op( A_i ) = A_i   or   op( A_i ) = A_i^T   or   op( A_i ) = A_i^H.
 </pre><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[rocblas_handle] handle to the rocblas library context queue.</td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">side</td><td>[rocblas_side] Specifies whether op(A_i) multiplies B_i from the left or right as follows: rocblas_side_left: B_i := alphaop( A_i )B_i. rocblas_side_right: B_i := alphaB_iop( A_i ).</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">side</td><td>[rocblas_side] Specifies whether op(A_i) multiplies B_i from the left or right as follows: rocblas_side_left: B_i := alpha*op( A_i )*B_i. rocblas_side_right: B_i := alpha*B_i*op( A_i ).</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">uplo</td><td>[rocblas_fill] Specifies whether the matrix A is an upper or lower triangular matrix as follows: rocblas_fill_upper: A is an upper triangular matrix. rocblas_fill_lower: A is a lower triangular matrix.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">transA</td><td>[rocblas_operation] Specifies the form of op(A_i) to be used in the matrix multiplication as follows: rocblas_operation_none: op(A_i) = A_i. rocblas_operation_transpose: op(A_i) = A_i^T. rocblas_operation_conjugate_transpose: op(A_i) = A_i^H.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">diag</td><td>[rocblas_diagonal] Specifies whether or not A_i is unit triangular as follows: rocblas_diagonal_unit: A_i is assumed to be unit triangular. rocblas_diagonal_non_unit: A_i is not assumed to be unit triangular.</td></tr>

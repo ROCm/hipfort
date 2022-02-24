@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>UNMQL multiplies a complex matrix Q with orthonormal columns by a general m-by-n matrix C.  
  <a href="interfacehipfort__rocsolver_1_1rocsolver__cunmql.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,12 +97,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ac7d0f268332a514465e8c66d2205f82b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>UNMQL multiplies a complex matrix Q with orthonormal columns by a general m-by-n matrix C.</p>
-<pre class="fragment"> (This is the blocked version of the algorithm).
-
- The matrix Q is applied in one of the following forms, depending on
- the values of side and trans:</pre><p> {array} ]</p>
+<div class="textblock"><p>UNMQL multiplies a complex matrix Q with orthonormal columns by a general m-by-n matrix C. </p>
+<p>(This is the blocked version of the algorithm).</p>
+<p>The matrix Q is applied in one of the following forms, depending on the values of side and trans: {array} ]</p>
 <p>Q is defined as the product of k Householder reflectors</p>
 <p class="formulaDsp">
 \[ Q = H_kH_{k-1}\cdots H_1 \]
@@ -123,14 +120,14 @@ returned by the QL factorization \ref rocsolver_sgeqlf "GEQLF".
  Number of columns of matrix C. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">k</td><td>rocblas_int. k &gt;= 0; k &lt;= m if side is left, k &lt;= n if side is right.<br />
  The number of Householder reflectors that form Q. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>pointer to type. Array on the GPU of size ldak.<br />
+    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>pointer to type. Array on the GPU of size lda*k.<br />
  The Householder vectors as returned by <a class="el" href="interfacehipfort__rocsolver_1_1rocsolver__sgeqlf.html">GEQLF</a> in the last k columns of its argument A. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>rocblas_int. lda &gt;= m if side is left, lda &gt;= n if side is right.<br />
  Leading dimension of A. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ipiv</td><td>pointer to type. Array on the GPU of dimension at least k.<br />
  The Householder scalars as returned by <a class="el" href="interfacehipfort__rocsolver_1_1rocsolver__sgeqlf.html">GEQLF</a>. </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">C</td><td>pointer to type. Array on the GPU of size ldcn.<br />
- On entry, the matrix C. On exit, it is overwritten with QC, CQ, Q'C, or CQ'. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">C</td><td>pointer to type. Array on the GPU of size ldc*n.<br />
+ On entry, the matrix C. On exit, it is overwritten with Q*C, C*Q, Q'*C, or C*Q'. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ldc</td><td>rocblas_int. ldc &gt;= m.<br />
  Leading dimension of C. </td></tr>
   </table>

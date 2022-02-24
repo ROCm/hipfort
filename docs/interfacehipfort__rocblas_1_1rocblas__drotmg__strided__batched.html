@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>BLAS Level 1 API.  
  <a href="interfacehipfort__rocblas_1_1rocblas__drotmg__strided__batched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -90,13 +90,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a22e3067e0c0a607f6cee6b3e27d80c3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>BLAS Level 1 API</p>
-<pre class="fragment"> rotmg_strided_batched creates the modified Givens rotation matrix for the strided batched vectors (d1_i  x1_i, d2_i  y1_i), for i = 1, ..., batch_count.
-       Parameters may be stored in either host or device memory, location is specified by calling rocblas_set_pointer_mode.
-       If the pointer mode is set to rocblas_pointer_mode_host, this function blocks the CPU until the GPU has finished and the results are available in host memory.
-       If the pointer mode is set to rocblas_pointer_mode_device, this function returns immediately and synchronization is required to read the results.
-</pre><dl class="params"><dt>Parameters</dt><dd>
+<div class="textblock"><p>BLAS Level 1 API. </p>
+<p>rotmg_strided_batched creates the modified Givens rotation matrix for the strided batched vectors (d1_i * x1_i, d2_i * y1_i), for i = 1, ..., batch_count. Parameters may be stored in either host or device memory, location is specified by calling <a class="el" href="interfacehipfort__rocblas_1_1rocblas__set__pointer__mode.html" title="set rocblas_pointer_mode ">rocblas_set_pointer_mode</a>. If the pointer mode is set to rocblas_pointer_mode_host, this function blocks the CPU until the GPU has finished and the results are available in host memory. If the pointer mode is set to rocblas_pointer_mode_device, this function returns immediately and synchronization is required to read the results.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[rocblas_handle] handle to the rocblas library context queue. </td></tr>
     <tr><td class="paramdir">[in,out]</td><td class="paramname">d1</td><td>device strided_batched array or host strided_batched array of input scalars that is overwritten. </td></tr>
@@ -107,7 +103,7 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">stride_x1</td><td>[rocblas_stride] specifies the increment between the beginning of x1_i and x1_(i+1) </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">y1</td><td>device strided_batched array or host strided_batched array of input scalars. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">stride_y1</td><td>[rocblas_stride] specifies the increment between the beginning of y1_i and y1_(i+1) </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">param</td><td>device strided_batched array or host strided_batched array of vectors of 5 elements defining the rotation. param[0] = flag param[1] = H11 param[2] = H21 param[3] = H12 param[4] = H22 The flag parameter defines the form of H: flag = -1 =&gt; H = ( H11 H12 H21 H22 ) flag = 0 =&gt; H = ( 1.0 H12 H21 1.0 ) flag = 1 =&gt; H = ( H11 1.0 -1.0 H22 ) flag = -2 =&gt; H = ( 1.0 0.0 0.0 1.0 ) param may be stored in either host or device memory, location is specified by calling <a class="el" href="interfacehipfort__rocblas_1_1rocblas__set__pointer__mode.html" title="! ">rocblas_set_pointer_mode</a>. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">param</td><td>device strided_batched array or host strided_batched array of vectors of 5 elements defining the rotation. param[0] = flag param[1] = H11 param[2] = H21 param[3] = H12 param[4] = H22 The flag parameter defines the form of H: flag = -1 =&gt; H = ( H11 H12 H21 H22 ) flag = 0 =&gt; H = ( 1.0 H12 H21 1.0 ) flag = 1 =&gt; H = ( H11 1.0 -1.0 H22 ) flag = -2 =&gt; H = ( 1.0 0.0 0.0 1.0 ) param may be stored in either host or device memory, location is specified by calling <a class="el" href="interfacehipfort__rocblas_1_1rocblas__set__pointer__mode.html" title="set rocblas_pointer_mode ">rocblas_set_pointer_mode</a>. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">stride_param</td><td>[rocblas_stride] specifies the increment between the beginning of param_i and param_(i + 1) </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">batch_count</td><td>[rocblas_int] the number of instances in the batch. </td></tr>
   </table>

@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>Set work buffer in execution info.  
  <a href="interfacehipfort__rocfft_1_1rocfft__execution__info__set__work__buffer.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -90,8 +90,7 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a8918b44e3a2717c4583de3b521b2c111"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>Set work buffer in execution info</p>
+<div class="textblock"><p>Set work buffer in execution info. </p>
 <p>This is one of the execution info functions to specify optional additional information to control execution. This API provides a work buffer for the transform. It must be called before ::rocfft_execute.</p>
 <p>When a non-zero value is obtained from ::rocfft_plan_get_work_buffer_size, that means the library needs a work buffer to compute the transform. In this case, the user should allocate the work buffer and pass it to the library via this API.</p>
 <p>If a work buffer is required for the transform but is not specified using this function, ::rocfft_execute will automatically allocate the required buffer and free it when execution is finished.</p>

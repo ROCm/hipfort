@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>BLAS Level 1 API.  
  <a href="interfacehipfort__hipblas_1_1hipblasdrotmgstridedbatched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -90,13 +90,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae5fb05479ab74ff5d9ff224de4c59d07"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>BLAS Level 1 API</p>
-<pre class="fragment"> rotmgStridedBatched creates the modified Givens rotation matrix for the strided batched vectors (d1_i  x1_i, d2_i  y1_i), for i = 1, ..., batchCount.
-       Parameters may be stored in either host or device memory, location is specified by calling hipblasSetPointerMode.
-       If the pointer mode is set to HIPBLAS_POINTER_MODE_HOST, this function blocks the CPU until the GPU has finished and the results are available in host memory.
-       If the pointer mode is set to HIPBLAS_POINTER_MODE_DEVICE, this function returns immediately and synchronization is required to read the results.
-</pre><dl class="params"><dt>Parameters</dt><dd>
+<div class="textblock"><p>BLAS Level 1 API. </p>
+<p>rotmgStridedBatched creates the modified Givens rotation matrix for the strided batched vectors (d1_i * x1_i, d2_i * y1_i), for i = 1, ..., batchCount. Parameters may be stored in either host or device memory, location is specified by calling hipblasSetPointerMode. If the pointer mode is set to HIPBLAS_POINTER_MODE_HOST, this function blocks the CPU until the GPU has finished and the results are available in host memory. If the pointer mode is set to HIPBLAS_POINTER_MODE_DEVICE, this function returns immediately and synchronization is required to read the results.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue. </td></tr>
     <tr><td class="paramdir">[in,out]</td><td class="paramname">d1</td><td>device strided_batched array or host strided_batched array of input scalars that is overwritten. </td></tr>

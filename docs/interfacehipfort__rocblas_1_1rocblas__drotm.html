@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>BLAS Level 1 API.  
  <a href="interfacehipfort__rocblas_1_1rocblas__drotm.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -94,10 +94,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a14b3347f4f589e54826a81c18a409ce0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>BLAS Level 1 API</p>
-<pre class="fragment"> rotm applies the modified Givens rotation matrix defined by param to vectors x and y.
-</pre><dl class="params"><dt>Parameters</dt><dd>
+<div class="textblock"><p>BLAS Level 1 API. </p>
+<p>rotm applies the modified Givens rotation matrix defined by param to vectors x and y.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[rocblas_handle] handle to the rocblas library context queue. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>[rocblas_int] number of elements in the x and y vectors. </td></tr>
@@ -105,7 +104,7 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">incx</td><td>[rocblas_int] specifies the increment between elements of x. </td></tr>
     <tr><td class="paramdir">[in,out]</td><td class="paramname">y</td><td>device pointer storing vector y. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">incy</td><td>[rocblas_int] specifies the increment between elements of y. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">param</td><td>device vector or host vector of 5 elements defining the rotation. param[0] = flag param[1] = H11 param[2] = H21 param[3] = H12 param[4] = H22 The flag parameter defines the form of H: flag = -1 =&gt; H = ( H11 H12 H21 H22 ) flag = 0 =&gt; H = ( 1.0 H12 H21 1.0 ) flag = 1 =&gt; H = ( H11 1.0 -1.0 H22 ) flag = -2 =&gt; H = ( 1.0 0.0 0.0 1.0 ) param may be stored in either host or device memory, location is specified by calling <a class="el" href="interfacehipfort__rocblas_1_1rocblas__set__pointer__mode.html" title="! ">rocblas_set_pointer_mode</a>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">param</td><td>device vector or host vector of 5 elements defining the rotation. param[0] = flag param[1] = H11 param[2] = H21 param[3] = H12 param[4] = H22 The flag parameter defines the form of H: flag = -1 =&gt; H = ( H11 H12 H21 H22 ) flag = 0 =&gt; H = ( 1.0 H12 H21 1.0 ) flag = 1 =&gt; H = ( H11 1.0 -1.0 H22 ) flag = -2 =&gt; H = ( 1.0 0.0 0.0 1.0 ) param may be stored in either host or device memory, location is specified by calling <a class="el" href="interfacehipfort__rocblas_1_1rocblas__set__pointer__mode.html" title="set rocblas_pointer_mode ">rocblas_set_pointer_mode</a>. </td></tr>
   </table>
   </dd>
 </dl>

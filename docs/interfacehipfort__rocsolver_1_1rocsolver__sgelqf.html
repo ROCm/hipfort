@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>GELQF computes a LQ factorization of a general m-by-n matrix A.  
  <a href="interfacehipfort__rocsolver_1_1rocsolver__sgelqf.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,16 +97,14 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a93760585fad9965c46693e81b9319e14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>GELQF computes a LQ factorization of a general m-by-n matrix A.</p>
-<pre class="fragment"> (This is the blocked version of the algorithm).
-
- The factorization has the form
-</pre><p class="formulaDsp">
+<div class="textblock"><p>GELQF computes a LQ factorization of a general m-by-n matrix A. </p>
+<p>(This is the blocked version of the algorithm).</p>
+<p>The factorization has the form</p>
+<p class="formulaDsp">
 \[ A = \left[\begin{array}{cc} L &amp; 0 \end{array}\right] Q \]
 </p>
  <pre class="fragment">where L is lower triangular (lower trapezoidal if m &gt; n), and Q is
-a n-by-n orthogonalunitary matrix represented as the product of Householder matrices
+a n-by-n orthogonal/unitary matrix represented as the product of Householder matrices
 </pre><p class="formulaDsp">
 \[ Q = H_k&#39;H_{k-1}&#39; \cdots H_1&#39;, \quad \text{with} \: k = \text{min}(m,n). \]
 </p>
@@ -122,7 +120,7 @@ a n-by-n orthogonalunitary matrix represented as the product of Householder matr
  The number of rows of the matrix A. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>rocblas_int. n &gt;= 0.<br />
  The number of columns of the matrix A. </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>pointer to type. Array on the GPU of dimension ldan.<br />
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>pointer to type. Array on the GPU of dimension lda*n.<br />
  On entry, the m-by-n matrix to be factored. On exit, the elements on and below the diagonal contain the factor L; the elements above the diagonal are the last n - i elements of Householder vector v_i. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>rocblas_int. lda &gt;= m.<br />
  Specifies the leading dimension of A. </td></tr>

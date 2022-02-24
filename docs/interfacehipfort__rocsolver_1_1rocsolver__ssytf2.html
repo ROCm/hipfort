@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>SYTF2 computes the factorization of a symmetric indefinite matrix \(A\) using Bunch-Kaufman diagonal pivoting.  
  <a href="interfacehipfort__rocsolver_1_1rocsolver__ssytf2.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,16 +97,14 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a73591312143a133f72d4470cf43ad850"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>SYTF2 computes the factorization of a symmetric indefinite matrix \(A\) using Bunch-Kaufman diagonal pivoting.</p>
-<pre class="fragment"> (This is the unblocked version of the algorithm).
-
- The factorization has the form</pre><p> {array} ]</p>
-<p>where \(U\) or \(L\) is a product of permutation and unit upperlower triangular matrices (depending on the value of uplo), and \(D\) is a symmetric block diagonal matrix with 1-by-1 and 2-by-2 diagonal blocks \(D(k)\).</p>
+<div class="textblock"><p>SYTF2 computes the factorization of a symmetric indefinite matrix \(A\) using Bunch-Kaufman diagonal pivoting. </p>
+<p>(This is the unblocked version of the algorithm).</p>
+<p>The factorization has the form {array} ]</p>
+<p>where \(U\) or \(L\) is a product of permutation and unit upper/lower triangular matrices (depending on the value of uplo), and \(D\) is a symmetric block diagonal matrix with 1-by-1 and 2-by-2 diagonal blocks \(D(k)\).</p>
 <p>Specifically, \(U\) and \(L\) are computed as {array} ]</p>
-<p>where \(k\) decreases from \(n\) to 1 (increases from 1 to \(n\)) in steps of 1 or 2, depending on the order of block \(D(k)\), and \(P(k)\) is a permutation matrix defined by \(ipiv[k]\). If we let \(s\) denote the order of block \(D(k)\), then \(U(k)\) and \(L(k)\) are unit upperlower triangular matrices defined as {array} ] ]</p>
+<p>where \(k\) decreases from \(n\) to 1 (increases from 1 to \(n\)) in steps of 1 or 2, depending on the order of block \(D(k)\), and \(P(k)\) is a permutation matrix defined by \(ipiv[k]\). If we let \(s\) denote the order of block \(D(k)\), then \(U(k)\) and \(L(k)\) are unit upper/lower triangular matrices defined as {array} ] ]</p>
 <p>and {array} ]. ]</p>
-<p>If \(s = 1\), then \(D(k)\) is stored in \(A[k,k]\) and \(v\) is stored in the upperlower part of column \(k\) of \(A\). If \(s = 2\) and uplo is upper, then \(D(k)\) is stored in \(A[k-1,k-1]\), \(A[k-1,k]\), and \(A[k,k]\), and \(v\) is stored in the upper parts of columns \(k-1\) and \(k\) of \(A\). If \(s = 2\) and uplo is lower, then \(D(k)\) is stored in \(A[k,k]\), \(A[k+1,k]\), and \(A[k+1,k+1]\), and \(v\) is stored in the lower parts of columns \(k\) and \(k+1\) of \(A\).</p>
+<p>If \(s = 1\), then \(D(k)\) is stored in \(A[k,k]\) and \(v\) is stored in the upper/lower part of column \(k\) of \(A\). If \(s = 2\) and uplo is upper, then \(D(k)\) is stored in \(A[k-1,k-1]\), \(A[k-1,k]\), and \(A[k,k]\), and \(v\) is stored in the upper parts of columns \(k-1\) and \(k\) of \(A\). If \(s = 2\) and uplo is lower, then \(D(k)\) is stored in \(A[k,k]\), \(A[k+1,k]\), and \(A[k+1,k+1]\), and \(v\) is stored in the lower parts of columns \(k\) and \(k+1\) of \(A\).</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>rocblas_handle. </td></tr>
@@ -114,7 +112,7 @@ Public Member Functions</h2></td></tr>
  Specifies whether the upper or lower part of the matrix A is stored. If uplo indicates lower (or upper), then the upper (or lower) part of A is not used. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>rocblas_int. n &gt;= 0.<br />
  The number of rows and columns of the matrix A. </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>pointer to type. Array on the GPU of dimension ldan.<br />
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>pointer to type. Array on the GPU of dimension lda*n.<br />
  On entry, the symmetric matrix A to be factored. On exit, the block diagonal matrix D and the multipliers needed to compute U or L. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>rocblas_int. lda &gt;= n.<br />
  Specifies the leading dimension of A. </td></tr>

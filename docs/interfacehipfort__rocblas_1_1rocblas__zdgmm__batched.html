@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>BLAS Level 3 API.  
  <a href="interfacehipfort__rocblas_1_1rocblas__zdgmm__batched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -96,17 +96,11 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae7e8d88dd4a07fd4005fc1fd7248f2e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>BLAS Level 3 API</p>
-<pre class="fragment"> dgmm_batched performs one of the batched matrix-matrix operations
-
-     C_i = A_i  diag(x_i) for i = 0, 1, ... batch_count-1 if side == rocblas_side_right
-     C_i = diag(x_i)  A_i for i = 0, 1, ... batch_count-1 if side == rocblas_side_left
-
- where C_i and A_i are m by n dimensional matrices. diag(x_i) is a diagonal matrix
- and x_i is vector of dimension n if side == rocblas_side_right and dimension m
- if side == rocblas_side_left.
-</pre><dl class="params"><dt>Parameters</dt><dd>
+<div class="textblock"><p>BLAS Level 3 API. </p>
+<p>dgmm_batched performs one of the batched matrix-matrix operations </p><pre class="fragment">C_i = A_i * diag(x_i) for i = 0, 1, ... batch_count-1 if side == rocblas_side_right
+C_i = diag(x_i) * A_i for i = 0, 1, ... batch_count-1 if side == rocblas_side_left
+</pre><p>where C_i and A_i are m by n dimensional matrices. diag(x_i) is a diagonal matrix and x_i is vector of dimension n if side == rocblas_side_right and dimension m if side == rocblas_side_left.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[rocblas_handle] handle to the rocblas library context queue. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">side</td><td>[rocblas_side] specifies the side of diag(x) </td></tr>

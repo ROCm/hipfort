@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>HEGS2_BATCHED reduces a batch of hermitian-definite generalized eigenproblems to standard form.  
  <a href="interfacehipfort__rocsolver_1_1rocsolver__chegs2__batched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,11 +97,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:adbce1983d1198da9bb08c3517c5195cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>HEGS2_BATCHED reduces a batch of hermitian-definite generalized eigenproblems to standard form.</p>
-<pre class="fragment"> (This is the unblocked version of the algorithm).
-
- For each instance in the batch, the problem solved by this function is either of the form</pre><p> {array} ]</p>
+<div class="textblock"><p>HEGS2_BATCHED reduces a batch of hermitian-definite generalized eigenproblems to standard form. </p>
+<p>(This is the unblocked version of the algorithm).</p>
+<p>For each instance in the batch, the problem solved by this function is either of the form {array} ]</p>
 <p>depending on the value of itype.</p>
 <p>If the problem is of the 1st form, then \(A_i\) is overwritten with {array} ]</p>
 <p>where the hermitian-definite matrix \(B_i\) has been factorized as either \(U_i^H U_i\) or \(L_i L_i^H\) as returned by <a class="el" href="interfacehipfort__rocsolver_1_1rocsolver__spotrf.html">POTRF</a>, depending on the value of uplo.</p>
@@ -116,11 +114,11 @@ Public Member Functions</h2></td></tr>
  Specifies whether the upper or lower part of the matrices A_i are stored, and whether the factorization applied to B_i was upper or lower triangular. If uplo indicates lower (or upper), then the upper (or lower) parts of A_i and B_i are not used. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>rocblas_int. n &gt;= 0.<br />
  The matrix dimensions. </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.<br />
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.<br />
  On entry, the matrices A_i. On exit, the transformed matrices associated with the equivalent standard eigenvalue problems. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>rocblas_int. lda &gt;= n.<br />
  Specifies the leading dimension of A_i. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">B</td><td>array of pointers to type. Each pointer points to an array on the GPU of dimension ldbn.<br />
+    <tr><td class="paramdir">[out]</td><td class="paramname">B</td><td>array of pointers to type. Each pointer points to an array on the GPU of dimension ldb*n.<br />
  The triangular factors of the matrices B_i, as returned by <a class="el" href="interfacehipfort__rocsolver_1_1rocsolver__spotrf__batched.html">POTRF_BATCHED</a>. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ldb</td><td>rocblas_int. ldb &gt;= n.<br />
  Specifies the leading dimension of B_i. </td></tr>

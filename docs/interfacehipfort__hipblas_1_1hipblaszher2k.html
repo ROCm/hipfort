@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>BLAS Level 3 API.  
  <a href="interfacehipfort__hipblas_1_1hipblaszher2k.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -96,17 +96,11 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aedc15ff8f1eaaf4483e1e4002678b369"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>BLAS Level 3 API</p>
-<pre class="fragment"> her2k performs one of the matrix-matrix operations for a Hermitian rank-2k update
-
- C := alphaop( A )op( B )^H + conj(alpha)op( B )op( A )^H + betaC
-
- where  alpha and beta are scalars, op(A) and op(B) are n by k matrices, and
- C is a n x n Hermitian matrix stored as either upper or lower.
-
-     op( A ) = A, op( B ) = B, and A and B are n by k if trans == HIPBLAS_OP_N
-     op( A ) = A^H, op( B ) = B^H,  and A and B are k by n if trans == HIPBLAS_OP_C
+<div class="textblock"><p>BLAS Level 3 API. </p>
+<p>her2k performs one of the matrix-matrix operations for a Hermitian rank-2k update</p>
+<p>C := alpha*op( A )*op( B )^H + conj(alpha)*op( B )*op( A )^H + beta*C</p>
+<p>where alpha and beta are scalars, op(A) and op(B) are n by k matrices, and C is a n x n Hermitian matrix stored as either upper or lower. </p><pre class="fragment">op( A ) = A, op( B ) = B, and A and B are n by k if trans == HIPBLAS_OP_N
+op( A ) = A^H, op( B ) = B^H,  and A and B are k by n if trans == HIPBLAS_OP_C
 </pre><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue.</td></tr>
@@ -115,9 +109,9 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>[int] n specifies the number of rows and columns of C. n &gt;= 0.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">k</td><td>[int] k specifies the number of columns of op(A). k &gt;= 0.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">alpha</td><td>alpha specifies the scalar alpha. When alpha is zero then A is not referenced and A need not be set before entry.</td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>pointer storing matrix A on the GPU. Martrix dimension is ( lda, k ) when if trans = HIPBLAS_OP_N, otherwise (lda, n) only the upperlower triangular part is accessed.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>pointer storing matrix A on the GPU. Martrix dimension is ( lda, k ) when if trans = HIPBLAS_OP_N, otherwise (lda, n) only the upper/lower triangular part is accessed.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>[int] lda specifies the first dimension of A. if trans = HIPBLAS_OP_N, lda &gt;= max( 1, n ), otherwise lda &gt;= max( 1, k ). </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">B</td><td>pointer storing matrix B on the GPU. Martrix dimension is ( ldb, k ) when if trans = HIPBLAS_OP_N, otherwise (ldb, n) only the upperlower triangular part is accessed.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">B</td><td>pointer storing matrix B on the GPU. Martrix dimension is ( ldb, k ) when if trans = HIPBLAS_OP_N, otherwise (ldb, n) only the upper/lower triangular part is accessed.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ldb</td><td>[int] ldb specifies the first dimension of B. if trans = HIPBLAS_OP_N, ldb &gt;= max( 1, n ), otherwise ldb &gt;= max( 1, k ). </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">beta</td><td>beta specifies the scalar beta. When beta is zero then C need not be set before entry.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">C</td><td>pointer storing matrix C on the GPU. The imaginary component of the diagonal elements are not used but are set to zero unless quick return.</td></tr>

@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>LATRD computes the tridiagonal form of k rows and columns of a symmetric/hermitian matrix A, as well as the matrix W needed to update the remaining part of A.  
  <a href="interfacehipfort__rocsolver_1_1rocsolver__slatrd.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,14 +97,13 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a0e1d655e0deb62bbca64b9ca69b73aae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>LATRD computes the tridiagonal form of k rows and columns of a symmetrichermitian matrix A, as well as the matrix W needed to update the remaining part of A.</p>
-<pre class="fragment"> The reduced form is given by:
-</pre><p class="formulaDsp">
+<div class="textblock"><p>LATRD computes the tridiagonal form of k rows and columns of a symmetric/hermitian matrix A, as well as the matrix W needed to update the remaining part of A. </p>
+<p>The reduced form is given by:</p>
+<p class="formulaDsp">
 \[ T = Q&#39;AQ \]
 </p>
  <pre class="fragment">If uplo is lower, the first k rows and columns of T form the tridiagonal block. If uplo is upper, then the last
-k rows and columns of T form the tridiagonal block. Q is an orthogonalunitary matrix represented as the
+k rows and columns of T form the tridiagonal block. Q is an orthogonal/unitary matrix represented as the
 product of Householder matrices</pre><p> {array} ]</p>
 <p>Each Householder matrix \(H_i\) is given by</p>
 <p class="formulaDsp">
@@ -128,7 +127,7 @@ The unreduced part of the matrix A can be updated using a rank update of the for
  The number of rows and columns of the matrix A. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">k</td><td>rocblas_int. 0 &lt;= k &lt;= n.<br />
  The number of rows and columns of the matrix A to be reduced. </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>pointer to type. Array on the GPU of dimension ldan.<br />
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>pointer to type. Array on the GPU of dimension lda*n.<br />
  On entry, the n-by-n matrix to be reduced. On exit, if uplo is lower, the first k columns have been reduced to tridiagonal form (given in the diagonal elements of A and the array E), the elements below the diagonal contain the possibly non-zero entries of the Householder vectors associated with Q, stored as columns. If uplo is upper, the last k columns have been reduced to tridiagonal form (given in the diagonal elements of A and the array E), the elements above the diagonal contain the possibly non-zero entries of the Householder vectors associated with Q, stored as columns. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>rocblas_int. lda &gt;= n.<br />
  The leading dimension of A. </td></tr>
@@ -136,7 +135,7 @@ The unreduced part of the matrix A can be updated using a rank update of the for
  If upper (lower), the last (first) k elements of E are the off-diagonal elements of the computed tridiagonal block. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">tau</td><td>pointer to type. Array on the GPU of dimension n-1.<br />
  If upper (lower), the last (first) k elements of tau are the Householder scalars related to Q. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">W</td><td>pointer to type. Array on the GPU of dimension ldwk.<br />
+    <tr><td class="paramdir">[out]</td><td class="paramname">W</td><td>pointer to type. Array on the GPU of dimension ldw*k.<br />
  The n-by-k matrix needed to update the unreduced part of A. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ldw</td><td>rocblas_int. ldw &gt;= n.<br />
  The leading dimension of W. </td></tr>

@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>GETRI_NPVT_OUTOFPLACE computes the inverse \(C = A^{-1}\) of a general n-by-n matrix A without partial pivoting.  
  <a href="interfacehipfort__rocsolver_1_1rocsolver__sgetri__npvt__outofplace.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,10 +97,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a1443a015b12337c372506ce90b30f4d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>GETRI_NPVT_OUTOFPLACE computes the inverse \(C = A^{-1}\) of a general n-by-n matrix A without partial pivoting.</p>
-<pre class="fragment"> The inverse is computed by solving the linear system
-</pre><p class="formulaDsp">
+<div class="textblock"><p>GETRI_NPVT_OUTOFPLACE computes the inverse \(C = A^{-1}\) of a general n-by-n matrix A without partial pivoting. </p>
+<p>The inverse is computed by solving the linear system</p>
+<p class="formulaDsp">
 \[ AC = I \]
 </p>
  <pre class="fragment">where I is the identity matrix, and A is factorized as \form#146 as given by \ref rocsolver_sgetrf_npvt "GETRF_NPVT".
@@ -109,11 +108,11 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>rocblas_handle. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>rocblas_int. n &gt;= 0.<br />
  The number of rows and columns of the matrix A. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>pointer to type. Array on the GPU of dimension ldan.<br />
- The factors L and U of the factorization A = LU returned by <a class="el" href="interfacehipfort__rocsolver_1_1rocsolver__sgetrf__npvt.html">GETRF_NPVT</a>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>pointer to type. Array on the GPU of dimension lda*n.<br />
+ The factors L and U of the factorization A = L*U returned by <a class="el" href="interfacehipfort__rocsolver_1_1rocsolver__sgetrf__npvt.html">GETRF_NPVT</a>. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>rocblas_int. lda &gt;= n.<br />
  Specifies the leading dimension of A. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">C</td><td>pointer to type. Array on the GPU of dimension ldcn.<br />
+    <tr><td class="paramdir">[out]</td><td class="paramname">C</td><td>pointer to type. Array on the GPU of dimension ldc*n.<br />
  If info = 0, the inverse of A. Otherwise, undefined. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ldc</td><td>rocblas_int. ldc &gt;= n.<br />
  Specifies the leading dimension of C. </td></tr>

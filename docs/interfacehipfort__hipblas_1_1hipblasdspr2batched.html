@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>BLAS Level 2 API.  
  <a href="interfacehipfort__hipblas_1_1hipblasdspr2batched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -96,15 +96,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a85dbe0f7d1375bdc1e192bb1922a98fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>BLAS Level 2 API</p>
-<pre class="fragment"> spr2Batched performs the matrix-vector operation
-
-     A_i := A_i + alphax_iy_iT + alphay_ix_iT
-
- where alpha is a scalar, x_i and y_i are vectors, and A_i is an
- n by n symmetric matrix, supplied in packed form, for i = 1, ..., batchCount.
-</pre><dl class="params"><dt>Parameters</dt><dd>
+<div class="textblock"><p>BLAS Level 2 API. </p>
+<p>spr2Batched performs the matrix-vector operation </p><pre class="fragment">A_i := A_i + alpha*x_i*y_i**T + alpha*y_i*x_i**T
+</pre><p>where alpha is a scalar, x_i and y_i are vectors, and A_i is an n by n symmetric matrix, supplied in packed form, for i = 1, ..., batchCount.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">uplo</td><td>[hipblasFillMode_t] specifies whether the upper 'HIPBLAS_FILL_MODE_UPPER' or lower 'HIPBLAS_FILL_MODE_LOWER' HIPBLAS_FILL_MODE_UPPER: The upper triangular part of each A_i is supplied in AP. HIPBLAS_FILL_MODE_LOWER: The lower triangular part of each A_i is supplied in AP. </td></tr>
@@ -114,7 +109,7 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">incx</td><td>[int] specifies the increment for the elements of each x_i. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">y</td><td>device array of device pointers storing each vector y_i. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">incy</td><td>[int] specifies the increment for the elements of each y_i. </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">AP</td><td>device array of device pointers storing the packed version of the specified triangular portion of each symmetric matrix A_i of at least size ((n (n + 1)) 2). Array is of at least size batchCount. if uplo == HIPBLAS_FILL_MODE_UPPER: The upper triangular portion of each symmetric matrix A_i is supplied. The matrix is compacted so that AP contains the triangular portion column-by-column so that: AP(0) = A(0,0) AP(1) = A(0,1) AP(2) = A(1,1), etc. Ex: (HIPBLAS_FILL_MODE_UPPER; n = 4) 1 2 4 7 2 3 5 8 --&mdash;&gt; [1, 2, 3, 4, 5, 6, 7, 8, 9, 0] 4 5 6 9 7 8 9 0 if uplo == HIPBLAS_FILL_MODE_LOWER: The lower triangular portion of each symmetric matrix A_i is supplied. The matrix is compacted so that AP contains the triangular portion column-by-column so that: AP(0) = A(0,0) AP(1) = A(1,0) AP(n) = A(2,1), etc. Ex: (HIPBLAS_FILL_MODE_LOWER; n = 4) 1 2 3 4 2 5 6 7 --&mdash;&gt; [1, 2, 3, 4, 5, 6, 7, 8, 9, 0] 3 6 8 9 4 7 9 0 </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">AP</td><td>device array of device pointers storing the packed version of the specified triangular portion of each symmetric matrix A_i of at least size ((n * (n + 1)) 2). Array is of at least size batchCount. if uplo == HIPBLAS_FILL_MODE_UPPER: The upper triangular portion of each symmetric matrix A_i is supplied. The matrix is compacted so that AP contains the triangular portion column-by-column so that: AP(0) = A(0,0) AP(1) = A(0,1) AP(2) = A(1,1), etc. Ex: (HIPBLAS_FILL_MODE_UPPER; n = 4) 1 2 4 7 2 3 5 8 --&mdash;&gt; [1, 2, 3, 4, 5, 6, 7, 8, 9, 0] 4 5 6 9 7 8 9 0 if uplo == HIPBLAS_FILL_MODE_LOWER: The lower triangular portion of each symmetric matrix A_i is supplied. The matrix is compacted so that AP contains the triangular portion column-by-column so that: AP(0) = A(0,0) AP(1) = A(1,0) AP(n) = A(2,1), etc. Ex: (HIPBLAS_FILL_MODE_LOWER; n = 4) 1 2 3 4 2 5 6 7 --&mdash;&gt; [1, 2, 3, 4, 5, 6, 7, 8, 9, 0] 3 6 8 9 4 7 9 0 </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">batchCount</td><td>[int] number of instances in the batch. </td></tr>
   </table>
   </dd>

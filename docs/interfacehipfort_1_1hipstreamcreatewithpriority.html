@@ -100,7 +100,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>#hipSuccess, #hipErrorInvalidValue</dd></dl>
-<p>Create a new asynchronous stream with the specified priority. <code>stream</code> returns an opaque handle that can be used to reference the newly created stream in subsequent hipStream commands. The stream is allocated on the heap and will remain allocated even if the handle goes out-of-scope. To release the memory used by the stream, applicaiton must call hipStreamDestroy. Flags controls behavior of the stream. See #hipStreamDefault, #hipStreamNonBlocking.</p>
+<p>Create a new asynchronous stream with the specified priority. <code>stream</code> returns an opaque handle that can be used to reference the newly created stream in subsequent hipStream* commands. The stream is allocated on the heap and will remain allocated even if the handle goes out-of-scope. To release the memory used by the stream, applicaiton must call hipStreamDestroy. Flags controls behavior of the stream. See #hipStreamDefault, #hipStreamNonBlocking.</p>
 <dl class="section see"><dt>See also</dt><dd>hipStreamCreate, hipStreamSynchronize, hipStreamWaitEvent, hipStreamDestroy </dd></dl>
 </div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="af2fe76281a771e07ef8ee31e81a7b36a"></a>

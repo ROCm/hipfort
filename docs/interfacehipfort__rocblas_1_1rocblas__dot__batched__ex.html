@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>BLAS EX API.  
  <a href="interfacehipfort__rocblas_1_1rocblas__dot__batched__ex.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -90,32 +90,22 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a30e05183315f240fd3cabac91ec84480"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>BLAS EX API</p>
-<pre class="fragment"> dot_batched_ex performs a batch of dot products of vectors x and y
+<div class="textblock"><p>BLAS EX API. </p>
+<p>dot_batched_ex performs a batch of dot products of vectors x and y </p><pre class="fragment">result_i = x_i * y_i;
+</pre><p>dotc_batched_ex performs a batch of dot products of the conjugate of complex vector x and complex vector y </p><pre class="fragment">result_i = conjugate (x_i) * y_i;
+</pre><p>where (x_i, y_i) is the i-th instance of the batch. x_i and y_i are vectors, for i = 1, ..., batch_count </p><pre class="fragment">Currently supported datatypes are as follows:
 
-     result_i = x_i  y_i;
-
- dotc_batched_ex  performs a batch of dot products of the conjugate of complex vector x and complex vector y
-
-     result_i = conjugate (x_i)  y_i;
-
- where (x_i, y_i) is the i-th instance of the batch.
- x_i and y_i are vectors, for i = 1, ..., batch_count
-
-     Currently supported datatypes are as follows:
-
-     --------------------------------------------------
-     | x_type | y_type | result_type | execution_type |
-     |--------|--------|-------------|----------------|
-     | f16_r  | f16_r  |    f16_r    |     f16_r      |
-     | f16_r  | f16_r  |    f16_r    |     f32_r      |
-     | bf16_r | bf16_r |    bf16_r   |     f32_r      |
-     | f32_r  | f32_r  |    f32_r    |     f32_r      |
-     | f64_r  | f64_r  |    f64_r    |     f64_r      |
-     | f32_c  | f32_c  |    f32_c    |     f32_c      |
-     | f64_c  | f64_c  |    f64_c    |     f64_c      |
-     --------------------------------------------------
+--------------------------------------------------
+| x_type | y_type | result_type | execution_type |
+|--------|--------|-------------|----------------|
+| f16_r  | f16_r  |    f16_r    |     f16_r      |
+| f16_r  | f16_r  |    f16_r    |     f32_r      |
+| bf16_r | bf16_r |    bf16_r   |     f32_r      |
+| f32_r  | f32_r  |    f32_r    |     f32_r      |
+| f64_r  | f64_r  |    f64_r    |     f64_r      |
+| f32_c  | f32_c  |    f32_c    |     f32_c      |
+| f64_c  | f64_c  |    f64_c    |     f64_c      |
+--------------------------------------------------
 </pre><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[rocblas_handle] handle to the rocblas library context queue. </td></tr>

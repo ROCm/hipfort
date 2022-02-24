@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>! BLAS EX API  
+<p>BLAS EX API.  
  <a href="interfacehipfort__rocblas_1_1rocblas__trsm__batched__ex.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -90,11 +90,11 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ad3867c9ed41a12f7917053d81dd37209"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! BLAS EX API </p>
-<p>trsm_batched_ex solves </p><pre class="fragment">op(A_i)X_i = alphaB_i or X_iop(A_i) = alphaB_i,
+<div class="textblock"><p>BLAS EX API. </p>
+<p>trsm_batched_ex solves </p><pre class="fragment">op(A_i)*X_i = alpha*B_i or X_i*op(A_i) = alpha*B_i,
 </pre><p>for i = 1, ..., batch_count; and where alpha is a scalar, X and B are arrays of m by n matrices, A is an array of triangular matrix and each op(A_i) is one of </p><pre class="fragment">op( A_i ) = A_i   or   op( A_i ) = A_i^T   or   op( A_i ) = A_i^H.
 </pre><p>Each matrix X_i is overwritten on B_i.</p>
-<p>This function gives the user the ability to reuse the invA matrix between runs. If invA == NULL, <a class="el" href="interfacehipfort__rocblas_1_1rocblas__trsm__batched__ex.html" title="! BLAS EX API ">rocblas_trsm_batched_ex</a> will automatically calculate each invA_i on every run.</p>
+<p>This function gives the user the ability to reuse the invA matrix between runs. If invA == NULL, <a class="el" href="interfacehipfort__rocblas_1_1rocblas__trsm__batched__ex.html" title="BLAS EX API. ">rocblas_trsm_batched_ex</a> will automatically calculate each invA_i on every run.</p>
 <p>Setting up invA: Each accepted invA_i matrix consists of the packed 128x128 inverses of the diagonal blocks of matrix A_i, followed by any smaller diagonal block that remains. To set up each invA_i it is recommended that rocblas_trtri_batched be used with matrix A_i as the input. invA is an array of pointers of batch_count length holding each invA_i.</p>
 <p>Device memory of size 128 x k should be allocated for each invA_i ahead of time, where k is m when rocblas_side_left and is n when rocblas_side_right. The actual number of elements in each invA_i should be passed as invA_size.</p>
 <p>To begin, rocblas_trtri_batched must be called on the full 128x128 sized diagonal blocks of each matrix A_i. Below are the restricted parameters:</p><ul>
@@ -105,26 +105,26 @@ Public Member Functions</h2></td></tr>
 </ul>
 <p>Then any remaining block may be added:</p><ul>
 <li>n = k % 128</li>
-<li>invA = invA + stride_invA previous_batch_count</li>
+<li>invA = invA + stride_invA * previous_batch_count</li>
 <li>ldinvA = 128</li>
 <li>batch_count = 1</li>
 </ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[rocblas_handle] handle to the rocblas library context queue.</td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">side</td><td>[rocblas_side] rocblas_side_left: op(A)X = alphaB. rocblas_side_right: Xop(A) = alphaB.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">side</td><td>[rocblas_side] rocblas_side_left: op(A)*X = alpha*B. rocblas_side_right: X*op(A) = alpha*B.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">uplo</td><td>[rocblas_fill] rocblas_fill_upper: each A_i is an upper triangular matrix. rocblas_fill_lower: each A_i is a lower triangular matrix.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">transA</td><td>[rocblas_operation] transB: op(A) = A. rocblas_operation_transpose: op(A) = A^T. rocblas_operation_conjugate_transpose: op(A) = A^H.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">diag</td><td>[rocblas_diagonal] rocblas_diagonal_unit: each A_i is assumed to be unit triangular. rocblas_diagonal_non_unit: each A_i is not assumed to be unit triangular.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">m</td><td>[rocblas_int] m specifies the number of rows of each B_i. m &gt;= 0.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>[rocblas_int] n specifies the number of columns of each B_i. n &gt;= 0.</td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">alpha</td><td>[void ] device pointer or host pointer alpha specifying the scalar alpha. When alpha is &amp;zero then A is not referenced, and B need not be set before entry.</td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>[void ] device array of device pointers storing each matrix A_i. each A_i is of dimension ( lda, k ), where k is m when rocblas_side_left and is n when rocblas_side_right only the upperlower triangular part is accessed.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">alpha</td><td>[void *] device pointer or host pointer alpha specifying the scalar alpha. When alpha is &amp;zero then A is not referenced, and B need not be set before entry.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>[void *] device array of device pointers storing each matrix A_i. each A_i is of dimension ( lda, k ), where k is m when rocblas_side_left and is n when rocblas_side_right only the upper/lower triangular part is accessed.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>[rocblas_int] lda specifies the first dimension of each A_i. if side = rocblas_side_left, lda &gt;= max( 1, m ), if side = rocblas_side_right, lda &gt;= max( 1, n ).</td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">B</td><td>[void ] device array of device pointers storing each matrix B_i. each B_i is of dimension ( ldb, n ). Before entry, the leading m by n part of the array B_i must contain the right-hand side matrix B_i, and on exit is overwritten by the solution matrix X_i</td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">B</td><td>[void *] device array of device pointers storing each matrix B_i. each B_i is of dimension ( ldb, n ). Before entry, the leading m by n part of the array B_i must contain the right-hand side matrix B_i, and on exit is overwritten by the solution matrix X_i</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ldb</td><td>[rocblas_int] ldb specifies the first dimension of each B_i. ldb &gt;= max( 1, m ).</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">batch_count</td><td>[rocblas_int] specifies how many batches.</td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">invA</td><td>[void ] device array of device pointers storing the inverse diagonal blocks of each A_i. each invA_i is of dimension ( ld_invA, k ), where k is m when rocblas_side_left and is n when rocblas_side_right. ld_invA must be equal to 128.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">invA</td><td>[void *] device array of device pointers storing the inverse diagonal blocks of each A_i. each invA_i is of dimension ( ld_invA, k ), where k is m when rocblas_side_left and is n when rocblas_side_right. ld_invA must be equal to 128.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">invA_size</td><td>[rocblas_int] invA_size specifies the number of elements of device memory in each invA_i.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">compute_type</td><td>[rocblas_datatype] specifies the datatype of computation </td></tr>
   </table>

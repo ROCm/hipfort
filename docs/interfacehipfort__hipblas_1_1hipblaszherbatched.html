@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>BLAS Level 2 API.  
  <a href="interfacehipfort__hipblas_1_1hipblaszherbatched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -96,15 +96,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa996bf7ec9c88ac283b93262a294f094"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>BLAS Level 2 API</p>
-<pre class="fragment"> herBatched performs the matrix-vector operations
-
-     A_i := A_i + alphax_ix_iH
-
- where alpha is a real scalar, x_i is a vector, and A_i is an
- n by n symmetric matrix, for i = 1, ..., batchCount.
-</pre><dl class="params"><dt>Parameters</dt><dd>
+<div class="textblock"><p>BLAS Level 2 API. </p>
+<p>herBatched performs the matrix-vector operations </p><pre class="fragment">A_i := A_i + alpha*x_i*x_i**H
+</pre><p>where alpha is a real scalar, x_i is a vector, and A_i is an n by n symmetric matrix, for i = 1, ..., batchCount.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">uplo</td><td>[hipblasFillMode_t] specifies whether the upper 'HIPBLAS_FILL_MODE_UPPER' or lower 'HIPBLAS_FILL_MODE_LOWER' HIPBLAS_FILL_MODE_UPPER: The upper triangular part of each A_i is supplied in A. HIPBLAS_FILL_MODE_LOWER: The lower triangular part of each A_i is supplied in A. </td></tr>
@@ -112,7 +107,7 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">alpha</td><td>device pointer or host pointer to scalar alpha. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>device array of device pointers storing each vector x_i. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">incx</td><td>[int] specifies the increment for the elements of each x_i. </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>device array of device pointers storing the specified triangular portion of each Hermitian matrix A_i of at least size ((n (n + 1)) 2). Array is of at least size batchCount. if uplo == HIPBLAS_FILL_MODE_UPPER: The upper triangular portion of each Hermitian matrix A_i is supplied. The lower triangular portion of each A_i will not be touched. if uplo == HIPBLAS_FILL_MODE_LOWER: The lower triangular portion of each Hermitian matrix A_i is supplied. The upper triangular portion of each A_i will not be touched. Note that the imaginary part of the diagonal elements are not accessed and are assumed to be 0. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>device array of device pointers storing the specified triangular portion of each Hermitian matrix A_i of at least size ((n * (n + 1)) 2). Array is of at least size batchCount. if uplo == HIPBLAS_FILL_MODE_UPPER: The upper triangular portion of each Hermitian matrix A_i is supplied. The lower triangular portion of each A_i will not be touched. if uplo == HIPBLAS_FILL_MODE_LOWER: The lower triangular portion of each Hermitian matrix A_i is supplied. The upper triangular portion of each A_i will not be touched. Note that the imaginary part of the diagonal elements are not accessed and are assumed to be 0. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>[int] specifies the leading dimension of each A_i. Must be at least max(1, n). </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">batchCount</td><td>[int] number of instances in the batch. </td></tr>
   </table>

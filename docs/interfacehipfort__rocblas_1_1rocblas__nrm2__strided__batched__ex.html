@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>BLAS_EX API.  
  <a href="interfacehipfort__rocblas_1_1rocblas__nrm2__strided__batched__ex.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -90,32 +90,33 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a7035fb3f2751194e5197662091884802"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>BLAS_EX API</p>
-<pre class="fragment"> nrm2_strided_batched_ex computes the euclidean norm over a batch of real or complex vectors
-
-           := sqrt( x_i'x_i ) for real vectors x, for i = 1, ..., batch_count
-           := sqrt( x_iHx_i ) for complex vectors, for i = 1, ..., batch_count
-
- Currently supported datatypes are as follows:
-
-     -------------------------------------
-     |  x_type | result | execution_type |
-     |---------|--------|----------------|
-     |  f16_r  |  f16_r |     f32_r      |
-     |  f32_r  |  f32_r |     f32_r      |
-     |  f64_r  |  f64_r |     f64_r      |
-     |  f32_c  |  f32_r |     f32_r      |
-     |  f64_c  |  f64_r |     f64_r      |
-     -------------------------------------
-</pre><dl class="params"><dt>Parameters</dt><dd>
+<div class="textblock"><p>BLAS_EX API. </p>
+<p>nrm2_strided_batched_ex computes the euclidean norm over a batch of real or complex vectors </p><pre class="fragment">      := sqrt( x_i'*x_i ) for real vectors x, for i = 1, ..., batch_count
+      := sqrt( x_i**H*x_i ) for complex vectors, for i = 1, ..., batch_count
+</pre><p>Currently supported datatypes are as follows: </p><hr/>
+ <table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">x_type  </th><th class="markdownTableHeadNone">result  </th><th class="markdownTableHeadNone">execution_type   </th></tr>
+<tr class="markdownTableBody" class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">f16_r  </td><td class="markdownTableBodyNone">f16_r  </td><td class="markdownTableBodyNone">f32_r   </td></tr>
+<tr class="markdownTableBody" class="markdownTableRowEven">
+<td class="markdownTableBodyNone">f32_r  </td><td class="markdownTableBodyNone">f32_r  </td><td class="markdownTableBodyNone">f32_r   </td></tr>
+<tr class="markdownTableBody" class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">f64_r  </td><td class="markdownTableBodyNone">f64_r  </td><td class="markdownTableBodyNone">f64_r   </td></tr>
+<tr class="markdownTableBody" class="markdownTableRowEven">
+<td class="markdownTableBodyNone">f32_c  </td><td class="markdownTableBodyNone">f32_r  </td><td class="markdownTableBodyNone">f32_r   </td></tr>
+<tr class="markdownTableBody" class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">f64_c  </td><td class="markdownTableBodyNone">f64_r  </td><td class="markdownTableBodyNone">f64_r   </td></tr>
+</table>
+<hr/>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[rocblas_handle] handle to the rocblas library context queue. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>[rocblas_int] number of elements in each x_i. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>device pointer to the first vector x_1. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">x_type</td><td>[rocblas_datatype] specifies the datatype of each vector x_i. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">incx</td><td>[rocblas_int] specifies the increment for the elements of each x_i. incx must be &gt; 0. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">stridex</td><td>[rocblas_stride] stride from the start of one vector (x_i) and the next one (x_i+1). There are no restrictions placed on stride_x, however the user should take care to ensure that stride_x is of appropriate size, for a typical case this means stride_x &gt;= n incx. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">stridex</td><td>[rocblas_stride] stride from the start of one vector (x_i) and the next one (x_i+1). There are no restrictions placed on stride_x, however the user should take care to ensure that stride_x is of appropriate size, for a typical case this means stride_x &gt;= n * incx. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">batch_count</td><td>[rocblas_int] number of instances in the batch </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">results</td><td>device pointer or host pointer to array for storing contiguous batch_count results. return is 0.0 for each element if n &lt;= 0, incx&lt;=0. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">result_type</td><td>[rocblas_datatype] specifies the datatype of the result. </td></tr>

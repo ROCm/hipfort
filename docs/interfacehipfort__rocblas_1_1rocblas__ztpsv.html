@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>BLAS Level 2 API.  
  <a href="interfacehipfort__rocblas_1_1rocblas__ztpsv.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -94,23 +94,18 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa94653e92d6a3049029ca6ff6d5b592b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>BLAS Level 2 API</p>
-<pre class="fragment"> tpsv solves
-
-      Ax = b or ATx = b, or AHx = b,
-
- where x and b are vectors and A is a triangular matrix stored in the packed format.
-
- The input vector b is overwritten by the output vector x.
-</pre><dl class="params"><dt>Parameters</dt><dd>
+<div class="textblock"><p>BLAS Level 2 API. </p>
+<p>tpsv solves </p><pre class="fragment"> A*x = b or A**T*x = b, or A**H*x = b,
+</pre><p>where x and b are vectors and A is a triangular matrix stored in the packed format.</p>
+<p>The input vector b is overwritten by the output vector x.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[rocblas_handle] handle to the rocblas library context queue.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">uplo</td><td>[rocblas_fill] rocblas_fill_upper: A is an upper triangular matrix. rocblas_fill_lower: A is a lower triangular matrix.</td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">transA</td><td>[rocblas_operation] rocblas_operation_none: Solves Ax = b rocblas_operation_transpose: Solves ATx = b rocblas_operation_conjugate_transpose: Solves AHx = b</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">transA</td><td>[rocblas_operation] rocblas_operation_none: Solves A*x = b rocblas_operation_transpose: Solves A**T*x = b rocblas_operation_conjugate_transpose: Solves A**H*x = b</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">diag</td><td>[rocblas_diagonal] rocblas_diagonal_unit: A is assumed to be unit triangular (i.e. the diagonal elements of A are not used in computations). rocblas_diagonal_non_unit: A is not assumed to be unit triangular.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>[rocblas_int] n specifies the number of rows of b. n &gt;= 0.</td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">AP</td><td>device pointer storing the packed version of matrix A, of dimension &gt;= (n (n + 1) 2)</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">AP</td><td>device pointer storing the packed version of matrix A, of dimension &gt;= (n * (n + 1) 2)</td></tr>
     <tr><td class="paramdir">[in,out]</td><td class="paramname">x</td><td>device pointer storing vector b on input, overwritten by x on output.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">incx</td><td>[rocblas_int] specifies the increment for the elements of x. </td></tr>
   </table>

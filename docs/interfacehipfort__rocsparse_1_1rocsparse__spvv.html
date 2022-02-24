@@ -80,7 +80,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>Sparse vector inner dot product.  
  <a href="interfacehipfort__rocsparse_1_1rocsparse__spvv.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -90,13 +90,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa25924eb5752ae27eda3a25eeeac02e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>Sparse vector inner dot product</p>
+<div class="textblock"><p>Sparse vector inner dot product. </p>
 <p><a class="el" href="interfacehipfort__rocsparse_1_1rocsparse__spvv.html">rocsparse_spvv</a> computes the inner dot product of the sparse vecotr \(x\) with the dense vector \(y\), such that </p><p class="formulaDsp">
 \[ \text{result} := x^{&#39;} \cdot y, \]
 </p>
 <p> with . ]</p>
-<div class="fragment"><div class="line">result = 0;</div><div class="line"><span class="keywordflow">for</span>(i = 0; i &lt; nnz; ++i)</div><div class="line">{</div><div class="line">    result += x_val[i]  y[x_ind[i]];</div><div class="line">}</div></div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>This function writes the required allocation size (in bytes) to <code>buffer_size</code> and returns without performing the SpVV operation, when a nullptr is passed for <code>temp_buffer</code>.</dd>
+<div class="fragment"><div class="line">result = 0;</div><div class="line"><span class="keywordflow">for</span>(i = 0; i &lt; nnz; ++i)</div><div class="line">{</div><div class="line">    result += x_val[i] * y[x_ind[i]];</div><div class="line">}</div></div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>This function writes the required allocation size (in bytes) to <code>buffer_size</code> and returns without performing the SpVV operation, when a nullptr is passed for <code>temp_buffer</code>.</dd>
 <dd>
 This function is non blocking and executed asynchronously with respect to the host. It may return before the actual computation has finished.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>

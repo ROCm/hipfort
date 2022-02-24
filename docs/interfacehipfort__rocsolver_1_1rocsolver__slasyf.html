@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>LASYF computes a partial factorization of a symmetric matrix \(A\) using Bunch-Kaufman diagonal pivoting.  
  <a href="interfacehipfort__rocsolver_1_1rocsolver__slasyf.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,9 +97,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a38d3637f4c4f6fd737ed0b982863c43d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>LASYF computes a partial factorization of a symmetric matrix \(A\) using Bunch-Kaufman diagonal pivoting.</p>
-<pre class="fragment"> The partial factorization has the form</pre><p> {array} ] [ {array}{cc} A_{11} &amp; 0 \ !&gt; 0 &amp; D {array} ] [ {array}{cc} I &amp; 0 \ !&gt; U_{12}^T &amp; U_{22}^T {array} ] ]</p>
+<div class="textblock"><p>LASYF computes a partial factorization of a symmetric matrix \(A\) using Bunch-Kaufman diagonal pivoting. </p>
+<p>The partial factorization has the form {array} ] [ {array}{cc} A_{11} &amp; 0 \ !&gt; 0 &amp; D {array} ] [ {array}{cc} I &amp; 0 \ !&gt; U_{12}^T &amp; U_{22}^T {array} ] ]</p>
 <p>or {array} ] [ {array}{cc} D &amp; 0 \ !&gt; 0 &amp; A_{22} {array} ] [ {array}{cc} L_{11}^T &amp; L_{21}^T \ !&gt; 0 &amp; I {array} ] ]</p>
 <p>depending on the value of uplo. The order of the block diagonal matrix \(D\) is either \(nb\) or \(nb-1\), and is returned in the argument \(kb\).</p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -113,7 +112,7 @@ Public Member Functions</h2></td></tr>
  The number of columns of A to be factored. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">kb</td><td>pointer to a rocblas_int on the GPU.<br />
  The number of columns of A that were actually factored (either nb or nb-1). </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>pointer to type. Array on the GPU of dimension ldan.<br />
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>pointer to type. Array on the GPU of dimension lda*n.<br />
  On entry, the symmetric matrix A to be factored. On exit, the partially factored matrix. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>rocblas_int. lda &gt;= n.<br />
  Specifies the leading dimension of A. </td></tr>

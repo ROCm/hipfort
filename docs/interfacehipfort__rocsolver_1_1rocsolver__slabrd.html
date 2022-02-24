@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>LABRD computes the bidiagonal form of the first k rows and columns of a general m-by-n matrix A, as well as the matrices X and Y needed to reduce the remaining part of A.  
  <a href="interfacehipfort__rocsolver_1_1rocsolver__slabrd.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,14 +97,13 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a78fb56c45a617fb43e8392779f9fe57c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>LABRD computes the bidiagonal form of the first k rows and columns of a general m-by-n matrix A, as well as the matrices X and Y needed to reduce the remaining part of A.</p>
-<pre class="fragment"> The reduced form is given by:
-</pre><p class="formulaDsp">
+<div class="textblock"><p>LABRD computes the bidiagonal form of the first k rows and columns of a general m-by-n matrix A, as well as the matrices X and Y needed to reduce the remaining part of A. </p>
+<p>The reduced form is given by:</p>
+<p class="formulaDsp">
 \[ B = Q&#39;AP \]
 </p>
  <pre class="fragment">where the leading k-by-k block of B is upper bidiagonal if m &gt;= n, or lower bidiagonal if m &lt; n. Q and
-P are orthogonalunitary matrices represented as the product of Householder matrices</pre><p> {array} ]</p>
+P are orthogonal/unitary matrices represented as the product of Householder matrices</pre><p> {array} ]</p>
 <p>Each Householder matrix \(H_i\) and \(G_i\) is given by {array} ]</p>
 <p>If m &gt;= n, the first i-1 elements of the Householder vector \(v_i\) are zero, and \(v_i[i]=1\); while the first i elements of the Householder vector \(u_i\) are zero, and \(u_i[i+1]=1\). If m &lt; n, the first i elements of the Householder vector \(v_i\) are zero, and \(v_i[i+1]=1\); while the first i-1 elements of the Householder vector \(u_i\) are zero, and \(u_i[i]=1\).</p>
 <p>The unreduced part of the matrix A can be updated using the block update</p>
@@ -121,7 +120,7 @@ P are orthogonalunitary matrices represented as the product of Householder matri
  The number of columns of the matrix A. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">k</td><td>rocblas_int. min(m,n) &gt;= k &gt;= 0.<br />
  The number of leading rows and columns of matrix A that will be reduced. </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>pointer to type. Array on the GPU of dimension ldan.<br />
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>pointer to type. Array on the GPU of dimension lda*n.<br />
  On entry, the m-by-n matrix to be reduced. On exit, the first k elements on the diagonal and superdiagonal (if m &gt;= n), or subdiagonal (if m &lt; n), contain the bidiagonal form B. If m &gt;= n, the elements below the diagonal of the first k columns are the possibly non-zero elements of the Householder vectors associated with Q, while the elements above the superdiagonal of the first k rows are the n - i - 1 possibly non-zero elements of the Householder vectors related to P. If m &lt; n, the elements below the subdiagonal of the first k columns are the m - i - 1 possibly non-zero elements of the Householder vectors related to Q, while the elements above the diagonal of the first k rows are the n - i possibly non-zero elements of the vectors associated with P. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>rocblas_int. lda &gt;= m.<br />
  specifies the leading dimension of A. </td></tr>
@@ -133,11 +132,11 @@ P are orthogonalunitary matrices represented as the product of Householder matri
  The Householder scalars associated with matrix Q. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">taup</td><td>pointer to type. Array on the GPU of dimension k.<br />
  The Householder scalars associated with matrix P. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">X</td><td>pointer to type. Array on the GPU of dimension ldxk.<br />
+    <tr><td class="paramdir">[out]</td><td class="paramname">X</td><td>pointer to type. Array on the GPU of dimension ldx*k.<br />
  The m-by-k matrix needed to update the unreduced part of A. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ldx</td><td>rocblas_int. ldx &gt;= m.<br />
  The leading dimension of X. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">Y</td><td>pointer to type. Array on the GPU of dimension ldyk.<br />
+    <tr><td class="paramdir">[out]</td><td class="paramname">Y</td><td>pointer to type. Array on the GPU of dimension ldy*k.<br />
  The n-by-k matrix needed to update the unreduced part of A. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ldy</td><td>rocblas_int. ldy &gt;= n.<br />
  The leading dimension of Y. </td></tr>

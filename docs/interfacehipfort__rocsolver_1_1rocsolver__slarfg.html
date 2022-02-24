@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>LARFG generates a Householder reflector H of order n.  
  <a href="interfacehipfort__rocsolver_1_1rocsolver__slarfg.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -95,13 +95,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a99bddbe80c674db16714e291cf157d3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>LARFG generates a Householder reflector H of order n.</p>
-<pre class="fragment"> The reflector H is such that</pre><p> {array}]=[{array}{c} {beta}\ !&gt; 0 {array}] ]</p>
+<div class="textblock"><p>LARFG generates a Householder reflector H of order n. </p>
+<p>The reflector H is such that {array}]=[{array}{c} {beta}\ !&gt; 0 {array}] ]</p>
 <p>where x is an n-1 vector, and alpha and beta are scalars. Matrix H can be generated as {array}][{array}{cc} 1 &amp; v' {array}] ]</p>
 <p>where v is an n-1 vector, and tau is a scalar known as the Householder scalar. The vector {array}] ]</p>
 <p>is the Householder vector associated with the reflection.</p>
-<dl class="section note"><dt>Note</dt><dd>The matrix H is orthogonalunitary (i.e. \(H&#39;H=HH&#39;=I\)). It is symmetric when real (i.e. \(H^T=H\)), but not Hermitian when complex (i.e. \(H^H\neq H\) in general).</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>The matrix H is orthogonal/unitary (i.e. \(H&#39;H=HH&#39;=I\)). It is symmetric when real (i.e. \(H^T=H\)), but not Hermitian when complex (i.e. \(H^H\neq H\) in general).</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>rocblas_handle. </td></tr>

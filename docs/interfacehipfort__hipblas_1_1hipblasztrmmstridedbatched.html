@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>BLAS Level 3 API.  
  <a href="interfacehipfort__hipblas_1_1hipblasztrmmstridedbatched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -96,20 +96,14 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a89e8e1553303dfd3c168ca760366a5c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>BLAS Level 3 API</p>
-<pre class="fragment"> trmmStridedBatched performs one of the strided_batched matrix-matrix operations
-
- B_i := alphaop( A_i )B_i,   or   B_i := alphaB_iop( A_i )  for i = 0, 1, ... batchCount -1
-
- where  alpha  is a scalar,  B_i  is an m by n matrix,  A_i  is a unit, or
- non-unit,  upper or lower triangular matrix  and  op( A_i )  is one  of
-
-     op( A_i ) = A_i   or   op( A_i ) = A_i^T   or   op( A_i ) = A_i^H.
+<div class="textblock"><p>BLAS Level 3 API. </p>
+<p>trmmStridedBatched performs one of the strided_batched matrix-matrix operations</p>
+<p>B_i := alpha*op( A_i )*B_i, or B_i := alpha*B_i*op( A_i ) for i = 0, 1, ... batchCount -1</p>
+<p>where alpha is a scalar, B_i is an m by n matrix, A_i is a unit, or non-unit, upper or lower triangular matrix and op( A_i ) is one of </p><pre class="fragment">op( A_i ) = A_i   or   op( A_i ) = A_i^T   or   op( A_i ) = A_i^H.
 </pre><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue.</td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">side</td><td>[hipblasSideMode_t] Specifies whether op(A_i) multiplies B_i from the left or right as follows: HIPBLAS_SIDE_LEFT: B_i := alphaop( A_i )B_i. HIPBLAS_SIDE_RIGHT: B_i := alphaB_iop( A_i ).</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">side</td><td>[hipblasSideMode_t] Specifies whether op(A_i) multiplies B_i from the left or right as follows: HIPBLAS_SIDE_LEFT: B_i := alpha*op( A_i )*B_i. HIPBLAS_SIDE_RIGHT: B_i := alpha*B_i*op( A_i ).</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">uplo</td><td>[hipblasFillMode_t] Specifies whether the matrix A is an upper or lower triangular matrix as follows: HIPBLAS_FILL_MODE_UPPER: A is an upper triangular matrix. HIPBLAS_FILL_MODE_LOWER: A is a lower triangular matrix.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">transA</td><td>[hipblasOperation_t] Specifies the form of op(A_i) to be used in the matrix multiplication as follows: HIPBLAS_OP_N: op(A_i) = A_i. HIPBLAS_OP_T: op(A_i) = A_i^T. HIPBLAS_OP_C: op(A_i) = A_i^H.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">diag</td><td>[hipblasDiagType_t] Specifies whether or not A_i is unit triangular as follows: HIPBLAS_DIAG_UNIT: A_i is assumed to be unit triangular. HIPBLAS_DIAG_NON_UNIT: A_i is not assumed to be unit triangular.</td></tr>

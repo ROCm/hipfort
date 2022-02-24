@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>BLAS Level 2 API.  
  <a href="interfacehipfort__hipblas_1_1hipblaszgemvbatched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -96,18 +96,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a715cae0a1bba2299dc8901e678a9e7e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>BLAS Level 2 API</p>
-<pre class="fragment"> gemvBatched performs a batch of matrix-vector operations
-
-     y_i := alphaA_ix_i    + betay_i,   or
-     y_i := alphaA_iTx_i + betay_i,   or
-     y_i := alphaA_iHx_i + betay_i,
-
- where (A_i, x_i, y_i) is the i-th instance of the batch.
- alpha and beta are scalars, x_i and y_i are vectors and A_i is an
- m by n matrix, for i = 1, ..., batchCount.
-</pre><dl class="params"><dt>Parameters</dt><dd>
+<div class="textblock"><p>BLAS Level 2 API. </p>
+<p>gemvBatched performs a batch of matrix-vector operations </p><pre class="fragment">y_i := alpha*A_i*x_i    + beta*y_i,   or
+y_i := alpha*A_i**T*x_i + beta*y_i,   or
+y_i := alpha*A_i**H*x_i + beta*y_i,
+</pre><p>where (A_i, x_i, y_i) is the i-th instance of the batch. alpha and beta are scalars, x_i and y_i are vectors and A_i is an m by n matrix, for i = 1, ..., batchCount.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">trans</td><td>[hipblasOperation_t] indicates whether matrices A_i are tranposed (conjugated) or not </td></tr>

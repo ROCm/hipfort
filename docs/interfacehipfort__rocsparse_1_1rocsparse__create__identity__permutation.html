@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>Create the identity map.  
  <a href="interfacehipfort__rocsparse_1_1rocsparse__create__identity__permutation.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -95,9 +95,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a1f91f95e76a007db9ce7085abfcfd148"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>Create the identity map</p>
-<p><code><a class="el" href="interfacehipfort__rocsparse_1_1rocsparse__create__identity__permutation.html" title="! ">rocsparse_create_identity_permutation</a></code> stores the identity map in <code>p</code>, such that \(p = 0:1:(n-1)\).</p>
+<div class="textblock"><p>Create the identity map. </p>
+<p><code><a class="el" href="interfacehipfort__rocsparse_1_1rocsparse__create__identity__permutation.html" title="Create the identity map. ">rocsparse_create_identity_permutation</a></code> stores the identity map in <code>p</code>, such that \(p = 0:1:(n-1)\).</p>
 <div class="fragment"><div class="line"><span class="keywordflow">for</span>(i = 0; i &lt; n; ++i)</div><div class="line">{</div><div class="line">    p[i] = i;</div><div class="line">}</div></div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>This function is non blocking and executed asynchronously with respect to the host. It may return before the actual computation has finished.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -116,7 +115,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section user"><dt>Example</dt><dd>The following example creates an identity permutation. <div class="fragment"><div class="line">rocsparse_int size = 200;</div><div class="line"></div><div class="line"> Allocate memory to hold the identity map</div><div class="line">rocsparse_int perm;</div><div class="line">hipMalloc((<span class="keywordtype">void</span>)&amp;perm, <span class="keyword">sizeof</span>(rocsparse_int)  size);</div><div class="line"></div><div class="line"> Fill perm with the identity permutation</div><div class="line">rocsparse_create_identity_permutation(handle, size, perm);</div></div><!-- fragment --> </dd></dl>
+<dl class="section user"><dt>Example</dt><dd>The following example creates an identity permutation. <div class="fragment"><div class="line">      rocsparse_int size = 200;</div><div class="line"></div><div class="line">/ Allocate memory to hold the identity map</div><div class="line">      rocsparse_int* perm;</div><div class="line">      hipMalloc((<span class="keywordtype">void</span>**)&amp;perm, <span class="keyword">sizeof</span>(rocsparse_int) * size);</div><div class="line"></div><div class="line">/ Fill perm with the identity permutation</div><div class="line">      rocsparse_create_identity_permutation(handle, size, perm);</div></div><!-- fragment --> </dd></dl>
 </div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="af1f28df0f07e443155694ada01ee1eb5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af1f28df0f07e443155694ada01ee1eb5">&#9670;&nbsp;</a></span>rocsparse_create_identity_permutation_()</h2>

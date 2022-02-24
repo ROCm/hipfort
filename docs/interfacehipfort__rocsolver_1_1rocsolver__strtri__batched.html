@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>TRTRI_BATCHED inverts a batch of triangular n-by-n matrices \(A_j\).  
  <a href="interfacehipfort__rocsolver_1_1rocsolver__strtri__batched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,8 +97,7 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a797854b9293f15e20ea60459703fbde7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>TRTRI_BATCHED inverts a batch of triangular n-by-n matrices \(A_j\).</p>
+<div class="textblock"><p>TRTRI_BATCHED inverts a batch of triangular n-by-n matrices \(A_j\). </p>
 <p>\(A_j\) can be upper or lower triangular, depending on the value of uplo, and unit or non-unit triangular, depending on the value of diag.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -109,7 +108,7 @@ Public Member Functions</h2></td></tr>
  If diag indicates unit, then the diagonal elements of matrices A_j are not referenced and assumed to be one. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>rocblas_int. n &gt;= 0.<br />
  The number of rows and columns of all matrices A_j in the batch. </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.<br />
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.<br />
  On entry, the triangular matrices A_j. On exit, the inverses of A_j if info[j] = 0. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>rocblas_int. lda &gt;= n.<br />
  Specifies the leading dimension of matrices A_j. </td></tr>

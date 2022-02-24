@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>GETRF_NPVT computes the LU factorization of a general m-by-n matrix A without partial pivoting.  
  <a href="interfacehipfort__rocsolver_1_1rocsolver__sgetrf__npvt.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,14 +97,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a62be89827178e57191febc2da49fa840"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>GETRF_NPVT computes the LU factorization of a general m-by-n matrix A without partial pivoting.</p>
-<pre class="fragment"> (This is the blocked Level-3-BLAS version of the algorithm. An optimized internal implementation without rocBLAS calls
- could be executed with mid-size matrices if optimizations are enabled (default option). For more details, see the
- "Tuning rocSOLVER performance" section of the Library Design Guide).
-
- The factorization has the form
-</pre><p class="formulaDsp">
+<div class="textblock"><p>GETRF_NPVT computes the LU factorization of a general m-by-n matrix A without partial pivoting. </p>
+<p>(This is the blocked Level-3-BLAS version of the algorithm. An optimized internal implementation without rocBLAS calls could be executed with mid-size matrices if optimizations are enabled (default option). For more details, see the "Tuning rocSOLVER performance" section of the Library Design Guide).</p>
+<p>The factorization has the form</p>
+<p class="formulaDsp">
 \[ A = LU \]
 </p>
  <pre class="fragment">where L is lower triangular with unit
@@ -120,7 +116,7 @@ If numerical accuracy is compromised, use the legacy-LAPACK-like API \ref rocsol
  The number of rows of the matrix A. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>rocblas_int. n &gt;= 0.<br />
  The number of columns of the matrix A. </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>pointer to type. Array on the GPU of dimension ldan.<br />
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>pointer to type. Array on the GPU of dimension lda*n.<br />
  On entry, the m-by-n matrix A to be factored. On exit, the factors L and U from the factorization. The unit diagonal elements of L are not stored. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>rocblas_int. lda &gt;= m.<br />
  Specifies the leading dimension of A. </td></tr>

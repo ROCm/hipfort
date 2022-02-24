@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>specifies the performance metric that solution selection uses  
  <a href="interfacehipfort__rocblas_1_1rocblas__set__performance__metric.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -90,12 +90,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:afefd0b449583945c1617f90eb7161a50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>specifies the performance metric that solution selection uses</p>
-<pre class="fragment"> Determines which performance metric will be used by Tensile when selecting the optimal solution
- for gemm problems. If a valid solution benchmarked for this performance metric does not exist
- for a problem, Tensile will default to a solution benchmarked for overall performance instead.
-</pre> <dl class="params"><dt>Parameters</dt><dd>
+<div class="textblock"><p>specifies the performance metric that solution selection uses </p>
+<p>Determines which performance metric will be used by Tensile when selecting the optimal solution for gemm problems. If a valid solution benchmarked for this performance metric does not exist for a problem, Tensile will default to a solution benchmarked for overall performance instead. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[rocblas_handle] the handle of device </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">metric</td><td>[rocblas_performance_metric] the performance metric to be used </td></tr>

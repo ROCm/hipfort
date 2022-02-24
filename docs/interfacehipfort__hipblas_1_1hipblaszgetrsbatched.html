@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>SOLVER API.  
  <a href="interfacehipfort__hipblas_1_1hipblaszgetrsbatched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -96,8 +96,7 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ac0ee0baf56e08f1f4926cfb67c5d8491"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>SOLVER API</p>
+<div class="textblock"><p>SOLVER API. </p>
 <p>getrsBatched solves a batch of systems of n linear equations on n variables in its factorized forms.</p>
 <p>For each instance i in the batch, it solves one of the following systems, depending on the value of trans: {array} ]</p>
 <p>Matrix \(A_i\) is defined by its triangular factors as returned by getrfBatched.</p>
@@ -110,13 +109,13 @@ Public Member Functions</h2></td></tr>
  The order of the system, i.e. the number of columns and rows of all A_i matrices. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">nrhs</td><td>int. nrhs &gt;= 0.<br />
  The number of right hand sides, i.e., the number of columns of all the matrices B_i. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>Array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.<br />
- The factors L_i and U_i of the factorization A_i = P_iL_iU_i returned by getrfBatched. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.<br />
+ The factors L_i and U_i of the factorization A_i = P_i*L_i*U_i returned by getrfBatched. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>int. lda &gt;= n.<br />
  The leading dimension of matrices A_i. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ipiv</td><td>pointer to int. Array on the GPU.<br />
  Contains the vectors ipiv_i of pivot indices returned by getrfBatched. </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">B</td><td>Array of pointers to type. Each pointer points to an array on the GPU of dimension ldbnrhs.<br />
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">B</td><td>Array of pointers to type. Each pointer points to an array on the GPU of dimension ldb*nrhs.<br />
  On entry, the right hand side matrices B_i. On exit, the solution matrix X_i of each system in the batch. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ldb</td><td>int. ldb &gt;= n.<br />
  The leading dimension of matrices B_i. </td></tr>

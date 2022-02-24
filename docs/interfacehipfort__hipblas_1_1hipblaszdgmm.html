@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>BLAS Level 3 API.  
  <a href="interfacehipfort__hipblas_1_1hipblaszdgmm.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -96,17 +96,11 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a7c0cc41d57f635d63e2f173c850f855b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>BLAS Level 3 API</p>
-<pre class="fragment"> dgmm performs one of the matrix-matrix operations
-
-     C = A  diag(x) if side == HIPBLAS_SIDE_RIGHT
-     C = diag(x)  A if side == HIPBLAS_SIDE_LEFT
-
- where C and A are m by n dimensional matrices. diag( x ) is a diagonal matrix
- and x is vector of dimension n if side == HIPBLAS_SIDE_RIGHT and dimension m
- if side == HIPBLAS_SIDE_LEFT.
-</pre><dl class="params"><dt>Parameters</dt><dd>
+<div class="textblock"><p>BLAS Level 3 API. </p>
+<p>dgmm performs one of the matrix-matrix operations </p><pre class="fragment">C = A * diag(x) if side == HIPBLAS_SIDE_RIGHT
+C = diag(x) * A if side == HIPBLAS_SIDE_LEFT
+</pre><p>where C and A are m by n dimensional matrices. diag( x ) is a diagonal matrix and x is vector of dimension n if side == HIPBLAS_SIDE_RIGHT and dimension m if side == HIPBLAS_SIDE_LEFT.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">side</td><td>[hipblasSideMode_t] specifies the side of diag(x) </td></tr>

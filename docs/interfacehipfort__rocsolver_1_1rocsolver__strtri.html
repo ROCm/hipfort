@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>TRTRI inverts a triangular n-by-n matrix A.  
  <a href="interfacehipfort__rocsolver_1_1rocsolver__strtri.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,11 +97,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ac8c10b84e717a03139688ec6b7ed8386"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>TRTRI inverts a triangular n-by-n matrix A.</p>
-<pre class="fragment"> A can be upper or lower triangular, depending on the value of uplo, and unit or non-unit
- triangular, depending on the value of diag.
-</pre><dl class="params"><dt>Parameters</dt><dd>
+<div class="textblock"><p>TRTRI inverts a triangular n-by-n matrix A. </p>
+<p>A can be upper or lower triangular, depending on the value of uplo, and unit or non-unit triangular, depending on the value of diag.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>rocblas_handle. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">uplo</td><td>rocblas_fill.<br />
@@ -110,7 +108,7 @@ Public Member Functions</h2></td></tr>
  If diag indicates unit, then the diagonal elements of A are not referenced and assumed to be one. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>rocblas_int. n &gt;= 0.<br />
  The number of rows and columns of the matrix A. </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>pointer to type. Array on the GPU of dimension ldan.<br />
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>pointer to type. Array on the GPU of dimension lda*n.<br />
  On entry, the triangular matrix. On exit, the inverse of A if info = 0. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>rocblas_int. lda &gt;= n.<br />
  Specifies the leading dimension of A. </td></tr>

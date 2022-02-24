@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>POSV_STRIDED_BATCHED solves a batch of symmetric/hermitian systems of n linear equations on n variables.  
  <a href="interfacehipfort__rocsolver_1_1rocsolver__sposv__strided__batched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,10 +97,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ab782c3bafbfeb2d07dc1cb269d69b7c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>POSV_STRIDED_BATCHED solves a batch of symmetrichermitian systems of n linear equations on n variables.</p>
-<pre class="fragment"> For each instance j in the batch, it solves the system
-</pre><p class="formulaDsp">
+<div class="textblock"><p>POSV_STRIDED_BATCHED solves a batch of symmetric/hermitian systems of n linear equations on n variables. </p>
+<p>For each instance j in the batch, it solves the system</p>
+<p class="formulaDsp">
 \[ A_j X_j = B_j \]
 </p>
  <pre class="fragment">where \form#72 is a real symmetric (complex hermitian) positive definite matrix. Matrix \form#72 is first
@@ -116,17 +115,17 @@ then, the solution is computed with \ref rocsolver_spotrs_strided_batched "POTRS
     <tr><td class="paramdir">[in]</td><td class="paramname">nrhs</td><td>rocblas_int. nrhs &gt;= 0.<br />
  The number of right hand sides, i.e., the number of columns of all the matrices B_j. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>pointer to type. Array on the GPU (the size depends on the value of strideA).<br />
- On entry, the symmetrichermitian matrices A_j. On exit, if info[j] = 0, the factor L_j or U_j of the Cholesky factorization of A_j returned by <a class="el" href="interfacehipfort__rocsolver_1_1rocsolver__spotrf__strided__batched.html">POTRF_STRIDED_BATCHED</a>. </td></tr>
+ On entry, the symmetric/hermitian matrices A_j. On exit, if info[j] = 0, the factor L_j or U_j of the Cholesky factorization of A_j returned by <a class="el" href="interfacehipfort__rocsolver_1_1rocsolver__spotrf__strided__batched.html">POTRF_STRIDED_BATCHED</a>. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>rocblas_int. lda &gt;= n.<br />
  The leading dimension of matrices A_j. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">strideA</td><td>rocblas_stride.<br />
- Stride from the start of one matrix A_j to the next one A_(j+1). There is no restriction for the value of strideA. Normal use case is strideA &gt;= ldan. </td></tr>
+ Stride from the start of one matrix A_j to the next one A_(j+1). There is no restriction for the value of strideA. Normal use case is strideA &gt;= lda*n. </td></tr>
     <tr><td class="paramdir">[in,out]</td><td class="paramname">B</td><td>pointer to type. Array on the GPU (size depends on the value of strideB).<br />
  On entry, the right hand side matrices B_j. On exit, the solution matrix X_j of each system in the batch. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ldb</td><td>rocblas_int. ldb &gt;= n.<br />
  The leading dimension of matrices B_j. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">strideB</td><td>rocblas_stride.<br />
- Stride from the start of one matrix B_j to the next one B_(j+1). There is no restriction for the value of strideB. Normal use case is strideB &gt;= ldbnrhs. </td></tr>
+ Stride from the start of one matrix B_j to the next one B_(j+1). There is no restriction for the value of strideB. Normal use case is strideB &gt;= ldb*nrhs. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">info</td><td>pointer to rocblas_int. Array of batch_count integers on the GPU.<br />
  If info[j] = 0, successful exit. If info[j] = i &gt; 0, the leading minor of order i of A_j is not positive definite. The j-th solution could not be computed. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">batch_count</td><td>rocblas_int. batch_count &gt;= 0.<br />

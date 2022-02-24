@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>POTRI_BATCHED inverts a batch of symmetric/hermitian positive definite matrices \(A_i\).  
  <a href="interfacehipfort__rocsolver_1_1rocsolver__spotri__batched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,9 +97,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a81403be3a4677ed5d49cea77104828ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>POTRI_BATCHED inverts a batch of symmetrichermitian positive definite matrices \(A_i\).</p>
-<pre class="fragment"> The inverse of matrix \form#2 in the batch is computed as</pre><p> {array} ]</p>
+<div class="textblock"><p>POTRI_BATCHED inverts a batch of symmetric/hermitian positive definite matrices \(A_i\). </p>
+<p>The inverse of matrix \(A_i\) in the batch is computed as {array} ]</p>
 <p>where \(U_i\) or \(L_i\) is the triangular factor of the Cholesky factorization of \(A_i\) returned by <a class="el" href="interfacehipfort__rocsolver_1_1rocsolver__spotrf__batched.html">POTRF_BATCHED</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -108,7 +107,7 @@ Public Member Functions</h2></td></tr>
  Specifies whether the factorization is upper or lower triangular. If uplo indicates lower (or upper), then the upper (or lower) part of A is not used. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>rocblas_int. n &gt;= 0.<br />
  The number of rows and columns of matrix A_i. </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.<br />
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.<br />
  On entry, the factor L_i or U_i of the Cholesky factorization of A_i returned by <a class="el" href="interfacehipfort__rocsolver_1_1rocsolver__spotrf__batched.html">POTRF_BATCHED</a>. On exit, the inverses of A_i if info[i] = 0. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>rocblas_int. lda &gt;= n.<br />
  specifies the leading dimension of A_i. </td></tr>

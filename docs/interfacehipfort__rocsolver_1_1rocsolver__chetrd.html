@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>HETRD computes the tridiagonal form of a complex hermitian matrix A.  
  <a href="interfacehipfort__rocsolver_1_1rocsolver__chetrd.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,12 +97,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aeb11234e25b570636b3d4444f3a253d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>HETRD computes the tridiagonal form of a complex hermitian matrix A.</p>
-<pre class="fragment"> (This is the blocked version of the algorithm).
-
- The tridiagonal form is given by:
-</pre><p class="formulaDsp">
+<div class="textblock"><p>HETRD computes the tridiagonal form of a complex hermitian matrix A. </p>
+<p>(This is the blocked version of the algorithm).</p>
+<p>The tridiagonal form is given by:</p>
+<p class="formulaDsp">
 \[ T = Q&#39; A Q \]
 </p>
  <pre class="fragment">where T is hermitian tridiagonal and Q is an unitary matrix represented as the product
@@ -121,7 +119,7 @@ the last n-i elements of the Householder vector \form#14 are zero, and \form#15.
  Specifies whether the upper or lower part of the hermitian matrix A is stored. If uplo indicates lower (or upper), then the upper (or lower) part of A is not used. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>rocblas_int. n &gt;= 0.<br />
  The number of rows and columns of the matrix A. </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>pointer to type. Array on the GPU of dimension ldan.<br />
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>pointer to type. Array on the GPU of dimension lda*n.<br />
  On entry, the matrix to be factored. On exit, if upper, then the elements on the diagonal and superdiagonal contain the tridiagonal form T; the elements above the superdiagonal contain the first i-1 elements of the Householder vectors v_i stored as columns. If lower, then the elements on the diagonal and subdiagonal contain the tridiagonal form T; the elements below the subdiagonal contain the last n-i-1 elements of the Householder vectors v_i stored as columns. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>rocblas_int. lda &gt;= n.<br />
  The leading dimension of A. </td></tr>

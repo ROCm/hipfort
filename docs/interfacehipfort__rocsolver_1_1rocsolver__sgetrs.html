@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>GETRS solves a system of n linear equations on n variables in its factorized form.  
  <a href="interfacehipfort__rocsolver_1_1rocsolver__sgetrs.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,9 +97,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:abc5f1258c120f3fc9290c839195f0dcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>GETRS solves a system of n linear equations on n variables in its factorized form.</p>
-<pre class="fragment"> It solves one of the following systems, depending on the value of trans:</pre><p> {array} ]</p>
+<div class="textblock"><p>GETRS solves a system of n linear equations on n variables in its factorized form. </p>
+<p>It solves one of the following systems, depending on the value of trans: {array} ]</p>
 <p>Matrix A is defined by its triangular factors as returned by <a class="el" href="interfacehipfort__rocsolver_1_1rocsolver__sgetrf.html">GETRF</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -110,13 +109,13 @@ Public Member Functions</h2></td></tr>
  The order of the system, i.e. the number of columns and rows of A. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">nrhs</td><td>rocblas_int. nrhs &gt;= 0.<br />
  The number of right hand sides, i.e., the number of columns of the matrix B. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>pointer to type. Array on the GPU of dimension ldan.<br />
- The factors L and U of the factorization A = PLU returned by <a class="el" href="interfacehipfort__rocsolver_1_1rocsolver__sgetrf.html">GETRF</a>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>pointer to type. Array on the GPU of dimension lda*n.<br />
+ The factors L and U of the factorization A = P*L*U returned by <a class="el" href="interfacehipfort__rocsolver_1_1rocsolver__sgetrf.html">GETRF</a>. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>rocblas_int. lda &gt;= n.<br />
  The leading dimension of A. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ipiv</td><td>pointer to rocblas_int. Array on the GPU of dimension n.<br />
  The pivot indices returned by <a class="el" href="interfacehipfort__rocsolver_1_1rocsolver__sgetrf.html">GETRF</a>. </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">B</td><td>pointer to type. Array on the GPU of dimension ldbnrhs.<br />
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">B</td><td>pointer to type. Array on the GPU of dimension ldb*nrhs.<br />
  On entry, the right hand side matrix B. On exit, the solution matrix X. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ldb</td><td>rocblas_int. ldb &gt;= n.<br />
  The leading dimension of B. </td></tr>

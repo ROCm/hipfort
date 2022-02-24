@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>BLAS Level 2 API.  
  <a href="interfacehipfort__rocblas_1_1rocblas__zgbmv.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -96,17 +96,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a25f9e71a9c834e847349991eb4696a24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>BLAS Level 2 API</p>
-<pre class="fragment"> gbmv performs one of the matrix-vector operations
-
-     y := alphaAx    + betay,   or
-     y := alphaATx + betay,   or
-     y := alphaAHx + betay,
-
- where alpha and beta are scalars, x and y are vectors and A is an
- m by n banded matrix with kl sub-diagonals and ku super-diagonals.
-</pre><dl class="params"><dt>Parameters</dt><dd>
+<div class="textblock"><p>BLAS Level 2 API. </p>
+<p>gbmv performs one of the matrix-vector operations </p><pre class="fragment">y := alpha*A*x    + beta*y,   or
+y := alpha*A**T*x + beta*y,   or
+y := alpha*A**H*x + beta*y,
+</pre><p>where alpha and beta are scalars, x and y are vectors and A is an m by n banded matrix with kl sub-diagonals and ku super-diagonals.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[rocblas_handle] handle to the rocblas library context queue. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">trans</td><td>[rocblas_operation] indicates whether matrix A is tranposed (conjugated) or not </td></tr>
@@ -115,7 +110,7 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">kl</td><td>[rocblas_int] number of sub-diagonals of A </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ku</td><td>[rocblas_int] number of super-diagonals of A </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">alpha</td><td>device pointer or host pointer to scalar alpha. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>device pointer storing banded matrix A. Leading (kl + ku + 1) by n part of the matrix contains the coefficients of the banded matrix. The leading diagonal resides in row (ku + 1) with the first super-diagonal above on the RHS of row ku. The first sub-diagonal resides below on the LHS of row ku + 2. This propogates up and down across subsuper-diagonals. Ex: (m = n = 7; ku = 2, kl = 2) 1 2 3 0 0 0 0 0 0 3 3 3 3 3 4 1 2 3 0 0 0 0 2 2 2 2 2 2 5 4 1 2 3 0 0 -&mdash;&gt; 1 1 1 1 1 1 1 0 5 4 1 2 3 0 4 4 4 4 4 4 0 0 0 5 4 1 2 0 5 5 5 5 5 0 0 0 0 0 5 4 1 2 0 0 0 0 0 0 0 0 0 0 0 5 4 1 0 0 0 0 0 0 0 Note that the empty elements which don't correspond to data will not be referenced. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>device pointer storing banded matrix A. Leading (kl + ku + 1) by n part of the matrix contains the coefficients of the banded matrix. The leading diagonal resides in row (ku + 1) with the first super-diagonal above on the RHS of row ku. The first sub-diagonal resides below on the LHS of row ku + 2. This propogates up and down across sub/super-diagonals. Ex: (m = n = 7; ku = 2, kl = 2) 1 2 3 0 0 0 0 0 0 3 3 3 3 3 4 1 2 3 0 0 0 0 2 2 2 2 2 2 5 4 1 2 3 0 0 -&mdash;&gt; 1 1 1 1 1 1 1 0 5 4 1 2 3 0 4 4 4 4 4 4 0 0 0 5 4 1 2 0 5 5 5 5 5 0 0 0 0 0 5 4 1 2 0 0 0 0 0 0 0 0 0 0 0 5 4 1 0 0 0 0 0 0 0 Note that the empty elements which don't correspond to data will not be referenced. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>[rocblas_int] specifies the leading dimension of A. Must be &gt;= (kl + ku + 1) </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>device pointer storing vector x. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">incx</td><td>[rocblas_int] specifies the increment for the elements of x. </td></tr>

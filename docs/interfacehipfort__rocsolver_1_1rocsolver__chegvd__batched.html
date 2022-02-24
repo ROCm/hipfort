@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>HEGVD_BATCHED computes the eigenvalues and (optionally) eigenvectors of a batch of complex generalized hermitian-definite eigenproblems.  
  <a href="interfacehipfort__rocsolver_1_1rocsolver__chegvd__batched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,9 +97,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a65dbdecc99da4dacaa93ae9a161a0497"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>HEGVD_BATCHED computes the eigenvalues and (optionally) eigenvectors of a batch of complex generalized hermitian-definite eigenproblems.</p>
-<pre class="fragment"> For each instance in the batch, the problem solved by this function is either of the form</pre><p> {array} ]</p>
+<div class="textblock"><p>HEGVD_BATCHED computes the eigenvalues and (optionally) eigenvectors of a batch of complex generalized hermitian-definite eigenproblems. </p>
+<p>For each instance in the batch, the problem solved by this function is either of the form {array} ]</p>
 <p>depending on the value of itype. The eigenvectors are computed using a divide-and-conquer algorithm, depending on the value of evect.</p>
 <p>When computed, the matrix \(Z_i\) of eigenvectors is normalized as follows: {array} ]</p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -113,11 +112,11 @@ Public Member Functions</h2></td></tr>
  Specifies whether the upper or lower parts of the matrices A_i and B_i are stored. If uplo indicates lower (or upper), then the upper (or lower) parts of A_i and B_i are not used. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>rocblas_int. n &gt;= 0.<br />
  The matrix dimensions. </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.<br />
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.<br />
  On entry, the hermitian matrices A_i. On exit, if evect is original, the normalized matrix Z_i of eigenvectors. If evect is none, then the upper or lower triangular part of the matrices A_i (including the diagonal) are destroyed, depending on the value of uplo. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>rocblas_int. lda &gt;= n.<br />
  Specifies the leading dimension of A_i. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">B</td><td>array of pointers to type. Each pointer points to an array on the GPU of dimension ldbn.<br />
+    <tr><td class="paramdir">[out]</td><td class="paramname">B</td><td>array of pointers to type. Each pointer points to an array on the GPU of dimension ldb*n.<br />
  On entry, the hermitian positive definite matrices B_i. On exit, the triangular factor of B_i as returned by <a class="el" href="interfacehipfort__rocsolver_1_1rocsolver__spotrf__batched.html">POTRF_BATCHED</a>. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ldb</td><td>rocblas_int. ldb &gt;= n.<br />
  Specifies the leading dimension of B_i. </td></tr>
@@ -130,7 +129,7 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">strideE</td><td>rocblas_stride.<br />
  Stride from the start of one vector E_i to the next one E_(i+1). There is no restriction for the value of strideE. Normal use is strideE &gt;= n. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">info</td><td>pointer to rocblas_int. Array of batch_count integers on the GPU.<br />
- If info[i] = 0, successful exit of batch i. If info[i] = j &lt;= n and evect is rocblas_evect_none, j off-diagonal elements of an intermediate tridiagonal form did not converge to zero. If info[i] = j &lt;= n and evect is rocblas_evect_original, the algorithm failed to compute an eigenvalue in the submatrix from [j(n+1), j(n+1)] to [j%(n+1), j%(n+1)]. If info[i] = n + j, the leading minor of order j of B_i is not positive definite. </td></tr>
+ If info[i] = 0, successful exit of batch i. If info[i] = j &lt;= n and evect is rocblas_evect_none, j off-diagonal elements of an intermediate tridiagonal form did not converge to zero. If info[i] = j &lt;= n and evect is rocblas_evect_original, the algorithm failed to compute an eigenvalue in the submatrix from [j/(n+1), j/(n+1)] to [j%(n+1), j%(n+1)]. If info[i] = n + j, the leading minor of order j of B_i is not positive definite. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">batch_count</td><td>rocblas_int. batch_count &gt;= 0.<br />
  Number of matrices in the batch. </td></tr>
   </table>

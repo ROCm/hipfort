@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>POSV solves a symmetric/hermitian system of n linear equations on n variables.  
  <a href="interfacehipfort__rocsolver_1_1rocsolver__sposv.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,10 +97,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aad254de40148d1c54de1ff9b40f2bd09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>POSV solves a symmetrichermitian system of n linear equations on n variables.</p>
-<pre class="fragment"> It solves the system
-</pre><p class="formulaDsp">
+<div class="textblock"><p>POSV solves a symmetric/hermitian system of n linear equations on n variables. </p>
+<p>It solves the system</p>
+<p class="formulaDsp">
 \[ A X = B \]
 </p>
  <pre class="fragment">where A is a real symmetric (complex hermitian) positive definite matrix. Matrix A is first
@@ -115,11 +114,11 @@ then, the solution is computed with \ref rocsolver_spotrs "POTRS".
  The order of the system, i.e. the number of columns and rows of A. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">nrhs</td><td>rocblas_int. nrhs &gt;= 0.<br />
  The number of right hand sides, i.e., the number of columns of the matrix B. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>pointer to type. Array on the GPU of dimension ldan.<br />
- On entry, the symmetrichermitian matrix A. On exit, if info = 0, the factor L or U of the Cholesky factorization of A returned by <a class="el" href="interfacehipfort__rocsolver_1_1rocsolver__spotrf.html">POTRF</a>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>pointer to type. Array on the GPU of dimension lda*n.<br />
+ On entry, the symmetric/hermitian matrix A. On exit, if info = 0, the factor L or U of the Cholesky factorization of A returned by <a class="el" href="interfacehipfort__rocsolver_1_1rocsolver__spotrf.html">POTRF</a>. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>rocblas_int. lda &gt;= n.<br />
  The leading dimension of A. </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">B</td><td>pointer to type. Array on the GPU of dimension ldbnrhs.<br />
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">B</td><td>pointer to type. Array on the GPU of dimension ldb*nrhs.<br />
  On entry, the right hand side matrix B. On exit, the solution matrix X. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ldb</td><td>rocblas_int. ldb &gt;= n.<br />
  The leading dimension of B. </td></tr>

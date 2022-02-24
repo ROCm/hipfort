@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Allocates at least width (in bytes) height bytes of linear memory Padding may occur to ensure alighnment requirements are met for the given row The change in width size due to padding will be returned in pitch.  
+<p>Allocates at least width (in bytes) * height bytes of linear memory Padding may occur to ensure alighnment requirements are met for the given row The change in width size due to padding will be returned in *pitch.  
  <a href="interfacehipfort_1_1hipmallocpitch.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -90,22 +90,20 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a94468538688a62ea4a3e4aa19dcce94a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Allocates at least width (in bytes) height bytes of linear memory Padding may occur to ensure alighnment requirements are met for the given row The change in width size due to padding will be returned in pitch. </p>
+<div class="textblock"><p>Allocates at least width (in bytes) * height bytes of linear memory Padding may occur to ensure alighnment requirements are met for the given row The change in width size due to padding will be returned in *pitch. </p>
 <p>Currently the alignment is set to 128 bytes</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[out]</td><td class="paramname">ptr</td><td>Pointer to the allocated device memory </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">pitch</td><td>Pitch for allocation (in bytes) </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">width</td><td>Requested pitched allocation width (in bytes) </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">height</td><td>Requested pitched allocation height <pre class="fragment">If size is 0, no memory is allocated, ptr returns nullptr, and hipSuccess is returned.
-
-@return Error code
-
-@see hipMalloc, hipFree, hipMallocArray, hipFreeArray, hipHostFree, hipMalloc3D,
-</pre> hipMalloc3DArray, hipHostMalloc </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">height</td><td>Requested pitched allocation height</td></tr>
   </table>
   </dd>
 </dl>
+<p>If size is 0, no memory is allocated, *ptr returns nullptr, and hipSuccess is returned.</p>
+<dl class="section return"><dt>Returns</dt><dd>Error code</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>hipMalloc, hipFree, hipMallocArray, hipFreeArray, hipHostFree, hipMalloc3D, hipMalloc3DArray, hipHostMalloc </dd></dl>
 </div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="a94468538688a62ea4a3e4aa19dcce94a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a94468538688a62ea4a3e4aa19dcce94a">&#9670;&nbsp;</a></span>hipmallocpitch_()</h2>

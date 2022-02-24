@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>BLAS Level 3 API.  
  <a href="interfacehipfort__rocblas_1_1rocblas__ztrsm__batched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -96,39 +96,22 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a3cc47e3dcd335c7d377d67e222e0e06c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>BLAS Level 3 API</p>
-<pre class="fragment"> trsm_batched performs the following batched operation:
-
-     op(A_i)X_i = alphaB_i or  X_iop(A_i) = alphaB_i, for i = 1, ..., batch_count.
-
- where alpha is a scalar, X and B are batched m by n matrices,
- A is triangular batched matrix and op(A) is one of
-
-     op( A ) = A   or   op( A ) = A^T   or   op( A ) = A^H.
-
- Each matrix X_i is overwritten on B_i for i = 1, ..., batch_count.
-
- Note about memory allocation:
- When trsm is launched with a k evenly divisible by the internal block size of 128,
- and is no larger than 10 of these blocks, the API takes advantage of utilizing pre-allocated
- memory found in the handle to increase overall performance. This memory can be managed by using
- the environment variable WORKBUF_TRSM_B_CHNK. When this variable is not set the device memory
- used for temporary storage will default to 1 MB and may result in chunking, which in turn may
- reduce performance. Under these circumstances it is recommended that WORKBUF_TRSM_B_CHNK be set
- to the desired chunk of right hand sides to be used at a time.
- (where k is m when rocblas_side_left and is n when rocblas_side_right)
-</pre><dl class="params"><dt>Parameters</dt><dd>
+<div class="textblock"><p>BLAS Level 3 API. </p>
+<p>trsm_batched performs the following batched operation: </p><pre class="fragment">op(A_i)*X_i = alpha*B_i or  X_i*op(A_i) = alpha*B_i, for i = 1, ..., batch_count.
+</pre><p>where alpha is a scalar, X and B are batched m by n matrices, A is triangular batched matrix and op(A) is one of </p><pre class="fragment">op( A ) = A   or   op( A ) = A^T   or   op( A ) = A^H.
+</pre><p>Each matrix X_i is overwritten on B_i for i = 1, ..., batch_count.</p>
+<p>Note about memory allocation: When trsm is launched with a k evenly divisible by the internal block size of 128, and is no larger than 10 of these blocks, the API takes advantage of utilizing pre-allocated memory found in the handle to increase overall performance. This memory can be managed by using the environment variable WORKBUF_TRSM_B_CHNK. When this variable is not set the device memory used for temporary storage will default to 1 MB and may result in chunking, which in turn may reduce performance. Under these circumstances it is recommended that WORKBUF_TRSM_B_CHNK be set to the desired chunk of right hand sides to be used at a time. (where k is m when rocblas_side_left and is n when rocblas_side_right)</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[rocblas_handle] handle to the rocblas library context queue. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">side</td><td>[rocblas_side] rocblas_side_left: op(A)X = alphaB. rocblas_side_right: Xop(A) = alphaB. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">side</td><td>[rocblas_side] rocblas_side_left: op(A)*X = alpha*B. rocblas_side_right: X*op(A) = alpha*B. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">uplo</td><td>[rocblas_fill] rocblas_fill_upper: each A_i is an upper triangular matrix. rocblas_fill_lower: each A_i is a lower triangular matrix. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">transA</td><td>[rocblas_operation] transB: op(A) = A. rocblas_operation_transpose: op(A) = A^T. rocblas_operation_conjugate_transpose: op(A) = A^H. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">diag</td><td>[rocblas_diagonal] rocblas_diagonal_unit: each A_i is assumed to be unit triangular. rocblas_diagonal_non_unit: each A_i is not assumed to be unit triangular. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">m</td><td>[rocblas_int] m specifies the number of rows of each B_i. m &gt;= 0. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>[rocblas_int] n specifies the number of columns of each B_i. n &gt;= 0. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">alpha</td><td>device pointer or host pointer specifying the scalar alpha. When alpha is &amp;zero then A is not referenced and B need not be set before entry. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>device array of device pointers storing each matrix A_i on the GPU. Matricies are of dimension ( lda, k ), where k is m when rocblas_side_left and is n when rocblas_side_right only the upperlower triangular part is accessed. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>device array of device pointers storing each matrix A_i on the GPU. Matricies are of dimension ( lda, k ), where k is m when rocblas_side_left and is n when rocblas_side_right only the upper/lower triangular part is accessed. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>[rocblas_int] lda specifies the first dimension of each A_i. if side = rocblas_side_left, lda &gt;= max( 1, m ), if side = rocblas_side_right, lda &gt;= max( 1, n ). </td></tr>
     <tr><td class="paramdir">[in,out]</td><td class="paramname">B</td><td>device array of device pointers storing each matrix B_i on the GPU. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ldb</td><td>[rocblas_int] ldb specifies the first dimension of each B_i. ldb &gt;= max( 1, m ). </td></tr>

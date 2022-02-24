@@ -91,16 +91,17 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Returns a global pointer from a module. </p>
-<p>Returns in dptr and bytes the pointer and size of the global of name name located in module hmod. If no variable of that name exists, it returns hipErrorNotFound. Both parameters dptr and bytes are optional. If one of them is NULL, it is ignored and hipSuccess is returned.</p>
+<p>Returns in *dptr and *bytes the pointer and size of the global of name name located in module hmod. If no variable of that name exists, it returns hipErrorNotFound. Both parameters dptr and bytes are optional. If one of them is NULL, it is ignored and hipSuccess is returned.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[out]</td><td class="paramname">dptr</td><td>Returned global device pointer </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">bytes</td><td>Returned global size in bytes </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">hmod</td><td>Module to retrieve global from </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">name</td><td>Name of global to retrieve <pre class="fragment">@return #hipSuccess, #hipErrorInvalidValue, #hipErrorNotFound, #hipErrorInvalidContext</pre> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">name</td><td>Name of global to retrieve</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>#hipSuccess, #hipErrorInvalidValue, #hipErrorNotFound, #hipErrorInvalidContext </dd></dl>
 </div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="a73586a4545ae5f577d5be9e8da62b9c6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a73586a4545ae5f577d5be9e8da62b9c6">&#9670;&nbsp;</a></span>hipmodulegetglobal_()</h2>

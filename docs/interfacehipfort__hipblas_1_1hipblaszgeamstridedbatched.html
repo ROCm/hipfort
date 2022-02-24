@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>BLAS Level 3 API.  
  <a href="interfacehipfort__hipblas_1_1hipblaszgeamstridedbatched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -96,17 +96,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a572c44cbc8c4b55c8d580a362bff7825"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>BLAS Level 3 API</p>
-<pre class="fragment"> geamStridedBatched performs one of the batched matrix-matrix operations
-
-     C_i = alphaop( A_i ) + betaop( B_i )  for i = 0, 1, ... batchCount - 1
-
- where alpha and beta are scalars, and op(A_i), op(B_i) and C_i are m by n matrices
- and op( X ) is one of
-
-     op( X ) = X      or
-     op( X ) = XT
+<div class="textblock"><p>BLAS Level 3 API. </p>
+<p>geamStridedBatched performs one of the batched matrix-matrix operations </p><pre class="fragment">C_i = alpha*op( A_i ) + beta*op( B_i )  for i = 0, 1, ... batchCount - 1
+</pre><p>where alpha and beta are scalars, and op(A_i), op(B_i) and C_i are m by n matrices and op( X ) is one of </p><pre class="fragment">op( X ) = X      or
+op( X ) = X**T
 </pre><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue.</td></tr>

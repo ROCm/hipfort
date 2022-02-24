@@ -131,7 +131,7 @@ Data Types</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Query for a specific device attribute.  <a href="interfacehipfort_1_1hipdevicegetattribute.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipdevicesetcacheconfig.html">hipfort::hipdevicesetcacheconfig</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set L1Shared cache partition.  <a href="interfacehipfort_1_1hipdevicesetcacheconfig.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set L1/Shared cache partition.  <a href="interfacehipfort_1_1hipdevicesetcacheconfig.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipdevicegetcacheconfig.html">hipfort::hipdevicegetcacheconfig</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set Cache configuration for a specific function.  <a href="interfacehipfort_1_1hipdevicegetcacheconfig.html#details">More...</a><br /></td></tr>
@@ -302,10 +302,10 @@ Data Types</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hiphostalloc.html">hipfort::hiphostalloc</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipmallocpitch.html">hipfort::hipmallocpitch</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates at least width (in bytes) height bytes of linear memory Padding may occur to ensure alighnment requirements are met for the given row The change in width size due to padding will be returned in pitch.  <a href="interfacehipfort_1_1hipmallocpitch.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates at least width (in bytes) * height bytes of linear memory Padding may occur to ensure alighnment requirements are met for the given row The change in width size due to padding will be returned in *pitch.  <a href="interfacehipfort_1_1hipmallocpitch.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipmemallocpitch.html">hipfort::hipmemallocpitch</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates at least width (in bytes) height bytes of linear memory Padding may occur to ensure alighnment requirements are met for the given row The change in width size due to padding will be returned in pitch.  <a href="interfacehipfort_1_1hipmemallocpitch.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates at least width (in bytes) * height bytes of linear memory Padding may occur to ensure alighnment requirements are met for the given row The change in width size due to padding will be returned in *pitch.  <a href="interfacehipfort_1_1hipmemallocpitch.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipfreehost.html">hipfort::hipfreehost</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -754,8 +754,7 @@ Data Types</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys an executable graph.  <a href="interfacehipfort_1_1hipgraphexecdestroy.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphexecupdate.html">hipfort::hipgraphexecupdate</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check whether an executable graph can be updated with a graph and perform the update if <br />
- possible.  <a href="interfacehipfort_1_1hipgraphexecupdate.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check whether an executable graph can be updated with a graph and perform the update if * possible.  <a href="interfacehipfort_1_1hipgraphexecupdate.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphaddkernelnode.html">hipfort::hipgraphaddkernelnode</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a kernel execution node and adds it to a graph.  <a href="interfacehipfort_1_1hipgraphaddkernelnode.html#details">More...</a><br /></td></tr>
@@ -797,7 +796,7 @@ Data Types</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a memcpy node's parameters to copy from a symbol on the device.  <a href="interfacehipfort_1_1hipgraphmemcpynodesetparamsfromsymbol.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphexecmemcpynodesetparamsfromsymbol.html">hipfort::hipgraphexecmemcpynodesetparamsfromsymbol</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the parameters for a memcpy node in the given graphExec to copy from a symbol on the device.  <a href="interfacehipfort_1_1hipgraphexecmemcpynodesetparamsfromsymbol.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the parameters for a memcpy node in the given graphExec to copy from a symbol on the.  <a href="interfacehipfort_1_1hipgraphexecmemcpynodesetparamsfromsymbol.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacehipfort_1_1hipgraphaddmemcpynodetosymbol.html">hipfort::hipgraphaddmemcpynodetosymbol</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a memcpy node to copy to a symbol on the device and adds it to a graph.  <a href="interfacehipfort_1_1hipgraphaddmemcpynodetosymbol.html#details">More...</a><br /></td></tr>

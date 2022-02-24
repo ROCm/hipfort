@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>BLAS Level 3 API.  
  <a href="interfacehipfort__rocblas_1_1rocblas__zsymm__batched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -96,24 +96,19 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a034c15196b4b84ef41699b9b862a7972"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>BLAS Level 3 API</p>
-<pre class="fragment"> symm_batched performs a batch of the matrix-matrix operations:
-
- C_i := alphaA_iB_i + betaC_i if side == rocblas_side_left,
- C_i := alphaB_iA_i + betaC_i if side == rocblas_side_right,
-
- where alpha and beta are scalars, B_i and C_i are m by n matrices, and
- A_i is a symmetric matrix stored as either upper or lower.
-</pre><dl class="params"><dt>Parameters</dt><dd>
+<div class="textblock"><p>BLAS Level 3 API. </p>
+<p>symm_batched performs a batch of the matrix-matrix operations:</p>
+<p>C_i := alpha*A_i*B_i + beta*C_i if side == rocblas_side_left, C_i := alpha*B_i*A_i + beta*C_i if side == rocblas_side_right,</p>
+<p>where alpha and beta are scalars, B_i and C_i are m by n matrices, and A_i is a symmetric matrix stored as either upper or lower.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[rocblas_handle] handle to the rocblas library context queue.</td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">side</td><td>[rocblas_side] rocblas_side_left: C_i := alphaA_iB_i + betaC_i rocblas_side_right: C_i := alphaB_iA_i + betaC_i</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">side</td><td>[rocblas_side] rocblas_side_left: C_i := alpha*A_i*B_i + beta*C_i rocblas_side_right: C_i := alpha*B_i*A_i + beta*C_i</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">uplo</td><td>[rocblas_fill] rocblas_fill_upper: A_i is an upper triangular matrix rocblas_fill_lower: A_i is a lower triangular matrix</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">m</td><td>[rocblas_int] m specifies the number of rows of B_i and C_i. m &gt;= 0.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>[rocblas_int] n specifies the number of columns of B_i and C_i. n &gt;= 0.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">alpha</td><td>alpha specifies the scalar alpha. When alpha is zero then A_i and B_i are not referenced.</td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>device array of device pointers storing each matrix A_i on the GPU. A_i is m by m if side == rocblas_side_left A_i is n by n if side == rocblas_side_right only the upperlower triangular part is accessed.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>device array of device pointers storing each matrix A_i on the GPU. A_i is m by m if side == rocblas_side_left A_i is n by n if side == rocblas_side_right only the upper/lower triangular part is accessed.</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>[rocblas_int] lda specifies the first dimension of A_i. if side = rocblas_side_left, lda &gt;= max( 1, m ), otherwise lda &gt;= max( 1, n ).</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">B</td><td>device array of device pointers storing each matrix B_i on the GPU. Matrix dimension is m by n</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ldb</td><td>[rocblas_int] ldb specifies the first dimension of B_i. ldb &gt;= max( 1, m )</td></tr>

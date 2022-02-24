@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>ORGQR generates an m-by-n Matrix Q with orthonormal columns.  
  <a href="interfacehipfort__rocsolver_1_1rocsolver__sorgqr.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,13 +97,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a4e791b7fde9d2c7aa14a1169a33978e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>ORGQR generates an m-by-n Matrix Q with orthonormal columns.</p>
-<pre class="fragment"> (This is the blocked version of the algorithm).
-
- The matrix Q is defined as the first n columns of the product of k Householder
- reflectors of order m
-</pre><p class="formulaDsp">
+<div class="textblock"><p>ORGQR generates an m-by-n Matrix Q with orthonormal columns. </p>
+<p>(This is the blocked version of the algorithm).</p>
+<p>The matrix Q is defined as the first n columns of the product of k Householder reflectors of order m</p>
+<p class="formulaDsp">
 \[ Q = H_1H_2\cdots H_k \]
 </p>
  <pre class="fragment">The Householder matrices \form#12 are never stored, they are computed from its corresponding
@@ -117,7 +114,7 @@ Householder vectors \form#14 and scalars \form#56, as returned by \ref rocsolver
  The number of columns of the matrix Q. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">k</td><td>rocblas_int. 0 &lt;= k &lt;= n.<br />
  The number of Householder reflectors. </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>pointer to type. Array on the GPU of dimension ldan.<br />
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>pointer to type. Array on the GPU of dimension lda*n.<br />
  On entry, the matrix A as returned by <a class="el" href="interfacehipfort__rocsolver_1_1rocsolver__sgeqrf.html">GEQRF</a>, with the Householder vectors in the first k columns. On exit, the computed matrix Q. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>rocblas_int. lda &gt;= m.<br />
  Specifies the leading dimension of A. </td></tr>

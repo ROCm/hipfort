@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>GETRI_NPVT_OUTOFPLACE_BATCHED computes the inverse \(C_j = A_j^{-1}\) of a batch of general n-by-n matrices \(A_j\) without partial pivoting.  
  <a href="interfacehipfort__rocsolver_1_1rocsolver__sgetri__npvt__outofplace__batched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,10 +97,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a31414254eec5bf1583f5c2d5bc3ec36e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>GETRI_NPVT_OUTOFPLACE_BATCHED computes the inverse \(C_j = A_j^{-1}\) of a batch of general n-by-n matrices \(A_j\) without partial pivoting.</p>
-<pre class="fragment"> The inverse is computed by solving the linear system
-</pre><p class="formulaDsp">
+<div class="textblock"><p>GETRI_NPVT_OUTOFPLACE_BATCHED computes the inverse \(C_j = A_j^{-1}\) of a batch of general n-by-n matrices \(A_j\) without partial pivoting. </p>
+<p>The inverse is computed by solving the linear system</p>
+<p class="formulaDsp">
 \[ A_j C_j = I \]
 </p>
  <pre class="fragment">where I is the identity matrix, and \form#72 is factorized as \form#147 as given by \ref rocsolver_sgetrf_npvt_batched "GETRF_NPVT_BATCHED".
@@ -109,11 +108,11 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>rocblas_handle. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>rocblas_int. n &gt;= 0.<br />
  The number of rows and columns of all matrices A_j in the batch. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.<br />
- The factors L_j and U_j of the factorization A_j = L_jU_j returned by <a class="el" href="interfacehipfort__rocsolver_1_1rocsolver__sgetrf__npvt__batched.html">GETRF_NPVT_BATCHED</a>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.<br />
+ The factors L_j and U_j of the factorization A_j = L_j*U_j returned by <a class="el" href="interfacehipfort__rocsolver_1_1rocsolver__sgetrf__npvt__batched.html">GETRF_NPVT_BATCHED</a>. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>rocblas_int. lda &gt;= n.<br />
  Specifies the leading dimension of matrices A_j. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">C</td><td>array of pointers to type. Each pointer points to an array on the GPU of dimension ldcn.<br />
+    <tr><td class="paramdir">[out]</td><td class="paramname">C</td><td>array of pointers to type. Each pointer points to an array on the GPU of dimension ldc*n.<br />
  If info[j] = 0, the inverse of matrices A_j. Otherwise, undefined. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ldc</td><td>rocblas_int. ldc &gt;= n.<br />
  Specifies the leading dimension of C_j. </td></tr>

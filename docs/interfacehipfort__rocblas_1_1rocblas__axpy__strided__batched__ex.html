@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>BLAS EX API.  
  <a href="interfacehipfort__rocblas_1_1rocblas__axpy__strided__batched__ex.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -90,27 +90,30 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a9bc2a6c1092e3cc2aabe65cceac112d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>BLAS EX API</p>
-<pre class="fragment"> axpy_strided_batched_ex   computes ant alpha multiplied by vector x, plus vector y over
-                   a set of strided batched vectors.
-
-     y := alpha  x + y
-
-     Currently supported datatypes are as follows:
-
-     -------------------------------------------------
-     | alpha_type | x_type | y_type | execution_type |
-     |------------|--------|--------|----------------|
-     |  f16_r     | f16_r  |  f16_r |      f16_r     |
-     |  f16_r     | f16_r  |  f16_r |      f32_r     |
-     |  f32_r     | f16_r  |  f16_r |      f32_r     |
-     |  f32_r     | f32_r  |  f32_r |      f32_r     |
-     |  f64_r     | f64_r  |  f64_r |      f64_r     |
-     |  f32_c     | f32_c  |  f32_c |      f32_c     |
-     |  f64_c     | f64_c  |  f64_c |      f64_c     |
-     -------------------------------------------------
-</pre><dl class="params"><dt>Parameters</dt><dd>
+<div class="textblock"><p>BLAS EX API. </p>
+<p>axpy_strided_batched_ex computes ant alpha multiplied by vector x, plus vector y over a set of strided batched vectors.</p>
+<p>y := alpha * x + y</p>
+<p>Currently supported datatypes are as follows: </p><hr/>
+ <table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">alpha_type  </th><th class="markdownTableHeadNone">x_type  </th><th class="markdownTableHeadNone">y_type  </th><th class="markdownTableHeadNone">execution_type   </th></tr>
+<tr class="markdownTableBody" class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">f16_r  </td><td class="markdownTableBodyNone">f16_r  </td><td class="markdownTableBodyNone">f16_r  </td><td class="markdownTableBodyNone">f16_r   </td></tr>
+<tr class="markdownTableBody" class="markdownTableRowEven">
+<td class="markdownTableBodyNone">f16_r  </td><td class="markdownTableBodyNone">f16_r  </td><td class="markdownTableBodyNone">f16_r  </td><td class="markdownTableBodyNone">f32_r   </td></tr>
+<tr class="markdownTableBody" class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">f32_r  </td><td class="markdownTableBodyNone">f16_r  </td><td class="markdownTableBodyNone">f16_r  </td><td class="markdownTableBodyNone">f32_r   </td></tr>
+<tr class="markdownTableBody" class="markdownTableRowEven">
+<td class="markdownTableBodyNone">f32_r  </td><td class="markdownTableBodyNone">f32_r  </td><td class="markdownTableBodyNone">f32_r  </td><td class="markdownTableBodyNone">f32_r   </td></tr>
+<tr class="markdownTableBody" class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">f64_r  </td><td class="markdownTableBodyNone">f64_r  </td><td class="markdownTableBodyNone">f64_r  </td><td class="markdownTableBodyNone">f64_r   </td></tr>
+<tr class="markdownTableBody" class="markdownTableRowEven">
+<td class="markdownTableBodyNone">f32_c  </td><td class="markdownTableBodyNone">f32_c  </td><td class="markdownTableBodyNone">f32_c  </td><td class="markdownTableBodyNone">f32_c   </td></tr>
+<tr class="markdownTableBody" class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">f64_c  </td><td class="markdownTableBodyNone">f64_c  </td><td class="markdownTableBodyNone">f64_c  </td><td class="markdownTableBodyNone">f64_c   </td></tr>
+</table>
+<hr/>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[rocblas_handle] handle to the rocblas library context queue. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>[rocblas_int] the number of elements in each x_i and y_i. </td></tr>
@@ -119,11 +122,11 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>device pointer to the first vector x_1. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">x_type</td><td>[rocblas_datatype] specifies the datatype of each vector x_i. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">incx</td><td>[rocblas_int] specifies the increment for the elements of each x_i. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">stridex</td><td>[rocblas_stride] stride from the start of one vector (x_i) to the next one (x_i+1). There are no restrictions placed on stridex, however the user should take care to ensure that stridex is of appropriate size, for a typical case this means stridex &gt;= n incx. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">stridex</td><td>[rocblas_stride] stride from the start of one vector (x_i) to the next one (x_i+1). There are no restrictions placed on stridex, however the user should take care to ensure that stridex is of appropriate size, for a typical case this means stridex &gt;= n * incx. </td></tr>
     <tr><td class="paramdir">[in,out]</td><td class="paramname">y</td><td>device pointer to the first vector y_1. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">y_type</td><td>[rocblas_datatype] specifies the datatype of each vector y_i. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">incy</td><td>[rocblas_int] specifies the increment for the elements of each y_i. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">stridey</td><td>[rocblas_stride] stride from the start of one vector (y_i) to the next one (y_i+1). There are no restrictions placed on stridey, however the user should take care to ensure that stridey is of appropriate size, for a typical case this means stridey &gt;= n incy. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">stridey</td><td>[rocblas_stride] stride from the start of one vector (y_i) to the next one (y_i+1). There are no restrictions placed on stridey, however the user should take care to ensure that stridey is of appropriate size, for a typical case this means stridey &gt;= n * incy. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">batch_count</td><td>[rocblas_int] number of instances in the batch. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">execution_type</td><td>[rocblas_datatype] specifies the datatype of computation. </td></tr>
   </table>

@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>SOLVER API.  
  <a href="interfacehipfort__hipblas_1_1hipblaszgetrsstridedbatched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -96,12 +96,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa0922a2c674dcc2c4050c72283c9bc8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>SOLVER API</p>
-<pre class="fragment"> getrsStridedBatched solves a batch of systems of n linear equations
- on n variables in its factorized forms.
-
- For each instance i in the batch, it solves one of the following systems, depending on the value of trans:</pre><p> {array} ]</p>
+<div class="textblock"><p>SOLVER API. </p>
+<p>getrsStridedBatched solves a batch of systems of n linear equations on n variables in its factorized forms.</p>
+<p>For each instance i in the batch, it solves one of the following systems, depending on the value of trans: {array} ]</p>
 <p>Matrix \(A_i\) is defined by its triangular factors as returned by getrfStridedBatched.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -113,11 +110,11 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">nrhs</td><td>int. nrhs &gt;= 0.<br />
  The number of right hand sides, i.e., the number of columns of all the matrices B_i. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">A</td><td>pointer to type. Array on the GPU (the size depends on the value of strideA).<br />
- The factors L_i and U_i of the factorization A_i = P_iL_iU_i returned by getrfStridedBatched. </td></tr>
+ The factors L_i and U_i of the factorization A_i = P_i*L_i*U_i returned by getrfStridedBatched. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>int. lda &gt;= n.<br />
  The leading dimension of matrices A_i. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">strideA</td><td>hipblasStride.<br />
- Stride from the start of one matrix A_i to the next one A_(i+1). There is no restriction for the value of strideA. Normal use case is strideA &gt;= ldan. </td></tr>
+ Stride from the start of one matrix A_i to the next one A_(i+1). There is no restriction for the value of strideA. Normal use case is strideA &gt;= lda*n. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ipiv</td><td>pointer to int. Array on the GPU (the size depends on the value of strideP).<br />
  Contains the vectors ipiv_i of pivot indices returned by getrfStridedBatched. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">strideP</td><td>hipblasStride.<br />
@@ -127,7 +124,7 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ldb</td><td>int. ldb &gt;= n.<br />
  The leading dimension of matrices B_i. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">strideB</td><td>hipblasStride.<br />
- Stride from the start of one matrix B_i to the next one B_(i+1). There is no restriction for the value of strideB. Normal use case is strideB &gt;= ldbnrhs. </td></tr>
+ Stride from the start of one matrix B_i to the next one B_(i+1). There is no restriction for the value of strideB. Normal use case is strideB &gt;= ldb*nrhs. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">info</td><td>pointer to a int on the host.<br />
  If info = 0, successful exit. If info = j &lt; 0, the j-th argument is invalid. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">batchCount</td><td>int. batchCount &gt;= 0.<br />

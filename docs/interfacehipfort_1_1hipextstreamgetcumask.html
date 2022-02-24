@@ -94,8 +94,8 @@ Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">stream</td><td>stream to be queried </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">cuMaskSize</td><td>number of the block of memories (uint32_t ) allocated by user </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">cuMask</td><td>Pointer to a pre-allocated block of memories (uint32_t ) in which the stream's CU mask is returned. The CU mask is returned in a chunck of 32 bits where each active bit represents one active CU </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cuMaskSize</td><td>number of the block of memories (uint32_t *) allocated by user </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">cuMask</td><td>Pointer to a pre-allocated block of memories (uint32_t *) in which the stream's CU mask is returned. The CU mask is returned in a chunck of 32 bits where each active bit represents one active CU </td></tr>
   </table>
   </dd>
 </dl>

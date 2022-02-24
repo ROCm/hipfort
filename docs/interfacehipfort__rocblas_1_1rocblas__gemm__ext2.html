@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>BLAS EX API.  
  <a href="interfacehipfort__rocblas_1_1rocblas__gemm__ext2.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -90,38 +90,31 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a973d41689628d9fd4de81ed68f5b065e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>BLAS EX API</p>
-<pre class="fragment"> gemm_ext2 performs the matrix-matrix operations
-
-     D = alpha  A  B  + beta  C,
-
- alpha and beta are scalars, and A, B, C, and D are matrices, with A a m by k
- matrtix, B a k by n matrix, and C and D are m by n matrices. Each matrix A, B, C, D
- has independent row and column strides.
-
- This is a beta feature.
-</pre><dl class="params"><dt>Parameters</dt><dd>
+<div class="textblock"><p>BLAS EX API. </p>
+<p>gemm_ext2 performs the matrix-matrix operations </p><pre class="fragment">D = alpha * A * B  + beta * C,
+</pre><p>alpha and beta are scalars, and A, B, C, and D are matrices, with A a m by k matrtix, B a k by n matrix, and C and D are m by n matrices. Each matrix A, B, C, D has independent row and column strides.</p>
+<p>This is a beta feature.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[rocblas_handle] handle to the rocblas library context queue. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">m</td><td>[rocblas_int] matrix dimension m. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>[rocblas_int] matrix dimension n. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">k</td><td>[rocblas_int] matrix dimension k. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">alpha</td><td>[ void ] device pointer or host pointer specifying the scalar alpha. Same datatype as compute_type. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>[void ] device pointer storing matrix A. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">alpha</td><td>[ void *] device pointer or host pointer specifying the scalar alpha. Same datatype as compute_type. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>[void *] device pointer storing matrix A. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">a_type</td><td>[rocblas_datatype] specifies the datatype of matrix A. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">row_stride_a</td><td>[rocblas_int] specifies the row stride of A. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">col_stride_a</td><td>[rocblas_int] specifies the column stride of A. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td>[void ] device pointer storing matrix B. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td>[void *] device pointer storing matrix B. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">b_type</td><td>[rocblas_datatype] specifies the datatype of matrix B. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">row_stride_b</td><td>[rocblas_int] specifies the row stride of B. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">col_stride_a</td><td>[rocblas_int] specifies the column stride of B. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">beta</td><td>[ void ] device pointer or host pointer specifying the scalar beta. Same datatype as compute_type. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">c</td><td>[void ] device pointer storing matrix C. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">beta</td><td>[ void *] device pointer or host pointer specifying the scalar beta. Same datatype as compute_type. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">c</td><td>[void *] device pointer storing matrix C. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">c_type</td><td>[rocblas_datatype] specifies the datatype of matrix C. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">row_stride_c</td><td>[rocblas_int] specifies the row stride of C. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">col_stride_c</td><td>[rocblas_int] specifies the column stride of C. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">d</td><td>[void ] device pointer storing matrix D. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">d</td><td>[void *] device pointer storing matrix D. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">d_type</td><td>[rocblas_datatype] specifies the datatype of matrix D. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">row_stride_d</td><td>[rocblas_int] specifies the row stride of D. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">col_stride_d</td><td>[rocblas_int] specifies the column stride of D. </td></tr>

@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>BDSQR computes the singular value decomposition (SVD) of an n-by-n bidiagonal matrix B, using the implicit QR algorithm.  
  <a href="interfacehipfort__rocsolver_1_1rocsolver__sbdsqr.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,10 +97,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a7a911b0d075e74cccb0d0376ea51733c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>BDSQR computes the singular value decomposition (SVD) of an n-by-n bidiagonal matrix B, using the implicit QR algorithm.</p>
-<pre class="fragment"> The SVD of B has the form:
-</pre><p class="formulaDsp">
+<div class="textblock"><p>BDSQR computes the singular value decomposition (SVD) of an n-by-n bidiagonal matrix B, using the implicit QR algorithm. </p>
+<p>The SVD of B has the form:</p>
+<p class="formulaDsp">
 \[ B = QSP&#39; \]
 </p>
  <pre class="fragment">where S is the n-by-n diagonal matrix of singular values of B, the columns of Q are the left
@@ -128,16 +127,16 @@ Optionally, this function can also compute \form#71 for a given n-by-nc input ma
  On entry, the diagonal elements of B. On exit, if info = 0, the singular values of B in decreasing order; if info &gt; 0, the diagonal elements of a bidiagonal matrix orthogonally equivalent to B. </td></tr>
     <tr><td class="paramdir">[in,out]</td><td class="paramname">E</td><td>pointer to real type. Array on the GPU of dimension n-1.<br />
  On entry, the off-diagonal elements of B. On exit, if info &gt; 0, the off-diagonal elements of a bidiagonal matrix orthogonally equivalent to B (if info = 0 this matrix converges to zero). </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">V</td><td>pointer to type. Array on the GPU of dimension ldvnv.<br />
- On entry, the matrix V. On exit, it is overwritten with P'V. (Not referenced if nv = 0). </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">V</td><td>pointer to type. Array on the GPU of dimension ldv*nv.<br />
+ On entry, the matrix V. On exit, it is overwritten with P'*V. (Not referenced if nv = 0). </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ldv</td><td>rocblas_int. ldv &gt;= n if nv &gt; 0, or ldv &gt;=1 if nv = 0.<br />
  The leading dimension of V. </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">U</td><td>pointer to type. Array on the GPU of dimension ldun.<br />
- On entry, the matrix U. On exit, it is overwritten with UQ. (Not referenced if nu = 0). </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">U</td><td>pointer to type. Array on the GPU of dimension ldu*n.<br />
+ On entry, the matrix U. On exit, it is overwritten with U*Q. (Not referenced if nu = 0). </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ldu</td><td>rocblas_int. ldu &gt;= nu.<br />
  The leading dimension of U. </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">C</td><td>pointer to type. Array on the GPU of dimension ldcnc.<br />
- On entry, the matrix C. On exit, it is overwritten with Q'C. (Not referenced if nc = 0). </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">C</td><td>pointer to type. Array on the GPU of dimension ldc*nc.<br />
+ On entry, the matrix C. On exit, it is overwritten with Q'*C. (Not referenced if nc = 0). </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ldc</td><td>rocblas_int. ldc &gt;= n if nc &gt; 0, or ldc &gt;=1 if nc = 0.<br />
  The leading dimension of C. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">info</td><td>pointer to a rocblas_int on the GPU.<br />

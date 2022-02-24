@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>SOLVER API.  
  <a href="interfacehipfort__hipblas_1_1hipblaszgetrfbatched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -96,14 +96,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa6db020a64af8e46ce2ea9816e7d471a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>SOLVER API</p>
-<pre class="fragment"> getrfBatched computes the LU factorization of a batch of general
- n-by-n matrices using partial pivoting with row interchanges. The LU factorization can
- be done without pivoting if ipiv is passed as a nullptr.
-
- In the case that ipiv is not null, the factorization of matrix \form#2 in the batch has the form:
-</pre><p class="formulaDsp">
+<div class="textblock"><p>SOLVER API. </p>
+<p>getrfBatched computes the LU factorization of a batch of general n-by-n matrices using partial pivoting with row interchanges. The LU factorization can be done without pivoting if ipiv is passed as a nullptr.</p>
+<p>In the case that ipiv is not null, the factorization of matrix \(A_i\) in the batch has the form:</p>
+<p class="formulaDsp">
 \[ A_i = P_iL_iU_i \]
 </p>
  <pre class="fragment">where \form#4 is a permutation matrix, \form#5 is lower triangular with unit
@@ -118,7 +114,7 @@ In the case that ipiv is null, the factorization is done without pivoting:
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>hipblasHandle_t. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>int. n &gt;= 0.<br />
  The number of columns and rows of all matrices A_i in the batch. </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.<br />
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.<br />
  On entry, the n-by-n matrices A_i to be factored. On exit, the factors L_i and U_i from the factorizations. The unit diagonal elements of L_i are not stored. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>int. lda &gt;= n.<br />
  Specifies the leading dimension of matrices A_i. </td></tr>

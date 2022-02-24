@@ -98,7 +98,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>#hipSuccess, #hipErrorInavlidValue</dd></dl>
-<dl class="section warning"><dt>Warning</dt><dd>The HIP feature set does not correspond to an exact CUDA SDK driver revision. This function always set driverVersion to 4 as an approximation though HIP supports some features which were introduced in later CUDA SDK revisions. HIP apps code should not rely on the driver revision number here and should use arch feature flags to test device capabilities or conditional compilation.</dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>The HIP feature set does not correspond to an exact CUDA SDK driver revision. This function always set *driverVersion to 4 as an approximation though HIP supports some features which were introduced in later CUDA SDK revisions. HIP apps code should not rely on the driver revision number here and should use arch feature flags to test device capabilities or conditional compilation.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>hipRuntimeGetVersion </dd></dl>
 </div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="ad1cad413150e6baa86000736758e6c55"></a>

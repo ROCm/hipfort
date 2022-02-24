@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>POTRS_STRIDED_BATCHED solves a batch of symmetric/hermitian systems of n linear equations on n variables in its factorized forms.  
  <a href="interfacehipfort__rocsolver_1_1rocsolver__spotrs__strided__batched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,10 +97,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ac9d98f4e8569e07f772071c9332c7a68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>POTRS_STRIDED_BATCHED solves a batch of symmetrichermitian systems of n linear equations on n variables in its factorized forms.</p>
-<pre class="fragment"> For each instance j in the batch, it solves the system
-</pre><p class="formulaDsp">
+<div class="textblock"><p>POTRS_STRIDED_BATCHED solves a batch of symmetric/hermitian systems of n linear equations on n variables in its factorized forms. </p>
+<p>For each instance j in the batch, it solves the system</p>
+<p class="formulaDsp">
 \[ A_j X_j = B_j \]
 </p>
  <pre class="fragment">where \form#72 is a real symmetric (complex hermitian) positive definite matrix defined by its
@@ -120,13 +119,13 @@ triangular factor</pre><p> {array} ]</p>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>rocblas_int. lda &gt;= n.<br />
  The leading dimension of matrices A_j. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">strideA</td><td>rocblas_stride.<br />
- Stride from the start of one matrix A_j to the next one A_(j+1). There is no restriction for the value of strideA. Normal use case is strideA &gt;= ldan. </td></tr>
+ Stride from the start of one matrix A_j to the next one A_(j+1). There is no restriction for the value of strideA. Normal use case is strideA &gt;= lda*n. </td></tr>
     <tr><td class="paramdir">[in,out]</td><td class="paramname">B</td><td>pointer to type. Array on the GPU (size depends on the value of strideB).<br />
  On entry, the right hand side matrices B_j. On exit, the solution matrix X_j of each system in the batch. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ldb</td><td>rocblas_int. ldb &gt;= n.<br />
  The leading dimension of matrices B_j. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">strideB</td><td>rocblas_stride.<br />
- Stride from the start of one matrix B_j to the next one B_(j+1). There is no restriction for the value of strideB. Normal use case is strideB &gt;= ldbnrhs. </td></tr>
+ Stride from the start of one matrix B_j to the next one B_(j+1). There is no restriction for the value of strideB. Normal use case is strideB &gt;= ldb*nrhs. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">batch_count</td><td>rocblas_int. batch_count &gt;= 0.<br />
  Number of instances (systems) in the batch. </td></tr>
   </table>

@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>BLAS Level 1 API.  
  <a href="interfacehipfort__hipblas_1_1hipblasdzasumstridedbatched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -94,18 +94,15 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aacf0b549a168bf15d9547257a73f639d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>BLAS Level 1 API</p>
-<pre class="fragment"> asumStridedBatched computes the sum of the magnitudes of elements of a real vectors x_i,
-     or the sum of magnitudes of the real and imaginary parts of elements if x_i is a complex
-     vector, for i = 1, ..., batchCount
-</pre><dl class="params"><dt>Parameters</dt><dd>
+<div class="textblock"><p>BLAS Level 1 API. </p>
+<p>asumStridedBatched computes the sum of the magnitudes of elements of a real vectors x_i, or the sum of magnitudes of the real and imaginary parts of elements if x_i is a complex vector, for i = 1, ..., batchCount</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>[int] number of elements in each vector x_i </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>device pointer to the first vector x_1. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">incx</td><td>[int] specifies the increment for the elements of each x_i. incx must be &gt; 0. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">stridex</td><td>[hipblasStride] stride from the start of one vector (x_i) and the next one (x_i+1). There are no restrictions placed on stride_x, however the user should take care to ensure that stride_x is of appropriate size, for a typical case this means stride_x &gt;= n incx. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">stridex</td><td>[hipblasStride] stride from the start of one vector (x_i) and the next one (x_i+1). There are no restrictions placed on stride_x, however the user should take care to ensure that stride_x is of appropriate size, for a typical case this means stride_x &gt;= n * incx. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">batchCount</td><td>[int] number of instances in the batch </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">result</td><td>device pointer or host pointer to array for storing contiguous batchCount results. return is 0.0 if n, incx&lt;=0. </td></tr>
   </table>

@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>BLAS Level 1 API.  
  <a href="interfacehipfort__rocblas_1_1rocblas__zrotg__strided__batched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -90,13 +90,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a5b441a25368f9ccec609129b946078eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>BLAS Level 1 API</p>
-<pre class="fragment"> rotg_strided_batched creates the Givens rotation matrix for the strided batched vectors (a_i b_i), for i = 1, ..., batch_count.
-      a, b, c, and s may be stored in either host or device memory, location is specified by calling rocblas_set_pointer_mode.
-      If the pointer mode is set to rocblas_pointer_mode_host, this function blocks the CPU until the GPU has finished and the results are available in host memory.
-      If the pointer mode is set to rocblas_pointer_mode_device, this function returns immediately and synchronization is required to read the results.
-</pre><dl class="params"><dt>Parameters</dt><dd>
+<div class="textblock"><p>BLAS Level 1 API. </p>
+<p>rotg_strided_batched creates the Givens rotation matrix for the strided batched vectors (a_i b_i), for i = 1, ..., batch_count. a, b, c, and s may be stored in either host or device memory, location is specified by calling <a class="el" href="interfacehipfort__rocblas_1_1rocblas__set__pointer__mode.html" title="set rocblas_pointer_mode ">rocblas_set_pointer_mode</a>. If the pointer mode is set to rocblas_pointer_mode_host, this function blocks the CPU until the GPU has finished and the results are available in host memory. If the pointer mode is set to rocblas_pointer_mode_device, this function returns immediately and synchronization is required to read the results.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[rocblas_handle] handle to the rocblas library context queue. </td></tr>
     <tr><td class="paramdir">[in,out]</td><td class="paramname">a</td><td>device strided_batched pointer or host strided_batched pointer to first single input vector element a_1, overwritten with r. </td></tr>

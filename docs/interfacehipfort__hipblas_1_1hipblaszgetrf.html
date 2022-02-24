@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>SOLVER API.  
  <a href="interfacehipfort__hipblas_1_1hipblaszgetrf.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -96,14 +96,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:afefbd158712e0d8e1715a5e6443343ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>SOLVER API</p>
-<pre class="fragment"> getrf computes the LU factorization of a general n-by-n matrix A
- using partial pivoting with row interchanges. The LU factorization can
- be done without pivoting if ipiv is passed as a nullptr.
-
- In the case that ipiv is not null, the factorization has the form:
-</pre><p class="formulaDsp">
+<div class="textblock"><p>SOLVER API. </p>
+<p>getrf computes the LU factorization of a general n-by-n matrix A using partial pivoting with row interchanges. The LU factorization can be done without pivoting if ipiv is passed as a nullptr.</p>
+<p>In the case that ipiv is not null, the factorization has the form:</p>
+<p class="formulaDsp">
 \[ A = PLU \]
 </p>
  <pre class="fragment">where P is a permutation matrix, L is lower triangular with unit
@@ -118,7 +114,7 @@ In the case that ipiv is null, the factorization is done without pivoting:
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>hipblasHandle_t. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>int. n &gt;= 0.<br />
  The number of columns and rows of the matrix A. </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>pointer to type. Array on the GPU of dimension ldan.<br />
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>pointer to type. Array on the GPU of dimension lda*n.<br />
  On entry, the n-by-n matrix A to be factored. On exit, the factors L and U from the factorization. The unit diagonal elements of L are not stored. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>int. lda &gt;= n.<br />
  Specifies the leading dimension of A. </td></tr>

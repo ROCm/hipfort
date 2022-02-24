@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>GEBD2_STRIDED_BATCHED computes the bidiagonal form of a batch of general m-by-n matrices.  
  <a href="interfacehipfort__rocsolver_1_1rocsolver__sgebd2__strided__batched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,16 +97,14 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:afa36fcab9df9c3e6ea681fb4f0ccd3e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>GEBD2_STRIDED_BATCHED computes the bidiagonal form of a batch of general m-by-n matrices.</p>
-<pre class="fragment"> (This is the unblocked version of the algorithm).
-
- For each instance in the batch, the bidiagonal form is given by:
-</pre><p class="formulaDsp">
+<div class="textblock"><p>GEBD2_STRIDED_BATCHED computes the bidiagonal form of a batch of general m-by-n matrices. </p>
+<p>(This is the unblocked version of the algorithm).</p>
+<p>For each instance in the batch, the bidiagonal form is given by:</p>
+<p class="formulaDsp">
 \[ B_j = Q_j&#39; A_j P_j \]
 </p>
  <pre class="fragment">where \form#97 is upper bidiagonal if m &gt;= n and lower bidiagonal if m &lt; n, and \form#74 and
-</pre><p> \(P_j\) are orthogonalunitary matrices represented as the product of Householder matrices {array} ]</p>
+</pre><p> \(P_j\) are orthogonal/unitary matrices represented as the product of Householder matrices {array} ]</p>
 <p>Each Householder matrix \(H_{j_i}\) and \(G_{j_i}\) is given by {array} ]</p>
 <p>If m &gt;= n, the first i-1 elements of the Householder vector \(v_{j_i}\) are zero, and \(v_{j_i}[i] = 1\); while the first i elements of the Householder vector \(u_{j_i}\) are zero, and \(u_{j_i}[i+1] = 1\). If m &lt; n, the first i elements of the Householder vector \(v_{j_i}\) are zero, and \(v_{j_i}[i+1] = 1\); while the first i-1 elements of the Householder vector \(u_{j_i}\) are zero, and \(u_{j_i}[i] = 1\).</p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -121,7 +119,7 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>rocblas_int. lda &gt;= m.<br />
  Specifies the leading dimension of matrices A_j. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">strideA</td><td>rocblas_stride.<br />
- Stride from the start of one matrix A_j to the next one A_(j+1). There is no restriction for the value of strideA. Normal use case is strideA &gt;= ldan. </td></tr>
+ Stride from the start of one matrix A_j to the next one A_(j+1). There is no restriction for the value of strideA. Normal use case is strideA &gt;= lda*n. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">D</td><td>pointer to real type. Array on the GPU (the size depends on the value of strideD).<br />
  The diagonal elements of B_j. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">strideD</td><td>rocblas_stride.<br />

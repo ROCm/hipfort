@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>SOLVER API.  
  <a href="interfacehipfort__hipblas_1_1hipblaszgeqrfbatched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -96,13 +96,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a7f0ade773c2a3125ebadcf0c2a2c0e16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>SOLVER API</p>
-<pre class="fragment"> geqrfBatched computes the QR factorization of a batch of general
- m-by-n matrices.
-
- The factorization of matrix \form#2 in the batch has the form</pre><p> {array}] ]</p>
-<p>where \(R_i\) is upper triangular (upper trapezoidal if m &lt; n), and \(Q_i\) is a m-by-m orthogonalunitary matrix represented as the product of Householder matrices</p>
+<div class="textblock"><p>SOLVER API. </p>
+<p>geqrfBatched computes the QR factorization of a batch of general m-by-n matrices.</p>
+<p>The factorization of matrix \(A_i\) in the batch has the form {array}] ]</p>
+<p>where \(R_i\) is upper triangular (upper trapezoidal if m &lt; n), and \(Q_i\) is a m-by-m orthogonal/unitary matrix represented as the product of Householder matrices</p>
 <p class="formulaDsp">
 \[ Q_i = H_{i_1}H_{i_2}\cdots H_{i_k}, \quad \text{with} \: k = \text{min}(m,n) \]
 </p>
@@ -118,7 +115,7 @@ Public Member Functions</h2></td></tr>
  The number of rows of all the matrices A_i in the batch. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>int. n &gt;= 0.<br />
  The number of columns of all the matrices A_i in the batch. </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>Array of pointers to type. Each pointer points to an array on the GPU of dimension ldan.<br />
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.<br />
  On entry, the m-by-n matrices A_i to be factored. On exit, the elements on and above the diagonal contain the factor R_i. The elements below the diagonal are the last m - j elements of Householder vector v_(i_j). </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>int. lda &gt;= m.<br />
  Specifies the leading dimension of matrices A_i. </td></tr>

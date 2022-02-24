@@ -80,7 +80,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>Incomplete Cholesky factorization with 0 fill-ins and no pivoting using BSR storage format.  
  <a href="interfacehipfort__rocsparse_1_1rocsparse__bsric0__zero__pivot.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -90,25 +90,13 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a8951ffa000332b85b3b1cb63c6cc37d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>Incomplete Cholesky factorization with 0 fill-ins and no pivoting using BSR storage format</p>
-<pre class="fragment">\p rocsparse_bsric0_zero_pivot returns \ref rocsparse_status_zero_pivot, if either a
-structural or numerical zero has been found during rocsparse_sbsric0(),
-rocsparse_dbsric0(), rocsparse_cbsric0() or rocsparse_zbsric0() computation.
-The first zero pivot \form#24 at \form#25 is stored in \p position, using same
-index base as the BSR matrix.
-
-\p position can be in host or device memory. If no zero pivot has been found,
-\p position is set to -1 and \ref rocsparse_status_success is returned instead.
-
-\note
-If a zero pivot is found, \p position=j means that either the diagonal block \p A(j,j)
-is missing (structural zero) or the diagonal block \p A(j,j) is not positive definite
-(numerical zero).
-
-\note \p rocsparse_bsric0_zero_pivot is a blocking function. It might influence
-performance negatively.
-</pre><dl class="params"><dt>Parameters</dt><dd>
+<div class="textblock"><p>Incomplete Cholesky factorization with 0 fill-ins and no pivoting using BSR storage format. </p>
+<p><code><a class="el" href="interfacehipfort__rocsparse_1_1rocsparse__bsric0__zero__pivot.html" title="Incomplete Cholesky factorization with 0 fill-ins and no pivoting using BSR storage format...">rocsparse_bsric0_zero_pivot</a></code> returns rocsparse_status_zero_pivot, if either a structural or numerical zero has been found during rocsparse_sbsric0(), rocsparse_dbsric0(), rocsparse_cbsric0() or rocsparse_zbsric0() computation. The first zero pivot \(j\) at \(A_{j,j}\) is stored in <code>position</code>, using same index base as the BSR matrix.</p>
+<p><code>position</code> can be in host or device memory. If no zero pivot has been found, <code>position</code> is set to -1 and rocsparse_status_success is returned instead.</p>
+<dl class="section note"><dt>Note</dt><dd>If a zero pivot is found, <code>position=j</code> means that either the diagonal block <code>A(j,j)</code> is missing (structural zero) or the diagonal block <code>A(j,j)</code> is not positive definite (numerical zero).</dd>
+<dd>
+<code><a class="el" href="interfacehipfort__rocsparse_1_1rocsparse__bsric0__zero__pivot.html" title="Incomplete Cholesky factorization with 0 fill-ins and no pivoting using BSR storage format...">rocsparse_bsric0_zero_pivot</a></code> is a blocking function. It might influence performance negatively.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>handle to the rocsparse library context queue. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">info</td><td>structure that holds the information collected during the analysis step. </td></tr>

@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>UNGTR generates an n-by-n unitary Matrix Q.  
  <a href="interfacehipfort__rocsolver_1_1rocsolver__cungtr.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,11 +97,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a70527b0ff47f3146ba911fa0727de1ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>UNGTR generates an n-by-n unitary Matrix Q.</p>
-<pre class="fragment"> Q is defined as the product of n-1 Householder reflectors of order n. If
- uplo indicates upper, then Q has the form
-</pre><p class="formulaDsp">
+<div class="textblock"><p>UNGTR generates an n-by-n unitary Matrix Q. </p>
+<p>Q is defined as the product of n-1 Householder reflectors of order n. If uplo indicates upper, then Q has the form</p>
+<p class="formulaDsp">
 \[ Q = H_{n-1}H_{n-2}\cdots H_1 \]
 </p>
  <pre class="fragment">On the other hand, if uplo indicates lower, then Q has the form
@@ -118,7 +116,7 @@ corresponding Householder vectors \form#14 and scalars \form#56, as returned by
  Specifies whether the <a class="el" href="interfacehipfort__rocsolver_1_1rocsolver__chetrd.html">HETRD</a> factorization was upper or lower triangular. If uplo indicates lower (or upper), then the upper (or lower) part of A is not used. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>rocblas_int. n &gt;= 0.<br />
  The number of rows and columns of the matrix Q. </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>pointer to type. Array on the GPU of dimension ldan.<br />
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>pointer to type. Array on the GPU of dimension lda*n.<br />
  On entry, the Householder vectors as returned by <a class="el" href="interfacehipfort__rocsolver_1_1rocsolver__chetrd.html">HETRD</a>. On exit, the computed matrix Q. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>rocblas_int. lda &gt;= m.<br />
  Specifies the leading dimension of A. </td></tr>

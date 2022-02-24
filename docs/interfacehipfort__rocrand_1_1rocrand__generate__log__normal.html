@@ -96,13 +96,13 @@ Public Member Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">generator</td><td>- Generator to use </td></tr>
     <tr><td class="paramname">output_data</td><td>- Pointer to memory to store generated numbers </td></tr>
-    <tr><td class="paramname">n</td><td>- Number of <code>float<code>s to generate </code></code></td></tr>
-    <tr><td class="paramname">mean</td><td><code><code>- Mean value of log normal distribution </code></code></td></tr>
-    <tr><td class="paramname">stddev</td><td><code><code>- Standard deviation value of log normal distribution</code></code></td></tr>
+    <tr><td class="paramname">n</td><td>- Number of <code>float</code>s to generate </td></tr>
+    <tr><td class="paramname">mean</td><td>- Mean value of log normal distribution </td></tr>
+    <tr><td class="paramname">stddev</td><td>- Standard deviation value of log normal distribution</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><code><code><ul>
+<dl class="section return"><dt>Returns</dt><dd><ul>
 <li>ROCRAND_STATUS_NOT_CREATED if the generator wasn't created <br />
 </li>
 <li>ROCRAND_STATUS_LAUNCH_FAILURE if a HIP kernel launch failed <br />
@@ -110,9 +110,9 @@ Public Member Functions</h2></td></tr>
 <li>ROCRAND_STATUS_LENGTH_NOT_MULTIPLE if <code>n</code> is not a multiple of the dimension of used quasi-random generator <br />
 </li>
 <li>ROCRAND_STATUS_SUCCESS if random numbers were successfully generated <br />
-</li>
+ </li>
 </ul>
-</code></code></dd></dl>
+</dd></dl>
 </div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="a155d954b42e33eced0f782da84d40fda"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a155d954b42e33eced0f782da84d40fda">&#9670;&nbsp;</a></span>rocrand_generate_log_normal_()</h2>

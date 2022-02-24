@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>GESVD_STRIDED_BATCHED computes the singular values and optionally the singular vectors of a batch of general m-by-n matrix A (Singular Value Decomposition).  
  <a href="interfacehipfort__rocsolver_1_1rocsolver__sgesvd__strided__batched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,10 +97,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae0299a359e89e409f3905a82b5b44a38"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>GESVD_STRIDED_BATCHED computes the singular values and optionally the singular vectors of a batch of general m-by-n matrix A (Singular Value Decomposition).</p>
-<pre class="fragment"> The SVD of matrix A_j in the batch is given by:
-</pre><p class="formulaDsp">
+<div class="textblock"><p>GESVD_STRIDED_BATCHED computes the singular values and optionally the singular vectors of a batch of general m-by-n matrix A (Singular Value Decomposition). </p>
+<p>The SVD of matrix A_j in the batch is given by:</p>
+<p class="formulaDsp">
 \[ A_j = U_j S_j V_j&#39; \]
 </p>
  <pre class="fragment">where the m-by-n matrix \form#122 is zero except, possibly, for its min(m,n)
@@ -154,7 +153,7 @@ and "Memory model" sections of the documentation.
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>rocblas_int. lda &gt;= m.<br />
  The leading dimension of A_j. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">strideA</td><td>rocblas_stride.<br />
- Stride from the start of one matrix A_j to the next one A_(j+1). There is no restriction for the value of strideA. Normal use case is strideA &gt;= ldan. </td></tr>
+ Stride from the start of one matrix A_j to the next one A_(j+1). There is no restriction for the value of strideA. Normal use case is strideA &gt;= lda*n. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">S</td><td>pointer to real type. Array on the GPU (the size depends on the value of strideS).<br />
  The singular values of A_j in decreasing order. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">strideS</td><td>rocblas_stride.<br />
@@ -164,13 +163,13 @@ and "Memory model" sections of the documentation.
     <tr><td class="paramdir">[in]</td><td class="paramname">ldu</td><td>rocblas_int. ldu &gt;= m if left_svect is all or singular; ldu &gt;= 1 otherwise.<br />
  The leading dimension of U_j. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">strideU</td><td>rocblas_stride.<br />
- Stride from the start of one matrix U_j to the next one U_(j+1). There is no restriction for the value of strideU. Normal use case is strideU &gt;= ldumin(m,n) if left_svect is set to singular, or strideU &gt;= ldum when left_svect is equal to all. </td></tr>
+ Stride from the start of one matrix U_j to the next one U_(j+1). There is no restriction for the value of strideU. Normal use case is strideU &gt;= ldu*min(m,n) if left_svect is set to singular, or strideU &gt;= ldu*m when left_svect is equal to all. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">V</td><td>pointer to type. Array on the GPU (the size depends on the value of strideV). <br />
  The matrices V_j of right singular vectors stored as rows (transposed conjugate-transposed). Not referenced if right_svect is set to overwrite or none. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ldv</td><td>rocblas_int. ldv &gt;= n if right_svect is all; ldv &gt;= min(m,n) if right_svect is set to singular; or ldv &gt;= 1 otherwise.<br />
  The leading dimension of V. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">strideV</td><td>rocblas_stride.<br />
- Stride from the start of one matrix V_j to the next one V_(j+1). There is no restriction for the value of strideV. Normal use case is strideV &gt;= ldvn. </td></tr>
+ Stride from the start of one matrix V_j to the next one V_(j+1). There is no restriction for the value of strideV. Normal use case is strideV &gt;= ldv*n. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">E</td><td>pointer to real type. Array on the GPU (the size depends on the value of strideE).<br />
  This array is used to work internally with the bidiagonal matrix B_j associated with A_j (using <a class="el" href="interfacehipfort__rocsolver_1_1rocsolver__sbdsqr.html">BDSQR</a>). On exit, if info &gt; 0, E_j contains the unconverged off-diagonal elements of B_j (or properly speaking, a bidiagonal matrix orthogonally equivalent to B_j). The diagonal elements of this matrix are in S_j; those that converged correspond to a subset of the singular values of A_j (not necessarily ordered). </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">strideE</td><td>rocblas_stride.<br />

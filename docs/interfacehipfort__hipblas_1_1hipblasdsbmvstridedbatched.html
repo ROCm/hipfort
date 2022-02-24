@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>BLAS Level 2 API.  
  <a href="interfacehipfort__hipblas_1_1hipblasdsbmvstridedbatched.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -96,17 +96,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae2b3099c1a6478e5fa41bf08c395f8e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>BLAS Level 2 API</p>
-<pre class="fragment"> sbmvStridedBatched performs the matrix-vector operation:
-
-     y_i := alphaA_ix_i + betay_i,
-
- where (A_i, x_i, y_i) is the i-th instance of the batch.
- alpha and beta are scalars, x_i and y_i are vectors and A_i is an
- n by n symmetric banded matrix, for i = 1, ..., batchCount.
- A should contain an upper or lower triangular n by n symmetric banded matrix.
-</pre><dl class="params"><dt>Parameters</dt><dd>
+<div class="textblock"><p>BLAS Level 2 API. </p>
+<p>sbmvStridedBatched performs the matrix-vector operation: </p><pre class="fragment">y_i := alpha*A_i*x_i + beta*y_i,
+</pre><p>where (A_i, x_i, y_i) is the i-th instance of the batch. alpha and beta are scalars, x_i and y_i are vectors and A_i is an n by n symmetric banded matrix, for i = 1, ..., batchCount. A should contain an upper or lower triangular n by n symmetric banded matrix.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[hipblasHandle_t] handle to the hipblas library context queue </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">uplo</td><td>[hipblasFillMode_t] specifies whether the upper 'HIPBLAS_FILL_MODE_UPPER' or lower 'HIPBLAS_FILL_MODE_LOWER' if HIPBLAS_FILL_MODE_UPPER, the lower part of A is not referenced if HIPBLAS_FILL_MODE_LOWER, the upper part of A is not referenced </td></tr>
@@ -118,11 +111,11 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">strideA</td><td>[hipblasStride] stride from the start of one matrix (A_i) and the next one (A_i+1) </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>Device pointer to the first vector x_1 on the GPU </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">incx</td><td>[int] specifies the increment for the elements of each vector x_i </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">stridex</td><td>[hipblasStride] stride from the start of one vector (x_i) and the next one (x_i+1). There are no restrictions placed on stridex, however the user should take care to ensure that stridex is of appropriate size. This typically means stridex &gt;= n incx. stridex should be non zero. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">stridex</td><td>[hipblasStride] stride from the start of one vector (x_i) and the next one (x_i+1). There are no restrictions placed on stridex, however the user should take care to ensure that stridex is of appropriate size. This typically means stridex &gt;= n * incx. stridex should be non zero. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">beta</td><td>device pointer or host pointer to scalar beta </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">y</td><td>Device pointer to the first vector y_1 on the GPU </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">incy</td><td>[int] specifies the increment for the elements of each vector y_i </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">stridey</td><td>[hipblasStride] stride from the start of one vector (y_i) and the next one (y_i+1). There are no restrictions placed on stridey, however the user should take care to ensure that stridey is of appropriate size. This typically means stridey &gt;= n incy. stridey should be non zero. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">stridey</td><td>[hipblasStride] stride from the start of one vector (y_i) and the next one (y_i+1). There are no restrictions placed on stridey, however the user should take care to ensure that stridey is of appropriate size. This typically means stridey &gt;= n * incy. stridey should be non zero. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">batchCount</td><td>[int] number of instances in the batch </td></tr>
   </table>
   </dd>

@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>Sparse matrix sparse matrix multiplication using CSR storage format.  
  <a href="interfacehipfort__rocsparse_1_1rocsparse__csrgemm__nnz.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -95,9 +95,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a0b0b0cae51aad5bfa4b339d42c5d669e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>Sparse matrix sparse matrix multiplication using CSR storage format</p>
-<p><code><a class="el" href="interfacehipfort__rocsparse_1_1rocsparse__csrgemm__nnz.html" title="! ">rocsparse_csrgemm_nnz</a></code> computes the total CSR non-zero elements and the CSR row offsets, that point to the start of every row of the sparse CSR matrix, of the resulting multiplied matrix C. It is assumed that <code>csr_row_ptr_C</code> has been allocated with size <code>m</code> + 1. The required buffer size can be obtained by rocsparse_scsrgemm_buffer_size(), rocsparse_dcsrgemm_buffer_size(), rocsparse_ccsrgemm_buffer_size() and rocsparse_zcsrgemm_buffer_size(), respectively.</p>
+<div class="textblock"><p>Sparse matrix sparse matrix multiplication using CSR storage format. </p>
+<p><code><a class="el" href="interfacehipfort__rocsparse_1_1rocsparse__csrgemm__nnz.html" title="Sparse matrix sparse matrix multiplication using CSR storage format. ">rocsparse_csrgemm_nnz</a></code> computes the total CSR non-zero elements and the CSR row offsets, that point to the start of every row of the sparse CSR matrix, of the resulting multiplied matrix C. It is assumed that <code>csr_row_ptr_C</code> has been allocated with size <code>m</code> + 1. The required buffer size can be obtained by rocsparse_scsrgemm_buffer_size(), rocsparse_dcsrgemm_buffer_size(), rocsparse_ccsrgemm_buffer_size() and rocsparse_zcsrgemm_buffer_size(), respectively.</p>
 <dl class="section note"><dt>Note</dt><dd>This function is non blocking and executed asynchronously with respect to the host. It may return before the actual computation has finished. </dd>
 <dd>
 Please note, that for matrix products with more than 8192 intermediate products per row, additional temporary storage buffer is allocated by the algorithm. </dd>

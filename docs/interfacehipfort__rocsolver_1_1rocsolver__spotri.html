@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>POTRI inverts a symmetric/hermitian positive definite matrix A.  
  <a href="interfacehipfort__rocsolver_1_1rocsolver__spotri.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,9 +97,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a18d70ed3061ec67387567dc0753d180f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>POTRI inverts a symmetrichermitian positive definite matrix A.</p>
-<pre class="fragment"> The inverse of matrix \form#50 is computed as</pre><p> {array} ]</p>
+<div class="textblock"><p>POTRI inverts a symmetric/hermitian positive definite matrix A. </p>
+<p>The inverse of matrix \(A\) is computed as {array} ]</p>
 <p>where \(U\) or \(L\) is the triangular factor of the Cholesky factorization of \(A\) returned by <a class="el" href="interfacehipfort__rocsolver_1_1rocsolver__spotrf.html">POTRF</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -108,7 +107,7 @@ Public Member Functions</h2></td></tr>
  Specifies whether the factorization is upper or lower triangular. If uplo indicates lower (or upper), then the upper (or lower) part of A is not used. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>rocblas_int. n &gt;= 0.<br />
  The number of rows and columns of matrix A. </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>pointer to type. Array on the GPU of dimension ldan.<br />
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>pointer to type. Array on the GPU of dimension lda*n.<br />
  On entry, the factor L or U of the Cholesky factorization of A returned by <a class="el" href="interfacehipfort__rocsolver_1_1rocsolver__spotrf.html">POTRF</a>. On exit, the inverses of A if info = 0. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lda</td><td>rocblas_int. lda &gt;= n.<br />
  specifies the leading dimension of A. </td></tr>

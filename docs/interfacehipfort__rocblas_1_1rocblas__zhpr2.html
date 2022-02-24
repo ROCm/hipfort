@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>!  
+<p>BLAS Level 2 API.  
  <a href="interfacehipfort__rocblas_1_1rocblas__zhpr2.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -94,15 +94,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae6bd23249490498df5c175e1acde67a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>! </p>
-<p>BLAS Level 2 API</p>
-<pre class="fragment"> hpr2 performs the matrix-vector operations
-
-     A := A + alphaxyH + conj(alpha)yxH
-
- where alpha is a complex scalar, x and y are vectors, and A is an
- n by n Hermitian matrix, supplied in packed form.
-</pre><dl class="params"><dt>Parameters</dt><dd>
+<div class="textblock"><p>BLAS Level 2 API. </p>
+<p>hpr2 performs the matrix-vector operations </p><pre class="fragment">A := A + alpha*x*y**H + conj(alpha)*y*x**H
+</pre><p>where alpha is a complex scalar, x and y are vectors, and A is an n by n Hermitian matrix, supplied in packed form.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>[rocblas_handle] handle to the rocblas library context queue. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">uplo</td><td>[rocblas_fill] specifies whether the upper 'rocblas_fill_upper' or lower 'rocblas_fill_lower' rocblas_fill_upper: The upper triangular part of A is supplied in AP. rocblas_fill_lower: The lower triangular part of A is supplied in AP. </td></tr>
@@ -112,7 +107,7 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">incx</td><td>[rocblas_int] specifies the increment for the elements of x. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">y</td><td>device pointer storing vector y. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">incy</td><td>[rocblas_int] specifies the increment for the elements of y. </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">AP</td><td>device pointer storing the packed version of the specified triangular portion of the Hermitian matrix A. Of at least size ((n (n + 1)) 2). if uplo == rocblas_fill_upper: The upper triangular portion of the Hermitian matrix A is supplied. The matrix is compacted so that AP contains the triangular portion column-by-column so that: AP(0) = A(0,0) AP(1) = A(0,1) AP(2) = A(1,1), etc. Ex: (rocblas_fill_upper; n = 3) (1, 0) (2, 1) (4,9) (2,-1) (3, 0) (5,3) --&mdash;&gt; [(1,0), (2,1), (3,0), (4,9), (5,3), (6,0)] (4,-9) (5,-3) (6,0) if uplo == rocblas_fill_lower: The lower triangular portion of the Hermitian matrix A is supplied. The matrix is compacted so that AP contains the triangular portion column-by-column so that: AP(0) = A(0,0) AP(1) = A(1,0) AP(2) = A(2,1), etc. Ex: (rocblas_fill_lower; n = 3) (1, 0) (2, 1) (4,9) (2,-1) (3, 0) (5,3) --&mdash;&gt; [(1,0), (2,-1), (4,-9), (3,0), (5,-3), (6,0)] (4,-9) (5,-3) (6,0) Note that the imaginary part of the diagonal elements are not accessed and are assumed to be 0. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">AP</td><td>device pointer storing the packed version of the specified triangular portion of the Hermitian matrix A. Of at least size ((n * (n + 1)) 2). if uplo == rocblas_fill_upper: The upper triangular portion of the Hermitian matrix A is supplied. The matrix is compacted so that AP contains the triangular portion column-by-column so that: AP(0) = A(0,0) AP(1) = A(0,1) AP(2) = A(1,1), etc. Ex: (rocblas_fill_upper; n = 3) (1, 0) (2, 1) (4,9) (2,-1) (3, 0) (5,3) --&mdash;&gt; [(1,0), (2,1), (3,0), (4,9), (5,3), (6,0)] (4,-9) (5,-3) (6,0) if uplo == rocblas_fill_lower: The lower triangular portion of the Hermitian matrix A is supplied. The matrix is compacted so that AP contains the triangular portion column-by-column so that: AP(0) = A(0,0) AP(1) = A(1,0) AP(2) = A(2,1), etc. Ex: (rocblas_fill_lower; n = 3) (1, 0) (2, 1) (4,9) (2,-1) (3, 0) (5,3) --&mdash;&gt; [(1,0), (2,-1), (4,-9), (3,0), (5,-3), (6,0)] (4,-9) (5,-3) (6,0) Note that the imaginary part of the diagonal elements are not accessed and are assumed to be 0. </td></tr>
   </table>
   </dd>
 </dl>
