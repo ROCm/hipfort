@@ -243,9 +243,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      logical,target :: x
+      logical(c_bool),target :: x
       integer(c_int),value :: incx
-      logical,target :: y
+      logical(c_bool),target :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_set_vector_(n,1,c_loc(x),incx,c_loc(y),incy)
@@ -257,9 +257,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      logical,target,dimension(:) :: x
+      logical(c_bool),target,dimension(:) :: x
       integer(c_int),value :: incx
-      logical,target,dimension(:) :: y
+      logical(c_bool),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_set_vector_(n,1,c_loc(x),incx,c_loc(y),incy)
@@ -271,9 +271,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      logical,target :: x
+      logical(c_bool),target :: x
       integer(c_int),value :: incx
-      logical,target :: y
+      logical(c_bool),target :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_get_vector_(n,1,c_loc(x),incx,c_loc(y),incy)
@@ -285,9 +285,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      logical,target,dimension(:) :: x
+      logical(c_bool),target,dimension(:) :: x
       integer(c_int),value :: incx
-      logical,target,dimension(:) :: y
+      logical(c_bool),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_get_vector_(n,1,c_loc(x),incx,c_loc(y),incy)
@@ -300,8 +300,8 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      logical,target,dimension(:,:) :: A
-      logical,target,dimension(:,:) :: B
+      logical(c_bool),target,dimension(:,:) :: A
+      logical(c_bool),target,dimension(:,:) :: B
       !
       ret = rocblas_set_matrix_(rows,cols,1,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
@@ -313,9 +313,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      logical,target :: A
+      logical(c_bool),target :: A
       integer(c_int),value :: lda
-      logical,target :: B
+      logical(c_bool),target :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_set_matrix_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb)
@@ -328,9 +328,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      logical,target,dimension(:) :: A
+      logical(c_bool),target,dimension(:) :: A
       integer(c_int),value :: lda
-      logical,target,dimension(:) :: B
+      logical(c_bool),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_set_matrix_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb)
@@ -343,8 +343,8 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      logical,target,dimension(:,:) :: A
-      logical,target,dimension(:,:) :: B
+      logical(c_bool),target,dimension(:,:) :: A
+      logical(c_bool),target,dimension(:,:) :: B
       !
       ret = rocblas_get_matrix_(rows,cols,1,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
@@ -356,9 +356,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      logical,target :: A
+      logical(c_bool),target :: A
       integer(c_int),value :: lda
-      logical,target :: B
+      logical(c_bool),target :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_get_matrix_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb)
@@ -371,9 +371,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      logical,target,dimension(:) :: A
+      logical(c_bool),target,dimension(:) :: A
       integer(c_int),value :: lda
-      logical,target,dimension(:) :: B
+      logical(c_bool),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_get_matrix_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb)
@@ -385,9 +385,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      logical,target :: x
+      logical(c_bool),target :: x
       integer(c_int),value :: incx
-      logical,target :: y
+      logical(c_bool),target :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -400,9 +400,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      logical,target,dimension(:) :: x
+      logical(c_bool),target,dimension(:) :: x
       integer(c_int),value :: incx
-      logical,target,dimension(:) :: y
+      logical(c_bool),target,dimension(:) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -415,9 +415,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      logical,target :: x
+      logical(c_bool),target :: x
       integer(c_int),value :: incx
-      logical,target :: y
+      logical(c_bool),target :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -430,9 +430,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      logical,target,dimension(:) :: x
+      logical(c_bool),target,dimension(:) :: x
       integer(c_int),value :: incx
-      logical,target,dimension(:) :: y
+      logical(c_bool),target,dimension(:) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -446,8 +446,8 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      logical,target,dimension(:,:) :: A
-      logical,target,dimension(:,:) :: B
+      logical(c_bool),target,dimension(:,:) :: A
+      logical(c_bool),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
       ret = rocblas_set_matrix_async_(rows,cols,1,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
@@ -460,9 +460,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      logical,target :: A
+      logical(c_bool),target :: A
       integer(c_int),value :: lda
-      logical,target :: B
+      logical(c_bool),target :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -476,9 +476,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      logical,target,dimension(:) :: A
+      logical(c_bool),target,dimension(:) :: A
       integer(c_int),value :: lda
-      logical,target,dimension(:) :: B
+      logical(c_bool),target,dimension(:) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -492,8 +492,8 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      logical,target,dimension(:,:) :: A
-      logical,target,dimension(:,:) :: B
+      logical(c_bool),target,dimension(:,:) :: A
+      logical(c_bool),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
       ret = rocblas_get_matrix_async_(rows,cols,1,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
@@ -506,9 +506,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      logical,target :: A
+      logical(c_bool),target :: A
       integer(c_int),value :: lda
-      logical,target :: B
+      logical(c_bool),target :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -522,9 +522,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      logical,target,dimension(:) :: A
+      logical(c_bool),target,dimension(:) :: A
       integer(c_int),value :: lda
-      logical,target,dimension(:) :: B
+      logical(c_bool),target,dimension(:) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -536,9 +536,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(4),target :: x
+      integer(c_int),target :: x
       integer(c_int),value :: incx
-      integer(4),target :: y
+      integer(c_int),target :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_set_vector_(n,4,c_loc(x),incx,c_loc(y),incy)
@@ -550,9 +550,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(4),target,dimension(:) :: x
+      integer(c_int),target,dimension(:) :: x
       integer(c_int),value :: incx
-      integer(4),target,dimension(:) :: y
+      integer(c_int),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_set_vector_(n,4,c_loc(x),incx,c_loc(y),incy)
@@ -564,9 +564,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(4),target :: x
+      integer(c_int),target :: x
       integer(c_int),value :: incx
-      integer(4),target :: y
+      integer(c_int),target :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_get_vector_(n,4,c_loc(x),incx,c_loc(y),incy)
@@ -578,9 +578,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(4),target,dimension(:) :: x
+      integer(c_int),target,dimension(:) :: x
       integer(c_int),value :: incx
-      integer(4),target,dimension(:) :: y
+      integer(c_int),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_get_vector_(n,4,c_loc(x),incx,c_loc(y),incy)
@@ -593,8 +593,8 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(4),target,dimension(:,:) :: A
-      integer(4),target,dimension(:,:) :: B
+      integer(c_int),target,dimension(:,:) :: A
+      integer(c_int),target,dimension(:,:) :: B
       !
       ret = rocblas_set_matrix_(rows,cols,4,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
@@ -606,9 +606,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(4),target :: A
+      integer(c_int),target :: A
       integer(c_int),value :: lda
-      integer(4),target :: B
+      integer(c_int),target :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_set_matrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
@@ -621,9 +621,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(4),target,dimension(:) :: A
+      integer(c_int),target,dimension(:) :: A
       integer(c_int),value :: lda
-      integer(4),target,dimension(:) :: B
+      integer(c_int),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_set_matrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
@@ -636,8 +636,8 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(4),target,dimension(:,:) :: A
-      integer(4),target,dimension(:,:) :: B
+      integer(c_int),target,dimension(:,:) :: A
+      integer(c_int),target,dimension(:,:) :: B
       !
       ret = rocblas_get_matrix_(rows,cols,4,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
@@ -649,9 +649,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(4),target :: A
+      integer(c_int),target :: A
       integer(c_int),value :: lda
-      integer(4),target :: B
+      integer(c_int),target :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_get_matrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
@@ -664,9 +664,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(4),target,dimension(:) :: A
+      integer(c_int),target,dimension(:) :: A
       integer(c_int),value :: lda
-      integer(4),target,dimension(:) :: B
+      integer(c_int),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_get_matrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
@@ -678,9 +678,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(4),target :: x
+      integer(c_int),target :: x
       integer(c_int),value :: incx
-      integer(4),target :: y
+      integer(c_int),target :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -693,9 +693,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(4),target,dimension(:) :: x
+      integer(c_int),target,dimension(:) :: x
       integer(c_int),value :: incx
-      integer(4),target,dimension(:) :: y
+      integer(c_int),target,dimension(:) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -708,9 +708,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(4),target :: x
+      integer(c_int),target :: x
       integer(c_int),value :: incx
-      integer(4),target :: y
+      integer(c_int),target :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -723,9 +723,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(4),target,dimension(:) :: x
+      integer(c_int),target,dimension(:) :: x
       integer(c_int),value :: incx
-      integer(4),target,dimension(:) :: y
+      integer(c_int),target,dimension(:) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -739,8 +739,8 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(4),target,dimension(:,:) :: A
-      integer(4),target,dimension(:,:) :: B
+      integer(c_int),target,dimension(:,:) :: A
+      integer(c_int),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
       ret = rocblas_set_matrix_async_(rows,cols,4,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
@@ -753,9 +753,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(4),target :: A
+      integer(c_int),target :: A
       integer(c_int),value :: lda
-      integer(4),target :: B
+      integer(c_int),target :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -769,9 +769,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(4),target,dimension(:) :: A
+      integer(c_int),target,dimension(:) :: A
       integer(c_int),value :: lda
-      integer(4),target,dimension(:) :: B
+      integer(c_int),target,dimension(:) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -785,8 +785,8 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(4),target,dimension(:,:) :: A
-      integer(4),target,dimension(:,:) :: B
+      integer(c_int),target,dimension(:,:) :: A
+      integer(c_int),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
       ret = rocblas_get_matrix_async_(rows,cols,4,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
@@ -799,9 +799,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(4),target :: A
+      integer(c_int),target :: A
       integer(c_int),value :: lda
-      integer(4),target :: B
+      integer(c_int),target :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -815,9 +815,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(4),target,dimension(:) :: A
+      integer(c_int),target,dimension(:) :: A
       integer(c_int),value :: lda
-      integer(4),target,dimension(:) :: B
+      integer(c_int),target,dimension(:) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -829,9 +829,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(8),target :: x
+      integer(c_long),target :: x
       integer(c_int),value :: incx
-      integer(8),target :: y
+      integer(c_long),target :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_set_vector_(n,8,c_loc(x),incx,c_loc(y),incy)
@@ -843,9 +843,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(8),target,dimension(:) :: x
+      integer(c_long),target,dimension(:) :: x
       integer(c_int),value :: incx
-      integer(8),target,dimension(:) :: y
+      integer(c_long),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_set_vector_(n,8,c_loc(x),incx,c_loc(y),incy)
@@ -857,9 +857,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(8),target :: x
+      integer(c_long),target :: x
       integer(c_int),value :: incx
-      integer(8),target :: y
+      integer(c_long),target :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_get_vector_(n,8,c_loc(x),incx,c_loc(y),incy)
@@ -871,9 +871,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(8),target,dimension(:) :: x
+      integer(c_long),target,dimension(:) :: x
       integer(c_int),value :: incx
-      integer(8),target,dimension(:) :: y
+      integer(c_long),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_get_vector_(n,8,c_loc(x),incx,c_loc(y),incy)
@@ -886,8 +886,8 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(8),target,dimension(:,:) :: A
-      integer(8),target,dimension(:,:) :: B
+      integer(c_long),target,dimension(:,:) :: A
+      integer(c_long),target,dimension(:,:) :: B
       !
       ret = rocblas_set_matrix_(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
@@ -899,9 +899,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(8),target :: A
+      integer(c_long),target :: A
       integer(c_int),value :: lda
-      integer(8),target :: B
+      integer(c_long),target :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_set_matrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
@@ -914,9 +914,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(8),target,dimension(:) :: A
+      integer(c_long),target,dimension(:) :: A
       integer(c_int),value :: lda
-      integer(8),target,dimension(:) :: B
+      integer(c_long),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_set_matrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
@@ -929,8 +929,8 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(8),target,dimension(:,:) :: A
-      integer(8),target,dimension(:,:) :: B
+      integer(c_long),target,dimension(:,:) :: A
+      integer(c_long),target,dimension(:,:) :: B
       !
       ret = rocblas_get_matrix_(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
@@ -942,9 +942,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(8),target :: A
+      integer(c_long),target :: A
       integer(c_int),value :: lda
-      integer(8),target :: B
+      integer(c_long),target :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_get_matrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
@@ -957,9 +957,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(8),target,dimension(:) :: A
+      integer(c_long),target,dimension(:) :: A
       integer(c_int),value :: lda
-      integer(8),target,dimension(:) :: B
+      integer(c_long),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_get_matrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
@@ -971,9 +971,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(8),target :: x
+      integer(c_long),target :: x
       integer(c_int),value :: incx
-      integer(8),target :: y
+      integer(c_long),target :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -986,9 +986,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(8),target,dimension(:) :: x
+      integer(c_long),target,dimension(:) :: x
       integer(c_int),value :: incx
-      integer(8),target,dimension(:) :: y
+      integer(c_long),target,dimension(:) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -1001,9 +1001,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(8),target :: x
+      integer(c_long),target :: x
       integer(c_int),value :: incx
-      integer(8),target :: y
+      integer(c_long),target :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -1016,9 +1016,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(8),target,dimension(:) :: x
+      integer(c_long),target,dimension(:) :: x
       integer(c_int),value :: incx
-      integer(8),target,dimension(:) :: y
+      integer(c_long),target,dimension(:) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -1032,8 +1032,8 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(8),target,dimension(:,:) :: A
-      integer(8),target,dimension(:,:) :: B
+      integer(c_long),target,dimension(:,:) :: A
+      integer(c_long),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
       ret = rocblas_set_matrix_async_(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
@@ -1046,9 +1046,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(8),target :: A
+      integer(c_long),target :: A
       integer(c_int),value :: lda
-      integer(8),target :: B
+      integer(c_long),target :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -1062,9 +1062,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(8),target,dimension(:) :: A
+      integer(c_long),target,dimension(:) :: A
       integer(c_int),value :: lda
-      integer(8),target,dimension(:) :: B
+      integer(c_long),target,dimension(:) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -1078,8 +1078,8 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(8),target,dimension(:,:) :: A
-      integer(8),target,dimension(:,:) :: B
+      integer(c_long),target,dimension(:,:) :: A
+      integer(c_long),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
       ret = rocblas_get_matrix_async_(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
@@ -1092,9 +1092,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(8),target :: A
+      integer(c_long),target :: A
       integer(c_int),value :: lda
-      integer(8),target :: B
+      integer(c_long),target :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -1108,9 +1108,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(8),target,dimension(:) :: A
+      integer(c_long),target,dimension(:) :: A
       integer(c_int),value :: lda
-      integer(8),target,dimension(:) :: B
+      integer(c_long),target,dimension(:) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -1122,9 +1122,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      real(4),target :: x
+      real(c_float),target :: x
       integer(c_int),value :: incx
-      real(4),target :: y
+      real(c_float),target :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_set_vector_(n,4,c_loc(x),incx,c_loc(y),incy)
@@ -1136,9 +1136,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      real(4),target,dimension(:) :: x
+      real(c_float),target,dimension(:) :: x
       integer(c_int),value :: incx
-      real(4),target,dimension(:) :: y
+      real(c_float),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_set_vector_(n,4,c_loc(x),incx,c_loc(y),incy)
@@ -1150,9 +1150,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      real(4),target :: x
+      real(c_float),target :: x
       integer(c_int),value :: incx
-      real(4),target :: y
+      real(c_float),target :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_get_vector_(n,4,c_loc(x),incx,c_loc(y),incy)
@@ -1164,9 +1164,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      real(4),target,dimension(:) :: x
+      real(c_float),target,dimension(:) :: x
       integer(c_int),value :: incx
-      real(4),target,dimension(:) :: y
+      real(c_float),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_get_vector_(n,4,c_loc(x),incx,c_loc(y),incy)
@@ -1179,8 +1179,8 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      real(4),target,dimension(:,:) :: A
-      real(4),target,dimension(:,:) :: B
+      real(c_float),target,dimension(:,:) :: A
+      real(c_float),target,dimension(:,:) :: B
       !
       ret = rocblas_set_matrix_(rows,cols,4,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
@@ -1192,9 +1192,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      real(4),target :: A
+      real(c_float),target :: A
       integer(c_int),value :: lda
-      real(4),target :: B
+      real(c_float),target :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_set_matrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
@@ -1207,9 +1207,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      real(4),target,dimension(:) :: A
+      real(c_float),target,dimension(:) :: A
       integer(c_int),value :: lda
-      real(4),target,dimension(:) :: B
+      real(c_float),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_set_matrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
@@ -1222,8 +1222,8 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      real(4),target,dimension(:,:) :: A
-      real(4),target,dimension(:,:) :: B
+      real(c_float),target,dimension(:,:) :: A
+      real(c_float),target,dimension(:,:) :: B
       !
       ret = rocblas_get_matrix_(rows,cols,4,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
@@ -1235,9 +1235,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      real(4),target :: A
+      real(c_float),target :: A
       integer(c_int),value :: lda
-      real(4),target :: B
+      real(c_float),target :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_get_matrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
@@ -1250,9 +1250,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      real(4),target,dimension(:) :: A
+      real(c_float),target,dimension(:) :: A
       integer(c_int),value :: lda
-      real(4),target,dimension(:) :: B
+      real(c_float),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_get_matrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
@@ -1264,9 +1264,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      real(4),target :: x
+      real(c_float),target :: x
       integer(c_int),value :: incx
-      real(4),target :: y
+      real(c_float),target :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -1279,9 +1279,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      real(4),target,dimension(:) :: x
+      real(c_float),target,dimension(:) :: x
       integer(c_int),value :: incx
-      real(4),target,dimension(:) :: y
+      real(c_float),target,dimension(:) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -1294,9 +1294,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      real(4),target :: x
+      real(c_float),target :: x
       integer(c_int),value :: incx
-      real(4),target :: y
+      real(c_float),target :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -1309,9 +1309,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      real(4),target,dimension(:) :: x
+      real(c_float),target,dimension(:) :: x
       integer(c_int),value :: incx
-      real(4),target,dimension(:) :: y
+      real(c_float),target,dimension(:) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -1325,8 +1325,8 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      real(4),target,dimension(:,:) :: A
-      real(4),target,dimension(:,:) :: B
+      real(c_float),target,dimension(:,:) :: A
+      real(c_float),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
       ret = rocblas_set_matrix_async_(rows,cols,4,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
@@ -1339,9 +1339,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      real(4),target :: A
+      real(c_float),target :: A
       integer(c_int),value :: lda
-      real(4),target :: B
+      real(c_float),target :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -1355,9 +1355,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      real(4),target,dimension(:) :: A
+      real(c_float),target,dimension(:) :: A
       integer(c_int),value :: lda
-      real(4),target,dimension(:) :: B
+      real(c_float),target,dimension(:) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -1371,8 +1371,8 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      real(4),target,dimension(:,:) :: A
-      real(4),target,dimension(:,:) :: B
+      real(c_float),target,dimension(:,:) :: A
+      real(c_float),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
       ret = rocblas_get_matrix_async_(rows,cols,4,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
@@ -1385,9 +1385,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      real(4),target :: A
+      real(c_float),target :: A
       integer(c_int),value :: lda
-      real(4),target :: B
+      real(c_float),target :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -1401,9 +1401,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      real(4),target,dimension(:) :: A
+      real(c_float),target,dimension(:) :: A
       integer(c_int),value :: lda
-      real(4),target,dimension(:) :: B
+      real(c_float),target,dimension(:) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -1415,9 +1415,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      real(8),target :: x
+      real(c_double),target :: x
       integer(c_int),value :: incx
-      real(8),target :: y
+      real(c_double),target :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_set_vector_(n,8,c_loc(x),incx,c_loc(y),incy)
@@ -1429,9 +1429,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      real(8),target,dimension(:) :: x
+      real(c_double),target,dimension(:) :: x
       integer(c_int),value :: incx
-      real(8),target,dimension(:) :: y
+      real(c_double),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_set_vector_(n,8,c_loc(x),incx,c_loc(y),incy)
@@ -1443,9 +1443,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      real(8),target :: x
+      real(c_double),target :: x
       integer(c_int),value :: incx
-      real(8),target :: y
+      real(c_double),target :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_get_vector_(n,8,c_loc(x),incx,c_loc(y),incy)
@@ -1457,9 +1457,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      real(8),target,dimension(:) :: x
+      real(c_double),target,dimension(:) :: x
       integer(c_int),value :: incx
-      real(8),target,dimension(:) :: y
+      real(c_double),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_get_vector_(n,8,c_loc(x),incx,c_loc(y),incy)
@@ -1472,8 +1472,8 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      real(8),target,dimension(:,:) :: A
-      real(8),target,dimension(:,:) :: B
+      real(c_double),target,dimension(:,:) :: A
+      real(c_double),target,dimension(:,:) :: B
       !
       ret = rocblas_set_matrix_(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
@@ -1485,9 +1485,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      real(8),target :: A
+      real(c_double),target :: A
       integer(c_int),value :: lda
-      real(8),target :: B
+      real(c_double),target :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_set_matrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
@@ -1500,9 +1500,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      real(8),target,dimension(:) :: A
+      real(c_double),target,dimension(:) :: A
       integer(c_int),value :: lda
-      real(8),target,dimension(:) :: B
+      real(c_double),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_set_matrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
@@ -1515,8 +1515,8 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      real(8),target,dimension(:,:) :: A
-      real(8),target,dimension(:,:) :: B
+      real(c_double),target,dimension(:,:) :: A
+      real(c_double),target,dimension(:,:) :: B
       !
       ret = rocblas_get_matrix_(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
@@ -1528,9 +1528,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      real(8),target :: A
+      real(c_double),target :: A
       integer(c_int),value :: lda
-      real(8),target :: B
+      real(c_double),target :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_get_matrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
@@ -1543,9 +1543,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      real(8),target,dimension(:) :: A
+      real(c_double),target,dimension(:) :: A
       integer(c_int),value :: lda
-      real(8),target,dimension(:) :: B
+      real(c_double),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_get_matrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
@@ -1557,9 +1557,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      real(8),target :: x
+      real(c_double),target :: x
       integer(c_int),value :: incx
-      real(8),target :: y
+      real(c_double),target :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -1572,9 +1572,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      real(8),target,dimension(:) :: x
+      real(c_double),target,dimension(:) :: x
       integer(c_int),value :: incx
-      real(8),target,dimension(:) :: y
+      real(c_double),target,dimension(:) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -1587,9 +1587,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      real(8),target :: x
+      real(c_double),target :: x
       integer(c_int),value :: incx
-      real(8),target :: y
+      real(c_double),target :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -1602,9 +1602,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      real(8),target,dimension(:) :: x
+      real(c_double),target,dimension(:) :: x
       integer(c_int),value :: incx
-      real(8),target,dimension(:) :: y
+      real(c_double),target,dimension(:) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -1618,8 +1618,8 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      real(8),target,dimension(:,:) :: A
-      real(8),target,dimension(:,:) :: B
+      real(c_double),target,dimension(:,:) :: A
+      real(c_double),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
       ret = rocblas_set_matrix_async_(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
@@ -1632,9 +1632,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      real(8),target :: A
+      real(c_double),target :: A
       integer(c_int),value :: lda
-      real(8),target :: B
+      real(c_double),target :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -1648,9 +1648,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      real(8),target,dimension(:) :: A
+      real(c_double),target,dimension(:) :: A
       integer(c_int),value :: lda
-      real(8),target,dimension(:) :: B
+      real(c_double),target,dimension(:) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -1664,8 +1664,8 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      real(8),target,dimension(:,:) :: A
-      real(8),target,dimension(:,:) :: B
+      real(c_double),target,dimension(:,:) :: A
+      real(c_double),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
       ret = rocblas_get_matrix_async_(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
@@ -1678,9 +1678,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      real(8),target :: A
+      real(c_double),target :: A
       integer(c_int),value :: lda
-      real(8),target :: B
+      real(c_double),target :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -1694,9 +1694,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      real(8),target,dimension(:) :: A
+      real(c_double),target,dimension(:) :: A
       integer(c_int),value :: lda
-      real(8),target,dimension(:) :: B
+      real(c_double),target,dimension(:) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -1708,9 +1708,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      complex(4),target :: x
+      complex(c_float_complex),target :: x
       integer(c_int),value :: incx
-      complex(4),target :: y
+      complex(c_float_complex),target :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_set_vector_(n,2*4,c_loc(x),incx,c_loc(y),incy)
@@ -1722,9 +1722,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      complex(4),target,dimension(:) :: x
+      complex(c_float_complex),target,dimension(:) :: x
       integer(c_int),value :: incx
-      complex(4),target,dimension(:) :: y
+      complex(c_float_complex),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_set_vector_(n,2*4,c_loc(x),incx,c_loc(y),incy)
@@ -1736,9 +1736,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      complex(4),target :: x
+      complex(c_float_complex),target :: x
       integer(c_int),value :: incx
-      complex(4),target :: y
+      complex(c_float_complex),target :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_get_vector_(n,2*4,c_loc(x),incx,c_loc(y),incy)
@@ -1750,9 +1750,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      complex(4),target,dimension(:) :: x
+      complex(c_float_complex),target,dimension(:) :: x
       integer(c_int),value :: incx
-      complex(4),target,dimension(:) :: y
+      complex(c_float_complex),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_get_vector_(n,2*4,c_loc(x),incx,c_loc(y),incy)
@@ -1765,8 +1765,8 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      complex(4),target,dimension(:,:) :: A
-      complex(4),target,dimension(:,:) :: B
+      complex(c_float_complex),target,dimension(:,:) :: A
+      complex(c_float_complex),target,dimension(:,:) :: B
       !
       ret = rocblas_set_matrix_(rows,cols,2*4,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
@@ -1778,9 +1778,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      complex(4),target :: A
+      complex(c_float_complex),target :: A
       integer(c_int),value :: lda
-      complex(4),target :: B
+      complex(c_float_complex),target :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_set_matrix_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb)
@@ -1793,9 +1793,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      complex(4),target,dimension(:) :: A
+      complex(c_float_complex),target,dimension(:) :: A
       integer(c_int),value :: lda
-      complex(4),target,dimension(:) :: B
+      complex(c_float_complex),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_set_matrix_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb)
@@ -1808,8 +1808,8 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      complex(4),target,dimension(:,:) :: A
-      complex(4),target,dimension(:,:) :: B
+      complex(c_float_complex),target,dimension(:,:) :: A
+      complex(c_float_complex),target,dimension(:,:) :: B
       !
       ret = rocblas_get_matrix_(rows,cols,2*4,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
@@ -1821,9 +1821,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      complex(4),target :: A
+      complex(c_float_complex),target :: A
       integer(c_int),value :: lda
-      complex(4),target :: B
+      complex(c_float_complex),target :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_get_matrix_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb)
@@ -1836,9 +1836,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      complex(4),target,dimension(:) :: A
+      complex(c_float_complex),target,dimension(:) :: A
       integer(c_int),value :: lda
-      complex(4),target,dimension(:) :: B
+      complex(c_float_complex),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_get_matrix_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb)
@@ -1850,9 +1850,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      complex(4),target :: x
+      complex(c_float_complex),target :: x
       integer(c_int),value :: incx
-      complex(4),target :: y
+      complex(c_float_complex),target :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -1865,9 +1865,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      complex(4),target,dimension(:) :: x
+      complex(c_float_complex),target,dimension(:) :: x
       integer(c_int),value :: incx
-      complex(4),target,dimension(:) :: y
+      complex(c_float_complex),target,dimension(:) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -1880,9 +1880,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      complex(4),target :: x
+      complex(c_float_complex),target :: x
       integer(c_int),value :: incx
-      complex(4),target :: y
+      complex(c_float_complex),target :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -1895,9 +1895,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      complex(4),target,dimension(:) :: x
+      complex(c_float_complex),target,dimension(:) :: x
       integer(c_int),value :: incx
-      complex(4),target,dimension(:) :: y
+      complex(c_float_complex),target,dimension(:) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -1911,8 +1911,8 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      complex(4),target,dimension(:,:) :: A
-      complex(4),target,dimension(:,:) :: B
+      complex(c_float_complex),target,dimension(:,:) :: A
+      complex(c_float_complex),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
       ret = rocblas_set_matrix_async_(rows,cols,2*4,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
@@ -1925,9 +1925,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      complex(4),target :: A
+      complex(c_float_complex),target :: A
       integer(c_int),value :: lda
-      complex(4),target :: B
+      complex(c_float_complex),target :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -1941,9 +1941,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      complex(4),target,dimension(:) :: A
+      complex(c_float_complex),target,dimension(:) :: A
       integer(c_int),value :: lda
-      complex(4),target,dimension(:) :: B
+      complex(c_float_complex),target,dimension(:) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -1957,8 +1957,8 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      complex(4),target,dimension(:,:) :: A
-      complex(4),target,dimension(:,:) :: B
+      complex(c_float_complex),target,dimension(:,:) :: A
+      complex(c_float_complex),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
       ret = rocblas_get_matrix_async_(rows,cols,2*4,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
@@ -1971,9 +1971,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      complex(4),target :: A
+      complex(c_float_complex),target :: A
       integer(c_int),value :: lda
-      complex(4),target :: B
+      complex(c_float_complex),target :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -1987,9 +1987,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      complex(4),target,dimension(:) :: A
+      complex(c_float_complex),target,dimension(:) :: A
       integer(c_int),value :: lda
-      complex(4),target,dimension(:) :: B
+      complex(c_float_complex),target,dimension(:) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -2001,9 +2001,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      complex(8),target :: x
+      complex(c_double_complex),target :: x
       integer(c_int),value :: incx
-      complex(8),target :: y
+      complex(c_double_complex),target :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_set_vector_(n,2*8,c_loc(x),incx,c_loc(y),incy)
@@ -2015,9 +2015,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      complex(8),target,dimension(:) :: x
+      complex(c_double_complex),target,dimension(:) :: x
       integer(c_int),value :: incx
-      complex(8),target,dimension(:) :: y
+      complex(c_double_complex),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_set_vector_(n,2*8,c_loc(x),incx,c_loc(y),incy)
@@ -2029,9 +2029,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      complex(8),target :: x
+      complex(c_double_complex),target :: x
       integer(c_int),value :: incx
-      complex(8),target :: y
+      complex(c_double_complex),target :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_get_vector_(n,2*8,c_loc(x),incx,c_loc(y),incy)
@@ -2043,9 +2043,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      complex(8),target,dimension(:) :: x
+      complex(c_double_complex),target,dimension(:) :: x
       integer(c_int),value :: incx
-      complex(8),target,dimension(:) :: y
+      complex(c_double_complex),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_get_vector_(n,2*8,c_loc(x),incx,c_loc(y),incy)
@@ -2058,8 +2058,8 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      complex(8),target,dimension(:,:) :: A
-      complex(8),target,dimension(:,:) :: B
+      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_double_complex),target,dimension(:,:) :: B
       !
       ret = rocblas_set_matrix_(rows,cols,2*8,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
@@ -2071,9 +2071,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      complex(8),target :: A
+      complex(c_double_complex),target :: A
       integer(c_int),value :: lda
-      complex(8),target :: B
+      complex(c_double_complex),target :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_set_matrix_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb)
@@ -2086,9 +2086,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      complex(8),target,dimension(:) :: A
+      complex(c_double_complex),target,dimension(:) :: A
       integer(c_int),value :: lda
-      complex(8),target,dimension(:) :: B
+      complex(c_double_complex),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_set_matrix_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb)
@@ -2101,8 +2101,8 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      complex(8),target,dimension(:,:) :: A
-      complex(8),target,dimension(:,:) :: B
+      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_double_complex),target,dimension(:,:) :: B
       !
       ret = rocblas_get_matrix_(rows,cols,2*8,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
@@ -2114,9 +2114,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      complex(8),target :: A
+      complex(c_double_complex),target :: A
       integer(c_int),value :: lda
-      complex(8),target :: B
+      complex(c_double_complex),target :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_get_matrix_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb)
@@ -2129,9 +2129,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      complex(8),target,dimension(:) :: A
+      complex(c_double_complex),target,dimension(:) :: A
       integer(c_int),value :: lda
-      complex(8),target,dimension(:) :: B
+      complex(c_double_complex),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_get_matrix_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb)
@@ -2143,9 +2143,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      complex(8),target :: x
+      complex(c_double_complex),target :: x
       integer(c_int),value :: incx
-      complex(8),target :: y
+      complex(c_double_complex),target :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -2158,9 +2158,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      complex(8),target,dimension(:) :: x
+      complex(c_double_complex),target,dimension(:) :: x
       integer(c_int),value :: incx
-      complex(8),target,dimension(:) :: y
+      complex(c_double_complex),target,dimension(:) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -2173,9 +2173,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      complex(8),target :: x
+      complex(c_double_complex),target :: x
       integer(c_int),value :: incx
-      complex(8),target :: y
+      complex(c_double_complex),target :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -2188,9 +2188,9 @@ contains
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      complex(8),target,dimension(:) :: x
+      complex(c_double_complex),target,dimension(:) :: x
       integer(c_int),value :: incx
-      complex(8),target,dimension(:) :: y
+      complex(c_double_complex),target,dimension(:) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -2204,8 +2204,8 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      complex(8),target,dimension(:,:) :: A
-      complex(8),target,dimension(:,:) :: B
+      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_double_complex),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
       ret = rocblas_set_matrix_async_(rows,cols,2*8,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
@@ -2218,9 +2218,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      complex(8),target :: A
+      complex(c_double_complex),target :: A
       integer(c_int),value :: lda
-      complex(8),target :: B
+      complex(c_double_complex),target :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -2234,9 +2234,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      complex(8),target,dimension(:) :: A
+      complex(c_double_complex),target,dimension(:) :: A
       integer(c_int),value :: lda
-      complex(8),target,dimension(:) :: B
+      complex(c_double_complex),target,dimension(:) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -2250,8 +2250,8 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      complex(8),target,dimension(:,:) :: A
-      complex(8),target,dimension(:,:) :: B
+      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_double_complex),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
       ret = rocblas_get_matrix_async_(rows,cols,2*8,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
@@ -2264,9 +2264,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      complex(8),target :: A
+      complex(c_double_complex),target :: A
       integer(c_int),value :: lda
-      complex(8),target :: B
+      complex(c_double_complex),target :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -2280,9 +2280,9 @@ contains
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      complex(8),target,dimension(:) :: A
+      complex(c_double_complex),target,dimension(:) :: A
       integer(c_int),value :: lda
-      complex(8),target,dimension(:) :: B
+      complex(c_double_complex),target,dimension(:) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !

@@ -56,7 +56,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipInit_
 #endif
-      integer(kind=4),value :: flags
+      integer(c_int),value :: flags
     end function
 
   end interface
@@ -761,7 +761,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipSetDeviceFlags_
 #endif
-      integer(kind=4),value :: flags
+      integer(c_int),value :: flags
     end function
 
   end interface
@@ -929,7 +929,7 @@ module hipfort
 #endif
       type(c_ptr) :: devPtr
       type(c_ptr),value :: handle
-      integer(kind=4),value :: flags
+      integer(c_int),value :: flags
     end function
 
   end interface
@@ -1269,7 +1269,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipStreamCreateWithFlags_
 #endif
       type(c_ptr) :: stream
-      integer(kind=4),value :: flags
+      integer(c_int),value :: flags
     end function
 
   end interface
@@ -1307,7 +1307,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipStreamCreateWithPriority_
 #endif
       type(c_ptr) :: stream
-      integer(kind=4),value :: flags
+      integer(c_int),value :: flags
       integer(c_int),value :: priority
     end function
 
@@ -1495,7 +1495,7 @@ module hipfort
 #endif
       type(c_ptr),value :: stream
       type(c_ptr),value :: event
-      integer(kind=4),value :: flags
+      integer(c_int),value :: flags
     end function
 
   end interface
@@ -1603,7 +1603,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipExtStreamCreateWithCUMask_
 #endif
       type(c_ptr) :: stream
-      integer(kind=4),value :: cuMaskSize
+      integer(c_int),value :: cuMaskSize
       type(c_ptr),value :: cuMask
     end function
 
@@ -1637,7 +1637,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipExtStreamGetCUMask_
 #endif
       type(c_ptr),value :: stream
-      integer(kind=4),value :: cuMaskSize
+      integer(c_int),value :: cuMaskSize
       type(c_ptr),value :: cuMask
     end function
 
@@ -1676,7 +1676,7 @@ module hipfort
       type(c_ptr),value :: stream
       type(c_funptr),value :: callback
       type(c_ptr),value :: userData
-      integer(kind=4),value :: flags
+      integer(c_int),value :: flags
     end function
 
   end interface
@@ -1717,8 +1717,8 @@ module hipfort
 #endif
       type(c_ptr),value :: stream
       type(c_ptr),value :: ptr
-      integer(kind=4),value :: myValue
-      integer(kind=4),value :: flags
+      integer(c_int),value :: myValue
+      integer(c_int),value :: flags
     end function
 
   end interface
@@ -1759,8 +1759,8 @@ module hipfort
 #endif
       type(c_ptr),value :: stream
       type(c_ptr),value :: ptr
-      integer(kind=8),value :: myValue
-      integer(kind=4),value :: flags
+      integer(c_long),value :: myValue
+      integer(c_int),value :: flags
     end function
 
   end interface
@@ -1803,7 +1803,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipEventCreateWithFlags_
 #endif
       type(c_ptr) :: event
-      integer(kind=4),value :: flags
+      integer(c_int),value :: flags
     end function
 
   end interface
@@ -2150,7 +2150,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipDrvPointerGetAttributes_
 #endif
-      integer(kind=4),value :: numAttributes
+      integer(c_int),value :: numAttributes
       type(c_ptr),value :: attributes
       type(c_ptr) :: myData
       type(c_ptr),value :: ptr
@@ -2187,7 +2187,7 @@ module hipfort
 #endif
       type(c_ptr) :: extSemArray
       type(c_ptr),value :: paramsArray
-      integer(kind=4),value :: numExtSems
+      integer(c_int),value :: numExtSems
       type(c_ptr),value :: stream
     end function
 
@@ -2222,7 +2222,7 @@ module hipfort
 #endif
       type(c_ptr) :: extSemArray
       type(c_ptr),value :: paramsArray
-      integer(kind=4),value :: numExtSems
+      integer(c_int),value :: numExtSems
       type(c_ptr),value :: stream
     end function
 
@@ -2350,7 +2350,7 @@ module hipfort
 #endif
       type(c_ptr) :: ptr
       integer(c_size_t),value :: sizeBytes
-      integer(kind=4),value :: flags
+      integer(c_int),value :: flags
     end function
 
   end interface
@@ -2574,7 +2574,7 @@ module hipfort
       type(c_ptr),value :: stream
       type(c_ptr),value :: dev_ptr
       integer(c_size_t),value :: length
-      integer(kind=4),value :: flags
+      integer(c_int),value :: flags
     end function
 
   end interface
@@ -2599,7 +2599,7 @@ module hipfort
 #endif
       type(c_ptr) :: ptr
       integer(c_size_t),value :: mySize
-      integer(kind=4),value :: flags
+      integer(c_int),value :: flags
     end function
 
   end interface
@@ -2685,7 +2685,7 @@ module hipfort
       integer(c_size_t) :: pitch
       integer(c_size_t),value :: widthInBytes
       integer(c_size_t),value :: height
-      integer(kind=4),value :: elementSizeBytes
+      integer(c_int),value :: elementSizeBytes
     end function
 
   end interface
@@ -3228,7 +3228,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipMemsetD8_
 #endif
       type(c_ptr),value :: dest
-      integer(kind=1),value :: myValue
+      character(c_char),value :: myValue
       integer(c_size_t),value :: count
     end function
 
@@ -3265,7 +3265,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipMemsetD8Async_
 #endif
       type(c_ptr),value :: dest
-      integer(kind=1),value :: myValue
+      character(c_char),value :: myValue
       integer(c_size_t),value :: count
       type(c_ptr),value :: stream
     end function
@@ -3297,7 +3297,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipMemsetD16_
 #endif
       type(c_ptr),value :: dest
-      integer(kind=2),value :: myValue
+      integer(c_short),value :: myValue
       integer(c_size_t),value :: count
     end function
 
@@ -3334,7 +3334,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipMemsetD16Async_
 #endif
       type(c_ptr),value :: dest
-      integer(kind=2),value :: myValue
+      integer(c_short),value :: myValue
       integer(c_size_t),value :: count
       type(c_ptr),value :: stream
     end function
@@ -3665,7 +3665,7 @@ module hipfort
       type(c_ptr) :: desc
       integer(c_size_t),value :: width
       integer(c_size_t),value :: height
-      integer(kind=4),value :: flags
+      integer(c_int),value :: flags
     end function
 
   end interface
@@ -3849,7 +3849,7 @@ module hipfort
       type(c_ptr) :: array
       type(c_ptr) :: desc
       type(c_ptr),value :: extent
-      integer(kind=4),value :: flags
+      integer(c_int),value :: flags
     end function
 
   end interface
@@ -3883,8 +3883,8 @@ module hipfort
       type(c_ptr) :: mipmappedArray
       type(c_ptr) :: desc
       type(c_ptr),value :: extent
-      integer(kind=4),value :: numLevels
-      integer(kind=4),value :: flags
+      integer(c_int),value :: numLevels
+      integer(c_int),value :: flags
     end function
 
   end interface
@@ -3915,7 +3915,7 @@ module hipfort
 #endif
       type(c_ptr) :: levelArray
       type(c_ptr),value :: mipmappedArray
-      integer(kind=4),value :: level
+      integer(c_int),value :: level
     end function
 
   end interface
@@ -4482,7 +4482,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipDeviceEnablePeerAccess_
 #endif
       integer(c_int),value :: peerDeviceId
-      integer(kind=4),value :: flags
+      integer(c_int),value :: flags
     end function
 
   end interface
@@ -4643,7 +4643,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipCtxCreate_
 #endif
       type(c_ptr) :: ctx
-      integer(kind=4),value :: flags
+      integer(c_int),value :: flags
       integer(c_int),value :: device
     end function
 
@@ -4967,7 +4967,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipCtxEnablePeerAccess_
 #endif
       type(c_ptr),value :: peerCtx
-      integer(kind=4),value :: flags
+      integer(c_int),value :: flags
     end function
 
   end interface
@@ -5150,7 +5150,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipDevicePrimaryCtxSetFlags_
 #endif
       integer(c_int),value :: dev
-      integer(kind=4),value :: flags
+      integer(c_int),value :: flags
     end function
 
   end interface
@@ -5398,7 +5398,7 @@ module hipfort
 #endif
       type(c_ptr) :: myModule
       type(c_ptr),value :: image
-      integer(kind=4),value :: numOptions
+      integer(c_int),value :: numOptions
       type(c_ptr),value :: options
       type(c_ptr) :: optionValues
     end function
@@ -5445,13 +5445,13 @@ module hipfort
       integer(kind(hipSuccess)) :: hipModuleLaunchKernel_
 #endif
       type(c_ptr),value :: f
-      integer(kind=4),value :: gridDimX
-      integer(kind=4),value :: gridDimY
-      integer(kind=4),value :: gridDimZ
-      integer(kind=4),value :: blockDimX
-      integer(kind=4),value :: blockDimY
-      integer(kind=4),value :: blockDimZ
-      integer(kind=4),value :: sharedMemBytes
+      integer(c_int),value :: gridDimX
+      integer(c_int),value :: gridDimY
+      integer(c_int),value :: gridDimZ
+      integer(c_int),value :: blockDimX
+      integer(c_int),value :: blockDimY
+      integer(c_int),value :: blockDimZ
+      integer(c_int),value :: sharedMemBytes
       type(c_ptr),value :: stream
       type(c_ptr) :: kernelParams
       type(c_ptr) :: extra
@@ -5493,7 +5493,7 @@ module hipfort
       type(dim3),value :: gridDim
       type(dim3),value :: blockDimX
       type(c_ptr) :: kernelParams
-      integer(kind=4),value :: sharedMemBytes
+      integer(c_int),value :: sharedMemBytes
       type(c_ptr),value :: stream
     end function
 
@@ -5526,7 +5526,7 @@ module hipfort
 #endif
       type(c_ptr),value :: launchParamsList
       integer(c_int),value :: numDevices
-      integer(kind=4),value :: flags
+      integer(c_int),value :: flags
     end function
 
   end interface
@@ -5559,7 +5559,7 @@ module hipfort
 #endif
       type(c_ptr),value :: launchParamsList
       integer(c_int),value :: numDevices
-      integer(kind=4),value :: flags
+      integer(c_int),value :: flags
     end function
 
   end interface
@@ -5614,7 +5614,7 @@ module hipfort
       type(c_ptr),value :: f
       integer(c_size_t),value :: dynSharedMemPerBlk
       integer(c_int),value :: blockSizeLimit
-      integer(kind=4),value :: flags
+      integer(c_int),value :: flags
     end function
 
   end interface
@@ -5709,7 +5709,7 @@ module hipfort
       type(c_ptr),value :: f
       integer(c_int),value :: blockSize
       integer(c_size_t),value :: dynSharedMemPerBlk
-      integer(kind=4),value :: flags
+      integer(c_int),value :: flags
     end function
 
   end interface
@@ -6446,7 +6446,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipTexRefSetMaxAnisotropy_
 #endif
       type(c_ptr) :: texRef
-      integer(kind=4),value :: maxAniso
+      integer(c_int),value :: maxAniso
     end function
 
   end interface
@@ -6666,7 +6666,7 @@ module hipfort
 #endif
       type(c_ptr) :: tex
       type(c_ptr),value :: array
-      integer(kind=4),value :: flags
+      integer(c_int),value :: flags
     end function
 
   end interface
@@ -6714,7 +6714,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipTexRefSetFlags_
 #endif
       type(c_ptr) :: texRef
-      integer(kind=4),value :: Flags
+      integer(c_int),value :: Flags
     end function
 
   end interface
@@ -6982,7 +6982,7 @@ module hipfort
 #endif
       type(c_ptr) :: texRef
       type(c_ptr) :: mipmappedArray
-      integer(kind=4),value :: Flags
+      integer(c_int),value :: Flags
     end function
 
   end interface
@@ -7007,7 +7007,7 @@ module hipfort
 #endif
       type(c_ptr) :: pHandle
       type(c_ptr) :: pMipmappedArrayDesc
-      integer(kind=4),value :: numMipmapLevels
+      integer(c_int),value :: numMipmapLevels
     end function
 
   end interface
@@ -7055,7 +7055,7 @@ module hipfort
 #endif
       type(c_ptr) :: pLevelArray
       type(c_ptr),value :: hMipMappedArray
-      integer(kind=4),value :: level
+      integer(c_int),value :: level
     end function
 
   end interface
@@ -7081,7 +7081,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipRegisterApiCallback_
 #endif
-      integer(kind=4),value :: id
+      integer(c_int),value :: id
       type(c_ptr),value :: fun
       type(c_ptr),value :: arg
     end function
@@ -7106,7 +7106,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipRemoveApiCallback_
 #endif
-      integer(kind=4),value :: id
+      integer(c_int),value :: id
     end function
 
   end interface
@@ -7129,7 +7129,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipRegisterActivityCallback_
 #endif
-      integer(kind=4),value :: id
+      integer(c_int),value :: id
       type(c_ptr),value :: fun
       type(c_ptr),value :: arg
     end function
@@ -7154,7 +7154,7 @@ module hipfort
 #else
       integer(kind(hipSuccess)) :: hipRemoveActivityCallback_
 #endif
-      integer(kind=4),value :: id
+      integer(c_int),value :: id
     end function
 
   end interface
@@ -7365,7 +7365,7 @@ module hipfort
       type(c_ptr),value :: stream
       type(c_ptr) :: dependencies
       integer(c_size_t),value :: numDependencies
-      integer(kind=4),value :: flags
+      integer(c_int),value :: flags
     end function
 
   end interface
@@ -7398,7 +7398,7 @@ module hipfort
       integer(kind(hipSuccess)) :: hipGraphCreate_
 #endif
       type(c_ptr) :: pGraph
-      integer(kind=4),value :: flags
+      integer(c_int),value :: flags
     end function
 
   end interface

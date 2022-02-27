@@ -512,7 +512,7 @@ module hipfort_rocrand
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_set_quasi_random_generator_dimensions_
       type(c_ptr),value :: generator
-      integer(kind=4),value :: dimensions
+      integer(c_int),value :: dimensions
     end function
 
   end interface
@@ -582,8 +582,8 @@ module hipfort_rocrand
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_create_discrete_distribution_
       type(c_ptr),value :: probabilities
-      integer(kind=4),value :: mySize
-      integer(kind=4),value :: offset
+      integer(c_int),value :: mySize
+      integer(c_int),value :: offset
       type(c_ptr) :: discrete_distribution
     end function
 

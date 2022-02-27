@@ -22631,7 +22631,7 @@ module hipfort_rocblas
       integer(kind(rocblas_datatype_f16_r)),value :: compute_type
       integer(kind(rocblas_gemm_algo_standard)),value :: algo
       integer(c_int32_t),value :: solution_index
-      integer(kind=4),value :: flags
+      integer(c_int),value :: flags
     end function
 
   end interface
@@ -22830,7 +22830,7 @@ module hipfort_rocblas
       integer(kind(rocblas_datatype_f16_r)),value :: compute_type
       integer(kind(rocblas_gemm_algo_standard)),value :: algo
       integer(c_int32_t),value :: solution_index
-      integer(kind=4),value :: flags
+      integer(c_int),value :: flags
     end function
 
   end interface
@@ -23054,7 +23054,7 @@ module hipfort_rocblas
       integer(kind(rocblas_datatype_f16_r)),value :: compute_type
       integer(kind(rocblas_gemm_algo_standard)),value :: algo
       integer(c_int32_t),value :: solution_index
-      integer(kind=4),value :: flags
+      integer(c_int),value :: flags
     end function
 
   end interface
@@ -23183,7 +23183,7 @@ module hipfort_rocblas
       integer(kind(rocblas_datatype_f16_r)),value :: compute_type
       integer(kind(rocblas_gemm_algo_standard)),value :: algo
       integer(c_int32_t),value :: solution_index
-      integer(kind=4),value :: flags
+      integer(c_int),value :: flags
     end function
 
   end interface

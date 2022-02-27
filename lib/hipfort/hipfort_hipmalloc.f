@@ -807,8 +807,8 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      logical,pointer,intent(inout) :: ptr
-      logical,target,intent(in),optional :: dsource,source
+      logical(c_bool),pointer,intent(inout) :: ptr
+      logical(c_bool),target,intent(in),optional :: dsource,source
          
       !
       type(c_ptr) :: cptr
@@ -849,13 +849,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      logical,pointer,dimension(:),intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(1),dims(1)
       integer(8),intent(in),optional :: lbounds8(1),dims8(1)
-      logical,target,dimension(:),intent(in),optional :: dsource,source,mold
+      logical(c_bool),target,dimension(:),intent(in),optional :: dsource,source,mold
          
       ! 
-      logical,pointer,dimension(:) :: tmp
+      logical(c_bool),pointer,dimension(:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -921,7 +921,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:), intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:), intent(inout) :: ptr
       integer(c_int) :: length1 
          
       !
@@ -945,7 +945,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:), intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:), intent(inout) :: ptr
       integer(c_size_t) :: length1 
          
       !
@@ -970,13 +970,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      logical,pointer,dimension(:,:),intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(2),dims(2)
       integer(8),intent(in),optional :: lbounds8(2),dims8(2)
-      logical,target,dimension(:,:),intent(in),optional :: dsource,source,mold
+      logical(c_bool),target,dimension(:,:),intent(in),optional :: dsource,source,mold
          
       ! 
-      logical,pointer,dimension(:,:) :: tmp
+      logical(c_bool),pointer,dimension(:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -1042,7 +1042,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:), intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2 
          
       !
@@ -1066,7 +1066,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:), intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2 
          
       !
@@ -1091,13 +1091,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      logical,pointer,dimension(:,:,:),intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(3),dims(3)
       integer(8),intent(in),optional :: lbounds8(3),dims8(3)
-      logical,target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
+      logical(c_bool),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
          
       ! 
-      logical,pointer,dimension(:,:,:) :: tmp
+      logical(c_bool),pointer,dimension(:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -1163,7 +1163,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:,:), intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3 
          
       !
@@ -1187,7 +1187,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:,:), intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3 
          
       !
@@ -1212,13 +1212,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      logical,pointer,dimension(:,:,:,:),intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(4),dims(4)
       integer(8),intent(in),optional :: lbounds8(4),dims8(4)
-      logical,target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
+      logical(c_bool),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
          
       ! 
-      logical,pointer,dimension(:,:,:,:) :: tmp
+      logical(c_bool),pointer,dimension(:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -1284,7 +1284,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:,:,:), intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4 
          
       !
@@ -1308,7 +1308,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:,:,:), intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4 
          
       !
@@ -1333,13 +1333,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      logical,pointer,dimension(:,:,:,:,:),intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(5),dims(5)
       integer(8),intent(in),optional :: lbounds8(5),dims8(5)
-      logical,target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      logical(c_bool),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
          
       ! 
-      logical,pointer,dimension(:,:,:,:,:) :: tmp
+      logical(c_bool),pointer,dimension(:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -1405,7 +1405,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4,length5 
          
       !
@@ -1429,7 +1429,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4,length5 
          
       !
@@ -1454,13 +1454,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      logical,pointer,dimension(:,:,:,:,:,:),intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(6),dims(6)
       integer(8),intent(in),optional :: lbounds8(6),dims8(6)
-      logical,target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      logical(c_bool),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
          
       ! 
-      logical,pointer,dimension(:,:,:,:,:,:) :: tmp
+      logical(c_bool),pointer,dimension(:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -1526,7 +1526,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4,length5,length6 
          
       !
@@ -1550,7 +1550,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4,length5,length6 
          
       !
@@ -1575,13 +1575,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      logical,pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(7),dims(7)
       integer(8),intent(in),optional :: lbounds8(7),dims8(7)
-      logical,target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      logical(c_bool),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
          
       ! 
-      logical,pointer,dimension(:,:,:,:,:,:,:) :: tmp
+      logical(c_bool),pointer,dimension(:,:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -1647,7 +1647,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4,length5,length6,length7 
          
       !
@@ -1671,7 +1671,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4,length5,length6,length7 
          
       !
@@ -1697,8 +1697,8 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(4),pointer,intent(inout) :: ptr
-      integer(4),target,intent(in),optional :: dsource,source
+      integer(c_int),pointer,intent(inout) :: ptr
+      integer(c_int),target,intent(in),optional :: dsource,source
          
       !
       type(c_ptr) :: cptr
@@ -1739,13 +1739,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(4),pointer,dimension(:),intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(1),dims(1)
       integer(8),intent(in),optional :: lbounds8(1),dims8(1)
-      integer(4),target,dimension(:),intent(in),optional :: dsource,source,mold
+      integer(c_int),target,dimension(:),intent(in),optional :: dsource,source,mold
          
       ! 
-      integer(4),pointer,dimension(:) :: tmp
+      integer(c_int),pointer,dimension(:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -1811,7 +1811,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:), intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:), intent(inout) :: ptr
       integer(c_int) :: length1 
          
       !
@@ -1835,7 +1835,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:), intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:), intent(inout) :: ptr
       integer(c_size_t) :: length1 
          
       !
@@ -1860,13 +1860,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(4),pointer,dimension(:,:),intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(2),dims(2)
       integer(8),intent(in),optional :: lbounds8(2),dims8(2)
-      integer(4),target,dimension(:,:),intent(in),optional :: dsource,source,mold
+      integer(c_int),target,dimension(:,:),intent(in),optional :: dsource,source,mold
          
       ! 
-      integer(4),pointer,dimension(:,:) :: tmp
+      integer(c_int),pointer,dimension(:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -1932,7 +1932,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:), intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2 
          
       !
@@ -1956,7 +1956,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:), intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2 
          
       !
@@ -1981,13 +1981,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(4),pointer,dimension(:,:,:),intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(3),dims(3)
       integer(8),intent(in),optional :: lbounds8(3),dims8(3)
-      integer(4),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
+      integer(c_int),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
          
       ! 
-      integer(4),pointer,dimension(:,:,:) :: tmp
+      integer(c_int),pointer,dimension(:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -2053,7 +2053,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:,:), intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3 
          
       !
@@ -2077,7 +2077,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:,:), intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3 
          
       !
@@ -2102,13 +2102,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(4),pointer,dimension(:,:,:,:),intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(4),dims(4)
       integer(8),intent(in),optional :: lbounds8(4),dims8(4)
-      integer(4),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
+      integer(c_int),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
          
       ! 
-      integer(4),pointer,dimension(:,:,:,:) :: tmp
+      integer(c_int),pointer,dimension(:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -2174,7 +2174,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:,:,:), intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4 
          
       !
@@ -2198,7 +2198,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:,:,:), intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4 
          
       !
@@ -2223,13 +2223,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(4),pointer,dimension(:,:,:,:,:),intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(5),dims(5)
       integer(8),intent(in),optional :: lbounds8(5),dims8(5)
-      integer(4),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      integer(c_int),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
          
       ! 
-      integer(4),pointer,dimension(:,:,:,:,:) :: tmp
+      integer(c_int),pointer,dimension(:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -2295,7 +2295,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4,length5 
          
       !
@@ -2319,7 +2319,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4,length5 
          
       !
@@ -2344,13 +2344,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(4),pointer,dimension(:,:,:,:,:,:),intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(6),dims(6)
       integer(8),intent(in),optional :: lbounds8(6),dims8(6)
-      integer(4),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      integer(c_int),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
          
       ! 
-      integer(4),pointer,dimension(:,:,:,:,:,:) :: tmp
+      integer(c_int),pointer,dimension(:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -2416,7 +2416,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4,length5,length6 
          
       !
@@ -2440,7 +2440,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4,length5,length6 
          
       !
@@ -2465,13 +2465,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(4),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(7),dims(7)
       integer(8),intent(in),optional :: lbounds8(7),dims8(7)
-      integer(4),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      integer(c_int),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
          
       ! 
-      integer(4),pointer,dimension(:,:,:,:,:,:,:) :: tmp
+      integer(c_int),pointer,dimension(:,:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -2537,7 +2537,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4,length5,length6,length7 
          
       !
@@ -2561,7 +2561,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4,length5,length6,length7 
          
       !
@@ -2587,8 +2587,8 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(8),pointer,intent(inout) :: ptr
-      integer(8),target,intent(in),optional :: dsource,source
+      integer(c_long),pointer,intent(inout) :: ptr
+      integer(c_long),target,intent(in),optional :: dsource,source
          
       !
       type(c_ptr) :: cptr
@@ -2629,13 +2629,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(8),pointer,dimension(:),intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(1),dims(1)
       integer(8),intent(in),optional :: lbounds8(1),dims8(1)
-      integer(8),target,dimension(:),intent(in),optional :: dsource,source,mold
+      integer(c_long),target,dimension(:),intent(in),optional :: dsource,source,mold
          
       ! 
-      integer(8),pointer,dimension(:) :: tmp
+      integer(c_long),pointer,dimension(:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -2701,7 +2701,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:), intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:), intent(inout) :: ptr
       integer(c_int) :: length1 
          
       !
@@ -2725,7 +2725,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:), intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:), intent(inout) :: ptr
       integer(c_size_t) :: length1 
          
       !
@@ -2750,13 +2750,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(8),pointer,dimension(:,:),intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(2),dims(2)
       integer(8),intent(in),optional :: lbounds8(2),dims8(2)
-      integer(8),target,dimension(:,:),intent(in),optional :: dsource,source,mold
+      integer(c_long),target,dimension(:,:),intent(in),optional :: dsource,source,mold
          
       ! 
-      integer(8),pointer,dimension(:,:) :: tmp
+      integer(c_long),pointer,dimension(:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -2822,7 +2822,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:), intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2 
          
       !
@@ -2846,7 +2846,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:), intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2 
          
       !
@@ -2871,13 +2871,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(8),pointer,dimension(:,:,:),intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(3),dims(3)
       integer(8),intent(in),optional :: lbounds8(3),dims8(3)
-      integer(8),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
+      integer(c_long),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
          
       ! 
-      integer(8),pointer,dimension(:,:,:) :: tmp
+      integer(c_long),pointer,dimension(:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -2943,7 +2943,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:,:), intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3 
          
       !
@@ -2967,7 +2967,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:,:), intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3 
          
       !
@@ -2992,13 +2992,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(8),pointer,dimension(:,:,:,:),intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(4),dims(4)
       integer(8),intent(in),optional :: lbounds8(4),dims8(4)
-      integer(8),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
+      integer(c_long),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
          
       ! 
-      integer(8),pointer,dimension(:,:,:,:) :: tmp
+      integer(c_long),pointer,dimension(:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -3064,7 +3064,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:,:,:), intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4 
          
       !
@@ -3088,7 +3088,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:,:,:), intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4 
          
       !
@@ -3113,13 +3113,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(8),pointer,dimension(:,:,:,:,:),intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(5),dims(5)
       integer(8),intent(in),optional :: lbounds8(5),dims8(5)
-      integer(8),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      integer(c_long),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
          
       ! 
-      integer(8),pointer,dimension(:,:,:,:,:) :: tmp
+      integer(c_long),pointer,dimension(:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -3185,7 +3185,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4,length5 
          
       !
@@ -3209,7 +3209,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4,length5 
          
       !
@@ -3234,13 +3234,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(8),pointer,dimension(:,:,:,:,:,:),intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(6),dims(6)
       integer(8),intent(in),optional :: lbounds8(6),dims8(6)
-      integer(8),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      integer(c_long),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
          
       ! 
-      integer(8),pointer,dimension(:,:,:,:,:,:) :: tmp
+      integer(c_long),pointer,dimension(:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -3306,7 +3306,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4,length5,length6 
          
       !
@@ -3330,7 +3330,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4,length5,length6 
          
       !
@@ -3355,13 +3355,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(8),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(7),dims(7)
       integer(8),intent(in),optional :: lbounds8(7),dims8(7)
-      integer(8),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      integer(c_long),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
          
       ! 
-      integer(8),pointer,dimension(:,:,:,:,:,:,:) :: tmp
+      integer(c_long),pointer,dimension(:,:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -3427,7 +3427,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4,length5,length6,length7 
          
       !
@@ -3451,7 +3451,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4,length5,length6,length7 
          
       !
@@ -3477,8 +3477,8 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(4),pointer,intent(inout) :: ptr
-      real(4),target,intent(in),optional :: dsource,source
+      real(c_float),pointer,intent(inout) :: ptr
+      real(c_float),target,intent(in),optional :: dsource,source
          
       !
       type(c_ptr) :: cptr
@@ -3519,13 +3519,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(4),pointer,dimension(:),intent(inout) :: ptr
+      real(c_float),pointer,dimension(:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(1),dims(1)
       integer(8),intent(in),optional :: lbounds8(1),dims8(1)
-      real(4),target,dimension(:),intent(in),optional :: dsource,source,mold
+      real(c_float),target,dimension(:),intent(in),optional :: dsource,source,mold
          
       ! 
-      real(4),pointer,dimension(:) :: tmp
+      real(c_float),pointer,dimension(:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -3591,7 +3591,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:), intent(inout) :: ptr
+      real(c_float),pointer,dimension(:), intent(inout) :: ptr
       integer(c_int) :: length1 
          
       !
@@ -3615,7 +3615,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:), intent(inout) :: ptr
+      real(c_float),pointer,dimension(:), intent(inout) :: ptr
       integer(c_size_t) :: length1 
          
       !
@@ -3640,13 +3640,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(4),pointer,dimension(:,:),intent(inout) :: ptr
+      real(c_float),pointer,dimension(:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(2),dims(2)
       integer(8),intent(in),optional :: lbounds8(2),dims8(2)
-      real(4),target,dimension(:,:),intent(in),optional :: dsource,source,mold
+      real(c_float),target,dimension(:,:),intent(in),optional :: dsource,source,mold
          
       ! 
-      real(4),pointer,dimension(:,:) :: tmp
+      real(c_float),pointer,dimension(:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -3712,7 +3712,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:), intent(inout) :: ptr
+      real(c_float),pointer,dimension(:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2 
          
       !
@@ -3736,7 +3736,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:), intent(inout) :: ptr
+      real(c_float),pointer,dimension(:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2 
          
       !
@@ -3761,13 +3761,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(4),pointer,dimension(:,:,:),intent(inout) :: ptr
+      real(c_float),pointer,dimension(:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(3),dims(3)
       integer(8),intent(in),optional :: lbounds8(3),dims8(3)
-      real(4),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
+      real(c_float),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
          
       ! 
-      real(4),pointer,dimension(:,:,:) :: tmp
+      real(c_float),pointer,dimension(:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -3833,7 +3833,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:,:), intent(inout) :: ptr
+      real(c_float),pointer,dimension(:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3 
          
       !
@@ -3857,7 +3857,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:,:), intent(inout) :: ptr
+      real(c_float),pointer,dimension(:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3 
          
       !
@@ -3882,13 +3882,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(4),pointer,dimension(:,:,:,:),intent(inout) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(4),dims(4)
       integer(8),intent(in),optional :: lbounds8(4),dims8(4)
-      real(4),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
+      real(c_float),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
          
       ! 
-      real(4),pointer,dimension(:,:,:,:) :: tmp
+      real(c_float),pointer,dimension(:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -3954,7 +3954,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:,:,:), intent(inout) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4 
          
       !
@@ -3978,7 +3978,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:,:,:), intent(inout) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4 
          
       !
@@ -4003,13 +4003,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(4),pointer,dimension(:,:,:,:,:),intent(inout) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(5),dims(5)
       integer(8),intent(in),optional :: lbounds8(5),dims8(5)
-      real(4),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      real(c_float),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
          
       ! 
-      real(4),pointer,dimension(:,:,:,:,:) :: tmp
+      real(c_float),pointer,dimension(:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -4075,7 +4075,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4,length5 
          
       !
@@ -4099,7 +4099,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4,length5 
          
       !
@@ -4124,13 +4124,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(4),pointer,dimension(:,:,:,:,:,:),intent(inout) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(6),dims(6)
       integer(8),intent(in),optional :: lbounds8(6),dims8(6)
-      real(4),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      real(c_float),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
          
       ! 
-      real(4),pointer,dimension(:,:,:,:,:,:) :: tmp
+      real(c_float),pointer,dimension(:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -4196,7 +4196,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4,length5,length6 
          
       !
@@ -4220,7 +4220,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4,length5,length6 
          
       !
@@ -4245,13 +4245,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(4),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(7),dims(7)
       integer(8),intent(in),optional :: lbounds8(7),dims8(7)
-      real(4),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      real(c_float),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
          
       ! 
-      real(4),pointer,dimension(:,:,:,:,:,:,:) :: tmp
+      real(c_float),pointer,dimension(:,:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -4317,7 +4317,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4,length5,length6,length7 
          
       !
@@ -4341,7 +4341,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4,length5,length6,length7 
          
       !
@@ -4367,8 +4367,8 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(8),pointer,intent(inout) :: ptr
-      real(8),target,intent(in),optional :: dsource,source
+      real(c_double),pointer,intent(inout) :: ptr
+      real(c_double),target,intent(in),optional :: dsource,source
          
       !
       type(c_ptr) :: cptr
@@ -4409,13 +4409,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(8),pointer,dimension(:),intent(inout) :: ptr
+      real(c_double),pointer,dimension(:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(1),dims(1)
       integer(8),intent(in),optional :: lbounds8(1),dims8(1)
-      real(8),target,dimension(:),intent(in),optional :: dsource,source,mold
+      real(c_double),target,dimension(:),intent(in),optional :: dsource,source,mold
          
       ! 
-      real(8),pointer,dimension(:) :: tmp
+      real(c_double),pointer,dimension(:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -4481,7 +4481,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:), intent(inout) :: ptr
+      real(c_double),pointer,dimension(:), intent(inout) :: ptr
       integer(c_int) :: length1 
          
       !
@@ -4505,7 +4505,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:), intent(inout) :: ptr
+      real(c_double),pointer,dimension(:), intent(inout) :: ptr
       integer(c_size_t) :: length1 
          
       !
@@ -4530,13 +4530,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(8),pointer,dimension(:,:),intent(inout) :: ptr
+      real(c_double),pointer,dimension(:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(2),dims(2)
       integer(8),intent(in),optional :: lbounds8(2),dims8(2)
-      real(8),target,dimension(:,:),intent(in),optional :: dsource,source,mold
+      real(c_double),target,dimension(:,:),intent(in),optional :: dsource,source,mold
          
       ! 
-      real(8),pointer,dimension(:,:) :: tmp
+      real(c_double),pointer,dimension(:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -4602,7 +4602,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:), intent(inout) :: ptr
+      real(c_double),pointer,dimension(:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2 
          
       !
@@ -4626,7 +4626,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:), intent(inout) :: ptr
+      real(c_double),pointer,dimension(:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2 
          
       !
@@ -4651,13 +4651,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(8),pointer,dimension(:,:,:),intent(inout) :: ptr
+      real(c_double),pointer,dimension(:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(3),dims(3)
       integer(8),intent(in),optional :: lbounds8(3),dims8(3)
-      real(8),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
+      real(c_double),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
          
       ! 
-      real(8),pointer,dimension(:,:,:) :: tmp
+      real(c_double),pointer,dimension(:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -4723,7 +4723,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:,:), intent(inout) :: ptr
+      real(c_double),pointer,dimension(:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3 
          
       !
@@ -4747,7 +4747,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:,:), intent(inout) :: ptr
+      real(c_double),pointer,dimension(:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3 
          
       !
@@ -4772,13 +4772,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(8),pointer,dimension(:,:,:,:),intent(inout) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(4),dims(4)
       integer(8),intent(in),optional :: lbounds8(4),dims8(4)
-      real(8),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
+      real(c_double),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
          
       ! 
-      real(8),pointer,dimension(:,:,:,:) :: tmp
+      real(c_double),pointer,dimension(:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -4844,7 +4844,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:,:,:), intent(inout) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4 
          
       !
@@ -4868,7 +4868,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:,:,:), intent(inout) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4 
          
       !
@@ -4893,13 +4893,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(8),pointer,dimension(:,:,:,:,:),intent(inout) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(5),dims(5)
       integer(8),intent(in),optional :: lbounds8(5),dims8(5)
-      real(8),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      real(c_double),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
          
       ! 
-      real(8),pointer,dimension(:,:,:,:,:) :: tmp
+      real(c_double),pointer,dimension(:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -4965,7 +4965,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4,length5 
          
       !
@@ -4989,7 +4989,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4,length5 
          
       !
@@ -5014,13 +5014,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(8),pointer,dimension(:,:,:,:,:,:),intent(inout) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(6),dims(6)
       integer(8),intent(in),optional :: lbounds8(6),dims8(6)
-      real(8),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      real(c_double),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
          
       ! 
-      real(8),pointer,dimension(:,:,:,:,:,:) :: tmp
+      real(c_double),pointer,dimension(:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -5086,7 +5086,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4,length5,length6 
          
       !
@@ -5110,7 +5110,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4,length5,length6 
          
       !
@@ -5135,13 +5135,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(8),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(7),dims(7)
       integer(8),intent(in),optional :: lbounds8(7),dims8(7)
-      real(8),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      real(c_double),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
          
       ! 
-      real(8),pointer,dimension(:,:,:,:,:,:,:) :: tmp
+      real(c_double),pointer,dimension(:,:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -5207,7 +5207,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4,length5,length6,length7 
          
       !
@@ -5231,7 +5231,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4,length5,length6,length7 
          
       !
@@ -5257,8 +5257,8 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(4),pointer,intent(inout) :: ptr
-      complex(4),target,intent(in),optional :: dsource,source
+      complex(c_float_complex),pointer,intent(inout) :: ptr
+      complex(c_float_complex),target,intent(in),optional :: dsource,source
          
       !
       type(c_ptr) :: cptr
@@ -5299,13 +5299,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(4),pointer,dimension(:),intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(1),dims(1)
       integer(8),intent(in),optional :: lbounds8(1),dims8(1)
-      complex(4),target,dimension(:),intent(in),optional :: dsource,source,mold
+      complex(c_float_complex),target,dimension(:),intent(in),optional :: dsource,source,mold
          
       ! 
-      complex(4),pointer,dimension(:) :: tmp
+      complex(c_float_complex),pointer,dimension(:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -5371,7 +5371,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:), intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:), intent(inout) :: ptr
       integer(c_int) :: length1 
          
       !
@@ -5395,7 +5395,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:), intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:), intent(inout) :: ptr
       integer(c_size_t) :: length1 
          
       !
@@ -5420,13 +5420,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(4),pointer,dimension(:,:),intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(2),dims(2)
       integer(8),intent(in),optional :: lbounds8(2),dims8(2)
-      complex(4),target,dimension(:,:),intent(in),optional :: dsource,source,mold
+      complex(c_float_complex),target,dimension(:,:),intent(in),optional :: dsource,source,mold
          
       ! 
-      complex(4),pointer,dimension(:,:) :: tmp
+      complex(c_float_complex),pointer,dimension(:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -5492,7 +5492,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:), intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2 
          
       !
@@ -5516,7 +5516,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:), intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2 
          
       !
@@ -5541,13 +5541,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(4),pointer,dimension(:,:,:),intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(3),dims(3)
       integer(8),intent(in),optional :: lbounds8(3),dims8(3)
-      complex(4),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
+      complex(c_float_complex),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
          
       ! 
-      complex(4),pointer,dimension(:,:,:) :: tmp
+      complex(c_float_complex),pointer,dimension(:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -5613,7 +5613,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:,:), intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3 
          
       !
@@ -5637,7 +5637,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:,:), intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3 
          
       !
@@ -5662,13 +5662,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(4),pointer,dimension(:,:,:,:),intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(4),dims(4)
       integer(8),intent(in),optional :: lbounds8(4),dims8(4)
-      complex(4),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
+      complex(c_float_complex),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
          
       ! 
-      complex(4),pointer,dimension(:,:,:,:) :: tmp
+      complex(c_float_complex),pointer,dimension(:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -5734,7 +5734,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:,:,:), intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4 
          
       !
@@ -5758,7 +5758,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:,:,:), intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4 
          
       !
@@ -5783,13 +5783,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(4),pointer,dimension(:,:,:,:,:),intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(5),dims(5)
       integer(8),intent(in),optional :: lbounds8(5),dims8(5)
-      complex(4),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      complex(c_float_complex),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
          
       ! 
-      complex(4),pointer,dimension(:,:,:,:,:) :: tmp
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -5855,7 +5855,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4,length5 
          
       !
@@ -5879,7 +5879,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4,length5 
          
       !
@@ -5904,13 +5904,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(4),pointer,dimension(:,:,:,:,:,:),intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(6),dims(6)
       integer(8),intent(in),optional :: lbounds8(6),dims8(6)
-      complex(4),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      complex(c_float_complex),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
          
       ! 
-      complex(4),pointer,dimension(:,:,:,:,:,:) :: tmp
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -5976,7 +5976,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4,length5,length6 
          
       !
@@ -6000,7 +6000,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4,length5,length6 
          
       !
@@ -6025,13 +6025,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(4),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(7),dims(7)
       integer(8),intent(in),optional :: lbounds8(7),dims8(7)
-      complex(4),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      complex(c_float_complex),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
          
       ! 
-      complex(4),pointer,dimension(:,:,:,:,:,:,:) :: tmp
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -6097,7 +6097,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4,length5,length6,length7 
          
       !
@@ -6121,7 +6121,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4,length5,length6,length7 
          
       !
@@ -6147,8 +6147,8 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(8),pointer,intent(inout) :: ptr
-      complex(8),target,intent(in),optional :: dsource,source
+      complex(c_double_complex),pointer,intent(inout) :: ptr
+      complex(c_double_complex),target,intent(in),optional :: dsource,source
          
       !
       type(c_ptr) :: cptr
@@ -6189,13 +6189,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(8),pointer,dimension(:),intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(1),dims(1)
       integer(8),intent(in),optional :: lbounds8(1),dims8(1)
-      complex(8),target,dimension(:),intent(in),optional :: dsource,source,mold
+      complex(c_double_complex),target,dimension(:),intent(in),optional :: dsource,source,mold
          
       ! 
-      complex(8),pointer,dimension(:) :: tmp
+      complex(c_double_complex),pointer,dimension(:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -6261,7 +6261,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:), intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:), intent(inout) :: ptr
       integer(c_int) :: length1 
          
       !
@@ -6285,7 +6285,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:), intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:), intent(inout) :: ptr
       integer(c_size_t) :: length1 
          
       !
@@ -6310,13 +6310,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(8),pointer,dimension(:,:),intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(2),dims(2)
       integer(8),intent(in),optional :: lbounds8(2),dims8(2)
-      complex(8),target,dimension(:,:),intent(in),optional :: dsource,source,mold
+      complex(c_double_complex),target,dimension(:,:),intent(in),optional :: dsource,source,mold
          
       ! 
-      complex(8),pointer,dimension(:,:) :: tmp
+      complex(c_double_complex),pointer,dimension(:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -6382,7 +6382,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:), intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2 
          
       !
@@ -6406,7 +6406,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:), intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2 
          
       !
@@ -6431,13 +6431,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(8),pointer,dimension(:,:,:),intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(3),dims(3)
       integer(8),intent(in),optional :: lbounds8(3),dims8(3)
-      complex(8),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
+      complex(c_double_complex),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
          
       ! 
-      complex(8),pointer,dimension(:,:,:) :: tmp
+      complex(c_double_complex),pointer,dimension(:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -6503,7 +6503,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:,:), intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3 
          
       !
@@ -6527,7 +6527,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:,:), intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3 
          
       !
@@ -6552,13 +6552,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(8),pointer,dimension(:,:,:,:),intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(4),dims(4)
       integer(8),intent(in),optional :: lbounds8(4),dims8(4)
-      complex(8),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
+      complex(c_double_complex),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
          
       ! 
-      complex(8),pointer,dimension(:,:,:,:) :: tmp
+      complex(c_double_complex),pointer,dimension(:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -6624,7 +6624,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:,:,:), intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4 
          
       !
@@ -6648,7 +6648,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:,:,:), intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4 
          
       !
@@ -6673,13 +6673,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(8),pointer,dimension(:,:,:,:,:),intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(5),dims(5)
       integer(8),intent(in),optional :: lbounds8(5),dims8(5)
-      complex(8),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      complex(c_double_complex),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
          
       ! 
-      complex(8),pointer,dimension(:,:,:,:,:) :: tmp
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -6745,7 +6745,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4,length5 
          
       !
@@ -6769,7 +6769,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4,length5 
          
       !
@@ -6794,13 +6794,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(8),pointer,dimension(:,:,:,:,:,:),intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(6),dims(6)
       integer(8),intent(in),optional :: lbounds8(6),dims8(6)
-      complex(8),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      complex(c_double_complex),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
          
       ! 
-      complex(8),pointer,dimension(:,:,:,:,:,:) :: tmp
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -6866,7 +6866,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4,length5,length6 
          
       !
@@ -6890,7 +6890,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4,length5,length6 
          
       !
@@ -6915,13 +6915,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(8),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(7),dims(7)
       integer(8),intent(in),optional :: lbounds8(7),dims8(7)
-      complex(8),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      complex(c_double_complex),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
          
       ! 
-      complex(8),pointer,dimension(:,:,:,:,:,:,:) :: tmp
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -6987,7 +6987,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4,length5,length6,length7 
          
       !
@@ -7011,7 +7011,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4,length5,length6,length7 
          
       !
@@ -7037,8 +7037,8 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      logical,pointer,intent(inout) :: ptr
-      logical,target,intent(in),optional :: dsource,source
+      logical(c_bool),pointer,intent(inout) :: ptr
+      logical(c_bool),target,intent(in),optional :: dsource,source
       integer(kind=4),intent(in) :: flags   
       !
       type(c_ptr) :: cptr
@@ -7079,13 +7079,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      logical,pointer,dimension(:),intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(1),dims(1)
       integer(8),intent(in),optional :: lbounds8(1),dims8(1)
-      logical,target,dimension(:),intent(in),optional :: dsource,source,mold
+      logical(c_bool),target,dimension(:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      logical,pointer,dimension(:) :: tmp
+      logical(c_bool),pointer,dimension(:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -7151,7 +7151,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:), intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:), intent(inout) :: ptr
       integer(c_int) :: length1 
       integer(kind=4),intent(in) :: flags   
       !
@@ -7175,7 +7175,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:), intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:), intent(inout) :: ptr
       integer(c_size_t) :: length1 
       integer(kind=4),intent(in) :: flags   
       !
@@ -7200,13 +7200,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      logical,pointer,dimension(:,:),intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(2),dims(2)
       integer(8),intent(in),optional :: lbounds8(2),dims8(2)
-      logical,target,dimension(:,:),intent(in),optional :: dsource,source,mold
+      logical(c_bool),target,dimension(:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      logical,pointer,dimension(:,:) :: tmp
+      logical(c_bool),pointer,dimension(:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -7272,7 +7272,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:), intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2 
       integer(kind=4),intent(in) :: flags   
       !
@@ -7296,7 +7296,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:), intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2 
       integer(kind=4),intent(in) :: flags   
       !
@@ -7321,13 +7321,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      logical,pointer,dimension(:,:,:),intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(3),dims(3)
       integer(8),intent(in),optional :: lbounds8(3),dims8(3)
-      logical,target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
+      logical(c_bool),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      logical,pointer,dimension(:,:,:) :: tmp
+      logical(c_bool),pointer,dimension(:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -7393,7 +7393,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:,:), intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3 
       integer(kind=4),intent(in) :: flags   
       !
@@ -7417,7 +7417,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:,:), intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3 
       integer(kind=4),intent(in) :: flags   
       !
@@ -7442,13 +7442,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      logical,pointer,dimension(:,:,:,:),intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(4),dims(4)
       integer(8),intent(in),optional :: lbounds8(4),dims8(4)
-      logical,target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
+      logical(c_bool),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      logical,pointer,dimension(:,:,:,:) :: tmp
+      logical(c_bool),pointer,dimension(:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -7514,7 +7514,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:,:,:), intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4 
       integer(kind=4),intent(in) :: flags   
       !
@@ -7538,7 +7538,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:,:,:), intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4 
       integer(kind=4),intent(in) :: flags   
       !
@@ -7563,13 +7563,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      logical,pointer,dimension(:,:,:,:,:),intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(5),dims(5)
       integer(8),intent(in),optional :: lbounds8(5),dims8(5)
-      logical,target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      logical(c_bool),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      logical,pointer,dimension(:,:,:,:,:) :: tmp
+      logical(c_bool),pointer,dimension(:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -7635,7 +7635,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4,length5 
       integer(kind=4),intent(in) :: flags   
       !
@@ -7659,7 +7659,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4,length5 
       integer(kind=4),intent(in) :: flags   
       !
@@ -7684,13 +7684,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      logical,pointer,dimension(:,:,:,:,:,:),intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(6),dims(6)
       integer(8),intent(in),optional :: lbounds8(6),dims8(6)
-      logical,target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      logical(c_bool),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      logical,pointer,dimension(:,:,:,:,:,:) :: tmp
+      logical(c_bool),pointer,dimension(:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -7756,7 +7756,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4,length5,length6 
       integer(kind=4),intent(in) :: flags   
       !
@@ -7780,7 +7780,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4,length5,length6 
       integer(kind=4),intent(in) :: flags   
       !
@@ -7805,13 +7805,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      logical,pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(7),dims(7)
       integer(8),intent(in),optional :: lbounds8(7),dims8(7)
-      logical,target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      logical(c_bool),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      logical,pointer,dimension(:,:,:,:,:,:,:) :: tmp
+      logical(c_bool),pointer,dimension(:,:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -7877,7 +7877,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4,length5,length6,length7 
       integer(kind=4),intent(in) :: flags   
       !
@@ -7901,7 +7901,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4,length5,length6,length7 
       integer(kind=4),intent(in) :: flags   
       !
@@ -7927,8 +7927,8 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(4),pointer,intent(inout) :: ptr
-      integer(4),target,intent(in),optional :: dsource,source
+      integer(c_int),pointer,intent(inout) :: ptr
+      integer(c_int),target,intent(in),optional :: dsource,source
       integer(kind=4),intent(in) :: flags   
       !
       type(c_ptr) :: cptr
@@ -7969,13 +7969,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(4),pointer,dimension(:),intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(1),dims(1)
       integer(8),intent(in),optional :: lbounds8(1),dims8(1)
-      integer(4),target,dimension(:),intent(in),optional :: dsource,source,mold
+      integer(c_int),target,dimension(:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      integer(4),pointer,dimension(:) :: tmp
+      integer(c_int),pointer,dimension(:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -8041,7 +8041,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:), intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:), intent(inout) :: ptr
       integer(c_int) :: length1 
       integer(kind=4),intent(in) :: flags   
       !
@@ -8065,7 +8065,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:), intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:), intent(inout) :: ptr
       integer(c_size_t) :: length1 
       integer(kind=4),intent(in) :: flags   
       !
@@ -8090,13 +8090,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(4),pointer,dimension(:,:),intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(2),dims(2)
       integer(8),intent(in),optional :: lbounds8(2),dims8(2)
-      integer(4),target,dimension(:,:),intent(in),optional :: dsource,source,mold
+      integer(c_int),target,dimension(:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      integer(4),pointer,dimension(:,:) :: tmp
+      integer(c_int),pointer,dimension(:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -8162,7 +8162,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:), intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2 
       integer(kind=4),intent(in) :: flags   
       !
@@ -8186,7 +8186,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:), intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2 
       integer(kind=4),intent(in) :: flags   
       !
@@ -8211,13 +8211,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(4),pointer,dimension(:,:,:),intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(3),dims(3)
       integer(8),intent(in),optional :: lbounds8(3),dims8(3)
-      integer(4),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
+      integer(c_int),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      integer(4),pointer,dimension(:,:,:) :: tmp
+      integer(c_int),pointer,dimension(:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -8283,7 +8283,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:,:), intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3 
       integer(kind=4),intent(in) :: flags   
       !
@@ -8307,7 +8307,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:,:), intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3 
       integer(kind=4),intent(in) :: flags   
       !
@@ -8332,13 +8332,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(4),pointer,dimension(:,:,:,:),intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(4),dims(4)
       integer(8),intent(in),optional :: lbounds8(4),dims8(4)
-      integer(4),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
+      integer(c_int),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      integer(4),pointer,dimension(:,:,:,:) :: tmp
+      integer(c_int),pointer,dimension(:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -8404,7 +8404,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:,:,:), intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4 
       integer(kind=4),intent(in) :: flags   
       !
@@ -8428,7 +8428,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:,:,:), intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4 
       integer(kind=4),intent(in) :: flags   
       !
@@ -8453,13 +8453,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(4),pointer,dimension(:,:,:,:,:),intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(5),dims(5)
       integer(8),intent(in),optional :: lbounds8(5),dims8(5)
-      integer(4),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      integer(c_int),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      integer(4),pointer,dimension(:,:,:,:,:) :: tmp
+      integer(c_int),pointer,dimension(:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -8525,7 +8525,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4,length5 
       integer(kind=4),intent(in) :: flags   
       !
@@ -8549,7 +8549,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4,length5 
       integer(kind=4),intent(in) :: flags   
       !
@@ -8574,13 +8574,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(4),pointer,dimension(:,:,:,:,:,:),intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(6),dims(6)
       integer(8),intent(in),optional :: lbounds8(6),dims8(6)
-      integer(4),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      integer(c_int),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      integer(4),pointer,dimension(:,:,:,:,:,:) :: tmp
+      integer(c_int),pointer,dimension(:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -8646,7 +8646,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4,length5,length6 
       integer(kind=4),intent(in) :: flags   
       !
@@ -8670,7 +8670,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4,length5,length6 
       integer(kind=4),intent(in) :: flags   
       !
@@ -8695,13 +8695,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(4),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(7),dims(7)
       integer(8),intent(in),optional :: lbounds8(7),dims8(7)
-      integer(4),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      integer(c_int),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      integer(4),pointer,dimension(:,:,:,:,:,:,:) :: tmp
+      integer(c_int),pointer,dimension(:,:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -8767,7 +8767,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4,length5,length6,length7 
       integer(kind=4),intent(in) :: flags   
       !
@@ -8791,7 +8791,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4,length5,length6,length7 
       integer(kind=4),intent(in) :: flags   
       !
@@ -8817,8 +8817,8 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(8),pointer,intent(inout) :: ptr
-      integer(8),target,intent(in),optional :: dsource,source
+      integer(c_long),pointer,intent(inout) :: ptr
+      integer(c_long),target,intent(in),optional :: dsource,source
       integer(kind=4),intent(in) :: flags   
       !
       type(c_ptr) :: cptr
@@ -8859,13 +8859,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(8),pointer,dimension(:),intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(1),dims(1)
       integer(8),intent(in),optional :: lbounds8(1),dims8(1)
-      integer(8),target,dimension(:),intent(in),optional :: dsource,source,mold
+      integer(c_long),target,dimension(:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      integer(8),pointer,dimension(:) :: tmp
+      integer(c_long),pointer,dimension(:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -8931,7 +8931,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:), intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:), intent(inout) :: ptr
       integer(c_int) :: length1 
       integer(kind=4),intent(in) :: flags   
       !
@@ -8955,7 +8955,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:), intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:), intent(inout) :: ptr
       integer(c_size_t) :: length1 
       integer(kind=4),intent(in) :: flags   
       !
@@ -8980,13 +8980,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(8),pointer,dimension(:,:),intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(2),dims(2)
       integer(8),intent(in),optional :: lbounds8(2),dims8(2)
-      integer(8),target,dimension(:,:),intent(in),optional :: dsource,source,mold
+      integer(c_long),target,dimension(:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      integer(8),pointer,dimension(:,:) :: tmp
+      integer(c_long),pointer,dimension(:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -9052,7 +9052,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:), intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2 
       integer(kind=4),intent(in) :: flags   
       !
@@ -9076,7 +9076,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:), intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2 
       integer(kind=4),intent(in) :: flags   
       !
@@ -9101,13 +9101,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(8),pointer,dimension(:,:,:),intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(3),dims(3)
       integer(8),intent(in),optional :: lbounds8(3),dims8(3)
-      integer(8),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
+      integer(c_long),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      integer(8),pointer,dimension(:,:,:) :: tmp
+      integer(c_long),pointer,dimension(:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -9173,7 +9173,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:,:), intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3 
       integer(kind=4),intent(in) :: flags   
       !
@@ -9197,7 +9197,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:,:), intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3 
       integer(kind=4),intent(in) :: flags   
       !
@@ -9222,13 +9222,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(8),pointer,dimension(:,:,:,:),intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(4),dims(4)
       integer(8),intent(in),optional :: lbounds8(4),dims8(4)
-      integer(8),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
+      integer(c_long),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      integer(8),pointer,dimension(:,:,:,:) :: tmp
+      integer(c_long),pointer,dimension(:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -9294,7 +9294,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:,:,:), intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4 
       integer(kind=4),intent(in) :: flags   
       !
@@ -9318,7 +9318,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:,:,:), intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4 
       integer(kind=4),intent(in) :: flags   
       !
@@ -9343,13 +9343,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(8),pointer,dimension(:,:,:,:,:),intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(5),dims(5)
       integer(8),intent(in),optional :: lbounds8(5),dims8(5)
-      integer(8),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      integer(c_long),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      integer(8),pointer,dimension(:,:,:,:,:) :: tmp
+      integer(c_long),pointer,dimension(:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -9415,7 +9415,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4,length5 
       integer(kind=4),intent(in) :: flags   
       !
@@ -9439,7 +9439,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4,length5 
       integer(kind=4),intent(in) :: flags   
       !
@@ -9464,13 +9464,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(8),pointer,dimension(:,:,:,:,:,:),intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(6),dims(6)
       integer(8),intent(in),optional :: lbounds8(6),dims8(6)
-      integer(8),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      integer(c_long),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      integer(8),pointer,dimension(:,:,:,:,:,:) :: tmp
+      integer(c_long),pointer,dimension(:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -9536,7 +9536,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4,length5,length6 
       integer(kind=4),intent(in) :: flags   
       !
@@ -9560,7 +9560,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4,length5,length6 
       integer(kind=4),intent(in) :: flags   
       !
@@ -9585,13 +9585,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(8),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(7),dims(7)
       integer(8),intent(in),optional :: lbounds8(7),dims8(7)
-      integer(8),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      integer(c_long),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      integer(8),pointer,dimension(:,:,:,:,:,:,:) :: tmp
+      integer(c_long),pointer,dimension(:,:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -9657,7 +9657,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4,length5,length6,length7 
       integer(kind=4),intent(in) :: flags   
       !
@@ -9681,7 +9681,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4,length5,length6,length7 
       integer(kind=4),intent(in) :: flags   
       !
@@ -9707,8 +9707,8 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(4),pointer,intent(inout) :: ptr
-      real(4),target,intent(in),optional :: dsource,source
+      real(c_float),pointer,intent(inout) :: ptr
+      real(c_float),target,intent(in),optional :: dsource,source
       integer(kind=4),intent(in) :: flags   
       !
       type(c_ptr) :: cptr
@@ -9749,13 +9749,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(4),pointer,dimension(:),intent(inout) :: ptr
+      real(c_float),pointer,dimension(:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(1),dims(1)
       integer(8),intent(in),optional :: lbounds8(1),dims8(1)
-      real(4),target,dimension(:),intent(in),optional :: dsource,source,mold
+      real(c_float),target,dimension(:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      real(4),pointer,dimension(:) :: tmp
+      real(c_float),pointer,dimension(:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -9821,7 +9821,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:), intent(inout) :: ptr
+      real(c_float),pointer,dimension(:), intent(inout) :: ptr
       integer(c_int) :: length1 
       integer(kind=4),intent(in) :: flags   
       !
@@ -9845,7 +9845,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:), intent(inout) :: ptr
+      real(c_float),pointer,dimension(:), intent(inout) :: ptr
       integer(c_size_t) :: length1 
       integer(kind=4),intent(in) :: flags   
       !
@@ -9870,13 +9870,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(4),pointer,dimension(:,:),intent(inout) :: ptr
+      real(c_float),pointer,dimension(:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(2),dims(2)
       integer(8),intent(in),optional :: lbounds8(2),dims8(2)
-      real(4),target,dimension(:,:),intent(in),optional :: dsource,source,mold
+      real(c_float),target,dimension(:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      real(4),pointer,dimension(:,:) :: tmp
+      real(c_float),pointer,dimension(:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -9942,7 +9942,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:), intent(inout) :: ptr
+      real(c_float),pointer,dimension(:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2 
       integer(kind=4),intent(in) :: flags   
       !
@@ -9966,7 +9966,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:), intent(inout) :: ptr
+      real(c_float),pointer,dimension(:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2 
       integer(kind=4),intent(in) :: flags   
       !
@@ -9991,13 +9991,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(4),pointer,dimension(:,:,:),intent(inout) :: ptr
+      real(c_float),pointer,dimension(:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(3),dims(3)
       integer(8),intent(in),optional :: lbounds8(3),dims8(3)
-      real(4),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
+      real(c_float),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      real(4),pointer,dimension(:,:,:) :: tmp
+      real(c_float),pointer,dimension(:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -10063,7 +10063,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:,:), intent(inout) :: ptr
+      real(c_float),pointer,dimension(:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3 
       integer(kind=4),intent(in) :: flags   
       !
@@ -10087,7 +10087,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:,:), intent(inout) :: ptr
+      real(c_float),pointer,dimension(:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3 
       integer(kind=4),intent(in) :: flags   
       !
@@ -10112,13 +10112,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(4),pointer,dimension(:,:,:,:),intent(inout) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(4),dims(4)
       integer(8),intent(in),optional :: lbounds8(4),dims8(4)
-      real(4),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
+      real(c_float),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      real(4),pointer,dimension(:,:,:,:) :: tmp
+      real(c_float),pointer,dimension(:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -10184,7 +10184,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:,:,:), intent(inout) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4 
       integer(kind=4),intent(in) :: flags   
       !
@@ -10208,7 +10208,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:,:,:), intent(inout) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4 
       integer(kind=4),intent(in) :: flags   
       !
@@ -10233,13 +10233,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(4),pointer,dimension(:,:,:,:,:),intent(inout) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(5),dims(5)
       integer(8),intent(in),optional :: lbounds8(5),dims8(5)
-      real(4),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      real(c_float),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      real(4),pointer,dimension(:,:,:,:,:) :: tmp
+      real(c_float),pointer,dimension(:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -10305,7 +10305,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4,length5 
       integer(kind=4),intent(in) :: flags   
       !
@@ -10329,7 +10329,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4,length5 
       integer(kind=4),intent(in) :: flags   
       !
@@ -10354,13 +10354,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(4),pointer,dimension(:,:,:,:,:,:),intent(inout) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(6),dims(6)
       integer(8),intent(in),optional :: lbounds8(6),dims8(6)
-      real(4),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      real(c_float),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      real(4),pointer,dimension(:,:,:,:,:,:) :: tmp
+      real(c_float),pointer,dimension(:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -10426,7 +10426,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4,length5,length6 
       integer(kind=4),intent(in) :: flags   
       !
@@ -10450,7 +10450,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4,length5,length6 
       integer(kind=4),intent(in) :: flags   
       !
@@ -10475,13 +10475,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(4),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(7),dims(7)
       integer(8),intent(in),optional :: lbounds8(7),dims8(7)
-      real(4),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      real(c_float),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      real(4),pointer,dimension(:,:,:,:,:,:,:) :: tmp
+      real(c_float),pointer,dimension(:,:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -10547,7 +10547,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4,length5,length6,length7 
       integer(kind=4),intent(in) :: flags   
       !
@@ -10571,7 +10571,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4,length5,length6,length7 
       integer(kind=4),intent(in) :: flags   
       !
@@ -10597,8 +10597,8 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(8),pointer,intent(inout) :: ptr
-      real(8),target,intent(in),optional :: dsource,source
+      real(c_double),pointer,intent(inout) :: ptr
+      real(c_double),target,intent(in),optional :: dsource,source
       integer(kind=4),intent(in) :: flags   
       !
       type(c_ptr) :: cptr
@@ -10639,13 +10639,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(8),pointer,dimension(:),intent(inout) :: ptr
+      real(c_double),pointer,dimension(:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(1),dims(1)
       integer(8),intent(in),optional :: lbounds8(1),dims8(1)
-      real(8),target,dimension(:),intent(in),optional :: dsource,source,mold
+      real(c_double),target,dimension(:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      real(8),pointer,dimension(:) :: tmp
+      real(c_double),pointer,dimension(:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -10711,7 +10711,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:), intent(inout) :: ptr
+      real(c_double),pointer,dimension(:), intent(inout) :: ptr
       integer(c_int) :: length1 
       integer(kind=4),intent(in) :: flags   
       !
@@ -10735,7 +10735,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:), intent(inout) :: ptr
+      real(c_double),pointer,dimension(:), intent(inout) :: ptr
       integer(c_size_t) :: length1 
       integer(kind=4),intent(in) :: flags   
       !
@@ -10760,13 +10760,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(8),pointer,dimension(:,:),intent(inout) :: ptr
+      real(c_double),pointer,dimension(:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(2),dims(2)
       integer(8),intent(in),optional :: lbounds8(2),dims8(2)
-      real(8),target,dimension(:,:),intent(in),optional :: dsource,source,mold
+      real(c_double),target,dimension(:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      real(8),pointer,dimension(:,:) :: tmp
+      real(c_double),pointer,dimension(:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -10832,7 +10832,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:), intent(inout) :: ptr
+      real(c_double),pointer,dimension(:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2 
       integer(kind=4),intent(in) :: flags   
       !
@@ -10856,7 +10856,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:), intent(inout) :: ptr
+      real(c_double),pointer,dimension(:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2 
       integer(kind=4),intent(in) :: flags   
       !
@@ -10881,13 +10881,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(8),pointer,dimension(:,:,:),intent(inout) :: ptr
+      real(c_double),pointer,dimension(:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(3),dims(3)
       integer(8),intent(in),optional :: lbounds8(3),dims8(3)
-      real(8),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
+      real(c_double),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      real(8),pointer,dimension(:,:,:) :: tmp
+      real(c_double),pointer,dimension(:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -10953,7 +10953,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:,:), intent(inout) :: ptr
+      real(c_double),pointer,dimension(:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3 
       integer(kind=4),intent(in) :: flags   
       !
@@ -10977,7 +10977,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:,:), intent(inout) :: ptr
+      real(c_double),pointer,dimension(:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3 
       integer(kind=4),intent(in) :: flags   
       !
@@ -11002,13 +11002,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(8),pointer,dimension(:,:,:,:),intent(inout) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(4),dims(4)
       integer(8),intent(in),optional :: lbounds8(4),dims8(4)
-      real(8),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
+      real(c_double),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      real(8),pointer,dimension(:,:,:,:) :: tmp
+      real(c_double),pointer,dimension(:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -11074,7 +11074,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:,:,:), intent(inout) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4 
       integer(kind=4),intent(in) :: flags   
       !
@@ -11098,7 +11098,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:,:,:), intent(inout) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4 
       integer(kind=4),intent(in) :: flags   
       !
@@ -11123,13 +11123,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(8),pointer,dimension(:,:,:,:,:),intent(inout) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(5),dims(5)
       integer(8),intent(in),optional :: lbounds8(5),dims8(5)
-      real(8),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      real(c_double),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      real(8),pointer,dimension(:,:,:,:,:) :: tmp
+      real(c_double),pointer,dimension(:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -11195,7 +11195,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4,length5 
       integer(kind=4),intent(in) :: flags   
       !
@@ -11219,7 +11219,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4,length5 
       integer(kind=4),intent(in) :: flags   
       !
@@ -11244,13 +11244,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(8),pointer,dimension(:,:,:,:,:,:),intent(inout) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(6),dims(6)
       integer(8),intent(in),optional :: lbounds8(6),dims8(6)
-      real(8),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      real(c_double),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      real(8),pointer,dimension(:,:,:,:,:,:) :: tmp
+      real(c_double),pointer,dimension(:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -11316,7 +11316,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4,length5,length6 
       integer(kind=4),intent(in) :: flags   
       !
@@ -11340,7 +11340,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4,length5,length6 
       integer(kind=4),intent(in) :: flags   
       !
@@ -11365,13 +11365,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(8),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(7),dims(7)
       integer(8),intent(in),optional :: lbounds8(7),dims8(7)
-      real(8),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      real(c_double),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      real(8),pointer,dimension(:,:,:,:,:,:,:) :: tmp
+      real(c_double),pointer,dimension(:,:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -11437,7 +11437,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4,length5,length6,length7 
       integer(kind=4),intent(in) :: flags   
       !
@@ -11461,7 +11461,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4,length5,length6,length7 
       integer(kind=4),intent(in) :: flags   
       !
@@ -11487,8 +11487,8 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(4),pointer,intent(inout) :: ptr
-      complex(4),target,intent(in),optional :: dsource,source
+      complex(c_float_complex),pointer,intent(inout) :: ptr
+      complex(c_float_complex),target,intent(in),optional :: dsource,source
       integer(kind=4),intent(in) :: flags   
       !
       type(c_ptr) :: cptr
@@ -11529,13 +11529,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(4),pointer,dimension(:),intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(1),dims(1)
       integer(8),intent(in),optional :: lbounds8(1),dims8(1)
-      complex(4),target,dimension(:),intent(in),optional :: dsource,source,mold
+      complex(c_float_complex),target,dimension(:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      complex(4),pointer,dimension(:) :: tmp
+      complex(c_float_complex),pointer,dimension(:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -11601,7 +11601,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:), intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:), intent(inout) :: ptr
       integer(c_int) :: length1 
       integer(kind=4),intent(in) :: flags   
       !
@@ -11625,7 +11625,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:), intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:), intent(inout) :: ptr
       integer(c_size_t) :: length1 
       integer(kind=4),intent(in) :: flags   
       !
@@ -11650,13 +11650,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(4),pointer,dimension(:,:),intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(2),dims(2)
       integer(8),intent(in),optional :: lbounds8(2),dims8(2)
-      complex(4),target,dimension(:,:),intent(in),optional :: dsource,source,mold
+      complex(c_float_complex),target,dimension(:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      complex(4),pointer,dimension(:,:) :: tmp
+      complex(c_float_complex),pointer,dimension(:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -11722,7 +11722,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:), intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2 
       integer(kind=4),intent(in) :: flags   
       !
@@ -11746,7 +11746,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:), intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2 
       integer(kind=4),intent(in) :: flags   
       !
@@ -11771,13 +11771,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(4),pointer,dimension(:,:,:),intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(3),dims(3)
       integer(8),intent(in),optional :: lbounds8(3),dims8(3)
-      complex(4),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
+      complex(c_float_complex),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      complex(4),pointer,dimension(:,:,:) :: tmp
+      complex(c_float_complex),pointer,dimension(:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -11843,7 +11843,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:,:), intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3 
       integer(kind=4),intent(in) :: flags   
       !
@@ -11867,7 +11867,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:,:), intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3 
       integer(kind=4),intent(in) :: flags   
       !
@@ -11892,13 +11892,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(4),pointer,dimension(:,:,:,:),intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(4),dims(4)
       integer(8),intent(in),optional :: lbounds8(4),dims8(4)
-      complex(4),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
+      complex(c_float_complex),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      complex(4),pointer,dimension(:,:,:,:) :: tmp
+      complex(c_float_complex),pointer,dimension(:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -11964,7 +11964,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:,:,:), intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4 
       integer(kind=4),intent(in) :: flags   
       !
@@ -11988,7 +11988,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:,:,:), intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4 
       integer(kind=4),intent(in) :: flags   
       !
@@ -12013,13 +12013,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(4),pointer,dimension(:,:,:,:,:),intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(5),dims(5)
       integer(8),intent(in),optional :: lbounds8(5),dims8(5)
-      complex(4),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      complex(c_float_complex),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      complex(4),pointer,dimension(:,:,:,:,:) :: tmp
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -12085,7 +12085,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4,length5 
       integer(kind=4),intent(in) :: flags   
       !
@@ -12109,7 +12109,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4,length5 
       integer(kind=4),intent(in) :: flags   
       !
@@ -12134,13 +12134,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(4),pointer,dimension(:,:,:,:,:,:),intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(6),dims(6)
       integer(8),intent(in),optional :: lbounds8(6),dims8(6)
-      complex(4),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      complex(c_float_complex),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      complex(4),pointer,dimension(:,:,:,:,:,:) :: tmp
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -12206,7 +12206,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4,length5,length6 
       integer(kind=4),intent(in) :: flags   
       !
@@ -12230,7 +12230,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4,length5,length6 
       integer(kind=4),intent(in) :: flags   
       !
@@ -12255,13 +12255,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(4),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(7),dims(7)
       integer(8),intent(in),optional :: lbounds8(7),dims8(7)
-      complex(4),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      complex(c_float_complex),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      complex(4),pointer,dimension(:,:,:,:,:,:,:) :: tmp
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -12327,7 +12327,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4,length5,length6,length7 
       integer(kind=4),intent(in) :: flags   
       !
@@ -12351,7 +12351,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4,length5,length6,length7 
       integer(kind=4),intent(in) :: flags   
       !
@@ -12377,8 +12377,8 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(8),pointer,intent(inout) :: ptr
-      complex(8),target,intent(in),optional :: dsource,source
+      complex(c_double_complex),pointer,intent(inout) :: ptr
+      complex(c_double_complex),target,intent(in),optional :: dsource,source
       integer(kind=4),intent(in) :: flags   
       !
       type(c_ptr) :: cptr
@@ -12419,13 +12419,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(8),pointer,dimension(:),intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(1),dims(1)
       integer(8),intent(in),optional :: lbounds8(1),dims8(1)
-      complex(8),target,dimension(:),intent(in),optional :: dsource,source,mold
+      complex(c_double_complex),target,dimension(:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      complex(8),pointer,dimension(:) :: tmp
+      complex(c_double_complex),pointer,dimension(:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -12491,7 +12491,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:), intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:), intent(inout) :: ptr
       integer(c_int) :: length1 
       integer(kind=4),intent(in) :: flags   
       !
@@ -12515,7 +12515,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:), intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:), intent(inout) :: ptr
       integer(c_size_t) :: length1 
       integer(kind=4),intent(in) :: flags   
       !
@@ -12540,13 +12540,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(8),pointer,dimension(:,:),intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(2),dims(2)
       integer(8),intent(in),optional :: lbounds8(2),dims8(2)
-      complex(8),target,dimension(:,:),intent(in),optional :: dsource,source,mold
+      complex(c_double_complex),target,dimension(:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      complex(8),pointer,dimension(:,:) :: tmp
+      complex(c_double_complex),pointer,dimension(:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -12612,7 +12612,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:), intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2 
       integer(kind=4),intent(in) :: flags   
       !
@@ -12636,7 +12636,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:), intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2 
       integer(kind=4),intent(in) :: flags   
       !
@@ -12661,13 +12661,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(8),pointer,dimension(:,:,:),intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(3),dims(3)
       integer(8),intent(in),optional :: lbounds8(3),dims8(3)
-      complex(8),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
+      complex(c_double_complex),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      complex(8),pointer,dimension(:,:,:) :: tmp
+      complex(c_double_complex),pointer,dimension(:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -12733,7 +12733,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:,:), intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3 
       integer(kind=4),intent(in) :: flags   
       !
@@ -12757,7 +12757,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:,:), intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3 
       integer(kind=4),intent(in) :: flags   
       !
@@ -12782,13 +12782,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(8),pointer,dimension(:,:,:,:),intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(4),dims(4)
       integer(8),intent(in),optional :: lbounds8(4),dims8(4)
-      complex(8),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
+      complex(c_double_complex),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      complex(8),pointer,dimension(:,:,:,:) :: tmp
+      complex(c_double_complex),pointer,dimension(:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -12854,7 +12854,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:,:,:), intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4 
       integer(kind=4),intent(in) :: flags   
       !
@@ -12878,7 +12878,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:,:,:), intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4 
       integer(kind=4),intent(in) :: flags   
       !
@@ -12903,13 +12903,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(8),pointer,dimension(:,:,:,:,:),intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(5),dims(5)
       integer(8),intent(in),optional :: lbounds8(5),dims8(5)
-      complex(8),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      complex(c_double_complex),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      complex(8),pointer,dimension(:,:,:,:,:) :: tmp
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -12975,7 +12975,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4,length5 
       integer(kind=4),intent(in) :: flags   
       !
@@ -12999,7 +12999,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4,length5 
       integer(kind=4),intent(in) :: flags   
       !
@@ -13024,13 +13024,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(8),pointer,dimension(:,:,:,:,:,:),intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(6),dims(6)
       integer(8),intent(in),optional :: lbounds8(6),dims8(6)
-      complex(8),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      complex(c_double_complex),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      complex(8),pointer,dimension(:,:,:,:,:,:) :: tmp
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -13096,7 +13096,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4,length5,length6 
       integer(kind=4),intent(in) :: flags   
       !
@@ -13120,7 +13120,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4,length5,length6 
       integer(kind=4),intent(in) :: flags   
       !
@@ -13145,13 +13145,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(8),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(7),dims(7)
       integer(8),intent(in),optional :: lbounds8(7),dims8(7)
-      complex(8),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      complex(c_double_complex),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags   
       ! 
-      complex(8),pointer,dimension(:,:,:,:,:,:,:) :: tmp
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -13217,7 +13217,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_int) :: length1,length2,length3,length4,length5,length6,length7 
       integer(kind=4),intent(in) :: flags   
       !
@@ -13241,7 +13241,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
       integer(c_size_t) :: length1,length2,length3,length4,length5,length6,length7 
       integer(kind=4),intent(in) :: flags   
       !
@@ -13268,8 +13268,8 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      logical,pointer,intent(inout) :: ptr
-      logical,target,intent(in),optional :: dsource,source
+      logical(c_bool),pointer,intent(inout) :: ptr
+      logical(c_bool),target,intent(in),optional :: dsource,source
       integer(kind=4),intent(in) :: flags
       !
       type(c_ptr) :: cptr
@@ -13310,13 +13310,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      logical,pointer,dimension(:),intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(1),dims(1)
       integer(8),intent(in),optional :: lbounds8(1),dims8(1)
-      logical,target,dimension(:),intent(in),optional :: dsource,source,mold
+      logical(c_bool),target,dimension(:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      logical,pointer,dimension(:) :: tmp
+      logical(c_bool),pointer,dimension(:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -13382,7 +13382,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:) :: ptr
+      logical(c_bool),pointer,dimension(:) :: ptr
       integer(c_int),intent(in) :: length1 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -13405,7 +13405,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:) :: ptr
+      logical(c_bool),pointer,dimension(:) :: ptr
       integer(c_size_t),intent(in) :: length1 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -13429,13 +13429,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      logical,pointer,dimension(:,:),intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(2),dims(2)
       integer(8),intent(in),optional :: lbounds8(2),dims8(2)
-      logical,target,dimension(:,:),intent(in),optional :: dsource,source,mold
+      logical(c_bool),target,dimension(:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      logical,pointer,dimension(:,:) :: tmp
+      logical(c_bool),pointer,dimension(:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -13501,7 +13501,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:) :: ptr
+      logical(c_bool),pointer,dimension(:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -13524,7 +13524,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:) :: ptr
+      logical(c_bool),pointer,dimension(:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -13548,13 +13548,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      logical,pointer,dimension(:,:,:),intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(3),dims(3)
       integer(8),intent(in),optional :: lbounds8(3),dims8(3)
-      logical,target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
+      logical(c_bool),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      logical,pointer,dimension(:,:,:) :: tmp
+      logical(c_bool),pointer,dimension(:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -13620,7 +13620,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:,:) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -13643,7 +13643,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:,:) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -13667,13 +13667,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      logical,pointer,dimension(:,:,:,:),intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(4),dims(4)
       integer(8),intent(in),optional :: lbounds8(4),dims8(4)
-      logical,target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
+      logical(c_bool),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      logical,pointer,dimension(:,:,:,:) :: tmp
+      logical(c_bool),pointer,dimension(:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -13739,7 +13739,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:,:,:) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -13762,7 +13762,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:,:,:) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -13786,13 +13786,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      logical,pointer,dimension(:,:,:,:,:),intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(5),dims(5)
       integer(8),intent(in),optional :: lbounds8(5),dims8(5)
-      logical,target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      logical(c_bool),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      logical,pointer,dimension(:,:,:,:,:) :: tmp
+      logical(c_bool),pointer,dimension(:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -13858,7 +13858,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:,:,:,:) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4,length5 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -13881,7 +13881,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:,:,:,:) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -13905,13 +13905,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      logical,pointer,dimension(:,:,:,:,:,:),intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(6),dims(6)
       integer(8),intent(in),optional :: lbounds8(6),dims8(6)
-      logical,target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      logical(c_bool),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      logical,pointer,dimension(:,:,:,:,:,:) :: tmp
+      logical(c_bool),pointer,dimension(:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -13977,7 +13977,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:,:,:,:,:) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4,length5,length6 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -14000,7 +14000,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:,:,:,:,:) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5,length6 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -14024,13 +14024,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      logical,pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(7),dims(7)
       integer(8),intent(in),optional :: lbounds8(7),dims8(7)
-      logical,target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      logical(c_bool),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      logical,pointer,dimension(:,:,:,:,:,:,:) :: tmp
+      logical(c_bool),pointer,dimension(:,:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -14096,7 +14096,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:,:,:,:,:,:) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4,length5,length6,length7 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -14119,7 +14119,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:,:,:,:,:,:) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5,length6,length7 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -14144,8 +14144,8 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(4),pointer,intent(inout) :: ptr
-      integer(4),target,intent(in),optional :: dsource,source
+      integer(c_int),pointer,intent(inout) :: ptr
+      integer(c_int),target,intent(in),optional :: dsource,source
       integer(kind=4),intent(in) :: flags
       !
       type(c_ptr) :: cptr
@@ -14186,13 +14186,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(4),pointer,dimension(:),intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(1),dims(1)
       integer(8),intent(in),optional :: lbounds8(1),dims8(1)
-      integer(4),target,dimension(:),intent(in),optional :: dsource,source,mold
+      integer(c_int),target,dimension(:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      integer(4),pointer,dimension(:) :: tmp
+      integer(c_int),pointer,dimension(:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -14258,7 +14258,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:) :: ptr
+      integer(c_int),pointer,dimension(:) :: ptr
       integer(c_int),intent(in) :: length1 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -14281,7 +14281,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:) :: ptr
+      integer(c_int),pointer,dimension(:) :: ptr
       integer(c_size_t),intent(in) :: length1 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -14305,13 +14305,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(4),pointer,dimension(:,:),intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(2),dims(2)
       integer(8),intent(in),optional :: lbounds8(2),dims8(2)
-      integer(4),target,dimension(:,:),intent(in),optional :: dsource,source,mold
+      integer(c_int),target,dimension(:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      integer(4),pointer,dimension(:,:) :: tmp
+      integer(c_int),pointer,dimension(:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -14377,7 +14377,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:) :: ptr
+      integer(c_int),pointer,dimension(:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -14400,7 +14400,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:) :: ptr
+      integer(c_int),pointer,dimension(:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -14424,13 +14424,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(4),pointer,dimension(:,:,:),intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(3),dims(3)
       integer(8),intent(in),optional :: lbounds8(3),dims8(3)
-      integer(4),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
+      integer(c_int),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      integer(4),pointer,dimension(:,:,:) :: tmp
+      integer(c_int),pointer,dimension(:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -14496,7 +14496,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:,:) :: ptr
+      integer(c_int),pointer,dimension(:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -14519,7 +14519,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:,:) :: ptr
+      integer(c_int),pointer,dimension(:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -14543,13 +14543,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(4),pointer,dimension(:,:,:,:),intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(4),dims(4)
       integer(8),intent(in),optional :: lbounds8(4),dims8(4)
-      integer(4),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
+      integer(c_int),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      integer(4),pointer,dimension(:,:,:,:) :: tmp
+      integer(c_int),pointer,dimension(:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -14615,7 +14615,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:,:,:) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -14638,7 +14638,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:,:,:) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -14662,13 +14662,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(4),pointer,dimension(:,:,:,:,:),intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(5),dims(5)
       integer(8),intent(in),optional :: lbounds8(5),dims8(5)
-      integer(4),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      integer(c_int),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      integer(4),pointer,dimension(:,:,:,:,:) :: tmp
+      integer(c_int),pointer,dimension(:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -14734,7 +14734,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:,:,:,:) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4,length5 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -14757,7 +14757,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:,:,:,:) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -14781,13 +14781,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(4),pointer,dimension(:,:,:,:,:,:),intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(6),dims(6)
       integer(8),intent(in),optional :: lbounds8(6),dims8(6)
-      integer(4),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      integer(c_int),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      integer(4),pointer,dimension(:,:,:,:,:,:) :: tmp
+      integer(c_int),pointer,dimension(:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -14853,7 +14853,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:,:,:,:,:) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4,length5,length6 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -14876,7 +14876,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:,:,:,:,:) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5,length6 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -14900,13 +14900,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(4),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(7),dims(7)
       integer(8),intent(in),optional :: lbounds8(7),dims8(7)
-      integer(4),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      integer(c_int),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      integer(4),pointer,dimension(:,:,:,:,:,:,:) :: tmp
+      integer(c_int),pointer,dimension(:,:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -14972,7 +14972,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:,:,:,:,:,:) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4,length5,length6,length7 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -14995,7 +14995,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:,:,:,:,:,:) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5,length6,length7 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -15020,8 +15020,8 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(8),pointer,intent(inout) :: ptr
-      integer(8),target,intent(in),optional :: dsource,source
+      integer(c_long),pointer,intent(inout) :: ptr
+      integer(c_long),target,intent(in),optional :: dsource,source
       integer(kind=4),intent(in) :: flags
       !
       type(c_ptr) :: cptr
@@ -15062,13 +15062,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(8),pointer,dimension(:),intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(1),dims(1)
       integer(8),intent(in),optional :: lbounds8(1),dims8(1)
-      integer(8),target,dimension(:),intent(in),optional :: dsource,source,mold
+      integer(c_long),target,dimension(:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      integer(8),pointer,dimension(:) :: tmp
+      integer(c_long),pointer,dimension(:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -15134,7 +15134,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:) :: ptr
+      integer(c_long),pointer,dimension(:) :: ptr
       integer(c_int),intent(in) :: length1 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -15157,7 +15157,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:) :: ptr
+      integer(c_long),pointer,dimension(:) :: ptr
       integer(c_size_t),intent(in) :: length1 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -15181,13 +15181,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(8),pointer,dimension(:,:),intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(2),dims(2)
       integer(8),intent(in),optional :: lbounds8(2),dims8(2)
-      integer(8),target,dimension(:,:),intent(in),optional :: dsource,source,mold
+      integer(c_long),target,dimension(:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      integer(8),pointer,dimension(:,:) :: tmp
+      integer(c_long),pointer,dimension(:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -15253,7 +15253,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:) :: ptr
+      integer(c_long),pointer,dimension(:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -15276,7 +15276,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:) :: ptr
+      integer(c_long),pointer,dimension(:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -15300,13 +15300,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(8),pointer,dimension(:,:,:),intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(3),dims(3)
       integer(8),intent(in),optional :: lbounds8(3),dims8(3)
-      integer(8),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
+      integer(c_long),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      integer(8),pointer,dimension(:,:,:) :: tmp
+      integer(c_long),pointer,dimension(:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -15372,7 +15372,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:,:) :: ptr
+      integer(c_long),pointer,dimension(:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -15395,7 +15395,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:,:) :: ptr
+      integer(c_long),pointer,dimension(:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -15419,13 +15419,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(8),pointer,dimension(:,:,:,:),intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(4),dims(4)
       integer(8),intent(in),optional :: lbounds8(4),dims8(4)
-      integer(8),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
+      integer(c_long),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      integer(8),pointer,dimension(:,:,:,:) :: tmp
+      integer(c_long),pointer,dimension(:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -15491,7 +15491,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:,:,:) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -15514,7 +15514,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:,:,:) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -15538,13 +15538,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(8),pointer,dimension(:,:,:,:,:),intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(5),dims(5)
       integer(8),intent(in),optional :: lbounds8(5),dims8(5)
-      integer(8),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      integer(c_long),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      integer(8),pointer,dimension(:,:,:,:,:) :: tmp
+      integer(c_long),pointer,dimension(:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -15610,7 +15610,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:,:,:,:) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4,length5 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -15633,7 +15633,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:,:,:,:) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -15657,13 +15657,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(8),pointer,dimension(:,:,:,:,:,:),intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(6),dims(6)
       integer(8),intent(in),optional :: lbounds8(6),dims8(6)
-      integer(8),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      integer(c_long),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      integer(8),pointer,dimension(:,:,:,:,:,:) :: tmp
+      integer(c_long),pointer,dimension(:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -15729,7 +15729,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:,:,:,:,:) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4,length5,length6 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -15752,7 +15752,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:,:,:,:,:) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5,length6 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -15776,13 +15776,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      integer(8),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(7),dims(7)
       integer(8),intent(in),optional :: lbounds8(7),dims8(7)
-      integer(8),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      integer(c_long),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      integer(8),pointer,dimension(:,:,:,:,:,:,:) :: tmp
+      integer(c_long),pointer,dimension(:,:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -15848,7 +15848,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:,:,:,:,:,:) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4,length5,length6,length7 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -15871,7 +15871,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:,:,:,:,:,:) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5,length6,length7 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -15896,8 +15896,8 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(4),pointer,intent(inout) :: ptr
-      real(4),target,intent(in),optional :: dsource,source
+      real(c_float),pointer,intent(inout) :: ptr
+      real(c_float),target,intent(in),optional :: dsource,source
       integer(kind=4),intent(in) :: flags
       !
       type(c_ptr) :: cptr
@@ -15938,13 +15938,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(4),pointer,dimension(:),intent(inout) :: ptr
+      real(c_float),pointer,dimension(:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(1),dims(1)
       integer(8),intent(in),optional :: lbounds8(1),dims8(1)
-      real(4),target,dimension(:),intent(in),optional :: dsource,source,mold
+      real(c_float),target,dimension(:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      real(4),pointer,dimension(:) :: tmp
+      real(c_float),pointer,dimension(:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -16010,7 +16010,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:) :: ptr
+      real(c_float),pointer,dimension(:) :: ptr
       integer(c_int),intent(in) :: length1 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -16033,7 +16033,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:) :: ptr
+      real(c_float),pointer,dimension(:) :: ptr
       integer(c_size_t),intent(in) :: length1 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -16057,13 +16057,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(4),pointer,dimension(:,:),intent(inout) :: ptr
+      real(c_float),pointer,dimension(:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(2),dims(2)
       integer(8),intent(in),optional :: lbounds8(2),dims8(2)
-      real(4),target,dimension(:,:),intent(in),optional :: dsource,source,mold
+      real(c_float),target,dimension(:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      real(4),pointer,dimension(:,:) :: tmp
+      real(c_float),pointer,dimension(:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -16129,7 +16129,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:) :: ptr
+      real(c_float),pointer,dimension(:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -16152,7 +16152,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:) :: ptr
+      real(c_float),pointer,dimension(:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -16176,13 +16176,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(4),pointer,dimension(:,:,:),intent(inout) :: ptr
+      real(c_float),pointer,dimension(:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(3),dims(3)
       integer(8),intent(in),optional :: lbounds8(3),dims8(3)
-      real(4),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
+      real(c_float),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      real(4),pointer,dimension(:,:,:) :: tmp
+      real(c_float),pointer,dimension(:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -16248,7 +16248,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:,:) :: ptr
+      real(c_float),pointer,dimension(:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -16271,7 +16271,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:,:) :: ptr
+      real(c_float),pointer,dimension(:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -16295,13 +16295,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(4),pointer,dimension(:,:,:,:),intent(inout) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(4),dims(4)
       integer(8),intent(in),optional :: lbounds8(4),dims8(4)
-      real(4),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
+      real(c_float),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      real(4),pointer,dimension(:,:,:,:) :: tmp
+      real(c_float),pointer,dimension(:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -16367,7 +16367,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:,:,:) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -16390,7 +16390,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:,:,:) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -16414,13 +16414,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(4),pointer,dimension(:,:,:,:,:),intent(inout) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(5),dims(5)
       integer(8),intent(in),optional :: lbounds8(5),dims8(5)
-      real(4),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      real(c_float),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      real(4),pointer,dimension(:,:,:,:,:) :: tmp
+      real(c_float),pointer,dimension(:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -16486,7 +16486,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:,:,:,:) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4,length5 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -16509,7 +16509,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:,:,:,:) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -16533,13 +16533,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(4),pointer,dimension(:,:,:,:,:,:),intent(inout) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(6),dims(6)
       integer(8),intent(in),optional :: lbounds8(6),dims8(6)
-      real(4),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      real(c_float),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      real(4),pointer,dimension(:,:,:,:,:,:) :: tmp
+      real(c_float),pointer,dimension(:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -16605,7 +16605,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:,:,:,:,:) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4,length5,length6 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -16628,7 +16628,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:,:,:,:,:) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5,length6 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -16652,13 +16652,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(4),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(7),dims(7)
       integer(8),intent(in),optional :: lbounds8(7),dims8(7)
-      real(4),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      real(c_float),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      real(4),pointer,dimension(:,:,:,:,:,:,:) :: tmp
+      real(c_float),pointer,dimension(:,:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -16724,7 +16724,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:,:,:,:,:,:) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4,length5,length6,length7 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -16747,7 +16747,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:,:,:,:,:,:) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5,length6,length7 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -16772,8 +16772,8 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(8),pointer,intent(inout) :: ptr
-      real(8),target,intent(in),optional :: dsource,source
+      real(c_double),pointer,intent(inout) :: ptr
+      real(c_double),target,intent(in),optional :: dsource,source
       integer(kind=4),intent(in) :: flags
       !
       type(c_ptr) :: cptr
@@ -16814,13 +16814,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(8),pointer,dimension(:),intent(inout) :: ptr
+      real(c_double),pointer,dimension(:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(1),dims(1)
       integer(8),intent(in),optional :: lbounds8(1),dims8(1)
-      real(8),target,dimension(:),intent(in),optional :: dsource,source,mold
+      real(c_double),target,dimension(:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      real(8),pointer,dimension(:) :: tmp
+      real(c_double),pointer,dimension(:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -16886,7 +16886,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:) :: ptr
+      real(c_double),pointer,dimension(:) :: ptr
       integer(c_int),intent(in) :: length1 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -16909,7 +16909,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:) :: ptr
+      real(c_double),pointer,dimension(:) :: ptr
       integer(c_size_t),intent(in) :: length1 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -16933,13 +16933,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(8),pointer,dimension(:,:),intent(inout) :: ptr
+      real(c_double),pointer,dimension(:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(2),dims(2)
       integer(8),intent(in),optional :: lbounds8(2),dims8(2)
-      real(8),target,dimension(:,:),intent(in),optional :: dsource,source,mold
+      real(c_double),target,dimension(:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      real(8),pointer,dimension(:,:) :: tmp
+      real(c_double),pointer,dimension(:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -17005,7 +17005,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:) :: ptr
+      real(c_double),pointer,dimension(:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -17028,7 +17028,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:) :: ptr
+      real(c_double),pointer,dimension(:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -17052,13 +17052,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(8),pointer,dimension(:,:,:),intent(inout) :: ptr
+      real(c_double),pointer,dimension(:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(3),dims(3)
       integer(8),intent(in),optional :: lbounds8(3),dims8(3)
-      real(8),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
+      real(c_double),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      real(8),pointer,dimension(:,:,:) :: tmp
+      real(c_double),pointer,dimension(:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -17124,7 +17124,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:,:) :: ptr
+      real(c_double),pointer,dimension(:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -17147,7 +17147,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:,:) :: ptr
+      real(c_double),pointer,dimension(:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -17171,13 +17171,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(8),pointer,dimension(:,:,:,:),intent(inout) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(4),dims(4)
       integer(8),intent(in),optional :: lbounds8(4),dims8(4)
-      real(8),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
+      real(c_double),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      real(8),pointer,dimension(:,:,:,:) :: tmp
+      real(c_double),pointer,dimension(:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -17243,7 +17243,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:,:,:) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -17266,7 +17266,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:,:,:) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -17290,13 +17290,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(8),pointer,dimension(:,:,:,:,:),intent(inout) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(5),dims(5)
       integer(8),intent(in),optional :: lbounds8(5),dims8(5)
-      real(8),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      real(c_double),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      real(8),pointer,dimension(:,:,:,:,:) :: tmp
+      real(c_double),pointer,dimension(:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -17362,7 +17362,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:,:,:,:) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4,length5 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -17385,7 +17385,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:,:,:,:) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -17409,13 +17409,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(8),pointer,dimension(:,:,:,:,:,:),intent(inout) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(6),dims(6)
       integer(8),intent(in),optional :: lbounds8(6),dims8(6)
-      real(8),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      real(c_double),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      real(8),pointer,dimension(:,:,:,:,:,:) :: tmp
+      real(c_double),pointer,dimension(:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -17481,7 +17481,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:,:,:,:,:) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4,length5,length6 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -17504,7 +17504,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:,:,:,:,:) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5,length6 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -17528,13 +17528,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      real(8),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(7),dims(7)
       integer(8),intent(in),optional :: lbounds8(7),dims8(7)
-      real(8),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      real(c_double),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      real(8),pointer,dimension(:,:,:,:,:,:,:) :: tmp
+      real(c_double),pointer,dimension(:,:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -17600,7 +17600,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:,:,:,:,:,:) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4,length5,length6,length7 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -17623,7 +17623,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:,:,:,:,:,:) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5,length6,length7 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -17648,8 +17648,8 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(4),pointer,intent(inout) :: ptr
-      complex(4),target,intent(in),optional :: dsource,source
+      complex(c_float_complex),pointer,intent(inout) :: ptr
+      complex(c_float_complex),target,intent(in),optional :: dsource,source
       integer(kind=4),intent(in) :: flags
       !
       type(c_ptr) :: cptr
@@ -17690,13 +17690,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(4),pointer,dimension(:),intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(1),dims(1)
       integer(8),intent(in),optional :: lbounds8(1),dims8(1)
-      complex(4),target,dimension(:),intent(in),optional :: dsource,source,mold
+      complex(c_float_complex),target,dimension(:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      complex(4),pointer,dimension(:) :: tmp
+      complex(c_float_complex),pointer,dimension(:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -17762,7 +17762,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:) :: ptr
+      complex(c_float_complex),pointer,dimension(:) :: ptr
       integer(c_int),intent(in) :: length1 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -17785,7 +17785,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:) :: ptr
+      complex(c_float_complex),pointer,dimension(:) :: ptr
       integer(c_size_t),intent(in) :: length1 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -17809,13 +17809,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(4),pointer,dimension(:,:),intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(2),dims(2)
       integer(8),intent(in),optional :: lbounds8(2),dims8(2)
-      complex(4),target,dimension(:,:),intent(in),optional :: dsource,source,mold
+      complex(c_float_complex),target,dimension(:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      complex(4),pointer,dimension(:,:) :: tmp
+      complex(c_float_complex),pointer,dimension(:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -17881,7 +17881,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -17904,7 +17904,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -17928,13 +17928,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(4),pointer,dimension(:,:,:),intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(3),dims(3)
       integer(8),intent(in),optional :: lbounds8(3),dims8(3)
-      complex(4),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
+      complex(c_float_complex),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      complex(4),pointer,dimension(:,:,:) :: tmp
+      complex(c_float_complex),pointer,dimension(:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -18000,7 +18000,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:,:) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -18023,7 +18023,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:,:) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -18047,13 +18047,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(4),pointer,dimension(:,:,:,:),intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(4),dims(4)
       integer(8),intent(in),optional :: lbounds8(4),dims8(4)
-      complex(4),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
+      complex(c_float_complex),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      complex(4),pointer,dimension(:,:,:,:) :: tmp
+      complex(c_float_complex),pointer,dimension(:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -18119,7 +18119,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:,:,:) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -18142,7 +18142,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:,:,:) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -18166,13 +18166,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(4),pointer,dimension(:,:,:,:,:),intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(5),dims(5)
       integer(8),intent(in),optional :: lbounds8(5),dims8(5)
-      complex(4),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      complex(c_float_complex),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      complex(4),pointer,dimension(:,:,:,:,:) :: tmp
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -18238,7 +18238,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:,:,:,:) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4,length5 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -18261,7 +18261,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:,:,:,:) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -18285,13 +18285,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(4),pointer,dimension(:,:,:,:,:,:),intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(6),dims(6)
       integer(8),intent(in),optional :: lbounds8(6),dims8(6)
-      complex(4),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      complex(c_float_complex),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      complex(4),pointer,dimension(:,:,:,:,:,:) :: tmp
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -18357,7 +18357,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:,:,:,:,:) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4,length5,length6 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -18380,7 +18380,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:,:,:,:,:) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5,length6 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -18404,13 +18404,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(4),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(7),dims(7)
       integer(8),intent(in),optional :: lbounds8(7),dims8(7)
-      complex(4),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      complex(c_float_complex),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      complex(4),pointer,dimension(:,:,:,:,:,:,:) :: tmp
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -18476,7 +18476,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:,:,:,:,:,:) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4,length5,length6,length7 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -18499,7 +18499,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:,:,:,:,:,:) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5,length6,length7 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -18524,8 +18524,8 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(8),pointer,intent(inout) :: ptr
-      complex(8),target,intent(in),optional :: dsource,source
+      complex(c_double_complex),pointer,intent(inout) :: ptr
+      complex(c_double_complex),target,intent(in),optional :: dsource,source
       integer(kind=4),intent(in) :: flags
       !
       type(c_ptr) :: cptr
@@ -18566,13 +18566,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(8),pointer,dimension(:),intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(1),dims(1)
       integer(8),intent(in),optional :: lbounds8(1),dims8(1)
-      complex(8),target,dimension(:),intent(in),optional :: dsource,source,mold
+      complex(c_double_complex),target,dimension(:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      complex(8),pointer,dimension(:) :: tmp
+      complex(c_double_complex),pointer,dimension(:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -18638,7 +18638,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:) :: ptr
+      complex(c_double_complex),pointer,dimension(:) :: ptr
       integer(c_int),intent(in) :: length1 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -18661,7 +18661,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:) :: ptr
+      complex(c_double_complex),pointer,dimension(:) :: ptr
       integer(c_size_t),intent(in) :: length1 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -18685,13 +18685,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(8),pointer,dimension(:,:),intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(2),dims(2)
       integer(8),intent(in),optional :: lbounds8(2),dims8(2)
-      complex(8),target,dimension(:,:),intent(in),optional :: dsource,source,mold
+      complex(c_double_complex),target,dimension(:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      complex(8),pointer,dimension(:,:) :: tmp
+      complex(c_double_complex),pointer,dimension(:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -18757,7 +18757,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -18780,7 +18780,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -18804,13 +18804,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(8),pointer,dimension(:,:,:),intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(3),dims(3)
       integer(8),intent(in),optional :: lbounds8(3),dims8(3)
-      complex(8),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
+      complex(c_double_complex),target,dimension(:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      complex(8),pointer,dimension(:,:,:) :: tmp
+      complex(c_double_complex),pointer,dimension(:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -18876,7 +18876,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:,:) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -18899,7 +18899,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:,:) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -18923,13 +18923,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(8),pointer,dimension(:,:,:,:),intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(4),dims(4)
       integer(8),intent(in),optional :: lbounds8(4),dims8(4)
-      complex(8),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
+      complex(c_double_complex),target,dimension(:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      complex(8),pointer,dimension(:,:,:,:) :: tmp
+      complex(c_double_complex),pointer,dimension(:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -18995,7 +18995,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:,:,:) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -19018,7 +19018,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:,:,:) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -19042,13 +19042,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(8),pointer,dimension(:,:,:,:,:),intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(5),dims(5)
       integer(8),intent(in),optional :: lbounds8(5),dims8(5)
-      complex(8),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      complex(c_double_complex),target,dimension(:,:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      complex(8),pointer,dimension(:,:,:,:,:) :: tmp
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -19114,7 +19114,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:,:,:,:) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4,length5 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -19137,7 +19137,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:,:,:,:) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -19161,13 +19161,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(8),pointer,dimension(:,:,:,:,:,:),intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(6),dims(6)
       integer(8),intent(in),optional :: lbounds8(6),dims8(6)
-      complex(8),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      complex(c_double_complex),target,dimension(:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      complex(8),pointer,dimension(:,:,:,:,:,:) :: tmp
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -19233,7 +19233,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:,:,:,:,:) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4,length5,length6 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -19256,7 +19256,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:,:,:,:,:) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5,length6 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -19280,13 +19280,13 @@ module hipfort_hipmalloc
       use hipfort_types
       use hipfort_hipmemcpy, ONLY: hipMemcpy
       implicit none
-      complex(8),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: ptr
       integer(4),intent(in),optional :: lbounds(7),dims(7)
       integer(8),intent(in),optional :: lbounds8(7),dims8(7)
-      complex(8),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
+      complex(c_double_complex),target,dimension(:,:,:,:,:,:,:),intent(in),optional :: dsource,source,mold
       integer(kind=4),intent(in) :: flags
       !
-      complex(8),pointer,dimension(:,:,:,:,:,:,:) :: tmp
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:,:,:) :: tmp
       type(c_ptr) :: cptr
       integer :: nOptArgs 
 #ifdef USE_CUDA_NAMES
@@ -19352,7 +19352,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:,:,:,:,:,:) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:,:,:) :: ptr
       integer(c_int),intent(in) :: length1,length2,length3,length4,length5,length6,length7 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -19375,7 +19375,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:,:,:,:,:,:) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:,:,:) :: ptr
       integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5,length6,length7 
       integer(kind=4),intent(in) :: flags
       type(c_ptr) :: cptr
@@ -19399,7 +19399,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer :: ptr
+      logical(c_bool),pointer :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_l_0 
@@ -19431,7 +19431,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:) :: ptr
+      logical(c_bool),pointer,dimension(:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_l_1 
@@ -19463,7 +19463,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:) :: ptr
+      logical(c_bool),pointer,dimension(:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_l_2 
@@ -19495,7 +19495,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:,:) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_l_3 
@@ -19527,7 +19527,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:,:,:) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_l_4 
@@ -19559,7 +19559,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:,:,:,:) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_l_5 
@@ -19591,7 +19591,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:,:,:,:,:) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_l_6 
@@ -19623,7 +19623,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:,:,:,:,:,:) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_l_7 
@@ -19654,7 +19654,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer :: ptr
+      integer(c_int),pointer :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_i4_0 
@@ -19686,7 +19686,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:) :: ptr
+      integer(c_int),pointer,dimension(:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_i4_1 
@@ -19718,7 +19718,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:) :: ptr
+      integer(c_int),pointer,dimension(:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_i4_2 
@@ -19750,7 +19750,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:,:) :: ptr
+      integer(c_int),pointer,dimension(:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_i4_3 
@@ -19782,7 +19782,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:,:,:) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_i4_4 
@@ -19814,7 +19814,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:,:,:,:) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_i4_5 
@@ -19846,7 +19846,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:,:,:,:,:) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_i4_6 
@@ -19878,7 +19878,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:,:,:,:,:,:) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_i4_7 
@@ -19909,7 +19909,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer :: ptr
+      integer(c_long),pointer :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_i8_0 
@@ -19941,7 +19941,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:) :: ptr
+      integer(c_long),pointer,dimension(:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_i8_1 
@@ -19973,7 +19973,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:) :: ptr
+      integer(c_long),pointer,dimension(:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_i8_2 
@@ -20005,7 +20005,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:,:) :: ptr
+      integer(c_long),pointer,dimension(:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_i8_3 
@@ -20037,7 +20037,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:,:,:) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_i8_4 
@@ -20069,7 +20069,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:,:,:,:) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_i8_5 
@@ -20101,7 +20101,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:,:,:,:,:) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_i8_6 
@@ -20133,7 +20133,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:,:,:,:,:,:) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_i8_7 
@@ -20164,7 +20164,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer :: ptr
+      real(c_float),pointer :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_r4_0 
@@ -20196,7 +20196,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:) :: ptr
+      real(c_float),pointer,dimension(:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_r4_1 
@@ -20228,7 +20228,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:) :: ptr
+      real(c_float),pointer,dimension(:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_r4_2 
@@ -20260,7 +20260,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:,:) :: ptr
+      real(c_float),pointer,dimension(:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_r4_3 
@@ -20292,7 +20292,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:,:,:) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_r4_4 
@@ -20324,7 +20324,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:,:,:,:) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_r4_5 
@@ -20356,7 +20356,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:,:,:,:,:) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_r4_6 
@@ -20388,7 +20388,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:,:,:,:,:,:) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_r4_7 
@@ -20419,7 +20419,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer :: ptr
+      real(c_double),pointer :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_r8_0 
@@ -20451,7 +20451,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:) :: ptr
+      real(c_double),pointer,dimension(:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_r8_1 
@@ -20483,7 +20483,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:) :: ptr
+      real(c_double),pointer,dimension(:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_r8_2 
@@ -20515,7 +20515,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:,:) :: ptr
+      real(c_double),pointer,dimension(:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_r8_3 
@@ -20547,7 +20547,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:,:,:) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_r8_4 
@@ -20579,7 +20579,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:,:,:,:) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_r8_5 
@@ -20611,7 +20611,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:,:,:,:,:) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_r8_6 
@@ -20643,7 +20643,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:,:,:,:,:,:) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_r8_7 
@@ -20674,7 +20674,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer :: ptr
+      complex(c_float_complex),pointer :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_c4_0 
@@ -20706,7 +20706,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:) :: ptr
+      complex(c_float_complex),pointer,dimension(:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_c4_1 
@@ -20738,7 +20738,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_c4_2 
@@ -20770,7 +20770,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:,:) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_c4_3 
@@ -20802,7 +20802,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:,:,:) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_c4_4 
@@ -20834,7 +20834,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:,:,:,:) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_c4_5 
@@ -20866,7 +20866,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:,:,:,:,:) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_c4_6 
@@ -20898,7 +20898,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:,:,:,:,:,:) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_c4_7 
@@ -20929,7 +20929,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer :: ptr
+      complex(c_double_complex),pointer :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_c8_0 
@@ -20961,7 +20961,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:) :: ptr
+      complex(c_double_complex),pointer,dimension(:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_c8_1 
@@ -20993,7 +20993,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_c8_2 
@@ -21025,7 +21025,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:,:) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_c8_3 
@@ -21057,7 +21057,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:,:,:) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_c8_4 
@@ -21089,7 +21089,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:,:,:,:) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_c8_5 
@@ -21121,7 +21121,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:,:,:,:,:) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_c8_6 
@@ -21153,7 +21153,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:,:,:,:,:,:) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipFree_c8_7 
@@ -21185,7 +21185,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer :: ptr
+      logical(c_bool),pointer :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_l_0 
@@ -21216,7 +21216,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:) :: ptr
+      logical(c_bool),pointer,dimension(:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_l_1 
@@ -21247,7 +21247,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:) :: ptr
+      logical(c_bool),pointer,dimension(:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_l_2 
@@ -21278,7 +21278,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:,:) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_l_3 
@@ -21309,7 +21309,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:,:,:) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_l_4 
@@ -21340,7 +21340,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:,:,:,:) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_l_5 
@@ -21371,7 +21371,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:,:,:,:,:) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_l_6 
@@ -21402,7 +21402,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,pointer,dimension(:,:,:,:,:,:,:) :: ptr
+      logical(c_bool),pointer,dimension(:,:,:,:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_l_7 
@@ -21433,7 +21433,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer :: ptr
+      integer(c_int),pointer :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_i4_0 
@@ -21464,7 +21464,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:) :: ptr
+      integer(c_int),pointer,dimension(:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_i4_1 
@@ -21495,7 +21495,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:) :: ptr
+      integer(c_int),pointer,dimension(:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_i4_2 
@@ -21526,7 +21526,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:,:) :: ptr
+      integer(c_int),pointer,dimension(:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_i4_3 
@@ -21557,7 +21557,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:,:,:) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_i4_4 
@@ -21588,7 +21588,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:,:,:,:) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_i4_5 
@@ -21619,7 +21619,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:,:,:,:,:) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_i4_6 
@@ -21650,7 +21650,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),pointer,dimension(:,:,:,:,:,:,:) :: ptr
+      integer(c_int),pointer,dimension(:,:,:,:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_i4_7 
@@ -21681,7 +21681,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer :: ptr
+      integer(c_long),pointer :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_i8_0 
@@ -21712,7 +21712,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:) :: ptr
+      integer(c_long),pointer,dimension(:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_i8_1 
@@ -21743,7 +21743,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:) :: ptr
+      integer(c_long),pointer,dimension(:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_i8_2 
@@ -21774,7 +21774,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:,:) :: ptr
+      integer(c_long),pointer,dimension(:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_i8_3 
@@ -21805,7 +21805,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:,:,:) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_i8_4 
@@ -21836,7 +21836,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:,:,:,:) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_i8_5 
@@ -21867,7 +21867,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:,:,:,:,:) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_i8_6 
@@ -21898,7 +21898,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),pointer,dimension(:,:,:,:,:,:,:) :: ptr
+      integer(c_long),pointer,dimension(:,:,:,:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_i8_7 
@@ -21929,7 +21929,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer :: ptr
+      real(c_float),pointer :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_r4_0 
@@ -21960,7 +21960,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:) :: ptr
+      real(c_float),pointer,dimension(:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_r4_1 
@@ -21991,7 +21991,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:) :: ptr
+      real(c_float),pointer,dimension(:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_r4_2 
@@ -22022,7 +22022,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:,:) :: ptr
+      real(c_float),pointer,dimension(:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_r4_3 
@@ -22053,7 +22053,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:,:,:) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_r4_4 
@@ -22084,7 +22084,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:,:,:,:) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_r4_5 
@@ -22115,7 +22115,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:,:,:,:,:) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_r4_6 
@@ -22146,7 +22146,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),pointer,dimension(:,:,:,:,:,:,:) :: ptr
+      real(c_float),pointer,dimension(:,:,:,:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_r4_7 
@@ -22177,7 +22177,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer :: ptr
+      real(c_double),pointer :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_r8_0 
@@ -22208,7 +22208,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:) :: ptr
+      real(c_double),pointer,dimension(:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_r8_1 
@@ -22239,7 +22239,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:) :: ptr
+      real(c_double),pointer,dimension(:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_r8_2 
@@ -22270,7 +22270,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:,:) :: ptr
+      real(c_double),pointer,dimension(:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_r8_3 
@@ -22301,7 +22301,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:,:,:) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_r8_4 
@@ -22332,7 +22332,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:,:,:,:) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_r8_5 
@@ -22363,7 +22363,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:,:,:,:,:) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_r8_6 
@@ -22394,7 +22394,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),pointer,dimension(:,:,:,:,:,:,:) :: ptr
+      real(c_double),pointer,dimension(:,:,:,:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_r8_7 
@@ -22425,7 +22425,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer :: ptr
+      complex(c_float_complex),pointer :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_c4_0 
@@ -22456,7 +22456,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:) :: ptr
+      complex(c_float_complex),pointer,dimension(:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_c4_1 
@@ -22487,7 +22487,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_c4_2 
@@ -22518,7 +22518,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:,:) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_c4_3 
@@ -22549,7 +22549,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:,:,:) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_c4_4 
@@ -22580,7 +22580,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:,:,:,:) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_c4_5 
@@ -22611,7 +22611,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:,:,:,:,:) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_c4_6 
@@ -22642,7 +22642,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),pointer,dimension(:,:,:,:,:,:,:) :: ptr
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_c4_7 
@@ -22673,7 +22673,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer :: ptr
+      complex(c_double_complex),pointer :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_c8_0 
@@ -22704,7 +22704,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:) :: ptr
+      complex(c_double_complex),pointer,dimension(:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_c8_1 
@@ -22735,7 +22735,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_c8_2 
@@ -22766,7 +22766,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:,:) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_c8_3 
@@ -22797,7 +22797,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:,:,:) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_c8_4 
@@ -22828,7 +22828,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:,:,:,:) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_c8_5 
@@ -22859,7 +22859,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:,:,:,:,:) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_c8_6 
@@ -22890,7 +22890,7 @@ module hipfort_hipmalloc
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),pointer,dimension(:,:,:,:,:,:,:) :: ptr
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:,:,:) :: ptr
       logical,intent(in),optional :: only_if_allocated
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostFree_c8_7 

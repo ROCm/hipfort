@@ -635,7 +635,7 @@ module hipfort_hiprand
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandSetQuasiRandomGeneratorDimensions_
       type(c_ptr),value :: generator
-      integer(kind=4),value :: dimensions
+      integer(c_int),value :: dimensions
     end function
 
   end interface
