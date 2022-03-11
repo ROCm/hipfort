@@ -18,7 +18,7 @@
 #    HIPFORT_ARCHGPU = nvptx-sm_70
 #
 
-HIPFORT_ARCHGPU ?= $(shell $(HIPFORT_HOME)/bin/myarchgpu)
+HIPFORT_ARCHGPU ?= $(shell $(HIPFORT_HOME)/bin/hipfort/myarchgpu)
 ARCH = $(firstword $(subst -, ,$(HIPFORT_ARCHGPU)))
 HIPFORT_COMPILER ?= gfortran
 CUDA_PATH=${CUDA_PATH:-/usr/local/cuda}
@@ -27,7 +27,7 @@ DEVICE_LIB_PATH  ?= $(ROCM_PATH)/lib
 HIP_CLANG_PATH   ?= $(ROCM_PATH)/llvm/bin
 HIP_PLATFORM=${HIP_PLATFORM:-amd}
 
-MOD_DIR  = $(HIPFORT_HOME)/include/$(ARCH)
+MOD_DIR  = $(HIPFORT_HOME)/include/hipfort/$(ARCH)
 LIB_DIR  = $(HIPFORT_HOME)/lib
 
 GPU = $(strip $(subst ., ,$(suffix $(subst -,.,$(HIPFORT_ARCHGPU)))))

@@ -42,7 +42,7 @@ set(HIPFORT_ARCH "nvptx")
             ARCHIVE DESTINATION lib
             LIBRARY DESTINATION lib)
    
-install(DIRECTORY ${CMAKE_BINARY_DIR}/include/hipfort DESTINATION .)
+install(DIRECTORY ${CMAKE_BINARY_DIR}/include/hipfort DESTINATION include)
 
 #   target_link_libraries(${HIPFORT_LIB} PUBLIC 
 #   /usr/local/cuda/targets/x86_64-linux/lib/libcudart_static.a)
