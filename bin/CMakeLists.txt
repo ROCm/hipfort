@@ -31,8 +31,8 @@ add_custom_command( OUTPUT hipfort/mymcpu
 
 # The myarchgpu symbolic link is needed for test targets before installation
 add_custom_command( OUTPUT hipfort/myarchgpu
-   COMMAND /bin/ln -sf mymcpu ${CMAKE_CURRENT_BINARY_DIR}/../bin/hipfort/myarchgpu
-   DEPENDS mymcpu)
+   COMMAND /bin/ln -sf hipfort/mymcpu ${CMAKE_CURRENT_BINARY_DIR}/../bin/hipfort/myarchgpu
+   DEPENDS hipfort/mymcpu)
 
 add_custom_command( OUTPUT hipfort/hipfc
    COMMAND /bin/cp -p ${CMAKE_CURRENT_SOURCE_DIR}/hipfc ${CMAKE_CURRENT_BINARY_DIR}/../bin/hipfort/hipfc.needs_edit
