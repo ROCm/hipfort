@@ -19,7 +19,7 @@ git clone https://github.com/ROCmSoftwarePlatform/hipfort
 mkdir build ; cd build
 cmake -DHIPFORT_INSTALL_DIR=/tmp/hipfort ..
 make install
-export PATH=/tmp/hipfort/bin:$PATH
+export PATH=/tmp/hipfort/libexec/hipfort:$PATH
 cd ../test/f2003/vecadd
 hipfc -v hip_implementation.cpp main.f03
 ./a.out
