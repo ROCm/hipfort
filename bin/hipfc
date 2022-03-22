@@ -398,9 +398,9 @@ if [ "$UNAMEP" == "ppc64le" ] ; then
 fi
 
 if [[ "$HIPFORT_COMPILER" == *"ftn" ]] ; then
-  FCARGS="-eT -J$HIPFORT/include/$TARGET_ARCH"
+  FCARGS="-eT -J$HIPFORT/include/hipfort/$TARGET_ARCH"
 else
-  FCARGS="-cpp -I$HIPFORT/include/$TARGET_ARCH"
+  FCARGS="-cpp -I$HIPFORT/include/hipfort/$TARGET_ARCH"
 fi
 
 if [ $GEN_OBJECT_ONLY ]  ; then 
