@@ -286,7 +286,7 @@ fi
 # Determine which gfx processor to use, default to Vega (gfx900)
 if [ ! $HIPFORT_GPU ] ; then 
    # Use the mygpu in pair with this script, no the pre-installed one.
-   HIPFORT_GPU=`$cdir/mygpu -d gfx900`
+   HIPFORT_GPU=`$cdir/../libexec/hipfort/mygpu -d gfx900`
    if [ "$HIPFORT_GPU" == "" ] ; then 
       HIPFORT_GPU="gfx900"
    fi

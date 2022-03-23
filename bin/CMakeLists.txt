@@ -34,22 +34,29 @@ add_custom_command( OUTPUT ../libexec/hipfort/myarchgpu
    COMMAND /bin/ln -sf ../libexec/hipfort/mymcpu ${CMAKE_CURRENT_BINARY_DIR}/../libexec/hipfort/myarchgpu
    DEPENDS ../libexec/hipfort/mymcpu)
 
-add_custom_command( OUTPUT ../libexec/hipfort/hipfc
-   COMMAND /bin/cp -p ${CMAKE_CURRENT_SOURCE_DIR}/hipfc ${CMAKE_CURRENT_BINARY_DIR}/../libexec/hipfort/hipfc.needs_edit
-   COMMAND /bin/sed -i -e '${sed_str}' ${CMAKE_CURRENT_BINARY_DIR}/../libexec/hipfort/hipfc.needs_edit
-   COMMAND /bin/sed -i -e "s/X\\.Y\\-Z/${HIPFORT_VERSION}/g" ${CMAKE_CURRENT_BINARY_DIR}/../libexec/hipfort/hipfc.needs_edit
-   COMMAND /bin/sed -e '${sed_str2}' ${CMAKE_CURRENT_BINARY_DIR}/../libexec/hipfort/hipfc.needs_edit > ../libexec/hipfort/hipfc
-   COMMAND /bin/chmod 755 ../libexec/hipfort/hipfc
+add_custom_command( OUTPUT hipfc
+   COMMAND /bin/cp -p ${CMAKE_CURRENT_SOURCE_DIR}/hipfc ${CMAKE_CURRENT_BINARY_DIR}/../bin/hipfc.needs_edit
+   COMMAND /bin/sed -i -e '${sed_str}' ${CMAKE_CURRENT_BINARY_DIR}/../bin/hipfc.needs_edit
+   COMMAND /bin/sed -i -e "s/X\\.Y\\-Z/${HIPFORT_VERSION}/g" ${CMAKE_CURRENT_BINARY_DIR}/../bin/hipfc.needs_edit
+   COMMAND /bin/sed -e '${sed_str2}' ${CMAKE_CURRENT_BINARY_DIR}/../bin/hipfc.needs_edit > hipfc
+   COMMAND /bin/chmod 755 hipfc
    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/hipfc bindir)
 
-add_custom_target(util_scripts ALL DEPENDS bindir ../libexec/hipfort/gputable.txt ../libexec/hipfort/Makefile.hipfort ../libexec/hipfort/hipfc ../libexec/hipfort/mymcpu ../libexec/hipfort/myarchgpu)
+add_custom_target(util_scripts ALL DEPENDS bindir ../libexec/hipfort/gputable.txt ../libexec/hipfort/Makefile.hipfort hipfc ../libexec/hipfort/mymcpu ../libexec/hipfort/myarchgpu)
 
+#HIPFC Install
+install(PROGRAMS
+   # With version string edited
+   ${CMAKE_CURRENT_BINARY_DIR}/../bin/hipfc
+   DESTINATION bin
+)
+
+#Other binaries install
 install(PROGRAMS
    # The first two are symlinks
    ${CMAKE_CURRENT_SOURCE_DIR}/mygpu
    ${CMAKE_CURRENT_SOURCE_DIR}/myarchgpu
-   # These two have their version string edited
-   ${CMAKE_CURRENT_BINARY_DIR}/../libexec/hipfort/hipfc
+   # With version string edited
    ${CMAKE_CURRENT_BINARY_DIR}/../libexec/hipfort/mymcpu
    DESTINATION libexec/hipfort
 )
