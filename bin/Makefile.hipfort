@@ -7,7 +7,7 @@
 # set HIPFORT_HOME to the build or install location of HIPFORT.  For example:
 #
 #    HIPFORT_HOME ?= /opt/rocm/
-#    include $(HIPFORT_HOME)/libexec/hipfort/Makefile.hipfort
+#    include $(HIPFORT_HOME)/share/hipfort/Makefile.hipfort
 #  
 # If the caller does not set HIPFORT_ARCHGPU, this Makefile will call 
 # a self-identification utility called myarchgpu.  Please create an issue
