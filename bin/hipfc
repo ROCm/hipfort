@@ -153,7 +153,7 @@ function addrocmlib(){
   libdir=""
   for dir in "${ROCM_PATH}/lib" "${ROCM_PATH}/${name}/lib"; do
     for ext in "so" "a"; do
-  	if [ -f ${dir}/lib${name}.${ext} ]; then
+  	if [ -f "${dir}/lib${name}.${ext}" ]; then
           libdir=${dir}
         fi
     done
@@ -163,18 +163,18 @@ function addrocmlib(){
      echo "        Please install $name"
      exit $DEADRC
   fi
-  LINKOPTS="$LINKOPTS -L$ROCM_PATH/$name/lib -l$name"
+  LINKOPTS="$LINKOPTS -L${libdir} -l$name"
 }
 
 function addcudalib(){
   name=$1
   libdir=$CUDA_PATH/targets/x86_64-linux/lib
-  if [ ! -d $libdir ] ; then 
+  if [ ! -d ${libdir} ] ; then 
      echo "ERROR:  Directory $libdir does not exist"
      echo "        Please install CUDA"
-     exit $DEADRC
+     exit ${DEADRC}
   fi
-  LINKOPTS="$LINKOPTS -L$libdir -l$name"
+  LINKOPTS="${LINKOPTS} -L${libdir} -l${name}"
 }
 
 #  --------  The main code starts here -----
