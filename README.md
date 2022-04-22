@@ -122,9 +122,9 @@ https://rocmsoftwareplatform.github.io/hipfort/index.html
 ## hipfc wrapper compiler and Makefile.hipfort
 
 Aside from Fortran interfaces to the HIP and ROCm libraries, hipfort ships the `hipfc` wrapper compiler
-and a `Makefile.hipfort` that can be included into a project's build system. Both are located in the `bin/` subdirectory
-of the repository. While both can be configured via a number of environment variables, `hipfc` also understands a greater number of 
-command line options that you can print to screen via `hipfc -h`. 
+and a `Makefile.hipfort` that can be included into a project's build system. hipfc located in the `bin/` subdirectory and
+Makefile.hipfort in share/hipfort of the repository. While both can be configured via a number of environment variables,`
+hipfc` also understands a greater number of command line options that you can print to screen via `hipfc -h`.
 
 Among the environment variables, the most important are:
 

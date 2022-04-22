@@ -294,7 +294,7 @@ fi
 # Determine which gfx processor to use, default to Vega (gfx900)
 if [ ! $HIPFORT_GPU ] ; then 
    # Use the mygpu in pair with this script, no the pre-installed one.
-   HIPFORT_GPU=`$cdir/mygpu -d gfx900`
+   HIPFORT_GPU=`$cdir/../libexec/hipfort/mygpu -d gfx900`
    if [ "$HIPFORT_GPU" == "" ] ; then 
       HIPFORT_GPU="gfx900"
    fi
@@ -406,9 +406,9 @@ if [ "$UNAMEP" == "ppc64le" ] ; then
 fi
 
 if [[ "$HIPFORT_COMPILER" == *"ftn" ]] ; then
-  FCARGS="-eT -J$HIPFORT/include/$TARGET_ARCH"
+  FCARGS="-eT -J$HIPFORT/include/hipfort/$TARGET_ARCH"
 else
-  FCARGS="-cpp -I$HIPFORT/include/$TARGET_ARCH"
+  FCARGS="-cpp -I$HIPFORT/include/hipfort/$TARGET_ARCH"
 fi
 
 if [ $GEN_OBJECT_ONLY ]  ; then 
