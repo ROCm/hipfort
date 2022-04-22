@@ -149,24 +149,32 @@ function getdname(){
 }
 
 function addrocmlib(){
-  name=$1
-  if [ ! -d $ROCM_PATH/$name/lib ] ; then 
-     echo "ERROR:  Directory $ROCM_PATH/$name/lib does not exist"
+  name=${1}
+  libdir=""
+  for dir in "${ROCM_PATH}/lib" "${ROCM_PATH}/${name}/lib"; do
+    for ext in "so" "a"; do
+  	if [ -f "${dir}/lib${name}.${ext}" ]; then
+          libdir=${dir}
+        fi
+    done
+  done
+  if [[ -n ${libdir} ]]; then
+     echo "ERROR:  Library $name could not be found in $ROCM_PATH/lib/ or $ROCM_PATH/$name/lib/"
      echo "        Please install $name"
      exit $DEADRC
   fi
-  LINKOPTS="$LINKOPTS -L$ROCM_PATH/$name/lib -l$name"
+  LINKOPTS="$LINKOPTS -L${libdir} -l$name"
 }
 
 function addcudalib(){
   name=$1
   libdir=$CUDA_PATH/targets/x86_64-linux/lib
-  if [ ! -d $libdir ] ; then 
+  if [ ! -d ${libdir} ] ; then 
      echo "ERROR:  Directory $libdir does not exist"
      echo "        Please install CUDA"
-     exit $DEADRC
+     exit ${DEADRC}
   fi
-  LINKOPTS="$LINKOPTS -L$libdir -l$name"
+  LINKOPTS="${LINKOPTS} -L${libdir} -l${name}"
 }
 
 #  --------  The main code starts here -----
