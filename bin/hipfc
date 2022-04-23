@@ -155,10 +155,11 @@ function addrocmlib(){
     for ext in "so" "a"; do
   	if [ -f "${dir}/lib${name}.${ext}" ]; then
           libdir=${dir}
+	  break 2
         fi
     done
   done
-  if [[ -n ${libdir} ]]; then
+  if [[ -z ${libdir} ]]; then
      echo "ERROR:  Library $name could not be found in $ROCM_PATH/lib/ or $ROCM_PATH/$name/lib/"
      echo "        Please install $name"
      exit $DEADRC
