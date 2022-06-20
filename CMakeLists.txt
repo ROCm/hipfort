@@ -1,4 +1,11 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.0.2)
+
+#Setting Default value for libdir
+set(CMAKE_INSTALL_LIBDIR "lib" CACHE STRING "Library install directory")
+
+#include definitions for GNU install dir cmake flags.
+include(GNUInstallDirs)
+
 # Default compiler gfortran, otherwise cmake Fortran package will set it to f95
 # You can override the compiler with cmake -DHIPFORT_COMPILER=
 set(HIPFORT_COMPILER "/usr/bin/gfortran" CACHE STRING "Fortran Compiler to build HIPFORT")
@@ -136,7 +143,7 @@ if(NOT CPACK_PACKAGING_INSTALL_PREFIX)
   set(CPACK_PACKAGING_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 endif()
 
-set(CPACK_RPM_EXCLUDE_FROM_AUTO_FILELIST_ADDITION "\${CPACK_PACKAGING_INSTALL_PREFIX}" "\${CPACK_PACKAGING_INSTALL_PREFIX}/include" )
+set(CPACK_RPM_EXCLUDE_FROM_AUTO_FILELIST_ADDITION "\${CPACK_PACKAGING_INSTALL_PREFIX}" "\${CPACK_PACKAGING_INSTALL_PREFIX}/${CMAKE_INSTALL_INCLUDEDIR}" )
 # Prevent rpmbuild from stripping binaries, which caused issues on CentOS
 set(CPACK_RPM_SPEC_INSTALL_POST "/bin/true")
 
