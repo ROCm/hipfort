@@ -70,7 +70,7 @@ install(PROGRAMS
 #GPUTable.txt installed to libexec 
 install(FILES
    ${CMAKE_CURRENT_SOURCE_DIR}/gputable.txt
-   DESTINATION ${CMAKE_INSTALL_DATADIR}/hipfort)
+   DESTINATION ${CMAKE_INSTALL_LIBEXECDIR}/hipfort)
 
 #Makefile.hipfort installed to share
 install(FILES
