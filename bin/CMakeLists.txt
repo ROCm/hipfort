@@ -55,7 +55,7 @@ add_custom_target(util_scripts ALL DEPENDS bindir libexecdir sharedir gputable.t
 install(PROGRAMS
    # Version string edited
    ${CMAKE_CURRENT_BINARY_DIR}/../bin/hipfc
-   DESTINATION bin
+   DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
 install(PROGRAMS
@@ -64,15 +64,15 @@ install(PROGRAMS
    ${CMAKE_CURRENT_SOURCE_DIR}/myarchgpu
    # Version string edited
    ${CMAKE_CURRENT_BINARY_DIR}/../libexec/hipfort/mymcpu
-   DESTINATION libexec/hipfort
+   DESTINATION ${CMAKE_INSTALL_LIBEXECDIR}/hipfort
 )
 
 #GPUTable.txt installed to libexec 
 install(FILES
    ${CMAKE_CURRENT_SOURCE_DIR}/gputable.txt
-   DESTINATION libexec/hipfort)
+   DESTINATION ${CMAKE_INSTALL_LIBEXECDIR}/hipfort)
 
 #Makefile.hipfort installed to share
 install(FILES
    ${CMAKE_CURRENT_BINARY_DIR}/../share/hipfort/Makefile.hipfort
-   DESTINATION share/hipfort)
+   DESTINATION ${CMAKE_INSTALL_DATADIR}/hipfort)
