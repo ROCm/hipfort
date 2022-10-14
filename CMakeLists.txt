@@ -151,6 +151,7 @@ rocm_create_package(
   NAME hipfort
   DESCRIPTION "hipfort: Fortran Interface For GPU Kernel Libraries"
   MAINTAINER "Gregory Rogers <Gregory.Rodgers@amd.com>"
+  HEADER_ONLY # Enabled For generating Only -devel pkg.
 )
 
 message("-- HIPFORT -------------  cmake DONE --------------------")

@@ -52,27 +52,35 @@ add_custom_command( OUTPUT hipfc
 
 add_custom_target(util_scripts ALL DEPENDS bindir libexecdir sharedir gputable.txt Makefile.hipfort hipfc mymcpu myarchgpu)
 
-install(PROGRAMS
+# Install hipfc binary, marking under Component devel
+rocm_install(PROGRAMS
    # Version string edited
    ${CMAKE_CURRENT_BINARY_DIR}/../bin/hipfc
    DESTINATION ${CMAKE_INSTALL_BINDIR}
+   COMPONENT devel
 )
 
-install(PROGRAMS
+# Install libexec files, marking under Component devel
+rocm_install(PROGRAMS
    # The first two are symlinks
    ${CMAKE_CURRENT_SOURCE_DIR}/mygpu
    ${CMAKE_CURRENT_SOURCE_DIR}/myarchgpu
    # Version string edited
    ${CMAKE_CURRENT_BINARY_DIR}/../libexec/hipfort/mymcpu
    DESTINATION ${CMAKE_INSTALL_LIBEXECDIR}/hipfort
+   COMPONENT devel
 )
 
-#GPUTable.txt installed to libexec 
-install(FILES
+# GPUTable.txt installed to libexec
+# Install gputable.txt files, marking under Component devel
+rocm_install(FILES
    ${CMAKE_CURRENT_SOURCE_DIR}/gputable.txt
-   DESTINATION ${CMAKE_INSTALL_LIBEXECDIR}/hipfort)
+   DESTINATION ${CMAKE_INSTALL_LIBEXECDIR}/hipfort
+   COMPONENT devel)
 
-#Makefile.hipfort installed to share
-install(FILES
+# Makefile.hipfort installed to share
+# Install Makefile.hipfort files, marking under Component devel
+rocm_install(FILES
    ${CMAKE_CURRENT_BINARY_DIR}/../share/hipfort/Makefile.hipfort
-   DESTINATION ${CMAKE_INSTALL_DATADIR}/hipfort)
+   DESTINATION ${CMAKE_INSTALL_DATADIR}/hipfort
+   COMPONENT devel)

@@ -20,9 +20,12 @@ set(HIPFORT_ARCH "amdgcn")
     	target_compile_definitions(${HIPFORT_LIB} PRIVATE USE_FPOINTER_INTERFACES)
     ENDIF(CMAKE_Fortran_COMPILER_SUPPORTS_F08)
     target_compile_definitions(${HIPFORT_LIB} PRIVATE _HIPFORT_ARCH='${HIPFORT_ARCH}')
-    install(TARGETS ${HIPFORT_LIB} 
-	    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-	    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
+    # Install Target hipfort-amdgcn
+    rocm_install_targets(
+        TARGETS ${HIPFORT_LIB}
+        INCLUDE
+           ${CMAKE_Fortran_MODULE_DIRECTORY}
+    )
 
 set(HIPFORT_ARCH "nvptx")
     # nvptx
@@ -38,11 +41,17 @@ set(HIPFORT_ARCH "nvptx")
     ENDIF(CMAKE_Fortran_COMPILER_SUPPORTS_F08)
     target_compile_definitions(${HIPFORT_LIB} PRIVATE USE_CUDA_NAMES)
     target_compile_definitions(${HIPFORT_LIB} PRIVATE _HIPFORT_ARCH='${HIPFORT_ARCH}')
-    install(TARGETS ${HIPFORT_LIB} 
-	    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-	    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
+    # Install Target hipfort-nvptx
+    rocm_install_targets(
+        TARGETS ${HIPFORT_LIB}
+        INCLUDE
+           ${CMAKE_Fortran_MODULE_DIRECTORY}
+    )
    
-    install(DIRECTORY ${CMAKE_BINARY_DIR}/include/hipfort DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+    # Install include files marking as devel component
+    rocm_install(DIRECTORY ${CMAKE_BINARY_DIR}/include/hipfort
+                 DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+		 COMPONENT devel)
 
 #   target_link_libraries(${HIPFORT_LIB} PUBLIC 
 #   /usr/local/cuda/targets/x86_64-linux/lib/libcudart_static.a)
