@@ -138,6 +138,14 @@ ADD_SUBDIRECTORY(${CMAKE_SOURCE_DIR}/bin)
 
 set(CPACK_DEBIAN_PACKAGE_DEPENDS "hip-rocclr (>= 3.5.0)")
 set(CPACK_RPM_PACKAGE_REQUIRES "hip-rocclr >= 3.5.0")
+# Package name changed from hipfort to hipfort-devel/dev
+# Backward compatibility support for old package name
+set(CPACK_DEBIAN_PACKAGE_PROVIDES "hipfort")
+set(CPACK_DEBIAN_PACKAGE_REPLACES "hipfort")
+set(CPACK_DEBIAN_PACKAGE_CONFLICTS "hipfort")
+set(CPACK_RPM_PACKAGE_PROVIDES "hipfort")
+set(CPACK_RPM_PACKAGE_OBSOLETES "hipfort")
+
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
 if(NOT CPACK_PACKAGING_INSTALL_PREFIX)
   set(CPACK_PACKAGING_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
