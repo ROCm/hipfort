@@ -2,7 +2,7 @@
 ! ==============================================================================
 ! hipfort: FORTRAN Interfaces for GPU kernels
 ! ==============================================================================
-! Copyright (c) 2021 Advanced Micro Devices, Inc. All rights reserved.
+! Copyright (c) 2020-2022 Advanced Micro Devices, Inc. All rights reserved.
 ! [MITx11 License]
 ! 
 ! Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -25,7 +25,7 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 module hipfort_hiphostregister
-  
+
   !> 
   !>    @brief Register host memory so it can be accessed from the current device.
   !>  
@@ -64,9 +64,9 @@ module hipfort_hiphostregister
   !>  
   interface hipHostRegister
 #ifdef USE_CUDA_NAMES
-    function hipHostRegister_b(hostPtr,sizeBytes,flags) bind(c, name="cudaHostRegister")
+    function hipHostRegister_(hostPtr,sizeBytes,flags) bind(c, name="cudaHostRegister")
 #else
-    function hipHostRegister_b(hostPtr,sizeBytes,flags) bind(c, name="hipHostRegister")
+    function hipHostRegister_(hostPtr,sizeBytes,flags) bind(c, name="hipHostRegister")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -76,19 +76,172 @@ module hipfort_hiphostregister
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_b
+      integer(kind(cudaSuccess)) :: hipHostRegister_
 #else
-      integer(kind(hipSuccess)) :: hipHostRegister_b
+      integer(kind(hipSuccess)) :: hipHostRegister_
 #endif
       type(c_ptr),value :: hostPtr
       integer(c_size_t),value :: sizeBytes
       integer(kind=4),value :: flags
     end function
+
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipHostRegister_l_0,hipHostRegister_l_1,hipHostRegister_l_2,hipHostRegister_l_3,hipHostRegister_l_4,hipHostRegister_l_5,hipHostRegister_l_6,hipHostRegister_l_7,hipHostRegister_i4_0,hipHostRegister_i4_1,hipHostRegister_i4_2,hipHostRegister_i4_3,hipHostRegister_i4_4,hipHostRegister_i4_5,hipHostRegister_i4_6,hipHostRegister_i4_7,hipHostRegister_i8_0,hipHostRegister_i8_1,hipHostRegister_i8_2,hipHostRegister_i8_3,hipHostRegister_i8_4,hipHostRegister_i8_5,hipHostRegister_i8_6,hipHostRegister_i8_7,hipHostRegister_r4_0,hipHostRegister_r4_1,hipHostRegister_r4_2,hipHostRegister_r4_3,hipHostRegister_r4_4,hipHostRegister_r4_5,hipHostRegister_r4_6,hipHostRegister_r4_7,hipHostRegister_r8_0,hipHostRegister_r8_1,hipHostRegister_r8_2,hipHostRegister_r8_3,hipHostRegister_r8_4,hipHostRegister_r8_5,hipHostRegister_r8_6,hipHostRegister_r8_7,hipHostRegister_c4_0,hipHostRegister_c4_1,hipHostRegister_c4_2,hipHostRegister_c4_3,hipHostRegister_c4_4,hipHostRegister_c4_5,hipHostRegister_c4_6,hipHostRegister_c4_7,hipHostRegister_c8_0,hipHostRegister_c8_1,hipHostRegister_c8_2,hipHostRegister_c8_3,hipHostRegister_c8_4,hipHostRegister_c8_5,hipHostRegister_c8_6,hipHostRegister_c8_7 
+    module procedure hipHostRegister_l_0_nosize,&
+      hipHostRegister_l_1_nosize,&
+      hipHostRegister_l_1_c_int,&
+      hipHostRegister_l_1_c_size_t,&
+      hipHostRegister_l_2_nosize,&
+      hipHostRegister_l_2_c_int,&
+      hipHostRegister_l_2_c_size_t,&
+      hipHostRegister_l_3_nosize,&
+      hipHostRegister_l_3_c_int,&
+      hipHostRegister_l_3_c_size_t,&
+      hipHostRegister_l_4_nosize,&
+      hipHostRegister_l_4_c_int,&
+      hipHostRegister_l_4_c_size_t,&
+      hipHostRegister_l_5_nosize,&
+      hipHostRegister_l_5_c_int,&
+      hipHostRegister_l_5_c_size_t,&
+      hipHostRegister_l_6_nosize,&
+      hipHostRegister_l_6_c_int,&
+      hipHostRegister_l_6_c_size_t,&
+      hipHostRegister_l_7_nosize,&
+      hipHostRegister_l_7_c_int,&
+      hipHostRegister_l_7_c_size_t,&
+      hipHostRegister_i4_0_nosize,&
+      hipHostRegister_i4_1_nosize,&
+      hipHostRegister_i4_1_c_int,&
+      hipHostRegister_i4_1_c_size_t,&
+      hipHostRegister_i4_2_nosize,&
+      hipHostRegister_i4_2_c_int,&
+      hipHostRegister_i4_2_c_size_t,&
+      hipHostRegister_i4_3_nosize,&
+      hipHostRegister_i4_3_c_int,&
+      hipHostRegister_i4_3_c_size_t,&
+      hipHostRegister_i4_4_nosize,&
+      hipHostRegister_i4_4_c_int,&
+      hipHostRegister_i4_4_c_size_t,&
+      hipHostRegister_i4_5_nosize,&
+      hipHostRegister_i4_5_c_int,&
+      hipHostRegister_i4_5_c_size_t,&
+      hipHostRegister_i4_6_nosize,&
+      hipHostRegister_i4_6_c_int,&
+      hipHostRegister_i4_6_c_size_t,&
+      hipHostRegister_i4_7_nosize,&
+      hipHostRegister_i4_7_c_int,&
+      hipHostRegister_i4_7_c_size_t,&
+      hipHostRegister_i8_0_nosize,&
+      hipHostRegister_i8_1_nosize,&
+      hipHostRegister_i8_1_c_int,&
+      hipHostRegister_i8_1_c_size_t,&
+      hipHostRegister_i8_2_nosize,&
+      hipHostRegister_i8_2_c_int,&
+      hipHostRegister_i8_2_c_size_t,&
+      hipHostRegister_i8_3_nosize,&
+      hipHostRegister_i8_3_c_int,&
+      hipHostRegister_i8_3_c_size_t,&
+      hipHostRegister_i8_4_nosize,&
+      hipHostRegister_i8_4_c_int,&
+      hipHostRegister_i8_4_c_size_t,&
+      hipHostRegister_i8_5_nosize,&
+      hipHostRegister_i8_5_c_int,&
+      hipHostRegister_i8_5_c_size_t,&
+      hipHostRegister_i8_6_nosize,&
+      hipHostRegister_i8_6_c_int,&
+      hipHostRegister_i8_6_c_size_t,&
+      hipHostRegister_i8_7_nosize,&
+      hipHostRegister_i8_7_c_int,&
+      hipHostRegister_i8_7_c_size_t,&
+      hipHostRegister_r4_0_nosize,&
+      hipHostRegister_r4_1_nosize,&
+      hipHostRegister_r4_1_c_int,&
+      hipHostRegister_r4_1_c_size_t,&
+      hipHostRegister_r4_2_nosize,&
+      hipHostRegister_r4_2_c_int,&
+      hipHostRegister_r4_2_c_size_t,&
+      hipHostRegister_r4_3_nosize,&
+      hipHostRegister_r4_3_c_int,&
+      hipHostRegister_r4_3_c_size_t,&
+      hipHostRegister_r4_4_nosize,&
+      hipHostRegister_r4_4_c_int,&
+      hipHostRegister_r4_4_c_size_t,&
+      hipHostRegister_r4_5_nosize,&
+      hipHostRegister_r4_5_c_int,&
+      hipHostRegister_r4_5_c_size_t,&
+      hipHostRegister_r4_6_nosize,&
+      hipHostRegister_r4_6_c_int,&
+      hipHostRegister_r4_6_c_size_t,&
+      hipHostRegister_r4_7_nosize,&
+      hipHostRegister_r4_7_c_int,&
+      hipHostRegister_r4_7_c_size_t,&
+      hipHostRegister_r8_0_nosize,&
+      hipHostRegister_r8_1_nosize,&
+      hipHostRegister_r8_1_c_int,&
+      hipHostRegister_r8_1_c_size_t,&
+      hipHostRegister_r8_2_nosize,&
+      hipHostRegister_r8_2_c_int,&
+      hipHostRegister_r8_2_c_size_t,&
+      hipHostRegister_r8_3_nosize,&
+      hipHostRegister_r8_3_c_int,&
+      hipHostRegister_r8_3_c_size_t,&
+      hipHostRegister_r8_4_nosize,&
+      hipHostRegister_r8_4_c_int,&
+      hipHostRegister_r8_4_c_size_t,&
+      hipHostRegister_r8_5_nosize,&
+      hipHostRegister_r8_5_c_int,&
+      hipHostRegister_r8_5_c_size_t,&
+      hipHostRegister_r8_6_nosize,&
+      hipHostRegister_r8_6_c_int,&
+      hipHostRegister_r8_6_c_size_t,&
+      hipHostRegister_r8_7_nosize,&
+      hipHostRegister_r8_7_c_int,&
+      hipHostRegister_r8_7_c_size_t,&
+      hipHostRegister_c4_0_nosize,&
+      hipHostRegister_c4_1_nosize,&
+      hipHostRegister_c4_1_c_int,&
+      hipHostRegister_c4_1_c_size_t,&
+      hipHostRegister_c4_2_nosize,&
+      hipHostRegister_c4_2_c_int,&
+      hipHostRegister_c4_2_c_size_t,&
+      hipHostRegister_c4_3_nosize,&
+      hipHostRegister_c4_3_c_int,&
+      hipHostRegister_c4_3_c_size_t,&
+      hipHostRegister_c4_4_nosize,&
+      hipHostRegister_c4_4_c_int,&
+      hipHostRegister_c4_4_c_size_t,&
+      hipHostRegister_c4_5_nosize,&
+      hipHostRegister_c4_5_c_int,&
+      hipHostRegister_c4_5_c_size_t,&
+      hipHostRegister_c4_6_nosize,&
+      hipHostRegister_c4_6_c_int,&
+      hipHostRegister_c4_6_c_size_t,&
+      hipHostRegister_c4_7_nosize,&
+      hipHostRegister_c4_7_c_int,&
+      hipHostRegister_c4_7_c_size_t,&
+      hipHostRegister_c8_0_nosize,&
+      hipHostRegister_c8_1_nosize,&
+      hipHostRegister_c8_1_c_int,&
+      hipHostRegister_c8_1_c_size_t,&
+      hipHostRegister_c8_2_nosize,&
+      hipHostRegister_c8_2_c_int,&
+      hipHostRegister_c8_2_c_size_t,&
+      hipHostRegister_c8_3_nosize,&
+      hipHostRegister_c8_3_c_int,&
+      hipHostRegister_c8_3_c_size_t,&
+      hipHostRegister_c8_4_nosize,&
+      hipHostRegister_c8_4_c_int,&
+      hipHostRegister_c8_4_c_size_t,&
+      hipHostRegister_c8_5_nosize,&
+      hipHostRegister_c8_5_c_int,&
+      hipHostRegister_c8_5_c_size_t,&
+      hipHostRegister_c8_6_nosize,&
+      hipHostRegister_c8_6_c_int,&
+      hipHostRegister_c8_6_c_size_t,&
+      hipHostRegister_c8_7_nosize,&
+      hipHostRegister_c8_7_c_int,&
+      hipHostRegister_c8_7_c_size_t 
 #endif
   end interface
-
   !> 
   !>    @brief Un-register host pointer
   !>  
@@ -99,9 +252,9 @@ module hipfort_hiphostregister
   !>  
   interface hipHostUnregister
 #ifdef USE_CUDA_NAMES
-    function hipHostUnregister_b(hostPtr) bind(c, name="cudaHostUnregister")
+    function hipHostUnregister_(hostPtr) bind(c, name="cudaHostUnregister")
 #else
-    function hipHostUnregister_b(hostPtr) bind(c, name="hipHostUnregister")
+    function hipHostUnregister_(hostPtr) bind(c, name="hipHostUnregister")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -111,17 +264,73 @@ module hipfort_hiphostregister
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostUnregister_b
+      integer(kind(cudaSuccess)) :: hipHostUnregister_
 #else
-      integer(kind(hipSuccess)) :: hipHostUnregister_b
+      integer(kind(hipSuccess)) :: hipHostUnregister_
 #endif
       type(c_ptr),value :: hostPtr
     end function
+
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipHostUnregister_l_0,hipHostUnregister_l_1,hipHostUnregister_l_2,hipHostUnregister_l_3,hipHostUnregister_l_4,hipHostUnregister_l_5,hipHostUnregister_l_6,hipHostUnregister_l_7,hipHostUnregister_i4_0,hipHostUnregister_i4_1,hipHostUnregister_i4_2,hipHostUnregister_i4_3,hipHostUnregister_i4_4,hipHostUnregister_i4_5,hipHostUnregister_i4_6,hipHostUnregister_i4_7,hipHostUnregister_i8_0,hipHostUnregister_i8_1,hipHostUnregister_i8_2,hipHostUnregister_i8_3,hipHostUnregister_i8_4,hipHostUnregister_i8_5,hipHostUnregister_i8_6,hipHostUnregister_i8_7,hipHostUnregister_r4_0,hipHostUnregister_r4_1,hipHostUnregister_r4_2,hipHostUnregister_r4_3,hipHostUnregister_r4_4,hipHostUnregister_r4_5,hipHostUnregister_r4_6,hipHostUnregister_r4_7,hipHostUnregister_r8_0,hipHostUnregister_r8_1,hipHostUnregister_r8_2,hipHostUnregister_r8_3,hipHostUnregister_r8_4,hipHostUnregister_r8_5,hipHostUnregister_r8_6,hipHostUnregister_r8_7,hipHostUnregister_c4_0,hipHostUnregister_c4_1,hipHostUnregister_c4_2,hipHostUnregister_c4_3,hipHostUnregister_c4_4,hipHostUnregister_c4_5,hipHostUnregister_c4_6,hipHostUnregister_c4_7,hipHostUnregister_c8_0,hipHostUnregister_c8_1,hipHostUnregister_c8_2,hipHostUnregister_c8_3,hipHostUnregister_c8_4,hipHostUnregister_c8_5,hipHostUnregister_c8_6,hipHostUnregister_c8_7 
+    module procedure hipHostUnregister_l_0,&
+      hipHostUnregister_l_1,&
+      hipHostUnregister_l_2,&
+      hipHostUnregister_l_3,&
+      hipHostUnregister_l_4,&
+      hipHostUnregister_l_5,&
+      hipHostUnregister_l_6,&
+      hipHostUnregister_l_7,&
+      hipHostUnregister_i4_0,&
+      hipHostUnregister_i4_1,&
+      hipHostUnregister_i4_2,&
+      hipHostUnregister_i4_3,&
+      hipHostUnregister_i4_4,&
+      hipHostUnregister_i4_5,&
+      hipHostUnregister_i4_6,&
+      hipHostUnregister_i4_7,&
+      hipHostUnregister_i8_0,&
+      hipHostUnregister_i8_1,&
+      hipHostUnregister_i8_2,&
+      hipHostUnregister_i8_3,&
+      hipHostUnregister_i8_4,&
+      hipHostUnregister_i8_5,&
+      hipHostUnregister_i8_6,&
+      hipHostUnregister_i8_7,&
+      hipHostUnregister_r4_0,&
+      hipHostUnregister_r4_1,&
+      hipHostUnregister_r4_2,&
+      hipHostUnregister_r4_3,&
+      hipHostUnregister_r4_4,&
+      hipHostUnregister_r4_5,&
+      hipHostUnregister_r4_6,&
+      hipHostUnregister_r4_7,&
+      hipHostUnregister_r8_0,&
+      hipHostUnregister_r8_1,&
+      hipHostUnregister_r8_2,&
+      hipHostUnregister_r8_3,&
+      hipHostUnregister_r8_4,&
+      hipHostUnregister_r8_5,&
+      hipHostUnregister_r8_6,&
+      hipHostUnregister_r8_7,&
+      hipHostUnregister_c4_0,&
+      hipHostUnregister_c4_1,&
+      hipHostUnregister_c4_2,&
+      hipHostUnregister_c4_3,&
+      hipHostUnregister_c4_4,&
+      hipHostUnregister_c4_5,&
+      hipHostUnregister_c4_6,&
+      hipHostUnregister_c4_7,&
+      hipHostUnregister_c8_0,&
+      hipHostUnregister_c8_1,&
+      hipHostUnregister_c8_2,&
+      hipHostUnregister_c8_3,&
+      hipHostUnregister_c8_4,&
+      hipHostUnregister_c8_5,&
+      hipHostUnregister_c8_6,&
+      hipHostUnregister_c8_7 
 #endif
   end interface
-
+ 
   !> 
   !>    @brief Get Device pointer from Host Pointer allocated through hipHostMalloc
   !>  
@@ -135,9 +344,9 @@ module hipfort_hiphostregister
   !>  
   interface hipHostGetDevicePointer
 #ifdef USE_CUDA_NAMES
-    function hipHostGetDevicePointer_b(devPtr,hstPtr,flags) bind(c, name="cudaHostGetDevicePointer")
+    function hipHostGetDevicePointer_(devPtr,hstPtr,flags) bind(c, name="cudaHostGetDevicePointer")
 #else
-    function hipHostGetDevicePointer_b(devPtr,hstPtr,flags) bind(c, name="hipHostGetDevicePointer")
+    function hipHostGetDevicePointer_(devPtr,hstPtr,flags) bind(c, name="hipHostGetDevicePointer")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -147,22 +356,5364 @@ module hipfort_hiphostregister
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_b
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_
 #else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_b
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_
 #endif
       type(c_ptr) :: devPtr
       type(c_ptr),value :: hstPtr
       integer(kind=4),value :: flags
     end function
+
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipHostGetDevicePointer_l_0,hipHostGetDevicePointer_l_1,hipHostGetDevicePointer_l_2,hipHostGetDevicePointer_l_3,hipHostGetDevicePointer_l_4,hipHostGetDevicePointer_l_5,hipHostGetDevicePointer_l_6,hipHostGetDevicePointer_l_7,hipHostGetDevicePointer_i4_0,hipHostGetDevicePointer_i4_1,hipHostGetDevicePointer_i4_2,hipHostGetDevicePointer_i4_3,hipHostGetDevicePointer_i4_4,hipHostGetDevicePointer_i4_5,hipHostGetDevicePointer_i4_6,hipHostGetDevicePointer_i4_7,hipHostGetDevicePointer_i8_0,hipHostGetDevicePointer_i8_1,hipHostGetDevicePointer_i8_2,hipHostGetDevicePointer_i8_3,hipHostGetDevicePointer_i8_4,hipHostGetDevicePointer_i8_5,hipHostGetDevicePointer_i8_6,hipHostGetDevicePointer_i8_7,hipHostGetDevicePointer_r4_0,hipHostGetDevicePointer_r4_1,hipHostGetDevicePointer_r4_2,hipHostGetDevicePointer_r4_3,hipHostGetDevicePointer_r4_4,hipHostGetDevicePointer_r4_5,hipHostGetDevicePointer_r4_6,hipHostGetDevicePointer_r4_7,hipHostGetDevicePointer_r8_0,hipHostGetDevicePointer_r8_1,hipHostGetDevicePointer_r8_2,hipHostGetDevicePointer_r8_3,hipHostGetDevicePointer_r8_4,hipHostGetDevicePointer_r8_5,hipHostGetDevicePointer_r8_6,hipHostGetDevicePointer_r8_7,hipHostGetDevicePointer_c4_0,hipHostGetDevicePointer_c4_1,hipHostGetDevicePointer_c4_2,hipHostGetDevicePointer_c4_3,hipHostGetDevicePointer_c4_4,hipHostGetDevicePointer_c4_5,hipHostGetDevicePointer_c4_6,hipHostGetDevicePointer_c4_7,hipHostGetDevicePointer_c8_0,hipHostGetDevicePointer_c8_1,hipHostGetDevicePointer_c8_2,hipHostGetDevicePointer_c8_3,hipHostGetDevicePointer_c8_4,hipHostGetDevicePointer_c8_5,hipHostGetDevicePointer_c8_6,hipHostGetDevicePointer_c8_7 
+    module procedure hipHostGetDevicePointer_l_0,&
+      hipHostGetDevicePointer_l_1,&
+      hipHostGetDevicePointer_l_2,&
+      hipHostGetDevicePointer_l_3,&
+      hipHostGetDevicePointer_l_4,&
+      hipHostGetDevicePointer_l_5,&
+      hipHostGetDevicePointer_l_6,&
+      hipHostGetDevicePointer_l_7,&
+      hipHostGetDevicePointer_i4_0,&
+      hipHostGetDevicePointer_i4_1,&
+      hipHostGetDevicePointer_i4_2,&
+      hipHostGetDevicePointer_i4_3,&
+      hipHostGetDevicePointer_i4_4,&
+      hipHostGetDevicePointer_i4_5,&
+      hipHostGetDevicePointer_i4_6,&
+      hipHostGetDevicePointer_i4_7,&
+      hipHostGetDevicePointer_i8_0,&
+      hipHostGetDevicePointer_i8_1,&
+      hipHostGetDevicePointer_i8_2,&
+      hipHostGetDevicePointer_i8_3,&
+      hipHostGetDevicePointer_i8_4,&
+      hipHostGetDevicePointer_i8_5,&
+      hipHostGetDevicePointer_i8_6,&
+      hipHostGetDevicePointer_i8_7,&
+      hipHostGetDevicePointer_r4_0,&
+      hipHostGetDevicePointer_r4_1,&
+      hipHostGetDevicePointer_r4_2,&
+      hipHostGetDevicePointer_r4_3,&
+      hipHostGetDevicePointer_r4_4,&
+      hipHostGetDevicePointer_r4_5,&
+      hipHostGetDevicePointer_r4_6,&
+      hipHostGetDevicePointer_r4_7,&
+      hipHostGetDevicePointer_r8_0,&
+      hipHostGetDevicePointer_r8_1,&
+      hipHostGetDevicePointer_r8_2,&
+      hipHostGetDevicePointer_r8_3,&
+      hipHostGetDevicePointer_r8_4,&
+      hipHostGetDevicePointer_r8_5,&
+      hipHostGetDevicePointer_r8_6,&
+      hipHostGetDevicePointer_r8_7,&
+      hipHostGetDevicePointer_c4_0,&
+      hipHostGetDevicePointer_c4_1,&
+      hipHostGetDevicePointer_c4_2,&
+      hipHostGetDevicePointer_c4_3,&
+      hipHostGetDevicePointer_c4_4,&
+      hipHostGetDevicePointer_c4_5,&
+      hipHostGetDevicePointer_c4_6,&
+      hipHostGetDevicePointer_c4_7,&
+      hipHostGetDevicePointer_c8_0,&
+      hipHostGetDevicePointer_c8_1,&
+      hipHostGetDevicePointer_c8_2,&
+      hipHostGetDevicePointer_c8_3,&
+      hipHostGetDevicePointer_c8_4,&
+      hipHostGetDevicePointer_c8_5,&
+      hipHostGetDevicePointer_c8_6,&
+      hipHostGetDevicePointer_c8_7 
+#endif
+  end interface
+  !> 
+  !>    @brief Return flags associated with host pointer
+  !>  
+  !>    @param[out] flagsPtr Memory location to store flags
+  !>    @param[in]  hostPtr Host Pointer allocated through hipHostMalloc
+  !>    @return #hipSuccess, #hipErrorInvalidValue
+  !>  
+  !>    @see hipHostMalloc
+  !>  
+  interface hipHostGetFlags
+#ifdef USE_CUDA_NAMES
+    function hipHostGetFlags_(flagsPtr,hostPtr) bind(c, name="cudaHostGetFlags")
+#else
+    function hipHostGetFlags_(flagsPtr,hostPtr) bind(c, name="hipHostGetFlags")
+#endif
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_
+#endif
+      integer(kind=4)   :: flagsPtr
+      type(c_ptr),value :: hostPtr
+    end function
+    
+#ifdef USE_FPOINTER_INTERFACES
+    module procedure hipHostGetFlags_l_0,&
+      hipHostGetFlags_l_1,&
+      hipHostGetFlags_l_2,&
+      hipHostGetFlags_l_3,&
+      hipHostGetFlags_l_4,&
+      hipHostGetFlags_l_5,&
+      hipHostGetFlags_l_6,&
+      hipHostGetFlags_l_7,&
+      hipHostGetFlags_i4_0,&
+      hipHostGetFlags_i4_1,&
+      hipHostGetFlags_i4_2,&
+      hipHostGetFlags_i4_3,&
+      hipHostGetFlags_i4_4,&
+      hipHostGetFlags_i4_5,&
+      hipHostGetFlags_i4_6,&
+      hipHostGetFlags_i4_7,&
+      hipHostGetFlags_i8_0,&
+      hipHostGetFlags_i8_1,&
+      hipHostGetFlags_i8_2,&
+      hipHostGetFlags_i8_3,&
+      hipHostGetFlags_i8_4,&
+      hipHostGetFlags_i8_5,&
+      hipHostGetFlags_i8_6,&
+      hipHostGetFlags_i8_7,&
+      hipHostGetFlags_r4_0,&
+      hipHostGetFlags_r4_1,&
+      hipHostGetFlags_r4_2,&
+      hipHostGetFlags_r4_3,&
+      hipHostGetFlags_r4_4,&
+      hipHostGetFlags_r4_5,&
+      hipHostGetFlags_r4_6,&
+      hipHostGetFlags_r4_7,&
+      hipHostGetFlags_r8_0,&
+      hipHostGetFlags_r8_1,&
+      hipHostGetFlags_r8_2,&
+      hipHostGetFlags_r8_3,&
+      hipHostGetFlags_r8_4,&
+      hipHostGetFlags_r8_5,&
+      hipHostGetFlags_r8_6,&
+      hipHostGetFlags_r8_7,&
+      hipHostGetFlags_c4_0,&
+      hipHostGetFlags_c4_1,&
+      hipHostGetFlags_c4_2,&
+      hipHostGetFlags_c4_3,&
+      hipHostGetFlags_c4_4,&
+      hipHostGetFlags_c4_5,&
+      hipHostGetFlags_c4_6,&
+      hipHostGetFlags_c4_7,&
+      hipHostGetFlags_c8_0,&
+      hipHostGetFlags_c8_1,&
+      hipHostGetFlags_c8_2,&
+      hipHostGetFlags_c8_3,&
+      hipHostGetFlags_c8_4,&
+      hipHostGetFlags_c8_5,&
+      hipHostGetFlags_c8_6,&
+      hipHostGetFlags_c8_7 
 #endif
   end interface
 
 #ifdef USE_FPOINTER_INTERFACES
-  contains
+contains 
+     
+                                        
+    function hipHostRegister_l_0_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      logical(c_bool),target,intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_l_0_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_l_0_nosize
+#endif
+      !
+      hipHostRegister_l_0_nosize = hipHostRegister_(c_loc(hostPtr),1_8,flags)
+    end function
 
+                                        
+    function hipHostRegister_l_1_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      logical(c_bool),target,dimension(:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_l_1_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_l_1_nosize
+#endif
+      !
+      hipHostRegister_l_1_nosize = hipHostRegister_(c_loc(hostPtr),1_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_l_1_c_int(hostPtr,length1,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      logical(c_bool),pointer,dimension(:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_l_1_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_l_1_c_int
+#endif
+      !
+      hipHostRegister_l_1_c_int = hipHostRegister_(cptr,length1*1_8,flags)
+    end function
+                                                              
+    function hipHostRegister_l_1_c_size_t(hostPtr,length1,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      logical(c_bool),pointer,dimension(:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_l_1_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_l_1_c_size_t
+#endif
+      !
+      hipHostRegister_l_1_c_size_t = hipHostRegister_(cptr,length1*1_8,flags)
+    end function
+                                        
+    function hipHostRegister_l_2_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      logical(c_bool),target,dimension(:,:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_l_2_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_l_2_nosize
+#endif
+      !
+      hipHostRegister_l_2_nosize = hipHostRegister_(c_loc(hostPtr),1_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_l_2_c_int(hostPtr,length1,length2,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      logical(c_bool),pointer,dimension(:,:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1,length2 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_l_2_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_l_2_c_int
+#endif
+      !
+      hipHostRegister_l_2_c_int = hipHostRegister_(cptr,length1*length2*1_8,flags)
+    end function
+                                                              
+    function hipHostRegister_l_2_c_size_t(hostPtr,length1,length2,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      logical(c_bool),pointer,dimension(:,:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1,length2 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_l_2_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_l_2_c_size_t
+#endif
+      !
+      hipHostRegister_l_2_c_size_t = hipHostRegister_(cptr,length1*length2*1_8,flags)
+    end function
+                                        
+    function hipHostRegister_l_3_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      logical(c_bool),target,dimension(:,:,:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_l_3_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_l_3_nosize
+#endif
+      !
+      hipHostRegister_l_3_nosize = hipHostRegister_(c_loc(hostPtr),1_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_l_3_c_int(hostPtr,length1,length2,length3,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      logical(c_bool),pointer,dimension(:,:,:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1,length2,length3 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_l_3_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_l_3_c_int
+#endif
+      !
+      hipHostRegister_l_3_c_int = hipHostRegister_(cptr,length1*length2*length3*1_8,flags)
+    end function
+                                                              
+    function hipHostRegister_l_3_c_size_t(hostPtr,length1,length2,length3,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      logical(c_bool),pointer,dimension(:,:,:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1,length2,length3 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_l_3_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_l_3_c_size_t
+#endif
+      !
+      hipHostRegister_l_3_c_size_t = hipHostRegister_(cptr,length1*length2*length3*1_8,flags)
+    end function
+                                        
+    function hipHostRegister_l_4_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      logical(c_bool),target,dimension(:,:,:,:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_l_4_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_l_4_nosize
+#endif
+      !
+      hipHostRegister_l_4_nosize = hipHostRegister_(c_loc(hostPtr),1_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_l_4_c_int(hostPtr,length1,length2,length3,length4,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      logical(c_bool),pointer,dimension(:,:,:,:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1,length2,length3,length4 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_l_4_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_l_4_c_int
+#endif
+      !
+      hipHostRegister_l_4_c_int = hipHostRegister_(cptr,length1*length2*length3*length4*1_8,flags)
+    end function
+                                                              
+    function hipHostRegister_l_4_c_size_t(hostPtr,length1,length2,length3,length4,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      logical(c_bool),pointer,dimension(:,:,:,:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1,length2,length3,length4 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_l_4_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_l_4_c_size_t
+#endif
+      !
+      hipHostRegister_l_4_c_size_t = hipHostRegister_(cptr,length1*length2*length3*length4*1_8,flags)
+    end function
+                                        
+    function hipHostRegister_l_5_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      logical(c_bool),target,dimension(:,:,:,:,:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_l_5_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_l_5_nosize
+#endif
+      !
+      hipHostRegister_l_5_nosize = hipHostRegister_(c_loc(hostPtr),1_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_l_5_c_int(hostPtr,length1,length2,length3,length4,length5,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      logical(c_bool),pointer,dimension(:,:,:,:,:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1,length2,length3,length4,length5 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_l_5_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_l_5_c_int
+#endif
+      !
+      hipHostRegister_l_5_c_int = hipHostRegister_(cptr,length1*length2*length3*length4*length5*1_8,flags)
+    end function
+                                                              
+    function hipHostRegister_l_5_c_size_t(hostPtr,length1,length2,length3,length4,length5,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      logical(c_bool),pointer,dimension(:,:,:,:,:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_l_5_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_l_5_c_size_t
+#endif
+      !
+      hipHostRegister_l_5_c_size_t = hipHostRegister_(cptr,length1*length2*length3*length4*length5*1_8,flags)
+    end function
+                                        
+    function hipHostRegister_l_6_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      logical(c_bool),target,dimension(:,:,:,:,:,:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_l_6_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_l_6_nosize
+#endif
+      !
+      hipHostRegister_l_6_nosize = hipHostRegister_(c_loc(hostPtr),1_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_l_6_c_int(hostPtr,length1,length2,length3,length4,length5,length6,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      logical(c_bool),pointer,dimension(:,:,:,:,:,:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1,length2,length3,length4,length5,length6 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_l_6_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_l_6_c_int
+#endif
+      !
+      hipHostRegister_l_6_c_int = hipHostRegister_(cptr,length1*length2*length3*length4*length5*length6*1_8,flags)
+    end function
+                                                              
+    function hipHostRegister_l_6_c_size_t(hostPtr,length1,length2,length3,length4,length5,length6,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      logical(c_bool),pointer,dimension(:,:,:,:,:,:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5,length6 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_l_6_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_l_6_c_size_t
+#endif
+      !
+      hipHostRegister_l_6_c_size_t = hipHostRegister_(cptr,length1*length2*length3*length4*length5*length6*1_8,flags)
+    end function
+                                        
+    function hipHostRegister_l_7_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      logical(c_bool),target,dimension(:,:,:,:,:,:,:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_l_7_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_l_7_nosize
+#endif
+      !
+      hipHostRegister_l_7_nosize = hipHostRegister_(c_loc(hostPtr),1_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_l_7_c_int(hostPtr,length1,length2,length3,length4,length5,length6,length7,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      logical(c_bool),pointer,dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1,length2,length3,length4,length5,length6,length7 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_l_7_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_l_7_c_int
+#endif
+      !
+      hipHostRegister_l_7_c_int = hipHostRegister_(cptr,length1*length2*length3*length4*length5*length6*length7*1_8,flags)
+    end function
+                                                              
+    function hipHostRegister_l_7_c_size_t(hostPtr,length1,length2,length3,length4,length5,length6,length7,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      logical(c_bool),pointer,dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5,length6,length7 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_l_7_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_l_7_c_size_t
+#endif
+      !
+      hipHostRegister_l_7_c_size_t = hipHostRegister_(cptr,length1*length2*length3*length4*length5*length6*length7*1_8,flags)
+    end function
+                                        
+    function hipHostRegister_i4_0_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_int),target,intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i4_0_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i4_0_nosize
+#endif
+      !
+      hipHostRegister_i4_0_nosize = hipHostRegister_(c_loc(hostPtr),4_8,flags)
+    end function
+
+                                        
+    function hipHostRegister_i4_1_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_int),target,dimension(:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i4_1_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i4_1_nosize
+#endif
+      !
+      hipHostRegister_i4_1_nosize = hipHostRegister_(c_loc(hostPtr),4_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_i4_1_c_int(hostPtr,length1,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_int),pointer,dimension(:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i4_1_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i4_1_c_int
+#endif
+      !
+      hipHostRegister_i4_1_c_int = hipHostRegister_(cptr,length1*4_8,flags)
+    end function
+                                                              
+    function hipHostRegister_i4_1_c_size_t(hostPtr,length1,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_int),pointer,dimension(:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i4_1_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i4_1_c_size_t
+#endif
+      !
+      hipHostRegister_i4_1_c_size_t = hipHostRegister_(cptr,length1*4_8,flags)
+    end function
+                                        
+    function hipHostRegister_i4_2_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_int),target,dimension(:,:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i4_2_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i4_2_nosize
+#endif
+      !
+      hipHostRegister_i4_2_nosize = hipHostRegister_(c_loc(hostPtr),4_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_i4_2_c_int(hostPtr,length1,length2,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_int),pointer,dimension(:,:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1,length2 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i4_2_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i4_2_c_int
+#endif
+      !
+      hipHostRegister_i4_2_c_int = hipHostRegister_(cptr,length1*length2*4_8,flags)
+    end function
+                                                              
+    function hipHostRegister_i4_2_c_size_t(hostPtr,length1,length2,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_int),pointer,dimension(:,:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1,length2 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i4_2_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i4_2_c_size_t
+#endif
+      !
+      hipHostRegister_i4_2_c_size_t = hipHostRegister_(cptr,length1*length2*4_8,flags)
+    end function
+                                        
+    function hipHostRegister_i4_3_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_int),target,dimension(:,:,:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i4_3_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i4_3_nosize
+#endif
+      !
+      hipHostRegister_i4_3_nosize = hipHostRegister_(c_loc(hostPtr),4_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_i4_3_c_int(hostPtr,length1,length2,length3,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_int),pointer,dimension(:,:,:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1,length2,length3 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i4_3_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i4_3_c_int
+#endif
+      !
+      hipHostRegister_i4_3_c_int = hipHostRegister_(cptr,length1*length2*length3*4_8,flags)
+    end function
+                                                              
+    function hipHostRegister_i4_3_c_size_t(hostPtr,length1,length2,length3,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_int),pointer,dimension(:,:,:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1,length2,length3 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i4_3_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i4_3_c_size_t
+#endif
+      !
+      hipHostRegister_i4_3_c_size_t = hipHostRegister_(cptr,length1*length2*length3*4_8,flags)
+    end function
+                                        
+    function hipHostRegister_i4_4_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_int),target,dimension(:,:,:,:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i4_4_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i4_4_nosize
+#endif
+      !
+      hipHostRegister_i4_4_nosize = hipHostRegister_(c_loc(hostPtr),4_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_i4_4_c_int(hostPtr,length1,length2,length3,length4,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_int),pointer,dimension(:,:,:,:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1,length2,length3,length4 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i4_4_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i4_4_c_int
+#endif
+      !
+      hipHostRegister_i4_4_c_int = hipHostRegister_(cptr,length1*length2*length3*length4*4_8,flags)
+    end function
+                                                              
+    function hipHostRegister_i4_4_c_size_t(hostPtr,length1,length2,length3,length4,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_int),pointer,dimension(:,:,:,:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1,length2,length3,length4 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i4_4_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i4_4_c_size_t
+#endif
+      !
+      hipHostRegister_i4_4_c_size_t = hipHostRegister_(cptr,length1*length2*length3*length4*4_8,flags)
+    end function
+                                        
+    function hipHostRegister_i4_5_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_int),target,dimension(:,:,:,:,:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i4_5_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i4_5_nosize
+#endif
+      !
+      hipHostRegister_i4_5_nosize = hipHostRegister_(c_loc(hostPtr),4_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_i4_5_c_int(hostPtr,length1,length2,length3,length4,length5,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_int),pointer,dimension(:,:,:,:,:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1,length2,length3,length4,length5 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i4_5_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i4_5_c_int
+#endif
+      !
+      hipHostRegister_i4_5_c_int = hipHostRegister_(cptr,length1*length2*length3*length4*length5*4_8,flags)
+    end function
+                                                              
+    function hipHostRegister_i4_5_c_size_t(hostPtr,length1,length2,length3,length4,length5,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_int),pointer,dimension(:,:,:,:,:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i4_5_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i4_5_c_size_t
+#endif
+      !
+      hipHostRegister_i4_5_c_size_t = hipHostRegister_(cptr,length1*length2*length3*length4*length5*4_8,flags)
+    end function
+                                        
+    function hipHostRegister_i4_6_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_int),target,dimension(:,:,:,:,:,:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i4_6_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i4_6_nosize
+#endif
+      !
+      hipHostRegister_i4_6_nosize = hipHostRegister_(c_loc(hostPtr),4_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_i4_6_c_int(hostPtr,length1,length2,length3,length4,length5,length6,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_int),pointer,dimension(:,:,:,:,:,:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1,length2,length3,length4,length5,length6 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i4_6_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i4_6_c_int
+#endif
+      !
+      hipHostRegister_i4_6_c_int = hipHostRegister_(cptr,length1*length2*length3*length4*length5*length6*4_8,flags)
+    end function
+                                                              
+    function hipHostRegister_i4_6_c_size_t(hostPtr,length1,length2,length3,length4,length5,length6,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_int),pointer,dimension(:,:,:,:,:,:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5,length6 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i4_6_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i4_6_c_size_t
+#endif
+      !
+      hipHostRegister_i4_6_c_size_t = hipHostRegister_(cptr,length1*length2*length3*length4*length5*length6*4_8,flags)
+    end function
+                                        
+    function hipHostRegister_i4_7_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_int),target,dimension(:,:,:,:,:,:,:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i4_7_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i4_7_nosize
+#endif
+      !
+      hipHostRegister_i4_7_nosize = hipHostRegister_(c_loc(hostPtr),4_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_i4_7_c_int(hostPtr,length1,length2,length3,length4,length5,length6,length7,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_int),pointer,dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1,length2,length3,length4,length5,length6,length7 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i4_7_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i4_7_c_int
+#endif
+      !
+      hipHostRegister_i4_7_c_int = hipHostRegister_(cptr,length1*length2*length3*length4*length5*length6*length7*4_8,flags)
+    end function
+                                                              
+    function hipHostRegister_i4_7_c_size_t(hostPtr,length1,length2,length3,length4,length5,length6,length7,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_int),pointer,dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5,length6,length7 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i4_7_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i4_7_c_size_t
+#endif
+      !
+      hipHostRegister_i4_7_c_size_t = hipHostRegister_(cptr,length1*length2*length3*length4*length5*length6*length7*4_8,flags)
+    end function
+                                        
+    function hipHostRegister_i8_0_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_long),target,intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i8_0_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i8_0_nosize
+#endif
+      !
+      hipHostRegister_i8_0_nosize = hipHostRegister_(c_loc(hostPtr),8_8,flags)
+    end function
+
+                                        
+    function hipHostRegister_i8_1_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_long),target,dimension(:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i8_1_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i8_1_nosize
+#endif
+      !
+      hipHostRegister_i8_1_nosize = hipHostRegister_(c_loc(hostPtr),8_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_i8_1_c_int(hostPtr,length1,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_long),pointer,dimension(:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i8_1_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i8_1_c_int
+#endif
+      !
+      hipHostRegister_i8_1_c_int = hipHostRegister_(cptr,length1*8_8,flags)
+    end function
+                                                              
+    function hipHostRegister_i8_1_c_size_t(hostPtr,length1,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_long),pointer,dimension(:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i8_1_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i8_1_c_size_t
+#endif
+      !
+      hipHostRegister_i8_1_c_size_t = hipHostRegister_(cptr,length1*8_8,flags)
+    end function
+                                        
+    function hipHostRegister_i8_2_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_long),target,dimension(:,:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i8_2_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i8_2_nosize
+#endif
+      !
+      hipHostRegister_i8_2_nosize = hipHostRegister_(c_loc(hostPtr),8_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_i8_2_c_int(hostPtr,length1,length2,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_long),pointer,dimension(:,:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1,length2 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i8_2_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i8_2_c_int
+#endif
+      !
+      hipHostRegister_i8_2_c_int = hipHostRegister_(cptr,length1*length2*8_8,flags)
+    end function
+                                                              
+    function hipHostRegister_i8_2_c_size_t(hostPtr,length1,length2,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_long),pointer,dimension(:,:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1,length2 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i8_2_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i8_2_c_size_t
+#endif
+      !
+      hipHostRegister_i8_2_c_size_t = hipHostRegister_(cptr,length1*length2*8_8,flags)
+    end function
+                                        
+    function hipHostRegister_i8_3_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_long),target,dimension(:,:,:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i8_3_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i8_3_nosize
+#endif
+      !
+      hipHostRegister_i8_3_nosize = hipHostRegister_(c_loc(hostPtr),8_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_i8_3_c_int(hostPtr,length1,length2,length3,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_long),pointer,dimension(:,:,:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1,length2,length3 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i8_3_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i8_3_c_int
+#endif
+      !
+      hipHostRegister_i8_3_c_int = hipHostRegister_(cptr,length1*length2*length3*8_8,flags)
+    end function
+                                                              
+    function hipHostRegister_i8_3_c_size_t(hostPtr,length1,length2,length3,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_long),pointer,dimension(:,:,:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1,length2,length3 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i8_3_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i8_3_c_size_t
+#endif
+      !
+      hipHostRegister_i8_3_c_size_t = hipHostRegister_(cptr,length1*length2*length3*8_8,flags)
+    end function
+                                        
+    function hipHostRegister_i8_4_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_long),target,dimension(:,:,:,:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i8_4_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i8_4_nosize
+#endif
+      !
+      hipHostRegister_i8_4_nosize = hipHostRegister_(c_loc(hostPtr),8_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_i8_4_c_int(hostPtr,length1,length2,length3,length4,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_long),pointer,dimension(:,:,:,:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1,length2,length3,length4 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i8_4_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i8_4_c_int
+#endif
+      !
+      hipHostRegister_i8_4_c_int = hipHostRegister_(cptr,length1*length2*length3*length4*8_8,flags)
+    end function
+                                                              
+    function hipHostRegister_i8_4_c_size_t(hostPtr,length1,length2,length3,length4,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_long),pointer,dimension(:,:,:,:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1,length2,length3,length4 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i8_4_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i8_4_c_size_t
+#endif
+      !
+      hipHostRegister_i8_4_c_size_t = hipHostRegister_(cptr,length1*length2*length3*length4*8_8,flags)
+    end function
+                                        
+    function hipHostRegister_i8_5_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_long),target,dimension(:,:,:,:,:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i8_5_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i8_5_nosize
+#endif
+      !
+      hipHostRegister_i8_5_nosize = hipHostRegister_(c_loc(hostPtr),8_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_i8_5_c_int(hostPtr,length1,length2,length3,length4,length5,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_long),pointer,dimension(:,:,:,:,:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1,length2,length3,length4,length5 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i8_5_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i8_5_c_int
+#endif
+      !
+      hipHostRegister_i8_5_c_int = hipHostRegister_(cptr,length1*length2*length3*length4*length5*8_8,flags)
+    end function
+                                                              
+    function hipHostRegister_i8_5_c_size_t(hostPtr,length1,length2,length3,length4,length5,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_long),pointer,dimension(:,:,:,:,:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i8_5_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i8_5_c_size_t
+#endif
+      !
+      hipHostRegister_i8_5_c_size_t = hipHostRegister_(cptr,length1*length2*length3*length4*length5*8_8,flags)
+    end function
+                                        
+    function hipHostRegister_i8_6_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_long),target,dimension(:,:,:,:,:,:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i8_6_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i8_6_nosize
+#endif
+      !
+      hipHostRegister_i8_6_nosize = hipHostRegister_(c_loc(hostPtr),8_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_i8_6_c_int(hostPtr,length1,length2,length3,length4,length5,length6,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_long),pointer,dimension(:,:,:,:,:,:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1,length2,length3,length4,length5,length6 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i8_6_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i8_6_c_int
+#endif
+      !
+      hipHostRegister_i8_6_c_int = hipHostRegister_(cptr,length1*length2*length3*length4*length5*length6*8_8,flags)
+    end function
+                                                              
+    function hipHostRegister_i8_6_c_size_t(hostPtr,length1,length2,length3,length4,length5,length6,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_long),pointer,dimension(:,:,:,:,:,:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5,length6 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i8_6_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i8_6_c_size_t
+#endif
+      !
+      hipHostRegister_i8_6_c_size_t = hipHostRegister_(cptr,length1*length2*length3*length4*length5*length6*8_8,flags)
+    end function
+                                        
+    function hipHostRegister_i8_7_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_long),target,dimension(:,:,:,:,:,:,:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i8_7_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i8_7_nosize
+#endif
+      !
+      hipHostRegister_i8_7_nosize = hipHostRegister_(c_loc(hostPtr),8_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_i8_7_c_int(hostPtr,length1,length2,length3,length4,length5,length6,length7,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_long),pointer,dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1,length2,length3,length4,length5,length6,length7 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i8_7_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i8_7_c_int
+#endif
+      !
+      hipHostRegister_i8_7_c_int = hipHostRegister_(cptr,length1*length2*length3*length4*length5*length6*length7*8_8,flags)
+    end function
+                                                              
+    function hipHostRegister_i8_7_c_size_t(hostPtr,length1,length2,length3,length4,length5,length6,length7,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_long),pointer,dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5,length6,length7 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_i8_7_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_i8_7_c_size_t
+#endif
+      !
+      hipHostRegister_i8_7_c_size_t = hipHostRegister_(cptr,length1*length2*length3*length4*length5*length6*length7*8_8,flags)
+    end function
+                                        
+    function hipHostRegister_r4_0_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_float),target,intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r4_0_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r4_0_nosize
+#endif
+      !
+      hipHostRegister_r4_0_nosize = hipHostRegister_(c_loc(hostPtr),4_8,flags)
+    end function
+
+                                        
+    function hipHostRegister_r4_1_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_float),target,dimension(:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r4_1_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r4_1_nosize
+#endif
+      !
+      hipHostRegister_r4_1_nosize = hipHostRegister_(c_loc(hostPtr),4_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_r4_1_c_int(hostPtr,length1,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_float),pointer,dimension(:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r4_1_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r4_1_c_int
+#endif
+      !
+      hipHostRegister_r4_1_c_int = hipHostRegister_(cptr,length1*4_8,flags)
+    end function
+                                                              
+    function hipHostRegister_r4_1_c_size_t(hostPtr,length1,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_float),pointer,dimension(:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r4_1_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r4_1_c_size_t
+#endif
+      !
+      hipHostRegister_r4_1_c_size_t = hipHostRegister_(cptr,length1*4_8,flags)
+    end function
+                                        
+    function hipHostRegister_r4_2_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_float),target,dimension(:,:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r4_2_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r4_2_nosize
+#endif
+      !
+      hipHostRegister_r4_2_nosize = hipHostRegister_(c_loc(hostPtr),4_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_r4_2_c_int(hostPtr,length1,length2,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_float),pointer,dimension(:,:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1,length2 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r4_2_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r4_2_c_int
+#endif
+      !
+      hipHostRegister_r4_2_c_int = hipHostRegister_(cptr,length1*length2*4_8,flags)
+    end function
+                                                              
+    function hipHostRegister_r4_2_c_size_t(hostPtr,length1,length2,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_float),pointer,dimension(:,:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1,length2 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r4_2_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r4_2_c_size_t
+#endif
+      !
+      hipHostRegister_r4_2_c_size_t = hipHostRegister_(cptr,length1*length2*4_8,flags)
+    end function
+                                        
+    function hipHostRegister_r4_3_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_float),target,dimension(:,:,:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r4_3_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r4_3_nosize
+#endif
+      !
+      hipHostRegister_r4_3_nosize = hipHostRegister_(c_loc(hostPtr),4_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_r4_3_c_int(hostPtr,length1,length2,length3,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_float),pointer,dimension(:,:,:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1,length2,length3 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r4_3_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r4_3_c_int
+#endif
+      !
+      hipHostRegister_r4_3_c_int = hipHostRegister_(cptr,length1*length2*length3*4_8,flags)
+    end function
+                                                              
+    function hipHostRegister_r4_3_c_size_t(hostPtr,length1,length2,length3,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_float),pointer,dimension(:,:,:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1,length2,length3 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r4_3_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r4_3_c_size_t
+#endif
+      !
+      hipHostRegister_r4_3_c_size_t = hipHostRegister_(cptr,length1*length2*length3*4_8,flags)
+    end function
+                                        
+    function hipHostRegister_r4_4_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_float),target,dimension(:,:,:,:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r4_4_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r4_4_nosize
+#endif
+      !
+      hipHostRegister_r4_4_nosize = hipHostRegister_(c_loc(hostPtr),4_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_r4_4_c_int(hostPtr,length1,length2,length3,length4,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_float),pointer,dimension(:,:,:,:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1,length2,length3,length4 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r4_4_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r4_4_c_int
+#endif
+      !
+      hipHostRegister_r4_4_c_int = hipHostRegister_(cptr,length1*length2*length3*length4*4_8,flags)
+    end function
+                                                              
+    function hipHostRegister_r4_4_c_size_t(hostPtr,length1,length2,length3,length4,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_float),pointer,dimension(:,:,:,:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1,length2,length3,length4 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r4_4_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r4_4_c_size_t
+#endif
+      !
+      hipHostRegister_r4_4_c_size_t = hipHostRegister_(cptr,length1*length2*length3*length4*4_8,flags)
+    end function
+                                        
+    function hipHostRegister_r4_5_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_float),target,dimension(:,:,:,:,:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r4_5_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r4_5_nosize
+#endif
+      !
+      hipHostRegister_r4_5_nosize = hipHostRegister_(c_loc(hostPtr),4_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_r4_5_c_int(hostPtr,length1,length2,length3,length4,length5,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_float),pointer,dimension(:,:,:,:,:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1,length2,length3,length4,length5 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r4_5_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r4_5_c_int
+#endif
+      !
+      hipHostRegister_r4_5_c_int = hipHostRegister_(cptr,length1*length2*length3*length4*length5*4_8,flags)
+    end function
+                                                              
+    function hipHostRegister_r4_5_c_size_t(hostPtr,length1,length2,length3,length4,length5,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_float),pointer,dimension(:,:,:,:,:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r4_5_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r4_5_c_size_t
+#endif
+      !
+      hipHostRegister_r4_5_c_size_t = hipHostRegister_(cptr,length1*length2*length3*length4*length5*4_8,flags)
+    end function
+                                        
+    function hipHostRegister_r4_6_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_float),target,dimension(:,:,:,:,:,:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r4_6_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r4_6_nosize
+#endif
+      !
+      hipHostRegister_r4_6_nosize = hipHostRegister_(c_loc(hostPtr),4_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_r4_6_c_int(hostPtr,length1,length2,length3,length4,length5,length6,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_float),pointer,dimension(:,:,:,:,:,:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1,length2,length3,length4,length5,length6 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r4_6_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r4_6_c_int
+#endif
+      !
+      hipHostRegister_r4_6_c_int = hipHostRegister_(cptr,length1*length2*length3*length4*length5*length6*4_8,flags)
+    end function
+                                                              
+    function hipHostRegister_r4_6_c_size_t(hostPtr,length1,length2,length3,length4,length5,length6,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_float),pointer,dimension(:,:,:,:,:,:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5,length6 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r4_6_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r4_6_c_size_t
+#endif
+      !
+      hipHostRegister_r4_6_c_size_t = hipHostRegister_(cptr,length1*length2*length3*length4*length5*length6*4_8,flags)
+    end function
+                                        
+    function hipHostRegister_r4_7_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_float),target,dimension(:,:,:,:,:,:,:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r4_7_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r4_7_nosize
+#endif
+      !
+      hipHostRegister_r4_7_nosize = hipHostRegister_(c_loc(hostPtr),4_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_r4_7_c_int(hostPtr,length1,length2,length3,length4,length5,length6,length7,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_float),pointer,dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1,length2,length3,length4,length5,length6,length7 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r4_7_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r4_7_c_int
+#endif
+      !
+      hipHostRegister_r4_7_c_int = hipHostRegister_(cptr,length1*length2*length3*length4*length5*length6*length7*4_8,flags)
+    end function
+                                                              
+    function hipHostRegister_r4_7_c_size_t(hostPtr,length1,length2,length3,length4,length5,length6,length7,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_float),pointer,dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5,length6,length7 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r4_7_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r4_7_c_size_t
+#endif
+      !
+      hipHostRegister_r4_7_c_size_t = hipHostRegister_(cptr,length1*length2*length3*length4*length5*length6*length7*4_8,flags)
+    end function
+                                        
+    function hipHostRegister_r8_0_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_double),target,intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r8_0_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r8_0_nosize
+#endif
+      !
+      hipHostRegister_r8_0_nosize = hipHostRegister_(c_loc(hostPtr),8_8,flags)
+    end function
+
+                                        
+    function hipHostRegister_r8_1_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_double),target,dimension(:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r8_1_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r8_1_nosize
+#endif
+      !
+      hipHostRegister_r8_1_nosize = hipHostRegister_(c_loc(hostPtr),8_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_r8_1_c_int(hostPtr,length1,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_double),pointer,dimension(:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r8_1_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r8_1_c_int
+#endif
+      !
+      hipHostRegister_r8_1_c_int = hipHostRegister_(cptr,length1*8_8,flags)
+    end function
+                                                              
+    function hipHostRegister_r8_1_c_size_t(hostPtr,length1,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_double),pointer,dimension(:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r8_1_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r8_1_c_size_t
+#endif
+      !
+      hipHostRegister_r8_1_c_size_t = hipHostRegister_(cptr,length1*8_8,flags)
+    end function
+                                        
+    function hipHostRegister_r8_2_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_double),target,dimension(:,:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r8_2_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r8_2_nosize
+#endif
+      !
+      hipHostRegister_r8_2_nosize = hipHostRegister_(c_loc(hostPtr),8_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_r8_2_c_int(hostPtr,length1,length2,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_double),pointer,dimension(:,:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1,length2 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r8_2_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r8_2_c_int
+#endif
+      !
+      hipHostRegister_r8_2_c_int = hipHostRegister_(cptr,length1*length2*8_8,flags)
+    end function
+                                                              
+    function hipHostRegister_r8_2_c_size_t(hostPtr,length1,length2,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_double),pointer,dimension(:,:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1,length2 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r8_2_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r8_2_c_size_t
+#endif
+      !
+      hipHostRegister_r8_2_c_size_t = hipHostRegister_(cptr,length1*length2*8_8,flags)
+    end function
+                                        
+    function hipHostRegister_r8_3_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_double),target,dimension(:,:,:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r8_3_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r8_3_nosize
+#endif
+      !
+      hipHostRegister_r8_3_nosize = hipHostRegister_(c_loc(hostPtr),8_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_r8_3_c_int(hostPtr,length1,length2,length3,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_double),pointer,dimension(:,:,:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1,length2,length3 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r8_3_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r8_3_c_int
+#endif
+      !
+      hipHostRegister_r8_3_c_int = hipHostRegister_(cptr,length1*length2*length3*8_8,flags)
+    end function
+                                                              
+    function hipHostRegister_r8_3_c_size_t(hostPtr,length1,length2,length3,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_double),pointer,dimension(:,:,:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1,length2,length3 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r8_3_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r8_3_c_size_t
+#endif
+      !
+      hipHostRegister_r8_3_c_size_t = hipHostRegister_(cptr,length1*length2*length3*8_8,flags)
+    end function
+                                        
+    function hipHostRegister_r8_4_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_double),target,dimension(:,:,:,:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r8_4_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r8_4_nosize
+#endif
+      !
+      hipHostRegister_r8_4_nosize = hipHostRegister_(c_loc(hostPtr),8_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_r8_4_c_int(hostPtr,length1,length2,length3,length4,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_double),pointer,dimension(:,:,:,:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1,length2,length3,length4 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r8_4_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r8_4_c_int
+#endif
+      !
+      hipHostRegister_r8_4_c_int = hipHostRegister_(cptr,length1*length2*length3*length4*8_8,flags)
+    end function
+                                                              
+    function hipHostRegister_r8_4_c_size_t(hostPtr,length1,length2,length3,length4,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_double),pointer,dimension(:,:,:,:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1,length2,length3,length4 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r8_4_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r8_4_c_size_t
+#endif
+      !
+      hipHostRegister_r8_4_c_size_t = hipHostRegister_(cptr,length1*length2*length3*length4*8_8,flags)
+    end function
+                                        
+    function hipHostRegister_r8_5_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_double),target,dimension(:,:,:,:,:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r8_5_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r8_5_nosize
+#endif
+      !
+      hipHostRegister_r8_5_nosize = hipHostRegister_(c_loc(hostPtr),8_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_r8_5_c_int(hostPtr,length1,length2,length3,length4,length5,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_double),pointer,dimension(:,:,:,:,:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1,length2,length3,length4,length5 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r8_5_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r8_5_c_int
+#endif
+      !
+      hipHostRegister_r8_5_c_int = hipHostRegister_(cptr,length1*length2*length3*length4*length5*8_8,flags)
+    end function
+                                                              
+    function hipHostRegister_r8_5_c_size_t(hostPtr,length1,length2,length3,length4,length5,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_double),pointer,dimension(:,:,:,:,:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r8_5_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r8_5_c_size_t
+#endif
+      !
+      hipHostRegister_r8_5_c_size_t = hipHostRegister_(cptr,length1*length2*length3*length4*length5*8_8,flags)
+    end function
+                                        
+    function hipHostRegister_r8_6_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_double),target,dimension(:,:,:,:,:,:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r8_6_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r8_6_nosize
+#endif
+      !
+      hipHostRegister_r8_6_nosize = hipHostRegister_(c_loc(hostPtr),8_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_r8_6_c_int(hostPtr,length1,length2,length3,length4,length5,length6,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_double),pointer,dimension(:,:,:,:,:,:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1,length2,length3,length4,length5,length6 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r8_6_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r8_6_c_int
+#endif
+      !
+      hipHostRegister_r8_6_c_int = hipHostRegister_(cptr,length1*length2*length3*length4*length5*length6*8_8,flags)
+    end function
+                                                              
+    function hipHostRegister_r8_6_c_size_t(hostPtr,length1,length2,length3,length4,length5,length6,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_double),pointer,dimension(:,:,:,:,:,:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5,length6 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r8_6_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r8_6_c_size_t
+#endif
+      !
+      hipHostRegister_r8_6_c_size_t = hipHostRegister_(cptr,length1*length2*length3*length4*length5*length6*8_8,flags)
+    end function
+                                        
+    function hipHostRegister_r8_7_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_double),target,dimension(:,:,:,:,:,:,:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r8_7_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r8_7_nosize
+#endif
+      !
+      hipHostRegister_r8_7_nosize = hipHostRegister_(c_loc(hostPtr),8_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_r8_7_c_int(hostPtr,length1,length2,length3,length4,length5,length6,length7,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_double),pointer,dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1,length2,length3,length4,length5,length6,length7 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r8_7_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r8_7_c_int
+#endif
+      !
+      hipHostRegister_r8_7_c_int = hipHostRegister_(cptr,length1*length2*length3*length4*length5*length6*length7*8_8,flags)
+    end function
+                                                              
+    function hipHostRegister_r8_7_c_size_t(hostPtr,length1,length2,length3,length4,length5,length6,length7,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_double),pointer,dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5,length6,length7 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_r8_7_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_r8_7_c_size_t
+#endif
+      !
+      hipHostRegister_r8_7_c_size_t = hipHostRegister_(cptr,length1*length2*length3*length4*length5*length6*length7*8_8,flags)
+    end function
+                                        
+    function hipHostRegister_c4_0_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_float_complex),target,intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c4_0_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c4_0_nosize
+#endif
+      !
+      hipHostRegister_c4_0_nosize = hipHostRegister_(c_loc(hostPtr),2*4_8,flags)
+    end function
+
+                                        
+    function hipHostRegister_c4_1_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_float_complex),target,dimension(:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c4_1_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c4_1_nosize
+#endif
+      !
+      hipHostRegister_c4_1_nosize = hipHostRegister_(c_loc(hostPtr),2*4_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_c4_1_c_int(hostPtr,length1,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_float_complex),pointer,dimension(:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c4_1_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c4_1_c_int
+#endif
+      !
+      hipHostRegister_c4_1_c_int = hipHostRegister_(cptr,length1*2*4_8,flags)
+    end function
+                                                              
+    function hipHostRegister_c4_1_c_size_t(hostPtr,length1,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_float_complex),pointer,dimension(:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c4_1_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c4_1_c_size_t
+#endif
+      !
+      hipHostRegister_c4_1_c_size_t = hipHostRegister_(cptr,length1*2*4_8,flags)
+    end function
+                                        
+    function hipHostRegister_c4_2_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_float_complex),target,dimension(:,:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c4_2_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c4_2_nosize
+#endif
+      !
+      hipHostRegister_c4_2_nosize = hipHostRegister_(c_loc(hostPtr),2*4_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_c4_2_c_int(hostPtr,length1,length2,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_float_complex),pointer,dimension(:,:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1,length2 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c4_2_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c4_2_c_int
+#endif
+      !
+      hipHostRegister_c4_2_c_int = hipHostRegister_(cptr,length1*length2*2*4_8,flags)
+    end function
+                                                              
+    function hipHostRegister_c4_2_c_size_t(hostPtr,length1,length2,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_float_complex),pointer,dimension(:,:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1,length2 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c4_2_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c4_2_c_size_t
+#endif
+      !
+      hipHostRegister_c4_2_c_size_t = hipHostRegister_(cptr,length1*length2*2*4_8,flags)
+    end function
+                                        
+    function hipHostRegister_c4_3_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_float_complex),target,dimension(:,:,:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c4_3_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c4_3_nosize
+#endif
+      !
+      hipHostRegister_c4_3_nosize = hipHostRegister_(c_loc(hostPtr),2*4_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_c4_3_c_int(hostPtr,length1,length2,length3,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_float_complex),pointer,dimension(:,:,:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1,length2,length3 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c4_3_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c4_3_c_int
+#endif
+      !
+      hipHostRegister_c4_3_c_int = hipHostRegister_(cptr,length1*length2*length3*2*4_8,flags)
+    end function
+                                                              
+    function hipHostRegister_c4_3_c_size_t(hostPtr,length1,length2,length3,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_float_complex),pointer,dimension(:,:,:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1,length2,length3 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c4_3_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c4_3_c_size_t
+#endif
+      !
+      hipHostRegister_c4_3_c_size_t = hipHostRegister_(cptr,length1*length2*length3*2*4_8,flags)
+    end function
+                                        
+    function hipHostRegister_c4_4_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_float_complex),target,dimension(:,:,:,:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c4_4_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c4_4_nosize
+#endif
+      !
+      hipHostRegister_c4_4_nosize = hipHostRegister_(c_loc(hostPtr),2*4_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_c4_4_c_int(hostPtr,length1,length2,length3,length4,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_float_complex),pointer,dimension(:,:,:,:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1,length2,length3,length4 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c4_4_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c4_4_c_int
+#endif
+      !
+      hipHostRegister_c4_4_c_int = hipHostRegister_(cptr,length1*length2*length3*length4*2*4_8,flags)
+    end function
+                                                              
+    function hipHostRegister_c4_4_c_size_t(hostPtr,length1,length2,length3,length4,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_float_complex),pointer,dimension(:,:,:,:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1,length2,length3,length4 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c4_4_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c4_4_c_size_t
+#endif
+      !
+      hipHostRegister_c4_4_c_size_t = hipHostRegister_(cptr,length1*length2*length3*length4*2*4_8,flags)
+    end function
+                                        
+    function hipHostRegister_c4_5_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_float_complex),target,dimension(:,:,:,:,:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c4_5_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c4_5_nosize
+#endif
+      !
+      hipHostRegister_c4_5_nosize = hipHostRegister_(c_loc(hostPtr),2*4_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_c4_5_c_int(hostPtr,length1,length2,length3,length4,length5,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1,length2,length3,length4,length5 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c4_5_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c4_5_c_int
+#endif
+      !
+      hipHostRegister_c4_5_c_int = hipHostRegister_(cptr,length1*length2*length3*length4*length5*2*4_8,flags)
+    end function
+                                                              
+    function hipHostRegister_c4_5_c_size_t(hostPtr,length1,length2,length3,length4,length5,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c4_5_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c4_5_c_size_t
+#endif
+      !
+      hipHostRegister_c4_5_c_size_t = hipHostRegister_(cptr,length1*length2*length3*length4*length5*2*4_8,flags)
+    end function
+                                        
+    function hipHostRegister_c4_6_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_float_complex),target,dimension(:,:,:,:,:,:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c4_6_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c4_6_nosize
+#endif
+      !
+      hipHostRegister_c4_6_nosize = hipHostRegister_(c_loc(hostPtr),2*4_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_c4_6_c_int(hostPtr,length1,length2,length3,length4,length5,length6,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:,:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1,length2,length3,length4,length5,length6 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c4_6_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c4_6_c_int
+#endif
+      !
+      hipHostRegister_c4_6_c_int = hipHostRegister_(cptr,length1*length2*length3*length4*length5*length6*2*4_8,flags)
+    end function
+                                                              
+    function hipHostRegister_c4_6_c_size_t(hostPtr,length1,length2,length3,length4,length5,length6,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:,:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5,length6 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c4_6_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c4_6_c_size_t
+#endif
+      !
+      hipHostRegister_c4_6_c_size_t = hipHostRegister_(cptr,length1*length2*length3*length4*length5*length6*2*4_8,flags)
+    end function
+                                        
+    function hipHostRegister_c4_7_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_float_complex),target,dimension(:,:,:,:,:,:,:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c4_7_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c4_7_nosize
+#endif
+      !
+      hipHostRegister_c4_7_nosize = hipHostRegister_(c_loc(hostPtr),2*4_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_c4_7_c_int(hostPtr,length1,length2,length3,length4,length5,length6,length7,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1,length2,length3,length4,length5,length6,length7 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c4_7_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c4_7_c_int
+#endif
+      !
+      hipHostRegister_c4_7_c_int = hipHostRegister_(cptr,length1*length2*length3*length4*length5*length6*length7*2*4_8,flags)
+    end function
+                                                              
+    function hipHostRegister_c4_7_c_size_t(hostPtr,length1,length2,length3,length4,length5,length6,length7,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5,length6,length7 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c4_7_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c4_7_c_size_t
+#endif
+      !
+      hipHostRegister_c4_7_c_size_t = hipHostRegister_(cptr,length1*length2*length3*length4*length5*length6*length7*2*4_8,flags)
+    end function
+                                        
+    function hipHostRegister_c8_0_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_double_complex),target,intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c8_0_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c8_0_nosize
+#endif
+      !
+      hipHostRegister_c8_0_nosize = hipHostRegister_(c_loc(hostPtr),2*8_8,flags)
+    end function
+
+                                        
+    function hipHostRegister_c8_1_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_double_complex),target,dimension(:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c8_1_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c8_1_nosize
+#endif
+      !
+      hipHostRegister_c8_1_nosize = hipHostRegister_(c_loc(hostPtr),2*8_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_c8_1_c_int(hostPtr,length1,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_double_complex),pointer,dimension(:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c8_1_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c8_1_c_int
+#endif
+      !
+      hipHostRegister_c8_1_c_int = hipHostRegister_(cptr,length1*2*8_8,flags)
+    end function
+                                                              
+    function hipHostRegister_c8_1_c_size_t(hostPtr,length1,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_double_complex),pointer,dimension(:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c8_1_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c8_1_c_size_t
+#endif
+      !
+      hipHostRegister_c8_1_c_size_t = hipHostRegister_(cptr,length1*2*8_8,flags)
+    end function
+                                        
+    function hipHostRegister_c8_2_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_double_complex),target,dimension(:,:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c8_2_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c8_2_nosize
+#endif
+      !
+      hipHostRegister_c8_2_nosize = hipHostRegister_(c_loc(hostPtr),2*8_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_c8_2_c_int(hostPtr,length1,length2,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_double_complex),pointer,dimension(:,:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1,length2 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c8_2_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c8_2_c_int
+#endif
+      !
+      hipHostRegister_c8_2_c_int = hipHostRegister_(cptr,length1*length2*2*8_8,flags)
+    end function
+                                                              
+    function hipHostRegister_c8_2_c_size_t(hostPtr,length1,length2,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_double_complex),pointer,dimension(:,:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1,length2 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c8_2_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c8_2_c_size_t
+#endif
+      !
+      hipHostRegister_c8_2_c_size_t = hipHostRegister_(cptr,length1*length2*2*8_8,flags)
+    end function
+                                        
+    function hipHostRegister_c8_3_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_double_complex),target,dimension(:,:,:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c8_3_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c8_3_nosize
+#endif
+      !
+      hipHostRegister_c8_3_nosize = hipHostRegister_(c_loc(hostPtr),2*8_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_c8_3_c_int(hostPtr,length1,length2,length3,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_double_complex),pointer,dimension(:,:,:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1,length2,length3 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c8_3_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c8_3_c_int
+#endif
+      !
+      hipHostRegister_c8_3_c_int = hipHostRegister_(cptr,length1*length2*length3*2*8_8,flags)
+    end function
+                                                              
+    function hipHostRegister_c8_3_c_size_t(hostPtr,length1,length2,length3,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_double_complex),pointer,dimension(:,:,:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1,length2,length3 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c8_3_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c8_3_c_size_t
+#endif
+      !
+      hipHostRegister_c8_3_c_size_t = hipHostRegister_(cptr,length1*length2*length3*2*8_8,flags)
+    end function
+                                        
+    function hipHostRegister_c8_4_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_double_complex),target,dimension(:,:,:,:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c8_4_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c8_4_nosize
+#endif
+      !
+      hipHostRegister_c8_4_nosize = hipHostRegister_(c_loc(hostPtr),2*8_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_c8_4_c_int(hostPtr,length1,length2,length3,length4,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_double_complex),pointer,dimension(:,:,:,:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1,length2,length3,length4 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c8_4_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c8_4_c_int
+#endif
+      !
+      hipHostRegister_c8_4_c_int = hipHostRegister_(cptr,length1*length2*length3*length4*2*8_8,flags)
+    end function
+                                                              
+    function hipHostRegister_c8_4_c_size_t(hostPtr,length1,length2,length3,length4,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_double_complex),pointer,dimension(:,:,:,:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1,length2,length3,length4 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c8_4_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c8_4_c_size_t
+#endif
+      !
+      hipHostRegister_c8_4_c_size_t = hipHostRegister_(cptr,length1*length2*length3*length4*2*8_8,flags)
+    end function
+                                        
+    function hipHostRegister_c8_5_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_double_complex),target,dimension(:,:,:,:,:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c8_5_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c8_5_nosize
+#endif
+      !
+      hipHostRegister_c8_5_nosize = hipHostRegister_(c_loc(hostPtr),2*8_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_c8_5_c_int(hostPtr,length1,length2,length3,length4,length5,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1,length2,length3,length4,length5 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c8_5_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c8_5_c_int
+#endif
+      !
+      hipHostRegister_c8_5_c_int = hipHostRegister_(cptr,length1*length2*length3*length4*length5*2*8_8,flags)
+    end function
+                                                              
+    function hipHostRegister_c8_5_c_size_t(hostPtr,length1,length2,length3,length4,length5,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c8_5_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c8_5_c_size_t
+#endif
+      !
+      hipHostRegister_c8_5_c_size_t = hipHostRegister_(cptr,length1*length2*length3*length4*length5*2*8_8,flags)
+    end function
+                                        
+    function hipHostRegister_c8_6_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_double_complex),target,dimension(:,:,:,:,:,:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c8_6_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c8_6_nosize
+#endif
+      !
+      hipHostRegister_c8_6_nosize = hipHostRegister_(c_loc(hostPtr),2*8_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_c8_6_c_int(hostPtr,length1,length2,length3,length4,length5,length6,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:,:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1,length2,length3,length4,length5,length6 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c8_6_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c8_6_c_int
+#endif
+      !
+      hipHostRegister_c8_6_c_int = hipHostRegister_(cptr,length1*length2*length3*length4*length5*length6*2*8_8,flags)
+    end function
+                                                              
+    function hipHostRegister_c8_6_c_size_t(hostPtr,length1,length2,length3,length4,length5,length6,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:,:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5,length6 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c8_6_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c8_6_c_size_t
+#endif
+      !
+      hipHostRegister_c8_6_c_size_t = hipHostRegister_(cptr,length1*length2*length3*length4*length5*length6*2*8_8,flags)
+    end function
+                                        
+    function hipHostRegister_c8_7_nosize(hostPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_double_complex),target,dimension(:,:,:,:,:,:,:),intent(in) :: hostPtr
+      integer(kind=4),intent(in) :: flags
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c8_7_nosize 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c8_7_nosize
+#endif
+      !
+      hipHostRegister_c8_7_nosize = hipHostRegister_(c_loc(hostPtr),2*8_8*size(hostPtr),flags)
+    end function
+
+                                                              
+    function hipHostRegister_c8_7_c_int(hostPtr,length1,length2,length3,length4,length5,length6,length7,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
+      integer(c_int),intent(in) :: length1,length2,length3,length4,length5,length6,length7 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c8_7_c_int 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c8_7_c_int
+#endif
+      !
+      hipHostRegister_c8_7_c_int = hipHostRegister_(cptr,length1*length2*length3*length4*length5*length6*length7*2*8_8,flags)
+    end function
+                                                              
+    function hipHostRegister_c8_7_c_size_t(hostPtr,length1,length2,length3,length4,length5,length6,length7,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
+      integer(c_size_t),intent(in) :: length1,length2,length3,length4,length5,length6,length7 
+      integer(kind=4),intent(in) :: flags 
+      !
+      type(c_ptr) :: cptr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostRegister_c8_7_c_size_t 
+#else
+      integer(kind(hipSuccess)) :: hipHostRegister_c8_7_c_size_t
+#endif
+      !
+      hipHostRegister_c8_7_c_size_t = hipHostRegister_(cptr,length1*length2*length3*length4*length5*length6*length7*2*8_8,flags)
+    end function
+  
+                                        
+    function hipHostGetDevicePointer_l_0(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      logical(c_bool),pointer,intent(inout) :: devPtr
+      logical(c_bool),target,intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_l_0 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_l_0
+#endif
+      !
+      hipHostGetDevicePointer_l_0 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_l_1(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      logical(c_bool),pointer,dimension(:),intent(inout) :: devPtr
+      logical(c_bool),target,dimension(:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_l_1 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_l_1
+#endif
+      !
+      hipHostGetDevicePointer_l_1 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_l_2(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      logical(c_bool),pointer,dimension(:,:),intent(inout) :: devPtr
+      logical(c_bool),target,dimension(:,:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_l_2 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_l_2
+#endif
+      !
+      hipHostGetDevicePointer_l_2 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_l_3(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      logical(c_bool),pointer,dimension(:,:,:),intent(inout) :: devPtr
+      logical(c_bool),target,dimension(:,:,:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_l_3 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_l_3
+#endif
+      !
+      hipHostGetDevicePointer_l_3 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_l_4(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      logical(c_bool),pointer,dimension(:,:,:,:),intent(inout) :: devPtr
+      logical(c_bool),target,dimension(:,:,:,:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_l_4 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_l_4
+#endif
+      !
+      hipHostGetDevicePointer_l_4 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_l_5(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      logical(c_bool),pointer,dimension(:,:,:,:,:),intent(inout) :: devPtr
+      logical(c_bool),target,dimension(:,:,:,:,:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_l_5 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_l_5
+#endif
+      !
+      hipHostGetDevicePointer_l_5 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_l_6(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      logical(c_bool),pointer,dimension(:,:,:,:,:,:),intent(inout) :: devPtr
+      logical(c_bool),target,dimension(:,:,:,:,:,:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_l_6 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_l_6
+#endif
+      !
+      hipHostGetDevicePointer_l_6 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_l_7(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      logical(c_bool),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: devPtr
+      logical(c_bool),target,dimension(:,:,:,:,:,:,:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_l_7 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_l_7
+#endif
+      !
+      hipHostGetDevicePointer_l_7 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_i4_0(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_int),pointer,intent(inout) :: devPtr
+      integer(c_int),target,intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_i4_0 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_i4_0
+#endif
+      !
+      hipHostGetDevicePointer_i4_0 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_i4_1(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_int),pointer,dimension(:),intent(inout) :: devPtr
+      integer(c_int),target,dimension(:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_i4_1 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_i4_1
+#endif
+      !
+      hipHostGetDevicePointer_i4_1 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_i4_2(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_int),pointer,dimension(:,:),intent(inout) :: devPtr
+      integer(c_int),target,dimension(:,:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_i4_2 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_i4_2
+#endif
+      !
+      hipHostGetDevicePointer_i4_2 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_i4_3(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_int),pointer,dimension(:,:,:),intent(inout) :: devPtr
+      integer(c_int),target,dimension(:,:,:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_i4_3 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_i4_3
+#endif
+      !
+      hipHostGetDevicePointer_i4_3 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_i4_4(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_int),pointer,dimension(:,:,:,:),intent(inout) :: devPtr
+      integer(c_int),target,dimension(:,:,:,:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_i4_4 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_i4_4
+#endif
+      !
+      hipHostGetDevicePointer_i4_4 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_i4_5(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_int),pointer,dimension(:,:,:,:,:),intent(inout) :: devPtr
+      integer(c_int),target,dimension(:,:,:,:,:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_i4_5 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_i4_5
+#endif
+      !
+      hipHostGetDevicePointer_i4_5 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_i4_6(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_int),pointer,dimension(:,:,:,:,:,:),intent(inout) :: devPtr
+      integer(c_int),target,dimension(:,:,:,:,:,:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_i4_6 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_i4_6
+#endif
+      !
+      hipHostGetDevicePointer_i4_6 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_i4_7(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_int),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: devPtr
+      integer(c_int),target,dimension(:,:,:,:,:,:,:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_i4_7 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_i4_7
+#endif
+      !
+      hipHostGetDevicePointer_i4_7 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_i8_0(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_long),pointer,intent(inout) :: devPtr
+      integer(c_long),target,intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_i8_0 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_i8_0
+#endif
+      !
+      hipHostGetDevicePointer_i8_0 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_i8_1(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_long),pointer,dimension(:),intent(inout) :: devPtr
+      integer(c_long),target,dimension(:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_i8_1 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_i8_1
+#endif
+      !
+      hipHostGetDevicePointer_i8_1 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_i8_2(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_long),pointer,dimension(:,:),intent(inout) :: devPtr
+      integer(c_long),target,dimension(:,:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_i8_2 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_i8_2
+#endif
+      !
+      hipHostGetDevicePointer_i8_2 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_i8_3(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_long),pointer,dimension(:,:,:),intent(inout) :: devPtr
+      integer(c_long),target,dimension(:,:,:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_i8_3 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_i8_3
+#endif
+      !
+      hipHostGetDevicePointer_i8_3 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_i8_4(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_long),pointer,dimension(:,:,:,:),intent(inout) :: devPtr
+      integer(c_long),target,dimension(:,:,:,:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_i8_4 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_i8_4
+#endif
+      !
+      hipHostGetDevicePointer_i8_4 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_i8_5(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_long),pointer,dimension(:,:,:,:,:),intent(inout) :: devPtr
+      integer(c_long),target,dimension(:,:,:,:,:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_i8_5 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_i8_5
+#endif
+      !
+      hipHostGetDevicePointer_i8_5 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_i8_6(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_long),pointer,dimension(:,:,:,:,:,:),intent(inout) :: devPtr
+      integer(c_long),target,dimension(:,:,:,:,:,:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_i8_6 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_i8_6
+#endif
+      !
+      hipHostGetDevicePointer_i8_6 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_i8_7(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(c_long),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: devPtr
+      integer(c_long),target,dimension(:,:,:,:,:,:,:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_i8_7 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_i8_7
+#endif
+      !
+      hipHostGetDevicePointer_i8_7 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_r4_0(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_float),pointer,intent(inout) :: devPtr
+      real(c_float),target,intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_r4_0 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_r4_0
+#endif
+      !
+      hipHostGetDevicePointer_r4_0 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_r4_1(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_float),pointer,dimension(:),intent(inout) :: devPtr
+      real(c_float),target,dimension(:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_r4_1 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_r4_1
+#endif
+      !
+      hipHostGetDevicePointer_r4_1 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_r4_2(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_float),pointer,dimension(:,:),intent(inout) :: devPtr
+      real(c_float),target,dimension(:,:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_r4_2 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_r4_2
+#endif
+      !
+      hipHostGetDevicePointer_r4_2 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_r4_3(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_float),pointer,dimension(:,:,:),intent(inout) :: devPtr
+      real(c_float),target,dimension(:,:,:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_r4_3 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_r4_3
+#endif
+      !
+      hipHostGetDevicePointer_r4_3 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_r4_4(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_float),pointer,dimension(:,:,:,:),intent(inout) :: devPtr
+      real(c_float),target,dimension(:,:,:,:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_r4_4 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_r4_4
+#endif
+      !
+      hipHostGetDevicePointer_r4_4 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_r4_5(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_float),pointer,dimension(:,:,:,:,:),intent(inout) :: devPtr
+      real(c_float),target,dimension(:,:,:,:,:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_r4_5 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_r4_5
+#endif
+      !
+      hipHostGetDevicePointer_r4_5 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_r4_6(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_float),pointer,dimension(:,:,:,:,:,:),intent(inout) :: devPtr
+      real(c_float),target,dimension(:,:,:,:,:,:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_r4_6 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_r4_6
+#endif
+      !
+      hipHostGetDevicePointer_r4_6 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_r4_7(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_float),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: devPtr
+      real(c_float),target,dimension(:,:,:,:,:,:,:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_r4_7 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_r4_7
+#endif
+      !
+      hipHostGetDevicePointer_r4_7 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_r8_0(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_double),pointer,intent(inout) :: devPtr
+      real(c_double),target,intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_r8_0 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_r8_0
+#endif
+      !
+      hipHostGetDevicePointer_r8_0 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_r8_1(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_double),pointer,dimension(:),intent(inout) :: devPtr
+      real(c_double),target,dimension(:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_r8_1 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_r8_1
+#endif
+      !
+      hipHostGetDevicePointer_r8_1 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_r8_2(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_double),pointer,dimension(:,:),intent(inout) :: devPtr
+      real(c_double),target,dimension(:,:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_r8_2 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_r8_2
+#endif
+      !
+      hipHostGetDevicePointer_r8_2 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_r8_3(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_double),pointer,dimension(:,:,:),intent(inout) :: devPtr
+      real(c_double),target,dimension(:,:,:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_r8_3 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_r8_3
+#endif
+      !
+      hipHostGetDevicePointer_r8_3 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_r8_4(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_double),pointer,dimension(:,:,:,:),intent(inout) :: devPtr
+      real(c_double),target,dimension(:,:,:,:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_r8_4 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_r8_4
+#endif
+      !
+      hipHostGetDevicePointer_r8_4 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_r8_5(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_double),pointer,dimension(:,:,:,:,:),intent(inout) :: devPtr
+      real(c_double),target,dimension(:,:,:,:,:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_r8_5 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_r8_5
+#endif
+      !
+      hipHostGetDevicePointer_r8_5 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_r8_6(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_double),pointer,dimension(:,:,:,:,:,:),intent(inout) :: devPtr
+      real(c_double),target,dimension(:,:,:,:,:,:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_r8_6 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_r8_6
+#endif
+      !
+      hipHostGetDevicePointer_r8_6 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_r8_7(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      real(c_double),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: devPtr
+      real(c_double),target,dimension(:,:,:,:,:,:,:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_r8_7 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_r8_7
+#endif
+      !
+      hipHostGetDevicePointer_r8_7 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_c4_0(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_float_complex),pointer,intent(inout) :: devPtr
+      complex(c_float_complex),target,intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_c4_0 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_c4_0
+#endif
+      !
+      hipHostGetDevicePointer_c4_0 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_c4_1(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_float_complex),pointer,dimension(:),intent(inout) :: devPtr
+      complex(c_float_complex),target,dimension(:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_c4_1 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_c4_1
+#endif
+      !
+      hipHostGetDevicePointer_c4_1 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_c4_2(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_float_complex),pointer,dimension(:,:),intent(inout) :: devPtr
+      complex(c_float_complex),target,dimension(:,:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_c4_2 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_c4_2
+#endif
+      !
+      hipHostGetDevicePointer_c4_2 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_c4_3(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_float_complex),pointer,dimension(:,:,:),intent(inout) :: devPtr
+      complex(c_float_complex),target,dimension(:,:,:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_c4_3 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_c4_3
+#endif
+      !
+      hipHostGetDevicePointer_c4_3 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_c4_4(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_float_complex),pointer,dimension(:,:,:,:),intent(inout) :: devPtr
+      complex(c_float_complex),target,dimension(:,:,:,:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_c4_4 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_c4_4
+#endif
+      !
+      hipHostGetDevicePointer_c4_4 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_c4_5(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:),intent(inout) :: devPtr
+      complex(c_float_complex),target,dimension(:,:,:,:,:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_c4_5 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_c4_5
+#endif
+      !
+      hipHostGetDevicePointer_c4_5 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_c4_6(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:,:),intent(inout) :: devPtr
+      complex(c_float_complex),target,dimension(:,:,:,:,:,:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_c4_6 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_c4_6
+#endif
+      !
+      hipHostGetDevicePointer_c4_6 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_c4_7(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_float_complex),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: devPtr
+      complex(c_float_complex),target,dimension(:,:,:,:,:,:,:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_c4_7 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_c4_7
+#endif
+      !
+      hipHostGetDevicePointer_c4_7 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_c8_0(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_double_complex),pointer,intent(inout) :: devPtr
+      complex(c_double_complex),target,intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_c8_0 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_c8_0
+#endif
+      !
+      hipHostGetDevicePointer_c8_0 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_c8_1(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_double_complex),pointer,dimension(:),intent(inout) :: devPtr
+      complex(c_double_complex),target,dimension(:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_c8_1 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_c8_1
+#endif
+      !
+      hipHostGetDevicePointer_c8_1 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_c8_2(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_double_complex),pointer,dimension(:,:),intent(inout) :: devPtr
+      complex(c_double_complex),target,dimension(:,:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_c8_2 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_c8_2
+#endif
+      !
+      hipHostGetDevicePointer_c8_2 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_c8_3(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_double_complex),pointer,dimension(:,:,:),intent(inout) :: devPtr
+      complex(c_double_complex),target,dimension(:,:,:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_c8_3 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_c8_3
+#endif
+      !
+      hipHostGetDevicePointer_c8_3 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_c8_4(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_double_complex),pointer,dimension(:,:,:,:),intent(inout) :: devPtr
+      complex(c_double_complex),target,dimension(:,:,:,:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_c8_4 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_c8_4
+#endif
+      !
+      hipHostGetDevicePointer_c8_4 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_c8_5(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:),intent(inout) :: devPtr
+      complex(c_double_complex),target,dimension(:,:,:,:,:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_c8_5 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_c8_5
+#endif
+      !
+      hipHostGetDevicePointer_c8_5 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_c8_6(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:,:),intent(inout) :: devPtr
+      complex(c_double_complex),target,dimension(:,:,:,:,:,:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_c8_6 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_c8_6
+#endif
+      !
+      hipHostGetDevicePointer_c8_6 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+                                        
+    function hipHostGetDevicePointer_c8_7(devPtr,hstPtr,flags)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      complex(c_double_complex),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: devPtr
+      complex(c_double_complex),target,dimension(:,:,:,:,:,:,:),intent(in) :: hstPtr
+      integer(kind=4),intent(in) :: flags 
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_c8_7 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_c8_7
+#endif
+      !
+      hipHostGetDevicePointer_c8_7 = hipHostGetDevicePointer_(c_loc(devPtr),c_loc(hstPtr),flags)
+    end function
+
+                                        
+    function hipHostGetFlags_l_0(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      logical(c_bool),target,intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_l_0 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_l_0
+#endif
+      !
+      hipHostGetFlags_l_0 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_l_1(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      logical(c_bool),target,dimension(:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_l_1 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_l_1
+#endif
+      !
+      hipHostGetFlags_l_1 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_l_2(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      logical(c_bool),target,dimension(:,:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_l_2 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_l_2
+#endif
+      !
+      hipHostGetFlags_l_2 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_l_3(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      logical(c_bool),target,dimension(:,:,:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_l_3 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_l_3
+#endif
+      !
+      hipHostGetFlags_l_3 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_l_4(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      logical(c_bool),target,dimension(:,:,:,:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_l_4 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_l_4
+#endif
+      !
+      hipHostGetFlags_l_4 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_l_5(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      logical(c_bool),target,dimension(:,:,:,:,:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_l_5 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_l_5
+#endif
+      !
+      hipHostGetFlags_l_5 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_l_6(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      logical(c_bool),target,dimension(:,:,:,:,:,:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_l_6 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_l_6
+#endif
+      !
+      hipHostGetFlags_l_6 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_l_7(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      logical(c_bool),target,dimension(:,:,:,:,:,:,:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_l_7 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_l_7
+#endif
+      !
+      hipHostGetFlags_l_7 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_i4_0(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      integer(c_int),target,intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_i4_0 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_i4_0
+#endif
+      !
+      hipHostGetFlags_i4_0 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_i4_1(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      integer(c_int),target,dimension(:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_i4_1 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_i4_1
+#endif
+      !
+      hipHostGetFlags_i4_1 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_i4_2(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      integer(c_int),target,dimension(:,:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_i4_2 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_i4_2
+#endif
+      !
+      hipHostGetFlags_i4_2 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_i4_3(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      integer(c_int),target,dimension(:,:,:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_i4_3 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_i4_3
+#endif
+      !
+      hipHostGetFlags_i4_3 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_i4_4(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      integer(c_int),target,dimension(:,:,:,:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_i4_4 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_i4_4
+#endif
+      !
+      hipHostGetFlags_i4_4 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_i4_5(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      integer(c_int),target,dimension(:,:,:,:,:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_i4_5 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_i4_5
+#endif
+      !
+      hipHostGetFlags_i4_5 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_i4_6(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      integer(c_int),target,dimension(:,:,:,:,:,:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_i4_6 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_i4_6
+#endif
+      !
+      hipHostGetFlags_i4_6 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_i4_7(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      integer(c_int),target,dimension(:,:,:,:,:,:,:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_i4_7 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_i4_7
+#endif
+      !
+      hipHostGetFlags_i4_7 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_i8_0(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      integer(c_long),target,intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_i8_0 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_i8_0
+#endif
+      !
+      hipHostGetFlags_i8_0 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_i8_1(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      integer(c_long),target,dimension(:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_i8_1 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_i8_1
+#endif
+      !
+      hipHostGetFlags_i8_1 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_i8_2(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      integer(c_long),target,dimension(:,:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_i8_2 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_i8_2
+#endif
+      !
+      hipHostGetFlags_i8_2 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_i8_3(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      integer(c_long),target,dimension(:,:,:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_i8_3 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_i8_3
+#endif
+      !
+      hipHostGetFlags_i8_3 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_i8_4(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      integer(c_long),target,dimension(:,:,:,:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_i8_4 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_i8_4
+#endif
+      !
+      hipHostGetFlags_i8_4 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_i8_5(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      integer(c_long),target,dimension(:,:,:,:,:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_i8_5 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_i8_5
+#endif
+      !
+      hipHostGetFlags_i8_5 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_i8_6(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      integer(c_long),target,dimension(:,:,:,:,:,:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_i8_6 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_i8_6
+#endif
+      !
+      hipHostGetFlags_i8_6 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_i8_7(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      integer(c_long),target,dimension(:,:,:,:,:,:,:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_i8_7 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_i8_7
+#endif
+      !
+      hipHostGetFlags_i8_7 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_r4_0(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      real(c_float),target,intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_r4_0 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_r4_0
+#endif
+      !
+      hipHostGetFlags_r4_0 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_r4_1(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      real(c_float),target,dimension(:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_r4_1 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_r4_1
+#endif
+      !
+      hipHostGetFlags_r4_1 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_r4_2(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      real(c_float),target,dimension(:,:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_r4_2 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_r4_2
+#endif
+      !
+      hipHostGetFlags_r4_2 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_r4_3(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      real(c_float),target,dimension(:,:,:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_r4_3 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_r4_3
+#endif
+      !
+      hipHostGetFlags_r4_3 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_r4_4(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      real(c_float),target,dimension(:,:,:,:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_r4_4 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_r4_4
+#endif
+      !
+      hipHostGetFlags_r4_4 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_r4_5(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      real(c_float),target,dimension(:,:,:,:,:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_r4_5 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_r4_5
+#endif
+      !
+      hipHostGetFlags_r4_5 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_r4_6(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      real(c_float),target,dimension(:,:,:,:,:,:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_r4_6 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_r4_6
+#endif
+      !
+      hipHostGetFlags_r4_6 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_r4_7(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      real(c_float),target,dimension(:,:,:,:,:,:,:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_r4_7 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_r4_7
+#endif
+      !
+      hipHostGetFlags_r4_7 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_r8_0(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      real(c_double),target,intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_r8_0 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_r8_0
+#endif
+      !
+      hipHostGetFlags_r8_0 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_r8_1(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      real(c_double),target,dimension(:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_r8_1 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_r8_1
+#endif
+      !
+      hipHostGetFlags_r8_1 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_r8_2(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      real(c_double),target,dimension(:,:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_r8_2 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_r8_2
+#endif
+      !
+      hipHostGetFlags_r8_2 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_r8_3(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      real(c_double),target,dimension(:,:,:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_r8_3 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_r8_3
+#endif
+      !
+      hipHostGetFlags_r8_3 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_r8_4(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      real(c_double),target,dimension(:,:,:,:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_r8_4 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_r8_4
+#endif
+      !
+      hipHostGetFlags_r8_4 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_r8_5(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      real(c_double),target,dimension(:,:,:,:,:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_r8_5 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_r8_5
+#endif
+      !
+      hipHostGetFlags_r8_5 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_r8_6(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      real(c_double),target,dimension(:,:,:,:,:,:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_r8_6 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_r8_6
+#endif
+      !
+      hipHostGetFlags_r8_6 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_r8_7(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      real(c_double),target,dimension(:,:,:,:,:,:,:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_r8_7 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_r8_7
+#endif
+      !
+      hipHostGetFlags_r8_7 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_c4_0(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      complex(c_float_complex),target,intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_c4_0 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_c4_0
+#endif
+      !
+      hipHostGetFlags_c4_0 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_c4_1(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      complex(c_float_complex),target,dimension(:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_c4_1 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_c4_1
+#endif
+      !
+      hipHostGetFlags_c4_1 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_c4_2(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      complex(c_float_complex),target,dimension(:,:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_c4_2 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_c4_2
+#endif
+      !
+      hipHostGetFlags_c4_2 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_c4_3(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      complex(c_float_complex),target,dimension(:,:,:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_c4_3 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_c4_3
+#endif
+      !
+      hipHostGetFlags_c4_3 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_c4_4(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      complex(c_float_complex),target,dimension(:,:,:,:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_c4_4 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_c4_4
+#endif
+      !
+      hipHostGetFlags_c4_4 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_c4_5(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      complex(c_float_complex),target,dimension(:,:,:,:,:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_c4_5 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_c4_5
+#endif
+      !
+      hipHostGetFlags_c4_5 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_c4_6(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      complex(c_float_complex),target,dimension(:,:,:,:,:,:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_c4_6 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_c4_6
+#endif
+      !
+      hipHostGetFlags_c4_6 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_c4_7(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      complex(c_float_complex),target,dimension(:,:,:,:,:,:,:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_c4_7 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_c4_7
+#endif
+      !
+      hipHostGetFlags_c4_7 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_c8_0(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      complex(c_double_complex),target,intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_c8_0 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_c8_0
+#endif
+      !
+      hipHostGetFlags_c8_0 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_c8_1(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      complex(c_double_complex),target,dimension(:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_c8_1 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_c8_1
+#endif
+      !
+      hipHostGetFlags_c8_1 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_c8_2(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      complex(c_double_complex),target,dimension(:,:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_c8_2 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_c8_2
+#endif
+      !
+      hipHostGetFlags_c8_2 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_c8_3(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      complex(c_double_complex),target,dimension(:,:,:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_c8_3 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_c8_3
+#endif
+      !
+      hipHostGetFlags_c8_3 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_c8_4(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      complex(c_double_complex),target,dimension(:,:,:,:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_c8_4 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_c8_4
+#endif
+      !
+      hipHostGetFlags_c8_4 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_c8_5(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      complex(c_double_complex),target,dimension(:,:,:,:,:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_c8_5 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_c8_5
+#endif
+      !
+      hipHostGetFlags_c8_5 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_c8_6(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      complex(c_double_complex),target,dimension(:,:,:,:,:,:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_c8_6 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_c8_6
+#endif
+      !
+      hipHostGetFlags_c8_6 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
+                                        
+    function hipHostGetFlags_c8_7(flagsPtr,hostPtr)
+      use iso_c_binding
+#ifdef USE_CUDA_NAMES
+      use hipfort_cuda_errors
+#endif
+      use hipfort_enums
+      implicit none
+      integer(kind=4),intent(out) :: flagsPtr
+      complex(c_double_complex),target,dimension(:,:,:,:,:,:,:),intent(in) :: hostPtr
+#ifdef USE_CUDA_NAMES
+      integer(kind(cudaSuccess)) :: hipHostGetFlags_c8_7 
+#else
+      integer(kind(hipSuccess)) :: hipHostGetFlags_c8_7
+#endif
+      !
+      hipHostGetFlags_c8_7 = hipHostGetFlags_(flagsPtr,c_loc(hostPtr))
+    end function
 
                                         
     function hipHostUnregister_l_0(hostPtr)
@@ -171,79 +5722,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      logical,target :: hostPtr
+      logical(c_bool),target,intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_l_0 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_l_0
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_l_0 = cudaSuccess
-#else
-      hipHostUnregister_l_0 = hipSuccess
-#endif
-      hipHostUnregister_l_0 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_l_0 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_l_0(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      logical,target :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_l_0 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_l_0
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_l_0 = cudaSuccess
-#else
-      hipHostRegister_l_0 = hipSuccess
-#endif
-      hipHostRegister_l_0 = hipHostRegister_b(c_loc(hostPtr),1_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_l_0(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      logical,pointer,intent(inout) :: devPtr
-      logical,target                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_l_0 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_l_0
-#endif
-      !
-      type(c_ptr) :: cptr
-      logical,pointer :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_l_0 = cudaSuccess
-#else
-      hipHostGetDevicePointer_l_0 = hipSuccess
-#endif
-      hipHostGetDevicePointer_l_0 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,devPtr)
-    end function
-
-
                                         
     function hipHostUnregister_l_1(hostPtr)
       use iso_c_binding
@@ -251,80 +5739,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      logical,target,dimension(:) :: hostPtr
+      logical(c_bool),target,dimension(:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_l_1 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_l_1
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_l_1 = cudaSuccess
-#else
-      hipHostUnregister_l_1 = hipSuccess
-#endif
-      hipHostUnregister_l_1 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_l_1 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_l_1(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      logical,target,dimension(:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_l_1 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_l_1
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_l_1 = cudaSuccess
-#else
-      hipHostRegister_l_1 = hipSuccess
-#endif
-      hipHostRegister_l_1 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*1_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_l_1(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      logical,pointer,dimension(:),intent(inout) :: devPtr
-      logical,target,dimension(:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_l_1 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_l_1
-#endif
-      !
-      type(c_ptr) :: cptr
-      logical,pointer,dimension(:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_l_1 = cudaSuccess
-#else
-      hipHostGetDevicePointer_l_1 = hipSuccess
-#endif
-      hipHostGetDevicePointer_l_1 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_l_2(hostPtr)
       use iso_c_binding
@@ -332,80 +5756,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      logical,target,dimension(:,:) :: hostPtr
+      logical(c_bool),target,dimension(:,:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_l_2 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_l_2
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_l_2 = cudaSuccess
-#else
-      hipHostUnregister_l_2 = hipSuccess
-#endif
-      hipHostUnregister_l_2 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_l_2 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_l_2(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      logical,target,dimension(:,:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_l_2 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_l_2
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_l_2 = cudaSuccess
-#else
-      hipHostRegister_l_2 = hipSuccess
-#endif
-      hipHostRegister_l_2 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*1_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_l_2(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      logical,pointer,dimension(:,:),intent(inout) :: devPtr
-      logical,target,dimension(:,:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_l_2 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_l_2
-#endif
-      !
-      type(c_ptr) :: cptr
-      logical,pointer,dimension(:,:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_l_2 = cudaSuccess
-#else
-      hipHostGetDevicePointer_l_2 = hipSuccess
-#endif
-      hipHostGetDevicePointer_l_2 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):,LBOUND(hstPtr,2):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_l_3(hostPtr)
       use iso_c_binding
@@ -413,80 +5773,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      logical,target,dimension(:,:,:) :: hostPtr
+      logical(c_bool),target,dimension(:,:,:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_l_3 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_l_3
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_l_3 = cudaSuccess
-#else
-      hipHostUnregister_l_3 = hipSuccess
-#endif
-      hipHostUnregister_l_3 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_l_3 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_l_3(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      logical,target,dimension(:,:,:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_l_3 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_l_3
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_l_3 = cudaSuccess
-#else
-      hipHostRegister_l_3 = hipSuccess
-#endif
-      hipHostRegister_l_3 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*1_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_l_3(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      logical,pointer,dimension(:,:,:),intent(inout) :: devPtr
-      logical,target,dimension(:,:,:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_l_3 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_l_3
-#endif
-      !
-      type(c_ptr) :: cptr
-      logical,pointer,dimension(:,:,:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_l_3 = cudaSuccess
-#else
-      hipHostGetDevicePointer_l_3 = hipSuccess
-#endif
-      hipHostGetDevicePointer_l_3 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):,LBOUND(hstPtr,2):,LBOUND(hstPtr,3):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_l_4(hostPtr)
       use iso_c_binding
@@ -494,80 +5790,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      logical,target,dimension(:,:,:,:) :: hostPtr
+      logical(c_bool),target,dimension(:,:,:,:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_l_4 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_l_4
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_l_4 = cudaSuccess
-#else
-      hipHostUnregister_l_4 = hipSuccess
-#endif
-      hipHostUnregister_l_4 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_l_4 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_l_4(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      logical,target,dimension(:,:,:,:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_l_4 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_l_4
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_l_4 = cudaSuccess
-#else
-      hipHostRegister_l_4 = hipSuccess
-#endif
-      hipHostRegister_l_4 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*1_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_l_4(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      logical,pointer,dimension(:,:,:,:),intent(inout) :: devPtr
-      logical,target,dimension(:,:,:,:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_l_4 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_l_4
-#endif
-      !
-      type(c_ptr) :: cptr
-      logical,pointer,dimension(:,:,:,:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_l_4 = cudaSuccess
-#else
-      hipHostGetDevicePointer_l_4 = hipSuccess
-#endif
-      hipHostGetDevicePointer_l_4 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):,LBOUND(hstPtr,2):,LBOUND(hstPtr,3):,LBOUND(hstPtr,4):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_l_5(hostPtr)
       use iso_c_binding
@@ -575,80 +5807,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      logical,target,dimension(:,:,:,:,:) :: hostPtr
+      logical(c_bool),target,dimension(:,:,:,:,:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_l_5 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_l_5
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_l_5 = cudaSuccess
-#else
-      hipHostUnregister_l_5 = hipSuccess
-#endif
-      hipHostUnregister_l_5 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_l_5 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_l_5(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      logical,target,dimension(:,:,:,:,:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_l_5 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_l_5
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_l_5 = cudaSuccess
-#else
-      hipHostRegister_l_5 = hipSuccess
-#endif
-      hipHostRegister_l_5 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*1_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_l_5(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      logical,pointer,dimension(:,:,:,:,:),intent(inout) :: devPtr
-      logical,target,dimension(:,:,:,:,:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_l_5 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_l_5
-#endif
-      !
-      type(c_ptr) :: cptr
-      logical,pointer,dimension(:,:,:,:,:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_l_5 = cudaSuccess
-#else
-      hipHostGetDevicePointer_l_5 = hipSuccess
-#endif
-      hipHostGetDevicePointer_l_5 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):,LBOUND(hstPtr,2):,LBOUND(hstPtr,3):,LBOUND(hstPtr,4):,LBOUND(hstPtr,5):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_l_6(hostPtr)
       use iso_c_binding
@@ -656,80 +5824,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      logical,target,dimension(:,:,:,:,:,:) :: hostPtr
+      logical(c_bool),target,dimension(:,:,:,:,:,:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_l_6 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_l_6
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_l_6 = cudaSuccess
-#else
-      hipHostUnregister_l_6 = hipSuccess
-#endif
-      hipHostUnregister_l_6 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_l_6 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_l_6(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      logical,target,dimension(:,:,:,:,:,:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_l_6 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_l_6
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_l_6 = cudaSuccess
-#else
-      hipHostRegister_l_6 = hipSuccess
-#endif
-      hipHostRegister_l_6 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*1_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_l_6(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      logical,pointer,dimension(:,:,:,:,:,:),intent(inout) :: devPtr
-      logical,target,dimension(:,:,:,:,:,:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_l_6 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_l_6
-#endif
-      !
-      type(c_ptr) :: cptr
-      logical,pointer,dimension(:,:,:,:,:,:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_l_6 = cudaSuccess
-#else
-      hipHostGetDevicePointer_l_6 = hipSuccess
-#endif
-      hipHostGetDevicePointer_l_6 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):,LBOUND(hstPtr,2):,LBOUND(hstPtr,3):,LBOUND(hstPtr,4):,LBOUND(hstPtr,5):,LBOUND(hstPtr,6):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_l_7(hostPtr)
       use iso_c_binding
@@ -737,80 +5841,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      logical,target,dimension(:,:,:,:,:,:,:) :: hostPtr
+      logical(c_bool),target,dimension(:,:,:,:,:,:,:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_l_7 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_l_7
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_l_7 = cudaSuccess
-#else
-      hipHostUnregister_l_7 = hipSuccess
-#endif
-      hipHostUnregister_l_7 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_l_7 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_l_7(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      logical,target,dimension(:,:,:,:,:,:,:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_l_7 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_l_7
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_l_7 = cudaSuccess
-#else
-      hipHostRegister_l_7 = hipSuccess
-#endif
-      hipHostRegister_l_7 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*1_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_l_7(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      logical,pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: devPtr
-      logical,target,dimension(:,:,:,:,:,:,:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_l_7 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_l_7
-#endif
-      !
-      type(c_ptr) :: cptr
-      logical,pointer,dimension(:,:,:,:,:,:,:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_l_7 = cudaSuccess
-#else
-      hipHostGetDevicePointer_l_7 = hipSuccess
-#endif
-      hipHostGetDevicePointer_l_7 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):,LBOUND(hstPtr,2):,LBOUND(hstPtr,3):,LBOUND(hstPtr,4):,LBOUND(hstPtr,5):,LBOUND(hstPtr,6):,LBOUND(hstPtr,7):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_i4_0(hostPtr)
       use iso_c_binding
@@ -818,79 +5858,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      integer(4),target :: hostPtr
+      integer(c_int),target,intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_i4_0 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_i4_0
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_i4_0 = cudaSuccess
-#else
-      hipHostUnregister_i4_0 = hipSuccess
-#endif
-      hipHostUnregister_i4_0 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_i4_0 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_i4_0(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(4),target :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_i4_0 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_i4_0
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_i4_0 = cudaSuccess
-#else
-      hipHostRegister_i4_0 = hipSuccess
-#endif
-      hipHostRegister_i4_0 = hipHostRegister_b(c_loc(hostPtr),4_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_i4_0(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(4),pointer,intent(inout) :: devPtr
-      integer(4),target                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_i4_0 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_i4_0
-#endif
-      !
-      type(c_ptr) :: cptr
-      integer(4),pointer :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_i4_0 = cudaSuccess
-#else
-      hipHostGetDevicePointer_i4_0 = hipSuccess
-#endif
-      hipHostGetDevicePointer_i4_0 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,devPtr)
-    end function
-
-
                                         
     function hipHostUnregister_i4_1(hostPtr)
       use iso_c_binding
@@ -898,80 +5875,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      integer(4),target,dimension(:) :: hostPtr
+      integer(c_int),target,dimension(:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_i4_1 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_i4_1
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_i4_1 = cudaSuccess
-#else
-      hipHostUnregister_i4_1 = hipSuccess
-#endif
-      hipHostUnregister_i4_1 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_i4_1 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_i4_1(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(4),target,dimension(:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_i4_1 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_i4_1
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_i4_1 = cudaSuccess
-#else
-      hipHostRegister_i4_1 = hipSuccess
-#endif
-      hipHostRegister_i4_1 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*4_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_i4_1(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(4),pointer,dimension(:),intent(inout) :: devPtr
-      integer(4),target,dimension(:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_i4_1 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_i4_1
-#endif
-      !
-      type(c_ptr) :: cptr
-      integer(4),pointer,dimension(:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_i4_1 = cudaSuccess
-#else
-      hipHostGetDevicePointer_i4_1 = hipSuccess
-#endif
-      hipHostGetDevicePointer_i4_1 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_i4_2(hostPtr)
       use iso_c_binding
@@ -979,80 +5892,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:) :: hostPtr
+      integer(c_int),target,dimension(:,:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_i4_2 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_i4_2
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_i4_2 = cudaSuccess
-#else
-      hipHostUnregister_i4_2 = hipSuccess
-#endif
-      hipHostUnregister_i4_2 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_i4_2 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_i4_2(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(4),target,dimension(:,:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_i4_2 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_i4_2
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_i4_2 = cudaSuccess
-#else
-      hipHostRegister_i4_2 = hipSuccess
-#endif
-      hipHostRegister_i4_2 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*4_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_i4_2(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(4),pointer,dimension(:,:),intent(inout) :: devPtr
-      integer(4),target,dimension(:,:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_i4_2 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_i4_2
-#endif
-      !
-      type(c_ptr) :: cptr
-      integer(4),pointer,dimension(:,:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_i4_2 = cudaSuccess
-#else
-      hipHostGetDevicePointer_i4_2 = hipSuccess
-#endif
-      hipHostGetDevicePointer_i4_2 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):,LBOUND(hstPtr,2):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_i4_3(hostPtr)
       use iso_c_binding
@@ -1060,80 +5909,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:,:) :: hostPtr
+      integer(c_int),target,dimension(:,:,:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_i4_3 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_i4_3
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_i4_3 = cudaSuccess
-#else
-      hipHostUnregister_i4_3 = hipSuccess
-#endif
-      hipHostUnregister_i4_3 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_i4_3 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_i4_3(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(4),target,dimension(:,:,:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_i4_3 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_i4_3
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_i4_3 = cudaSuccess
-#else
-      hipHostRegister_i4_3 = hipSuccess
-#endif
-      hipHostRegister_i4_3 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*4_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_i4_3(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(4),pointer,dimension(:,:,:),intent(inout) :: devPtr
-      integer(4),target,dimension(:,:,:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_i4_3 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_i4_3
-#endif
-      !
-      type(c_ptr) :: cptr
-      integer(4),pointer,dimension(:,:,:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_i4_3 = cudaSuccess
-#else
-      hipHostGetDevicePointer_i4_3 = hipSuccess
-#endif
-      hipHostGetDevicePointer_i4_3 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):,LBOUND(hstPtr,2):,LBOUND(hstPtr,3):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_i4_4(hostPtr)
       use iso_c_binding
@@ -1141,80 +5926,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:,:,:) :: hostPtr
+      integer(c_int),target,dimension(:,:,:,:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_i4_4 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_i4_4
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_i4_4 = cudaSuccess
-#else
-      hipHostUnregister_i4_4 = hipSuccess
-#endif
-      hipHostUnregister_i4_4 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_i4_4 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_i4_4(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(4),target,dimension(:,:,:,:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_i4_4 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_i4_4
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_i4_4 = cudaSuccess
-#else
-      hipHostRegister_i4_4 = hipSuccess
-#endif
-      hipHostRegister_i4_4 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*4_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_i4_4(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(4),pointer,dimension(:,:,:,:),intent(inout) :: devPtr
-      integer(4),target,dimension(:,:,:,:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_i4_4 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_i4_4
-#endif
-      !
-      type(c_ptr) :: cptr
-      integer(4),pointer,dimension(:,:,:,:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_i4_4 = cudaSuccess
-#else
-      hipHostGetDevicePointer_i4_4 = hipSuccess
-#endif
-      hipHostGetDevicePointer_i4_4 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):,LBOUND(hstPtr,2):,LBOUND(hstPtr,3):,LBOUND(hstPtr,4):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_i4_5(hostPtr)
       use iso_c_binding
@@ -1222,80 +5943,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:,:,:,:) :: hostPtr
+      integer(c_int),target,dimension(:,:,:,:,:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_i4_5 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_i4_5
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_i4_5 = cudaSuccess
-#else
-      hipHostUnregister_i4_5 = hipSuccess
-#endif
-      hipHostUnregister_i4_5 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_i4_5 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_i4_5(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(4),target,dimension(:,:,:,:,:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_i4_5 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_i4_5
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_i4_5 = cudaSuccess
-#else
-      hipHostRegister_i4_5 = hipSuccess
-#endif
-      hipHostRegister_i4_5 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*4_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_i4_5(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(4),pointer,dimension(:,:,:,:,:),intent(inout) :: devPtr
-      integer(4),target,dimension(:,:,:,:,:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_i4_5 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_i4_5
-#endif
-      !
-      type(c_ptr) :: cptr
-      integer(4),pointer,dimension(:,:,:,:,:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_i4_5 = cudaSuccess
-#else
-      hipHostGetDevicePointer_i4_5 = hipSuccess
-#endif
-      hipHostGetDevicePointer_i4_5 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):,LBOUND(hstPtr,2):,LBOUND(hstPtr,3):,LBOUND(hstPtr,4):,LBOUND(hstPtr,5):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_i4_6(hostPtr)
       use iso_c_binding
@@ -1303,80 +5960,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:,:,:,:,:) :: hostPtr
+      integer(c_int),target,dimension(:,:,:,:,:,:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_i4_6 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_i4_6
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_i4_6 = cudaSuccess
-#else
-      hipHostUnregister_i4_6 = hipSuccess
-#endif
-      hipHostUnregister_i4_6 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_i4_6 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_i4_6(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(4),target,dimension(:,:,:,:,:,:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_i4_6 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_i4_6
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_i4_6 = cudaSuccess
-#else
-      hipHostRegister_i4_6 = hipSuccess
-#endif
-      hipHostRegister_i4_6 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*4_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_i4_6(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(4),pointer,dimension(:,:,:,:,:,:),intent(inout) :: devPtr
-      integer(4),target,dimension(:,:,:,:,:,:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_i4_6 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_i4_6
-#endif
-      !
-      type(c_ptr) :: cptr
-      integer(4),pointer,dimension(:,:,:,:,:,:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_i4_6 = cudaSuccess
-#else
-      hipHostGetDevicePointer_i4_6 = hipSuccess
-#endif
-      hipHostGetDevicePointer_i4_6 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):,LBOUND(hstPtr,2):,LBOUND(hstPtr,3):,LBOUND(hstPtr,4):,LBOUND(hstPtr,5):,LBOUND(hstPtr,6):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_i4_7(hostPtr)
       use iso_c_binding
@@ -1384,80 +5977,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:,:,:,:,:,:) :: hostPtr
+      integer(c_int),target,dimension(:,:,:,:,:,:,:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_i4_7 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_i4_7
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_i4_7 = cudaSuccess
-#else
-      hipHostUnregister_i4_7 = hipSuccess
-#endif
-      hipHostUnregister_i4_7 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_i4_7 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_i4_7(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(4),target,dimension(:,:,:,:,:,:,:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_i4_7 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_i4_7
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_i4_7 = cudaSuccess
-#else
-      hipHostRegister_i4_7 = hipSuccess
-#endif
-      hipHostRegister_i4_7 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*4_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_i4_7(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(4),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: devPtr
-      integer(4),target,dimension(:,:,:,:,:,:,:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_i4_7 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_i4_7
-#endif
-      !
-      type(c_ptr) :: cptr
-      integer(4),pointer,dimension(:,:,:,:,:,:,:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_i4_7 = cudaSuccess
-#else
-      hipHostGetDevicePointer_i4_7 = hipSuccess
-#endif
-      hipHostGetDevicePointer_i4_7 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):,LBOUND(hstPtr,2):,LBOUND(hstPtr,3):,LBOUND(hstPtr,4):,LBOUND(hstPtr,5):,LBOUND(hstPtr,6):,LBOUND(hstPtr,7):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_i8_0(hostPtr)
       use iso_c_binding
@@ -1465,79 +5994,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      integer(8),target :: hostPtr
+      integer(c_long),target,intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_i8_0 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_i8_0
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_i8_0 = cudaSuccess
-#else
-      hipHostUnregister_i8_0 = hipSuccess
-#endif
-      hipHostUnregister_i8_0 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_i8_0 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_i8_0(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(8),target :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_i8_0 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_i8_0
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_i8_0 = cudaSuccess
-#else
-      hipHostRegister_i8_0 = hipSuccess
-#endif
-      hipHostRegister_i8_0 = hipHostRegister_b(c_loc(hostPtr),8_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_i8_0(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(8),pointer,intent(inout) :: devPtr
-      integer(8),target                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_i8_0 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_i8_0
-#endif
-      !
-      type(c_ptr) :: cptr
-      integer(8),pointer :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_i8_0 = cudaSuccess
-#else
-      hipHostGetDevicePointer_i8_0 = hipSuccess
-#endif
-      hipHostGetDevicePointer_i8_0 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,devPtr)
-    end function
-
-
                                         
     function hipHostUnregister_i8_1(hostPtr)
       use iso_c_binding
@@ -1545,80 +6011,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      integer(8),target,dimension(:) :: hostPtr
+      integer(c_long),target,dimension(:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_i8_1 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_i8_1
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_i8_1 = cudaSuccess
-#else
-      hipHostUnregister_i8_1 = hipSuccess
-#endif
-      hipHostUnregister_i8_1 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_i8_1 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_i8_1(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(8),target,dimension(:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_i8_1 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_i8_1
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_i8_1 = cudaSuccess
-#else
-      hipHostRegister_i8_1 = hipSuccess
-#endif
-      hipHostRegister_i8_1 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*8_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_i8_1(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(8),pointer,dimension(:),intent(inout) :: devPtr
-      integer(8),target,dimension(:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_i8_1 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_i8_1
-#endif
-      !
-      type(c_ptr) :: cptr
-      integer(8),pointer,dimension(:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_i8_1 = cudaSuccess
-#else
-      hipHostGetDevicePointer_i8_1 = hipSuccess
-#endif
-      hipHostGetDevicePointer_i8_1 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_i8_2(hostPtr)
       use iso_c_binding
@@ -1626,80 +6028,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:) :: hostPtr
+      integer(c_long),target,dimension(:,:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_i8_2 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_i8_2
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_i8_2 = cudaSuccess
-#else
-      hipHostUnregister_i8_2 = hipSuccess
-#endif
-      hipHostUnregister_i8_2 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_i8_2 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_i8_2(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(8),target,dimension(:,:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_i8_2 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_i8_2
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_i8_2 = cudaSuccess
-#else
-      hipHostRegister_i8_2 = hipSuccess
-#endif
-      hipHostRegister_i8_2 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*8_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_i8_2(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(8),pointer,dimension(:,:),intent(inout) :: devPtr
-      integer(8),target,dimension(:,:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_i8_2 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_i8_2
-#endif
-      !
-      type(c_ptr) :: cptr
-      integer(8),pointer,dimension(:,:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_i8_2 = cudaSuccess
-#else
-      hipHostGetDevicePointer_i8_2 = hipSuccess
-#endif
-      hipHostGetDevicePointer_i8_2 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):,LBOUND(hstPtr,2):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_i8_3(hostPtr)
       use iso_c_binding
@@ -1707,80 +6045,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:,:) :: hostPtr
+      integer(c_long),target,dimension(:,:,:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_i8_3 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_i8_3
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_i8_3 = cudaSuccess
-#else
-      hipHostUnregister_i8_3 = hipSuccess
-#endif
-      hipHostUnregister_i8_3 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_i8_3 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_i8_3(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(8),target,dimension(:,:,:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_i8_3 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_i8_3
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_i8_3 = cudaSuccess
-#else
-      hipHostRegister_i8_3 = hipSuccess
-#endif
-      hipHostRegister_i8_3 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*8_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_i8_3(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(8),pointer,dimension(:,:,:),intent(inout) :: devPtr
-      integer(8),target,dimension(:,:,:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_i8_3 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_i8_3
-#endif
-      !
-      type(c_ptr) :: cptr
-      integer(8),pointer,dimension(:,:,:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_i8_3 = cudaSuccess
-#else
-      hipHostGetDevicePointer_i8_3 = hipSuccess
-#endif
-      hipHostGetDevicePointer_i8_3 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):,LBOUND(hstPtr,2):,LBOUND(hstPtr,3):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_i8_4(hostPtr)
       use iso_c_binding
@@ -1788,80 +6062,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:,:,:) :: hostPtr
+      integer(c_long),target,dimension(:,:,:,:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_i8_4 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_i8_4
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_i8_4 = cudaSuccess
-#else
-      hipHostUnregister_i8_4 = hipSuccess
-#endif
-      hipHostUnregister_i8_4 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_i8_4 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_i8_4(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(8),target,dimension(:,:,:,:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_i8_4 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_i8_4
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_i8_4 = cudaSuccess
-#else
-      hipHostRegister_i8_4 = hipSuccess
-#endif
-      hipHostRegister_i8_4 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*8_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_i8_4(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(8),pointer,dimension(:,:,:,:),intent(inout) :: devPtr
-      integer(8),target,dimension(:,:,:,:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_i8_4 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_i8_4
-#endif
-      !
-      type(c_ptr) :: cptr
-      integer(8),pointer,dimension(:,:,:,:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_i8_4 = cudaSuccess
-#else
-      hipHostGetDevicePointer_i8_4 = hipSuccess
-#endif
-      hipHostGetDevicePointer_i8_4 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):,LBOUND(hstPtr,2):,LBOUND(hstPtr,3):,LBOUND(hstPtr,4):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_i8_5(hostPtr)
       use iso_c_binding
@@ -1869,80 +6079,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:,:,:,:) :: hostPtr
+      integer(c_long),target,dimension(:,:,:,:,:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_i8_5 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_i8_5
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_i8_5 = cudaSuccess
-#else
-      hipHostUnregister_i8_5 = hipSuccess
-#endif
-      hipHostUnregister_i8_5 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_i8_5 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_i8_5(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(8),target,dimension(:,:,:,:,:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_i8_5 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_i8_5
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_i8_5 = cudaSuccess
-#else
-      hipHostRegister_i8_5 = hipSuccess
-#endif
-      hipHostRegister_i8_5 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*8_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_i8_5(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(8),pointer,dimension(:,:,:,:,:),intent(inout) :: devPtr
-      integer(8),target,dimension(:,:,:,:,:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_i8_5 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_i8_5
-#endif
-      !
-      type(c_ptr) :: cptr
-      integer(8),pointer,dimension(:,:,:,:,:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_i8_5 = cudaSuccess
-#else
-      hipHostGetDevicePointer_i8_5 = hipSuccess
-#endif
-      hipHostGetDevicePointer_i8_5 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):,LBOUND(hstPtr,2):,LBOUND(hstPtr,3):,LBOUND(hstPtr,4):,LBOUND(hstPtr,5):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_i8_6(hostPtr)
       use iso_c_binding
@@ -1950,80 +6096,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:,:,:,:,:) :: hostPtr
+      integer(c_long),target,dimension(:,:,:,:,:,:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_i8_6 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_i8_6
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_i8_6 = cudaSuccess
-#else
-      hipHostUnregister_i8_6 = hipSuccess
-#endif
-      hipHostUnregister_i8_6 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_i8_6 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_i8_6(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(8),target,dimension(:,:,:,:,:,:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_i8_6 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_i8_6
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_i8_6 = cudaSuccess
-#else
-      hipHostRegister_i8_6 = hipSuccess
-#endif
-      hipHostRegister_i8_6 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*8_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_i8_6(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(8),pointer,dimension(:,:,:,:,:,:),intent(inout) :: devPtr
-      integer(8),target,dimension(:,:,:,:,:,:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_i8_6 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_i8_6
-#endif
-      !
-      type(c_ptr) :: cptr
-      integer(8),pointer,dimension(:,:,:,:,:,:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_i8_6 = cudaSuccess
-#else
-      hipHostGetDevicePointer_i8_6 = hipSuccess
-#endif
-      hipHostGetDevicePointer_i8_6 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):,LBOUND(hstPtr,2):,LBOUND(hstPtr,3):,LBOUND(hstPtr,4):,LBOUND(hstPtr,5):,LBOUND(hstPtr,6):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_i8_7(hostPtr)
       use iso_c_binding
@@ -2031,80 +6113,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:,:,:,:,:,:) :: hostPtr
+      integer(c_long),target,dimension(:,:,:,:,:,:,:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_i8_7 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_i8_7
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_i8_7 = cudaSuccess
-#else
-      hipHostUnregister_i8_7 = hipSuccess
-#endif
-      hipHostUnregister_i8_7 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_i8_7 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_i8_7(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(8),target,dimension(:,:,:,:,:,:,:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_i8_7 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_i8_7
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_i8_7 = cudaSuccess
-#else
-      hipHostRegister_i8_7 = hipSuccess
-#endif
-      hipHostRegister_i8_7 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*8_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_i8_7(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(8),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: devPtr
-      integer(8),target,dimension(:,:,:,:,:,:,:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_i8_7 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_i8_7
-#endif
-      !
-      type(c_ptr) :: cptr
-      integer(8),pointer,dimension(:,:,:,:,:,:,:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_i8_7 = cudaSuccess
-#else
-      hipHostGetDevicePointer_i8_7 = hipSuccess
-#endif
-      hipHostGetDevicePointer_i8_7 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):,LBOUND(hstPtr,2):,LBOUND(hstPtr,3):,LBOUND(hstPtr,4):,LBOUND(hstPtr,5):,LBOUND(hstPtr,6):,LBOUND(hstPtr,7):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_r4_0(hostPtr)
       use iso_c_binding
@@ -2112,79 +6130,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      real(4),target :: hostPtr
+      real(c_float),target,intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_r4_0 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_r4_0
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_r4_0 = cudaSuccess
-#else
-      hipHostUnregister_r4_0 = hipSuccess
-#endif
-      hipHostUnregister_r4_0 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_r4_0 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_r4_0(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      real(4),target :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_r4_0 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_r4_0
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_r4_0 = cudaSuccess
-#else
-      hipHostRegister_r4_0 = hipSuccess
-#endif
-      hipHostRegister_r4_0 = hipHostRegister_b(c_loc(hostPtr),4_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_r4_0(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      real(4),pointer,intent(inout) :: devPtr
-      real(4),target                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_r4_0 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_r4_0
-#endif
-      !
-      type(c_ptr) :: cptr
-      real(4),pointer :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_r4_0 = cudaSuccess
-#else
-      hipHostGetDevicePointer_r4_0 = hipSuccess
-#endif
-      hipHostGetDevicePointer_r4_0 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,devPtr)
-    end function
-
-
                                         
     function hipHostUnregister_r4_1(hostPtr)
       use iso_c_binding
@@ -2192,80 +6147,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      real(4),target,dimension(:) :: hostPtr
+      real(c_float),target,dimension(:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_r4_1 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_r4_1
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_r4_1 = cudaSuccess
-#else
-      hipHostUnregister_r4_1 = hipSuccess
-#endif
-      hipHostUnregister_r4_1 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_r4_1 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_r4_1(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      real(4),target,dimension(:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_r4_1 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_r4_1
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_r4_1 = cudaSuccess
-#else
-      hipHostRegister_r4_1 = hipSuccess
-#endif
-      hipHostRegister_r4_1 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*4_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_r4_1(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      real(4),pointer,dimension(:),intent(inout) :: devPtr
-      real(4),target,dimension(:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_r4_1 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_r4_1
-#endif
-      !
-      type(c_ptr) :: cptr
-      real(4),pointer,dimension(:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_r4_1 = cudaSuccess
-#else
-      hipHostGetDevicePointer_r4_1 = hipSuccess
-#endif
-      hipHostGetDevicePointer_r4_1 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_r4_2(hostPtr)
       use iso_c_binding
@@ -2273,80 +6164,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      real(4),target,dimension(:,:) :: hostPtr
+      real(c_float),target,dimension(:,:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_r4_2 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_r4_2
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_r4_2 = cudaSuccess
-#else
-      hipHostUnregister_r4_2 = hipSuccess
-#endif
-      hipHostUnregister_r4_2 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_r4_2 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_r4_2(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      real(4),target,dimension(:,:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_r4_2 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_r4_2
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_r4_2 = cudaSuccess
-#else
-      hipHostRegister_r4_2 = hipSuccess
-#endif
-      hipHostRegister_r4_2 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*4_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_r4_2(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      real(4),pointer,dimension(:,:),intent(inout) :: devPtr
-      real(4),target,dimension(:,:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_r4_2 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_r4_2
-#endif
-      !
-      type(c_ptr) :: cptr
-      real(4),pointer,dimension(:,:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_r4_2 = cudaSuccess
-#else
-      hipHostGetDevicePointer_r4_2 = hipSuccess
-#endif
-      hipHostGetDevicePointer_r4_2 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):,LBOUND(hstPtr,2):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_r4_3(hostPtr)
       use iso_c_binding
@@ -2354,80 +6181,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      real(4),target,dimension(:,:,:) :: hostPtr
+      real(c_float),target,dimension(:,:,:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_r4_3 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_r4_3
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_r4_3 = cudaSuccess
-#else
-      hipHostUnregister_r4_3 = hipSuccess
-#endif
-      hipHostUnregister_r4_3 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_r4_3 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_r4_3(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      real(4),target,dimension(:,:,:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_r4_3 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_r4_3
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_r4_3 = cudaSuccess
-#else
-      hipHostRegister_r4_3 = hipSuccess
-#endif
-      hipHostRegister_r4_3 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*4_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_r4_3(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      real(4),pointer,dimension(:,:,:),intent(inout) :: devPtr
-      real(4),target,dimension(:,:,:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_r4_3 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_r4_3
-#endif
-      !
-      type(c_ptr) :: cptr
-      real(4),pointer,dimension(:,:,:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_r4_3 = cudaSuccess
-#else
-      hipHostGetDevicePointer_r4_3 = hipSuccess
-#endif
-      hipHostGetDevicePointer_r4_3 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):,LBOUND(hstPtr,2):,LBOUND(hstPtr,3):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_r4_4(hostPtr)
       use iso_c_binding
@@ -2435,80 +6198,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      real(4),target,dimension(:,:,:,:) :: hostPtr
+      real(c_float),target,dimension(:,:,:,:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_r4_4 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_r4_4
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_r4_4 = cudaSuccess
-#else
-      hipHostUnregister_r4_4 = hipSuccess
-#endif
-      hipHostUnregister_r4_4 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_r4_4 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_r4_4(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      real(4),target,dimension(:,:,:,:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_r4_4 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_r4_4
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_r4_4 = cudaSuccess
-#else
-      hipHostRegister_r4_4 = hipSuccess
-#endif
-      hipHostRegister_r4_4 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*4_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_r4_4(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      real(4),pointer,dimension(:,:,:,:),intent(inout) :: devPtr
-      real(4),target,dimension(:,:,:,:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_r4_4 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_r4_4
-#endif
-      !
-      type(c_ptr) :: cptr
-      real(4),pointer,dimension(:,:,:,:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_r4_4 = cudaSuccess
-#else
-      hipHostGetDevicePointer_r4_4 = hipSuccess
-#endif
-      hipHostGetDevicePointer_r4_4 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):,LBOUND(hstPtr,2):,LBOUND(hstPtr,3):,LBOUND(hstPtr,4):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_r4_5(hostPtr)
       use iso_c_binding
@@ -2516,80 +6215,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      real(4),target,dimension(:,:,:,:,:) :: hostPtr
+      real(c_float),target,dimension(:,:,:,:,:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_r4_5 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_r4_5
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_r4_5 = cudaSuccess
-#else
-      hipHostUnregister_r4_5 = hipSuccess
-#endif
-      hipHostUnregister_r4_5 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_r4_5 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_r4_5(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      real(4),target,dimension(:,:,:,:,:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_r4_5 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_r4_5
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_r4_5 = cudaSuccess
-#else
-      hipHostRegister_r4_5 = hipSuccess
-#endif
-      hipHostRegister_r4_5 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*4_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_r4_5(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      real(4),pointer,dimension(:,:,:,:,:),intent(inout) :: devPtr
-      real(4),target,dimension(:,:,:,:,:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_r4_5 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_r4_5
-#endif
-      !
-      type(c_ptr) :: cptr
-      real(4),pointer,dimension(:,:,:,:,:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_r4_5 = cudaSuccess
-#else
-      hipHostGetDevicePointer_r4_5 = hipSuccess
-#endif
-      hipHostGetDevicePointer_r4_5 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):,LBOUND(hstPtr,2):,LBOUND(hstPtr,3):,LBOUND(hstPtr,4):,LBOUND(hstPtr,5):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_r4_6(hostPtr)
       use iso_c_binding
@@ -2597,80 +6232,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      real(4),target,dimension(:,:,:,:,:,:) :: hostPtr
+      real(c_float),target,dimension(:,:,:,:,:,:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_r4_6 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_r4_6
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_r4_6 = cudaSuccess
-#else
-      hipHostUnregister_r4_6 = hipSuccess
-#endif
-      hipHostUnregister_r4_6 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_r4_6 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_r4_6(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      real(4),target,dimension(:,:,:,:,:,:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_r4_6 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_r4_6
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_r4_6 = cudaSuccess
-#else
-      hipHostRegister_r4_6 = hipSuccess
-#endif
-      hipHostRegister_r4_6 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*4_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_r4_6(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      real(4),pointer,dimension(:,:,:,:,:,:),intent(inout) :: devPtr
-      real(4),target,dimension(:,:,:,:,:,:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_r4_6 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_r4_6
-#endif
-      !
-      type(c_ptr) :: cptr
-      real(4),pointer,dimension(:,:,:,:,:,:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_r4_6 = cudaSuccess
-#else
-      hipHostGetDevicePointer_r4_6 = hipSuccess
-#endif
-      hipHostGetDevicePointer_r4_6 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):,LBOUND(hstPtr,2):,LBOUND(hstPtr,3):,LBOUND(hstPtr,4):,LBOUND(hstPtr,5):,LBOUND(hstPtr,6):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_r4_7(hostPtr)
       use iso_c_binding
@@ -2678,80 +6249,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      real(4),target,dimension(:,:,:,:,:,:,:) :: hostPtr
+      real(c_float),target,dimension(:,:,:,:,:,:,:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_r4_7 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_r4_7
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_r4_7 = cudaSuccess
-#else
-      hipHostUnregister_r4_7 = hipSuccess
-#endif
-      hipHostUnregister_r4_7 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_r4_7 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_r4_7(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      real(4),target,dimension(:,:,:,:,:,:,:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_r4_7 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_r4_7
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_r4_7 = cudaSuccess
-#else
-      hipHostRegister_r4_7 = hipSuccess
-#endif
-      hipHostRegister_r4_7 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*4_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_r4_7(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      real(4),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: devPtr
-      real(4),target,dimension(:,:,:,:,:,:,:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_r4_7 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_r4_7
-#endif
-      !
-      type(c_ptr) :: cptr
-      real(4),pointer,dimension(:,:,:,:,:,:,:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_r4_7 = cudaSuccess
-#else
-      hipHostGetDevicePointer_r4_7 = hipSuccess
-#endif
-      hipHostGetDevicePointer_r4_7 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):,LBOUND(hstPtr,2):,LBOUND(hstPtr,3):,LBOUND(hstPtr,4):,LBOUND(hstPtr,5):,LBOUND(hstPtr,6):,LBOUND(hstPtr,7):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_r8_0(hostPtr)
       use iso_c_binding
@@ -2759,79 +6266,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      real(8),target :: hostPtr
+      real(c_double),target,intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_r8_0 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_r8_0
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_r8_0 = cudaSuccess
-#else
-      hipHostUnregister_r8_0 = hipSuccess
-#endif
-      hipHostUnregister_r8_0 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_r8_0 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_r8_0(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      real(8),target :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_r8_0 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_r8_0
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_r8_0 = cudaSuccess
-#else
-      hipHostRegister_r8_0 = hipSuccess
-#endif
-      hipHostRegister_r8_0 = hipHostRegister_b(c_loc(hostPtr),8_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_r8_0(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      real(8),pointer,intent(inout) :: devPtr
-      real(8),target                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_r8_0 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_r8_0
-#endif
-      !
-      type(c_ptr) :: cptr
-      real(8),pointer :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_r8_0 = cudaSuccess
-#else
-      hipHostGetDevicePointer_r8_0 = hipSuccess
-#endif
-      hipHostGetDevicePointer_r8_0 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,devPtr)
-    end function
-
-
                                         
     function hipHostUnregister_r8_1(hostPtr)
       use iso_c_binding
@@ -2839,80 +6283,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      real(8),target,dimension(:) :: hostPtr
+      real(c_double),target,dimension(:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_r8_1 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_r8_1
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_r8_1 = cudaSuccess
-#else
-      hipHostUnregister_r8_1 = hipSuccess
-#endif
-      hipHostUnregister_r8_1 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_r8_1 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_r8_1(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      real(8),target,dimension(:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_r8_1 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_r8_1
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_r8_1 = cudaSuccess
-#else
-      hipHostRegister_r8_1 = hipSuccess
-#endif
-      hipHostRegister_r8_1 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*8_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_r8_1(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      real(8),pointer,dimension(:),intent(inout) :: devPtr
-      real(8),target,dimension(:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_r8_1 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_r8_1
-#endif
-      !
-      type(c_ptr) :: cptr
-      real(8),pointer,dimension(:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_r8_1 = cudaSuccess
-#else
-      hipHostGetDevicePointer_r8_1 = hipSuccess
-#endif
-      hipHostGetDevicePointer_r8_1 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_r8_2(hostPtr)
       use iso_c_binding
@@ -2920,80 +6300,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      real(8),target,dimension(:,:) :: hostPtr
+      real(c_double),target,dimension(:,:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_r8_2 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_r8_2
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_r8_2 = cudaSuccess
-#else
-      hipHostUnregister_r8_2 = hipSuccess
-#endif
-      hipHostUnregister_r8_2 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_r8_2 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_r8_2(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      real(8),target,dimension(:,:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_r8_2 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_r8_2
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_r8_2 = cudaSuccess
-#else
-      hipHostRegister_r8_2 = hipSuccess
-#endif
-      hipHostRegister_r8_2 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*8_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_r8_2(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      real(8),pointer,dimension(:,:),intent(inout) :: devPtr
-      real(8),target,dimension(:,:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_r8_2 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_r8_2
-#endif
-      !
-      type(c_ptr) :: cptr
-      real(8),pointer,dimension(:,:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_r8_2 = cudaSuccess
-#else
-      hipHostGetDevicePointer_r8_2 = hipSuccess
-#endif
-      hipHostGetDevicePointer_r8_2 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):,LBOUND(hstPtr,2):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_r8_3(hostPtr)
       use iso_c_binding
@@ -3001,80 +6317,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      real(8),target,dimension(:,:,:) :: hostPtr
+      real(c_double),target,dimension(:,:,:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_r8_3 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_r8_3
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_r8_3 = cudaSuccess
-#else
-      hipHostUnregister_r8_3 = hipSuccess
-#endif
-      hipHostUnregister_r8_3 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_r8_3 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_r8_3(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      real(8),target,dimension(:,:,:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_r8_3 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_r8_3
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_r8_3 = cudaSuccess
-#else
-      hipHostRegister_r8_3 = hipSuccess
-#endif
-      hipHostRegister_r8_3 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*8_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_r8_3(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      real(8),pointer,dimension(:,:,:),intent(inout) :: devPtr
-      real(8),target,dimension(:,:,:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_r8_3 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_r8_3
-#endif
-      !
-      type(c_ptr) :: cptr
-      real(8),pointer,dimension(:,:,:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_r8_3 = cudaSuccess
-#else
-      hipHostGetDevicePointer_r8_3 = hipSuccess
-#endif
-      hipHostGetDevicePointer_r8_3 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):,LBOUND(hstPtr,2):,LBOUND(hstPtr,3):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_r8_4(hostPtr)
       use iso_c_binding
@@ -3082,80 +6334,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      real(8),target,dimension(:,:,:,:) :: hostPtr
+      real(c_double),target,dimension(:,:,:,:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_r8_4 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_r8_4
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_r8_4 = cudaSuccess
-#else
-      hipHostUnregister_r8_4 = hipSuccess
-#endif
-      hipHostUnregister_r8_4 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_r8_4 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_r8_4(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      real(8),target,dimension(:,:,:,:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_r8_4 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_r8_4
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_r8_4 = cudaSuccess
-#else
-      hipHostRegister_r8_4 = hipSuccess
-#endif
-      hipHostRegister_r8_4 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*8_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_r8_4(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      real(8),pointer,dimension(:,:,:,:),intent(inout) :: devPtr
-      real(8),target,dimension(:,:,:,:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_r8_4 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_r8_4
-#endif
-      !
-      type(c_ptr) :: cptr
-      real(8),pointer,dimension(:,:,:,:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_r8_4 = cudaSuccess
-#else
-      hipHostGetDevicePointer_r8_4 = hipSuccess
-#endif
-      hipHostGetDevicePointer_r8_4 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):,LBOUND(hstPtr,2):,LBOUND(hstPtr,3):,LBOUND(hstPtr,4):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_r8_5(hostPtr)
       use iso_c_binding
@@ -3163,80 +6351,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      real(8),target,dimension(:,:,:,:,:) :: hostPtr
+      real(c_double),target,dimension(:,:,:,:,:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_r8_5 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_r8_5
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_r8_5 = cudaSuccess
-#else
-      hipHostUnregister_r8_5 = hipSuccess
-#endif
-      hipHostUnregister_r8_5 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_r8_5 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_r8_5(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      real(8),target,dimension(:,:,:,:,:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_r8_5 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_r8_5
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_r8_5 = cudaSuccess
-#else
-      hipHostRegister_r8_5 = hipSuccess
-#endif
-      hipHostRegister_r8_5 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*8_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_r8_5(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      real(8),pointer,dimension(:,:,:,:,:),intent(inout) :: devPtr
-      real(8),target,dimension(:,:,:,:,:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_r8_5 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_r8_5
-#endif
-      !
-      type(c_ptr) :: cptr
-      real(8),pointer,dimension(:,:,:,:,:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_r8_5 = cudaSuccess
-#else
-      hipHostGetDevicePointer_r8_5 = hipSuccess
-#endif
-      hipHostGetDevicePointer_r8_5 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):,LBOUND(hstPtr,2):,LBOUND(hstPtr,3):,LBOUND(hstPtr,4):,LBOUND(hstPtr,5):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_r8_6(hostPtr)
       use iso_c_binding
@@ -3244,80 +6368,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      real(8),target,dimension(:,:,:,:,:,:) :: hostPtr
+      real(c_double),target,dimension(:,:,:,:,:,:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_r8_6 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_r8_6
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_r8_6 = cudaSuccess
-#else
-      hipHostUnregister_r8_6 = hipSuccess
-#endif
-      hipHostUnregister_r8_6 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_r8_6 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_r8_6(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      real(8),target,dimension(:,:,:,:,:,:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_r8_6 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_r8_6
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_r8_6 = cudaSuccess
-#else
-      hipHostRegister_r8_6 = hipSuccess
-#endif
-      hipHostRegister_r8_6 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*8_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_r8_6(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      real(8),pointer,dimension(:,:,:,:,:,:),intent(inout) :: devPtr
-      real(8),target,dimension(:,:,:,:,:,:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_r8_6 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_r8_6
-#endif
-      !
-      type(c_ptr) :: cptr
-      real(8),pointer,dimension(:,:,:,:,:,:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_r8_6 = cudaSuccess
-#else
-      hipHostGetDevicePointer_r8_6 = hipSuccess
-#endif
-      hipHostGetDevicePointer_r8_6 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):,LBOUND(hstPtr,2):,LBOUND(hstPtr,3):,LBOUND(hstPtr,4):,LBOUND(hstPtr,5):,LBOUND(hstPtr,6):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_r8_7(hostPtr)
       use iso_c_binding
@@ -3325,80 +6385,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      real(8),target,dimension(:,:,:,:,:,:,:) :: hostPtr
+      real(c_double),target,dimension(:,:,:,:,:,:,:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_r8_7 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_r8_7
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_r8_7 = cudaSuccess
-#else
-      hipHostUnregister_r8_7 = hipSuccess
-#endif
-      hipHostUnregister_r8_7 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_r8_7 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_r8_7(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      real(8),target,dimension(:,:,:,:,:,:,:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_r8_7 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_r8_7
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_r8_7 = cudaSuccess
-#else
-      hipHostRegister_r8_7 = hipSuccess
-#endif
-      hipHostRegister_r8_7 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*8_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_r8_7(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      real(8),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: devPtr
-      real(8),target,dimension(:,:,:,:,:,:,:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_r8_7 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_r8_7
-#endif
-      !
-      type(c_ptr) :: cptr
-      real(8),pointer,dimension(:,:,:,:,:,:,:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_r8_7 = cudaSuccess
-#else
-      hipHostGetDevicePointer_r8_7 = hipSuccess
-#endif
-      hipHostGetDevicePointer_r8_7 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):,LBOUND(hstPtr,2):,LBOUND(hstPtr,3):,LBOUND(hstPtr,4):,LBOUND(hstPtr,5):,LBOUND(hstPtr,6):,LBOUND(hstPtr,7):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_c4_0(hostPtr)
       use iso_c_binding
@@ -3406,79 +6402,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      complex(4),target :: hostPtr
+      complex(c_float_complex),target,intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_c4_0 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_c4_0
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_c4_0 = cudaSuccess
-#else
-      hipHostUnregister_c4_0 = hipSuccess
-#endif
-      hipHostUnregister_c4_0 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_c4_0 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_c4_0(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      complex(4),target :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_c4_0 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_c4_0
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_c4_0 = cudaSuccess
-#else
-      hipHostRegister_c4_0 = hipSuccess
-#endif
-      hipHostRegister_c4_0 = hipHostRegister_b(c_loc(hostPtr),2*4_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_c4_0(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      complex(4),pointer,intent(inout) :: devPtr
-      complex(4),target                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_c4_0 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_c4_0
-#endif
-      !
-      type(c_ptr) :: cptr
-      complex(4),pointer :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_c4_0 = cudaSuccess
-#else
-      hipHostGetDevicePointer_c4_0 = hipSuccess
-#endif
-      hipHostGetDevicePointer_c4_0 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,devPtr)
-    end function
-
-
                                         
     function hipHostUnregister_c4_1(hostPtr)
       use iso_c_binding
@@ -3486,80 +6419,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      complex(4),target,dimension(:) :: hostPtr
+      complex(c_float_complex),target,dimension(:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_c4_1 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_c4_1
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_c4_1 = cudaSuccess
-#else
-      hipHostUnregister_c4_1 = hipSuccess
-#endif
-      hipHostUnregister_c4_1 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_c4_1 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_c4_1(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      complex(4),target,dimension(:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_c4_1 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_c4_1
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_c4_1 = cudaSuccess
-#else
-      hipHostRegister_c4_1 = hipSuccess
-#endif
-      hipHostRegister_c4_1 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*2*4_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_c4_1(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      complex(4),pointer,dimension(:),intent(inout) :: devPtr
-      complex(4),target,dimension(:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_c4_1 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_c4_1
-#endif
-      !
-      type(c_ptr) :: cptr
-      complex(4),pointer,dimension(:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_c4_1 = cudaSuccess
-#else
-      hipHostGetDevicePointer_c4_1 = hipSuccess
-#endif
-      hipHostGetDevicePointer_c4_1 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_c4_2(hostPtr)
       use iso_c_binding
@@ -3567,80 +6436,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:) :: hostPtr
+      complex(c_float_complex),target,dimension(:,:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_c4_2 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_c4_2
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_c4_2 = cudaSuccess
-#else
-      hipHostUnregister_c4_2 = hipSuccess
-#endif
-      hipHostUnregister_c4_2 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_c4_2 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_c4_2(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      complex(4),target,dimension(:,:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_c4_2 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_c4_2
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_c4_2 = cudaSuccess
-#else
-      hipHostRegister_c4_2 = hipSuccess
-#endif
-      hipHostRegister_c4_2 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*2*4_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_c4_2(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      complex(4),pointer,dimension(:,:),intent(inout) :: devPtr
-      complex(4),target,dimension(:,:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_c4_2 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_c4_2
-#endif
-      !
-      type(c_ptr) :: cptr
-      complex(4),pointer,dimension(:,:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_c4_2 = cudaSuccess
-#else
-      hipHostGetDevicePointer_c4_2 = hipSuccess
-#endif
-      hipHostGetDevicePointer_c4_2 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):,LBOUND(hstPtr,2):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_c4_3(hostPtr)
       use iso_c_binding
@@ -3648,80 +6453,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:,:) :: hostPtr
+      complex(c_float_complex),target,dimension(:,:,:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_c4_3 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_c4_3
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_c4_3 = cudaSuccess
-#else
-      hipHostUnregister_c4_3 = hipSuccess
-#endif
-      hipHostUnregister_c4_3 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_c4_3 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_c4_3(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      complex(4),target,dimension(:,:,:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_c4_3 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_c4_3
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_c4_3 = cudaSuccess
-#else
-      hipHostRegister_c4_3 = hipSuccess
-#endif
-      hipHostRegister_c4_3 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*2*4_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_c4_3(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      complex(4),pointer,dimension(:,:,:),intent(inout) :: devPtr
-      complex(4),target,dimension(:,:,:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_c4_3 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_c4_3
-#endif
-      !
-      type(c_ptr) :: cptr
-      complex(4),pointer,dimension(:,:,:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_c4_3 = cudaSuccess
-#else
-      hipHostGetDevicePointer_c4_3 = hipSuccess
-#endif
-      hipHostGetDevicePointer_c4_3 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):,LBOUND(hstPtr,2):,LBOUND(hstPtr,3):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_c4_4(hostPtr)
       use iso_c_binding
@@ -3729,80 +6470,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:,:,:) :: hostPtr
+      complex(c_float_complex),target,dimension(:,:,:,:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_c4_4 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_c4_4
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_c4_4 = cudaSuccess
-#else
-      hipHostUnregister_c4_4 = hipSuccess
-#endif
-      hipHostUnregister_c4_4 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_c4_4 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_c4_4(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      complex(4),target,dimension(:,:,:,:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_c4_4 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_c4_4
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_c4_4 = cudaSuccess
-#else
-      hipHostRegister_c4_4 = hipSuccess
-#endif
-      hipHostRegister_c4_4 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*2*4_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_c4_4(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      complex(4),pointer,dimension(:,:,:,:),intent(inout) :: devPtr
-      complex(4),target,dimension(:,:,:,:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_c4_4 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_c4_4
-#endif
-      !
-      type(c_ptr) :: cptr
-      complex(4),pointer,dimension(:,:,:,:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_c4_4 = cudaSuccess
-#else
-      hipHostGetDevicePointer_c4_4 = hipSuccess
-#endif
-      hipHostGetDevicePointer_c4_4 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):,LBOUND(hstPtr,2):,LBOUND(hstPtr,3):,LBOUND(hstPtr,4):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_c4_5(hostPtr)
       use iso_c_binding
@@ -3810,80 +6487,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:,:,:,:) :: hostPtr
+      complex(c_float_complex),target,dimension(:,:,:,:,:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_c4_5 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_c4_5
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_c4_5 = cudaSuccess
-#else
-      hipHostUnregister_c4_5 = hipSuccess
-#endif
-      hipHostUnregister_c4_5 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_c4_5 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_c4_5(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      complex(4),target,dimension(:,:,:,:,:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_c4_5 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_c4_5
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_c4_5 = cudaSuccess
-#else
-      hipHostRegister_c4_5 = hipSuccess
-#endif
-      hipHostRegister_c4_5 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*2*4_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_c4_5(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      complex(4),pointer,dimension(:,:,:,:,:),intent(inout) :: devPtr
-      complex(4),target,dimension(:,:,:,:,:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_c4_5 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_c4_5
-#endif
-      !
-      type(c_ptr) :: cptr
-      complex(4),pointer,dimension(:,:,:,:,:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_c4_5 = cudaSuccess
-#else
-      hipHostGetDevicePointer_c4_5 = hipSuccess
-#endif
-      hipHostGetDevicePointer_c4_5 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):,LBOUND(hstPtr,2):,LBOUND(hstPtr,3):,LBOUND(hstPtr,4):,LBOUND(hstPtr,5):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_c4_6(hostPtr)
       use iso_c_binding
@@ -3891,80 +6504,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:,:,:,:,:) :: hostPtr
+      complex(c_float_complex),target,dimension(:,:,:,:,:,:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_c4_6 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_c4_6
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_c4_6 = cudaSuccess
-#else
-      hipHostUnregister_c4_6 = hipSuccess
-#endif
-      hipHostUnregister_c4_6 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_c4_6 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_c4_6(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      complex(4),target,dimension(:,:,:,:,:,:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_c4_6 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_c4_6
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_c4_6 = cudaSuccess
-#else
-      hipHostRegister_c4_6 = hipSuccess
-#endif
-      hipHostRegister_c4_6 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*2*4_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_c4_6(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      complex(4),pointer,dimension(:,:,:,:,:,:),intent(inout) :: devPtr
-      complex(4),target,dimension(:,:,:,:,:,:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_c4_6 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_c4_6
-#endif
-      !
-      type(c_ptr) :: cptr
-      complex(4),pointer,dimension(:,:,:,:,:,:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_c4_6 = cudaSuccess
-#else
-      hipHostGetDevicePointer_c4_6 = hipSuccess
-#endif
-      hipHostGetDevicePointer_c4_6 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):,LBOUND(hstPtr,2):,LBOUND(hstPtr,3):,LBOUND(hstPtr,4):,LBOUND(hstPtr,5):,LBOUND(hstPtr,6):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_c4_7(hostPtr)
       use iso_c_binding
@@ -3972,80 +6521,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:,:,:,:,:,:) :: hostPtr
+      complex(c_float_complex),target,dimension(:,:,:,:,:,:,:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_c4_7 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_c4_7
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_c4_7 = cudaSuccess
-#else
-      hipHostUnregister_c4_7 = hipSuccess
-#endif
-      hipHostUnregister_c4_7 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_c4_7 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_c4_7(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      complex(4),target,dimension(:,:,:,:,:,:,:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_c4_7 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_c4_7
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_c4_7 = cudaSuccess
-#else
-      hipHostRegister_c4_7 = hipSuccess
-#endif
-      hipHostRegister_c4_7 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*2*4_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_c4_7(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      complex(4),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: devPtr
-      complex(4),target,dimension(:,:,:,:,:,:,:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_c4_7 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_c4_7
-#endif
-      !
-      type(c_ptr) :: cptr
-      complex(4),pointer,dimension(:,:,:,:,:,:,:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_c4_7 = cudaSuccess
-#else
-      hipHostGetDevicePointer_c4_7 = hipSuccess
-#endif
-      hipHostGetDevicePointer_c4_7 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):,LBOUND(hstPtr,2):,LBOUND(hstPtr,3):,LBOUND(hstPtr,4):,LBOUND(hstPtr,5):,LBOUND(hstPtr,6):,LBOUND(hstPtr,7):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_c8_0(hostPtr)
       use iso_c_binding
@@ -4053,79 +6538,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      complex(8),target :: hostPtr
+      complex(c_double_complex),target,intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_c8_0 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_c8_0
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_c8_0 = cudaSuccess
-#else
-      hipHostUnregister_c8_0 = hipSuccess
-#endif
-      hipHostUnregister_c8_0 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_c8_0 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_c8_0(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      complex(8),target :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_c8_0 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_c8_0
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_c8_0 = cudaSuccess
-#else
-      hipHostRegister_c8_0 = hipSuccess
-#endif
-      hipHostRegister_c8_0 = hipHostRegister_b(c_loc(hostPtr),2*8_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_c8_0(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      complex(8),pointer,intent(inout) :: devPtr
-      complex(8),target                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_c8_0 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_c8_0
-#endif
-      !
-      type(c_ptr) :: cptr
-      complex(8),pointer :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_c8_0 = cudaSuccess
-#else
-      hipHostGetDevicePointer_c8_0 = hipSuccess
-#endif
-      hipHostGetDevicePointer_c8_0 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,devPtr)
-    end function
-
-
                                         
     function hipHostUnregister_c8_1(hostPtr)
       use iso_c_binding
@@ -4133,80 +6555,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      complex(8),target,dimension(:) :: hostPtr
+      complex(c_double_complex),target,dimension(:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_c8_1 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_c8_1
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_c8_1 = cudaSuccess
-#else
-      hipHostUnregister_c8_1 = hipSuccess
-#endif
-      hipHostUnregister_c8_1 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_c8_1 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_c8_1(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      complex(8),target,dimension(:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_c8_1 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_c8_1
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_c8_1 = cudaSuccess
-#else
-      hipHostRegister_c8_1 = hipSuccess
-#endif
-      hipHostRegister_c8_1 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*2*8_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_c8_1(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      complex(8),pointer,dimension(:),intent(inout) :: devPtr
-      complex(8),target,dimension(:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_c8_1 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_c8_1
-#endif
-      !
-      type(c_ptr) :: cptr
-      complex(8),pointer,dimension(:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_c8_1 = cudaSuccess
-#else
-      hipHostGetDevicePointer_c8_1 = hipSuccess
-#endif
-      hipHostGetDevicePointer_c8_1 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_c8_2(hostPtr)
       use iso_c_binding
@@ -4214,80 +6572,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:) :: hostPtr
+      complex(c_double_complex),target,dimension(:,:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_c8_2 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_c8_2
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_c8_2 = cudaSuccess
-#else
-      hipHostUnregister_c8_2 = hipSuccess
-#endif
-      hipHostUnregister_c8_2 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_c8_2 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_c8_2(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      complex(8),target,dimension(:,:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_c8_2 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_c8_2
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_c8_2 = cudaSuccess
-#else
-      hipHostRegister_c8_2 = hipSuccess
-#endif
-      hipHostRegister_c8_2 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*2*8_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_c8_2(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      complex(8),pointer,dimension(:,:),intent(inout) :: devPtr
-      complex(8),target,dimension(:,:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_c8_2 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_c8_2
-#endif
-      !
-      type(c_ptr) :: cptr
-      complex(8),pointer,dimension(:,:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_c8_2 = cudaSuccess
-#else
-      hipHostGetDevicePointer_c8_2 = hipSuccess
-#endif
-      hipHostGetDevicePointer_c8_2 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):,LBOUND(hstPtr,2):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_c8_3(hostPtr)
       use iso_c_binding
@@ -4295,80 +6589,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:,:) :: hostPtr
+      complex(c_double_complex),target,dimension(:,:,:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_c8_3 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_c8_3
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_c8_3 = cudaSuccess
-#else
-      hipHostUnregister_c8_3 = hipSuccess
-#endif
-      hipHostUnregister_c8_3 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_c8_3 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_c8_3(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      complex(8),target,dimension(:,:,:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_c8_3 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_c8_3
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_c8_3 = cudaSuccess
-#else
-      hipHostRegister_c8_3 = hipSuccess
-#endif
-      hipHostRegister_c8_3 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*2*8_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_c8_3(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      complex(8),pointer,dimension(:,:,:),intent(inout) :: devPtr
-      complex(8),target,dimension(:,:,:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_c8_3 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_c8_3
-#endif
-      !
-      type(c_ptr) :: cptr
-      complex(8),pointer,dimension(:,:,:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_c8_3 = cudaSuccess
-#else
-      hipHostGetDevicePointer_c8_3 = hipSuccess
-#endif
-      hipHostGetDevicePointer_c8_3 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):,LBOUND(hstPtr,2):,LBOUND(hstPtr,3):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_c8_4(hostPtr)
       use iso_c_binding
@@ -4376,80 +6606,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:,:,:) :: hostPtr
+      complex(c_double_complex),target,dimension(:,:,:,:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_c8_4 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_c8_4
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_c8_4 = cudaSuccess
-#else
-      hipHostUnregister_c8_4 = hipSuccess
-#endif
-      hipHostUnregister_c8_4 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_c8_4 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_c8_4(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      complex(8),target,dimension(:,:,:,:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_c8_4 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_c8_4
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_c8_4 = cudaSuccess
-#else
-      hipHostRegister_c8_4 = hipSuccess
-#endif
-      hipHostRegister_c8_4 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*2*8_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_c8_4(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      complex(8),pointer,dimension(:,:,:,:),intent(inout) :: devPtr
-      complex(8),target,dimension(:,:,:,:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_c8_4 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_c8_4
-#endif
-      !
-      type(c_ptr) :: cptr
-      complex(8),pointer,dimension(:,:,:,:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_c8_4 = cudaSuccess
-#else
-      hipHostGetDevicePointer_c8_4 = hipSuccess
-#endif
-      hipHostGetDevicePointer_c8_4 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):,LBOUND(hstPtr,2):,LBOUND(hstPtr,3):,LBOUND(hstPtr,4):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_c8_5(hostPtr)
       use iso_c_binding
@@ -4457,80 +6623,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:,:,:,:) :: hostPtr
+      complex(c_double_complex),target,dimension(:,:,:,:,:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_c8_5 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_c8_5
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_c8_5 = cudaSuccess
-#else
-      hipHostUnregister_c8_5 = hipSuccess
-#endif
-      hipHostUnregister_c8_5 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_c8_5 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_c8_5(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      complex(8),target,dimension(:,:,:,:,:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_c8_5 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_c8_5
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_c8_5 = cudaSuccess
-#else
-      hipHostRegister_c8_5 = hipSuccess
-#endif
-      hipHostRegister_c8_5 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*2*8_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_c8_5(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      complex(8),pointer,dimension(:,:,:,:,:),intent(inout) :: devPtr
-      complex(8),target,dimension(:,:,:,:,:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_c8_5 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_c8_5
-#endif
-      !
-      type(c_ptr) :: cptr
-      complex(8),pointer,dimension(:,:,:,:,:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_c8_5 = cudaSuccess
-#else
-      hipHostGetDevicePointer_c8_5 = hipSuccess
-#endif
-      hipHostGetDevicePointer_c8_5 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):,LBOUND(hstPtr,2):,LBOUND(hstPtr,3):,LBOUND(hstPtr,4):,LBOUND(hstPtr,5):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_c8_6(hostPtr)
       use iso_c_binding
@@ -4538,80 +6640,16 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:,:,:,:,:) :: hostPtr
+      complex(c_double_complex),target,dimension(:,:,:,:,:,:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_c8_6 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_c8_6
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_c8_6 = cudaSuccess
-#else
-      hipHostUnregister_c8_6 = hipSuccess
-#endif
-      hipHostUnregister_c8_6 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_c8_6 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_c8_6(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      complex(8),target,dimension(:,:,:,:,:,:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_c8_6 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_c8_6
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_c8_6 = cudaSuccess
-#else
-      hipHostRegister_c8_6 = hipSuccess
-#endif
-      hipHostRegister_c8_6 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*2*8_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_c8_6(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      complex(8),pointer,dimension(:,:,:,:,:,:),intent(inout) :: devPtr
-      complex(8),target,dimension(:,:,:,:,:,:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_c8_6 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_c8_6
-#endif
-      !
-      type(c_ptr) :: cptr
-      complex(8),pointer,dimension(:,:,:,:,:,:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_c8_6 = cudaSuccess
-#else
-      hipHostGetDevicePointer_c8_6 = hipSuccess
-#endif
-      hipHostGetDevicePointer_c8_6 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):,LBOUND(hstPtr,2):,LBOUND(hstPtr,3):,LBOUND(hstPtr,4):,LBOUND(hstPtr,5):,LBOUND(hstPtr,6):) => tmp
-    end function
-
-
                                         
     function hipHostUnregister_c8_7(hostPtr)
       use iso_c_binding
@@ -4619,79 +6657,15 @@ module hipfort_hiphostregister
       use hipfort_cuda_errors
 #endif
       use hipfort_enums
-      use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:,:,:,:,:,:) :: hostPtr
+      complex(c_double_complex),target,dimension(:,:,:,:,:,:,:),intent(in) :: hostPtr
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipHostUnregister_c8_7 
 #else
       integer(kind(hipSuccess)) :: hipHostUnregister_c8_7
 #endif
       !
-#ifdef USE_CUDA_NAMES
-      hipHostUnregister_c8_7 = cudaSuccess
-#else
-      hipHostUnregister_c8_7 = hipSuccess
-#endif
-      hipHostUnregister_c8_7 = hipHostUnregister_b(c_loc(hostPtr))
+      hipHostUnregister_c8_7 = hipHostUnregister_(c_loc(hostPtr))
     end function
-
-                                        
-    function hipHostRegister_c8_7(hostPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      complex(8),target,dimension(:,:,:,:,:,:,:) :: hostPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostRegister_c8_7 
-#else
-      integer(kind(hipSuccess)) :: hipHostRegister_c8_7
-#endif
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostRegister_c8_7 = cudaSuccess
-#else
-      hipHostRegister_c8_7 = hipSuccess
-#endif
-      hipHostRegister_c8_7 = hipHostRegister_b(c_loc(hostPtr),SIZE(hostptr)*2*8_8,flags)
-    end function
-
-                                        
-    function hipHostGetDevicePointer_c8_7(devPtr,hstPtr,flags)
-      use iso_c_binding
-#ifdef USE_CUDA_NAMES
-      use hipfort_cuda_errors
-#endif
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      complex(8),pointer,dimension(:,:,:,:,:,:,:),intent(inout) :: devPtr
-      complex(8),target,dimension(:,:,:,:,:,:,:)                :: hstPtr
-      integer(kind=4),value :: flags
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipHostGetDevicePointer_c8_7 
-#else
-      integer(kind(hipSuccess)) :: hipHostGetDevicePointer_c8_7
-#endif
-      !
-      type(c_ptr) :: cptr
-      complex(8),pointer,dimension(:,:,:,:,:,:,:) :: tmp
-      !
-#ifdef USE_CUDA_NAMES
-      hipHostGetDevicePointer_c8_7 = cudaSuccess
-#else
-      hipHostGetDevicePointer_c8_7 = hipSuccess
-#endif
-      hipHostGetDevicePointer_c8_7 = hipHostGetDevicePointer_b(cptr,c_loc(hstPtr),flags)
-      call C_F_POINTER(cptr,tmp,SHAPE=SHAPE(hstPtr))
-      devPtr(LBOUND(hstPtr,1):,LBOUND(hstPtr,2):,LBOUND(hstPtr,3):,LBOUND(hstPtr,4):,LBOUND(hstPtr,5):,LBOUND(hstPtr,6):,LBOUND(hstPtr,7):) => tmp
-    end function
-
-
-#endif
+#endif 
 end module

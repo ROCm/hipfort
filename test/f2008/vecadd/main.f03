@@ -22,12 +22,21 @@ program fortran_hip
   real(8),allocatable,dimension(:) :: a,b,out
   real(8),pointer,dimension(:) :: da => null(), db => null(),dout => null()
 
-  type(dim3) :: grid = dim3(320,1,1) 
-  type(dim3) :: block = dim3(256,1,1) 
+  !type(dim3) :: grid  = dim3(320,1,1) 
+  !type(dim3) :: block = dim3(256,1,1) 
   
   integer :: i
-
-  write(*,"(a)",advance="no") "-- Running test 'vecadd' (Fortran 2008 interfaces) - "
+  type(hipDeviceProp_t),target :: props
+  !
+  call hipCheck(hipGetDeviceProperties(props,0))  
+  write(*,"(a)",advance="no") "-- Running test 'vecadd' (Fortran 2008 interfaces)"
+  write(*,"(a)",advance="no") "- device: "
+  i=1
+  do while ( iachar(props%name(i)) .ne. 0 ) ! print till end char
+    write(*,"(a)",advance="no") props%name(i)
+    i = i+1
+  end do 
+  write(*,"(a)",advance="no") " - "
 
   ! Allocate host memory
   allocate(a(N),b(N),out(N))
@@ -46,7 +55,8 @@ program fortran_hip
   call hipCheck(hipMemcpy(db, b, N, hipMemcpyHostToDevice))
 
   ! launch kernel
-  call launch(grid,block,0,c_null_ptr,c_loc(dout),c_loc(da),c_loc(db),N)
+  call launch(dim3(320),dim3(256),0,c_null_ptr,c_loc(dout),c_loc(da),c_loc(db),N)
+  !call launch(grid,block,0,c_null_ptr,c_loc(dout),c_loc(da),c_loc(db),N)
   call hipCheck(hipDeviceSynchronize())
 
   ! Transfer data back to host memory

@@ -1,4 +1,11 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.0.2)
+
+#Setting Default value for libdir
+set(CMAKE_INSTALL_LIBDIR "lib" CACHE STRING "Library install directory")
+
+#include definitions for GNU install dir cmake flags.
+include(GNUInstallDirs)
+
 # Default compiler gfortran, otherwise cmake Fortran package will set it to f95
 # You can override the compiler with cmake -DHIPFORT_COMPILER=
 set(HIPFORT_COMPILER "/usr/bin/gfortran" CACHE STRING "Fortran Compiler to build HIPFORT")
@@ -10,7 +17,7 @@ set(HIPFORT_BUILD_TYPE "RELEASE"  CACHE STRING "Set to RELEASE TESTING or DEBUG"
 #  The ROCm release manager and other integrators should build hipfort as follows:
 #     cmake -DHIPFORT_INSTALL_DIR=/opt/rocm-<release>/hipfort -DHIPFORT_VERSION=<release> <githubrepo>
 
-set(HIPFORT_VERSION "0.3-0"  CACHE STRING "Version of HIPFORT to build")
+set(HIPFORT_VERSION "0.4-0"  CACHE STRING "Version of HIPFORT to build")
 set(HIPFORT_INSTALL_DIR  "/usr/local/hipfort-${HIPFORT_VERSION}" CACHE STRING "Install directory for hipfort")
 IF(CMAKE_INSTALL_PREFIX)
   # Make HIPFORT_INSTALL_DIR be the same as CmAKE_INSTALL_PREFIX
@@ -60,7 +67,10 @@ IF(NOT DEFINED CMAKE_Fortran_COMPILER_SUPPORTS_F08)
       end interface
     contains
       subroutine foo_a(a)
+        use iso_c_binding
         integer,target,dimension(:) :: a
+        type(c_ptr) :: a_ptr
+        a_ptr = c_loc(a) ! gfortran < 4.9 fails here
       end
       subroutine foo_b(b)
         integer,pointer,dimension(:,:) :: b
@@ -97,12 +107,16 @@ ENDIF(NOT DEFINED CMAKE_Fortran_COMPILER_SUPPORTS_F08)
 #OPTION(USE_MPI "Use the MPI library for parallelization" OFF)
 #OPTION(USE_OPENMP "Use OpenMP for parallelization" OFF)
 
+IF(CMAKE_Fortran_COMPILER_ID MATCHES "Cray")
+  set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} ${HIPFORT_COMPILER_FLAGS}")
+ELSE(CMAKE_Fortran_COMPILER_ID MATCHES "Cray")
 IF(CMAKE_Fortran_COMPILER_SUPPORTS_F08)
   set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} ${HIPFORT_COMPILER_FLAGS} -std=f2008")
 ELSE(CMAKE_Fortran_COMPILER_SUPPORTS_F08)
   set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} ${HIPFORT_COMPILER_FLAGS} -std=f2003")
 ENDIF(CMAKE_Fortran_COMPILER_SUPPORTS_F08)
-  
+ENDIF(CMAKE_Fortran_COMPILER_ID MATCHES "Cray")
+ 
 # Set compile flags for DEBUG, # RELEASE, or TESTING.  
 INCLUDE(${CMAKE_MODULE_PATH}/SetFortranFlags.cmake) 
 message("-- Done setting FortranFlags")
@@ -113,31 +127,31 @@ IF(FCNAME STREQUAL "pgf90")
     UNSET(CMAKE_SHARED_LIBRARY_LINK_Fortran_FLAGS)
 ENDIF(FCNAME STREQUAL "pgf90")
 
-if(WIN32)
-  set(ROCM_USE_DEV_COMPONENT OFF CACHE BOOL "Whether to generate the devel package.")
-else()
-  set(ROCM_USE_DEV_COMPONENT ON CACHE BOOL "Whether to generate the devel package.")
-endif()
-
-set(RUNTIME_COMPONENT "COMPONENT;Unspecified")
-if(ROCM_USE_DEV_COMPONENT)
-  set(DEVEL_COMPONENT "COMPONENT;devel")
-else()
-  set(DEVEL_COMPONENT "COMPONENT;Unspecified")
-endif()
-
+# Subdirectories and packaging
+# NOTE: rocm-cmake must be be included before
+# adding subdirectories.
+INCLUDE(${CMAKE_MODULE_PATH}/rocm-cmake.cmake)
+rocm_setup_version(VERSION ${VERSION})
 ADD_SUBDIRECTORY(${CMAKE_SOURCE_DIR}/lib)
 ADD_SUBDIRECTORY(${CMAKE_SOURCE_DIR}/test)
 ADD_SUBDIRECTORY(${CMAKE_SOURCE_DIR}/bin)
 
-# Packaging
-INCLUDE(${CMAKE_MODULE_PATH}/rocm-cmake.cmake)
-rocm_setup_version(VERSION ${VERSION})
 set(CPACK_DEBIAN_PACKAGE_DEPENDS "hip-rocclr (>= 3.5.0)")
 set(CPACK_RPM_PACKAGE_REQUIRES "hip-rocclr >= 3.5.0")
-set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
+# Package name changed from hipfort to hipfort-devel/dev
+# Backward compatibility support for old package name
+set(CPACK_DEBIAN_PACKAGE_PROVIDES "hipfort")
+set(CPACK_DEBIAN_PACKAGE_REPLACES "hipfort")
+set(CPACK_DEBIAN_PACKAGE_CONFLICTS "hipfort")
+set(CPACK_RPM_PACKAGE_PROVIDES "hipfort")
+set(CPACK_RPM_PACKAGE_OBSOLETES "hipfort")
 
-set(CPACK_RPM_EXCLUDE_FROM_AUTO_FILELIST_ADDITION "\${CPACK_PACKAGING_INSTALL_PREFIX}" "\${CPACK_PACKAGING_INSTALL_PREFIX}/include" )
+set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
+if(NOT CPACK_PACKAGING_INSTALL_PREFIX)
+  set(CPACK_PACKAGING_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
+endif()
+
+set(CPACK_RPM_EXCLUDE_FROM_AUTO_FILELIST_ADDITION "\${CPACK_PACKAGING_INSTALL_PREFIX}")
 # Prevent rpmbuild from stripping binaries, which caused issues on CentOS
 set(CPACK_RPM_SPEC_INSTALL_POST "/bin/true")
 
@@ -145,6 +159,7 @@ rocm_create_package(
   NAME hipfort
   DESCRIPTION "hipfort: Fortran Interface For GPU Kernel Libraries"
   MAINTAINER "Gregory Rogers <Gregory.Rodgers@amd.com>"
+  HEADER_ONLY # Enabled For generating Only -devel pkg.
 )
 
 message("-- HIPFORT -------------  cmake DONE --------------------")

@@ -2,7 +2,7 @@
 ! ==============================================================================
 ! hipfort: FORTRAN Interfaces for GPU kernels
 ! ==============================================================================
-! Copyright (c) 2021 Advanced Micro Devices, Inc. All rights reserved.
+! Copyright (c) 2020-2022 Advanced Micro Devices, Inc. All rights reserved.
 ! [MITx11 License]
 ! 
 ! Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -39,6 +39,8 @@ module hipfort_hipblas_enums
     enumerator :: HIPBLAS_STATUS_NOT_SUPPORTED = 7
     enumerator :: HIPBLAS_STATUS_ARCH_MISMATCH = 8
     enumerator :: HIPBLAS_STATUS_HANDLE_IS_NULLPTR = 9
+    enumerator :: HIPBLAS_STATUS_INVALID_ENUM = 10
+    enumerator :: HIPBLAS_STATUS_UNKNOWN = 11
   end enum
 
   enum, bind(c)

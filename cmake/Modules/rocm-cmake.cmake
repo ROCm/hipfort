@@ -1,5 +1,5 @@
 # Find or download/install rocm-cmake project
-find_package(ROCM 0.6 QUIET CONFIG PATHS /opt/rocm)
+find_package(ROCM QUIET CONFIG PATHS /opt/rocm)
 if(NOT ROCM_FOUND)
   set(rocm_cmake_tag "master" CACHE STRING "rocm-cmake tag to download")
   file(
@@ -21,15 +21,10 @@ if(NOT ROCM_FOUND)
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
     RESULT_VARIABLE rocm_cmake_unpack_error_code
   )
-  execute_process( COMMAND ${CMAKE_COMMAND} -DCMAKE_INSTALL_PREFIX=${CMAKE_CURRENT_BINARY_DIR}/rocm-cmake .
-    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/rocm-cmake-${rocm_cmake_tag} )
-  execute_process( COMMAND ${CMAKE_COMMAND} --build rocm-cmake-${rocm_cmake_tag} --target install
-    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
-
   if(rocm_cmake_unpack_error_code)
     message(FATAL_ERROR "Error: unpacking  ${CMAKE_CURRENT_BINARY_DIR}/rocm-cmake-${rocm_cmake_tag}.zip failed")
   endif()
-  find_package( ROCM 0.6 REQUIRED CONFIG PATHS ${CMAKE_CURRENT_BINARY_DIR}/rocm-cmake )
+  find_package(ROCM REQUIRED CONFIG PATHS ${CMAKE_CURRENT_BINARY_DIR}/rocm-cmake-${rocm_cmake_tag})
 endif()
 
 include(ROCMSetupVersion)

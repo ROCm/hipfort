@@ -4,6 +4,11 @@ hipfort: Fortran Interface For GPU Kernel Libraries
 This repository contains the source and testing for hipfort.  
 This is a FORTRAN interface library for accessing GPU Kernels.
 
+## Known issues
+
+* `hipSOLVER` interfaces will only work for AMD GPUs.
+*  We recommend `gfortran` version 7.5.0 or newer as we have observed problems with older versions.
+
 ## Build and test hipfort from source
 
 Install `gfortran`, `git`, `cmake`, and HIP, if not yet installed.
@@ -27,8 +32,8 @@ compiles the Fortran files and links to the object file created by `hipcc`.
 
 `hipfort` provides interfaces to the following HIP and ROCm libraries:
 
-* **HIP:**   HIP runtime, hipBLAS, hipSPARSE, hipFFT, hipRAND
-* **ROCm:** rocBLAS, rocSPARSE, rocFFT, rocRAND, **rocSOLVER**
+* **HIP:**   HIP runtime, hipBLAS, hipSPARSE, hipFFT, hipRAND, hipSOLVER
+* **ROCm:** rocBLAS, rocSPARSE, rocFFT, rocRAND, rocSOLVER
 
 While the HIP interfaces and libraries allow to write portable code for both AMD and CUDA devices, the ROCm ones 
 can only be used with AMD devices.
@@ -39,10 +44,15 @@ that supports the Fortran 2003 standard (`f2003`).
 These interfaces typically require to pass `type(c_ptr)` variables and the number of bytes to memory
 management (e.g. `hipMalloc`) and math library routines (e.g. `hipblasDGEMM`).
 
-If your compiler understands Fortran 2008 code (`f2008`), additional interfaces are compiled into the `hipfort`
-modules and libraries. These directly take Fortran (array) variables and the number of
-elements instead of `type(c_ptr)` variables and the number of bytes, respectively. This reduces the chance to introduce compile-time and runtime errors
+If your compiler understands the Fortran 2008 (`f2008`) code constructs that occur in `hipfort`'s source and test files, 
+additional interfaces are compiled into the `hipfort` modules and libraries. 
+These directly take Fortran (array) variables and the number of
+elements instead of `type(c_ptr)` variables and the number of bytes, respectively. 
+Therefore, they reduce the chance to introduce compile-time and runtime errors
 into your code and makes it easier to read too.
+
+> **NOTE**: If you plan to use the `f2008` interfaces, we recommend `gfortran` version `7.5.0` or newer
+as we have observed problems with older versions.
 
 ### Example
 
@@ -86,26 +96,43 @@ ierr = hipMalloc(a_d,source=a_h)       ! take shape (incl. bounds) of a_h and pe
 
 In addition to `source`, there is also `dsource` in case the source is a device array.
 
-### Documentation
+### Supported HIP and ROCm API
 
-Documentation for the interfaces is hosted here:
+The current batch of HIPFORT interfaces is derived from ROCm 4.5.0.
+The following tables list the supported API:
 
-https://rocmsoftwareplatform.github.io/hipfort/
+* [HIP](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_HIP.md)
+* [hipBLAS](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_HIPBLAS.md)
+* [hipFFT](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_HIPFFT.md)
+* [hipRAND](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_HIPRAND.md)
+* [hipSOLVER](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_HIPSOLVER.md)
+* [hipSPARSE](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_HIPSPARSE.md)
+* [rocBLAS](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_ROCBLAS.md)
+* [rocFFT](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_ROCFFT.md)
+* [rocRAND](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_ROCRAND.md)
+* [rocSOLVER](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_ROCSOLVER.md)
+* [rocSPARSE](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_ROCSPARSE.md)
+
+You may further find it convenient to directly use the search function on
+HIPFORT's docu page to get information on the arguments of 
+an interface:
+
+https://rocmsoftwareplatform.github.io/hipfort/index.html
 
 ## hipfc wrapper compiler and Makefile.hipfort
 
 Aside from Fortran interfaces to the HIP and ROCm libraries, hipfort ships the `hipfc` wrapper compiler
-and a `Makefile.hipfort` that can be included into a project's build system. Both are located in the `bin/` subdirectory
-of the repository. While both can be configured via a number of environment variables, `hipfc` also understands a greater number of 
-command line options that you can print to screen via `hipfc -h`. 
+and a `Makefile.hipfort` that can be included into a project's build system. hipfc located in the `bin/` subdirectory and
+Makefile.hipfort in share/hipfort of the repository. While both can be configured via a number of environment variables,`
+hipfc` also understands a greater number of command line options that you can print to screen via `hipfc -h`.
 
 Among the environment variables, the most important are:
 
 | Variable | Description | Default |
 |---|---|---|
 | `HIP_PLATFORM` | The platform to compile for (either 'amd' or 'nvcc') | `amd` |
-| `ROCM_PATH` | Path to CUDA installation | `/opt/rocm` |
-| `CUDA_PATH` | Path to ROCm installation | `/usr/local/cuda` | 
+| `ROCM_PATH` | Path to ROCm installation | `/opt/rocm` |
+| `CUDA_PATH` | Path to CUDA installation | `/usr/local/cuda` | 
 | `HIPFORT_COMPILER` | Fortran compiler to be used | `gfortran` | 
 
 ## Examples and tests
@@ -118,9 +145,9 @@ There are further subcategories per `hip*` or `roc*` library that is tested.
 
 ### Building a single test
 
-> **NOTE** Only the `hip*` tests can be compiled for CUDA devices. The `roc*` tests cannot.
+> **NOTE**: Only the `hip*` tests can be compiled for CUDA devices. The `roc*` tests cannot.
 
-> **NOTE** The make targets append the linker flags for AMD devices to the `CFLAGS` variable per default.
+> **NOTE**: The make targets append the linker flags for AMD devices to the `CFLAGS` variable per default.
 
 To compile for AMD devices you can simply call `make` in the test directories.
 
@@ -190,7 +217,7 @@ make run_all CFLAGS="--offload-arch=sm_70 -lcublas -lcusolver -lcufft"
 
 <A NAME="Copyright">
 
-Copyright (c) 2021 Advanced Micro Devices, Inc. All rights reserved.
+Copyright (c) 2020-2022 Advanced Micro Devices, Inc. All rights reserved.
 [MITx11 License]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy

@@ -2,7 +2,7 @@
 ! ==============================================================================
 ! hipfort: FORTRAN Interfaces for GPU kernels
 ! ==============================================================================
-! Copyright (c) 2021 Advanced Micro Devices, Inc. All rights reserved.
+! Copyright (c) 2020-2022 Advanced Micro Devices, Inc. All rights reserved.
 ! [MITx11 License]
 ! 
 ! Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -57,9 +57,9 @@ module hipfort_hipmemcpy
     !>   hipMemHostAlloc, hipMemHostGetDevicePointer
     !>  
 #ifdef USE_CUDA_NAMES
-    function hipMemcpy_b(dest,src,sizeBytes,myKind) bind(c, name="cudaMemcpy")
+    function hipMemcpy_(dest,src,sizeBytes,myKind) bind(c, name="cudaMemcpy")
 #else
-    function hipMemcpy_b(dest,src,sizeBytes,myKind) bind(c, name="hipMemcpy")
+    function hipMemcpy_(dest,src,sizeBytes,myKind) bind(c, name="hipMemcpy")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -69,9 +69,9 @@ module hipfort_hipmemcpy
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemcpy_b
+      integer(kind(cudaSuccess)) :: hipMemcpy_
 #else
-      integer(kind(hipSuccess)) :: hipMemcpy_b
+      integer(kind(hipSuccess)) :: hipMemcpy_
 #endif
       type(c_ptr),value :: dest
       type(c_ptr),value :: src
@@ -80,7 +80,174 @@ module hipfort_hipmemcpy
     end function
         
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipMemcpy_l_0,hipMemcpy_l_0_c_int,hipMemcpy_l_0_c_size_t,hipMemcpy_l_1,hipMemcpy_l_1_c_int,hipMemcpy_l_1_c_size_t,hipMemcpy_l_2,hipMemcpy_l_2_c_int,hipMemcpy_l_2_c_size_t,hipMemcpy_l_3,hipMemcpy_l_3_c_int,hipMemcpy_l_3_c_size_t,hipMemcpy_l_4,hipMemcpy_l_4_c_int,hipMemcpy_l_4_c_size_t,hipMemcpy_l_5,hipMemcpy_l_5_c_int,hipMemcpy_l_5_c_size_t,hipMemcpy_l_6,hipMemcpy_l_6_c_int,hipMemcpy_l_6_c_size_t,hipMemcpy_l_7,hipMemcpy_l_7_c_int,hipMemcpy_l_7_c_size_t,hipMemcpy_i4_0,hipMemcpy_i4_0_c_int,hipMemcpy_i4_0_c_size_t,hipMemcpy_i4_1,hipMemcpy_i4_1_c_int,hipMemcpy_i4_1_c_size_t,hipMemcpy_i4_2,hipMemcpy_i4_2_c_int,hipMemcpy_i4_2_c_size_t,hipMemcpy_i4_3,hipMemcpy_i4_3_c_int,hipMemcpy_i4_3_c_size_t,hipMemcpy_i4_4,hipMemcpy_i4_4_c_int,hipMemcpy_i4_4_c_size_t,hipMemcpy_i4_5,hipMemcpy_i4_5_c_int,hipMemcpy_i4_5_c_size_t,hipMemcpy_i4_6,hipMemcpy_i4_6_c_int,hipMemcpy_i4_6_c_size_t,hipMemcpy_i4_7,hipMemcpy_i4_7_c_int,hipMemcpy_i4_7_c_size_t,hipMemcpy_i8_0,hipMemcpy_i8_0_c_int,hipMemcpy_i8_0_c_size_t,hipMemcpy_i8_1,hipMemcpy_i8_1_c_int,hipMemcpy_i8_1_c_size_t,hipMemcpy_i8_2,hipMemcpy_i8_2_c_int,hipMemcpy_i8_2_c_size_t,hipMemcpy_i8_3,hipMemcpy_i8_3_c_int,hipMemcpy_i8_3_c_size_t,hipMemcpy_i8_4,hipMemcpy_i8_4_c_int,hipMemcpy_i8_4_c_size_t,hipMemcpy_i8_5,hipMemcpy_i8_5_c_int,hipMemcpy_i8_5_c_size_t,hipMemcpy_i8_6,hipMemcpy_i8_6_c_int,hipMemcpy_i8_6_c_size_t,hipMemcpy_i8_7,hipMemcpy_i8_7_c_int,hipMemcpy_i8_7_c_size_t,hipMemcpy_r4_0,hipMemcpy_r4_0_c_int,hipMemcpy_r4_0_c_size_t,hipMemcpy_r4_1,hipMemcpy_r4_1_c_int,hipMemcpy_r4_1_c_size_t,hipMemcpy_r4_2,hipMemcpy_r4_2_c_int,hipMemcpy_r4_2_c_size_t,hipMemcpy_r4_3,hipMemcpy_r4_3_c_int,hipMemcpy_r4_3_c_size_t,hipMemcpy_r4_4,hipMemcpy_r4_4_c_int,hipMemcpy_r4_4_c_size_t,hipMemcpy_r4_5,hipMemcpy_r4_5_c_int,hipMemcpy_r4_5_c_size_t,hipMemcpy_r4_6,hipMemcpy_r4_6_c_int,hipMemcpy_r4_6_c_size_t,hipMemcpy_r4_7,hipMemcpy_r4_7_c_int,hipMemcpy_r4_7_c_size_t,hipMemcpy_r8_0,hipMemcpy_r8_0_c_int,hipMemcpy_r8_0_c_size_t,hipMemcpy_r8_1,hipMemcpy_r8_1_c_int,hipMemcpy_r8_1_c_size_t,hipMemcpy_r8_2,hipMemcpy_r8_2_c_int,hipMemcpy_r8_2_c_size_t,hipMemcpy_r8_3,hipMemcpy_r8_3_c_int,hipMemcpy_r8_3_c_size_t,hipMemcpy_r8_4,hipMemcpy_r8_4_c_int,hipMemcpy_r8_4_c_size_t,hipMemcpy_r8_5,hipMemcpy_r8_5_c_int,hipMemcpy_r8_5_c_size_t,hipMemcpy_r8_6,hipMemcpy_r8_6_c_int,hipMemcpy_r8_6_c_size_t,hipMemcpy_r8_7,hipMemcpy_r8_7_c_int,hipMemcpy_r8_7_c_size_t,hipMemcpy_c4_0,hipMemcpy_c4_0_c_int,hipMemcpy_c4_0_c_size_t,hipMemcpy_c4_1,hipMemcpy_c4_1_c_int,hipMemcpy_c4_1_c_size_t,hipMemcpy_c4_2,hipMemcpy_c4_2_c_int,hipMemcpy_c4_2_c_size_t,hipMemcpy_c4_3,hipMemcpy_c4_3_c_int,hipMemcpy_c4_3_c_size_t,hipMemcpy_c4_4,hipMemcpy_c4_4_c_int,hipMemcpy_c4_4_c_size_t,hipMemcpy_c4_5,hipMemcpy_c4_5_c_int,hipMemcpy_c4_5_c_size_t,hipMemcpy_c4_6,hipMemcpy_c4_6_c_int,hipMemcpy_c4_6_c_size_t,hipMemcpy_c4_7,hipMemcpy_c4_7_c_int,hipMemcpy_c4_7_c_size_t,hipMemcpy_c8_0,hipMemcpy_c8_0_c_int,hipMemcpy_c8_0_c_size_t,hipMemcpy_c8_1,hipMemcpy_c8_1_c_int,hipMemcpy_c8_1_c_size_t,hipMemcpy_c8_2,hipMemcpy_c8_2_c_int,hipMemcpy_c8_2_c_size_t,hipMemcpy_c8_3,hipMemcpy_c8_3_c_int,hipMemcpy_c8_3_c_size_t,hipMemcpy_c8_4,hipMemcpy_c8_4_c_int,hipMemcpy_c8_4_c_size_t,hipMemcpy_c8_5,hipMemcpy_c8_5_c_int,hipMemcpy_c8_5_c_size_t,hipMemcpy_c8_6,hipMemcpy_c8_6_c_int,hipMemcpy_c8_6_c_size_t,hipMemcpy_c8_7,hipMemcpy_c8_7_c_int,hipMemcpy_c8_7_c_size_t 
+    module procedure hipMemcpy_l_0,&
+      hipMemcpy_l_0_c_int,&
+      hipMemcpy_l_0_c_size_t,&
+      hipMemcpy_l_1,&
+      hipMemcpy_l_1_c_int,&
+      hipMemcpy_l_1_c_size_t,&
+      hipMemcpy_l_2,&
+      hipMemcpy_l_2_c_int,&
+      hipMemcpy_l_2_c_size_t,&
+      hipMemcpy_l_3,&
+      hipMemcpy_l_3_c_int,&
+      hipMemcpy_l_3_c_size_t,&
+      hipMemcpy_l_4,&
+      hipMemcpy_l_4_c_int,&
+      hipMemcpy_l_4_c_size_t,&
+      hipMemcpy_l_5,&
+      hipMemcpy_l_5_c_int,&
+      hipMemcpy_l_5_c_size_t,&
+      hipMemcpy_l_6,&
+      hipMemcpy_l_6_c_int,&
+      hipMemcpy_l_6_c_size_t,&
+      hipMemcpy_l_7,&
+      hipMemcpy_l_7_c_int,&
+      hipMemcpy_l_7_c_size_t,&
+      hipMemcpy_i4_0,&
+      hipMemcpy_i4_0_c_int,&
+      hipMemcpy_i4_0_c_size_t,&
+      hipMemcpy_i4_1,&
+      hipMemcpy_i4_1_c_int,&
+      hipMemcpy_i4_1_c_size_t,&
+      hipMemcpy_i4_2,&
+      hipMemcpy_i4_2_c_int,&
+      hipMemcpy_i4_2_c_size_t,&
+      hipMemcpy_i4_3,&
+      hipMemcpy_i4_3_c_int,&
+      hipMemcpy_i4_3_c_size_t,&
+      hipMemcpy_i4_4,&
+      hipMemcpy_i4_4_c_int,&
+      hipMemcpy_i4_4_c_size_t,&
+      hipMemcpy_i4_5,&
+      hipMemcpy_i4_5_c_int,&
+      hipMemcpy_i4_5_c_size_t,&
+      hipMemcpy_i4_6,&
+      hipMemcpy_i4_6_c_int,&
+      hipMemcpy_i4_6_c_size_t,&
+      hipMemcpy_i4_7,&
+      hipMemcpy_i4_7_c_int,&
+      hipMemcpy_i4_7_c_size_t,&
+      hipMemcpy_i8_0,&
+      hipMemcpy_i8_0_c_int,&
+      hipMemcpy_i8_0_c_size_t,&
+      hipMemcpy_i8_1,&
+      hipMemcpy_i8_1_c_int,&
+      hipMemcpy_i8_1_c_size_t,&
+      hipMemcpy_i8_2,&
+      hipMemcpy_i8_2_c_int,&
+      hipMemcpy_i8_2_c_size_t,&
+      hipMemcpy_i8_3,&
+      hipMemcpy_i8_3_c_int,&
+      hipMemcpy_i8_3_c_size_t,&
+      hipMemcpy_i8_4,&
+      hipMemcpy_i8_4_c_int,&
+      hipMemcpy_i8_4_c_size_t,&
+      hipMemcpy_i8_5,&
+      hipMemcpy_i8_5_c_int,&
+      hipMemcpy_i8_5_c_size_t,&
+      hipMemcpy_i8_6,&
+      hipMemcpy_i8_6_c_int,&
+      hipMemcpy_i8_6_c_size_t,&
+      hipMemcpy_i8_7,&
+      hipMemcpy_i8_7_c_int,&
+      hipMemcpy_i8_7_c_size_t,&
+      hipMemcpy_r4_0,&
+      hipMemcpy_r4_0_c_int,&
+      hipMemcpy_r4_0_c_size_t,&
+      hipMemcpy_r4_1,&
+      hipMemcpy_r4_1_c_int,&
+      hipMemcpy_r4_1_c_size_t,&
+      hipMemcpy_r4_2,&
+      hipMemcpy_r4_2_c_int,&
+      hipMemcpy_r4_2_c_size_t,&
+      hipMemcpy_r4_3,&
+      hipMemcpy_r4_3_c_int,&
+      hipMemcpy_r4_3_c_size_t,&
+      hipMemcpy_r4_4,&
+      hipMemcpy_r4_4_c_int,&
+      hipMemcpy_r4_4_c_size_t,&
+      hipMemcpy_r4_5,&
+      hipMemcpy_r4_5_c_int,&
+      hipMemcpy_r4_5_c_size_t,&
+      hipMemcpy_r4_6,&
+      hipMemcpy_r4_6_c_int,&
+      hipMemcpy_r4_6_c_size_t,&
+      hipMemcpy_r4_7,&
+      hipMemcpy_r4_7_c_int,&
+      hipMemcpy_r4_7_c_size_t,&
+      hipMemcpy_r8_0,&
+      hipMemcpy_r8_0_c_int,&
+      hipMemcpy_r8_0_c_size_t,&
+      hipMemcpy_r8_1,&
+      hipMemcpy_r8_1_c_int,&
+      hipMemcpy_r8_1_c_size_t,&
+      hipMemcpy_r8_2,&
+      hipMemcpy_r8_2_c_int,&
+      hipMemcpy_r8_2_c_size_t,&
+      hipMemcpy_r8_3,&
+      hipMemcpy_r8_3_c_int,&
+      hipMemcpy_r8_3_c_size_t,&
+      hipMemcpy_r8_4,&
+      hipMemcpy_r8_4_c_int,&
+      hipMemcpy_r8_4_c_size_t,&
+      hipMemcpy_r8_5,&
+      hipMemcpy_r8_5_c_int,&
+      hipMemcpy_r8_5_c_size_t,&
+      hipMemcpy_r8_6,&
+      hipMemcpy_r8_6_c_int,&
+      hipMemcpy_r8_6_c_size_t,&
+      hipMemcpy_r8_7,&
+      hipMemcpy_r8_7_c_int,&
+      hipMemcpy_r8_7_c_size_t,&
+      hipMemcpy_c4_0,&
+      hipMemcpy_c4_0_c_int,&
+      hipMemcpy_c4_0_c_size_t,&
+      hipMemcpy_c4_1,&
+      hipMemcpy_c4_1_c_int,&
+      hipMemcpy_c4_1_c_size_t,&
+      hipMemcpy_c4_2,&
+      hipMemcpy_c4_2_c_int,&
+      hipMemcpy_c4_2_c_size_t,&
+      hipMemcpy_c4_3,&
+      hipMemcpy_c4_3_c_int,&
+      hipMemcpy_c4_3_c_size_t,&
+      hipMemcpy_c4_4,&
+      hipMemcpy_c4_4_c_int,&
+      hipMemcpy_c4_4_c_size_t,&
+      hipMemcpy_c4_5,&
+      hipMemcpy_c4_5_c_int,&
+      hipMemcpy_c4_5_c_size_t,&
+      hipMemcpy_c4_6,&
+      hipMemcpy_c4_6_c_int,&
+      hipMemcpy_c4_6_c_size_t,&
+      hipMemcpy_c4_7,&
+      hipMemcpy_c4_7_c_int,&
+      hipMemcpy_c4_7_c_size_t,&
+      hipMemcpy_c8_0,&
+      hipMemcpy_c8_0_c_int,&
+      hipMemcpy_c8_0_c_size_t,&
+      hipMemcpy_c8_1,&
+      hipMemcpy_c8_1_c_int,&
+      hipMemcpy_c8_1_c_size_t,&
+      hipMemcpy_c8_2,&
+      hipMemcpy_c8_2_c_int,&
+      hipMemcpy_c8_2_c_size_t,&
+      hipMemcpy_c8_3,&
+      hipMemcpy_c8_3_c_int,&
+      hipMemcpy_c8_3_c_size_t,&
+      hipMemcpy_c8_4,&
+      hipMemcpy_c8_4_c_int,&
+      hipMemcpy_c8_4_c_size_t,&
+      hipMemcpy_c8_5,&
+      hipMemcpy_c8_5_c_int,&
+      hipMemcpy_c8_5_c_size_t,&
+      hipMemcpy_c8_6,&
+      hipMemcpy_c8_6_c_int,&
+      hipMemcpy_c8_6_c_size_t,&
+      hipMemcpy_c8_7,&
+      hipMemcpy_c8_7_c_int,&
+      hipMemcpy_c8_7_c_size_t 
 #endif
   end interface
   
@@ -114,9 +281,9 @@ module hipfort_hipmemcpy
     !>   hipMemcpyFromSymbolAsync
     !>  
 #ifdef USE_CUDA_NAMES
-    function hipMemcpyAsync_b(dest,src,sizeBytes,myKind,stream) bind(c, name="cudaMemcpyAsync")
+    function hipMemcpyAsync_(dest,src,sizeBytes,myKind,stream) bind(c, name="cudaMemcpyAsync")
 #else
-    function hipMemcpyAsync_b(dest,src,sizeBytes,myKind,stream) bind(c, name="hipMemcpyAsync")
+    function hipMemcpyAsync_(dest,src,sizeBytes,myKind,stream) bind(c, name="hipMemcpyAsync")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -126,9 +293,9 @@ module hipfort_hipmemcpy
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemcpyAsync_b
+      integer(kind(cudaSuccess)) :: hipMemcpyAsync_
 #else
-      integer(kind(hipSuccess)) :: hipMemcpyAsync_b
+      integer(kind(hipSuccess)) :: hipMemcpyAsync_
 #endif
       type(c_ptr),value :: dest
       type(c_ptr),value :: src
@@ -138,7 +305,174 @@ module hipfort_hipmemcpy
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipMemcpyAsync_l_0,hipMemcpyAsync_l_0_c_int,hipMemcpyAsync_l_0_c_size_t,hipMemcpyAsync_l_1,hipMemcpyAsync_l_1_c_int,hipMemcpyAsync_l_1_c_size_t,hipMemcpyAsync_l_2,hipMemcpyAsync_l_2_c_int,hipMemcpyAsync_l_2_c_size_t,hipMemcpyAsync_l_3,hipMemcpyAsync_l_3_c_int,hipMemcpyAsync_l_3_c_size_t,hipMemcpyAsync_l_4,hipMemcpyAsync_l_4_c_int,hipMemcpyAsync_l_4_c_size_t,hipMemcpyAsync_l_5,hipMemcpyAsync_l_5_c_int,hipMemcpyAsync_l_5_c_size_t,hipMemcpyAsync_l_6,hipMemcpyAsync_l_6_c_int,hipMemcpyAsync_l_6_c_size_t,hipMemcpyAsync_l_7,hipMemcpyAsync_l_7_c_int,hipMemcpyAsync_l_7_c_size_t,hipMemcpyAsync_i4_0,hipMemcpyAsync_i4_0_c_int,hipMemcpyAsync_i4_0_c_size_t,hipMemcpyAsync_i4_1,hipMemcpyAsync_i4_1_c_int,hipMemcpyAsync_i4_1_c_size_t,hipMemcpyAsync_i4_2,hipMemcpyAsync_i4_2_c_int,hipMemcpyAsync_i4_2_c_size_t,hipMemcpyAsync_i4_3,hipMemcpyAsync_i4_3_c_int,hipMemcpyAsync_i4_3_c_size_t,hipMemcpyAsync_i4_4,hipMemcpyAsync_i4_4_c_int,hipMemcpyAsync_i4_4_c_size_t,hipMemcpyAsync_i4_5,hipMemcpyAsync_i4_5_c_int,hipMemcpyAsync_i4_5_c_size_t,hipMemcpyAsync_i4_6,hipMemcpyAsync_i4_6_c_int,hipMemcpyAsync_i4_6_c_size_t,hipMemcpyAsync_i4_7,hipMemcpyAsync_i4_7_c_int,hipMemcpyAsync_i4_7_c_size_t,hipMemcpyAsync_i8_0,hipMemcpyAsync_i8_0_c_int,hipMemcpyAsync_i8_0_c_size_t,hipMemcpyAsync_i8_1,hipMemcpyAsync_i8_1_c_int,hipMemcpyAsync_i8_1_c_size_t,hipMemcpyAsync_i8_2,hipMemcpyAsync_i8_2_c_int,hipMemcpyAsync_i8_2_c_size_t,hipMemcpyAsync_i8_3,hipMemcpyAsync_i8_3_c_int,hipMemcpyAsync_i8_3_c_size_t,hipMemcpyAsync_i8_4,hipMemcpyAsync_i8_4_c_int,hipMemcpyAsync_i8_4_c_size_t,hipMemcpyAsync_i8_5,hipMemcpyAsync_i8_5_c_int,hipMemcpyAsync_i8_5_c_size_t,hipMemcpyAsync_i8_6,hipMemcpyAsync_i8_6_c_int,hipMemcpyAsync_i8_6_c_size_t,hipMemcpyAsync_i8_7,hipMemcpyAsync_i8_7_c_int,hipMemcpyAsync_i8_7_c_size_t,hipMemcpyAsync_r4_0,hipMemcpyAsync_r4_0_c_int,hipMemcpyAsync_r4_0_c_size_t,hipMemcpyAsync_r4_1,hipMemcpyAsync_r4_1_c_int,hipMemcpyAsync_r4_1_c_size_t,hipMemcpyAsync_r4_2,hipMemcpyAsync_r4_2_c_int,hipMemcpyAsync_r4_2_c_size_t,hipMemcpyAsync_r4_3,hipMemcpyAsync_r4_3_c_int,hipMemcpyAsync_r4_3_c_size_t,hipMemcpyAsync_r4_4,hipMemcpyAsync_r4_4_c_int,hipMemcpyAsync_r4_4_c_size_t,hipMemcpyAsync_r4_5,hipMemcpyAsync_r4_5_c_int,hipMemcpyAsync_r4_5_c_size_t,hipMemcpyAsync_r4_6,hipMemcpyAsync_r4_6_c_int,hipMemcpyAsync_r4_6_c_size_t,hipMemcpyAsync_r4_7,hipMemcpyAsync_r4_7_c_int,hipMemcpyAsync_r4_7_c_size_t,hipMemcpyAsync_r8_0,hipMemcpyAsync_r8_0_c_int,hipMemcpyAsync_r8_0_c_size_t,hipMemcpyAsync_r8_1,hipMemcpyAsync_r8_1_c_int,hipMemcpyAsync_r8_1_c_size_t,hipMemcpyAsync_r8_2,hipMemcpyAsync_r8_2_c_int,hipMemcpyAsync_r8_2_c_size_t,hipMemcpyAsync_r8_3,hipMemcpyAsync_r8_3_c_int,hipMemcpyAsync_r8_3_c_size_t,hipMemcpyAsync_r8_4,hipMemcpyAsync_r8_4_c_int,hipMemcpyAsync_r8_4_c_size_t,hipMemcpyAsync_r8_5,hipMemcpyAsync_r8_5_c_int,hipMemcpyAsync_r8_5_c_size_t,hipMemcpyAsync_r8_6,hipMemcpyAsync_r8_6_c_int,hipMemcpyAsync_r8_6_c_size_t,hipMemcpyAsync_r8_7,hipMemcpyAsync_r8_7_c_int,hipMemcpyAsync_r8_7_c_size_t,hipMemcpyAsync_c4_0,hipMemcpyAsync_c4_0_c_int,hipMemcpyAsync_c4_0_c_size_t,hipMemcpyAsync_c4_1,hipMemcpyAsync_c4_1_c_int,hipMemcpyAsync_c4_1_c_size_t,hipMemcpyAsync_c4_2,hipMemcpyAsync_c4_2_c_int,hipMemcpyAsync_c4_2_c_size_t,hipMemcpyAsync_c4_3,hipMemcpyAsync_c4_3_c_int,hipMemcpyAsync_c4_3_c_size_t,hipMemcpyAsync_c4_4,hipMemcpyAsync_c4_4_c_int,hipMemcpyAsync_c4_4_c_size_t,hipMemcpyAsync_c4_5,hipMemcpyAsync_c4_5_c_int,hipMemcpyAsync_c4_5_c_size_t,hipMemcpyAsync_c4_6,hipMemcpyAsync_c4_6_c_int,hipMemcpyAsync_c4_6_c_size_t,hipMemcpyAsync_c4_7,hipMemcpyAsync_c4_7_c_int,hipMemcpyAsync_c4_7_c_size_t,hipMemcpyAsync_c8_0,hipMemcpyAsync_c8_0_c_int,hipMemcpyAsync_c8_0_c_size_t,hipMemcpyAsync_c8_1,hipMemcpyAsync_c8_1_c_int,hipMemcpyAsync_c8_1_c_size_t,hipMemcpyAsync_c8_2,hipMemcpyAsync_c8_2_c_int,hipMemcpyAsync_c8_2_c_size_t,hipMemcpyAsync_c8_3,hipMemcpyAsync_c8_3_c_int,hipMemcpyAsync_c8_3_c_size_t,hipMemcpyAsync_c8_4,hipMemcpyAsync_c8_4_c_int,hipMemcpyAsync_c8_4_c_size_t,hipMemcpyAsync_c8_5,hipMemcpyAsync_c8_5_c_int,hipMemcpyAsync_c8_5_c_size_t,hipMemcpyAsync_c8_6,hipMemcpyAsync_c8_6_c_int,hipMemcpyAsync_c8_6_c_size_t,hipMemcpyAsync_c8_7,hipMemcpyAsync_c8_7_c_int,hipMemcpyAsync_c8_7_c_size_t 
+    module procedure hipMemcpyAsync_l_0,&
+      hipMemcpyAsync_l_0_c_int,&
+      hipMemcpyAsync_l_0_c_size_t,&
+      hipMemcpyAsync_l_1,&
+      hipMemcpyAsync_l_1_c_int,&
+      hipMemcpyAsync_l_1_c_size_t,&
+      hipMemcpyAsync_l_2,&
+      hipMemcpyAsync_l_2_c_int,&
+      hipMemcpyAsync_l_2_c_size_t,&
+      hipMemcpyAsync_l_3,&
+      hipMemcpyAsync_l_3_c_int,&
+      hipMemcpyAsync_l_3_c_size_t,&
+      hipMemcpyAsync_l_4,&
+      hipMemcpyAsync_l_4_c_int,&
+      hipMemcpyAsync_l_4_c_size_t,&
+      hipMemcpyAsync_l_5,&
+      hipMemcpyAsync_l_5_c_int,&
+      hipMemcpyAsync_l_5_c_size_t,&
+      hipMemcpyAsync_l_6,&
+      hipMemcpyAsync_l_6_c_int,&
+      hipMemcpyAsync_l_6_c_size_t,&
+      hipMemcpyAsync_l_7,&
+      hipMemcpyAsync_l_7_c_int,&
+      hipMemcpyAsync_l_7_c_size_t,&
+      hipMemcpyAsync_i4_0,&
+      hipMemcpyAsync_i4_0_c_int,&
+      hipMemcpyAsync_i4_0_c_size_t,&
+      hipMemcpyAsync_i4_1,&
+      hipMemcpyAsync_i4_1_c_int,&
+      hipMemcpyAsync_i4_1_c_size_t,&
+      hipMemcpyAsync_i4_2,&
+      hipMemcpyAsync_i4_2_c_int,&
+      hipMemcpyAsync_i4_2_c_size_t,&
+      hipMemcpyAsync_i4_3,&
+      hipMemcpyAsync_i4_3_c_int,&
+      hipMemcpyAsync_i4_3_c_size_t,&
+      hipMemcpyAsync_i4_4,&
+      hipMemcpyAsync_i4_4_c_int,&
+      hipMemcpyAsync_i4_4_c_size_t,&
+      hipMemcpyAsync_i4_5,&
+      hipMemcpyAsync_i4_5_c_int,&
+      hipMemcpyAsync_i4_5_c_size_t,&
+      hipMemcpyAsync_i4_6,&
+      hipMemcpyAsync_i4_6_c_int,&
+      hipMemcpyAsync_i4_6_c_size_t,&
+      hipMemcpyAsync_i4_7,&
+      hipMemcpyAsync_i4_7_c_int,&
+      hipMemcpyAsync_i4_7_c_size_t,&
+      hipMemcpyAsync_i8_0,&
+      hipMemcpyAsync_i8_0_c_int,&
+      hipMemcpyAsync_i8_0_c_size_t,&
+      hipMemcpyAsync_i8_1,&
+      hipMemcpyAsync_i8_1_c_int,&
+      hipMemcpyAsync_i8_1_c_size_t,&
+      hipMemcpyAsync_i8_2,&
+      hipMemcpyAsync_i8_2_c_int,&
+      hipMemcpyAsync_i8_2_c_size_t,&
+      hipMemcpyAsync_i8_3,&
+      hipMemcpyAsync_i8_3_c_int,&
+      hipMemcpyAsync_i8_3_c_size_t,&
+      hipMemcpyAsync_i8_4,&
+      hipMemcpyAsync_i8_4_c_int,&
+      hipMemcpyAsync_i8_4_c_size_t,&
+      hipMemcpyAsync_i8_5,&
+      hipMemcpyAsync_i8_5_c_int,&
+      hipMemcpyAsync_i8_5_c_size_t,&
+      hipMemcpyAsync_i8_6,&
+      hipMemcpyAsync_i8_6_c_int,&
+      hipMemcpyAsync_i8_6_c_size_t,&
+      hipMemcpyAsync_i8_7,&
+      hipMemcpyAsync_i8_7_c_int,&
+      hipMemcpyAsync_i8_7_c_size_t,&
+      hipMemcpyAsync_r4_0,&
+      hipMemcpyAsync_r4_0_c_int,&
+      hipMemcpyAsync_r4_0_c_size_t,&
+      hipMemcpyAsync_r4_1,&
+      hipMemcpyAsync_r4_1_c_int,&
+      hipMemcpyAsync_r4_1_c_size_t,&
+      hipMemcpyAsync_r4_2,&
+      hipMemcpyAsync_r4_2_c_int,&
+      hipMemcpyAsync_r4_2_c_size_t,&
+      hipMemcpyAsync_r4_3,&
+      hipMemcpyAsync_r4_3_c_int,&
+      hipMemcpyAsync_r4_3_c_size_t,&
+      hipMemcpyAsync_r4_4,&
+      hipMemcpyAsync_r4_4_c_int,&
+      hipMemcpyAsync_r4_4_c_size_t,&
+      hipMemcpyAsync_r4_5,&
+      hipMemcpyAsync_r4_5_c_int,&
+      hipMemcpyAsync_r4_5_c_size_t,&
+      hipMemcpyAsync_r4_6,&
+      hipMemcpyAsync_r4_6_c_int,&
+      hipMemcpyAsync_r4_6_c_size_t,&
+      hipMemcpyAsync_r4_7,&
+      hipMemcpyAsync_r4_7_c_int,&
+      hipMemcpyAsync_r4_7_c_size_t,&
+      hipMemcpyAsync_r8_0,&
+      hipMemcpyAsync_r8_0_c_int,&
+      hipMemcpyAsync_r8_0_c_size_t,&
+      hipMemcpyAsync_r8_1,&
+      hipMemcpyAsync_r8_1_c_int,&
+      hipMemcpyAsync_r8_1_c_size_t,&
+      hipMemcpyAsync_r8_2,&
+      hipMemcpyAsync_r8_2_c_int,&
+      hipMemcpyAsync_r8_2_c_size_t,&
+      hipMemcpyAsync_r8_3,&
+      hipMemcpyAsync_r8_3_c_int,&
+      hipMemcpyAsync_r8_3_c_size_t,&
+      hipMemcpyAsync_r8_4,&
+      hipMemcpyAsync_r8_4_c_int,&
+      hipMemcpyAsync_r8_4_c_size_t,&
+      hipMemcpyAsync_r8_5,&
+      hipMemcpyAsync_r8_5_c_int,&
+      hipMemcpyAsync_r8_5_c_size_t,&
+      hipMemcpyAsync_r8_6,&
+      hipMemcpyAsync_r8_6_c_int,&
+      hipMemcpyAsync_r8_6_c_size_t,&
+      hipMemcpyAsync_r8_7,&
+      hipMemcpyAsync_r8_7_c_int,&
+      hipMemcpyAsync_r8_7_c_size_t,&
+      hipMemcpyAsync_c4_0,&
+      hipMemcpyAsync_c4_0_c_int,&
+      hipMemcpyAsync_c4_0_c_size_t,&
+      hipMemcpyAsync_c4_1,&
+      hipMemcpyAsync_c4_1_c_int,&
+      hipMemcpyAsync_c4_1_c_size_t,&
+      hipMemcpyAsync_c4_2,&
+      hipMemcpyAsync_c4_2_c_int,&
+      hipMemcpyAsync_c4_2_c_size_t,&
+      hipMemcpyAsync_c4_3,&
+      hipMemcpyAsync_c4_3_c_int,&
+      hipMemcpyAsync_c4_3_c_size_t,&
+      hipMemcpyAsync_c4_4,&
+      hipMemcpyAsync_c4_4_c_int,&
+      hipMemcpyAsync_c4_4_c_size_t,&
+      hipMemcpyAsync_c4_5,&
+      hipMemcpyAsync_c4_5_c_int,&
+      hipMemcpyAsync_c4_5_c_size_t,&
+      hipMemcpyAsync_c4_6,&
+      hipMemcpyAsync_c4_6_c_int,&
+      hipMemcpyAsync_c4_6_c_size_t,&
+      hipMemcpyAsync_c4_7,&
+      hipMemcpyAsync_c4_7_c_int,&
+      hipMemcpyAsync_c4_7_c_size_t,&
+      hipMemcpyAsync_c8_0,&
+      hipMemcpyAsync_c8_0_c_int,&
+      hipMemcpyAsync_c8_0_c_size_t,&
+      hipMemcpyAsync_c8_1,&
+      hipMemcpyAsync_c8_1_c_int,&
+      hipMemcpyAsync_c8_1_c_size_t,&
+      hipMemcpyAsync_c8_2,&
+      hipMemcpyAsync_c8_2_c_int,&
+      hipMemcpyAsync_c8_2_c_size_t,&
+      hipMemcpyAsync_c8_3,&
+      hipMemcpyAsync_c8_3_c_int,&
+      hipMemcpyAsync_c8_3_c_size_t,&
+      hipMemcpyAsync_c8_4,&
+      hipMemcpyAsync_c8_4_c_int,&
+      hipMemcpyAsync_c8_4_c_size_t,&
+      hipMemcpyAsync_c8_5,&
+      hipMemcpyAsync_c8_5_c_int,&
+      hipMemcpyAsync_c8_5_c_size_t,&
+      hipMemcpyAsync_c8_6,&
+      hipMemcpyAsync_c8_6_c_int,&
+      hipMemcpyAsync_c8_6_c_size_t,&
+      hipMemcpyAsync_c8_7,&
+      hipMemcpyAsync_c8_7_c_int,&
+      hipMemcpyAsync_c8_7_c_size_t 
 #endif
   end interface
   
@@ -160,9 +494,9 @@ module hipfort_hipmemcpy
     !>   hipMemcpyAsync
     !>  
 #ifdef USE_CUDA_NAMES
-    function hipMemcpy2D_b(dest,dpitch,src,spitch,width,height,myKind) bind(c, name="cudaMemcpy2D")
+    function hipMemcpy2D_(dest,dpitch,src,spitch,width,height,myKind) bind(c, name="cudaMemcpy2D")
 #else
-    function hipMemcpy2D_b(dest,dpitch,src,spitch,width,height,myKind) bind(c, name="hipMemcpy2D")
+    function hipMemcpy2D_(dest,dpitch,src,spitch,width,height,myKind) bind(c, name="hipMemcpy2D")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -172,9 +506,9 @@ module hipfort_hipmemcpy
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemcpy2D_b
+      integer(kind(cudaSuccess)) :: hipMemcpy2D_
 #else
-      integer(kind(hipSuccess)) :: hipMemcpy2D_b
+      integer(kind(hipSuccess)) :: hipMemcpy2D_
 #endif
       type(c_ptr),value :: dest
       integer(c_size_t),value :: dpitch
@@ -186,7 +520,48 @@ module hipfort_hipmemcpy
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipMemcpy2D_l_0_c_int,hipMemcpy2D_l_0_c_size_t,hipMemcpy2D_l_1_c_int,hipMemcpy2D_l_1_c_size_t,hipMemcpy2D_l_2_c_int,hipMemcpy2D_l_2_c_size_t,hipMemcpy2D_i4_0_c_int,hipMemcpy2D_i4_0_c_size_t,hipMemcpy2D_i4_1_c_int,hipMemcpy2D_i4_1_c_size_t,hipMemcpy2D_i4_2_c_int,hipMemcpy2D_i4_2_c_size_t,hipMemcpy2D_i8_0_c_int,hipMemcpy2D_i8_0_c_size_t,hipMemcpy2D_i8_1_c_int,hipMemcpy2D_i8_1_c_size_t,hipMemcpy2D_i8_2_c_int,hipMemcpy2D_i8_2_c_size_t,hipMemcpy2D_r4_0_c_int,hipMemcpy2D_r4_0_c_size_t,hipMemcpy2D_r4_1_c_int,hipMemcpy2D_r4_1_c_size_t,hipMemcpy2D_r4_2_c_int,hipMemcpy2D_r4_2_c_size_t,hipMemcpy2D_r8_0_c_int,hipMemcpy2D_r8_0_c_size_t,hipMemcpy2D_r8_1_c_int,hipMemcpy2D_r8_1_c_size_t,hipMemcpy2D_r8_2_c_int,hipMemcpy2D_r8_2_c_size_t,hipMemcpy2D_c4_0_c_int,hipMemcpy2D_c4_0_c_size_t,hipMemcpy2D_c4_1_c_int,hipMemcpy2D_c4_1_c_size_t,hipMemcpy2D_c4_2_c_int,hipMemcpy2D_c4_2_c_size_t,hipMemcpy2D_c8_0_c_int,hipMemcpy2D_c8_0_c_size_t,hipMemcpy2D_c8_1_c_int,hipMemcpy2D_c8_1_c_size_t,hipMemcpy2D_c8_2_c_int,hipMemcpy2D_c8_2_c_size_t 
+    module procedure hipMemcpy2D_l_0_c_int,&
+      hipMemcpy2D_l_0_c_size_t,&
+      hipMemcpy2D_l_1_c_int,&
+      hipMemcpy2D_l_1_c_size_t,&
+      hipMemcpy2D_l_2_c_int,&
+      hipMemcpy2D_l_2_c_size_t,&
+      hipMemcpy2D_i4_0_c_int,&
+      hipMemcpy2D_i4_0_c_size_t,&
+      hipMemcpy2D_i4_1_c_int,&
+      hipMemcpy2D_i4_1_c_size_t,&
+      hipMemcpy2D_i4_2_c_int,&
+      hipMemcpy2D_i4_2_c_size_t,&
+      hipMemcpy2D_i8_0_c_int,&
+      hipMemcpy2D_i8_0_c_size_t,&
+      hipMemcpy2D_i8_1_c_int,&
+      hipMemcpy2D_i8_1_c_size_t,&
+      hipMemcpy2D_i8_2_c_int,&
+      hipMemcpy2D_i8_2_c_size_t,&
+      hipMemcpy2D_r4_0_c_int,&
+      hipMemcpy2D_r4_0_c_size_t,&
+      hipMemcpy2D_r4_1_c_int,&
+      hipMemcpy2D_r4_1_c_size_t,&
+      hipMemcpy2D_r4_2_c_int,&
+      hipMemcpy2D_r4_2_c_size_t,&
+      hipMemcpy2D_r8_0_c_int,&
+      hipMemcpy2D_r8_0_c_size_t,&
+      hipMemcpy2D_r8_1_c_int,&
+      hipMemcpy2D_r8_1_c_size_t,&
+      hipMemcpy2D_r8_2_c_int,&
+      hipMemcpy2D_r8_2_c_size_t,&
+      hipMemcpy2D_c4_0_c_int,&
+      hipMemcpy2D_c4_0_c_size_t,&
+      hipMemcpy2D_c4_1_c_int,&
+      hipMemcpy2D_c4_1_c_size_t,&
+      hipMemcpy2D_c4_2_c_int,&
+      hipMemcpy2D_c4_2_c_size_t,&
+      hipMemcpy2D_c8_0_c_int,&
+      hipMemcpy2D_c8_0_c_size_t,&
+      hipMemcpy2D_c8_1_c_int,&
+      hipMemcpy2D_c8_1_c_size_t,&
+      hipMemcpy2D_c8_2_c_int,&
+      hipMemcpy2D_c8_2_c_size_t 
 #endif
   end interface
   
@@ -209,9 +584,9 @@ module hipfort_hipmemcpy
     !>   hipMemcpyAsync
     !>  
 #ifdef USE_CUDA_NAMES
-    function hipMemcpy2DAsync_b(dest,dpitch,src,spitch,width,height,myKind,stream) bind(c, name="cudaMemcpy2DAsync")
+    function hipMemcpy2DAsync_(dest,dpitch,src,spitch,width,height,myKind,stream) bind(c, name="cudaMemcpy2DAsync")
 #else
-    function hipMemcpy2DAsync_b(dest,dpitch,src,spitch,width,height,myKind,stream) bind(c, name="hipMemcpy2DAsync")
+    function hipMemcpy2DAsync_(dest,dpitch,src,spitch,width,height,myKind,stream) bind(c, name="hipMemcpy2DAsync")
 #endif
       use iso_c_binding
 #ifdef USE_CUDA_NAMES
@@ -221,9 +596,9 @@ module hipfort_hipmemcpy
       use hipfort_types
       implicit none
 #ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_b
+      integer(kind(cudaSuccess)) :: hipMemcpy2DAsync_
 #else
-      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_b
+      integer(kind(hipSuccess)) :: hipMemcpy2DAsync_
 #endif
       type(c_ptr),value :: dest
       integer(c_size_t),value :: dpitch
@@ -236,7 +611,48 @@ module hipfort_hipmemcpy
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
-    module procedure hipMemcpy2DAsync_l_0_c_int,hipMemcpy2DAsync_l_0_c_size_t,hipMemcpy2DAsync_l_1_c_int,hipMemcpy2DAsync_l_1_c_size_t,hipMemcpy2DAsync_l_2_c_int,hipMemcpy2DAsync_l_2_c_size_t,hipMemcpy2DAsync_i4_0_c_int,hipMemcpy2DAsync_i4_0_c_size_t,hipMemcpy2DAsync_i4_1_c_int,hipMemcpy2DAsync_i4_1_c_size_t,hipMemcpy2DAsync_i4_2_c_int,hipMemcpy2DAsync_i4_2_c_size_t,hipMemcpy2DAsync_i8_0_c_int,hipMemcpy2DAsync_i8_0_c_size_t,hipMemcpy2DAsync_i8_1_c_int,hipMemcpy2DAsync_i8_1_c_size_t,hipMemcpy2DAsync_i8_2_c_int,hipMemcpy2DAsync_i8_2_c_size_t,hipMemcpy2DAsync_r4_0_c_int,hipMemcpy2DAsync_r4_0_c_size_t,hipMemcpy2DAsync_r4_1_c_int,hipMemcpy2DAsync_r4_1_c_size_t,hipMemcpy2DAsync_r4_2_c_int,hipMemcpy2DAsync_r4_2_c_size_t,hipMemcpy2DAsync_r8_0_c_int,hipMemcpy2DAsync_r8_0_c_size_t,hipMemcpy2DAsync_r8_1_c_int,hipMemcpy2DAsync_r8_1_c_size_t,hipMemcpy2DAsync_r8_2_c_int,hipMemcpy2DAsync_r8_2_c_size_t,hipMemcpy2DAsync_c4_0_c_int,hipMemcpy2DAsync_c4_0_c_size_t,hipMemcpy2DAsync_c4_1_c_int,hipMemcpy2DAsync_c4_1_c_size_t,hipMemcpy2DAsync_c4_2_c_int,hipMemcpy2DAsync_c4_2_c_size_t,hipMemcpy2DAsync_c8_0_c_int,hipMemcpy2DAsync_c8_0_c_size_t,hipMemcpy2DAsync_c8_1_c_int,hipMemcpy2DAsync_c8_1_c_size_t,hipMemcpy2DAsync_c8_2_c_int,hipMemcpy2DAsync_c8_2_c_size_t 
+    module procedure hipMemcpy2DAsync_l_0_c_int,&
+      hipMemcpy2DAsync_l_0_c_size_t,&
+      hipMemcpy2DAsync_l_1_c_int,&
+      hipMemcpy2DAsync_l_1_c_size_t,&
+      hipMemcpy2DAsync_l_2_c_int,&
+      hipMemcpy2DAsync_l_2_c_size_t,&
+      hipMemcpy2DAsync_i4_0_c_int,&
+      hipMemcpy2DAsync_i4_0_c_size_t,&
+      hipMemcpy2DAsync_i4_1_c_int,&
+      hipMemcpy2DAsync_i4_1_c_size_t,&
+      hipMemcpy2DAsync_i4_2_c_int,&
+      hipMemcpy2DAsync_i4_2_c_size_t,&
+      hipMemcpy2DAsync_i8_0_c_int,&
+      hipMemcpy2DAsync_i8_0_c_size_t,&
+      hipMemcpy2DAsync_i8_1_c_int,&
+      hipMemcpy2DAsync_i8_1_c_size_t,&
+      hipMemcpy2DAsync_i8_2_c_int,&
+      hipMemcpy2DAsync_i8_2_c_size_t,&
+      hipMemcpy2DAsync_r4_0_c_int,&
+      hipMemcpy2DAsync_r4_0_c_size_t,&
+      hipMemcpy2DAsync_r4_1_c_int,&
+      hipMemcpy2DAsync_r4_1_c_size_t,&
+      hipMemcpy2DAsync_r4_2_c_int,&
+      hipMemcpy2DAsync_r4_2_c_size_t,&
+      hipMemcpy2DAsync_r8_0_c_int,&
+      hipMemcpy2DAsync_r8_0_c_size_t,&
+      hipMemcpy2DAsync_r8_1_c_int,&
+      hipMemcpy2DAsync_r8_1_c_size_t,&
+      hipMemcpy2DAsync_r8_2_c_int,&
+      hipMemcpy2DAsync_r8_2_c_size_t,&
+      hipMemcpy2DAsync_c4_0_c_int,&
+      hipMemcpy2DAsync_c4_0_c_size_t,&
+      hipMemcpy2DAsync_c4_1_c_int,&
+      hipMemcpy2DAsync_c4_1_c_size_t,&
+      hipMemcpy2DAsync_c4_2_c_int,&
+      hipMemcpy2DAsync_c4_2_c_size_t,&
+      hipMemcpy2DAsync_c8_0_c_int,&
+      hipMemcpy2DAsync_c8_0_c_size_t,&
+      hipMemcpy2DAsync_c8_1_c_int,&
+      hipMemcpy2DAsync_c8_1_c_size_t,&
+      hipMemcpy2DAsync_c8_2_c_int,&
+      hipMemcpy2DAsync_c8_2_c_size_t 
 #endif
   end interface
 
@@ -252,8 +668,8 @@ module hipfort_hipmemcpy
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,intent(inout) :: dest
-      logical,target,intent(in)    :: src
+      logical(c_bool),target,intent(inout) :: dest
+      logical(c_bool),target,intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -262,7 +678,7 @@ module hipfort_hipmemcpy
       integer(kind(hipSuccess)) :: hipMemcpy_l_0_c_int
 #endif
       !
-      hipMemcpy_l_0_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*1_8,myKind)
+      hipMemcpy_l_0_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*1_8,myKind)
     end function
                                                               
     function hipMemcpy_l_0_c_size_t(dest,src,length,myKind)
@@ -273,8 +689,8 @@ module hipfort_hipmemcpy
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,intent(inout) :: dest
-      logical,target,intent(in)    :: src
+      logical(c_bool),target,intent(inout) :: dest
+      logical(c_bool),target,intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -283,7 +699,7 @@ module hipfort_hipmemcpy
       integer(kind(hipSuccess)) :: hipMemcpy_l_0_c_size_t
 #endif
       !
-      hipMemcpy_l_0_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*1_8,myKind)
+      hipMemcpy_l_0_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*1_8,myKind)
     end function
 
 function hipMemcpy_l_0(dest,src,myKind)
@@ -294,8 +710,8 @@ function hipMemcpy_l_0(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,intent(inout) :: dest
-      logical,target,intent(in)    :: src
+      logical(c_bool),target,intent(inout) :: dest
+      logical(c_bool),target,intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_l_0 
@@ -303,7 +719,7 @@ function hipMemcpy_l_0(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_l_0
 #endif
       !
-      hipMemcpy_l_0 = hipMemcpy_b(c_loc(dest),c_loc(src),1_8,myKind)
+      hipMemcpy_l_0 = hipMemcpy_(c_loc(dest),c_loc(src),1_8,myKind)
     end function
                                                               
     function hipMemcpy_l_1_c_int(dest,src,length,myKind)
@@ -314,8 +730,8 @@ function hipMemcpy_l_0(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:),intent(inout) :: dest
-      logical,target,dimension(:),intent(in)    :: src
+      logical(c_bool),target,dimension(:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -324,7 +740,7 @@ function hipMemcpy_l_0(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_l_1_c_int
 #endif
       !
-      hipMemcpy_l_1_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*1_8,myKind)
+      hipMemcpy_l_1_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*1_8,myKind)
     end function
                                                               
     function hipMemcpy_l_1_c_size_t(dest,src,length,myKind)
@@ -335,8 +751,8 @@ function hipMemcpy_l_0(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:),intent(inout) :: dest
-      logical,target,dimension(:),intent(in)    :: src
+      logical(c_bool),target,dimension(:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -345,7 +761,7 @@ function hipMemcpy_l_0(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_l_1_c_size_t
 #endif
       !
-      hipMemcpy_l_1_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*1_8,myKind)
+      hipMemcpy_l_1_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*1_8,myKind)
     end function
 
 function hipMemcpy_l_1(dest,src,myKind)
@@ -356,8 +772,8 @@ function hipMemcpy_l_1(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:),intent(inout) :: dest
-      logical,target,dimension(:),intent(in)    :: src
+      logical(c_bool),target,dimension(:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_l_1 
@@ -365,7 +781,7 @@ function hipMemcpy_l_1(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_l_1
 #endif
       !
-      hipMemcpy_l_1 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*1_8,myKind)
+      hipMemcpy_l_1 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*1_8,myKind)
     end function
                                                               
     function hipMemcpy_l_2_c_int(dest,src,length,myKind)
@@ -376,8 +792,8 @@ function hipMemcpy_l_1(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:,:),intent(inout) :: dest
-      logical,target,dimension(:,:),intent(in)    :: src
+      logical(c_bool),target,dimension(:,:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -386,7 +802,7 @@ function hipMemcpy_l_1(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_l_2_c_int
 #endif
       !
-      hipMemcpy_l_2_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*1_8,myKind)
+      hipMemcpy_l_2_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*1_8,myKind)
     end function
                                                               
     function hipMemcpy_l_2_c_size_t(dest,src,length,myKind)
@@ -397,8 +813,8 @@ function hipMemcpy_l_1(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:,:),intent(inout) :: dest
-      logical,target,dimension(:,:),intent(in)    :: src
+      logical(c_bool),target,dimension(:,:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -407,7 +823,7 @@ function hipMemcpy_l_1(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_l_2_c_size_t
 #endif
       !
-      hipMemcpy_l_2_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*1_8,myKind)
+      hipMemcpy_l_2_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*1_8,myKind)
     end function
 
 function hipMemcpy_l_2(dest,src,myKind)
@@ -418,8 +834,8 @@ function hipMemcpy_l_2(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:,:),intent(inout) :: dest
-      logical,target,dimension(:,:),intent(in)    :: src
+      logical(c_bool),target,dimension(:,:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_l_2 
@@ -427,7 +843,7 @@ function hipMemcpy_l_2(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_l_2
 #endif
       !
-      hipMemcpy_l_2 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*1_8,myKind)
+      hipMemcpy_l_2 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*1_8,myKind)
     end function
                                                               
     function hipMemcpy_l_3_c_int(dest,src,length,myKind)
@@ -438,8 +854,8 @@ function hipMemcpy_l_2(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:,:,:),intent(inout) :: dest
-      logical,target,dimension(:,:,:),intent(in)    :: src
+      logical(c_bool),target,dimension(:,:,:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -448,7 +864,7 @@ function hipMemcpy_l_2(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_l_3_c_int
 #endif
       !
-      hipMemcpy_l_3_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*1_8,myKind)
+      hipMemcpy_l_3_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*1_8,myKind)
     end function
                                                               
     function hipMemcpy_l_3_c_size_t(dest,src,length,myKind)
@@ -459,8 +875,8 @@ function hipMemcpy_l_2(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:,:,:),intent(inout) :: dest
-      logical,target,dimension(:,:,:),intent(in)    :: src
+      logical(c_bool),target,dimension(:,:,:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -469,7 +885,7 @@ function hipMemcpy_l_2(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_l_3_c_size_t
 #endif
       !
-      hipMemcpy_l_3_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*1_8,myKind)
+      hipMemcpy_l_3_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*1_8,myKind)
     end function
 
 function hipMemcpy_l_3(dest,src,myKind)
@@ -480,8 +896,8 @@ function hipMemcpy_l_3(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:,:,:),intent(inout) :: dest
-      logical,target,dimension(:,:,:),intent(in)    :: src
+      logical(c_bool),target,dimension(:,:,:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_l_3 
@@ -489,7 +905,7 @@ function hipMemcpy_l_3(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_l_3
 #endif
       !
-      hipMemcpy_l_3 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*1_8,myKind)
+      hipMemcpy_l_3 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*1_8,myKind)
     end function
                                                               
     function hipMemcpy_l_4_c_int(dest,src,length,myKind)
@@ -500,8 +916,8 @@ function hipMemcpy_l_3(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:,:,:,:),intent(inout) :: dest
-      logical,target,dimension(:,:,:,:),intent(in)    :: src
+      logical(c_bool),target,dimension(:,:,:,:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -510,7 +926,7 @@ function hipMemcpy_l_3(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_l_4_c_int
 #endif
       !
-      hipMemcpy_l_4_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*1_8,myKind)
+      hipMemcpy_l_4_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*1_8,myKind)
     end function
                                                               
     function hipMemcpy_l_4_c_size_t(dest,src,length,myKind)
@@ -521,8 +937,8 @@ function hipMemcpy_l_3(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:,:,:,:),intent(inout) :: dest
-      logical,target,dimension(:,:,:,:),intent(in)    :: src
+      logical(c_bool),target,dimension(:,:,:,:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -531,7 +947,7 @@ function hipMemcpy_l_3(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_l_4_c_size_t
 #endif
       !
-      hipMemcpy_l_4_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*1_8,myKind)
+      hipMemcpy_l_4_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*1_8,myKind)
     end function
 
 function hipMemcpy_l_4(dest,src,myKind)
@@ -542,8 +958,8 @@ function hipMemcpy_l_4(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:,:,:,:),intent(inout) :: dest
-      logical,target,dimension(:,:,:,:),intent(in)    :: src
+      logical(c_bool),target,dimension(:,:,:,:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_l_4 
@@ -551,7 +967,7 @@ function hipMemcpy_l_4(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_l_4
 #endif
       !
-      hipMemcpy_l_4 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*1_8,myKind)
+      hipMemcpy_l_4 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*1_8,myKind)
     end function
                                                               
     function hipMemcpy_l_5_c_int(dest,src,length,myKind)
@@ -562,8 +978,8 @@ function hipMemcpy_l_4(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:,:,:,:,:),intent(inout) :: dest
-      logical,target,dimension(:,:,:,:,:),intent(in)    :: src
+      logical(c_bool),target,dimension(:,:,:,:,:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:,:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -572,7 +988,7 @@ function hipMemcpy_l_4(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_l_5_c_int
 #endif
       !
-      hipMemcpy_l_5_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*1_8,myKind)
+      hipMemcpy_l_5_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*1_8,myKind)
     end function
                                                               
     function hipMemcpy_l_5_c_size_t(dest,src,length,myKind)
@@ -583,8 +999,8 @@ function hipMemcpy_l_4(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:,:,:,:,:),intent(inout) :: dest
-      logical,target,dimension(:,:,:,:,:),intent(in)    :: src
+      logical(c_bool),target,dimension(:,:,:,:,:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:,:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -593,7 +1009,7 @@ function hipMemcpy_l_4(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_l_5_c_size_t
 #endif
       !
-      hipMemcpy_l_5_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*1_8,myKind)
+      hipMemcpy_l_5_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*1_8,myKind)
     end function
 
 function hipMemcpy_l_5(dest,src,myKind)
@@ -604,8 +1020,8 @@ function hipMemcpy_l_5(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:,:,:,:,:),intent(inout) :: dest
-      logical,target,dimension(:,:,:,:,:),intent(in)    :: src
+      logical(c_bool),target,dimension(:,:,:,:,:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:,:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_l_5 
@@ -613,7 +1029,7 @@ function hipMemcpy_l_5(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_l_5
 #endif
       !
-      hipMemcpy_l_5 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*1_8,myKind)
+      hipMemcpy_l_5 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*1_8,myKind)
     end function
                                                               
     function hipMemcpy_l_6_c_int(dest,src,length,myKind)
@@ -624,8 +1040,8 @@ function hipMemcpy_l_5(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:,:,:,:,:,:),intent(inout) :: dest
-      logical,target,dimension(:,:,:,:,:,:),intent(in)    :: src
+      logical(c_bool),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:,:,:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -634,7 +1050,7 @@ function hipMemcpy_l_5(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_l_6_c_int
 #endif
       !
-      hipMemcpy_l_6_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*1_8,myKind)
+      hipMemcpy_l_6_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*1_8,myKind)
     end function
                                                               
     function hipMemcpy_l_6_c_size_t(dest,src,length,myKind)
@@ -645,8 +1061,8 @@ function hipMemcpy_l_5(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:,:,:,:,:,:),intent(inout) :: dest
-      logical,target,dimension(:,:,:,:,:,:),intent(in)    :: src
+      logical(c_bool),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:,:,:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -655,7 +1071,7 @@ function hipMemcpy_l_5(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_l_6_c_size_t
 #endif
       !
-      hipMemcpy_l_6_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*1_8,myKind)
+      hipMemcpy_l_6_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*1_8,myKind)
     end function
 
 function hipMemcpy_l_6(dest,src,myKind)
@@ -666,8 +1082,8 @@ function hipMemcpy_l_6(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:,:,:,:,:,:),intent(inout) :: dest
-      logical,target,dimension(:,:,:,:,:,:),intent(in)    :: src
+      logical(c_bool),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:,:,:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_l_6 
@@ -675,7 +1091,7 @@ function hipMemcpy_l_6(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_l_6
 #endif
       !
-      hipMemcpy_l_6 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*1_8,myKind)
+      hipMemcpy_l_6 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*1_8,myKind)
     end function
                                                               
     function hipMemcpy_l_7_c_int(dest,src,length,myKind)
@@ -686,8 +1102,8 @@ function hipMemcpy_l_6(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
-      logical,target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
+      logical(c_bool),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -696,7 +1112,7 @@ function hipMemcpy_l_6(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_l_7_c_int
 #endif
       !
-      hipMemcpy_l_7_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*1_8,myKind)
+      hipMemcpy_l_7_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*1_8,myKind)
     end function
                                                               
     function hipMemcpy_l_7_c_size_t(dest,src,length,myKind)
@@ -707,8 +1123,8 @@ function hipMemcpy_l_6(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
-      logical,target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
+      logical(c_bool),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -717,7 +1133,7 @@ function hipMemcpy_l_6(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_l_7_c_size_t
 #endif
       !
-      hipMemcpy_l_7_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*1_8,myKind)
+      hipMemcpy_l_7_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*1_8,myKind)
     end function
 
 function hipMemcpy_l_7(dest,src,myKind)
@@ -728,8 +1144,8 @@ function hipMemcpy_l_7(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
-      logical,target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
+      logical(c_bool),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_l_7 
@@ -737,7 +1153,7 @@ function hipMemcpy_l_7(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_l_7
 #endif
       !
-      hipMemcpy_l_7 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*1_8,myKind)
+      hipMemcpy_l_7 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*1_8,myKind)
     end function
                                                               
     function hipMemcpy_i4_0_c_int(dest,src,length,myKind)
@@ -748,8 +1164,8 @@ function hipMemcpy_l_7(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,intent(inout) :: dest
-      integer(4),target,intent(in)    :: src
+      integer(c_int),target,intent(inout) :: dest
+      integer(c_int),target,intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -758,7 +1174,7 @@ function hipMemcpy_l_7(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i4_0_c_int
 #endif
       !
-      hipMemcpy_i4_0_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*4_8,myKind)
+      hipMemcpy_i4_0_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*4_8,myKind)
     end function
                                                               
     function hipMemcpy_i4_0_c_size_t(dest,src,length,myKind)
@@ -769,8 +1185,8 @@ function hipMemcpy_l_7(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,intent(inout) :: dest
-      integer(4),target,intent(in)    :: src
+      integer(c_int),target,intent(inout) :: dest
+      integer(c_int),target,intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -779,7 +1195,7 @@ function hipMemcpy_l_7(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i4_0_c_size_t
 #endif
       !
-      hipMemcpy_i4_0_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*4_8,myKind)
+      hipMemcpy_i4_0_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*4_8,myKind)
     end function
 
 function hipMemcpy_i4_0(dest,src,myKind)
@@ -790,8 +1206,8 @@ function hipMemcpy_i4_0(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,intent(inout) :: dest
-      integer(4),target,intent(in)    :: src
+      integer(c_int),target,intent(inout) :: dest
+      integer(c_int),target,intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_i4_0 
@@ -799,7 +1215,7 @@ function hipMemcpy_i4_0(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i4_0
 #endif
       !
-      hipMemcpy_i4_0 = hipMemcpy_b(c_loc(dest),c_loc(src),4_8,myKind)
+      hipMemcpy_i4_0 = hipMemcpy_(c_loc(dest),c_loc(src),4_8,myKind)
     end function
                                                               
     function hipMemcpy_i4_1_c_int(dest,src,length,myKind)
@@ -810,8 +1226,8 @@ function hipMemcpy_i4_0(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:),intent(inout) :: dest
-      integer(4),target,dimension(:),intent(in)    :: src
+      integer(c_int),target,dimension(:),intent(inout) :: dest
+      integer(c_int),target,dimension(:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -820,7 +1236,7 @@ function hipMemcpy_i4_0(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i4_1_c_int
 #endif
       !
-      hipMemcpy_i4_1_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*4_8,myKind)
+      hipMemcpy_i4_1_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*4_8,myKind)
     end function
                                                               
     function hipMemcpy_i4_1_c_size_t(dest,src,length,myKind)
@@ -831,8 +1247,8 @@ function hipMemcpy_i4_0(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:),intent(inout) :: dest
-      integer(4),target,dimension(:),intent(in)    :: src
+      integer(c_int),target,dimension(:),intent(inout) :: dest
+      integer(c_int),target,dimension(:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -841,7 +1257,7 @@ function hipMemcpy_i4_0(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i4_1_c_size_t
 #endif
       !
-      hipMemcpy_i4_1_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*4_8,myKind)
+      hipMemcpy_i4_1_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*4_8,myKind)
     end function
 
 function hipMemcpy_i4_1(dest,src,myKind)
@@ -852,8 +1268,8 @@ function hipMemcpy_i4_1(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:),intent(inout) :: dest
-      integer(4),target,dimension(:),intent(in)    :: src
+      integer(c_int),target,dimension(:),intent(inout) :: dest
+      integer(c_int),target,dimension(:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_i4_1 
@@ -861,7 +1277,7 @@ function hipMemcpy_i4_1(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i4_1
 #endif
       !
-      hipMemcpy_i4_1 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*4_8,myKind)
+      hipMemcpy_i4_1 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*4_8,myKind)
     end function
                                                               
     function hipMemcpy_i4_2_c_int(dest,src,length,myKind)
@@ -872,8 +1288,8 @@ function hipMemcpy_i4_1(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:),intent(inout) :: dest
-      integer(4),target,dimension(:,:),intent(in)    :: src
+      integer(c_int),target,dimension(:,:),intent(inout) :: dest
+      integer(c_int),target,dimension(:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -882,7 +1298,7 @@ function hipMemcpy_i4_1(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i4_2_c_int
 #endif
       !
-      hipMemcpy_i4_2_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*4_8,myKind)
+      hipMemcpy_i4_2_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*4_8,myKind)
     end function
                                                               
     function hipMemcpy_i4_2_c_size_t(dest,src,length,myKind)
@@ -893,8 +1309,8 @@ function hipMemcpy_i4_1(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:),intent(inout) :: dest
-      integer(4),target,dimension(:,:),intent(in)    :: src
+      integer(c_int),target,dimension(:,:),intent(inout) :: dest
+      integer(c_int),target,dimension(:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -903,7 +1319,7 @@ function hipMemcpy_i4_1(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i4_2_c_size_t
 #endif
       !
-      hipMemcpy_i4_2_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*4_8,myKind)
+      hipMemcpy_i4_2_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*4_8,myKind)
     end function
 
 function hipMemcpy_i4_2(dest,src,myKind)
@@ -914,8 +1330,8 @@ function hipMemcpy_i4_2(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:),intent(inout) :: dest
-      integer(4),target,dimension(:,:),intent(in)    :: src
+      integer(c_int),target,dimension(:,:),intent(inout) :: dest
+      integer(c_int),target,dimension(:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_i4_2 
@@ -923,7 +1339,7 @@ function hipMemcpy_i4_2(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i4_2
 #endif
       !
-      hipMemcpy_i4_2 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*4_8,myKind)
+      hipMemcpy_i4_2 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*4_8,myKind)
     end function
                                                               
     function hipMemcpy_i4_3_c_int(dest,src,length,myKind)
@@ -934,8 +1350,8 @@ function hipMemcpy_i4_2(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:,:),intent(inout) :: dest
-      integer(4),target,dimension(:,:,:),intent(in)    :: src
+      integer(c_int),target,dimension(:,:,:),intent(inout) :: dest
+      integer(c_int),target,dimension(:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -944,7 +1360,7 @@ function hipMemcpy_i4_2(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i4_3_c_int
 #endif
       !
-      hipMemcpy_i4_3_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*4_8,myKind)
+      hipMemcpy_i4_3_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*4_8,myKind)
     end function
                                                               
     function hipMemcpy_i4_3_c_size_t(dest,src,length,myKind)
@@ -955,8 +1371,8 @@ function hipMemcpy_i4_2(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:,:),intent(inout) :: dest
-      integer(4),target,dimension(:,:,:),intent(in)    :: src
+      integer(c_int),target,dimension(:,:,:),intent(inout) :: dest
+      integer(c_int),target,dimension(:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -965,7 +1381,7 @@ function hipMemcpy_i4_2(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i4_3_c_size_t
 #endif
       !
-      hipMemcpy_i4_3_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*4_8,myKind)
+      hipMemcpy_i4_3_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*4_8,myKind)
     end function
 
 function hipMemcpy_i4_3(dest,src,myKind)
@@ -976,8 +1392,8 @@ function hipMemcpy_i4_3(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:,:),intent(inout) :: dest
-      integer(4),target,dimension(:,:,:),intent(in)    :: src
+      integer(c_int),target,dimension(:,:,:),intent(inout) :: dest
+      integer(c_int),target,dimension(:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_i4_3 
@@ -985,7 +1401,7 @@ function hipMemcpy_i4_3(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i4_3
 #endif
       !
-      hipMemcpy_i4_3 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*4_8,myKind)
+      hipMemcpy_i4_3 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*4_8,myKind)
     end function
                                                               
     function hipMemcpy_i4_4_c_int(dest,src,length,myKind)
@@ -996,8 +1412,8 @@ function hipMemcpy_i4_3(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:,:,:),intent(inout) :: dest
-      integer(4),target,dimension(:,:,:,:),intent(in)    :: src
+      integer(c_int),target,dimension(:,:,:,:),intent(inout) :: dest
+      integer(c_int),target,dimension(:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -1006,7 +1422,7 @@ function hipMemcpy_i4_3(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i4_4_c_int
 #endif
       !
-      hipMemcpy_i4_4_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*4_8,myKind)
+      hipMemcpy_i4_4_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*4_8,myKind)
     end function
                                                               
     function hipMemcpy_i4_4_c_size_t(dest,src,length,myKind)
@@ -1017,8 +1433,8 @@ function hipMemcpy_i4_3(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:,:,:),intent(inout) :: dest
-      integer(4),target,dimension(:,:,:,:),intent(in)    :: src
+      integer(c_int),target,dimension(:,:,:,:),intent(inout) :: dest
+      integer(c_int),target,dimension(:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -1027,7 +1443,7 @@ function hipMemcpy_i4_3(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i4_4_c_size_t
 #endif
       !
-      hipMemcpy_i4_4_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*4_8,myKind)
+      hipMemcpy_i4_4_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*4_8,myKind)
     end function
 
 function hipMemcpy_i4_4(dest,src,myKind)
@@ -1038,8 +1454,8 @@ function hipMemcpy_i4_4(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:,:,:),intent(inout) :: dest
-      integer(4),target,dimension(:,:,:,:),intent(in)    :: src
+      integer(c_int),target,dimension(:,:,:,:),intent(inout) :: dest
+      integer(c_int),target,dimension(:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_i4_4 
@@ -1047,7 +1463,7 @@ function hipMemcpy_i4_4(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i4_4
 #endif
       !
-      hipMemcpy_i4_4 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*4_8,myKind)
+      hipMemcpy_i4_4 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*4_8,myKind)
     end function
                                                               
     function hipMemcpy_i4_5_c_int(dest,src,length,myKind)
@@ -1058,8 +1474,8 @@ function hipMemcpy_i4_4(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:,:,:,:),intent(inout) :: dest
-      integer(4),target,dimension(:,:,:,:,:),intent(in)    :: src
+      integer(c_int),target,dimension(:,:,:,:,:),intent(inout) :: dest
+      integer(c_int),target,dimension(:,:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -1068,7 +1484,7 @@ function hipMemcpy_i4_4(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i4_5_c_int
 #endif
       !
-      hipMemcpy_i4_5_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*4_8,myKind)
+      hipMemcpy_i4_5_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*4_8,myKind)
     end function
                                                               
     function hipMemcpy_i4_5_c_size_t(dest,src,length,myKind)
@@ -1079,8 +1495,8 @@ function hipMemcpy_i4_4(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:,:,:,:),intent(inout) :: dest
-      integer(4),target,dimension(:,:,:,:,:),intent(in)    :: src
+      integer(c_int),target,dimension(:,:,:,:,:),intent(inout) :: dest
+      integer(c_int),target,dimension(:,:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -1089,7 +1505,7 @@ function hipMemcpy_i4_4(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i4_5_c_size_t
 #endif
       !
-      hipMemcpy_i4_5_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*4_8,myKind)
+      hipMemcpy_i4_5_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*4_8,myKind)
     end function
 
 function hipMemcpy_i4_5(dest,src,myKind)
@@ -1100,8 +1516,8 @@ function hipMemcpy_i4_5(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:,:,:,:),intent(inout) :: dest
-      integer(4),target,dimension(:,:,:,:,:),intent(in)    :: src
+      integer(c_int),target,dimension(:,:,:,:,:),intent(inout) :: dest
+      integer(c_int),target,dimension(:,:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_i4_5 
@@ -1109,7 +1525,7 @@ function hipMemcpy_i4_5(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i4_5
 #endif
       !
-      hipMemcpy_i4_5 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*4_8,myKind)
+      hipMemcpy_i4_5 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*4_8,myKind)
     end function
                                                               
     function hipMemcpy_i4_6_c_int(dest,src,length,myKind)
@@ -1120,8 +1536,8 @@ function hipMemcpy_i4_5(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
-      integer(4),target,dimension(:,:,:,:,:,:),intent(in)    :: src
+      integer(c_int),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
+      integer(c_int),target,dimension(:,:,:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -1130,7 +1546,7 @@ function hipMemcpy_i4_5(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i4_6_c_int
 #endif
       !
-      hipMemcpy_i4_6_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*4_8,myKind)
+      hipMemcpy_i4_6_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*4_8,myKind)
     end function
                                                               
     function hipMemcpy_i4_6_c_size_t(dest,src,length,myKind)
@@ -1141,8 +1557,8 @@ function hipMemcpy_i4_5(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
-      integer(4),target,dimension(:,:,:,:,:,:),intent(in)    :: src
+      integer(c_int),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
+      integer(c_int),target,dimension(:,:,:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -1151,7 +1567,7 @@ function hipMemcpy_i4_5(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i4_6_c_size_t
 #endif
       !
-      hipMemcpy_i4_6_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*4_8,myKind)
+      hipMemcpy_i4_6_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*4_8,myKind)
     end function
 
 function hipMemcpy_i4_6(dest,src,myKind)
@@ -1162,8 +1578,8 @@ function hipMemcpy_i4_6(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
-      integer(4),target,dimension(:,:,:,:,:,:),intent(in)    :: src
+      integer(c_int),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
+      integer(c_int),target,dimension(:,:,:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_i4_6 
@@ -1171,7 +1587,7 @@ function hipMemcpy_i4_6(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i4_6
 #endif
       !
-      hipMemcpy_i4_6 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*4_8,myKind)
+      hipMemcpy_i4_6 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*4_8,myKind)
     end function
                                                               
     function hipMemcpy_i4_7_c_int(dest,src,length,myKind)
@@ -1182,8 +1598,8 @@ function hipMemcpy_i4_6(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
-      integer(4),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
+      integer(c_int),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
+      integer(c_int),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -1192,7 +1608,7 @@ function hipMemcpy_i4_6(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i4_7_c_int
 #endif
       !
-      hipMemcpy_i4_7_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*4_8,myKind)
+      hipMemcpy_i4_7_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*4_8,myKind)
     end function
                                                               
     function hipMemcpy_i4_7_c_size_t(dest,src,length,myKind)
@@ -1203,8 +1619,8 @@ function hipMemcpy_i4_6(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
-      integer(4),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
+      integer(c_int),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
+      integer(c_int),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -1213,7 +1629,7 @@ function hipMemcpy_i4_6(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i4_7_c_size_t
 #endif
       !
-      hipMemcpy_i4_7_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*4_8,myKind)
+      hipMemcpy_i4_7_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*4_8,myKind)
     end function
 
 function hipMemcpy_i4_7(dest,src,myKind)
@@ -1224,8 +1640,8 @@ function hipMemcpy_i4_7(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
-      integer(4),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
+      integer(c_int),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
+      integer(c_int),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_i4_7 
@@ -1233,7 +1649,7 @@ function hipMemcpy_i4_7(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i4_7
 #endif
       !
-      hipMemcpy_i4_7 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*4_8,myKind)
+      hipMemcpy_i4_7 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*4_8,myKind)
     end function
                                                               
     function hipMemcpy_i8_0_c_int(dest,src,length,myKind)
@@ -1244,8 +1660,8 @@ function hipMemcpy_i4_7(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,intent(inout) :: dest
-      integer(8),target,intent(in)    :: src
+      integer(c_long),target,intent(inout) :: dest
+      integer(c_long),target,intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -1254,7 +1670,7 @@ function hipMemcpy_i4_7(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i8_0_c_int
 #endif
       !
-      hipMemcpy_i8_0_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*8_8,myKind)
+      hipMemcpy_i8_0_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*8_8,myKind)
     end function
                                                               
     function hipMemcpy_i8_0_c_size_t(dest,src,length,myKind)
@@ -1265,8 +1681,8 @@ function hipMemcpy_i4_7(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,intent(inout) :: dest
-      integer(8),target,intent(in)    :: src
+      integer(c_long),target,intent(inout) :: dest
+      integer(c_long),target,intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -1275,7 +1691,7 @@ function hipMemcpy_i4_7(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i8_0_c_size_t
 #endif
       !
-      hipMemcpy_i8_0_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*8_8,myKind)
+      hipMemcpy_i8_0_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*8_8,myKind)
     end function
 
 function hipMemcpy_i8_0(dest,src,myKind)
@@ -1286,8 +1702,8 @@ function hipMemcpy_i8_0(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,intent(inout) :: dest
-      integer(8),target,intent(in)    :: src
+      integer(c_long),target,intent(inout) :: dest
+      integer(c_long),target,intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_i8_0 
@@ -1295,7 +1711,7 @@ function hipMemcpy_i8_0(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i8_0
 #endif
       !
-      hipMemcpy_i8_0 = hipMemcpy_b(c_loc(dest),c_loc(src),8_8,myKind)
+      hipMemcpy_i8_0 = hipMemcpy_(c_loc(dest),c_loc(src),8_8,myKind)
     end function
                                                               
     function hipMemcpy_i8_1_c_int(dest,src,length,myKind)
@@ -1306,8 +1722,8 @@ function hipMemcpy_i8_0(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:),intent(inout) :: dest
-      integer(8),target,dimension(:),intent(in)    :: src
+      integer(c_long),target,dimension(:),intent(inout) :: dest
+      integer(c_long),target,dimension(:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -1316,7 +1732,7 @@ function hipMemcpy_i8_0(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i8_1_c_int
 #endif
       !
-      hipMemcpy_i8_1_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*8_8,myKind)
+      hipMemcpy_i8_1_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*8_8,myKind)
     end function
                                                               
     function hipMemcpy_i8_1_c_size_t(dest,src,length,myKind)
@@ -1327,8 +1743,8 @@ function hipMemcpy_i8_0(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:),intent(inout) :: dest
-      integer(8),target,dimension(:),intent(in)    :: src
+      integer(c_long),target,dimension(:),intent(inout) :: dest
+      integer(c_long),target,dimension(:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -1337,7 +1753,7 @@ function hipMemcpy_i8_0(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i8_1_c_size_t
 #endif
       !
-      hipMemcpy_i8_1_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*8_8,myKind)
+      hipMemcpy_i8_1_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*8_8,myKind)
     end function
 
 function hipMemcpy_i8_1(dest,src,myKind)
@@ -1348,8 +1764,8 @@ function hipMemcpy_i8_1(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:),intent(inout) :: dest
-      integer(8),target,dimension(:),intent(in)    :: src
+      integer(c_long),target,dimension(:),intent(inout) :: dest
+      integer(c_long),target,dimension(:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_i8_1 
@@ -1357,7 +1773,7 @@ function hipMemcpy_i8_1(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i8_1
 #endif
       !
-      hipMemcpy_i8_1 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*8_8,myKind)
+      hipMemcpy_i8_1 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*8_8,myKind)
     end function
                                                               
     function hipMemcpy_i8_2_c_int(dest,src,length,myKind)
@@ -1368,8 +1784,8 @@ function hipMemcpy_i8_1(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:),intent(inout) :: dest
-      integer(8),target,dimension(:,:),intent(in)    :: src
+      integer(c_long),target,dimension(:,:),intent(inout) :: dest
+      integer(c_long),target,dimension(:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -1378,7 +1794,7 @@ function hipMemcpy_i8_1(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i8_2_c_int
 #endif
       !
-      hipMemcpy_i8_2_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*8_8,myKind)
+      hipMemcpy_i8_2_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*8_8,myKind)
     end function
                                                               
     function hipMemcpy_i8_2_c_size_t(dest,src,length,myKind)
@@ -1389,8 +1805,8 @@ function hipMemcpy_i8_1(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:),intent(inout) :: dest
-      integer(8),target,dimension(:,:),intent(in)    :: src
+      integer(c_long),target,dimension(:,:),intent(inout) :: dest
+      integer(c_long),target,dimension(:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -1399,7 +1815,7 @@ function hipMemcpy_i8_1(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i8_2_c_size_t
 #endif
       !
-      hipMemcpy_i8_2_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*8_8,myKind)
+      hipMemcpy_i8_2_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*8_8,myKind)
     end function
 
 function hipMemcpy_i8_2(dest,src,myKind)
@@ -1410,8 +1826,8 @@ function hipMemcpy_i8_2(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:),intent(inout) :: dest
-      integer(8),target,dimension(:,:),intent(in)    :: src
+      integer(c_long),target,dimension(:,:),intent(inout) :: dest
+      integer(c_long),target,dimension(:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_i8_2 
@@ -1419,7 +1835,7 @@ function hipMemcpy_i8_2(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i8_2
 #endif
       !
-      hipMemcpy_i8_2 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*8_8,myKind)
+      hipMemcpy_i8_2 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*8_8,myKind)
     end function
                                                               
     function hipMemcpy_i8_3_c_int(dest,src,length,myKind)
@@ -1430,8 +1846,8 @@ function hipMemcpy_i8_2(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:,:),intent(inout) :: dest
-      integer(8),target,dimension(:,:,:),intent(in)    :: src
+      integer(c_long),target,dimension(:,:,:),intent(inout) :: dest
+      integer(c_long),target,dimension(:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -1440,7 +1856,7 @@ function hipMemcpy_i8_2(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i8_3_c_int
 #endif
       !
-      hipMemcpy_i8_3_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*8_8,myKind)
+      hipMemcpy_i8_3_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*8_8,myKind)
     end function
                                                               
     function hipMemcpy_i8_3_c_size_t(dest,src,length,myKind)
@@ -1451,8 +1867,8 @@ function hipMemcpy_i8_2(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:,:),intent(inout) :: dest
-      integer(8),target,dimension(:,:,:),intent(in)    :: src
+      integer(c_long),target,dimension(:,:,:),intent(inout) :: dest
+      integer(c_long),target,dimension(:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -1461,7 +1877,7 @@ function hipMemcpy_i8_2(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i8_3_c_size_t
 #endif
       !
-      hipMemcpy_i8_3_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*8_8,myKind)
+      hipMemcpy_i8_3_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*8_8,myKind)
     end function
 
 function hipMemcpy_i8_3(dest,src,myKind)
@@ -1472,8 +1888,8 @@ function hipMemcpy_i8_3(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:,:),intent(inout) :: dest
-      integer(8),target,dimension(:,:,:),intent(in)    :: src
+      integer(c_long),target,dimension(:,:,:),intent(inout) :: dest
+      integer(c_long),target,dimension(:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_i8_3 
@@ -1481,7 +1897,7 @@ function hipMemcpy_i8_3(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i8_3
 #endif
       !
-      hipMemcpy_i8_3 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*8_8,myKind)
+      hipMemcpy_i8_3 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*8_8,myKind)
     end function
                                                               
     function hipMemcpy_i8_4_c_int(dest,src,length,myKind)
@@ -1492,8 +1908,8 @@ function hipMemcpy_i8_3(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:,:,:),intent(inout) :: dest
-      integer(8),target,dimension(:,:,:,:),intent(in)    :: src
+      integer(c_long),target,dimension(:,:,:,:),intent(inout) :: dest
+      integer(c_long),target,dimension(:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -1502,7 +1918,7 @@ function hipMemcpy_i8_3(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i8_4_c_int
 #endif
       !
-      hipMemcpy_i8_4_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*8_8,myKind)
+      hipMemcpy_i8_4_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*8_8,myKind)
     end function
                                                               
     function hipMemcpy_i8_4_c_size_t(dest,src,length,myKind)
@@ -1513,8 +1929,8 @@ function hipMemcpy_i8_3(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:,:,:),intent(inout) :: dest
-      integer(8),target,dimension(:,:,:,:),intent(in)    :: src
+      integer(c_long),target,dimension(:,:,:,:),intent(inout) :: dest
+      integer(c_long),target,dimension(:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -1523,7 +1939,7 @@ function hipMemcpy_i8_3(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i8_4_c_size_t
 #endif
       !
-      hipMemcpy_i8_4_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*8_8,myKind)
+      hipMemcpy_i8_4_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*8_8,myKind)
     end function
 
 function hipMemcpy_i8_4(dest,src,myKind)
@@ -1534,8 +1950,8 @@ function hipMemcpy_i8_4(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:,:,:),intent(inout) :: dest
-      integer(8),target,dimension(:,:,:,:),intent(in)    :: src
+      integer(c_long),target,dimension(:,:,:,:),intent(inout) :: dest
+      integer(c_long),target,dimension(:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_i8_4 
@@ -1543,7 +1959,7 @@ function hipMemcpy_i8_4(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i8_4
 #endif
       !
-      hipMemcpy_i8_4 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*8_8,myKind)
+      hipMemcpy_i8_4 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*8_8,myKind)
     end function
                                                               
     function hipMemcpy_i8_5_c_int(dest,src,length,myKind)
@@ -1554,8 +1970,8 @@ function hipMemcpy_i8_4(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:,:,:,:),intent(inout) :: dest
-      integer(8),target,dimension(:,:,:,:,:),intent(in)    :: src
+      integer(c_long),target,dimension(:,:,:,:,:),intent(inout) :: dest
+      integer(c_long),target,dimension(:,:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -1564,7 +1980,7 @@ function hipMemcpy_i8_4(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i8_5_c_int
 #endif
       !
-      hipMemcpy_i8_5_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*8_8,myKind)
+      hipMemcpy_i8_5_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*8_8,myKind)
     end function
                                                               
     function hipMemcpy_i8_5_c_size_t(dest,src,length,myKind)
@@ -1575,8 +1991,8 @@ function hipMemcpy_i8_4(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:,:,:,:),intent(inout) :: dest
-      integer(8),target,dimension(:,:,:,:,:),intent(in)    :: src
+      integer(c_long),target,dimension(:,:,:,:,:),intent(inout) :: dest
+      integer(c_long),target,dimension(:,:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -1585,7 +2001,7 @@ function hipMemcpy_i8_4(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i8_5_c_size_t
 #endif
       !
-      hipMemcpy_i8_5_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*8_8,myKind)
+      hipMemcpy_i8_5_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*8_8,myKind)
     end function
 
 function hipMemcpy_i8_5(dest,src,myKind)
@@ -1596,8 +2012,8 @@ function hipMemcpy_i8_5(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:,:,:,:),intent(inout) :: dest
-      integer(8),target,dimension(:,:,:,:,:),intent(in)    :: src
+      integer(c_long),target,dimension(:,:,:,:,:),intent(inout) :: dest
+      integer(c_long),target,dimension(:,:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_i8_5 
@@ -1605,7 +2021,7 @@ function hipMemcpy_i8_5(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i8_5
 #endif
       !
-      hipMemcpy_i8_5 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*8_8,myKind)
+      hipMemcpy_i8_5 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*8_8,myKind)
     end function
                                                               
     function hipMemcpy_i8_6_c_int(dest,src,length,myKind)
@@ -1616,8 +2032,8 @@ function hipMemcpy_i8_5(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
-      integer(8),target,dimension(:,:,:,:,:,:),intent(in)    :: src
+      integer(c_long),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
+      integer(c_long),target,dimension(:,:,:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -1626,7 +2042,7 @@ function hipMemcpy_i8_5(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i8_6_c_int
 #endif
       !
-      hipMemcpy_i8_6_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*8_8,myKind)
+      hipMemcpy_i8_6_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*8_8,myKind)
     end function
                                                               
     function hipMemcpy_i8_6_c_size_t(dest,src,length,myKind)
@@ -1637,8 +2053,8 @@ function hipMemcpy_i8_5(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
-      integer(8),target,dimension(:,:,:,:,:,:),intent(in)    :: src
+      integer(c_long),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
+      integer(c_long),target,dimension(:,:,:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -1647,7 +2063,7 @@ function hipMemcpy_i8_5(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i8_6_c_size_t
 #endif
       !
-      hipMemcpy_i8_6_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*8_8,myKind)
+      hipMemcpy_i8_6_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*8_8,myKind)
     end function
 
 function hipMemcpy_i8_6(dest,src,myKind)
@@ -1658,8 +2074,8 @@ function hipMemcpy_i8_6(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
-      integer(8),target,dimension(:,:,:,:,:,:),intent(in)    :: src
+      integer(c_long),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
+      integer(c_long),target,dimension(:,:,:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_i8_6 
@@ -1667,7 +2083,7 @@ function hipMemcpy_i8_6(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i8_6
 #endif
       !
-      hipMemcpy_i8_6 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*8_8,myKind)
+      hipMemcpy_i8_6 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*8_8,myKind)
     end function
                                                               
     function hipMemcpy_i8_7_c_int(dest,src,length,myKind)
@@ -1678,8 +2094,8 @@ function hipMemcpy_i8_6(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
-      integer(8),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
+      integer(c_long),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
+      integer(c_long),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -1688,7 +2104,7 @@ function hipMemcpy_i8_6(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i8_7_c_int
 #endif
       !
-      hipMemcpy_i8_7_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*8_8,myKind)
+      hipMemcpy_i8_7_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*8_8,myKind)
     end function
                                                               
     function hipMemcpy_i8_7_c_size_t(dest,src,length,myKind)
@@ -1699,8 +2115,8 @@ function hipMemcpy_i8_6(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
-      integer(8),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
+      integer(c_long),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
+      integer(c_long),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -1709,7 +2125,7 @@ function hipMemcpy_i8_6(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i8_7_c_size_t
 #endif
       !
-      hipMemcpy_i8_7_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*8_8,myKind)
+      hipMemcpy_i8_7_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*8_8,myKind)
     end function
 
 function hipMemcpy_i8_7(dest,src,myKind)
@@ -1720,8 +2136,8 @@ function hipMemcpy_i8_7(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
-      integer(8),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
+      integer(c_long),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
+      integer(c_long),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_i8_7 
@@ -1729,7 +2145,7 @@ function hipMemcpy_i8_7(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_i8_7
 #endif
       !
-      hipMemcpy_i8_7 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*8_8,myKind)
+      hipMemcpy_i8_7 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*8_8,myKind)
     end function
                                                               
     function hipMemcpy_r4_0_c_int(dest,src,length,myKind)
@@ -1740,8 +2156,8 @@ function hipMemcpy_i8_7(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,intent(inout) :: dest
-      real(4),target,intent(in)    :: src
+      real(c_float),target,intent(inout) :: dest
+      real(c_float),target,intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -1750,7 +2166,7 @@ function hipMemcpy_i8_7(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r4_0_c_int
 #endif
       !
-      hipMemcpy_r4_0_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*4_8,myKind)
+      hipMemcpy_r4_0_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*4_8,myKind)
     end function
                                                               
     function hipMemcpy_r4_0_c_size_t(dest,src,length,myKind)
@@ -1761,8 +2177,8 @@ function hipMemcpy_i8_7(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,intent(inout) :: dest
-      real(4),target,intent(in)    :: src
+      real(c_float),target,intent(inout) :: dest
+      real(c_float),target,intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -1771,7 +2187,7 @@ function hipMemcpy_i8_7(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r4_0_c_size_t
 #endif
       !
-      hipMemcpy_r4_0_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*4_8,myKind)
+      hipMemcpy_r4_0_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*4_8,myKind)
     end function
 
 function hipMemcpy_r4_0(dest,src,myKind)
@@ -1782,8 +2198,8 @@ function hipMemcpy_r4_0(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,intent(inout) :: dest
-      real(4),target,intent(in)    :: src
+      real(c_float),target,intent(inout) :: dest
+      real(c_float),target,intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_r4_0 
@@ -1791,7 +2207,7 @@ function hipMemcpy_r4_0(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r4_0
 #endif
       !
-      hipMemcpy_r4_0 = hipMemcpy_b(c_loc(dest),c_loc(src),4_8,myKind)
+      hipMemcpy_r4_0 = hipMemcpy_(c_loc(dest),c_loc(src),4_8,myKind)
     end function
                                                               
     function hipMemcpy_r4_1_c_int(dest,src,length,myKind)
@@ -1802,8 +2218,8 @@ function hipMemcpy_r4_0(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:),intent(inout) :: dest
-      real(4),target,dimension(:),intent(in)    :: src
+      real(c_float),target,dimension(:),intent(inout) :: dest
+      real(c_float),target,dimension(:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -1812,7 +2228,7 @@ function hipMemcpy_r4_0(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r4_1_c_int
 #endif
       !
-      hipMemcpy_r4_1_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*4_8,myKind)
+      hipMemcpy_r4_1_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*4_8,myKind)
     end function
                                                               
     function hipMemcpy_r4_1_c_size_t(dest,src,length,myKind)
@@ -1823,8 +2239,8 @@ function hipMemcpy_r4_0(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:),intent(inout) :: dest
-      real(4),target,dimension(:),intent(in)    :: src
+      real(c_float),target,dimension(:),intent(inout) :: dest
+      real(c_float),target,dimension(:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -1833,7 +2249,7 @@ function hipMemcpy_r4_0(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r4_1_c_size_t
 #endif
       !
-      hipMemcpy_r4_1_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*4_8,myKind)
+      hipMemcpy_r4_1_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*4_8,myKind)
     end function
 
 function hipMemcpy_r4_1(dest,src,myKind)
@@ -1844,8 +2260,8 @@ function hipMemcpy_r4_1(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:),intent(inout) :: dest
-      real(4),target,dimension(:),intent(in)    :: src
+      real(c_float),target,dimension(:),intent(inout) :: dest
+      real(c_float),target,dimension(:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_r4_1 
@@ -1853,7 +2269,7 @@ function hipMemcpy_r4_1(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r4_1
 #endif
       !
-      hipMemcpy_r4_1 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*4_8,myKind)
+      hipMemcpy_r4_1 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*4_8,myKind)
     end function
                                                               
     function hipMemcpy_r4_2_c_int(dest,src,length,myKind)
@@ -1864,8 +2280,8 @@ function hipMemcpy_r4_1(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:,:),intent(inout) :: dest
-      real(4),target,dimension(:,:),intent(in)    :: src
+      real(c_float),target,dimension(:,:),intent(inout) :: dest
+      real(c_float),target,dimension(:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -1874,7 +2290,7 @@ function hipMemcpy_r4_1(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r4_2_c_int
 #endif
       !
-      hipMemcpy_r4_2_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*4_8,myKind)
+      hipMemcpy_r4_2_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*4_8,myKind)
     end function
                                                               
     function hipMemcpy_r4_2_c_size_t(dest,src,length,myKind)
@@ -1885,8 +2301,8 @@ function hipMemcpy_r4_1(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:,:),intent(inout) :: dest
-      real(4),target,dimension(:,:),intent(in)    :: src
+      real(c_float),target,dimension(:,:),intent(inout) :: dest
+      real(c_float),target,dimension(:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -1895,7 +2311,7 @@ function hipMemcpy_r4_1(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r4_2_c_size_t
 #endif
       !
-      hipMemcpy_r4_2_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*4_8,myKind)
+      hipMemcpy_r4_2_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*4_8,myKind)
     end function
 
 function hipMemcpy_r4_2(dest,src,myKind)
@@ -1906,8 +2322,8 @@ function hipMemcpy_r4_2(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:,:),intent(inout) :: dest
-      real(4),target,dimension(:,:),intent(in)    :: src
+      real(c_float),target,dimension(:,:),intent(inout) :: dest
+      real(c_float),target,dimension(:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_r4_2 
@@ -1915,7 +2331,7 @@ function hipMemcpy_r4_2(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r4_2
 #endif
       !
-      hipMemcpy_r4_2 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*4_8,myKind)
+      hipMemcpy_r4_2 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*4_8,myKind)
     end function
                                                               
     function hipMemcpy_r4_3_c_int(dest,src,length,myKind)
@@ -1926,8 +2342,8 @@ function hipMemcpy_r4_2(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:,:,:),intent(inout) :: dest
-      real(4),target,dimension(:,:,:),intent(in)    :: src
+      real(c_float),target,dimension(:,:,:),intent(inout) :: dest
+      real(c_float),target,dimension(:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -1936,7 +2352,7 @@ function hipMemcpy_r4_2(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r4_3_c_int
 #endif
       !
-      hipMemcpy_r4_3_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*4_8,myKind)
+      hipMemcpy_r4_3_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*4_8,myKind)
     end function
                                                               
     function hipMemcpy_r4_3_c_size_t(dest,src,length,myKind)
@@ -1947,8 +2363,8 @@ function hipMemcpy_r4_2(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:,:,:),intent(inout) :: dest
-      real(4),target,dimension(:,:,:),intent(in)    :: src
+      real(c_float),target,dimension(:,:,:),intent(inout) :: dest
+      real(c_float),target,dimension(:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -1957,7 +2373,7 @@ function hipMemcpy_r4_2(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r4_3_c_size_t
 #endif
       !
-      hipMemcpy_r4_3_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*4_8,myKind)
+      hipMemcpy_r4_3_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*4_8,myKind)
     end function
 
 function hipMemcpy_r4_3(dest,src,myKind)
@@ -1968,8 +2384,8 @@ function hipMemcpy_r4_3(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:,:,:),intent(inout) :: dest
-      real(4),target,dimension(:,:,:),intent(in)    :: src
+      real(c_float),target,dimension(:,:,:),intent(inout) :: dest
+      real(c_float),target,dimension(:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_r4_3 
@@ -1977,7 +2393,7 @@ function hipMemcpy_r4_3(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r4_3
 #endif
       !
-      hipMemcpy_r4_3 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*4_8,myKind)
+      hipMemcpy_r4_3 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*4_8,myKind)
     end function
                                                               
     function hipMemcpy_r4_4_c_int(dest,src,length,myKind)
@@ -1988,8 +2404,8 @@ function hipMemcpy_r4_3(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:,:,:,:),intent(inout) :: dest
-      real(4),target,dimension(:,:,:,:),intent(in)    :: src
+      real(c_float),target,dimension(:,:,:,:),intent(inout) :: dest
+      real(c_float),target,dimension(:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -1998,7 +2414,7 @@ function hipMemcpy_r4_3(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r4_4_c_int
 #endif
       !
-      hipMemcpy_r4_4_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*4_8,myKind)
+      hipMemcpy_r4_4_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*4_8,myKind)
     end function
                                                               
     function hipMemcpy_r4_4_c_size_t(dest,src,length,myKind)
@@ -2009,8 +2425,8 @@ function hipMemcpy_r4_3(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:,:,:,:),intent(inout) :: dest
-      real(4),target,dimension(:,:,:,:),intent(in)    :: src
+      real(c_float),target,dimension(:,:,:,:),intent(inout) :: dest
+      real(c_float),target,dimension(:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -2019,7 +2435,7 @@ function hipMemcpy_r4_3(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r4_4_c_size_t
 #endif
       !
-      hipMemcpy_r4_4_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*4_8,myKind)
+      hipMemcpy_r4_4_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*4_8,myKind)
     end function
 
 function hipMemcpy_r4_4(dest,src,myKind)
@@ -2030,8 +2446,8 @@ function hipMemcpy_r4_4(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:,:,:,:),intent(inout) :: dest
-      real(4),target,dimension(:,:,:,:),intent(in)    :: src
+      real(c_float),target,dimension(:,:,:,:),intent(inout) :: dest
+      real(c_float),target,dimension(:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_r4_4 
@@ -2039,7 +2455,7 @@ function hipMemcpy_r4_4(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r4_4
 #endif
       !
-      hipMemcpy_r4_4 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*4_8,myKind)
+      hipMemcpy_r4_4 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*4_8,myKind)
     end function
                                                               
     function hipMemcpy_r4_5_c_int(dest,src,length,myKind)
@@ -2050,8 +2466,8 @@ function hipMemcpy_r4_4(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:,:,:,:,:),intent(inout) :: dest
-      real(4),target,dimension(:,:,:,:,:),intent(in)    :: src
+      real(c_float),target,dimension(:,:,:,:,:),intent(inout) :: dest
+      real(c_float),target,dimension(:,:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -2060,7 +2476,7 @@ function hipMemcpy_r4_4(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r4_5_c_int
 #endif
       !
-      hipMemcpy_r4_5_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*4_8,myKind)
+      hipMemcpy_r4_5_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*4_8,myKind)
     end function
                                                               
     function hipMemcpy_r4_5_c_size_t(dest,src,length,myKind)
@@ -2071,8 +2487,8 @@ function hipMemcpy_r4_4(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:,:,:,:,:),intent(inout) :: dest
-      real(4),target,dimension(:,:,:,:,:),intent(in)    :: src
+      real(c_float),target,dimension(:,:,:,:,:),intent(inout) :: dest
+      real(c_float),target,dimension(:,:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -2081,7 +2497,7 @@ function hipMemcpy_r4_4(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r4_5_c_size_t
 #endif
       !
-      hipMemcpy_r4_5_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*4_8,myKind)
+      hipMemcpy_r4_5_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*4_8,myKind)
     end function
 
 function hipMemcpy_r4_5(dest,src,myKind)
@@ -2092,8 +2508,8 @@ function hipMemcpy_r4_5(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:,:,:,:,:),intent(inout) :: dest
-      real(4),target,dimension(:,:,:,:,:),intent(in)    :: src
+      real(c_float),target,dimension(:,:,:,:,:),intent(inout) :: dest
+      real(c_float),target,dimension(:,:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_r4_5 
@@ -2101,7 +2517,7 @@ function hipMemcpy_r4_5(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r4_5
 #endif
       !
-      hipMemcpy_r4_5 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*4_8,myKind)
+      hipMemcpy_r4_5 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*4_8,myKind)
     end function
                                                               
     function hipMemcpy_r4_6_c_int(dest,src,length,myKind)
@@ -2112,8 +2528,8 @@ function hipMemcpy_r4_5(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
-      real(4),target,dimension(:,:,:,:,:,:),intent(in)    :: src
+      real(c_float),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
+      real(c_float),target,dimension(:,:,:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -2122,7 +2538,7 @@ function hipMemcpy_r4_5(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r4_6_c_int
 #endif
       !
-      hipMemcpy_r4_6_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*4_8,myKind)
+      hipMemcpy_r4_6_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*4_8,myKind)
     end function
                                                               
     function hipMemcpy_r4_6_c_size_t(dest,src,length,myKind)
@@ -2133,8 +2549,8 @@ function hipMemcpy_r4_5(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
-      real(4),target,dimension(:,:,:,:,:,:),intent(in)    :: src
+      real(c_float),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
+      real(c_float),target,dimension(:,:,:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -2143,7 +2559,7 @@ function hipMemcpy_r4_5(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r4_6_c_size_t
 #endif
       !
-      hipMemcpy_r4_6_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*4_8,myKind)
+      hipMemcpy_r4_6_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*4_8,myKind)
     end function
 
 function hipMemcpy_r4_6(dest,src,myKind)
@@ -2154,8 +2570,8 @@ function hipMemcpy_r4_6(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
-      real(4),target,dimension(:,:,:,:,:,:),intent(in)    :: src
+      real(c_float),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
+      real(c_float),target,dimension(:,:,:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_r4_6 
@@ -2163,7 +2579,7 @@ function hipMemcpy_r4_6(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r4_6
 #endif
       !
-      hipMemcpy_r4_6 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*4_8,myKind)
+      hipMemcpy_r4_6 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*4_8,myKind)
     end function
                                                               
     function hipMemcpy_r4_7_c_int(dest,src,length,myKind)
@@ -2174,8 +2590,8 @@ function hipMemcpy_r4_6(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
-      real(4),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
+      real(c_float),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
+      real(c_float),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -2184,7 +2600,7 @@ function hipMemcpy_r4_6(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r4_7_c_int
 #endif
       !
-      hipMemcpy_r4_7_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*4_8,myKind)
+      hipMemcpy_r4_7_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*4_8,myKind)
     end function
                                                               
     function hipMemcpy_r4_7_c_size_t(dest,src,length,myKind)
@@ -2195,8 +2611,8 @@ function hipMemcpy_r4_6(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
-      real(4),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
+      real(c_float),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
+      real(c_float),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -2205,7 +2621,7 @@ function hipMemcpy_r4_6(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r4_7_c_size_t
 #endif
       !
-      hipMemcpy_r4_7_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*4_8,myKind)
+      hipMemcpy_r4_7_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*4_8,myKind)
     end function
 
 function hipMemcpy_r4_7(dest,src,myKind)
@@ -2216,8 +2632,8 @@ function hipMemcpy_r4_7(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
-      real(4),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
+      real(c_float),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
+      real(c_float),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_r4_7 
@@ -2225,7 +2641,7 @@ function hipMemcpy_r4_7(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r4_7
 #endif
       !
-      hipMemcpy_r4_7 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*4_8,myKind)
+      hipMemcpy_r4_7 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*4_8,myKind)
     end function
                                                               
     function hipMemcpy_r8_0_c_int(dest,src,length,myKind)
@@ -2236,8 +2652,8 @@ function hipMemcpy_r4_7(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,intent(inout) :: dest
-      real(8),target,intent(in)    :: src
+      real(c_double),target,intent(inout) :: dest
+      real(c_double),target,intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -2246,7 +2662,7 @@ function hipMemcpy_r4_7(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r8_0_c_int
 #endif
       !
-      hipMemcpy_r8_0_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*8_8,myKind)
+      hipMemcpy_r8_0_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*8_8,myKind)
     end function
                                                               
     function hipMemcpy_r8_0_c_size_t(dest,src,length,myKind)
@@ -2257,8 +2673,8 @@ function hipMemcpy_r4_7(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,intent(inout) :: dest
-      real(8),target,intent(in)    :: src
+      real(c_double),target,intent(inout) :: dest
+      real(c_double),target,intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -2267,7 +2683,7 @@ function hipMemcpy_r4_7(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r8_0_c_size_t
 #endif
       !
-      hipMemcpy_r8_0_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*8_8,myKind)
+      hipMemcpy_r8_0_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*8_8,myKind)
     end function
 
 function hipMemcpy_r8_0(dest,src,myKind)
@@ -2278,8 +2694,8 @@ function hipMemcpy_r8_0(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,intent(inout) :: dest
-      real(8),target,intent(in)    :: src
+      real(c_double),target,intent(inout) :: dest
+      real(c_double),target,intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_r8_0 
@@ -2287,7 +2703,7 @@ function hipMemcpy_r8_0(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r8_0
 #endif
       !
-      hipMemcpy_r8_0 = hipMemcpy_b(c_loc(dest),c_loc(src),8_8,myKind)
+      hipMemcpy_r8_0 = hipMemcpy_(c_loc(dest),c_loc(src),8_8,myKind)
     end function
                                                               
     function hipMemcpy_r8_1_c_int(dest,src,length,myKind)
@@ -2298,8 +2714,8 @@ function hipMemcpy_r8_0(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:),intent(inout) :: dest
-      real(8),target,dimension(:),intent(in)    :: src
+      real(c_double),target,dimension(:),intent(inout) :: dest
+      real(c_double),target,dimension(:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -2308,7 +2724,7 @@ function hipMemcpy_r8_0(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r8_1_c_int
 #endif
       !
-      hipMemcpy_r8_1_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*8_8,myKind)
+      hipMemcpy_r8_1_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*8_8,myKind)
     end function
                                                               
     function hipMemcpy_r8_1_c_size_t(dest,src,length,myKind)
@@ -2319,8 +2735,8 @@ function hipMemcpy_r8_0(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:),intent(inout) :: dest
-      real(8),target,dimension(:),intent(in)    :: src
+      real(c_double),target,dimension(:),intent(inout) :: dest
+      real(c_double),target,dimension(:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -2329,7 +2745,7 @@ function hipMemcpy_r8_0(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r8_1_c_size_t
 #endif
       !
-      hipMemcpy_r8_1_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*8_8,myKind)
+      hipMemcpy_r8_1_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*8_8,myKind)
     end function
 
 function hipMemcpy_r8_1(dest,src,myKind)
@@ -2340,8 +2756,8 @@ function hipMemcpy_r8_1(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:),intent(inout) :: dest
-      real(8),target,dimension(:),intent(in)    :: src
+      real(c_double),target,dimension(:),intent(inout) :: dest
+      real(c_double),target,dimension(:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_r8_1 
@@ -2349,7 +2765,7 @@ function hipMemcpy_r8_1(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r8_1
 #endif
       !
-      hipMemcpy_r8_1 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*8_8,myKind)
+      hipMemcpy_r8_1 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*8_8,myKind)
     end function
                                                               
     function hipMemcpy_r8_2_c_int(dest,src,length,myKind)
@@ -2360,8 +2776,8 @@ function hipMemcpy_r8_1(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:,:),intent(inout) :: dest
-      real(8),target,dimension(:,:),intent(in)    :: src
+      real(c_double),target,dimension(:,:),intent(inout) :: dest
+      real(c_double),target,dimension(:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -2370,7 +2786,7 @@ function hipMemcpy_r8_1(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r8_2_c_int
 #endif
       !
-      hipMemcpy_r8_2_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*8_8,myKind)
+      hipMemcpy_r8_2_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*8_8,myKind)
     end function
                                                               
     function hipMemcpy_r8_2_c_size_t(dest,src,length,myKind)
@@ -2381,8 +2797,8 @@ function hipMemcpy_r8_1(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:,:),intent(inout) :: dest
-      real(8),target,dimension(:,:),intent(in)    :: src
+      real(c_double),target,dimension(:,:),intent(inout) :: dest
+      real(c_double),target,dimension(:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -2391,7 +2807,7 @@ function hipMemcpy_r8_1(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r8_2_c_size_t
 #endif
       !
-      hipMemcpy_r8_2_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*8_8,myKind)
+      hipMemcpy_r8_2_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*8_8,myKind)
     end function
 
 function hipMemcpy_r8_2(dest,src,myKind)
@@ -2402,8 +2818,8 @@ function hipMemcpy_r8_2(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:,:),intent(inout) :: dest
-      real(8),target,dimension(:,:),intent(in)    :: src
+      real(c_double),target,dimension(:,:),intent(inout) :: dest
+      real(c_double),target,dimension(:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_r8_2 
@@ -2411,7 +2827,7 @@ function hipMemcpy_r8_2(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r8_2
 #endif
       !
-      hipMemcpy_r8_2 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*8_8,myKind)
+      hipMemcpy_r8_2 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*8_8,myKind)
     end function
                                                               
     function hipMemcpy_r8_3_c_int(dest,src,length,myKind)
@@ -2422,8 +2838,8 @@ function hipMemcpy_r8_2(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:,:,:),intent(inout) :: dest
-      real(8),target,dimension(:,:,:),intent(in)    :: src
+      real(c_double),target,dimension(:,:,:),intent(inout) :: dest
+      real(c_double),target,dimension(:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -2432,7 +2848,7 @@ function hipMemcpy_r8_2(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r8_3_c_int
 #endif
       !
-      hipMemcpy_r8_3_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*8_8,myKind)
+      hipMemcpy_r8_3_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*8_8,myKind)
     end function
                                                               
     function hipMemcpy_r8_3_c_size_t(dest,src,length,myKind)
@@ -2443,8 +2859,8 @@ function hipMemcpy_r8_2(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:,:,:),intent(inout) :: dest
-      real(8),target,dimension(:,:,:),intent(in)    :: src
+      real(c_double),target,dimension(:,:,:),intent(inout) :: dest
+      real(c_double),target,dimension(:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -2453,7 +2869,7 @@ function hipMemcpy_r8_2(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r8_3_c_size_t
 #endif
       !
-      hipMemcpy_r8_3_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*8_8,myKind)
+      hipMemcpy_r8_3_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*8_8,myKind)
     end function
 
 function hipMemcpy_r8_3(dest,src,myKind)
@@ -2464,8 +2880,8 @@ function hipMemcpy_r8_3(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:,:,:),intent(inout) :: dest
-      real(8),target,dimension(:,:,:),intent(in)    :: src
+      real(c_double),target,dimension(:,:,:),intent(inout) :: dest
+      real(c_double),target,dimension(:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_r8_3 
@@ -2473,7 +2889,7 @@ function hipMemcpy_r8_3(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r8_3
 #endif
       !
-      hipMemcpy_r8_3 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*8_8,myKind)
+      hipMemcpy_r8_3 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*8_8,myKind)
     end function
                                                               
     function hipMemcpy_r8_4_c_int(dest,src,length,myKind)
@@ -2484,8 +2900,8 @@ function hipMemcpy_r8_3(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:,:,:,:),intent(inout) :: dest
-      real(8),target,dimension(:,:,:,:),intent(in)    :: src
+      real(c_double),target,dimension(:,:,:,:),intent(inout) :: dest
+      real(c_double),target,dimension(:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -2494,7 +2910,7 @@ function hipMemcpy_r8_3(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r8_4_c_int
 #endif
       !
-      hipMemcpy_r8_4_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*8_8,myKind)
+      hipMemcpy_r8_4_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*8_8,myKind)
     end function
                                                               
     function hipMemcpy_r8_4_c_size_t(dest,src,length,myKind)
@@ -2505,8 +2921,8 @@ function hipMemcpy_r8_3(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:,:,:,:),intent(inout) :: dest
-      real(8),target,dimension(:,:,:,:),intent(in)    :: src
+      real(c_double),target,dimension(:,:,:,:),intent(inout) :: dest
+      real(c_double),target,dimension(:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -2515,7 +2931,7 @@ function hipMemcpy_r8_3(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r8_4_c_size_t
 #endif
       !
-      hipMemcpy_r8_4_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*8_8,myKind)
+      hipMemcpy_r8_4_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*8_8,myKind)
     end function
 
 function hipMemcpy_r8_4(dest,src,myKind)
@@ -2526,8 +2942,8 @@ function hipMemcpy_r8_4(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:,:,:,:),intent(inout) :: dest
-      real(8),target,dimension(:,:,:,:),intent(in)    :: src
+      real(c_double),target,dimension(:,:,:,:),intent(inout) :: dest
+      real(c_double),target,dimension(:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_r8_4 
@@ -2535,7 +2951,7 @@ function hipMemcpy_r8_4(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r8_4
 #endif
       !
-      hipMemcpy_r8_4 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*8_8,myKind)
+      hipMemcpy_r8_4 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*8_8,myKind)
     end function
                                                               
     function hipMemcpy_r8_5_c_int(dest,src,length,myKind)
@@ -2546,8 +2962,8 @@ function hipMemcpy_r8_4(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:,:,:,:,:),intent(inout) :: dest
-      real(8),target,dimension(:,:,:,:,:),intent(in)    :: src
+      real(c_double),target,dimension(:,:,:,:,:),intent(inout) :: dest
+      real(c_double),target,dimension(:,:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -2556,7 +2972,7 @@ function hipMemcpy_r8_4(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r8_5_c_int
 #endif
       !
-      hipMemcpy_r8_5_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*8_8,myKind)
+      hipMemcpy_r8_5_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*8_8,myKind)
     end function
                                                               
     function hipMemcpy_r8_5_c_size_t(dest,src,length,myKind)
@@ -2567,8 +2983,8 @@ function hipMemcpy_r8_4(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:,:,:,:,:),intent(inout) :: dest
-      real(8),target,dimension(:,:,:,:,:),intent(in)    :: src
+      real(c_double),target,dimension(:,:,:,:,:),intent(inout) :: dest
+      real(c_double),target,dimension(:,:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -2577,7 +2993,7 @@ function hipMemcpy_r8_4(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r8_5_c_size_t
 #endif
       !
-      hipMemcpy_r8_5_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*8_8,myKind)
+      hipMemcpy_r8_5_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*8_8,myKind)
     end function
 
 function hipMemcpy_r8_5(dest,src,myKind)
@@ -2588,8 +3004,8 @@ function hipMemcpy_r8_5(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:,:,:,:,:),intent(inout) :: dest
-      real(8),target,dimension(:,:,:,:,:),intent(in)    :: src
+      real(c_double),target,dimension(:,:,:,:,:),intent(inout) :: dest
+      real(c_double),target,dimension(:,:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_r8_5 
@@ -2597,7 +3013,7 @@ function hipMemcpy_r8_5(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r8_5
 #endif
       !
-      hipMemcpy_r8_5 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*8_8,myKind)
+      hipMemcpy_r8_5 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*8_8,myKind)
     end function
                                                               
     function hipMemcpy_r8_6_c_int(dest,src,length,myKind)
@@ -2608,8 +3024,8 @@ function hipMemcpy_r8_5(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
-      real(8),target,dimension(:,:,:,:,:,:),intent(in)    :: src
+      real(c_double),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
+      real(c_double),target,dimension(:,:,:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -2618,7 +3034,7 @@ function hipMemcpy_r8_5(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r8_6_c_int
 #endif
       !
-      hipMemcpy_r8_6_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*8_8,myKind)
+      hipMemcpy_r8_6_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*8_8,myKind)
     end function
                                                               
     function hipMemcpy_r8_6_c_size_t(dest,src,length,myKind)
@@ -2629,8 +3045,8 @@ function hipMemcpy_r8_5(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
-      real(8),target,dimension(:,:,:,:,:,:),intent(in)    :: src
+      real(c_double),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
+      real(c_double),target,dimension(:,:,:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -2639,7 +3055,7 @@ function hipMemcpy_r8_5(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r8_6_c_size_t
 #endif
       !
-      hipMemcpy_r8_6_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*8_8,myKind)
+      hipMemcpy_r8_6_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*8_8,myKind)
     end function
 
 function hipMemcpy_r8_6(dest,src,myKind)
@@ -2650,8 +3066,8 @@ function hipMemcpy_r8_6(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
-      real(8),target,dimension(:,:,:,:,:,:),intent(in)    :: src
+      real(c_double),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
+      real(c_double),target,dimension(:,:,:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_r8_6 
@@ -2659,7 +3075,7 @@ function hipMemcpy_r8_6(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r8_6
 #endif
       !
-      hipMemcpy_r8_6 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*8_8,myKind)
+      hipMemcpy_r8_6 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*8_8,myKind)
     end function
                                                               
     function hipMemcpy_r8_7_c_int(dest,src,length,myKind)
@@ -2670,8 +3086,8 @@ function hipMemcpy_r8_6(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
-      real(8),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
+      real(c_double),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
+      real(c_double),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -2680,7 +3096,7 @@ function hipMemcpy_r8_6(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r8_7_c_int
 #endif
       !
-      hipMemcpy_r8_7_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*8_8,myKind)
+      hipMemcpy_r8_7_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*8_8,myKind)
     end function
                                                               
     function hipMemcpy_r8_7_c_size_t(dest,src,length,myKind)
@@ -2691,8 +3107,8 @@ function hipMemcpy_r8_6(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
-      real(8),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
+      real(c_double),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
+      real(c_double),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -2701,7 +3117,7 @@ function hipMemcpy_r8_6(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r8_7_c_size_t
 #endif
       !
-      hipMemcpy_r8_7_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*8_8,myKind)
+      hipMemcpy_r8_7_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*8_8,myKind)
     end function
 
 function hipMemcpy_r8_7(dest,src,myKind)
@@ -2712,8 +3128,8 @@ function hipMemcpy_r8_7(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
-      real(8),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
+      real(c_double),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
+      real(c_double),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_r8_7 
@@ -2721,7 +3137,7 @@ function hipMemcpy_r8_7(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_r8_7
 #endif
       !
-      hipMemcpy_r8_7 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*8_8,myKind)
+      hipMemcpy_r8_7 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*8_8,myKind)
     end function
                                                               
     function hipMemcpy_c4_0_c_int(dest,src,length,myKind)
@@ -2732,8 +3148,8 @@ function hipMemcpy_r8_7(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,intent(inout) :: dest
-      complex(4),target,intent(in)    :: src
+      complex(c_float_complex),target,intent(inout) :: dest
+      complex(c_float_complex),target,intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -2742,7 +3158,7 @@ function hipMemcpy_r8_7(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c4_0_c_int
 #endif
       !
-      hipMemcpy_c4_0_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*2*4_8,myKind)
+      hipMemcpy_c4_0_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*2*4_8,myKind)
     end function
                                                               
     function hipMemcpy_c4_0_c_size_t(dest,src,length,myKind)
@@ -2753,8 +3169,8 @@ function hipMemcpy_r8_7(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,intent(inout) :: dest
-      complex(4),target,intent(in)    :: src
+      complex(c_float_complex),target,intent(inout) :: dest
+      complex(c_float_complex),target,intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -2763,7 +3179,7 @@ function hipMemcpy_r8_7(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c4_0_c_size_t
 #endif
       !
-      hipMemcpy_c4_0_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*2*4_8,myKind)
+      hipMemcpy_c4_0_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*2*4_8,myKind)
     end function
 
 function hipMemcpy_c4_0(dest,src,myKind)
@@ -2774,8 +3190,8 @@ function hipMemcpy_c4_0(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,intent(inout) :: dest
-      complex(4),target,intent(in)    :: src
+      complex(c_float_complex),target,intent(inout) :: dest
+      complex(c_float_complex),target,intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_c4_0 
@@ -2783,7 +3199,7 @@ function hipMemcpy_c4_0(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c4_0
 #endif
       !
-      hipMemcpy_c4_0 = hipMemcpy_b(c_loc(dest),c_loc(src),2*4_8,myKind)
+      hipMemcpy_c4_0 = hipMemcpy_(c_loc(dest),c_loc(src),2*4_8,myKind)
     end function
                                                               
     function hipMemcpy_c4_1_c_int(dest,src,length,myKind)
@@ -2794,8 +3210,8 @@ function hipMemcpy_c4_0(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:),intent(inout) :: dest
-      complex(4),target,dimension(:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -2804,7 +3220,7 @@ function hipMemcpy_c4_0(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c4_1_c_int
 #endif
       !
-      hipMemcpy_c4_1_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*2*4_8,myKind)
+      hipMemcpy_c4_1_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*2*4_8,myKind)
     end function
                                                               
     function hipMemcpy_c4_1_c_size_t(dest,src,length,myKind)
@@ -2815,8 +3231,8 @@ function hipMemcpy_c4_0(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:),intent(inout) :: dest
-      complex(4),target,dimension(:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -2825,7 +3241,7 @@ function hipMemcpy_c4_0(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c4_1_c_size_t
 #endif
       !
-      hipMemcpy_c4_1_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*2*4_8,myKind)
+      hipMemcpy_c4_1_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*2*4_8,myKind)
     end function
 
 function hipMemcpy_c4_1(dest,src,myKind)
@@ -2836,8 +3252,8 @@ function hipMemcpy_c4_1(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:),intent(inout) :: dest
-      complex(4),target,dimension(:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_c4_1 
@@ -2845,7 +3261,7 @@ function hipMemcpy_c4_1(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c4_1
 #endif
       !
-      hipMemcpy_c4_1 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*2*4_8,myKind)
+      hipMemcpy_c4_1 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*2*4_8,myKind)
     end function
                                                               
     function hipMemcpy_c4_2_c_int(dest,src,length,myKind)
@@ -2856,8 +3272,8 @@ function hipMemcpy_c4_1(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:),intent(inout) :: dest
-      complex(4),target,dimension(:,:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:,:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -2866,7 +3282,7 @@ function hipMemcpy_c4_1(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c4_2_c_int
 #endif
       !
-      hipMemcpy_c4_2_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*2*4_8,myKind)
+      hipMemcpy_c4_2_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*2*4_8,myKind)
     end function
                                                               
     function hipMemcpy_c4_2_c_size_t(dest,src,length,myKind)
@@ -2877,8 +3293,8 @@ function hipMemcpy_c4_1(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:),intent(inout) :: dest
-      complex(4),target,dimension(:,:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:,:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -2887,7 +3303,7 @@ function hipMemcpy_c4_1(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c4_2_c_size_t
 #endif
       !
-      hipMemcpy_c4_2_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*2*4_8,myKind)
+      hipMemcpy_c4_2_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*2*4_8,myKind)
     end function
 
 function hipMemcpy_c4_2(dest,src,myKind)
@@ -2898,8 +3314,8 @@ function hipMemcpy_c4_2(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:),intent(inout) :: dest
-      complex(4),target,dimension(:,:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:,:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_c4_2 
@@ -2907,7 +3323,7 @@ function hipMemcpy_c4_2(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c4_2
 #endif
       !
-      hipMemcpy_c4_2 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*2*4_8,myKind)
+      hipMemcpy_c4_2 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*2*4_8,myKind)
     end function
                                                               
     function hipMemcpy_c4_3_c_int(dest,src,length,myKind)
@@ -2918,8 +3334,8 @@ function hipMemcpy_c4_2(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:,:),intent(inout) :: dest
-      complex(4),target,dimension(:,:,:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:,:,:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -2928,7 +3344,7 @@ function hipMemcpy_c4_2(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c4_3_c_int
 #endif
       !
-      hipMemcpy_c4_3_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*2*4_8,myKind)
+      hipMemcpy_c4_3_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*2*4_8,myKind)
     end function
                                                               
     function hipMemcpy_c4_3_c_size_t(dest,src,length,myKind)
@@ -2939,8 +3355,8 @@ function hipMemcpy_c4_2(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:,:),intent(inout) :: dest
-      complex(4),target,dimension(:,:,:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:,:,:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -2949,7 +3365,7 @@ function hipMemcpy_c4_2(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c4_3_c_size_t
 #endif
       !
-      hipMemcpy_c4_3_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*2*4_8,myKind)
+      hipMemcpy_c4_3_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*2*4_8,myKind)
     end function
 
 function hipMemcpy_c4_3(dest,src,myKind)
@@ -2960,8 +3376,8 @@ function hipMemcpy_c4_3(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:,:),intent(inout) :: dest
-      complex(4),target,dimension(:,:,:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:,:,:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_c4_3 
@@ -2969,7 +3385,7 @@ function hipMemcpy_c4_3(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c4_3
 #endif
       !
-      hipMemcpy_c4_3 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*2*4_8,myKind)
+      hipMemcpy_c4_3 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*2*4_8,myKind)
     end function
                                                               
     function hipMemcpy_c4_4_c_int(dest,src,length,myKind)
@@ -2980,8 +3396,8 @@ function hipMemcpy_c4_3(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:,:,:),intent(inout) :: dest
-      complex(4),target,dimension(:,:,:,:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:,:,:,:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -2990,7 +3406,7 @@ function hipMemcpy_c4_3(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c4_4_c_int
 #endif
       !
-      hipMemcpy_c4_4_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*2*4_8,myKind)
+      hipMemcpy_c4_4_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*2*4_8,myKind)
     end function
                                                               
     function hipMemcpy_c4_4_c_size_t(dest,src,length,myKind)
@@ -3001,8 +3417,8 @@ function hipMemcpy_c4_3(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:,:,:),intent(inout) :: dest
-      complex(4),target,dimension(:,:,:,:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:,:,:,:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -3011,7 +3427,7 @@ function hipMemcpy_c4_3(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c4_4_c_size_t
 #endif
       !
-      hipMemcpy_c4_4_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*2*4_8,myKind)
+      hipMemcpy_c4_4_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*2*4_8,myKind)
     end function
 
 function hipMemcpy_c4_4(dest,src,myKind)
@@ -3022,8 +3438,8 @@ function hipMemcpy_c4_4(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:,:,:),intent(inout) :: dest
-      complex(4),target,dimension(:,:,:,:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:,:,:,:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_c4_4 
@@ -3031,7 +3447,7 @@ function hipMemcpy_c4_4(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c4_4
 #endif
       !
-      hipMemcpy_c4_4 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*2*4_8,myKind)
+      hipMemcpy_c4_4 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*2*4_8,myKind)
     end function
                                                               
     function hipMemcpy_c4_5_c_int(dest,src,length,myKind)
@@ -3042,8 +3458,8 @@ function hipMemcpy_c4_4(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:,:,:,:),intent(inout) :: dest
-      complex(4),target,dimension(:,:,:,:,:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:,:,:,:,:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:,:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -3052,7 +3468,7 @@ function hipMemcpy_c4_4(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c4_5_c_int
 #endif
       !
-      hipMemcpy_c4_5_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*2*4_8,myKind)
+      hipMemcpy_c4_5_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*2*4_8,myKind)
     end function
                                                               
     function hipMemcpy_c4_5_c_size_t(dest,src,length,myKind)
@@ -3063,8 +3479,8 @@ function hipMemcpy_c4_4(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:,:,:,:),intent(inout) :: dest
-      complex(4),target,dimension(:,:,:,:,:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:,:,:,:,:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:,:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -3073,7 +3489,7 @@ function hipMemcpy_c4_4(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c4_5_c_size_t
 #endif
       !
-      hipMemcpy_c4_5_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*2*4_8,myKind)
+      hipMemcpy_c4_5_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*2*4_8,myKind)
     end function
 
 function hipMemcpy_c4_5(dest,src,myKind)
@@ -3084,8 +3500,8 @@ function hipMemcpy_c4_5(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:,:,:,:),intent(inout) :: dest
-      complex(4),target,dimension(:,:,:,:,:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:,:,:,:,:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:,:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_c4_5 
@@ -3093,7 +3509,7 @@ function hipMemcpy_c4_5(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c4_5
 #endif
       !
-      hipMemcpy_c4_5 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*2*4_8,myKind)
+      hipMemcpy_c4_5 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*2*4_8,myKind)
     end function
                                                               
     function hipMemcpy_c4_6_c_int(dest,src,length,myKind)
@@ -3104,8 +3520,8 @@ function hipMemcpy_c4_5(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
-      complex(4),target,dimension(:,:,:,:,:,:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:,:,:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -3114,7 +3530,7 @@ function hipMemcpy_c4_5(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c4_6_c_int
 #endif
       !
-      hipMemcpy_c4_6_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*2*4_8,myKind)
+      hipMemcpy_c4_6_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*2*4_8,myKind)
     end function
                                                               
     function hipMemcpy_c4_6_c_size_t(dest,src,length,myKind)
@@ -3125,8 +3541,8 @@ function hipMemcpy_c4_5(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
-      complex(4),target,dimension(:,:,:,:,:,:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:,:,:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -3135,7 +3551,7 @@ function hipMemcpy_c4_5(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c4_6_c_size_t
 #endif
       !
-      hipMemcpy_c4_6_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*2*4_8,myKind)
+      hipMemcpy_c4_6_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*2*4_8,myKind)
     end function
 
 function hipMemcpy_c4_6(dest,src,myKind)
@@ -3146,8 +3562,8 @@ function hipMemcpy_c4_6(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
-      complex(4),target,dimension(:,:,:,:,:,:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:,:,:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_c4_6 
@@ -3155,7 +3571,7 @@ function hipMemcpy_c4_6(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c4_6
 #endif
       !
-      hipMemcpy_c4_6 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*2*4_8,myKind)
+      hipMemcpy_c4_6 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*2*4_8,myKind)
     end function
                                                               
     function hipMemcpy_c4_7_c_int(dest,src,length,myKind)
@@ -3166,8 +3582,8 @@ function hipMemcpy_c4_6(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
-      complex(4),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -3176,7 +3592,7 @@ function hipMemcpy_c4_6(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c4_7_c_int
 #endif
       !
-      hipMemcpy_c4_7_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*2*4_8,myKind)
+      hipMemcpy_c4_7_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*2*4_8,myKind)
     end function
                                                               
     function hipMemcpy_c4_7_c_size_t(dest,src,length,myKind)
@@ -3187,8 +3603,8 @@ function hipMemcpy_c4_6(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
-      complex(4),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -3197,7 +3613,7 @@ function hipMemcpy_c4_6(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c4_7_c_size_t
 #endif
       !
-      hipMemcpy_c4_7_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*2*4_8,myKind)
+      hipMemcpy_c4_7_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*2*4_8,myKind)
     end function
 
 function hipMemcpy_c4_7(dest,src,myKind)
@@ -3208,8 +3624,8 @@ function hipMemcpy_c4_7(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
-      complex(4),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_c4_7 
@@ -3217,7 +3633,7 @@ function hipMemcpy_c4_7(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c4_7
 #endif
       !
-      hipMemcpy_c4_7 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*2*4_8,myKind)
+      hipMemcpy_c4_7 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*2*4_8,myKind)
     end function
                                                               
     function hipMemcpy_c8_0_c_int(dest,src,length,myKind)
@@ -3228,8 +3644,8 @@ function hipMemcpy_c4_7(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,intent(inout) :: dest
-      complex(8),target,intent(in)    :: src
+      complex(c_double_complex),target,intent(inout) :: dest
+      complex(c_double_complex),target,intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -3238,7 +3654,7 @@ function hipMemcpy_c4_7(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c8_0_c_int
 #endif
       !
-      hipMemcpy_c8_0_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*2*8_8,myKind)
+      hipMemcpy_c8_0_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*2*8_8,myKind)
     end function
                                                               
     function hipMemcpy_c8_0_c_size_t(dest,src,length,myKind)
@@ -3249,8 +3665,8 @@ function hipMemcpy_c4_7(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,intent(inout) :: dest
-      complex(8),target,intent(in)    :: src
+      complex(c_double_complex),target,intent(inout) :: dest
+      complex(c_double_complex),target,intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -3259,7 +3675,7 @@ function hipMemcpy_c4_7(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c8_0_c_size_t
 #endif
       !
-      hipMemcpy_c8_0_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*2*8_8,myKind)
+      hipMemcpy_c8_0_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*2*8_8,myKind)
     end function
 
 function hipMemcpy_c8_0(dest,src,myKind)
@@ -3270,8 +3686,8 @@ function hipMemcpy_c8_0(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,intent(inout) :: dest
-      complex(8),target,intent(in)    :: src
+      complex(c_double_complex),target,intent(inout) :: dest
+      complex(c_double_complex),target,intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_c8_0 
@@ -3279,7 +3695,7 @@ function hipMemcpy_c8_0(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c8_0
 #endif
       !
-      hipMemcpy_c8_0 = hipMemcpy_b(c_loc(dest),c_loc(src),2*8_8,myKind)
+      hipMemcpy_c8_0 = hipMemcpy_(c_loc(dest),c_loc(src),2*8_8,myKind)
     end function
                                                               
     function hipMemcpy_c8_1_c_int(dest,src,length,myKind)
@@ -3290,8 +3706,8 @@ function hipMemcpy_c8_0(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:),intent(inout) :: dest
-      complex(8),target,dimension(:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -3300,7 +3716,7 @@ function hipMemcpy_c8_0(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c8_1_c_int
 #endif
       !
-      hipMemcpy_c8_1_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*2*8_8,myKind)
+      hipMemcpy_c8_1_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*2*8_8,myKind)
     end function
                                                               
     function hipMemcpy_c8_1_c_size_t(dest,src,length,myKind)
@@ -3311,8 +3727,8 @@ function hipMemcpy_c8_0(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:),intent(inout) :: dest
-      complex(8),target,dimension(:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -3321,7 +3737,7 @@ function hipMemcpy_c8_0(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c8_1_c_size_t
 #endif
       !
-      hipMemcpy_c8_1_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*2*8_8,myKind)
+      hipMemcpy_c8_1_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*2*8_8,myKind)
     end function
 
 function hipMemcpy_c8_1(dest,src,myKind)
@@ -3332,8 +3748,8 @@ function hipMemcpy_c8_1(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:),intent(inout) :: dest
-      complex(8),target,dimension(:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_c8_1 
@@ -3341,7 +3757,7 @@ function hipMemcpy_c8_1(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c8_1
 #endif
       !
-      hipMemcpy_c8_1 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*2*8_8,myKind)
+      hipMemcpy_c8_1 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*2*8_8,myKind)
     end function
                                                               
     function hipMemcpy_c8_2_c_int(dest,src,length,myKind)
@@ -3352,8 +3768,8 @@ function hipMemcpy_c8_1(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:),intent(inout) :: dest
-      complex(8),target,dimension(:,:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:,:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -3362,7 +3778,7 @@ function hipMemcpy_c8_1(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c8_2_c_int
 #endif
       !
-      hipMemcpy_c8_2_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*2*8_8,myKind)
+      hipMemcpy_c8_2_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*2*8_8,myKind)
     end function
                                                               
     function hipMemcpy_c8_2_c_size_t(dest,src,length,myKind)
@@ -3373,8 +3789,8 @@ function hipMemcpy_c8_1(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:),intent(inout) :: dest
-      complex(8),target,dimension(:,:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:,:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -3383,7 +3799,7 @@ function hipMemcpy_c8_1(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c8_2_c_size_t
 #endif
       !
-      hipMemcpy_c8_2_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*2*8_8,myKind)
+      hipMemcpy_c8_2_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*2*8_8,myKind)
     end function
 
 function hipMemcpy_c8_2(dest,src,myKind)
@@ -3394,8 +3810,8 @@ function hipMemcpy_c8_2(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:),intent(inout) :: dest
-      complex(8),target,dimension(:,:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:,:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_c8_2 
@@ -3403,7 +3819,7 @@ function hipMemcpy_c8_2(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c8_2
 #endif
       !
-      hipMemcpy_c8_2 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*2*8_8,myKind)
+      hipMemcpy_c8_2 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*2*8_8,myKind)
     end function
                                                               
     function hipMemcpy_c8_3_c_int(dest,src,length,myKind)
@@ -3414,8 +3830,8 @@ function hipMemcpy_c8_2(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:,:),intent(inout) :: dest
-      complex(8),target,dimension(:,:,:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:,:,:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -3424,7 +3840,7 @@ function hipMemcpy_c8_2(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c8_3_c_int
 #endif
       !
-      hipMemcpy_c8_3_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*2*8_8,myKind)
+      hipMemcpy_c8_3_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*2*8_8,myKind)
     end function
                                                               
     function hipMemcpy_c8_3_c_size_t(dest,src,length,myKind)
@@ -3435,8 +3851,8 @@ function hipMemcpy_c8_2(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:,:),intent(inout) :: dest
-      complex(8),target,dimension(:,:,:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:,:,:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -3445,7 +3861,7 @@ function hipMemcpy_c8_2(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c8_3_c_size_t
 #endif
       !
-      hipMemcpy_c8_3_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*2*8_8,myKind)
+      hipMemcpy_c8_3_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*2*8_8,myKind)
     end function
 
 function hipMemcpy_c8_3(dest,src,myKind)
@@ -3456,8 +3872,8 @@ function hipMemcpy_c8_3(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:,:),intent(inout) :: dest
-      complex(8),target,dimension(:,:,:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:,:,:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_c8_3 
@@ -3465,7 +3881,7 @@ function hipMemcpy_c8_3(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c8_3
 #endif
       !
-      hipMemcpy_c8_3 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*2*8_8,myKind)
+      hipMemcpy_c8_3 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*2*8_8,myKind)
     end function
                                                               
     function hipMemcpy_c8_4_c_int(dest,src,length,myKind)
@@ -3476,8 +3892,8 @@ function hipMemcpy_c8_3(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:,:,:),intent(inout) :: dest
-      complex(8),target,dimension(:,:,:,:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:,:,:,:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -3486,7 +3902,7 @@ function hipMemcpy_c8_3(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c8_4_c_int
 #endif
       !
-      hipMemcpy_c8_4_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*2*8_8,myKind)
+      hipMemcpy_c8_4_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*2*8_8,myKind)
     end function
                                                               
     function hipMemcpy_c8_4_c_size_t(dest,src,length,myKind)
@@ -3497,8 +3913,8 @@ function hipMemcpy_c8_3(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:,:,:),intent(inout) :: dest
-      complex(8),target,dimension(:,:,:,:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:,:,:,:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -3507,7 +3923,7 @@ function hipMemcpy_c8_3(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c8_4_c_size_t
 #endif
       !
-      hipMemcpy_c8_4_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*2*8_8,myKind)
+      hipMemcpy_c8_4_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*2*8_8,myKind)
     end function
 
 function hipMemcpy_c8_4(dest,src,myKind)
@@ -3518,8 +3934,8 @@ function hipMemcpy_c8_4(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:,:,:),intent(inout) :: dest
-      complex(8),target,dimension(:,:,:,:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:,:,:,:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_c8_4 
@@ -3527,7 +3943,7 @@ function hipMemcpy_c8_4(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c8_4
 #endif
       !
-      hipMemcpy_c8_4 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*2*8_8,myKind)
+      hipMemcpy_c8_4 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*2*8_8,myKind)
     end function
                                                               
     function hipMemcpy_c8_5_c_int(dest,src,length,myKind)
@@ -3538,8 +3954,8 @@ function hipMemcpy_c8_4(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:,:,:,:),intent(inout) :: dest
-      complex(8),target,dimension(:,:,:,:,:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:,:,:,:,:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:,:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -3548,7 +3964,7 @@ function hipMemcpy_c8_4(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c8_5_c_int
 #endif
       !
-      hipMemcpy_c8_5_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*2*8_8,myKind)
+      hipMemcpy_c8_5_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*2*8_8,myKind)
     end function
                                                               
     function hipMemcpy_c8_5_c_size_t(dest,src,length,myKind)
@@ -3559,8 +3975,8 @@ function hipMemcpy_c8_4(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:,:,:,:),intent(inout) :: dest
-      complex(8),target,dimension(:,:,:,:,:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:,:,:,:,:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:,:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -3569,7 +3985,7 @@ function hipMemcpy_c8_4(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c8_5_c_size_t
 #endif
       !
-      hipMemcpy_c8_5_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*2*8_8,myKind)
+      hipMemcpy_c8_5_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*2*8_8,myKind)
     end function
 
 function hipMemcpy_c8_5(dest,src,myKind)
@@ -3580,8 +3996,8 @@ function hipMemcpy_c8_5(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:,:,:,:),intent(inout) :: dest
-      complex(8),target,dimension(:,:,:,:,:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:,:,:,:,:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:,:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_c8_5 
@@ -3589,7 +4005,7 @@ function hipMemcpy_c8_5(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c8_5
 #endif
       !
-      hipMemcpy_c8_5 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*2*8_8,myKind)
+      hipMemcpy_c8_5 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*2*8_8,myKind)
     end function
                                                               
     function hipMemcpy_c8_6_c_int(dest,src,length,myKind)
@@ -3600,8 +4016,8 @@ function hipMemcpy_c8_5(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
-      complex(8),target,dimension(:,:,:,:,:,:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:,:,:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -3610,7 +4026,7 @@ function hipMemcpy_c8_5(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c8_6_c_int
 #endif
       !
-      hipMemcpy_c8_6_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*2*8_8,myKind)
+      hipMemcpy_c8_6_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*2*8_8,myKind)
     end function
                                                               
     function hipMemcpy_c8_6_c_size_t(dest,src,length,myKind)
@@ -3621,8 +4037,8 @@ function hipMemcpy_c8_5(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
-      complex(8),target,dimension(:,:,:,:,:,:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:,:,:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -3631,7 +4047,7 @@ function hipMemcpy_c8_5(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c8_6_c_size_t
 #endif
       !
-      hipMemcpy_c8_6_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*2*8_8,myKind)
+      hipMemcpy_c8_6_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*2*8_8,myKind)
     end function
 
 function hipMemcpy_c8_6(dest,src,myKind)
@@ -3642,8 +4058,8 @@ function hipMemcpy_c8_6(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
-      complex(8),target,dimension(:,:,:,:,:,:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:,:,:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_c8_6 
@@ -3651,7 +4067,7 @@ function hipMemcpy_c8_6(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c8_6
 #endif
       !
-      hipMemcpy_c8_6 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*2*8_8,myKind)
+      hipMemcpy_c8_6 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*2*8_8,myKind)
     end function
                                                               
     function hipMemcpy_c8_7_c_int(dest,src,length,myKind)
@@ -3662,8 +4078,8 @@ function hipMemcpy_c8_6(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
-      complex(8),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -3672,7 +4088,7 @@ function hipMemcpy_c8_6(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c8_7_c_int
 #endif
       !
-      hipMemcpy_c8_7_c_int = hipMemcpy_b(c_loc(dest),c_loc(src),length*2*8_8,myKind)
+      hipMemcpy_c8_7_c_int = hipMemcpy_(c_loc(dest),c_loc(src),length*2*8_8,myKind)
     end function
                                                               
     function hipMemcpy_c8_7_c_size_t(dest,src,length,myKind)
@@ -3683,8 +4099,8 @@ function hipMemcpy_c8_6(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
-      complex(8),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
@@ -3693,7 +4109,7 @@ function hipMemcpy_c8_6(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c8_7_c_size_t
 #endif
       !
-      hipMemcpy_c8_7_c_size_t = hipMemcpy_b(c_loc(dest),c_loc(src),length*2*8_8,myKind)
+      hipMemcpy_c8_7_c_size_t = hipMemcpy_(c_loc(dest),c_loc(src),length*2*8_8,myKind)
     end function
 
 function hipMemcpy_c8_7(dest,src,myKind)
@@ -3704,8 +4120,8 @@ function hipMemcpy_c8_7(dest,src,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
-      complex(8),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
 #ifdef USE_CUDA_NAMES
       integer(kind(cudaSuccess)) :: hipMemcpy_c8_7 
@@ -3713,7 +4129,7 @@ function hipMemcpy_c8_7(dest,src,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy_c8_7
 #endif
       !
-      hipMemcpy_c8_7 = hipMemcpy_b(c_loc(dest),c_loc(src),size(dest)*2*8_8,myKind)
+      hipMemcpy_c8_7 = hipMemcpy_(c_loc(dest),c_loc(src),size(dest)*2*8_8,myKind)
     end function
 
 function hipMemcpyAsync_l_0_c_int(dest,src,length,myKind,stream)
@@ -3724,8 +4140,8 @@ function hipMemcpyAsync_l_0_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,intent(inout) :: dest
-      logical,target,intent(in)    :: src
+      logical(c_bool),target,intent(inout) :: dest
+      logical(c_bool),target,intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -3735,7 +4151,7 @@ function hipMemcpyAsync_l_0_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_l_0_c_int
 #endif
       !
-      hipMemcpyAsync_l_0_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*1_8,myKind,stream)
+      hipMemcpyAsync_l_0_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*1_8,myKind,stream)
     end function
 function hipMemcpyAsync_l_0_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -3745,8 +4161,8 @@ function hipMemcpyAsync_l_0_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,intent(inout) :: dest
-      logical,target,intent(in)    :: src
+      logical(c_bool),target,intent(inout) :: dest
+      logical(c_bool),target,intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -3756,7 +4172,7 @@ function hipMemcpyAsync_l_0_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_l_0_c_size_t
 #endif
       !
-      hipMemcpyAsync_l_0_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*1_8,myKind,stream)
+      hipMemcpyAsync_l_0_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*1_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_l_0(dest,src,myKind,stream)
@@ -3767,8 +4183,8 @@ function hipMemcpyAsync_l_0(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,intent(inout) :: dest
-      logical,target,intent(in)    :: src
+      logical(c_bool),target,intent(inout) :: dest
+      logical(c_bool),target,intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -3777,7 +4193,7 @@ function hipMemcpyAsync_l_0(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_l_0
 #endif
       !
-      hipMemcpyAsync_l_0 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),1_8,myKind,stream)
+      hipMemcpyAsync_l_0 = hipMemcpyAsync_(c_loc(dest),c_loc(src),1_8,myKind,stream)
     end function
 function hipMemcpyAsync_l_1_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -3787,8 +4203,8 @@ function hipMemcpyAsync_l_1_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:),intent(inout) :: dest
-      logical,target,dimension(:),intent(in)    :: src
+      logical(c_bool),target,dimension(:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -3798,7 +4214,7 @@ function hipMemcpyAsync_l_1_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_l_1_c_int
 #endif
       !
-      hipMemcpyAsync_l_1_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*1_8,myKind,stream)
+      hipMemcpyAsync_l_1_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*1_8,myKind,stream)
     end function
 function hipMemcpyAsync_l_1_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -3808,8 +4224,8 @@ function hipMemcpyAsync_l_1_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:),intent(inout) :: dest
-      logical,target,dimension(:),intent(in)    :: src
+      logical(c_bool),target,dimension(:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -3819,7 +4235,7 @@ function hipMemcpyAsync_l_1_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_l_1_c_size_t
 #endif
       !
-      hipMemcpyAsync_l_1_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*1_8,myKind,stream)
+      hipMemcpyAsync_l_1_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*1_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_l_1(dest,src,myKind,stream)
@@ -3830,8 +4246,8 @@ function hipMemcpyAsync_l_1(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:),intent(inout) :: dest
-      logical,target,dimension(:),intent(in)    :: src
+      logical(c_bool),target,dimension(:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -3840,7 +4256,7 @@ function hipMemcpyAsync_l_1(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_l_1
 #endif
       !
-      hipMemcpyAsync_l_1 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*1_8,myKind,stream)
+      hipMemcpyAsync_l_1 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*1_8,myKind,stream)
     end function
 function hipMemcpyAsync_l_2_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -3850,8 +4266,8 @@ function hipMemcpyAsync_l_2_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:,:),intent(inout) :: dest
-      logical,target,dimension(:,:),intent(in)    :: src
+      logical(c_bool),target,dimension(:,:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -3861,7 +4277,7 @@ function hipMemcpyAsync_l_2_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_l_2_c_int
 #endif
       !
-      hipMemcpyAsync_l_2_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*1_8,myKind,stream)
+      hipMemcpyAsync_l_2_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*1_8,myKind,stream)
     end function
 function hipMemcpyAsync_l_2_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -3871,8 +4287,8 @@ function hipMemcpyAsync_l_2_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:,:),intent(inout) :: dest
-      logical,target,dimension(:,:),intent(in)    :: src
+      logical(c_bool),target,dimension(:,:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -3882,7 +4298,7 @@ function hipMemcpyAsync_l_2_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_l_2_c_size_t
 #endif
       !
-      hipMemcpyAsync_l_2_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*1_8,myKind,stream)
+      hipMemcpyAsync_l_2_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*1_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_l_2(dest,src,myKind,stream)
@@ -3893,8 +4309,8 @@ function hipMemcpyAsync_l_2(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:,:),intent(inout) :: dest
-      logical,target,dimension(:,:),intent(in)    :: src
+      logical(c_bool),target,dimension(:,:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -3903,7 +4319,7 @@ function hipMemcpyAsync_l_2(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_l_2
 #endif
       !
-      hipMemcpyAsync_l_2 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*1_8,myKind,stream)
+      hipMemcpyAsync_l_2 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*1_8,myKind,stream)
     end function
 function hipMemcpyAsync_l_3_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -3913,8 +4329,8 @@ function hipMemcpyAsync_l_3_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:,:,:),intent(inout) :: dest
-      logical,target,dimension(:,:,:),intent(in)    :: src
+      logical(c_bool),target,dimension(:,:,:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -3924,7 +4340,7 @@ function hipMemcpyAsync_l_3_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_l_3_c_int
 #endif
       !
-      hipMemcpyAsync_l_3_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*1_8,myKind,stream)
+      hipMemcpyAsync_l_3_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*1_8,myKind,stream)
     end function
 function hipMemcpyAsync_l_3_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -3934,8 +4350,8 @@ function hipMemcpyAsync_l_3_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:,:,:),intent(inout) :: dest
-      logical,target,dimension(:,:,:),intent(in)    :: src
+      logical(c_bool),target,dimension(:,:,:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -3945,7 +4361,7 @@ function hipMemcpyAsync_l_3_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_l_3_c_size_t
 #endif
       !
-      hipMemcpyAsync_l_3_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*1_8,myKind,stream)
+      hipMemcpyAsync_l_3_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*1_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_l_3(dest,src,myKind,stream)
@@ -3956,8 +4372,8 @@ function hipMemcpyAsync_l_3(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:,:,:),intent(inout) :: dest
-      logical,target,dimension(:,:,:),intent(in)    :: src
+      logical(c_bool),target,dimension(:,:,:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -3966,7 +4382,7 @@ function hipMemcpyAsync_l_3(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_l_3
 #endif
       !
-      hipMemcpyAsync_l_3 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*1_8,myKind,stream)
+      hipMemcpyAsync_l_3 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*1_8,myKind,stream)
     end function
 function hipMemcpyAsync_l_4_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -3976,8 +4392,8 @@ function hipMemcpyAsync_l_4_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:,:,:,:),intent(inout) :: dest
-      logical,target,dimension(:,:,:,:),intent(in)    :: src
+      logical(c_bool),target,dimension(:,:,:,:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -3987,7 +4403,7 @@ function hipMemcpyAsync_l_4_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_l_4_c_int
 #endif
       !
-      hipMemcpyAsync_l_4_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*1_8,myKind,stream)
+      hipMemcpyAsync_l_4_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*1_8,myKind,stream)
     end function
 function hipMemcpyAsync_l_4_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -3997,8 +4413,8 @@ function hipMemcpyAsync_l_4_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:,:,:,:),intent(inout) :: dest
-      logical,target,dimension(:,:,:,:),intent(in)    :: src
+      logical(c_bool),target,dimension(:,:,:,:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -4008,7 +4424,7 @@ function hipMemcpyAsync_l_4_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_l_4_c_size_t
 #endif
       !
-      hipMemcpyAsync_l_4_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*1_8,myKind,stream)
+      hipMemcpyAsync_l_4_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*1_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_l_4(dest,src,myKind,stream)
@@ -4019,8 +4435,8 @@ function hipMemcpyAsync_l_4(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:,:,:,:),intent(inout) :: dest
-      logical,target,dimension(:,:,:,:),intent(in)    :: src
+      logical(c_bool),target,dimension(:,:,:,:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -4029,7 +4445,7 @@ function hipMemcpyAsync_l_4(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_l_4
 #endif
       !
-      hipMemcpyAsync_l_4 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*1_8,myKind,stream)
+      hipMemcpyAsync_l_4 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*1_8,myKind,stream)
     end function
 function hipMemcpyAsync_l_5_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -4039,8 +4455,8 @@ function hipMemcpyAsync_l_5_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:,:,:,:,:),intent(inout) :: dest
-      logical,target,dimension(:,:,:,:,:),intent(in)    :: src
+      logical(c_bool),target,dimension(:,:,:,:,:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:,:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -4050,7 +4466,7 @@ function hipMemcpyAsync_l_5_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_l_5_c_int
 #endif
       !
-      hipMemcpyAsync_l_5_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*1_8,myKind,stream)
+      hipMemcpyAsync_l_5_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*1_8,myKind,stream)
     end function
 function hipMemcpyAsync_l_5_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -4060,8 +4476,8 @@ function hipMemcpyAsync_l_5_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:,:,:,:,:),intent(inout) :: dest
-      logical,target,dimension(:,:,:,:,:),intent(in)    :: src
+      logical(c_bool),target,dimension(:,:,:,:,:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:,:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -4071,7 +4487,7 @@ function hipMemcpyAsync_l_5_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_l_5_c_size_t
 #endif
       !
-      hipMemcpyAsync_l_5_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*1_8,myKind,stream)
+      hipMemcpyAsync_l_5_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*1_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_l_5(dest,src,myKind,stream)
@@ -4082,8 +4498,8 @@ function hipMemcpyAsync_l_5(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:,:,:,:,:),intent(inout) :: dest
-      logical,target,dimension(:,:,:,:,:),intent(in)    :: src
+      logical(c_bool),target,dimension(:,:,:,:,:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:,:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -4092,7 +4508,7 @@ function hipMemcpyAsync_l_5(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_l_5
 #endif
       !
-      hipMemcpyAsync_l_5 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*1_8,myKind,stream)
+      hipMemcpyAsync_l_5 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*1_8,myKind,stream)
     end function
 function hipMemcpyAsync_l_6_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -4102,8 +4518,8 @@ function hipMemcpyAsync_l_6_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:,:,:,:,:,:),intent(inout) :: dest
-      logical,target,dimension(:,:,:,:,:,:),intent(in)    :: src
+      logical(c_bool),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:,:,:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -4113,7 +4529,7 @@ function hipMemcpyAsync_l_6_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_l_6_c_int
 #endif
       !
-      hipMemcpyAsync_l_6_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*1_8,myKind,stream)
+      hipMemcpyAsync_l_6_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*1_8,myKind,stream)
     end function
 function hipMemcpyAsync_l_6_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -4123,8 +4539,8 @@ function hipMemcpyAsync_l_6_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:,:,:,:,:,:),intent(inout) :: dest
-      logical,target,dimension(:,:,:,:,:,:),intent(in)    :: src
+      logical(c_bool),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:,:,:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -4134,7 +4550,7 @@ function hipMemcpyAsync_l_6_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_l_6_c_size_t
 #endif
       !
-      hipMemcpyAsync_l_6_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*1_8,myKind,stream)
+      hipMemcpyAsync_l_6_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*1_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_l_6(dest,src,myKind,stream)
@@ -4145,8 +4561,8 @@ function hipMemcpyAsync_l_6(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:,:,:,:,:,:),intent(inout) :: dest
-      logical,target,dimension(:,:,:,:,:,:),intent(in)    :: src
+      logical(c_bool),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:,:,:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -4155,7 +4571,7 @@ function hipMemcpyAsync_l_6(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_l_6
 #endif
       !
-      hipMemcpyAsync_l_6 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*1_8,myKind,stream)
+      hipMemcpyAsync_l_6 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*1_8,myKind,stream)
     end function
 function hipMemcpyAsync_l_7_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -4165,8 +4581,8 @@ function hipMemcpyAsync_l_7_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
-      logical,target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
+      logical(c_bool),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -4176,7 +4592,7 @@ function hipMemcpyAsync_l_7_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_l_7_c_int
 #endif
       !
-      hipMemcpyAsync_l_7_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*1_8,myKind,stream)
+      hipMemcpyAsync_l_7_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*1_8,myKind,stream)
     end function
 function hipMemcpyAsync_l_7_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -4186,8 +4602,8 @@ function hipMemcpyAsync_l_7_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
-      logical,target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
+      logical(c_bool),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -4197,7 +4613,7 @@ function hipMemcpyAsync_l_7_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_l_7_c_size_t
 #endif
       !
-      hipMemcpyAsync_l_7_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*1_8,myKind,stream)
+      hipMemcpyAsync_l_7_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*1_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_l_7(dest,src,myKind,stream)
@@ -4208,8 +4624,8 @@ function hipMemcpyAsync_l_7(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
-      logical,target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
+      logical(c_bool),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -4218,7 +4634,7 @@ function hipMemcpyAsync_l_7(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_l_7
 #endif
       !
-      hipMemcpyAsync_l_7 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*1_8,myKind,stream)
+      hipMemcpyAsync_l_7 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*1_8,myKind,stream)
     end function
 function hipMemcpyAsync_i4_0_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -4228,8 +4644,8 @@ function hipMemcpyAsync_i4_0_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,intent(inout) :: dest
-      integer(4),target,intent(in)    :: src
+      integer(c_int),target,intent(inout) :: dest
+      integer(c_int),target,intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -4239,7 +4655,7 @@ function hipMemcpyAsync_i4_0_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i4_0_c_int
 #endif
       !
-      hipMemcpyAsync_i4_0_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
+      hipMemcpyAsync_i4_0_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_i4_0_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -4249,8 +4665,8 @@ function hipMemcpyAsync_i4_0_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,intent(inout) :: dest
-      integer(4),target,intent(in)    :: src
+      integer(c_int),target,intent(inout) :: dest
+      integer(c_int),target,intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -4260,7 +4676,7 @@ function hipMemcpyAsync_i4_0_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i4_0_c_size_t
 #endif
       !
-      hipMemcpyAsync_i4_0_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
+      hipMemcpyAsync_i4_0_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_i4_0(dest,src,myKind,stream)
@@ -4271,8 +4687,8 @@ function hipMemcpyAsync_i4_0(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,intent(inout) :: dest
-      integer(4),target,intent(in)    :: src
+      integer(c_int),target,intent(inout) :: dest
+      integer(c_int),target,intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -4281,7 +4697,7 @@ function hipMemcpyAsync_i4_0(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i4_0
 #endif
       !
-      hipMemcpyAsync_i4_0 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),4_8,myKind,stream)
+      hipMemcpyAsync_i4_0 = hipMemcpyAsync_(c_loc(dest),c_loc(src),4_8,myKind,stream)
     end function
 function hipMemcpyAsync_i4_1_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -4291,8 +4707,8 @@ function hipMemcpyAsync_i4_1_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:),intent(inout) :: dest
-      integer(4),target,dimension(:),intent(in)    :: src
+      integer(c_int),target,dimension(:),intent(inout) :: dest
+      integer(c_int),target,dimension(:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -4302,7 +4718,7 @@ function hipMemcpyAsync_i4_1_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i4_1_c_int
 #endif
       !
-      hipMemcpyAsync_i4_1_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
+      hipMemcpyAsync_i4_1_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_i4_1_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -4312,8 +4728,8 @@ function hipMemcpyAsync_i4_1_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:),intent(inout) :: dest
-      integer(4),target,dimension(:),intent(in)    :: src
+      integer(c_int),target,dimension(:),intent(inout) :: dest
+      integer(c_int),target,dimension(:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -4323,7 +4739,7 @@ function hipMemcpyAsync_i4_1_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i4_1_c_size_t
 #endif
       !
-      hipMemcpyAsync_i4_1_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
+      hipMemcpyAsync_i4_1_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_i4_1(dest,src,myKind,stream)
@@ -4334,8 +4750,8 @@ function hipMemcpyAsync_i4_1(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:),intent(inout) :: dest
-      integer(4),target,dimension(:),intent(in)    :: src
+      integer(c_int),target,dimension(:),intent(inout) :: dest
+      integer(c_int),target,dimension(:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -4344,7 +4760,7 @@ function hipMemcpyAsync_i4_1(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i4_1
 #endif
       !
-      hipMemcpyAsync_i4_1 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*4_8,myKind,stream)
+      hipMemcpyAsync_i4_1 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_i4_2_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -4354,8 +4770,8 @@ function hipMemcpyAsync_i4_2_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:),intent(inout) :: dest
-      integer(4),target,dimension(:,:),intent(in)    :: src
+      integer(c_int),target,dimension(:,:),intent(inout) :: dest
+      integer(c_int),target,dimension(:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -4365,7 +4781,7 @@ function hipMemcpyAsync_i4_2_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i4_2_c_int
 #endif
       !
-      hipMemcpyAsync_i4_2_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
+      hipMemcpyAsync_i4_2_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_i4_2_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -4375,8 +4791,8 @@ function hipMemcpyAsync_i4_2_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:),intent(inout) :: dest
-      integer(4),target,dimension(:,:),intent(in)    :: src
+      integer(c_int),target,dimension(:,:),intent(inout) :: dest
+      integer(c_int),target,dimension(:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -4386,7 +4802,7 @@ function hipMemcpyAsync_i4_2_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i4_2_c_size_t
 #endif
       !
-      hipMemcpyAsync_i4_2_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
+      hipMemcpyAsync_i4_2_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_i4_2(dest,src,myKind,stream)
@@ -4397,8 +4813,8 @@ function hipMemcpyAsync_i4_2(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:),intent(inout) :: dest
-      integer(4),target,dimension(:,:),intent(in)    :: src
+      integer(c_int),target,dimension(:,:),intent(inout) :: dest
+      integer(c_int),target,dimension(:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -4407,7 +4823,7 @@ function hipMemcpyAsync_i4_2(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i4_2
 #endif
       !
-      hipMemcpyAsync_i4_2 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*4_8,myKind,stream)
+      hipMemcpyAsync_i4_2 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_i4_3_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -4417,8 +4833,8 @@ function hipMemcpyAsync_i4_3_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:,:),intent(inout) :: dest
-      integer(4),target,dimension(:,:,:),intent(in)    :: src
+      integer(c_int),target,dimension(:,:,:),intent(inout) :: dest
+      integer(c_int),target,dimension(:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -4428,7 +4844,7 @@ function hipMemcpyAsync_i4_3_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i4_3_c_int
 #endif
       !
-      hipMemcpyAsync_i4_3_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
+      hipMemcpyAsync_i4_3_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_i4_3_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -4438,8 +4854,8 @@ function hipMemcpyAsync_i4_3_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:,:),intent(inout) :: dest
-      integer(4),target,dimension(:,:,:),intent(in)    :: src
+      integer(c_int),target,dimension(:,:,:),intent(inout) :: dest
+      integer(c_int),target,dimension(:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -4449,7 +4865,7 @@ function hipMemcpyAsync_i4_3_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i4_3_c_size_t
 #endif
       !
-      hipMemcpyAsync_i4_3_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
+      hipMemcpyAsync_i4_3_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_i4_3(dest,src,myKind,stream)
@@ -4460,8 +4876,8 @@ function hipMemcpyAsync_i4_3(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:,:),intent(inout) :: dest
-      integer(4),target,dimension(:,:,:),intent(in)    :: src
+      integer(c_int),target,dimension(:,:,:),intent(inout) :: dest
+      integer(c_int),target,dimension(:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -4470,7 +4886,7 @@ function hipMemcpyAsync_i4_3(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i4_3
 #endif
       !
-      hipMemcpyAsync_i4_3 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*4_8,myKind,stream)
+      hipMemcpyAsync_i4_3 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_i4_4_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -4480,8 +4896,8 @@ function hipMemcpyAsync_i4_4_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:,:,:),intent(inout) :: dest
-      integer(4),target,dimension(:,:,:,:),intent(in)    :: src
+      integer(c_int),target,dimension(:,:,:,:),intent(inout) :: dest
+      integer(c_int),target,dimension(:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -4491,7 +4907,7 @@ function hipMemcpyAsync_i4_4_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i4_4_c_int
 #endif
       !
-      hipMemcpyAsync_i4_4_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
+      hipMemcpyAsync_i4_4_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_i4_4_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -4501,8 +4917,8 @@ function hipMemcpyAsync_i4_4_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:,:,:),intent(inout) :: dest
-      integer(4),target,dimension(:,:,:,:),intent(in)    :: src
+      integer(c_int),target,dimension(:,:,:,:),intent(inout) :: dest
+      integer(c_int),target,dimension(:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -4512,7 +4928,7 @@ function hipMemcpyAsync_i4_4_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i4_4_c_size_t
 #endif
       !
-      hipMemcpyAsync_i4_4_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
+      hipMemcpyAsync_i4_4_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_i4_4(dest,src,myKind,stream)
@@ -4523,8 +4939,8 @@ function hipMemcpyAsync_i4_4(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:,:,:),intent(inout) :: dest
-      integer(4),target,dimension(:,:,:,:),intent(in)    :: src
+      integer(c_int),target,dimension(:,:,:,:),intent(inout) :: dest
+      integer(c_int),target,dimension(:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -4533,7 +4949,7 @@ function hipMemcpyAsync_i4_4(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i4_4
 #endif
       !
-      hipMemcpyAsync_i4_4 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*4_8,myKind,stream)
+      hipMemcpyAsync_i4_4 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_i4_5_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -4543,8 +4959,8 @@ function hipMemcpyAsync_i4_5_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:,:,:,:),intent(inout) :: dest
-      integer(4),target,dimension(:,:,:,:,:),intent(in)    :: src
+      integer(c_int),target,dimension(:,:,:,:,:),intent(inout) :: dest
+      integer(c_int),target,dimension(:,:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -4554,7 +4970,7 @@ function hipMemcpyAsync_i4_5_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i4_5_c_int
 #endif
       !
-      hipMemcpyAsync_i4_5_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
+      hipMemcpyAsync_i4_5_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_i4_5_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -4564,8 +4980,8 @@ function hipMemcpyAsync_i4_5_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:,:,:,:),intent(inout) :: dest
-      integer(4),target,dimension(:,:,:,:,:),intent(in)    :: src
+      integer(c_int),target,dimension(:,:,:,:,:),intent(inout) :: dest
+      integer(c_int),target,dimension(:,:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -4575,7 +4991,7 @@ function hipMemcpyAsync_i4_5_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i4_5_c_size_t
 #endif
       !
-      hipMemcpyAsync_i4_5_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
+      hipMemcpyAsync_i4_5_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_i4_5(dest,src,myKind,stream)
@@ -4586,8 +5002,8 @@ function hipMemcpyAsync_i4_5(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:,:,:,:),intent(inout) :: dest
-      integer(4),target,dimension(:,:,:,:,:),intent(in)    :: src
+      integer(c_int),target,dimension(:,:,:,:,:),intent(inout) :: dest
+      integer(c_int),target,dimension(:,:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -4596,7 +5012,7 @@ function hipMemcpyAsync_i4_5(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i4_5
 #endif
       !
-      hipMemcpyAsync_i4_5 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*4_8,myKind,stream)
+      hipMemcpyAsync_i4_5 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_i4_6_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -4606,8 +5022,8 @@ function hipMemcpyAsync_i4_6_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
-      integer(4),target,dimension(:,:,:,:,:,:),intent(in)    :: src
+      integer(c_int),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
+      integer(c_int),target,dimension(:,:,:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -4617,7 +5033,7 @@ function hipMemcpyAsync_i4_6_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i4_6_c_int
 #endif
       !
-      hipMemcpyAsync_i4_6_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
+      hipMemcpyAsync_i4_6_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_i4_6_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -4627,8 +5043,8 @@ function hipMemcpyAsync_i4_6_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
-      integer(4),target,dimension(:,:,:,:,:,:),intent(in)    :: src
+      integer(c_int),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
+      integer(c_int),target,dimension(:,:,:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -4638,7 +5054,7 @@ function hipMemcpyAsync_i4_6_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i4_6_c_size_t
 #endif
       !
-      hipMemcpyAsync_i4_6_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
+      hipMemcpyAsync_i4_6_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_i4_6(dest,src,myKind,stream)
@@ -4649,8 +5065,8 @@ function hipMemcpyAsync_i4_6(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
-      integer(4),target,dimension(:,:,:,:,:,:),intent(in)    :: src
+      integer(c_int),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
+      integer(c_int),target,dimension(:,:,:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -4659,7 +5075,7 @@ function hipMemcpyAsync_i4_6(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i4_6
 #endif
       !
-      hipMemcpyAsync_i4_6 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*4_8,myKind,stream)
+      hipMemcpyAsync_i4_6 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_i4_7_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -4669,8 +5085,8 @@ function hipMemcpyAsync_i4_7_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
-      integer(4),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
+      integer(c_int),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
+      integer(c_int),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -4680,7 +5096,7 @@ function hipMemcpyAsync_i4_7_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i4_7_c_int
 #endif
       !
-      hipMemcpyAsync_i4_7_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
+      hipMemcpyAsync_i4_7_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_i4_7_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -4690,8 +5106,8 @@ function hipMemcpyAsync_i4_7_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
-      integer(4),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
+      integer(c_int),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
+      integer(c_int),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -4701,7 +5117,7 @@ function hipMemcpyAsync_i4_7_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i4_7_c_size_t
 #endif
       !
-      hipMemcpyAsync_i4_7_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
+      hipMemcpyAsync_i4_7_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_i4_7(dest,src,myKind,stream)
@@ -4712,8 +5128,8 @@ function hipMemcpyAsync_i4_7(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
-      integer(4),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
+      integer(c_int),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
+      integer(c_int),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -4722,7 +5138,7 @@ function hipMemcpyAsync_i4_7(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i4_7
 #endif
       !
-      hipMemcpyAsync_i4_7 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*4_8,myKind,stream)
+      hipMemcpyAsync_i4_7 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_i8_0_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -4732,8 +5148,8 @@ function hipMemcpyAsync_i8_0_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,intent(inout) :: dest
-      integer(8),target,intent(in)    :: src
+      integer(c_long),target,intent(inout) :: dest
+      integer(c_long),target,intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -4743,7 +5159,7 @@ function hipMemcpyAsync_i8_0_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i8_0_c_int
 #endif
       !
-      hipMemcpyAsync_i8_0_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
+      hipMemcpyAsync_i8_0_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_i8_0_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -4753,8 +5169,8 @@ function hipMemcpyAsync_i8_0_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,intent(inout) :: dest
-      integer(8),target,intent(in)    :: src
+      integer(c_long),target,intent(inout) :: dest
+      integer(c_long),target,intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -4764,7 +5180,7 @@ function hipMemcpyAsync_i8_0_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i8_0_c_size_t
 #endif
       !
-      hipMemcpyAsync_i8_0_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
+      hipMemcpyAsync_i8_0_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_i8_0(dest,src,myKind,stream)
@@ -4775,8 +5191,8 @@ function hipMemcpyAsync_i8_0(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,intent(inout) :: dest
-      integer(8),target,intent(in)    :: src
+      integer(c_long),target,intent(inout) :: dest
+      integer(c_long),target,intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -4785,7 +5201,7 @@ function hipMemcpyAsync_i8_0(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i8_0
 #endif
       !
-      hipMemcpyAsync_i8_0 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),8_8,myKind,stream)
+      hipMemcpyAsync_i8_0 = hipMemcpyAsync_(c_loc(dest),c_loc(src),8_8,myKind,stream)
     end function
 function hipMemcpyAsync_i8_1_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -4795,8 +5211,8 @@ function hipMemcpyAsync_i8_1_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:),intent(inout) :: dest
-      integer(8),target,dimension(:),intent(in)    :: src
+      integer(c_long),target,dimension(:),intent(inout) :: dest
+      integer(c_long),target,dimension(:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -4806,7 +5222,7 @@ function hipMemcpyAsync_i8_1_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i8_1_c_int
 #endif
       !
-      hipMemcpyAsync_i8_1_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
+      hipMemcpyAsync_i8_1_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_i8_1_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -4816,8 +5232,8 @@ function hipMemcpyAsync_i8_1_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:),intent(inout) :: dest
-      integer(8),target,dimension(:),intent(in)    :: src
+      integer(c_long),target,dimension(:),intent(inout) :: dest
+      integer(c_long),target,dimension(:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -4827,7 +5243,7 @@ function hipMemcpyAsync_i8_1_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i8_1_c_size_t
 #endif
       !
-      hipMemcpyAsync_i8_1_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
+      hipMemcpyAsync_i8_1_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_i8_1(dest,src,myKind,stream)
@@ -4838,8 +5254,8 @@ function hipMemcpyAsync_i8_1(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:),intent(inout) :: dest
-      integer(8),target,dimension(:),intent(in)    :: src
+      integer(c_long),target,dimension(:),intent(inout) :: dest
+      integer(c_long),target,dimension(:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -4848,7 +5264,7 @@ function hipMemcpyAsync_i8_1(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i8_1
 #endif
       !
-      hipMemcpyAsync_i8_1 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*8_8,myKind,stream)
+      hipMemcpyAsync_i8_1 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_i8_2_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -4858,8 +5274,8 @@ function hipMemcpyAsync_i8_2_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:),intent(inout) :: dest
-      integer(8),target,dimension(:,:),intent(in)    :: src
+      integer(c_long),target,dimension(:,:),intent(inout) :: dest
+      integer(c_long),target,dimension(:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -4869,7 +5285,7 @@ function hipMemcpyAsync_i8_2_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i8_2_c_int
 #endif
       !
-      hipMemcpyAsync_i8_2_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
+      hipMemcpyAsync_i8_2_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_i8_2_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -4879,8 +5295,8 @@ function hipMemcpyAsync_i8_2_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:),intent(inout) :: dest
-      integer(8),target,dimension(:,:),intent(in)    :: src
+      integer(c_long),target,dimension(:,:),intent(inout) :: dest
+      integer(c_long),target,dimension(:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -4890,7 +5306,7 @@ function hipMemcpyAsync_i8_2_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i8_2_c_size_t
 #endif
       !
-      hipMemcpyAsync_i8_2_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
+      hipMemcpyAsync_i8_2_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_i8_2(dest,src,myKind,stream)
@@ -4901,8 +5317,8 @@ function hipMemcpyAsync_i8_2(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:),intent(inout) :: dest
-      integer(8),target,dimension(:,:),intent(in)    :: src
+      integer(c_long),target,dimension(:,:),intent(inout) :: dest
+      integer(c_long),target,dimension(:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -4911,7 +5327,7 @@ function hipMemcpyAsync_i8_2(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i8_2
 #endif
       !
-      hipMemcpyAsync_i8_2 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*8_8,myKind,stream)
+      hipMemcpyAsync_i8_2 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_i8_3_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -4921,8 +5337,8 @@ function hipMemcpyAsync_i8_3_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:,:),intent(inout) :: dest
-      integer(8),target,dimension(:,:,:),intent(in)    :: src
+      integer(c_long),target,dimension(:,:,:),intent(inout) :: dest
+      integer(c_long),target,dimension(:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -4932,7 +5348,7 @@ function hipMemcpyAsync_i8_3_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i8_3_c_int
 #endif
       !
-      hipMemcpyAsync_i8_3_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
+      hipMemcpyAsync_i8_3_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_i8_3_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -4942,8 +5358,8 @@ function hipMemcpyAsync_i8_3_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:,:),intent(inout) :: dest
-      integer(8),target,dimension(:,:,:),intent(in)    :: src
+      integer(c_long),target,dimension(:,:,:),intent(inout) :: dest
+      integer(c_long),target,dimension(:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -4953,7 +5369,7 @@ function hipMemcpyAsync_i8_3_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i8_3_c_size_t
 #endif
       !
-      hipMemcpyAsync_i8_3_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
+      hipMemcpyAsync_i8_3_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_i8_3(dest,src,myKind,stream)
@@ -4964,8 +5380,8 @@ function hipMemcpyAsync_i8_3(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:,:),intent(inout) :: dest
-      integer(8),target,dimension(:,:,:),intent(in)    :: src
+      integer(c_long),target,dimension(:,:,:),intent(inout) :: dest
+      integer(c_long),target,dimension(:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -4974,7 +5390,7 @@ function hipMemcpyAsync_i8_3(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i8_3
 #endif
       !
-      hipMemcpyAsync_i8_3 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*8_8,myKind,stream)
+      hipMemcpyAsync_i8_3 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_i8_4_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -4984,8 +5400,8 @@ function hipMemcpyAsync_i8_4_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:,:,:),intent(inout) :: dest
-      integer(8),target,dimension(:,:,:,:),intent(in)    :: src
+      integer(c_long),target,dimension(:,:,:,:),intent(inout) :: dest
+      integer(c_long),target,dimension(:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -4995,7 +5411,7 @@ function hipMemcpyAsync_i8_4_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i8_4_c_int
 #endif
       !
-      hipMemcpyAsync_i8_4_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
+      hipMemcpyAsync_i8_4_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_i8_4_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -5005,8 +5421,8 @@ function hipMemcpyAsync_i8_4_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:,:,:),intent(inout) :: dest
-      integer(8),target,dimension(:,:,:,:),intent(in)    :: src
+      integer(c_long),target,dimension(:,:,:,:),intent(inout) :: dest
+      integer(c_long),target,dimension(:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -5016,7 +5432,7 @@ function hipMemcpyAsync_i8_4_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i8_4_c_size_t
 #endif
       !
-      hipMemcpyAsync_i8_4_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
+      hipMemcpyAsync_i8_4_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_i8_4(dest,src,myKind,stream)
@@ -5027,8 +5443,8 @@ function hipMemcpyAsync_i8_4(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:,:,:),intent(inout) :: dest
-      integer(8),target,dimension(:,:,:,:),intent(in)    :: src
+      integer(c_long),target,dimension(:,:,:,:),intent(inout) :: dest
+      integer(c_long),target,dimension(:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -5037,7 +5453,7 @@ function hipMemcpyAsync_i8_4(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i8_4
 #endif
       !
-      hipMemcpyAsync_i8_4 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*8_8,myKind,stream)
+      hipMemcpyAsync_i8_4 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_i8_5_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -5047,8 +5463,8 @@ function hipMemcpyAsync_i8_5_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:,:,:,:),intent(inout) :: dest
-      integer(8),target,dimension(:,:,:,:,:),intent(in)    :: src
+      integer(c_long),target,dimension(:,:,:,:,:),intent(inout) :: dest
+      integer(c_long),target,dimension(:,:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -5058,7 +5474,7 @@ function hipMemcpyAsync_i8_5_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i8_5_c_int
 #endif
       !
-      hipMemcpyAsync_i8_5_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
+      hipMemcpyAsync_i8_5_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_i8_5_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -5068,8 +5484,8 @@ function hipMemcpyAsync_i8_5_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:,:,:,:),intent(inout) :: dest
-      integer(8),target,dimension(:,:,:,:,:),intent(in)    :: src
+      integer(c_long),target,dimension(:,:,:,:,:),intent(inout) :: dest
+      integer(c_long),target,dimension(:,:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -5079,7 +5495,7 @@ function hipMemcpyAsync_i8_5_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i8_5_c_size_t
 #endif
       !
-      hipMemcpyAsync_i8_5_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
+      hipMemcpyAsync_i8_5_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_i8_5(dest,src,myKind,stream)
@@ -5090,8 +5506,8 @@ function hipMemcpyAsync_i8_5(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:,:,:,:),intent(inout) :: dest
-      integer(8),target,dimension(:,:,:,:,:),intent(in)    :: src
+      integer(c_long),target,dimension(:,:,:,:,:),intent(inout) :: dest
+      integer(c_long),target,dimension(:,:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -5100,7 +5516,7 @@ function hipMemcpyAsync_i8_5(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i8_5
 #endif
       !
-      hipMemcpyAsync_i8_5 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*8_8,myKind,stream)
+      hipMemcpyAsync_i8_5 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_i8_6_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -5110,8 +5526,8 @@ function hipMemcpyAsync_i8_6_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
-      integer(8),target,dimension(:,:,:,:,:,:),intent(in)    :: src
+      integer(c_long),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
+      integer(c_long),target,dimension(:,:,:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -5121,7 +5537,7 @@ function hipMemcpyAsync_i8_6_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i8_6_c_int
 #endif
       !
-      hipMemcpyAsync_i8_6_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
+      hipMemcpyAsync_i8_6_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_i8_6_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -5131,8 +5547,8 @@ function hipMemcpyAsync_i8_6_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
-      integer(8),target,dimension(:,:,:,:,:,:),intent(in)    :: src
+      integer(c_long),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
+      integer(c_long),target,dimension(:,:,:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -5142,7 +5558,7 @@ function hipMemcpyAsync_i8_6_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i8_6_c_size_t
 #endif
       !
-      hipMemcpyAsync_i8_6_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
+      hipMemcpyAsync_i8_6_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_i8_6(dest,src,myKind,stream)
@@ -5153,8 +5569,8 @@ function hipMemcpyAsync_i8_6(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
-      integer(8),target,dimension(:,:,:,:,:,:),intent(in)    :: src
+      integer(c_long),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
+      integer(c_long),target,dimension(:,:,:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -5163,7 +5579,7 @@ function hipMemcpyAsync_i8_6(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i8_6
 #endif
       !
-      hipMemcpyAsync_i8_6 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*8_8,myKind,stream)
+      hipMemcpyAsync_i8_6 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_i8_7_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -5173,8 +5589,8 @@ function hipMemcpyAsync_i8_7_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
-      integer(8),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
+      integer(c_long),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
+      integer(c_long),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -5184,7 +5600,7 @@ function hipMemcpyAsync_i8_7_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i8_7_c_int
 #endif
       !
-      hipMemcpyAsync_i8_7_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
+      hipMemcpyAsync_i8_7_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_i8_7_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -5194,8 +5610,8 @@ function hipMemcpyAsync_i8_7_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
-      integer(8),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
+      integer(c_long),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
+      integer(c_long),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -5205,7 +5621,7 @@ function hipMemcpyAsync_i8_7_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i8_7_c_size_t
 #endif
       !
-      hipMemcpyAsync_i8_7_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
+      hipMemcpyAsync_i8_7_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_i8_7(dest,src,myKind,stream)
@@ -5216,8 +5632,8 @@ function hipMemcpyAsync_i8_7(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
-      integer(8),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
+      integer(c_long),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
+      integer(c_long),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -5226,7 +5642,7 @@ function hipMemcpyAsync_i8_7(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_i8_7
 #endif
       !
-      hipMemcpyAsync_i8_7 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*8_8,myKind,stream)
+      hipMemcpyAsync_i8_7 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_r4_0_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -5236,8 +5652,8 @@ function hipMemcpyAsync_r4_0_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,intent(inout) :: dest
-      real(4),target,intent(in)    :: src
+      real(c_float),target,intent(inout) :: dest
+      real(c_float),target,intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -5247,7 +5663,7 @@ function hipMemcpyAsync_r4_0_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r4_0_c_int
 #endif
       !
-      hipMemcpyAsync_r4_0_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
+      hipMemcpyAsync_r4_0_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_r4_0_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -5257,8 +5673,8 @@ function hipMemcpyAsync_r4_0_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,intent(inout) :: dest
-      real(4),target,intent(in)    :: src
+      real(c_float),target,intent(inout) :: dest
+      real(c_float),target,intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -5268,7 +5684,7 @@ function hipMemcpyAsync_r4_0_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r4_0_c_size_t
 #endif
       !
-      hipMemcpyAsync_r4_0_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
+      hipMemcpyAsync_r4_0_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_r4_0(dest,src,myKind,stream)
@@ -5279,8 +5695,8 @@ function hipMemcpyAsync_r4_0(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,intent(inout) :: dest
-      real(4),target,intent(in)    :: src
+      real(c_float),target,intent(inout) :: dest
+      real(c_float),target,intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -5289,7 +5705,7 @@ function hipMemcpyAsync_r4_0(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r4_0
 #endif
       !
-      hipMemcpyAsync_r4_0 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),4_8,myKind,stream)
+      hipMemcpyAsync_r4_0 = hipMemcpyAsync_(c_loc(dest),c_loc(src),4_8,myKind,stream)
     end function
 function hipMemcpyAsync_r4_1_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -5299,8 +5715,8 @@ function hipMemcpyAsync_r4_1_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:),intent(inout) :: dest
-      real(4),target,dimension(:),intent(in)    :: src
+      real(c_float),target,dimension(:),intent(inout) :: dest
+      real(c_float),target,dimension(:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -5310,7 +5726,7 @@ function hipMemcpyAsync_r4_1_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r4_1_c_int
 #endif
       !
-      hipMemcpyAsync_r4_1_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
+      hipMemcpyAsync_r4_1_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_r4_1_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -5320,8 +5736,8 @@ function hipMemcpyAsync_r4_1_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:),intent(inout) :: dest
-      real(4),target,dimension(:),intent(in)    :: src
+      real(c_float),target,dimension(:),intent(inout) :: dest
+      real(c_float),target,dimension(:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -5331,7 +5747,7 @@ function hipMemcpyAsync_r4_1_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r4_1_c_size_t
 #endif
       !
-      hipMemcpyAsync_r4_1_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
+      hipMemcpyAsync_r4_1_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_r4_1(dest,src,myKind,stream)
@@ -5342,8 +5758,8 @@ function hipMemcpyAsync_r4_1(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:),intent(inout) :: dest
-      real(4),target,dimension(:),intent(in)    :: src
+      real(c_float),target,dimension(:),intent(inout) :: dest
+      real(c_float),target,dimension(:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -5352,7 +5768,7 @@ function hipMemcpyAsync_r4_1(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r4_1
 #endif
       !
-      hipMemcpyAsync_r4_1 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*4_8,myKind,stream)
+      hipMemcpyAsync_r4_1 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_r4_2_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -5362,8 +5778,8 @@ function hipMemcpyAsync_r4_2_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:,:),intent(inout) :: dest
-      real(4),target,dimension(:,:),intent(in)    :: src
+      real(c_float),target,dimension(:,:),intent(inout) :: dest
+      real(c_float),target,dimension(:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -5373,7 +5789,7 @@ function hipMemcpyAsync_r4_2_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r4_2_c_int
 #endif
       !
-      hipMemcpyAsync_r4_2_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
+      hipMemcpyAsync_r4_2_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_r4_2_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -5383,8 +5799,8 @@ function hipMemcpyAsync_r4_2_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:,:),intent(inout) :: dest
-      real(4),target,dimension(:,:),intent(in)    :: src
+      real(c_float),target,dimension(:,:),intent(inout) :: dest
+      real(c_float),target,dimension(:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -5394,7 +5810,7 @@ function hipMemcpyAsync_r4_2_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r4_2_c_size_t
 #endif
       !
-      hipMemcpyAsync_r4_2_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
+      hipMemcpyAsync_r4_2_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_r4_2(dest,src,myKind,stream)
@@ -5405,8 +5821,8 @@ function hipMemcpyAsync_r4_2(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:,:),intent(inout) :: dest
-      real(4),target,dimension(:,:),intent(in)    :: src
+      real(c_float),target,dimension(:,:),intent(inout) :: dest
+      real(c_float),target,dimension(:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -5415,7 +5831,7 @@ function hipMemcpyAsync_r4_2(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r4_2
 #endif
       !
-      hipMemcpyAsync_r4_2 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*4_8,myKind,stream)
+      hipMemcpyAsync_r4_2 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_r4_3_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -5425,8 +5841,8 @@ function hipMemcpyAsync_r4_3_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:,:,:),intent(inout) :: dest
-      real(4),target,dimension(:,:,:),intent(in)    :: src
+      real(c_float),target,dimension(:,:,:),intent(inout) :: dest
+      real(c_float),target,dimension(:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -5436,7 +5852,7 @@ function hipMemcpyAsync_r4_3_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r4_3_c_int
 #endif
       !
-      hipMemcpyAsync_r4_3_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
+      hipMemcpyAsync_r4_3_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_r4_3_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -5446,8 +5862,8 @@ function hipMemcpyAsync_r4_3_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:,:,:),intent(inout) :: dest
-      real(4),target,dimension(:,:,:),intent(in)    :: src
+      real(c_float),target,dimension(:,:,:),intent(inout) :: dest
+      real(c_float),target,dimension(:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -5457,7 +5873,7 @@ function hipMemcpyAsync_r4_3_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r4_3_c_size_t
 #endif
       !
-      hipMemcpyAsync_r4_3_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
+      hipMemcpyAsync_r4_3_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_r4_3(dest,src,myKind,stream)
@@ -5468,8 +5884,8 @@ function hipMemcpyAsync_r4_3(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:,:,:),intent(inout) :: dest
-      real(4),target,dimension(:,:,:),intent(in)    :: src
+      real(c_float),target,dimension(:,:,:),intent(inout) :: dest
+      real(c_float),target,dimension(:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -5478,7 +5894,7 @@ function hipMemcpyAsync_r4_3(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r4_3
 #endif
       !
-      hipMemcpyAsync_r4_3 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*4_8,myKind,stream)
+      hipMemcpyAsync_r4_3 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_r4_4_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -5488,8 +5904,8 @@ function hipMemcpyAsync_r4_4_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:,:,:,:),intent(inout) :: dest
-      real(4),target,dimension(:,:,:,:),intent(in)    :: src
+      real(c_float),target,dimension(:,:,:,:),intent(inout) :: dest
+      real(c_float),target,dimension(:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -5499,7 +5915,7 @@ function hipMemcpyAsync_r4_4_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r4_4_c_int
 #endif
       !
-      hipMemcpyAsync_r4_4_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
+      hipMemcpyAsync_r4_4_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_r4_4_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -5509,8 +5925,8 @@ function hipMemcpyAsync_r4_4_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:,:,:,:),intent(inout) :: dest
-      real(4),target,dimension(:,:,:,:),intent(in)    :: src
+      real(c_float),target,dimension(:,:,:,:),intent(inout) :: dest
+      real(c_float),target,dimension(:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -5520,7 +5936,7 @@ function hipMemcpyAsync_r4_4_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r4_4_c_size_t
 #endif
       !
-      hipMemcpyAsync_r4_4_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
+      hipMemcpyAsync_r4_4_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_r4_4(dest,src,myKind,stream)
@@ -5531,8 +5947,8 @@ function hipMemcpyAsync_r4_4(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:,:,:,:),intent(inout) :: dest
-      real(4),target,dimension(:,:,:,:),intent(in)    :: src
+      real(c_float),target,dimension(:,:,:,:),intent(inout) :: dest
+      real(c_float),target,dimension(:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -5541,7 +5957,7 @@ function hipMemcpyAsync_r4_4(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r4_4
 #endif
       !
-      hipMemcpyAsync_r4_4 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*4_8,myKind,stream)
+      hipMemcpyAsync_r4_4 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_r4_5_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -5551,8 +5967,8 @@ function hipMemcpyAsync_r4_5_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:,:,:,:,:),intent(inout) :: dest
-      real(4),target,dimension(:,:,:,:,:),intent(in)    :: src
+      real(c_float),target,dimension(:,:,:,:,:),intent(inout) :: dest
+      real(c_float),target,dimension(:,:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -5562,7 +5978,7 @@ function hipMemcpyAsync_r4_5_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r4_5_c_int
 #endif
       !
-      hipMemcpyAsync_r4_5_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
+      hipMemcpyAsync_r4_5_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_r4_5_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -5572,8 +5988,8 @@ function hipMemcpyAsync_r4_5_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:,:,:,:,:),intent(inout) :: dest
-      real(4),target,dimension(:,:,:,:,:),intent(in)    :: src
+      real(c_float),target,dimension(:,:,:,:,:),intent(inout) :: dest
+      real(c_float),target,dimension(:,:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -5583,7 +5999,7 @@ function hipMemcpyAsync_r4_5_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r4_5_c_size_t
 #endif
       !
-      hipMemcpyAsync_r4_5_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
+      hipMemcpyAsync_r4_5_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_r4_5(dest,src,myKind,stream)
@@ -5594,8 +6010,8 @@ function hipMemcpyAsync_r4_5(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:,:,:,:,:),intent(inout) :: dest
-      real(4),target,dimension(:,:,:,:,:),intent(in)    :: src
+      real(c_float),target,dimension(:,:,:,:,:),intent(inout) :: dest
+      real(c_float),target,dimension(:,:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -5604,7 +6020,7 @@ function hipMemcpyAsync_r4_5(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r4_5
 #endif
       !
-      hipMemcpyAsync_r4_5 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*4_8,myKind,stream)
+      hipMemcpyAsync_r4_5 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_r4_6_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -5614,8 +6030,8 @@ function hipMemcpyAsync_r4_6_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
-      real(4),target,dimension(:,:,:,:,:,:),intent(in)    :: src
+      real(c_float),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
+      real(c_float),target,dimension(:,:,:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -5625,7 +6041,7 @@ function hipMemcpyAsync_r4_6_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r4_6_c_int
 #endif
       !
-      hipMemcpyAsync_r4_6_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
+      hipMemcpyAsync_r4_6_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_r4_6_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -5635,8 +6051,8 @@ function hipMemcpyAsync_r4_6_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
-      real(4),target,dimension(:,:,:,:,:,:),intent(in)    :: src
+      real(c_float),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
+      real(c_float),target,dimension(:,:,:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -5646,7 +6062,7 @@ function hipMemcpyAsync_r4_6_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r4_6_c_size_t
 #endif
       !
-      hipMemcpyAsync_r4_6_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
+      hipMemcpyAsync_r4_6_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_r4_6(dest,src,myKind,stream)
@@ -5657,8 +6073,8 @@ function hipMemcpyAsync_r4_6(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
-      real(4),target,dimension(:,:,:,:,:,:),intent(in)    :: src
+      real(c_float),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
+      real(c_float),target,dimension(:,:,:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -5667,7 +6083,7 @@ function hipMemcpyAsync_r4_6(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r4_6
 #endif
       !
-      hipMemcpyAsync_r4_6 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*4_8,myKind,stream)
+      hipMemcpyAsync_r4_6 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_r4_7_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -5677,8 +6093,8 @@ function hipMemcpyAsync_r4_7_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
-      real(4),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
+      real(c_float),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
+      real(c_float),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -5688,7 +6104,7 @@ function hipMemcpyAsync_r4_7_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r4_7_c_int
 #endif
       !
-      hipMemcpyAsync_r4_7_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
+      hipMemcpyAsync_r4_7_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_r4_7_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -5698,8 +6114,8 @@ function hipMemcpyAsync_r4_7_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
-      real(4),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
+      real(c_float),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
+      real(c_float),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -5709,7 +6125,7 @@ function hipMemcpyAsync_r4_7_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r4_7_c_size_t
 #endif
       !
-      hipMemcpyAsync_r4_7_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
+      hipMemcpyAsync_r4_7_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*4_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_r4_7(dest,src,myKind,stream)
@@ -5720,8 +6136,8 @@ function hipMemcpyAsync_r4_7(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
-      real(4),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
+      real(c_float),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
+      real(c_float),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -5730,7 +6146,7 @@ function hipMemcpyAsync_r4_7(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r4_7
 #endif
       !
-      hipMemcpyAsync_r4_7 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*4_8,myKind,stream)
+      hipMemcpyAsync_r4_7 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_r8_0_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -5740,8 +6156,8 @@ function hipMemcpyAsync_r8_0_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,intent(inout) :: dest
-      real(8),target,intent(in)    :: src
+      real(c_double),target,intent(inout) :: dest
+      real(c_double),target,intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -5751,7 +6167,7 @@ function hipMemcpyAsync_r8_0_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r8_0_c_int
 #endif
       !
-      hipMemcpyAsync_r8_0_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
+      hipMemcpyAsync_r8_0_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_r8_0_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -5761,8 +6177,8 @@ function hipMemcpyAsync_r8_0_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,intent(inout) :: dest
-      real(8),target,intent(in)    :: src
+      real(c_double),target,intent(inout) :: dest
+      real(c_double),target,intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -5772,7 +6188,7 @@ function hipMemcpyAsync_r8_0_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r8_0_c_size_t
 #endif
       !
-      hipMemcpyAsync_r8_0_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
+      hipMemcpyAsync_r8_0_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_r8_0(dest,src,myKind,stream)
@@ -5783,8 +6199,8 @@ function hipMemcpyAsync_r8_0(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,intent(inout) :: dest
-      real(8),target,intent(in)    :: src
+      real(c_double),target,intent(inout) :: dest
+      real(c_double),target,intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -5793,7 +6209,7 @@ function hipMemcpyAsync_r8_0(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r8_0
 #endif
       !
-      hipMemcpyAsync_r8_0 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),8_8,myKind,stream)
+      hipMemcpyAsync_r8_0 = hipMemcpyAsync_(c_loc(dest),c_loc(src),8_8,myKind,stream)
     end function
 function hipMemcpyAsync_r8_1_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -5803,8 +6219,8 @@ function hipMemcpyAsync_r8_1_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:),intent(inout) :: dest
-      real(8),target,dimension(:),intent(in)    :: src
+      real(c_double),target,dimension(:),intent(inout) :: dest
+      real(c_double),target,dimension(:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -5814,7 +6230,7 @@ function hipMemcpyAsync_r8_1_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r8_1_c_int
 #endif
       !
-      hipMemcpyAsync_r8_1_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
+      hipMemcpyAsync_r8_1_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_r8_1_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -5824,8 +6240,8 @@ function hipMemcpyAsync_r8_1_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:),intent(inout) :: dest
-      real(8),target,dimension(:),intent(in)    :: src
+      real(c_double),target,dimension(:),intent(inout) :: dest
+      real(c_double),target,dimension(:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -5835,7 +6251,7 @@ function hipMemcpyAsync_r8_1_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r8_1_c_size_t
 #endif
       !
-      hipMemcpyAsync_r8_1_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
+      hipMemcpyAsync_r8_1_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_r8_1(dest,src,myKind,stream)
@@ -5846,8 +6262,8 @@ function hipMemcpyAsync_r8_1(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:),intent(inout) :: dest
-      real(8),target,dimension(:),intent(in)    :: src
+      real(c_double),target,dimension(:),intent(inout) :: dest
+      real(c_double),target,dimension(:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -5856,7 +6272,7 @@ function hipMemcpyAsync_r8_1(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r8_1
 #endif
       !
-      hipMemcpyAsync_r8_1 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*8_8,myKind,stream)
+      hipMemcpyAsync_r8_1 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_r8_2_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -5866,8 +6282,8 @@ function hipMemcpyAsync_r8_2_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:,:),intent(inout) :: dest
-      real(8),target,dimension(:,:),intent(in)    :: src
+      real(c_double),target,dimension(:,:),intent(inout) :: dest
+      real(c_double),target,dimension(:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -5877,7 +6293,7 @@ function hipMemcpyAsync_r8_2_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r8_2_c_int
 #endif
       !
-      hipMemcpyAsync_r8_2_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
+      hipMemcpyAsync_r8_2_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_r8_2_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -5887,8 +6303,8 @@ function hipMemcpyAsync_r8_2_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:,:),intent(inout) :: dest
-      real(8),target,dimension(:,:),intent(in)    :: src
+      real(c_double),target,dimension(:,:),intent(inout) :: dest
+      real(c_double),target,dimension(:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -5898,7 +6314,7 @@ function hipMemcpyAsync_r8_2_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r8_2_c_size_t
 #endif
       !
-      hipMemcpyAsync_r8_2_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
+      hipMemcpyAsync_r8_2_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_r8_2(dest,src,myKind,stream)
@@ -5909,8 +6325,8 @@ function hipMemcpyAsync_r8_2(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:,:),intent(inout) :: dest
-      real(8),target,dimension(:,:),intent(in)    :: src
+      real(c_double),target,dimension(:,:),intent(inout) :: dest
+      real(c_double),target,dimension(:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -5919,7 +6335,7 @@ function hipMemcpyAsync_r8_2(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r8_2
 #endif
       !
-      hipMemcpyAsync_r8_2 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*8_8,myKind,stream)
+      hipMemcpyAsync_r8_2 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_r8_3_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -5929,8 +6345,8 @@ function hipMemcpyAsync_r8_3_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:,:,:),intent(inout) :: dest
-      real(8),target,dimension(:,:,:),intent(in)    :: src
+      real(c_double),target,dimension(:,:,:),intent(inout) :: dest
+      real(c_double),target,dimension(:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -5940,7 +6356,7 @@ function hipMemcpyAsync_r8_3_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r8_3_c_int
 #endif
       !
-      hipMemcpyAsync_r8_3_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
+      hipMemcpyAsync_r8_3_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_r8_3_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -5950,8 +6366,8 @@ function hipMemcpyAsync_r8_3_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:,:,:),intent(inout) :: dest
-      real(8),target,dimension(:,:,:),intent(in)    :: src
+      real(c_double),target,dimension(:,:,:),intent(inout) :: dest
+      real(c_double),target,dimension(:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -5961,7 +6377,7 @@ function hipMemcpyAsync_r8_3_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r8_3_c_size_t
 #endif
       !
-      hipMemcpyAsync_r8_3_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
+      hipMemcpyAsync_r8_3_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_r8_3(dest,src,myKind,stream)
@@ -5972,8 +6388,8 @@ function hipMemcpyAsync_r8_3(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:,:,:),intent(inout) :: dest
-      real(8),target,dimension(:,:,:),intent(in)    :: src
+      real(c_double),target,dimension(:,:,:),intent(inout) :: dest
+      real(c_double),target,dimension(:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -5982,7 +6398,7 @@ function hipMemcpyAsync_r8_3(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r8_3
 #endif
       !
-      hipMemcpyAsync_r8_3 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*8_8,myKind,stream)
+      hipMemcpyAsync_r8_3 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_r8_4_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -5992,8 +6408,8 @@ function hipMemcpyAsync_r8_4_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:,:,:,:),intent(inout) :: dest
-      real(8),target,dimension(:,:,:,:),intent(in)    :: src
+      real(c_double),target,dimension(:,:,:,:),intent(inout) :: dest
+      real(c_double),target,dimension(:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -6003,7 +6419,7 @@ function hipMemcpyAsync_r8_4_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r8_4_c_int
 #endif
       !
-      hipMemcpyAsync_r8_4_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
+      hipMemcpyAsync_r8_4_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_r8_4_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -6013,8 +6429,8 @@ function hipMemcpyAsync_r8_4_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:,:,:,:),intent(inout) :: dest
-      real(8),target,dimension(:,:,:,:),intent(in)    :: src
+      real(c_double),target,dimension(:,:,:,:),intent(inout) :: dest
+      real(c_double),target,dimension(:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -6024,7 +6440,7 @@ function hipMemcpyAsync_r8_4_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r8_4_c_size_t
 #endif
       !
-      hipMemcpyAsync_r8_4_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
+      hipMemcpyAsync_r8_4_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_r8_4(dest,src,myKind,stream)
@@ -6035,8 +6451,8 @@ function hipMemcpyAsync_r8_4(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:,:,:,:),intent(inout) :: dest
-      real(8),target,dimension(:,:,:,:),intent(in)    :: src
+      real(c_double),target,dimension(:,:,:,:),intent(inout) :: dest
+      real(c_double),target,dimension(:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -6045,7 +6461,7 @@ function hipMemcpyAsync_r8_4(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r8_4
 #endif
       !
-      hipMemcpyAsync_r8_4 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*8_8,myKind,stream)
+      hipMemcpyAsync_r8_4 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_r8_5_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -6055,8 +6471,8 @@ function hipMemcpyAsync_r8_5_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:,:,:,:,:),intent(inout) :: dest
-      real(8),target,dimension(:,:,:,:,:),intent(in)    :: src
+      real(c_double),target,dimension(:,:,:,:,:),intent(inout) :: dest
+      real(c_double),target,dimension(:,:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -6066,7 +6482,7 @@ function hipMemcpyAsync_r8_5_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r8_5_c_int
 #endif
       !
-      hipMemcpyAsync_r8_5_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
+      hipMemcpyAsync_r8_5_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_r8_5_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -6076,8 +6492,8 @@ function hipMemcpyAsync_r8_5_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:,:,:,:,:),intent(inout) :: dest
-      real(8),target,dimension(:,:,:,:,:),intent(in)    :: src
+      real(c_double),target,dimension(:,:,:,:,:),intent(inout) :: dest
+      real(c_double),target,dimension(:,:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -6087,7 +6503,7 @@ function hipMemcpyAsync_r8_5_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r8_5_c_size_t
 #endif
       !
-      hipMemcpyAsync_r8_5_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
+      hipMemcpyAsync_r8_5_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_r8_5(dest,src,myKind,stream)
@@ -6098,8 +6514,8 @@ function hipMemcpyAsync_r8_5(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:,:,:,:,:),intent(inout) :: dest
-      real(8),target,dimension(:,:,:,:,:),intent(in)    :: src
+      real(c_double),target,dimension(:,:,:,:,:),intent(inout) :: dest
+      real(c_double),target,dimension(:,:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -6108,7 +6524,7 @@ function hipMemcpyAsync_r8_5(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r8_5
 #endif
       !
-      hipMemcpyAsync_r8_5 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*8_8,myKind,stream)
+      hipMemcpyAsync_r8_5 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_r8_6_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -6118,8 +6534,8 @@ function hipMemcpyAsync_r8_6_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
-      real(8),target,dimension(:,:,:,:,:,:),intent(in)    :: src
+      real(c_double),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
+      real(c_double),target,dimension(:,:,:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -6129,7 +6545,7 @@ function hipMemcpyAsync_r8_6_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r8_6_c_int
 #endif
       !
-      hipMemcpyAsync_r8_6_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
+      hipMemcpyAsync_r8_6_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_r8_6_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -6139,8 +6555,8 @@ function hipMemcpyAsync_r8_6_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
-      real(8),target,dimension(:,:,:,:,:,:),intent(in)    :: src
+      real(c_double),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
+      real(c_double),target,dimension(:,:,:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -6150,7 +6566,7 @@ function hipMemcpyAsync_r8_6_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r8_6_c_size_t
 #endif
       !
-      hipMemcpyAsync_r8_6_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
+      hipMemcpyAsync_r8_6_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_r8_6(dest,src,myKind,stream)
@@ -6161,8 +6577,8 @@ function hipMemcpyAsync_r8_6(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
-      real(8),target,dimension(:,:,:,:,:,:),intent(in)    :: src
+      real(c_double),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
+      real(c_double),target,dimension(:,:,:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -6171,7 +6587,7 @@ function hipMemcpyAsync_r8_6(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r8_6
 #endif
       !
-      hipMemcpyAsync_r8_6 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*8_8,myKind,stream)
+      hipMemcpyAsync_r8_6 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_r8_7_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -6181,8 +6597,8 @@ function hipMemcpyAsync_r8_7_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
-      real(8),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
+      real(c_double),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
+      real(c_double),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -6192,7 +6608,7 @@ function hipMemcpyAsync_r8_7_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r8_7_c_int
 #endif
       !
-      hipMemcpyAsync_r8_7_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
+      hipMemcpyAsync_r8_7_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_r8_7_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -6202,8 +6618,8 @@ function hipMemcpyAsync_r8_7_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
-      real(8),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
+      real(c_double),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
+      real(c_double),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -6213,7 +6629,7 @@ function hipMemcpyAsync_r8_7_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r8_7_c_size_t
 #endif
       !
-      hipMemcpyAsync_r8_7_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
+      hipMemcpyAsync_r8_7_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*8_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_r8_7(dest,src,myKind,stream)
@@ -6224,8 +6640,8 @@ function hipMemcpyAsync_r8_7(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
-      real(8),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
+      real(c_double),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
+      real(c_double),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -6234,7 +6650,7 @@ function hipMemcpyAsync_r8_7(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_r8_7
 #endif
       !
-      hipMemcpyAsync_r8_7 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*8_8,myKind,stream)
+      hipMemcpyAsync_r8_7 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_c4_0_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -6244,8 +6660,8 @@ function hipMemcpyAsync_c4_0_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,intent(inout) :: dest
-      complex(4),target,intent(in)    :: src
+      complex(c_float_complex),target,intent(inout) :: dest
+      complex(c_float_complex),target,intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -6255,7 +6671,7 @@ function hipMemcpyAsync_c4_0_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c4_0_c_int
 #endif
       !
-      hipMemcpyAsync_c4_0_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*2*4_8,myKind,stream)
+      hipMemcpyAsync_c4_0_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*2*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_c4_0_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -6265,8 +6681,8 @@ function hipMemcpyAsync_c4_0_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,intent(inout) :: dest
-      complex(4),target,intent(in)    :: src
+      complex(c_float_complex),target,intent(inout) :: dest
+      complex(c_float_complex),target,intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -6276,7 +6692,7 @@ function hipMemcpyAsync_c4_0_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c4_0_c_size_t
 #endif
       !
-      hipMemcpyAsync_c4_0_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*2*4_8,myKind,stream)
+      hipMemcpyAsync_c4_0_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*2*4_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_c4_0(dest,src,myKind,stream)
@@ -6287,8 +6703,8 @@ function hipMemcpyAsync_c4_0(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,intent(inout) :: dest
-      complex(4),target,intent(in)    :: src
+      complex(c_float_complex),target,intent(inout) :: dest
+      complex(c_float_complex),target,intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -6297,7 +6713,7 @@ function hipMemcpyAsync_c4_0(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c4_0
 #endif
       !
-      hipMemcpyAsync_c4_0 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),2*4_8,myKind,stream)
+      hipMemcpyAsync_c4_0 = hipMemcpyAsync_(c_loc(dest),c_loc(src),2*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_c4_1_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -6307,8 +6723,8 @@ function hipMemcpyAsync_c4_1_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:),intent(inout) :: dest
-      complex(4),target,dimension(:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -6318,7 +6734,7 @@ function hipMemcpyAsync_c4_1_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c4_1_c_int
 #endif
       !
-      hipMemcpyAsync_c4_1_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*2*4_8,myKind,stream)
+      hipMemcpyAsync_c4_1_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*2*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_c4_1_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -6328,8 +6744,8 @@ function hipMemcpyAsync_c4_1_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:),intent(inout) :: dest
-      complex(4),target,dimension(:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -6339,7 +6755,7 @@ function hipMemcpyAsync_c4_1_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c4_1_c_size_t
 #endif
       !
-      hipMemcpyAsync_c4_1_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*2*4_8,myKind,stream)
+      hipMemcpyAsync_c4_1_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*2*4_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_c4_1(dest,src,myKind,stream)
@@ -6350,8 +6766,8 @@ function hipMemcpyAsync_c4_1(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:),intent(inout) :: dest
-      complex(4),target,dimension(:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -6360,7 +6776,7 @@ function hipMemcpyAsync_c4_1(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c4_1
 #endif
       !
-      hipMemcpyAsync_c4_1 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*2*4_8,myKind,stream)
+      hipMemcpyAsync_c4_1 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*2*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_c4_2_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -6370,8 +6786,8 @@ function hipMemcpyAsync_c4_2_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:),intent(inout) :: dest
-      complex(4),target,dimension(:,:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:,:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -6381,7 +6797,7 @@ function hipMemcpyAsync_c4_2_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c4_2_c_int
 #endif
       !
-      hipMemcpyAsync_c4_2_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*2*4_8,myKind,stream)
+      hipMemcpyAsync_c4_2_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*2*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_c4_2_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -6391,8 +6807,8 @@ function hipMemcpyAsync_c4_2_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:),intent(inout) :: dest
-      complex(4),target,dimension(:,:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:,:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -6402,7 +6818,7 @@ function hipMemcpyAsync_c4_2_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c4_2_c_size_t
 #endif
       !
-      hipMemcpyAsync_c4_2_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*2*4_8,myKind,stream)
+      hipMemcpyAsync_c4_2_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*2*4_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_c4_2(dest,src,myKind,stream)
@@ -6413,8 +6829,8 @@ function hipMemcpyAsync_c4_2(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:),intent(inout) :: dest
-      complex(4),target,dimension(:,:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:,:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -6423,7 +6839,7 @@ function hipMemcpyAsync_c4_2(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c4_2
 #endif
       !
-      hipMemcpyAsync_c4_2 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*2*4_8,myKind,stream)
+      hipMemcpyAsync_c4_2 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*2*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_c4_3_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -6433,8 +6849,8 @@ function hipMemcpyAsync_c4_3_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:,:),intent(inout) :: dest
-      complex(4),target,dimension(:,:,:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:,:,:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -6444,7 +6860,7 @@ function hipMemcpyAsync_c4_3_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c4_3_c_int
 #endif
       !
-      hipMemcpyAsync_c4_3_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*2*4_8,myKind,stream)
+      hipMemcpyAsync_c4_3_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*2*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_c4_3_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -6454,8 +6870,8 @@ function hipMemcpyAsync_c4_3_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:,:),intent(inout) :: dest
-      complex(4),target,dimension(:,:,:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:,:,:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -6465,7 +6881,7 @@ function hipMemcpyAsync_c4_3_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c4_3_c_size_t
 #endif
       !
-      hipMemcpyAsync_c4_3_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*2*4_8,myKind,stream)
+      hipMemcpyAsync_c4_3_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*2*4_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_c4_3(dest,src,myKind,stream)
@@ -6476,8 +6892,8 @@ function hipMemcpyAsync_c4_3(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:,:),intent(inout) :: dest
-      complex(4),target,dimension(:,:,:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:,:,:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -6486,7 +6902,7 @@ function hipMemcpyAsync_c4_3(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c4_3
 #endif
       !
-      hipMemcpyAsync_c4_3 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*2*4_8,myKind,stream)
+      hipMemcpyAsync_c4_3 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*2*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_c4_4_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -6496,8 +6912,8 @@ function hipMemcpyAsync_c4_4_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:,:,:),intent(inout) :: dest
-      complex(4),target,dimension(:,:,:,:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:,:,:,:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -6507,7 +6923,7 @@ function hipMemcpyAsync_c4_4_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c4_4_c_int
 #endif
       !
-      hipMemcpyAsync_c4_4_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*2*4_8,myKind,stream)
+      hipMemcpyAsync_c4_4_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*2*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_c4_4_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -6517,8 +6933,8 @@ function hipMemcpyAsync_c4_4_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:,:,:),intent(inout) :: dest
-      complex(4),target,dimension(:,:,:,:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:,:,:,:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -6528,7 +6944,7 @@ function hipMemcpyAsync_c4_4_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c4_4_c_size_t
 #endif
       !
-      hipMemcpyAsync_c4_4_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*2*4_8,myKind,stream)
+      hipMemcpyAsync_c4_4_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*2*4_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_c4_4(dest,src,myKind,stream)
@@ -6539,8 +6955,8 @@ function hipMemcpyAsync_c4_4(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:,:,:),intent(inout) :: dest
-      complex(4),target,dimension(:,:,:,:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:,:,:,:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -6549,7 +6965,7 @@ function hipMemcpyAsync_c4_4(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c4_4
 #endif
       !
-      hipMemcpyAsync_c4_4 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*2*4_8,myKind,stream)
+      hipMemcpyAsync_c4_4 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*2*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_c4_5_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -6559,8 +6975,8 @@ function hipMemcpyAsync_c4_5_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:,:,:,:),intent(inout) :: dest
-      complex(4),target,dimension(:,:,:,:,:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:,:,:,:,:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:,:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -6570,7 +6986,7 @@ function hipMemcpyAsync_c4_5_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c4_5_c_int
 #endif
       !
-      hipMemcpyAsync_c4_5_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*2*4_8,myKind,stream)
+      hipMemcpyAsync_c4_5_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*2*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_c4_5_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -6580,8 +6996,8 @@ function hipMemcpyAsync_c4_5_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:,:,:,:),intent(inout) :: dest
-      complex(4),target,dimension(:,:,:,:,:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:,:,:,:,:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:,:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -6591,7 +7007,7 @@ function hipMemcpyAsync_c4_5_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c4_5_c_size_t
 #endif
       !
-      hipMemcpyAsync_c4_5_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*2*4_8,myKind,stream)
+      hipMemcpyAsync_c4_5_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*2*4_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_c4_5(dest,src,myKind,stream)
@@ -6602,8 +7018,8 @@ function hipMemcpyAsync_c4_5(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:,:,:,:),intent(inout) :: dest
-      complex(4),target,dimension(:,:,:,:,:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:,:,:,:,:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:,:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -6612,7 +7028,7 @@ function hipMemcpyAsync_c4_5(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c4_5
 #endif
       !
-      hipMemcpyAsync_c4_5 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*2*4_8,myKind,stream)
+      hipMemcpyAsync_c4_5 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*2*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_c4_6_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -6622,8 +7038,8 @@ function hipMemcpyAsync_c4_6_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
-      complex(4),target,dimension(:,:,:,:,:,:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:,:,:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -6633,7 +7049,7 @@ function hipMemcpyAsync_c4_6_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c4_6_c_int
 #endif
       !
-      hipMemcpyAsync_c4_6_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*2*4_8,myKind,stream)
+      hipMemcpyAsync_c4_6_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*2*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_c4_6_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -6643,8 +7059,8 @@ function hipMemcpyAsync_c4_6_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
-      complex(4),target,dimension(:,:,:,:,:,:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:,:,:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -6654,7 +7070,7 @@ function hipMemcpyAsync_c4_6_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c4_6_c_size_t
 #endif
       !
-      hipMemcpyAsync_c4_6_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*2*4_8,myKind,stream)
+      hipMemcpyAsync_c4_6_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*2*4_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_c4_6(dest,src,myKind,stream)
@@ -6665,8 +7081,8 @@ function hipMemcpyAsync_c4_6(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
-      complex(4),target,dimension(:,:,:,:,:,:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:,:,:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -6675,7 +7091,7 @@ function hipMemcpyAsync_c4_6(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c4_6
 #endif
       !
-      hipMemcpyAsync_c4_6 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*2*4_8,myKind,stream)
+      hipMemcpyAsync_c4_6 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*2*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_c4_7_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -6685,8 +7101,8 @@ function hipMemcpyAsync_c4_7_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
-      complex(4),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -6696,7 +7112,7 @@ function hipMemcpyAsync_c4_7_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c4_7_c_int
 #endif
       !
-      hipMemcpyAsync_c4_7_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*2*4_8,myKind,stream)
+      hipMemcpyAsync_c4_7_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*2*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_c4_7_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -6706,8 +7122,8 @@ function hipMemcpyAsync_c4_7_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
-      complex(4),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -6717,7 +7133,7 @@ function hipMemcpyAsync_c4_7_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c4_7_c_size_t
 #endif
       !
-      hipMemcpyAsync_c4_7_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*2*4_8,myKind,stream)
+      hipMemcpyAsync_c4_7_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*2*4_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_c4_7(dest,src,myKind,stream)
@@ -6728,8 +7144,8 @@ function hipMemcpyAsync_c4_7(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
-      complex(4),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -6738,7 +7154,7 @@ function hipMemcpyAsync_c4_7(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c4_7
 #endif
       !
-      hipMemcpyAsync_c4_7 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*2*4_8,myKind,stream)
+      hipMemcpyAsync_c4_7 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*2*4_8,myKind,stream)
     end function
 function hipMemcpyAsync_c8_0_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -6748,8 +7164,8 @@ function hipMemcpyAsync_c8_0_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,intent(inout) :: dest
-      complex(8),target,intent(in)    :: src
+      complex(c_double_complex),target,intent(inout) :: dest
+      complex(c_double_complex),target,intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -6759,7 +7175,7 @@ function hipMemcpyAsync_c8_0_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c8_0_c_int
 #endif
       !
-      hipMemcpyAsync_c8_0_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*2*8_8,myKind,stream)
+      hipMemcpyAsync_c8_0_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*2*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_c8_0_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -6769,8 +7185,8 @@ function hipMemcpyAsync_c8_0_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,intent(inout) :: dest
-      complex(8),target,intent(in)    :: src
+      complex(c_double_complex),target,intent(inout) :: dest
+      complex(c_double_complex),target,intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -6780,7 +7196,7 @@ function hipMemcpyAsync_c8_0_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c8_0_c_size_t
 #endif
       !
-      hipMemcpyAsync_c8_0_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*2*8_8,myKind,stream)
+      hipMemcpyAsync_c8_0_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*2*8_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_c8_0(dest,src,myKind,stream)
@@ -6791,8 +7207,8 @@ function hipMemcpyAsync_c8_0(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,intent(inout) :: dest
-      complex(8),target,intent(in)    :: src
+      complex(c_double_complex),target,intent(inout) :: dest
+      complex(c_double_complex),target,intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -6801,7 +7217,7 @@ function hipMemcpyAsync_c8_0(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c8_0
 #endif
       !
-      hipMemcpyAsync_c8_0 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),2*8_8,myKind,stream)
+      hipMemcpyAsync_c8_0 = hipMemcpyAsync_(c_loc(dest),c_loc(src),2*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_c8_1_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -6811,8 +7227,8 @@ function hipMemcpyAsync_c8_1_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:),intent(inout) :: dest
-      complex(8),target,dimension(:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -6822,7 +7238,7 @@ function hipMemcpyAsync_c8_1_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c8_1_c_int
 #endif
       !
-      hipMemcpyAsync_c8_1_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*2*8_8,myKind,stream)
+      hipMemcpyAsync_c8_1_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*2*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_c8_1_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -6832,8 +7248,8 @@ function hipMemcpyAsync_c8_1_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:),intent(inout) :: dest
-      complex(8),target,dimension(:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -6843,7 +7259,7 @@ function hipMemcpyAsync_c8_1_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c8_1_c_size_t
 #endif
       !
-      hipMemcpyAsync_c8_1_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*2*8_8,myKind,stream)
+      hipMemcpyAsync_c8_1_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*2*8_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_c8_1(dest,src,myKind,stream)
@@ -6854,8 +7270,8 @@ function hipMemcpyAsync_c8_1(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:),intent(inout) :: dest
-      complex(8),target,dimension(:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -6864,7 +7280,7 @@ function hipMemcpyAsync_c8_1(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c8_1
 #endif
       !
-      hipMemcpyAsync_c8_1 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*2*8_8,myKind,stream)
+      hipMemcpyAsync_c8_1 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*2*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_c8_2_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -6874,8 +7290,8 @@ function hipMemcpyAsync_c8_2_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:),intent(inout) :: dest
-      complex(8),target,dimension(:,:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:,:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -6885,7 +7301,7 @@ function hipMemcpyAsync_c8_2_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c8_2_c_int
 #endif
       !
-      hipMemcpyAsync_c8_2_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*2*8_8,myKind,stream)
+      hipMemcpyAsync_c8_2_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*2*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_c8_2_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -6895,8 +7311,8 @@ function hipMemcpyAsync_c8_2_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:),intent(inout) :: dest
-      complex(8),target,dimension(:,:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:,:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -6906,7 +7322,7 @@ function hipMemcpyAsync_c8_2_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c8_2_c_size_t
 #endif
       !
-      hipMemcpyAsync_c8_2_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*2*8_8,myKind,stream)
+      hipMemcpyAsync_c8_2_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*2*8_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_c8_2(dest,src,myKind,stream)
@@ -6917,8 +7333,8 @@ function hipMemcpyAsync_c8_2(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:),intent(inout) :: dest
-      complex(8),target,dimension(:,:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:,:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -6927,7 +7343,7 @@ function hipMemcpyAsync_c8_2(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c8_2
 #endif
       !
-      hipMemcpyAsync_c8_2 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*2*8_8,myKind,stream)
+      hipMemcpyAsync_c8_2 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*2*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_c8_3_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -6937,8 +7353,8 @@ function hipMemcpyAsync_c8_3_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:,:),intent(inout) :: dest
-      complex(8),target,dimension(:,:,:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:,:,:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -6948,7 +7364,7 @@ function hipMemcpyAsync_c8_3_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c8_3_c_int
 #endif
       !
-      hipMemcpyAsync_c8_3_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*2*8_8,myKind,stream)
+      hipMemcpyAsync_c8_3_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*2*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_c8_3_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -6958,8 +7374,8 @@ function hipMemcpyAsync_c8_3_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:,:),intent(inout) :: dest
-      complex(8),target,dimension(:,:,:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:,:,:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -6969,7 +7385,7 @@ function hipMemcpyAsync_c8_3_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c8_3_c_size_t
 #endif
       !
-      hipMemcpyAsync_c8_3_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*2*8_8,myKind,stream)
+      hipMemcpyAsync_c8_3_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*2*8_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_c8_3(dest,src,myKind,stream)
@@ -6980,8 +7396,8 @@ function hipMemcpyAsync_c8_3(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:,:),intent(inout) :: dest
-      complex(8),target,dimension(:,:,:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:,:,:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -6990,7 +7406,7 @@ function hipMemcpyAsync_c8_3(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c8_3
 #endif
       !
-      hipMemcpyAsync_c8_3 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*2*8_8,myKind,stream)
+      hipMemcpyAsync_c8_3 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*2*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_c8_4_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -7000,8 +7416,8 @@ function hipMemcpyAsync_c8_4_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:,:,:),intent(inout) :: dest
-      complex(8),target,dimension(:,:,:,:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:,:,:,:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -7011,7 +7427,7 @@ function hipMemcpyAsync_c8_4_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c8_4_c_int
 #endif
       !
-      hipMemcpyAsync_c8_4_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*2*8_8,myKind,stream)
+      hipMemcpyAsync_c8_4_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*2*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_c8_4_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -7021,8 +7437,8 @@ function hipMemcpyAsync_c8_4_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:,:,:),intent(inout) :: dest
-      complex(8),target,dimension(:,:,:,:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:,:,:,:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -7032,7 +7448,7 @@ function hipMemcpyAsync_c8_4_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c8_4_c_size_t
 #endif
       !
-      hipMemcpyAsync_c8_4_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*2*8_8,myKind,stream)
+      hipMemcpyAsync_c8_4_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*2*8_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_c8_4(dest,src,myKind,stream)
@@ -7043,8 +7459,8 @@ function hipMemcpyAsync_c8_4(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:,:,:),intent(inout) :: dest
-      complex(8),target,dimension(:,:,:,:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:,:,:,:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -7053,7 +7469,7 @@ function hipMemcpyAsync_c8_4(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c8_4
 #endif
       !
-      hipMemcpyAsync_c8_4 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*2*8_8,myKind,stream)
+      hipMemcpyAsync_c8_4 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*2*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_c8_5_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -7063,8 +7479,8 @@ function hipMemcpyAsync_c8_5_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:,:,:,:),intent(inout) :: dest
-      complex(8),target,dimension(:,:,:,:,:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:,:,:,:,:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:,:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -7074,7 +7490,7 @@ function hipMemcpyAsync_c8_5_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c8_5_c_int
 #endif
       !
-      hipMemcpyAsync_c8_5_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*2*8_8,myKind,stream)
+      hipMemcpyAsync_c8_5_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*2*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_c8_5_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -7084,8 +7500,8 @@ function hipMemcpyAsync_c8_5_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:,:,:,:),intent(inout) :: dest
-      complex(8),target,dimension(:,:,:,:,:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:,:,:,:,:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:,:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -7095,7 +7511,7 @@ function hipMemcpyAsync_c8_5_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c8_5_c_size_t
 #endif
       !
-      hipMemcpyAsync_c8_5_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*2*8_8,myKind,stream)
+      hipMemcpyAsync_c8_5_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*2*8_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_c8_5(dest,src,myKind,stream)
@@ -7106,8 +7522,8 @@ function hipMemcpyAsync_c8_5(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:,:,:,:),intent(inout) :: dest
-      complex(8),target,dimension(:,:,:,:,:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:,:,:,:,:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:,:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -7116,7 +7532,7 @@ function hipMemcpyAsync_c8_5(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c8_5
 #endif
       !
-      hipMemcpyAsync_c8_5 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*2*8_8,myKind,stream)
+      hipMemcpyAsync_c8_5 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*2*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_c8_6_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -7126,8 +7542,8 @@ function hipMemcpyAsync_c8_6_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
-      complex(8),target,dimension(:,:,:,:,:,:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:,:,:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -7137,7 +7553,7 @@ function hipMemcpyAsync_c8_6_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c8_6_c_int
 #endif
       !
-      hipMemcpyAsync_c8_6_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*2*8_8,myKind,stream)
+      hipMemcpyAsync_c8_6_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*2*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_c8_6_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -7147,8 +7563,8 @@ function hipMemcpyAsync_c8_6_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
-      complex(8),target,dimension(:,:,:,:,:,:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:,:,:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -7158,7 +7574,7 @@ function hipMemcpyAsync_c8_6_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c8_6_c_size_t
 #endif
       !
-      hipMemcpyAsync_c8_6_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*2*8_8,myKind,stream)
+      hipMemcpyAsync_c8_6_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*2*8_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_c8_6(dest,src,myKind,stream)
@@ -7169,8 +7585,8 @@ function hipMemcpyAsync_c8_6(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
-      complex(8),target,dimension(:,:,:,:,:,:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:,:,:,:,:,:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:,:,:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -7179,7 +7595,7 @@ function hipMemcpyAsync_c8_6(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c8_6
 #endif
       !
-      hipMemcpyAsync_c8_6 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*2*8_8,myKind,stream)
+      hipMemcpyAsync_c8_6 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*2*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_c8_7_c_int(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -7189,8 +7605,8 @@ function hipMemcpyAsync_c8_7_c_int(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
-      complex(8),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
       integer(c_int),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -7200,7 +7616,7 @@ function hipMemcpyAsync_c8_7_c_int(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c8_7_c_int
 #endif
       !
-      hipMemcpyAsync_c8_7_c_int = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*2*8_8,myKind,stream)
+      hipMemcpyAsync_c8_7_c_int = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*2*8_8,myKind,stream)
     end function
 function hipMemcpyAsync_c8_7_c_size_t(dest,src,length,myKind,stream)
       use iso_c_binding
@@ -7210,8 +7626,8 @@ function hipMemcpyAsync_c8_7_c_size_t(dest,src,length,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
-      complex(8),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
       integer(c_size_t),intent(in) :: length
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
@@ -7221,7 +7637,7 @@ function hipMemcpyAsync_c8_7_c_size_t(dest,src,length,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c8_7_c_size_t
 #endif
       !
-      hipMemcpyAsync_c8_7_c_size_t = hipMemcpyAsync_b(c_loc(dest),c_loc(src),length*2*8_8,myKind,stream)
+      hipMemcpyAsync_c8_7_c_size_t = hipMemcpyAsync_(c_loc(dest),c_loc(src),length*2*8_8,myKind,stream)
     end function
 
 function hipMemcpyAsync_c8_7(dest,src,myKind,stream)
@@ -7232,8 +7648,8 @@ function hipMemcpyAsync_c8_7(dest,src,myKind,stream)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
-      complex(8),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:,:,:,:,:,:,:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:,:,:,:,:,:,:),intent(in)    :: src
       integer(kind(hipMemcpyHostToHost)) :: myKind
       type(c_ptr) :: stream
 #ifdef USE_CUDA_NAMES
@@ -7242,7 +7658,7 @@ function hipMemcpyAsync_c8_7(dest,src,myKind,stream)
       integer(kind(hipSuccess)) :: hipMemcpyAsync_c8_7
 #endif
       !
-      hipMemcpyAsync_c8_7 = hipMemcpyAsync_b(c_loc(dest),c_loc(src),size(dest)*2*8_8,myKind,stream)
+      hipMemcpyAsync_c8_7 = hipMemcpyAsync_(c_loc(dest),c_loc(src),size(dest)*2*8_8,myKind,stream)
     end function
  
 
@@ -7254,9 +7670,9 @@ function hipMemcpy2D_l_0_c_int(dest,dpitch,src,spitch,width,height,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,intent(inout) :: dest
+      logical(c_bool),target,intent(inout) :: dest
       integer(c_int) :: dpitch
-      logical,target,intent(in)    :: src
+      logical(c_bool),target,intent(in)    :: src
       integer(c_int) :: spitch
       integer(c_int) :: width
       integer(c_int) :: height
@@ -7267,7 +7683,7 @@ function hipMemcpy2D_l_0_c_int(dest,dpitch,src,spitch,width,height,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy2D_l_0_c_int
 #endif
       !
-      hipMemcpy2D_l_0_c_int = hipMemcpy2D_b(c_loc(dest),1_8*dpitch,c_loc(src),1_8*spitch,1_8*width,height*1_8,myKind)
+      hipMemcpy2D_l_0_c_int = hipMemcpy2D_(c_loc(dest),1_8*dpitch,c_loc(src),1_8*spitch,1_8*width,height*1_8,myKind)
     end function
 function hipMemcpy2D_l_0_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       use iso_c_binding
@@ -7277,9 +7693,9 @@ function hipMemcpy2D_l_0_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,intent(inout) :: dest
+      logical(c_bool),target,intent(inout) :: dest
       integer(c_size_t) :: dpitch
-      logical,target,intent(in)    :: src
+      logical(c_bool),target,intent(in)    :: src
       integer(c_size_t) :: spitch
       integer(c_size_t) :: width
       integer(c_size_t) :: height
@@ -7290,7 +7706,7 @@ function hipMemcpy2D_l_0_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy2D_l_0_c_size_t
 #endif
       !
-      hipMemcpy2D_l_0_c_size_t = hipMemcpy2D_b(c_loc(dest),1_8*dpitch,c_loc(src),1_8*spitch,1_8*width,height*1_8,myKind)
+      hipMemcpy2D_l_0_c_size_t = hipMemcpy2D_(c_loc(dest),1_8*dpitch,c_loc(src),1_8*spitch,1_8*width,height*1_8,myKind)
     end function
 function hipMemcpy2D_l_1_c_int(dest,dpitch,src,spitch,width,height,myKind)
       use iso_c_binding
@@ -7300,9 +7716,9 @@ function hipMemcpy2D_l_1_c_int(dest,dpitch,src,spitch,width,height,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:),intent(inout) :: dest
       integer(c_int) :: dpitch
-      logical,target,dimension(:),intent(in)    :: src
+      logical(c_bool),target,dimension(:),intent(in)    :: src
       integer(c_int) :: spitch
       integer(c_int) :: width
       integer(c_int) :: height
@@ -7313,7 +7729,7 @@ function hipMemcpy2D_l_1_c_int(dest,dpitch,src,spitch,width,height,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy2D_l_1_c_int
 #endif
       !
-      hipMemcpy2D_l_1_c_int = hipMemcpy2D_b(c_loc(dest),1_8*dpitch,c_loc(src),1_8*spitch,1_8*width,height*1_8,myKind)
+      hipMemcpy2D_l_1_c_int = hipMemcpy2D_(c_loc(dest),1_8*dpitch,c_loc(src),1_8*spitch,1_8*width,height*1_8,myKind)
     end function
 function hipMemcpy2D_l_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       use iso_c_binding
@@ -7323,9 +7739,9 @@ function hipMemcpy2D_l_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:),intent(inout) :: dest
       integer(c_size_t) :: dpitch
-      logical,target,dimension(:),intent(in)    :: src
+      logical(c_bool),target,dimension(:),intent(in)    :: src
       integer(c_size_t) :: spitch
       integer(c_size_t) :: width
       integer(c_size_t) :: height
@@ -7336,7 +7752,7 @@ function hipMemcpy2D_l_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy2D_l_1_c_size_t
 #endif
       !
-      hipMemcpy2D_l_1_c_size_t = hipMemcpy2D_b(c_loc(dest),1_8*dpitch,c_loc(src),1_8*spitch,1_8*width,height*1_8,myKind)
+      hipMemcpy2D_l_1_c_size_t = hipMemcpy2D_(c_loc(dest),1_8*dpitch,c_loc(src),1_8*spitch,1_8*width,height*1_8,myKind)
     end function
 function hipMemcpy2D_l_2_c_int(dest,dpitch,src,spitch,width,height,myKind)
       use iso_c_binding
@@ -7346,9 +7762,9 @@ function hipMemcpy2D_l_2_c_int(dest,dpitch,src,spitch,width,height,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:,:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:,:),intent(inout) :: dest
       integer(c_int) :: dpitch
-      logical,target,dimension(:,:),intent(in)    :: src
+      logical(c_bool),target,dimension(:,:),intent(in)    :: src
       integer(c_int) :: spitch
       integer(c_int) :: width
       integer(c_int) :: height
@@ -7359,7 +7775,7 @@ function hipMemcpy2D_l_2_c_int(dest,dpitch,src,spitch,width,height,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy2D_l_2_c_int
 #endif
       !
-      hipMemcpy2D_l_2_c_int = hipMemcpy2D_b(c_loc(dest),1_8*dpitch,c_loc(src),1_8*spitch,1_8*width,height*1_8,myKind)
+      hipMemcpy2D_l_2_c_int = hipMemcpy2D_(c_loc(dest),1_8*dpitch,c_loc(src),1_8*spitch,1_8*width,height*1_8,myKind)
     end function
 function hipMemcpy2D_l_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       use iso_c_binding
@@ -7369,9 +7785,9 @@ function hipMemcpy2D_l_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:,:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:,:),intent(inout) :: dest
       integer(c_size_t) :: dpitch
-      logical,target,dimension(:,:),intent(in)    :: src
+      logical(c_bool),target,dimension(:,:),intent(in)    :: src
       integer(c_size_t) :: spitch
       integer(c_size_t) :: width
       integer(c_size_t) :: height
@@ -7382,7 +7798,7 @@ function hipMemcpy2D_l_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy2D_l_2_c_size_t
 #endif
       !
-      hipMemcpy2D_l_2_c_size_t = hipMemcpy2D_b(c_loc(dest),1_8*dpitch,c_loc(src),1_8*spitch,1_8*width,height*1_8,myKind)
+      hipMemcpy2D_l_2_c_size_t = hipMemcpy2D_(c_loc(dest),1_8*dpitch,c_loc(src),1_8*spitch,1_8*width,height*1_8,myKind)
     end function
 function hipMemcpy2D_i4_0_c_int(dest,dpitch,src,spitch,width,height,myKind)
       use iso_c_binding
@@ -7392,9 +7808,9 @@ function hipMemcpy2D_i4_0_c_int(dest,dpitch,src,spitch,width,height,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,intent(inout) :: dest
+      integer(c_int),target,intent(inout) :: dest
       integer(c_int) :: dpitch
-      integer(4),target,intent(in)    :: src
+      integer(c_int),target,intent(in)    :: src
       integer(c_int) :: spitch
       integer(c_int) :: width
       integer(c_int) :: height
@@ -7405,7 +7821,7 @@ function hipMemcpy2D_i4_0_c_int(dest,dpitch,src,spitch,width,height,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy2D_i4_0_c_int
 #endif
       !
-      hipMemcpy2D_i4_0_c_int = hipMemcpy2D_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind)
+      hipMemcpy2D_i4_0_c_int = hipMemcpy2D_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind)
     end function
 function hipMemcpy2D_i4_0_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       use iso_c_binding
@@ -7415,9 +7831,9 @@ function hipMemcpy2D_i4_0_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,intent(inout) :: dest
+      integer(c_int),target,intent(inout) :: dest
       integer(c_size_t) :: dpitch
-      integer(4),target,intent(in)    :: src
+      integer(c_int),target,intent(in)    :: src
       integer(c_size_t) :: spitch
       integer(c_size_t) :: width
       integer(c_size_t) :: height
@@ -7428,7 +7844,7 @@ function hipMemcpy2D_i4_0_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy2D_i4_0_c_size_t
 #endif
       !
-      hipMemcpy2D_i4_0_c_size_t = hipMemcpy2D_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind)
+      hipMemcpy2D_i4_0_c_size_t = hipMemcpy2D_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind)
     end function
 function hipMemcpy2D_i4_1_c_int(dest,dpitch,src,spitch,width,height,myKind)
       use iso_c_binding
@@ -7438,9 +7854,9 @@ function hipMemcpy2D_i4_1_c_int(dest,dpitch,src,spitch,width,height,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:),intent(inout) :: dest
+      integer(c_int),target,dimension(:),intent(inout) :: dest
       integer(c_int) :: dpitch
-      integer(4),target,dimension(:),intent(in)    :: src
+      integer(c_int),target,dimension(:),intent(in)    :: src
       integer(c_int) :: spitch
       integer(c_int) :: width
       integer(c_int) :: height
@@ -7451,7 +7867,7 @@ function hipMemcpy2D_i4_1_c_int(dest,dpitch,src,spitch,width,height,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy2D_i4_1_c_int
 #endif
       !
-      hipMemcpy2D_i4_1_c_int = hipMemcpy2D_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind)
+      hipMemcpy2D_i4_1_c_int = hipMemcpy2D_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind)
     end function
 function hipMemcpy2D_i4_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       use iso_c_binding
@@ -7461,9 +7877,9 @@ function hipMemcpy2D_i4_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:),intent(inout) :: dest
+      integer(c_int),target,dimension(:),intent(inout) :: dest
       integer(c_size_t) :: dpitch
-      integer(4),target,dimension(:),intent(in)    :: src
+      integer(c_int),target,dimension(:),intent(in)    :: src
       integer(c_size_t) :: spitch
       integer(c_size_t) :: width
       integer(c_size_t) :: height
@@ -7474,7 +7890,7 @@ function hipMemcpy2D_i4_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy2D_i4_1_c_size_t
 #endif
       !
-      hipMemcpy2D_i4_1_c_size_t = hipMemcpy2D_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind)
+      hipMemcpy2D_i4_1_c_size_t = hipMemcpy2D_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind)
     end function
 function hipMemcpy2D_i4_2_c_int(dest,dpitch,src,spitch,width,height,myKind)
       use iso_c_binding
@@ -7484,9 +7900,9 @@ function hipMemcpy2D_i4_2_c_int(dest,dpitch,src,spitch,width,height,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:),intent(inout) :: dest
+      integer(c_int),target,dimension(:,:),intent(inout) :: dest
       integer(c_int) :: dpitch
-      integer(4),target,dimension(:,:),intent(in)    :: src
+      integer(c_int),target,dimension(:,:),intent(in)    :: src
       integer(c_int) :: spitch
       integer(c_int) :: width
       integer(c_int) :: height
@@ -7497,7 +7913,7 @@ function hipMemcpy2D_i4_2_c_int(dest,dpitch,src,spitch,width,height,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy2D_i4_2_c_int
 #endif
       !
-      hipMemcpy2D_i4_2_c_int = hipMemcpy2D_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind)
+      hipMemcpy2D_i4_2_c_int = hipMemcpy2D_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind)
     end function
 function hipMemcpy2D_i4_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       use iso_c_binding
@@ -7507,9 +7923,9 @@ function hipMemcpy2D_i4_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:),intent(inout) :: dest
+      integer(c_int),target,dimension(:,:),intent(inout) :: dest
       integer(c_size_t) :: dpitch
-      integer(4),target,dimension(:,:),intent(in)    :: src
+      integer(c_int),target,dimension(:,:),intent(in)    :: src
       integer(c_size_t) :: spitch
       integer(c_size_t) :: width
       integer(c_size_t) :: height
@@ -7520,7 +7936,7 @@ function hipMemcpy2D_i4_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy2D_i4_2_c_size_t
 #endif
       !
-      hipMemcpy2D_i4_2_c_size_t = hipMemcpy2D_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind)
+      hipMemcpy2D_i4_2_c_size_t = hipMemcpy2D_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind)
     end function
 function hipMemcpy2D_i8_0_c_int(dest,dpitch,src,spitch,width,height,myKind)
       use iso_c_binding
@@ -7530,9 +7946,9 @@ function hipMemcpy2D_i8_0_c_int(dest,dpitch,src,spitch,width,height,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,intent(inout) :: dest
+      integer(c_long),target,intent(inout) :: dest
       integer(c_int) :: dpitch
-      integer(8),target,intent(in)    :: src
+      integer(c_long),target,intent(in)    :: src
       integer(c_int) :: spitch
       integer(c_int) :: width
       integer(c_int) :: height
@@ -7543,7 +7959,7 @@ function hipMemcpy2D_i8_0_c_int(dest,dpitch,src,spitch,width,height,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy2D_i8_0_c_int
 #endif
       !
-      hipMemcpy2D_i8_0_c_int = hipMemcpy2D_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind)
+      hipMemcpy2D_i8_0_c_int = hipMemcpy2D_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind)
     end function
 function hipMemcpy2D_i8_0_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       use iso_c_binding
@@ -7553,9 +7969,9 @@ function hipMemcpy2D_i8_0_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,intent(inout) :: dest
+      integer(c_long),target,intent(inout) :: dest
       integer(c_size_t) :: dpitch
-      integer(8),target,intent(in)    :: src
+      integer(c_long),target,intent(in)    :: src
       integer(c_size_t) :: spitch
       integer(c_size_t) :: width
       integer(c_size_t) :: height
@@ -7566,7 +7982,7 @@ function hipMemcpy2D_i8_0_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy2D_i8_0_c_size_t
 #endif
       !
-      hipMemcpy2D_i8_0_c_size_t = hipMemcpy2D_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind)
+      hipMemcpy2D_i8_0_c_size_t = hipMemcpy2D_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind)
     end function
 function hipMemcpy2D_i8_1_c_int(dest,dpitch,src,spitch,width,height,myKind)
       use iso_c_binding
@@ -7576,9 +7992,9 @@ function hipMemcpy2D_i8_1_c_int(dest,dpitch,src,spitch,width,height,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:),intent(inout) :: dest
+      integer(c_long),target,dimension(:),intent(inout) :: dest
       integer(c_int) :: dpitch
-      integer(8),target,dimension(:),intent(in)    :: src
+      integer(c_long),target,dimension(:),intent(in)    :: src
       integer(c_int) :: spitch
       integer(c_int) :: width
       integer(c_int) :: height
@@ -7589,7 +8005,7 @@ function hipMemcpy2D_i8_1_c_int(dest,dpitch,src,spitch,width,height,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy2D_i8_1_c_int
 #endif
       !
-      hipMemcpy2D_i8_1_c_int = hipMemcpy2D_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind)
+      hipMemcpy2D_i8_1_c_int = hipMemcpy2D_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind)
     end function
 function hipMemcpy2D_i8_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       use iso_c_binding
@@ -7599,9 +8015,9 @@ function hipMemcpy2D_i8_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:),intent(inout) :: dest
+      integer(c_long),target,dimension(:),intent(inout) :: dest
       integer(c_size_t) :: dpitch
-      integer(8),target,dimension(:),intent(in)    :: src
+      integer(c_long),target,dimension(:),intent(in)    :: src
       integer(c_size_t) :: spitch
       integer(c_size_t) :: width
       integer(c_size_t) :: height
@@ -7612,7 +8028,7 @@ function hipMemcpy2D_i8_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy2D_i8_1_c_size_t
 #endif
       !
-      hipMemcpy2D_i8_1_c_size_t = hipMemcpy2D_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind)
+      hipMemcpy2D_i8_1_c_size_t = hipMemcpy2D_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind)
     end function
 function hipMemcpy2D_i8_2_c_int(dest,dpitch,src,spitch,width,height,myKind)
       use iso_c_binding
@@ -7622,9 +8038,9 @@ function hipMemcpy2D_i8_2_c_int(dest,dpitch,src,spitch,width,height,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:),intent(inout) :: dest
+      integer(c_long),target,dimension(:,:),intent(inout) :: dest
       integer(c_int) :: dpitch
-      integer(8),target,dimension(:,:),intent(in)    :: src
+      integer(c_long),target,dimension(:,:),intent(in)    :: src
       integer(c_int) :: spitch
       integer(c_int) :: width
       integer(c_int) :: height
@@ -7635,7 +8051,7 @@ function hipMemcpy2D_i8_2_c_int(dest,dpitch,src,spitch,width,height,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy2D_i8_2_c_int
 #endif
       !
-      hipMemcpy2D_i8_2_c_int = hipMemcpy2D_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind)
+      hipMemcpy2D_i8_2_c_int = hipMemcpy2D_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind)
     end function
 function hipMemcpy2D_i8_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       use iso_c_binding
@@ -7645,9 +8061,9 @@ function hipMemcpy2D_i8_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:),intent(inout) :: dest
+      integer(c_long),target,dimension(:,:),intent(inout) :: dest
       integer(c_size_t) :: dpitch
-      integer(8),target,dimension(:,:),intent(in)    :: src
+      integer(c_long),target,dimension(:,:),intent(in)    :: src
       integer(c_size_t) :: spitch
       integer(c_size_t) :: width
       integer(c_size_t) :: height
@@ -7658,7 +8074,7 @@ function hipMemcpy2D_i8_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy2D_i8_2_c_size_t
 #endif
       !
-      hipMemcpy2D_i8_2_c_size_t = hipMemcpy2D_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind)
+      hipMemcpy2D_i8_2_c_size_t = hipMemcpy2D_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind)
     end function
 function hipMemcpy2D_r4_0_c_int(dest,dpitch,src,spitch,width,height,myKind)
       use iso_c_binding
@@ -7668,9 +8084,9 @@ function hipMemcpy2D_r4_0_c_int(dest,dpitch,src,spitch,width,height,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,intent(inout) :: dest
+      real(c_float),target,intent(inout) :: dest
       integer(c_int) :: dpitch
-      real(4),target,intent(in)    :: src
+      real(c_float),target,intent(in)    :: src
       integer(c_int) :: spitch
       integer(c_int) :: width
       integer(c_int) :: height
@@ -7681,7 +8097,7 @@ function hipMemcpy2D_r4_0_c_int(dest,dpitch,src,spitch,width,height,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy2D_r4_0_c_int
 #endif
       !
-      hipMemcpy2D_r4_0_c_int = hipMemcpy2D_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind)
+      hipMemcpy2D_r4_0_c_int = hipMemcpy2D_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind)
     end function
 function hipMemcpy2D_r4_0_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       use iso_c_binding
@@ -7691,9 +8107,9 @@ function hipMemcpy2D_r4_0_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,intent(inout) :: dest
+      real(c_float),target,intent(inout) :: dest
       integer(c_size_t) :: dpitch
-      real(4),target,intent(in)    :: src
+      real(c_float),target,intent(in)    :: src
       integer(c_size_t) :: spitch
       integer(c_size_t) :: width
       integer(c_size_t) :: height
@@ -7704,7 +8120,7 @@ function hipMemcpy2D_r4_0_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy2D_r4_0_c_size_t
 #endif
       !
-      hipMemcpy2D_r4_0_c_size_t = hipMemcpy2D_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind)
+      hipMemcpy2D_r4_0_c_size_t = hipMemcpy2D_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind)
     end function
 function hipMemcpy2D_r4_1_c_int(dest,dpitch,src,spitch,width,height,myKind)
       use iso_c_binding
@@ -7714,9 +8130,9 @@ function hipMemcpy2D_r4_1_c_int(dest,dpitch,src,spitch,width,height,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:),intent(inout) :: dest
+      real(c_float),target,dimension(:),intent(inout) :: dest
       integer(c_int) :: dpitch
-      real(4),target,dimension(:),intent(in)    :: src
+      real(c_float),target,dimension(:),intent(in)    :: src
       integer(c_int) :: spitch
       integer(c_int) :: width
       integer(c_int) :: height
@@ -7727,7 +8143,7 @@ function hipMemcpy2D_r4_1_c_int(dest,dpitch,src,spitch,width,height,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy2D_r4_1_c_int
 #endif
       !
-      hipMemcpy2D_r4_1_c_int = hipMemcpy2D_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind)
+      hipMemcpy2D_r4_1_c_int = hipMemcpy2D_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind)
     end function
 function hipMemcpy2D_r4_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       use iso_c_binding
@@ -7737,9 +8153,9 @@ function hipMemcpy2D_r4_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:),intent(inout) :: dest
+      real(c_float),target,dimension(:),intent(inout) :: dest
       integer(c_size_t) :: dpitch
-      real(4),target,dimension(:),intent(in)    :: src
+      real(c_float),target,dimension(:),intent(in)    :: src
       integer(c_size_t) :: spitch
       integer(c_size_t) :: width
       integer(c_size_t) :: height
@@ -7750,7 +8166,7 @@ function hipMemcpy2D_r4_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy2D_r4_1_c_size_t
 #endif
       !
-      hipMemcpy2D_r4_1_c_size_t = hipMemcpy2D_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind)
+      hipMemcpy2D_r4_1_c_size_t = hipMemcpy2D_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind)
     end function
 function hipMemcpy2D_r4_2_c_int(dest,dpitch,src,spitch,width,height,myKind)
       use iso_c_binding
@@ -7760,9 +8176,9 @@ function hipMemcpy2D_r4_2_c_int(dest,dpitch,src,spitch,width,height,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:,:),intent(inout) :: dest
+      real(c_float),target,dimension(:,:),intent(inout) :: dest
       integer(c_int) :: dpitch
-      real(4),target,dimension(:,:),intent(in)    :: src
+      real(c_float),target,dimension(:,:),intent(in)    :: src
       integer(c_int) :: spitch
       integer(c_int) :: width
       integer(c_int) :: height
@@ -7773,7 +8189,7 @@ function hipMemcpy2D_r4_2_c_int(dest,dpitch,src,spitch,width,height,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy2D_r4_2_c_int
 #endif
       !
-      hipMemcpy2D_r4_2_c_int = hipMemcpy2D_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind)
+      hipMemcpy2D_r4_2_c_int = hipMemcpy2D_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind)
     end function
 function hipMemcpy2D_r4_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       use iso_c_binding
@@ -7783,9 +8199,9 @@ function hipMemcpy2D_r4_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:,:),intent(inout) :: dest
+      real(c_float),target,dimension(:,:),intent(inout) :: dest
       integer(c_size_t) :: dpitch
-      real(4),target,dimension(:,:),intent(in)    :: src
+      real(c_float),target,dimension(:,:),intent(in)    :: src
       integer(c_size_t) :: spitch
       integer(c_size_t) :: width
       integer(c_size_t) :: height
@@ -7796,7 +8212,7 @@ function hipMemcpy2D_r4_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy2D_r4_2_c_size_t
 #endif
       !
-      hipMemcpy2D_r4_2_c_size_t = hipMemcpy2D_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind)
+      hipMemcpy2D_r4_2_c_size_t = hipMemcpy2D_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind)
     end function
 function hipMemcpy2D_r8_0_c_int(dest,dpitch,src,spitch,width,height,myKind)
       use iso_c_binding
@@ -7806,9 +8222,9 @@ function hipMemcpy2D_r8_0_c_int(dest,dpitch,src,spitch,width,height,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,intent(inout) :: dest
+      real(c_double),target,intent(inout) :: dest
       integer(c_int) :: dpitch
-      real(8),target,intent(in)    :: src
+      real(c_double),target,intent(in)    :: src
       integer(c_int) :: spitch
       integer(c_int) :: width
       integer(c_int) :: height
@@ -7819,7 +8235,7 @@ function hipMemcpy2D_r8_0_c_int(dest,dpitch,src,spitch,width,height,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy2D_r8_0_c_int
 #endif
       !
-      hipMemcpy2D_r8_0_c_int = hipMemcpy2D_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind)
+      hipMemcpy2D_r8_0_c_int = hipMemcpy2D_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind)
     end function
 function hipMemcpy2D_r8_0_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       use iso_c_binding
@@ -7829,9 +8245,9 @@ function hipMemcpy2D_r8_0_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,intent(inout) :: dest
+      real(c_double),target,intent(inout) :: dest
       integer(c_size_t) :: dpitch
-      real(8),target,intent(in)    :: src
+      real(c_double),target,intent(in)    :: src
       integer(c_size_t) :: spitch
       integer(c_size_t) :: width
       integer(c_size_t) :: height
@@ -7842,7 +8258,7 @@ function hipMemcpy2D_r8_0_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy2D_r8_0_c_size_t
 #endif
       !
-      hipMemcpy2D_r8_0_c_size_t = hipMemcpy2D_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind)
+      hipMemcpy2D_r8_0_c_size_t = hipMemcpy2D_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind)
     end function
 function hipMemcpy2D_r8_1_c_int(dest,dpitch,src,spitch,width,height,myKind)
       use iso_c_binding
@@ -7852,9 +8268,9 @@ function hipMemcpy2D_r8_1_c_int(dest,dpitch,src,spitch,width,height,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:),intent(inout) :: dest
+      real(c_double),target,dimension(:),intent(inout) :: dest
       integer(c_int) :: dpitch
-      real(8),target,dimension(:),intent(in)    :: src
+      real(c_double),target,dimension(:),intent(in)    :: src
       integer(c_int) :: spitch
       integer(c_int) :: width
       integer(c_int) :: height
@@ -7865,7 +8281,7 @@ function hipMemcpy2D_r8_1_c_int(dest,dpitch,src,spitch,width,height,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy2D_r8_1_c_int
 #endif
       !
-      hipMemcpy2D_r8_1_c_int = hipMemcpy2D_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind)
+      hipMemcpy2D_r8_1_c_int = hipMemcpy2D_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind)
     end function
 function hipMemcpy2D_r8_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       use iso_c_binding
@@ -7875,9 +8291,9 @@ function hipMemcpy2D_r8_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:),intent(inout) :: dest
+      real(c_double),target,dimension(:),intent(inout) :: dest
       integer(c_size_t) :: dpitch
-      real(8),target,dimension(:),intent(in)    :: src
+      real(c_double),target,dimension(:),intent(in)    :: src
       integer(c_size_t) :: spitch
       integer(c_size_t) :: width
       integer(c_size_t) :: height
@@ -7888,7 +8304,7 @@ function hipMemcpy2D_r8_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy2D_r8_1_c_size_t
 #endif
       !
-      hipMemcpy2D_r8_1_c_size_t = hipMemcpy2D_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind)
+      hipMemcpy2D_r8_1_c_size_t = hipMemcpy2D_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind)
     end function
 function hipMemcpy2D_r8_2_c_int(dest,dpitch,src,spitch,width,height,myKind)
       use iso_c_binding
@@ -7898,9 +8314,9 @@ function hipMemcpy2D_r8_2_c_int(dest,dpitch,src,spitch,width,height,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:,:),intent(inout) :: dest
+      real(c_double),target,dimension(:,:),intent(inout) :: dest
       integer(c_int) :: dpitch
-      real(8),target,dimension(:,:),intent(in)    :: src
+      real(c_double),target,dimension(:,:),intent(in)    :: src
       integer(c_int) :: spitch
       integer(c_int) :: width
       integer(c_int) :: height
@@ -7911,7 +8327,7 @@ function hipMemcpy2D_r8_2_c_int(dest,dpitch,src,spitch,width,height,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy2D_r8_2_c_int
 #endif
       !
-      hipMemcpy2D_r8_2_c_int = hipMemcpy2D_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind)
+      hipMemcpy2D_r8_2_c_int = hipMemcpy2D_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind)
     end function
 function hipMemcpy2D_r8_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       use iso_c_binding
@@ -7921,9 +8337,9 @@ function hipMemcpy2D_r8_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:,:),intent(inout) :: dest
+      real(c_double),target,dimension(:,:),intent(inout) :: dest
       integer(c_size_t) :: dpitch
-      real(8),target,dimension(:,:),intent(in)    :: src
+      real(c_double),target,dimension(:,:),intent(in)    :: src
       integer(c_size_t) :: spitch
       integer(c_size_t) :: width
       integer(c_size_t) :: height
@@ -7934,7 +8350,7 @@ function hipMemcpy2D_r8_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy2D_r8_2_c_size_t
 #endif
       !
-      hipMemcpy2D_r8_2_c_size_t = hipMemcpy2D_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind)
+      hipMemcpy2D_r8_2_c_size_t = hipMemcpy2D_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind)
     end function
 function hipMemcpy2D_c4_0_c_int(dest,dpitch,src,spitch,width,height,myKind)
       use iso_c_binding
@@ -7944,9 +8360,9 @@ function hipMemcpy2D_c4_0_c_int(dest,dpitch,src,spitch,width,height,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,intent(inout) :: dest
+      complex(c_float_complex),target,intent(inout) :: dest
       integer(c_int) :: dpitch
-      complex(4),target,intent(in)    :: src
+      complex(c_float_complex),target,intent(in)    :: src
       integer(c_int) :: spitch
       integer(c_int) :: width
       integer(c_int) :: height
@@ -7957,7 +8373,7 @@ function hipMemcpy2D_c4_0_c_int(dest,dpitch,src,spitch,width,height,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy2D_c4_0_c_int
 #endif
       !
-      hipMemcpy2D_c4_0_c_int = hipMemcpy2D_b(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind)
+      hipMemcpy2D_c4_0_c_int = hipMemcpy2D_(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind)
     end function
 function hipMemcpy2D_c4_0_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       use iso_c_binding
@@ -7967,9 +8383,9 @@ function hipMemcpy2D_c4_0_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,intent(inout) :: dest
+      complex(c_float_complex),target,intent(inout) :: dest
       integer(c_size_t) :: dpitch
-      complex(4),target,intent(in)    :: src
+      complex(c_float_complex),target,intent(in)    :: src
       integer(c_size_t) :: spitch
       integer(c_size_t) :: width
       integer(c_size_t) :: height
@@ -7980,7 +8396,7 @@ function hipMemcpy2D_c4_0_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy2D_c4_0_c_size_t
 #endif
       !
-      hipMemcpy2D_c4_0_c_size_t = hipMemcpy2D_b(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind)
+      hipMemcpy2D_c4_0_c_size_t = hipMemcpy2D_(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind)
     end function
 function hipMemcpy2D_c4_1_c_int(dest,dpitch,src,spitch,width,height,myKind)
       use iso_c_binding
@@ -7990,9 +8406,9 @@ function hipMemcpy2D_c4_1_c_int(dest,dpitch,src,spitch,width,height,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:),intent(inout) :: dest
       integer(c_int) :: dpitch
-      complex(4),target,dimension(:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:),intent(in)    :: src
       integer(c_int) :: spitch
       integer(c_int) :: width
       integer(c_int) :: height
@@ -8003,7 +8419,7 @@ function hipMemcpy2D_c4_1_c_int(dest,dpitch,src,spitch,width,height,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy2D_c4_1_c_int
 #endif
       !
-      hipMemcpy2D_c4_1_c_int = hipMemcpy2D_b(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind)
+      hipMemcpy2D_c4_1_c_int = hipMemcpy2D_(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind)
     end function
 function hipMemcpy2D_c4_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       use iso_c_binding
@@ -8013,9 +8429,9 @@ function hipMemcpy2D_c4_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:),intent(inout) :: dest
       integer(c_size_t) :: dpitch
-      complex(4),target,dimension(:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:),intent(in)    :: src
       integer(c_size_t) :: spitch
       integer(c_size_t) :: width
       integer(c_size_t) :: height
@@ -8026,7 +8442,7 @@ function hipMemcpy2D_c4_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy2D_c4_1_c_size_t
 #endif
       !
-      hipMemcpy2D_c4_1_c_size_t = hipMemcpy2D_b(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind)
+      hipMemcpy2D_c4_1_c_size_t = hipMemcpy2D_(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind)
     end function
 function hipMemcpy2D_c4_2_c_int(dest,dpitch,src,spitch,width,height,myKind)
       use iso_c_binding
@@ -8036,9 +8452,9 @@ function hipMemcpy2D_c4_2_c_int(dest,dpitch,src,spitch,width,height,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:,:),intent(inout) :: dest
       integer(c_int) :: dpitch
-      complex(4),target,dimension(:,:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:,:),intent(in)    :: src
       integer(c_int) :: spitch
       integer(c_int) :: width
       integer(c_int) :: height
@@ -8049,7 +8465,7 @@ function hipMemcpy2D_c4_2_c_int(dest,dpitch,src,spitch,width,height,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy2D_c4_2_c_int
 #endif
       !
-      hipMemcpy2D_c4_2_c_int = hipMemcpy2D_b(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind)
+      hipMemcpy2D_c4_2_c_int = hipMemcpy2D_(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind)
     end function
 function hipMemcpy2D_c4_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       use iso_c_binding
@@ -8059,9 +8475,9 @@ function hipMemcpy2D_c4_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:,:),intent(inout) :: dest
       integer(c_size_t) :: dpitch
-      complex(4),target,dimension(:,:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:,:),intent(in)    :: src
       integer(c_size_t) :: spitch
       integer(c_size_t) :: width
       integer(c_size_t) :: height
@@ -8072,7 +8488,7 @@ function hipMemcpy2D_c4_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy2D_c4_2_c_size_t
 #endif
       !
-      hipMemcpy2D_c4_2_c_size_t = hipMemcpy2D_b(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind)
+      hipMemcpy2D_c4_2_c_size_t = hipMemcpy2D_(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind)
     end function
 function hipMemcpy2D_c8_0_c_int(dest,dpitch,src,spitch,width,height,myKind)
       use iso_c_binding
@@ -8082,9 +8498,9 @@ function hipMemcpy2D_c8_0_c_int(dest,dpitch,src,spitch,width,height,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,intent(inout) :: dest
+      complex(c_double_complex),target,intent(inout) :: dest
       integer(c_int) :: dpitch
-      complex(8),target,intent(in)    :: src
+      complex(c_double_complex),target,intent(in)    :: src
       integer(c_int) :: spitch
       integer(c_int) :: width
       integer(c_int) :: height
@@ -8095,7 +8511,7 @@ function hipMemcpy2D_c8_0_c_int(dest,dpitch,src,spitch,width,height,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy2D_c8_0_c_int
 #endif
       !
-      hipMemcpy2D_c8_0_c_int = hipMemcpy2D_b(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind)
+      hipMemcpy2D_c8_0_c_int = hipMemcpy2D_(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind)
     end function
 function hipMemcpy2D_c8_0_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       use iso_c_binding
@@ -8105,9 +8521,9 @@ function hipMemcpy2D_c8_0_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,intent(inout) :: dest
+      complex(c_double_complex),target,intent(inout) :: dest
       integer(c_size_t) :: dpitch
-      complex(8),target,intent(in)    :: src
+      complex(c_double_complex),target,intent(in)    :: src
       integer(c_size_t) :: spitch
       integer(c_size_t) :: width
       integer(c_size_t) :: height
@@ -8118,7 +8534,7 @@ function hipMemcpy2D_c8_0_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy2D_c8_0_c_size_t
 #endif
       !
-      hipMemcpy2D_c8_0_c_size_t = hipMemcpy2D_b(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind)
+      hipMemcpy2D_c8_0_c_size_t = hipMemcpy2D_(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind)
     end function
 function hipMemcpy2D_c8_1_c_int(dest,dpitch,src,spitch,width,height,myKind)
       use iso_c_binding
@@ -8128,9 +8544,9 @@ function hipMemcpy2D_c8_1_c_int(dest,dpitch,src,spitch,width,height,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:),intent(inout) :: dest
       integer(c_int) :: dpitch
-      complex(8),target,dimension(:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:),intent(in)    :: src
       integer(c_int) :: spitch
       integer(c_int) :: width
       integer(c_int) :: height
@@ -8141,7 +8557,7 @@ function hipMemcpy2D_c8_1_c_int(dest,dpitch,src,spitch,width,height,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy2D_c8_1_c_int
 #endif
       !
-      hipMemcpy2D_c8_1_c_int = hipMemcpy2D_b(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind)
+      hipMemcpy2D_c8_1_c_int = hipMemcpy2D_(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind)
     end function
 function hipMemcpy2D_c8_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       use iso_c_binding
@@ -8151,9 +8567,9 @@ function hipMemcpy2D_c8_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:),intent(inout) :: dest
       integer(c_size_t) :: dpitch
-      complex(8),target,dimension(:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:),intent(in)    :: src
       integer(c_size_t) :: spitch
       integer(c_size_t) :: width
       integer(c_size_t) :: height
@@ -8164,7 +8580,7 @@ function hipMemcpy2D_c8_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy2D_c8_1_c_size_t
 #endif
       !
-      hipMemcpy2D_c8_1_c_size_t = hipMemcpy2D_b(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind)
+      hipMemcpy2D_c8_1_c_size_t = hipMemcpy2D_(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind)
     end function
 function hipMemcpy2D_c8_2_c_int(dest,dpitch,src,spitch,width,height,myKind)
       use iso_c_binding
@@ -8174,9 +8590,9 @@ function hipMemcpy2D_c8_2_c_int(dest,dpitch,src,spitch,width,height,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:,:),intent(inout) :: dest
       integer(c_int) :: dpitch
-      complex(8),target,dimension(:,:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:,:),intent(in)    :: src
       integer(c_int) :: spitch
       integer(c_int) :: width
       integer(c_int) :: height
@@ -8187,7 +8603,7 @@ function hipMemcpy2D_c8_2_c_int(dest,dpitch,src,spitch,width,height,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy2D_c8_2_c_int
 #endif
       !
-      hipMemcpy2D_c8_2_c_int = hipMemcpy2D_b(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind)
+      hipMemcpy2D_c8_2_c_int = hipMemcpy2D_(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind)
     end function
 function hipMemcpy2D_c8_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       use iso_c_binding
@@ -8197,9 +8613,9 @@ function hipMemcpy2D_c8_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:,:),intent(inout) :: dest
       integer(c_size_t) :: dpitch
-      complex(8),target,dimension(:,:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:,:),intent(in)    :: src
       integer(c_size_t) :: spitch
       integer(c_size_t) :: width
       integer(c_size_t) :: height
@@ -8210,7 +8626,7 @@ function hipMemcpy2D_c8_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind)
       integer(kind(hipSuccess)) :: hipMemcpy2D_c8_2_c_size_t
 #endif
       !
-      hipMemcpy2D_c8_2_c_size_t = hipMemcpy2D_b(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind)
+      hipMemcpy2D_c8_2_c_size_t = hipMemcpy2D_(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind)
     end function
     
 function hipMemcpy2DAsync_l_0_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
@@ -8221,9 +8637,9 @@ function hipMemcpy2DAsync_l_0_c_int(dest,dpitch,src,spitch,width,height,myKind,s
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,intent(inout) :: dest
+      logical(c_bool),target,intent(inout) :: dest
       integer(c_int) :: dpitch
-      logical,target,intent(in)    :: src
+      logical(c_bool),target,intent(in)    :: src
       integer(c_int) :: spitch
       integer(c_int) :: width
       integer(c_int) :: height
@@ -8235,7 +8651,7 @@ function hipMemcpy2DAsync_l_0_c_int(dest,dpitch,src,spitch,width,height,myKind,s
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_l_0_c_int
 #endif
       !
-      hipMemcpy2DAsync_l_0_c_int = hipMemcpy2DAsync_b(c_loc(dest),1_8*dpitch,c_loc(src),1_8*spitch,1_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_l_0_c_int = hipMemcpy2DAsync_(c_loc(dest),1_8*dpitch,c_loc(src),1_8*spitch,1_8*width,height*1_8,myKind,stream)
     end function
 function hipMemcpy2DAsync_l_0_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8245,9 +8661,9 @@ function hipMemcpy2DAsync_l_0_c_size_t(dest,dpitch,src,spitch,width,height,myKin
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,intent(inout) :: dest
+      logical(c_bool),target,intent(inout) :: dest
       integer(c_size_t) :: dpitch
-      logical,target,intent(in)    :: src
+      logical(c_bool),target,intent(in)    :: src
       integer(c_size_t) :: spitch
       integer(c_size_t) :: width
       integer(c_size_t) :: height
@@ -8259,7 +8675,7 @@ function hipMemcpy2DAsync_l_0_c_size_t(dest,dpitch,src,spitch,width,height,myKin
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_l_0_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_l_0_c_size_t = hipMemcpy2DAsync_b(c_loc(dest),1_8*dpitch,c_loc(src),1_8*spitch,1_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_l_0_c_size_t = hipMemcpy2DAsync_(c_loc(dest),1_8*dpitch,c_loc(src),1_8*spitch,1_8*width,height*1_8,myKind,stream)
     end function
 function hipMemcpy2DAsync_l_1_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8269,9 +8685,9 @@ function hipMemcpy2DAsync_l_1_c_int(dest,dpitch,src,spitch,width,height,myKind,s
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:),intent(inout) :: dest
       integer(c_int) :: dpitch
-      logical,target,dimension(:),intent(in)    :: src
+      logical(c_bool),target,dimension(:),intent(in)    :: src
       integer(c_int) :: spitch
       integer(c_int) :: width
       integer(c_int) :: height
@@ -8283,7 +8699,7 @@ function hipMemcpy2DAsync_l_1_c_int(dest,dpitch,src,spitch,width,height,myKind,s
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_l_1_c_int
 #endif
       !
-      hipMemcpy2DAsync_l_1_c_int = hipMemcpy2DAsync_b(c_loc(dest),1_8*dpitch,c_loc(src),1_8*spitch,1_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_l_1_c_int = hipMemcpy2DAsync_(c_loc(dest),1_8*dpitch,c_loc(src),1_8*spitch,1_8*width,height*1_8,myKind,stream)
     end function
 function hipMemcpy2DAsync_l_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8293,9 +8709,9 @@ function hipMemcpy2DAsync_l_1_c_size_t(dest,dpitch,src,spitch,width,height,myKin
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:),intent(inout) :: dest
       integer(c_size_t) :: dpitch
-      logical,target,dimension(:),intent(in)    :: src
+      logical(c_bool),target,dimension(:),intent(in)    :: src
       integer(c_size_t) :: spitch
       integer(c_size_t) :: width
       integer(c_size_t) :: height
@@ -8307,7 +8723,7 @@ function hipMemcpy2DAsync_l_1_c_size_t(dest,dpitch,src,spitch,width,height,myKin
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_l_1_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_l_1_c_size_t = hipMemcpy2DAsync_b(c_loc(dest),1_8*dpitch,c_loc(src),1_8*spitch,1_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_l_1_c_size_t = hipMemcpy2DAsync_(c_loc(dest),1_8*dpitch,c_loc(src),1_8*spitch,1_8*width,height*1_8,myKind,stream)
     end function
 function hipMemcpy2DAsync_l_2_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8317,9 +8733,9 @@ function hipMemcpy2DAsync_l_2_c_int(dest,dpitch,src,spitch,width,height,myKind,s
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:,:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:,:),intent(inout) :: dest
       integer(c_int) :: dpitch
-      logical,target,dimension(:,:),intent(in)    :: src
+      logical(c_bool),target,dimension(:,:),intent(in)    :: src
       integer(c_int) :: spitch
       integer(c_int) :: width
       integer(c_int) :: height
@@ -8331,7 +8747,7 @@ function hipMemcpy2DAsync_l_2_c_int(dest,dpitch,src,spitch,width,height,myKind,s
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_l_2_c_int
 #endif
       !
-      hipMemcpy2DAsync_l_2_c_int = hipMemcpy2DAsync_b(c_loc(dest),1_8*dpitch,c_loc(src),1_8*spitch,1_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_l_2_c_int = hipMemcpy2DAsync_(c_loc(dest),1_8*dpitch,c_loc(src),1_8*spitch,1_8*width,height*1_8,myKind,stream)
     end function
 function hipMemcpy2DAsync_l_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8341,9 +8757,9 @@ function hipMemcpy2DAsync_l_2_c_size_t(dest,dpitch,src,spitch,width,height,myKin
       use hipfort_enums
       use hipfort_types
       implicit none
-      logical,target,dimension(:,:),intent(inout) :: dest
+      logical(c_bool),target,dimension(:,:),intent(inout) :: dest
       integer(c_size_t) :: dpitch
-      logical,target,dimension(:,:),intent(in)    :: src
+      logical(c_bool),target,dimension(:,:),intent(in)    :: src
       integer(c_size_t) :: spitch
       integer(c_size_t) :: width
       integer(c_size_t) :: height
@@ -8355,7 +8771,7 @@ function hipMemcpy2DAsync_l_2_c_size_t(dest,dpitch,src,spitch,width,height,myKin
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_l_2_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_l_2_c_size_t = hipMemcpy2DAsync_b(c_loc(dest),1_8*dpitch,c_loc(src),1_8*spitch,1_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_l_2_c_size_t = hipMemcpy2DAsync_(c_loc(dest),1_8*dpitch,c_loc(src),1_8*spitch,1_8*width,height*1_8,myKind,stream)
     end function
 function hipMemcpy2DAsync_i4_0_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8365,9 +8781,9 @@ function hipMemcpy2DAsync_i4_0_c_int(dest,dpitch,src,spitch,width,height,myKind,
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,intent(inout) :: dest
+      integer(c_int),target,intent(inout) :: dest
       integer(c_int) :: dpitch
-      integer(4),target,intent(in)    :: src
+      integer(c_int),target,intent(in)    :: src
       integer(c_int) :: spitch
       integer(c_int) :: width
       integer(c_int) :: height
@@ -8379,7 +8795,7 @@ function hipMemcpy2DAsync_i4_0_c_int(dest,dpitch,src,spitch,width,height,myKind,
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_i4_0_c_int
 #endif
       !
-      hipMemcpy2DAsync_i4_0_c_int = hipMemcpy2DAsync_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_i4_0_c_int = hipMemcpy2DAsync_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
     end function
 function hipMemcpy2DAsync_i4_0_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8389,9 +8805,9 @@ function hipMemcpy2DAsync_i4_0_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,intent(inout) :: dest
+      integer(c_int),target,intent(inout) :: dest
       integer(c_size_t) :: dpitch
-      integer(4),target,intent(in)    :: src
+      integer(c_int),target,intent(in)    :: src
       integer(c_size_t) :: spitch
       integer(c_size_t) :: width
       integer(c_size_t) :: height
@@ -8403,7 +8819,7 @@ function hipMemcpy2DAsync_i4_0_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_i4_0_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_i4_0_c_size_t = hipMemcpy2DAsync_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_i4_0_c_size_t = hipMemcpy2DAsync_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
     end function
 function hipMemcpy2DAsync_i4_1_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8413,9 +8829,9 @@ function hipMemcpy2DAsync_i4_1_c_int(dest,dpitch,src,spitch,width,height,myKind,
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:),intent(inout) :: dest
+      integer(c_int),target,dimension(:),intent(inout) :: dest
       integer(c_int) :: dpitch
-      integer(4),target,dimension(:),intent(in)    :: src
+      integer(c_int),target,dimension(:),intent(in)    :: src
       integer(c_int) :: spitch
       integer(c_int) :: width
       integer(c_int) :: height
@@ -8427,7 +8843,7 @@ function hipMemcpy2DAsync_i4_1_c_int(dest,dpitch,src,spitch,width,height,myKind,
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_i4_1_c_int
 #endif
       !
-      hipMemcpy2DAsync_i4_1_c_int = hipMemcpy2DAsync_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_i4_1_c_int = hipMemcpy2DAsync_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
     end function
 function hipMemcpy2DAsync_i4_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8437,9 +8853,9 @@ function hipMemcpy2DAsync_i4_1_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:),intent(inout) :: dest
+      integer(c_int),target,dimension(:),intent(inout) :: dest
       integer(c_size_t) :: dpitch
-      integer(4),target,dimension(:),intent(in)    :: src
+      integer(c_int),target,dimension(:),intent(in)    :: src
       integer(c_size_t) :: spitch
       integer(c_size_t) :: width
       integer(c_size_t) :: height
@@ -8451,7 +8867,7 @@ function hipMemcpy2DAsync_i4_1_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_i4_1_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_i4_1_c_size_t = hipMemcpy2DAsync_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_i4_1_c_size_t = hipMemcpy2DAsync_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
     end function
 function hipMemcpy2DAsync_i4_2_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8461,9 +8877,9 @@ function hipMemcpy2DAsync_i4_2_c_int(dest,dpitch,src,spitch,width,height,myKind,
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:),intent(inout) :: dest
+      integer(c_int),target,dimension(:,:),intent(inout) :: dest
       integer(c_int) :: dpitch
-      integer(4),target,dimension(:,:),intent(in)    :: src
+      integer(c_int),target,dimension(:,:),intent(in)    :: src
       integer(c_int) :: spitch
       integer(c_int) :: width
       integer(c_int) :: height
@@ -8475,7 +8891,7 @@ function hipMemcpy2DAsync_i4_2_c_int(dest,dpitch,src,spitch,width,height,myKind,
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_i4_2_c_int
 #endif
       !
-      hipMemcpy2DAsync_i4_2_c_int = hipMemcpy2DAsync_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_i4_2_c_int = hipMemcpy2DAsync_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
     end function
 function hipMemcpy2DAsync_i4_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8485,9 +8901,9 @@ function hipMemcpy2DAsync_i4_2_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(4),target,dimension(:,:),intent(inout) :: dest
+      integer(c_int),target,dimension(:,:),intent(inout) :: dest
       integer(c_size_t) :: dpitch
-      integer(4),target,dimension(:,:),intent(in)    :: src
+      integer(c_int),target,dimension(:,:),intent(in)    :: src
       integer(c_size_t) :: spitch
       integer(c_size_t) :: width
       integer(c_size_t) :: height
@@ -8499,7 +8915,7 @@ function hipMemcpy2DAsync_i4_2_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_i4_2_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_i4_2_c_size_t = hipMemcpy2DAsync_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_i4_2_c_size_t = hipMemcpy2DAsync_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
     end function
 function hipMemcpy2DAsync_i8_0_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8509,9 +8925,9 @@ function hipMemcpy2DAsync_i8_0_c_int(dest,dpitch,src,spitch,width,height,myKind,
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,intent(inout) :: dest
+      integer(c_long),target,intent(inout) :: dest
       integer(c_int) :: dpitch
-      integer(8),target,intent(in)    :: src
+      integer(c_long),target,intent(in)    :: src
       integer(c_int) :: spitch
       integer(c_int) :: width
       integer(c_int) :: height
@@ -8523,7 +8939,7 @@ function hipMemcpy2DAsync_i8_0_c_int(dest,dpitch,src,spitch,width,height,myKind,
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_i8_0_c_int
 #endif
       !
-      hipMemcpy2DAsync_i8_0_c_int = hipMemcpy2DAsync_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_i8_0_c_int = hipMemcpy2DAsync_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
     end function
 function hipMemcpy2DAsync_i8_0_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8533,9 +8949,9 @@ function hipMemcpy2DAsync_i8_0_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,intent(inout) :: dest
+      integer(c_long),target,intent(inout) :: dest
       integer(c_size_t) :: dpitch
-      integer(8),target,intent(in)    :: src
+      integer(c_long),target,intent(in)    :: src
       integer(c_size_t) :: spitch
       integer(c_size_t) :: width
       integer(c_size_t) :: height
@@ -8547,7 +8963,7 @@ function hipMemcpy2DAsync_i8_0_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_i8_0_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_i8_0_c_size_t = hipMemcpy2DAsync_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_i8_0_c_size_t = hipMemcpy2DAsync_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
     end function
 function hipMemcpy2DAsync_i8_1_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8557,9 +8973,9 @@ function hipMemcpy2DAsync_i8_1_c_int(dest,dpitch,src,spitch,width,height,myKind,
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:),intent(inout) :: dest
+      integer(c_long),target,dimension(:),intent(inout) :: dest
       integer(c_int) :: dpitch
-      integer(8),target,dimension(:),intent(in)    :: src
+      integer(c_long),target,dimension(:),intent(in)    :: src
       integer(c_int) :: spitch
       integer(c_int) :: width
       integer(c_int) :: height
@@ -8571,7 +8987,7 @@ function hipMemcpy2DAsync_i8_1_c_int(dest,dpitch,src,spitch,width,height,myKind,
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_i8_1_c_int
 #endif
       !
-      hipMemcpy2DAsync_i8_1_c_int = hipMemcpy2DAsync_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_i8_1_c_int = hipMemcpy2DAsync_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
     end function
 function hipMemcpy2DAsync_i8_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8581,9 +8997,9 @@ function hipMemcpy2DAsync_i8_1_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:),intent(inout) :: dest
+      integer(c_long),target,dimension(:),intent(inout) :: dest
       integer(c_size_t) :: dpitch
-      integer(8),target,dimension(:),intent(in)    :: src
+      integer(c_long),target,dimension(:),intent(in)    :: src
       integer(c_size_t) :: spitch
       integer(c_size_t) :: width
       integer(c_size_t) :: height
@@ -8595,7 +9011,7 @@ function hipMemcpy2DAsync_i8_1_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_i8_1_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_i8_1_c_size_t = hipMemcpy2DAsync_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_i8_1_c_size_t = hipMemcpy2DAsync_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
     end function
 function hipMemcpy2DAsync_i8_2_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8605,9 +9021,9 @@ function hipMemcpy2DAsync_i8_2_c_int(dest,dpitch,src,spitch,width,height,myKind,
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:),intent(inout) :: dest
+      integer(c_long),target,dimension(:,:),intent(inout) :: dest
       integer(c_int) :: dpitch
-      integer(8),target,dimension(:,:),intent(in)    :: src
+      integer(c_long),target,dimension(:,:),intent(in)    :: src
       integer(c_int) :: spitch
       integer(c_int) :: width
       integer(c_int) :: height
@@ -8619,7 +9035,7 @@ function hipMemcpy2DAsync_i8_2_c_int(dest,dpitch,src,spitch,width,height,myKind,
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_i8_2_c_int
 #endif
       !
-      hipMemcpy2DAsync_i8_2_c_int = hipMemcpy2DAsync_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_i8_2_c_int = hipMemcpy2DAsync_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
     end function
 function hipMemcpy2DAsync_i8_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8629,9 +9045,9 @@ function hipMemcpy2DAsync_i8_2_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       use hipfort_enums
       use hipfort_types
       implicit none
-      integer(8),target,dimension(:,:),intent(inout) :: dest
+      integer(c_long),target,dimension(:,:),intent(inout) :: dest
       integer(c_size_t) :: dpitch
-      integer(8),target,dimension(:,:),intent(in)    :: src
+      integer(c_long),target,dimension(:,:),intent(in)    :: src
       integer(c_size_t) :: spitch
       integer(c_size_t) :: width
       integer(c_size_t) :: height
@@ -8643,7 +9059,7 @@ function hipMemcpy2DAsync_i8_2_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_i8_2_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_i8_2_c_size_t = hipMemcpy2DAsync_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_i8_2_c_size_t = hipMemcpy2DAsync_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
     end function
 function hipMemcpy2DAsync_r4_0_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8653,9 +9069,9 @@ function hipMemcpy2DAsync_r4_0_c_int(dest,dpitch,src,spitch,width,height,myKind,
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,intent(inout) :: dest
+      real(c_float),target,intent(inout) :: dest
       integer(c_int) :: dpitch
-      real(4),target,intent(in)    :: src
+      real(c_float),target,intent(in)    :: src
       integer(c_int) :: spitch
       integer(c_int) :: width
       integer(c_int) :: height
@@ -8667,7 +9083,7 @@ function hipMemcpy2DAsync_r4_0_c_int(dest,dpitch,src,spitch,width,height,myKind,
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_r4_0_c_int
 #endif
       !
-      hipMemcpy2DAsync_r4_0_c_int = hipMemcpy2DAsync_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_r4_0_c_int = hipMemcpy2DAsync_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
     end function
 function hipMemcpy2DAsync_r4_0_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8677,9 +9093,9 @@ function hipMemcpy2DAsync_r4_0_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,intent(inout) :: dest
+      real(c_float),target,intent(inout) :: dest
       integer(c_size_t) :: dpitch
-      real(4),target,intent(in)    :: src
+      real(c_float),target,intent(in)    :: src
       integer(c_size_t) :: spitch
       integer(c_size_t) :: width
       integer(c_size_t) :: height
@@ -8691,7 +9107,7 @@ function hipMemcpy2DAsync_r4_0_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_r4_0_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_r4_0_c_size_t = hipMemcpy2DAsync_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_r4_0_c_size_t = hipMemcpy2DAsync_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
     end function
 function hipMemcpy2DAsync_r4_1_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8701,9 +9117,9 @@ function hipMemcpy2DAsync_r4_1_c_int(dest,dpitch,src,spitch,width,height,myKind,
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:),intent(inout) :: dest
+      real(c_float),target,dimension(:),intent(inout) :: dest
       integer(c_int) :: dpitch
-      real(4),target,dimension(:),intent(in)    :: src
+      real(c_float),target,dimension(:),intent(in)    :: src
       integer(c_int) :: spitch
       integer(c_int) :: width
       integer(c_int) :: height
@@ -8715,7 +9131,7 @@ function hipMemcpy2DAsync_r4_1_c_int(dest,dpitch,src,spitch,width,height,myKind,
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_r4_1_c_int
 #endif
       !
-      hipMemcpy2DAsync_r4_1_c_int = hipMemcpy2DAsync_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_r4_1_c_int = hipMemcpy2DAsync_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
     end function
 function hipMemcpy2DAsync_r4_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8725,9 +9141,9 @@ function hipMemcpy2DAsync_r4_1_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:),intent(inout) :: dest
+      real(c_float),target,dimension(:),intent(inout) :: dest
       integer(c_size_t) :: dpitch
-      real(4),target,dimension(:),intent(in)    :: src
+      real(c_float),target,dimension(:),intent(in)    :: src
       integer(c_size_t) :: spitch
       integer(c_size_t) :: width
       integer(c_size_t) :: height
@@ -8739,7 +9155,7 @@ function hipMemcpy2DAsync_r4_1_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_r4_1_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_r4_1_c_size_t = hipMemcpy2DAsync_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_r4_1_c_size_t = hipMemcpy2DAsync_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
     end function
 function hipMemcpy2DAsync_r4_2_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8749,9 +9165,9 @@ function hipMemcpy2DAsync_r4_2_c_int(dest,dpitch,src,spitch,width,height,myKind,
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:,:),intent(inout) :: dest
+      real(c_float),target,dimension(:,:),intent(inout) :: dest
       integer(c_int) :: dpitch
-      real(4),target,dimension(:,:),intent(in)    :: src
+      real(c_float),target,dimension(:,:),intent(in)    :: src
       integer(c_int) :: spitch
       integer(c_int) :: width
       integer(c_int) :: height
@@ -8763,7 +9179,7 @@ function hipMemcpy2DAsync_r4_2_c_int(dest,dpitch,src,spitch,width,height,myKind,
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_r4_2_c_int
 #endif
       !
-      hipMemcpy2DAsync_r4_2_c_int = hipMemcpy2DAsync_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_r4_2_c_int = hipMemcpy2DAsync_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
     end function
 function hipMemcpy2DAsync_r4_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8773,9 +9189,9 @@ function hipMemcpy2DAsync_r4_2_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(4),target,dimension(:,:),intent(inout) :: dest
+      real(c_float),target,dimension(:,:),intent(inout) :: dest
       integer(c_size_t) :: dpitch
-      real(4),target,dimension(:,:),intent(in)    :: src
+      real(c_float),target,dimension(:,:),intent(in)    :: src
       integer(c_size_t) :: spitch
       integer(c_size_t) :: width
       integer(c_size_t) :: height
@@ -8787,7 +9203,7 @@ function hipMemcpy2DAsync_r4_2_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_r4_2_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_r4_2_c_size_t = hipMemcpy2DAsync_b(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_r4_2_c_size_t = hipMemcpy2DAsync_(c_loc(dest),4_8*dpitch,c_loc(src),4_8*spitch,4_8*width,height*1_8,myKind,stream)
     end function
 function hipMemcpy2DAsync_r8_0_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8797,9 +9213,9 @@ function hipMemcpy2DAsync_r8_0_c_int(dest,dpitch,src,spitch,width,height,myKind,
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,intent(inout) :: dest
+      real(c_double),target,intent(inout) :: dest
       integer(c_int) :: dpitch
-      real(8),target,intent(in)    :: src
+      real(c_double),target,intent(in)    :: src
       integer(c_int) :: spitch
       integer(c_int) :: width
       integer(c_int) :: height
@@ -8811,7 +9227,7 @@ function hipMemcpy2DAsync_r8_0_c_int(dest,dpitch,src,spitch,width,height,myKind,
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_r8_0_c_int
 #endif
       !
-      hipMemcpy2DAsync_r8_0_c_int = hipMemcpy2DAsync_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_r8_0_c_int = hipMemcpy2DAsync_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
     end function
 function hipMemcpy2DAsync_r8_0_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8821,9 +9237,9 @@ function hipMemcpy2DAsync_r8_0_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,intent(inout) :: dest
+      real(c_double),target,intent(inout) :: dest
       integer(c_size_t) :: dpitch
-      real(8),target,intent(in)    :: src
+      real(c_double),target,intent(in)    :: src
       integer(c_size_t) :: spitch
       integer(c_size_t) :: width
       integer(c_size_t) :: height
@@ -8835,7 +9251,7 @@ function hipMemcpy2DAsync_r8_0_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_r8_0_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_r8_0_c_size_t = hipMemcpy2DAsync_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_r8_0_c_size_t = hipMemcpy2DAsync_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
     end function
 function hipMemcpy2DAsync_r8_1_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8845,9 +9261,9 @@ function hipMemcpy2DAsync_r8_1_c_int(dest,dpitch,src,spitch,width,height,myKind,
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:),intent(inout) :: dest
+      real(c_double),target,dimension(:),intent(inout) :: dest
       integer(c_int) :: dpitch
-      real(8),target,dimension(:),intent(in)    :: src
+      real(c_double),target,dimension(:),intent(in)    :: src
       integer(c_int) :: spitch
       integer(c_int) :: width
       integer(c_int) :: height
@@ -8859,7 +9275,7 @@ function hipMemcpy2DAsync_r8_1_c_int(dest,dpitch,src,spitch,width,height,myKind,
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_r8_1_c_int
 #endif
       !
-      hipMemcpy2DAsync_r8_1_c_int = hipMemcpy2DAsync_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_r8_1_c_int = hipMemcpy2DAsync_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
     end function
 function hipMemcpy2DAsync_r8_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8869,9 +9285,9 @@ function hipMemcpy2DAsync_r8_1_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:),intent(inout) :: dest
+      real(c_double),target,dimension(:),intent(inout) :: dest
       integer(c_size_t) :: dpitch
-      real(8),target,dimension(:),intent(in)    :: src
+      real(c_double),target,dimension(:),intent(in)    :: src
       integer(c_size_t) :: spitch
       integer(c_size_t) :: width
       integer(c_size_t) :: height
@@ -8883,7 +9299,7 @@ function hipMemcpy2DAsync_r8_1_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_r8_1_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_r8_1_c_size_t = hipMemcpy2DAsync_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_r8_1_c_size_t = hipMemcpy2DAsync_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
     end function
 function hipMemcpy2DAsync_r8_2_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8893,9 +9309,9 @@ function hipMemcpy2DAsync_r8_2_c_int(dest,dpitch,src,spitch,width,height,myKind,
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:,:),intent(inout) :: dest
+      real(c_double),target,dimension(:,:),intent(inout) :: dest
       integer(c_int) :: dpitch
-      real(8),target,dimension(:,:),intent(in)    :: src
+      real(c_double),target,dimension(:,:),intent(in)    :: src
       integer(c_int) :: spitch
       integer(c_int) :: width
       integer(c_int) :: height
@@ -8907,7 +9323,7 @@ function hipMemcpy2DAsync_r8_2_c_int(dest,dpitch,src,spitch,width,height,myKind,
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_r8_2_c_int
 #endif
       !
-      hipMemcpy2DAsync_r8_2_c_int = hipMemcpy2DAsync_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_r8_2_c_int = hipMemcpy2DAsync_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
     end function
 function hipMemcpy2DAsync_r8_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8917,9 +9333,9 @@ function hipMemcpy2DAsync_r8_2_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       use hipfort_enums
       use hipfort_types
       implicit none
-      real(8),target,dimension(:,:),intent(inout) :: dest
+      real(c_double),target,dimension(:,:),intent(inout) :: dest
       integer(c_size_t) :: dpitch
-      real(8),target,dimension(:,:),intent(in)    :: src
+      real(c_double),target,dimension(:,:),intent(in)    :: src
       integer(c_size_t) :: spitch
       integer(c_size_t) :: width
       integer(c_size_t) :: height
@@ -8931,7 +9347,7 @@ function hipMemcpy2DAsync_r8_2_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_r8_2_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_r8_2_c_size_t = hipMemcpy2DAsync_b(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_r8_2_c_size_t = hipMemcpy2DAsync_(c_loc(dest),8_8*dpitch,c_loc(src),8_8*spitch,8_8*width,height*1_8,myKind,stream)
     end function
 function hipMemcpy2DAsync_c4_0_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8941,9 +9357,9 @@ function hipMemcpy2DAsync_c4_0_c_int(dest,dpitch,src,spitch,width,height,myKind,
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,intent(inout) :: dest
+      complex(c_float_complex),target,intent(inout) :: dest
       integer(c_int) :: dpitch
-      complex(4),target,intent(in)    :: src
+      complex(c_float_complex),target,intent(in)    :: src
       integer(c_int) :: spitch
       integer(c_int) :: width
       integer(c_int) :: height
@@ -8955,7 +9371,7 @@ function hipMemcpy2DAsync_c4_0_c_int(dest,dpitch,src,spitch,width,height,myKind,
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_c4_0_c_int
 #endif
       !
-      hipMemcpy2DAsync_c4_0_c_int = hipMemcpy2DAsync_b(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_c4_0_c_int = hipMemcpy2DAsync_(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind,stream)
     end function
 function hipMemcpy2DAsync_c4_0_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8965,9 +9381,9 @@ function hipMemcpy2DAsync_c4_0_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,intent(inout) :: dest
+      complex(c_float_complex),target,intent(inout) :: dest
       integer(c_size_t) :: dpitch
-      complex(4),target,intent(in)    :: src
+      complex(c_float_complex),target,intent(in)    :: src
       integer(c_size_t) :: spitch
       integer(c_size_t) :: width
       integer(c_size_t) :: height
@@ -8979,7 +9395,7 @@ function hipMemcpy2DAsync_c4_0_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_c4_0_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_c4_0_c_size_t = hipMemcpy2DAsync_b(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_c4_0_c_size_t = hipMemcpy2DAsync_(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind,stream)
     end function
 function hipMemcpy2DAsync_c4_1_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -8989,9 +9405,9 @@ function hipMemcpy2DAsync_c4_1_c_int(dest,dpitch,src,spitch,width,height,myKind,
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:),intent(inout) :: dest
       integer(c_int) :: dpitch
-      complex(4),target,dimension(:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:),intent(in)    :: src
       integer(c_int) :: spitch
       integer(c_int) :: width
       integer(c_int) :: height
@@ -9003,7 +9419,7 @@ function hipMemcpy2DAsync_c4_1_c_int(dest,dpitch,src,spitch,width,height,myKind,
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_c4_1_c_int
 #endif
       !
-      hipMemcpy2DAsync_c4_1_c_int = hipMemcpy2DAsync_b(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_c4_1_c_int = hipMemcpy2DAsync_(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind,stream)
     end function
 function hipMemcpy2DAsync_c4_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -9013,9 +9429,9 @@ function hipMemcpy2DAsync_c4_1_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:),intent(inout) :: dest
       integer(c_size_t) :: dpitch
-      complex(4),target,dimension(:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:),intent(in)    :: src
       integer(c_size_t) :: spitch
       integer(c_size_t) :: width
       integer(c_size_t) :: height
@@ -9027,7 +9443,7 @@ function hipMemcpy2DAsync_c4_1_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_c4_1_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_c4_1_c_size_t = hipMemcpy2DAsync_b(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_c4_1_c_size_t = hipMemcpy2DAsync_(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind,stream)
     end function
 function hipMemcpy2DAsync_c4_2_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -9037,9 +9453,9 @@ function hipMemcpy2DAsync_c4_2_c_int(dest,dpitch,src,spitch,width,height,myKind,
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:,:),intent(inout) :: dest
       integer(c_int) :: dpitch
-      complex(4),target,dimension(:,:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:,:),intent(in)    :: src
       integer(c_int) :: spitch
       integer(c_int) :: width
       integer(c_int) :: height
@@ -9051,7 +9467,7 @@ function hipMemcpy2DAsync_c4_2_c_int(dest,dpitch,src,spitch,width,height,myKind,
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_c4_2_c_int
 #endif
       !
-      hipMemcpy2DAsync_c4_2_c_int = hipMemcpy2DAsync_b(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_c4_2_c_int = hipMemcpy2DAsync_(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind,stream)
     end function
 function hipMemcpy2DAsync_c4_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -9061,9 +9477,9 @@ function hipMemcpy2DAsync_c4_2_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(4),target,dimension(:,:),intent(inout) :: dest
+      complex(c_float_complex),target,dimension(:,:),intent(inout) :: dest
       integer(c_size_t) :: dpitch
-      complex(4),target,dimension(:,:),intent(in)    :: src
+      complex(c_float_complex),target,dimension(:,:),intent(in)    :: src
       integer(c_size_t) :: spitch
       integer(c_size_t) :: width
       integer(c_size_t) :: height
@@ -9075,7 +9491,7 @@ function hipMemcpy2DAsync_c4_2_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_c4_2_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_c4_2_c_size_t = hipMemcpy2DAsync_b(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_c4_2_c_size_t = hipMemcpy2DAsync_(c_loc(dest),2*4_8*dpitch,c_loc(src),2*4_8*spitch,2*4_8*width,height*1_8,myKind,stream)
     end function
 function hipMemcpy2DAsync_c8_0_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -9085,9 +9501,9 @@ function hipMemcpy2DAsync_c8_0_c_int(dest,dpitch,src,spitch,width,height,myKind,
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,intent(inout) :: dest
+      complex(c_double_complex),target,intent(inout) :: dest
       integer(c_int) :: dpitch
-      complex(8),target,intent(in)    :: src
+      complex(c_double_complex),target,intent(in)    :: src
       integer(c_int) :: spitch
       integer(c_int) :: width
       integer(c_int) :: height
@@ -9099,7 +9515,7 @@ function hipMemcpy2DAsync_c8_0_c_int(dest,dpitch,src,spitch,width,height,myKind,
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_c8_0_c_int
 #endif
       !
-      hipMemcpy2DAsync_c8_0_c_int = hipMemcpy2DAsync_b(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_c8_0_c_int = hipMemcpy2DAsync_(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind,stream)
     end function
 function hipMemcpy2DAsync_c8_0_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -9109,9 +9525,9 @@ function hipMemcpy2DAsync_c8_0_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,intent(inout) :: dest
+      complex(c_double_complex),target,intent(inout) :: dest
       integer(c_size_t) :: dpitch
-      complex(8),target,intent(in)    :: src
+      complex(c_double_complex),target,intent(in)    :: src
       integer(c_size_t) :: spitch
       integer(c_size_t) :: width
       integer(c_size_t) :: height
@@ -9123,7 +9539,7 @@ function hipMemcpy2DAsync_c8_0_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_c8_0_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_c8_0_c_size_t = hipMemcpy2DAsync_b(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_c8_0_c_size_t = hipMemcpy2DAsync_(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind,stream)
     end function
 function hipMemcpy2DAsync_c8_1_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -9133,9 +9549,9 @@ function hipMemcpy2DAsync_c8_1_c_int(dest,dpitch,src,spitch,width,height,myKind,
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:),intent(inout) :: dest
       integer(c_int) :: dpitch
-      complex(8),target,dimension(:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:),intent(in)    :: src
       integer(c_int) :: spitch
       integer(c_int) :: width
       integer(c_int) :: height
@@ -9147,7 +9563,7 @@ function hipMemcpy2DAsync_c8_1_c_int(dest,dpitch,src,spitch,width,height,myKind,
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_c8_1_c_int
 #endif
       !
-      hipMemcpy2DAsync_c8_1_c_int = hipMemcpy2DAsync_b(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_c8_1_c_int = hipMemcpy2DAsync_(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind,stream)
     end function
 function hipMemcpy2DAsync_c8_1_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -9157,9 +9573,9 @@ function hipMemcpy2DAsync_c8_1_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:),intent(inout) :: dest
       integer(c_size_t) :: dpitch
-      complex(8),target,dimension(:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:),intent(in)    :: src
       integer(c_size_t) :: spitch
       integer(c_size_t) :: width
       integer(c_size_t) :: height
@@ -9171,7 +9587,7 @@ function hipMemcpy2DAsync_c8_1_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_c8_1_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_c8_1_c_size_t = hipMemcpy2DAsync_b(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_c8_1_c_size_t = hipMemcpy2DAsync_(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind,stream)
     end function
 function hipMemcpy2DAsync_c8_2_c_int(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -9181,9 +9597,9 @@ function hipMemcpy2DAsync_c8_2_c_int(dest,dpitch,src,spitch,width,height,myKind,
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:,:),intent(inout) :: dest
       integer(c_int) :: dpitch
-      complex(8),target,dimension(:,:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:,:),intent(in)    :: src
       integer(c_int) :: spitch
       integer(c_int) :: width
       integer(c_int) :: height
@@ -9195,7 +9611,7 @@ function hipMemcpy2DAsync_c8_2_c_int(dest,dpitch,src,spitch,width,height,myKind,
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_c8_2_c_int
 #endif
       !
-      hipMemcpy2DAsync_c8_2_c_int = hipMemcpy2DAsync_b(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_c8_2_c_int = hipMemcpy2DAsync_(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind,stream)
     end function
 function hipMemcpy2DAsync_c8_2_c_size_t(dest,dpitch,src,spitch,width,height,myKind,stream)
       use iso_c_binding
@@ -9205,9 +9621,9 @@ function hipMemcpy2DAsync_c8_2_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       use hipfort_enums
       use hipfort_types
       implicit none
-      complex(8),target,dimension(:,:),intent(inout) :: dest
+      complex(c_double_complex),target,dimension(:,:),intent(inout) :: dest
       integer(c_size_t) :: dpitch
-      complex(8),target,dimension(:,:),intent(in)    :: src
+      complex(c_double_complex),target,dimension(:,:),intent(in)    :: src
       integer(c_size_t) :: spitch
       integer(c_size_t) :: width
       integer(c_size_t) :: height
@@ -9219,7 +9635,7 @@ function hipMemcpy2DAsync_c8_2_c_size_t(dest,dpitch,src,spitch,width,height,myKi
       integer(kind(hipSuccess)) :: hipMemcpy2DAsync_c8_2_c_size_t
 #endif
       !
-      hipMemcpy2DAsync_c8_2_c_size_t = hipMemcpy2DAsync_b(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind,stream)
+      hipMemcpy2DAsync_c8_2_c_size_t = hipMemcpy2DAsync_(c_loc(dest),2*8_8*dpitch,c_loc(src),2*8_8*spitch,2*8_8*width,height*1_8,myKind,stream)
     end function
 
 #endif

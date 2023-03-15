@@ -28,8 +28,17 @@ program fortran_hip
   double precision, parameter :: error_max = 1.0d-10
 
   integer :: i
-
-  write(*,"(a)",advance="no") "-- Running test 'vecadd' (Fortran 2003 interfaces) - "
+  type(hipDeviceProp_t),target :: props
+  !
+  call hipCheck(hipGetDeviceProperties(props,0))  
+  write(*,"(a)",advance="no") "-- Running test 'vecadd' (Fortran 2003 interfaces)"
+  write(*,"(a)",advance="no") "- device: "
+  i=1
+  do while ( iachar(props%name(i)) .ne. 0 ) ! print till end char
+    write(*,"(a)",advance="no") props%name(i)
+    i = i+1
+  end do 
+  write(*,"(a)",advance="no") " - "
 
   ! Allocate host memory
   allocate(a(N))
@@ -46,15 +55,15 @@ program fortran_hip
   call hipCheck(hipMalloc(dout,Nbytes))
 
   ! Transfer data from host to device memory
-  call hipCheck(hipMemcpy(da, c_loc(a), Nbytes, hipMemcpyHostToDevice))
-  call hipCheck(hipMemcpy(db, c_loc(b), Nbytes, hipMemcpyHostToDevice))
+  call hipCheck(hipMemcpy(da, c_loc(a(1)), Nbytes, hipMemcpyHostToDevice))
+  call hipCheck(hipMemcpy(db, c_loc(b(1)), Nbytes, hipMemcpyHostToDevice))
 
   call launch(dout,da,db,N)
 
   call hipCheck(hipDeviceSynchronize())
 
   ! Transfer data back to host memory
-  call hipCheck(hipMemcpy(c_loc(out), dout, Nbytes, hipMemcpyDeviceToHost))
+  call hipCheck(hipMemcpy(c_loc(out(1)), dout, Nbytes, hipMemcpyDeviceToHost))
 
   ! Verification
   do i = 1,N

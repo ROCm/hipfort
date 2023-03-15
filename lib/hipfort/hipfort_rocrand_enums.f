@@ -2,7 +2,7 @@
 ! ==============================================================================
 ! hipfort: FORTRAN Interfaces for GPU kernels
 ! ==============================================================================
-! Copyright (c) 2021 Advanced Micro Devices, Inc. All rights reserved.
+! Copyright (c) 2020-2022 Advanced Micro Devices, Inc. All rights reserved.
 ! [MITx11 License]
 ! 
 ! Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -49,6 +49,7 @@ module hipfort_rocrand_enums
     enumerator :: ROCRAND_RNG_PSEUDO_PHILOX4_32_10 = 404
     enumerator :: ROCRAND_RNG_QUASI_DEFAULT = 500
     enumerator :: ROCRAND_RNG_QUASI_SOBOL32 = 501
+    enumerator :: ROCRAND_RNG_QUASI_SOBOL64 = 504
   end enum
 
  

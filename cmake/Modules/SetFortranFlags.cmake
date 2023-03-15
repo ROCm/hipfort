@@ -51,6 +51,8 @@ ENDIF(CMAKE_Fortran_FLAGS_RELEASE AND CMAKE_Fortran_FLAGS_TESTING AND CMAKE_Fort
 ### GENERAL FLAGS ###
 #####################
 
+IF(NOT CMAKE_Fortran_COMPILER_ID MATCHES "Cray")
+
 # Don't add underscores in symbols for C-compatability
 SET_COMPILE_FLAG(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS}"
                  Fortran "-fno-underscoring")
@@ -69,6 +71,8 @@ SET_COMPILE_FLAG(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS}"
                          "-ta=host"      # Portland Group
                 )
 
+ENDIF(NOT CMAKE_Fortran_COMPILER_ID MATCHES "Cray")
+
 ###################
 ### DEBUG FLAGS ###
 ###################
@@ -84,22 +88,26 @@ SET_COMPILE_FLAG(CMAKE_Fortran_FLAGS_DEBUG "${CMAKE_Fortran_FLAGS_DEBUG}"
 # Turn on all warnings 
 SET_COMPILE_FLAG(CMAKE_Fortran_FLAGS_DEBUG "${CMAKE_Fortran_FLAGS_DEBUG}"
                  Fortran "-warn all" # Intel
+                         "-m2"       # HPE Cray
                          "/warn:all" # Intel Windows
                          "-Wall"     # GNU
                                      # Portland Group (on by default)
                 )
 
 # Traceback
+IF(NOT CMAKE_Fortran_COMPILER_ID MATCHES "Cray")
 SET_COMPILE_FLAG(CMAKE_Fortran_FLAGS_DEBUG "${CMAKE_Fortran_FLAGS_DEBUG}"
                  Fortran "-traceback"   # Intel/Portland Group
                          "/traceback"   # Intel Windows
                          "-fbacktrace"  # GNU (gfortran)
                          "-ftrace=full" # GNU (g95)
                 )
+ENDIF(NOT CMAKE_Fortran_COMPILER_ID MATCHES "Cray")
 
 # Check array bounds
 SET_COMPILE_FLAG(CMAKE_Fortran_FLAGS_DEBUG "${CMAKE_Fortran_FLAGS_DEBUG}"
                  Fortran "-check bounds"  # Intel
+                         "-hbounds"       # HPE Cray
                          "/check:bounds"  # Intel Windows
                          "-fcheck=bounds" # GNU (New style)
                          "-fbounds-check" # GNU (Old style)
@@ -121,6 +129,8 @@ SET_COMPILE_FLAG(CMAKE_Fortran_FLAGS_TESTING "${CMAKE_Fortran_FLAGS_TESTING}"
 #####################
 
 # NOTE: agressive optimizations (-O3) are already turned on by default
+
+IF(NOT CMAKE_Fortran_COMPILER_ID MATCHES "Cray")
 
 # Unroll loops
 SET_COMPILE_FLAG(CMAKE_Fortran_FLAGS_RELEASE "${CMAKE_Fortran_FLAGS_RELEASE}"
@@ -158,3 +168,5 @@ SET_COMPILE_FLAG(CMAKE_Fortran_FLAGS_RELEASE "${CMAKE_Fortran_FLAGS_RELEASE}"
                          "/Qvec-report0" # Intel Windows
                          "-Mvect"        # Portland Group
                 )
+
+ENDIF(NOT CMAKE_Fortran_COMPILER_ID MATCHES "Cray")
