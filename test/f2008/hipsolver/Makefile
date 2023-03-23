@@ -1,3 +1,3 @@
-CFLAGS ?= -lhipsolver
+CFLAGS ?= -lhipsolver -lrocsolver -lrocblas
 
 include ../../Makefile.in

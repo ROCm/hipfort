@@ -1,3 +1,3 @@
-CFLAGS ?= -lrocblas -lrocsolver
+CFLAGS ?= -lrocsolver -lrocblas
 
 include ../../Makefile.in
