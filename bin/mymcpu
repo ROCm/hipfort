@@ -133,6 +133,8 @@ function code2gpu(){
       ;;
       "navi21") gpuname="gfx1030"
       ;;
+      "n3a") gpuname="gfx1101"
+      ;;
       "sm_30") gpuname="sm_30"
       ;;
       "k4000") gpuname="sm_30"
