@@ -157,8 +157,8 @@ set(CPACK_RPM_SPEC_INSTALL_POST "/bin/true")
 
 rocm_create_package(
   NAME hipfort
-  DESCRIPTION "hipfort: Fortran Interface For GPU Kernel Libraries"
-  MAINTAINER "Gregory Rogers <Gregory.Rodgers@amd.com>"
+  DESCRIPTION "Fortran Interface For GPU Kernel Libraries"
+  MAINTAINER "Hipfort maintainer <hipfort-maintainer@amd.com>"
   HEADER_ONLY # Enabled For generating Only -devel pkg.
 )
 
