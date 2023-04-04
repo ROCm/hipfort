@@ -34,7 +34,7 @@ GPU = $(strip $(subst ., ,$(suffix $(subst -,.,$(HIPFORT_ARCHGPU)))))
 ifeq (nvptx,$(findstring nvptx,$(HIPFORT_ARCHGPU)))
   UNAMEP     = $(shell uname -p)
   LINKOPTS   = -L$(LIB_DIR) -lhipfort-$(ARCH) -L$(CUDA_PATH)/targets/$(UNAMEP)-linux/lib $(LINKOPTS) -lcudart
-  HIPCC_ENV  = HIP_PLATFORM=nvcc
+  HIPCC_ENV  = HIP_PLATFORM=nvidia
   HIPCC_OPTS = "--gpu-architecture=$(GPU)"
 else
   LINKOPTS   = -L$(LIB_DIR) -lhipfort-$(ARCH) -L$(ROCM_PATH)/lib $(HIPCC_LIBS) -lamdhip64 -Wl,-rpath=$(ROCM_PATH)/lib

@@ -130,7 +130,7 @@ Among the environment variables, the most important are:
 
 | Variable | Description | Default |
 |---|---|---|
-| `HIP_PLATFORM` | The platform to compile for (either 'amd' or 'nvcc') | `amd` |
+| `HIP_PLATFORM` | The platform to compile for (either 'amd' or 'nvidia') | `amd` |
 | `ROCM_PATH` | Path to ROCm installation | `/opt/rocm` |
 | `CUDA_PATH` | Path to CUDA installation | `/usr/local/cuda` | 
 | `HIPFORT_COMPILER` | Fortran compiler to be used | `gfortran` | 
