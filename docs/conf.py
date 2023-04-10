@@ -4,7 +4,14 @@
 # list see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
+import os
 from rocm_docs import ROCmDocs
+
+temp_folder = ".doxygen/tmp"
+os.system(f"rm -rf {temp_folder}")
+os.system(f"mkdir -p {temp_folder}")
+os.system(f"cp ../lib/hipfort/*.f {temp_folder}")
+os.system(f"bash clean-module-files.sh {temp_folder}")
 
 docs_core = ROCmDocs("hipfort Documentation")
 docs_core.run_doxygen()

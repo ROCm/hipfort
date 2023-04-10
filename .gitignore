@@ -26,3 +26,4 @@ _templates/
 _toc.yml
 docBin/
 _doxygen/
+tmp/

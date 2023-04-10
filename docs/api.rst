@@ -1,5 +1,9 @@
-=============
-API Reference
-=============
+=================
+Library Reference
+=================
 
-.. doxygenindex::
+|Reference|
+
+.. |Reference| raw:: html
+
+   <a href="../../.doxygen/docBin/html/index.html" target="_blank">Reference</a>
