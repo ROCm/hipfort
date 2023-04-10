@@ -9,6 +9,22 @@ This is a FORTRAN interface library for accessing GPU Kernels.
 * `hipSOLVER` interfaces will only work for AMD GPUs.
 *  We recommend `gfortran` version 7.5.0 or newer as we have observed problems with older versions.
 
+## Documentation
+
+For a detailed description of **hipfort**, see the documentation at https://rocmdocs.amd.com/projects/hipfort/en/latest/
+
+### How to build documentation
+
+Run the steps below to build documentation locally.
+
+```
+cd docs
+
+pip3 install -r .sphinx/requirements.txt
+
+python3 -m sphinx -T -E -b html -d _build/doctrees -D language=en . _build/html
+```
+
 ## Build and test hipfort from source
 
 Install `gfortran`, `git`, `cmake`, and HIP, if not yet installed.
@@ -114,10 +130,10 @@ The following tables list the supported API:
 * [rocSPARSE](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_ROCSPARSE.md)
 
 You may further find it convenient to directly use the search function on
-HIPFORT's docu page to get information on the arguments of 
+HIPFORT's documentation page to get information on the arguments of 
 an interface:
 
-https://rocmsoftwareplatform.github.io/hipfort/index.html
+https://rocmdocs.amd.com/projects/hipfort/en/latest/
 
 ## hipfc wrapper compiler and Makefile.hipfort
 

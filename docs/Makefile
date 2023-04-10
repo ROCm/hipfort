@@ -6,10 +6,8 @@
 # from the environment for the first two.
 SPHINXOPTS       ?=
 SPHINXBUILD      ?= sphinx-build
-SOURCEDIR        = source
-BUILDDIR         = build
-
-DOXYGEN_BUILDDIR = $(BUILDDIR)/doxygen
+SOURCEDIR        = ./
+BUILDDIR         = .doxygen/tmp
 
 # Put it first so that "make" without argument is like "make help".
 help:
@@ -23,17 +21,13 @@ help:
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 doxygen:
-	mkdir -p $(DOXYGEN_BUILDDIR)
-	rm -rf $(DOXYGEN_BUILDDIR)/html
-	rm -rf $(DOXYGEN_BUILDDIR)/latex
-	mkdir -p $(DOXYGEN_BUILDDIR)/tmp
-	cp ../lib/hipfort/*.f $(DOXYGEN_BUILDDIR)/tmp
-	bash clean-module-files.sh $(DOXYGEN_BUILDDIR)/tmp
+	rm -rf $(BUILDDIR)
+	mkdir -p $(BUILDDIR)
+	cp ../lib/hipfort/*.f $(BUILDDIR)
+	bash clean-module-files.sh $(BUILDDIR)
 	( cat Doxyfile ;\
-	    echo "OUTPUT_DIRECTORY = $(DOXYGEN_BUILDDIR)";\
-	    echo "INPUT = $(DOXYGEN_BUILDDIR)/tmp" ) | doxygen -
-	rm -rf $(DOXYGEN_BUILDDIR)/tmp
-	cp -r $(BUILDDIR)/doxygen/html/* .
-
+	    echo "OUTPUT_DIRECTORY = $(BUILDDIR)";\
+	    echo "INPUT = $(BUILDDIR)" ) | doxygen -
+	
 clean_doxygen:
-	rm -rf $(DOXYGEN_BUILDDIR)
+	rm -rf $(BUILDDIR)

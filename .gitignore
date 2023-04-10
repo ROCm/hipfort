@@ -17,3 +17,12 @@ test/f2008/hipblas/sswap
 test/f2008/hipfft/hipfft
 test/f2008/vecadd/main
 build/
+
+# documentation artifacts
+_build/
+_images/
+_static/
+_templates/
+_toc.yml
+docBin/
+_doxygen/
