@@ -6,13 +6,13 @@ PROJECT_NUMBER = 0.5.0
 PROJECT_BRIEF  = "Fortran Interface For GPU Kernel Libraries (based on ROCm 5.0)" 
 PROJECT_LOGO   =
 
-#INPUT                = doxygen/tmp
+INPUT                = doxygen/tmp
 FILE_PATTERNS        = *.f03
 EXTENSION_MAPPING    = f03=FortranFree
 OPTIMIZE_FOR_FORTRAN = YES
 CASE_SENSE_NAMES     = YES
 
-#OUTPUT_DIRECTORY = doxygen
+OUTPUT_DIRECTORY = docBin
 GENERATE_HTML    = YES
 GENERATE_LATEX   = NO
 USE_MATHJAX      = YES
@@ -32,8 +32,6 @@ ABBREVIATE_BRIEF       =
 ALWAYS_DETAILED_SEC    = YES
 INLINE_INHERITED_MEMB  = YES
 FULL_PATH_NAMES        = NO
-#STRIP_FROM_PATH        = "/Users/tclune/Doxygen
-#STRIP_FROM_PATH      = $(QTDIR)/
 STRIP_FROM_INC_PATH    =
 SHORT_NAMES            = NO
 JAVADOC_AUTOBRIEF      = YES
