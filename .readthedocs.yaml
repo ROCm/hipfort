@@ -18,4 +18,5 @@ build:
       python: "3.8"
    apt_packages:
      - "doxygen"
+     - "gfortran" # For pre-processing fortran sources
      - "graphviz" # For dot graphs in doxygen
