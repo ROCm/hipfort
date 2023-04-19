@@ -1,3 +1,5 @@
+# hipFFT API Support
+
 \# | API Name | Variants
 ----|---------------|---------
 1 | [hipfftPlan1d](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipfft_1_1hipfftplan1d.html "Interface documentation") | C binding
