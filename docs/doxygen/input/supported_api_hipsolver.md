@@ -1,3 +1,5 @@
+# hipSOLVER API support
+
 \# | API Name | Variants
 ----|---------------|---------
 1 | [hipsolverCreate](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsolver_1_1hipsolvercreate.html "Interface documentation") | C binding
