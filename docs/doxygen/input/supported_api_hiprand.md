@@ -1,3 +1,5 @@
+# hipRAND API Support
+
 \# | API Name | Variants
 ----|---------------|---------
 1 | [hiprandCreateGenerator](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hiprand_1_1hiprandcreategenerator.html "Interface documentation") | C binding
