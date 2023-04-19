@@ -1,4 +1,4 @@
-# HIPFort
+# Contributing guide
 
 ## What do I need to know to help?
 If you are looking to help to with a code contribution, hipfort uses the following languages and tools :
