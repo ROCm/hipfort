@@ -1,3 +1,5 @@
+# rocRAND API Support
+
 \# | API Name | Variants
 ----|---------------|---------
 1 | [rocrand_create_generator](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocrand_1_1rocrand__create__generator.html "Interface documentation") | C binding
