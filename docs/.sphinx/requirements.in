@@ -1,0 +1,4 @@
+rocm-docs-core[api_reference]
+# doxysphinx needs a slight modification to make it work
+# TODO: remove once the PR is merged
+doxysphinx @  git+https://github.com/boschglobal/doxysphinx@refs/pull/102/head

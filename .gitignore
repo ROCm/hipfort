@@ -17,3 +17,5 @@ test/f2008/hipblas/sswap
 test/f2008/hipfft/hipfft
 test/f2008/vecadd/main
 build/
+
+/.venv
