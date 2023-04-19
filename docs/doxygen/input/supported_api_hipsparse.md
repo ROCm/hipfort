@@ -1,3 +1,5 @@
+# hipSPARSE API support
+
 \# | API Name | Variants
 ----|---------------|---------
 1 | [hipsparseCreate](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__hipsparse_1_1hipsparsecreate.html "Interface documentation") | C binding
