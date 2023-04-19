@@ -1,3 +1,5 @@
+# rocSPARSE API Support
+
 \# | API Name | Variants
 ----|---------------|---------
 1 | [rocsparse_create_handle](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsparse_1_1rocsparse__create__handle.html "Interface documentation") | C binding
