@@ -1,3 +1,5 @@
+# rocSOLVER API Support
+
 \# | API Name | Variants
 ----|---------------|---------
 1 | [rocsolver_create_handle](https://rocmsoftwareplatform.github.io/hipfort/interfacehipfort__rocsolver_1_1rocsolver__create__handle.html "Interface documentation") | C binding
