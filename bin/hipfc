@@ -292,12 +292,12 @@ if [ ! -f $HIPFORT_COMPILER ] ; then
    exit 1
 fi
 
-# Determine which gfx processor to use, default to Vega (gfx900)
+# Determine which gfx processor to use, fall back to rocm_agent_enumerator
 if [ ! $HIPFORT_GPU ] ; then 
-   # Use the mygpu in pair with this script, no the pre-installed one.
-   HIPFORT_GPU=`$cdir/../libexec/hipfort/mygpu -d gfx900`
-   if [ "$HIPFORT_GPU" == "" ] ; then 
-      HIPFORT_GPU="gfx900"
+   # Use the mygpu in pair with this script, not the pre-installed one.
+   HIPFORT_GPU=`$cdir/../libexec/hipfort/mygpu`
+   if [ "$HIPFORT_GPU" == "unknown" ] ; then
+      HIPFORT_GPU=$(rocm_agent_enumerator | sed '/gfx000/d')
    fi
 fi
 
