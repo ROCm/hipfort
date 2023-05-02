@@ -53,7 +53,7 @@ docutils==0.16
     #   pydata-sphinx-theme
     #   rocm-docs-core
     #   sphinx
-doxysphinx @ git+https://github.com/boschglobal/doxysphinx@refs/pull/102/head
+doxysphinx==3.3.3
     # via
     #   -r requirements.in
     #   rocm-docs-core
@@ -92,8 +92,6 @@ jinja2==3.1.2
     # via
     #   myst-parser
     #   sphinx
-json5==0.9.11
-    # via doxysphinx
 jsonschema==4.17.3
     # via nbformat
 jupyter-cache==0.5.0
@@ -107,6 +105,8 @@ jupyter-core==5.3.0
     #   ipykernel
     #   jupyter-client
     #   nbformat
+libsass==0.22.0
+    # via doxysphinx
 linkify-it-py==1.0.3
     # via myst-parser
 lxml==4.9.2
@@ -125,6 +125,8 @@ mdit-py-plugins==0.3.5
     # via myst-parser
 mdurl==0.1.2
     # via markdown-it-py
+mpire==2.7.1
+    # via doxysphinx
 myst-nb==0.17.1
     # via rocm-docs-core
 myst-parser[linkify]==0.18.1
@@ -179,8 +181,11 @@ pygments==2.15.0
     # via
     #   accessible-pygments
     #   ipython
+    #   mpire
     #   pydata-sphinx-theme
     #   sphinx
+pyjson5==1.6.2
+    # via doxysphinx
 pyjwt==2.6.0
     # via pygithub
 pynacl==1.5.0
@@ -263,6 +268,8 @@ tornado==6.2
     # via
     #   ipykernel
     #   jupyter-client
+tqdm==4.65.0
+    # via mpire
 traitlets==5.9.0
     # via
     #   comm
