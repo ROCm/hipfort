@@ -297,7 +297,7 @@ if [ ! $HIPFORT_GPU ] ; then
    # Use the mygpu in pair with this script, not the pre-installed one.
    HIPFORT_GPU=`$cdir/../libexec/hipfort/mygpu`
    if [ "$HIPFORT_GPU" == "unknown" ] ; then
-      HIPFORT_GPU=$(rocm_agent_enumerator | sed '/gfx000/d')
+      HIPFORT_GPU=$(rocm_agent_enumerator | sort -n | uniq | sed '/gfx000/d')
    fi
 fi
 
@@ -338,7 +338,10 @@ else
          HIPCC_ENV+=" DEVICE_LIB_PATH=$ROCM_PATH/lib"
      fi
    fi 
-   HIPCC_OPTS="-fno-gpu-rdc -fPIC --offload-arch=$HIPFORT_GPU"
+   HIPCC_OPTS="-fno-gpu-rdc -fPIC"
+   for arch in "$HIPFORT_GPU" ; do
+     HIPCC_OPTS+=" --offload-arch=$arch "
+   done
 fi
 
 FORTOPT=${FORTOPT:-2}
