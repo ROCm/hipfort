@@ -13,6 +13,9 @@ from typing import Dict, List, Any
 
 from rocm_docs import ROCmDocs
 
+
+external_projects_current_project = "hipfort"
+
 # Preprocess the fortran sources with gfortran, because doxygen doesn't seem
 # to correctly parse them, even with preprocessing turned on (and with
 # upper-case file names as convention)
