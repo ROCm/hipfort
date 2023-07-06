@@ -9,7 +9,7 @@ import os
 import shutil
 import subprocess
 from pathlib import Path
-from typing import Dict, List, Any
+from typing import Any, Dict, List
 
 from rocm_docs import ROCmDocs
 
@@ -44,10 +44,16 @@ for filename in glob.glob("../lib/hipfort/*.f"):
         ]
     )
 
-docs_core = ROCmDocs("hipfort Documentation")
+getVersionCmd = r'sed -n -e "s/^.*HIPFORT_VERSION.* \"\([0-9\.]\{1,\}\).*/\1/p" ../CMakeLists.txt'
+version = subprocess.getoutput(getVersionCmd)
+left_nav_title = f"hipfort {version} Documentation"
+
+docs_core = ROCmDocs(left_nav_title)
 docs_core.run_doxygen(doxygen_root="doxygen", doxygen_path="doxygen/xml")
 docs_core.enable_api_reference()
 docs_core.setup()
+
+external_projects_current_project = "hipfort"
 
 for sphinx_var in ROCmDocs.SPHINX_VARS:
     globals()[sphinx_var] = getattr(docs_core, sphinx_var)
