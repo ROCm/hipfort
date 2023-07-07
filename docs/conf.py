@@ -59,6 +59,8 @@ copyright = "Copyright (c) 2023 Advanced Micro Devices, Inc. All rights reserved
 version = version_number
 release = version_number
 
+external_toc_path = "./sphinx/_toc.yml"
+
 docs_core = ROCmDocs(left_nav_title)
 docs_core.run_doxygen(doxygen_root="doxygen", doxygen_path="doxygen/xml")
 docs_core.enable_api_reference()
