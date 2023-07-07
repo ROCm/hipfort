@@ -1,5 +1,4 @@
-hipfort: Fortran Interface For GPU Kernel Libraries
-===================================================
+# hipfort: Fortran Interface For GPU Kernel Libraries
 
 This repository contains the source and testing for hipfort.  
 This is a FORTRAN interface library for accessing GPU Kernels.
@@ -7,7 +6,7 @@ This is a FORTRAN interface library for accessing GPU Kernels.
 ## Known issues
 
 * `hipSOLVER` interfaces will only work for AMD GPUs.
-*  We recommend `gfortran` version 7.5.0 or newer as we have observed problems with older versions.
+* We recommend `gfortran` version 7.5.0 or newer as we have observed problems with older versions.
 
 ## Build and test hipfort from source
 
@@ -114,10 +113,7 @@ The following tables list the supported API:
 * [rocSPARSE](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_ROCSPARSE.md)
 
 You may further find it convenient to directly use the search function on
-HIPFORT's docu page to get information on the arguments of 
-an interface:
-
-https://rocmsoftwareplatform.github.io/hipfort/index.html
+[HIPFORT's documentation page](https://rocmsoftwareplatform.github.io/hipfort/index.html) to get information on the arguments of an interface
 
 ## hipfc wrapper compiler and Makefile.hipfort
 
@@ -146,7 +142,6 @@ There are further subcategories per `hip*` or `roc*` library that is tested.
 ### Building a single test
 
 > **NOTE**: Only the `hip*` tests can be compiled for CUDA devices. The `roc*` tests cannot.
-
 > **NOTE**: The make targets append the linker flags for AMD devices to the `CFLAGS` variable per default.
 
 To compile for AMD devices you can simply call `make` in the test directories.
@@ -156,6 +151,7 @@ If you want to compile for CUDA devices, you need to build as follows:
 ```shell
 make CFLAGS="--offload-arch=sm_70 <libs>"
 ```
+
 where you must substitute `<libs>` by `-lcublas`, `-lcusparse`, ... as needed.
 Compilation typically boils down to calling `hipfc` as follows:
 
@@ -178,7 +174,6 @@ from the `test/` folder. The instructions are given below.
 
 > **NOTE**: Running all tests as below requires that all ROCm math libraries can be found at `/opt/rocm`.
 Specify a different ROCm location via the `ROCM_PATH` environment variable.
-
 > **NOTE**: When using older ROCm versions, you might need to manually set the environment variable `HIP_PLATFORM` to `hcc`
 before running the tests.
 
@@ -198,7 +193,6 @@ make run_all
 
 > **NOTE**: Running all tests as below requires that CUDA can be found at `/usr/local/cuda`. Specify a different CUDA location via the `CUDA_PATH` environment variable
 > or supply it to the `CFLAGS` variable by appending `-cuda-path <path_to_cuda>`.
-
 > **NOTE**: Choose offload architecture value according to used device.
 
 ```shell
