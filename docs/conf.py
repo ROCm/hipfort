@@ -6,6 +6,7 @@
 
 import glob
 import os
+import re
 import shutil
 import subprocess
 from pathlib import Path
@@ -44,8 +45,11 @@ for filename in glob.glob("../lib/hipfort/*.f"):
         ]
     )
 
-getVersionCmd = r'sed -n -e "s/^.*HIPFORT_VERSION.* \"\([0-9\.]\{1,\}\).*/\1/p" ../CMakeLists.txt'
-version = subprocess.getoutput(getVersionCmd)
+with open('../CMakeLists.txt', encoding='utf-8') as f:
+    match = re.search(r'.*\bHIPFORT_VERSION\s+\"?([0-9.]+)[^0-9.]+', f.read())
+    if not match:
+        raise ValueError("HIPFORT_VERSION not found!")
+    version = match[1]
 left_nav_title = f"hipfort {version} Documentation"
 
 docs_core = ROCmDocs(left_nav_title)
