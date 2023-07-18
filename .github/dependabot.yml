@@ -13,6 +13,6 @@ updates:
     labels:
       - "documentation"
       - "dependencies"
-      - "ci:no-build"
+      - "ci:docs-only"
     reviewers:
       - "samjwu"
