@@ -25,3 +25,6 @@ subtrees:
     entries:
     - file: developer_guide/contributing
     - file: developer_guide/specifications
+  - caption: About 
+    entries:
+      - file: license
