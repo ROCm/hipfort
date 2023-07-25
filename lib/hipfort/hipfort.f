@@ -6450,7 +6450,7 @@ module hipfort
     end function
 
   end interface
-  !>  @}
+
   interface hipBindTextureToMipmappedArray
 #ifdef USE_CUDA_NAMES
     function hipBindTextureToMipmappedArray_(tex,mipmappedArray,desc) bind(c, name="cudaBindTextureToMipmappedArray")
@@ -7156,6 +7156,7 @@ module hipfort
 #endif
       integer(c_int),value :: id
     end function
+  !>  @}
 
   end interface
   !>  @brief Begins graph capture on a stream.
