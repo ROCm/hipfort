@@ -12863,8 +12863,10 @@ module hipfort_rocsparse
   !>   \f[
   !>     op(x) = \left\{
   !>     \begin{array}{ll}
-  !>         x,   & \text{if trans == rocsparse_operation_none} \\
-  !>         \bar{x}, & \text{if trans == rocsparse_operation_conjugate_transpose} \\
+  !>         x,   & \text{if trans == rocsparse_operation_none} \newline
+  !>
+  !>         \bar{x}, & \text{if trans == rocsparse_operation_conjugate_transpose} \newline
+  !>
   !>     \end{array}
   !>     \right.
   !>   \f]
@@ -12943,8 +12945,10 @@ module hipfort_rocsparse
   !>   \f[
   !>     op(A) = \left\{
   !>     \begin{array}{ll}
-  !>         A,   & \text{if trans == rocsparse_operation_none} \\
-  !>         A^T, & \text{if trans == rocsparse_operation_transpose} \\
+  !>         A,   & \text{if trans == rocsparse_operation_none} \newline
+  !>
+  !>         A^T, & \text{if trans == rocsparse_operation_transpose} \newline
+  !>
   !>         A^H, & \text{if trans == rocsparse_operation_conjugate_transpose}
   !>     \end{array}
   !>     \right.
@@ -13025,8 +13029,10 @@ module hipfort_rocsparse
   !>   \f[
   !>     op(A) = \left\{
   !>     \begin{array}{ll}
-  !>         A,   & \text{if trans == rocsparse_operation_none} \\
-  !>         A^T, & \text{if trans == rocsparse_operation_transpose} \\
+  !>         A,   & \text{if trans == rocsparse_operation_none} \newline
+  !>
+  !>         A^T, & \text{if trans == rocsparse_operation_transpose} \newline
+  !>
   !>         A^H, & \text{if trans == rocsparse_operation_conjugate_transpose}
   !>     \end{array}
   !>     \right.
@@ -13115,8 +13121,10 @@ module hipfort_rocsparse
   !>   \f[
   !>     op(A) = \left\{
   !>     \begin{array}{ll}
-  !>         A,   & \text{if trans == rocsparse_operation_none} \\
-  !>         A^T, & \text{if trans == rocsparse_operation_transpose} \\
+  !>         A,   & \text{if trans == rocsparse_operation_none} \newline
+  !>
+  !>         A^T, & \text{if trans == rocsparse_operation_transpose} \newline
+  !>
   !>         A^H, & \text{if trans == rocsparse_operation_conjugate_transpose}
   !>     \end{array}
   !>     \right.
@@ -13125,8 +13133,10 @@ module hipfort_rocsparse
   !>   \f[
   !>     op(B) = \left\{
   !>     \begin{array}{ll}
-  !>         B,   & \text{if trans_B == rocsparse_operation_none} \\
-  !>         B^T, & \text{if trans_B == rocsparse_operation_transpose} \\
+  !>         B,   & \text{if trans_B == rocsparse_operation_none} \newline
+  !>
+  !>         B^T, & \text{if trans_B == rocsparse_operation_transpose} \newline
+  !>
   !>         B^H, & \text{if trans_B == rocsparse_operation_conjugate_transpose}
   !>     \end{array}
   !>     \right.
@@ -13244,8 +13254,10 @@ module hipfort_rocsparse
   !>   \f[
   !>     op(A) = \left\{
   !>     \begin{array}{ll}
-  !>         A,   & \text{if trans_A == rocsparse_operation_none} \\
-  !>         A^T, & \text{if trans_A == rocsparse_operation_transpose} \\
+  !>         A,   & \text{if trans_A == rocsparse_operation_none} \newline
+  !>
+  !>         A^T, & \text{if trans_A == rocsparse_operation_transpose} \newline
+  !>
   !>         A^H, & \text{if trans_A == rocsparse_operation_conjugate_transpose}
   !>     \end{array}
   !>     \right.
@@ -13254,8 +13266,10 @@ module hipfort_rocsparse
   !>   \f[
   !>     op(B) = \left\{
   !>     \begin{array}{ll}
-  !>         B,   & \text{if trans_B == rocsparse_operation_none} \\
-  !>         B^T, & \text{if trans_B == rocsparse_operation_transpose} \\
+  !>         B,   & \text{if trans_B == rocsparse_operation_none} \newline
+  !>
+  !>         B^T, & \text{if trans_B == rocsparse_operation_transpose} \newline
+  !>
   !>         B^H, & \text{if trans_B == rocsparse_operation_conjugate_transpose}
   !>     \end{array}
   !>     \right.
@@ -13367,16 +13381,20 @@ module hipfort_rocsparse
   !>   \f[
   !>     op(A) = \left\{
   !>     \begin{array}{ll}
-  !>         A,   & \text{if opA == rocsparse_operation_none} \\
-  !>         A^T,   & \text{if opA == rocsparse_operation_transpose} \\
+  !>         A,   & \text{if opA == rocsparse_operation_none} \newline
+  !>
+  !>         A^T,   & \text{if opA == rocsparse_operation_transpose} \newline
+  !>
   !>     \end{array}
   !>     \right.
   !>   \f],
   !>   \f[
   !>     op(B) = \left\{
   !>     \begin{array}{ll}
-  !>         B,   & \text{if opB == rocsparse_operation_none} \\
-  !>         B^T,   & \text{if opB == rocsparse_operation_transpose} \\
+  !>         B,   & \text{if opB == rocsparse_operation_none} \newline
+  !>
+  !>         B^T,   & \text{if opB == rocsparse_operation_transpose} \newline
+  !>
   !>     \end{array}
   !>     \right.
   !>   \f]
@@ -13384,7 +13402,8 @@ module hipfort_rocsparse
   !>   \f[
   !>     spy(C)_ij = \left\{
   !>     \begin{array}{ll}
-  !>         1 \text{if i == j},   & 0 \text{if i != j} \\
+  !>         1 \text{if i == j},   & 0 \text{if i != j} \newline
+  !>
   !>     \end{array}
   !>     \right.
   !>   \f]
