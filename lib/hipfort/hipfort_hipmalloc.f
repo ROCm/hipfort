@@ -31,11 +31,11 @@ module hipfort_hipmalloc
     !>    @brief Allocate memory on the default accelerator
     !>  
     !>    @param[out] ptr Pointer to the allocated memory
-    !>    @param[in]  size Requested memory size
+    !>    @param[in]  mySize Requested memory size
     !>  
     !>    If size is 0, no memory is allocated, ptr returns nullptr, and hipSuccess is returned.
     !>  
-    !>    @return #hipSuccess, #hipErrorOutOfMemory, #hipErrorInvalidValue (bad context, null ptr)
+    !>    @return hipSuccess, hipErrorOutOfMemory, hipErrorInvalidValue (bad context, null ptr)
     !>  
     !>    @see hipMallocPitch, hipFree, hipMallocArray, hipFreeArray, hipMalloc3D, hipMalloc3DArray,
     !>   hipHostFree, hipHostMalloc
@@ -227,7 +227,7 @@ module hipfort_hipmalloc
   !>   @param [in]  flags   - must be either hipMemAttachGlobal or hipMemAttachHost
   !>                          (defaults to hipMemAttachGlobal)
   !>  
-  !>   @returns #hipSuccess, #hipErrorMemoryAllocation, #hipErrorNotSupported, #hipErrorInvalidValue
+  !>   @returns hipSuccess, hipErrorMemoryAllocation, hipErrorNotSupported, hipErrorInvalidValue
   !>  
   interface hipMallocManaged
 #ifdef USE_CUDA_NAMES
@@ -416,12 +416,12 @@ module hipfort_hipmalloc
     !>    @brief Allocate device accessible page locked host memory
     !>  
     !>    @param[out] ptr Pointer to the allocated host pinned memory
-    !>    @param[in]  size Requested memory size
+    !>    @param[in]  mySize Requested memory size
     !>    @param[in]  flags Type of host memory allocation
     !>  
     !>    If size is 0, no memory is allocated, ptr returns nullptr, and hipSuccess is returned.
     !>  
-    !>    @return #hipSuccess, #hipErrorOutOfMemory
+    !>    @return hipSuccess, hipErrorOutOfMemory
     !>  
     !>    @see hipSetDeviceFlags, hipHostFree
     !>  
@@ -612,8 +612,8 @@ module hipfort_hipmalloc
     !>    If pointer is NULL, the hip runtime is initialized and hipSuccess is returned.
     !>  
     !>    @param[in] ptr Pointer to memory to be freed
-    !>    @return #hipSuccess
-    !>    @return #hipErrorInvalidDevicePointer (if pointer is invalid, including host pointers allocated
+    !>    @return hipSuccess
+    !>    @return hipErrorInvalidDevicePointer (if pointer is invalid, including host pointers allocated
     !>   with hipHostMalloc)
     !>  
     !>    @see hipMalloc, hipMallocPitch, hipMallocArray, hipFreeArray, hipHostFree, hipMalloc3D,
@@ -706,8 +706,8 @@ module hipfort_hipmalloc
     !>    If pointer is NULL, the hip runtime is initialized and hipSuccess is returned.
     !>  
     !>    @param[in] ptr Pointer to memory to be freed
-    !>    @return #hipSuccess,
-    !>            #hipErrorInvalidValue (if pointer is invalid, including device pointers allocated with
+    !>    @return hipSuccess,
+    !>            hipErrorInvalidValue (if pointer is invalid, including device pointers allocated with
     !>   hipMalloc)
     !>  
     !>    @see hipMalloc, hipMallocPitch, hipFree, hipMallocArray, hipFreeArray, hipMalloc3D,

@@ -72,7 +72,7 @@ module hipfort_rocfft
   !>   more detailed transforms. For simple transforms, this parameter
   !>   can be set to NULL.
   !> 
-  !>   The plan must be destroyed with a call to ::rocfft_plan_destroy.
+  !>   The plan must be destroyed with a call to rocfft_plan_destroy.
   !> 
   !>   @param[out] plan plan handle
   !>   @param[in] placement placement of result
@@ -315,7 +315,7 @@ module hipfort_rocfft
   !>  @brief Create plan description
   !>   @details This API creates a plan description with which the user
   !>  can set extra plan properties.  The plan description must be freed
-  !>  with a call to ::rocfft_plan_description_destroy.
+  !>  with a call to rocfft_plan_description_destroy.
   !>   @param[out] description plan description handle
   interface rocfft_plan_description_create
     function rocfft_plan_description_create_(description) bind(c, name="rocfft_plan_description_create")
@@ -329,7 +329,7 @@ module hipfort_rocfft
   end interface
   !>  @brief Destroy a plan description
   !>   @details This API frees the plan description.  A plan description
-  !>   can be freed any time after it is passed to ::rocfft_plan_create.
+  !>   can be freed any time after it is passed to rocfft_plan_create.
   !>   @param[in] description plan description handle
   interface rocfft_plan_description_destroy
     function rocfft_plan_description_destroy_(description) bind(c, name="rocfft_plan_description_destroy")
@@ -344,7 +344,7 @@ module hipfort_rocfft
   !>  @brief Create execution info
   !>   @details This API creates an execution info with which the user
   !>  can control plan execution and work buffers.  The execution info must be freed
-  !>  with a call to ::rocfft_execution_info_destroy.
+  !>  with a call to rocfft_execution_info_destroy.
   !>   @param[out] info execution info handle
   interface rocfft_execution_info_create
     function rocfft_execution_info_create_(myInfo) bind(c, name="rocfft_execution_info_create")
@@ -359,7 +359,7 @@ module hipfort_rocfft
   !>  @brief Destroy an execution info
   !>   @details This API frees the execution info.  An execution info
   !>   object can be freed any time after it is passed to
-  !>   ::rocfft_execute.
+  !>   rocfft_execute.
   !>   @param[in] info execution info handle
   interface rocfft_execution_info_destroy
     function rocfft_execution_info_destroy_(myInfo) bind(c, name="rocfft_execution_info_destroy")
@@ -376,16 +376,16 @@ module hipfort_rocfft
   !>   @details This is one of the execution info functions to specify
   !>   optional additional information to control execution.  This API
   !>   provides a work buffer for the transform. It must be called
-  !>   before ::rocfft_execute.
+  !>   before rocfft_execute.
   !> 
   !>   When a non-zero value is obtained from
-  !>   ::rocfft_plan_get_work_buffer_size, that means the library needs a
+  !>   rocfft_plan_get_work_buffer_size, that means the library needs a
   !>   work buffer to compute the transform. In this case, the user
   !>   should allocate the work buffer and pass it to the library via
   !>   this API.
   !> 
   !>   If a work buffer is required for the transform but is not
-  !>   specified using this function, ::rocfft_execute will automatically
+  !>   specified using this function, rocfft_execute will automatically
   !>   allocate the required buffer and free it when execution is
   !>   finished.
   !> 
@@ -427,7 +427,7 @@ module hipfort_rocfft
   end interface
   !>  @brief Set stream in execution info
   !>   @details Associates an existing compute stream to a plan.  This
-  !>  must be called before the call to ::rocfft_execute.
+  !>  must be called before the call to rocfft_execute.
   !> 
   !>   Once the association is made, execution of the FFT will run the
   !>   computation through the specified stream.
@@ -567,7 +567,7 @@ module hipfort_rocfft
   !> 
   !>   @details Serialize rocFFT's cache of compiled kernels into a
   !>   buffer.  This buffer is allocated by rocFFT and must be freed
-  !>   with a call to ::rocfft_cache_buffer_free.  The length of the
+  !>   with a call to rocfft_cache_buffer_free.  The length of the
   !>   buffer in bytes is written to 'buffer_len_bytes'.
   interface rocfft_cache_serialize
     function rocfft_cache_serialize_(buffer,buffer_len_bytes) bind(c, name="rocfft_cache_serialize")
@@ -582,7 +582,7 @@ module hipfort_rocfft
   end interface
   !>  @brief Free cache serialization buffer
   !> 
-  !>   @details Deallocate a buffer allocated by ::rocfft_cache_serialize.
+  !>   @details Deallocate a buffer allocated by rocfft_cache_serialize.
   interface rocfft_cache_buffer_free
     function rocfft_cache_buffer_free_(buffer) bind(c, name="rocfft_cache_buffer_free")
       use iso_c_binding

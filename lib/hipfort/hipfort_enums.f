@@ -41,13 +41,13 @@ module hipfort_enums
     enumerator :: hipMemoryTypeArray
     enumerator :: hipMemoryTypeUnified
   end enum
-
+ 
   enum, bind(c)
-    enumerator :: hipSuccess = 0
-    enumerator :: hipErrorInvalidValue = 1
-    enumerator :: hipErrorOutOfMemory = 2
-    enumerator :: hipErrorMemoryAllocation = 2
-    enumerator :: hipErrorNotInitialized = 3
+    enumerator :: hipSuccess = 0 !> Successful completion.
+    enumerator :: hipErrorInvalidValue = 1 !> One or more of the parameters passed to the API call is NULL or not in an acceptable range.
+    enumerator :: hipErrorOutOfMemory = 2 !> Out of memory range.
+    enumerator :: hipErrorMemoryAllocation = 2 !> Memory allocation error.
+    enumerator :: hipErrorNotInitialized = 3 !> Invalid not initialized
     enumerator :: hipErrorInitializationError = 3
     enumerator :: hipErrorDeinitialized = 4
     enumerator :: hipErrorProfilerDisabled = 5

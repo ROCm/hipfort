@@ -268,7 +268,6 @@ module hipfort_rocsolver
     end function
 
   end interface
-  !>  @{
   !>     \brief LACGV conjugates the complex vector x.
   !> 
   !>     \details
@@ -327,7 +326,6 @@ module hipfort_rocsolver
       rocsolver_zlacgv_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief LASWP performs a series of row interchanges on the matrix A.
   !> 
   !>     \details
@@ -462,7 +460,6 @@ module hipfort_rocsolver
       rocsolver_zlaswp_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief LARFG generates a Householder reflector H of order n.
   !> 
   !>     \details
@@ -616,7 +613,6 @@ module hipfort_rocsolver
       rocsolver_zlarfg_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief LARFT generates the triangular factor T of a block reflector H of
   !>     order n.
   !> 
@@ -649,10 +645,10 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle              rocblas_handle.
   !>     @param[in]
-  !>     direct              #rocblas_direct.\n
+  !>     direct              rocblas_direct.\n
   !>                         Specifies the direction in which the Householder matrices are applied.
   !>     @param[in]
-  !>     storev              #rocblas_storev.\n
+  !>     storev              rocblas_storev.\n
   !>                         Specifies how the Householder vectors are stored in matrix V.
   !>     @param[in]
   !>     n                   rocblas_int. n >= 0.\n
@@ -784,7 +780,6 @@ module hipfort_rocsolver
       rocsolver_zlarft_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief LARF applies a Householder reflector H to a general matrix A.
   !> 
   !>     \details
@@ -931,7 +926,6 @@ module hipfort_rocsolver
       rocsolver_zlarf_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief LARFB applies a block reflector H to a general m-by-n matrix A.
   !> 
   !>     \details
@@ -984,10 +978,10 @@ module hipfort_rocsolver
   !>     trans               rocblas_operation.\n
   !>                         Specifies whether the block reflector or its transpose/conjugate transpose is to be applied.
   !>     @param[in]
-  !>     direct              #rocblas_direct.\n
+  !>     direct              rocblas_direct.\n
   !>                         Specifies the direction in which the Householder matrices are to be applied to generate H.
   !>     @param[in]
-  !>     storev              #rocblas_storev.\n
+  !>     storev              rocblas_storev.\n
   !>                         Specifies how the Householder vectors are stored in matrix V.
   !>     @param[in]
   !>     m                   rocblas_int. m >= 0.\n
@@ -1143,7 +1137,6 @@ module hipfort_rocsolver
       rocsolver_zlarfb_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief LABRD computes the bidiagonal form of the first k rows and columns of
   !>     a general m-by-n matrix A, as well as the matrices X and Y needed to reduce
   !>     the remaining part of A.
@@ -1362,7 +1355,6 @@ module hipfort_rocsolver
       rocsolver_zlabrd_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief LATRD computes the tridiagonal form of k rows and columns of
   !>     a symmetric/hermitian matrix A, as well as the matrix W needed to update
   !>     the remaining part of A.
@@ -1549,7 +1541,6 @@ module hipfort_rocsolver
       rocsolver_zlatrd_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief LASYF computes a partial factorization of a symmetric matrix \f$A\f$
   !>     using Bunch-Kaufman diagonal pivoting.
   !> 
@@ -1739,7 +1730,6 @@ module hipfort_rocsolver
       rocsolver_zlasyf_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief ORG2R generates an m-by-n Matrix Q with orthonormal columns.
   !> 
   !>     \details
@@ -1823,7 +1813,6 @@ module hipfort_rocsolver
       rocsolver_dorg2r_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief UNG2R generates an m-by-n complex Matrix Q with orthonormal columns.
   !> 
   !>     \details
@@ -1907,7 +1896,6 @@ module hipfort_rocsolver
       rocsolver_zung2r_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief ORGQR generates an m-by-n Matrix Q with orthonormal columns.
   !> 
   !>     \details
@@ -1991,7 +1979,6 @@ module hipfort_rocsolver
       rocsolver_dorgqr_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief UNGQR generates an m-by-n complex Matrix Q with orthonormal columns.
   !> 
   !>     \details
@@ -2075,7 +2062,6 @@ module hipfort_rocsolver
       rocsolver_zungqr_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief ORGL2 generates an m-by-n Matrix Q with orthonormal rows.
   !> 
   !>     \details
@@ -2159,7 +2145,6 @@ module hipfort_rocsolver
       rocsolver_dorgl2_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief UNGL2 generates an m-by-n complex Matrix Q with orthonormal rows.
   !> 
   !>     \details
@@ -2243,7 +2228,6 @@ module hipfort_rocsolver
       rocsolver_zungl2_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief ORGLQ generates an m-by-n Matrix Q with orthonormal rows.
   !> 
   !>     \details
@@ -2327,7 +2311,6 @@ module hipfort_rocsolver
       rocsolver_dorglq_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief UNGLQ generates an m-by-n complex Matrix Q with orthonormal rows.
   !> 
   !>     \details
@@ -2411,7 +2394,6 @@ module hipfort_rocsolver
       rocsolver_zunglq_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief ORG2L generates an m-by-n Matrix Q with orthonormal columns.
   !> 
   !>     \details
@@ -2495,7 +2477,6 @@ module hipfort_rocsolver
       rocsolver_dorg2l_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief UNG2L generates an m-by-n complex Matrix Q with orthonormal columns.
   !> 
   !>     \details
@@ -2579,7 +2560,6 @@ module hipfort_rocsolver
       rocsolver_zung2l_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief ORGQL generates an m-by-n Matrix Q with orthonormal columns.
   !> 
   !>     \details
@@ -2663,7 +2643,6 @@ module hipfort_rocsolver
       rocsolver_dorgql_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief UNGQL generates an m-by-n complex Matrix Q with orthonormal columns.
   !> 
   !>     \details
@@ -2747,7 +2726,6 @@ module hipfort_rocsolver
       rocsolver_zungql_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief ORGBR generates an m-by-n Matrix Q with orthonormal rows or columns.
   !> 
   !>     \details
@@ -2783,7 +2761,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     storev      #rocblas_storev.\n
+  !>     storev      rocblas_storev.\n
   !>                 Specifies whether to work column-wise or row-wise.
   !>     @param[in]
   !>     m           rocblas_int. m >= 0.\n
@@ -2856,7 +2834,6 @@ module hipfort_rocsolver
       rocsolver_dorgbr_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief UNGBR generates an m-by-n complex Matrix Q with orthonormal rows or
   !>     columns.
   !> 
@@ -2893,7 +2870,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     storev      #rocblas_storev.\n
+  !>     storev      rocblas_storev.\n
   !>                 Specifies whether to work column-wise or row-wise.
   !>     @param[in]
   !>     m           rocblas_int. m >= 0.\n
@@ -2966,7 +2943,6 @@ module hipfort_rocsolver
       rocsolver_zungbr_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief ORGTR generates an n-by-n orthogonal Matrix Q.
   !> 
   !>     \details
@@ -3052,7 +3028,6 @@ module hipfort_rocsolver
       rocsolver_dorgtr_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief UNGTR generates an n-by-n unitary Matrix Q.
   !> 
   !>     \details
@@ -3138,7 +3113,6 @@ module hipfort_rocsolver
       rocsolver_zungtr_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief ORM2R multiplies a matrix Q with orthonormal columns by a general m-by-n
   !>     matrix C.
   !> 
@@ -3258,7 +3232,6 @@ module hipfort_rocsolver
       rocsolver_dorm2r_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief UNM2R multiplies a complex matrix Q with orthonormal columns by a
   !>     general m-by-n matrix C.
   !> 
@@ -3379,7 +3352,6 @@ module hipfort_rocsolver
       rocsolver_zunm2r_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief ORMQR multiplies a matrix Q with orthonormal columns by a general m-by-n
   !>     matrix C.
   !> 
@@ -3499,7 +3471,6 @@ module hipfort_rocsolver
       rocsolver_dormqr_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief UNMQR multiplies a complex matrix Q with orthonormal columns by a
   !>     general m-by-n matrix C.
   !> 
@@ -3619,7 +3590,6 @@ module hipfort_rocsolver
       rocsolver_zunmqr_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief ORML2 multiplies a matrix Q with orthonormal rows by a general m-by-n
   !>     matrix C.
   !> 
@@ -3740,7 +3710,6 @@ module hipfort_rocsolver
       rocsolver_dorml2_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief UNML2 multiplies a complex matrix Q with orthonormal rows by a general
   !>     m-by-n matrix C.
   !> 
@@ -3860,7 +3829,6 @@ module hipfort_rocsolver
       rocsolver_zunml2_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief ORMLQ multiplies a matrix Q with orthonormal rows by a general m-by-n
   !>     matrix C.
   !> 
@@ -3980,7 +3948,6 @@ module hipfort_rocsolver
       rocsolver_dormlq_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief UNMLQ multiplies a complex matrix Q with orthonormal rows by a general
   !>     m-by-n matrix C.
   !> 
@@ -4100,7 +4067,6 @@ module hipfort_rocsolver
       rocsolver_zunmlq_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief ORM2L multiplies a matrix Q with orthonormal columns by a general m-by-n
   !>     matrix C.
   !> 
@@ -4223,7 +4189,6 @@ module hipfort_rocsolver
       rocsolver_dorm2l_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief UNM2L multiplies a complex matrix Q with orthonormal columns by a
   !>     general m-by-n matrix C.
   !> 
@@ -4346,7 +4311,6 @@ module hipfort_rocsolver
       rocsolver_zunm2l_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief ORMQL multiplies a matrix Q with orthonormal columns by a general m-by-n
   !>     matrix C.
   !> 
@@ -4469,7 +4433,6 @@ module hipfort_rocsolver
       rocsolver_dormql_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief UNMQL multiplies a complex matrix Q with orthonormal columns by a
   !>     general m-by-n matrix C.
   !> 
@@ -4592,7 +4555,6 @@ module hipfort_rocsolver
       rocsolver_zunmql_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief ORMBR multiplies a matrix Q with orthonormal rows or columns by a
   !>     general m-by-n matrix C.
   !> 
@@ -4646,7 +4608,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle              rocblas_handle.
   !>     @param[in]
-  !>     storev              #rocblas_storev.\n
+  !>     storev              rocblas_storev.\n
   !>                         Specifies whether to work column-wise or row-wise.
   !>     @param[in]
   !>     side                rocblas_side.\n
@@ -4737,7 +4699,6 @@ module hipfort_rocsolver
       rocsolver_dormbr_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief UNMBR multiplies a complex matrix Q with orthonormal rows or columns by
   !>     a general m-by-n matrix C.
   !> 
@@ -4791,7 +4752,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle              rocblas_handle.
   !>     @param[in]
-  !>     storev              #rocblas_storev.\n
+  !>     storev              rocblas_storev.\n
   !>                         Specifies whether to work column-wise or row-wise.
   !>     @param[in]
   !>     side                rocblas_side.\n
@@ -4882,7 +4843,6 @@ module hipfort_rocsolver
       rocsolver_zunmbr_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief ORMTR multiplies an orthogonal matrix Q by a general m-by-n matrix C.
   !> 
   !>     \details
@@ -5014,7 +4974,6 @@ module hipfort_rocsolver
       rocsolver_dormtr_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief UNMTR multiplies a unitary matrix Q by a general m-by-n matrix C.
   !> 
   !>     \details
@@ -5146,7 +5105,6 @@ module hipfort_rocsolver
       rocsolver_zunmtr_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief BDSQR computes the singular value decomposition (SVD) of an
   !>     n-by-n bidiagonal matrix B, using the implicit QR algorithm.
   !> 
@@ -5346,7 +5304,6 @@ module hipfort_rocsolver
       rocsolver_zbdsqr_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief STERF computes the eigenvalues of a symmetric tridiagonal matrix.
   !> 
   !>     \details
@@ -5423,7 +5380,6 @@ module hipfort_rocsolver
       rocsolver_dsterf_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief STEQR computes the eigenvalues and (optionally) eigenvectors of
   !>     a symmetric tridiagonal matrix.
   !> 
@@ -5440,7 +5396,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle    rocblas_handle.
   !>     @param[in]
-  !>     evect     #rocblas_evect.\n
+  !>     evect     rocblas_evect.\n
   !>               Specifies how the eigenvectors are computed.
   !>     @param[in]
   !>     n         rocblas_int. n >= 0.\n
@@ -5577,7 +5533,6 @@ module hipfort_rocsolver
       rocsolver_zsteqr_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief STEDC computes the eigenvalues and (optionally) eigenvectors of
   !>     a symmetric tridiagonal matrix.
   !> 
@@ -5594,7 +5549,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle    rocblas_handle.
   !>     @param[in]
-  !>     evect     #rocblas_evect.\n
+  !>     evect     rocblas_evect.\n
   !>               Specifies how the eigenvectors are computed.
   !>     @param[in]
   !>     n         rocblas_int. n >= 0.\n
@@ -5723,7 +5678,6 @@ module hipfort_rocsolver
       rocsolver_zstedc_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GETF2_NPVT computes the LU factorization of a general m-by-n matrix A
   !>     without partial pivoting.
   !> 
@@ -5857,7 +5811,6 @@ module hipfort_rocsolver
       rocsolver_zgetf2_npvt_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GETF2_NPVT_BATCHED computes the LU factorization of a batch of
   !>     general m-by-n matrices without partial pivoting.
   !> 
@@ -5998,7 +5951,6 @@ module hipfort_rocsolver
       rocsolver_zgetf2_npvt_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GETF2_NPVT_STRIDED_BATCHED computes the LU factorization of a batch
   !>     of general m-by-n matrices without partial pivoting.
   !> 
@@ -6147,7 +6099,6 @@ module hipfort_rocsolver
       rocsolver_zgetf2_npvt_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GETRF_NPVT computes the LU factorization of a general m-by-n matrix A
   !>     without partial pivoting.
   !> 
@@ -6281,7 +6232,6 @@ module hipfort_rocsolver
       rocsolver_zgetrf_npvt_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GETRF_NPVT_BATCHED computes the LU factorization of a batch of
   !>     general m-by-n matrices without partial pivoting.
   !> 
@@ -6423,7 +6373,6 @@ module hipfort_rocsolver
       rocsolver_zgetrf_npvt_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GETRF_NPVT_STRIDED_BATCHED computes the LU factorization of a batch
   !>     of general m-by-n matrices without partial pivoting.
   !> 
@@ -6573,7 +6522,6 @@ module hipfort_rocsolver
       rocsolver_zgetrf_npvt_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GETF2 computes the LU factorization of a general m-by-n matrix A
   !>     using partial pivoting with row interchanges.
   !> 
@@ -6713,7 +6661,6 @@ module hipfort_rocsolver
       rocsolver_zgetf2_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GETF2_BATCHED computes the LU factorization of a batch of general
   !>     m-by-n matrices using partial pivoting with row interchanges.
   !> 
@@ -6870,7 +6817,6 @@ module hipfort_rocsolver
       rocsolver_zgetf2_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GETF2_STRIDED_BATCHED computes the LU factorization of a batch of
   !>     general m-by-n matrices using partial pivoting with row interchanges.
   !> 
@@ -7035,7 +6981,6 @@ module hipfort_rocsolver
       rocsolver_zgetf2_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GETRF computes the LU factorization of a general m-by-n matrix A
   !>     using partial pivoting with row interchanges.
   !> 
@@ -7175,7 +7120,6 @@ module hipfort_rocsolver
       rocsolver_zgetrf_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GETRF_BATCHED computes the LU factorization of a batch of general
   !>     m-by-n matrices using partial pivoting with row interchanges.
   !> 
@@ -7332,7 +7276,6 @@ module hipfort_rocsolver
       rocsolver_zgetrf_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GETRF_STRIDED_BATCHED computes the LU factorization of a batch of
   !>     general m-by-n matrices using partial pivoting with row interchanges.
   !> 
@@ -7497,7 +7440,6 @@ module hipfort_rocsolver
       rocsolver_zgetrf_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GEQR2 computes a QR factorization of a general m-by-n matrix A.
   !> 
   !>     \details
@@ -7640,7 +7582,6 @@ module hipfort_rocsolver
       rocsolver_zgeqr2_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GEQR2_BATCHED computes the QR factorization of a batch of general
   !>     m-by-n matrices.
   !> 
@@ -7800,7 +7741,6 @@ module hipfort_rocsolver
       rocsolver_zgeqr2_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GEQR2_STRIDED_BATCHED computes the QR factorization of a batch of
   !>     general m-by-n matrices.
   !> 
@@ -7968,7 +7908,6 @@ module hipfort_rocsolver
       rocsolver_zgeqr2_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GERQ2 computes a RQ factorization of a general m-by-n matrix A.
   !> 
   !>     \details
@@ -8110,7 +8049,6 @@ module hipfort_rocsolver
       rocsolver_zgerq2_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GERQ2_BATCHED computes the RQ factorization of a batch of general
   !>     m-by-n matrices.
   !> 
@@ -8268,7 +8206,6 @@ module hipfort_rocsolver
       rocsolver_zgerq2_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GERQ2_STRIDED_BATCHED computes the RQ factorization of a batch of
   !>     general m-by-n matrices.
   !> 
@@ -8435,7 +8372,6 @@ module hipfort_rocsolver
       rocsolver_zgerq2_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GEQL2 computes a QL factorization of a general m-by-n matrix A.
   !> 
   !>     \details
@@ -8579,7 +8515,6 @@ module hipfort_rocsolver
       rocsolver_zgeql2_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GEQL2_BATCHED computes the QL factorization of a batch of general
   !>     m-by-n matrices.
   !> 
@@ -8740,7 +8675,6 @@ module hipfort_rocsolver
       rocsolver_zgeql2_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GEQL2_STRIDED_BATCHED computes the QL factorization of a batch of
   !>     general m-by-n matrices.
   !> 
@@ -8908,7 +8842,6 @@ module hipfort_rocsolver
       rocsolver_zgeql2_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GELQ2 computes a LQ factorization of a general m-by-n matrix A.
   !> 
   !>     \details
@@ -9049,7 +8982,6 @@ module hipfort_rocsolver
       rocsolver_zgelq2_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GELQ2_BATCHED computes the LQ factorization of a batch of general
   !>     m-by-n matrices.
   !> 
@@ -9206,7 +9138,6 @@ module hipfort_rocsolver
       rocsolver_zgelq2_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GELQ2_STRIDED_BATCHED computes the LQ factorization of a batch of
   !>     general m-by-n matrices.
   !> 
@@ -9372,7 +9303,6 @@ module hipfort_rocsolver
       rocsolver_zgelq2_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GEQRF computes a QR factorization of a general m-by-n matrix A.
   !> 
   !>     \details
@@ -9515,7 +9445,6 @@ module hipfort_rocsolver
       rocsolver_zgeqrf_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GEQRF_BATCHED computes the QR factorization of a batch of general
   !>     m-by-n matrices.
   !> 
@@ -9674,7 +9603,6 @@ module hipfort_rocsolver
       rocsolver_zgeqrf_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GEQRF_STRIDED_BATCHED computes the QR factorization of a batch of
   !>     general m-by-n matrices.
   !> 
@@ -9841,7 +9769,6 @@ module hipfort_rocsolver
       rocsolver_zgeqrf_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GERQF computes a RQ factorization of a general m-by-n matrix A.
   !> 
   !>     \details
@@ -9983,7 +9910,6 @@ module hipfort_rocsolver
       rocsolver_zgerqf_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GERQF_BATCHED computes the RQ factorization of a batch of general
   !>     m-by-n matrices.
   !> 
@@ -10141,7 +10067,6 @@ module hipfort_rocsolver
       rocsolver_zgerqf_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GERQF_STRIDED_BATCHED computes the RQ factorization of a batch of
   !>     general m-by-n matrices.
   !> 
@@ -10308,7 +10233,6 @@ module hipfort_rocsolver
       rocsolver_zgerqf_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GEQLF computes a QL factorization of a general m-by-n matrix A.
   !> 
   !>     \details
@@ -10451,7 +10375,6 @@ module hipfort_rocsolver
       rocsolver_zgeqlf_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GEQLF_BATCHED computes the QL factorization of a batch of general
   !>     m-by-n matrices.
   !> 
@@ -10611,7 +10534,6 @@ module hipfort_rocsolver
       rocsolver_zgeqlf_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GEQLF_STRIDED_BATCHED computes the QL factorization of a batch of
   !>     general m-by-n matrices.
   !> 
@@ -10779,7 +10701,6 @@ module hipfort_rocsolver
       rocsolver_zgeqlf_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GELQF computes a LQ factorization of a general m-by-n matrix A.
   !> 
   !>     \details
@@ -10920,7 +10841,6 @@ module hipfort_rocsolver
       rocsolver_zgelqf_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GELQF_BATCHED computes the LQ factorization of a batch of general
   !>     m-by-n matrices.
   !> 
@@ -11078,7 +10998,6 @@ module hipfort_rocsolver
       rocsolver_zgelqf_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GELQF_STRIDED_BATCHED computes the LQ factorization of a batch of
   !>     general m-by-n matrices.
   !> 
@@ -11243,7 +11162,6 @@ module hipfort_rocsolver
       rocsolver_zgelqf_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GEBD2 computes the bidiagonal form of a general m-by-n matrix A.
   !> 
   !>     \details
@@ -11419,7 +11337,6 @@ module hipfort_rocsolver
       rocsolver_zgebd2_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GEBD2_BATCHED computes the bidiagonal form of a batch of general
   !>     m-by-n matrices.
   !> 
@@ -11637,7 +11554,6 @@ module hipfort_rocsolver
       rocsolver_zgebd2_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GEBD2_STRIDED_BATCHED computes the bidiagonal form of a batch of
   !>     general m-by-n matrices.
   !> 
@@ -11863,7 +11779,6 @@ module hipfort_rocsolver
       rocsolver_zgebd2_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GEBRD computes the bidiagonal form of a general m-by-n matrix A.
   !> 
   !>     \details
@@ -12039,7 +11954,6 @@ module hipfort_rocsolver
       rocsolver_zgebrd_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GEBRD_BATCHED computes the bidiagonal form of a batch of general
   !>     m-by-n matrices.
   !> 
@@ -12257,7 +12171,6 @@ module hipfort_rocsolver
       rocsolver_zgebrd_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GEBRD_STRIDED_BATCHED computes the bidiagonal form of a batch of
   !>     general m-by-n matrices.
   !> 
@@ -12483,7 +12396,6 @@ module hipfort_rocsolver
       rocsolver_zgebrd_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GETRS solves a system of n linear equations on n variables in its factorized form.
   !> 
   !>     \details
@@ -12633,7 +12545,6 @@ module hipfort_rocsolver
       rocsolver_zgetrs_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GETRS_BATCHED solves a batch of systems of n linear equations on n
   !>     variables in its factorized forms.
   !> 
@@ -12799,7 +12710,6 @@ module hipfort_rocsolver
       rocsolver_zgetrs_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GETRS_STRIDED_BATCHED solves a batch of systems of n linear equations
   !>     on n variables in its factorized forms.
   !> 
@@ -12981,7 +12891,6 @@ module hipfort_rocsolver
       rocsolver_zgetrs_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GESV solves a general system of n linear equations on n variables.
   !> 
   !>     \details
@@ -13130,7 +13039,6 @@ module hipfort_rocsolver
       rocsolver_zgesv_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GESV_BATCHED solves a batch of general systems of n linear equations on n
   !>     variables.
   !> 
@@ -13295,7 +13203,6 @@ module hipfort_rocsolver
       rocsolver_zgesv_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GESV_STRIDED_BATCHED solves a batch of general systems of n linear equations
   !>     on n variables.
   !> 
@@ -13476,7 +13383,6 @@ module hipfort_rocsolver
       rocsolver_zgesv_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GETRI inverts a general n-by-n matrix A using the LU factorization
   !>     computed by \ref rocsolver_sgetrf "GETRF".
   !> 
@@ -13601,7 +13507,6 @@ module hipfort_rocsolver
       rocsolver_zgetri_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GETRI_BATCHED inverts a batch of general n-by-n matrices using
   !>     the LU factorization computed by \ref rocsolver_sgetrf_batched "GETRF_BATCHED".
   !> 
@@ -13742,7 +13647,6 @@ module hipfort_rocsolver
       rocsolver_zgetri_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GETRI_STRIDED_BATCHED inverts a batch of general n-by-n matrices
   !>     using the LU factorization computed by \ref rocsolver_sgetrf_strided_batched "GETRF_STRIDED_BATCHED".
   !> 
@@ -13891,7 +13795,6 @@ module hipfort_rocsolver
       rocsolver_zgetri_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GETRI_NPVT inverts a general n-by-n matrix A using the LU factorization
   !>     computed by \ref rocsolver_sgetrf_npvt "GETRF_NPVT".
   !> 
@@ -14009,7 +13912,6 @@ module hipfort_rocsolver
       rocsolver_zgetri_npvt_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GETRI_NPVT_BATCHED inverts a batch of general n-by-n matrices using
   !>     the LU factorization computed by \ref rocsolver_sgetrf_npvt_batched "GETRF_NPVT_BATCHED".
   !> 
@@ -14135,7 +14037,6 @@ module hipfort_rocsolver
       rocsolver_zgetri_npvt_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GETRI_NPVT_STRIDED_BATCHED inverts a batch of general n-by-n matrices
   !>     using the LU factorization computed by \ref rocsolver_sgetrf_npvt_strided_batched "GETRF_NPVT_STRIDED_BATCHED".
   !> 
@@ -14269,7 +14170,6 @@ module hipfort_rocsolver
       rocsolver_zgetri_npvt_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GELS solves an overdetermined (or underdetermined) linear system defined by an m-by-n
   !>     matrix A, and a corresponding matrix B, using the QR factorization computed by \ref rocsolver_sgeqrf "GEQRF" (or the LQ
   !>     factorization computed by \ref rocsolver_sgelqf "GELQF").
@@ -14438,7 +14338,6 @@ module hipfort_rocsolver
       rocsolver_zgels_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GELS_BATCHED solves a batch of overdetermined (or underdetermined) linear systems
   !>     defined by a set of m-by-n matrices \f$A_i\f$, and corresponding matrices \f$B_i\f$, using the
   !>     QR factorizations computed by \ref rocsolver_sgeqrf_batched "GEQRF_BATCHED" (or the LQ factorizations computed by \ref rocsolver_sgelqf_batched "GELQF_BATCHED").
@@ -14614,7 +14513,6 @@ module hipfort_rocsolver
       rocsolver_zgels_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GELS_STRIDED_BATCHED solves a batch of overdetermined (or underdetermined) linear
   !>     systems defined by a set of m-by-n matrices \f$A_i\f$, and corresponding matrices \f$B_i\f$,
   !>     using the QR factorizations computed by \ref rocsolver_sgeqrf_strided_batched "GEQRF_STRIDED_BATCHED"
@@ -14808,7 +14706,6 @@ module hipfort_rocsolver
       rocsolver_zgels_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief POTF2 computes the Cholesky factorization of a real symmetric (complex
   !>     Hermitian) positive definite matrix A.
   !> 
@@ -14938,7 +14835,6 @@ module hipfort_rocsolver
       rocsolver_zpotf2_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief POTF2_BATCHED computes the Cholesky factorization of a
   !>     batch of real symmetric (complex Hermitian) positive definite matrices.
   !> 
@@ -15075,7 +14971,6 @@ module hipfort_rocsolver
       rocsolver_zpotf2_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief POTF2_STRIDED_BATCHED computes the Cholesky factorization of a
   !>     batch of real symmetric (complex Hermitian) positive definite matrices.
   !> 
@@ -15220,7 +15115,6 @@ module hipfort_rocsolver
       rocsolver_zpotf2_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief POTRF computes the Cholesky factorization of a real symmetric (complex
   !>     Hermitian) positive definite matrix A.
   !> 
@@ -15350,7 +15244,6 @@ module hipfort_rocsolver
       rocsolver_zpotrf_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief POTRF_BATCHED computes the Cholesky factorization of a
   !>     batch of real symmetric (complex Hermitian) positive definite matrices.
   !> 
@@ -15487,7 +15380,6 @@ module hipfort_rocsolver
       rocsolver_zpotrf_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief POTRF_STRIDED_BATCHED computes the Cholesky factorization of a
   !>     batch of real symmetric (complex Hermitian) positive definite matrices.
   !> 
@@ -15632,7 +15524,6 @@ module hipfort_rocsolver
       rocsolver_zpotrf_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief POTRS solves a symmetric/hermitian system of n linear equations on n variables in its factorized form.
   !> 
   !>     \details
@@ -15780,7 +15671,6 @@ module hipfort_rocsolver
       rocsolver_zpotrs_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief POTRS_BATCHED solves a batch of symmetric/hermitian systems of n linear equations on n
   !>     variables in its factorized forms.
   !> 
@@ -15937,7 +15827,6 @@ module hipfort_rocsolver
       rocsolver_zpotrs_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief POTRS_STRIDED_BATCHED solves a batch of symmetric/hermitian systems of n linear equations
   !>     on n variables in its factorized forms.
   !> 
@@ -16110,7 +15999,6 @@ module hipfort_rocsolver
       rocsolver_zpotrs_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief POSV solves a symmetric/hermitian system of n linear equations on n variables.
   !> 
   !>     \details
@@ -16261,7 +16149,6 @@ module hipfort_rocsolver
       rocsolver_zposv_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief POSV_BATCHED solves a batch of symmetric/hermitian systems of n linear equations on n
   !>     variables.
   !> 
@@ -16420,7 +16307,6 @@ module hipfort_rocsolver
       rocsolver_zposv_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief POSV_STRIDED_BATCHED solves a batch of symmetric/hermitian systems of n linear equations
   !>     on n variables.
   !> 
@@ -16595,7 +16481,6 @@ module hipfort_rocsolver
       rocsolver_zposv_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief POTRI inverts a symmetric/hermitian positive definite matrix A.
   !> 
   !>     \details
@@ -16724,7 +16609,6 @@ module hipfort_rocsolver
       rocsolver_zpotri_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief POTRI_BATCHED inverts a batch of symmetric/hermitian positive definite matrices \f$A_i\f$.
   !> 
   !>     \details
@@ -16860,7 +16744,6 @@ module hipfort_rocsolver
       rocsolver_zpotri_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief POTRI_STRIDED_BATCHED inverts a batch of symmetric/hermitian positive definite matrices \f$A_i\f$.
   !> 
   !>     \details
@@ -17004,7 +16887,6 @@ module hipfort_rocsolver
       rocsolver_zpotri_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GESVD computes the singular values and optionally the singular
   !>     vectors of a general m-by-n matrix A (Singular Value Decomposition).
   !> 
@@ -17025,7 +16907,7 @@ module hipfort_rocsolver
   !>     computed, this function returns the transpose (or transpose conjugate) of the
   !>     right singular vectors, i.e. the rows of V'.
   !> 
-  !>     left_svect and right_svect are #rocblas_svect enums that can take the
+  !>     left_svect and right_svect are rocblas_svect enums that can take the
   !>     following values:
   !> 
   !>     - rocblas_svect_all: the entire matrix U (or V') is computed,
@@ -17053,10 +16935,10 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     left_svect  #rocblas_svect.\n
+  !>     left_svect  rocblas_svect.\n
   !>                 Specifies how the left singular vectors are computed.
   !>     @param[in]
-  !>     right_svect #rocblas_svect.\n
+  !>     right_svect rocblas_svect.\n
   !>                 Specifies how the right singular vectors are computed.
   !>     @param[in]
   !>     m           rocblas_int. m >= 0.\n
@@ -17100,7 +16982,7 @@ module hipfort_rocsolver
   !>                 are in S; those that converged correspond to a subset of the singular values
   !>                 of A (not necessarily ordered).
   !>     @param[in]
-  !>     fast_alg    #rocblas_workmode. \n
+  !>     fast_alg    rocblas_workmode. \n
   !>                 If set to rocblas_outofplace, the function will execute the
   !>                 fast thin-SVD version of the algorithm when possible.
   !>     @param[out]
@@ -17235,7 +17117,6 @@ module hipfort_rocsolver
       rocsolver_zgesvd_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GESVD_BATCHED computes the singular values and optionally the
   !>     singular vectors of a batch of general m-by-n matrix A (Singular Value
   !>     Decomposition).
@@ -17257,7 +17138,7 @@ module hipfort_rocsolver
   !>     computed, this function returns the transpose (or transpose conjugate) of the
   !>     right singular vectors, i.e. the rows of \f$V_j'\f$.
   !> 
-  !>     left_svect and right_svect are #rocblas_svect enums that can take the
+  !>     left_svect and right_svect are rocblas_svect enums that can take the
   !>     following values:
   !> 
   !>     - rocblas_svect_all: the entire matrix \f$U_j\f$ (or \f$V_j'\f$) is computed,
@@ -17286,10 +17167,10 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     left_svect  #rocblas_svect.\n
+  !>     left_svect  rocblas_svect.\n
   !>                 Specifies how the left singular vectors are computed.
   !>     @param[in]
-  !>     right_svect #rocblas_svect.\n
+  !>     right_svect rocblas_svect.\n
   !>                 Specifies how the right singular vectors are computed.
   !>     @param[in]
   !>     m           rocblas_int. m >= 0.\n
@@ -17352,7 +17233,7 @@ module hipfort_rocsolver
   !>                 Stride from the start of one vector E_j to the next one E_(j+1).
   !>                 There is no restriction for the value of strideE. Normal use case is strideE >= min(m,n)-1.
   !>     @param[in]
-  !>     fast_alg    #rocblas_workmode. \n
+  !>     fast_alg    rocblas_workmode. \n
   !>                 If set to rocblas_outofplace, the function will execute the fast thin-SVD version
   !>                 of the algorithm when possible.
   !>     @param[out]
@@ -17510,7 +17391,6 @@ module hipfort_rocsolver
       rocsolver_zgesvd_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GESVD_STRIDED_BATCHED computes the singular values and optionally the
   !>     singular vectors of a batch of general m-by-n matrix A (Singular Value
   !>     Decomposition).
@@ -17532,7 +17412,7 @@ module hipfort_rocsolver
   !>     computed, this function returns the transpose (or transpose conjugate) of the
   !>     right singular vectors, i.e. the rows of \f$V_j'\f$.
   !> 
-  !>     left_svect and right_svect are #rocblas_svect enums that can take the
+  !>     left_svect and right_svect are rocblas_svect enums that can take the
   !>     following values:
   !> 
   !>     - rocblas_svect_all: the entire matrix \f$U_j\f$ (or \f$V_j'\f$) is computed,
@@ -17561,10 +17441,10 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     left_svect  #rocblas_svect.\n
+  !>     left_svect  rocblas_svect.\n
   !>                 Specifies how the left singular vectors are computed.
   !>     @param[in]
-  !>     right_svect #rocblas_svect.\n
+  !>     right_svect rocblas_svect.\n
   !>                 Specifies how the right singular vectors are computed.
   !>     @param[in]
   !>     m           rocblas_int. m >= 0.\n
@@ -17631,7 +17511,7 @@ module hipfort_rocsolver
   !>                 There is no restriction for the value of strideE.
   !>                 Normal use case is strideE >= min(m,n)-1.
   !>     @param[in]
-  !>     fast_alg    #rocblas_workmode. \n
+  !>     fast_alg    rocblas_workmode. \n
   !>                 If set to rocblas_outofplace, the function will execute the fast thin-SVD version
   !>                 of the algorithm when possible.
   !>     @param[out]
@@ -17793,7 +17673,6 @@ module hipfort_rocsolver
       rocsolver_zgesvd_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief SYTD2 computes the tridiagonal form of a real symmetric matrix A.
   !> 
   !>     \details
@@ -17907,7 +17786,6 @@ module hipfort_rocsolver
       rocsolver_dsytd2_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief HETD2 computes the tridiagonal form of a complex hermitian matrix A.
   !> 
   !>     \details
@@ -18021,7 +17899,6 @@ module hipfort_rocsolver
       rocsolver_zhetd2_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief SYTD2_BATCHED computes the tridiagonal form of a batch of real symmetric matrices A_j.
   !> 
   !>     \details
@@ -18159,7 +18036,6 @@ module hipfort_rocsolver
       rocsolver_dsytd2_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief HETD2_BATCHED computes the tridiagonal form of a batch of complex hermitian matrices A_j.
   !> 
   !>     \details
@@ -18297,7 +18173,6 @@ module hipfort_rocsolver
       rocsolver_zhetd2_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief SYTD2_STRIDED_BATCHED computes the tridiagonal form of a batch of real symmetric matrices A_j.
   !> 
   !>     \details
@@ -18441,7 +18316,6 @@ module hipfort_rocsolver
       rocsolver_dsytd2_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief HETD2_STRIDED_BATCHED computes the tridiagonal form of a batch of complex hermitian matrices A_j.
   !> 
   !>     \details
@@ -18585,7 +18459,6 @@ module hipfort_rocsolver
       rocsolver_zhetd2_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief SYTRD computes the tridiagonal form of a real symmetric matrix A.
   !> 
   !>     \details
@@ -18699,7 +18572,6 @@ module hipfort_rocsolver
       rocsolver_dsytrd_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief HETRD computes the tridiagonal form of a complex hermitian matrix A.
   !> 
   !>     \details
@@ -18813,7 +18685,6 @@ module hipfort_rocsolver
       rocsolver_zhetrd_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief SYTRD_BATCHED computes the tridiagonal form of a batch of real symmetric matrices A_j.
   !> 
   !>     \details
@@ -18951,7 +18822,6 @@ module hipfort_rocsolver
       rocsolver_dsytrd_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief HETRD_BATCHED computes the tridiagonal form of a batch of complex hermitian matrices A_j.
   !> 
   !>     \details
@@ -19089,7 +18959,6 @@ module hipfort_rocsolver
       rocsolver_zhetrd_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief SYTRD_STRIDED_BATCHED computes the tridiagonal form of a batch of real symmetric matrices A_j.
   !> 
   !>     \details
@@ -19233,7 +19102,6 @@ module hipfort_rocsolver
       rocsolver_dsytrd_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief HETRD_STRIDED_BATCHED computes the tridiagonal form of a batch of complex hermitian matrices A_j.
   !> 
   !>     \details
@@ -19377,7 +19245,6 @@ module hipfort_rocsolver
       rocsolver_zhetrd_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief SYGS2 reduces a real symmetric-definite generalized eigenproblem to standard
   !>     form.
   !> 
@@ -19426,7 +19293,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle    rocblas_handle.
   !>     @param[in]
-  !>     itype     #rocblas_eform.\n
+  !>     itype     rocblas_eform.\n
   !>               Specifies the form of the generalized eigenproblem.
   !>     @param[in]
   !>     uplo      rocblas_fill.\n
@@ -19500,7 +19367,6 @@ module hipfort_rocsolver
       rocsolver_dsygs2_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief HEGS2 reduces a hermitian-definite generalized eigenproblem to standard form.
   !> 
   !>     \details
@@ -19548,7 +19414,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle    rocblas_handle.
   !>     @param[in]
-  !>     itype     #rocblas_eform.\n
+  !>     itype     rocblas_eform.\n
   !>               Specifies the form of the generalized eigenproblem.
   !>     @param[in]
   !>     uplo      rocblas_fill.\n
@@ -19622,7 +19488,6 @@ module hipfort_rocsolver
       rocsolver_zhegs2_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief SYGS2_BATCHED reduces a batch of real symmetric-definite generalized eigenproblems
   !>     to standard form.
   !> 
@@ -19671,7 +19536,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle    rocblas_handle.
   !>     @param[in]
-  !>     itype     #rocblas_eform.\n
+  !>     itype     rocblas_eform.\n
   !>               Specifies the form of the generalized eigenproblems.
   !>     @param[in]
   !>     uplo      rocblas_fill.\n
@@ -19750,7 +19615,6 @@ module hipfort_rocsolver
       rocsolver_dsygs2_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief HEGS2_BATCHED reduces a batch of hermitian-definite generalized eigenproblems to
   !>     standard form.
   !> 
@@ -19799,7 +19663,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle    rocblas_handle.
   !>     @param[in]
-  !>     itype     #rocblas_eform.\n
+  !>     itype     rocblas_eform.\n
   !>               Specifies the form of the generalized eigenproblems.
   !>     @param[in]
   !>     uplo      rocblas_fill.\n
@@ -19878,7 +19742,6 @@ module hipfort_rocsolver
       rocsolver_zhegs2_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief SYGS2_STRIDED_BATCHED reduces a batch of real symmetric-definite generalized
   !>     eigenproblems to standard form.
   !> 
@@ -19927,7 +19790,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle    rocblas_handle.
   !>     @param[in]
-  !>     itype     #rocblas_eform.\n
+  !>     itype     rocblas_eform.\n
   !>               Specifies the form of the generalized eigenproblems.
   !>     @param[in]
   !>     uplo      rocblas_fill.\n
@@ -20018,7 +19881,6 @@ module hipfort_rocsolver
       rocsolver_dsygs2_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief HEGS2_STRIDED_BATCHED reduces a batch of hermitian-definite generalized
   !>     eigenproblems to standard form.
   !> 
@@ -20067,7 +19929,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle    rocblas_handle.
   !>     @param[in]
-  !>     itype     #rocblas_eform.\n
+  !>     itype     rocblas_eform.\n
   !>               Specifies the form of the generalized eigenproblems.
   !>     @param[in]
   !>     uplo      rocblas_fill.\n
@@ -20158,7 +20020,6 @@ module hipfort_rocsolver
       rocsolver_zhegs2_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief SYGST reduces a real symmetric-definite generalized eigenproblem to standard
   !>     form.
   !> 
@@ -20207,7 +20068,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle    rocblas_handle.
   !>     @param[in]
-  !>     itype     #rocblas_eform.\n
+  !>     itype     rocblas_eform.\n
   !>               Specifies the form of the generalized eigenproblem.
   !>     @param[in]
   !>     uplo      rocblas_fill.\n
@@ -20281,7 +20142,6 @@ module hipfort_rocsolver
       rocsolver_dsygst_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief HEGST reduces a hermitian-definite generalized eigenproblem to standard form.
   !> 
   !>     \details
@@ -20329,7 +20189,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle    rocblas_handle.
   !>     @param[in]
-  !>     itype     #rocblas_eform.\n
+  !>     itype     rocblas_eform.\n
   !>               Specifies the form of the generalized eigenproblem.
   !>     @param[in]
   !>     uplo      rocblas_fill.\n
@@ -20403,7 +20263,6 @@ module hipfort_rocsolver
       rocsolver_zhegst_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief SYGST_BATCHED reduces a batch of real symmetric-definite generalized eigenproblems
   !>     to standard form.
   !> 
@@ -20452,7 +20311,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle    rocblas_handle.
   !>     @param[in]
-  !>     itype     #rocblas_eform.\n
+  !>     itype     rocblas_eform.\n
   !>               Specifies the form of the generalized eigenproblems.
   !>     @param[in]
   !>     uplo      rocblas_fill.\n
@@ -20531,7 +20390,6 @@ module hipfort_rocsolver
       rocsolver_dsygst_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief HEGST_BATCHED reduces a batch of hermitian-definite generalized eigenproblems to
   !>     standard form.
   !> 
@@ -20580,7 +20438,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle    rocblas_handle.
   !>     @param[in]
-  !>     itype     #rocblas_eform.\n
+  !>     itype     rocblas_eform.\n
   !>               Specifies the form of the generalized eigenproblems.
   !>     @param[in]
   !>     uplo      rocblas_fill.\n
@@ -20659,7 +20517,6 @@ module hipfort_rocsolver
       rocsolver_zhegst_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief SYGST_STRIDED_BATCHED reduces a batch of real symmetric-definite generalized
   !>     eigenproblems to standard form.
   !> 
@@ -20708,7 +20565,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle    rocblas_handle.
   !>     @param[in]
-  !>     itype     #rocblas_eform.\n
+  !>     itype     rocblas_eform.\n
   !>               Specifies the form of the generalized eigenproblems.
   !>     @param[in]
   !>     uplo      rocblas_fill.\n
@@ -20799,7 +20656,6 @@ module hipfort_rocsolver
       rocsolver_dsygst_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief HEGST_STRIDED_BATCHED reduces a batch of hermitian-definite generalized
   !>     eigenproblems to standard form.
   !> 
@@ -20848,7 +20704,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle    rocblas_handle.
   !>     @param[in]
-  !>     itype     #rocblas_eform.\n
+  !>     itype     rocblas_eform.\n
   !>               Specifies the form of the generalized eigenproblems.
   !>     @param[in]
   !>     uplo      rocblas_fill.\n
@@ -20939,7 +20795,6 @@ module hipfort_rocsolver
       rocsolver_zhegst_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief SYEV computes the eigenvalues and optionally the eigenvectors of a real symmetric
   !>     matrix A.
   !> 
@@ -20950,7 +20805,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     evect       #rocblas_evect.\n
+  !>     evect       rocblas_evect.\n
   !>                 Specifies whether the eigenvectors are to be computed.
   !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
   !>                 rocblas_evect_tridiagonal is not supported.
@@ -21035,7 +20890,6 @@ module hipfort_rocsolver
       rocsolver_dsyev_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief HEEV computes the eigenvalues and optionally the eigenvectors of a Hermitian matrix A.
   !> 
   !>     \details
@@ -21045,7 +20899,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     evect       #rocblas_evect.\n
+  !>     evect       rocblas_evect.\n
   !>                 Specifies whether the eigenvectors are to be computed.
   !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
   !>                 rocblas_evect_tridiagonal is not supported.
@@ -21130,7 +20984,6 @@ module hipfort_rocsolver
       rocsolver_zheev_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief SYEV_BATCHED computes the eigenvalues and optionally the eigenvectors of a batch of
   !>     real symmetric matrices A_j.
   !> 
@@ -21141,7 +20994,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     evect       #rocblas_evect.\n
+  !>     evect       rocblas_evect.\n
   !>                 Specifies whether the eigenvectors are to be computed.
   !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
   !>                 rocblas_evect_tridiagonal is not supported.
@@ -21243,7 +21096,6 @@ module hipfort_rocsolver
       rocsolver_dsyev_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief HEEV_BATCHED computes the eigenvalues and optionally the eigenvectors of a batch of
   !>     Hermitian matrices A_j.
   !> 
@@ -21254,7 +21106,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     evect       #rocblas_evect.\n
+  !>     evect       rocblas_evect.\n
   !>                 Specifies whether the eigenvectors are to be computed.
   !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
   !>                 rocblas_evect_tridiagonal is not supported.
@@ -21356,7 +21208,6 @@ module hipfort_rocsolver
       rocsolver_zheev_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief SYEV_STRIDED_BATCHED computes the eigenvalues and optionally the eigenvectors of a batch of
   !>     real symmetric matrices A_j.
   !> 
@@ -21367,7 +21218,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     evect       #rocblas_evect.\n
+  !>     evect       rocblas_evect.\n
   !>                 Specifies whether the eigenvectors are to be computed.
   !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
   !>                 rocblas_evect_tridiagonal is not supported.
@@ -21475,7 +21326,6 @@ module hipfort_rocsolver
       rocsolver_dsyev_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief HEEV_STRIDED_BATCHED computes the eigenvalues and optionally the eigenvectors of a batch of
   !>     Hermitian matrices A_j.
   !> 
@@ -21486,7 +21336,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     evect       #rocblas_evect.\n
+  !>     evect       rocblas_evect.\n
   !>                 Specifies whether the eigenvectors are to be computed.
   !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
   !>                 rocblas_evect_tridiagonal is not supported.
@@ -21594,7 +21444,6 @@ module hipfort_rocsolver
       rocsolver_zheev_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief SYEVD computes the eigenvalues and optionally the eigenvectors of a real symmetric
   !>     matrix A.
   !> 
@@ -21606,7 +21455,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     evect       #rocblas_evect.\n
+  !>     evect       rocblas_evect.\n
   !>                 Specifies whether the eigenvectors are to be computed.
   !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
   !>                 rocblas_evect_tridiagonal is not supported.
@@ -21694,7 +21543,6 @@ module hipfort_rocsolver
       rocsolver_dsyevd_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief HEEVD computes the eigenvalues and optionally the eigenvectors of a Hermitian matrix A.
   !> 
   !>     \details
@@ -21705,7 +21553,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     evect       #rocblas_evect.\n
+  !>     evect       rocblas_evect.\n
   !>                 Specifies whether the eigenvectors are to be computed.
   !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
   !>                 rocblas_evect_tridiagonal is not supported.
@@ -21793,7 +21641,6 @@ module hipfort_rocsolver
       rocsolver_zheevd_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief SYEVD_BATCHED computes the eigenvalues and optionally the eigenvectors of a batch of
   !>     real symmetric matrices A_j.
   !> 
@@ -21805,7 +21652,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     evect       #rocblas_evect.\n
+  !>     evect       rocblas_evect.\n
   !>                 Specifies whether the eigenvectors are to be computed.
   !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
   !>                 rocblas_evect_tridiagonal is not supported.
@@ -21910,7 +21757,6 @@ module hipfort_rocsolver
       rocsolver_dsyevd_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief HEEVD_BATCHED computes the eigenvalues and optionally the eigenvectors of a batch of
   !>     Hermitian matrices A_j.
   !> 
@@ -21922,7 +21768,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     evect       #rocblas_evect.\n
+  !>     evect       rocblas_evect.\n
   !>                 Specifies whether the eigenvectors are to be computed.
   !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
   !>                 rocblas_evect_tridiagonal is not supported.
@@ -22027,7 +21873,6 @@ module hipfort_rocsolver
       rocsolver_zheevd_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief SYEVD_STRIDED_BATCHED computes the eigenvalues and optionally the eigenvectors of a batch of
   !>     real symmetric matrices A_j.
   !> 
@@ -22039,7 +21884,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     evect       #rocblas_evect.\n
+  !>     evect       rocblas_evect.\n
   !>                 Specifies whether the eigenvectors are to be computed.
   !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
   !>                 rocblas_evect_tridiagonal is not supported.
@@ -22150,7 +21995,6 @@ module hipfort_rocsolver
       rocsolver_dsyevd_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief HEEVD_STRIDED_BATCHED computes the eigenvalues and optionally the eigenvectors of a batch of
   !>     Hermitian matrices A_j.
   !> 
@@ -22162,7 +22006,7 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     evect       #rocblas_evect.\n
+  !>     evect       rocblas_evect.\n
   !>                 Specifies whether the eigenvectors are to be computed.
   !>                 If evect is rocblas_evect_original, then the eigenvectors are computed.
   !>                 rocblas_evect_tridiagonal is not supported.
@@ -22273,7 +22117,6 @@ module hipfort_rocsolver
       rocsolver_zheevd_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief SYGV computes the eigenvalues and (optionally) eigenvectors of
   !>     a real generalized symmetric-definite eigenproblem.
   !> 
@@ -22306,10 +22149,10 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle    rocblas_handle.
   !>     @param[in]
-  !>     itype     #rocblas_eform.\n
+  !>     itype     rocblas_eform.\n
   !>               Specifies the form of the generalized eigenproblem.
   !>     @param[in]
-  !>     evect     #rocblas_evect.\n
+  !>     evect     rocblas_evect.\n
   !>               Specifies whether the eigenvectors are to be computed.
   !>               If evect is rocblas_evect_original, then the eigenvectors are computed.
   !>               rocblas_evect_tridiagonal is not supported.
@@ -22413,7 +22256,6 @@ module hipfort_rocsolver
       rocsolver_dsygv_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief HEGV computes the eigenvalues and (optionally) eigenvectors of
   !>     a complex generalized hermitian-definite eigenproblem.
   !> 
@@ -22446,10 +22288,10 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle    rocblas_handle.
   !>     @param[in]
-  !>     itype     #rocblas_eform.\n
+  !>     itype     rocblas_eform.\n
   !>               Specifies the form of the generalized eigenproblem.
   !>     @param[in]
-  !>     evect     #rocblas_evect.\n
+  !>     evect     rocblas_evect.\n
   !>               Specifies whether the eigenvectors are to be computed.
   !>               If evect is rocblas_evect_original, then the eigenvectors are computed.
   !>               rocblas_evect_tridiagonal is not supported.
@@ -22553,7 +22395,6 @@ module hipfort_rocsolver
       rocsolver_zhegv_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief SYGV_BATCHED computes the eigenvalues and (optionally)
   !>     eigenvectors of a batch of real generalized symmetric-definite eigenproblems.
   !> 
@@ -22586,10 +22427,10 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle    rocblas_handle.
   !>     @param[in]
-  !>     itype     #rocblas_eform.\n
+  !>     itype     rocblas_eform.\n
   !>               Specifies the form of the generalized eigenproblems.
   !>     @param[in]
-  !>     evect     #rocblas_evect.\n
+  !>     evect     rocblas_evect.\n
   !>               Specifies whether the eigenvectors are to be computed.
   !>               If evect is rocblas_evect_original, then the eigenvectors are computed.
   !>               rocblas_evect_tridiagonal is not supported.
@@ -22710,7 +22551,6 @@ module hipfort_rocsolver
       rocsolver_dsygv_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief HEGV_BATCHED computes the eigenvalues and (optionally)
   !>     eigenvectors of a batch of complex generalized hermitian-definite eigenproblems.
   !> 
@@ -22743,10 +22583,10 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle    rocblas_handle.
   !>     @param[in]
-  !>     itype     #rocblas_eform.\n
+  !>     itype     rocblas_eform.\n
   !>               Specifies the form of the generalized eigenproblems.
   !>     @param[in]
-  !>     evect     #rocblas_evect.\n
+  !>     evect     rocblas_evect.\n
   !>               Specifies whether the eigenvectors are to be computed.
   !>               If evect is rocblas_evect_original, then the eigenvectors are computed.
   !>               rocblas_evect_tridiagonal is not supported.
@@ -22867,7 +22707,6 @@ module hipfort_rocsolver
       rocsolver_zhegv_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief SYGV_STRIDED_BATCHED computes the eigenvalues and (optionally)
   !>     eigenvectors of a batch of real generalized symmetric-definite eigenproblems.
   !> 
@@ -22900,10 +22739,10 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle    rocblas_handle.
   !>     @param[in]
-  !>     itype     #rocblas_eform.\n
+  !>     itype     rocblas_eform.\n
   !>               Specifies the form of the generalized eigenproblems.
   !>     @param[in]
-  !>     evect     #rocblas_evect.\n
+  !>     evect     rocblas_evect.\n
   !>               Specifies whether the eigenvectors are to be computed.
   !>               If evect is rocblas_evect_original, then the eigenvectors are computed.
   !>               rocblas_evect_tridiagonal is not supported.
@@ -23036,7 +22875,6 @@ module hipfort_rocsolver
       rocsolver_dsygv_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief HEGV_STRIDED_BATCHED computes the eigenvalues and (optionally)
   !>     eigenvectors of a batch of complex generalized hermitian-definite eigenproblems.
   !> 
@@ -23069,10 +22907,10 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle    rocblas_handle.
   !>     @param[in]
-  !>     itype     #rocblas_eform.\n
+  !>     itype     rocblas_eform.\n
   !>               Specifies the form of the generalized eigenproblems.
   !>     @param[in]
-  !>     evect     #rocblas_evect.\n
+  !>     evect     rocblas_evect.\n
   !>               Specifies whether the eigenvectors are to be computed.
   !>               If evect is rocblas_evect_original, then the eigenvectors are computed.
   !>               rocblas_evect_tridiagonal is not supported.
@@ -23205,7 +23043,6 @@ module hipfort_rocsolver
       rocsolver_zhegv_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief SYGVD computes the eigenvalues and (optionally) eigenvectors of
   !>     a real generalized symmetric-definite eigenproblem.
   !> 
@@ -23238,10 +23075,10 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle    rocblas_handle.
   !>     @param[in]
-  !>     itype     #rocblas_eform.\n
+  !>     itype     rocblas_eform.\n
   !>               Specifies the form of the generalized eigenproblem.
   !>     @param[in]
-  !>     evect     #rocblas_evect.\n
+  !>     evect     rocblas_evect.\n
   !>               Specifies whether the eigenvectors are to be computed.
   !>               If evect is rocblas_evect_original, then the eigenvectors are computed.
   !>               rocblas_evect_tridiagonal is not supported.
@@ -23347,7 +23184,6 @@ module hipfort_rocsolver
       rocsolver_dsygvd_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief HEGVD computes the eigenvalues and (optionally) eigenvectors of
   !>     a complex generalized hermitian-definite eigenproblem.
   !> 
@@ -23380,10 +23216,10 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle    rocblas_handle.
   !>     @param[in]
-  !>     itype     #rocblas_eform.\n
+  !>     itype     rocblas_eform.\n
   !>               Specifies the form of the generalized eigenproblem.
   !>     @param[in]
-  !>     evect     #rocblas_evect.\n
+  !>     evect     rocblas_evect.\n
   !>               Specifies whether the eigenvectors are to be computed.
   !>               If evect is rocblas_evect_original, then the eigenvectors are computed.
   !>               rocblas_evect_tridiagonal is not supported.
@@ -23489,7 +23325,6 @@ module hipfort_rocsolver
       rocsolver_zhegvd_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief SYGVD_BATCHED computes the eigenvalues and (optionally)
   !>     eigenvectors of a batch of real generalized symmetric-definite eigenproblems.
   !> 
@@ -23522,10 +23357,10 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle    rocblas_handle.
   !>     @param[in]
-  !>     itype     #rocblas_eform.\n
+  !>     itype     rocblas_eform.\n
   !>               Specifies the form of the generalized eigenproblems.
   !>     @param[in]
-  !>     evect     #rocblas_evect.\n
+  !>     evect     rocblas_evect.\n
   !>               Specifies whether the eigenvectors are to be computed.
   !>               If evect is rocblas_evect_original, then the eigenvectors are computed.
   !>               rocblas_evect_tridiagonal is not supported.
@@ -23648,7 +23483,6 @@ module hipfort_rocsolver
       rocsolver_dsygvd_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief HEGVD_BATCHED computes the eigenvalues and (optionally)
   !>     eigenvectors of a batch of complex generalized hermitian-definite eigenproblems.
   !> 
@@ -23681,10 +23515,10 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle    rocblas_handle.
   !>     @param[in]
-  !>     itype     #rocblas_eform.\n
+  !>     itype     rocblas_eform.\n
   !>               Specifies the form of the generalized eigenproblems.
   !>     @param[in]
-  !>     evect     #rocblas_evect.\n
+  !>     evect     rocblas_evect.\n
   !>               Specifies whether the eigenvectors are to be computed.
   !>               If evect is rocblas_evect_original, then the eigenvectors are computed.
   !>               rocblas_evect_tridiagonal is not supported.
@@ -23807,7 +23641,6 @@ module hipfort_rocsolver
       rocsolver_zhegvd_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief SYGVD_STRIDED_BATCHED computes the eigenvalues and (optionally)
   !>     eigenvectors of a batch of real generalized symmetric-definite eigenproblems.
   !> 
@@ -23840,10 +23673,10 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle    rocblas_handle.
   !>     @param[in]
-  !>     itype     #rocblas_eform.\n
+  !>     itype     rocblas_eform.\n
   !>               Specifies the form of the generalized eigenproblems.
   !>     @param[in]
-  !>     evect     #rocblas_evect.\n
+  !>     evect     rocblas_evect.\n
   !>               Specifies whether the eigenvectors are to be computed.
   !>               If evect is rocblas_evect_original, then the eigenvectors are computed.
   !>               rocblas_evect_tridiagonal is not supported.
@@ -23978,7 +23811,6 @@ module hipfort_rocsolver
       rocsolver_dsygvd_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief HEGVD_STRIDED_BATCHED computes the eigenvalues and (optionally)
   !>     eigenvectors of a batch of complex generalized hermitian-definite eigenproblems.
   !> 
@@ -24011,10 +23843,10 @@ module hipfort_rocsolver
   !>     @param[in]
   !>     handle    rocblas_handle.
   !>     @param[in]
-  !>     itype     #rocblas_eform.\n
+  !>     itype     rocblas_eform.\n
   !>               Specifies the form of the generalized eigenproblems.
   !>     @param[in]
-  !>     evect     #rocblas_evect.\n
+  !>     evect     rocblas_evect.\n
   !>               Specifies whether the eigenvectors are to be computed.
   !>               If evect is rocblas_evect_original, then the eigenvectors are computed.
   !>               rocblas_evect_tridiagonal is not supported.
@@ -24149,7 +23981,6 @@ module hipfort_rocsolver
       rocsolver_zhegvd_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GETRI_OUTOFPLACE computes the inverse \f$C = A^{-1}\f$ of a general n-by-n matrix A.
   !> 
   !>     \details
@@ -24285,7 +24116,6 @@ module hipfort_rocsolver
       rocsolver_zgetri_outofplace_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GETRI_OUTOFPLACE_BATCHED computes the inverse \f$C_j = A_j^{-1}\f$ of a batch of general n-by-n matrices \f$A_j\f$.
   !> 
   !>     \details
@@ -24436,7 +24266,6 @@ module hipfort_rocsolver
       rocsolver_zgetri_outofplace_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GETRI_OUTOFPLACE_STRIDED_BATCHED computes the inverse \f$C_j = A_j^{-1}\f$ of a batch of general n-by-n matrices \f$A_j\f$.
   !> 
   !>     \details
@@ -24604,7 +24433,6 @@ module hipfort_rocsolver
       rocsolver_zgetri_outofplace_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GETRI_NPVT_OUTOFPLACE computes the inverse \f$C = A^{-1}\f$ of a general n-by-n matrix A without partial pivoting.
   !> 
   !>     \details
@@ -24733,7 +24561,6 @@ module hipfort_rocsolver
       rocsolver_zgetri_npvt_outofplace_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GETRI_NPVT_OUTOFPLACE_BATCHED computes the inverse \f$C_j = A_j^{-1}\f$ of a batch of general n-by-n matrices \f$A_j\f$
   !>     without partial pivoting.
   !> 
@@ -24870,7 +24697,6 @@ module hipfort_rocsolver
       rocsolver_zgetri_npvt_outofplace_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief GETRI_NPVT_OUTOFPLACE_STRIDED_BATCHED computes the inverse \f$C_j = A_j^{-1}\f$ of a batch of general n-by-n matrices \f$A_j\f$
   !>     without partial pivoting.
   !> 
@@ -25024,7 +24850,6 @@ module hipfort_rocsolver
       rocsolver_zgetri_npvt_outofplace_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief TRTRI inverts a triangular n-by-n matrix A.
   !> 
   !>     \details
@@ -25152,7 +24977,6 @@ module hipfort_rocsolver
       rocsolver_ztrtri_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief TRTRI_BATCHED inverts a batch of triangular n-by-n matrices \f$A_j\f$.
   !> 
   !>     \details
@@ -25287,7 +25111,6 @@ module hipfort_rocsolver
       rocsolver_ztrtri_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief TRTRI_STRIDED_BATCHED inverts a batch of triangular n-by-n matrices \f$A_j\f$.
   !> 
   !>     \details
@@ -25430,7 +25253,6 @@ module hipfort_rocsolver
       rocsolver_ztrtri_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief SYTF2 computes the factorization of a symmetric indefinite matrix \f$A\f$
   !>     using Bunch-Kaufman diagonal pivoting.
   !> 
@@ -25622,7 +25444,6 @@ module hipfort_rocsolver
       rocsolver_zsytf2_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief SYTF2_BATCHED computes the factorization of a batch of symmetric indefinite
   !>     matrices using Bunch-Kaufman diagonal pivoting.
   !> 
@@ -25829,7 +25650,6 @@ module hipfort_rocsolver
       rocsolver_zsytf2_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief SYTF2_STRIDED_BATCHED computes the factorization of a batch of symmetric indefinite
   !>     matrices using Bunch-Kaufman diagonal pivoting.
   !> 
@@ -26044,7 +25864,6 @@ module hipfort_rocsolver
       rocsolver_zsytf2_strided_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief SYTRF computes the factorization of a symmetric indefinite matrix \f$A\f$
   !>     using Bunch-Kaufman diagonal pivoting.
   !> 
@@ -26236,7 +26055,6 @@ module hipfort_rocsolver
       rocsolver_zsytrf_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief SYTRF_BATCHED computes the factorization of a batch of symmetric indefinite
   !>     matrices using Bunch-Kaufman diagonal pivoting.
   !> 
@@ -26443,7 +26261,6 @@ module hipfort_rocsolver
       rocsolver_zsytrf_batched_rank_1
 #endif
   end interface
-  !>  @{
   !>     \brief SYTRF_STRIDED_BATCHED computes the factorization of a batch of symmetric indefinite
   !>     matrices using Bunch-Kaufman diagonal pivoting.
   !> 

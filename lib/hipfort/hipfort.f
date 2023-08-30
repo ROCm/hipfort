@@ -64,7 +64,7 @@ module hipfort
   !> 
   !>  @param [out] driverVersion
   !> 
-  !>  @returns #hipSuccess, #hipErrorInavlidValue
+  !>  @returns hipSuccess, hipErrorInavlidValue
   !> 
   !>  @warning The HIP feature set does not correspond to an exact CUDA SDK driver revision.
   !>  This function always set *driverVersion to 4 as an approximation though HIP supports
@@ -99,7 +99,7 @@ module hipfort
   !> 
   !>  @param [out] runtimeVersion
   !> 
-  !>  @returns #hipSuccess, #hipErrorInavlidValue
+  !>  @returns hipSuccess, hipErrorInavlidValue
   !> 
   !>  @warning The version definition of HIP runtime is different from CUDA.
   !>  On AMD platform, the function returns HIP runtime version,
@@ -133,7 +133,7 @@ module hipfort
   !>  @param [out] device
   !>  @param [in] ordinal
   !> 
-  !>  @returns #hipSuccess, #hipErrorInavlidDevice
+  !>  @returns hipSuccess, hipErrorInavlidDevice
   interface hipDeviceGet
 #ifdef USE_CUDA_NAMES
     function hipDeviceGet_(device,ordinal) bind(c, name="cudaDeviceGet")
@@ -162,7 +162,7 @@ module hipfort
   !>  @param [out] minor
   !>  @param [in] device
   !> 
-  !>  @returns #hipSuccess, #hipErrorInavlidDevice
+  !>  @returns hipSuccess, hipErrorInavlidDevice
   interface hipDeviceComputeCapability
 #ifdef USE_CUDA_NAMES
     function hipDeviceComputeCapability_(major,minor,device) bind(c, name="cudaDeviceComputeCapability")
@@ -192,7 +192,7 @@ module hipfort
   !>  @param [in] len
   !>  @param [in] device
   !> 
-  !>  @returns #hipSuccess, #hipErrorInavlidDevice
+  !>  @returns hipSuccess, hipErrorInavlidDevice
   interface hipDeviceGetName
 #ifdef USE_CUDA_NAMES
     function hipDeviceGetName_(name,len,device) bind(c, name="cudaDeviceGetName")
@@ -223,7 +223,7 @@ module hipfort
   !>  @param [in] srcDevice
   !>  @param [in] dstDevice
   !> 
-  !>  @returns #hipSuccess, #hipErrorInavlidDevice
+  !>  @returns hipSuccess, hipErrorInavlidDevice
   interface hipDeviceGetP2PAttribute
 #ifdef USE_CUDA_NAMES
     function hipDeviceGetP2PAttribute_(myValue,attr,srcDevice,dstDevice) bind(c, name="cudaDeviceGetP2PAttribute")
@@ -254,7 +254,7 @@ module hipfort
   !>  @param [in] len
   !>  @param [in] device
   !> 
-  !>  @returns #hipSuccess, #hipErrorInavlidDevice
+  !>  @returns hipSuccess, hipErrorInavlidDevice
   interface hipDeviceGetPCIBusId
 #ifdef USE_CUDA_NAMES
     function hipDeviceGetPCIBusId_(pciBusId,len,device) bind(c, name="cudaDeviceGetPCIBusId")
@@ -283,7 +283,7 @@ module hipfort
   !>  @param [out] device handle
   !>  @param [in] PCI Bus ID
   !> 
-  !>  @returns #hipSuccess, #hipErrorInavlidDevice, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInavlidDevice, hipErrorInvalidValue
   interface hipDeviceGetByPCIBusId
 #ifdef USE_CUDA_NAMES
     function hipDeviceGetByPCIBusId_(device,pciBusId) bind(c, name="cudaDeviceGetByPCIBusId")
@@ -311,7 +311,7 @@ module hipfort
   !>  @param [out] bytes
   !>  @param [in] device
   !> 
-  !>  @returns #hipSuccess, #hipErrorInavlidDevice
+  !>  @returns hipSuccess, hipErrorInavlidDevice
   interface hipDeviceTotalMem
 #ifdef USE_CUDA_NAMES
     function hipDeviceTotalMem_(bytes,device) bind(c, name="cudaDeviceTotalMem")
@@ -340,7 +340,7 @@ module hipfort
   !>  When this command is invoked, the host thread gets blocked until all the commands associated
   !>  with streams associated with the device. HIP does not support multiple blocking modes (yet!).
   !> 
-  !>  @returns #hipSuccess
+  !>  @returns hipSuccess
   !> 
   !>  @see hipSetDevice, hipDeviceReset
   interface hipDeviceSynchronize
@@ -370,7 +370,7 @@ module hipfort
   !>  created. Make sure that no other thread is using the device or streams, memory, kernels, events
   !>  associated with the current device.
   !> 
-  !>  @returns #hipSuccess
+  !>  @returns hipSuccess
   !> 
   !>  @see hipDeviceSynchronize
   interface hipDeviceReset
@@ -420,7 +420,7 @@ module hipfort
   !>  practice is to always call hipSetDevice at the start of HIP coding sequency to establish a known
   !>  standard device.
   !> 
-  !>  @returns #hipSuccess, #hipErrorInvalidDevice, #hipErrorDeviceAlreadyInUse
+  !>  @returns hipSuccess, hipErrorInvalidDevice, hipErrorDeviceAlreadyInUse
   !> 
   !>  @see hipGetDevice, hipGetDeviceCount
   interface hipSetDevice
@@ -453,7 +453,7 @@ module hipfort
   !>  This device is used implicitly for HIP runtime APIs called by this thread.
   !>  hipGetDevice returns in * @p device the default device for the calling host thread.
   !> 
-  !>  @returns #hipSuccess, #hipErrorInvalidDevice, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidDevice, hipErrorInvalidValue
   !> 
   !>  @see hipSetDevice, hipGetDevicesizeBytes
   interface hipGetDevice
@@ -482,12 +482,12 @@ module hipfort
   !> 
   !>  @param [output] count Returns number of compute-capable devices.
   !> 
-  !>  @returns #hipSuccess, #hipErrorNoDevice
+  !>  @returns hipSuccess, hipErrorNoDevice
   !> 
   !> 
   !>  Returns in @p *count the number of devices that have ability to run compute commands.  If there
-  !>  are no such devices, then @ref hipGetDeviceCount will return #hipErrorNoDevice. If 1 or more
-  !>  devices can be found, then hipGetDeviceCount returns #hipSuccess.
+  !>  are no such devices, then hipGetDeviceCount will return hipErrorNoDevice. If 1 or more
+  !>  devices can be found, then hipGetDeviceCount returns hipSuccess.
   interface hipGetDeviceCount
 #ifdef USE_CUDA_NAMES
     function hipGetDeviceCount_(count) bind(c, name="cudaGetDeviceCount")
@@ -516,7 +516,7 @@ module hipfort
   !>  @param [in] attr attribute to query
   !>  @param [in] deviceId which device to query for information
   !> 
-  !>  @returns #hipSuccess, #hipErrorInvalidDevice, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidDevice, hipErrorInvalidValue
   interface hipDeviceGetAttribute
 #ifdef USE_CUDA_NAMES
     function hipDeviceGetAttribute_(pi,attr,deviceId) bind(c, name="cudaDeviceGetAttribute")
@@ -545,7 +545,7 @@ module hipfort
   !> 
   !>  @param [in] cacheConfig
   !> 
-  !>  @returns #hipSuccess, #hipErrorNotInitialized
+  !>  @returns hipSuccess, hipErrorNotInitialized
   !>  Note: AMD devices and some Nvidia GPUS do not support reconfigurable cache.  This hint is ignored
   !>  on those architectures.
   !>
@@ -575,7 +575,7 @@ module hipfort
   !> 
   !>  @param [in] cacheConfig
   !> 
-  !>  @returns #hipSuccess, #hipErrorNotInitialized
+  !>  @returns hipSuccess, hipErrorNotInitialized
   !>  Note: AMD devices and some Nvidia GPUS do not support reconfigurable cache.  This hint is ignored
   !>  on those architectures.
   !>
@@ -606,7 +606,7 @@ module hipfort
   !>  @param [out] pValue
   !>  @param [in]  limit
   !> 
-  !>  @returns #hipSuccess, #hipErrorUnsupportedLimit, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorUnsupportedLimit, hipErrorInvalidValue
   !>  Note: Currently, only hipLimitMallocHeapSize is available
   !>
   interface hipDeviceGetLimit
@@ -636,7 +636,7 @@ module hipfort
   !> 
   !>  @param [out] pConfig
   !> 
-  !>  @returns #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized
+  !>  @returns hipSuccess, hipErrorInvalidValue, hipErrorNotInitialized
   !> 
   !>  Note: AMD devices and some Nvidia GPUS do not support shared cache banking, and the hint is
   !>  ignored on those architectures.
@@ -667,7 +667,7 @@ module hipfort
   !> 
   !>  @param [out] flags
   !> 
-  !>  @returns #hipSuccess, #hipErrorInvalidDevice, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidDevice, hipErrorInvalidValue
   interface hipGetDeviceFlags
 #ifdef USE_CUDA_NAMES
     function hipGetDeviceFlags_(flags) bind(c, name="cudaGetDeviceFlags")
@@ -694,7 +694,7 @@ module hipfort
   !> 
   !>  @param [in] config
   !> 
-  !>  @returns #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized
+  !>  @returns hipSuccess, hipErrorInvalidValue, hipErrorNotInitialized
   !> 
   !>  Note: AMD devices and some Nvidia GPUS do not support shared cache banking, and the hint is
   !>  ignored on those architectures.
@@ -740,7 +740,7 @@ module hipfort
   !>  hipDeviceMapHost              : Allow mapping host memory.  On ROCM, this is always allowed and
   !>  the flag is ignored. hipDeviceLmemResizeToMax      : @warning ROCm silently ignores this flag.
   !> 
-  !>  @returns #hipSuccess, #hipErrorInvalidDevice, #hipErrorSetOnActiveProcess
+  !>  @returns hipSuccess, hipErrorInvalidDevice, hipErrorSetOnActiveProcess
   !> 
   !>
   interface hipSetDeviceFlags
@@ -770,7 +770,7 @@ module hipfort
   !>  @param [out] device ID
   !>  @param [in]  device properties pointer
   !> 
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   interface hipChooseDevice
 #ifdef USE_CUDA_NAMES
     function hipChooseDevice_(device,prop) bind(c, name="cudaChooseDevice")
@@ -803,7 +803,7 @@ module hipfort
   !> 
   !>  Queries and returns the HSA link type and the hop count between the two specified devices.
   !> 
-  !>  @returns #hipSuccess, #hipInvalidDevice, #hipErrorRuntimeOther
+  !>  @returns hipSuccess, hipInvalidDevice, hipErrorRuntimeOther
   interface hipExtGetLinkTypeAndHopCount
 #ifdef USE_CUDA_NAMES
     function hipExtGetLinkTypeAndHopCount_(device1,device2,linktype,hopcount) bind(c, name="cudaExtGetLinkTypeAndHopCount")
@@ -981,7 +981,7 @@ module hipfort
   !>  @param[out]  handle Pointer to cudaIpcEventHandle to return the opaque event handle
   !>  @param[in]   event  Event allocated with cudaEventInterprocess and cudaEventDisableTiming flags
   !> 
-  !>  @returns #hipSuccess, #hipErrorInvalidConfiguration, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidConfiguration, hipErrorInvalidValue
   !>
   interface hipIpcGetEventHandle
 #ifdef USE_CUDA_NAMES
@@ -1017,7 +1017,7 @@ module hipfort
   !>  @param[out]  event  Pointer to hipEvent_t to return the event
   !>  @param[in]   handle The opaque interprocess handle to open
   !> 
-  !>  @returns #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidContext
+  !>  @returns hipSuccess, hipErrorInvalidValue, hipErrorInvalidContext
   !>
   interface hipIpcOpenEventHandle
 #ifdef USE_CUDA_NAMES
@@ -1048,7 +1048,7 @@ module hipfort
   !>  @param [in] attr;
   !>  @param [in] value;
   !> 
-  !>  @returns #hipSuccess, #hipErrorInvalidDeviceFunction, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidDeviceFunction, hipErrorInvalidValue
   !> 
   !>  Note: AMD devices and some Nvidia GPUS do not support shared cache banking, and the hint is
   !>  ignored on those architectures.
@@ -1081,7 +1081,7 @@ module hipfort
   !> 
   !>  @param [in] config;
   !> 
-  !>  @returns #hipSuccess, #hipErrorNotInitialized
+  !>  @returns hipSuccess, hipErrorNotInitialized
   !>  Note: AMD devices and some Nvidia GPUS do not support reconfigurable cache.  This hint is ignored
   !>  on those architectures.
   !>
@@ -1113,7 +1113,7 @@ module hipfort
   !>  @param [in] func
   !>  @param [in] config
   !> 
-  !>  @returns #hipSuccess, #hipErrorInvalidDeviceFunction, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidDeviceFunction, hipErrorInvalidValue
   !> 
   !>  Note: AMD devices and some Nvidia GPUS do not support shared cache banking, and the hint is
   !>  ignored on those architectures.
@@ -1142,12 +1142,12 @@ module hipfort
 
   end interface
   !>  @brief Return last error returned by any HIP runtime API call and resets the stored error code to
-  !>  #hipSuccess
+  !>  hipSuccess
   !> 
   !>  @returns return code from last HIP called from the active host thread
   !> 
   !>  Returns the last error that has been returned by any of the runtime calls in the same host
-  !>  thread, and then resets the saved error to #hipSuccess.
+  !>  thread, and then resets the saved error to hipSuccess.
   !> 
   !>  @see hipGetErrorString, hipGetLastError, hipPeakAtLastError, hipError_t
   interface hipGetLastError
@@ -1173,7 +1173,7 @@ module hipfort
   end interface
   !>  @brief Return last error returned by any HIP runtime API call.
   !> 
-  !>  @return #hipSuccess
+  !>  @return hipSuccess
   !> 
   !>  Returns the last error that has been returned by any of the runtime calls in the same host
   !>  thread. Unlike hipGetLastError, this function does not reset the saved error code.
@@ -1204,14 +1204,14 @@ module hipfort
   !> 
   !>  @param[in, out] stream Valid pointer to hipStream_t.  This function writes the memory with the
   !>  newly created stream.
-  !>  @return #hipSuccess, #hipErrorInvalidValue
+  !>  @return hipSuccess, hipErrorInvalidValue
   !> 
   !>  Create a new asynchronous stream.  @p stream returns an opaque handle that can be used to
   !>  reference the newly created stream in subsequent hipStream* commands.  The stream is allocated on
   !>  the heap and will remain allocated even if the handle goes out-of-scope.  To release the memory
   !>  used by the stream, applicaiton must call hipStreamDestroy.
   !> 
-  !>  @return #hipSuccess, #hipErrorInvalidValue
+  !>  @return hipSuccess, hipErrorInvalidValue
   !> 
   !>  @see hipStreamCreateWithFlags, hipStreamCreateWithPriority, hipStreamSynchronize, hipStreamWaitEvent, hipStreamDestroy
   interface hipStreamCreate
@@ -1240,13 +1240,13 @@ module hipfort
   !> 
   !>  @param[in, out] stream Pointer to new stream
   !>  @param[in ] flags to control stream creation.
-  !>  @return #hipSuccess, #hipErrorInvalidValue
+  !>  @return hipSuccess, hipErrorInvalidValue
   !> 
   !>  Create a new asynchronous stream.  @p stream returns an opaque handle that can be used to
   !>  reference the newly created stream in subsequent hipStream* commands.  The stream is allocated on
   !>  the heap and will remain allocated even if the handle goes out-of-scope.  To release the memory
   !>  used by the stream, applicaiton must call hipStreamDestroy. Flags controls behavior of the
-  !>  stream.  See #hipStreamDefault, #hipStreamNonBlocking.
+  !>  stream.  See hipStreamDefault, hipStreamNonBlocking.
   !> 
   !> 
   !>  @see hipStreamCreate, hipStreamCreateWithPriority, hipStreamSynchronize, hipStreamWaitEvent, hipStreamDestroy
@@ -1278,13 +1278,13 @@ module hipfort
   !>  @param[in, out] stream Pointer to new stream
   !>  @param[in ] flags to control stream creation.
   !>  @param[in ] priority of the stream. Lower numbers represent higher priorities.
-  !>  @return #hipSuccess, #hipErrorInvalidValue
+  !>  @return hipSuccess, hipErrorInvalidValue
   !> 
   !>  Create a new asynchronous stream with the specified priority.  @p stream returns an opaque handle
   !>  that can be used to reference the newly created stream in subsequent hipStream* commands.  The
   !>  stream is allocated on the heap and will remain allocated even if the handle goes out-of-scope.
   !>  To release the memory used by the stream, applicaiton must call hipStreamDestroy. Flags controls
-  !>  behavior of the stream.  See #hipStreamDefault, #hipStreamNonBlocking.
+  !>  behavior of the stream.  See hipStreamDefault, hipStreamNonBlocking.
   !> 
   !> 
   !>  @see hipStreamCreate, hipStreamSynchronize, hipStreamWaitEvent, hipStreamDestroy
@@ -1350,7 +1350,7 @@ module hipfort
   !> 
   !>  @param[in, out] stream Valid pointer to hipStream_t.  This function writes the memory with the
   !>  newly created stream.
-  !>  @return #hipSuccess #hipErrorInvalidHandle
+  !>  @return hipSuccess hipErrorInvalidHandle
   !> 
   !>  Destroys the specified stream.
   !> 
@@ -1384,12 +1384,12 @@ module hipfort
     end function
 
   end interface
-  !>  @brief Return #hipSuccess if all of the operations in the specified @p stream have completed, or
-  !>  #hipErrorNotReady if not.
+  !>  @brief Return hipSuccess if all of the operations in the specified @p stream have completed, or
+  !>  hipErrorNotReady if not.
   !> 
   !>  @param[in] stream stream to query
   !> 
-  !>  @return #hipSuccess, #hipErrorNotReady, #hipErrorInvalidHandle
+  !>  @return hipSuccess, hipErrorNotReady, hipErrorInvalidHandle
   !> 
   !>  This is thread-safe and returns a snapshot of the current state of the queue.  However, if other
   !>  host threads are sending work to the stream, the status may change immediately after the function
@@ -1423,7 +1423,7 @@ module hipfort
   !> 
   !>  @param[in] stream stream identifier.
   !> 
-  !>  @return #hipSuccess, #hipErrorInvalidHandle
+  !>  @return hipSuccess, hipErrorInvalidHandle
   !> 
   !>  This command is host-synchronous : the host will block until the specified stream is empty.
   !> 
@@ -1464,7 +1464,7 @@ module hipfort
   !>  @param[in] event event to wait on
   !>  @param[in] flags control operation [must be 0]
   !> 
-  !>  @return #hipSuccess, #hipErrorInvalidHandle
+  !>  @return hipSuccess, hipErrorInvalidHandle
   !> 
   !>  This function inserts a wait operation into the specified stream.
   !>  All future work submitted to @p stream will wait until @p event reports completion before
@@ -1503,9 +1503,9 @@ module hipfort
   !> 
   !>  @param[in] stream stream to be queried
   !>  @param[in,out] flags Pointer to an unsigned integer in which the stream's flags are returned
-  !>  @return #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidHandle
+  !>  @return hipSuccess, hipErrorInvalidValue, hipErrorInvalidHandle
   !> 
-  !>  @returns #hipSuccess #hipErrorInvalidValue #hipErrorInvalidHandle
+  !>  @returns hipSuccess hipErrorInvalidValue hipErrorInvalidHandle
   !> 
   !>  Return flags associated with this stream in *@p flags.
   !> 
@@ -1537,9 +1537,9 @@ module hipfort
   !> 
   !>  @param[in] stream stream to be queried
   !>  @param[in,out] priority Pointer to an unsigned integer in which the stream's priority is returned
-  !>  @return #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidHandle
+  !>  @return hipSuccess, hipErrorInvalidValue, hipErrorInvalidHandle
   !> 
-  !>  @returns #hipSuccess #hipErrorInvalidValue #hipErrorInvalidHandle
+  !>  @returns hipSuccess hipErrorInvalidValue hipErrorInvalidHandle
   !> 
   !>  Query the priority of a stream. The priority is returned in in priority.
   !> 
@@ -1575,7 +1575,7 @@ module hipfort
   !>  The first 32 bits represent the first 32 CUs, and so on. If its size is greater than physical
   !>  CU number (i.e., multiProcessorCount member of hipDeviceProp_t), the extra elements are ignored.
   !>  It is user's responsibility to make sure the input is meaningful.
-  !>  @return #hipSuccess, #hipErrorInvalidHandle, #hipErrorInvalidValue
+  !>  @return hipSuccess, hipErrorInvalidHandle, hipErrorInvalidValue
   !> 
   !>  Create a new asynchronous stream with the specified CU mask.  @p stream returns an opaque handle
   !>  that can be used to reference the newly created stream in subsequent hipStream* commands.  The
@@ -1615,7 +1615,7 @@ module hipfort
   !>  @param[out] cuMask Pointer to a pre-allocated block of memories (uint32_t *) in which
   !>  the stream's CU mask is returned. The CU mask is returned in a chunck of 32 bits where
   !>  each active bit represents one active CU
-  !>  @return #hipSuccess, #hipErrorInvalidHandle, #hipErrorInvalidValue
+  !>  @return hipSuccess, hipErrorInvalidHandle, hipErrorInvalidValue
   !> 
   !>  @see hipStreamCreate, hipStreamSynchronize, hipStreamWaitEvent, hipStreamDestroy
   interface hipExtStreamGetCUMask
@@ -1650,7 +1650,7 @@ module hipfort
   !>  @param[in] callback - The function to call once preceding stream operations are complete
   !>  @param[in] userData - User specified data to be passed to the callback function
   !>  @param[in] flags    - Reserved for future use, must be 0
-  !>  @return #hipSuccess, #hipErrorInvalidHandle, #hipErrorNotSupported
+  !>  @return hipSuccess, hipErrorInvalidHandle, hipErrorNotSupported
   !> 
   !>  @see hipStreamCreate, hipStreamCreateWithFlags, hipStreamQuery, hipStreamSynchronize,
   !>  hipStreamWaitEvent, hipStreamDestroy, hipStreamCreateWithPriority
@@ -1687,13 +1687,10 @@ module hipfort
   !>  @param [in] value  - Value to be written
   !>  @param [in] flags  - reserved, ignored for now, will be used in future releases
   !> 
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !> 
   !>  Enqueues a write command to the stream, write operation is performed after all earlier commands
   !>  on this stream have completed the execution.
-  !> 
-  !>  @beta This API is marked as beta, meaning, while this is feature complete,
-  !>  it is still open to changes and may have outstanding issues.
   !> 
   !>  @see hipExtMallocWithFlags, hipFree, hipStreamWriteValue32, hipStreamWaitValue32,
   !>  hipStreamWaitValue64
@@ -1729,13 +1726,10 @@ module hipfort
   !>  @param [in] value  - Value to be written
   !>  @param [in] flags  - reserved, ignored for now, will be used in future releases
   !> 
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !> 
   !>  Enqueues a write command to the stream, write operation is performed after all earlier commands
   !>  on this stream have completed the execution.
-  !> 
-  !>  @beta This API is marked as beta, meaning, while this is feature complete,
-  !>  it is still open to changes and may have outstanding issues.
   !> 
   !>  @see hipExtMallocWithFlags, hipFree, hipStreamWriteValue32, hipStreamWaitValue32,
   !>  hipStreamWaitValue64
@@ -1767,21 +1761,21 @@ module hipfort
   !>  @brief Create an event with the specified flags
   !> 
   !>  @param[in,out] event Returns the newly created event.
-  !>  @param[in] flags     Flags to control event behavior.  Valid values are #hipEventDefault,
-  !>  #hipEventBlockingSync, #hipEventDisableTiming, #hipEventInterprocess
-  !>  #hipEventDefault : Default flag.  The event will use active synchronization and will support
+  !>  @param[in] flags     Flags to control event behavior.  Valid values are hipEventDefault,
+  !>  hipEventBlockingSync, hipEventDisableTiming, hipEventInterprocess
+  !>  hipEventDefault : Default flag.  The event will use active synchronization and will support
   !>  timing.  Blocking synchronization provides lowest possible latency at the expense of dedicating a
   !>  CPU to poll on the event.
-  !>  #hipEventBlockingSync : The event will use blocking synchronization : if hipEventSynchronize is
+  !>  hipEventBlockingSync : The event will use blocking synchronization : if hipEventSynchronize is
   !>  called on this event, the thread will block until the event completes.  This can increase latency
   !>  for the synchroniation but can result in lower power and more resources for other CPU threads.
-  !>  #hipEventDisableTiming : Disable recording of timing information. Events created with this flag
+  !>  hipEventDisableTiming : Disable recording of timing information. Events created with this flag
   !>  would not record profiling data and provide best performance if used for synchronization.
   !>  @warning On AMD platform, hipEventInterprocess support is under development.  Use of this flag
   !>  will return an error.
   !> 
-  !>  @returns #hipSuccess, #hipErrorNotInitialized, #hipErrorInvalidValue,
-  !>  #hipErrorLaunchFailure, #hipErrorOutOfMemory
+  !>  @returns hipSuccess, hipErrorNotInitialized, hipErrorInvalidValue,
+  !>  hipErrorLaunchFailure, hipErrorOutOfMemory
   !> 
   !>  @see hipEventCreate, hipEventSynchronize, hipEventDestroy, hipEventElapsedTime
   interface hipEventCreateWithFlags
@@ -1811,8 +1805,8 @@ module hipfort
   !> 
   !>  @param[in,out] event Returns the newly created event.
   !> 
-  !>  @returns #hipSuccess, #hipErrorNotInitialized, #hipErrorInvalidValue,
-  !>  #hipErrorLaunchFailure, #hipErrorOutOfMemory
+  !>  @returns hipSuccess, hipErrorNotInitialized, hipErrorInvalidValue,
+  !>  hipErrorLaunchFailure, hipErrorOutOfMemory
   !> 
   !>  @see hipEventCreateWithFlags, hipEventRecord, hipEventQuery, hipEventSynchronize,
   !>  hipEventDestroy, hipEventElapsedTime
@@ -1842,8 +1836,8 @@ module hipfort
   !> 
   !>  @param[in] event event to record.
   !>  @param[in] stream stream in which to record event.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized,
-  !>  #hipErrorInvalidHandle, #hipErrorLaunchFailure
+  !>  @returns hipSuccess, hipErrorInvalidValue, hipErrorNotInitialized,
+  !>  hipErrorInvalidHandle, hipErrorLaunchFailure
   !> 
   !>  hipEventQuery() or hipEventSynchronize() must be used to determine when the event
   !>  transitions from "recording" (after hipEventRecord() is called) to "recorded"
@@ -1889,8 +1883,8 @@ module hipfort
   !>   @brief Destroy the specified event.
   !> 
   !>   @param[in] event Event to destroy.
-  !>   @returns #hipSuccess, #hipErrorNotInitialized, #hipErrorInvalidValue,
-  !>  #hipErrorLaunchFailure
+  !>   @returns hipSuccess, hipErrorNotInitialized, hipErrorInvalidValue,
+  !>  hipErrorLaunchFailure
   !> 
   !>   Releases memory associated with the event.  If the event is recording but has not completed
   !>  recording when hipEventDestroy() is called, the function will return immediately and the
@@ -1899,7 +1893,7 @@ module hipfort
   !>  @see hipEventCreate, hipEventCreateWithFlags, hipEventQuery, hipEventSynchronize, hipEventRecord,
   !>  hipEventElapsedTime
   !> 
-  !>  @returns #hipSuccess
+  !>  @returns hipSuccess
   interface hipEventDestroy
 #ifdef USE_CUDA_NAMES
     function hipEventDestroy_(event) bind(c, name="cudaEventDestroy")
@@ -1932,8 +1926,8 @@ module hipfort
   !>   TODO-hip- This function needs to support hipEventBlockingSync parameter.
   !> 
   !>   @param[in] event Event on which to wait.
-  !>   @returns #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized,
-  !>  #hipErrorInvalidHandle, #hipErrorLaunchFailure
+  !>   @returns hipSuccess, hipErrorInvalidValue, hipErrorNotInitialized,
+  !>  hipErrorInvalidHandle, hipErrorLaunchFailure
   !> 
   !>   @see hipEventCreate, hipEventCreateWithFlags, hipEventQuery, hipEventDestroy, hipEventRecord,
   !>  hipEventElapsedTime
@@ -1964,8 +1958,8 @@ module hipfort
   !>  @param[out] ms : Return time between start and stop in ms.
   !>  @param[in]   start : Start event.
   !>  @param[in]   stop  : Stop event.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue, #hipErrorNotReady, #hipErrorInvalidHandle,
-  !>  #hipErrorNotInitialized, #hipErrorLaunchFailure
+  !>  @returns hipSuccess, hipErrorInvalidValue, hipErrorNotReady, hipErrorInvalidHandle,
+  !>  hipErrorNotInitialized, hipErrorLaunchFailure
   !> 
   !>  Computes the elapsed time between two events. Time is computed in ms, with
   !>  a resolution of approximately 1 us.
@@ -1978,10 +1972,10 @@ module hipfort
   !>  commands in that stream have completed executing.  Thus the time that
   !>  the event recorded may be significantly after the host calls hipEventRecord().
   !> 
-  !>  If hipEventRecord() has not been called on either event, then #hipErrorInvalidHandle is
+  !>  If hipEventRecord() has not been called on either event, then hipErrorInvalidHandle is
   !>  returned. If hipEventRecord() has been called on both events, but the timestamp has not yet been
-  !>  recorded on one or both events (that is, hipEventQuery() would return #hipErrorNotReady on at
-  !>  least one of the events), then #hipErrorNotReady is returned.
+  !>  recorded on one or both events (that is, hipEventQuery() would return hipErrorNotReady on at
+  !>  least one of the events), then hipErrorNotReady is returned.
   !> 
   !>  Note, for HIP Events used in kernel dispatch using hipExtLaunchKernelGGL/hipExtLaunchKernel,
   !>  events passed in hipExtLaunchKernelGGL/hipExtLaunchKernel are not explicitly recorded and should
@@ -2019,12 +2013,12 @@ module hipfort
   !>  @brief Query event status
   !> 
   !>  @param[in] event Event to query.
-  !>  @returns #hipSuccess, #hipErrorNotReady, #hipErrorInvalidHandle, #hipErrorInvalidValue,
-  !>  #hipErrorNotInitialized, #hipErrorLaunchFailure
+  !>  @returns hipSuccess, hipErrorNotReady, hipErrorInvalidHandle, hipErrorInvalidValue,
+  !>  hipErrorNotInitialized, hipErrorLaunchFailure
   !> 
-  !>  Query the status of the specified event.  This function will return #hipErrorNotReady if all
+  !>  Query the status of the specified event.  This function will return hipErrorNotReady if all
   !>  commands in the appropriate stream (specified to hipEventRecord()) have completed.  If that work
-  !>  has not completed, or if hipEventRecord() was not called on the event, then #hipSuccess is
+  !>  has not completed, or if hipEventRecord() was not called on the event, then hipSuccess is
   !>  returned.
   !> 
   !>  @see hipEventCreate, hipEventCreateWithFlags, hipEventRecord, hipEventDestroy,
@@ -2056,7 +2050,7 @@ module hipfort
   !>   @param [out]  attributes  attributes for the specified pointer
   !>   @param [in]   ptr         pointer to get attributes for
   !> 
-  !>   @return #hipSuccess, #hipErrorInvalidDevice, #hipErrorInvalidValue
+  !>   @return hipSuccess, hipErrorInvalidDevice, hipErrorInvalidValue
   !> 
   !>   @see hipPointerGetAttribute
   interface hipPointerGetAttributes
@@ -2088,10 +2082,7 @@ module hipfort
   !>   @param [in]      atribute attribute to query for
   !>   @param [in]      ptr      pointer to get attributes for
   !> 
-  !>   @return #hipSuccess, #hipErrorInvalidDevice, #hipErrorInvalidValue
-  !> 
-  !>   @beta This API is marked as beta, meaning, while this is feature complete,
-  !>   it is still open to changes and may have outstanding issues.
+  !>   @return hipSuccess, hipErrorInvalidDevice, hipErrorInvalidValue
   !> 
   !>   @see hipPointerGetAttributes
   interface hipPointerGetAttribute
@@ -2126,10 +2117,7 @@ module hipfort
   !>                                where the result of each attribute query will be written to
   !>   @param [in]  ptr             pointer to get attributes for
   !> 
-  !>   @return #hipSuccess, #hipErrorInvalidDevice, #hipErrorInvalidValue
-  !> 
-  !>   @beta This API is marked as beta, meaning, while this is feature complete,
-  !>   it is still open to changes and may have outstanding issues.
+  !>   @return hipSuccess, hipErrorInvalidDevice, hipErrorInvalidValue
   !> 
   !>   @see hipPointerGetAttribute
   interface hipDrvPointerGetAttributes
@@ -2164,7 +2152,7 @@ module hipfort
   !>   @param[in] numExtSems Number of semaphores to wait on
   !>   @param[in] stream Stream to enqueue the wait operations in
   !> 
-  !>   @return #hipSuccess, #hipErrorInvalidDevice, #hipErrorInvalidValue
+  !>   @return hipSuccess, hipErrorInvalidDevice, hipErrorInvalidValue
   !> 
   !>   @see
   interface hipSignalExternalSemaphoresAsync
@@ -2199,7 +2187,7 @@ module hipfort
   !>   @param[in] numExtSems Number of semaphores to wait on
   !>   @param[in] stream Stream to enqueue the wait operations in
   !> 
-  !>   @return #hipSuccess, #hipErrorInvalidDevice, #hipErrorInvalidValue
+  !>   @return hipSuccess, hipErrorInvalidDevice, hipErrorInvalidValue
   !> 
   !>   @see
   interface hipWaitExternalSemaphoresAsync
@@ -2231,7 +2219,7 @@ module hipfort
   !> 
   !>   @param[in] extSem handle to an external memory object
   !> 
-  !>   @return #hipSuccess, #hipErrorInvalidDevice, #hipErrorInvalidValue
+  !>   @return hipSuccess, hipErrorInvalidDevice, hipErrorInvalidValue
   !> 
   !>   @see
   interface hipDestroyExternalSemaphore
@@ -2262,7 +2250,7 @@ module hipfort
   !>   @param[in]  extMem  Handle to external memory object
   !>   @param[in]  bufferDesc  Buffer descriptor
   !> 
-  !>   @return #hipSuccess, #hipErrorInvalidDevice, #hipErrorInvalidValue
+  !>   @return hipSuccess, hipErrorInvalidDevice, hipErrorInvalidValue
   !> 
   !>   @see
   interface hipExternalMemoryGetMappedBuffer
@@ -2293,7 +2281,7 @@ module hipfort
   !> 
   !>   @param[in] extMem  External memory object to be destroyed
   !> 
-  !>   @return #hipSuccess, #hipErrorInvalidDevice, #hipErrorInvalidValue
+  !>   @return hipSuccess, hipErrorInvalidDevice, hipErrorInvalidValue
   !> 
   !>   @see
   interface hipDestroyExternalMemory
@@ -2326,7 +2314,7 @@ module hipfort
   !> 
   !>   If size is 0, no memory is allocated, *ptr returns nullptr, and hipSuccess is returned.
   !> 
-  !>   @return #hipSuccess, #hipErrorOutOfMemory, #hipErrorInvalidValue (bad context, null *ptr)
+  !>   @return hipSuccess, hipErrorOutOfMemory, hipErrorInvalidValue (bad context, null *ptr)
   !> 
   !>   @see hipMallocPitch, hipFree, hipMallocArray, hipFreeArray, hipMalloc3D, hipMalloc3DArray,
   !>  hipHostFree, hipHostMalloc
@@ -2409,7 +2397,7 @@ module hipfort
   !>  @param [in] device   destination device to prefetch to
   !>  @param [in] stream   stream to enqueue prefetch operation
   !> 
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   interface hipMemPrefetchAsync
 #ifdef USE_CUDA_NAMES
     function hipMemPrefetchAsync_(dev_ptr,count,device,stream) bind(c, name="cudaMemPrefetchAsync")
@@ -2442,7 +2430,7 @@ module hipfort
   !>  @param [in] advice   advice to be applied for the specified memory range
   !>  @param [in] device   device to apply the advice for
   !> 
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   interface hipMemAdvise
 #ifdef USE_CUDA_NAMES
     function hipMemAdvise_(dev_ptr,count,advice,device) bind(c, name="cudaMemAdvise")
@@ -2477,7 +2465,7 @@ module hipfort
   !>  @param [in] dev_ptr    start of the range to query
   !>  @param [in] count      size of the range to query
   !> 
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   interface hipMemRangeGetAttribute
 #ifdef USE_CUDA_NAMES
     function hipMemRangeGetAttribute_(myData,data_size,attribute,dev_ptr,count) bind(c, name="cudaMemRangeGetAttribute")
@@ -2515,7 +2503,7 @@ module hipfort
   !>  @param [in] dev_ptr      start of the range to query
   !>  @param [in] count        size of the range to query
   !> 
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   interface hipMemRangeGetAttributes
 #ifdef USE_CUDA_NAMES
     function hipMemRangeGetAttributes_(myData,data_sizes,attributes,num_attributes,dev_ptr,count) bind(c, name="cudaMemRangeGetAttributes")
@@ -2552,7 +2540,7 @@ module hipfort
   !>  @param [in] flags      - must be one of hipMemAttachGlobal, hipMemAttachHost or
   !>                           hipMemAttachSingle (defaults to hipMemAttachSingle)
   !> 
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   interface hipStreamAttachMemAsync
 #ifdef USE_CUDA_NAMES
     function hipStreamAttachMemAsync_(stream,dev_ptr,length,flags) bind(c, name="cudaStreamAttachMemAsync")
@@ -2745,8 +2733,8 @@ module hipfort
   !>   @param[in]   src Data being copy from
   !>   @param[in]   sizeBytes Data size in bytes
   !> 
-  !>   @return #hipSuccess, #hipErrorDeInitialized, #hipErrorNotInitialized, #hipErrorInvalidContext,
-  !>  #hipErrorInvalidValue
+  !>   @return hipSuccess, hipErrorDeInitialized, hipErrorNotInitialized, hipErrorInvalidContext,
+  !>  hipErrorInvalidValue
   !> 
   !>   @see hipArrayCreate, hipArrayDestroy, hipArrayGetDescriptor, hipMemAlloc, hipMemAllocHost,
   !>  hipMemAllocPitch, hipMemcpy2D, hipMemcpy2DAsync, hipMemcpy2DUnaligned, hipMemcpyAtoA,
@@ -2784,8 +2772,8 @@ module hipfort
   !>   @param[in]   src Data being copy from
   !>   @param[in]   sizeBytes Data size in bytes
   !> 
-  !>   @return #hipSuccess, #hipErrorDeInitialized, #hipErrorNotInitialized, #hipErrorInvalidContext,
-  !>  #hipErrorInvalidValue
+  !>   @return hipSuccess, hipErrorDeInitialized, hipErrorNotInitialized, hipErrorInvalidContext,
+  !>  hipErrorInvalidValue
   !> 
   !>   @see hipArrayCreate, hipArrayDestroy, hipArrayGetDescriptor, hipMemAlloc, hipMemAllocHost,
   !>  hipMemAllocPitch, hipMemcpy2D, hipMemcpy2DAsync, hipMemcpy2DUnaligned, hipMemcpyAtoA,
@@ -2823,8 +2811,8 @@ module hipfort
   !>   @param[in]   src Data being copy from
   !>   @param[in]   sizeBytes Data size in bytes
   !> 
-  !>   @return #hipSuccess, #hipErrorDeInitialized, #hipErrorNotInitialized, #hipErrorInvalidContext,
-  !>  #hipErrorInvalidValue
+  !>   @return hipSuccess, hipErrorDeInitialized, hipErrorNotInitialized, hipErrorInvalidContext,
+  !>  hipErrorInvalidValue
   !> 
   !>   @see hipArrayCreate, hipArrayDestroy, hipArrayGetDescriptor, hipMemAlloc, hipMemAllocHost,
   !>  hipMemAllocPitch, hipMemcpy2D, hipMemcpy2DAsync, hipMemcpy2DUnaligned, hipMemcpyAtoA,
@@ -2862,8 +2850,8 @@ module hipfort
   !>   @param[in]   src Data being copy from
   !>   @param[in]   sizeBytes Data size in bytes
   !> 
-  !>   @return #hipSuccess, #hipErrorDeInitialized, #hipErrorNotInitialized, #hipErrorInvalidContext,
-  !>  #hipErrorInvalidValue
+  !>   @return hipSuccess, hipErrorDeInitialized, hipErrorNotInitialized, hipErrorInvalidContext,
+  !>  hipErrorInvalidValue
   !> 
   !>   @see hipArrayCreate, hipArrayDestroy, hipArrayGetDescriptor, hipMemAlloc, hipMemAllocHost,
   !>  hipMemAllocPitch, hipMemcpy2D, hipMemcpy2DAsync, hipMemcpy2DUnaligned, hipMemcpyAtoA,
@@ -2902,8 +2890,8 @@ module hipfort
   !>   @param[in]   src Data being copy from
   !>   @param[in]   sizeBytes Data size in bytes
   !> 
-  !>   @return #hipSuccess, #hipErrorDeInitialized, #hipErrorNotInitialized, #hipErrorInvalidContext,
-  !>  #hipErrorInvalidValue
+  !>   @return hipSuccess, hipErrorDeInitialized, hipErrorNotInitialized, hipErrorInvalidContext,
+  !>  hipErrorInvalidValue
   !> 
   !>   @see hipArrayCreate, hipArrayDestroy, hipArrayGetDescriptor, hipMemAlloc, hipMemAllocHost,
   !>  hipMemAllocPitch, hipMemcpy2D, hipMemcpy2DAsync, hipMemcpy2DUnaligned, hipMemcpyAtoA,
@@ -2942,8 +2930,8 @@ module hipfort
   !>   @param[in]   src Data being copy from
   !>   @param[in]   sizeBytes Data size in bytes
   !> 
-  !>   @return #hipSuccess, #hipErrorDeInitialized, #hipErrorNotInitialized, #hipErrorInvalidContext,
-  !>  #hipErrorInvalidValue
+  !>   @return hipSuccess, hipErrorDeInitialized, hipErrorNotInitialized, hipErrorInvalidContext,
+  !>  hipErrorInvalidValue
   !> 
   !>   @see hipArrayCreate, hipArrayDestroy, hipArrayGetDescriptor, hipMemAlloc, hipMemAllocHost,
   !>  hipMemAllocPitch, hipMemcpy2D, hipMemcpy2DAsync, hipMemcpy2DUnaligned, hipMemcpyAtoA,
@@ -2986,7 +2974,7 @@ module hipfort
   !>   @param[in]   hmod  Module to retrieve global from
   !>   @param[in]   name  Name of global to retrieve
   !> 
-  !>   @return #hipSuccess, #hipErrorInvalidValue, #hipErrorNotFound, #hipErrorInvalidContext
+  !>   @return hipSuccess, hipErrorInvalidValue, hipErrorNotFound, hipErrorInvalidContext
   !>
   interface hipModuleGetGlobal
 #ifdef USE_CUDA_NAMES
@@ -3177,7 +3165,7 @@ module hipfort
   !>   @param[out] dst Data being filled
   !>   @param[in]  ant value to be set
   !>   @param[in]  sizeBytes Data size in bytes
-  !>   @return #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized
+  !>   @return hipSuccess, hipErrorInvalidValue, hipErrorNotInitialized
   interface hipMemset
 #ifdef USE_CUDA_NAMES
     function hipMemset_(dst,myValue,sizeBytes) bind(c, name="cudaMemset")
@@ -3208,7 +3196,7 @@ module hipfort
   !>   @param[out] dst Data ptr to be filled
   !>   @param[in]  ant value to be set
   !>   @param[in]  number of values to be set
-  !>   @return #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized
+  !>   @return hipSuccess, hipErrorInvalidValue, hipErrorNotInitialized
   interface hipMemsetD8
 #ifdef USE_CUDA_NAMES
     function hipMemsetD8_(dest,myValue,count) bind(c, name="cudaMemsetD8")
@@ -3245,7 +3233,7 @@ module hipfort
   !>   @param[in]  ant value to be set
   !>   @param[in]  number of values to be set
   !>   @param[in]  stream - Stream identifier
-  !>   @return #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized
+  !>   @return hipSuccess, hipErrorInvalidValue, hipErrorNotInitialized
   interface hipMemsetD8Async
 #ifdef USE_CUDA_NAMES
     function hipMemsetD8Async_(dest,myValue,count,stream) bind(c, name="cudaMemsetD8Async")
@@ -3277,7 +3265,7 @@ module hipfort
   !>   @param[out] dst Data ptr to be filled
   !>   @param[in]  ant value to be set
   !>   @param[in]  number of values to be set
-  !>   @return #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized
+  !>   @return hipSuccess, hipErrorInvalidValue, hipErrorNotInitialized
   interface hipMemsetD16
 #ifdef USE_CUDA_NAMES
     function hipMemsetD16_(dest,myValue,count) bind(c, name="cudaMemsetD16")
@@ -3314,7 +3302,7 @@ module hipfort
   !>   @param[in]  ant value to be set
   !>   @param[in]  number of values to be set
   !>   @param[in]  stream - Stream identifier
-  !>   @return #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized
+  !>   @return hipSuccess, hipErrorInvalidValue, hipErrorNotInitialized
   interface hipMemsetD16Async
 #ifdef USE_CUDA_NAMES
     function hipMemsetD16Async_(dest,myValue,count,stream) bind(c, name="cudaMemsetD16Async")
@@ -3346,7 +3334,7 @@ module hipfort
   !>   @param[out] dst Data being filled
   !>   @param[in]  ant value to be set
   !>   @param[in]  number of values to be set
-  !>   @return #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized
+  !>   @return hipSuccess, hipErrorInvalidValue, hipErrorNotInitialized
   interface hipMemsetD32
 #ifdef USE_CUDA_NAMES
     function hipMemsetD32_(dest,myValue,count) bind(c, name="cudaMemsetD32")
@@ -3383,7 +3371,7 @@ module hipfort
   !>   @param[in]  value - Value to set for each byte of specified memory
   !>   @param[in]  sizeBytes - Size in bytes to set
   !>   @param[in]  stream - Stream identifier
-  !>   @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryFree
+  !>   @return hipSuccess, hipErrorInvalidValue, hipErrorMemoryFree
   interface hipMemsetAsync
 #ifdef USE_CUDA_NAMES
     function hipMemsetAsync_(dst,myValue,sizeBytes,stream) bind(c, name="cudaMemsetAsync")
@@ -3421,7 +3409,7 @@ module hipfort
   !>   @param[in]  value - Value to set for each byte of specified memory
   !>   @param[in]  count - number of values to be set
   !>   @param[in]  stream - Stream identifier
-  !>   @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryFree
+  !>   @return hipSuccess, hipErrorInvalidValue, hipErrorMemoryFree
   interface hipMemsetD32Async
 #ifdef USE_CUDA_NAMES
     function hipMemsetD32Async_(dst,myValue,count,stream) bind(c, name="cudaMemsetD32Async")
@@ -3454,7 +3442,7 @@ module hipfort
   !>   @param[in]  value - ant value to be set
   !>   @param[in]  width
   !>   @param[in]  height
-  !>   @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryFree
+  !>   @return hipSuccess, hipErrorInvalidValue, hipErrorMemoryFree
   interface hipMemset2D
 #ifdef USE_CUDA_NAMES
     function hipMemset2D_(dst,pitch,myValue,width,height) bind(c, name="cudaMemset2D")
@@ -3489,7 +3477,7 @@ module hipfort
   !>   @param[in]  width
   !>   @param[in]  height
   !>   @param[in]  stream
-  !>   @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryFree
+  !>   @return hipSuccess, hipErrorInvalidValue, hipErrorMemoryFree
   interface hipMemset2DAsync
 #ifdef USE_CUDA_NAMES
     function hipMemset2DAsync_(dst,pitch,myValue,width,height,stream) bind(c, name="cudaMemset2DAsync")
@@ -3522,7 +3510,7 @@ module hipfort
   !>   @param[in] pitchedDevPtr
   !>   @param[in]  value - ant value to be set
   !>   @param[in]  extent
-  !>   @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryFree
+  !>   @return hipSuccess, hipErrorInvalidValue, hipErrorMemoryFree
   interface hipMemset3D
 #ifdef USE_CUDA_NAMES
     function hipMemset3D_(pitchedDevPtr,myValue,extent) bind(c, name="cudaMemset3D")
@@ -3553,7 +3541,7 @@ module hipfort
   !>   @param[in]  value - ant value to be set
   !>   @param[in]  extent
   !>   @param[in]  stream
-  !>   @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryFree
+  !>   @return hipSuccess, hipErrorInvalidValue, hipErrorMemoryFree
   interface hipMemset3DAsync
 #ifdef USE_CUDA_NAMES
     function hipMemset3DAsync_(pitchedDevPtr,myValue,extent,stream) bind(c, name="cudaMemset3DAsync")
@@ -3583,7 +3571,7 @@ module hipfort
   !>  Return snapshot of free memory, and total allocatable memory on the device.
   !> 
   !>  Returns in *free a snapshot of the current free memory.
-  !>  @returns #hipSuccess, #hipErrorInvalidDevice, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidDevice, hipErrorInvalidValue
   !>  @warning On HCC, the free memory only accounts for memory allocated by this process and may be
   !> optimistic.
   interface hipMemGetInfo
@@ -3640,7 +3628,7 @@ module hipfort
   !>   @param[in]   width  Requested array allocation width
   !>   @param[in]   height Requested array allocation height
   !>   @param[in]   flags  Requested properties of allocated array
-  !>   @return      #hipSuccess, #hipErrorOutOfMemory
+  !>   @return      hipSuccess, hipErrorOutOfMemory
   !> 
   !>   @see hipMalloc, hipMallocPitch, hipFree, hipFreeArray, hipHostMalloc, hipHostFree
   interface hipMallocArray
@@ -3767,7 +3755,7 @@ module hipfort
   !>   @brief Frees an array on the device.
   !> 
   !>   @param[in]  array  Pointer to array to free
-  !>   @return     #hipSuccess, #hipErrorInvalidValue, #hipErrorNotInitialized
+  !>   @return     hipSuccess, hipErrorInvalidValue, hipErrorNotInitialized
   !> 
   !>   @see hipMalloc, hipMallocPitch, hipFree, hipMallocArray, hipHostMalloc, hipHostFree
   interface hipFreeArray
@@ -3796,7 +3784,7 @@ module hipfort
   !> 
   !>  @param[in] mipmappedArray - Pointer to mipmapped array to free
   !> 
-  !>  @return #hipSuccess, #hipErrorInvalidValue
+  !>  @return hipSuccess, hipErrorInvalidValue
   interface hipFreeMipmappedArray
 #ifdef USE_CUDA_NAMES
     function hipFreeMipmappedArray_(mipmappedArray) bind(c, name="cudaFreeMipmappedArray")
@@ -3825,7 +3813,7 @@ module hipfort
   !>   @param[in]   desc   Requested channel format
   !>   @param[in]   extent Requested array allocation width, height and depth
   !>   @param[in]   flags  Requested properties of allocated array
-  !>   @return      #hipSuccess, #hipErrorOutOfMemory
+  !>   @return      hipSuccess, hipErrorOutOfMemory
   !> 
   !>   @see hipMalloc, hipMallocPitch, hipFree, hipFreeArray, hipHostMalloc, hipHostFree
   interface hipMalloc3DArray
@@ -3861,7 +3849,7 @@ module hipfort
   !>  @param[in]  numLevels       - Number of mipmap levels to allocate
   !>  @param[in]  flags           - Flags for extensions
   !> 
-  !>  @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryAllocation
+  !>  @return hipSuccess, hipErrorInvalidValue, hipErrorMemoryAllocation
   interface hipMallocMipmappedArray
 #ifdef USE_CUDA_NAMES
     function hipMallocMipmappedArray_(mipmappedArray,desc,extent,numLevels,flags) bind(c, name="cudaMallocMipmappedArray")
@@ -3894,7 +3882,7 @@ module hipfort
   !>  @param[in]  mipmappedArray - HIP mipmapped array
   !>  @param[in]  level          - Mipmap level
   !> 
-  !>  @return #hipSuccess, #hipErrorInvalidValue
+  !>  @return hipSuccess, hipErrorInvalidValue
   interface hipGetMipmappedArrayLevel
 #ifdef USE_CUDA_NAMES
     function hipGetMipmappedArrayLevel_(levelArray,mipmappedArray,level) bind(c, name="cudaGetMipmappedArrayLevel")
@@ -3921,8 +3909,8 @@ module hipfort
   end interface
   !>   @brief Copies memory for 2D arrays.
   !>   @param[in]   pCopy Parameters for the memory copy
-  !>   @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
-  !>   #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
+  !>   @return      hipSuccess, hipErrorInvalidValue, hipErrorInvalidPitchValue,
+  !>   hipErrorInvalidDevicePointer, hipErrorInvalidMemcpyDirection
   !> 
   !>   @see hipMemcpy, hipMemcpy2D, hipMemcpyToArray, hipMemcpy2DToArray, hipMemcpyFromArray,
   !>  hipMemcpyToSymbol, hipMemcpyAsync
@@ -3951,8 +3939,8 @@ module hipfort
   !>   @brief Copies memory for 2D arrays.
   !>   @param[in]   pCopy Parameters for the memory copy
   !>   @param[in]   stream Stream to use
-  !>   @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
-  !>  #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
+  !>   @return      hipSuccess, hipErrorInvalidValue, hipErrorInvalidPitchValue,
+  !>  hipErrorInvalidDevicePointer, hipErrorInvalidMemcpyDirection
   !> 
   !>   @see hipMemcpy, hipMemcpy2D, hipMemcpyToArray, hipMemcpy2DToArray, hipMemcpyFromArray,
   !>  hipMemcpyToSymbol, hipMemcpyAsync
@@ -3989,8 +3977,8 @@ module hipfort
   !>   @param[in]   width   Width of matrix transfer (columns in bytes)
   !>   @param[in]   height  Height of matrix transfer (rows)
   !>   @param[in]   kind    Type of transfer
-  !>   @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
-  !>  #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
+  !>   @return      hipSuccess, hipErrorInvalidValue, hipErrorInvalidPitchValue,
+  !>  hipErrorInvalidDevicePointer, hipErrorInvalidMemcpyDirection
   !> 
   !>   @see hipMemcpy, hipMemcpyToArray, hipMemcpy2D, hipMemcpyFromArray, hipMemcpyToSymbol,
   !>  hipMemcpyAsync
@@ -4034,8 +4022,8 @@ module hipfort
   !>   @param[in]   height  Height of matrix transfer (rows)
   !>   @param[in]   kind    Type of transfer
   !>   @param[in]   stream    Accelerator view which the copy is being enqueued
-  !>   @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
-  !>  #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
+  !>   @return      hipSuccess, hipErrorInvalidValue, hipErrorInvalidPitchValue,
+  !>  hipErrorInvalidDevicePointer, hipErrorInvalidMemcpyDirection
   !> 
   !>   @see hipMemcpy, hipMemcpyToArray, hipMemcpy2D, hipMemcpyFromArray, hipMemcpyToSymbol,
   !>  hipMemcpyAsync
@@ -4135,8 +4123,8 @@ module hipfort
   !>   @param[in]   width     Width of matrix transfer (columns in bytes)
   !>   @param[in]   height    Height of matrix transfer (rows)
   !>   @param[in]   kind      Type of transfer
-  !>   @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
-  !>  #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
+  !>   @return      hipSuccess, hipErrorInvalidValue, hipErrorInvalidPitchValue,
+  !>  hipErrorInvalidDevicePointer, hipErrorInvalidMemcpyDirection
   !> 
   !>   @see hipMemcpy, hipMemcpy2DToArray, hipMemcpy2D, hipMemcpyFromArray, hipMemcpyToSymbol,
   !>  hipMemcpyAsync
@@ -4180,8 +4168,8 @@ module hipfort
   !>   @param[in]   height    Height of matrix transfer (rows)
   !>   @param[in]   kind      Type of transfer
   !>   @param[in]   stream    Accelerator view which the copy is being enqueued
-  !>   @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
-  !>  #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
+  !>   @return      hipSuccess, hipErrorInvalidValue, hipErrorInvalidPitchValue,
+  !>  hipErrorInvalidDevicePointer, hipErrorInvalidMemcpyDirection
   !> 
   !>   @see hipMemcpy, hipMemcpy2DToArray, hipMemcpy2D, hipMemcpyFromArray, hipMemcpyToSymbol,
   !>  hipMemcpyAsync
@@ -4221,8 +4209,8 @@ module hipfort
   !>   @param[in]   srcArray  Source array
   !>   @param[in]   srcoffset Offset in bytes of source array
   !>   @param[in]   count     Size of memory copy in bytes
-  !>   @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
-  !>  #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
+  !>   @return      hipSuccess, hipErrorInvalidValue, hipErrorInvalidPitchValue,
+  !>  hipErrorInvalidDevicePointer, hipErrorInvalidMemcpyDirection
   !> 
   !>   @see hipMemcpy, hipMemcpy2DToArray, hipMemcpy2D, hipMemcpyFromArray, hipMemcpyToSymbol,
   !>  hipMemcpyAsync
@@ -4257,8 +4245,8 @@ module hipfort
   !>   @param[in]   dstOffset  Offset in bytes of destination array
   !>   @param[in]   srcHost    Source host pointer
   !>   @param[in]   count      Size of memory copy in bytes
-  !>   @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
-  !>  #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
+  !>   @return      hipSuccess, hipErrorInvalidValue, hipErrorInvalidPitchValue,
+  !>  hipErrorInvalidDevicePointer, hipErrorInvalidMemcpyDirection
   !> 
   !>   @see hipMemcpy, hipMemcpy2DToArray, hipMemcpy2D, hipMemcpyFromArray, hipMemcpyToSymbol,
   !>  hipMemcpyAsync
@@ -4290,8 +4278,8 @@ module hipfort
   !>   @brief Copies data between host and device.
   !> 
   !>   @param[in]   p   3D memory copy parameters
-  !>   @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
-  !>  #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
+  !>   @return      hipSuccess, hipErrorInvalidValue, hipErrorInvalidPitchValue,
+  !>  hipErrorInvalidDevicePointer, hipErrorInvalidMemcpyDirection
   !> 
   !>   @see hipMemcpy, hipMemcpy2DToArray, hipMemcpy2D, hipMemcpyFromArray, hipMemcpyToSymbol,
   !>  hipMemcpyAsync
@@ -4321,8 +4309,8 @@ module hipfort
   !> 
   !>   @param[in]   p        3D memory copy parameters
   !>   @param[in]   stream   Stream to use
-  !>   @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
-  !>  #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
+  !>   @return      hipSuccess, hipErrorInvalidValue, hipErrorInvalidPitchValue,
+  !>  hipErrorInvalidDevicePointer, hipErrorInvalidMemcpyDirection
   !> 
   !>   @see hipMemcpy, hipMemcpy2DToArray, hipMemcpy2D, hipMemcpyFromArray, hipMemcpyToSymbol,
   !>  hipMemcpyAsync
@@ -4352,8 +4340,8 @@ module hipfort
   !>   @brief Copies data between host and device.
   !> 
   !>   @param[in]   pCopy   3D memory copy parameters
-  !>   @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
-  !>   #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
+  !>   @return      hipSuccess, hipErrorInvalidValue, hipErrorInvalidPitchValue,
+  !>   hipErrorInvalidDevicePointer, hipErrorInvalidMemcpyDirection
   !> 
   !>   @see hipMemcpy, hipMemcpy2DToArray, hipMemcpy2D, hipMemcpyFromArray, hipMemcpyToSymbol,
   !>  hipMemcpyAsync
@@ -4383,8 +4371,8 @@ module hipfort
   !> 
   !>   @param[in]   pCopy    3D memory copy parameters
   !>   @param[in]   stream   Stream to use
-  !>   @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
-  !>   #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
+  !>   @return      hipSuccess, hipErrorInvalidValue, hipErrorInvalidPitchValue,
+  !>   hipErrorInvalidDevicePointer, hipErrorInvalidMemcpyDirection
   !> 
   !>   @see hipMemcpy, hipMemcpy2DToArray, hipMemcpy2D, hipMemcpyFromArray, hipMemcpyToSymbol,
   !>  hipMemcpyAsync
@@ -4423,8 +4411,8 @@ module hipfort
   !>  Returns "0" in @p canAccessPeer if deviceId == peerDeviceId, and both are valid devices : a
   !>  device is not a peer of itself.
   !> 
-  !>  @returns #hipSuccess,
-  !>  @returns #hipErrorInvalidDevice if deviceId or peerDeviceId are not valid devices
+  !>  @returns hipSuccess,
+  !>  @returns hipErrorInvalidDevice if deviceId or peerDeviceId are not valid devices
   interface hipDeviceCanAccessPeer
 #ifdef USE_CUDA_NAMES
     function hipDeviceCanAccessPeer_(canAccessPeer,deviceId,peerDeviceId) bind(c, name="cudaDeviceCanAccessPeer")
@@ -4461,8 +4449,8 @@ module hipfort
   !>  @param [in] peerDeviceId
   !>  @param [in] flags
   !> 
-  !>  Returns #hipSuccess, #hipErrorInvalidDevice, #hipErrorInvalidValue,
-  !>  @returns #hipErrorPeerAccessAlreadyEnabled if peer access is already enabled for this device.
+  !>  Returns hipSuccess, hipErrorInvalidDevice, hipErrorInvalidValue,
+  !>  @returns hipErrorPeerAccessAlreadyEnabled if peer access is already enabled for this device.
   interface hipDeviceEnablePeerAccess
 #ifdef USE_CUDA_NAMES
     function hipDeviceEnablePeerAccess_(peerDeviceId,flags) bind(c, name="cudaDeviceEnablePeerAccess")
@@ -4494,7 +4482,7 @@ module hipfort
   !> 
   !>  @param [in] peerDeviceId
   !> 
-  !>  @returns #hipSuccess, #hipErrorPeerAccessNotEnabled
+  !>  @returns hipSuccess, hipErrorPeerAccessNotEnabled
   interface hipDeviceDisablePeerAccess
 #ifdef USE_CUDA_NAMES
     function hipDeviceDisablePeerAccess_(peerDeviceId) bind(c, name="cudaDeviceDisablePeerAccess")
@@ -4523,7 +4511,7 @@ module hipfort
   !>  @param [out] psize - Size of allocation
   !>  @param [in]  dptr- Device Pointer
   !> 
-  !>  @returns #hipSuccess, #hipErrorInvalidDevicePointer
+  !>  @returns hipSuccess, hipErrorInvalidDevicePointer
   !> 
   !>  @see hipCtxCreate, hipCtxDestroy, hipCtxGetFlags, hipCtxPopCurrent, hipCtxGetCurrent,
   !>  hipCtxSetCurrent, hipCtxPushCurrent, hipCtxSetCacheConfig, hipCtxSynchronize, hipCtxGetDevice
@@ -4559,7 +4547,7 @@ module hipfort
   !>  @param [in] srcDeviceId - Source device
   !>  @param [in] sizeBytes - Size of memory copy in bytes
   !> 
-  !>  @returns #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidDevice
+  !>  @returns hipSuccess, hipErrorInvalidValue, hipErrorInvalidDevice
   interface hipMemcpyPeer
 #ifdef USE_CUDA_NAMES
     function hipMemcpyPeer_(dst,dstDeviceId,src,srcDeviceId,sizeBytes) bind(c, name="cudaMemcpyPeer")
@@ -4595,7 +4583,7 @@ module hipfort
   !>  @param [in] sizeBytes - Size of memory copy in bytes
   !>  @param [in] stream - Stream identifier
   !> 
-  !>  @returns #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidDevice
+  !>  @returns hipSuccess, hipErrorInvalidValue, hipErrorInvalidDevice
   interface hipMemcpyPeerAsync
 #ifdef USE_CUDA_NAMES
     function hipMemcpyPeerAsync_(dst,dstDeviceId,src,srcDevice,sizeBytes,stream) bind(c, name="cudaMemcpyPeerAsync")
@@ -5000,7 +4988,7 @@ module hipfort
   !>  @param [out] Pointer to store flags
   !>  @param [out] Pointer to store context state; 0 = inactive, 1 = active
   !> 
-  !>  @returns #hipSuccess
+  !>  @returns hipSuccess
   !> 
   !>  @see hipCtxCreate, hipCtxDestroy, hipCtxGetFlags, hipCtxPopCurrent, hipCtxGetCurrent,
   !>  hipCtxSetCurrent, hipCtxPushCurrent, hipCtxSetCacheConfig, hipCtxSynchronize, hipCtxGetDevice
@@ -5032,11 +5020,11 @@ module hipfort
   !> 
   !>  @param [in] Device which primary context is released
   !> 
-  !>  @returns #hipSuccess
+  !>  @returns hipSuccess
   !> 
   !>  @see hipCtxCreate, hipCtxDestroy, hipCtxGetFlags, hipCtxPopCurrent, hipCtxGetCurrent,
   !>  hipCtxSetCurrent, hipCtxPushCurrent, hipCtxSetCacheConfig, hipCtxSynchronize, hipCtxGetDevice
-  !>  @warning This function return #hipSuccess though doesn't release the primaryCtx by design on
+  !>  @warning This function return hipSuccess though doesn't release the primaryCtx by design on
   !>  HIP/HCC path.
   interface hipDevicePrimaryCtxRelease
 #ifdef USE_CUDA_NAMES
@@ -5065,7 +5053,7 @@ module hipfort
   !>  @param [out] Returned context handle of the new context
   !>  @param [in] Device which primary context is released
   !> 
-  !>  @returns #hipSuccess
+  !>  @returns hipSuccess
   !> 
   !>  @see hipCtxCreate, hipCtxDestroy, hipCtxGetFlags, hipCtxPopCurrent, hipCtxGetCurrent,
   !>  hipCtxSetCurrent, hipCtxPushCurrent, hipCtxSetCacheConfig, hipCtxSynchronize, hipCtxGetDevice
@@ -5096,7 +5084,7 @@ module hipfort
   !> 
   !>  @param [in] Device which primary context is reset
   !> 
-  !>  @returns #hipSuccess
+  !>  @returns hipSuccess
   !> 
   !>  @see hipCtxCreate, hipCtxDestroy, hipCtxGetFlags, hipCtxPopCurrent, hipCtxGetCurrent,
   !>  hipCtxSetCurrent, hipCtxPushCurrent, hipCtxSetCacheConfig, hipCtxSynchronize, hipCtxGetDevice
@@ -5127,7 +5115,7 @@ module hipfort
   !>  @param [in] Device for which the primary context flags are set
   !>  @param [in] New flags for the device
   !> 
-  !>  @returns #hipSuccess, #hipErrorContextAlreadyInUse
+  !>  @returns hipSuccess, hipErrorContextAlreadyInUse
   !> 
   !>  @see hipCtxCreate, hipCtxDestroy, hipCtxGetFlags, hipCtxPopCurrent, hipCtxGetCurrent,
   !>  hipCtxSetCurrent, hipCtxPushCurrent, hipCtxSetCacheConfig, hipCtxSynchronize, hipCtxGetDevice
@@ -5899,7 +5887,7 @@ module hipfort
   !>  @param [in] stream - Stream where the kernel should be dispatched.  May be 0, in which case th
   !>   default stream is used with associated synchronization rules.
   !> 
-  !>  @returns #hipSuccess, #hipErrorInvalidValue, hipInvalidDevice
+  !>  @returns hipSuccess, hipErrorInvalidValue, hipInvalidDevice
   !>
   interface hipLaunchKernel
 #ifdef USE_CUDA_NAMES
@@ -5932,7 +5920,7 @@ module hipfort
   !> 
   !>  @param pCopy           - Parameters for the memory copy
   !> 
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   interface hipDrvMemcpy2DUnaligned
 #ifdef USE_CUDA_NAMES
     function hipDrvMemcpy2DUnaligned_(pCopy) bind(c, name="cudaDrvMemcpy2DUnaligned")
@@ -7165,7 +7153,7 @@ module hipfort
   !>  @param [in] mode - Controls the interaction of this capture sequence with other API calls that
   !>  are not safe.
   !> 
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !> 
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
@@ -7198,7 +7186,7 @@ module hipfort
   !>  @param [in] stream - Stream to end capture.
   !>  @param [out] pGraph - returns the graph captured.
   !> 
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !> 
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
@@ -7232,7 +7220,7 @@ module hipfort
   !>  @param [out] pCaptureStatus - returns current status of the capture.
   !>  @param [out] pId - unique ID of the capture.
   !> 
-  !>  @returns #hipSuccess, #hipErrorStreamCaptureImplicit
+  !>  @returns hipSuccess, hipErrorStreamCaptureImplicit
   !> 
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
@@ -7270,7 +7258,7 @@ module hipfort
   !>  @param [out] dependencies_out - returns pointer to an array of nodes.
   !>  @param [out] numDependencies_out - returns size of the array returned in dependencies_out.
   !> 
-  !>  @returns #hipSuccess, #hipErrorInvalidValue, #hipErrorStreamCaptureImplicit
+  !>  @returns hipSuccess, hipErrorInvalidValue, hipErrorStreamCaptureImplicit
   !> 
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
@@ -7307,7 +7295,7 @@ module hipfort
   !>  @param [in] stream - Stream under capture.
   !>  @param [out] pCaptureStatus - returns current status of the capture.
   !> 
-  !>  @returns #hipSuccess, #hipErrorInvalidValue, #hipErrorStreamCaptureImplicit
+  !>  @returns hipSuccess, hipErrorInvalidValue, hipErrorStreamCaptureImplicit
   !> 
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
@@ -7340,7 +7328,7 @@ module hipfort
   !>  @param [in] stream - Stream under capture.
   !>  @param [in] dependencies - pointer to an array of nodes to Add/Replace.
   !>  @param [in] numDependencies - size of the array in dependencies.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue, #hipErrorIllegalState
+  !>  @returns hipSuccess, hipErrorInvalidValue, hipErrorIllegalState
   !> 
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
@@ -7375,7 +7363,7 @@ module hipfort
   !>  @param [out] pGraph - pointer to graph to create.
   !>  @param [in] flags - flags for graph creation, must be 0.
   !> 
-  !>  @returns #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryAllocation
+  !>  @returns hipSuccess, hipErrorInvalidValue, hipErrorMemoryAllocation
   !> 
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
@@ -7407,7 +7395,7 @@ module hipfort
   !> 
   !>  @param [in] graph - instance of graph to destroy.
   !> 
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !> 
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
@@ -7440,7 +7428,7 @@ module hipfort
   !>  @param [in] from - pointer to the graph nodes with dependenties to add from.
   !>  @param [in] to - pointer to the graph nodes to add dependenties to.
   !>  @param [in] numDependencies - the number of dependencies to add.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !> 
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
@@ -7476,7 +7464,7 @@ module hipfort
   !>  @param [in] from - Array of nodes that provide the dependencies.
   !>  @param [in] to - Array of dependent nodes.
   !>  @param [in] numDependencies - the number of dependencies to remove.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !> 
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
@@ -7512,7 +7500,7 @@ module hipfort
   !>  @param [out] from - pointer to the graph nodes to return edge endpoints.
   !>  @param [out] to - pointer to the graph nodes to return edge endpoints.
   !>  @param [out] numEdges - returns number of edges.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !> 
   !>  from and to may both be NULL, in which case this function only returns the number of edges in
   !>  numEdges. Otherwise, numEdges entries will be filled in. If numEdges is higher than the actual
@@ -7551,7 +7539,7 @@ module hipfort
   !>  @param [in] graph - instance of graph to get the nodes.
   !>  @param [out] nodes - pointer to return the  graph nodes.
   !>  @param [out] numNodes - returns number of graph nodes.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !> 
   !>  nodes may be NULL, in which case this function will return the number of nodes in numNodes.
   !>  Otherwise, numNodes entries will be filled in. If numNodes is higher than the actual number of
@@ -7589,7 +7577,7 @@ module hipfort
   !>  @param [in] graph - instance of the graph to get the nodes.
   !>  @param [out] pRootNodes - pointer to return the graph's root nodes.
   !>  @param [out] pNumRootNodes - returns the number of graph's root nodes.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !> 
   !>  pRootNodes may be NULL, in which case this function will return the number of root nodes in
   !>  pNumRootNodes. Otherwise, pNumRootNodes entries will be filled in. If pNumRootNodes is higher
@@ -7627,7 +7615,7 @@ module hipfort
   !>  @param [in] node - graph node to get the dependencies from.
   !>  @param [out] pDependencies - pointer to to return the dependencies.
   !>  @param [out] pNumDependencies -  returns the number of graph node dependencies.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !> 
   !>  pDependencies may be NULL, in which case this function will return the number of dependencies in
   !>  pNumDependencies. Otherwise, pNumDependencies entries will be filled in. If pNumDependencies is
@@ -7665,7 +7653,7 @@ module hipfort
   !>  @param [in] node - graph node to get the Dependent nodes from.
   !>  @param [out] pDependentNodes - pointer to return the graph dependent nodes.
   !>  @param [out] pNumDependentNodes - returns the number of graph node dependent nodes.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !> 
   !>  DependentNodes may be NULL, in which case this function will return the number of dependent nodes
   !>  in pNumDependentNodes. Otherwise, pNumDependentNodes entries will be filled in. If
@@ -7703,7 +7691,7 @@ module hipfort
   !> 
   !>  @param [in] node - instance of the graph to add dependencies.
   !>  @param [out] pType - pointer to the return the type
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !> 
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
@@ -7734,7 +7722,7 @@ module hipfort
   !>  @brief Remove a node from the graph.
   !> 
   !>  @param [in] node - graph node to remove
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !> 
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
@@ -7765,7 +7753,7 @@ module hipfort
   !> 
   !>  @param [out] pGraphClone - Returns newly created cloned graph.
   !>  @param [in] originalGraph - original graph to clone from.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryAllocation
+  !>  @returns hipSuccess, hipErrorInvalidValue, hipErrorMemoryAllocation
   !> 
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
@@ -7798,7 +7786,7 @@ module hipfort
   !>  @param [out] pNode - Returns the cloned node.
   !>  @param [in] originalNode - original node handle.
   !>  @param [in] clonedGraph - Cloned graph to query.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !> 
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
@@ -7836,7 +7824,7 @@ module hipfort
   !>  @param [out] pLogBuffer - pointer to log buffer.
   !>  @param [out] bufferSize - the size of log buffer.
   !> 
-  !>  @returns #hipSuccess, #hipErrorOutOfMemory
+  !>  @returns hipSuccess, hipErrorOutOfMemory
   !> 
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
@@ -7872,7 +7860,7 @@ module hipfort
   !>  @param [out] pGraphExec - pointer to instantiated executable graph that is created.
   !>  @param [in] graph - instance of graph to instantiate.
   !>  @param [in] flags - Flags to control instantiation.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !> 
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
@@ -7905,7 +7893,7 @@ module hipfort
   !> 
   !>  @param [in] graphExec - instance of executable graph to launch.
   !>  @param [in] stream - instance of stream in which to launch executable graph.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !> 
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
@@ -7936,7 +7924,7 @@ module hipfort
   !> 
   !>  @param [in] pGraphExec - instance of executable graph to destry.
   !> 
-  !>  @returns #hipSuccess.
+  !>  @returns hipSuccess.
   !> 
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
@@ -7969,7 +7957,7 @@ module hipfort
   !>  @param [in] hGraph - graph that contains the updated parameters.
   !>  @param [in] hErrorNode_out -  node which caused the permissibility check to forbid the update.
   !>  @param [in] updateResult_out - Whether the graph update was permitted.
-  !>  @returns #hipSuccess, #hipErrorGraphExecUpdateFailure
+  !>  @returns hipSuccess, hipErrorGraphExecUpdateFailure
   !> 
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
@@ -8005,7 +7993,7 @@ module hipfort
   !>  @param [in] pDependencies - pointer to the dependencies on the kernel execution node.
   !>  @param [in] numDependencies - the number of the dependencies.
   !>  @param [in] pNodeParams - pointer to the parameters to the kernel execution node on the GPU.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidDeviceFunction
+  !>  @returns hipSuccess, hipErrorInvalidValue, hipErrorInvalidDeviceFunction
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
   interface hipGraphAddKernelNode
@@ -8038,7 +8026,7 @@ module hipfort
   !> 
   !>  @param [in] node - instance of the node to get parameters from.
   !>  @param [out] pNodeParams - pointer to the parameters
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
   interface hipGraphKernelNodeGetParams
@@ -8068,7 +8056,7 @@ module hipfort
   !> 
   !>  @param [in] node - instance of the node to set parameters to.
   !>  @param [in] pNodeParams -  pointer to the parameters.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
   interface hipGraphKernelNodeSetParams
@@ -8099,7 +8087,7 @@ module hipfort
   !>  @param [in] hGraphExec - instance of the executable graph with the node.
   !>  @param [in] node - instance of the node to set parameters to.
   !>  @param [in] pNodeParams -  pointer to the kernel node parameters.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
   interface hipGraphExecKernelNodeSetParams
@@ -8133,7 +8121,7 @@ module hipfort
   !>  @param [in] pDependencies -  pointer to the dependencies on the memcpy execution node.
   !>  @param [in] numDependencies - the number of the dependencies.
   !>  @param [in] pCopyParams -  pointer to the parameters for the memory copy.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
   interface hipGraphAddMemcpyNode
@@ -8166,7 +8154,7 @@ module hipfort
   !> 
   !>  @param [in] node - instance of the node to get parameters from.
   !>  @param [out] pNodeParams - pointer to the parameters.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
   interface hipGraphMemcpyNodeGetParams
@@ -8196,7 +8184,7 @@ module hipfort
   !> 
   !>  @param [in] node - instance of the node to set parameters to.
   !>  @param [in] pNodeParams -  pointer to the parameters.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
   interface hipGraphMemcpyNodeSetParams
@@ -8227,7 +8215,7 @@ module hipfort
   !>  @param [in] hGraphExec - instance of the executable graph with the node.
   !>  @param [in] node - instance of the node to set parameters to.
   !>  @param [in] pNodeParams -  pointer to the kernel node parameters.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
   interface hipGraphExecMemcpyNodeSetParams
@@ -8264,7 +8252,7 @@ module hipfort
   !>  @param [in] src - pointer to memory address to the source.
   !>  @param [in] count - the size of the memory to copy.
   !>  @param [in] kind - the type of memory copy.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
   interface hipGraphAddMemcpyNode1D
@@ -8303,7 +8291,7 @@ module hipfort
   !>  @param [in] src - pointer to memory address to the source.
   !>  @param [in] count - the size of the memory to copy.
   !>  @param [in] kind - the type of memory copy.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
   interface hipGraphMemcpyNodeSetParams1D
@@ -8341,7 +8329,7 @@ module hipfort
   !>  @param [in] src - pointer to memory address to the source.
   !>  @param [in] count - the size of the memory to copy.
   !>  @param [in] kind - the type of memory copy.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
   interface hipGraphExecMemcpyNodeSetParams1D
@@ -8382,7 +8370,7 @@ module hipfort
   !>  @param [in] count - the size of the memory to copy.
   !>  @param [in] offset - Offset from start of symbol in bytes.
   !>  @param [in] kind - the type of memory copy.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
   interface hipGraphAddMemcpyNodeFromSymbol
@@ -8423,7 +8411,7 @@ module hipfort
   !>  @param [in] count - the size of the memory to copy.
   !>  @param [in] offset - Offset from start of symbol in bytes.
   !>  @param [in] kind - the type of memory copy.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
   interface hipGraphMemcpyNodeSetParamsFromSymbol
@@ -8463,7 +8451,7 @@ module hipfort
   !>  @param [in] count - the size of the memory to copy.
   !>  @param [in] offset - Offset from start of symbol in bytes.
   !>  @param [in] kind - the type of memory copy.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
   interface hipGraphExecMemcpyNodeSetParamsFromSymbol
@@ -8505,7 +8493,7 @@ module hipfort
   !>  @param [in] count - the size of the memory to copy.
   !>  @param [in] offset - Offset from start of symbol in bytes.
   !>  @param [in] kind - the type of memory copy.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
   interface hipGraphAddMemcpyNodeToSymbol
@@ -8546,7 +8534,7 @@ module hipfort
   !>  @param [in] count - the size of the memory to copy.
   !>  @param [in] offset - Offset from start of symbol in bytes.
   !>  @param [in] kind - the type of memory copy.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
   interface hipGraphMemcpyNodeSetParamsToSymbol
@@ -8585,7 +8573,7 @@ module hipfort
   !>  @param [in] count - the size of the memory to copy.
   !>  @param [in] offset - Offset from start of symbol in bytes.
   !>  @param [in] kind - the type of memory copy.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
   interface hipGraphExecMemcpyNodeSetParamsToSymbol
@@ -8623,7 +8611,7 @@ module hipfort
   !>  @param [in] pDependencies -  pointer to the dependencies on the memset execution node.
   !>  @param [in] numDependencies - the number of the dependencies.
   !>  @param [in] pMemsetParams -  pointer to the parameters for the memory set.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
   interface hipGraphAddMemsetNode
@@ -8656,7 +8644,7 @@ module hipfort
   !> 
   !>  @param [in] node - instane of the node to get parameters from.
   !>  @param [out] pNodeParams - pointer to the parameters.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
   interface hipGraphMemsetNodeGetParams
@@ -8686,7 +8674,7 @@ module hipfort
   !> 
   !>  @param [in] node - instance of the node to set parameters to.
   !>  @param [in] pNodeParams - pointer to the parameters.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
   interface hipGraphMemsetNodeSetParams
@@ -8717,7 +8705,7 @@ module hipfort
   !>  @param [in] hGraphExec - instance of the executable graph with the node.
   !>  @param [in] node - instance of the node to set parameters to.
   !>  @param [in] pNodeParams - pointer to the parameters.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
   interface hipGraphExecMemsetNodeSetParams
@@ -8751,7 +8739,7 @@ module hipfort
   !>  @param [in] pDependencies -  pointer to the dependencies on the memset execution node.
   !>  @param [in] numDependencies - the number of the dependencies.
   !>  @param [in] pNodeParams -pointer to the parameters.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
   interface hipGraphAddHostNode
@@ -8784,7 +8772,7 @@ module hipfort
   !> 
   !>  @param [in] node - instane of the node to get parameters from.
   !>  @param [out] pNodeParams - pointer to the parameters.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
   interface hipGraphHostNodeGetParams
@@ -8814,7 +8802,7 @@ module hipfort
   !> 
   !>  @param [in] node - instance of the node to set parameters to.
   !>  @param [in] pNodeParams - pointer to the parameters.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
   interface hipGraphHostNodeSetParams
@@ -8845,7 +8833,7 @@ module hipfort
   !>  @param [in] hGraphExec - instance of the executable graph with the node.
   !>  @param [in] node - instance of the node to set parameters to.
   !>  @param [in] pNodeParams - pointer to the parameters.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
   interface hipGraphExecHostNodeSetParams
@@ -8879,7 +8867,7 @@ module hipfort
   !>  @param [in] pDependencies -  pointer to the dependencies on the memset execution node.
   !>  @param [in] numDependencies - the number of the dependencies.
   !>  @param [in] childGraph - the graph to clone into this node
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
   interface hipGraphAddChildGraphNode
@@ -8912,7 +8900,7 @@ module hipfort
   !> 
   !>  @param [in] node - instane of the node to get child graph.
   !>  @param [out] pGraph - pointer to get the graph.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
   interface hipGraphChildGraphNodeGetGraph
@@ -8943,7 +8931,7 @@ module hipfort
   !>  @param [in] hGraphExec - instance of the executable graph with the node.
   !>  @param [in] node - node from the graph which was used to instantiate graphExec.
   !>  @param [in] childGraph - child graph with updated parameters.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
   interface hipGraphExecChildGraphNodeSetParams
@@ -8976,7 +8964,7 @@ module hipfort
   !>  @param [in] graph - instane of the graph the node is add to.
   !>  @param [in] pDependencies -  pointer to the node dependenties.
   !>  @param [in] numDependencies - the number of dependencies.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
   interface hipGraphAddEmptyNode
@@ -9011,7 +8999,7 @@ module hipfort
   !>  @param [in] pDependencies -  pointer to the node dependenties.
   !>  @param [in] numDependencies - the number of dependencies.
   !>  @param [in] event - Event for the node.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
   interface hipGraphAddEventRecordNode
@@ -9044,7 +9032,7 @@ module hipfort
   !> 
   !>  @param [in] node -  instane of the node to get event from.
   !>  @param [out] event_out - Pointer to return the event.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
   interface hipGraphEventRecordNodeGetEvent
@@ -9074,7 +9062,7 @@ module hipfort
   !> 
   !>  @param [in] node - instane of the node to set event to.
   !>  @param [in] event - pointer to the event.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
   interface hipGraphEventRecordNodeSetEvent
@@ -9105,7 +9093,7 @@ module hipfort
   !>  @param [in] hGraphExec - instance of the executable graph with the node.
   !>  @param [in] hNode - node from the graph which was used to instantiate graphExec.
   !>  @param [in] event - pointer to the event.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
   interface hipGraphExecEventRecordNodeSetEvent
@@ -9139,7 +9127,7 @@ module hipfort
   !>  @param [in] pDependencies -  pointer to the node dependenties.
   !>  @param [in] numDependencies - the number of dependencies.
   !>  @param [in] event - Event for the node.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
   interface hipGraphAddEventWaitNode
@@ -9172,7 +9160,7 @@ module hipfort
   !> 
   !>  @param [in] node -  instane of the node to get event from.
   !>  @param [out] event_out - Pointer to return the event.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
   interface hipGraphEventWaitNodeGetEvent
@@ -9202,7 +9190,7 @@ module hipfort
   !> 
   !>  @param [in] node - instane of the node to set event to.
   !>  @param [in] event - pointer to the event.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
   interface hipGraphEventWaitNodeSetEvent
@@ -9233,7 +9221,7 @@ module hipfort
   !>  @param [in] hGraphExec - instance of the executable graph with the node.
   !>  @param [in] hNode - node from the graph which was used to instantiate graphExec.
   !>  @param [in] event - pointer to the event.
-  !>  @returns #hipSuccess, #hipErrorInvalidValue
+  !>  @returns hipSuccess, hipErrorInvalidValue
   !>  @warning : This API is marked as beta, meaning, while this is feature complete,
   !>  it is still open to changes and may have outstanding issues.
   interface hipGraphExecEventWaitNodeSetEvent
