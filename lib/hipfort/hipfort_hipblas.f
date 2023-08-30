@@ -24649,9 +24649,11 @@ module hipfort_hipblas
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A X = B & \: \text{not transposed,}\\
-  !>         A^T X = B & \: \text{transposed, or}\\
-  !>         A^H X = B & \: \text{conjugate transposed.}
+  !>         A X = B & \: \text{not transposed,}\newline
+  !>
+  !>         A^T X = B & \: \text{transposed, or}\newline
+  !>
+  !>         A^H X = B & \: \text{conjugate transposed.}\newline
   !>         \end{array}
   !>     \f]
   !> 
@@ -24820,8 +24822,10 @@ module hipfort_hipblas
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A_i X_i = B_i & \: \text{not transposed,}\\
-  !>         A_i^T X_i = B_i & \: \text{transposed, or}\\
+  !>         A_i X_i = B_i & \: \text{not transposed,}\newline
+  !>
+  !>         A_i^T X_i = B_i & \: \text{transposed, or}\newline
+  !>
   !>         A_i^H X_i = B_i & \: \text{conjugate transposed.}
   !>         \end{array}
   !>     \f]
@@ -25006,8 +25010,10 @@ module hipfort_hipblas
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A_i X_i = B_i & \: \text{not transposed,}\\
-  !>         A_i^T X_i = B_i & \: \text{transposed, or}\\
+  !>         A_i X_i = B_i & \: \text{not transposed,}
+  !>
+  !>         A_i^T X_i = B_i & \: \text{transposed, or}
+  !>
   !>         A_i^H X_i = B_i & \: \text{conjugate transposed.}
   !>         \end{array}
   !>     \f]
@@ -25342,7 +25348,8 @@ module hipfort_hipblas
   !> 
   !>     \f[
   !>         A = Q\left[\begin{array}{c}
-  !>         R\\
+  !>         R\newline
+  !>
   !>         0
   !>         \end{array}\right]
   !>     \f]
@@ -25507,7 +25514,8 @@ module hipfort_hipblas
   !> 
   !>     \f[
   !>         A_i = Q_i\left[\begin{array}{c}
-  !>         R_i\\
+  !>         R_i\newline
+  !>
   !>         0
   !>         \end{array}\right]
   !>     \f]
@@ -25682,7 +25690,8 @@ module hipfort_hipblas
   !> 
   !>     \f[
   !>         A_i = Q_i\left[\begin{array}{c}
-  !>         R_i\\
+  !>         R_i\newline
+  !>
   !>         0
   !>         \end{array}\right]
   !>     \f]

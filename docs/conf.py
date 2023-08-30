@@ -53,7 +53,7 @@ with open('../CMakeLists.txt', encoding='utf-8') as f:
 left_nav_title = f"hipfort {version_number} Documentation"
 
 # for PDF output on Read the Docs
-project = "ROCm Documentation"
+project = "hipfort Documentation"
 author = "Advanced Micro Devices, Inc."
 copyright = "Copyright (c) 2023 Advanced Micro Devices, Inc. All rights reserved."
 version = version_number
