@@ -470,10 +470,12 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         H'\left[\begin{array}{c}
-  !>         \text{alpha}\\
+  !>         \text{alpha}\newline
+  !>
   !>         x
   !>         \end{array}\right]=\left[\begin{array}{c}
-  !>         \text{beta}\\
+  !>         \text{beta}\newline
+  !>
   !>         0
   !>         \end{array}\right]
   !>     \f]
@@ -483,7 +485,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         H = I - \text{tau}\left[\begin{array}{c}
-  !>         1\\
+  !>         1\newline
+  !>
   !>         v
   !>         \end{array}\right]\left[\begin{array}{cc}
   !>         1 & v'
@@ -494,7 +497,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \bar{v}=\left[\begin{array}{c}
-  !>         1\\
+  !>         1\newline
+  !>
   !>         v
   !>         \end{array}\right]
   !>     \f]
@@ -621,7 +625,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         H = H_1H_2\cdots H_k & \: \text{if direct indicates forward direction, or} \\
+  !>         H = H_1H_2\cdots H_k & \: \text{if direct indicates forward direction, or} \newline
+  !>
   !>         H = H_k\cdots H_2H_1 & \: \text{if direct indicates backward direction}
   !>         \end{array}
   !>     \f]
@@ -935,9 +940,12 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         HA & \: \text{(No transpose from the left),}\\
-  !>         H'A & \:  \text{(Transpose or conjugate transpose from the left),}\\
-  !>         AH & \: \text{(No transpose from the right), or}\\
+  !>         HA & \: \text{(No transpose from the left),}\newline
+  !>
+  !>         H'A & \:  \text{(Transpose or conjugate transpose from the left),}\newline
+  !>
+  !>         AH & \: \text{(No transpose from the right), or}\newline
+  !>
   !>         AH' & \: \text{(Transpose or conjugate transpose from the right).}
   !>         \end{array}
   !>     \f]
@@ -946,7 +954,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         H = H_1H_2\cdots H_k & \: \text{if direct indicates forward direction, or} \\
+  !>         H = H_1H_2\cdots H_k & \: \text{if direct indicates forward direction, or} \newline
+  !>
   !>         H = H_k\cdots H_2H_1 & \: \text{if direct indicates backward direction}
   !>         \end{array}
   !>     \f]
@@ -1151,7 +1160,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         Q = H_1H_2\cdots H_k, & \text{and} \\
+  !>         Q = H_1H_2\cdots H_k, & \text{and} \newline
+  !>
   !>         P = G_1G_2\cdots G_k.
   !>         \end{array}
   !>     \f]
@@ -1160,7 +1170,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         H_i = I - \text{tauq}[i]\cdot v_iv_i', & \text{and} \\
+  !>         H_i = I - \text{tauq}[i]\cdot v_iv_i', & \text{and} \newline
+  !>
   !>         G_i = I - \text{taup}[i]\cdot u_iu_i'.
   !>         \end{array}
   !>     \f]
@@ -1369,7 +1380,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         Q = H_1H_2\cdots H_k & \text{if uplo indicates lower, or}\\
+  !>         Q = H_1H_2\cdots H_k & \text{if uplo indicates lower, or}\newline
+  !>
   !>         Q = H_nH_{n-1}\cdots H_{n-k+1} & \text{if uplo is upper}.
   !>         \end{array}
   !>     \f]
@@ -1546,13 +1558,16 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         A = \left[ \begin{array}{cc}
-  !>         I & U_{12} \\
+  !>         I & U_{12} \newline
+  !>
   !>         0 & U_{22}
   !>         \end{array} \right] \left[ \begin{array}{cc}
-  !>         A_{11} & 0 \\
+  !>         A_{11} & 0 \newline
+  !>
   !>         0 & D
   !>         \end{array} \right] \left[ \begin{array}{cc}
-  !>         I & 0 \\
+  !>         I & 0 \newline
+  !>
   !>         U_{12}^T & U_{22}^T
   !>         \end{array} \right]
   !>     \f]
@@ -1561,13 +1576,16 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         A = \left[ \begin{array}{cc}
-  !>         L_{11} & 0 \\
+  !>         L_{11} & 0 \newline
+  !>
   !>         L_{21} & I
   !>         \end{array} \right] \left[ \begin{array}{cc}
-  !>         D & 0 \\
+  !>         D & 0 \newline
+  !>
   !>         0 & A_{22}
   !>         \end{array} \right] \left[ \begin{array}{cc}
-  !>         L_{11}^T & L_{21}^T \\
+  !>         L_{11}^T & L_{21}^T \newline
+  !>
   !>         0 & I
   !>         \end{array} \right]
   !>     \f]
@@ -3132,9 +3150,12 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         QC & \: \text{No transpose from the left,}\\
-  !>         Q^TC & \: \text{Transpose from the left,}\\
-  !>         CQ & \: \text{No transpose from the right, and}\\
+  !>         QC & \: \text{No transpose from the left,}\newline
+  !>
+  !>         Q^TC & \: \text{Transpose from the left,}\newline
+  !>
+  !>         CQ & \: \text{No transpose from the right, and}\newline
+  !>
   !>         CQ^T & \: \text{Transpose from the right.}
   !>         \end{array}
   !>     \f]
@@ -3249,9 +3270,12 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         QC & \: \text{No transpose from the left,}\\
-  !>         Q^HC & \: \text{Conjugate transpose from the left,}\\
-  !>         CQ & \: \text{No transpose from the right, and}\\
+  !>         QC & \: \text{No transpose from the left,}\newline
+  !>
+  !>         Q^HC & \: \text{Conjugate transpose from the left,}\newline
+  !>
+  !>         CQ & \: \text{No transpose from the right, and}\newline
+  !>
   !>         CQ^H & \: \text{Conjugate transpose from the right.}
   !>         \end{array}
   !>     \f]
@@ -3367,9 +3391,12 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         QC & \: \text{No transpose from the left,}\\
-  !>         Q^TC & \: \text{Transpose from the left,}\\
-  !>         CQ & \: \text{No transpose from the right, and}\\
+  !>         QC & \: \text{No transpose from the left,}\newline
+  !>
+  !>         Q^TC & \: \text{Transpose from the left,}\newline
+  !>
+  !>         CQ & \: \text{No transpose from the right, and}\newline
+  !>
   !>         CQ^T & \: \text{Transpose from the right.}
   !>         \end{array}
   !>     \f]
@@ -3484,9 +3511,12 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         QC & \: \text{No transpose from the left,}\\
-  !>         Q^HC & \: \text{Conjugate transpose from the left,}\\
-  !>         CQ & \: \text{No transpose from the right, and}\\
+  !>         QC & \: \text{No transpose from the left,}\newline
+  !>
+  !>         Q^HC & \: \text{Conjugate transpose from the left,}\newline
+  !>
+  !>         CQ & \: \text{No transpose from the right, and}\newline
+  !>
   !>         CQ^H & \: \text{Conjugate transpose from the right.}
   !>         \end{array}
   !>     \f]
@@ -3601,9 +3631,12 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         QC & \: \text{No transpose from the left,}\\
-  !>         Q^TC & \: \text{Transpose from the left,}\\
-  !>         CQ & \: \text{No transpose from the right, and}\\
+  !>         QC & \: \text{No transpose from the left,}\newline
+  !>
+  !>         Q^TC & \: \text{Transpose from the left,}\newline
+  !>
+  !>         CQ & \: \text{No transpose from the right, and}\newline
+  !>
   !>         CQ^T & \: \text{Transpose from the right.}
   !>         \end{array}
   !>     \f]
@@ -3719,9 +3752,12 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         QC & \: \text{No transpose from the left,}\\
-  !>         Q^HC & \: \text{Conjugate transpose from the left,}\\
-  !>         CQ & \: \text{No transpose from the right, and}\\
+  !>         QC & \: \text{No transpose from the left,}\newline
+  !>
+  !>         Q^HC & \: \text{Conjugate transpose from the left,}\newline
+  !>
+  !>         CQ & \: \text{No transpose from the right, and}\newline
+  !>
   !>         CQ^H & \: \text{Conjugate transpose from the right.}
   !>         \end{array}
   !>     \f]
@@ -3836,9 +3872,12 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         QC & \: \text{No transpose from the left,}\\
-  !>         Q^TC & \: \text{Transpose from the left,}\\
-  !>         CQ & \: \text{No transpose from the right, and}\\
+  !>         QC & \: \text{No transpose from the left,}\newline
+  !>
+  !>         Q^TC & \: \text{Transpose from the left,}\newline
+  !>
+  !>         CQ & \: \text{No transpose from the right, and}\newline
+  !>
   !>         CQ^T & \: \text{Transpose from the right.}
   !>         \end{array}
   !>     \f]
@@ -3953,9 +3992,12 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         QC & \: \text{No transpose from the left,}\\
-  !>         Q^HC & \: \text{Conjugate transpose from the left,}\\
-  !>         CQ & \: \text{No transpose from the right, and}\\
+  !>         QC & \: \text{No transpose from the left,}\newline
+  !>
+  !>         Q^HC & \: \text{Conjugate transpose from the left,}\newline
+  !>
+  !>         CQ & \: \text{No transpose from the right, and}\newline
+  !>
   !>         CQ^H & \: \text{Conjugate transpose from the right.}
   !>         \end{array}
   !>     \f]
@@ -4070,9 +4112,12 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         QC & \: \text{No transpose from the left,}\\
-  !>         Q^TC & \: \text{Transpose from the left,}\\
-  !>         CQ & \: \text{No transpose from the right, and}\\
+  !>         QC & \: \text{No transpose from the left,}\newline
+  !>
+  !>         Q^TC & \: \text{Transpose from the left,}\newline
+  !>
+  !>         CQ & \: \text{No transpose from the right, and}\newline
+  !>
   !>         CQ^T & \: \text{Transpose from the right.}
   !>         \end{array}
   !>     \f]
@@ -4190,9 +4235,12 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         QC & \: \text{No transpose from the left,}\\
-  !>         Q^HC & \: \text{Conjugate transpose from the left,}\\
-  !>         CQ & \: \text{No transpose from the right, and}\\
+  !>         QC & \: \text{No transpose from the left,}\newline
+  !>
+  !>         Q^HC & \: \text{Conjugate transpose from the left,}\newline
+  !>
+  !>         CQ & \: \text{No transpose from the right, and}\newline
+  !>
   !>         CQ^H & \: \text{Conjugate transpose from the right.}
   !>         \end{array}
   !>     \f]
@@ -4310,9 +4358,12 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         QC & \: \text{No transpose from the left,}\\
-  !>         Q^TC & \: \text{Transpose from the left,}\\
-  !>         CQ & \: \text{No transpose from the right, and}\\
+  !>         QC & \: \text{No transpose from the left,}\newline
+  !>
+  !>         Q^TC & \: \text{Transpose from the left,}\newline
+  !>
+  !>         CQ & \: \text{No transpose from the right, and}\newline
+  !>
   !>         CQ^T & \: \text{Transpose from the right.}
   !>         \end{array}
   !>     \f]
@@ -4430,9 +4481,12 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         QC & \: \text{No transpose from the left,}\\
-  !>         Q^HC & \: \text{Conjugate transpose from the left,}\\
-  !>         CQ & \: \text{No transpose from the right, and}\\
+  !>         QC & \: \text{No transpose from the left,}\newline
+  !>
+  !>         Q^HC & \: \text{Conjugate transpose from the left,}\newline
+  !>
+  !>         CQ & \: \text{No transpose from the right, and}\newline
+  !>
   !>         CQ^H & \: \text{Conjugate transpose from the right.}
   !>         \end{array}
   !>     \f]
@@ -4550,9 +4604,12 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         QC & \: \text{No transpose from the left,}\\
-  !>         Q^TC & \: \text{Transpose from the left,}\\
-  !>         CQ & \: \text{No transpose from the right, and}\\
+  !>         QC & \: \text{No transpose from the left,}\newline
+  !>
+  !>         Q^TC & \: \text{Transpose from the left,}\newline
+  !>
+  !>         CQ & \: \text{No transpose from the right, and}\newline
+  !>
   !>         CQ^T & \: \text{Transpose from the right.}
   !>         \end{array}
   !>     \f]
@@ -4692,9 +4749,12 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         QC & \: \text{No transpose from the left,}\\
-  !>         Q^HC & \: \text{Conjugate transpose from the left,}\\
-  !>         CQ & \: \text{No transpose from the right, and}\\
+  !>         QC & \: \text{No transpose from the left,}\newline
+  !>
+  !>         Q^HC & \: \text{Conjugate transpose from the left,}\newline
+  !>
+  !>         CQ & \: \text{No transpose from the right, and}\newline
+  !>
   !>         CQ^H & \: \text{Conjugate transpose from the right.}
   !>         \end{array}
   !>     \f]
@@ -4831,9 +4891,12 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         QC & \: \text{No transpose from the left,}\\
-  !>         Q^TC & \: \text{Transpose from the left,}\\
-  !>         CQ & \: \text{No transpose from the right, and}\\
+  !>         QC & \: \text{No transpose from the left,}\newline
+  !>
+  !>         Q^TC & \: \text{Transpose from the left,}\newline
+  !>
+  !>         CQ & \: \text{No transpose from the right, and}\newline
+  !>
   !>         CQ^T & \: \text{Transpose from the right.}
   !>         \end{array}
   !>     \f]
@@ -4960,9 +5023,12 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         QC & \: \text{No transpose from the left,}\\
-  !>         Q^HC & \: \text{Conjugate transpose from the left,}\\
-  !>         CQ & \: \text{No transpose from the right, and}\\
+  !>         QC & \: \text{No transpose from the left,}\newline
+  !>
+  !>         Q^HC & \: \text{Conjugate transpose from the left,}\newline
+  !>
+  !>         CQ & \: \text{No transpose from the right, and}\newline
+  !>
   !>         CQ^H & \: \text{Conjugate transpose from the right.}
   !>         \end{array}
   !>     \f]
@@ -7441,7 +7507,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         A = Q\left[\begin{array}{c}
-  !>         R\\
+  !>         R\newline
+  !>
   !>         0
   !>         \end{array}\right]
   !>     \f]
@@ -7584,7 +7651,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         A_j = Q_j\left[\begin{array}{c}
-  !>         R_j\\
+  !>         R_j\newline
+  !>
   !>         0
   !>         \end{array}\right]
   !>     \f]
@@ -7743,7 +7811,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         A_j = Q_j\left[\begin{array}{c}
-  !>         R_j\\
+  !>         R_j\newline
+  !>
   !>         0
   !>         \end{array}\right]
   !>     \f]
@@ -8376,7 +8445,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         A = Q\left[\begin{array}{c}
-  !>         0\\
+  !>         0\newline
+  !>
   !>         L
   !>         \end{array}\right]
   !>     \f]
@@ -8520,7 +8590,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         A_j = Q_j\left[\begin{array}{c}
-  !>         0\\
+  !>         0\newline
+  !>
   !>         L_j
   !>         \end{array}\right]
   !>     \f]
@@ -8680,7 +8751,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         A_j = Q_j\left[\begin{array}{c}
-  !>         0\\
+  !>         0\newline
+  !>
   !>         L_j
   !>         \end{array}\right]
   !>     \f]
@@ -9310,7 +9382,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         A = Q\left[\begin{array}{c}
-  !>         R\\
+  !>         R\newline
+  !>
   !>         0
   !>         \end{array}\right]
   !>     \f]
@@ -9453,7 +9526,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         A_j = Q_j\left[\begin{array}{c}
-  !>         R_j\\
+  !>         R_j\newline
+  !>
   !>         0
   !>         \end{array}\right]
   !>     \f]
@@ -9611,7 +9685,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         A_j = Q_j\left[\begin{array}{c}
-  !>         R_j\\
+  !>         R_j\newline
+  !>
   !>         0
   !>         \end{array}\right]
   !>     \f]
@@ -10243,7 +10318,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         A = Q\left[\begin{array}{c}
-  !>         0\\
+  !>         0\newline
+  !>
   !>         L
   !>         \end{array}\right]
   !>     \f]
@@ -10386,7 +10462,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         A_j = Q_j\left[\begin{array}{c}
-  !>         0\\
+  !>         0\newline
+  !>
   !>         L_j
   !>         \end{array}\right]
   !>     \f]
@@ -10545,7 +10622,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         A_j = Q_j\left[\begin{array}{c}
-  !>         0\\
+  !>         0\newline
+  !>
   !>         L_j
   !>         \end{array}\right]
   !>     \f]
@@ -11182,7 +11260,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         Q = H_1H_2\cdots H_n\:  \text{and} \: P = G_1G_2\cdots G_{n-1}, & \: \text{if}\: m >= n, \:\text{or}\\
+  !>         Q = H_1H_2\cdots H_n\:  \text{and} \: P = G_1G_2\cdots G_{n-1}, & \: \text{if}\: m >= n, \:\text{or}\newline
+  !>
   !>         Q = H_1H_2\cdots H_{m-1}\:  \text{and} \: P = G_1G_2\cdots G_{m}, & \: \text{if}\: m < n.
   !>         \end{array}
   !>     \f]
@@ -11191,7 +11270,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         H_i = I - \text{tauq}[i] \cdot v_i v_i', & \: \text{and}\\
+  !>         H_i = I - \text{tauq}[i] \cdot v_i v_i', & \: \text{and}\newline
+  !>
   !>         G_i = I - \text{taup}[i] \cdot u_i' u_i.
   !>         \end{array}
   !>     \f]
@@ -11357,7 +11437,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         Q_j = H_{j_1}H_{j_2}\cdots H_{j_n}\:  \text{and} \: P_j = G_{j_1}G_{j_2}\cdots G_{j_{n-1}}, & \: \text{if}\: m >= n, \:\text{or}\\
+  !>         Q_j = H_{j_1}H_{j_2}\cdots H_{j_n}\:  \text{and} \: P_j = G_{j_1}G_{j_2}\cdots G_{j_{n-1}}, & \: \text{if}\: m >= n, \:\text{or}\newline
+  !>
   !>         Q_j = H_{j_1}H_{j_2}\cdots H_{j_{m-1}}\:  \text{and} \: P_j = G_{j_1}G_{j_2}\cdots G_{j_m}, & \: \text{if}\: m < n.
   !>         \end{array}
   !>     \f]
@@ -11366,7 +11447,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         H_{j_i} = I - \text{tauq}_j[i] \cdot v_{j_i} v_{j_i}', & \: \text{and}\\
+  !>         H_{j_i} = I - \text{tauq}_j[i] \cdot v_{j_i} v_{j_i}', & \: \text{and}\newline
+  !>
   !>         G_{j_i} = I - \text{taup}_j[i] \cdot u_{j_i}' u_{j_i}.
   !>         \end{array}
   !>     \f]
@@ -11573,7 +11655,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         Q_j = H_{j_1}H_{j_2}\cdots H_{j_n}\:  \text{and} \: P_j = G_{j_1}G_{j_2}\cdots G_{j_{n-1}}, & \: \text{if}\: m >= n, \:\text{or}\\
+  !>         Q_j = H_{j_1}H_{j_2}\cdots H_{j_n}\:  \text{and} \: P_j = G_{j_1}G_{j_2}\cdots G_{j_{n-1}}, & \: \text{if}\: m >= n, \:\text{or}\newline
+  !>
   !>         Q_j = H_{j_1}H_{j_2}\cdots H_{j_{m-1}}\:  \text{and} \: P_j = G_{j_1}G_{j_2}\cdots G_{j_m}, & \: \text{if}\: m < n.
   !>         \end{array}
   !>     \f]
@@ -11582,7 +11665,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         H_{j_i} = I - \text{tauq}_j[i] \cdot v_{j_i} v_{j_i}', & \: \text{and}\\
+  !>         H_{j_i} = I - \text{tauq}_j[i] \cdot v_{j_i} v_{j_i}', & \: \text{and}\newline
+  !>
   !>         G_{j_i} = I - \text{taup}_j[i] \cdot u_{j_i}' u_{j_i}.
   !>         \end{array}
   !>     \f]
@@ -11796,7 +11880,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         Q = H_1H_2\cdots H_n\:  \text{and} \: P = G_1G_2\cdots G_{n-1}, & \: \text{if}\: m >= n, \:\text{or}\\
+  !>         Q = H_1H_2\cdots H_n\:  \text{and} \: P = G_1G_2\cdots G_{n-1}, & \: \text{if}\: m >= n, \:\text{or}\newline
+  !>
   !>         Q = H_1H_2\cdots H_{m-1}\:  \text{and} \: P = G_1G_2\cdots G_{m}, & \: \text{if}\: m < n.
   !>         \end{array}
   !>     \f]
@@ -11805,7 +11890,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         H_i = I - \text{tauq}[i] \cdot v_i v_i', & \: \text{and}\\
+  !>         H_i = I - \text{tauq}[i] \cdot v_i v_i', & \: \text{and}\newline
+  !>
   !>         G_i = I - \text{taup}[i] \cdot u_i' u_i.
   !>         \end{array}
   !>     \f]
@@ -11971,7 +12057,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         Q_j = H_{j_1}H_{j_2}\cdots H_{j_n}\:  \text{and} \: P_j = G_{j_1}G_{j_2}\cdots G_{j_{n-1}}, & \: \text{if}\: m >= n, \:\text{or}\\
+  !>         Q_j = H_{j_1}H_{j_2}\cdots H_{j_n}\:  \text{and} \: P_j = G_{j_1}G_{j_2}\cdots G_{j_{n-1}}, & \: \text{if}\: m >= n, \:\text{or}\newline
+  !>
   !>         Q_j = H_{j_1}H_{j_2}\cdots H_{j_{m-1}}\:  \text{and} \: P_j = G_{j_1}G_{j_2}\cdots G_{j_m}, & \: \text{if}\: m < n.
   !>         \end{array}
   !>     \f]
@@ -11980,7 +12067,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         H_{j_i} = I - \text{tauq}_j[i] \cdot v_{j_i} v_{j_i}', & \: \text{and}\\
+  !>         H_{j_i} = I - \text{tauq}_j[i] \cdot v_{j_i} v_{j_i}', & \: \text{and}\newline
+  !>
   !>         G_{j_i} = I - \text{taup}_j[i] \cdot u_{j_i}' u_{j_i}.
   !>         \end{array}
   !>     \f]
@@ -12187,7 +12275,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         Q_j = H_{j_1}H_{j_2}\cdots H_{j_n}\:  \text{and} \: P_j = G_{j_1}G_{j_2}\cdots G_{j_{n-1}}, & \: \text{if}\: m >= n, \:\text{or}\\
+  !>         Q_j = H_{j_1}H_{j_2}\cdots H_{j_n}\:  \text{and} \: P_j = G_{j_1}G_{j_2}\cdots G_{j_{n-1}}, & \: \text{if}\: m >= n, \:\text{or}\newline
+  !>
   !>         Q_j = H_{j_1}H_{j_2}\cdots H_{j_{m-1}}\:  \text{and} \: P_j = G_{j_1}G_{j_2}\cdots G_{j_m}, & \: \text{if}\: m < n.
   !>         \end{array}
   !>     \f]
@@ -12196,7 +12285,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         H_{j_i} = I - \text{tauq}_j[i] \cdot v_{j_i} v_{j_i}', & \: \text{and}\\
+  !>         H_{j_i} = I - \text{tauq}_j[i] \cdot v_{j_i} v_{j_i}', & \: \text{and}\newline
+  !>
   !>         G_{j_i} = I - \text{taup}_j[i] \cdot u_{j_i}' u_{j_i}.
   !>         \end{array}
   !>     \f]
@@ -12401,8 +12491,10 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A X = B & \: \text{not transposed,}\\
-  !>         A^T X = B & \: \text{transposed, or}\\
+  !>         A X = B & \: \text{not transposed,}\newline
+  !>
+  !>         A^T X = B & \: \text{transposed, or}\newline
+  !>
   !>         A^H X = B & \: \text{conjugate transposed.}
   !>         \end{array}
   !>     \f]
@@ -12550,8 +12642,10 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A_j X_j = B_j & \: \text{not transposed,}\\
-  !>         A_j^T X_j = B_j & \: \text{transposed, or}\\
+  !>         A_j X_j = B_j & \: \text{not transposed,}\newline
+  !>
+  !>         A_j^T X_j = B_j & \: \text{transposed, or}\newline
+  !>
   !>         A_j^H X_j = B_j & \: \text{conjugate transposed.}
   !>         \end{array}
   !>     \f]
@@ -12714,8 +12808,10 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A_j X_j = B_j & \: \text{not transposed,}\\
-  !>         A_j^T X_j = B_j & \: \text{transposed, or}\\
+  !>         A_j X_j = B_j & \: \text{not transposed,}\newline
+  !>
+  !>         A_j^T X_j = B_j & \: \text{transposed, or}\newline
+  !>
   !>         A_j^H X_j = B_j & \: \text{conjugate transposed.}
   !>         \end{array}
   !>     \f]
@@ -14183,7 +14279,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A X = B & \: \text{not transposed, or}\\
+  !>         A X = B & \: \text{not transposed, or}\newline
+  !>
   !>         A' X = B & \: \text{transposed if real, or conjugate transposed if complex}
   !>         \end{array}
   !>     \f]
@@ -14351,7 +14448,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A_i X_i = B_i & \: \text{not transposed, or}\\
+  !>         A_i X_i = B_i & \: \text{not transposed, or}\newline
+  !>
   !>         A_i' X_i = B_i & \: \text{transposed if real, or conjugate transposed if complex}
   !>         \end{array}
   !>     \f]
@@ -14527,7 +14625,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A_i X_i = B_i & \: \text{not transposed, or}\\
+  !>         A_i X_i = B_i & \: \text{not transposed, or}\newline
+  !>
   !>         A_i' X_i = B_i & \: \text{transposed if real, or conjugate transposed if complex}
   !>         \end{array}
   !>     \f]
@@ -14720,7 +14819,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A = U'U & \: \text{if uplo is upper, or}\\
+  !>         A = U'U & \: \text{if uplo is upper, or}\newline
+  !>
   !>         A = LL' & \: \text{if uplo is lower.}
   !>         \end{array}
   !>     \f]
@@ -14849,7 +14949,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A_i = U_i'U_i & \: \text{if uplo is upper, or}\\
+  !>         A_i = U_i'U_i & \: \text{if uplo is upper, or}\newline
+  !>
   !>         A_i = L_iL_i' & \: \text{if uplo is lower.}
   !>         \end{array}
   !>     \f]
@@ -14985,7 +15086,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A_i = U_i'U_i & \: \text{if uplo is upper, or}\\
+  !>         A_i = U_i'U_i & \: \text{if uplo is upper, or}\newline
+  !>
   !>         A_i = L_iL_i' & \: \text{if uplo is lower.}
   !>         \end{array}
   !>     \f]
@@ -15129,7 +15231,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A = U'U & \: \text{if uplo is upper, or}\\
+  !>         A = U'U & \: \text{if uplo is upper, or}\newline
+  !>
   !>         A = LL' & \: \text{if uplo is lower.}
   !>         \end{array}
   !>     \f]
@@ -15258,7 +15361,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A_i = U_i'U_i & \: \text{if uplo is upper, or}\\
+  !>         A_i = U_i'U_i & \: \text{if uplo is upper, or}\newline
+  !>
   !>         A_i = L_iL_i' & \: \text{if uplo is lower.}
   !>         \end{array}
   !>     \f]
@@ -15394,7 +15498,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A_i = U_i'U_i & \: \text{if uplo is upper, or}\\
+  !>         A_i = U_i'U_i & \: \text{if uplo is upper, or}\newline
+  !>
   !>         A_i = L_iL_i' & \: \text{if uplo is lower.}
   !>         \end{array}
   !>     \f]
@@ -15541,7 +15646,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A = U'U & \: \text{if uplo is upper, or}\\
+  !>         A = U'U & \: \text{if uplo is upper, or}\newline
+  !>
   !>         A = LL' & \: \text{if uplo is lower.}
   !>         \end{array}
   !>     \f]
@@ -15690,7 +15796,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A_j = U_j'U_j & \: \text{if uplo is upper, or}\\
+  !>         A_j = U_j'U_j & \: \text{if uplo is upper, or}\newline
+  !>
   !>         A_j = L_jL_j' & \: \text{if uplo is lower.}
   !>         \end{array}
   !>     \f]
@@ -15846,7 +15953,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A_j = U_j'U_j & \: \text{if uplo is upper, or}\\
+  !>         A_j = U_j'U_j & \: \text{if uplo is upper, or}\newline
+  !>
   !>         A_j = L_jL_j' & \: \text{if uplo is lower.}
   !>         \end{array}
   !>     \f]
@@ -16495,7 +16603,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A^{-1} = U^{-1} {U^{-1}}' & \: \text{if uplo is upper, or}\\
+  !>         A^{-1} = U^{-1} {U^{-1}}' & \: \text{if uplo is upper, or}\newline
+  !>
   !>         A^{-1} = {L^{-1}}' L^{-1} & \: \text{if uplo is lower.}
   !>         \end{array}
   !>     \f]
@@ -16623,7 +16732,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A_i^{-1} = U_i^{-1} {U_i^{-1}}' & \: \text{if uplo is upper, or}\\
+  !>         A_i^{-1} = U_i^{-1} {U_i^{-1}}' & \: \text{if uplo is upper, or}\newline
+  !>
   !>         A_i^{-1} = {L_i^{-1}}' L_i^{-1} & \: \text{if uplo is lower.}
   !>         \end{array}
   !>     \f]
@@ -16758,7 +16868,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A_i^{-1} = U_i^{-1} {U_i^{-1}}' & \: \text{if uplo is upper, or}\\
+  !>         A_i^{-1} = U_i^{-1} {U_i^{-1}}' & \: \text{if uplo is upper, or}\newline
+  !>
   !>         A_i^{-1} = {L_i^{-1}}' L_i^{-1} & \: \text{if uplo is lower.}
   !>         \end{array}
   !>     \f]
@@ -17699,7 +17810,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         Q = H_1H_2\cdots H_{n-1} & \: \text{if uplo indicates lower, or}\\
+  !>         Q = H_1H_2\cdots H_{n-1} & \: \text{if uplo indicates lower, or}\newline
+  !>
   !>         Q = H_{n-1}H_{n-2}\cdots H_1 & \: \text{if uplo indicates upper.}
   !>         \end{array}
   !>     \f]
@@ -17812,7 +17924,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         Q = H_1H_2\cdots H_{n-1} & \: \text{if uplo indicates lower, or}\\
+  !>         Q = H_1H_2\cdots H_{n-1} & \: \text{if uplo indicates lower, or}\newline
+  !>
   !>         Q = H_{n-1}H_{n-2}\cdots H_1 & \: \text{if uplo indicates upper.}
   !>         \end{array}
   !>     \f]
@@ -17925,7 +18038,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         Q_j = H_{j_1}H_{j_2}\cdots H_{j_{n-1}} & \: \text{if uplo indicates lower, or}\\
+  !>         Q_j = H_{j_1}H_{j_2}\cdots H_{j_{n-1}} & \: \text{if uplo indicates lower, or}\newline
+  !>
   !>         Q_j = H_{j_{n-1}}H_{j_{n-2}}\cdots H_{j_1} & \: \text{if uplo indicates upper.}
   !>         \end{array}
   !>     \f]
@@ -18062,7 +18176,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         Q_j = H_{j_1}H_{j_2}\cdots H_{j_{n-1}} & \: \text{if uplo indicates lower, or}\\
+  !>         Q_j = H_{j_1}H_{j_2}\cdots H_{j_{n-1}} & \: \text{if uplo indicates lower, or}\newline
+  !>
   !>         Q_j = H_{j_{n-1}}H_{j_{n-2}}\cdots H_{j_1} & \: \text{if uplo indicates upper.}
   !>         \end{array}
   !>     \f]
@@ -18199,7 +18314,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         Q_j = H_{j_1}H_{j_2}\cdots H_{j_{n-1}} & \: \text{if uplo indicates lower, or}\\
+  !>         Q_j = H_{j_1}H_{j_2}\cdots H_{j_{n-1}} & \: \text{if uplo indicates lower, or}\newline
+  !>
   !>         Q_j = H_{j_{n-1}}H_{j_{n-2}}\cdots H_{j_1} & \: \text{if uplo indicates upper.}
   !>         \end{array}
   !>     \f]
@@ -18342,7 +18458,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         Q_j = H_{j_1}H_{j_2}\cdots H_{j_{n-1}} & \: \text{if uplo indicates lower, or}\\
+  !>         Q_j = H_{j_1}H_{j_2}\cdots H_{j_{n-1}} & \: \text{if uplo indicates lower, or}\newline
+  !>
   !>         Q_j = H_{j_{n-1}}H_{j_{n-2}}\cdots H_{j_1} & \: \text{if uplo indicates upper.}
   !>         \end{array}
   !>     \f]
@@ -18485,7 +18602,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         Q = H_1H_2\cdots H_{n-1} & \: \text{if uplo indicates lower, or}\\
+  !>         Q = H_1H_2\cdots H_{n-1} & \: \text{if uplo indicates lower, or}\newline
+  !>
   !>         Q = H_{n-1}H_{n-2}\cdots H_1 & \: \text{if uplo indicates upper.}
   !>         \end{array}
   !>     \f]
@@ -18598,7 +18716,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         Q = H_1H_2\cdots H_{n-1} & \: \text{if uplo indicates lower, or}\\
+  !>         Q = H_1H_2\cdots H_{n-1} & \: \text{if uplo indicates lower, or}\newline
+  !>
   !>         Q = H_{n-1}H_{n-2}\cdots H_1 & \: \text{if uplo indicates upper.}
   !>         \end{array}
   !>     \f]
@@ -18711,7 +18830,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         Q_j = H_{j_1}H_{j_2}\cdots H_{j_{n-1}} & \: \text{if uplo indicates lower, or}\\
+  !>         Q_j = H_{j_1}H_{j_2}\cdots H_{j_{n-1}} & \: \text{if uplo indicates lower, or}\newline
+  !>
   !>         Q_j = H_{j_{n-1}}H_{j_{n-2}}\cdots H_{j_1} & \: \text{if uplo indicates upper.}
   !>         \end{array}
   !>     \f]
@@ -18848,7 +18968,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         Q_j = H_{j_1}H_{j_2}\cdots H_{j_{n-1}} & \: \text{if uplo indicates lower, or}\\
+  !>         Q_j = H_{j_1}H_{j_2}\cdots H_{j_{n-1}} & \: \text{if uplo indicates lower, or}\newline
+  !>
   !>         Q_j = H_{j_{n-1}}H_{j_{n-2}}\cdots H_{j_1} & \: \text{if uplo indicates upper.}
   !>         \end{array}
   !>     \f]
@@ -18985,7 +19106,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         Q_j = H_{j_1}H_{j_2}\cdots H_{j_{n-1}} & \: \text{if uplo indicates lower, or}\\
+  !>         Q_j = H_{j_1}H_{j_2}\cdots H_{j_{n-1}} & \: \text{if uplo indicates lower, or}\newline
+  !>
   !>         Q_j = H_{j_{n-1}}H_{j_{n-2}}\cdots H_{j_1} & \: \text{if uplo indicates upper.}
   !>         \end{array}
   !>     \f]
@@ -19128,7 +19250,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         Q_j = H_{j_1}H_{j_2}\cdots H_{j_{n-1}} & \: \text{if uplo indicates lower, or}\\
+  !>         Q_j = H_{j_1}H_{j_2}\cdots H_{j_{n-1}} & \: \text{if uplo indicates lower, or}\newline
+  !>
   !>         Q_j = H_{j_{n-1}}H_{j_{n-2}}\cdots H_{j_1} & \: \text{if uplo indicates upper.}
   !>         \end{array}
   !>     \f]
@@ -19265,8 +19388,10 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A X = \lambda B X & \: \text{1st form,}\\
-  !>         A B X = \lambda X & \: \text{2nd form, or}\\
+  !>         A X = \lambda B X & \: \text{1st form,}\newline
+  !>
+  !>         A B X = \lambda X & \: \text{2nd form, or}\newline
+  !>
   !>         B A X = \lambda X & \: \text{3rd form,}
   !>         \end{array}
   !>     \f]
@@ -19277,7 +19402,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         U^{-T} A U^{-1}, & \: \text{or}\\
+  !>         U^{-T} A U^{-1}, & \: \text{or}\newline
+  !>
   !>         L^{-1} A L^{-T},
   !>         \end{array}
   !>     \f]
@@ -19289,7 +19415,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         U A U^T, & \: \text{or}\\
+  !>         U A U^T, & \: \text{or}\newline
+  !>
   !>         L^T A L,
   !>         \end{array}
   !>     \f]
@@ -19383,8 +19510,10 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A X = \lambda B X & \: \text{1st form,}\\
-  !>         A B X = \lambda X & \: \text{2nd form, or}\\
+  !>         A X = \lambda B X & \: \text{1st form,}\newline
+  !>
+  !>         A B X = \lambda X & \: \text{2nd form, or}\newline
+  !>
   !>         B A X = \lambda X & \: \text{3rd form,}
   !>         \end{array}
   !>     \f]
@@ -19395,7 +19524,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         U^{-H} A U^{-1}, & \: \text{or}\\
+  !>         U^{-H} A U^{-1}, & \: \text{or}\newline
+  !>
   !>         L^{-1} A L^{-H},
   !>         \end{array}
   !>     \f]
@@ -19407,7 +19537,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         U A U^H, & \: \text{or}\\
+  !>         U A U^H, & \: \text{or}\newline
+  !>
   !>         L^H A L,
   !>         \end{array}
   !>     \f]
@@ -19502,8 +19633,10 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A_i X_i = \lambda B_i X_i & \: \text{1st form,}\\
-  !>         A_i B_i X_i = \lambda X_i & \: \text{2nd form, or}\\
+  !>         A_i X_i = \lambda B_i X_i & \: \text{1st form,}\newline
+  !>
+  !>         A_i B_i X_i = \lambda X_i & \: \text{2nd form, or}\newline
+  !>
   !>         B_i A_i X_i = \lambda X_i & \: \text{3rd form,}
   !>         \end{array}
   !>     \f]
@@ -19514,7 +19647,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         U_i^{-T} A_i U_i^{-1}, & \: \text{or}\\
+  !>         U_i^{-T} A_i U_i^{-1}, & \: \text{or}\newline
+  !>
   !>         L_i^{-1} A_i L_i^{-T},
   !>         \end{array}
   !>     \f]
@@ -19526,7 +19660,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         U_i A_i U_i^T, & \: \text{or}\\
+  !>         U_i A_i U_i^T, & \: \text{or}\newline
+  !>
   !>         L_i^T A_i L_i,
   !>         \end{array}
   !>     \f]
@@ -19626,8 +19761,10 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A_i X_i = \lambda B_i X_i & \: \text{1st form,}\\
-  !>         A_i B_i X_i = \lambda X_i & \: \text{2nd form, or}\\
+  !>         A_i X_i = \lambda B_i X_i & \: \text{1st form,}\newline
+  !>
+  !>         A_i B_i X_i = \lambda X_i & \: \text{2nd form, or}\newline
+  !>
   !>         B_i A_i X_i = \lambda X_i & \: \text{3rd form,}
   !>         \end{array}
   !>     \f]
@@ -19638,7 +19775,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         U_i^{-H} A_i U_i^{-1}, & \: \text{or}\\
+  !>         U_i^{-H} A_i U_i^{-1}, & \: \text{or}\newline
+  !>
   !>         L_i^{-1} A_i L_i^{-H},
   !>         \end{array}
   !>     \f]
@@ -19650,7 +19788,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         U_i A_i U_i^H, & \: \text{or}\\
+  !>         U_i A_i U_i^H, & \: \text{or}\newline
+  !>
   !>         L_i^H A_i L_i,
   !>         \end{array}
   !>     \f]
@@ -19750,8 +19889,10 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A_i X_i = \lambda B_i X_i & \: \text{1st form,}\\
-  !>         A_i B_i X_i = \lambda X_i & \: \text{2nd form, or}\\
+  !>         A_i X_i = \lambda B_i X_i & \: \text{1st form,}\newline
+  !>
+  !>         A_i B_i X_i = \lambda X_i & \: \text{2nd form, or}\newline
+  !>
   !>         B_i A_i X_i = \lambda X_i & \: \text{3rd form,}
   !>         \end{array}
   !>     \f]
@@ -19762,7 +19903,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         U_i^{-T} A_i U_i^{-1}, & \: \text{or}\\
+  !>         U_i^{-T} A_i U_i^{-1}, & \: \text{or}\newline
+  !>
   !>         L_i^{-1} A_i L_i^{-T},
   !>         \end{array}
   !>     \f]
@@ -19774,7 +19916,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         U_i A_i U_i^T, & \: \text{or}\\
+  !>         U_i A_i U_i^T, & \: \text{or}\newline
+  !>
   !>         L_i^T A_i L_i,
   !>         \end{array}
   !>     \f]
@@ -19886,8 +20029,10 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A_i X_i = \lambda B_i X_i & \: \text{1st form,}\\
-  !>         A_i B_i X_i = \lambda X_i & \: \text{2nd form, or}\\
+  !>         A_i X_i = \lambda B_i X_i & \: \text{1st form,}\newline
+  !>
+  !>         A_i B_i X_i = \lambda X_i & \: \text{2nd form, or}\newline
+  !>
   !>         B_i A_i X_i = \lambda X_i & \: \text{3rd form,}
   !>         \end{array}
   !>     \f]
@@ -19898,7 +20043,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         U_i^{-H} A_i U_i^{-1}, & \: \text{or}\\
+  !>         U_i^{-H} A_i U_i^{-1}, & \: \text{or}\newline
+  !>
   !>         L_i^{-1} A_i L_i^{-H},
   !>         \end{array}
   !>     \f]
@@ -19910,7 +20056,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         U_i A_i U_i^H, & \: \text{or}\\
+  !>         U_i A_i U_i^H, & \: \text{or}\newline
+  !>
   !>         L_i^H A_i L_i,
   !>         \end{array}
   !>     \f]
@@ -20022,8 +20169,10 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A X = \lambda B X & \: \text{1st form,}\\
-  !>         A B X = \lambda X & \: \text{2nd form, or}\\
+  !>         A X = \lambda B X & \: \text{1st form,}\newline
+  !>
+  !>         A B X = \lambda X & \: \text{2nd form, or}\newline
+  !>
   !>         B A X = \lambda X & \: \text{3rd form,}
   !>         \end{array}
   !>     \f]
@@ -20034,7 +20183,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         U^{-T} A U^{-1}, & \: \text{or}\\
+  !>         U^{-T} A U^{-1}, & \: \text{or}\newline
+  !>
   !>         L^{-1} A L^{-T},
   !>         \end{array}
   !>     \f]
@@ -20046,7 +20196,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         U A U^T, & \: \text{or}\\
+  !>         U A U^T, & \: \text{or}\newline
+  !>
   !>         L^T A L,
   !>         \end{array}
   !>     \f]
@@ -20140,8 +20291,10 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A X = \lambda B X & \: \text{1st form,}\\
-  !>         A B X = \lambda X & \: \text{2nd form, or}\\
+  !>         A X = \lambda B X & \: \text{1st form,}\newline
+  !>
+  !>         A B X = \lambda X & \: \text{2nd form, or}\newline
+  !>
   !>         B A X = \lambda X & \: \text{3rd form,}
   !>         \end{array}
   !>     \f]
@@ -20152,7 +20305,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         U^{-H} A U^{-1}, & \: \text{or}\\
+  !>         U^{-H} A U^{-1}, & \: \text{or}\newline
+  !>
   !>         L^{-1} A L^{-H},
   !>         \end{array}
   !>     \f]
@@ -20164,7 +20318,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         U A U^H, & \: \text{or}\\
+  !>         U A U^H, & \: \text{or}\newline
+  !>
   !>         L^H A L,
   !>         \end{array}
   !>     \f]
@@ -20259,8 +20414,10 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A_i X_i = \lambda B_i X_i & \: \text{1st form,}\\
-  !>         A_i B_i X_i = \lambda X_i & \: \text{2nd form, or}\\
+  !>         A_i X_i = \lambda B_i X_i & \: \text{1st form,}\newline
+  !>
+  !>         A_i B_i X_i = \lambda X_i & \: \text{2nd form, or}\newline
+  !>
   !>         B_i A_i X_i = \lambda X_i & \: \text{3rd form,}
   !>         \end{array}
   !>     \f]
@@ -20271,7 +20428,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         U_i^{-T} A_i U_i^{-1}, & \: \text{or}\\
+  !>         U_i^{-T} A_i U_i^{-1}, & \: \text{or}\newline
+  !>
   !>         L_i^{-1} A_i L_i^{-T},
   !>         \end{array}
   !>     \f]
@@ -20283,7 +20441,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         U_i A_i U_i^T, & \: \text{or}\\
+  !>         U_i A_i U_i^T, & \: \text{or}\newline
+  !>
   !>         L_i^T A_i L_i,
   !>         \end{array}
   !>     \f]
@@ -20383,8 +20542,10 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A_i X_i = \lambda B_i X_i & \: \text{1st form,}\\
-  !>         A_i B_i X_i = \lambda X_i & \: \text{2nd form, or}\\
+  !>         A_i X_i = \lambda B_i X_i & \: \text{1st form,}\newline
+  !>
+  !>         A_i B_i X_i = \lambda X_i & \: \text{2nd form, or}\newline
+  !>
   !>         B_i A_i X_i = \lambda X_i & \: \text{3rd form,}
   !>         \end{array}
   !>     \f]
@@ -20395,7 +20556,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         U_i^{-H} A_i U_i^{-1}, & \: \text{or}\\
+  !>         U_i^{-H} A_i U_i^{-1}, & \: \text{or}\newline
+  !>
   !>         L_i^{-1} A_i L_i^{-H},
   !>         \end{array}
   !>     \f]
@@ -20407,7 +20569,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         U_i A_i U_i^H, & \: \text{or}\\
+  !>         U_i A_i U_i^H, & \: \text{or}\newline
+  !>
   !>         L_i^H A_i L_i,
   !>         \end{array}
   !>     \f]
@@ -20507,8 +20670,10 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A_i X_i = \lambda B_i X_i & \: \text{1st form,}\\
-  !>         A_i B_i X_i = \lambda X_i & \: \text{2nd form, or}\\
+  !>         A_i X_i = \lambda B_i X_i & \: \text{1st form,}\newline
+  !>
+  !>         A_i B_i X_i = \lambda X_i & \: \text{2nd form, or}\newline
+  !>
   !>         B_i A_i X_i = \lambda X_i & \: \text{3rd form,}
   !>         \end{array}
   !>     \f]
@@ -20519,7 +20684,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         U_i^{-T} A_i U_i^{-1}, & \: \text{or}\\
+  !>         U_i^{-T} A_i U_i^{-1}, & \: \text{or}\newline
+  !>
   !>         L_i^{-1} A_i L_i^{-T},
   !>         \end{array}
   !>     \f]
@@ -20531,7 +20697,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         U_i A_i U_i^T, & \: \text{or}\\
+  !>         U_i A_i U_i^T, & \: \text{or}\newline
+  !>
   !>         L_i^T A_i L_i,
   !>         \end{array}
   !>     \f]
@@ -20643,8 +20810,10 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A_i X_i = \lambda B_i X_i & \: \text{1st form,}\\
-  !>         A_i B_i X_i = \lambda X_i & \: \text{2nd form, or}\\
+  !>         A_i X_i = \lambda B_i X_i & \: \text{1st form,}\newline
+  !>
+  !>         A_i B_i X_i = \lambda X_i & \: \text{2nd form, or}\newline
+  !>
   !>         B_i A_i X_i = \lambda X_i & \: \text{3rd form,}
   !>         \end{array}
   !>     \f]
@@ -20655,7 +20824,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         U_i^{-H} A_i U_i^{-1}, & \: \text{or}\\
+  !>         U_i^{-H} A_i U_i^{-1}, & \: \text{or}\newline
+  !>
   !>         L_i^{-1} A_i L_i^{-H},
   !>         \end{array}
   !>     \f]
@@ -20667,7 +20837,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         U_i A_i U_i^H, & \: \text{or}\\
+  !>         U_i A_i U_i^H, & \: \text{or}\newline
+  !>
   !>         L_i^H A_i L_i,
   !>         \end{array}
   !>     \f]
@@ -22111,8 +22282,10 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A X = \lambda B X & \: \text{1st form,}\\
-  !>         A B X = \lambda X & \: \text{2nd form, or}\\
+  !>         A X = \lambda B X & \: \text{1st form,}\newline
+  !>
+  !>         A B X = \lambda X & \: \text{2nd form, or}\newline
+  !>
   !>         B A X = \lambda X & \: \text{3rd form,}
   !>         \end{array}
   !>     \f]
@@ -22124,7 +22297,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         Z^T B Z=I & \: \text{if 1st or 2nd form, or}\\
+  !>         Z^T B Z=I & \: \text{if 1st or 2nd form, or}\newline
+  !>
   !>         Z^T B^{-1} Z=I & \: \text{if 3rd form.}
   !>         \end{array}
   !>     \f]
@@ -22248,8 +22422,10 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A X = \lambda B X & \: \text{1st form,}\\
-  !>         A B X = \lambda X & \: \text{2nd form, or}\\
+  !>         A X = \lambda B X & \: \text{1st form,}\newline
+  !>
+  !>         A B X = \lambda X & \: \text{2nd form, or}\newline
+  !>
   !>         B A X = \lambda X & \: \text{3rd form,}
   !>         \end{array}
   !>     \f]
@@ -22261,7 +22437,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         Z^H B Z=I & \: \text{if 1st or 2nd form, or}\\
+  !>         Z^H B Z=I & \: \text{if 1st or 2nd form, or}\newline
+  !>
   !>         Z^H B^{-1} Z=I & \: \text{if 3rd form.}
   !>         \end{array}
   !>     \f]
@@ -22385,8 +22562,10 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A_i X_i = \lambda B_i X_i & \: \text{1st form,}\\
-  !>         A_i B_i X_i = \lambda X_i & \: \text{2nd form, or}\\
+  !>         A_i X_i = \lambda B_i X_i & \: \text{1st form,}\newline
+  !>
+  !>         A_i B_i X_i = \lambda X_i & \: \text{2nd form, or}\newline
+  !>
   !>         B_i A_i X_i = \lambda X_i & \: \text{3rd form,}
   !>         \end{array}
   !>     \f]
@@ -22398,7 +22577,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         Z_i^T B_i Z_i=I & \: \text{if 1st or 2nd form, or}\\
+  !>         Z_i^T B_i Z_i=I & \: \text{if 1st or 2nd form, or}\newline
+  !>
   !>         Z_i^T B_i^{-1} Z_i=I & \: \text{if 3rd form.}
   !>         \end{array}
   !>     \f]
@@ -22539,8 +22719,10 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A_i X_i = \lambda B_i X_i & \: \text{1st form,}\\
-  !>         A_i B_i X_i = \lambda X_i & \: \text{2nd form, or}\\
+  !>         A_i X_i = \lambda B_i X_i & \: \text{1st form,}\newline
+  !>
+  !>         A_i B_i X_i = \lambda X_i & \: \text{2nd form, or}\newline
+  !>
   !>         B_i A_i X_i = \lambda X_i & \: \text{3rd form,}
   !>         \end{array}
   !>     \f]
@@ -22552,7 +22734,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         Z_i^H B_i Z_i=I & \: \text{if 1st or 2nd form, or}\\
+  !>         Z_i^H B_i Z_i=I & \: \text{if 1st or 2nd form, or}\newline
+  !>
   !>         Z_i^H B_i^{-1} Z_i=I & \: \text{if 3rd form.}
   !>         \end{array}
   !>     \f]
@@ -22693,8 +22876,10 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A_i X_i = \lambda B_i X_i & \: \text{1st form,}\\
-  !>         A_i B_i X_i = \lambda X_i & \: \text{2nd form, or}\\
+  !>         A_i X_i = \lambda B_i X_i & \: \text{1st form,}\newline
+  !>
+  !>         A_i B_i X_i = \lambda X_i & \: \text{2nd form, or}\newline
+  !>
   !>         B_i A_i X_i = \lambda X_i & \: \text{3rd form,}
   !>         \end{array}
   !>     \f]
@@ -22706,7 +22891,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         Z_i^T B_i Z_i=I & \: \text{if 1st or 2nd form, or}\\
+  !>         Z_i^T B_i Z_i=I & \: \text{if 1st or 2nd form, or}\newline
+  !>
   !>         Z_i^T B_i^{-1} Z_i=I & \: \text{if 3rd form.}
   !>         \end{array}
   !>     \f]
@@ -22859,8 +23045,10 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A_i X_i = \lambda B_i X_i & \: \text{1st form,}\\
-  !>         A_i B_i X_i = \lambda X_i & \: \text{2nd form, or}\\
+  !>         A_i X_i = \lambda B_i X_i & \: \text{1st form,}\newline
+  !>
+  !>         A_i B_i X_i = \lambda X_i & \: \text{2nd form, or}\newline
+  !>
   !>         B_i A_i X_i = \lambda X_i & \: \text{3rd form,}
   !>         \end{array}
   !>     \f]
@@ -22872,7 +23060,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         Z_i^H B_i Z_i=I & \: \text{if 1st or 2nd form, or}\\
+  !>         Z_i^H B_i Z_i=I & \: \text{if 1st or 2nd form, or}\newline
+  !>
   !>         Z_i^H B_i^{-1} Z_i=I & \: \text{if 3rd form.}
   !>         \end{array}
   !>     \f]
@@ -23025,8 +23214,10 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A X = \lambda B X & \: \text{1st form,}\\
-  !>         A B X = \lambda X & \: \text{2nd form, or}\\
+  !>         A X = \lambda B X & \: \text{1st form,}\newline
+  !>
+  !>         A B X = \lambda X & \: \text{2nd form, or}\newline
+  !>
   !>         B A X = \lambda X & \: \text{3rd form,}
   !>         \end{array}
   !>     \f]
@@ -23038,7 +23229,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         Z^T B Z=I & \: \text{if 1st or 2nd form, or}\\
+  !>         Z^T B Z=I & \: \text{if 1st or 2nd form, or}\newline
+  !>
   !>         Z^T B^{-1} Z=I & \: \text{if 3rd form.}
   !>         \end{array}
   !>     \f]
@@ -23164,8 +23356,10 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A X = \lambda B X & \: \text{1st form,}\\
-  !>         A B X = \lambda X & \: \text{2nd form, or}\\
+  !>         A X = \lambda B X & \: \text{1st form,}\newline
+  !>
+  !>         A B X = \lambda X & \: \text{2nd form, or}\newline
+  !>
   !>         B A X = \lambda X & \: \text{3rd form,}
   !>         \end{array}
   !>     \f]
@@ -23177,7 +23371,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         Z^H B Z=I & \: \text{if 1st or 2nd form, or}\\
+  !>         Z^H B Z=I & \: \text{if 1st or 2nd form, or}\newline
+  !>
   !>         Z^H B^{-1} Z=I & \: \text{if 3rd form.}
   !>         \end{array}
   !>     \f]
@@ -23303,8 +23498,10 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A_i X_i = \lambda B_i X_i & \: \text{1st form,}\\
-  !>         A_i B_i X_i = \lambda X_i & \: \text{2nd form, or}\\
+  !>         A_i X_i = \lambda B_i X_i & \: \text{1st form,}\newline
+  !>
+  !>         A_i B_i X_i = \lambda X_i & \: \text{2nd form, or}\newline
+  !>
   !>         B_i A_i X_i = \lambda X_i & \: \text{3rd form,}
   !>         \end{array}
   !>     \f]
@@ -23316,7 +23513,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         Z_i^T B_i Z_i=I & \: \text{if 1st or 2nd form, or}\\
+  !>         Z_i^T B_i Z_i=I & \: \text{if 1st or 2nd form, or}\newline
+  !>
   !>         Z_i^T B_i^{-1} Z_i=I & \: \text{if 3rd form.}
   !>         \end{array}
   !>     \f]
@@ -23459,8 +23657,10 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A_i X_i = \lambda B_i X_i & \: \text{1st form,}\\
-  !>         A_i B_i X_i = \lambda X_i & \: \text{2nd form, or}\\
+  !>         A_i X_i = \lambda B_i X_i & \: \text{1st form,}\newline
+  !>
+  !>         A_i B_i X_i = \lambda X_i & \: \text{2nd form, or}\newline
+  !>
   !>         B_i A_i X_i = \lambda X_i & \: \text{3rd form,}
   !>         \end{array}
   !>     \f]
@@ -23472,7 +23672,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         Z_i^H B_i Z_i=I & \: \text{if 1st or 2nd form, or}\\
+  !>         Z_i^H B_i Z_i=I & \: \text{if 1st or 2nd form, or}\newline
+  !>
   !>         Z_i^H B_i^{-1} Z_i=I & \: \text{if 3rd form.}
   !>         \end{array}
   !>     \f]
@@ -23615,8 +23816,10 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A_i X_i = \lambda B_i X_i & \: \text{1st form,}\\
-  !>         A_i B_i X_i = \lambda X_i & \: \text{2nd form, or}\\
+  !>         A_i X_i = \lambda B_i X_i & \: \text{1st form,}\newline
+  !>
+  !>         A_i B_i X_i = \lambda X_i & \: \text{2nd form, or}\newline
+  !>
   !>         B_i A_i X_i = \lambda X_i & \: \text{3rd form,}
   !>         \end{array}
   !>     \f]
@@ -23628,7 +23831,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         Z_i^T B_i Z_i=I & \: \text{if 1st or 2nd form, or}\\
+  !>         Z_i^T B_i Z_i=I & \: \text{if 1st or 2nd form, or}\newline
+  !>
   !>         Z_i^T B_i^{-1} Z_i=I & \: \text{if 3rd form.}
   !>         \end{array}
   !>     \f]
@@ -23783,8 +23987,10 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A_i X_i = \lambda B_i X_i & \: \text{1st form,}\\
-  !>         A_i B_i X_i = \lambda X_i & \: \text{2nd form, or}\\
+  !>         A_i X_i = \lambda B_i X_i & \: \text{1st form,}\newline
+  !>
+  !>         A_i B_i X_i = \lambda X_i & \: \text{2nd form, or}\newline
+  !>
   !>         B_i A_i X_i = \lambda X_i & \: \text{3rd form,}
   !>         \end{array}
   !>     \f]
@@ -23796,7 +24002,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         Z_i^H B_i Z_i=I & \: \text{if 1st or 2nd form, or}\\
+  !>         Z_i^H B_i Z_i=I & \: \text{if 1st or 2nd form, or}\newline
+  !>
   !>         Z_i^H B_i^{-1} Z_i=I & \: \text{if 3rd form.}
   !>         \end{array}
   !>     \f]
@@ -25234,7 +25441,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A = U D U^T & \: \text{or}\\
+  !>         A = U D U^T & \: \text{or}\newline
+  !>
   !>         A = L D L^T &
   !>         \end{array}
   !>     \f]
@@ -25247,7 +25455,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         U = P(n) U(n) \cdots P(k) U(k) \cdots & \: \text{and}\\
+  !>         U = P(n) U(n) \cdots P(k) U(k) \cdots & \: \text{and}\newline
+  !>
   !>         L = P(1) L(1) \cdots P(k) L(k) \cdots &
   !>         \end{array}
   !>     \f]
@@ -25259,8 +25468,10 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         U(k) = \left[ \begin{array}{ccc}
-  !>         I_{k-s} & v & 0 \\
-  !>         0 & I_s & 0 \\
+  !>         I_{k-s} & v & 0 \newline
+  !>
+  !>         0 & I_s & 0 \newline
+  !>
   !>         0 & 0 & I_{n-k}
   !>         \end{array} \right]
   !>     \f]
@@ -25269,8 +25480,10 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         L(k) = \left[ \begin{array}{ccc}
-  !>         I_{k-1} & 0 & 0 \\
-  !>         0 & I_s & 0 \\
+  !>         I_{k-1} & 0 & 0 \newline
+  !>
+  !>         0 & I_s & 0 \newline
+  !>
   !>         0 & v & I_{n-k-s+1}
   !>         \end{array} \right].
   !>     \f]
@@ -25420,7 +25633,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A_i = U_i D_i U_i^T & \: \text{or}\\
+  !>         A_i = U_i D_i U_i^T & \: \text{or}\newline
+  !>
   !>         A_i = L_i D_i L_i^T &
   !>         \end{array}
   !>     \f]
@@ -25433,7 +25647,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         U_i = P_i(n) U_i(n) \cdots P_i(k) U_i(k) \cdots & \: \text{and}\\
+  !>         U_i = P_i(n) U_i(n) \cdots P_i(k) U_i(k) \cdots & \: \text{and}\newline
+  !>
   !>         L_i = P_i(1) L_i(1) \cdots P_i(k) L_i(k) \cdots &
   !>         \end{array}
   !>     \f]
@@ -25445,8 +25660,10 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         U_i(k) = \left[ \begin{array}{ccc}
-  !>         I_{k-s} & v & 0 \\
-  !>         0 & I_s & 0 \\
+  !>         I_{k-s} & v & 0 \newline
+  !>
+  !>         0 & I_s & 0 \newline
+  !>
   !>         0 & 0 & I_{n-k}
   !>         \end{array} \right]
   !>     \f]
@@ -25455,8 +25672,10 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         L_i(k) = \left[ \begin{array}{ccc}
-  !>         I_{k-1} & 0 & 0 \\
-  !>         0 & I_s & 0 \\
+  !>         I_{k-1} & 0 & 0 \newline
+  !>
+  !>         0 & I_s & 0 \newline
+  !>
   !>         0 & v & I_{n-k-s+1}
   !>         \end{array} \right].
   !>     \f]
@@ -25621,7 +25840,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A_i = U_i D_i U_i^T & \: \text{or}\\
+  !>         A_i = U_i D_i U_i^T & \: \text{or}\newline
+  !>
   !>         A_i = L_i D_i L_i^T &
   !>         \end{array}
   !>     \f]
@@ -25634,7 +25854,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         U_i = P_i(n) U_i(n) \cdots P_i(k) U_i(k) \cdots & \: \text{and}\\
+  !>         U_i = P_i(n) U_i(n) \cdots P_i(k) U_i(k) \cdots & \: \text{and}\newline
+  !>
   !>         L_i = P_i(1) L_i(1) \cdots P_i(k) L_i(k) \cdots &
   !>         \end{array}
   !>     \f]
@@ -25646,8 +25867,10 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         U_i(k) = \left[ \begin{array}{ccc}
-  !>         I_{k-s} & v & 0 \\
-  !>         0 & I_s & 0 \\
+  !>         I_{k-s} & v & 0 \newline
+  !>
+  !>         0 & I_s & 0 \newline
+  !>
   !>         0 & 0 & I_{n-k}
   !>         \end{array} \right]
   !>     \f]
@@ -25656,8 +25879,10 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         L_i(k) = \left[ \begin{array}{ccc}
-  !>         I_{k-1} & 0 & 0 \\
-  !>         0 & I_s & 0 \\
+  !>         I_{k-1} & 0 & 0 \newline
+  !>
+  !>         0 & I_s & 0 \newline
+  !>
   !>         0 & v & I_{n-k-s+1}
   !>         \end{array} \right].
   !>     \f]
@@ -25830,7 +26055,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A = U D U^T & \: \text{or}\\
+  !>         A = U D U^T & \: \text{or}\newline
+  !>
   !>         A = L D L^T &
   !>         \end{array}
   !>     \f]
@@ -25843,7 +26069,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         U = P(n) U(n) \cdots P(k) U(k) \cdots & \: \text{and}\\
+  !>         U = P(n) U(n) \cdots P(k) U(k) \cdots & \: \text{and}\newline
+  !>
   !>         L = P(1) L(1) \cdots P(k) L(k) \cdots &
   !>         \end{array}
   !>     \f]
@@ -25855,8 +26082,10 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         U(k) = \left[ \begin{array}{ccc}
-  !>         I_{k-s} & v & 0 \\
-  !>         0 & I_s & 0 \\
+  !>         I_{k-s} & v & 0 \newline
+  !>
+  !>         0 & I_s & 0 \newline
+  !>
   !>         0 & 0 & I_{n-k}
   !>         \end{array} \right]
   !>     \f]
@@ -25865,8 +26094,10 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         L(k) = \left[ \begin{array}{ccc}
-  !>         I_{k-1} & 0 & 0 \\
-  !>         0 & I_s & 0 \\
+  !>         I_{k-1} & 0 & 0 \newline
+  !>
+  !>         0 & I_s & 0 \newline
+  !>
   !>         0 & v & I_{n-k-s+1}
   !>         \end{array} \right].
   !>     \f]
@@ -26016,7 +26247,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A_i = U_i D_i U_i^T & \: \text{or}\\
+  !>         A_i = U_i D_i U_i^T & \: \text{or}\newline
+  !>
   !>         A_i = L_i D_i L_i^T &
   !>         \end{array}
   !>     \f]
@@ -26029,7 +26261,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         U_i = P_i(n) U_i(n) \cdots P_i(k) U_i(k) \cdots & \: \text{and}\\
+  !>         U_i = P_i(n) U_i(n) \cdots P_i(k) U_i(k) \cdots & \: \text{and}\newline
+  !>
   !>         L_i = P_i(1) L_i(1) \cdots P_i(k) L_i(k) \cdots &
   !>         \end{array}
   !>     \f]
@@ -26041,8 +26274,10 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         U_i(k) = \left[ \begin{array}{ccc}
-  !>         I_{k-s} & v & 0 \\
-  !>         0 & I_s & 0 \\
+  !>         I_{k-s} & v & 0 \newline
+  !>
+  !>         0 & I_s & 0 \newline
+  !>
   !>         0 & 0 & I_{n-k}
   !>         \end{array} \right]
   !>     \f]
@@ -26051,8 +26286,10 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         L_i(k) = \left[ \begin{array}{ccc}
-  !>         I_{k-1} & 0 & 0 \\
-  !>         0 & I_s & 0 \\
+  !>         I_{k-1} & 0 & 0 \newline
+  !>
+  !>         0 & I_s & 0 \newline
+  !>
   !>         0 & v & I_{n-k-s+1}
   !>         \end{array} \right].
   !>     \f]
@@ -26217,7 +26454,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A_i = U_i D_i U_i^T & \: \text{or}\\
+  !>         A_i = U_i D_i U_i^T & \: \text{or}\newline
+  !>
   !>         A_i = L_i D_i L_i^T &
   !>         \end{array}
   !>     \f]
@@ -26230,7 +26468,8 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         \begin{array}{cl}
-  !>         U_i = P_i(n) U_i(n) \cdots P_i(k) U_i(k) \cdots & \: \text{and}\\
+  !>         U_i = P_i(n) U_i(n) \cdots P_i(k) U_i(k) \cdots & \: \text{and}\newline
+  !>
   !>         L_i = P_i(1) L_i(1) \cdots P_i(k) L_i(k) \cdots &
   !>         \end{array}
   !>     \f]
@@ -26242,8 +26481,10 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         U_i(k) = \left[ \begin{array}{ccc}
-  !>         I_{k-s} & v & 0 \\
-  !>         0 & I_s & 0 \\
+  !>         I_{k-s} & v & 0 \newline
+  !>
+  !>         0 & I_s & 0 \newline
+  !>
   !>         0 & 0 & I_{n-k}
   !>         \end{array} \right]
   !>     \f]
@@ -26252,8 +26493,10 @@ module hipfort_rocsolver
   !> 
   !>     \f[
   !>         L_i(k) = \left[ \begin{array}{ccc}
-  !>         I_{k-1} & 0 & 0 \\
-  !>         0 & I_s & 0 \\
+  !>         I_{k-1} & 0 & 0 \newline
+  !>
+  !>         0 & I_s & 0 \newline
+  !>
   !>         0 & v & I_{n-k-s+1}
   !>         \end{array} \right].
   !>     \f]
