@@ -169,7 +169,7 @@ module hipfort_hipsparse
   !>   \details
   !>   \p hipsparseSetPointerMode specifies the pointer mode to be used by the hipSPARSE
   !>   library context and all subsequent function calls. By default, all values are passed
-  !>   by reference on the host. Valid pointer modes are \ref HIPSPARSE_POINTER_MODE_HOST
+  !>   by reference on the host. Valid pointer modes are \p HIPSPARSE_POINTER_MODE_HOST
   !>   or \p HIPSPARSE_POINTER_MODE_DEVICE.
   interface hipsparseSetPointerMode
 #ifdef USE_CUDA_NAMES
@@ -213,8 +213,8 @@ module hipfort_hipsparse
   !>   \brief Create a matrix descriptor
   !>   \details
   !>   \p hipsparseCreateMatDescr creates a matrix descriptor. It initializes
-  !>   \ref hipsparseMatrixType_t to \ref HIPSPARSE_MATRIX_TYPE_GENERAL and
-  !>   \ref hipsparseIndexBase_t to \ref HIPSPARSE_INDEX_BASE_ZERO. It should be destroyed
+  !>   \p hipsparseMatrixType_t to \p HIPSPARSE_MATRIX_TYPE_GENERAL and
+  !>   \p hipsparseIndexBase_t to \p HIPSPARSE_INDEX_BASE_ZERO. It should be destroyed
   !>   at the end using hipsparseDestroyMatDescr().
   interface hipsparseCreateMatDescr
 #ifdef USE_CUDA_NAMES
@@ -278,9 +278,9 @@ module hipfort_hipsparse
   !> 
   !>   \details
   !>   \p hipsparseSetMatType sets the matrix type of a matrix descriptor. Valid
-  !>   matrix types are \ref HIPSPARSE_MATRIX_TYPE_GENERAL,
-  !>   \ref HIPSPARSE_MATRIX_TYPE_SYMMETRIC, \ref HIPSPARSE_MATRIX_TYPE_HERMITIAN or
-  !>   \ref HIPSPARSE_MATRIX_TYPE_TRIANGULAR.
+  !>   matrix types are \p HIPSPARSE_MATRIX_TYPE_GENERAL,
+  !>   \p HIPSPARSE_MATRIX_TYPE_SYMMETRIC, \p HIPSPARSE_MATRIX_TYPE_HERMITIAN or
+  !>   \p HIPSPARSE_MATRIX_TYPE_TRIANGULAR.
   interface hipsparseSetMatType
 #ifdef USE_CUDA_NAMES
     function hipsparseSetMatType_(descrA,myType) bind(c, name="cusparseSetMatType")
@@ -302,8 +302,8 @@ module hipfort_hipsparse
   !> 
   !>   \details
   !>   \p hipsparseSetMatFillMode sets the matrix fill mode of a matrix descriptor.
-  !>   Valid fill modes are \ref HIPSPARSE_FILL_MODE_LOWER or
-  !>   \ref HIPSPARSE_FILL_MODE_UPPER.
+  !>   Valid fill modes are \p HIPSPARSE_FILL_MODE_LOWER or
+  !>   \p HIPSPARSE_FILL_MODE_UPPER.
   interface hipsparseSetMatFillMode
 #ifdef USE_CUDA_NAMES
     function hipsparseSetMatFillMode_(descrA,fillMode) bind(c, name="cusparseSetMatFillMode")
@@ -325,8 +325,8 @@ module hipfort_hipsparse
   !> 
   !>   \details
   !>   \p hipsparseSetMatDiagType sets the matrix diagonal type of a matrix
-  !>   descriptor. Valid diagonal types are \ref HIPSPARSE_DIAG_TYPE_UNIT or
-  !>   \ref HIPSPARSE_DIAG_TYPE_NON_UNIT.
+  !>   descriptor. Valid diagonal types are \p HIPSPARSE_DIAG_TYPE_UNIT or
+  !>   \p HIPSPARSE_DIAG_TYPE_NON_UNIT.
   interface hipsparseSetMatDiagType
 #ifdef USE_CUDA_NAMES
     function hipsparseSetMatDiagType_(descrA,diagType) bind(c, name="cusparseSetMatDiagType")
@@ -348,7 +348,7 @@ module hipfort_hipsparse
   !> 
   !>   \details
   !>   \p hipsparseSetMatIndexBase sets the index base of a matrix descriptor. Valid
-  !>   options are \ref HIPSPARSE_INDEX_BASE_ZERO or \ref HIPSPARSE_INDEX_BASE_ONE.
+  !>   options are \p HIPSPARSE_INDEX_BASE_ZERO or \p HIPSPARSE_INDEX_BASE_ONE.
   interface hipsparseSetMatIndexBase
 #ifdef USE_CUDA_NAMES
     function hipsparseSetMatIndexBase_(descrA,base) bind(c, name="cusparseSetMatIndexBase")
@@ -1665,14 +1665,14 @@ module hipfort_hipsparse
   !>   \brief Sparse triangular solve using CSR storage format
   !> 
   !>   \details
-  !>   \p hipsparseXcsrsv2_zeroPivot returns \ref HIPSPARSE_STATUS_ZERO_PIVOT, if either a
+  !>   \p hipsparseXcsrsv2_zeroPivot returns \p HIPSPARSE_STATUS_ZERO_PIVOT, if either a
   !>   structural or numerical zero has been found during hipsparseScsrsv2_solve(),
   !>   hipsparseDcsrsv2_solve(), hipsparseCcsrsv2_solve() or hipsparseZcsrsv2_solve()
   !>   computation. The first zero pivot \f$j\f$ at \f$A_{j,j}\f$ is stored in \p position,
   !>   using same index base as the CSR matrix.
   !> 
   !>   \p position can be in host or device memory. If no zero pivot has been found,
-  !>   \p position is set to -1 and \ref HIPSPARSE_STATUS_SUCCESS is returned instead.
+  !>   \p position is set to -1 and \p HIPSPARSE_STATUS_SUCCESS is returned instead.
   !> 
   !>   \note \p hipsparseXcsrsv2_zeroPivot is a blocking function. It might influence
   !>   performance negatively.
@@ -1693,7 +1693,6 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> @{
   interface hipsparseScsrsv2_bufferSize
 #ifdef USE_CUDA_NAMES
     function hipsparseScsrsv2_bufferSize_(handle,transA,m,nnz,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes) bind(c, name="cusparseScsrsv2_bufferSize")
@@ -1813,7 +1812,6 @@ module hipfort_hipsparse
       hipsparseZcsrsv2_bufferSize_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseScsrsv2_bufferSizeExt
 #ifdef USE_CUDA_NAMES
     function hipsparseScsrsv2_bufferSizeExt_(handle,transA,m,nnz,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSize) bind(c, name="cusparseScsrsv2_bufferSizeExt")
@@ -1933,7 +1931,6 @@ module hipfort_hipsparse
       hipsparseZcsrsv2_bufferSizeExt_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseScsrsv2_analysis
 #ifdef USE_CUDA_NAMES
     function hipsparseScsrsv2_analysis_(handle,transA,m,nnz,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer) bind(c, name="cusparseScsrsv2_analysis")
@@ -2057,7 +2054,6 @@ module hipfort_hipsparse
       hipsparseZcsrsv2_analysis_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseScsrsv2_solve
 #ifdef USE_CUDA_NAMES
     function hipsparseScsrsv2_solve_(handle,transA,m,nnz,alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,myInfo,f,x,policy,pBuffer) bind(c, name="cusparseScsrsv2_solve")
@@ -2305,7 +2301,6 @@ module hipfort_hipsparse
       hipsparseZhybmv_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSbsrmv
 #ifdef USE_CUDA_NAMES
     function hipsparseSbsrmv_(handle,dirA,transA,mb,nb,nnzb,alpha,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,x,beta,y) bind(c, name="cusparseSbsrmv")
@@ -2445,7 +2440,6 @@ module hipfort_hipsparse
       hipsparseZbsrmv_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSbsrxmv
 #ifdef USE_CUDA_NAMES
     function hipsparseSbsrxmv_(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha,descr,bsrVal,bsrMaskPtr,bsrRowPtr,bsrEndPtr,bsrColInd,blockDim,x,beta,y) bind(c, name="cusparseSbsrxmv")
@@ -2601,13 +2595,13 @@ module hipfort_hipsparse
   !>   \brief Sparse triangular solve using BSR storage format
   !> 
   !>   \details
-  !>   \p hipsparseXbsrsv2_zeroPivot returns \ref HIPSPARSE_STATUS_ZERO_PIVOT, if either a
+  !>   \p hipsparseXbsrsv2_zeroPivot returns \p HIPSPARSE_STATUS_ZERO_PIVOT, if either a
   !>   structural or numerical zero has been found during hipsparseXbsrsv2_analysis() or
   !>   hipsparseXbsrsv2_solve() computation. The first zero pivot \f$j\f$ at \f$A_{j,j}\f$
   !>   is stored in \p position, using same index base as the BSR matrix.
   !> 
   !>   \p position can be in host or device memory. If no zero pivot has been found,
-  !>   \p position is set to -1 and \ref HIPSPARSE_STATUS_SUCCESS is returned instead.
+  !>   \p position is set to -1 and \p HIPSPARSE_STATUS_SUCCESS is returned instead.
   !> 
   !>   \note \p hipsparseXbsrsv2_zeroPivot is a blocking function. It might influence
   !>   performance negatively.
@@ -2628,7 +2622,6 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> @{
   interface hipsparseSbsrsv2_bufferSize
 #ifdef USE_CUDA_NAMES
     function hipsparseSbsrsv2_bufferSize_(handle,dirA,transA,mb,nnzb,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes) bind(c, name="cusparseSbsrsv2_bufferSize")
@@ -2756,7 +2749,6 @@ module hipfort_hipsparse
       hipsparseZbsrsv2_bufferSize_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSbsrsv2_bufferSizeExt
 #ifdef USE_CUDA_NAMES
     function hipsparseSbsrsv2_bufferSizeExt_(handle,dirA,transA,mb,nnzb,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSize) bind(c, name="cusparseSbsrsv2_bufferSizeExt")
@@ -2884,7 +2876,6 @@ module hipfort_hipsparse
       hipsparseZbsrsv2_bufferSizeExt_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSbsrsv2_analysis
 #ifdef USE_CUDA_NAMES
     function hipsparseSbsrsv2_analysis_(handle,dirA,transA,mb,nnzb,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer) bind(c, name="cusparseSbsrsv2_analysis")
@@ -3016,7 +3007,6 @@ module hipfort_hipsparse
       hipsparseZbsrsv2_analysis_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSbsrsv2_solve
 #ifdef USE_CUDA_NAMES
     function hipsparseSbsrsv2_solve_(handle,dirA,transA,mb,nnzb,alpha,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,f,x,policy,pBuffer) bind(c, name="cusparseSbsrsv2_solve")
@@ -3160,7 +3150,6 @@ module hipfort_hipsparse
       hipsparseZbsrsv2_solve_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSgemvi_bufferSize
 #ifdef USE_CUDA_NAMES
     function hipsparseSgemvi_bufferSize_(handle,transA,m,n,nnz,pBufferSize) bind(c, name="cusparseSgemvi_bufferSize")
@@ -3244,7 +3233,6 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> @{
   interface hipsparseSgemvi
 #ifdef USE_CUDA_NAMES
     function hipsparseSgemvi_(handle,transA,m,n,alpha,A,lda,nnz,x,xInd,beta,y,idxBase,pBuffer) bind(c, name="cusparseSgemvi")
@@ -3384,7 +3372,6 @@ module hipfort_hipsparse
       hipsparseZgemvi_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSbsrmm
 #ifdef USE_CUDA_NAMES
     function hipsparseSbsrmm_(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA,bsrValA,bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc) bind(c, name="cusparseSbsrmm")
@@ -3848,13 +3835,13 @@ module hipfort_hipsparse
   !>   \brief Sparse triangular system solve using BSR storage format
   !> 
   !>   \details
-  !>   \p hipsparseXbsrsm2_zeroPivot returns \ref HIPSPARSE_STATUS_ZERO_PIVOT, if either a
+  !>   \p hipsparseXbsrsm2_zeroPivot returns \p HIPSPARSE_STATUS_ZERO_PIVOT, if either a
   !>   structural or numerical zero has been found during hipsparseXbsrsm2_analysis() or
   !>   hipsparseXbsrsm2_solve() computation. The first zero pivot \f$j\f$ at \f$A_{j,j}\f$
   !>   is stored in \p position, using same index base as the BSR matrix.
   !> 
   !>   \p position can be in host or device memory. If no zero pivot has been found,
-  !>   \p position is set to -1 and \ref HIPSPARSE_STATUS_SUCCESS is returned instead.
+  !>   \p position is set to -1 and \p HIPSPARSE_STATUS_SUCCESS is returned instead.
   !> 
   !>   \note \p hipsparseXbsrsm2_zeroPivot is a blocking function. It might influence
   !>   performance negatively.
@@ -3875,7 +3862,6 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> @{
   interface hipsparseSbsrsm2_bufferSize
 #ifdef USE_CUDA_NAMES
     function hipsparseSbsrsm2_bufferSize_(handle,dirA,transA,transX,mb,nrhs,nnzb,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes) bind(c, name="cusparseSbsrsm2_bufferSize")
@@ -4011,7 +3997,6 @@ module hipfort_hipsparse
       hipsparseZbsrsm2_bufferSize_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSbsrsm2_analysis
 #ifdef USE_CUDA_NAMES
     function hipsparseSbsrsm2_analysis_(handle,dirA,transA,transX,mb,nrhs,nnzb,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer) bind(c, name="cusparseSbsrsm2_analysis")
@@ -4151,7 +4136,6 @@ module hipfort_hipsparse
       hipsparseZbsrsm2_analysis_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSbsrsm2_solve
 #ifdef USE_CUDA_NAMES
     function hipsparseSbsrsm2_solve_(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,B,ldb,X,ldx,policy,pBuffer) bind(c, name="cusparseSbsrsm2_solve")
@@ -4319,13 +4303,13 @@ module hipfort_hipsparse
   !>   \brief Sparse triangular system solve using CSR storage format
   !> 
   !>   \details
-  !>   \p hipsparseXcsrsm2_zeroPivot returns \ref HIPSPARSE_STATUS_ZERO_PIVOT, if either a
+  !>   \p hipsparseXcsrsm2_zeroPivot returns \p HIPSPARSE_STATUS_ZERO_PIVOT, if either a
   !>   structural or numerical zero has been found during hipsparseXcsrsm2_analysis() or
   !>   hipsparseXcsrsm2_solve() computation. The first zero pivot \f$j\f$ at \f$A_{j,j}\f$
   !>   is stored in \p position, using same index base as the CSR matrix.
   !> 
   !>   \p position can be in host or device memory. If no zero pivot has been found,
-  !>   \p position is set to -1 and \ref HIPSPARSE_STATUS_SUCCESS is returned instead.
+  !>   \p position is set to -1 and \p HIPSPARSE_STATUS_SUCCESS is returned instead.
   !> 
   !>   \note \p hipsparseXcsrsm2_zeroPivot is a blocking function. It might influence
   !>   performance negatively.
@@ -4346,7 +4330,6 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> @{
   interface hipsparseScsrsm2_bufferSizeExt
 #ifdef USE_CUDA_NAMES
     function hipsparseScsrsm2_bufferSizeExt_(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBufferSize) bind(c, name="cusparseScsrsm2_bufferSizeExt")
@@ -4498,7 +4481,6 @@ module hipfort_hipsparse
       hipsparseZcsrsm2_bufferSizeExt_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseScsrsm2_analysis
 #ifdef USE_CUDA_NAMES
     function hipsparseScsrsm2_analysis_(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer) bind(c, name="cusparseScsrsm2_analysis")
@@ -4650,7 +4632,6 @@ module hipfort_hipsparse
       hipsparseZcsrsm2_analysis_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseScsrsm2_solve
 #ifdef USE_CUDA_NAMES
     function hipsparseScsrsm2_solve_(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer) bind(c, name="cusparseScsrsm2_solve")
@@ -5132,7 +5113,6 @@ module hipfort_hipsparse
       hipsparseZcsrgeam_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseScsrgeam2_bufferSizeExt
 #ifdef USE_CUDA_NAMES
     function hipsparseScsrgeam2_bufferSizeExt_(handle,m,n,alpha,descrA,nnzA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB,csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC,pBufferSizeInBytes) bind(c, name="cusparseScsrgeam2_bufferSizeExt")
@@ -5305,7 +5285,7 @@ module hipfort_hipsparse
   !>   This function is non blocking and executed asynchronously with respect to the host.
   !>   It may return before the actual computation has finished.
   !>   \note
-  !>   Currently, only \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+  !>   Currently, only \p HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
   interface hipsparseXcsrgeam2Nnz
 #ifdef USE_CUDA_NAMES
     function hipsparseXcsrgeam2Nnz_(handle,m,n,descrA,nnzA,csrSortedRowPtrA,csrSortedColIndA,descrB,nnzB,csrSortedRowPtrB,csrSortedColIndB,descrC,csrSortedRowPtrC,nnzTotalDevHostPtr,workspace) bind(c, name="cusparseXcsrgeam2Nnz")
@@ -5340,7 +5320,6 @@ module hipfort_hipsparse
       hipsparseXcsrgeam2Nnz_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseScsrgeam2
 #ifdef USE_CUDA_NAMES
     function hipsparseScsrgeam2_(handle,m,n,alpha,descrA,nnzA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB,csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC,pBuffer) bind(c, name="cusparseScsrgeam2")
@@ -6091,13 +6070,13 @@ module hipfort_hipsparse
   !>   format
   !> 
   !>   \details
-  !>   \p hipsparseXbsrilu02_zeroPivot returns \ref HIPSPARSE_STATUS_ZERO_PIVOT, if either a
+  !>   \p hipsparseXbsrilu02_zeroPivot returns \p HIPSPARSE_STATUS_ZERO_PIVOT, if either a
   !>   structural or numerical zero has been found during hipsparseXbsrilu02_analysis() or
   !>   hipsparseXbsrilu02() computation. The first zero pivot \f$j\f$ at \f$A_{j,j}\f$ is
   !>   stored in \p position, using same index base as the BSR matrix.
   !> 
   !>   \p position can be in host or device memory. If no zero pivot has been found,
-  !>   \p position is set to -1 and \ref HIPSPARSE_STATUS_SUCCESS is returned instead.
+  !>   \p position is set to -1 and \p HIPSPARSE_STATUS_SUCCESS is returned instead.
   !> 
   !>   \note
   !>   If a zero pivot is found, \p position \f$=j\f$ means that either the diagonal block
@@ -6123,7 +6102,6 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> @{
   interface hipsparseSbsrilu02_numericBoost
 #ifdef USE_CUDA_NAMES
     function hipsparseSbsrilu02_numericBoost_(handle,myInfo,enable_boost,tol,boost_val) bind(c, name="cusparseSbsrilu02_numericBoost")
@@ -6203,7 +6181,6 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> @{
   interface hipsparseSbsrilu02_bufferSize
 #ifdef USE_CUDA_NAMES
     function hipsparseSbsrilu02_bufferSize_(handle,dirA,mb,nnzb,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes) bind(c, name="cusparseSbsrilu02_bufferSize")
@@ -6327,7 +6304,6 @@ module hipfort_hipsparse
       hipsparseZbsrilu02_bufferSize_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSbsrilu02_analysis
 #ifdef USE_CUDA_NAMES
     function hipsparseSbsrilu02_analysis_(handle,dirA,mb,nnzb,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer) bind(c, name="cusparseSbsrilu02_analysis")
@@ -6455,7 +6431,6 @@ module hipfort_hipsparse
       hipsparseZbsrilu02_analysis_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSbsrilu02
 #ifdef USE_CUDA_NAMES
     function hipsparseSbsrilu02_(handle,dirA,mb,nnzb,descrA,bsrSortedValA_valM,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer) bind(c, name="cusparseSbsrilu02")
@@ -6588,13 +6563,13 @@ module hipfort_hipsparse
   !>   storage format
   !> 
   !>   \details
-  !>   \p hipsparseXcsrilu02_zeroPivot returns \ref HIPSPARSE_STATUS_ZERO_PIVOT, if either a
+  !>   \p hipsparseXcsrilu02_zeroPivot returns \p HIPSPARSE_STATUS_ZERO_PIVOT, if either a
   !>   structural or numerical zero has been found during hipsparseXcsrilu02() computation.
   !>   The first zero pivot \f$j\f$ at \f$A_{j,j}\f$ is stored in \p position, using same
   !>   index base as the CSR matrix.
   !> 
   !>   \p position can be in host or device memory. If no zero pivot has been found,
-  !>   \p position is set to -1 and \ref HIPSPARSE_STATUS_SUCCESS is returned instead.
+  !>   \p position is set to -1 and \p HIPSPARSE_STATUS_SUCCESS is returned instead.
   !> 
   !>   \note \p hipsparseXcsrilu02_zeroPivot is a blocking function. It might influence
   !>   performance negatively.
@@ -6615,7 +6590,6 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> @{
   interface hipsparseScsrilu02_numericBoost
 #ifdef USE_CUDA_NAMES
     function hipsparseScsrilu02_numericBoost_(handle,myInfo,enable_boost,tol,boost_val) bind(c, name="cusparseScsrilu02_numericBoost")
@@ -6695,7 +6669,6 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> @{
   interface hipsparseScsrilu02_bufferSize
 #ifdef USE_CUDA_NAMES
     function hipsparseScsrilu02_bufferSize_(handle,m,nnz,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes) bind(c, name="cusparseScsrilu02_bufferSize")
@@ -6811,7 +6784,6 @@ module hipfort_hipsparse
       hipsparseZcsrilu02_bufferSize_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseScsrilu02_bufferSizeExt
 #ifdef USE_CUDA_NAMES
     function hipsparseScsrilu02_bufferSizeExt_(handle,m,nnz,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSize) bind(c, name="cusparseScsrilu02_bufferSizeExt")
@@ -6927,7 +6899,6 @@ module hipfort_hipsparse
       hipsparseZcsrilu02_bufferSizeExt_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseScsrilu02_analysis
 #ifdef USE_CUDA_NAMES
     function hipsparseScsrilu02_analysis_(handle,m,nnz,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer) bind(c, name="cusparseScsrilu02_analysis")
@@ -7047,7 +7018,6 @@ module hipfort_hipsparse
       hipsparseZcsrilu02_analysis_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseScsrilu02
 #ifdef USE_CUDA_NAMES
     function hipsparseScsrilu02_(handle,m,nnz,descrA,csrSortedValA_valM,csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer) bind(c, name="cusparseScsrilu02")
@@ -7172,13 +7142,13 @@ module hipfort_hipsparse
   !>   storage format
   !> 
   !>   \details
-  !>   \p hipsparseXbsric02_zeroPivot returns \ref HIPSPARSE_STATUS_ZERO_PIVOT, if either a
+  !>   \p hipsparseXbsric02_zeroPivot returns \p HIPSPARSE_STATUS_ZERO_PIVOT, if either a
   !>   structural or numerical zero has been found during hipsparseXbsric02_analysis() or
   !>   hipsparseXbsric02() computation. The first zero pivot \f$j\f$ at \f$A_{j,j}\f$ is
   !>   stored in \p position, using same index base as the BSR matrix.
   !> 
   !>   \p position can be in host or device memory. If no zero pivot has been found,
-  !>   \p position is set to -1 and \ref HIPSPARSE_STATUS_SUCCESS is returned instead.
+  !>   \p position is set to -1 and \p HIPSPARSE_STATUS_SUCCESS is returned instead.
   !> 
   !>   \note
   !>   If a zero pivot is found, \p position=j means that either the diagonal block \p A(j,j)
@@ -7204,7 +7174,6 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> @{
   interface hipsparseSbsric02_bufferSize
 #ifdef USE_CUDA_NAMES
     function hipsparseSbsric02_bufferSize_(handle,dirA,mb,nnzb,descrA,bsrValA,bsrRowPtrA,bsrColIndA,blockDim,myInfo,pBufferSizeInBytes) bind(c, name="cusparseSbsric02_bufferSize")
@@ -7328,7 +7297,6 @@ module hipfort_hipsparse
       hipsparseZbsric02_bufferSize_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSbsric02_analysis
 #ifdef USE_CUDA_NAMES
     function hipsparseSbsric02_analysis_(handle,dirA,mb,nnzb,descrA,bsrValA,bsrRowPtrA,bsrColIndA,blockDim,myInfo,policy,pBuffer) bind(c, name="cusparseSbsric02_analysis")
@@ -7456,7 +7424,6 @@ module hipfort_hipsparse
       hipsparseZbsric02_analysis_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSbsric02
 #ifdef USE_CUDA_NAMES
     function hipsparseSbsric02_(handle,dirA,mb,nnzb,descrA,bsrValA,bsrRowPtrA,bsrColIndA,blockDim,myInfo,policy,pBuffer) bind(c, name="cusparseSbsric02")
@@ -7589,13 +7556,13 @@ module hipfort_hipsparse
   !>   storage format
   !> 
   !>   \details
-  !>   \p hipsparseXcsric02_zeroPivot returns \ref HIPSPARSE_STATUS_ZERO_PIVOT, if either a
+  !>   \p hipsparseXcsric02_zeroPivot returns \p HIPSPARSE_STATUS_ZERO_PIVOT, if either a
   !>   structural or numerical zero has been found during hipsparseXcsric02_analysis() or
   !>   hipsparseXcsric02() computation. The first zero pivot \f$j\f$ at \f$A_{j,j}\f$
   !>   is stored in \p position, using same index base as the CSR matrix.
   !> 
   !>   \p position can be in host or device memory. If no zero pivot has been found,
-  !>   \p position is set to -1 and \ref HIPSPARSE_STATUS_SUCCESS is returned instead.
+  !>   \p position is set to -1 and \p HIPSPARSE_STATUS_SUCCESS is returned instead.
   !> 
   !>   \note \p hipsparseXcsric02_zeroPivot is a blocking function. It might influence
   !>   performance negatively.
@@ -7616,7 +7583,6 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> @{
   interface hipsparseScsric02_bufferSize
 #ifdef USE_CUDA_NAMES
     function hipsparseScsric02_bufferSize_(handle,m,nnz,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes) bind(c, name="cusparseScsric02_bufferSize")
@@ -7732,7 +7698,6 @@ module hipfort_hipsparse
       hipsparseZcsric02_bufferSize_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseScsric02_bufferSizeExt
 #ifdef USE_CUDA_NAMES
     function hipsparseScsric02_bufferSizeExt_(handle,m,nnz,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSize) bind(c, name="cusparseScsric02_bufferSizeExt")
@@ -7848,7 +7813,6 @@ module hipfort_hipsparse
       hipsparseZcsric02_bufferSizeExt_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseScsric02_analysis
 #ifdef USE_CUDA_NAMES
     function hipsparseScsric02_analysis_(handle,m,nnz,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer) bind(c, name="cusparseScsric02_analysis")
@@ -7968,7 +7932,6 @@ module hipfort_hipsparse
       hipsparseZcsric02_analysis_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseScsric02
 #ifdef USE_CUDA_NAMES
     function hipsparseScsric02_(handle,m,nnz,descrA,csrSortedValA_valM,csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer) bind(c, name="cusparseScsric02")
@@ -8088,7 +8051,6 @@ module hipfort_hipsparse
       hipsparseZcsric02_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSgtsv2_bufferSizeExt
 #ifdef USE_CUDA_NAMES
     function hipsparseSgtsv2_bufferSizeExt_(handle,m,n,dl,d,du,B,ldb,pBufferSizeInBytes) bind(c, name="cusparseSgtsv2_bufferSizeExt")
@@ -8208,7 +8170,6 @@ module hipfort_hipsparse
       hipsparseZgtsv2_bufferSizeExt_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSgtsv2
 #ifdef USE_CUDA_NAMES
     function hipsparseSgtsv2_(handle,m,n,dl,d,du,B,ldb,pBuffer) bind(c, name="cusparseSgtsv2")
@@ -8328,7 +8289,6 @@ module hipfort_hipsparse
       hipsparseZgtsv2_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSgtsv2_nopivot_bufferSizeExt
 #ifdef USE_CUDA_NAMES
     function hipsparseSgtsv2_nopivot_bufferSizeExt_(handle,m,n,dl,d,du,B,ldb,pBufferSizeInBytes) bind(c, name="cusparseSgtsv2_nopivot_bufferSizeExt")
@@ -8448,7 +8408,6 @@ module hipfort_hipsparse
       hipsparseZgtsv2_nopivot_bufferSizeExt_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSgtsv2_nopivot
 #ifdef USE_CUDA_NAMES
     function hipsparseSgtsv2_nopivot_(handle,m,n,dl,d,du,B,ldb,pBuffer) bind(c, name="cusparseSgtsv2_nopivot")
@@ -8568,7 +8527,6 @@ module hipfort_hipsparse
       hipsparseZgtsv2_nopivot_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSgtsv2StridedBatch_bufferSizeExt
 #ifdef USE_CUDA_NAMES
     function hipsparseSgtsv2StridedBatch_bufferSizeExt_(handle,m,dl,d,du,x,batchCount,batchStride,pBufferSizeInBytes) bind(c, name="cusparseSgtsv2StridedBatch_bufferSizeExt")
@@ -8684,7 +8642,6 @@ module hipfort_hipsparse
       hipsparseZgtsv2StridedBatch_bufferSizeExt_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSgtsv2StridedBatch
 #ifdef USE_CUDA_NAMES
     function hipsparseSgtsv2StridedBatch_(handle,m,dl,d,du,x,batchCount,batchStride,pBuffer) bind(c, name="cusparseSgtsv2StridedBatch")
@@ -8800,7 +8757,6 @@ module hipfort_hipsparse
       hipsparseZgtsv2StridedBatch_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSnnz
 #ifdef USE_CUDA_NAMES
     function hipsparseSnnz_(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn,nnzTotalDevHostPtr) bind(c, name="cusparseSnnz")
@@ -8920,7 +8876,6 @@ module hipfort_hipsparse
       hipsparseZnnz_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSdense2csr
 #ifdef USE_CUDA_NAMES
     function hipsparseSdense2csr_(handle,m,n,descr,A,ld,nnz_per_rows,csr_val,csr_row_ptr,csr_col_ind) bind(c, name="cusparseSdense2csr")
@@ -9044,7 +8999,6 @@ module hipfort_hipsparse
       hipsparseZdense2csr_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSpruneDense2csr_bufferSize
 #ifdef USE_CUDA_NAMES
     function hipsparseSpruneDense2csr_bufferSize_(handle,m,n,A,lda,threshold,descr,csrVal,csrRowPtr,csrColInd,bufferSize) bind(c, name="cusparseSpruneDense2csr_bufferSize")
@@ -9172,7 +9126,6 @@ module hipfort_hipsparse
       hipsparseDpruneDense2csr_bufferSizeExt_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSpruneDense2csrNnz
 #ifdef USE_CUDA_NAMES
     function hipsparseSpruneDense2csrNnz_(handle,m,n,A,lda,threshold,descr,csrRowPtr,nnzTotalDevHostPtr,buffer) bind(c, name="cusparseSpruneDense2csrNnz")
@@ -9234,7 +9187,6 @@ module hipfort_hipsparse
       hipsparseDpruneDense2csrNnz_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSpruneDense2csr
 #ifdef USE_CUDA_NAMES
     function hipsparseSpruneDense2csr_(handle,m,n,A,lda,threshold,descr,csrVal,csrRowPtr,csrColInd,buffer) bind(c, name="cusparseSpruneDense2csr")
@@ -9298,7 +9250,6 @@ module hipfort_hipsparse
       hipsparseDpruneDense2csr_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSpruneDense2csrByPercentage_bufferSize
 #ifdef USE_CUDA_NAMES
     function hipsparseSpruneDense2csrByPercentage_bufferSize_(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,bufferSize) bind(c, name="cusparseSpruneDense2csrByPercentage_bufferSize")
@@ -9364,7 +9315,6 @@ module hipfort_hipsparse
       hipsparseDpruneDense2csrByPercentage_bufferSize_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSpruneDense2csrByPercentage_bufferSizeExt
 #ifdef USE_CUDA_NAMES
     function hipsparseSpruneDense2csrByPercentage_bufferSizeExt_(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,bufferSize) bind(c, name="cusparseSpruneDense2csrByPercentage_bufferSizeExt")
@@ -9430,7 +9380,6 @@ module hipfort_hipsparse
       hipsparseDpruneDense2csrByPercentage_bufferSizeExt_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSpruneDense2csrNnzByPercentage
 #ifdef USE_CUDA_NAMES
     function hipsparseSpruneDense2csrNnzByPercentage_(handle,m,n,A,lda,percentage,descr,csrRowPtr,nnzTotalDevHostPtr,myInfo,buffer) bind(c, name="cusparseSpruneDense2csrNnzByPercentage")
@@ -9494,7 +9443,6 @@ module hipfort_hipsparse
       hipsparseDpruneDense2csrNnzByPercentage_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSpruneDense2csrByPercentage
 #ifdef USE_CUDA_NAMES
     function hipsparseSpruneDense2csrByPercentage_(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,buffer) bind(c, name="cusparseSpruneDense2csrByPercentage")
@@ -9560,7 +9508,6 @@ module hipfort_hipsparse
       hipsparseDpruneDense2csrByPercentage_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSdense2csc
 #ifdef USE_CUDA_NAMES
     function hipsparseSdense2csc_(handle,m,n,descr,A,ld,nnz_per_columns,csc_val,csc_row_ind,csc_col_ptr) bind(c, name="cusparseSdense2csc")
@@ -9684,7 +9631,6 @@ module hipfort_hipsparse
       hipsparseZdense2csc_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseScsr2dense
 #ifdef USE_CUDA_NAMES
     function hipsparseScsr2dense_(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,A,ld) bind(c, name="cusparseScsr2dense")
@@ -9804,7 +9750,6 @@ module hipfort_hipsparse
       hipsparseZcsr2dense_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseScsc2dense
 #ifdef USE_CUDA_NAMES
     function hipsparseScsc2dense_(handle,m,n,descr,csc_val,csc_row_ind,csc_col_ptr,A,ld) bind(c, name="cusparseScsc2dense")
@@ -9961,7 +9906,6 @@ module hipfort_hipsparse
       hipsparseXcsr2bsrNnz_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSnnz_compress
 #ifdef USE_CUDA_NAMES
     function hipsparseSnnz_compress_(handle,m,descrA,csrValA,csrRowPtrA,nnzPerRow,nnzC,tol) bind(c, name="cusparseSnnz_compress")
@@ -10360,7 +10304,6 @@ module hipfort_hipsparse
       hipsparseZcsr2hyb_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSgebsr2gebsc_bufferSize
 #ifdef USE_CUDA_NAMES
     function hipsparseSgebsr2gebsc_bufferSize_(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size) bind(c, name="cusparseSgebsr2gebsc_bufferSize")
@@ -10460,7 +10403,6 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> @{
   interface hipsparseSgebsr2gebsc
 #ifdef USE_CUDA_NAMES
     function hipsparseSgebsr2gebsc_(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,bsc_val,bsc_row_ind,bsc_col_ptr,copy_values,idx_base,temp_buffer) bind(c, name="cusparseSgebsr2gebsc")
@@ -10580,7 +10522,6 @@ module hipfort_hipsparse
     end function
 
   end interface
-  !> @{
   interface hipsparseScsr2gebsr_bufferSize
 #ifdef USE_CUDA_NAMES
     function hipsparseScsr2gebsr_bufferSize_(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,p_buffer_size) bind(c, name="cusparseScsr2gebsr_bufferSize")
@@ -10741,7 +10682,6 @@ module hipfort_hipsparse
       hipsparseXcsr2gebsrNnz_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseScsr2gebsr
 #ifdef USE_CUDA_NAMES
     function hipsparseScsr2gebsr_(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer) bind(c, name="cusparseScsr2gebsr")
@@ -10881,7 +10821,6 @@ module hipfort_hipsparse
       hipsparseZcsr2gebsr_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseScsr2bsr
 #ifdef USE_CUDA_NAMES
     function hipsparseScsr2bsr_(handle,dirA,m,n,descrA,csrValA,csrRowPtrA,csrColIndA,blockDim,descrC,bsrValC,bsrRowPtrC,bsrColIndC) bind(c, name="cusparseScsr2bsr")
@@ -11013,7 +10952,6 @@ module hipfort_hipsparse
       hipsparseZcsr2bsr_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSbsr2csr
 #ifdef USE_CUDA_NAMES
     function hipsparseSbsr2csr_(handle,dirA,mb,nb,descrA,bsrValA,bsrRowPtrA,bsrColIndA,blockDim,descrC,csrValC,csrRowPtrC,csrColIndC) bind(c, name="cusparseSbsr2csr")
@@ -11145,7 +11083,6 @@ module hipfort_hipsparse
       hipsparseZbsr2csr_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSgebsr2csr
 #ifdef USE_CUDA_NAMES
     function hipsparseSgebsr2csr_(handle,dirA,mb,nb,descrA,bsrValA,bsrRowPtrA,bsrColIndA,rowBlockDim,colBlockDim,descrC,csrValC,csrRowPtrC,csrColIndC) bind(c, name="cusparseSgebsr2csr")
@@ -11281,7 +11218,6 @@ module hipfort_hipsparse
       hipsparseZgebsr2csr_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseScsr2csr_compress
 #ifdef USE_CUDA_NAMES
     function hipsparseScsr2csr_compress_(handle,m,n,descrA,csrValA,csrColIndA,csrRowPtrA,nnzA,nnzPerRow,csrValC,csrColIndC,csrRowPtrC,tol) bind(c, name="cusparseScsr2csr_compress")
@@ -11413,7 +11349,6 @@ module hipfort_hipsparse
       hipsparseZcsr2csr_compress_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSpruneCsr2csr_bufferSize
 #ifdef USE_CUDA_NAMES
     function hipsparseSpruneCsr2csr_bufferSize_(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA,csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,bufferSize) bind(c, name="cusparseSpruneCsr2csr_bufferSize")
@@ -11481,7 +11416,6 @@ module hipfort_hipsparse
       hipsparseDpruneCsr2csr_bufferSize_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSpruneCsr2csr_bufferSizeExt
 #ifdef USE_CUDA_NAMES
     function hipsparseSpruneCsr2csr_bufferSizeExt_(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA,csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,bufferSize) bind(c, name="cusparseSpruneCsr2csr_bufferSizeExt")
@@ -11549,7 +11483,6 @@ module hipfort_hipsparse
       hipsparseDpruneCsr2csr_bufferSizeExt_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSpruneCsr2csrNnz
 #ifdef USE_CUDA_NAMES
     function hipsparseSpruneCsr2csrNnz_(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA,csrColIndA,threshold,descrC,csrRowPtrC,nnzTotalDevHostPtr,buffer) bind(c, name="cusparseSpruneCsr2csrNnz")
@@ -11615,7 +11548,6 @@ module hipfort_hipsparse
       hipsparseDpruneCsr2csrNnz_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSpruneCsr2csr
 #ifdef USE_CUDA_NAMES
     function hipsparseSpruneCsr2csr_(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA,csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,buffer) bind(c, name="cusparseSpruneCsr2csr")
@@ -11683,7 +11615,6 @@ module hipfort_hipsparse
       hipsparseDpruneCsr2csr_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSpruneCsr2csrByPercentage_bufferSize
 #ifdef USE_CUDA_NAMES
     function hipsparseSpruneCsr2csrByPercentage_bufferSize_(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA,csrColIndA,percentage,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo,bufferSize) bind(c, name="cusparseSpruneCsr2csrByPercentage_bufferSize")
@@ -11753,7 +11684,6 @@ module hipfort_hipsparse
       hipsparseDpruneCsr2csrByPercentage_bufferSize_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSpruneCsr2csrByPercentage_bufferSizeExt
 #ifdef USE_CUDA_NAMES
     function hipsparseSpruneCsr2csrByPercentage_bufferSizeExt_(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA,csrColIndA,percentage,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo,bufferSize) bind(c, name="cusparseSpruneCsr2csrByPercentage_bufferSizeExt")
@@ -11823,7 +11753,6 @@ module hipfort_hipsparse
       hipsparseDpruneCsr2csrByPercentage_bufferSizeExt_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSpruneCsr2csrNnzByPercentage
 #ifdef USE_CUDA_NAMES
     function hipsparseSpruneCsr2csrNnzByPercentage_(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA,csrColIndA,percentage,descrC,csrRowPtrC,nnzTotalDevHostPtr,myInfo,buffer) bind(c, name="cusparseSpruneCsr2csrNnzByPercentage")
@@ -11891,7 +11820,6 @@ module hipfort_hipsparse
       hipsparseDpruneCsr2csrNnzByPercentage_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSpruneCsr2csrByPercentage
 #ifdef USE_CUDA_NAMES
     function hipsparseSpruneCsr2csrByPercentage_(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA,csrColIndA,percentage,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo,buffer) bind(c, name="cusparseSpruneCsr2csrByPercentage")
@@ -12429,7 +12357,6 @@ module hipfort_hipsparse
       hipsparseXcoosortByColumn_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSgebsr2gebsr_bufferSize
 #ifdef USE_CUDA_NAMES
     function hipsparseSgebsr2gebsr_bufferSize_(handle,dirA,mb,nb,nnzb,descrA,bsrValA,bsrRowPtrA,bsrColIndA,rowBlockDimA,colBlockDimA,rowBlockDimC,colBlockDimC,bufferSize) bind(c, name="cusparseSgebsr2gebsr_bufferSize")
@@ -12607,7 +12534,6 @@ module hipfort_hipsparse
       hipsparseXgebsr2gebsrNnz_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseSgebsr2gebsr
 #ifdef USE_CUDA_NAMES
     function hipsparseSgebsr2gebsr_(handle,dirA,mb,nb,nnzb,descrA,bsrValA,bsrRowPtrA,bsrColIndA,rowBlockDimA,colBlockDimA,descrC,bsrValC,bsrRowPtrC,bsrColIndC,rowBlockDimC,colBlockDimC,buffer) bind(c, name="cusparseSgebsr2gebsr")
@@ -12759,7 +12685,6 @@ module hipfort_hipsparse
       hipsparseZgebsr2gebsr_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseScsru2csr_bufferSizeExt
 #ifdef USE_CUDA_NAMES
     function hipsparseScsru2csr_bufferSizeExt_(handle,m,n,nnz,csrVal,csrRowPtr,csrColInd,myInfo,pBufferSizeInBytes) bind(c, name="cusparseScsru2csr_bufferSizeExt")
@@ -12875,7 +12800,6 @@ module hipfort_hipsparse
       hipsparseZcsru2csr_bufferSizeExt_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseScsru2csr
 #ifdef USE_CUDA_NAMES
     function hipsparseScsru2csr_(handle,m,n,nnz,descrA,csrVal,csrRowPtr,csrColInd,myInfo,pBuffer) bind(c, name="cusparseScsru2csr")
@@ -12995,7 +12919,6 @@ module hipfort_hipsparse
       hipsparseZcsru2csr_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseScsr2csru
 #ifdef USE_CUDA_NAMES
     function hipsparseScsr2csru_(handle,m,n,nnz,descrA,csrVal,csrRowPtr,csrColInd,myInfo,pBuffer) bind(c, name="cusparseScsr2csru")
@@ -13115,7 +13038,6 @@ module hipfort_hipsparse
       hipsparseZcsr2csru_rank_1
 #endif
   end interface
-  !> @{
   interface hipsparseScsrcolor
 #ifdef USE_CUDA_NAMES
     function hipsparseScsrcolor_(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA,fractionToColor,ncolors,coloring,reordering,myInfo) bind(c, name="cusparseScsrcolor")

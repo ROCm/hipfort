@@ -5,7 +5,7 @@ module hipfort_auxiliary
   !>   @param [out] prop written with device properties
   !>   @param [in]  deviceId which device to query for information
   !>
-  !>   @return #hipSuccess, #hipErrorInvalidDevice
+  !>   @return hipSuccess, hipErrorInvalidDevice
   !>   @bug HCC always returns 0 for maxThreadsPerMultiProcessor
   !>   @bug HCC always returns 0 for regsPerBlock
   !>   @bug HCC always returns 0 for l2CacheSize

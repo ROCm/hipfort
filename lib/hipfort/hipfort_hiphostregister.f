@@ -34,14 +34,14 @@ module hipfort_hiphostregister
   !>    @param[in] flags.  See below.
   !>  
   !>    Flags:
-  !>    - #hipHostRegisterDefault   Memory is Mapped and Portable
-  !>    - #hipHostRegisterPortable  Memory is considered registered by all contexts.  HIP only supports
+  !>    - hipHostRegisterDefault   Memory is Mapped and Portable
+  !>    - hipHostRegisterPortable  Memory is considered registered by all contexts.  HIP only supports
   !>   one context so this is always assumed true.
-  !>    - #hipHostRegisterMapped    Map the allocation into the address space for the current device.
-  !>   The device pointer can be obtained with #hipHostGetDevicePointer.
+  !>    - hipHostRegisterMapped    Map the allocation into the address space for the current device.
+  !>   The device pointer can be obtained with hipHostGetDevicePointer.
   !>  
   !>  
-  !>    After registering the memory, use #hipHostGetDevicePointer to obtain the mapped device pointer.
+  !>    After registering the memory, use hipHostGetDevicePointer to obtain the mapped device pointer.
   !>    On many systems, the mapped device pointer will have a different value than the mapped host
   !>   pointer.  Applications must use the device pointer in device code, and the host pointer in device
   !>   code.
@@ -58,7 +58,7 @@ module hipfort_hiphostregister
   !>   typically one of the writes will "win" and overwrite data from the other registered memory
   !>   region.
   !>  
-  !>    @return #hipSuccess, #hipErrorOutOfMemory
+  !>    @return hipSuccess, hipErrorOutOfMemory
   !>  
   !>    @see hipHostUnregister, hipHostGetFlags, hipHostGetDevicePointer
   !>  
@@ -245,7 +245,7 @@ module hipfort_hiphostregister
   !> 
   !>    @brief Un-register host pointer
   !>  
-  !>    @param[in] hostPtr Host pointer previously registered with #hipHostRegister
+  !>    @param[in] hostPtr Host pointer previously registered with hipHostRegister
   !>    @return Error code
   !>  
   !>    @see hipHostRegister
@@ -338,7 +338,7 @@ module hipfort_hiphostregister
   !>    @param[in]  hstPtr Host Pointer allocated through hipHostMalloc
   !>    @param[in]  flags Flags to be passed for extension
   !>  
-  !>    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorOutOfMemory
+  !>    @return hipSuccess, hipErrorInvalidValue, hipErrorOutOfMemory
   !>  
   !>    @see hipSetDeviceFlags, hipHostMalloc
   !>  
@@ -429,7 +429,7 @@ module hipfort_hiphostregister
   !>  
   !>    @param[out] flagsPtr Memory location to store flags
   !>    @param[in]  hostPtr Host Pointer allocated through hipHostMalloc
-  !>    @return #hipSuccess, #hipErrorInvalidValue
+  !>    @return hipSuccess, hipErrorInvalidValue
   !>  
   !>    @see hipHostMalloc
   !>  

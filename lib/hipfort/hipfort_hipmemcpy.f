@@ -46,8 +46,8 @@ module hipfort_hipmemcpy
     !>    @param[out]  dest Data being copy to
     !>    @param[in]  src Data being copy from
     !>    @param[in]  sizeBytes Data size in bytes
-    !>    @param[in]  copyType Memory copy type
-    !>    @return#hipSuccess,#hipErrorInvalidValue,#hipErrorMemoryFree,#hipErrorUnknowni
+    !>    @param[in]  myKind Memory copy type
+    !>    @return hipSuccess,hipErrorInvalidValue,hipErrorMemoryFree,hipErrorUnknowni
     !>  
     !>    @see hipArrayCreate, hipArrayDestroy, hipArrayGetDescriptor, hipMemAlloc, hipMemAllocHost,
     !>   hipMemAllocPitch, hipMemcpy2D, hipMemcpy2DAsync, hipMemcpy2DUnaligned, hipMemcpyAtoA,
@@ -271,8 +271,9 @@ module hipfort_hipmemcpy
     !>    @param[out] dest Data being copy to
     !>    @param[in]  src Data being copy from
     !>    @param[in]  sizeBytes Data size in bytes
-    !>    @param[in]  accelerator_view Accelerator view which the copy is being enqueued
-    !>    @return #hipSuccess, #hipErrorInvalidValue, #hipErrorMemoryFree, #hipErrorUnknown
+    !>    @param[in]   myKind   Type of transfer
+    !>    @param[in]   stream Stream to use
+    !>    @return hipSuccess, hipErrorInvalidValue, hipErrorMemoryFree, hipErrorUnknown
     !>  
     !>    @see hipMemcpy, hipMemcpy2D, hipMemcpyToArray, hipMemcpy2DToArray, hipMemcpyFromArray,
     !>   hipMemcpy2DFromArray, hipMemcpyArrayToArray, hipMemcpy2DArrayToArray, hipMemcpyToSymbol,
@@ -486,9 +487,9 @@ module hipfort_hipmemcpy
     !>    @param[in]   spitch Pitch of source memory
     !>    @param[in]   width  Width of matrix transfer (columns in bytes)
     !>    @param[in]   height Height of matrix transfer (rows)
-    !>    @param[in]   kind   Type of transfer
-    !>    @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
-    !>   #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
+    !>    @param[in]   myKind   Type of transfer
+    !>    @return      hipSuccess, hipErrorInvalidValue, hipErrorInvalidPitchValue,
+    !>   hipErrorInvalidDevicePointer, hipErrorInvalidMemcpyDirection
     !>  
     !>    @see hipMemcpy, hipMemcpyToArray, hipMemcpy2DToArray, hipMemcpyFromArray, hipMemcpyToSymbol,
     !>   hipMemcpyAsync
@@ -575,10 +576,10 @@ module hipfort_hipmemcpy
     !>    @param[in]   spitch Pitch of source memory
     !>    @param[in]   width  Width of matrix transfer (columns in bytes)
     !>    @param[in]   height Height of matrix transfer (rows)
-    !>    @param[in]   kind   Type of transfer
+    !>    @param[in]   myKind   Type of transfer
     !>    @param[in]   stream Stream to use
-    !>    @return      #hipSuccess, #hipErrorInvalidValue, #hipErrorInvalidPitchValue,
-    !>   #hipErrorInvalidDevicePointer, #hipErrorInvalidMemcpyDirection
+    !>    @return      hipSuccess, hipErrorInvalidValue, hipErrorInvalidPitchValue,
+    !>   hipErrorInvalidDevicePointer, hipErrorInvalidMemcpyDirection
     !>  
     !>    @see hipMemcpy, hipMemcpyToArray, hipMemcpy2DToArray, hipMemcpyFromArray, hipMemcpyToSymbol,
     !>   hipMemcpyAsync

@@ -24657,7 +24657,7 @@ module hipfort_hipblas
   !>         \end{array}
   !>     \f]
   !> 
-  !>     Matrix A is defined by its triangular factors as returned by \ref hipblasSgetrf "getrf".
+  !>     Matrix A is defined by its triangular factors as returned by hipblasSgetrf "getrf".
   !> 
   !>     @param[in]
   !>     handle      hipblasHandle_t.
@@ -24673,13 +24673,13 @@ module hipfort_hipblas
   !>                 of the matrix B.
   !>     @param[in]
   !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
-  !>                 The factors L and U of the factorization A = P*L*U returned by \ref hipblasSgetrf "getrf".
+  !>                 The factors L and U of the factorization A = P*L*U returned by hipblasSgetrf "getrf".
   !>     @param[in]
   !>     lda         int. lda >= n.\n
   !>                 The leading dimension of A.
   !>     @param[in]
   !>     ipiv        pointer to int. Array on the GPU of dimension n.\n
-  !>                 The pivot indices returned by \ref hipblasSgetrf "getrf".
+  !>                 The pivot indices returned by hipblasSgetrf "getrf".
   !>     @param[in,out]
   !>     B           pointer to type. Array on the GPU of dimension ldb*nrhs.\n
   !>                 On entry, the right hand side matrix B.
@@ -24830,7 +24830,7 @@ module hipfort_hipblas
   !>         \end{array}
   !>     \f]
   !> 
-  !>     Matrix \f$A_i\f$ is defined by its triangular factors as returned by \ref hipblasSgetrfBatched "getrfBatched".
+  !>     Matrix \f$A_i\f$ is defined by its triangular factors as returned by hipblasSgetrfBatched "getrfBatched".
   !> 
   !>     @param[in]
   !>     handle      hipblasHandle_t.
@@ -24846,13 +24846,13 @@ module hipfort_hipblas
   !>                 of all the matrices B_i.
   !>     @param[in]
   !>     A           Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
-  !>                 The factors L_i and U_i of the factorization A_i = P_i*L_i*U_i returned by \ref hipblasSgetrfBatched "getrfBatched".
+  !>                 The factors L_i and U_i of the factorization A_i = P_i*L_i*U_i returned by hipblasSgetrfBatched "getrfBatched".
   !>     @param[in]
   !>     lda         int. lda >= n.\n
   !>                 The leading dimension of matrices A_i.
   !>     @param[in]
   !>     ipiv        pointer to int. Array on the GPU.\n
-  !>                 Contains the vectors ipiv_i of pivot indices returned by \ref hipblasSgetrfBatched "getrfBatched".
+  !>                 Contains the vectors ipiv_i of pivot indices returned by hipblasSgetrfBatched "getrfBatched".
   !>     @param[in,out]
   !>     B           Array of pointers to type. Each pointer points to an array on the GPU of dimension ldb*nrhs.\n
   !>                 On entry, the right hand side matrices B_i.
@@ -25018,7 +25018,7 @@ module hipfort_hipblas
   !>         \end{array}
   !>     \f]
   !> 
-  !>     Matrix \f$A_i\f$ is defined by its triangular factors as returned by \ref hipblasSgetrfStridedBatched "getrfStridedBatched".
+  !>     Matrix \f$A_i\f$ is defined by its triangular factors as returned by hipblasSgetrfStridedBatched "getrfStridedBatched".
   !> 
   !>     @param[in]
   !>     handle      hipblasHandle_t.
@@ -25034,7 +25034,7 @@ module hipfort_hipblas
   !>                 of all the matrices B_i.
   !>     @param[in]
   !>     A           pointer to type. Array on the GPU (the size depends on the value of strideA).\n
-  !>                 The factors L_i and U_i of the factorization A_i = P_i*L_i*U_i returned by \ref hipblasSgetrfStridedBatched "getrfStridedBatched".
+  !>                 The factors L_i and U_i of the factorization A_i = P_i*L_i*U_i returned by hipblasSgetrfStridedBatched "getrfStridedBatched".
   !>     @param[in]
   !>     lda         int. lda >= n.\n
   !>                 The leading dimension of matrices A_i.
@@ -25044,7 +25044,7 @@ module hipfort_hipblas
   !>                 There is no restriction for the value of strideA. Normal use case is strideA >= lda*n.
   !>     @param[in]
   !>     ipiv        pointer to int. Array on the GPU (the size depends on the value of strideP).\n
-  !>                 Contains the vectors ipiv_i of pivot indices returned by \ref hipblasSgetrfStridedBatched "getrfStridedBatched".
+  !>                 Contains the vectors ipiv_i of pivot indices returned by hipblasSgetrfStridedBatched "getrfStridedBatched".
   !>     @param[in]
   !>     strideP     hipblasStride.\n
   !>                 Stride from the start of one vector ipiv_i to the next one ipiv_(i+1).
@@ -25199,7 +25199,7 @@ module hipfort_hipblas
   !>         A_i C_i = I
   !>     \f]
   !> 
-  !>     where I is the identity matrix, and \f$A_i\f$ is factorized as \f$A_i = P_i  L_i  U_i\f$ as given by \ref hipblasSgetrfBatched "getrfBatched".
+  !>     where I is the identity matrix, and \f$A_i\f$ is factorized as \f$A_i = P_i  L_i  U_i\f$ as given by hipblasSgetrfBatched "getrfBatched".
   !> 
   !>     @param[in]
   !>     handle    hipblasHandle_t.
@@ -25208,13 +25208,13 @@ module hipfort_hipblas
   !>               The number of rows and columns of all matrices A_i in the batch.
   !>     @param[in]
   !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
-  !>               The factors L_i and U_i of the factorization A_i = P_i*L_i*U_i returned by \ref hipblasSgetrfBatched "getrfBatched".
+  !>               The factors L_i and U_i of the factorization A_i = P_i*L_i*U_i returned by hipblasSgetrfBatched "getrfBatched".
   !>     @param[in]
   !>     lda       int. lda >= n.\n
   !>               Specifies the leading dimension of matrices A_i.
   !>     @param[in]
   !>     ipiv      pointer to int. Array on the GPU (the size depends on the value of strideP).\n
-  !>               The pivot indices returned by \ref hipblasSgetrfBatched "getrfBatched".
+  !>               The pivot indices returned by hipblasSgetrfBatched "getrfBatched".
   !>               ipiv can be passed in as a nullptr, this will assume that getrfBatched was called without partial pivoting.
   !>     @param[out]
   !>     C         array of pointers to type. Each pointer points to an array on the GPU of dimension ldc*n.\n
