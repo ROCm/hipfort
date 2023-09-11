@@ -37,7 +37,7 @@ message("-- HIPFORT_VERSION:        ${HIPFORT_VERSION}")
 message("-- HIPFORT ----------------------------------------------")
 
 set(CMAKE_Fortran_COMPILER_INIT ${HIPFORT_COMPILER})
-PROJECT(hipfort Fortran C)
+PROJECT(hipfort Fortran C CXX) # hip-config.cmake requires CXX enabled
 
 SET(CMAKE_BUILD_TYPE ${HIPFORT_BUILD_TYPE})
 SET(VERSION ${HIPFORT_VERSION})
