@@ -113,7 +113,7 @@ The following tables list the supported API:
 * [rocSPARSE](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_ROCSPARSE.md)
 
 You may further find it convenient to directly use the search function on
-[HIPFORT's documentation page](https://rocmsoftwareplatform.github.io/hipfort/index.html) to get information on the arguments of an interface
+[HIPFORT's documentation page](https://rocm.docs.amd.com/projects/hipfort/en/latest/) to get information on the arguments of an interface
 
 ## hipfc wrapper compiler and Makefile.hipfort
 
