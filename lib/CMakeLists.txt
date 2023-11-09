@@ -122,12 +122,12 @@ endmacro()
 
 find_package(hip)
 if(hip_FOUND)
-  add_library(hipfort-host INTERFACE)
-  add_library(hipfort::host ALIAS hipfort-host)
-  target_link_libraries(hipfort-host INTERFACE hipfort-amdgcn hip::host)
+  add_library(hipfort-hip INTERFACE)
+  add_library(hipfort::hip ALIAS hipfort-hip)
+  target_link_libraries(hipfort-hip INTERFACE hipfort-amdgcn hip::host)
   install(
     TARGETS
-      hipfort-host
+      hipfort-hip
     EXPORT hipfort-hip-targets
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
@@ -141,7 +141,7 @@ if(hip_FOUND)
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/hipfort
   )
 else()
-  message(STATUS "Skipping hipfort::host target export")
+  message(STATUS "Skipping hipfort::hip target export")
 endif()
 
 find_package(rocblas)
