@@ -51,11 +51,27 @@ ENDIF(CMAKE_Fortran_FLAGS_RELEASE AND CMAKE_Fortran_FLAGS_TESTING AND CMAKE_Fort
 ### GENERAL FLAGS ###
 #####################
 
+# Enable preprocessing
+SET_COMPILE_FLAG(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS}" Fortran "-cpp")
+
+# Enable free form Fortran
+SET_COMPILE_FLAG(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS}" Fortran
+		"-f free" 				# Cray
+		"-ffree-form -ffree-line-length-none" 	# GNU
+		"-free -diag-disable=5268" 		# Intel
+                "-free" 				# Intel backup option
+		)
+
 IF(NOT CMAKE_Fortran_COMPILER_ID MATCHES "Cray")
 
 # Don't add underscores in symbols for C-compatability
-SET_COMPILE_FLAG(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS}"
-                 Fortran "-fno-underscoring")
+SET_COMPILE_FLAG(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS}" Fortran 
+	        "-assume nounderscore"    # Intel
+		"-fno-underscoring"       # GNU
+		)
+
+# Maximum number of errors	
+SET_COMPILE_FLAG(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS}" Fortran "-fmax-errors=5" )
 
 # There is some bug where -march=native doesn't work on Mac
 IF(APPLE)
@@ -72,6 +88,8 @@ SET_COMPILE_FLAG(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS}"
                 )
 
 ENDIF(NOT CMAKE_Fortran_COMPILER_ID MATCHES "Cray")
+
+
 
 ###################
 ### DEBUG FLAGS ###

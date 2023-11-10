@@ -6,13 +6,15 @@ set(CMAKE_INSTALL_LIBDIR "lib" CACHE STRING "Library install directory")
 #include definitions for GNU install dir cmake flags.
 include(GNUInstallDirs)
 
+message("CMAKE_Fortran_FLAGS are ${CMAKE_Fortran_FLAGS}")
+
 # Default compiler gfortran, otherwise cmake Fortran package will set it to f95
 # You can override the compiler with cmake -DHIPFORT_COMPILER=
 set(HIPFORT_COMPILER "/usr/bin/gfortran" CACHE STRING "Fortran Compiler to build HIPFORT")
 set(HIPFORT_AR "/usr/bin/gcc-ar" CACHE STRING "Static archive command")
 set(HIPFORT_RANLIB "/usr/bin/gcc-ranlib" CACHE STRING "ranlib used to create Static archive")
-set(HIPFORT_COMPILER_FLAGS "-ffree-form -cpp -ffree-line-length-none -fmax-errors=5" CACHE STRING "Compiler flags to build HIPFORT")
-set(HIPFORT_BUILD_TYPE "RELEASE"  CACHE STRING "Set to RELEASE TESTING or DEBUG")
+set(HIPFORT_COMPILER_FLAGS "" CACHE STRING "Default extra arguments to Fortran compiler")
+set(HIPFORT_BUILD_TYPE "RELEASE" CACHE STRING "Set to RELEASE TESTING or DEBUG")
 
 #  The ROCm release manager and other integrators should build hipfort as follows:
 #     cmake -DHIPFORT_INSTALL_DIR=/opt/rocm-<release>/hipfort -DHIPFORT_VERSION=<release> <githubrepo>
@@ -107,20 +109,37 @@ ENDIF(NOT DEFINED CMAKE_Fortran_COMPILER_SUPPORTS_F08)
 #OPTION(USE_MPI "Use the MPI library for parallelization" OFF)
 #OPTION(USE_OPENMP "Use OpenMP for parallelization" OFF)
 
+# Default flags for Fortran 2003 and Fortran 2008 standards
+
+# Compiler-specific compilation flags
 IF(CMAKE_Fortran_COMPILER_ID MATCHES "Cray")
-  set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} ${HIPFORT_COMPILER_FLAGS}")
+  # Cray-specific options
+  set(F03_FLAG "")
+  set(F08_FLAG "")
 ELSEIF(CMAKE_Fortran_COMPILER_ID MATCHES "Intel")
-  set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} ${HIPFORT_COMPILER_FLAGS} -free -cpp -fPIC -fmax-errors=5 -assume nounderscore")
+  # Intel-specific options
+ set(F03_FLAG "-std03")
+ set(F08_FLAG "-std08")
 ELSE(CMAKE_Fortran_COMPILER_ID MATCHES "Cray")
-IF(CMAKE_Fortran_COMPILER_SUPPORTS_F08)
-  set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} ${HIPFORT_COMPILER_FLAGS} -std=f2008")
-ELSE(CMAKE_Fortran_COMPILER_SUPPORTS_F08)
-  set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} ${HIPFORT_COMPILER_FLAGS} -std=f2003")
-ENDIF(CMAKE_Fortran_COMPILER_SUPPORTS_F08)
+  # Assume the GNU compiler and associated options as the fallback
+  set(F03_FLAG "-std=f2003")
+  set(F08_FLAG "-std=f2008")
 ENDIF(CMAKE_Fortran_COMPILER_ID MATCHES "Cray")
- 
+
+# Include HIPFORT_COMPILER_FLAGS
+set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} ${HIPFORT_COMPILER_FLAGS}" CACHE STRING "Setting HIPFORT_COMPILER_FLAGS" FORCE)
+
+IF(CMAKE_Fortran_COMPILER_SUPPORTS_F08)
+	set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} ${F08_FLAG}" CACHE STRING 
+		"Setting to the Fortran 2008 standard" FORCE)
+ELSE(CMAKE_Fortran_COMPILER_SUPPORTS_F08)
+	set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} ${F03_FLAG}" CACHE STRING
+		"Setting to the Fortran 2003 standard" FORCE)
+ENDIF(CMAKE_Fortran_COMPILER_SUPPORTS_F08)
+
 # Set compile flags for DEBUG, # RELEASE, or TESTING.  
-INCLUDE(${CMAKE_MODULE_PATH}/SetFortranFlags.cmake) 
+INCLUDE(${CMAKE_MODULE_PATH}/SetFortranFlags.cmake)
+
 message("-- Done setting FortranFlags")
 
 # There is an error in CMAKE with this flag for pgf90.  Unset it
