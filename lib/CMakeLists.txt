@@ -122,28 +122,7 @@ endmacro()
 
 find_package(hip)
 if(hip_FOUND)
-  add_library(hipfort-hip INTERFACE)
-  add_library(hipfort::hip ALIAS hipfort-hip)
-  set_target_properties(hipfort-hip
-    PROPERTIES
-      EXPORT_NAME hip
-  )
-  target_link_libraries(hipfort-hip INTERFACE hipfort-amdgcn hip::host)
-  install(
-    TARGETS
-      hipfort-hip
-    EXPORT hipfort-hip-targets
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-    INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
-  )
-  install(
-    EXPORT hipfort-hip-targets
-    FILE hipfort-hip-targets.cmake
-    NAMESPACE hipfort::
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/hipfort
-  )
+  hipfort_add_component(hip hip::host)
 else()
   message(STATUS "Skipping hipfort::hip target export")
 endif()
