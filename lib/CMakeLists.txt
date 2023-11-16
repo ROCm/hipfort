@@ -124,6 +124,10 @@ find_package(hip)
 if(hip_FOUND)
   add_library(hipfort-hip INTERFACE)
   add_library(hipfort::hip ALIAS hipfort-hip)
+  set_target_properties(hipfort-hip
+    PROPERTIES
+      EXPORT_NAME hip
+  )
   target_link_libraries(hipfort-hip INTERFACE hipfort-amdgcn hip::host)
   install(
     TARGETS
