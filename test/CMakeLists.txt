@@ -10,6 +10,8 @@ if ("${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_CURRENT_SOURCE_DIR}")
   project(test-hipfort)
 endif()
 
+# make-based test infrastructure
+
 set(CMAKE_BUILD_PARALLEL_LEVEL "4" CACHE STRING "Number of build jobs")
 
 add_custom_target(all-f2003-tests
@@ -35,3 +37,72 @@ add_custom_target(all-tests-run
 	DEPENDS all-tests)
 add_custom_target(all-tests-clean
 	COMMAND make -C ${CMAKE_CURRENT_SOURCE_DIR} -j${CMAKE_BUILD_PARALLEL_LEVEL} clean_all)
+
+
+# cmake-based test infrastructure
+
+if(BUILD_TESTING)
+  function(hipfort_add_test lib func dir)
+    add_executable(hipfort_test_${dir}_${lib}_${func} ${dir}/${lib}/${func}.f03)
+    target_link_libraries(hipfort_test_${dir}_${lib}_${func} PRIVATE hipfort::${lib} hipfort::hip)
+
+    # the tests call EXIT, which is a GNU extension
+    target_compile_options(hipfort_test_${dir}_${lib}_${func} PRIVATE -std=gnu)
+
+    add_test(
+      NAME hipfort_test_${dir}_${lib}_${func}
+      COMMAND hipfort_test_${dir}_${lib}_${func}
+    )
+  endfunction()
+
+  if(TARGET hipfort::hipblas)
+    hipfort_add_test(hipblas cgemm f2003)
+    hipfort_add_test(hipblas dgemm f2003)
+    hipfort_add_test(hipblas dger f2003)
+    hipfort_add_test(hipblas dscal f2003)
+    hipfort_add_test(hipblas saxpy f2003)
+    hipfort_add_test(hipblas scopy f2003)
+    hipfort_add_test(hipblas sgemv f2003)
+    hipfort_add_test(hipblas sger f2003)
+    hipfort_add_test(hipblas sswap f2003)
+
+    hipfort_add_test(hipblas cgemm f2008)
+    hipfort_add_test(hipblas dgemm f2008)
+    hipfort_add_test(hipblas dger f2008)
+    hipfort_add_test(hipblas dscal f2008)
+    hipfort_add_test(hipblas saxpy f2008)
+    hipfort_add_test(hipblas scopy f2008)
+    hipfort_add_test(hipblas sgemv f2008)
+    hipfort_add_test(hipblas sger f2008)
+    hipfort_add_test(hipblas sswap f2008)
+  endif()
+
+  if(TARGET hipfort::hipfft)
+    hipfort_add_test(hipfft hipfft f2003)
+    hipfort_add_test(hipfft hipfft f2008)
+  endif()
+
+  if(TARGET hipfort::hipsolver)
+    hipfort_add_test(hipsolver hipsolverdgetrf f2008)
+  endif()
+
+  if(TARGET hipfort::rocblas)
+    hipfort_add_test(rocblas saxpy f2003)
+    hipfort_add_test(rocblas saxpy f2008)
+  endif()
+
+  if(TARGET hipfort::rocfft)
+    hipfort_add_test(rocfft rocfft f2003)
+    hipfort_add_test(rocfft rocfft f2008)
+  endif()
+
+  if(TARGET hipfort::rocsolver)
+    hipfort_add_test(rocsolver rocsolver_dgeqrf f2003)
+    hipfort_add_test(rocsolver rocsolver_dgeqrf f2008)
+  endif()
+
+  if(TARGET hipfort::rocsparse)
+    hipfort_add_test(rocsparse ddoti f2003)
+    hipfort_add_test(rocsparse ddoti f2008)
+  endif()
+endif()
