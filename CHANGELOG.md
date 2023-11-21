@@ -25,7 +25,7 @@
 - Updated `HIP_PLATFORM` from 'nvcc' to 'nvidia'
 
 
-## hipfort for ROCm 5.7.0
+## hipfort for ROCm 5.6.0
 ### Added
 - Added hipfc architecture autodetection for gx1101 devices
 
