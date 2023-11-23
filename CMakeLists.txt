@@ -127,6 +127,11 @@ IF(FCNAME STREQUAL "pgf90")
     UNSET(CMAKE_SHARED_LIBRARY_LINK_Fortran_FLAGS)
 ENDIF(FCNAME STREQUAL "pgf90")
 
+option(BUILD_TESTING "Build tests" OFF)
+if(BUILD_TESTING)
+  enable_testing()
+endif()
+
 # Subdirectories and packaging
 # NOTE: rocm-cmake must be be included before
 # adding subdirectories.
