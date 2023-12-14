@@ -57,19 +57,22 @@ IF(NOT CMAKE_Fortran_COMPILER_ID MATCHES "Cray")
 SET_COMPILE_FLAG(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS}"
                  Fortran "-fno-underscoring")
 
-# There is some bug where -march=native doesn't work on Mac
-IF(APPLE)
-    SET(GNUNATIVE "-mtune=native")
-ELSE()
-    SET(GNUNATIVE "-march=native")
-ENDIF()
-# Optimize for the host's architecture
-SET_COMPILE_FLAG(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS}"
-                 Fortran "-xHost"        # Intel
-                         "/QxHost"       # Intel Windows
-                         ${GNUNATIVE}    # GNU
-                         "-ta=host"      # Portland Group
-                )
+option(BUILD_NATIVE "Enable optimizations that make the binaries non-portable" OFF)
+if(BUILD_NATIVE)
+  # There is some bug where -march=native doesn't work on Mac
+  IF(APPLE)
+      SET(GNUNATIVE "-mtune=native")
+  ELSE()
+      SET(GNUNATIVE "-march=native")
+  ENDIF()
+  # Optimize for the host's architecture
+  SET_COMPILE_FLAG(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS}"
+                   Fortran "-xHost"        # Intel
+                           "/QxHost"       # Intel Windows
+                           ${GNUNATIVE}    # GNU
+                           "-ta=host"      # Portland Group
+                  )
+endif()
 
 ENDIF(NOT CMAKE_Fortran_COMPILER_ID MATCHES "Cray")
 
