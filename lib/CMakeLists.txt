@@ -46,6 +46,11 @@ set(HIPFORT_ARCH "amdgcn")
     # Install Target hipfort-amdgcn
     rocm_install_targets(
         TARGETS ${HIPFORT_LIB}
+        EXPORT hipfort-amdgcn-targets
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+        INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
         INCLUDE
            ${CMAKE_Fortran_MODULE_DIRECTORY}
     )
@@ -79,15 +84,6 @@ set(HIPFORT_ARCH "nvptx")
 #   target_link_libraries(${HIPFORT_LIB} PUBLIC 
 #   /usr/local/cuda/targets/x86_64-linux/lib/libcudart_static.a)
 
-rocm_install(
-  TARGETS
-    hipfort-amdgcn
-  EXPORT hipfort-amdgcn-targets
-  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-  INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
-)
 rocm_install(
   EXPORT hipfort-amdgcn-targets
   FILE hipfort-amdgcn-targets.cmake
