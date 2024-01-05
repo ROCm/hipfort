@@ -20,10 +20,12 @@ add_custom_command( OUTPUT bindir
 add_custom_command( OUTPUT gputable.txt
    COMMAND /bin/cp -p ${CMAKE_CURRENT_SOURCE_DIR}/gputable.txt ${CMAKE_CURRENT_BINARY_DIR}/../libexec/hipfort/gputable.txt
    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/gputable.txt libexecdir)
-
-string(REGEX REPLACE "[/]" "\\\\/" escaped_path ${HIPFORT_COMPILER})
+# Use relative path with respect to hipfc install directory
+file(RELATIVE_PATH HIPFORT_COMPILER_RELATIVE_PATH ${HIPFORT_INSTALL_DIR}/${CMAKE_INSTALL_BINDIR} ${HIPFORT_COMPILER})
+string(REGEX REPLACE "[/]" "\\\\/" escaped_path ${HIPFORT_COMPILER_RELATIVE_PATH})
 set(sed_str s/gfortran/${escaped_path}/g)
-string(REGEX REPLACE "[/]" "\\\\/" installed_path ${HIPFORT_INSTALL_DIR})
+file(RELATIVE_PATH HIPFORT_INSTALL_RELATIVE_PATH ${HIPFORT_INSTALL_DIR}/${CMAKE_INSTALL_BINDIR} ${HIPFORT_INSTALL_DIR})
+string(REGEX REPLACE "[/]" "\\\\/" installed_path ${HIPFORT_INSTALL_RELATIVE_PATH})
 set(sed_str2 s/_HIPFORT_INSTALL_DIR_/${installed_path}/g)
 
 add_custom_command( OUTPUT Makefile.hipfort
