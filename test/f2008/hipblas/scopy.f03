@@ -20,14 +20,14 @@ program hip_scopy
   allocate(x(n))
   allocate(y(n))
 
-  do j = 0, n
+  do j = 1,n
     x(j) = j
    ! write(*,*) "value of x(j)" , x(j)
   end do
 
   write(*,"(a)",advance="no") "-- Running test 'Scopy' (Fortran 2008 interfaces) - "
 
-  do j = 0,n
+  do j = 1,n
     y(j) = x(j)
    ! write(*,*) "value of y(j)" , y(j)
   end do
@@ -43,7 +43,7 @@ program hip_scopy
 
   call hipCheck(hipMemcpy(y, dy, hipMemcpyDeviceToHost))
 
-  do j = 0,n
+  do j = 1,n
     error = abs(y(j) - x(j))
       if( error > error_max )then
         write(*,*) "FAILED! Error bigger than max! Error = ", error
