@@ -22,7 +22,7 @@ program hip_saxpy
   allocate(y(n))
   allocate(y_exact(n))
 
-  do j = 0, n
+  do j = 1,n
     x(j) = j
     y(j) = j
   end do
