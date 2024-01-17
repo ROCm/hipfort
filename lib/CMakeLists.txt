@@ -46,6 +46,11 @@ set(HIPFORT_ARCH "amdgcn")
     # Install Target hipfort-amdgcn
     rocm_install_targets(
         TARGETS ${HIPFORT_LIB}
+        EXPORT hipfort-amdgcn-targets
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+        INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
         INCLUDE
            ${CMAKE_Fortran_MODULE_DIRECTORY}
     )
@@ -79,16 +84,7 @@ set(HIPFORT_ARCH "nvptx")
 #   target_link_libraries(${HIPFORT_LIB} PUBLIC 
 #   /usr/local/cuda/targets/x86_64-linux/lib/libcudart_static.a)
 
-install(
-  TARGETS
-    hipfort-amdgcn
-  EXPORT hipfort-amdgcn-targets
-  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-  INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
-)
-install(
+rocm_install(
   EXPORT hipfort-amdgcn-targets
   FILE hipfort-amdgcn-targets.cmake
   NAMESPACE hipfort::
@@ -103,7 +99,7 @@ macro(hipfort_add_component name imported_target)
       EXPORT_NAME ${name}
   )
   target_link_libraries(hipfort-${name} INTERFACE hipfort-amdgcn ${imported_target})
-  install(
+  rocm_install(
     TARGETS
       hipfort-${name}
     EXPORT hipfort-${name}-targets
@@ -112,7 +108,7 @@ macro(hipfort_add_component name imported_target)
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
     INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
   )
-  install(
+  rocm_install(
     EXPORT hipfort-${name}-targets
     FILE hipfort-${name}-targets.cmake
     NAMESPACE hipfort::
@@ -212,7 +208,7 @@ write_basic_package_version_file(
   COMPATIBILITY SameMajorVersion
 )
 
-install(
+rocm_install(
   FILES
     ${CMAKE_CURRENT_BINARY_DIR}/hipfort-config.cmake
     ${CMAKE_CURRENT_BINARY_DIR}/hipfort-config-version.cmake
