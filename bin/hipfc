@@ -262,14 +262,14 @@ if [ -z "$FIRST_INPUT_FILE_NAME" ]  ; then
 fi
 
 cdir=$(getdname $0)
-[ ! -L "$cdir/hipfc" ] || cdir=$(getdname `readlink "$cdir/hipfc"`)
+[ ! -L "$cdir/hipfc" ] || cdir="$(getdname "$(realpath "$cdir/hipfc")")"
 HOW_CALLED=${0##*/}
 
 CUDA_PATH=${CUDA_PATH:-/usr/local/cuda}
 ROCM_PATH=${ROCM_PATH:-/opt/rocm}
 HIP_PLATFORM=${HIP_PLATFORM:-amd}
 
-HIPFORT=${HIPFORT:-_HIPFORT_INSTALL_DIR_}
+HIPFORT=${HIPFORT:-$cdir/_HIPFORT_INSTALL_DIR_}
 if [ ! -d $HIPFORT ] ; then
    HIPFORT="$ROCM_PATH/hipfort"
 fi
@@ -282,7 +282,7 @@ if [ ! -d $HIPFORT ] ; then
    exit 1
 fi
 
-HIPFORT_COMPILER=${HIPFORT_COMPILER:-gfortran}
+HIPFORT_COMPILER=${HIPFORT_COMPILER:-$cdir/gfortran}
 if [ ! -f $HIPFORT_COMPILER ] ; then
    HIPFORT_COMPILER=`which $HIPFORT_COMPILER`
 fi
@@ -374,7 +374,7 @@ else
 fi 
 
 sdir=$(getdname $0)
-[ ! -L "$sdir/hipfc" ] || sdir=$(getdname `readlink "$sdir/hipfc"`)
+[ ! -L "$sdir/hipfc" ] || sdir="$(getdname "$(realpath "$sdir/hipfc")")"
 ROCC_DIR=$sdir
 
 TMPNAME="hipfc-tmp-$$"

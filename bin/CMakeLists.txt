@@ -20,15 +20,21 @@ add_custom_command( OUTPUT bindir
 add_custom_command( OUTPUT gputable.txt
    COMMAND /bin/cp -p ${CMAKE_CURRENT_SOURCE_DIR}/gputable.txt ${CMAKE_CURRENT_BINARY_DIR}/../libexec/hipfort/gputable.txt
    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/gputable.txt libexecdir)
-
-string(REGEX REPLACE "[/]" "\\\\/" escaped_path ${HIPFORT_COMPILER})
+# Use relative path with respect to hipfc install directory
+file(RELATIVE_PATH HIPFORT_COMPILER_RELATIVE_PATH ${HIPFORT_INSTALL_DIR}/${CMAKE_INSTALL_BINDIR} ${HIPFORT_COMPILER})
+string(REGEX REPLACE "[/]" "\\\\/" escaped_path ${HIPFORT_COMPILER_RELATIVE_PATH})
 set(sed_str s/gfortran/${escaped_path}/g)
-string(REGEX REPLACE "[/]" "\\\\/" installed_path ${HIPFORT_INSTALL_DIR})
+file(RELATIVE_PATH HIPFORT_INSTALL_RELATIVE_PATH ${HIPFORT_INSTALL_DIR}/${CMAKE_INSTALL_BINDIR} ${HIPFORT_INSTALL_DIR})
+string(REGEX REPLACE "[/]" "\\\\/" installed_path ${HIPFORT_INSTALL_RELATIVE_PATH})
 set(sed_str2 s/_HIPFORT_INSTALL_DIR_/${installed_path}/g)
+# Use relative path with respect to Makefile.hipfort install directory
+file(RELATIVE_PATH HIPFORT_MAKEFILE_REL_PATH ${HIPFORT_INSTALL_DIR}/${CMAKE_INSTALL_DATADIR}/hipfort ${HIPFORT_COMPILER})
+string(REGEX REPLACE "[/]" "\\\\/" mkfile_escaped_path ${HIPFORT_MAKEFILE_REL_PATH})
+set(sed_str3 s/gfortran/${mkfile_escaped_path}/g)
 
 add_custom_command( OUTPUT Makefile.hipfort
    COMMAND /bin/cp -p ${CMAKE_CURRENT_SOURCE_DIR}/Makefile.hipfort ${CMAKE_CURRENT_BINARY_DIR}/../share/hipfort/Makefile.hipfort.needs_edit
-   COMMAND /bin/sed -e '${sed_str}' ${CMAKE_CURRENT_BINARY_DIR}/../share/hipfort/Makefile.hipfort.needs_edit > ../share/hipfort/Makefile.hipfort
+   COMMAND /bin/sed -e '${sed_str3}' ${CMAKE_CURRENT_BINARY_DIR}/../share/hipfort/Makefile.hipfort.needs_edit > ../share/hipfort/Makefile.hipfort
    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/Makefile.hipfort sharedir)
 
 add_custom_command( OUTPUT mymcpu
