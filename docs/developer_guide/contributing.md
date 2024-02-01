@@ -3,8 +3,8 @@
 ## What do I need to know to help?
 If you are looking to help to with a code contribution, hipfort uses the following languages and tools :
 * Fortran (2008 standard and above; [ISO C Binding](http://fortranwiki.org/fortran/show/iso_c_binding))
-* [ROCm](https://github.com/RadeonOpenCompute/ROCm)
-* [HIP](https://github.com/ROCm-Developer-Tools/HIP)
+* [ROCm](https://github.com/ROCm/ROCm)
+* [HIP](https://github.com/ROCm/HIP)
 * [CUDA](https://developer.nvidia.com/cuda-toolkit)
 * [CMake](https://cmake.org/)
 
@@ -21,7 +21,7 @@ We are also in need of example use cases and additional documentation to make us
 ## How do I make a contribution?
 
 ### Opening Issues
-If you believe you have found a bug or would like to make a request for a new feature, we would like to hear from you! Before opening a new issue, first take some time to review [this repository's issue collector](https://github.com/ROCmSoftwarePlatform/hipfort/issues) to see if a similar issue has already been opened.
+If you believe you have found a bug or would like to make a request for a new feature, we would like to hear from you! Before opening a new issue, first take some time to review [this repository's issue collector](https://github.com/ROCm/hipfort/issues) to see if a similar issue has already been opened.
 
 *Issue templates?*
 
