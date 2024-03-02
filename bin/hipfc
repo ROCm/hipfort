@@ -47,6 +47,7 @@ function usage(){
     -lrocblas   Link to rocblas library
     -lrocfft    Link to rocfft library
     -lrocrand   Link to rocrand library
+    -lroctx64   Link to roctx library
     -lhipblas   Link to hipblas library
     -lhipsparse Link to hipsparse library
     -lhipsolver Link to hipsolver library

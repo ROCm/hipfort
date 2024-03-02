@@ -123,6 +123,13 @@ else()
   message(STATUS "Skipping hipfort::hip target export")
 endif()
 
+find_package(roctx PATHS ${ROCM_PATH} /opt/rocm)
+if(roctx_FOUND)
+  hipfort_add_component(roctx roc::roctx)
+else()
+  message(STATUS "Skipping hipfort::roctx target export")
+endif()
+
 find_package(rocblas PATHS ${ROCM_PATH} /opt/rocm)
 if(rocblas_FOUND)
   hipfort_add_component(rocblas roc::rocblas)
