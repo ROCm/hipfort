@@ -133,12 +133,26 @@ Aside from Fortran interfaces to the HIP and ROCm libraries, hipfort ships the `
 
 Among the environment variables, the most important are:
 
-| Variable | Description | Default |
-|---|---|---|
-| `HIP_PLATFORM` | The platform to compile for (either 'amd' or 'nvidia') | `amd` |
-| `ROCM_PATH` | Path to ROCm installation | `/opt/rocm` |
-| `CUDA_PATH` | Path to CUDA installation | `/usr/local/cuda` | 
-| `HIPFORT_COMPILER` | Fortran compiler to be used | `gfortran` | 
+.. list-table::
+   :widths: 25 25 50
+   :header-rows: 1
+
+   * - Environment variable
+     - Description
+     - Default
+   * - `HIP_PLATFORM` 
+     - The platform to compile for (either 'amd' or 'nvidia')
+     - `amd` 
+   * - `ROCM_PATH`
+     - Path to ROCm installation
+     - `/opt/rocm`
+   * - `CUDA_PATH` 
+     - Path to CUDA installation
+     - `/usr/local/cuda` 
+   * - `HIPFORT_COMPILER` 
+     -  Fortran compiler to be used
+     - `gfortran`
+
 
 Examples and tests
 ====================
