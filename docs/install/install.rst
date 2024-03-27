@@ -10,9 +10,7 @@ Installation
 Prerequisites
 ===============
 
-* hipSOLVER interfaces will only work for AMD GPUs.
-
-* We recommend gfortran version 7.5.0 or newer, as we have observed problems with older versions.
+We recommend gfortran version 7.5.0 or newer, as we have observed problems with older versions.
 
 Building and testing hipfort from source
 ==========================================
@@ -42,6 +40,10 @@ Fortran interfaces
 
 * **HIP:**   HIP runtime, hipBLAS, hipSPARSE, hipFFT, hipRAND, hipSOLVER
 * **ROCm:** rocBLAS, rocSPARSE, rocFFT, rocRAND, rocSOLVER
+
+.. note: 
+
+hipSOLVER interfaces will only work for AMD GPUs.
 
 While the HIP interfaces and libraries allow to write portable code for both AMD and CUDA devices, the ROCm ones can only be used with AMD devices.
 
