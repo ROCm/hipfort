@@ -10,7 +10,7 @@ Installation
 Prerequisites
 ===============
 
-We recommend gfortran version 7.5.0 or newer, as we have observed problems with older versions.
+* gfortran version 7.5.0 or newer
 
 Building and testing hipfort from source
 ==========================================
@@ -65,7 +65,7 @@ Use the following examples to express `f2003` interfaces:
 **Example 1**
 
 
-.. code-block:: Fortran
+.. code-block:: 
 
     use iso_c_binding
     use hipfort
@@ -81,7 +81,7 @@ Use the following examples to express `f2003` interfaces:
 
 **Example 2**
 
-.. code-block:: Fortran
+.. code-block::
 
         use hipfort
         integer     :: ierr        ! error code
@@ -97,7 +97,7 @@ Use the following examples to express `f2003` interfaces:
 
 The `f2008` interfaces also overload `hipMalloc`, similar to the Fortran 2008 `ALLOCATE` intrinsic. For example,
 
-.. code-block:: Fortran
+.. code-block:: 
 
         integer     :: ierr        ! error code
         real        :: a_h(5,6)    ! host array
