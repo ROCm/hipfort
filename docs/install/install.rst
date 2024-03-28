@@ -2,7 +2,7 @@
   :description: Install rocDecode
   :keywords: install, rocDecode, AMD, ROCm
 
-
+*********************************
 Installation
 *********************************
 
