@@ -1,36 +1,54 @@
-# hipfort
 
-## About
-hipfort is a Fortran library that exposes the HIP API and ROCm and Nvidia accelerated libraries in Fortran with an open and portable set of standard Fortran module interfaces.
+.. meta::
+  :description: hipFORT documentation and API reference library
+  :keywords: hipfort, ROCm, API, documentation
 
-## Overview
+********************************************************************
+hipFORT documentation
+********************************************************************
 
-::::{grid} 1 1 2 2
-:gutter: 1
+hipfort is a Fortran library that exposes the HIP API and ROCm and Nvidia accelerated libraries in Fortran with an open and portable set of standard Fortran module interfaces. To learn more, see :doc:`what-is-hipFORT`
 
-:::{grid-item-card} How-to Guides
-- {doc}`/how_to_guides/getting_started`
-:::
+You can access hipFORT code on our `GitHub repository <https://github.com/ROCm/hipFORT>`_.
 
-:::{grid-item-card} Reference
-- {doc}`/doxygen/html/index`
-- {doc}`/reference/supported_apis`
-  - {doc}`/doxygen/html/md_input_supported_api_hip`
-  - {doc}`/doxygen/html/md_input_supported_api_hipblas`
-  - {doc}`/doxygen/html/md_input_supported_api_hipfft`
-  - {doc}`/doxygen/html/md_input_supported_api_hiprand`
-  - {doc}`/doxygen/html/md_input_supported_api_hipsolver`
-  - {doc}`/doxygen/html/md_input_supported_api_hipsparse`
-  - {doc}`/doxygen/html/md_input_supported_api_rocblas`
-  - {doc}`/doxygen/html/md_input_supported_api_rocfft`
-  - {doc}`/doxygen/html/md_input_supported_api_rocrand`
-  - {doc}`/doxygen/html/md_input_supported_api_rocsolver`
-  - {doc}`/doxygen/html/md_input_supported_api_rocsparse`
-:::
+Our documentation is structured as follows:
 
-:::{grid-item-card} Developer Guide
-- {doc}`/developer_guide/contributing`
-- {doc}`/developer_guide/specifications`
-:::
+.. grid:: 2
+  :gutter: 3
 
-::::
+  .. grid-item-card:: Install
+
+    * :doc:`Quick-start <./install/quick-start>`
+    * :doc:`hipFORT installation <./install/install>`
+
+  .. grid-item-card:: API reference
+
+     * :{doc}`/doxygen/html/index`
+     * :{doc}`/reference/supported_apis`
+     * :{doc}`/doxygen/html/md_input_supported_api_hip`
+     * :{doc}`/doxygen/html/md_input_supported_api_hipblas`
+     * :{doc}`/doxygen/html/md_input_supported_api_hipfft`
+     * :{doc}`/doxygen/html/md_input_supported_api_hiprand`
+     * :{doc}`/doxygen/html/md_input_supported_api_hipsolver`
+     * :{doc}`/doxygen/html/md_input_supported_api_hipsparse`
+     * :{doc}`/doxygen/html/md_input_supported_api_rocblas`
+     * :{doc}`/doxygen/html/md_input_supported_api_rocfft`
+     * :{doc}`/doxygen/html/md_input_supported_api_rocrand`
+     * :{doc}`/doxygen/html/md_input_supported_api_rocsolver`
+     * :{doc}`/doxygen/html/md_input_supported_api_rocsparse` 
+
+
+  .. grid-item-card:: Tutorials
+
+    * :{doc}`/tutorials/examples
+
+To contribute to the documentation, refer to
+`Contributing to ROCm <https://rocm.docs.amd.com/en/latest/contribute/contributing.html>`_.
+
+You can find licensing information on the
+`Licensing <https://rocm.docs.amd.com/en/latest/about/license.html>`_ page.
+
+
+
+
+
