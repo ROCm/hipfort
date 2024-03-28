@@ -15,7 +15,8 @@ Prerequisites
 Building and testing hipfort from source
 ==========================================
 
-Install `gfortran`, `git`, `cmake`, and HIP, if not yet installed. Then build, install, and test hipfort from source with the commands below:
+1. Install `gfortran`, `git`, `cmake`, and HIP, if not yet installed. 
+2. Build, install, and test hipFORTfrom source with the commands below:
 
 .. code-block:: 
 
@@ -32,7 +33,7 @@ Install `gfortran`, `git`, `cmake`, and HIP, if not yet installed. Then build, i
 
 .. note::
     
-        The above steps demonstrate the use of the `hipfc` utility. `hipfc` calls `hipcc` for non-Fortran files and then compiles the Fortran files and links to the object file created by `hipcc`.
+The above steps demonstrate the use of the `hipfc` utility. `hipfc` calls `hipcc` for non-Fortran files and then compiles the Fortran files and links to the object file created by `hipcc`.
 
 Fortran interfaces
 ===================
@@ -44,7 +45,7 @@ Fortran interfaces
 
 .. note:: 
 
-        hipSOLVER interfaces will only work with AMD GPUs.
+hipSOLVER interfaces will only work with AMD GPUs.
 
 While the HIP interfaces and libraries allow to write portable code for both AMD and CUDA devices, the ROCm ones can only be used with AMD devices.
 
@@ -55,7 +56,7 @@ These directly take Fortran (array) variables and the number of elements instead
 
 .. note:: 
 
-        If you plan to use the `f2008` interfaces, we recommend `gfortran` version `7.5.0` or newer as we have observed problems with older versions.
+If you plan to use the `f2008` interfaces, we recommend `gfortran` version `7.5.0` or newer as we have observed problems with older versions.
 
 Examples
 --------
@@ -129,7 +130,7 @@ You may further find it convenient to directly use the search function on [HIPFO
 hipfc wrapper compiler and Makefile.hipfort
 ================================================
 
-Aside from Fortran interfaces to the HIP and ROCm libraries, hipfort ships the `hipfc` wrapper compiler and a `Makefile.hipfort` that can be included into a project's build system. hipfc located in the `bin/` subdirectory and Makefile.hipfort in share/hipfort of the repository. While both can be configured via a number of environment variables,` hipfc` also understands a greater number of command line options that you can print to screen via `hipfc -h`.
+Aside from Fortran interfaces to the HIP and ROCm libraries, hipFORT ships the `hipfc` wrapper compiler and a `Makefile.hipfort` that can be included into a project's build system. hipfc located in the `bin/` subdirectory and Makefile.hipfort in share/hipfort of the repository. While both can be configured via a number of environment variables,` hipfc` also understands a greater number of command line options that you can print to screen via `hipfc -h`.
 
 Among the environment variables, the most important are:
 
