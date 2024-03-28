@@ -1,10 +1,20 @@
-# Anywhere {branch} is used, the branch name will be substituted.
-# These comments will also be removed.
+defaults:
+  numbered: False
 root: index
 subtrees:
-  - caption: How to Guides
-    entries:
-    - file: how_to_guides/getting_started
+- entries:
+  - file: what-is-hipFORT.rst
+    title: What is hipFORT?
+
+- caption: Install
+  entries:
+  - file: install/quick-start.rst
+    title: Quick-start
+  - file: install/install.rst
+    title: Installation guide
+
+- caption: API reference
+  entries:
   - caption: Reference
     entries:
     - file: doxygen/html/index
@@ -21,10 +31,17 @@ subtrees:
         - file: doxygen/html/md_input_supported_api_rocrand
         - file: doxygen/html/md_input_supported_api_rocsolver
         - file: doxygen/html/md_input_supported_api_rocsparse
-  - caption: Developer Guide
-    entries:
-    - file: developer_guide/contributing
-    - file: developer_guide/specifications
-  - caption: About 
-    entries:
-      - file: license
+
+- caption: Tutorials
+  entries:
+   - file: tutorials/examples.rst
+    title: GitHub examples
+
+- caption: About
+  entries:
+  - file: license.md
+
+
+
+
+
