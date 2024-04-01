@@ -32,10 +32,7 @@ subtrees:
         - file: doxygen/html/md_input_supported_api_rocsolver
         - file: doxygen/html/md_input_supported_api_rocsparse
 
-- caption: Tutorials
-  entries:
-    - file: tutorials/examples.rst
-      title: GitHub examples
+
       
 - caption: About
   entries:
