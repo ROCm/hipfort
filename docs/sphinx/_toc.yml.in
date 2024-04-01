@@ -36,6 +36,9 @@ subtrees:
       - file: tutorials/examples.rst
         title: GitHub examples
 
-
+  - caption: About
+    entries:
+      - file: license.md
+        title: License
 
 
