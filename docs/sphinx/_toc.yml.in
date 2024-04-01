@@ -35,7 +35,7 @@ subtrees:
 - caption: Tutorials
   entries:
    - file: tutorials/examples.rst
-    title: GitHub examples
+     title: GitHub examples
 
 - caption: About
   entries:
