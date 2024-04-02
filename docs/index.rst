@@ -23,25 +23,28 @@ Our documentation is structured as follows:
 
 .. {grid-item-card} API Reference
 
-      - {doc}`/doxygen/html/index`
-      - {doc}`/reference/supported_apis`
-        - {doc}`/doxygen/html/md_input_supported_api_hip`
-        - {doc}`/doxygen/html/md_input_supported_api_hipblas`
-        - {doc}`/doxygen/html/md_input_supported_api_hipfft`
-        - {doc}`/doxygen/html/md_input_supported_api_hiprand`
-        - {doc}`/doxygen/html/md_input_supported_api_hipsolver`
-        - {doc}`/doxygen/html/md_input_supported_api_hipsparse`
-        - {doc}`/doxygen/html/md_input_supported_api_rocblas`
-        - {doc}`/doxygen/html/md_input_supported_api_rocfft`
-        - {doc}`/doxygen/html/md_input_supported_api_rocrand`
-        - {doc}`/doxygen/html/md_input_supported_api_rocsolver`
-        - {doc}`/doxygen/html/md_input_supported_api_rocsparse`
-  
+    * :doc:`API library <../doxygen/html/files>`
+    * :doc:`Functions <../doxygen/html/globals>`
+    * :doc:`Data structures <../doxygen/html/annotated>`
+
+    * :doc:`/doxygen/html/index`
+    * :doc:`/reference/supported_apis`
+        - :doc:`/doxygen/html/md_input_supported_api_hip`
+        - :doc:`/doxygen/html/md_input_supported_api_hipblas`
+        - :doc:`/doxygen/html/md_input_supported_api_hipfft`
+        - :doc:`/doxygen/html/md_input_supported_api_hiprand`
+        - :doc:`/doxygen/html/md_input_supported_api_hipsolver`
+        - :doc:`/doxygen/html/md_input_supported_api_hipsparse`
+        - :doc:`/doxygen/html/md_input_supported_api_rocblas`
+        - :doc:`/doxygen/html/md_input_supported_api_rocfft`
+        - :doc:`/doxygen/html/md_input_supported_api_rocrand`
+        - :doc:`/doxygen/html/md_input_supported_api_rocsolver`
+        - :doc:`/doxygen/html/md_input_supported_api_rocsparse`  
 
 
   .. grid-item-card:: Tutorials
 
-    * :{doc}`/tutorials/examples`
+    * :doc:`/tutorials/examples`
 
 To contribute to the documentation, refer to
 `Contributing to ROCm <https://rocm.docs.amd.com/en/latest/contribute/contributing.html>`_.
