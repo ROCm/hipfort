@@ -21,7 +21,7 @@ Our documentation is structured as follows:
     * :doc:`Quick-start <./install/quick-start>`
     * :doc:`hipFORT installation <./install/install>`
 
-.. {grid-item-card} API Reference
+.. grid-item-card:: API Reference
 
     * :doc:`API library <../doxygen/html/files>`
     * :doc:`Functions <../doxygen/html/globals>`
