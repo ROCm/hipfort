@@ -28,6 +28,7 @@ Our documentation is structured as follows:
     * :doc:`Namespaces <./doxygen/html/namespaces>`       
     * :doc:`Data types list <./doxygen/html/annotated>`
     * :doc:`Files <./doxygen/html/files>`
+    * :doc:`Supported APIs <./reference/index>`
    
 
   .. grid-item-card:: Tutorials
