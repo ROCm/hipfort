@@ -19,7 +19,7 @@ Our documentation is structured as follows:
   .. grid-item-card:: Install
 
     * :doc:`Quick-start <./install/quick-start>`
-    * :doc:`hipFORT installation <./install/install>`
+    * :doc:`Installation guide <./install/install>`
 
   .. grid-item-card:: hipFORT API Reference
     
