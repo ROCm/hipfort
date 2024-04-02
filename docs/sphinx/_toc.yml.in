@@ -33,7 +33,7 @@ subtrees:
   - caption: Tutorials
     entries:
       - file: tutorials/examples.rst
-        title: GitHub examples
+        title: Examples
 
   - caption: About
     entries:
