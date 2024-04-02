@@ -22,12 +22,12 @@ Our documentation is structured as follows:
     * :doc:`hipFORT installation <./install/install>`
 
   .. grid-item-card:: hipFORT API Reference
-
-    * :doc:`Files <./doxygen/html/files>`
+    
     * :doc:`Modules <./doxygen/html/modules>`
-    * :doc:`Namespaces <./doxygen/html/namespaces>`
+    * :doc:`Namespaces <./doxygen/html/namespaces>`   
+    * :doc:`Supported APIs <./reference/index>`
     * :doc:`Data types list <./doxygen/html/annotated>`
-    * :doc:`Supported APIs <./reference/index>`       
+    * :doc:`Files <./doxygen/html/files>`
 
   .. grid-item-card:: Tutorials
 
