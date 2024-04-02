@@ -17,7 +17,7 @@ subtrees:
       - caption: Reference
         entries:
           - file: ../doxygen/html/index
-          - file: reference/supported_apis
+          - file: reference/index.md
             entries:
               - file: ../doxygen/html/md_input_supported_api_hip
               - file: ../doxygen/html/md_input_supported_api_hipblas
