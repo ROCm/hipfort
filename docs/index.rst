@@ -24,7 +24,7 @@ Our documentation is structured as follows:
 .. grid-item-card:: API Reference
 
     * :doc:`Files <./doxygen/html/files>`
-    * :doc:`Modules` <./doxygen/html/globals>`
+    * :doc:`Modules <./doxygen/html/globals>`
     * :doc:`Data types list <./doxygen/html/annotated>`
     * :doc:`Supported APIs <./reference/index>`       
 
