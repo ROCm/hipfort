@@ -16,7 +16,7 @@ subtrees:
     entries:
       - file: doxygen/html/index
       - file: reference/index.md
-        tite: Supported APIs
+        title: Supported APIs
         entries:
           - file: doxygen/html/md_input_supported_api_hip
           - file: doxygen/html/md_input_supported_api_hipblas
