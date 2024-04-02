@@ -28,7 +28,7 @@ Our documentation is structured as follows:
     * :doc:`Data structures <./doxygen/html/annotated>`
 
     * :doc:`/doxygen/html/index`
-    * :doc:`/reference/supported_apis`
+    * :doc:` Supported APIs <./reference/supported_apis>`
         - :doc:`/doxygen/html/md_input_supported_api_hip`
         - :doc:`/doxygen/html/md_input_supported_api_hipblas`
         - :doc:`/doxygen/html/md_input_supported_api_hipfft`
