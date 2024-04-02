@@ -42,9 +42,9 @@ Our documentation is structured as follows:
         - :doc:`/doxygen/html/md_input_supported_api_rocsparse`  
 
 
-  .. grid-item-card:: Tutorials
+.. grid-item-card:: Tutorials
 
-    * :doc:`/tutorials/examples`
+  * :doc:`/tutorials/examples`
 
 To contribute to the documentation, refer to
 `Contributing to ROCm <https://rocm.docs.amd.com/en/latest/contribute/contributing.html>`_.
