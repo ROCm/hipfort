@@ -21,10 +21,10 @@ Our documentation is structured as follows:
     * :doc:`Quick-start <./install/quick-start>`
     * :doc:`hipFORT installation <./install/install>`
 
-.. grid-item-card:: API Reference
+.. grid-item-card:: hipFORT API Reference
 
     * :doc:`Files <./doxygen/html/files>`
-    * :doc:`Modules <./doxygen/html/globals>`
+    * :doc:`Modules <./doxygen/html/modules>`
     * :doc:`Data types list <./doxygen/html/annotated>`
     * :doc:`Supported APIs <./reference/index>`       
 
