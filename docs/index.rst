@@ -21,16 +21,17 @@ Our documentation is structured as follows:
     * :doc:`Quick-start <./install/quick-start>`
     * :doc:`hipFORT installation <./install/install>`
 
-.. grid-item-card:: hipFORT API Reference
+  .. grid-item-card:: hipFORT API Reference
 
     * :doc:`Files <./doxygen/html/files>`
     * :doc:`Modules <./doxygen/html/modules>`
+    * :doc:`Namespaces <./doxygen/html/namespaces>`
     * :doc:`Data types list <./doxygen/html/annotated>`
     * :doc:`Supported APIs <./reference/index>`       
 
-.. grid-item-card:: Tutorials
+  .. grid-item-card:: Tutorials
 
-  * :doc:`/tutorials/examples`
+    * :doc:`/tutorials/examples`
 
 To contribute to the documentation, refer to
 `Contributing to ROCm <https://rocm.docs.amd.com/en/latest/contribute/contributing.html>`_.
