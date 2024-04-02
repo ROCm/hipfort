@@ -16,19 +16,19 @@ subtrees:
     entries:
       - caption: Reference
         entries:
-          - file: ../doxygen/html/index       
+          - file: doxygen/html/index       
             entries:
-              - file: ../doxygen/html/md_input_supported_api_hip
-              - file: ../doxygen/html/md_input_supported_api_hipblas
-              - file: ../doxygen/html/md_input_supported_api_hipfft
-              - file: ../doxygen/html/md_input_supported_api_hiprand
-              - file: ../doxygen/html/md_input_supported_api_hipsolver
-              - file: ../doxygen/html/md_input_supported_api_hipsparse
-              - file: ../doxygen/html/md_input_supported_api_rocblas
-              - file: ../doxygen/html/md_input_supported_api_rocfft
-              - file: ../doxygen/html/md_input_supported_api_rocrand
-              - file: ../doxygen/html/md_input_supported_api_rocsolver
-              - file: ../doxygen/html/md_input_supported_api_rocsparse
+              - file: doxygen/html/md_input_supported_api_hip
+              - file: doxygen/html/md_input_supported_api_hipblas
+              - file: doxygen/html/md_input_supported_api_hipfft
+              - file: doxygen/html/md_input_supported_api_hiprand
+              - file: doxygen/html/md_input_supported_api_hipsolver
+              - file: doxygen/html/md_input_supported_api_hipsparse
+              - file: doxygen/html/md_input_supported_api_rocblas
+              - file: doxygen/html/md_input_supported_api_rocfft
+              - file: doxygen/html/md_input_supported_api_rocrand
+              - file: doxygen/html/md_input_supported_api_rocsolver
+              - file: doxygen/html/md_input_supported_api_rocsparse
 
   - caption: Tutorials
     entries:
