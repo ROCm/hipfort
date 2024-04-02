@@ -23,9 +23,9 @@ Our documentation is structured as follows:
 
 .. grid-item-card:: API Reference
 
-    * :doc:`API library <../doxygen/html/files>`
-    * :doc:`Functions <../doxygen/html/globals>`
-    * :doc:`Data structures <../doxygen/html/annotated>`
+    * :doc:`API library <./doxygen/html/files>`
+    * :doc:`Functions <./doxygen/html/globals>`
+    * :doc:`Data structures <./doxygen/html/annotated>`
 
     * :doc:`/doxygen/html/index`
     * :doc:`/reference/supported_apis`
