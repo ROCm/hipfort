@@ -141,8 +141,8 @@ ADD_SUBDIRECTORY(${CMAKE_SOURCE_DIR}/lib)
 ADD_SUBDIRECTORY(${CMAKE_SOURCE_DIR}/test)
 ADD_SUBDIRECTORY(${CMAKE_SOURCE_DIR}/bin)
 
-set(CPACK_DEBIAN_PACKAGE_DEPENDS "hip-runtime-amd (>= 3.5.0)")
-set(CPACK_RPM_PACKAGE_REQUIRES "hip-runtime-amd >= 3.5.0")
+set(CPACK_DEBIAN_PACKAGE_DEPENDS "hip-runtime-amd (>= 4.5.0)")
+set(CPACK_RPM_PACKAGE_REQUIRES "hip-runtime-amd >= 4.5.0")
 # Package name changed from hipfort to hipfort-devel/dev
 # Backward compatibility support for old package name
 set(CPACK_DEBIAN_PACKAGE_PROVIDES "hipfort")
