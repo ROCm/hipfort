@@ -126,12 +126,12 @@ The current batch of HIPFORT interfaces is derived from ROCm 4.5.0. The followin
 * [rocSOLVER](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_ROCSOLVER.md)
 * [rocSPARSE](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_ROCSPARSE.md)
 
-You may further find it convenient to directly use the search function on [HIPFORT's documentation page](https://rocm.docs.amd.com/projects/hipfort/en/latest/) to get information on the arguments of an interface
+You may further find it convenient to directly use the search function on [HIPFORT's documentation page](https://rocm.docs.amd.com/projects/hipfort/en/latest/) to get information on the arguments of an interface.
 
 hipfc wrapper compiler and Makefile.hipfort
 ================================================
 
-Aside from Fortran interfaces to the HIP and ROCm libraries, hipFORT ships the `hipfc` wrapper compiler and a `Makefile.hipfort` that can be included into a project's build system. hipfc located in the `bin/` subdirectory and Makefile.hipfort in share/hipfort of the repository. While both can be configured via a number of environment variables,` hipfc` also understands a greater number of command line options that you can print to screen via `hipfc -h`.
+Aside from Fortran interfaces to the HIP and ROCm libraries, hipFORT ships the `hipfc` wrapper compiler and a `Makefile. fort` that can be included in a project's build system. hipfc is in the `bin/` subdirectory, and Makefile.hipfort is in share/hipfort of the repository. While both can be configured using a number of environment variables, ` hipfc` also understands a greater number of command line options that you can print to the screen using `hipfc -h.`
 
 Among the environment variables, the most important are:
 
@@ -159,22 +159,21 @@ Among the environment variables, the most important are:
 Examples and tests
 ====================
 
-The examples, which simultaneously serve as tests, are located in the `f2003` and `f2008` subdirectories of the repo's `test/` folder. Both test collections implement the same tests but require
-that the used Fortran compiler supports at least the respective Fortran standard. There are further subcategories per `hip*` or `roc*` library that is tested.
+The examples simultaneously serve as tests in the `f2003` and `f2008` subdirectories of the repository’s `test/` folder. Both test collections implement the same tests but require that the used Fortran compiler support at least the respective Fortran standard. Further subcategories per the `hip*` or `roc*` library are tested.
 
 Building a single test
 -----------------------
 
 .. note:: 
 
-        Only the `hip*` tests can be compiled for CUDA devices. The `roc*` tests cannot. 
+        Only `hip*` tests can be compiled for CUDA devices. The `roc*` tests cannot be compiled for CUDA devices. 
 
 .. note::
 
-        The make targets append the linker flags for AMD devices to the `CFLAGS` variable per default.
+        The `make` targets append the linker flags for AMD devices to the `CFLAGS` variable per default.
 
 
-To compile for AMD devices you can simply call `make` in the test directories.
+To compile for AMD devices, you can simply call `make` in the test directories.
 
 If you want to compile for CUDA devices, you need to build as follows:
 
@@ -208,7 +207,7 @@ from the `test/` folder. The instructions are given below.
 AMD devices
 ############
 
-Running all tests as below requires that all ROCm math libraries can be found at `/opt/rocm`. Specify a different ROCm location via the `ROCM_PATH` environment variable.
+Running all tests as below requires all ROCm math libraries to be found at `/opt/rocm`. You can specify a different ROCm location via the `ROCM_PATH` environment variable.
 
 .. note::
 
@@ -233,11 +232,11 @@ CUDA devices
 
 .. note::
 
-Running all tests as below requires that CUDA can be found at `/usr/local/cuda`. Specify a different CUDA location via the `CUDA_PATH` environment variable or supply it to the `CFLAGS` variable by appending `-cuda-path <path_to_cuda>`. 
+Running the following tests requires that CUDA to be found at `/usr/local/cuda`. You can specify a different CUDA location via the `CUDA_PATH` environment variable or supply it to the `CFLAGS` variable by appending `-cuda-path <path_to_cuda>`. 
 
 .. note::
 
-Choose offload architecture value according to used device.
+Choose offload architecture value according to the used device.
 
 .. code-block::
 
