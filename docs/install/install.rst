@@ -12,11 +12,11 @@ Prerequisites
 
 * gfortran version 7.5.0 or newer
 
-Building and testing hipfort from source
+Building and testing hipFORT from source
 ==========================================
 
-1. Install `gfortran`, `git`, `cmake`, and HIP, if not yet installed. 
-2. Build, install, and test hipFORTfrom source with the commands below:
+1. Ensure `gfortran`, `git`, `cmake`, and HIP are installed.
+2. Build, install, and test hipFORT from source with the following commands:
 
 .. code-block:: 
 
@@ -33,7 +33,7 @@ Building and testing hipfort from source
 
 .. note::
     
-The above steps demonstrate the use of the `hipfc` utility. `hipfc` calls `hipcc` for non-Fortran files and then compiles the Fortran files and links to the object file created by `hipcc`.
+The preceding steps demonstrate the `hipfc` utility. `hipfc` calls `hipcc` for non-Fortran files and then compiles the Fortran files and links to the object file created by `hipcc`.
 
 Fortran interfaces
 ===================
@@ -41,18 +41,19 @@ Fortran interfaces
 `hipfort` provides interfaces to the following HIP and ROCm libraries:
 
 * **HIP:**   HIP runtime, hipBLAS, hipSPARSE, hipFFT, hipRAND, hipSOLVER
+
 * **ROCm:** rocBLAS, rocSPARSE, rocFFT, rocRAND, rocSOLVER
 
 .. note:: 
 
 hipSOLVER interfaces will only work with AMD GPUs.
 
-While the HIP interfaces and libraries allow to write portable code for both AMD and CUDA devices, the ROCm ones can only be used with AMD devices.
+While the HIP interfaces and libraries allow the writing of portable code for both AMD and CUDA devices, ROCm can only be used with AMD devices.
 
-The available interfaces depend on the Fortran compiler that is used to compile the `hipfort` modules and libraries. As the interfaces make use of the `iso_c_binding` module, the minimum requirement is a Fortran compiler that supports the Fortran 2003 standard (`f2003`). These interfaces typically require to pass `type(c_ptr)` variables and the number of bytes to memory management (e.g. `hipMalloc`) and math library routines, for example, `hipblasDGEMM`.
+The available interfaces depend on the Fortran compiler used to compile the `hipfort` modules and libraries. As the interfaces use the `iso_c_binding` module, the minimum requirement is a Fortran compiler that supports the Fortran 2003 standard (`f2003`). These interfaces typically require passing `type(c_ptr)` variables and the number of bytes to memory management. For example, `hipMalloc` and math library routines like `hipblasDGEMM`.
 
-If your compiler understands the Fortran 2008 (`f2008`) code constructs that occur in `hipfort`'s source and test files, additional interfaces are compiled into the `hipfort` modules and libraries. 
-These directly take Fortran (array) variables and the number of elements instead of `type(c_ptr)` variables and the number of bytes, respectively. Therefore, they reduce the chance to introduce compile-time and runtime errors into your code and makes it easier to read too.
+If your compiler understands the Fortran 2008 (`f2008`) code constructs in `hipfort`'s source and test files, additional interfaces are compiled into the `hipfort` modules and libraries. 
+These directly take Fortran (array) variables, the number of elements instead of `type(c_ptr)` variables, and the number of bytes, respectively. Therefore, they reduce the chance of introducing compile-time and runtime errors into your code and make it easier to read, too.
 
 .. note:: 
 
