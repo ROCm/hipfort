@@ -12,7 +12,7 @@ Prerequisites
 
 * gfortran version 7.5.0 or newer
 
-Building and testing hipfort from source
+Building and testing hipFORT from source
 ==========================================
 
 1. Ensure you have `gfortran`, `git`, `cmake`, and HIP installed.
