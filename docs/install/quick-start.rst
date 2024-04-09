@@ -15,8 +15,8 @@ Prerequisites
 Building and testing hipfort from source
 ==========================================
 
-1. Install `gfortran`, `git`, `cmake`, and HIP, if not yet installed. 
-2. Build, install, and test hipFORTfrom source with the commands below:
+1. Ensure you have `gfortran`, `git`, `cmake`, and HIP installed.
+2. Build, install, and test hipFORT from the source with the following commands: 
 
 .. code-block:: 
 
@@ -32,5 +32,5 @@ Building and testing hipfort from source
 
 .. note::
     
-The above steps demonstrate the use of the `hipfc` utility. `hipfc` calls `hipcc` for non-Fortran files and then compiles the Fortran files and links to the object file created by `hipcc`.
+The preceding steps demonstrate the `hipfc` utility. `hipfc` calls `hipcc` for non-Fortran files and then compiles the Fortran files and links to the object file created by `hipcc`.
 
