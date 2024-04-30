@@ -1,5 +1,15 @@
 # Change Log for hipfort
 
+## hipfort for ROCm 6.2.0
+### Added
+- Added roctx to the hipfort interfaces
+
+
+## hipfort for ROCm 6.0.1
+### Fixed
+- Included hipfort-config.cmake in the deb and rpm packages
+
+
 ## hipfort for ROCm 6.0.0
 ### Added
 - Added an exported hipfort-config.cmake with the following targets:
