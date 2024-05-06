@@ -2,14 +2,14 @@
 
 \# | API Name | Variants
 ----|---------------|---------
-1 | [hipblasSetVector](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__hipblas_auxiliary_1_1hipblassetvector.html "Interface documentation") | C binding
-2 | [hipblasGetVector](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__hipblas_auxiliary_1_1hipblasgetvector.html "Interface documentation") | C binding
-3 | [hipblasSetMatrix](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__hipblas_auxiliary_1_1hipblassetmatrix.html "Interface documentation") | C binding
-4 | [hipblasGetMatrix](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__hipblas_auxiliary_1_1hipblasgetmatrix.html "Interface documentation") | C binding
-5 | [hipblasSetVectorAsync](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__hipblas_auxiliary_1_1hipblassetvectorasync.html "Interface documentation") | C binding
-6 | [hipblasGetVectorAsync](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__hipblas_auxiliary_1_1hipblasgetvectorasync.html "Interface documentation") | C binding
-7 | [hipblasSetMatrixAsync](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__hipblas_auxiliary_1_1hipblassetmatrixasync.html "Interface documentation") | C binding
-8 | [hipblasGetMatrixAsync](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__hipblas_auxiliary_1_1hipblasgetmatrixasync.html "Interface documentation") | C binding
+1 | [hipblasSetVector](https://rocm.docs.amd.com/projects/hipfort/en/docs-6.1.0/doxygen/html/interfacehipfort__hipblas__auxiliary_1_1hipblassetvector.html "Interface documentation") | C binding
+2 | [hipblasGetVector](https://rocm.docs.amd.com/projects/hipfort/en/docs-6.1.0/doxygen/html/interfacehipfort__hipblas__auxiliary_1_1hipblasgetvector.html "Interface documentation") | C binding
+3 | [hipblasSetMatrix](https://rocm.docs.amd.com/projects/hipfort/en/docs-6.1.0/doxygen/html/interfacehipfort__hipblas__auxiliary_1_1hipblassetmatrix.html "Interface documentation") | C binding
+4 | [hipblasGetMatrix](https://rocm.docs.amd.com/projects/hipfort/en/docs-6.1.0/doxygen/html/interfacehipfort__hipblas__auxiliary_1_1hipblasgetmatrix.html "Interface documentation") | C binding
+5 | [hipblasSetVectorAsync](https://rocm.docs.amd.com/projects/hipfort/en/docs-6.1.0/doxygen/html/interfacehipfort__hipblas__auxiliary_1_1hipblassetvectorasync.html "Interface documentation") | C binding
+6 | [hipblasGetVectorAsync](https://rocm.docs.amd.com/projects/hipfort/en/docs-6.1.0/doxygen/html/interfacehipfort__hipblas__auxiliary_1_1hipblasgetvectorasync.html "Interface documentation") | C binding
+7 | [hipblasSetMatrixAsync](https://rocm.docs.amd.com/projects/hipfort/en/docs-6.1.0/doxygen/html/interfacehipfort__hipblas__auxiliary_1_1hipblassetmatrixasync.html "Interface documentation") | C binding
+8 | [hipblasGetMatrixAsync](https://rocm.docs.amd.com/projects/hipfort/en/docs-6.1.0/doxygen/html/interfacehipfort__hipblas__auxiliary_1_1hipblasgetmatrixasync.html "Interface documentation") | C binding
 1 | [hipblasCreate](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__hipblas_1_1hipblascreate.html "Interface documentation") | C binding
 2 | [hipblasDestroy](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__hipblas_1_1hipblasdestroy.html "Interface documentation") | C binding
 3 | [hipblasSetStream](https://rocm.docs.amd.com/projects/hipfort/en/latest/doxygen/html/interfacehipfort__hipblas_1_1hipblassetstream.html "Interface documentation") | C binding
