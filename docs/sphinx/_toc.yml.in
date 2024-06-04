@@ -3,10 +3,7 @@ defaults:
   numbered: false
 root: index
 subtrees:
-  - entries:
-      - file: what-is-hipFORT.rst
-        title: What is hipFORT?
-  - caption: Install
+    - caption: Install
     entries:
       - file: install/quick-start.rst
         title: Quick start installation guide
