@@ -9,7 +9,6 @@ build:
       python: "3.10"
    apt_packages:
      - "doxygen"
-     - "gfortran" # For pre-processing fortran sources
      - "graphviz" # For dot graphs in doxygen
 
 python:
