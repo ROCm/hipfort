@@ -7,7 +7,7 @@
 hipFORT documentation
 ********************************************************************
 
-hipFORT is a Fortran library that exposes the HIP API and ROCm and NVIDIA accelerated libraries in Fortran with an open and portable set of standard Fortran module interfaces. To learn more, see :doc:`what-is-hipFORT`
+hipFORT is a Fortran library that exposes the HIP API and ROCm and NVIDIA accelerated libraries in Fortran with an open and portable set of standard Fortran module interfaces. 
 
 You can access hipFORT code in our `GitHub repository <https://github.com/ROCm/hipFORT>`_.
 
