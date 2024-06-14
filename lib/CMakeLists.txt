@@ -117,107 +117,109 @@ macro(hipfort_add_component name imported_target)
 endmacro()
 
 find_package(hip PATHS ${ROCM_PATH} /opt/rocm)
-if(hip_FOUND)
-  hipfort_add_component(hip hip::host)
-else()
-  message(STATUS "Skipping hipfort::hip target export")
-endif()
+if(HIP_PLATFORM STREQUAL "amd")
+  if(hip_FOUND)
+    hipfort_add_component(hip hip::host)
+  else()
+    message(STATUS "Skipping hipfort::hip target export")
+  endif()
 
-find_package(roctx PATHS ${ROCM_PATH} /opt/rocm)
-if(roctx_FOUND)
-  hipfort_add_component(roctx roc::roctx)
-else()
-  message(STATUS "Skipping hipfort::roctx target export")
-endif()
+  find_package(roctx PATHS ${ROCM_PATH} /opt/rocm)
+  if(roctx_FOUND)
+    hipfort_add_component(roctx roc::roctx)
+  else()
+    message(STATUS "Skipping hipfort::roctx target export")
+  endif()
 
-find_package(rocblas PATHS ${ROCM_PATH} /opt/rocm)
-if(rocblas_FOUND)
-  hipfort_add_component(rocblas roc::rocblas)
-else()
-  message(STATUS "Skipping hipfort::rocblas target export")
-endif()
+  find_package(rocblas PATHS ${ROCM_PATH} /opt/rocm)
+  if(rocblas_FOUND)
+    hipfort_add_component(rocblas roc::rocblas)
+  else()
+    message(STATUS "Skipping hipfort::rocblas target export")
+  endif()
 
-find_package(hipblas PATHS ${ROCM_PATH} /opt/rocm)
-if(hipblas_FOUND)
-  hipfort_add_component(hipblas roc::hipblas)
-else()
-  message(STATUS "Skipping hipfort::hipblas target export")
-endif()
+  find_package(hipblas PATHS ${ROCM_PATH} /opt/rocm)
+  if(hipblas_FOUND)
+    hipfort_add_component(hipblas roc::hipblas)
+  else()
+    message(STATUS "Skipping hipfort::hipblas target export")
+  endif()
 
-find_package(rocfft PATHS ${ROCM_PATH} /opt/rocm)
-if(rocfft_FOUND)
-  hipfort_add_component(rocfft roc::rocfft)
-else()
-  message(STATUS "Skipping hipfort::rocfft target export")
-endif()
+  find_package(rocfft PATHS ${ROCM_PATH} /opt/rocm)
+  if(rocfft_FOUND)
+    hipfort_add_component(rocfft roc::rocfft)
+  else()
+    message(STATUS "Skipping hipfort::rocfft target export")
+  endif()
 
-find_package(hipfft PATHS ${ROCM_PATH} /opt/rocm)
-if(hipfft_FOUND)
-  hipfort_add_component(hipfft hip::hipfft)
-else()
-  message(STATUS "Skipping hipfort::hipfft target export")
-endif()
+  find_package(hipfft PATHS ${ROCM_PATH} /opt/rocm)
+  if(hipfft_FOUND)
+    hipfort_add_component(hipfft hip::hipfft)
+  else()
+    message(STATUS "Skipping hipfort::hipfft target export")
+  endif()
 
-find_package(rocrand PATHS ${ROCM_PATH} /opt/rocm)
-if(rocrand_FOUND)
-  hipfort_add_component(rocrand roc::rocrand)
-else()
-  message(STATUS "Skipping hipfort::rocrand target export")
-endif()
+  find_package(rocrand PATHS ${ROCM_PATH} /opt/rocm)
+  if(rocrand_FOUND)
+    hipfort_add_component(rocrand roc::rocrand)
+  else()
+    message(STATUS "Skipping hipfort::rocrand target export")
+  endif()
 
-find_package(hiprand PATHS ${ROCM_PATH} /opt/rocm)
-if(hiprand_FOUND)
-  hipfort_add_component(hiprand hip::hiprand)
-else()
-  message(STATUS "Skipping hipfort::hiprand target export")
-endif()
+  find_package(hiprand PATHS ${ROCM_PATH} /opt/rocm)
+  if(hiprand_FOUND)
+    hipfort_add_component(hiprand hip::hiprand)
+  else()
+    message(STATUS "Skipping hipfort::hiprand target export")
+  endif()
 
-find_package(rocsolver PATHS ${ROCM_PATH} /opt/rocm)
-if(rocsolver_FOUND)
-  hipfort_add_component(rocsolver roc::rocsolver)
-else()
-  message(STATUS "Skipping hipfort::rocsolver target export")
-endif()
+  find_package(rocsolver PATHS ${ROCM_PATH} /opt/rocm)
+  if(rocsolver_FOUND)
+    hipfort_add_component(rocsolver roc::rocsolver)
+  else()
+    message(STATUS "Skipping hipfort::rocsolver target export")
+  endif()
 
-find_package(hipsolver PATHS ${ROCM_PATH} /opt/rocm)
-if(hipsolver_FOUND)
-  hipfort_add_component(hipsolver roc::hipsolver)
-else()
-  message(STATUS "Skipping hipfort::hipsolver target export")
-endif()
+  find_package(hipsolver PATHS ${ROCM_PATH} /opt/rocm)
+  if(hipsolver_FOUND)
+    hipfort_add_component(hipsolver roc::hipsolver)
+  else()
+    message(STATUS "Skipping hipfort::hipsolver target export")
+  endif()
 
-find_package(rocsparse PATHS ${ROCM_PATH} /opt/rocm)
-if(rocsparse_FOUND)
-  hipfort_add_component(rocsparse roc::rocsparse)
-else()
-  message(STATUS "Skipping hipfort::rocsparse target export")
-endif()
+  find_package(rocsparse PATHS ${ROCM_PATH} /opt/rocm)
+  if(rocsparse_FOUND)
+    hipfort_add_component(rocsparse roc::rocsparse)
+  else()
+    message(STATUS "Skipping hipfort::rocsparse target export")
+  endif()
 
-find_package(hipsparse PATHS ${ROCM_PATH} /opt/rocm)
-if(hipsparse_FOUND)
-  hipfort_add_component(hipsparse hip::hipsparse)
-else()
-  message(STATUS "Skipping hipfort::hipsparse target export")
-endif()
+  find_package(hipsparse PATHS ${ROCM_PATH} /opt/rocm)
+  if(hipsparse_FOUND)
+    hipfort_add_component(hipsparse hip::hipsparse)
+  else()
+    message(STATUS "Skipping hipfort::hipsparse target export")
+  endif()
 
-include(CMakePackageConfigHelpers)
+  include(CMakePackageConfigHelpers)
 
-configure_package_config_file(
-  hipfort-config.cmake.in
-  ${CMAKE_CURRENT_BINARY_DIR}/hipfort-config.cmake
-  INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/hipfort
-  NO_CHECK_REQUIRED_COMPONENTS_MACRO
-)
-
-write_basic_package_version_file(
-  ${CMAKE_CURRENT_BINARY_DIR}/hipfort-config-version.cmake
-  VERSION "${HIPFORT_VERSION_MAJOR}.${HIPFORT_VERSION_MINOR}.${HIPFORT_VERSION_PATCH}"
-  COMPATIBILITY SameMajorVersion
-)
-
-rocm_install(
-  FILES
+  configure_package_config_file(
+    hipfort-config.cmake.in
     ${CMAKE_CURRENT_BINARY_DIR}/hipfort-config.cmake
+    INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/hipfort
+    NO_CHECK_REQUIRED_COMPONENTS_MACRO
+  )
+
+  write_basic_package_version_file(
     ${CMAKE_CURRENT_BINARY_DIR}/hipfort-config-version.cmake
-  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/hipfort
-)
+    VERSION "${HIPFORT_VERSION_MAJOR}.${HIPFORT_VERSION_MINOR}.${HIPFORT_VERSION_PATCH}"
+    COMPATIBILITY SameMajorVersion
+  )
+
+  rocm_install(
+    FILES
+      ${CMAKE_CURRENT_BINARY_DIR}/hipfort-config.cmake
+      ${CMAKE_CURRENT_BINARY_DIR}/hipfort-config-version.cmake
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/hipfort
+  )
+endif()
