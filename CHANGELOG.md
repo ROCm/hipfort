@@ -1,6 +1,6 @@
 # Change Log for hipfort
 
-## hipfort for ROCm 6.2.0
+## (Unreleased) hipfort
 ### Added
 - Added roctx to the hipfort interfaces
 
