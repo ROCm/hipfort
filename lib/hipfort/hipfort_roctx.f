@@ -31,15 +31,15 @@ module hipfort_roctx
          use iso_c_binding, only: c_char
          implicit none
          character(kind=c_char) :: message(*)
-      end subroutine roctxMarkA
+      end subroutine roctxMark
 
       function roctxRangePush(message) bind(c, name="roctxRangePushA")
          use iso_c_binding, only: c_int,&
                                   c_char
          implicit none
-         integer(c_int) :: roctxRangePushA
+         integer(c_int) :: roctxRangePush
          character(kind=c_char) :: message(*)
-      end function roctxRangePushA
+      end function roctxRangePush
 
       function roctxRangePop() bind(c, name="roctxRangePop")
          use iso_c_binding, only: c_int
@@ -51,9 +51,9 @@ module hipfort_roctx
          use iso_c_binding, only: c_size_t,&
                                   c_char
          implicit none
-         integer(c_size_t) :: roctxRangeStartA
+         integer(c_size_t) :: roctxRangeStart
          character(kind=c_char) :: message(*)
-      end function roctxRangeStartA
+      end function roctxRangeStart
 
       subroutine roctxRangeStop(range_id) bind (c, name="roctxRangeStop")
          use iso_c_binding, only: c_size_t
