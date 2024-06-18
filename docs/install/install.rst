@@ -114,17 +114,17 @@ Supported HIP and ROCm API
 
 The current batch of HIPFORT interfaces is derived from ROCm 4.5.0. The following tables list the supported API:
 
-* {doc}`../doxygen/html/md_input_supported_api_hip`
-* {doc}`../doxygen/html/md_input_supported_api_hipblas`
-* {doc}`../doxygen/html/md_input_supported_api_hipfft`
-* {doc}`../doxygen/html/md_input_supported_api_hiprand`
-* {doc}`../doxygen/html/md_input_supported_api_hipsolver`
-* {doc}`../doxygen/html/md_input_supported_api_hipsparse`
-* {doc}`../doxygen/html/md_input_supported_api_rocblas`
-* {doc}`../doxygen/html/md_input_supported_api_rocfft`
-* {doc}`../doxygen/html/md_input_supported_api_rocrand`
-* {doc}`../doxygen/html/md_input_supported_api_rocsolver`
-* {doc}`../doxygen/html/md_input_supported_api_rocsparse`
+* {doc}`/doxygen/html/md_input_supported_api_hip`
+* {doc}`/doxygen/html/md_input_supported_api_hipblas`
+* {doc}`/doxygen/html/md_input_supported_api_hipfft`
+* {doc}`/doxygen/html/md_input_supported_api_hiprand`
+* {doc}`/doxygen/html/md_input_supported_api_hipsolver`
+* {doc}`/doxygen/html/md_input_supported_api_hipsparse`
+* {doc}`/doxygen/html/md_input_supported_api_rocblas`
+* {doc}`/doxygen/html/md_input_supported_api_rocfft`
+* {doc}`/doxygen/html/md_input_supported_api_rocrand`
+* {doc}`/doxygen/html/md_input_supported_api_rocsolver`
+* {doc}`/doxygen/html/md_input_supported_api_rocsparse`
 
 
 You may further find it convenient to directly use the search function on [HIPFORT's documentation page](https://rocm.docs.amd.com/projects/hipfort/en/latest/) to get information on the arguments of an interface.
