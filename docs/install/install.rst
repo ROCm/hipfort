@@ -114,17 +114,17 @@ Supported HIP and ROCm API
 
 The current batch of HIPFORT interfaces is derived from ROCm 4.5.0. The following tables list the supported API:
 
-* :doc:`HIP API <../doxygen/html/html/md_input_supported_api_hip>`
-* :doc:`hipBLAS API <../doxygen/html/html/md_input_supported_api_hipblas>` 
-* :doc:`hipFFT API <../doxygen/html/html/md_input_supported_api_hipfft>` 
-* :doc:`hipRAND API <../doxygen/html/html/md_input_supported_api_hiprand>`
-* :doc:`hipSOLVER API <../doxygen/html/html/md_input_supported_api_hipsolver>`
-* :doc:`hipSPARSE API <../doxygen/html/html/md_input_supported_api_hipsparse>`
-* :doc:`rocBLAS API <../doxygen/html/html/md_input_supported_api_rocblas>`
-* :doc:`rocFFT API <../doxygen/html/html/md_input_supported_api_rocfft>`
-* :doc:`rocRAND API <../doxygen/html/html/md_input_supported_api_rocrand>`
-* :doc:`rocSOLVER API <../doxygen/html/html/md_input_supported_api_rocsolver>`
-* :doc:`rocSPARSE API <../doxygen/html/html/md_input_supported_api_rocsparse>`
+* :doc:`HIP API <../doxygen/html/html/md_input_supported_api_hip.html>`
+* :doc:`hipBLAS API <../doxygen/html/html/md_input_supported_api_hipblas.html>` 
+* :doc:`hipFFT API <../doxygen/html/html/md_input_supported_api_hipfft.html>` 
+* :doc:`hipRAND API <../doxygen/html/html/md_input_supported_api_hiprand.html>`
+* :doc:`hipSOLVER API <../doxygen/html/html/md_input_supported_api_hipsolver.html>`
+* :doc:`hipSPARSE API <../doxygen/html/html/md_input_supported_api_hipsparse.html>`
+* :doc:`rocBLAS API <../doxygen/html/html/md_input_supported_api_rocblas.html>`
+* :doc:`rocFFT API <../doxygen/html/html/md_input_supported_api_rocfft.html>`
+* :doc:`rocRAND API <../doxygen/html/html/md_input_supported_api_rocrand.html>`
+* :doc:`rocSOLVER API <../doxygen/html/html/md_input_supported_api_rocsolver.html>`
+* :doc:`rocSPARSE API <../doxygen/html/html/md_input_supported_api_rocsparse.html>`
 
 
 You may further find it convenient to directly use the search function on [HIPFORT's documentation page](https://rocm.docs.amd.com/projects/hipfort/en/latest/) to get information on the arguments of an interface.
