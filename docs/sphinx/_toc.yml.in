@@ -1,30 +1,28 @@
-# Anywhere {branch} is used, the branch name will be substituted.
-# These comments will also be removed.
+---
+defaults:
+  numbered: false
 root: index
 subtrees:
-  - caption: How to Guides
+  - caption: Install
     entries:
-    - file: how_to_guides/getting_started
-  - caption: Reference
+      - file: install/quick-start.rst
+        title: Quick start installation guide
+      - file: install/install.rst
+        title: Installation guide
+  - caption: API reference
     entries:
-    - file: doxygen/html/index
-    - file: reference/supported_apis
-      entries:
-        - file: doxygen/html/md_input_supported_api_hip
-        - file: doxygen/html/md_input_supported_api_hipblas
-        - file: doxygen/html/md_input_supported_api_hipfft
-        - file: doxygen/html/md_input_supported_api_hiprand
-        - file: doxygen/html/md_input_supported_api_hipsolver
-        - file: doxygen/html/md_input_supported_api_hipsparse
-        - file: doxygen/html/md_input_supported_api_rocblas
-        - file: doxygen/html/md_input_supported_api_rocfft
-        - file: doxygen/html/md_input_supported_api_rocrand
-        - file: doxygen/html/md_input_supported_api_rocsolver
-        - file: doxygen/html/md_input_supported_api_rocsparse
-  - caption: Developer Guide
+      - file: doxygen/html/index
+      - file: reference/index.md
+        title: Supported APIs
+       
+  - caption: Tutorials
     entries:
-    - file: developer_guide/contributing
-    - file: developer_guide/specifications
-  - caption: About 
+      - file: tutorials/examples.rst
+        title: Examples
+
+  - caption: About
     entries:
-      - file: license
+      - file: license.md
+        title: License
+
+
