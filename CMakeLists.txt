@@ -1,4 +1,5 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.5)
+PROJECT(hipfort VERSION 0.5 LANGUAGES Fortran C CXX) # hip-config.cmake requires CXX enabled
 
 #Setting Default value for libdir
 set(CMAKE_INSTALL_LIBDIR "lib" CACHE STRING "Library install directory")
@@ -6,18 +7,19 @@ set(CMAKE_INSTALL_LIBDIR "lib" CACHE STRING "Library install directory")
 #include definitions for GNU install dir cmake flags.
 include(GNUInstallDirs)
 
+# THESE ARE ABSOLUTE JUNK AND TOTALLY BREAK CMAKE
 # Default compiler gfortran, otherwise cmake Fortran package will set it to f95
 # You can override the compiler with cmake -DHIPFORT_COMPILER=
-set(HIPFORT_COMPILER "/usr/bin/gfortran" CACHE STRING "Fortran Compiler to build HIPFORT")
-set(HIPFORT_AR "/usr/bin/gcc-ar" CACHE STRING "Static archive command")
-set(HIPFORT_RANLIB "/usr/bin/gcc-ranlib" CACHE STRING "ranlib used to create Static archive")
-set(HIPFORT_COMPILER_FLAGS "-ffree-form -cpp -ffree-line-length-none -fmax-errors=5" CACHE STRING "Compiler flags to build HIPFORT")
-set(HIPFORT_BUILD_TYPE "RELEASE"  CACHE STRING "Set to RELEASE TESTING or DEBUG")
+set(HIPFORT_COMPILER ${CMAKE_Fortran_COMPILER_INIT} CACHE STRING "Fortran Compiler to build HIPFORT")
+set(HIPFORT_AR ${CMAKE_AR} CACHE STRING "Static archive command")
+set(HIPFORT_RANLIB ${CMAKE_RANLIB} CACHE STRING "ranlib used to create Static archive")
+set(HIPFORT_COMPILER_FLAGS ${CMAKE_Fortran_FLAGS_INIT} CACHE STRING "Compiler flags to build HIPFORT")
+set(HIPFORT_BUILD_TYPE ${CMAKE_BUILD_TYPE}  CACHE STRING "Set to RELEASE TESTING or DEBUG")
+set(HIPFORT_VERSION ${hipfort_VERSION}  CACHE STRING "Version of HIPFORT to build")
 
 #  The ROCm release manager and other integrators should build hipfort as follows:
 #     cmake -DHIPFORT_INSTALL_DIR=/opt/rocm-<release>/hipfort -DHIPFORT_VERSION=<release> <githubrepo>
 
-set(HIPFORT_VERSION "0.6.0"  CACHE STRING "Version of HIPFORT to build")
 set(HIPFORT_INSTALL_DIR  "/usr/local/hipfort-${HIPFORT_VERSION}" CACHE STRING "Install directory for hipfort")
 IF(CMAKE_INSTALL_PREFIX)
   # Make HIPFORT_INSTALL_DIR be the same as CmAKE_INSTALL_PREFIX
@@ -37,14 +39,14 @@ message("-- HIPFORT_VERSION:        ${HIPFORT_VERSION}")
 message("-- HIPFORT ----------------------------------------------")
 
 set(CMAKE_Fortran_COMPILER_INIT ${HIPFORT_COMPILER})
-PROJECT(hipfort Fortran C CXX) # hip-config.cmake requires CXX enabled
+set(CMAKE_Fortran_FORMAT FREE)
 
-SET(CMAKE_BUILD_TYPE ${HIPFORT_BUILD_TYPE})
-SET(VERSION ${HIPFORT_VERSION})
-SET(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/Modules/")
-SET(CMAKE_AR ${HIPFORT_AR})
-SET(CMAKE_RANLIB ${HIPFORT_RANLIB})
-SET(CMAKE_INSTALL_PREFIX ${HIPFORT_INSTALL_DIR})
+#SET(CMAKE_BUILD_TYPE ${HIPFORT_BUILD_TYPE})
+#SET(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/Modules/")
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/Modules")
+#SET(CMAKE_AR ${HIPFORT_AR})
+#SET(CMAKE_RANLIB ${HIPFORT_RANLIB})
+#SET(CMAKE_INSTALL_PREFIX ${HIPFORT_INSTALL_DIR})
 message("-- CMAKE_INSTALL_PREFIX:${CMAKE_INSTALL_PREFIX}")
 
 INCLUDE(FortranCInterface)
