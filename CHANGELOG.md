@@ -1,7 +1,15 @@
 # Change Log for hipfort
 
-## hipfort for ROCm 6.0.0
-### Added
+## hipfort 0.4-0 for ROCm 6.0.1
+
+### Fixes
+
+- Included hipfort-config.cmake in the deb and rpm packages
+
+## hipfort 0.4-0 for ROCm 6.0.0
+
+### Additions
+
 - Added an exported hipfort-config.cmake with the following targets:
   - `hipfort::hip`
   - `hipfort::rocblas`
@@ -15,22 +23,26 @@
   - `hipfort::rocsparse`
   - `hipfort::hipsparse`
 
+## hipfort 0.4-0 for ROCm 5.7.0
 
-## hipfort for ROCm 5.7.0
-### Added
+### Additions
+
 - Added `rocm_agent_enumerator` fallback for hipfc architecture autodetection
 
-### Changed
+### Changes
+
 - Updated documentation to use the Sphinx toolchain and publish to ReadTheDocs
 - Updated `HIP_PLATFORM` from 'nvcc' to 'nvidia'
 
+## hipfort 0.4-0 for ROCm 5.6.0
 
-## hipfort for ROCm 5.6.0
-### Added
+### Additions
+
 - Added hipfc architecture autodetection for gx1101 devices
 
+## hipfort 0.4-0 for ROCm 5.5.0
 
-## hipfort for ROCm 5.5.0
-### Fixed
+### Fixes
+
 - Fixed hipfc architecture autodetection for gfx90a devices that were
   previously unrecognized
