@@ -1,10 +1,14 @@
 # Change Log for hipfort
 
-## (Unreleased) hipfort
+## hipfort 0.5.0 for ROCm 6.3.0
 
 ### Additions
 
 - Added roctx to the hipfort interfaces
+
+### Changes
+
+- Updated hipsolver bindings
 
 ## hipfort 0.4-0 for ROCm 6.0.1
 
