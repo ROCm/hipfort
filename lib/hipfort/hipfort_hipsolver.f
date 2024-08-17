@@ -5038,9 +5038,9 @@ module hipfort_hipsolver
 
   interface hipsolverDsygvdx
 #ifdef USE_CUDA_NAMES
-    function hipsolverDsygvdx_(handle,itype,jobz,eigrange,uplo,n,A,lda,B,ldb,vl,vu,il,iu,nev,W,lwork) bind(c, name="cusolverDsygvdx")
+    function hipsolverDsygvdx_(handle,itype,jobz,eigrange,uplo,n,A,lda,B,ldb,vl,vu,il,iu,nev,W,work,lwork,devInfo) bind(c, name="cusolverDsygvdx")
 #else
-    function hipsolverDsygvdx_(handle,itype,jobz,eigrange,uplo,n,A,lda,B,ldb,vl,vu,il,iu,nev,W,lwork) bind(c, name="hipsolverDsygvdx")
+    function hipsolverDsygvdx_(handle,itype,jobz,eigrange,uplo,n,A,lda,B,ldb,vl,vu,il,iu,nev,W,work,lwork,devInfo) bind(c, name="hipsolverDsygvdx")
 #endif
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -5071,9 +5071,9 @@ module hipfort_hipsolver
 
   interface hipsolverChegvdx
 #ifdef USE_CUDA_NAMES
-    function hipsolverChegvdx_(handle,itype,jobz,eigrange,uplo,n,A,lda,B,ldb,vl,vu,il,iu,nev,W,lwork) bind(c, name="cusolverChegvdx")
+    function hipsolverChegvdx_(handle,itype,jobz,eigrange,uplo,n,A,lda,B,ldb,vl,vu,il,iu,nev,W,work,lwork,devInfo) bind(c, name="cusolverChegvdx")
 #else
-    function hipsolverChegvdx_(handle,itype,jobz,eigrange,uplo,n,A,lda,B,ldb,vl,vu,il,iu,nev,W,lwork) bind(c, name="hipsolverChegvdx")
+    function hipsolverChegvdx_(handle,itype,jobz,eigrange,uplo,n,A,lda,B,ldb,vl,vu,il,iu,nev,W,work,lwork,devInfo) bind(c, name="hipsolverChegvdx")
 #endif
       use iso_c_binding
       use hipfort_hipsolver_enums
@@ -5104,9 +5104,9 @@ module hipfort_hipsolver
 
   interface hipsolverZhegvdx
 #ifdef USE_CUDA_NAMES
-    function hipsolverZhegvdx_(handle,itype,jobz,eigrange,uplo,n,A,lda,B,ldb,vl,vu,il,iu,nev,W,lwork) bind(c, name="cusolverZhegvdx")
+    function hipsolverZhegvdx_(handle,itype,jobz,eigrange,uplo,n,A,lda,B,ldb,vl,vu,il,iu,nev,W,work,lwork,devInfo) bind(c, name="cusolverZhegvdx")
 #else
-    function hipsolverZhegvdx_(handle,itype,jobz,eigrange,uplo,n,A,lda,B,ldb,vl,vu,il,iu,nev,W,lwork) bind(c, name="hipsolverZhegvdx")
+    function hipsolverZhegvdx_(handle,itype,jobz,eigrange,uplo,n,A,lda,B,ldb,vl,vu,il,iu,nev,W,work,lwork,devInfo) bind(c, name="hipsolverZhegvdx")
 #endif
       use iso_c_binding
       use hipfort_hipsolver_enums
