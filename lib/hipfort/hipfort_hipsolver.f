@@ -6960,7 +6960,7 @@ module hipfort_hipsolver
       integer(c_int),value :: nrhs
       type(c_ptr),value :: Temp
       integer(c_int),value :: ldt
-      type(c_ptr),value :: XF
+      type(c_ptr),value :: XF_array
       integer(c_int),value :: ldxf
     end function
 
