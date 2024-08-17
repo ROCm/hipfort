@@ -6730,6 +6730,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfGetResetValuesFastMode_
+      type(c_ptr),value :: handle
       type(c_ptr),value :: fastmode
     end function
 
@@ -6745,6 +6746,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfRefactor_
+      type(c_ptr),value :: handle
     end function
 
   end interface
