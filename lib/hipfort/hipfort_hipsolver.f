@@ -148,7 +148,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverGetStream_
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnGetStream_
       type(c_ptr),value :: handle
       type(c_ptr) :: streamId
     end function
