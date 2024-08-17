@@ -45,6 +45,21 @@ module hipfort_hipsolver
     end function
 
   end interface
+
+  interface hipsolverDnCreate
+#ifdef USE_CUDA_NAMES
+    function hipsolverDnCreate_(handle) bind(c, name="cusolverDnCreate")
+#else
+    function hipsolverDnCreate_(handle) bind(c, name="hipsolverDnCreate")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCreate_
+      type(c_ptr) :: handle
+    end function
+
+  end interface
   
   interface hipsolverDestroy
 #ifdef USE_CUDA_NAMES
@@ -56,6 +71,21 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDestroy_
+      type(c_ptr),value :: handle
+    end function
+
+  end interface
+
+  interface hipsolverDnDestroy
+#ifdef USE_CUDA_NAMES
+    function hipsolverDnDestroy_(handle) bind(c, name="cusolverDnDestroy")
+#else
+    function hipsolverDnDestroy_(handle) bind(c, name="hipsolverDnDestroy")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDestroy_
       type(c_ptr),value :: handle
     end function
 
@@ -76,6 +106,22 @@ module hipfort_hipsolver
     end function
 
   end interface
+
+  interface hipsolverDnSetStream
+#ifdef USE_CUDA_NAMES
+    function hipsolverDnSetStream_(handle,streamId) bind(c, name="cusolverDnSetStream")
+#else
+    function hipsolverDnSetStream_(handle,streamId) bind(c, name="hipsolverDnSetStream")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSetStream_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: streamId
+    end function
+
+  end interface
   
   interface hipsolverGetStream
 #ifdef USE_CUDA_NAMES
@@ -89,6 +135,54 @@ module hipfort_hipsolver
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverGetStream_
       type(c_ptr),value :: handle
       type(c_ptr) :: streamId
+    end function
+
+  end interface
+
+  interface hipsolverDnGetStream
+#ifdef USE_CUDA_NAMES
+    function hipsolverDnGetStream_(handle,streamId) bind(c, name="cusolverDnGetStream")
+#else
+    function hipsolverDnGetStream_(handle,streamId) bind(c, name="hipsolverDnGetStream")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnGetStream_
+      type(c_ptr),value :: handle
+      type(c_ptr) :: streamId
+    end function
+
+  end interface
+
+  interface hipsolverSetDeterministicMode
+#ifdef USE_CUDA_NAMES
+    function hipsolverSetDeterministicMode_(handle,mode) bind(c, name="cusolverSetDeterministicMode")
+#else
+    function hipsolverSetDeterministicMode_(handle,mode) bind(c, name="hipsolverSetDeterministicMode")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSetDeterministicMode_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_DETERMINISTIC_RESULTS)),value :: mode
+    end function
+
+  end interface
+
+  interface hipsolverGetDeterministicMode
+#ifdef USE_CUDA_NAMES
+    function hipsolverGetDeterministicMode_(handle,mode) bind(c, name="cusolverGetDeterministicMode")
+#else
+    function hipsolverGetDeterministicMode_(handle,mode) bind(c, name="hipsolverGetDeterministicMode")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverGetDeterministicMode_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: mode
     end function
 
   end interface
@@ -4551,6 +4645,2343 @@ module hipfort_hipsolver
       hipsolverZsytrf_rank_0,&
       hipsolverZsytrf_rank_1
 #endif
+  end interface
+
+  interface hipsolverSsyevdx_bufferSize
+#ifdef USE_CUDA_NAMES
+    function hipsolverSsyevdx_bufferSize_(handle,jobz,eigrange,uplo,n,A,lda,vl,vu,il,iu,nev,W,lwork) bind(c, name="cusolverSsyevdx_bufferSize")
+#else
+    function hipsolverSsyevdx_bufferSize_(handle,jobz,eigrange,uplo,n,A,lda,vl,vu,il,iu,nev,W,lwork) bind(c, name="hipsolverSsyevdx_bufferSize")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevdx_bufferSize_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: eigrange
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      real(c_float),value :: vl
+      real(c_float),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      integer(c_int) :: nev
+      type(c_ptr),value :: W
+      integer(c_int) :: lwork
+    end function
+
+  end interface
+
+  interface hipsolverDdyevdx_bufferSize
+#ifdef USE_CUDA_NAMES
+    function hipsolverDdyevdx_bufferSize_(handle,jobz,eigrange,uplo,n,A,lda,vl,vu,il,iu,nev,W,lwork) bind(c, name="cusolverDdyevdx_bufferSize")
+#else
+    function hipsolverDdyevdx_bufferSize_(handle,jobz,eigrange,uplo,n,A,lda,vl,vu,il,iu,nev,W,lwork) bind(c, name="hipsolverDdyevdx_bufferSize")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDdyevdx_bufferSize_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: eigrange
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      real(c_double),value :: vl
+      real(c_double),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      integer(c_int) :: nev
+      type(c_ptr),value :: W
+      integer(c_int) :: lwork
+    end function
+
+  end interface
+
+  interface hipsolverCheevdx_bufferSize
+#ifdef USE_CUDA_NAMES
+    function hipsolverCheevdx_bufferSize_(handle,jobz,eigrange,uplo,n,A,lda,vl,vu,il,iu,nev,W,lwork) bind(c, name="cusolverCheevdx_bufferSize")
+#else
+    function hipsolverCheevdx_bufferSize_(handle,jobz,eigrange,uplo,n,A,lda,vl,vu,il,iu,nev,W,lwork) bind(c, name="hipsolverCheevdx_bufferSize")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevdx_bufferSize_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: eigrange
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      real(c_float),value :: vl
+      real(c_float),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      integer(c_int) :: nev
+      type(c_ptr),value :: W
+      integer(c_int) :: lwork
+    end function
+
+  end interface
+
+  interface hipsolverZheevdx_bufferSize
+#ifdef USE_CUDA_NAMES
+    function hipsolverZheevdx_bufferSize_(handle,jobz,eigrange,uplo,n,A,lda,vl,vu,il,iu,nev,W,lwork) bind(c, name="cusolverZheevdx_bufferSize")
+#else
+    function hipsolverZheevdx_bufferSize_(handle,jobz,eigrange,uplo,n,A,lda,vl,vu,il,iu,nev,W,lwork) bind(c, name="hipsolverZheevdx_bufferSize")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevdx_bufferSize_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: eigrange
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      real(c_double),value :: vl
+      real(c_double),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      integer(c_int) :: nev
+      type(c_ptr),value :: W
+      integer(c_int) :: lwork
+    end function
+
+  end interface
+
+  interface hipsolverSsyevdx_
+#ifdef USE_CUDA_NAMES
+    function hipsolverSsyevdx_(handle,jobz,eigrange,uplo,n,A,lda,vl,vu,il,iu,nev,W,work,lwork,devInfo) bind(c, name="cusolverSsyevdx")
+#else
+    function hipsolverSsyevdx_(handle,jobz,eigrange,uplo,n,A,lda,vl,vu,il,iu,nev,W,work,lwork,devInfo) bind(c, name="hipsolverSsyevdx")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevdx_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: eigrange
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      real(c_float),value :: vl
+      real(c_float),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      integer(c_int) :: nev
+      type(c_ptr),value :: W
+      type(c_ptr),value :: work
+      integer(c_int),value :: lwork
+      integer(c_int) :: devInfo
+    end function
+
+  end interface
+
+  interface hipsolverDdyevdx
+#ifdef USE_CUDA_NAMES
+    function hipsolverDdyevdx_(handle,jobz,eigrange,uplo,n,A,lda,vl,vu,il,iu,nev,W,work,lwork,devInfo) bind(c, name="cusolverDdyevdx")
+#else
+    function hipsolverDdyevdx_(handle,jobz,eigrange,uplo,n,A,lda,vl,vu,il,iu,nev,W,work,lwork,devInfo) bind(c, name="hipsolverDdyevdx")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDdyevdx_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: eigrange
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      real(c_double),value :: vl
+      real(c_double),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      integer(c_int) :: nev
+      type(c_ptr),value :: W
+      type(c_ptr),value :: work
+      integer(c_int),value :: lwork
+      integer(c_int) :: devInfo
+    end function
+
+  end interface
+
+  interface hipsolverCheevdx
+#ifdef USE_CUDA_NAMES
+    function hipsolverCheevdx_(handle,jobz,eigrange,uplo,n,A,lda,vl,vu,il,iu,nev,W,work,lwork,devInfo) bind(c, name="cusolverCheevdx")
+#else
+    function hipsolverCheevdx_(handle,jobz,eigrange,uplo,n,A,lda,vl,vu,il,iu,nev,W,work,lwork,devInfo) bind(c, name="hipsolverCheevdx")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevdx_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: eigrange
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      real(c_float),value :: vl
+      real(c_float),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      integer(c_int) :: nev
+      type(c_ptr),value :: W
+      type(c_ptr),value :: work
+      integer(c_int),value :: lwork
+      integer(c_int) :: devInfo
+    end function
+
+  end interface
+
+  interface hipsolverZheevdx
+#ifdef USE_CUDA_NAMES
+    function hipsolverZheevdx_(handle,jobz,eigrange,uplo,n,A,lda,vl,vu,il,iu,nev,W,work,lwork,devInfo) bind(c, name="cusolverZheevdx")
+#else
+    function hipsolverZheevdx_(handle,jobz,eigrange,uplo,n,A,lda,vl,vu,il,iu,nev,W,work,lwork,devInfo) bind(c, name="hipsolverZheevdx")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevdx_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: eigrange
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      real(c_double),value :: vl
+      real(c_double),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      integer(c_int) :: nev
+      type(c_ptr),value :: W
+      type(c_ptr),value :: work
+      integer(c_int),value :: lwork
+      integer(c_int) :: devInfo
+    end function
+
+  end interface
+
+  interface hipsolverSsygvdx_bufferSize
+#ifdef USE_CUDA_NAMES
+    function hipsolverSsygvdx_bufferSize_(handle,itype,jobz,eigrange,uplo,n,A,lda,B,ldb,vl,vu,il,iu,nev,W,lwork) bind(c, name="cusolverSsygvdx_bufferSize")
+#else
+    function hipsolverSsygvdx_bufferSize_(handle,itype,jobz,eigrange,uplo,n,A,lda,B,ldb,vl,vu,il,iu,nev,W,lwork) bind(c, name="hipsolverSsygvdx_bufferSize")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvdx_bufferSize_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: eigrange
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      real(c_float),value :: vl
+      real(c_float),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      integer(c_int) :: nev
+      type(c_ptr),value :: W
+      integer(c_int) :: lwork
+    end function
+
+  end interface
+
+  interface hipsolverDsygvdx_bufferSize
+#ifdef USE_CUDA_NAMES
+    function hipsolverDsygvdx_bufferSize_(handle,itype,jobz,eigrange,uplo,n,A,lda,B,ldb,vl,vu,il,iu,nev,W,lwork) bind(c, name="cusolverDsygvdx_bufferSize")
+#else
+    function hipsolverDsygvdx_bufferSize_(handle,itype,jobz,eigrange,uplo,n,A,lda,B,ldb,vl,vu,il,iu,nev,W,lwork) bind(c, name="hipsolverDsygvdx_bufferSize")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvdx_bufferSize_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: eigrange
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      real(c_double),value :: vl
+      real(c_double),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      integer(c_int) :: nev
+      type(c_ptr),value :: W
+      integer(c_int) :: lwork
+    end function
+
+  end interface
+
+  interface hipsolverChegvdx_bufferSize
+#ifdef USE_CUDA_NAMES
+    function hipsolverChegvdx_bufferSize_(handle,itype,jobz,eigrange,uplo,n,A,lda,B,ldb,vl,vu,il,iu,nev,W,lwork) bind(c, name="cusolverChegvdx_bufferSize")
+#else
+    function hipsolverChegvdx_bufferSize_(handle,itype,jobz,eigrange,uplo,n,A,lda,B,ldb,vl,vu,il,iu,nev,W,lwork) bind(c, name="hipsolverChegvdx_bufferSize")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvdx_bufferSize_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: eigrange
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      real(c_float),value :: vl
+      real(c_float),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      integer(c_int) :: nev
+      type(c_ptr),value :: W
+      integer(c_int) :: lwork
+    end function
+
+  end interface
+
+  interface hipsolverZhegvdx_bufferSize
+#ifdef USE_CUDA_NAMES
+    function hipsolverZhegvdx_bufferSize_(handle,itype,jobz,eigrange,uplo,n,A,lda,B,ldb,vl,vu,il,iu,nev,W,lwork) bind(c, name="cusolverZhegvdx_bufferSize")
+#else
+    function hipsolverZhegvdx_bufferSize_(handle,itype,jobz,eigrange,uplo,n,A,lda,B,ldb,vl,vu,il,iu,nev,W,lwork) bind(c, name="hipsolverZhegvdx_bufferSize")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvdx_bufferSize_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: eigrange
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      real(c_double),value :: vl
+      real(c_double),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      integer(c_int) :: nev
+      type(c_ptr),value :: W
+      integer(c_int) :: lwork
+    end function
+
+  end interface
+
+  interface hipsolverSsygvdx
+#ifdef USE_CUDA_NAMES
+    function hipsolverSsygvdx_(handle,itype,jobz,eigrange,uplo,n,A,lda,B,ldb,vl,vu,il,iu,nev,W,work,lwork,devInfo) bind(c, name="cusolverSsygvdx")
+#else
+    function hipsolverSsygvdx_(handle,itype,jobz,eigrange,uplo,n,A,lda,B,ldb,vl,vu,il,iu,nev,W,work,lwork,devInfo) bind(c, name="hipsolverSsygvdx")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvdx_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: eigrange
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      real(c_float),value :: vl
+      real(c_float),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      integer(c_int) :: nev
+      type(c_ptr),value :: W
+      type(c_ptr),value :: work
+      integer(c_int),value :: lwork
+      integer(c_int) :: devInfo
+    end function
+
+  end interface
+
+  interface hipsolverDsygvdx
+#ifdef USE_CUDA_NAMES
+    function hipsolverDsygvdx_(handle,itype,jobz,eigrange,uplo,n,A,lda,B,ldb,vl,vu,il,iu,nev,W,work,lwork,devInfo) bind(c, name="cusolverDsygvdx")
+#else
+    function hipsolverDsygvdx_(handle,itype,jobz,eigrange,uplo,n,A,lda,B,ldb,vl,vu,il,iu,nev,W,work,lwork,devInfo) bind(c, name="hipsolverDsygvdx")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvdx_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: eigrange
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      real(c_double),value :: vl
+      real(c_double),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      integer(c_int) :: nev
+      type(c_ptr),value :: W
+      type(c_ptr),value :: work
+      integer(c_int),value :: lwork
+      integer(c_int) :: devInfo
+    end function
+
+  end interface
+
+  interface hipsolverChegvdx
+#ifdef USE_CUDA_NAMES
+    function hipsolverChegvdx_(handle,itype,jobz,eigrange,uplo,n,A,lda,B,ldb,vl,vu,il,iu,nev,W,work,lwork,devInfo) bind(c, name="cusolverChegvdx")
+#else
+    function hipsolverChegvdx_(handle,itype,jobz,eigrange,uplo,n,A,lda,B,ldb,vl,vu,il,iu,nev,W,work,lwork,devInfo) bind(c, name="hipsolverChegvdx")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvdx_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: eigrange
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      real(c_float),value :: vl
+      real(c_float),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      integer(c_int) :: nev
+      type(c_ptr),value :: W
+      type(c_ptr),value :: work
+      integer(c_int),value :: lwork
+      integer(c_int) :: devInfo
+    end function
+
+  end interface
+
+  interface hipsolverZhegvdx
+#ifdef USE_CUDA_NAMES
+    function hipsolverZhegvdx_(handle,itype,jobz,eigrange,uplo,n,A,lda,B,ldb,vl,vu,il,iu,nev,W,work,lwork,devInfo) bind(c, name="cusolverZhegvdx")
+#else
+    function hipsolverZhegvdx_(handle,itype,jobz,eigrange,uplo,n,A,lda,B,ldb,vl,vu,il,iu,nev,W,work,lwork,devInfo) bind(c, name="hipsolverZhegvdx")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvdx_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: eigrange
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      real(c_double),value :: vl
+      real(c_double),value :: vu
+      integer(c_int),value :: il
+      integer(c_int),value :: iu
+      integer(c_int) :: nev
+      type(c_ptr),value :: W
+      type(c_ptr),value :: work
+      integer(c_int),value :: lwork
+      integer(c_int) :: devInfo
+    end function
+
+  end interface
+
+  interface hipsolverSgesvdj_bufferSize
+#ifdef USE_CUDA_NAMES
+    function hipsolverSgesvdj_bufferSize_(handle,jobz,econ,m,n,A,lda,S,U,ldu,V,ldv,lwork,params) bind(c, name="cusolverSgesvdj_bufferSize")
+#else
+    function hipsolverSgesvdj_bufferSize_(handle,jobz,econ,m,n,A,lda,S,U,ldu,V,ldv,lwork,params) bind(c, name="hipsolverSgesvdj_bufferSize")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgesvdj_bufferSize_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: econ
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: S
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      integer(c_int) :: lwork
+      type(c_ptr),value :: params
+    end function
+
+  end interface
+
+  interface hipsolverDgesvdj_bufferSize
+#ifdef USE_CUDA_NAMES
+    function hipsolverDgesvdj_bufferSize_(handle,jobz,econ,m,n,A,lda,S,U,ldu,V,ldv,lwork,params) bind(c, name="cusolverDgesvdj_bufferSize")
+#else
+    function hipsolverDgesvdj_bufferSize_(handle,jobz,econ,m,n,A,lda,S,U,ldu,V,ldv,lwork,params) bind(c, name="hipsolverDgesvdj_bufferSize")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgesvdj_bufferSize_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: econ
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: S
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      integer(c_int) :: lwork
+      type(c_ptr),value :: params
+    end function
+
+  end interface
+
+  interface hipsolverCgesvdj_bufferSize
+#ifdef USE_CUDA_NAMES
+    function hipsolverCgesvdj_bufferSize_(handle,jobz,econ,m,n,A,lda,S,U,ldu,V,ldv,lwork,params) bind(c, name="cusolverCgesvdj_bufferSize")
+#else
+    function hipsolverCgesvdj_bufferSize_(handle,jobz,econ,m,n,A,lda,S,U,ldu,V,ldv,lwork,params) bind(c, name="hipsolverCgesvdj_bufferSize")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgesvdj_bufferSize_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: econ
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: S
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      integer(c_int) :: lwork
+      type(c_ptr),value :: params
+    end function
+
+  end interface
+
+  interface hipsolverZgesvdj_bufferSize
+#ifdef USE_CUDA_NAMES
+    function hipsolverZgesvdj_bufferSize_(handle,jobz,econ,m,n,A,lda,S,U,ldu,V,ldv,lwork,params) bind(c, name="cusolverZgesvdj_bufferSize")
+#else
+    function hipsolverZgesvdj_bufferSize_(handle,jobz,econ,m,n,A,lda,S,U,ldu,V,ldv,lwork,params) bind(c, name="hipsolverZgesvdj_bufferSize")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgesvdj_bufferSize_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: econ
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: S
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      integer(c_int) :: lwork
+      type(c_ptr),value :: params
+    end function
+
+  end interface
+
+  interface hipsolverSgesvdj
+#ifdef USE_CUDA_NAMES
+    function hipsolverSgesvdj_(handle,jobz,econ,m,n,A,lda,S,U,ldu,V,ldv,work,lwork,devInfo,params) bind(c, name="cusolverSgesvdj")
+#else
+    function hipsolverSgesvdj_(handle,jobz,econ,m,n,A,lda,S,U,ldu,V,ldv,work,lwork,devInfo,params) bind(c, name="hipsolverSgesvdj")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgesvdj_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: econ
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: S
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      type(c_ptr),value :: work
+      integer(c_int),value :: lwork
+      integer(c_int) :: devInfo
+      type(c_ptr),value :: params
+    end function
+
+  end interface
+
+  interface hipsolverDgesvdj
+#ifdef USE_CUDA_NAMES
+    function hipsolverDgesvdj_(handle,jobz,econ,m,n,A,lda,S,U,ldu,V,ldv,work,lwork,devInfo,params) bind(c, name="cusolverDgesvdj")
+#else
+    function hipsolverDgesvdj_(handle,jobz,econ,m,n,A,lda,S,U,ldu,V,ldv,work,lwork,devInfo,params) bind(c, name="hipsolverDgesvdj")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgesvdj_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: econ
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: S
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      type(c_ptr),value :: work
+      integer(c_int),value :: lwork
+      integer(c_int) :: devInfo
+      type(c_ptr),value :: params
+    end function
+
+  end interface
+
+  interface hipsolverCgesvdj
+#ifdef USE_CUDA_NAMES
+    function hipsolverCgesvdj_(handle,jobz,econ,m,n,A,lda,S,U,ldu,V,ldv,work,lwork,devInfo,params) bind(c, name="cusolverCgesvdj")
+#else
+    function hipsolverCgesvdj_(handle,jobz,econ,m,n,A,lda,S,U,ldu,V,ldv,work,lwork,devInfo,params) bind(c, name="hipsolverCgesvdj")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgesvdj_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: econ
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: S
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      type(c_ptr),value :: work
+      integer(c_int),value :: lwork
+      integer(c_int) :: devInfo
+      type(c_ptr),value :: params
+    end function
+
+  end interface
+
+  interface hipsolverZgesvdj
+#ifdef USE_CUDA_NAMES
+    function hipsolverZgesvdj_(handle,jobz,econ,m,n,A,lda,S,U,ldu,V,ldv,work,lwork,devInfo,params) bind(c, name="cusolverZgesvdj")
+#else
+    function hipsolverZgesvdj_(handle,jobz,econ,m,n,A,lda,S,U,ldu,V,ldv,work,lwork,devInfo,params) bind(c, name="hipsolverZgesvdj")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgesvdj_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: econ
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: S
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      type(c_ptr),value :: work
+      integer(c_int),value :: lwork
+      integer(c_int) :: devInfo
+      type(c_ptr),value :: params
+    end function
+
+  end interface
+
+  interface hipsolverSgesvdjBatched_bufferSize
+#ifdef USE_CUDA_NAMES
+    function hipsolverSgesvdjBatched_bufferSize_(handle,jobz,m,n,A,lda,S,U,ldu,V,ldv,lwork,params,batch_count) bind(c, name="cusolverSgesvdjBatched_bufferSize")
+#else
+    function hipsolverSgesvdjBatched_bufferSize_(handle,jobz,m,n,A,lda,S,U,ldu,V,ldv,lwork,params,batch_count) bind(c, name="hipsolverSgesvdjBatched_bufferSize")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgesvdjBatched_bufferSize_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: S
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      integer(c_int) :: lwork
+      type(c_ptr),value :: params
+      integer(c_int),value :: batch_count
+    end function
+
+  end interface
+
+  interface hipsolverDgesvdjBatched_bufferSize
+#ifdef USE_CUDA_NAMES
+    function hipsolverDgesvdjBatched_bufferSize_(handle,jobz,m,n,A,lda,S,U,ldu,V,ldv,lwork,params,batch_count) bind(c, name="cusolverDgesvdjBatched_bufferSize")
+#else
+    function hipsolverDgesvdjBatched_bufferSize_(handle,jobz,m,n,A,lda,S,U,ldu,V,ldv,lwork,params,batch_count) bind(c, name="hipsolverDgesvdjBatched_bufferSize")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgesvdjBatched_bufferSize_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: S
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      integer(c_int) :: lwork
+      type(c_ptr),value :: params
+      integer(c_int),value :: batch_count
+    end function
+
+  end interface
+
+  interface hipsolverCgesvdjBatched_bufferSize
+#ifdef USE_CUDA_NAMES
+    function hipsolverCgesvdjBatched_bufferSize_(handle,jobz,m,n,A,lda,S,U,ldu,V,ldv,lwork,params,batch_count) bind(c, name="cusolverCgesvdjBatched_bufferSize")
+#else
+    function hipsolverCgesvdjBatched_bufferSize_(handle,jobz,m,n,A,lda,S,U,ldu,V,ldv,lwork,params,batch_count) bind(c, name="hipsolverCgesvdjBatched_bufferSize")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgesvdjBatched_bufferSize_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: S
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      integer(c_int) :: lwork
+      type(c_ptr),value :: params
+      integer(c_int),value :: batch_count
+    end function
+
+  end interface
+
+  interface hipsolverZgesvdjBatched_bufferSize
+#ifdef USE_CUDA_NAMES
+    function hipsolverZgesvdjBatched_bufferSize_(handle,jobz,m,n,A,lda,S,U,ldu,V,ldv,lwork,params,batch_count) bind(c, name="cusolverZgesvdjBatched_bufferSize")
+#else
+    function hipsolverZgesvdjBatched_bufferSize_(handle,jobz,m,n,A,lda,S,U,ldu,V,ldv,lwork,params,batch_count) bind(c, name="hipsolverZgesvdjBatched_bufferSize")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgesvdjBatched_bufferSize_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: S
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      integer(c_int) :: lwork
+      type(c_ptr),value :: params
+      integer(c_int),value :: batch_count
+    end function
+
+  end interface
+
+  interface hipsolverSgesvdjBatched
+#ifdef USE_CUDA_NAMES
+    function hipsolverSgesvdjBatched_(handle,jobz,m,n,A,lda,S,U,ldu,V,ldv,work,lwork,devInfo,params,batch_count) bind(c, name="cusolverSgesvdjBatched")
+#else
+    function hipsolverSgesvdjBatched_(handle,jobz,m,n,A,lda,S,U,ldu,V,ldv,work,lwork,devInfo,params,batch_count) bind(c, name="hipsolverSgesvdjBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgesvdjBatched_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: S
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      type(c_ptr),value :: work
+      integer(c_int),value :: lwork
+      integer(c_int) :: devInfo
+      type(c_ptr),value :: params
+      integer(c_int),value :: batch_count
+    end function
+
+  end interface
+
+  interface hipsolverDgesvdjBatched
+#ifdef USE_CUDA_NAMES
+    function hipsolverDgesvdjBatched_(handle,jobz,m,n,A,lda,S,U,ldu,V,ldv,work,lwork,devInfo,params,batch_count) bind(c, name="cusolverDgesvdjBatched")
+#else
+    function hipsolverDgesvdjBatched_(handle,jobz,m,n,A,lda,S,U,ldu,V,ldv,work,lwork,devInfo,params,batch_count) bind(c, name="hipsolverDgesvdjBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgesvdjBatched_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: S
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      type(c_ptr),value :: work
+      integer(c_int),value :: lwork
+      integer(c_int) :: devInfo
+      type(c_ptr),value :: params
+      integer(c_int),value :: batch_count
+    end function
+
+  end interface
+
+  interface hipsolverCgesvdjBatched
+#ifdef USE_CUDA_NAMES
+    function hipsolverCgesvdjBatched_(handle,jobz,m,n,A,lda,S,U,ldu,V,ldv,work,lwork,devInfo,params,batch_count) bind(c, name="cusolverCgesvdjBatched")
+#else
+    function hipsolverCgesvdjBatched_(handle,jobz,m,n,A,lda,S,U,ldu,V,ldv,work,lwork,devInfo,params,batch_count) bind(c, name="hipsolverCgesvdjBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgesvdjBatched_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: S
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      type(c_ptr),value :: work
+      integer(c_int),value :: lwork
+      integer(c_int) :: devInfo
+      type(c_ptr),value :: params
+      integer(c_int),value :: batch_count
+    end function
+
+  end interface
+
+  interface hipsolverZgesvdjBatched
+#ifdef USE_CUDA_NAMES
+    function hipsolverZgesvdjBatched_(handle,jobz,m,n,A,lda,S,U,ldu,V,ldv,work,lwork,devInfo,params,batch_count) bind(c, name="cusolverZgesvdjBatched")
+#else
+    function hipsolverZgesvdjBatched_(handle,jobz,m,n,A,lda,S,U,ldu,V,ldv,work,lwork,devInfo,params,batch_count) bind(c, name="hipsolverZgesvdjBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgesvdjBatched_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: S
+      type(c_ptr),value :: U
+      integer(c_int),value :: ldu
+      type(c_ptr),value :: V
+      integer(c_int),value :: ldv
+      type(c_ptr),value :: work
+      integer(c_int),value :: lwork
+      integer(c_int) :: devInfo
+      type(c_ptr),value :: params
+      integer(c_int),value :: batch_count
+    end function
+
+  end interface
+
+  interface hipsolverSsyevj_bufferSize
+#ifdef USE_CUDA_NAMES
+    function hipsolverSsyevj_bufferSize_(handle,jobz,uplo,n,A,lda,W,lwork,params) bind(c, name="cusolverSsyevj_bufferSize")
+#else
+    function hipsolverSsyevj_bufferSize_(handle,jobz,uplo,n,A,lda,W,lwork,params) bind(c, name="hipsolverSsyevj_bufferSize")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevj_bufferSize_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: W
+      integer(c_int) :: lwork
+      type(c_ptr),value :: params
+    end function
+
+  end interface
+
+  interface hipsolverDsyevj_bufferSize
+#ifdef USE_CUDA_NAMES
+    function hipsolverDsyevj_bufferSize_(handle,jobz,uplo,n,A,lda,W,lwork,params) bind(c, name="cusolverDsyevj_bufferSize")
+#else
+    function hipsolverDsyevj_bufferSize_(handle,jobz,uplo,n,A,lda,W,lwork,params) bind(c, name="hipsolverDsyevj_bufferSize")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevj_bufferSize_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: W
+      integer(c_int) :: lwork
+      type(c_ptr),value :: params
+    end function
+
+  end interface
+
+  interface hipsolverCheevj_bufferSize
+#ifdef USE_CUDA_NAMES
+    function hipsolverCheevj_bufferSize_(handle,jobz,uplo,n,A,lda,W,lwork,params) bind(c, name="cusolverCheevj_bufferSize")
+#else
+    function hipsolverCheevj_bufferSize_(handle,jobz,uplo,n,A,lda,W,lwork,params) bind(c, name="hipsolverCheevj_bufferSize")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevj_bufferSize_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: W
+      integer(c_int) :: lwork
+      type(c_ptr),value :: params
+    end function
+
+  end interface
+
+  interface hipsolverZheevj_bufferSize
+#ifdef USE_CUDA_NAMES
+    function hipsolverZheevj_bufferSize_(handle,jobz,uplo,n,A,lda,W,lwork,params) bind(c, name="cusolverZheevj_bufferSize")
+#else
+    function hipsolverZheevj_bufferSize_(handle,jobz,uplo,n,A,lda,W,lwork,params) bind(c, name="hipsolverZheevj_bufferSize")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevj_bufferSize_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: W
+      integer(c_int) :: lwork
+      type(c_ptr),value :: params
+    end function
+
+  end interface
+
+  interface hipsolverSsyevj
+#ifdef USE_CUDA_NAMES
+    function hipsolverSsyevj_(handle,jobz,uplo,n,A,lda,W,work,lwork,devInfo,params) bind(c, name="cusolverSsyevj")
+#else
+    function hipsolverSsyevj_(handle,jobz,uplo,n,A,lda,W,work,lwork,devInfo,params) bind(c, name="hipsolverSsyevj")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevj_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: W
+      type(c_ptr),value :: work
+      integer(c_int),value :: lwork
+      integer(c_int) :: devInfo
+      type(c_ptr),value :: params
+    end function
+
+  end interface
+
+  interface hipsolverDsyevj
+#ifdef USE_CUDA_NAMES
+    function hipsolverDsyevj_(handle,jobz,uplo,n,A,lda,W,work,lwork,devInfo,params) bind(c, name="cusolverDsyevj")
+#else
+    function hipsolverDsyevj_(handle,jobz,uplo,n,A,lda,W,work,lwork,devInfo,params) bind(c, name="hipsolverDsyevj")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevj_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: W
+      type(c_ptr),value :: work
+      integer(c_int),value :: lwork
+      integer(c_int) :: devInfo
+      type(c_ptr),value :: params
+    end function
+
+  end interface
+
+  interface hipsolverCheevj
+#ifdef USE_CUDA_NAMES
+    function hipsolverCheevj_(handle,jobz,uplo,n,A,lda,W,work,lwork,devInfo,params) bind(c, name="cusolverCheevj")
+#else
+    function hipsolverCheevj_(handle,jobz,uplo,n,A,lda,W,work,lwork,devInfo,params) bind(c, name="hipsolverCheevj")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevj_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: W
+      type(c_ptr),value :: work
+      integer(c_int),value :: lwork
+      integer(c_int) :: devInfo
+      type(c_ptr),value :: params
+    end function
+
+  end interface
+
+  interface hipsolverZheevj
+#ifdef USE_CUDA_NAMES
+    function hipsolverZheevj_(handle,jobz,uplo,n,A,lda,W,work,lwork,devInfo,params) bind(c, name="cusolverZheevj")
+#else
+    function hipsolverZheevj_(handle,jobz,uplo,n,A,lda,W,work,lwork,devInfo,params) bind(c, name="hipsolverZheevj")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevj_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: W
+      type(c_ptr),value :: work
+      integer(c_int),value :: lwork
+      integer(c_int) :: devInfo
+      type(c_ptr),value :: params
+    end function
+
+  end interface
+
+  interface hipsolverSsyevjBatched_bufferSize
+#ifdef USE_CUDA_NAMES
+    function hipsolverSsyevjBatched_bufferSize_(handle,jobz,uplo,n,A,lda,W,lwork,params,batch_count) bind(c, name="cusolverSsyevjBatched_bufferSize")
+#else
+    function hipsolverSsyevjBatched_bufferSize_(handle,jobz,uplo,n,A,lda,W,lwork,params,batch_count) bind(c, name="hipsolverSsyevjBatched_bufferSize")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevjBatched_bufferSize_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: W
+      integer(c_int) :: lwork
+      type(c_ptr),value :: params
+      integer(c_int),value :: batch_count
+    end function
+
+  end interface
+
+  interface hipsolverDsyevjBatched_bufferSize
+#ifdef USE_CUDA_NAMES
+    function hipsolverDsyevjBatched_bufferSize_(handle,jobz,uplo,n,A,lda,W,lwork,params,batch_count) bind(c, name="cusolverDsyevjBatched_bufferSize")
+#else
+    function hipsolverDsyevjBatched_bufferSize_(handle,jobz,uplo,n,A,lda,W,lwork,params,batch_count) bind(c, name="hipsolverDsyevjBatched_bufferSize")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevjBatched_bufferSize_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: W
+      integer(c_int) :: lwork
+      type(c_ptr),value :: params
+      integer(c_int),value :: batch_count
+    end function
+
+  end interface
+
+  interface hipsolverCheevjBatched_bufferSize
+#ifdef USE_CUDA_NAMES
+    function hipsolverCheevjBatched_bufferSize_(handle,jobz,uplo,n,A,lda,W,lwork,params,batch_count) bind(c, name="cusolverCheevjBatched_bufferSize")
+#else
+    function hipsolverCheevjBatched_bufferSize_(handle,jobz,uplo,n,A,lda,W,lwork,params,batch_count) bind(c, name="hipsolverCheevjBatched_bufferSize")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevjBatched_bufferSize_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: W
+      integer(c_int) :: lwork
+      type(c_ptr),value :: params
+      integer(c_int),value :: batch_count
+    end function
+
+  end interface
+
+  interface hipsolverZheevjBatched_bufferSize
+#ifdef USE_CUDA_NAMES
+    function hipsolverZheevjBatched_bufferSize_(handle,jobz,uplo,n,A,lda,W,lwork,params,batch_count) bind(c, name="cusolverZheevjBatched_bufferSize")
+#else
+    function hipsolverZheevjBatched_bufferSize_(handle,jobz,uplo,n,A,lda,W,lwork,params,batch_count) bind(c, name="hipsolverZheevjBatched_bufferSize")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevjBatched_bufferSize_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: W
+      integer(c_int) :: lwork
+      type(c_ptr),value :: params
+      integer(c_int),value :: batch_count
+    end function
+
+  end interface
+
+  interface hipsolverSsyevjBatched
+#ifdef USE_CUDA_NAMES
+    function hipsolverSsyevjBatched_(handle,jobz,uplo,n,A,lda,W,work,lwork,devInfo,params,batch_count) bind(c, name="cusolverSsyevjBatched")
+#else
+    function hipsolverSsyevjBatched_(handle,jobz,uplo,n,A,lda,W,work,lwork,devInfo,params,batch_count) bind(c, name="hipsolverSsyevjBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevjBatched_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: W
+      type(c_ptr),value :: work
+      integer(c_int),value :: lwork
+      integer(c_int) :: devInfo
+      type(c_ptr),value :: params
+      integer(c_int),value :: batch_count
+    end function
+
+  end interface
+
+  interface hipsolverDsyevjjBatched
+#ifdef USE_CUDA_NAMES
+    function hipsolverDsyevjjBatched_(handle,jobz,uplo,n,A,lda,W,work,lwork,devInfo,params,batch_count) bind(c, name="cusolverDsyevjjBatched")
+#else
+    function hipsolverDsyevjjBatched_(handle,jobz,uplo,n,A,lda,W,work,lwork,devInfo,params,batch_count) bind(c, name="hipsolverDsyevjjBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevjjBatched_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: W
+      type(c_ptr),value :: work
+      integer(c_int),value :: lwork
+      integer(c_int) :: devInfo
+      type(c_ptr),value :: params
+      integer(c_int),value :: batch_count
+    end function
+
+  end interface
+
+  interface hipsolverCheevjBatched
+#ifdef USE_CUDA_NAMES
+    function hipsolverCheevjBatched_(handle,jobz,uplo,n,A,lda,W,work,lwork,devInfo,params,batch_count) bind(c, name="cusolverCheevjBatched")
+#else
+    function hipsolverCheevjBatched_(handle,jobz,uplo,n,A,lda,W,work,lwork,devInfo,params,batch_count) bind(c, name="hipsolverCheevjBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevjBatched_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: W
+      type(c_ptr),value :: work
+      integer(c_int),value :: lwork
+      integer(c_int) :: devInfo
+      type(c_ptr),value :: params
+      integer(c_int),value :: batch_count
+    end function
+
+  end interface
+
+  interface hipsolverZheevjBatched
+#ifdef USE_CUDA_NAMES
+    function hipsolverZheevjBatched_(handle,jobz,uplo,n,A,lda,W,work,lwork,devInfo,params,batch_count) bind(c, name="cusolverZheevjBatched")
+#else
+    function hipsolverZheevjBatched_(handle,jobz,uplo,n,A,lda,W,work,lwork,devInfo,params,batch_count) bind(c, name="hipsolverZheevjBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevjBatched_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: W
+      type(c_ptr),value :: work
+      integer(c_int),value :: lwork
+      integer(c_int) :: devInfo
+      type(c_ptr),value :: params
+      integer(c_int),value :: batch_count
+    end function
+
+  end interface
+
+  interface hipsolverSsygvj_bufferSize
+#ifdef USE_CUDA_NAMES
+    function hipsolverSsygvj_bufferSize_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork,params) bind(c, name="cusolverSsygvj_bufferSize")
+#else
+    function hipsolverSsygvj_bufferSize_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork,params) bind(c, name="hipsolverSsygvj_bufferSize")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvj_bufferSize_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: W
+      integer(c_int) :: lwork
+      type(c_ptr),value :: params
+    end function
+
+  end interface
+
+  interface hipsolverDsygvj_bufferSize
+#ifdef USE_CUDA_NAMES
+    function hipsolverDsygvj_bufferSize_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork,params) bind(c, name="cusolverDsygvj_bufferSize")
+#else
+    function hipsolverDsygvj_bufferSize_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork,params) bind(c, name="hipsolverDsygvj_bufferSize")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvj_bufferSize_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: W
+      integer(c_int) :: lwork
+      type(c_ptr),value :: params
+    end function
+
+  end interface
+
+  interface hipsolverChegvj_bufferSize
+#ifdef USE_CUDA_NAMES
+    function hipsolverChegvj_bufferSize_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork,params) bind(c, name="cusolverChegvj_bufferSize")
+#else
+    function hipsolverChegvj_bufferSize_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork,params) bind(c, name="hipsolverChegvj_bufferSize")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvj_bufferSize_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: W
+      integer(c_int) :: lwork
+      type(c_ptr),value :: params
+    end function
+
+  end interface
+
+  interface hipsolverZhegvj_bufferSize
+#ifdef USE_CUDA_NAMES
+    function hipsolverZhegvj_bufferSize_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork,params) bind(c, name="cusolverZhegvj_bufferSize")
+#else
+    function hipsolverZhegvj_bufferSize_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork,params) bind(c, name="hipsolverZhegvj_bufferSize")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvj_bufferSize_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: W
+      integer(c_int) :: lwork
+      type(c_ptr),value :: params
+    end function
+
+  end interface
+
+  interface hipsolverSsygvj
+#ifdef USE_CUDA_NAMES
+    function hipsolverSsygvj_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo,params) bind(c, name="cusolverSsygvj")
+#else
+    function hipsolverSsygvj_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo,params) bind(c, name="hipsolverSsygvj")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvj_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: W
+      type(c_ptr),value :: work
+      integer(c_int),value :: lwork
+      integer(c_int) :: devInfo
+      type(c_ptr),value :: params
+    end function
+
+  end interface
+
+  interface hipsolverDsygvj
+#ifdef USE_CUDA_NAMES
+    function hipsolverDsygvj_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo,params) bind(c, name="cusolverDsygvj")
+#else
+    function hipsolverDsygvj_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo,params) bind(c, name="hipsolverDsygvj")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvj_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: W
+      type(c_ptr),value :: work
+      integer(c_int),value :: lwork
+      integer(c_int) :: devInfo
+      type(c_ptr),value :: params
+    end function
+
+  end interface
+
+  interface hipsolverChegvj
+#ifdef USE_CUDA_NAMES
+    function hipsolverChegvj_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo,params) bind(c, name="cusolverChegvj")
+#else
+    function hipsolverChegvj_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo,params) bind(c, name="hipsolverChegvj")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvj_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: W
+      type(c_ptr),value :: work
+      integer(c_int),value :: lwork
+      integer(c_int) :: devInfo
+      type(c_ptr),value :: params
+    end function
+
+  end interface
+
+  interface hipsolverZhegvj
+#ifdef USE_CUDA_NAMES
+    function hipsolverZhegvj_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo,params) bind(c, name="cusolverZhegvj")
+#else
+    function hipsolverZhegvj_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo,params) bind(c, name="hipsolverZhegvj")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvj_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
+      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: W
+      type(c_ptr),value :: work
+      integer(c_int),value :: lwork
+      integer(c_int) :: devInfo
+      type(c_ptr),value :: params
+    end function
+
+  end interface
+
+  interface hipsolverDnCreateParams
+#ifdef USE_CUDA_NAMES
+    function hipsolverDnCreateParams_(params) bind(c, name="cusolverDnCreateParams")
+#else
+    function hipsolverDnCreateParams_(params) bind(c, name="hipsolverDnCreateParams")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCreateParams_
+      type(c_ptr) :: params
+    end function
+
+  end interface
+
+  interface hipsolverDnDestroyParams
+#ifdef USE_CUDA_NAMES
+    function hipsolverDnDestroyParams_(params) bind(c, name="cusolverDnDestroyParams")
+#else
+    function hipsolverDnDestroyParams_(params) bind(c, name="hipsolverDnDestroyParams")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDestroyParams_
+      type(c_ptr),value :: params
+    end function
+
+  end interface
+  
+  interface hipsolverDnSetAdvOptions
+#ifdef USE_CUDA_NAMES
+    function hipsolverDnSetAdvOptions_(params,func,alg) bind(c, name="cusolverDnSetAdvOptions")
+#else
+    function hipsolverDnSetAdvOptions_(params,func,alg) bind(c, name="hipsolverDnSetAdvOptions")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSetAdvOptions_
+      type(c_ptr),value :: params
+      integer(kind(HIPSOLVERDN_GETRF)),value :: func
+      integer(kind(HIPSOLVER_ALG_0)),value :: alg
+    end function
+
+  end interface
+
+  interface hipsolverDnXgetrf_bufferSize
+#ifdef USE_CUDA_NAMES
+    function hipsolverDnXgetrf_bufferSize_(handle,params,m,n,dataTypeA,A,lda,computeType,lworkOnDevice,lworkOnHost) bind(c, name="cusolverDnXgetrf_bufferSize")
+#else
+    function hipsolverDnXgetrf_bufferSize_(handle,params,m,n,dataTypeA,A,lda,computeType,lworkOnDevice,lworkOnHost) bind(c, name="hipsolverDnXgetrf_bufferSize")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXgetrf_bufferSize_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: params
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      integer(kind(HIP_R_32F)),value :: dataTypeA
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(kind(HIP_R_32F)),value :: computeType
+      integer(c_size_t) :: lworkOnDevice
+      integer(c_size_t) :: lworkOnHost
+    end function
+
+  end interface
+
+  interface hipsolverDnXgetrf
+#ifdef USE_CUDA_NAMES
+    function hipsolverDnXgetrf_(handle,params,m,n,dataTypeA,A,lda,devIpiv,computeType,workOnDevice,lworkOnDevice,workOnHost,lworkOnHost,devInfo) bind(c, name="cusolverDnXgetrf")
+#else
+    function hipsolverDnXgetrf_(handle,params,m,n,dataTypeA,A,lda,devIpiv,computeType,workOnDevice,lworkOnDevice,workOnHost,lworkOnHost,devInfo) bind(c, name="hipsolverDnXgetrf")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXgetrf_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: params
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      integer(kind(HIP_R_32F)),value :: dataTypeA
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: devIpiv
+      integer(kind(HIP_R_32F)),value :: computeType
+      type(c_ptr),value :: workOnDevice
+      integer(c_size_t) :: lworkOnDevice
+      type(c_ptr),value :: workOnHost
+      integer(c_size_t) :: lworkOnHost
+      integer(c_int) :: devInfo
+    end function
+
+  end interface
+
+  interface hipsolverDnXgetrs
+#ifdef USE_CUDA_NAMES
+    function hipsolverDnXgetrs_(handle,params,trans,n,nrhs,dataTypeA,A,lda,devIpiv,dataTypeB,B,ldb,devInfo) bind(c, name="cusolverDnXgetrs")
+#else
+    function hipsolverDnXgetrs_(handle,params,trans,n,nrhs,dataTypeA,A,lda,devIpiv,dataTypeB,B,ldb,devInfo) bind(c, name="hipsolverDnXgetrs")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_hipblas_enums
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXgetrs_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: params
+      integer(kind(HIPBLAS_OP_N)),value :: trans
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: nrhs
+      integer(kind(HIP_R_32F)),value :: dataTypeA
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: devIpiv
+      integer(kind(HIP_R_32F)),value :: dataTypeB
+      type(c_ptr),value :: B
+      integer(c_int64_t),value :: ldb
+      integer(c_int) :: devInfo
+    end function
+
+  end interface
+
+  interface hipsolverSpCreate
+#ifdef USE_CUDA_NAMES
+    function hipsolverSpCreate_(handle) bind(c, name="cusolverSpCreate")
+#else
+    function hipsolverSpCreate_(handle) bind(c, name="hipsolverSpCreate")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpCreate_
+      type(c_ptr) :: handle
+    end function
+
+  end interface
+  
+  interface hipsolverSpDestroy
+#ifdef USE_CUDA_NAMES
+    function hipsolverSpDestroy_(handle) bind(c, name="cusolverSpDestroy")
+#else
+    function hipsolverSpDestroy_(handle) bind(c, name="hipsolverSpDestroy")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpDestroy_
+      type(c_ptr),value :: handle
+    end function
+
+  end interface
+  
+  interface hipsolverSpSetStream
+#ifdef USE_CUDA_NAMES
+    function hipsolverSpSetStream_(handle,streamId) bind(c, name="cusolverSpSetStream")
+#else
+    function hipsolverSpSetStream_(handle,streamId) bind(c, name="hipsolverSpSetStream")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpSetStream_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: streamId
+    end function
+
+  end interface
+
+  interface hipsolverSpScsrlsvchol
+#ifdef USE_CUDA_NAMES
+    function hipsolverSpScsrlsvchol_(handle,n,nnzA,descrA,csrVal,csrRowPtr,csrColInd,b,tolerance,reorder,x,singularity) bind(c, name="hipsolverSpScsrlsvchol")
+#else
+    function hipsolverSpScsrlsvchol_(handle,n,nnzA,descrA,csrVal,csrRowPtr,csrColInd,b,tolerance,reorder,x,singularity) bind(c, name="hipsolverSpScsrlsvchol")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpScsrlsvchol_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      integer(c_int),value :: nnzA
+      type(c_ptr),value :: descrA
+      type(c_ptr),value :: csrVal
+      type(c_ptr),value :: csrRowPtr
+      type(c_ptr),value :: csrColInd
+      type(c_ptr),value :: b
+      real(c_float),value :: tolerance
+      integer(c_int),value :: reorder
+      type(c_ptr),value :: x
+      integer(c_int) :: singularity
+    end function
+
+  end interface
+
+  interface hipsolverSpDcsrlsvchol
+#ifdef USE_CUDA_NAMES
+    function hipsolverSpDcsrlsvchol_(handle,n,nnzA,descrA,csrVal,csrRowPtr,csrColInd,b,tolerance,reorder,x,singularity) bind(c, name="hipsolverSpDcsrlsvchol")
+#else
+    function hipsolverSpDcsrlsvchol_(handle,n,nnzA,descrA,csrVal,csrRowPtr,csrColInd,b,tolerance,reorder,x,singularity) bind(c, name="hipsolverSpDcsrlsvchol")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpDcsrlsvchol_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      integer(c_int),value :: nnzA
+      type(c_ptr),value :: descrA
+      type(c_ptr),value :: csrVal
+      type(c_ptr),value :: csrRowPtr
+      type(c_ptr),value :: csrColInd
+      type(c_ptr),value :: b
+      real(c_double),value :: tolerance
+      integer(c_int),value :: reorder
+      type(c_ptr),value :: x
+      integer(c_int) :: singularity
+    end function
+
+  end interface
+  
+  interface hipsolverSpScsrlsvcholHost
+#ifdef USE_CUDA_NAMES
+    function hipsolverSpScsrlsvcholHost_(handle,n,nnzA,descrA,csrVal,csrRowPtr,csrColInd,b,tolerance,reorder,x,singularity) bind(c, name="hipsolverSpScsrlsvcholHost")
+#else
+    function hipsolverSpScsrlsvcholHost_(handle,n,nnzA,descrA,csrVal,csrRowPtr,csrColInd,b,tolerance,reorder,x,singularity) bind(c, name="hipsolverSpScsrlsvcholHost")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpScsrlsvcholHost_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      integer(c_int),value :: nnzA
+      type(c_ptr),value :: descrA
+      type(c_ptr),value :: csrVal
+      type(c_ptr),value :: csrRowPtr
+      type(c_ptr),value :: csrColInd
+      type(c_ptr),value :: b
+      real(c_float),value :: tolerance
+      integer(c_int),value :: reorder
+      type(c_ptr),value :: x
+      integer(c_int) :: singularity
+    end function
+
+  end interface
+  
+  interface hipsolverSpDscrlsvcholHost
+#ifdef USE_CUDA_NAMES
+    function hipsolverSpDscrlsvcholHost_(handle,n,nnzA,descrA,csrVal,csrRowPtr,csrColInd,b,tolerance,reorder,x,singularity) bind(c, name="hipsolverSpDscrlsvcholHost")
+#else
+    function hipsolverSpDscrlsvcholHost_(handle,n,nnzA,descrA,csrVal,csrRowPtr,csrColInd,b,tolerance,reorder,x,singularity) bind(c, name="hipsolverSpDscrlsvcholHost")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpDscrlsvcholHost_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      integer(c_int),value :: nnzA
+      type(c_ptr),value :: descrA
+      type(c_ptr),value :: csrVal
+      type(c_ptr),value :: csrRowPtr
+      type(c_ptr),value :: csrColInd
+      type(c_ptr),value :: b
+      real(c_double),value :: tolerance
+      integer(c_int),value :: reorder
+      type(c_ptr),value :: x
+      integer(c_int) :: singularity
+    end function
+
+  end interface
+
+  interface hipsolverRfCreate
+#ifdef USE_CUDA_NAMES
+    function hipsolverRfCreate_(handle) bind(c, name="cusolverRfCreate")
+#else
+    function hipsolverRfCreate_(handle) bind(c, name="hipsolverRfCreate")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfCreate_
+      type(c_ptr) :: handle
+    end function
+
+  end interface
+  
+  interface hipsolverRfDestroy
+#ifdef USE_CUDA_NAMES
+    function hipsolverRfDestroy_(handle) bind(c, name="cusolverRfDestroy")
+#else
+    function hipsolverRfDestroy_(handle) bind(c, name="hipsolverRfDestroy")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfDestroy_
+      type(c_ptr),value :: handle
+    end function
+
+  end interface
+
+  interface hipsolverRfSetupDevice
+#ifdef USE_CUDA_NAMES
+    function hipsolverRfSetupDevice_(n,nnzA,csrRowPtrA,csrColIndA,csrValA,nnzL,csrRowPtrL,csrColIndL,csrValL,nnzU,csrRowPtrU,csrColIndU,csrValU,P,Q,handle) bind(c, name="hipsolverRfSetupDevice")
+#else
+    function hipsolverRfSetupDevice_(n,nnzA,csrRowPtrA,csrColIndA,csrValA,nnzL,csrRowPtrL,csrColIndL,csrValL,nnzU,csrRowPtrU,csrColIndU,csrValU,P,Q,handle) bind(c, name="hipsolverRfSetupDevice")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfSetupDevice_
+      integer(c_int),value :: n
+      integer(c_int),value :: nnzA
+      type(c_ptr),value :: csrRowPtrA
+      type(c_ptr),value :: csrColIndA
+      type(c_ptr),value :: csrValA
+      integer(c_int),value :: nnzL
+      type(c_ptr),value :: csrRowPtrL
+      type(c_ptr),value :: csrColIndL
+      type(c_ptr),value :: csrValL
+      integer(c_int),value :: nnzU
+      type(c_ptr),value :: csrRowPtrU
+      type(c_ptr),value :: csrColIndU
+      type(c_ptr),value :: csrValU
+      type(c_ptr),value :: P
+      type(c_ptr),value :: Q
+      type(c_ptr),value :: handle
+    end function
+
+  end interface
+
+  interface hipsolverRfSetupHost
+#ifdef USE_CUDA_NAMES
+    function hipsolverRfSetupHost_(n,nnzA,h_csrRowPtrA,h_csrColIndA,h_csrValA,nnzL,h_csrRowPtrL,h_csrColIndL,h_csrValL,nnzU,h_csrRowPtrU,h_csrColIndU,h_csrValU,h_P,h_Q,handle) bind(c, name="hipsolverRfSetupHost")
+#else
+    function hipsolverRfSetupHost_(n,nnzA,h_csrRowPtrA,h_csrColIndA,h_csrValA,nnzL,h_csrRowPtrL,h_csrColIndL,h_csrValL,nnzU,h_csrRowPtrU,h_csrColIndU,h_csrValU,h_P,h_Q,handle) bind(c, name="hipsolverRfSetupHost")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfSetupHost_
+      integer(c_int),value :: n
+      integer(c_int),value :: nnzA
+      type(c_ptr),value :: h_csrRowPtrA
+      type(c_ptr),value :: h_csrColIndA
+      type(c_ptr),value :: h_csrValA
+      integer(c_int),value :: nnzL
+      type(c_ptr),value :: h_csrRowPtrL
+      type(c_ptr),value :: h_csrColIndL
+      type(c_ptr),value :: h_csrValL
+      integer(c_int),value :: nnzU
+      type(c_ptr),value :: h_csrRowPtrU
+      type(c_ptr),value :: h_csrColIndU
+      type(c_ptr),value :: h_csrValU
+      type(c_ptr),value :: h_P
+      type(c_ptr),value :: h_Q
+      type(c_ptr),value :: handle
+    end function
+
+  end interface
+
+  interface hipsolverRfAccessBundledFactorsDevice
+#ifdef USE_CUDA_NAMES
+    function hipsolverRfAccessBundledFactorsDevice_(handle,nnzM,Mp,Mi,Mx) bind(c, name="hipsolverRfAccessBundledFactorsDevice")
+#else
+    function hipsolverRfAccessBundledFactorsDevice_(handle,nnzM,Mp,Mi,Mx) bind(c, name="hipsolverRfAccessBundledFactorsDevice")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfAccessBundledFactorsDevice_
+      type(c_ptr),value :: handle
+      integer(c_int) :: nnzM
+      type(c_ptr),value :: Mp
+      type(c_ptr),value :: Mi
+      type(c_ptr),value :: Mx
+    end function
+
+  end interface
+
+  interface hipsolverRfAnalyze
+#ifdef USE_CUDA_NAMES
+    function hipsolverRfAnalyze_(handle) bind(c, name="cusolverRfAnalyze")
+#else
+    function hipsolverRfAnalyze_(handle) bind(c, name="hipsolverRfAnalyze")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfAnalyze_
+      type(c_ptr),value :: handle
+    end function
+
+  end interface
+
+  interface hipsolverRfExtractBundledFactorsHost
+#ifdef USE_CUDA_NAMES
+    function hipsolverRfExtractBundledFactorsHost_(handle,h_nnzM,h_Mp,h_Mi,h_Mx) bind(c, name="hipsolverRfExtractBundledFactorsHost")
+#else
+    function hipsolverRfExtractBundledFactorsHost_(handle,h_nnzM,h_Mp,h_Mi,h_Mx) bind(c, name="hipsolverRfExtractBundledFactorsHost")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfExtractBundledFactorsHost_
+      type(c_ptr),value :: handle
+      integer(c_int) :: h_nnzM
+      type(c_ptr),value :: h_Mp
+      type(c_ptr),value :: h_Mi
+      type(c_ptr),value :: h_Mx
+    end function
+
+  end interface
+
+  interface hipsolverRfExtractSplitFactorsHost
+#ifdef USE_CUDA_NAMES
+    function hipsolverRfExtractSplitFactorsHost_(handle,h_nnzL,h_Lp,h_Li,h_Lx,h_nnzU,h_Up,h_Ui,h_Ux) bind(c, name="hipsolverRfExtractSplitFactorsHost")
+#else
+    function hipsolverRfExtractSplitFactorsHost_(handle,h_nnzL,h_Lp,h_Li,h_Lx,h_nnzU,h_Up,h_Ui,h_Ux) bind(c, name="hipsolverRfExtractSplitFactorsHost")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfExtractSplitFactorsHost_
+      type(c_ptr),value :: handle
+      integer(c_int) :: h_nnzL
+      type(c_ptr),value :: h_Lp
+      type(c_ptr),value :: h_Li
+      type(c_ptr),value :: h_Lx
+      integer(c_int) :: h_nnzU
+      type(c_ptr),value :: h_Up
+      type(c_ptr),value :: h_Ui
+      type(c_ptr),value :: h_Ux
+    end function
+
+  end interface
+
+  interface hipsolverRfGet_Algs
+#ifdef USE_CUDA_NAMES
+    function hipsolverRfGet_Algs_(handle,fact_alg,solve_alg) bind(c, name="cusolverRfGet_Algs")
+#else
+    function hipsolverRfGet_Algs_(handle,fact_alg,solve_alg) bind(c, name="hipsolverRfGet_Algs")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfGet_Algs_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: fact_alg
+      type(c_ptr),value :: solve_alg
+    end function
+
+  end interface
+
+  interface hipsolverRfGetMatrixFormat
+#ifdef USE_CUDA_NAMES
+    function hipsolverRfGetMatrixFormat_(handle,matformat,diag) bind(c, name="cusolverRfGetMatrixFormat")
+#else
+    function hipsolverRfGetMatrixFormat_(handle,matformat,diag) bind(c, name="hipsolverRfGetMatrixFormat")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfGetMatrixFormat_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: matformat
+      type(c_ptr),value :: diag
+    end function
+
+  end interface
+
+  interface hipsolverRfGetNumericBoostReport
+#ifdef USE_CUDA_NAMES
+    function hipsolverRfGetNumericBoostReport_(handle,report) bind(c, name="cusolverRfGetNumericBoostReport")
+#else
+    function hipsolverRfGetNumericBoostReport_(handle,report) bind(c, name="hipsolverRfGetNumericBoostReport")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfGetNumericBoostReport_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: report
+    end function
+
+  end interface
+
+  interface hipsolverRfGetNumericProperties
+#ifdef USE_CUDA_NAMES
+    function hipsolverRfGetNumericProperties_(handle,zero,boost) bind(c, name="cusolverRfGetNumericProperties")
+#else
+    function hipsolverRfGetNumericProperties_(handle,zero,boost) bind(c, name="hipsolverRfGetNumericProperties")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfGetNumericProperties_
+      type(c_ptr),value :: handle
+      real(c_double) :: zero
+      real(c_double) :: boost
+    end function
+
+  end interface
+
+  interface hipsolverRfGetResetValuesFastMode
+#ifdef USE_CUDA_NAMES
+    function hipsolverRfGetResetValuesFastMode_(handle,fastmode) bind(c, name="cusolverRfGetResetValuesFastMode")
+#else
+    function hipsolverRfGetResetValuesFastMode_(handle,fastmode) bind(c, name="hipsolverRfGetResetValuesFastMode")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfGetResetValuesFastMode_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: fastmode
+    end function
+
+  end interface
+
+  interface hipsolverRfRefactor
+#ifdef USE_CUDA_NAMES
+    function hipsolverRfRefactor_(handle) bind(c, name="cusolverRfRefactor")
+#else
+    function hipsolverRfRefactor_(handle) bind(c, name="hipsolverRfRefactor")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfRefactor_
+      type(c_ptr),value :: handle
+    end function
+
+  end interface
+
+  interface hipsolverRfResetValues
+#ifdef USE_CUDA_NAMES
+    function hipsolverRfResetValues_(n,nnzA,csrRowPtrA,csrColIndA,csrValA,P,Q,handle) bind(c, name="hipsolverRfResetValues")
+#else
+    function hipsolverRfResetValues_(n,nnzA,csrRowPtrA,csrColIndA,csrValA,P,Q,handle) bind(c, name="hipsolverRfResetValues")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfResetValues_
+      integer(c_int),value :: n
+      integer(c_int),value :: nnzA
+      type(c_ptr),value :: csrRowPtrA
+      type(c_ptr),value :: csrColIndA
+      type(c_ptr),value :: csrValA
+      type(c_ptr),value :: P
+      type(c_ptr),value :: Q
+      type(c_ptr),value :: handle
+    end function
+
+  end interface
+
+  interface hipsolverRfSetAlgs
+#ifdef USE_CUDA_NAMES
+    function hipsolverRfSetAlgs_(handle,fact_alg,solve_alg) bind(c, name="cusolverRfSetAlgs")
+#else
+    function hipsolverRfSetAlgs_(handle,fact_alg,solve_alg) bind(c, name="hipsolverRfSetAlgs")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfSetAlgs_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVERRF_FACTORIZATION_ALG0)),value :: fact_alg
+      integer(kind(HIPSOLVERRF_TRIANGULAR_SOLVE_ALG1)),value :: solve_alg
+    end function
+
+  end interface
+
+  interface hipsolverRfSetMatrixFormat
+#ifdef USE_CUDA_NAMES
+    function hipsolverRfSetMatrixFormat_(handle,matformat,diag) bind(c, name="cusolverRfSetMatrixFormat")
+#else
+    function hipsolverRfSetMatrixFormat_(handle,matformat,diag) bind(c, name="hipsolverRfSetMatrixFormat")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfSetMatrixFormat_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVERRF_MATRIX_FORMAT_CSR)),value :: matformat
+      integer(kind(HIPSOLVERRF_UNIT_DIAGONAL_STORED_L)),value :: diag
+    end function
+
+  end interface
+
+  interface hipsolverRfSetNumericProperties
+#ifdef USE_CUDA_NAMES
+    function hipsolverRfSetNumericProperties_(handle,zero,boost) bind(c, name="cusolverRfSetNumericProperties")
+#else
+    function hipsolverRfSetNumericProperties_(handle,zero,boost) bind(c, name="hipsolverRfSetNumericProperties")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfSetNumericProperties_
+      type(c_ptr),value :: handle
+      real(c_double),value :: zero
+      real(c_double),value :: boost
+    end function
+
+  end interface
+
+  interface hipsolverRfSetResetValuesFastMode
+#ifdef USE_CUDA_NAMES
+    function hipsolverRfSetResetValuesFastMode_(handle,fastmode) bind(c, name="cusolverRfSetResetValuesFastMode")
+#else
+    function hipsolverRfSetResetValuesFastMode_(handle,fastmode) bind(c, name="hipsolverRfSetResetValuesFastMode")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfSetResetValuesFastMode_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSOLVERRF_RESET_VALUES_FAST_MODE_OFF)),value :: fastmode
+    end function
+
+  end interface
+
+  interface hipsolverRfSolve
+#ifdef USE_CUDA_NAMES
+    function hipsolverRfSolve_(handle,P,Q,nrhs,Temp,ldt,XF,ldxf) bind(c, name="hipsolverRfSolve")
+#else
+    function hipsolverRfSolve_(handle,P,Q,nrhs,Temp,ldt,XF,ldxf) bind(c, name="hipsolverRfSolve")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfSolve_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: P
+      type(c_ptr),value :: Q
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: Temp
+      integer(c_int),value :: ldt
+      type(c_ptr),value :: XF
+      integer(c_int),value :: ldxf
+    end function
+
+  end interface
+
+  interface hipsolverRfBatchSetupHost
+#ifdef USE_CUDA_NAMES
+    function hipsolverRfBatchSetupHost_(batchSize,n,nnzA,h_csrRowPtrA,h_csrColIndA,h_csrValA_array,nnzL,h_csrRowPtrL,h_csrColIndL,h_csrValL,nnzU,h_csrRowPtrU,h_csrColIndU,h_csrValU,h_P,h_Q,handle) bind(c, name="hipsolverRfBatchSetupHost")
+#else
+    function hipsolverRfBatchSetupHost_(batchSize,n,nnzA,h_csrRowPtrA,h_csrColIndA,h_csrValA_array,nnzL,h_csrRowPtrL,h_csrColIndL,h_csrValL,nnzU,h_csrRowPtrU,h_csrColIndU,h_csrValU,h_P,h_Q,handle) bind(c, name="hipsolverRfBatchSetupHost")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfBatchSetupHost_
+      integer(c_int),value :: batchSize
+      integer(c_int),value :: n
+      integer(c_int),value :: nnzA
+      type(c_ptr),value :: h_csrRowPtrA
+      type(c_ptr),value :: h_csrColIndA
+      type(c_ptr),value :: h_csrValA_array
+      integer(c_int),value :: nnzL
+      type(c_ptr),value :: h_csrRowPtrL
+      type(c_ptr),value :: h_csrColIndL
+      type(c_ptr),value :: h_csrValL
+      integer(c_int),value :: nnzU
+      type(c_ptr),value :: h_csrRowPtrU
+      type(c_ptr),value :: h_csrColIndU
+      type(c_ptr),value :: h_csrValU
+      type(c_ptr),value :: h_P
+      type(c_ptr),value :: h_Q
+      type(c_ptr),value :: handle
+    end function
+
+  end interface
+
+  interface hipsolverRfBatchAnalyze
+#ifdef USE_CUDA_NAMES
+    function hipsolverRfBatchAnalyze_(handle) bind(c, name="cusolverRfBatchAnalyze")
+#else
+    function hipsolverRfBatchAnalyze_(handle) bind(c, name="hipsolverRfBatchAnalyze")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfBatchAnalyze_
+      type(c_ptr),value :: handle
+    end function
+
+  end interface
+
+  interface hipsolverRfBatchRefactor
+#ifdef USE_CUDA_NAMES
+    function hipsolverRfBatchRefactor_(handle) bind(c, name="cusolverRfBatchRefactor")
+#else
+    function hipsolverRfBatchRefactor_(handle) bind(c, name="hipsolverRfBatchRefactor")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfBatchRefactor_
+      type(c_ptr),value :: handle
+    end function
+
+  end interface
+
+  interface hipsolverRfBatchResetValues
+#ifdef USE_CUDA_NAMES
+    function hipsolverRfBatchResetValues_(batchSize,n,nnzA,csrRowPtrA,csrColIndA,csrValA_array,P,Q,handle) bind(c, name="hipsolverRfBatchResetValues")
+#else
+    function hipsolverRfBatchResetValues_(batchSize,n,nnzA,csrRowPtrA,csrColIndA,csrValA_array,P,Q,handle) bind(c, name="hipsolverRfBatchResetValues")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfBatchResetValues_
+      integer(c_int),value :: batchSize
+      integer(c_int),value :: n
+      integer(c_int),value :: nnzA
+      type(c_ptr),value :: csrRowPtrA
+      type(c_ptr),value :: csrColIndA
+      type(c_ptr),value :: csrValA_array
+      type(c_ptr),value :: P
+      type(c_ptr),value :: Q
+      type(c_ptr),value :: handle
+    end function
+
+  end interface
+
+  interface hipsolverRfBatchSolve
+#ifdef USE_CUDA_NAMES
+    function hipsolverRfBatchSolve_(handle,P,Q,nrhs,Temp,ldt,XF_array,ldxf) bind(c, name="hipsolverRfBatchSolve")
+#else
+    function hipsolverRfBatchSolve_(handle,P,Q,nrhs,Temp,ldt,XF_array,ldxf) bind(c, name="hipsolverRfBatchSolve")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfBatchSolve_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: P
+      type(c_ptr),value :: Q
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: Temp
+      integer(c_int),value :: ldt
+      type(c_ptr),value :: XF_array
+      integer(c_int),value :: ldxf
+    end function
+
+  end interface
+
+  interface hipsolverRfBatchZeroPivot
+#ifdef USE_CUDA_NAMES
+    function hipsolverRfBatchZeroPivot_(handle,pos) bind(c, name="cusolverRfBatchZeroPivot")
+#else
+    function hipsolverRfBatchZeroPivot_(handle,pos) bind(c, name="hipsolverRfBatchZeroPivot")
+#endif
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfBatchZeroPivot_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: pos
+    end function
+
   end interface
 
 #ifdef USE_FPOINTER_INTERFACES

@@ -52,6 +52,7 @@ module hipfort_hipsolver_enums
   enum, bind(c)
     enumerator :: HIPSOLVER_FILL_MODE_UPPER = 121
     enumerator :: HIPSOLVER_FILL_MODE_LOWER = 122
+    enumerator :: HIPSOLVER_FILL_MODE_FULL = 123
   end enum
 
   enum, bind(c)
@@ -70,7 +71,59 @@ module hipfort_hipsolver_enums
     enumerator :: HIPSOLVER_EIG_TYPE_3 = 213
   end enum
 
+  enum, bind(c)
+    enumerator :: HIPSOLVER_EIG_RANGE_ALL = 221
+    enumerator :: HIPSOLVER_EIG_RANGE_V = 222
+    enumerator :: HIPSOLVER_EIG_RANGE_I = 223
+  end enum
+
+  enum, bind(c)
+    enumerator :: HIPSOLVER_DETERMINISTIC_RESULTS = 241
+    enumerator :: HIPSOLVER_ALLOW_NON_DETERMINISTIC_RESULTS = 242
+  end enum
+
+  enum, bind(c)
+    enumerator :: HIPSOLVER_ALG_0 = 231
+    enumerator :: HIPSOLVER_ALG_1 = 232
+  end enum
+
+  enum, bind(c)
+    enumerator :: HIPSOLVERDN_GETRF = 0
+  end enum
  
+  enum, bind(c)
+    enumerator :: HIPSOLVERRF_FACTORIZATION_ALG0 = 0
+    enumerator :: HIPSOLVERRF_FACTORIZATION_ALG1 = 1
+    enumerator :: HIPSOLVERRF_FACTORIZATION_ALG2 = 2
+  end enum
+
+  enum, bind(c)
+    enumerator :: HIPSOLVERRF_MATRIX_FORMAT_CSR = 0
+    enumerator :: HIPSOLVERRF_MATRIX_FORMAT_CSC = 1
+  end enum
+
+  enum, bind(c)
+    enumerator :: HIPSOLVERRF_NUMERIC_BOOST_NOT_USED = 0
+    enumerator :: HIPSOLVERRF_NUMERIC_BOOST_USED = 1
+  end enum
+
+  enum, bind(c)
+    enumerator :: HIPSOLVERRF_RESET_VALUES_FAST_MODE_OFF = 0
+    enumerator :: HIPSOLVERRF_RESET_VALUES_FAST_MODE_ON = 1
+  end enum
+
+  enum, bind(c)
+    enumerator :: HIPSOLVERRF_TRIANGULAR_SOLVE_ALG1 = 1
+    enumerator :: HIPSOLVERRF_TRIANGULAR_SOLVE_ALG2 = 2
+    enumerator :: HIPSOLVERRF_TRIANGULAR_SOLVE_ALG3 = 3
+  end enum
+
+  enum, bind(c)
+    enumerator :: HIPSOLVERRF_UNIT_DIAGONAL_STORED_L = 0
+    enumerator :: HIPSOLVERRF_UNIT_DIAGONAL_STORED_U = 1
+    enumerator :: HIPSOLVERRF_UNIT_DIAGONAL_ASSUMED_L = 2
+    enumerator :: HIPSOLVERRF_UNIT_DIAGONAL_ASSUMED_U = 3
+  end enum
 
 #ifdef USE_FPOINTER_INTERFACES
 
