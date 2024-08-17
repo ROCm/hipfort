@@ -6281,8 +6281,7 @@ module hipfort_hipsolver
 
   interface hipsolverDnXgetrf
 #ifdef USE_CUDA_NAMES
-    function
-hipsolverDnXgetrf_(handle,params,m,n,dataTypeA,A,lda,devIpiv,computeType,workOnDevice,lworkOnDevice,workOnHost,lworkOnHost,devInfo) bind(c, name="cusolverDnXgetrf")
+    function hipsolverDnXgetrf_(handle,params,m,n,dataTypeA,A,lda,devIpiv,computeType,workOnDevice,lworkOnDevice,workOnHost,lworkOnHost,devInfo) bind(c, name="cusolverDnXgetrf")
 #else
     function hipsolverDnXgetrf_(handle,params,m,n,dataTypeA,A,lda,devIpiv,computeType,workOnDevice,lworkOnDevice,workOnHost,lworkOnHost,devInfo) bind(c, name="hipsolverDnXgetrf")
 #endif
@@ -6311,8 +6310,7 @@ hipsolverDnXgetrf_(handle,params,m,n,dataTypeA,A,lda,devIpiv,computeType,workOnD
 
   interface hipsolverDnXgetrs
 #ifdef USE_CUDA_NAMES
-    function
-hipsolverDnXgetrs_(handle,params,m,n,dataTypeA,A,lda,devIpiv,computeType,workOnDevice,lworkOnDevice,workOnHost,lworkOnHost,devInfo) bind(c, name="cusolverDnXgetrs")
+    function hipsolverDnXgetrs_(handle,params,m,n,dataTypeA,A,lda,devIpiv,computeType,workOnDevice,lworkOnDevice,workOnHost,lworkOnHost,devInfo) bind(c, name="cusolverDnXgetrs")
 #else
     function hipsolverDnXgetrs_(handle,params,m,n,dataTypeA,A,lda,devIpiv,computeType,workOnDevice,lworkOnDevice,workOnHost,lworkOnHost,devInfo) bind(c, name="hipsolverDnXgetrs")
 #endif
