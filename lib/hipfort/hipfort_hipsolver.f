@@ -5147,7 +5147,7 @@ module hipfort_hipsolver
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgesvdj_bufferSize_
       type(c_ptr),value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(c_int),value :: econn
+      integer(c_int),value :: econ
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -5175,7 +5175,7 @@ module hipfort_hipsolver
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgesvdj_bufferSize_
       type(c_ptr),value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(c_int),value :: econn
+      integer(c_int),value :: econ
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -5203,7 +5203,7 @@ module hipfort_hipsolver
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgesvdj_bufferSize_
       type(c_ptr),value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(c_int),value :: econn
+      integer(c_int),value :: econ
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -5231,7 +5231,7 @@ module hipfort_hipsolver
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgesvdj_bufferSize_
       type(c_ptr),value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(c_int),value :: econn
+      integer(c_int),value :: econ
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -5259,7 +5259,7 @@ module hipfort_hipsolver
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgesvdj_
       type(c_ptr),value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(c_int),value :: econn
+      integer(c_int),value :: econ
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -5289,7 +5289,7 @@ module hipfort_hipsolver
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgesvdj_
       type(c_ptr),value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(c_int),value :: econn
+      integer(c_int),value :: econ
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -5319,7 +5319,7 @@ module hipfort_hipsolver
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgesvdj_
       type(c_ptr),value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(c_int),value :: econn
+      integer(c_int),value :: econ
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -5349,7 +5349,7 @@ module hipfort_hipsolver
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgesvdj_
       type(c_ptr),value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(c_int),value :: econn
+      integer(c_int),value :: econ
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
