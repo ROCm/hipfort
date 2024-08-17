@@ -6310,9 +6310,9 @@ module hipfort_hipsolver
 
   interface hipsolverDnXgetrs
 #ifdef USE_CUDA_NAMES
-    function hipsolverDnXgetrs_(handle,params,m,n,dataTypeA,A,lda,devIpiv,computeType,workOnDevice,lworkOnDevice,workOnHost,lworkOnHost,devInfo) bind(c, name="cusolverDnXgetrs")
+    function hipsolverDnXgetrs_(handle,params,trans,n,nrhs,dataTypeA,A,lda,devIpiv,dataTypeB,B,ldb,devInfo) bind(c, name="cusolverDnXgetrs")
 #else
-    function hipsolverDnXgetrs_(handle,params,m,n,dataTypeA,A,lda,devIpiv,computeType,workOnDevice,lworkOnDevice,workOnHost,lworkOnHost,devInfo) bind(c, name="hipsolverDnXgetrs")
+    function hipsolverDnXgetrs_(handle,params,trans,n,nrhs,dataTypeA,A,lda,devIpiv,dataTypeB,B,ldb,devInfo) bind(c, name="hipsolverDnXgetrs")
 #endif
       use iso_c_binding
       use hipfort_enums
