@@ -6714,8 +6714,8 @@ module hipfort_hipsolver
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfGetNumericProperties_
       type(c_ptr),value :: handle
-      type(c_double) :: zero
-      type(c_double) :: boost
+      real(c_double) :: zero
+      real(c_double) :: boost
     end function
 
   end interface
@@ -6816,8 +6816,8 @@ module hipfort_hipsolver
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfSetNumericProperties_
       type(c_ptr),value :: handle
-      type(c_double),value :: zero
-      type(c_double),value :: boost
+      real(c_double),value :: zero
+      real(c_double),value :: boost
     end function
 
   end interface
