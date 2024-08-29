@@ -1,4 +1,4 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 3.0.2)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.5)
 
 #Setting Default value for libdir
 set(CMAKE_INSTALL_LIBDIR "lib" CACHE STRING "Library install directory")

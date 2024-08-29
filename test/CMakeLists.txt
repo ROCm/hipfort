@@ -5,7 +5,7 @@
 # Each test is contained in its own subdirectory of this test directory
 # The Makefile must create a binary with the same name as the directory name.
 
-cmake_minimum_required(VERSION 2.8.12 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.5)
 if ("${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_CURRENT_SOURCE_DIR}")
   project(test-hipfort)
 endif()
@@ -47,7 +47,7 @@ if(BUILD_TESTING)
     target_link_libraries(hipfort_test_${dir}_${lib}_${func} PRIVATE hipfort::${lib} hipfort::hip)
 
     # the tests call EXIT, which is a GNU extension
-    target_compile_options(hipfort_test_${dir}_${lib}_${func} PRIVATE -std=gnu)
+    target_compile_options(hipfort_test_${dir}_${lib}_${func} PRIVATE $<$<COMPILE_LANGUAGE:Fortran>:-std=gnu>)
 
     add_test(
       NAME hipfort_test_${dir}_${lib}_${func}
@@ -104,5 +104,24 @@ if(BUILD_TESTING)
   if(TARGET hipfort::rocsparse)
     hipfort_add_test(rocsparse ddoti f2003)
     hipfort_add_test(rocsparse ddoti f2008)
+  endif()
+
+  if(TARGET hipfort::roctx)
+    include(CheckLanguage)
+    check_language(HIP)
+    if(CMAKE_HIP_COMPILER)
+      enable_language(HIP)
+      hipfort_add_test(roctx main f2003)
+      target_sources(hipfort_test_f2003_roctx_main PRIVATE f2003/roctx/hip_implementation.cpp)
+      set_source_files_properties(f2003/roctx/hip_implementation.cpp
+        PROPERTIES
+          LANGUAGE HIP
+      )
+      set_target_properties(hipfort_test_f2003_roctx_main
+        PROPERTIES
+          LINKER_LANGUAGE Fortran
+          POSITION_INDEPENDENT_CODE ON
+      )
+    endif()
   endif()
 endif()
