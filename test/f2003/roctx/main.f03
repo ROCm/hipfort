@@ -27,9 +27,9 @@ program fortran_hip
   end do
   write(*,"(a)",advance="no") " - "
 
-  ret = roctxRangePushA(c_char_"hello_world"//c_null_char)
+  ret = roctxRangePush(c_char_"hello_world"//c_null_char)
   if (ret /= 0) then
-    write (*, *) "ROCTX ERROR: roctxRangePushA: Invalid nested range level ", ret
+    write (*, *) "ROCTX ERROR: roctxRangePush: Invalid nested range level ", ret
   end if
 
   call launch()
