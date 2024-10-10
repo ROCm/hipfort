@@ -2,13 +2,13 @@
 
 ## hipfort 0.5.0 for ROCm 6.3.0
 
-### Additions
+### Added
 
-- Added roctx to the hipfort interfaces
+* Added roctx to the hipfort interfaces
 
-### Changes
+### Changed
 
-- Updated hipsolver bindings
+* Updated the hipsolver bindings
 
 ## hipfort 0.4-0 for ROCm 6.0.1
 
