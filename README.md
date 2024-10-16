@@ -3,6 +3,11 @@
 This repository contains the source and testing for hipfort.  
 This is a FORTRAN interface library for accessing GPU Kernels.
 
+## Documentation
+
+> [!NOTE]
+> The published hipfort documentation is available at [hipfort](https://rocm.docs.amd.com/projects/hipfort/en/latest/index.html) in an organized, easy-to-read format, with search and a table of contents. The documentation source files reside in the hipfort/docs folder of this repository. As with all ROCm projects, the documentation is open source. For more information, see [Contribute to ROCm documentation](https://rocm.docs.amd.com/en/latest/contribute/contributing.html).
+
 ## Known issues
 
 * `hipSOLVER` interfaces will only work for AMD GPUs.
