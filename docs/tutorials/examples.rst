@@ -1,3 +1,6 @@
+.. meta::
+  :description: hipFORT examples and API references
+  :keywords: hipfort, ROCm, API, documentation, examples, tutorials
 
 *************
 Examples
