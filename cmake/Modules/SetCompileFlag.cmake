@@ -62,6 +62,7 @@ FUNCTION(SET_COMPILE_FLAG FLAGVAR FLAGVAL LANG)
     # Now, loop over each flag
     FOREACH(flag ${FLAGLIST})
 
+
         UNSET(FLAG_WORKS)
         # Check the flag for the given language
         IF(LANG STREQUAL "C")
@@ -93,6 +94,7 @@ end program dummyprog
             MESSAGE(FATAL_ERROR "Unknown language in SET_COMPILE_FLAGS: ${LANG}")
         ENDIF(LANG STREQUAL "C")
 
+	
         # If this worked, use these flags, otherwise use other flags
         IF(FLAG_WORKS)
             # Append this flag to the end of the list that already exists
@@ -108,5 +110,6 @@ end program dummyprog
     IF(FLAG_REQUIRED AND NOT FLAG_FOUND)
         MESSAGE(FATAL_ERROR "No compile flags were found")
     ENDIF(FLAG_REQUIRED AND NOT FLAG_FOUND)
+
 
 ENDFUNCTION()
