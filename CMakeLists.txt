@@ -1,4 +1,4 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 3.5)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.18)
 PROJECT(hipfort VERSION 0.6 LANGUAGES Fortran C CXX) # hip-config.cmake requires CXX enabled
 
 #include definitions for GNU install dir cmake flags.
