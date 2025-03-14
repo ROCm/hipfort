@@ -8,9 +8,13 @@ include(GNUInstallDirs)
 
 # Default compiler gfortran, otherwise cmake Fortran package will set it to f95
 # You can override the compiler with cmake -DHIPFORT_COMPILER=
-set(HIPFORT_COMPILER "/usr/bin/gfortran" CACHE STRING "Fortran Compiler to build HIPFORT")
-set(HIPFORT_AR "/usr/bin/gcc-ar" CACHE STRING "Static archive command")
-set(HIPFORT_RANLIB "/usr/bin/gcc-ranlib" CACHE STRING "ranlib used to create Static archive")
+# Check if CC, CXX, and FC are defined in the environment
+if(NOT DEFINED ENV{CC} AND NOT DEFINED ENV{CXX} AND NOT DEFINED ENV{FC})
+    set(HIPFORT_COMPILER "/usr/bin/gfortran" CACHE STRING "Fortran Compiler to build HIPFORT")
+    set(HIPFORT_AR "/usr/bin/gcc-ar" CACHE STRING "Static archive command")
+    set(HIPFORT_RANLIB "/usr/bin/gcc-ranlib" CACHE STRING "ranlib used to create Static archive")
+endif()
+
 set(HIPFORT_COMPILER_FLAGS "-ffree-form -cpp -ffree-line-length-none -fmax-errors=5" CACHE STRING "Compiler flags to build HIPFORT")
 set(HIPFORT_BUILD_TYPE "RELEASE"  CACHE STRING "Set to RELEASE TESTING or DEBUG")
 
@@ -19,6 +23,12 @@ set(HIPFORT_BUILD_TYPE "RELEASE"  CACHE STRING "Set to RELEASE TESTING or DEBUG"
 
 set(HIPFORT_VERSION "0.6.0"  CACHE STRING "Version of HIPFORT to build")
 set(HIPFORT_INSTALL_DIR  "/usr/local/hipfort-${HIPFORT_VERSION}" CACHE STRING "Install directory for hipfort")
+PROJECT(hipfort Fortran C CXX) # hip-config.cmake requires CXX enabled
+enable_language(Fortran)
+enable_language(C)
+enable_language(CXX)
+
+set(HIPFORT_COMPILER ${CMAKE_Fortran_COMPILER})
 IF(CMAKE_INSTALL_PREFIX)
   # Make HIPFORT_INSTALL_DIR be the same as CmAKE_INSTALL_PREFIX
   set(HIPFORT_INSTALL_DIR ${CMAKE_INSTALL_PREFIX})
@@ -28,16 +38,14 @@ ELSE()
 ENDIF()
 message("-- HIPFORT -------------  cmake START -------------------")
 message("-- HIPFORT_COMPILER:       ${HIPFORT_COMPILER}")
-message("-- HIPFORT_AR:             ${HIPFORT_AR}")
-message("-- HIPFORT_RANLIB:         ${HIPFORT_RANLIB}")
+# do we need this?
+#message("-- HIPFORT_AR:             ${HIPFORT_AR}")
+#message("-- HIPFORT_RANLIB:         ${HIPFORT_RANLIB}")
 message("-- HIPFORT_COMPILER_FLAGS: ${HIPFORT_COMPILER_FLAGS}")
 message("-- HIPFORT_BUILD_TYPE:     ${HIPFORT_BUILD_TYPE}")
 message("-- HIPFORT_INSTALL_DIR:    ${HIPFORT_INSTALL_DIR}")
 message("-- HIPFORT_VERSION:        ${HIPFORT_VERSION}")
 message("-- HIPFORT ----------------------------------------------")
-
-set(CMAKE_Fortran_COMPILER_INIT ${HIPFORT_COMPILER})
-PROJECT(hipfort Fortran C CXX) # hip-config.cmake requires CXX enabled
 
 SET(CMAKE_BUILD_TYPE ${HIPFORT_BUILD_TYPE})
 SET(VERSION ${HIPFORT_VERSION})
