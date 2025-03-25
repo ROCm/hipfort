@@ -26,6 +26,10 @@ Building and testing hipFORT from source
       make -C build
       make -C build check
 
+.. note::
+        You can control the location of the hipFORT installation by setting the ``HIPFORT_INSTALL_DIR`` build variable.
+        The hipFORT installation will compile backends for both ROCm (``hipfort-amdgcn``) and CUDA (``hipfort-nvptx``) backends. When installing hipFORT from source, you do not need to specify the `HIP_PLATFORM` environment variable.
+
 Fortran interfaces
 ===================
 
