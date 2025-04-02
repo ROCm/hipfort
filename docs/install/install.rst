@@ -31,7 +31,119 @@ Building and testing hipFORT from source
       make -C build
       make -C build check
 
-The hipfc wrapper compiler and Makefile.hipfort
+.. note::
+        The hipFORT installation will compile backends for both ROCm (``hipfort-amdgcn``) and CUDA (``hipfort-nvptx``) backends. When installing hipFORT from source, you do not need to specify the `HIP_PLATFORM` environment variable.
+
+Customizing the build
+=======================
+You can customize the build by setting the following environment variables:
+
+* `HIPFORT_COMPILER` - Fortran compiler to be used
+* `HIPFORT_AR` - Static archive command
+* `HIPFORT_RANLIB` - ranlib used to create Static archive
+* `HIPFORT_COMPILER_FLAGS` - Compiler flags to build hipFORT
+* `HIPFORT_BUILD_TYPE` - Set to RELEASE TESTING or DEBUG
+* `HIPFORT_INSTALL_DIR` - Install directory for hipFORT
+
+.. note::
+        Setting the `CMAKE_INSTALL_DIR` build variable will **not** influence the installation location.
+        Setting the `CMAKE_Fortran_COMPILER` build variable will **not** influence the Fortran compiler used to build hipFORT.
+
+Fortran interfaces
+===================
+
+`hipfort` provides interfaces to the following HIP and ROCm libraries:
+
+* **HIP:**   HIP runtime, hipBLAS, hipSPARSE, hipFFT, hipRAND, hipSOLVER
+
+* **ROCm:** rocBLAS, rocSPARSE, rocFFT, rocRAND, rocSOLVER
+
+.. note:: 
+
+hipSOLVER interfaces will only work with AMD GPUs.
+
+While the HIP interfaces and libraries allow the writing of portable code for both AMD and CUDA devices, ROCm can only be used with AMD devices.
+
+The available interfaces depend on the Fortran compiler used to compile the `hipfort` modules and libraries. As the interfaces use the `iso_c_binding` module, the minimum requirement is a Fortran compiler that supports the Fortran 2003 standard (`f2003`). These interfaces typically require passing `type(c_ptr)` variables and the number of bytes to memory management. For example, `hipMalloc` and math library routines like `hipblasDGEMM`.
+
+If your compiler understands the Fortran 2008 (`f2008`) code constructs in `hipfort`'s source and test files, additional interfaces are compiled into the `hipfort` modules and libraries. 
+These directly take Fortran (array) variables, the number of elements instead of `type(c_ptr)` variables, and the number of bytes, respectively. Therefore, they reduce the chance of introducing compile-time and runtime errors into your code and make it easier to read, too.
+
+.. note:: 
+
+If you plan to use the `f2008` interfaces, we recommend `gfortran` version `7.5.0` or newer as we have observed problems with older versions.
+
+Examples
+--------
+
+Use the following examples to express `f2003` interfaces:
+
+**Example 1**
+
+
+.. code-block:: 
+
+    use iso_c_binding
+    use hipfort
+    integer     :: ierr        ! error code
+    real        :: a_h(5,6)    ! host array
+    type(c_ptr) :: a_d         ! device array pointer
+    !
+    ierr = hipMalloc(a_d,size(a_h)*4_c_size_t) ! real has 4 bytes
+                                           ! append suffix '_c_size_t' to write '4' 
+                                           ! as 'integer(c_size_t)'
+    ierr = hipMemcpy(a_d,c_loc(a_h),size(a_h)*4_c_size_t,hipMemcpyHostToDevice)
+
+
+**Example 2**
+
+.. code-block::
+
+        use hipfort
+        integer     :: ierr        ! error code
+        real        :: a_h(5,6)    ! host array
+        real,pointer :: a_d(:,:)   ! device array pointer
+        !
+        ierr = hipMalloc(a_d,shape(a_h))      ! or hipMalloc(a_d,[5,6]) or hipMalloc(a_d,5,6) or hipMalloc(a_d,mold=a_h)
+        ierr = hipMemcpy(a_d,a_h,size(a_h),hipMemcpyHostToDevice)
+
+
+
+.. note::
+
+The `f2008` interfaces also overload `hipMalloc`, similar to the Fortran 2008 `ALLOCATE` intrinsic. For example,
+
+.. code-block:: 
+
+        integer     :: ierr        ! error code
+        real        :: a_h(5,6)    ! host array
+        real,pointer :: a_d(:,:)   ! device array pointer
+        !
+        ierr = hipMalloc(a_d,source=a_h)       ! take shape (incl. bounds) of a_h and perform a blocking copy to device
+
+In addition to `source`, there is also `dsource` in case the source is a device array.
+
+Supported HIP and ROCm API
+---------------------------
+
+The current batch of HIPFORT interfaces is derived from ROCm 4.5.0. The following tables list the supported API:
+
+* :doc:`HIP API <../doxygen/html/md_input_supported_api_hip>`
+* :doc:`hipBLAS API <../doxygen/html/md_input_supported_api_hipblas>` 
+* :doc:`hipFFT API <../doxygen/html/md_input_supported_api_hipfft>` 
+* :doc:`hipRAND API <../doxygen/html/md_input_supported_api_hiprand>`
+* :doc:`hipSOLVER API <../doxygen/html/md_input_supported_api_hipsolver>`
+* :doc:`hipSPARSE API <../doxygen/html/md_input_supported_api_hipsparse>`
+* :doc:`rocBLAS API <../doxygen/html/md_input_supported_api_rocblas>`
+* :doc:`rocFFT API <../doxygen/html/md_input_supported_api_rocfft>`
+* :doc:`rocRAND API <../doxygen/html/md_input_supported_api_rocrand>`
+* :doc:`rocSOLVER API <../doxygen/html/md_input_supported_api_rocsolver>`
+* :doc:`rocSPARSE API <../doxygen/html/md_input_supported_api_rocsparse>`
+
+
+You may further find it convenient to directly use the ``Search`` function from the hipFORT TOC to get information on the arguments of an interface.
+
+hipfc wrapper compiler and Makefile.hipfort
 ================================================
 
 Along with Fortran interfaces for the HIP and ROCm libraries, hipFORT ships the hipfc wrapper compiler
