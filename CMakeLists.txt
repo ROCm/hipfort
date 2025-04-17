@@ -1,4 +1,35 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.18...3.31)
+
+if(DEFINED HIPFORT_COMPILER)
+  message(DEPRECATION "HIPFORT_COMPILER is deprecated. Use CMAKE_Fortran_COMPILER instead.")
+  set(CMAKE_Fortran_COMPILER "${HIPFORT_COMPILER}" CACHE STRING "Fortran compiler")
+endif()
+
+if(DEFINED HIPFORT_AR)
+  message(DEPRECATION "HIPFORT_AR is deprecated. Use CMAKE_AR instead.")
+  set(CMAKE_AR "${HIPFORT_AR}" CACHE STRING "Archiving tool for static libraries")
+endif()
+
+if(DEFINED HIPFORT_RANLIB)
+  message(DEPRECATION "HIPFORT_RANLIB is deprecated. Use CMAKE_RANLIB instead.")
+  set(CMAKE_RANLIB "${HIPFORT_RANLIB}" CACHE STRING "Randomizing tool for static libraries")
+endif()
+
+if(DEFINED HIPFORT_COMPILER_FLAGS)
+  message(DEPRECATION "HIPFORT_COMPILER_FLAGS is deprecated. Use CMAKE_Fortran_FLAGS instead.")
+  set(CMAKE_Fortran_FLAGS "${HIPFORT_COMPILER_FLAGS}" CACHE STRING "Flags for the Fortran compiler and linker")
+endif()
+
+if(DEFINED HIPFORT_BUILD_TYPE)
+  message(DEPRECATION "HIPFORT_BUILD_TYPE is deprecated. Use CMAKE_BUILD_TYPE instead.")
+  set(CMAKE_BUILD_TYPE "${HIPFORT_BUILD_TYPE}" CACHE STRING "Build type to generate")
+endif()
+
+if(DEFINED HIPFORT_INSTALL_DIR)
+  message(DEPRECATION "HIPFORT_INSTALL_DIR is deprecated. Use CMAKE_INSTALL_PREFIX instead.")
+  set(CMAKE_INSTALL_PREFIX "${HIPFORT_INSTALL_DIR}" CACHE STRING "Randomizing tool for static libraries")
+endif()
+
 # hip-config.cmake requires CXX enabled
 PROJECT(hipfort VERSION 0.7 LANGUAGES Fortran C CXX)
 
