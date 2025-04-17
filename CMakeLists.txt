@@ -1,5 +1,6 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 3.18)
-PROJECT(hipfort VERSION 0.6 LANGUAGES Fortran C CXX) # hip-config.cmake requires CXX enabled
+CMAKE_MINIMUM_REQUIRED(VERSION 3.18...3.31)
+# hip-config.cmake requires CXX enabled
+PROJECT(hipfort VERSION 0.7 LANGUAGES Fortran C CXX)
 
 #include definitions for GNU install dir cmake flags.
 include(GNUInstallDirs)
