@@ -49,7 +49,7 @@ or by setting the CMake cache variables:
 *  ``CMAKE_BUILD_TYPE``: Set to ``RELEASE``, ``TESTING``, or ``DEBUG``
 *  ``CMAKE_AR``: Static archive command
 *  ``CMAKE_RANLIB``: The ``ranlib`` used to create the static archive
-*  ``CMAKE_INSTALL_PREFIX``: the install directory
+*  ``CMAKE_INSTALL_PREFIX``: The install directory
 
 hipfc wrapper compiler and Makefile.hipfort
 ================================================
