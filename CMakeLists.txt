@@ -27,7 +27,7 @@ endif()
 
 if(DEFINED HIPFORT_INSTALL_DIR)
   message(DEPRECATION "HIPFORT_INSTALL_DIR is deprecated. Use CMAKE_INSTALL_PREFIX instead.")
-  set(CMAKE_INSTALL_PREFIX "${HIPFORT_INSTALL_DIR}" CACHE STRING "Randomizing tool for static libraries")
+  set(CMAKE_INSTALL_PREFIX "${HIPFORT_INSTALL_DIR}" CACHE STRING "Install directory")
 endif()
 
 # hip-config.cmake requires CXX enabled
