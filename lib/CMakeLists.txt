@@ -36,9 +36,9 @@ set(HIPFORT_ARCH "amdgcn")
       PUBLIC
         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/hipfort/amdgcn>
     )
-    IF(CMAKE_Fortran_COMPILER_SUPPORTS_F08)
+    #IF(CMAKE_Fortran_COMPILER_SUPPORTS_F08)
     	target_compile_definitions(${HIPFORT_LIB} PRIVATE USE_FPOINTER_INTERFACES)
-    ENDIF(CMAKE_Fortran_COMPILER_SUPPORTS_F08)
+    #ENDIF(CMAKE_Fortran_COMPILER_SUPPORTS_F08)
     target_compile_definitions(${HIPFORT_LIB} PRIVATE _HIPFORT_ARCH='${HIPFORT_ARCH}')
     # Install Target hipfort-amdgcn
     rocm_install_targets(
