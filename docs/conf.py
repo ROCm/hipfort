@@ -28,7 +28,24 @@ gfortran_exe = shutil.which("gfortran")
 if gfortran_exe is None:
     raise RuntimeError("Couldn't find the fortran compiler!")
 
-for filename in glob.glob("../lib/hipfort/*.f"):
+for filename in glob.glob("../lib/hipfort/*.f90"):
+    path = Path(filename)
+    # -P is to disable embedding line information
+    subprocess.check_call(
+        [
+            gfortran_exe,
+            "-E",
+            "-cpp",
+            "-P",
+            "-DUSE_FPOINTER_INTERFACES=1",
+            "-UUSE_CUDA_NAMES",
+            str(path),
+            "-o",
+            str(preprocessed_out_dir / path.name),
+        ]
+    )
+
+for filename in glob.glob("../lib/hipfort/*.F90"):
     path = Path(filename)
     # -P is to disable embedding line information
     subprocess.check_call(
