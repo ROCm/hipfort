@@ -24096,7 +24096,7 @@ module hipfort_rocsolver
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_zhegvdx_
+      integer(kind(rocblas_status_success)) :: rocsolver_chegvdx_
       type(c_ptr), value    :: handle
       integer(kind(rocblas_eform_ax)), value :: itype
       integer(kind(rocblas_evect_original)), value :: jobz
@@ -24108,10 +24108,10 @@ module hipfort_rocsolver
       type(c_ptr), value :: dB
       real(c_float), value :: vl, vu
       integer(c_int), value :: il, iu
-      integer(i32), intent(out) :: dnev
+      integer(c_int), intent(out) :: dnev
       type(c_ptr), value        :: dW
       type(c_ptr), value        :: dZ
-      integer(i32), intent(out) :: dInfo
+      integer(c_int), intent(out) :: dInfo
     end function rocsolver_chegvdx_
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -24123,28 +24123,56 @@ module hipfort_rocsolver
   end interface
 
   interface rocsolver_zhegvdx
-    function rocsolver_zhegvdx_(handle, itype, jobz, range, uplo, n, dA, lda, dB, ldb, vl, vu, il, iu, &
-                               dnev, dW, dZ, ldz, dInfo) bind(C, name="rocsolver_zhegvx")
+    !function rocsolver_zhegvdx_(handle, itype, jobz, range, uplo, n, dA, lda, dB, ldb, vl, vu, il, iu, &
+    !                           dnev, dW, dZ, ldz, dInfo) bind(C, name="rocsolver_zhegvx")
+    !  use iso_c_binding
+    !  use hipfort_rocsolver_enums
+    !  use hipfort_rocblas_enums
+    !  implicit none
+    !  integer(kind(rocblas_status_success)) :: rocsolver_zhegvdx_
+    !  type(c_ptr), value    :: handle
+    !  integer(kind(rocblas_eform_ax)), value :: itype
+    !  integer(kind(rocblas_evect_original)), value :: jobz
+    !  integer(kind(rocblas_fill_upper)), value :: uplo
+    !  integer(kind(rocblas_erange_all)), value :: range
+    !  integer(c_int), value :: lda, ldb, ldz
+    !  integer(c_int), value :: n
+    !  type(c_ptr), value :: dA
+    !  type(c_ptr), value :: dB
+    !  real(c_double), value :: vl, vu
+    !  integer(c_int), value :: il, iu
+    !  integer(c_int), intent(out) :: dnev
+    !  type(c_ptr), value        :: dW
+    !  type(c_ptr), value        :: dZ
+    !  integer(c_int), intent(out) :: dInfo
+    !end function rocsolver_zhegvdx_
+
+    function rocsolver_zhegvdx_(handle, itype, evect, erange, uplo, n, A, lda, B, ldb, &
+                                        vl, vu, il, iu, nev, W, Z, ldz, info) bind(C, name="rocsolver_zhegvdx")
       use iso_c_binding
-      use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
+      use hipfort_rocsolver_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_zhegvdx_
-      type(c_ptr), value    :: handle
+      integer(kind(rocblas_status_success)) :: rocsolver_zhegvdx_ 
+      type(c_ptr), value :: handle
       integer(kind(rocblas_eform_ax)), value :: itype
-      integer(kind(rocblas_evect_original)), value :: jobz
+      integer(kind(rocblas_evect_original)), value :: evect
+      integer(kind(rocblas_erange_all)), value :: erange
       integer(kind(rocblas_fill_upper)), value :: uplo
-      integer(kind(rocblas_erange_all)), value :: range
-      integer(c_int), value :: lda, ldb, ldz
       integer(c_int), value :: n
-      type(c_ptr), value :: dA
-      type(c_ptr), value :: dB
-      real(c_double), value :: vl, vu
-      integer(c_int), value :: il, iu
-      integer(i32), intent(out) :: dnev
-      type(c_ptr), value        :: dW
-      type(c_ptr), value        :: dZ
-      integer(i32), intent(out) :: dInfo
+      type(c_ptr), value    :: A
+      integer(c_int), value :: lda
+      type(c_ptr), value    :: B
+      integer(c_int), value :: ldb
+      real(c_double), value :: vl
+      real(c_double), value :: vu
+      integer(c_int), value :: il
+      integer(c_int), value :: iu
+      integer(c_int), intent(out) :: nev
+      type(c_ptr), value :: W
+      type(c_ptr), value :: Z
+      integer(c_int), value :: ldz
+      integer(c_int), intent(out) :: info
     end function rocsolver_zhegvdx_
 
 #ifdef USE_FPOINTER_INTERFACES

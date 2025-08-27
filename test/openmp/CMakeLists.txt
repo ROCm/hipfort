@@ -1,18 +1,17 @@
 # HIPFORT using OpenMP offload with amdflang to AMD GPUs
 
 cmake_minimum_required(VERSION 3.25)
-project(hipfort_openmp LANGUAGES Fortran)
-
+project(hipfort_openmp LANGUAGES Fortran C CXX)
 
 ##### Compiler ##############
 # This file is intended to be used with amdflang
 set(CMAKE_Fortran_COMPILER "amdflang" CACHE FILEPATH "Fortran compiler (set full path to amdflang if needed)")
 
-if (CMAKE_Fortran_COMPILER NOT MATCHES "LLVMFlang")
+if(NOT CMAKE_Fortran_COMPILER_ID MATCHES "LLVMFlang")
     message(FATAL_ERROR "This project is intended to be used with amdflang or equivalent")
 endif()
 
-set(CMAKE_Fortran_FLAGS "-O3 -cpp -fno-fast-math -flto")
+set(CMAKE_Fortran_FLAGS "-O3 -g -cpp -fno-fast-math")
 
 ######## OpenMP offload ##########
 
@@ -127,7 +126,7 @@ if (USM)
     add_compile_definitions(_USM_)
 endif()
 
-set(CMAKE_Fortran_FLAGS_DEBUG "${CMAKE_Fortran_FLAGS_DEBUG} ${OpenMP_Fortran_FLAGS} -fopenmp-version=51 --offload-arch=${OFFLOADARCH} -fopenmp-offload-mandatory ${USM_FLAGS}")
+set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} ${OpenMP_Fortran_FLAGS} -fopenmp-version=51 --offload-arch=${GPU_ARCH} -fopenmp-offload-mandatory ${USM_FLAGS}")
 
 ################# ROCm libraries ########################
 # Find rocFFT
@@ -181,19 +180,28 @@ endif()
 set(ROCM_VERSION_NUM ${ROCM_VERSION_MAJOR}.${ROCM_VERSION_MINOR}${ROCM_VERSION_PATCH})
 
 ##### BLAS/LAPACK #####
-find_package(BLAS REQUIRED)
-find_package(LAPACK REQUIRED)
-list(APPEND BLAS_LIBRARIES ${LAPACK_LIBRARIES})
+find_library(BLIS_LIBRARY NAMES blis-mt blis)
+find_library(FLAME_LIBRARY NAMES flame)
+if(NOT FLAME_LIBRARY OR NOT BLIS_LIBRARY)
+    find_package(BLAS REQUIRED)
+    find_package(LAPACK REQUIRED)
+    list(APPEND BLAS_LIBRARIES ${LAPACK_LIBRARIES})
+else()
+    set(BLAS_LIBRARIES "${BLIS_LIBRARY}")
+    list(APPEND BLAS_LIBRARIES ${FLAME_LIBRARY})
+endif()
 message(STATUS "Linear algebra libraries found : ${BLAS_LIBRARIES}")
 
 ##### HIPFORT source ######
-file(GLOB_RECURSE hipfort_src "${CMAKE_SOURCE_DIR}/../../lib/hipfort/*.F90")
+file(GLOB_RECURSE hipfort_src
+    "${CMAKE_SOURCE_DIR}/../../lib/hipfort/*.F90"
+    "${CMAKE_SOURCE_DIR}/../../lib/hipfort/*.f90")
 
 ##### Programs ############
 
 add_executable(test_rocsolver_zhegvdx ${CMAKE_SOURCE_DIR}/rocsolver/test_rocsolver_zhegvdx.f90 ${hipfort_src})
-target_link_libraries(test_interface_hipsolver PUBLIC ${rocblaslib} ${rocsolverlib} ${LAPACK_LIBRARIES})
-
+target_link_libraries(test_rocsolver_zhegvdx PUBLIC roc::rocsolver ${BLAS_LIBRARIES})
+set_property(TARGET test_rocsolver_zhegvdx PROPERTY LINKER_LANGUAGE Fortran)
 
 
 
