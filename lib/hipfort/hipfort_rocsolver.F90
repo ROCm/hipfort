@@ -24090,28 +24090,32 @@ module hipfort_rocsolver
   !>   - When erange = rocblas_erange_value, nev is not known in advance,
   !>     allocate Z with n columns.
   interface rocsolver_chegvdx
-    function rocsolver_chegvdx_(handle, itype, jobz, range, uplo, n, dA, lda, dB, ldb, vl, vu, il, iu, &
-                               dnev, dW, dZ, ldz, dInfo) bind(C, name="rocsolver_chegvx")
+    function rocsolver_chegvdx_(handle, itype, evect, erange, uplo, n, A, lda, B, ldb, &
+                                        vl, vu, il, iu, nev, W, Z, ldz, info) bind(C, name="rocsolver_chegvdx")
       use iso_c_binding
-      use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
+      use hipfort_rocsolver_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_chegvdx_
-      type(c_ptr), value    :: handle
+      integer(kind(rocblas_status_success)) :: rocsolver_zhegvdx_
+      type(c_ptr), value :: handle
       integer(kind(rocblas_eform_ax)), value :: itype
-      integer(kind(rocblas_evect_original)), value :: jobz
+      integer(kind(rocblas_evect_original)), value :: evect
+      integer(kind(rocblas_erange_all)), value :: erange
       integer(kind(rocblas_fill_upper)), value :: uplo
-      integer(kind(rocblas_erange_all)), value :: range
-      integer(c_int), value :: lda, ldb, ldz
       integer(c_int), value :: n
-      type(c_ptr), value :: dA
-      type(c_ptr), value :: dB
-      real(c_float), value :: vl, vu
-      integer(c_int), value :: il, iu
-      integer(c_int), intent(out) :: dnev
-      type(c_ptr), value        :: dW
-      type(c_ptr), value        :: dZ
-      integer(c_int), intent(out) :: dInfo
+      type(c_ptr), value    :: A
+      integer(c_int), value :: lda
+      type(c_ptr), value    :: B
+      integer(c_int), value :: ldb
+      real(c_float), value :: vl
+      real(c_float), value :: vu
+      integer(c_int), value :: il
+      integer(c_int), value :: iu
+      integer(c_int), intent(out) :: nev
+      type(c_ptr), value :: W
+      type(c_ptr), value :: Z
+      integer(c_int), value :: ldz
+      integer(c_int), intent(out) :: info
     end function rocsolver_chegvdx_
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -24123,30 +24127,6 @@ module hipfort_rocsolver
   end interface
 
   interface rocsolver_zhegvdx
-    !function rocsolver_zhegvdx_(handle, itype, jobz, range, uplo, n, dA, lda, dB, ldb, vl, vu, il, iu, &
-    !                           dnev, dW, dZ, ldz, dInfo) bind(C, name="rocsolver_zhegvx")
-    !  use iso_c_binding
-    !  use hipfort_rocsolver_enums
-    !  use hipfort_rocblas_enums
-    !  implicit none
-    !  integer(kind(rocblas_status_success)) :: rocsolver_zhegvdx_
-    !  type(c_ptr), value    :: handle
-    !  integer(kind(rocblas_eform_ax)), value :: itype
-    !  integer(kind(rocblas_evect_original)), value :: jobz
-    !  integer(kind(rocblas_fill_upper)), value :: uplo
-    !  integer(kind(rocblas_erange_all)), value :: range
-    !  integer(c_int), value :: lda, ldb, ldz
-    !  integer(c_int), value :: n
-    !  type(c_ptr), value :: dA
-    !  type(c_ptr), value :: dB
-    !  real(c_double), value :: vl, vu
-    !  integer(c_int), value :: il, iu
-    !  integer(c_int), intent(out) :: dnev
-    !  type(c_ptr), value        :: dW
-    !  type(c_ptr), value        :: dZ
-    !  integer(c_int), intent(out) :: dInfo
-    !end function rocsolver_zhegvdx_
-
     function rocsolver_zhegvdx_(handle, itype, evect, erange, uplo, n, A, lda, B, ldb, &
                                         vl, vu, il, iu, nev, W, Z, ldz, info) bind(C, name="rocsolver_zhegvdx")
       use iso_c_binding
@@ -59707,171 +59687,195 @@ module hipfort_rocsolver
       rocsolver_zsytrf_strided_batched_rank_1 = rocsolver_zsytrf_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
     end function
 
-    function rocsolver_chegvdx_full_rank(handle, itype, jobz, range, uplo, n, dA, lda, dB, ldb, vl, vu, il, iu, &
-                               dnev, dW, dZ, ldz, dInfo) bind(C, name="rocsolver_zhegvx")
+    function rocsolver_chegvdx_full_rank(handle, itype, evect, erange, uplo, n, A, lda, B, ldb, &
+                                        vl, vu, il, iu, nev, W, Z, ldz, info)
       use iso_c_binding
-      use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
+      use hipfort_rocsolver_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocsolver_chegvdx_full_rank
-      type(c_ptr), value    :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_eform_ax)), value :: itype
-      integer(kind(rocblas_evect_original)), value :: jobz
+      integer(kind(rocblas_evect_original)), value :: evect
+      integer(kind(rocblas_erange_all)), value :: erange
       integer(kind(rocblas_fill_upper)), value :: uplo
-      integer(kind(rocblas_erange_all)), value :: range
-      integer(c_int), value :: lda, ldb, ldz
       integer(c_int), value :: n
       complex(c_float_complex), target, dimension(:,:) :: A
-      complex(c_float_complex), target, dimension(:,:) :: dB
-      real(c_float), value :: vl, vu
-      integer(c_int), value :: il, iu
-      integer(i32), intent(out) :: dnev
-      real(c_float), target, dimension(:) :: dW
-      complex(c_float_complex), target, dimension(:,:) :: dZ
-      integer(i32), intent(out) :: dInfo
+      integer(c_int), value :: lda
+      complex(c_float_complex), target, dimension(:,:) :: B
+      integer(c_int), value :: ldb
+      real(c_float), value :: vl
+      real(c_float), value :: vu
+      integer(c_int), value :: il
+      integer(c_int), value :: iu
+      integer(c_int), intent(out) :: nev
+      real(c_float), target, dimension(:) :: W
+      complex(c_float_complex), target, dimension(:,:) :: Z
+      integer(c_int), value :: ldz
+      integer(c_int), intent(out) :: info
 
-      rocsolver_chegvdx_full_rank = rocsolver_chegvdx_(handle, itype, jobz, range, uplo, n, c_loc(dA), lda, c_loc(dB), ldb, vl, vu, il, iu, &
-                               dnev, c_loc(dW), c_loc(dZ), ldz, dInfo)
+      rocsolver_chegvdx_full_rank = rocsolver_chegvdx_(handle, itype, evect, erange, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+                                                       vl, vu, il, iu, nev, c_loc(W), c_loc(Z), ldz, info)
 
     end function rocsolver_chegvdx_full_rank
 
-    function rocsolver_chegvdx_rank_1(handle, itype, jobz, range, uplo, n, dA, lda, dB, ldb, vl, vu, il, iu, &
-                               dnev, dW, dZ, ldz, dInfo) bind(C, name="rocsolver_zhegvx")
+    function rocsolver_chegvdx_rank_1(handle, itype, evect, erange, uplo, n, A, lda, B, ldb, &
+                                        vl, vu, il, iu, nev, W, Z, ldz, info)
       use iso_c_binding
-      use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
+      use hipfort_rocsolver_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocsolver_chegvdx_rank_1
-      type(c_ptr), value    :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_eform_ax)), value :: itype
-      integer(kind(rocblas_evect_original)), value :: jobz
+      integer(kind(rocblas_evect_original)), value :: evect
+      integer(kind(rocblas_erange_all)), value :: erange
       integer(kind(rocblas_fill_upper)), value :: uplo
-      integer(kind(rocblas_erange_all)), value :: range
-      integer(c_int), value :: lda, ldb, ldz
       integer(c_int), value :: n
       complex(c_float_complex), target, dimension(:) :: A
-      complex(c_float_complex), target, dimension(:) :: dB
-      real(c_float), value :: vl, vu
-      integer(c_int), value :: il, iu
-      integer(i32), intent(out) :: dnev
-      real(c_float), target, dimension(:) :: dW
-      complex(c_float_complex), target, dimension(:) :: dZ
-      integer(i32), intent(out) :: dInfo
+      integer(c_int), value :: lda
+      complex(c_float_complex), target, dimension(:) :: B
+      integer(c_int), value :: ldb
+      real(c_float), value :: vl
+      real(c_float), value :: vu
+      integer(c_int), value :: il
+      integer(c_int), value :: iu
+      integer(c_int), intent(out) :: nev
+      real(c_float), target, dimension(:) :: W
+      complex(c_float_complex), target, dimension(:) :: Z
+      integer(c_int), value :: ldz
+      integer(c_int), intent(out) :: info
 
-      rocsolver_chegvdx_rank_1 = rocsolver_chegvdx_(handle, itype, jobz, range, uplo, n, c_loc(dA), lda, c_loc(dB), ldb, vl, vu, il, iu, &
-                               dnev, c_loc(dW), c_loc(dZ), ldz, dInfo)
+      rocsolver_chegvdx_rank_1 = rocsolver_chegvdx_(handle, itype, evect, erange, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+                                                       vl, vu, il, iu, nev, c_loc(W), c_loc(Z), ldz, info)
 
     end function rocsolver_chegvdx_rank_1
 
-    function rocsolver_chegvdx_rank_0(handle, itype, jobz, range, uplo, n, dA, lda, dB, ldb, vl, vu, il, iu, &
-                               dnev, dW, dZ, ldz, dInfo) bind(C, name="rocsolver_zhegvx")
+    function rocsolver_chegvdx_rank_0(handle, itype, evect, erange, uplo, n, A, lda, B, ldb, &
+                                        vl, vu, il, iu, nev, W, Z, ldz, info)
       use iso_c_binding
-      use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
+      use hipfort_rocsolver_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocsolver_chegvdx_rank_0
-      type(c_ptr), value    :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_eform_ax)), value :: itype
-      integer(kind(rocblas_evect_original)), value :: jobz
+      integer(kind(rocblas_evect_original)), value :: evect
+      integer(kind(rocblas_erange_all)), value :: erange
       integer(kind(rocblas_fill_upper)), value :: uplo
-      integer(kind(rocblas_erange_all)), value :: range
-      integer(c_int), value :: lda, ldb, ldz
       integer(c_int), value :: n
       complex(c_float_complex), target :: A
-      complex(c_float_complex), target :: dB
-      real(c_float), value :: vl, vu
-      integer(c_int), value :: il, iu
-      integer(i32), intent(out) :: dnev
-      real(c_float), target :: dW
-      complex(c_float_complex), target :: dZ
-      integer(i32), intent(out) :: dInfo
+      integer(c_int), value :: lda
+      complex(c_float_complex), target :: B
+      integer(c_int), value :: ldb
+      real(c_float), value :: vl
+      real(c_float), value :: vu
+      integer(c_int), value :: il
+      integer(c_int), value :: iu
+      integer(c_int), intent(out) :: nev
+      real(c_float), target :: W
+      complex(c_float_complex), target :: Z
+      integer(c_int), value :: ldz
+      integer(c_int), intent(out) :: info
 
-      rocsolver_chegvdx_rank_0 = rocsolver_chegvdx_(handle, itype, jobz, range, uplo, n, c_loc(dA), lda, c_loc(dB), ldb, vl, vu, il, iu, &
-                               dnev, c_loc(dW), c_loc(dZ), ldz, dInfo)
+      rocsolver_chegvdx_rank_0 = rocsolver_chegvdx_(handle, itype, evect, erange, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+                                                       vl, vu, il, iu, nev, c_loc(W), c_loc(Z), ldz, info)
 
     end function rocsolver_chegvdx_rank_0
 
-    function rocsolver_zhegvdx_full_rank(handle, itype, jobz, range, uplo, n, dA, lda, dB, ldb, vl, vu, il, iu, &
-                               dnev, dW, dZ, ldz, dInfo) bind(C, name="rocsolver_zhegvx")
+    function rocsolver_zhegvdx_full_rank(handle, itype, evect, erange, uplo, n, A, lda, B, ldb, &
+                                        vl, vu, il, iu, nev, W, Z, ldz, info)
       use iso_c_binding
-      use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
+      use hipfort_rocsolver_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocsolver_zhegvdx_full_rank
-      type(c_ptr), value    :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_eform_ax)), value :: itype
-      integer(kind(rocblas_evect_original)), value :: jobz
+      integer(kind(rocblas_evect_original)), value :: evect
+      integer(kind(rocblas_erange_all)), value :: erange
       integer(kind(rocblas_fill_upper)), value :: uplo
-      integer(kind(rocblas_erange_all)), value :: range
-      integer(c_int), value :: lda, ldb, ldz
       integer(c_int), value :: n
       complex(c_double_complex), target, dimension(:,:) :: A
-      complex(c_double_complex), target, dimension(:,:) :: dB
-      real(c_double), value :: vl, vu
-      integer(c_int), value :: il, iu
-      integer(i32), intent(out) :: dnev
-      real(c_double), target, dimension(:) :: dW
-      complex(c_double_complex), target, dimension(:,:) :: dZ
-      integer(i32), intent(out) :: dInfo
+      integer(c_int), value :: lda
+      complex(c_double_complex), target, dimension(:,:) :: B
+      integer(c_int), value :: ldb
+      real(c_double), value :: vl
+      real(c_double), value :: vu
+      integer(c_int), value :: il
+      integer(c_int), value :: iu
+      integer(c_int), intent(out) :: nev
+      real(c_double), target, dimension(:) :: W
+      complex(c_double_complex), target, dimension(:,:) :: Z
+      integer(c_int), value :: ldz
+      integer(c_int), intent(out) :: info
 
-      rocsolver_zhegvdx_full_rank = rocsolver_zhegvdx_(handle, itype, jobz, range, uplo, n, c_loc(dA), lda, c_loc(dB), ldb, vl, vu, il, iu, &
-                               dnev, c_loc(dW), c_loc(dZ), ldz, dInfo)
+      rocsolver_zhegvdx_full_rank = rocsolver_zhegvdx_(handle, itype, evect, erange, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+                                                       vl, vu, il, iu, nev, c_loc(W), c_loc(Z), ldz, info)
 
     end function rocsolver_zhegvdx_full_rank
 
-    function rocsolver_zhegvdx_rank_1(handle, itype, jobz, range, uplo, n, dA, lda, dB, ldb, vl, vu, il, iu, &
-                               dnev, dW, dZ, ldz, dInfo) bind(C, name="rocsolver_zhegvx")
+    function rocsolver_zhegvdx_rank_1(handle, itype, evect, erange, uplo, n, A, lda, B, ldb, &
+                                        vl, vu, il, iu, nev, W, Z, ldz, info)
       use iso_c_binding
-      use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
+      use hipfort_rocsolver_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocsolver_zhegvdx_rank_1
-      type(c_ptr), value    :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_eform_ax)), value :: itype
-      integer(kind(rocblas_evect_original)), value :: jobz
+      integer(kind(rocblas_evect_original)), value :: evect
+      integer(kind(rocblas_erange_all)), value :: erange
       integer(kind(rocblas_fill_upper)), value :: uplo
-      integer(kind(rocblas_erange_all)), value :: range
-      integer(c_int), value :: lda, ldb, ldz
       integer(c_int), value :: n
       complex(c_double_complex), target, dimension(:) :: A
-      complex(c_double_complex), target, dimension(:) :: dB
-      real(c_double), value :: vl, vu
-      integer(c_int), value :: il, iu
-      integer(i32), intent(out) :: dnev
-      real(c_double), target, dimension(:) :: dW
-      complex(c_double_complex), target, dimension(:) :: dZ
-      integer(i32), intent(out) :: dInfo
+      integer(c_int), value :: lda
+      complex(c_double_complex), target, dimension(:) :: B
+      integer(c_int), value :: ldb
+      real(c_double), value :: vl
+      real(c_double), value :: vu
+      integer(c_int), value :: il
+      integer(c_int), value :: iu
+      integer(c_int), intent(out) :: nev
+      real(c_double), target, dimension(:) :: W
+      complex(c_double_complex), target, dimension(:) :: Z
+      integer(c_int), value :: ldz
+      integer(c_int), intent(out) :: info
 
-      rocsolver_zhegvdx_rank_1 = rocsolver_zhegvdx_(handle, itype, jobz, range, uplo, n, c_loc(dA), lda, c_loc(dB), ldb, vl, vu, il, iu, &
-                               dnev, c_loc(dW), c_loc(dZ), ldz, dInfo)
+      rocsolver_zhegvdx_rank_1 = rocsolver_zhegvdx_(handle, itype, evect, erange, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+                                                       vl, vu, il, iu, nev, c_loc(W), c_loc(Z), ldz, info)
 
     end function rocsolver_zhegvdx_rank_1
 
-    function rocsolver_zhegvdx_rank_0(handle, itype, jobz, range, uplo, n, dA, lda, dB, ldb, vl, vu, il, iu, &
-                               dnev, dW, dZ, ldz, dInfo) bind(C, name="rocsolver_zhegvx")
+    function rocsolver_zhegvdx_rank_0(handle, itype, evect, erange, uplo, n, A, lda, B, ldb, &
+                                        vl, vu, il, iu, nev, W, Z, ldz, info)
       use iso_c_binding
-      use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
+      use hipfort_rocsolver_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_zhegvdx_
-      type(c_ptr), value    :: handle
+      integer(kind(rocblas_status_success)) :: rocsolver_zhegvdx_rank_0
+      type(c_ptr), value :: handle
       integer(kind(rocblas_eform_ax)), value :: itype
-      integer(kind(rocblas_evect_original)), value :: jobz
+      integer(kind(rocblas_evect_original)), value :: evect
+      integer(kind(rocblas_erange_all)), value :: erange
       integer(kind(rocblas_fill_upper)), value :: uplo
-      integer(kind(rocblas_erange_all)), value :: range
-      integer(c_int), value :: lda, ldb, ldz
       integer(c_int), value :: n
       complex(c_double_complex), target :: A
-      complex(c_double_complex), target :: dB
-      real(c_double), value :: vl, vu
-      integer(c_int), value :: il, iu
-      integer(i32), intent(out) :: dnev
-      real(c_double), target :: dW
-      complex(c_double_complex), target :: dZ
-      integer(i32), intent(out) :: dInfo
+      integer(c_int), value :: lda
+      complex(c_double_complex), target :: B
+      integer(c_int), value :: ldb
+      real(c_double), value :: vl
+      real(c_double), value :: vu
+      integer(c_int), value :: il
+      integer(c_int), value :: iu
+      integer(c_int), intent(out) :: nev
+      real(c_double), target :: W
+      complex(c_double_complex), target :: Z
+      integer(c_int), value :: ldz
+      integer(c_int), intent(out) :: info
 
-      rocsolver_zhegvdx_rank_0 = rocsolver_zhegvdx_(handle, itype, jobz, range, uplo, n, c_loc(dA), lda, c_loc(dB), ldb, vl, vu, il, iu, &
-                               dnev, c_loc(dW), c_loc(dZ), ldz, dInfo)
+      rocsolver_zhegvdx_rank_0 = rocsolver_zhegvdx_(handle, itype, evect, erange, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+                                                       vl, vu, il, iu, nev, c_loc(W), c_loc(Z), ldz, info)
 
     end function rocsolver_zhegvdx_rank_0
   
