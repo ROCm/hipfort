@@ -24096,7 +24096,7 @@ module hipfort_rocsolver
       use hipfort_rocblas_enums
       use hipfort_rocsolver_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_zhegvdx_
+      integer(kind(rocblas_status_success)) :: rocsolver_chegvdx_
       type(c_ptr), value :: handle
       integer(kind(rocblas_eform_ax)), value :: itype
       integer(kind(rocblas_evect_original)), value :: evect

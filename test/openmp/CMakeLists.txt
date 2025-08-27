@@ -200,8 +200,12 @@ file(GLOB_RECURSE hipfort_src
 ##### Programs ############
 
 add_executable(test_rocsolver_zhegvdx ${CMAKE_SOURCE_DIR}/rocsolver/test_rocsolver_zhegvdx.f90 ${hipfort_src})
-target_link_libraries(test_rocsolver_zhegvdx PUBLIC roc::rocsolver ${BLAS_LIBRARIES})
+target_link_libraries(test_rocsolver_zhegvdx PUBLIC roc::rocsolver ${BLAS_LIBRARIES} flang_rt.hostdevice)
 set_property(TARGET test_rocsolver_zhegvdx PROPERTY LINKER_LANGUAGE Fortran)
+
+#### Test ####
+enable_testing()
+add_test(NAME test_rocsolver_zhegvdx COMMAND test_rocsolver_zhegvdx)
 
 
 
