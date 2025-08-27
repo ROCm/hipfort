@@ -66,7 +66,11 @@ module hipfort_rocsolver_enums
     enumerator :: rocblas_eform_bax = 223
   end enum
 
- 
+  enum, bind(c)
+    enumerator :: rocblas_erange_all   = 231
+    enumerator :: rocblas_erange_value = 232
+    enumerator :: rocblas_erange_index = 233
+  end enum
 
 #ifdef USE_FPOINTER_INTERFACES
 
