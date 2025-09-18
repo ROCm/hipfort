@@ -1,4 +1,4 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 3.18...3.31)
+cmake_minimum_required(VERSION 3.18..4.0 FATAL_ERROR)
 
 #Setting Default value for libdir
 set(CMAKE_INSTALL_LIBDIR "lib" CACHE STRING "Library install directory")
