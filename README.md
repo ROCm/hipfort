@@ -99,17 +99,17 @@ In addition to `source`, there is also `dsource` in case the source is a device 
 The current batch of HIPFORT interfaces is derived from ROCm 4.5.0.
 The following tables list the supported API:
 
-* [HIP](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_HIP.md)
-* [hipBLAS](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_HIPBLAS.md)
-* [hipFFT](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_HIPFFT.md)
-* [hipRAND](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_HIPRAND.md)
-* [hipSOLVER](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_HIPSOLVER.md)
-* [hipSPARSE](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_HIPSPARSE.md)
-* [rocBLAS](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_ROCBLAS.md)
-* [rocFFT](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_ROCFFT.md)
-* [rocRAND](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_ROCRAND.md)
-* [rocSOLVER](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_ROCSOLVER.md)
-* [rocSPARSE](https://github.com/ROCmSoftwarePlatform/hipfort/blob/master/lib/hipfort/SUPPORTED_API_ROCSPARSE.md)
+* [HIP](https://github.com/ROCm/hipfort/blob/master/docs/doxygen/input/supported_api_hip.md)
+* [hipBLAS](https://github.com/ROCm/hipfort/blob/master/docs/doxygen/input/supported_api_hipblas.md)
+* [hipFFT](https://github.com/ROCm/hipfort/blob/master/docs/doxygen/input/supported_api_hipfft.md)
+* [hipRAND](https://github.com/ROCm/hipfort/blob/master/docs/doxygen/input/supported_api_hiprand.md)
+* [hipSOLVER](https://github.com/ROCm/hipfort/blob/master/docs/doxygen/input/supported_api_hipsolver.md)
+* [hipSPARSE](https://github.com/ROCm/hipfort/blob/master/docs/doxygen/input/supported_api_hipsparse.md)
+* [rocBLAS](https://github.com/ROCm/hipfort/blob/master/docs/doxygen/input/supported_api_rocblas.md)
+* [rocFFT](https://github.com/ROCm/hipfort/blob/master/docs/doxygen/input/supported_api_rocfft.md)
+* [rocRAND](https://github.com/ROCm/hipfort/blob/master/docs/doxygen/input/supported_api_rocrand.md)
+* [rocSOLVER](https://github.com/ROCm/hipfort/blob/master/docs/doxygen/input/supported_api_rocsolver.md)
+* [rocSPARSE](https://github.com/ROCm/hipfort/blob/master/docs/doxygen/input/supported_api_rocsparse.md)
 
 You may further find it convenient to directly use the search function on
 [HIPFORT's documentation page](https://rocm.docs.amd.com/projects/hipfort/en/latest/) to get information on the arguments of an interface
