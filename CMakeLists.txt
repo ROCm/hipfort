@@ -1,8 +1,5 @@
 cmake_minimum_required(VERSION 3.18..4.0 FATAL_ERROR)
 
-#Setting Default value for libdir
-set(CMAKE_INSTALL_LIBDIR "lib" CACHE STRING "Library install directory")
-
 if(DEFINED HIPFORT_COMPILER)
   message(DEPRECATION "HIPFORT_COMPILER is deprecated. Use CMAKE_Fortran_COMPILER instead.")
   set(CMAKE_Fortran_COMPILER "${HIPFORT_COMPILER}" CACHE STRING "Fortran compiler")
@@ -36,7 +33,18 @@ endif()
 # hip-config.cmake requires CXX enabled
 PROJECT(hipfort VERSION 0.7.0 LANGUAGES Fortran C CXX)
 
-#include definitions for GNU install dir cmake flags.
+# get compiler name
+get_filename_component(FCNAME ${CMAKE_Fortran_COMPILER} NAME)
+
+# setup default install directories
+option(HIPFORT_MULTITOOLCHAIN_LAYOUT "Install library files to toolchain-specific subdirectories" ON)
+if(HIPFORT_MULTITOOLCHAIN_LAYOUT)
+  set(FORTRAN_LIBRARY_SUBDIR "fortran/${FCNAME}" CACHE STRING "Compiler-specific library symlink subdirectory")
+  set(CMAKE_INSTALL_LIBDIR "lib/${FORTRAN_LIBRARY_SUBDIR}" CACHE STRING "Library install directory")
+else()
+  set(CMAKE_INSTALL_LIBDIR "lib" CACHE STRING "Library install directory")
+endif()
+
 include(GNUInstallDirs)
 
 message("-- HIPFORT -------------  cmake START -------------------")
@@ -114,7 +122,6 @@ message("-- CMAKE_Fortran_FLAGS_RELEASE: ${CMAKE_Fortran_FLAGS_RELEASE}")
 message("-- CMAKE_Fortran_FLAGS_TESTING: ${CMAKE_Fortran_FLAGS_TESTING}")
 
 # There is an error in CMAKE with this flag for pgf90.  Unset it
-GET_FILENAME_COMPONENT(FCNAME ${CMAKE_Fortran_COMPILER} NAME)
 IF(FCNAME STREQUAL "pgf90")
     UNSET(CMAKE_SHARED_LIBRARY_LINK_Fortran_FLAGS)
 ENDIF(FCNAME STREQUAL "pgf90")
