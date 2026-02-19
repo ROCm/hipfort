@@ -298,6 +298,20 @@ if [ ! -f $HIPFORT_COMPILER ] ; then
    exit 1
 fi
 
+# Resolve HIPFORT to an absolute path so -L does not get paths like /opt/rocm/bin/../lib
+if [ -d "$HIPFORT" ] ; then
+   HIPFORT_ABS="$(cd "$HIPFORT" && pwd)"
+else
+   HIPFORT_ABS="$HIPFORT"
+fi
+# With HIPFORT_MULTITOOLCHAIN_LAYOUT, libs are in lib/fortran/<compiler_name>
+FCNAME="${HIPFORT_COMPILER##*/}"
+if [ -d "$HIPFORT_ABS/lib/fortran/$FCNAME" ] ; then
+   HIPFORT_LIB_DIR="$HIPFORT_ABS/lib/fortran/$FCNAME"
+else
+   HIPFORT_LIB_DIR="$HIPFORT_ABS/lib"
+fi
+
 # Determine which gfx processor to use, fall back to rocm_agent_enumerator
 if [ ! $HIPFORT_GPU ] ; then 
    # Use the mygpu in pair with this script, not the pre-installed one.
@@ -416,9 +430,9 @@ if [ "$UNAMEP" == "ppc64le" ] ; then
 fi
 
 if [[ "$HIPFORT_COMPILER" == *"ftn" ]] ; then
-  FCARGS="-eT -J$HIPFORT/include/hipfort/$TARGET_ARCH"
+  FCARGS="-eT -J$HIPFORT_ABS/include/hipfort/$TARGET_ARCH"
 else
-  FCARGS="-cpp -I$HIPFORT/include/hipfort/$TARGET_ARCH"
+  FCARGS="-cpp -I$HIPFORT_ABS/include/hipfort/$TARGET_ARCH"
 fi
 
 if [ $GEN_OBJECT_ONLY ]  ; then 
@@ -426,7 +440,7 @@ if [ $GEN_OBJECT_ONLY ]  ; then
    HIPCC_OPTS=" -c $HIPCC_OPTS"
    LINKOPTS=""
 else
-   LINKOPTS="-L$HIPFORT/lib -lhipfort-$TARGET_ARCH"
+   LINKOPTS="-L$HIPFORT_LIB_DIR -lhipfort-$TARGET_ARCH"
    for lib in $ROCM_LIBS; do
      addrocmlib $lib
    done
