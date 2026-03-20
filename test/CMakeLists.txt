@@ -46,8 +46,8 @@ if(BUILD_TESTING)
     add_executable(hipfort_test_${dir}_${lib}_${func} ${dir}/${lib}/${func}.f03)
     target_link_libraries(hipfort_test_${dir}_${lib}_${func} PRIVATE hipfort::${lib} hipfort::hip)
 
-    # the tests call EXIT, which is a GNU extension
-    target_compile_options(hipfort_test_${dir}_${lib}_${func} PRIVATE $<$<COMPILE_LANGUAGE:Fortran>:-std=gnu>)
+    # the tests call EXIT, which is a GNU extension in gfortran
+    target_compile_options(hipfort_test_${dir}_${lib}_${func} PRIVATE $<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-std=gnu>)
 
     add_test(
       NAME hipfort_test_${dir}_${lib}_${func}
