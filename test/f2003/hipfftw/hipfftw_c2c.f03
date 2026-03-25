@@ -1,0 +1,67 @@
+program hipfftw_c2c_test
+  use iso_c_binding
+  use hipfort
+  use hipfort_check
+  use hipfort_hipfftw
+
+  implicit none
+
+  integer(c_int), parameter :: N = 16
+  integer(c_size_t), parameter :: Nbytes = N * 16  ! sizeof(double complex) = 16
+  double precision, parameter :: pi = 4.0d0 * atan(1.0d0)
+  double precision, parameter :: tol = 1.0d-12
+
+  complex(c_double_complex), allocatable, target, dimension(:) :: hx, hresult
+  type(c_ptr) :: dx = c_null_ptr, dy = c_null_ptr
+  complex(c_double_complex), pointer :: dx_f(:), dy_f(:)
+  integer(c_int64_t) :: plan
+  integer :: j
+  double precision :: error, max_error
+  complex(c_double_complex) :: w
+
+  write(*,"(a)",advance="no") "-- Running test 'hipfftw_c2c' (Fortran 2003) - "
+
+  ! Signal: x[j] = exp(2*pi*i*1*j/N) + 2*exp(2*pi*i*5*j/N)
+  ! Expected DFT: X[1]=N, X[5]=2*N, all other bins zero (0-indexed)
+  w = cmplx(0.0d0, 2.0d0 * pi / dble(N), kind=c_double_complex)
+  allocate(hx(N), hresult(N))
+  do j = 0, N-1
+    hx(j+1) = exp(w * dble(j)) + 2.0d0 * exp(5.0d0 * w * dble(j))
+  end do
+
+  call hipCheck(hipMalloc(dx, Nbytes))
+  call hipCheck(hipMalloc(dy, Nbytes))
+  call hipCheck(hipMemcpy(dx, c_loc(hx(1)), Nbytes, hipMemcpyHostToDevice))
+
+  call c_f_pointer(dx, dx_f, [N])
+  call c_f_pointer(dy, dy_f, [N])
+
+  call dfftw_plan_dft_1d(plan, N, dx_f, dy_f, FFTW_FORWARD, FFTW_ESTIMATE)
+  call dfftw_execute_dft(plan, dx_f, dy_f)
+  call dfftw_destroy_plan(plan)
+
+  call hipCheck(hipMemcpy(c_loc(hresult(1)), dy, Nbytes, hipMemcpyDeviceToHost))
+
+  max_error = 0.0d0
+  do j = 0, N-1
+    if (j == 1) then
+      error = abs(hresult(j+1) - cmplx(dble(N), 0.0d0, kind=c_double_complex))
+    else if (j == 5) then
+      error = abs(hresult(j+1) - cmplx(2.0d0 * N, 0.0d0, kind=c_double_complex))
+    else
+      error = abs(hresult(j+1))
+    end if
+    max_error = max(max_error, error)
+  end do
+
+  if (max_error > tol) then
+    write(*,*) "FAILED! max error = ", max_error
+    call exit(1)
+  end if
+
+  call hipCheck(hipFree(dx))
+  call hipCheck(hipFree(dy))
+  deallocate(hx, hresult)
+
+  write(*,*) "PASSED!"
+end program hipfftw_c2c_test

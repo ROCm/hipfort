@@ -24,7 +24,10 @@ include(CMakeFindDependencyMacro)
 
 set(_hipfort_supported_components hip
   rocblas rocfft rocrand rocsolver rocsparse
-  hipblas hipfft hiprand hipsolver hipsparse)
+  hipblas hipfft hipfftw hiprand hipsolver hipsparse)
+
+# hipfftw is provided by the hipfft package, not a standalone package
+set(_hipfort_component_package_hipfftw hipfft)
 
 include("${CMAKE_CURRENT_LIST_DIR}/hipfort-amdgcn-targets.cmake")
 foreach(_comp ${hipfort_FIND_COMPONENTS})
@@ -33,5 +36,9 @@ foreach(_comp ${hipfort_FIND_COMPONENTS})
     set(hipfort_NOT_FOUND_MESSAGE "Unsupported component: ${_comp}")
   endif()
   include("${CMAKE_CURRENT_LIST_DIR}/hipfort-${_comp}-targets.cmake")
-  find_dependency(${_comp})
+  if(DEFINED _hipfort_component_package_${_comp})
+    find_dependency(${_hipfort_component_package_${_comp}})
+  else()
+    find_dependency(${_comp})
+  endif()
 endforeach()

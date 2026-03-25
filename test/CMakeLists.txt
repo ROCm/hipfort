@@ -82,6 +82,12 @@ if(BUILD_TESTING)
     hipfort_add_test(hipfft hipfft f2008)
   endif()
 
+  if(TARGET hipfort::hipfftw)
+    hipfort_add_test(hipfftw hipfftw_c2c f2003)
+    hipfort_add_test(hipfftw hipfftw_r2c_c2r f2003)
+    hipfort_add_test(hipfftw hipfftw_many f2003)
+  endif()
+
   if(TARGET hipfort::hipsolver)
     hipfort_add_test(hipsolver hipsolverdgetrf f2008)
   endif()
