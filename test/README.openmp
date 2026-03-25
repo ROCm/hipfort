@@ -1,2 +1,4 @@
-openmp contains tests that combine hipfort with OpenMP offload. Those are intended to be used with amdflang or any other compiler
-using. Note that they contain a different build mechanism that the other as one needs to specify the architecture.
+The openmp directory contains tests that combine hipfort with OpenMP offload.
+These are intended to be used with amdflang or any other compiler
+using OpenMP offload. Note that they contain a different build mechanism than
+the other testers as one needs to specify the architecture.
