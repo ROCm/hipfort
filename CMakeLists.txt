@@ -1,4 +1,4 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 3.18...3.31)
+cmake_minimum_required(VERSION 3.18..4.0 FATAL_ERROR)
 
 #Setting Default value for libdir
 set(CMAKE_INSTALL_LIBDIR "lib" CACHE STRING "Library install directory")
@@ -34,7 +34,7 @@ if(DEFINED HIPFORT_INSTALL_DIR)
 endif()
 
 # hip-config.cmake requires CXX enabled
-PROJECT(hipfort VERSION 0.7.0 LANGUAGES Fortran C CXX)
+PROJECT(hipfort VERSION 0.7.1 LANGUAGES Fortran C CXX)
 
 #include definitions for GNU install dir cmake flags.
 include(GNUInstallDirs)
