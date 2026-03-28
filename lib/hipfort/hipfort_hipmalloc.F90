@@ -35,12 +35,14 @@ module hipfort_hipmalloc
 
   private :: byte_size
 
+#ifdef USE_FPOINTER_INTERFACES
   interface byte_size
     module procedure byte_size_int32, &
     byte_size_int64,  &
     byte_size_real32, &
     byte_size_real64
   endinterface
+#endif
 
   interface hipMalloc
     !> 
