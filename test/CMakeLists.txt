@@ -43,6 +43,8 @@ add_custom_target(all-tests-clean
 
 if(BUILD_TESTING)
   function(hipfort_add_test lib func dir)
+    # CMake < 3.27 does not recognize .f03 as a Fortran source file extension
+    set_source_files_properties(${dir}/${lib}/${func}.f03 PROPERTIES LANGUAGE Fortran)
     add_executable(hipfort_test_${dir}_${lib}_${func} ${dir}/${lib}/${func}.f03)
     target_link_libraries(hipfort_test_${dir}_${lib}_${func} PRIVATE hipfort::${lib} hipfort::hip)
 
