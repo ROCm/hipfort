@@ -83,9 +83,47 @@ if(BUILD_TESTING)
   endif()
 
   if(TARGET hipfort::hipfftw)
-    hipfort_add_test(hipfftw hipfftw_c2c f2003)
-    hipfort_add_test(hipfftw hipfftw_r2c_c2r f2003)
-    hipfort_add_test(hipfftw hipfftw_many f2003)
+    # Detect hipfftw API features based on hipfft version.
+    # Version-to-feature mapping (based on ROCm releases):
+    #   hipfft < 1.0.21: no hipfftw library
+    #   hipfft 1.0.21:   hipfftw exists but no fftw_execute_dft (ROCm 7.1)
+    #   hipfft 1.0.22:   adds fftw_execute_dft (ROCm 7.2)
+    #   hipfft 1.0.23+:  adds fftw_plan_many_dft (therock/ROCm 7.3+)
+    set(HIPFFTW_HAS_EXECUTE_DFT FALSE)
+    set(HIPFFTW_HAS_PLAN_MANY_DFT FALSE)
+
+    # hipfft's config doesn't export hipfft_VERSION, so extract it from the version file
+    set(_hipfft_version_file "${hipfft_DIR}/hipfft-config-version.cmake")
+    if(EXISTS "${_hipfft_version_file}")
+      file(STRINGS "${_hipfft_version_file}" _hipfft_version_line
+           REGEX "^set\\(PACKAGE_VERSION \"[0-9]+\\.[0-9]+\\.[0-9]+\"\\)")
+      if(_hipfft_version_line)
+        string(REGEX REPLACE ".*\"([0-9]+\\.[0-9]+\\.[0-9]+)\".*" "\\1"
+               _hipfft_version "${_hipfft_version_line}")
+        message(STATUS "Detected hipfft version: ${_hipfft_version}")
+        if(_hipfft_version VERSION_GREATER_EQUAL "1.0.22")
+          set(HIPFFTW_HAS_EXECUTE_DFT TRUE)
+        endif()
+        if(_hipfft_version VERSION_GREATER_EQUAL "1.0.23")
+          set(HIPFFTW_HAS_PLAN_MANY_DFT TRUE)
+        endif()
+      endif()
+    else()
+      message(STATUS "hipfft version file not found, cannot detect hipfftw features")
+    endif()
+
+    if(HIPFFTW_HAS_EXECUTE_DFT)
+      hipfort_add_test(hipfftw hipfftw_c2c f2003)
+      hipfort_add_test(hipfftw hipfftw_r2c_c2r f2003)
+    else()
+      message(STATUS "Skipping hipfftw_c2c/hipfftw_r2c_c2r tests (requires hipfft >= 1.0.22)")
+    endif()
+
+    if(HIPFFTW_HAS_PLAN_MANY_DFT)
+      hipfort_add_test(hipfftw hipfftw_many f2003)
+    else()
+      message(STATUS "Skipping hipfftw_many test (requires hipfft >= 1.0.23)")
+    endif()
   endif()
 
   if(TARGET hipfort::hipsolver)
