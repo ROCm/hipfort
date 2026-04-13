@@ -21767,9 +21767,9 @@ module hipfort_hipblas
   
   interface hipblasStrmm
 #ifdef USE_CUDA_NAMES
-    function hipblasStrmm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="cublasStrmm_v2")
+    function hipblasStrmm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldC) bind(c, name="cublasStrmm_v2")
 #else
-    function hipblasStrmm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="hipblasStrmm")
+    function hipblasStrmm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldC) bind(c, name="hipblasStrmm")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -21787,6 +21787,8 @@ module hipfort_hipblas
       integer(c_int),value :: lda
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -21799,9 +21801,9 @@ module hipfort_hipblas
   
   interface hipblasDtrmm
 #ifdef USE_CUDA_NAMES
-    function hipblasDtrmm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="cublasDtrmm_v2")
+    function hipblasDtrmm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc) bind(c, name="cublasDtrmm_v2")
 #else
-    function hipblasDtrmm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="hipblasDtrmm")
+    function hipblasDtrmm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc) bind(c, name="hipblasDtrmm")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -21819,6 +21821,8 @@ module hipfort_hipblas
       integer(c_int),value :: lda
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -21831,9 +21835,9 @@ module hipfort_hipblas
   
   interface hipblasCtrmm
 #ifdef USE_CUDA_NAMES
-    function hipblasCtrmm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="cublasCtrmm_v2")
+    function hipblasCtrmm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldC) bind(c, name="cublasCtrmm_v2")
 #else
-    function hipblasCtrmm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="hipblasCtrmm")
+    function hipblasCtrmm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldC) bind(c, name="hipblasCtrmm")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -21851,6 +21855,8 @@ module hipfort_hipblas
       integer(c_int),value :: lda
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldC
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -21953,9 +21959,9 @@ module hipfort_hipblas
   !>
   interface hipblasZtrmm
 #ifdef USE_CUDA_NAMES
-    function hipblasZtrmm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="cublasZtrmm_v2")
+    function hipblasZtrmm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldC) bind(c, name="cublasZtrmm_v2")
 #else
-    function hipblasZtrmm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="hipblasZtrmm")
+    function hipblasZtrmm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldC) bind(c, name="hipblasZtrmm")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -21973,6 +21979,8 @@ module hipfort_hipblas
       integer(c_int),value :: lda
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -21985,9 +21993,9 @@ module hipfort_hipblas
   
   interface hipblasStrmmBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasStrmmBatched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,batchCount) bind(c, name="cublasStrmmBatched")
+    function hipblasStrmmBatched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldC,batchCount) bind(c, name="cublasStrmmBatched")
 #else
-    function hipblasStrmmBatched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,batchCount) bind(c, name="hipblasStrmmBatched")
+    function hipblasStrmmBatched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldC,batchCount) bind(c, name="hipblasStrmmBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -22005,6 +22013,8 @@ module hipfort_hipblas
       integer(c_int),value :: lda
       type(c_ptr) :: B
       integer(c_int),value :: ldb
+      type(c_ptr) :: C
+      integer(c_int),value :: ldC
       integer(c_int),value :: batchCount
     end function
 
@@ -22018,9 +22028,9 @@ module hipfort_hipblas
   
   interface hipblasDtrmmBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasDtrmmBatched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,batchCount) bind(c, name="cublasDtrmmBatched")
+    function hipblasDtrmmBatched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldC,batchCount) bind(c, name="cublasDtrmmBatched")
 #else
-    function hipblasDtrmmBatched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,batchCount) bind(c, name="hipblasDtrmmBatched")
+    function hipblasDtrmmBatched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldC,batchCount) bind(c, name="hipblasDtrmmBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -22038,6 +22048,8 @@ module hipfort_hipblas
       integer(c_int),value :: lda
       type(c_ptr) :: B
       integer(c_int),value :: ldb
+      type(c_ptr) :: C
+      integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
     end function
 
@@ -22051,9 +22063,9 @@ module hipfort_hipblas
   
   interface hipblasCtrmmBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasCtrmmBatched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,batchCount) bind(c, name="cublasCtrmmBatched")
+    function hipblasCtrmmBatched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc,batchCount) bind(c, name="cublasCtrmmBatched")
 #else
-    function hipblasCtrmmBatched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,batchCount) bind(c, name="hipblasCtrmmBatched")
+    function hipblasCtrmmBatched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc,batchCount) bind(c, name="hipblasCtrmmBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -22071,6 +22083,8 @@ module hipfort_hipblas
       integer(c_int),value :: lda
       type(c_ptr) :: B
       integer(c_int),value :: ldb
+      type(c_ptr) :: C
+      integer(c_int),value :: ldC
       integer(c_int),value :: batchCount
     end function
 
@@ -22177,9 +22191,9 @@ module hipfort_hipblas
   !>                 number of instances i in the batch.
   interface hipblasZtrmmBatched
 #ifdef USE_CUDA_NAMES
-    function hipblasZtrmmBatched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,batchCount) bind(c, name="cublasZtrmmBatched")
+    function hipblasZtrmmBatched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc,batchCount) bind(c, name="cublasZtrmmBatched")
 #else
-    function hipblasZtrmmBatched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,batchCount) bind(c, name="hipblasZtrmmBatched")
+    function hipblasZtrmmBatched_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc,batchCount) bind(c, name="hipblasZtrmmBatched")
 #endif
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -22197,6 +22211,8 @@ module hipfort_hipblas
       integer(c_int),value :: lda
       type(c_ptr) :: B
       integer(c_int),value :: ldb
+      type(c_ptr) :: C
+      integer(c_int),value :: ldc
       integer(c_int),value :: batchCount
     end function
 
@@ -51246,7 +51262,7 @@ module hipfort_hipblas
       hipblasZhemmStridedBatched_rank_1 = hipblasZhemmStridedBatched_(handle,side,uplo,n,k,alpha,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,beta,c_loc(C),ldc,strideC,batchCount)
     end function
 
-    function hipblasStrmm_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
+    function hipblasStrmm_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -51263,11 +51279,13 @@ module hipfort_hipblas
       integer(c_int) :: lda
       real(c_float),target,dimension(:,:) :: B
       integer(c_int) :: ldb
+      real(c_float),target,dimension(:,:) :: C
+      integer(c_int) :: ldc
       !
-      hipblasStrmm_full_rank = hipblasStrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb)
+      hipblasStrmm_full_rank = hipblasStrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
     end function
 
-    function hipblasStrmm_rank_0(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
+    function hipblasStrmm_rank_0(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -51284,11 +51302,13 @@ module hipfort_hipblas
       integer(c_int) :: lda
       real(c_float),target :: B
       integer(c_int) :: ldb
+      real(c_float),target :: C
+      integer(c_int) :: ldc
       !
-      hipblasStrmm_rank_0 = hipblasStrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb)
+      hipblasStrmm_rank_0 = hipblasStrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
     end function
 
-    function hipblasStrmm_rank_1(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
+    function hipblasStrmm_rank_1(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -51305,11 +51325,13 @@ module hipfort_hipblas
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: B
       integer(c_int) :: ldb
+      real(c_float),target,dimension(:) :: C
+      integer(c_int) :: ldc
       !
-      hipblasStrmm_rank_1 = hipblasStrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb)
+      hipblasStrmm_rank_1 = hipblasStrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
     end function
 
-    function hipblasDtrmm_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
+    function hipblasDtrmm_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -51326,11 +51348,13 @@ module hipfort_hipblas
       integer(c_int) :: lda
       real(c_double),target,dimension(:,:) :: B
       integer(c_int) :: ldb
+      real(c_double),target,dimension(:,:) :: C
+      integer(c_int) :: ldc
       !
-      hipblasDtrmm_full_rank = hipblasDtrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb)
+      hipblasDtrmm_full_rank = hipblasDtrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
     end function
 
-    function hipblasDtrmm_rank_0(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
+    function hipblasDtrmm_rank_0(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldC)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -51347,11 +51371,13 @@ module hipfort_hipblas
       integer(c_int) :: lda
       real(c_double),target :: B
       integer(c_int) :: ldb
+      real(c_double),target :: C
+      integer(c_int) :: ldc
       !
-      hipblasDtrmm_rank_0 = hipblasDtrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb)
+      hipblasDtrmm_rank_0 = hipblasDtrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
     end function
 
-    function hipblasDtrmm_rank_1(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
+    function hipblasDtrmm_rank_1(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -51368,11 +51394,13 @@ module hipfort_hipblas
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: B
       integer(c_int) :: ldb
+      real(c_double),target,dimension(:) :: C
+      integer(c_int) :: ldc
       !
-      hipblasDtrmm_rank_1 = hipblasDtrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb)
+      hipblasDtrmm_rank_1 = hipblasDtrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
     end function
 
-    function hipblasCtrmm_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
+    function hipblasCtrmm_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -51389,11 +51417,13 @@ module hipfort_hipblas
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
+      complex(c_float_complex),target,dimension(:,:) :: C
+      integer(c_int) :: ldc
       !
-      hipblasCtrmm_full_rank = hipblasCtrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb)
+      hipblasCtrmm_full_rank = hipblasCtrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
     end function
 
-    function hipblasCtrmm_rank_0(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
+    function hipblasCtrmm_rank_0(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -51410,11 +51440,13 @@ module hipfort_hipblas
       integer(c_int) :: lda
       complex(c_float_complex),target :: B
       integer(c_int) :: ldb
+      complex(c_float_complex),target :: C
+      integer(c_int) :: ldc
       !
-      hipblasCtrmm_rank_0 = hipblasCtrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb)
+      hipblasCtrmm_rank_0 = hipblasCtrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
     end function
 
-    function hipblasCtrmm_rank_1(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
+    function hipblasCtrmm_rank_1(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -51431,11 +51463,13 @@ module hipfort_hipblas
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
+      complex(c_float_complex),target,dimension(:) :: C
+      integer(c_int) :: ldc
       !
-      hipblasCtrmm_rank_1 = hipblasCtrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb)
+      hipblasCtrmm_rank_1 = hipblasCtrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
     end function
 
-    function hipblasZtrmm_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
+    function hipblasZtrmm_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -51452,11 +51486,13 @@ module hipfort_hipblas
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
+      complex(c_double_complex),target,dimension(:,:) :: C
+      integer(c_int) :: ldc
       !
-      hipblasZtrmm_full_rank = hipblasZtrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb)
+      hipblasZtrmm_full_rank = hipblasZtrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
     end function
 
-    function hipblasZtrmm_rank_0(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
+    function hipblasZtrmm_rank_0(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -51473,11 +51509,13 @@ module hipfort_hipblas
       integer(c_int) :: lda
       complex(c_double_complex),target :: B
       integer(c_int) :: ldb
+      complex(c_double_complex),target :: C
+      integer(c_int) :: ldc
       !
-      hipblasZtrmm_rank_0 = hipblasZtrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb)
+      hipblasZtrmm_rank_0 = hipblasZtrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
     end function
 
-    function hipblasZtrmm_rank_1(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
+    function hipblasZtrmm_rank_1(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -51494,11 +51532,13 @@ module hipfort_hipblas
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
+      complex(c_double_complex),target,dimension(:) :: C
+      integer(c_int) :: ldc
       !
-      hipblasZtrmm_rank_1 = hipblasZtrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb)
+      hipblasZtrmm_rank_1 = hipblasZtrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
     end function
 
-    function hipblasStrmmBatched_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,batchCount)
+    function hipblasStrmmBatched_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -51515,12 +51555,14 @@ module hipfort_hipblas
       integer(c_int) :: lda
       real(c_float),target,dimension(:,:,:) :: B
       integer(c_int) :: ldb
+      real(c_float),target,dimension(:,:,:) :: C
+      integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
-      hipblasStrmmBatched_full_rank = hipblasStrmmBatched_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,batchCount)
+      hipblasStrmmBatched_full_rank = hipblasStrmmBatched_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc,batchCount)
     end function
 
-    function hipblasStrmmBatched_rank_0(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,batchCount)
+    function hipblasStrmmBatched_rank_0(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -51537,12 +51579,14 @@ module hipfort_hipblas
       integer(c_int) :: lda
       real(c_float),target :: B
       integer(c_int) :: ldb
+      real(c_float),target :: C
+      integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
-      hipblasStrmmBatched_rank_0 = hipblasStrmmBatched_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,batchCount)
+      hipblasStrmmBatched_rank_0 = hipblasStrmmBatched_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc,batchCount)
     end function
 
-    function hipblasStrmmBatched_rank_1(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,batchCount)
+    function hipblasStrmmBatched_rank_1(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -51559,12 +51603,14 @@ module hipfort_hipblas
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: B
       integer(c_int) :: ldb
+      real(c_float),target,dimension(:) :: C
+      integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
-      hipblasStrmmBatched_rank_1 = hipblasStrmmBatched_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,batchCount)
+      hipblasStrmmBatched_rank_1 = hipblasStrmmBatched_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc,batchCount)
     end function
 
-    function hipblasDtrmmBatched_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,batchCount)
+    function hipblasDtrmmBatched_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -51581,12 +51627,14 @@ module hipfort_hipblas
       integer(c_int) :: lda
       real(c_double),target,dimension(:,:,:) :: B
       integer(c_int) :: ldb
+      real(c_double),target,dimension(:,:,:) :: C
+      integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
-      hipblasDtrmmBatched_full_rank = hipblasDtrmmBatched_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,batchCount)
+      hipblasDtrmmBatched_full_rank = hipblasDtrmmBatched_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc,batchCount)
     end function
 
-    function hipblasDtrmmBatched_rank_0(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,batchCount)
+    function hipblasDtrmmBatched_rank_0(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -51603,12 +51651,14 @@ module hipfort_hipblas
       integer(c_int) :: lda
       real(c_double),target :: B
       integer(c_int) :: ldb
+      real(c_double),target :: C
+      integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
-      hipblasDtrmmBatched_rank_0 = hipblasDtrmmBatched_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,batchCount)
+      hipblasDtrmmBatched_rank_0 = hipblasDtrmmBatched_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc,batchCount)
     end function
 
-    function hipblasDtrmmBatched_rank_1(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,batchCount)
+    function hipblasDtrmmBatched_rank_1(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -51625,12 +51675,14 @@ module hipfort_hipblas
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: B
       integer(c_int) :: ldb
+      real(c_double),target,dimension(:) :: C
+      integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
-      hipblasDtrmmBatched_rank_1 = hipblasDtrmmBatched_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,batchCount)
+      hipblasDtrmmBatched_rank_1 = hipblasDtrmmBatched_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc,batchCount)
     end function
 
-    function hipblasCtrmmBatched_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,batchCount)
+    function hipblasCtrmmBatched_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldC,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -51647,12 +51699,14 @@ module hipfort_hipblas
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:,:,:) :: B
       integer(c_int) :: ldb
+      complex(c_float_complex),target,dimension(:,:,:) :: C
+      integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
-      hipblasCtrmmBatched_full_rank = hipblasCtrmmBatched_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,batchCount)
+      hipblasCtrmmBatched_full_rank = hipblasCtrmmBatched_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc,batchCount)
     end function
 
-    function hipblasCtrmmBatched_rank_0(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,batchCount)
+    function hipblasCtrmmBatched_rank_0(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -51669,12 +51723,14 @@ module hipfort_hipblas
       integer(c_int) :: lda
       complex(c_float_complex),target :: B
       integer(c_int) :: ldb
+      complex(c_float_complex),target :: C
+      integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
-      hipblasCtrmmBatched_rank_0 = hipblasCtrmmBatched_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,batchCount)
+      hipblasCtrmmBatched_rank_0 = hipblasCtrmmBatched_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc,batchCount)
     end function
 
-    function hipblasCtrmmBatched_rank_1(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,batchCount)
+    function hipblasCtrmmBatched_rank_1(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -51691,12 +51747,14 @@ module hipfort_hipblas
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
+      complex(c_float_complex),target,dimension(:) :: C
+      integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
-      hipblasCtrmmBatched_rank_1 = hipblasCtrmmBatched_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,batchCount)
+      hipblasCtrmmBatched_rank_1 = hipblasCtrmmBatched_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc,batchCount)
     end function
 
-    function hipblasZtrmmBatched_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,batchCount)
+    function hipblasZtrmmBatched_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -51713,12 +51771,14 @@ module hipfort_hipblas
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:,:,:) :: B
       integer(c_int) :: ldb
+      complex(c_double_complex),target,dimension(:,:,:) :: C
+      integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
-      hipblasZtrmmBatched_full_rank = hipblasZtrmmBatched_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,batchCount)
+      hipblasZtrmmBatched_full_rank = hipblasZtrmmBatched_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc,batchCount)
     end function
 
-    function hipblasZtrmmBatched_rank_0(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,batchCount)
+    function hipblasZtrmmBatched_rank_0(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -51735,12 +51795,14 @@ module hipfort_hipblas
       integer(c_int) :: lda
       complex(c_double_complex),target :: B
       integer(c_int) :: ldb
+      complex(c_double_complex),target :: C
+      integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
-      hipblasZtrmmBatched_rank_0 = hipblasZtrmmBatched_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,batchCount)
+      hipblasZtrmmBatched_rank_0 = hipblasZtrmmBatched_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc,batchCount)
     end function
 
-    function hipblasZtrmmBatched_rank_1(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,batchCount)
+    function hipblasZtrmmBatched_rank_1(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc,batchCount)
       use iso_c_binding
       use hipfort_hipblas_enums
       implicit none
@@ -51757,9 +51819,11 @@ module hipfort_hipblas
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
+      complex(c_double_complex),target,dimension(:) :: C
+      integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
-      hipblasZtrmmBatched_rank_1 = hipblasZtrmmBatched_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,batchCount)
+      hipblasZtrmmBatched_rank_1 = hipblasZtrmmBatched_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc,batchCount)
     end function
 
     function hipblasStrmmStridedBatched_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,strideA,B,ldb,strideB,batchCount)
