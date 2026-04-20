@@ -31,7 +31,21 @@ if(DEFINED HIPFORT_INSTALL_DIR)
 endif()
 
 # hip-config.cmake requires CXX enabled
-PROJECT(hipfort VERSION 0.7.0 LANGUAGES Fortran C CXX)
+PROJECT(hipfort VERSION 0.7.1 LANGUAGES Fortran C CXX)
+
+# get compiler name
+get_filename_component(FCNAME ${CMAKE_Fortran_COMPILER} NAME)
+
+# setup default install directories
+option(HIPFORT_MULTITOOLCHAIN_LAYOUT "Install library files to toolchain-specific subdirectories" ON)
+if(HIPFORT_MULTITOOLCHAIN_LAYOUT)
+  set(FORTRAN_LIBRARY_SUBDIR "fortran/${FCNAME}" CACHE STRING "Compiler-specific library symlink subdirectory")
+  set(CMAKE_INSTALL_LIBDIR "lib/${FORTRAN_LIBRARY_SUBDIR}" CACHE STRING "Library install directory")
+  set(CMAKE_INSTALL_INCLUDEDIR "include/${FORTRAN_LIBRARY_SUBDIR}" CACHE STRING "Mod files install directory")
+else()
+  set(CMAKE_INSTALL_LIBDIR "lib" CACHE STRING "Library install directory")
+  set(CMAKE_INSTALL_INCLUDEDIR "include" CACHE STRING "Mod files install directory")
+endif()
 
 # get compiler name
 get_filename_component(FCNAME ${CMAKE_Fortran_COMPILER} NAME)
