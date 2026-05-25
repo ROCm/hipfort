@@ -21,9 +21,9 @@ Then build, install, and test hipfort from source with the commands below:
 ```shell
 git clone https://github.com/ROCm/hipfort.git
 cd hipfort
-cmake -S. -Bbuild -DCMAKE_INSTALL_PREFIOX=/tmp/hipfort -DBUILD_TESTING=ON
+cmake -S. -Bbuild -DCMAKE_INSTALL_PREFIX=/tmp/hipfort -DBUILD_TESTING=ON
 make -C build
-make -C build check
+make -C build test
 ```
 
 ## Fortran interfaces
