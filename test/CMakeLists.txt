@@ -43,12 +43,22 @@ add_custom_target(all-tests-clean
 
 if(BUILD_TESTING)
   function(hipfort_add_test lib func dir)
-    add_executable(hipfort_test_${dir}_${lib}_${func} ${dir}/${lib}/${func}.f03)
+    # Build absolute source path and fail early if checkout is incomplete.
+    set(src "${CMAKE_CURRENT_SOURCE_DIR}/${dir}/${lib}/${func}.f03")
+    if(NOT EXISTS "${src}")
+      message(FATAL_ERROR "Missing test source: ${src}")
+    endif()
+
+    # Force language detection for .f03 in toolchains where CMake misses it.
+    set_source_files_properties("${src}" PROPERTIES LANGUAGE Fortran)
+    add_executable(hipfort_test_${dir}_${lib}_${func} "${src}")
+    set_target_properties(hipfort_test_${dir}_${lib}_${func}
+      PROPERTIES LINKER_LANGUAGE Fortran)
     target_link_libraries(hipfort_test_${dir}_${lib}_${func} PRIVATE hipfort::${lib} hipfort::hip)
 
     # the tests call EXIT, which is a GNU extension in gfortran
     target_compile_options(hipfort_test_${dir}_${lib}_${func} PRIVATE $<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-std=gnu>)
-
+    
     add_test(
       NAME hipfort_test_${dir}_${lib}_${func}
       COMMAND hipfort_test_${dir}_${lib}_${func}
