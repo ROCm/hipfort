@@ -1,33 +1,11 @@
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-! ==============================================================================
-! hipfort: FORTRAN Interfaces for GPU kernels
-! ==============================================================================
-! Copyright (c) 2020-2022 Advanced Micro Devices, Inc. All rights reserved.
-! [MITx11 License]
-! 
-! Permission is hereby granted, free of charge, to any person obtaining a copy
-! of this software and associated documentation files (the "Software"), to deal
-! in the Software without restriction, including without limitation the rights
-! to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-! copies of the Software, and to permit persons to whom the Software is
-! furnished to do so, subject to the following conditions:
-! 
-! The above copyright notice and this permission notice shall be included in
-! all copies or substantial portions of the Software.
-! 
-! THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-! IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-! FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
-! AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-! LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-! OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-! THE SOFTWARE.
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-          
-           
+! Auto-generated enums for hipfort_hipblas
+! DO NOT EDIT — re-run the generator to update.
+
 module hipfort_hipblas_enums
+  use, intrinsic :: iso_c_binding
   implicit none
 
+  ! hipblasStatus_t
   enum, bind(c)
     enumerator :: HIPBLAS_STATUS_SUCCESS = 0
     enumerator :: HIPBLAS_STATUS_NOT_INITIALIZED = 1
@@ -43,6 +21,7 @@ module hipfort_hipblas_enums
     enumerator :: HIPBLAS_STATUS_UNKNOWN = 11
   end enum
 
+  ! hipblasOperation_t
   enum, bind(c)
 #ifdef USE_CUDA_NAMES
     enumerator :: HIPBLAS_OP_N = 0
@@ -61,19 +40,40 @@ module hipfort_hipblas_enums
 #endif
   end enum
 
+  ! hipblasComputeType_t
+  enum, bind(c)
+    enumerator :: HIPBLAS_COMPUTE_16F = 0
+    enumerator :: HIPBLAS_COMPUTE_16F_PEDANTIC = 1
+    enumerator :: HIPBLAS_COMPUTE_32F = 2
+    enumerator :: HIPBLAS_COMPUTE_32F_PEDANTIC = 3
+    enumerator :: HIPBLAS_COMPUTE_32F_FAST_16F = 4
+    enumerator :: HIPBLAS_COMPUTE_32F_FAST_16BF = 5
+    enumerator :: HIPBLAS_COMPUTE_32F_FAST_TF32 = 6
+    enumerator :: HIPBLAS_COMPUTE_64F = 7
+    enumerator :: HIPBLAS_COMPUTE_64F_PEDANTIC = 8
+    enumerator :: HIPBLAS_COMPUTE_32I = 9
+    enumerator :: HIPBLAS_COMPUTE_32I_PEDANTIC = 10
+    enumerator :: HIPBLAS_COMPUTE_32F_FAST_8F_FNUZ = 100
+    enumerator :: HIPBLAS_COMPUTE_32F_FAST_8BF_FNUZ = 101
+    enumerator :: HIPBLAS_COMPUTE_32F_FAST_8F8BF_FNUZ = 102
+    enumerator :: HIPBLAS_COMPUTE_32F_FAST_8BF8F_FNUZ = 103
+  end enum
+
+  ! hipblasPointerMode_t
   enum, bind(c)
 #ifdef USE_CUDA_NAMES
     enumerator :: HIPBLAS_POINTER_MODE_HOST = 0
 #else
-    enumerator :: HIPBLAS_POINTER_MODE_HOST
+    enumerator :: HIPBLAS_POINTER_MODE_HOST = 0
 #endif
 #ifdef USE_CUDA_NAMES
     enumerator :: HIPBLAS_POINTER_MODE_DEVICE = 1
 #else
-    enumerator :: HIPBLAS_POINTER_MODE_DEVICE
+    enumerator :: HIPBLAS_POINTER_MODE_DEVICE = 1
 #endif
   end enum
 
+  ! hipblasFillMode_t
   enum, bind(c)
 #ifdef USE_CUDA_NAMES
     enumerator :: HIPBLAS_FILL_MODE_UPPER = 1
@@ -92,6 +92,7 @@ module hipfort_hipblas_enums
 #endif
   end enum
 
+  ! hipblasDiagType_t
   enum, bind(c)
 #ifdef USE_CUDA_NAMES
     enumerator :: HIPBLAS_DIAG_NON_UNIT = 0
@@ -105,6 +106,7 @@ module hipfort_hipblas_enums
 #endif
   end enum
 
+  ! hipblasSideMode_t
   enum, bind(c)
 #ifdef USE_CUDA_NAMES
     enumerator :: HIPBLAS_SIDE_LEFT = 0
@@ -119,25 +121,17 @@ module hipfort_hipblas_enums
     enumerator :: HIPBLAS_SIDE_BOTH = 143
   end enum
 
+  ! hipblasMath_t
   enum, bind(c)
-    enumerator :: HIPBLAS_R_16F = 150
-    enumerator :: HIPBLAS_R_32F = 151
-    enumerator :: HIPBLAS_R_64F = 152
-    enumerator :: HIPBLAS_C_16F = 153
-    enumerator :: HIPBLAS_C_32F = 154
-    enumerator :: HIPBLAS_C_64F = 155
-    enumerator :: HIPBLAS_R_8I = 160
-    enumerator :: HIPBLAS_R_8U = 161
-    enumerator :: HIPBLAS_R_32I = 162
-    enumerator :: HIPBLAS_R_32U = 163
-    enumerator :: HIPBLAS_C_8I = 164
-    enumerator :: HIPBLAS_C_8U = 165
-    enumerator :: HIPBLAS_C_32I = 166
-    enumerator :: HIPBLAS_C_32U = 167
-    enumerator :: HIPBLAS_R_16B = 168
-    enumerator :: HIPBLAS_C_16B = 169
+    enumerator :: HIPBLAS_DEFAULT_MATH = 0
+    enumerator :: HIPBLAS_XF32_XDL_MATH = 1
+    enumerator :: HIPBLAS_PEDANTIC_MATH = 2
+    enumerator :: HIPBLAS_TF32_TENSOR_OP_MATH = 3
+    enumerator :: HIPBLAS_MATH_DISALLOW_REDUCED_PRECISION_REDUCTION = 4
+    enumerator :: HIPBLAS_TENSOR_OP_MATH = 5
   end enum
 
+  ! hipblasGemmAlgo_t
   enum, bind(c)
 #ifdef USE_CUDA_NAMES
     enumerator :: HIPBLAS_GEMM_DEFAULT = -1
@@ -146,6 +140,7 @@ module hipfort_hipblas_enums
 #endif
   end enum
 
+  ! hipblasAtomicsMode_t
   enum, bind(c)
 #ifdef USE_CUDA_NAMES
     enumerator :: HIPBLAS_ATOMICS_NOT_ALLOWED = 0
@@ -159,10 +154,26 @@ module hipfort_hipblas_enums
 #endif
   end enum
 
- 
+  ! hipblasGemmFlags_t
+  enum, bind(c)
+    enumerator :: HIPBLAS_GEMM_FLAGS_NONE = 0
+    enumerator :: HIPBLAS_GEMM_FLAGS_USE_CU_EFFICIENCY = 2
+    enumerator :: HIPBLAS_GEMM_FLAGS_FP16_ALT_IMPL = 4
+    enumerator :: HIPBLAS_GEMM_FLAGS_CHECK_SOLUTION_INDEX = 8
+    enumerator :: HIPBLAS_GEMM_FLAGS_FP16_ALT_IMPL_RNZ = 16
+  end enum
 
-#ifdef USE_FPOINTER_INTERFACES
+  ! hipblasLibraryProperty_t
+  enum, bind(c)
+    enumerator :: HIPBLAS_MAJOR_VERSION = 0
+    enumerator :: HIPBLAS_MINOR_VERSION = 1
+    enumerator :: HIPBLAS_PATCH_LEVEL = 2
+  end enum
 
-  
-#endif
+  !--- #define integer constants ---
+  integer(c_int), parameter :: hipblasVersionMajor = 3
+  integer(c_int), parameter :: hipblaseVersionMinor = 2
+  integer(c_int), parameter :: hipblasVersionMinor = 2
+  integer(c_int), parameter :: hipblasVersionPatch = 0
+
 end module hipfort_hipblas_enums

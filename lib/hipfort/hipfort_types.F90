@@ -1,17 +1,24 @@
+! Auto-generated derived types for hipfort
+! DO NOT EDIT — re-run the generator to update.
+
 module hipfort_types
-  use iso_c_binding
+  use, intrinsic :: iso_c_binding
   implicit none
 
-  !> Derived type that can be mapped directly to a CUDA/HIP C++ dim3.  
-  type,bind(c) :: dim3
-     integer(c_int) :: x=1,y=1,z=1
-  end type dim3
+  type, bind(c) :: hipDeviceArch_t
+    integer(c_int32_t) :: opaque(1)
+  end type hipDeviceArch_t
 
+  type, bind(c) :: hipUUID
+    character(c_char) :: bytes(16)
+  end type hipUUID
 
 #ifdef USE_CUDA_NAMES
-  type,bind(c) :: hipDeviceProp_t  ! as of cuda 11.4
+  type,bind(c) :: hipDeviceProp_t  ! as of cuda 13.3 (CUDART 13030); ABI-stable across 13.3 updates
     character(kind=c_char) :: name(256)
     character(kind=c_char) :: uuid(16)
+    character(kind=c_char) :: luid(8)
+    integer(c_int) :: luidDeviceNodeMask
     integer(c_size_t) :: totalGlobalMem
     integer(c_size_t) :: sharedMemPerBlock
     integer(c_int) :: regsPerBlock
@@ -20,21 +27,16 @@ module hipfort_types
     integer(c_int) :: maxThreadsPerBlock
     integer(c_int) :: maxThreadsDim(3)
     integer(c_int) :: maxGridSize(3)
-    integer(c_int) :: clockRate
     integer(c_size_t) :: totalConstMem
     integer(c_int) :: major
     integer(c_int) :: minor
     integer(c_size_t) :: textureAlignment
     integer(c_size_t) :: texturePitchAlignment
-    integer(c_int) :: deviceOverlap
     integer(c_int) :: multiProcessorCount
-    integer(c_int) :: kernelExecTimeoutEnabled
     integer(c_int) :: integrated
     integer(c_int) :: canMapHostMemory
-    integer(c_int) :: computeMode
     integer(c_int) :: maxTexture1D
     integer(c_int) :: maxTexture1DMipmap
-    integer(c_int) :: maxTexture1DLinear
     integer(c_int) :: maxTexture2D(2)
     integer(c_int) :: maxTexture2DMipmap(2)
     integer(c_int) :: maxTexture2DLinear(3)
@@ -61,7 +63,6 @@ module hipfort_types
     integer(c_int) :: tccDriver
     integer(c_int) :: asyncEngineCount
     integer(c_int) :: unifiedAddressing
-    integer(c_int) :: memoryClockRate
     integer(c_int) :: memoryBusWidth
     integer(c_int) :: l2CacheSize
     integer(c_int) :: persistingL2CacheMaxSize
@@ -74,6 +75,109 @@ module hipfort_types
     integer(c_int) :: managedMemory
     integer(c_int) :: isMultiGpuBoard
     integer(c_int) :: multiGpuBoardGroupID
+    integer(c_int) :: hostNativeAtomicSupported
+    integer(c_int) :: pageableMemoryAccess
+    integer(c_int) :: concurrentManagedAccess
+    integer(c_int) :: computePreemptionSupported
+    integer(c_int) :: canUseHostPointerForRegisteredMem
+    integer(c_int) :: cooperativeLaunch
+    integer(c_size_t) :: sharedMemPerBlockOptin
+    integer(c_int) :: pageableMemoryAccessUsesHostPageTables
+    integer(c_int) :: directManagedMemAccessFromHost
+    integer(c_int) :: maxBlocksPerMultiProcessor
+    integer(c_int) :: accessPolicyMaxWindowSize
+    integer(c_size_t) :: reservedSharedMemPerBlock
+    integer(c_int) :: hostRegisterSupported
+    integer(c_int) :: sparseCudaArraySupported
+    integer(c_int) :: hostRegisterReadOnlySupported
+    integer(c_int) :: timelineSemaphoreInteropSupported
+    integer(c_int) :: memoryPoolsSupported
+    integer(c_int) :: gpuDirectRDMASupported
+    integer(c_int) :: gpuDirectRDMAFlushWritesOptions
+    integer(c_int) :: gpuDirectRDMAWritesOrdering
+    integer(c_int) :: memoryPoolSupportedHandleTypes
+    integer(c_int) :: deferredMappingCudaArraySupported
+    integer(c_int) :: ipcEventSupported
+    integer(c_int) :: clusterLaunch
+    integer(c_int) :: unifiedFunctionPointers
+    integer(c_int) :: deviceNumaConfig
+    integer(c_int) :: deviceNumaId
+    integer(c_int) :: mpsEnabled
+    integer(c_int) :: hostNumaId
+    integer(c_int) :: gpuPciDeviceID
+    integer(c_int) :: gpuPciSubsystemID
+    integer(c_int) :: hostNumaMultinodeIpcSupported
+    integer(c_int) :: reserved(56)
+  end type hipDeviceProp_t
+#else
+  type, bind(c) :: hipDeviceProp_t
+    character(c_char) :: name(256)
+    type(hipUUID) :: uuid
+    character(c_char) :: luid(8)
+    integer(c_int) :: luidDeviceNodeMask
+    integer(c_long) :: totalGlobalMem
+    integer(c_long) :: sharedMemPerBlock
+    integer(c_int) :: regsPerBlock
+    integer(c_int) :: warpSize
+    integer(c_long) :: memPitch
+    integer(c_int) :: maxThreadsPerBlock
+    integer(c_int) :: maxThreadsDim(3)
+    integer(c_int) :: maxGridSize(3)
+    integer(c_int) :: clockRate
+    integer(c_long) :: totalConstMem
+    integer(c_int) :: major
+    integer(c_int) :: minor
+    integer(c_long) :: textureAlignment
+    integer(c_long) :: texturePitchAlignment
+    integer(c_int) :: deviceOverlap
+    integer(c_int) :: multiProcessorCount
+    integer(c_int) :: kernelExecTimeoutEnabled
+    integer(c_int) :: integrated
+    integer(c_int) :: canMapHostMemory
+    integer(c_int) :: computeMode
+    integer(c_int) :: maxTexture1D
+    integer(c_int) :: maxTexture1DMipmap
+    integer(c_int) :: maxTexture1DLinear
+    integer(c_int) :: maxTexture2D(2)
+    integer(c_int) :: maxTexture2DMipmap(2)
+    integer(c_int) :: maxTexture2DLinear(3)
+    integer(c_int) :: maxTexture2DGather(2)
+    integer(c_int) :: maxTexture3D(3)
+    integer(c_int) :: maxTexture3DAlt(3)
+    integer(c_int) :: maxTextureCubemap
+    integer(c_int) :: maxTexture1DLayered(2)
+    integer(c_int) :: maxTexture2DLayered(3)
+    integer(c_int) :: maxTextureCubemapLayered(2)
+    integer(c_int) :: maxSurface1D
+    integer(c_int) :: maxSurface2D(2)
+    integer(c_int) :: maxSurface3D(3)
+    integer(c_int) :: maxSurface1DLayered(2)
+    integer(c_int) :: maxSurface2DLayered(3)
+    integer(c_int) :: maxSurfaceCubemap
+    integer(c_int) :: maxSurfaceCubemapLayered(2)
+    integer(c_long) :: surfaceAlignment
+    integer(c_int) :: concurrentKernels
+    integer(c_int) :: ECCEnabled
+    integer(c_int) :: pciBusID
+    integer(c_int) :: pciDeviceID
+    integer(c_int) :: pciDomainID
+    integer(c_int) :: tccDriver
+    integer(c_int) :: asyncEngineCount
+    integer(c_int) :: unifiedAddressing
+    integer(c_int) :: memoryClockRate
+    integer(c_int) :: memoryBusWidth
+    integer(c_int) :: l2CacheSize
+    integer(c_int) :: persistingL2CacheMaxSize
+    integer(c_int) :: maxThreadsPerMultiProcessor
+    integer(c_int) :: streamPrioritiesSupported
+    integer(c_int) :: globalL1CacheSupported
+    integer(c_int) :: localL1CacheSupported
+    integer(c_long) :: sharedMemPerMultiprocessor
+    integer(c_int) :: regsPerMultiprocessor
+    integer(c_int) :: managedMemory
+    integer(c_int) :: isMultiGpuBoard
+    integer(c_int) :: multiGpuBoardGroupID
+    integer(c_int) :: hostNativeAtomicSupported
     integer(c_int) :: singleToDoublePrecisionPerfRatio
     integer(c_int) :: pageableMemoryAccess
     integer(c_int) :: concurrentManagedAccess
@@ -81,144 +185,785 @@ module hipfort_types
     integer(c_int) :: canUseHostPointerForRegisteredMem
     integer(c_int) :: cooperativeLaunch
     integer(c_int) :: cooperativeMultiDeviceLaunch
+    integer(c_long) :: sharedMemPerBlockOptin
     integer(c_int) :: pageableMemoryAccessUsesHostPageTables
     integer(c_int) :: directManagedMemAccessFromHost
+    integer(c_int) :: maxBlocksPerMultiProcessor
     integer(c_int) :: accessPolicyMaxWindowSize
-    character(kind=c_char) :: GPUFORT_PADDING(256) !< GPUFORT :Some extra bytes to prevent seg faults in newer versions
-  end type hipDeviceProp_t
-#else
-  type,bind(c) :: hipDeviceProp_t ! as of ROCm 4.4
-    character(kind=c_char) :: name(256)            !< Device name.
-    integer(c_size_t) :: totalGlobalMem     !< Size of global memory region (in bytes).
-    integer(c_size_t) :: sharedMemPerBlock  !< Size of shared memory region (in bytes).
-    integer(c_int) :: regsPerBlock          !< Registers per block.
-    integer(c_int) :: warpSize              !< Warp size.
-    integer(c_int) :: maxThreadsPerBlock    !< Max work items per work group or workgroup max size.
-    integer(c_int) :: maxThreadsDim(3)      !< Max number of threads in each dimension (XYZ) of a block.
-    integer(c_int) :: maxGridSize(3)        !< Max grid dimensions (XYZ).
-    integer(c_int) :: clockRate             !< Max clock frequency of the multiProcessors in khz.
-    integer(c_int) :: memoryClockRate       !< Max global memory clock frequency in khz.
-    integer(c_int) :: memoryBusWidth        !< Global memory bus width in bits.
-    integer(c_size_t) :: totalConstMem      !< Size of shared memory region (in bytes).
-    integer(c_int) :: major  !< Major compute capability.  On HCC, this is an approximation and features may
-                !< differ from CUDA CC.  See the arch feature flags for portable ways to query
-                !< feature caps.
-    integer(c_int) :: minor  !< Minor compute capability.  On HCC, this is an approximation and features may
-                !< differ from CUDA CC.  See the arch feature flags for portable ways to query
-                !< feature caps.
-    integer(c_int) :: multiProcessorCount          !< Number of multi-processors (compute units).
-    integer(c_int) :: l2CacheSize                  !< L2 cache size.
-    integer(c_int) :: maxThreadsPerMultiProcessor  !< Maximum resident threads per multi-processor.
-    integer(c_int) :: computeMode                  !< Compute mode.
-    integer(c_int) :: clockInstructionRate  !< Frequency in khz of the timer used by the device-side "clock*"
-                               !< instructions.  New for HIP.
-    integer(c_int) arch       !< Architectural feature flags.  New for HIP. 
-    integer(c_int) :: concurrentKernels     !< Device can possibly execute multiple kernels concurrently.
-    integer(c_int) :: pciDomainID           !< PCI Domain ID
-    integer(c_int) :: pciBusID              !< PCI Bus ID.
-    integer(c_int) :: pciDeviceID           !< PCI Device ID.
-    integer(c_size_t) :: maxSharedMemoryPerMultiProcessor  !< Maximum Shared Memory Per Multiprocessor.
-    integer(c_int) :: isMultiGpuBoard                      !< 1 if device is on a multi-GPU board, 0 if not.
-    integer(c_int) :: canMapHostMemory                     !< Check whether HIP can map host memory
-    integer(c_int) :: gcnArch                              !< DEPRECATED: use gcnArchName instead
-    character(kind=c_char) :: gcnArchName(256)                    !< AMD GCN Arch Name.
-    integer(c_int) :: integrated            !< APU vs dGPU
-    integer(c_int) :: cooperativeLaunch            !< HIP device supports cooperative launch
-    integer(c_int) :: cooperativeMultiDeviceLaunch !< HIP device supports cooperative launch on multiple devices
-    integer(c_int) :: maxTexture1DLinear    !< Maximum size for 1D textures bound to linear memory
-    integer(c_int) :: maxTexture1D          !< Maximum number of elements in 1D images
-    integer(c_int) :: maxTexture2D(2)       !< Maximum dimensions (width, height) of 2D images, in image elements
-    integer(c_int) :: maxTexture3D(3)       !< Maximum dimensions (width, height, depth) of 3D images, in image elements
-    type(c_ptr) :: hdpMemFlushCntl      !< Addres of HDP_MEM_COHERENCY_FLUSH_CNTL register
-    type(c_ptr) :: hdpRegFlushCntl      !< Addres of HDP_REG_COHERENCY_FLUSH_CNTL register
-    integer(c_size_t) :: memPitch                 !<Maximum pitch in bytes allowed by memory copies
-    integer(c_size_t) :: textureAlignment         !<Alignment requirement for textures
-    integer(c_size_t) :: texturePitchAlignment    !<Pitch alignment requirement for texture references bound to pitched memory
-    integer(c_int) :: kernelExecTimeoutEnabled    !<Run time limit for kernels executed on the device
-    integer(c_int) :: ECCEnabled                  !<Device has ECC support enabled
-    integer(c_int) :: tccDriver                   !< 1:If device is Tesla device using TCC driver, else 0
-    integer(c_int) :: cooperativeMultiDeviceUnmatchedFunc        !< HIP device supports cooperative launch on multiple
-                                                    !devices with unmatched functions
-    integer(c_int) :: cooperativeMultiDeviceUnmatchedGridDim     !< HIP device supports cooperative launch on multiple
-                                                    !devices with unmatched grid dimensions
-    integer(c_int) :: cooperativeMultiDeviceUnmatchedBlockDim    !< HIP device supports cooperative launch on multiple
-                                                    !devices with unmatched block dimensions
-    integer(c_int) :: cooperativeMultiDeviceUnmatchedSharedMem   !< HIP device supports cooperative launch on multiple
-                                                    !devices with unmatched shared memories
-    integer(c_int) :: isLargeBar                  !< 1: if it is a large PCI bar device, else 0
-    integer(c_int) :: asicRevision                !< Revision of the GPU in this device
-    integer(c_int) :: managedMemory               !< Device supports allocating managed memory on this system
-    integer(c_int) :: directManagedMemAccessFromHost !< Host can directly access managed memory on the device without migration
-    integer(c_int) :: concurrentManagedAccess     !< Device can coherently access managed memory concurrently with the CPU
-    integer(c_int) :: pageableMemoryAccess        !< Device supports coherently accessing pageable memory
-                                     !< without calling hipHostRegister on it
-    integer(c_int) :: pageableMemoryAccessUsesHostPageTables !< Device accesses pageable memory via the host's page tables
-    character(kind=c_char) :: GPUFORT_PADDING(256) !< GPUFORT :Some extra bytes to prevent seg faults in newer versions
+    integer(c_long) :: reservedSharedMemPerBlock
+    integer(c_int) :: hostRegisterSupported
+    integer(c_int) :: sparseHipArraySupported
+    integer(c_int) :: hostRegisterReadOnlySupported
+    integer(c_int) :: timelineSemaphoreInteropSupported
+    integer(c_int) :: memoryPoolsSupported
+    integer(c_int) :: gpuDirectRDMASupported
+    integer(c_int) :: gpuDirectRDMAFlushWritesOptions
+    integer(c_int) :: gpuDirectRDMAWritesOrdering
+    integer(c_int) :: memoryPoolSupportedHandleTypes
+    integer(c_int) :: deferredMappingHipArraySupported
+    integer(c_int) :: ipcEventSupported
+    integer(c_int) :: clusterLaunch
+    integer(c_int) :: unifiedFunctionPointers
+    integer(c_int) :: reserved(63)
+    integer(c_int) :: hipReserved(32)
+    character(c_char) :: gcnArchName(256)
+    integer(c_long) :: maxSharedMemoryPerMultiProcessor
+    integer(c_int) :: clockInstructionRate
+    type(hipDeviceArch_t) :: arch
+    type(c_ptr) :: hdpMemFlushCntl
+    type(c_ptr) :: hdpRegFlushCntl
+    integer(c_int) :: cooperativeMultiDeviceUnmatchedFunc
+    integer(c_int) :: cooperativeMultiDeviceUnmatchedGridDim
+    integer(c_int) :: cooperativeMultiDeviceUnmatchedBlockDim
+    integer(c_int) :: cooperativeMultiDeviceUnmatchedSharedMem
+    integer(c_int) :: isLargeBar
+    integer(c_int) :: asicRevision
   end type hipDeviceProp_t
 #endif
 
-  ! runtime api parameters
+  type, bind(c) :: hipPointerAttribute_t
+    integer(c_int) :: type
+    integer(c_int) :: device
+    type(c_ptr) :: devicePointer
+    type(c_ptr) :: hostPointer
+    integer(c_int) :: isManaged
+    integer(c_int) :: allocationFlags
+  end type hipPointerAttribute_t
 
-  integer, parameter :: hipIpcMemLazyEnablePeerAccess =  0
+  type, bind(c) :: hipChannelFormatDesc
+    integer(c_int) :: x
+    integer(c_int) :: y
+    integer(c_int) :: z
+    integer(c_int) :: w
+    integer(c_int) :: f
+  end type hipChannelFormatDesc
 
-  integer, parameter :: hipStreamDefault = &
-      0  !< Default stream creation flags. These are used with hipStreamCreate = ().
-  integer, parameter :: hipStreamNonBlocking =  1  !< Stream does not implicitly synchronize with null stream
-  
-  integer, parameter :: hipEventDefault =  0  !< Default flags
-  integer, parameter :: hipEventBlockingSync = &
-      1  !< Waiting will yield CPU.  Power-friendly and usage-friendly but may increase latency.
-  integer, parameter :: hipEventDisableTiming = &
-      2  !< Disable event's capability to record timing information.  May improve performance.
-  integer, parameter :: hipEventInterprocess =  4  !< Event can support IPC.  @warning - not supported in HIP.
-  integer, parameter :: hipEventReleaseToDevice = &
-      1073741824 !< 0x40000000 - Use a device-scope release when recording this event.  This flag is useful to
-  !integer, parameter :: hipEventReleaseToSystem = &
-  !    2147483648 !< 0x80000000 - Use a system-scope release that when recording this event.  This flag is
-  integer, parameter :: hipHostMallocDefault =  0
-  integer, parameter :: hipHostMallocPortable =  1  !< Memory is considered allocated by all contexts.
-  integer, parameter :: hipHostMallocMapped = &
-      2  !< Map the allocation into the address space for the current device.  The device pointer
-  integer, parameter :: hipHostMallocWriteCombined =  4
-  integer, parameter :: hipHostMallocNumaUser = &
-      536870912 !< 0x20000000 - Host memory allocation will follow numa policy set by user
-  integer, parameter :: hipHostMallocCoherent = &
-      1073741824 !< 0x40000000 - Allocate coherent memory. Overrides HIP_COHERENT_HOST_ALLOC for specific
-  !integer, parameter :: hipHostMallocNonCoherent = &
-  !    2147483648 !< 0x80000000 - Allocate non-coherent memory. Overrides HIP_COHERENT_HOST_ALLOC for specific
-  integer, parameter :: hipMemAttachGlobal =   1    !< Memory can be accessed by any stream on any device
-  integer, parameter :: hipMemAttachHost =     2    !< Memory cannot be accessed by any stream on any device
-  integer, parameter :: hipMemAttachSingle =   4    !< Memory can only be accessed by a single stream on
-                                      !< the associated device
-  integer, parameter :: hipDeviceMallocDefault =  0
-  integer, parameter :: hipDeviceMallocFinegrained =  1  !< Memory is allocated in fine grained region of device.
-  
-  integer, parameter :: hipHostRegisterDefault =  0   !< Memory is Mapped and Portable
-  integer, parameter :: hipHostRegisterPortable =  1  !< Memory is considered registered by all contexts.
-  integer, parameter :: hipHostRegisterMapped = &
-      2  !< Map the allocation into the address space for the current device.  The device pointer
-  integer, parameter :: hipHostRegisterIoMemory =  4  !< Not supported.
-  integer, parameter :: hipExtHostRegisterCoarseGrained =  8  !< Coarse Grained host memory lock
-  
-  integer, parameter :: hipDeviceScheduleAuto =  0  !< Automatically select between Spin and Yield
-  integer, parameter :: hipDeviceScheduleSpin = &
-      1  !< Dedicate a CPU core to spin-wait.  Provides lowest latency, but burns a CPU core and
-  integer, parameter :: hipDeviceScheduleYield = &
-      2  !< Yield the CPU to the operating system when waiting.  May increase latency, but lowers
-  integer, parameter :: hipDeviceScheduleBlockingSync =  4
-  integer, parameter :: hipDeviceScheduleMask =  7
-  
-  integer, parameter :: hipDeviceMapHost =  8
-  integer, parameter :: hipDeviceLmemResizeToMax =  22 ! 16
-  
-  integer, parameter :: hipArrayDefault =  0  !< Default HIP array allocation flag
-  integer, parameter :: hipArrayLayered =  1
-  integer, parameter :: hipArraySurfaceLoadStore =  2
-  integer, parameter :: hipArrayCubemap =  4
-  integer, parameter :: hipArrayTextureGather =  8
-  
-  integer, parameter :: hipOccupancyDefault =  0
-  
-  integer, parameter :: hipCooperativeLaunchMultiDeviceNoPreSync =  1
-  integer, parameter :: hipCooperativeLaunchMultiDeviceNoPostSync =  2
+  type, bind(c) :: HIP_ARRAY_DESCRIPTOR
+    integer(c_long) :: Width
+    integer(c_long) :: Height
+    integer(c_int) :: Format
+    integer(c_int) :: NumChannels
+  end type HIP_ARRAY_DESCRIPTOR
+
+  type, bind(c) :: HIP_ARRAY3D_DESCRIPTOR
+    integer(c_long) :: Width
+    integer(c_long) :: Height
+    integer(c_long) :: Depth
+    integer(c_int) :: Format
+    integer(c_int) :: NumChannels
+    integer(c_int) :: Flags
+  end type HIP_ARRAY3D_DESCRIPTOR
+
+  type, bind(c) :: hip_Memcpy2D
+    integer(c_long) :: srcXInBytes
+    integer(c_long) :: srcY
+    integer(c_int) :: srcMemoryType
+    type(c_ptr) :: srcHost
+    type(c_ptr) :: srcDevice
+    type(c_ptr) :: srcArray
+    integer(c_long) :: srcPitch
+    integer(c_long) :: dstXInBytes
+    integer(c_long) :: dstY
+    integer(c_int) :: dstMemoryType
+    type(c_ptr) :: dstHost
+    type(c_ptr) :: dstDevice
+    type(c_ptr) :: dstArray
+    integer(c_long) :: dstPitch
+    integer(c_long) :: WidthInBytes
+    integer(c_long) :: Height
+  end type hip_Memcpy2D
+
+  type, bind(c) :: hipMipmappedArray
+    type(c_ptr) :: data
+    type(hipChannelFormatDesc) :: desc
+    integer(c_int) :: type
+    integer(c_int) :: width
+    integer(c_int) :: height
+    integer(c_int) :: depth
+    integer(c_int) :: min_mipmap_level
+    integer(c_int) :: max_mipmap_level
+    integer(c_int) :: flags
+    integer(c_int) :: format
+    integer(c_int) :: num_channels
+  end type hipMipmappedArray
+
+  type, bind(c) :: HIP_TEXTURE_DESC
+    integer(c_int) :: addressMode(3)
+    integer(c_int) :: filterMode
+    integer(c_int) :: flags
+    integer(c_int) :: maxAnisotropy
+    integer(c_int) :: mipmapFilterMode
+    real(c_float) :: mipmapLevelBias
+    real(c_float) :: minMipmapLevelClamp
+    real(c_float) :: maxMipmapLevelClamp
+    real(c_float) :: borderColor(4)
+    integer(c_int) :: reserved(12)
+  end type HIP_TEXTURE_DESC
+
+  type, bind(c) :: hipResourceDesc
+    integer(c_int64_t) :: opaque(8)
+  end type hipResourceDesc
+
+  type, bind(c) :: HIP_RESOURCE_DESC
+    integer(c_int64_t) :: opaque(18)
+  end type HIP_RESOURCE_DESC
+
+  type, bind(c) :: hipResourceViewDesc
+    integer(c_int) :: format
+    integer(c_long) :: width
+    integer(c_long) :: height
+    integer(c_long) :: depth
+    integer(c_int) :: firstMipmapLevel
+    integer(c_int) :: lastMipmapLevel
+    integer(c_int) :: firstLayer
+    integer(c_int) :: lastLayer
+  end type hipResourceViewDesc
+
+  type, bind(c) :: HIP_RESOURCE_VIEW_DESC
+    integer(c_int) :: format
+    integer(c_long) :: width
+    integer(c_long) :: height
+    integer(c_long) :: depth
+    integer(c_int) :: firstMipmapLevel
+    integer(c_int) :: lastMipmapLevel
+    integer(c_int) :: firstLayer
+    integer(c_int) :: lastLayer
+    integer(c_int) :: reserved(16)
+  end type HIP_RESOURCE_VIEW_DESC
+
+  type, bind(c) :: hipPitchedPtr
+    type(c_ptr) :: ptr
+    integer(c_long) :: pitch
+    integer(c_long) :: xsize
+    integer(c_long) :: ysize
+  end type hipPitchedPtr
+
+  type, bind(c) :: hipExtent
+    integer(c_long) :: width
+    integer(c_long) :: height
+    integer(c_long) :: depth
+  end type hipExtent
+
+  type, bind(c) :: hipPos
+    integer(c_long) :: x
+    integer(c_long) :: y
+    integer(c_long) :: z
+  end type hipPos
+
+  type, bind(c) :: hipMemcpy3DParms
+    type(c_ptr) :: srcArray
+    type(hipPos) :: srcPos
+    type(hipPitchedPtr) :: srcPtr
+    type(c_ptr) :: dstArray
+    type(hipPos) :: dstPos
+    type(hipPitchedPtr) :: dstPtr
+    type(hipExtent) :: extent
+    integer(c_int) :: kind
+  end type hipMemcpy3DParms
+
+  type, bind(c) :: HIP_MEMCPY3D
+    integer(c_long) :: srcXInBytes
+    integer(c_long) :: srcY
+    integer(c_long) :: srcZ
+    integer(c_long) :: srcLOD
+    integer(c_int) :: srcMemoryType
+    type(c_ptr) :: srcHost
+    type(c_ptr) :: srcDevice
+    type(c_ptr) :: srcArray
+    integer(c_long) :: srcPitch
+    integer(c_long) :: srcHeight
+    integer(c_long) :: dstXInBytes
+    integer(c_long) :: dstY
+    integer(c_long) :: dstZ
+    integer(c_long) :: dstLOD
+    integer(c_int) :: dstMemoryType
+    type(c_ptr) :: dstHost
+    type(c_ptr) :: dstDevice
+    type(c_ptr) :: dstArray
+    integer(c_long) :: dstPitch
+    integer(c_long) :: dstHeight
+    integer(c_long) :: WidthInBytes
+    integer(c_long) :: Height
+    integer(c_long) :: Depth
+  end type HIP_MEMCPY3D
+
+  type, bind(c) :: hipMemLocation
+    integer(c_int) :: type
+    integer(c_int) :: id
+  end type hipMemLocation
+
+  type, bind(c) :: hipMemcpyAttributes
+    integer(c_int) :: srcAccessOrder
+    type(hipMemLocation) :: srcLocHint
+    type(hipMemLocation) :: dstLocHint
+    integer(c_int) :: flags
+  end type hipMemcpyAttributes
+
+  type, bind(c) :: hipOffset3D
+    integer(c_long) :: x
+    integer(c_long) :: y
+    integer(c_long) :: z
+  end type hipOffset3D
+
+  type, bind(c) :: hipMemcpy3DOperand
+    integer(c_int64_t) :: opaque(5)
+  end type hipMemcpy3DOperand
+
+  type, bind(c) :: hipMemcpy3DBatchOp
+    type(hipMemcpy3DOperand) :: src
+    type(hipMemcpy3DOperand) :: dst
+    type(hipExtent) :: extent
+    integer(c_int) :: srcAccessOrder
+    integer(c_int) :: flags
+  end type hipMemcpy3DBatchOp
+
+  type, bind(c) :: hipMemcpy3DPeerParms
+    type(c_ptr) :: srcArray
+    type(hipPos) :: srcPos
+    type(hipPitchedPtr) :: srcPtr
+    integer(c_int) :: srcDevice
+    type(c_ptr) :: dstArray
+    type(hipPos) :: dstPos
+    type(hipPitchedPtr) :: dstPtr
+    integer(c_int) :: dstDevice
+    type(hipExtent) :: extent
+  end type hipMemcpy3DPeerParms
+
+  type, bind(c) :: uchar1
+    type(c_ptr) :: x
+  end type uchar1
+
+  type, bind(c) :: uchar2
+    type(c_ptr) :: x
+    type(c_ptr) :: y
+  end type uchar2
+
+  type, bind(c) :: uchar3
+    type(c_ptr) :: x
+    type(c_ptr) :: y
+    type(c_ptr) :: z
+  end type uchar3
+
+  type, bind(c) :: uchar4
+    type(c_ptr) :: x
+    type(c_ptr) :: y
+    type(c_ptr) :: z
+    type(c_ptr) :: w
+  end type uchar4
+
+  type, bind(c) :: char1
+    character(c_char) :: x
+  end type char1
+
+  type, bind(c) :: char2
+    character(c_char) :: x
+    character(c_char) :: y
+  end type char2
+
+  type, bind(c) :: char3
+    character(c_char) :: x
+    character(c_char) :: y
+    character(c_char) :: z
+  end type char3
+
+  type, bind(c) :: char4
+    character(c_char) :: x
+    character(c_char) :: y
+    character(c_char) :: z
+    character(c_char) :: w
+  end type char4
+
+  type, bind(c) :: ushort1
+    integer(c_short) :: x
+  end type ushort1
+
+  type, bind(c) :: ushort2
+    integer(c_short) :: x
+    integer(c_short) :: y
+  end type ushort2
+
+  type, bind(c) :: ushort3
+    integer(c_short) :: x
+    integer(c_short) :: y
+    integer(c_short) :: z
+  end type ushort3
+
+  type, bind(c) :: ushort4
+    integer(c_short) :: x
+    integer(c_short) :: y
+    integer(c_short) :: z
+    integer(c_short) :: w
+  end type ushort4
+
+  type, bind(c) :: short1
+    integer(c_short) :: x
+  end type short1
+
+  type, bind(c) :: short2
+    integer(c_short) :: x
+    integer(c_short) :: y
+  end type short2
+
+  type, bind(c) :: short3
+    integer(c_short) :: x
+    integer(c_short) :: y
+    integer(c_short) :: z
+  end type short3
+
+  type, bind(c) :: short4
+    integer(c_short) :: x
+    integer(c_short) :: y
+    integer(c_short) :: z
+    integer(c_short) :: w
+  end type short4
+
+  type, bind(c) :: uint1
+    integer(c_int) :: x
+  end type uint1
+
+  type, bind(c) :: uint2
+    integer(c_int) :: x
+    integer(c_int) :: y
+  end type uint2
+
+  type, bind(c) :: uint3
+    integer(c_int) :: x
+    integer(c_int) :: y
+    integer(c_int) :: z
+  end type uint3
+
+  type, bind(c) :: uint4
+    integer(c_int) :: x
+    integer(c_int) :: y
+    integer(c_int) :: z
+    integer(c_int) :: w
+  end type uint4
+
+  type, bind(c) :: int1
+    integer(c_int) :: x
+  end type int1
+
+  type, bind(c) :: int2
+    integer(c_int) :: x
+    integer(c_int) :: y
+  end type int2
+
+  type, bind(c) :: int3
+    integer(c_int) :: x
+    integer(c_int) :: y
+    integer(c_int) :: z
+  end type int3
+
+  type, bind(c) :: int4
+    integer(c_int) :: x
+    integer(c_int) :: y
+    integer(c_int) :: z
+    integer(c_int) :: w
+  end type int4
+
+  type, bind(c) :: ulong1
+    integer(c_long) :: x
+  end type ulong1
+
+  type, bind(c) :: ulong2
+    integer(c_long) :: x
+    integer(c_long) :: y
+  end type ulong2
+
+  type, bind(c) :: ulong3
+    integer(c_long) :: x
+    integer(c_long) :: y
+    integer(c_long) :: z
+  end type ulong3
+
+  type, bind(c) :: ulong4
+    integer(c_long) :: x
+    integer(c_long) :: y
+    integer(c_long) :: z
+    integer(c_long) :: w
+  end type ulong4
+
+  type, bind(c) :: long1
+    integer(c_long) :: x
+  end type long1
+
+  type, bind(c) :: long2
+    integer(c_long) :: x
+    integer(c_long) :: y
+  end type long2
+
+  type, bind(c) :: long3
+    integer(c_long) :: x
+    integer(c_long) :: y
+    integer(c_long) :: z
+  end type long3
+
+  type, bind(c) :: long4
+    integer(c_long) :: x
+    integer(c_long) :: y
+    integer(c_long) :: z
+    integer(c_long) :: w
+  end type long4
+
+  type, bind(c) :: ulonglong1
+    integer(c_int64_t) :: x
+  end type ulonglong1
+
+  type, bind(c) :: ulonglong2
+    integer(c_int64_t) :: x
+    integer(c_int64_t) :: y
+  end type ulonglong2
+
+  type, bind(c) :: ulonglong3
+    integer(c_int64_t) :: x
+    integer(c_int64_t) :: y
+    integer(c_int64_t) :: z
+  end type ulonglong3
+
+  type, bind(c) :: ulonglong4
+    integer(c_int64_t) :: x
+    integer(c_int64_t) :: y
+    integer(c_int64_t) :: z
+    integer(c_int64_t) :: w
+  end type ulonglong4
+
+  type, bind(c) :: longlong1
+    integer(c_int64_t) :: x
+  end type longlong1
+
+  type, bind(c) :: longlong2
+    integer(c_int64_t) :: x
+    integer(c_int64_t) :: y
+  end type longlong2
+
+  type, bind(c) :: longlong3
+    integer(c_int64_t) :: x
+    integer(c_int64_t) :: y
+    integer(c_int64_t) :: z
+  end type longlong3
+
+  type, bind(c) :: longlong4
+    integer(c_int64_t) :: x
+    integer(c_int64_t) :: y
+    integer(c_int64_t) :: z
+    integer(c_int64_t) :: w
+  end type longlong4
+
+  type, bind(c) :: float1
+    real(c_float) :: x
+  end type float1
+
+  type, bind(c) :: float2
+    real(c_float) :: x
+    real(c_float) :: y
+  end type float2
+
+  type, bind(c) :: float3
+    real(c_float) :: x
+    real(c_float) :: y
+    real(c_float) :: z
+  end type float3
+
+  type, bind(c) :: float4
+    real(c_float) :: x
+    real(c_float) :: y
+    real(c_float) :: z
+    real(c_float) :: w
+  end type float4
+
+  type, bind(c) :: double1
+    real(c_double) :: x
+  end type double1
+
+  type, bind(c) :: double2
+    real(c_double) :: x
+    real(c_double) :: y
+  end type double2
+
+  type, bind(c) :: double3
+    real(c_double) :: x
+    real(c_double) :: y
+    real(c_double) :: z
+  end type double3
+
+  type, bind(c) :: double4
+    real(c_double) :: x
+    real(c_double) :: y
+    real(c_double) :: z
+    real(c_double) :: w
+  end type double4
+
+  type, bind(c) :: textureReference
+    integer(c_int) :: normalized
+    integer(c_int) :: readMode
+    integer(c_int) :: filterMode
+    integer(c_int) :: addressMode(3)
+    type(hipChannelFormatDesc) :: channelDesc
+    integer(c_int) :: sRGB
+    integer(c_int) :: maxAnisotropy
+    integer(c_int) :: mipmapFilterMode
+    real(c_float) :: mipmapLevelBias
+    real(c_float) :: minMipmapLevelClamp
+    real(c_float) :: maxMipmapLevelClamp
+    type(c_ptr) :: textureObject
+    integer(c_int) :: numChannels
+    integer(c_int) :: format
+  end type textureReference
+
+  type, bind(c) :: hipTextureDesc
+    integer(c_int) :: addressMode(3)
+    integer(c_int) :: filterMode
+    integer(c_int) :: readMode
+    integer(c_int) :: sRGB
+    real(c_float) :: borderColor(4)
+    integer(c_int) :: normalizedCoords
+    integer(c_int) :: maxAnisotropy
+    integer(c_int) :: mipmapFilterMode
+    real(c_float) :: mipmapLevelBias
+    real(c_float) :: minMipmapLevelClamp
+    real(c_float) :: maxMipmapLevelClamp
+  end type hipTextureDesc
+
+  type, bind(c) :: surfaceReference
+    type(c_ptr) :: surfaceObject
+  end type surfaceReference
+
+  type, bind(c) :: hipIpcMemHandle_t
+    character(c_char) :: reserved(64)
+  end type hipIpcMemHandle_t
+
+  type, bind(c) :: hipIpcEventHandle_t
+    character(c_char) :: reserved(64)
+  end type hipIpcEventHandle_t
+
+  type, bind(c) :: hipFuncAttributes
+    integer(c_int) :: binaryVersion
+    integer(c_int) :: cacheModeCA
+    integer(c_long) :: constSizeBytes
+    integer(c_long) :: localSizeBytes
+    integer(c_int) :: maxDynamicSharedSizeBytes
+    integer(c_int) :: maxThreadsPerBlock
+    integer(c_int) :: numRegs
+    integer(c_int) :: preferredShmemCarveout
+    integer(c_int) :: ptxVersion
+    integer(c_long) :: sharedSizeBytes
+  end type hipFuncAttributes
+
+  type, bind(c) :: hipBatchMemOpNodeParams
+    type(c_ptr) :: ctx
+    integer(c_int) :: count
+    type(c_ptr) :: paramArray
+    integer(c_int) :: flags
+  end type hipBatchMemOpNodeParams
+
+  type, bind(c) :: hipMemAccessDesc
+    type(hipMemLocation) :: location
+    integer(c_int) :: flags
+  end type hipMemAccessDesc
+
+  type, bind(c) :: hipMemPoolProps
+    integer(c_int) :: allocType
+    integer(c_int) :: handleTypes
+    type(hipMemLocation) :: location
+    type(c_ptr) :: win32SecurityAttributes
+    integer(c_long) :: maxSize
+    type(c_ptr) :: reserved(56)
+  end type hipMemPoolProps
+
+  type, bind(c) :: hipMemPoolPtrExportData
+    type(c_ptr) :: reserved(64)
+  end type hipMemPoolPtrExportData
+
+  type, bind(c) :: dim3
+    integer(c_int) :: x
+    integer(c_int) :: y
+    integer(c_int) :: z
+  end type dim3
+
+  type, bind(c) :: hipLaunchParams
+    type(c_ptr) :: func
+    type(dim3) :: gridDim
+    type(dim3) :: blockDim
+    type(c_ptr) :: args
+    integer(c_long) :: sharedMem
+    type(c_ptr) :: stream
+  end type hipLaunchParams
+
+  type, bind(c) :: hipFunctionLaunchParams
+    type(c_ptr) :: function
+    integer(c_int) :: gridDimX
+    integer(c_int) :: gridDimY
+    integer(c_int) :: gridDimZ
+    integer(c_int) :: blockDimX
+    integer(c_int) :: blockDimY
+    integer(c_int) :: blockDimZ
+    integer(c_int) :: sharedMemBytes
+    type(c_ptr) :: hStream
+    type(c_ptr) :: kernelParams
+  end type hipFunctionLaunchParams
+
+  type, bind(c) :: hipExternalMemoryHandleDesc
+    integer(c_int64_t) :: opaque(13)
+  end type hipExternalMemoryHandleDesc
+
+  type, bind(c) :: hipExternalMemoryBufferDesc
+    integer(c_int64_t) :: offset
+    integer(c_int64_t) :: size
+    integer(c_int) :: flags
+    integer(c_int) :: reserved(16)
+  end type hipExternalMemoryBufferDesc
+
+  type, bind(c) :: hipExternalMemoryMipmappedArrayDesc
+    integer(c_int64_t) :: offset
+    type(hipChannelFormatDesc) :: formatDesc
+    type(hipExtent) :: extent
+    integer(c_int) :: flags
+    integer(c_int) :: numLevels
+  end type hipExternalMemoryMipmappedArrayDesc
+
+  type, bind(c) :: hipExternalSemaphoreHandleDesc
+    integer(c_int64_t) :: opaque(12)
+  end type hipExternalSemaphoreHandleDesc
+
+  type, bind(c) :: hipExternalSemaphoreSignalParams
+    integer(c_int64_t) :: opaque(18)
+  end type hipExternalSemaphoreSignalParams
+
+  type, bind(c) :: hipExternalSemaphoreWaitParams
+    integer(c_int64_t) :: opaque(18)
+  end type hipExternalSemaphoreWaitParams
+
+  type, bind(c) :: hipHostNodeParams
+    type(c_funptr) :: fn
+    type(c_ptr) :: userData
+  end type hipHostNodeParams
+
+  type, bind(c) :: hipKernelNodeParams
+    type(dim3) :: blockDim
+    type(c_ptr) :: extra
+    type(c_ptr) :: func
+    type(dim3) :: gridDim
+    type(c_ptr) :: kernelParams
+    integer(c_int) :: sharedMemBytes
+  end type hipKernelNodeParams
+
+  type, bind(c) :: hipMemsetParams
+    type(c_ptr) :: dst
+    integer(c_int) :: elementSize
+    integer(c_long) :: height
+    integer(c_long) :: pitch
+    integer(c_int) :: value
+    integer(c_long) :: width
+  end type hipMemsetParams
+
+  type, bind(c) :: hipMemAllocNodeParams
+    type(hipMemPoolProps) :: poolProps
+    type(c_ptr) :: accessDescs
+    integer(c_long) :: accessDescCount
+    integer(c_long) :: bytesize
+    type(c_ptr) :: dptr
+  end type hipMemAllocNodeParams
+
+  type, bind(c) :: hipAccessPolicyWindow
+    type(c_ptr) :: base_ptr
+    integer(c_int) :: hitProp
+    real(c_float) :: hitRatio
+    integer(c_int) :: missProp
+    integer(c_long) :: num_bytes
+  end type hipAccessPolicyWindow
+
+  type, bind(c) :: hipLaunchMemSyncDomainMap
+    type(c_ptr) :: default_
+    type(c_ptr) :: remote
+  end type hipLaunchMemSyncDomainMap
+
+  type, bind(c) :: hipGraphInstantiateParams
+    type(c_ptr) :: errNode_out
+    integer(c_int64_t) :: flags
+    integer(c_int) :: result_out
+    type(c_ptr) :: uploadStream
+  end type hipGraphInstantiateParams
+
+  type, bind(c) :: hipMemAllocationProp
+    integer(c_int64_t) :: opaque(4)
+  end type hipMemAllocationProp
+
+  type, bind(c) :: hipExternalSemaphoreSignalNodeParams
+    type(c_ptr) :: extSemArray
+    type(c_ptr) :: paramsArray
+    integer(c_int) :: numExtSems
+  end type hipExternalSemaphoreSignalNodeParams
+
+  type, bind(c) :: hipExternalSemaphoreWaitNodeParams
+    type(c_ptr) :: extSemArray
+    type(c_ptr) :: paramsArray
+    integer(c_int) :: numExtSems
+  end type hipExternalSemaphoreWaitNodeParams
+
+  type, bind(c) :: hipArrayMapInfo
+    integer(c_int64_t) :: opaque(19)
+  end type hipArrayMapInfo
+
+  type, bind(c) :: hipMemcpyNodeParams
+    integer(c_int) :: flags
+    integer(c_int) :: reserved(3)
+    type(hipMemcpy3DParms) :: copyParams
+  end type hipMemcpyNodeParams
+
+  type, bind(c) :: hipChildGraphNodeParams
+    type(c_ptr) :: graph
+  end type hipChildGraphNodeParams
+
+  type, bind(c) :: hipEventWaitNodeParams
+    type(c_ptr) :: event
+  end type hipEventWaitNodeParams
+
+  type, bind(c) :: hipEventRecordNodeParams
+    type(c_ptr) :: event
+  end type hipEventRecordNodeParams
+
+  type, bind(c) :: hipMemFreeNodeParams
+    type(c_ptr) :: dptr
+  end type hipMemFreeNodeParams
+
+  type, bind(c) :: hipGraphNodeParams
+    integer(c_int) :: type
+    integer(c_int) :: reserved0(3)
+    integer(c_int64_t) :: reserved2
+  end type hipGraphNodeParams
+
+  type, bind(c) :: hipGraphEdgeData
+    type(c_ptr) :: from_port
+    type(c_ptr) :: reserved(5)
+    type(c_ptr) :: to_port
+    type(c_ptr) :: type
+  end type hipGraphEdgeData
+
+  type, bind(c) :: hipLaunchAttribute
+    integer(c_int) :: id
+    character(c_char) :: pad(4)
+  end type hipLaunchAttribute
+
+  type, bind(c) :: hipLaunchConfig_t
+    type(dim3) :: gridDim
+    type(dim3) :: blockDim
+    integer(c_long) :: dynamicSmemBytes
+    type(c_ptr) :: stream
+    type(c_ptr) :: attrs
+    integer(c_int) :: numAttrs
+  end type hipLaunchConfig_t
+
+  type, bind(c) :: HIP_LAUNCH_CONFIG
+    integer(c_int) :: gridDimX
+    integer(c_int) :: gridDimY
+    integer(c_int) :: gridDimZ
+    integer(c_int) :: blockDimX
+    integer(c_int) :: blockDimY
+    integer(c_int) :: blockDimZ
+    integer(c_int) :: sharedMemBytes
+    type(c_ptr) :: hStream
+    type(c_ptr) :: attrs
+    integer(c_int) :: numAttrs
+  end type HIP_LAUNCH_CONFIG
+
 end module hipfort_types

@@ -18,9 +18,16 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-file(GLOB HIPFORT_SRC_HIP_F90 "${CMAKE_CURRENT_SOURCE_DIR}/hipfort/*.f90")
-file(GLOB HIPFORT_SRC_HIP_F90_UPPER "${CMAKE_CURRENT_SOURCE_DIR}/hipfort/*.F90")
-set(HIPFORT_SRC_HIP ${HIPFORT_SRC_HIP_F90} ${HIPFORT_SRC_HIP_F90_UPPER})
+# amdgcn: auto-generated bindings (rocm-fortran), monolithic one-module-per-file
+# layout (ROCM_FORTRAN_LAYOUT=hipfort) — every .f90/.F90 is a standalone source.
+file(GLOB HIPFORT_SRC_AMD_F90       "${CMAKE_CURRENT_SOURCE_DIR}/hipfort/*.f90")
+file(GLOB HIPFORT_SRC_AMD_F90_UPPER "${CMAKE_CURRENT_SOURCE_DIR}/hipfort/*.F90")
+set(HIPFORT_SRC_AMD ${HIPFORT_SRC_AMD_F90} ${HIPFORT_SRC_AMD_F90_UPPER})
+
+# nvptx: the CUDA backend now reuses the SAME auto-generated sources as amdgcn,
+# compiled with -DUSE_CUDA_NAMES (see the nvptx target below). The former
+# hand-maintained hipfort-nvptx/ tree has been removed — the generator emits the
+# #ifdef USE_CUDA_NAMES aliases (names, error kinds, hipDeviceProp_t, enums).
 #file(GLOB HIPFORT_SRC_CONTRIB "${CMAKE_CURRENT_SOURCE_DIR}/modules-contrib/*.f*")
 #file(GLOB HIPFORT_SRC_HIP     "${CMAKE_CURRENT_SOURCE_DIR}/hipfort/*.f*")
 #file(GLOB HIPFORT_SRC_amdgcn  "${CMAKE_CURRENT_SOURCE_DIR}/modules-amdgcn/*.f*")
@@ -30,10 +37,10 @@ set(HIPFORT_ARCH "amdgcn")
     # amdgcn
     set(HIPFORT_LIB      "hipfort-${HIPFORT_ARCH}")
     set(CMAKE_Fortran_MODULE_DIRECTORY ${CMAKE_BINARY_DIR}/include/hipfort/${HIPFORT_ARCH})
-    ADD_LIBRARY(${HIPFORT_LIB} STATIC 
-        ${HIPFORT_SRC_HIP} 
-        #${HIPFORT_SRC_amdgcn} 
-        ${HIPFORT_SRC_CONTRIB} 
+    ADD_LIBRARY(${HIPFORT_LIB} STATIC
+        ${HIPFORT_SRC_AMD}
+        #${HIPFORT_SRC_amdgcn}
+        ${HIPFORT_SRC_CONTRIB}
         )
     target_include_directories(${HIPFORT_LIB}
       PUBLIC
@@ -59,10 +66,9 @@ set(HIPFORT_ARCH "nvptx")
     # nvptx
     set(HIPFORT_LIB     "hipfort-${HIPFORT_ARCH}")
     set(CMAKE_Fortran_MODULE_DIRECTORY ${CMAKE_BINARY_DIR}/include/hipfort/${HIPFORT_ARCH})
-    ADD_LIBRARY(${HIPFORT_LIB} STATIC 
-         ${HIPFORT_SRC_HIP} 
-         #${HIPFORT_SRC_nvptx} 
-         ${HIPFORT_SRC_CONTRIB} 
+    ADD_LIBRARY(${HIPFORT_LIB} STATIC
+         ${HIPFORT_SRC_AMD}
+         ${HIPFORT_SRC_CONTRIB}
          )
     IF(CMAKE_Fortran_COMPILER_SUPPORTS_F08)
     	target_compile_definitions(${HIPFORT_LIB} PRIVATE USE_FPOINTER_INTERFACES)
